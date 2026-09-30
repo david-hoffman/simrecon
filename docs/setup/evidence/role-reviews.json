@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "scope": "Historical native role handoffs; live status is in the setup plan or its pointer. These are not full session transcripts.",
-  "recorded_at_utc": "2026-09-30T19:59:23.804579+00:00",
+  "recorded_at_utc": "2026-09-30T20:03:50.086164+00:00",
   "reviews": [
     {
       "run": "t-a",
@@ -249,6 +249,24 @@
         "reasoning_output_tokens": 163
       },
       "failed_events": []
+    },
+    {
+      "run": "d-c",
+      "role": "C",
+      "session_id": "01a0f3e7-5ade-71c3-a187-ac69e6abe18d",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "2d78d61ca54c576cdf1ecc59012a36255fd42322a2faf33c153ac68b8e3718d8",
+      "outcome": "Initial C implemented only doctor wrapper; full verification passed, 30/30 statements and 4/4 branches. Exact committed candidate and fresh D still require final receipts.",
+      "final_report": "Ready for coordinator commit and exact-candidate verification before fresh D review.\n\nOnly [src/simrecon/_delivery.py](/Users/davidhoffman/.codex/worktrees/delivery-setup/simrecon/src/simrecon/_delivery.py) changed. It launches one fresh native doctor session with the approved permissions and preserves output/status. No scientific implementation.\n\n- Focused checks: **5 passed**.\n- Full gate: `make verify UV=/Users/davidhoffman/.local/bin/uv` **passed**, including 10 tests, lint, formatting, types, wheel/import, and dependency audit.\n- Environment: macOS, Python 3.13.12, ordinary `.venv`, unchanged lockfile.\n- Initial cache-access failure classified as environment/tooling; authorized escalation resolved it.\n\nCoverage includes all owned `src/simrecon` files and relevant subprocesses, with zero exclusions:\n\n| Scope | Statements | Branches |\n|---|---:|---:|\n| Entire `simrecon` package | 30/30 | 4/4 |\n| `_delivery.py` | 23/23 | 2/2 |\n| `_pytest_policy.py` | 7/7 | 2/2 |\n| `__init__.py` | 0/0 | 0/0 |\n\nBaseline remains `296dd03545fa1c5c3e36eab32febf94316083d09`. Dirty status is exactly one untracked file: `_delivery.py`. Its verified SHA256 is `8d84330ef974effcc031e892bd6c7264af01f4151f6ca169de4fd82916d1b00f`. Reviewed tests retain the supplied SHA256. No staging, commit, push, or PR action occurred.\n\nMetrics: 5 scenarios; B window2 round1 acceptance and prior history preserved; corrective C repairs **0/1 used**; approximately **1 minute 30 seconds of 25 minutes** used. No blockers.\n\nLive doctor behavior remains unverified. Make, YAML, hooks, and model behavior lack native coverage metrics. Zero scientific code has no meaningful coverage percentage.",
+      "usage": {
+        "input_tokens": 225148,
+        "cached_input_tokens": 187648,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1764,
+        "reasoning_output_tokens": 42
+      }
     }
   ]
 }
