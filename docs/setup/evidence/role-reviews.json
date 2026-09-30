@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "scope": "Historical native role handoffs; live status is in the setup plan or its pointer. These are not full session transcripts.",
-  "recorded_at_utc": "2026-09-30T20:03:50.086164+00:00",
+  "recorded_at_utc": "2026-09-30T20:18:56.339267+00:00",
   "reviews": [
     {
       "run": "t-a",
@@ -267,6 +267,44 @@
         "output_tokens": 1764,
         "reasoning_output_tokens": 42
       }
+    },
+    {
+      "run": "d-a5",
+      "role": "A",
+      "session_id": "01a0f3f3-29ea-7f01-863a-78ccbdb16d65",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "d6c0b8d30d4a49270089f4b90ac684909b75732f455cf6aad13d4c3e733fe5b2",
+      "outcome": "Bounded native flag oracle correction; D1/D4 valid product-red, three other cases passed.",
+      "final_report": "Corrected only [tests/test_delivery.py](/Users/davidhoffman/.codex/worktrees/delivery-setup/simrecon/tests/test_delivery.py:161). The oracle rejects `--approve-for-me` combined with explicit `--sandbox` or `-s`, including `=value` forms. Valid write modes, read-only safety, and existing cwd/prompt checks remain intact.\n\n- **Five cases:** D1 and D4 fail at the intended corrected assertion; D2, D3, D5 pass.\n- **Classification:** Prior test-oracle defect corrected. The two failures supply product-defect evidence consistent with the supplied native CLI diagnostic.\n- **Oracle probes:** 19 total: 9 valid forms accepted, 10 invalid forms rejected. No added scenarios or model sessions.\n- **Checks:** Targeted Ruff and Pyright pass.\n- **Exposure:** No implementation source exposure. All probes used the prescribed source-free environment.\n- **Allowances:** W3 remains 0/2 B rounds; shared C repair remains 0/1. Prior spending retained. Approximately 1 minute 11 seconds used; about 8 minutes 49 seconds remain in this allowance, subject to the original cap.\n- No staging, commit, or push. Ready for fresh B review; not yet an accepted checkpoint.\n\nExact test SHA256:\n```text\n35c974b7245ea27431d6c4671203bee17c70216b7c302c915cbfc3db4f3058fd\n```",
+      "usage": {
+        "input_tokens": 86749,
+        "cached_input_tokens": 69248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1518,
+        "reasoning_output_tokens": 124
+      },
+      "environment_note": "Packet cited the historical0.155 probe; current PATH/header identifies0.159.2. Actual live native rejection and resulting test oracle remain evidenced; see doctor-initial.json."
+    },
+    {
+      "run": "d-b4",
+      "role": "B",
+      "session_id": "01a0f3f5-2ecb-7dd0-99af-d9b23c45cafa",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "8a126b307bedb8571d6c9db9a4d3fde2c54a78f18f1c87a96aae429631339f47",
+      "outcome": "Window3 round1 ACCEPT test SHA25635c974b7245ea27431d6c4671203bee17c70216b7c302c915cbfc3db4f3058fd; prior windows retained.",
+      "final_report": "Accepted for C repair: `tests/test_delivery.py`, SHA256 `35c974b7245ea27431d6c4671203bee17c70216b7c302c915cbfc3db4f3058fd`. Hash unchanged after review.\n\n- **Correctness:** All five scenarios have meaningful public-boundary assertions. The correction rejects explicit `--sandbox`/`-s` plus `--approve-for-me` before interpreting config overrides. It preserves alternative valid modes. Independent oracle probes accepted 14 valid forms and rejected 19 invalid forms.\n- **Actual checks:** Pytest: D1/D4 failed at the intended conflict assertion; D2/D3/D5 passed. Ruff and test-only Pyright passed. D1/D4 are valid **product-red**, with no incidental environment failure affecting those results.\n- **Native oracle:** Acceptance relies on the packet\u2019s evidenced 0.155.0-alpha.16.4 conflict. Installed CLI is 0.159.2; its public help confirms automatic review uses workspace-write. Help invocations bypass conflict validation, so they did not independently reproduce that rejection. No model session started.\n- **Boundaries:** No implementation-source exposure, delegation, memory use, repository edits, or Git mutations. Source-free rendering and disabled pytest caching were used.\n- **History/budget:** W3 round 1/2 accepted and closed. T2 acceptance, W1\u2019s two nonacceptances plus diagnosis, and W2 round-1 acceptance remain retained. Five scenarios unchanged; C repairs remain 0/1, with the sole repair allocated to this defect. Review used approximately 1 minute of 10; original 8-hour budget and hard stop `2026-10-01T02:29:01Z` remain unchanged.\n\nNext: C repairs the invocation against this exact checkpoint. This accepts the tests, not the candidate.",
+      "usage": {
+        "input_tokens": 146133,
+        "cached_input_tokens": 130560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2017,
+        "reasoning_output_tokens": 269
+      },
+      "environment_note": "Packet cited the historical0.155 probe; current PATH/header identifies0.159.2. Actual live native rejection and resulting test oracle remain evidenced; see doctor-initial.json."
     }
   ]
 }

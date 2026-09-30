@@ -158,6 +158,9 @@ def assert_native_doctor_call(
         for value in option_values(options, "-C", "--cd")
     )
     modes = option_values(options, "--sandbox", "-s")
+    assert not (modes and "--approve-for-me" in options), (
+        "Native --approve-for-me conflicts with explicit --sandbox"
+    )
     disabled = option_values(options, "--disable")
     enabled = option_values(options, "--enable")
     for config in option_values(options, "--config", "-c"):

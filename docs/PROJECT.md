@@ -40,7 +40,7 @@ The canonical full command is `make verify` from the repository root. In this wo
 
 Coverage reports are `artifacts/coverage/coverage.json` and `artifacts/coverage/html/`. Coverage.py's native statements are executable source lines and its branches are possible line-to-line control-flow destinations. Report those exact integer numerators and denominators. This does not measure every abstract-syntax-tree expression or condition independently. Zero executable scientific code has no meaningful scientific coverage percentage. Require 100% of the native supported statement and branch metrics for all new instrumentable owned runtime; report unsupported measurements explicitly. Make, Actions YAML, and hook configuration have no measured statement/branch metric in this toolset; their command paths are reviewed and exercised by verification/CI rather than reported as 100% Python coverage. Codex model behavior is also outside those Python metrics and needs an honest live doctor demonstration.
 
-An actual fresh native root-session probe succeeded with Codex 0.155.0-alpha.16.4:
+Historical launch evidence: an initial fresh root-session probe succeeded with Codex 0.155.0-alpha.16.4. During the live doctor demonstration, the actual header and PATH resolved Codex 0.159.2 at `/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`. The reason for the executable change is unknown; use current version evidence for current launches. The historical probe command was:
 
 ```sh
 codex exec --ignore-user-config --disable memories --disable multi_agent \
