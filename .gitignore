@@ -1,2 +1,14 @@
 SIMrecon_svn/
 .DS_Store
+.venv
+.coverage
+.coverage.*
+.pytest_cache/
+.ruff_cache/
+.pyright/
+__pycache__/
+*.py[cod]
+dist/
+build/
+artifacts/
+*.egg-info/

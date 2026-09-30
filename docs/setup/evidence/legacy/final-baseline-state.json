@@ -1,0 +1,24 @@
+{
+  "checked_at_utc": "2026-09-30T17:51:10.848728+00:00",
+  "head": "2a8f8d117602b4ad8bb5bbdbc60b0f8782c2e4cc",
+  "tracked_status": "",
+  "legacy_manifest_changed_paths": [],
+  "scope": "Legacy source, vendor headers/libraries, historical binary outputs; excludes .svn and .DS_Store",
+  "coverage": {
+    "statement": {
+      "covered": null,
+      "total": null,
+      "percent": null,
+      "status": "blocked: no build/test harness and exact statement metric unsupported by inspected native candidates"
+    },
+    "branch": {
+      "covered": null,
+      "total": null,
+      "percent": null,
+      "status": "blocked: no build/test harness or instrumented runs"
+    }
+  },
+  "existing_test_count": "No automated suite discovered; no executed product assertions",
+  "product_failures": "Not measured: build stops at missing compiler. Static behavior inconsistencies are intake questions, not approved defects.",
+  "stale_evidence": "2016 Windows binaries/objects are historical artifacts, not current-source verification. Earlier network-restricted gh auth failure superseded by successful network-enabled auth and repository API reads."
+}

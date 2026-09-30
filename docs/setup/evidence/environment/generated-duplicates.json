@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "observed_at_utc": "2026-09-30T19:40:23.354139+00:00",
+  "cause": "Unknown background process; no attribution established",
+  "preserved_at": "/private/tmp/simrecon-delivery-setup/generated-duplicates",
+  "entries": [
+    {
+      "path": ".venv 3",
+      "kind": "symlink",
+      "target": "/private/tmp/simrecon-delivery-setup/project-env",
+      "action": "preserved outside checkout"
+    }
+  ]
+}

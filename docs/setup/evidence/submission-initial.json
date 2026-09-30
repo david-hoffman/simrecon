@@ -1,0 +1,335 @@
+{
+  "version": "1.0",
+  "scope": "Historical initial verified submission; superseded readiness by later live default doctor failure. No deliberate known failure was submitted.",
+  "local_verification": {
+    "version": "1.0",
+    "recorded_at_utc": "2026-09-30T20:04:24.137316+00:00",
+    "candidate": "9c11c1164f6bb1c0aecf90f474d38bc62a4c5598",
+    "tracked_and_untracked_status": "",
+    "command": "make verify UV=/Users/davidhoffman/.local/bin/uv",
+    "environment": {
+      "platform": "macOS-27.0-arm64-arm-64bit",
+      "python": "Python 3.13.12",
+      "uv": "0.12.19",
+      "worktree": "/Users/davidhoffman/.codex/worktrees/delivery-setup/simrecon"
+    },
+    "log_sha256": "5774327e52e9e330ac6be93b1499b6a9b68b3a151f9174942cb449b8dbe57663",
+    "coverage_totals": {
+      "covered_lines": 30,
+      "num_statements": 30,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 0,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 4,
+      "num_partial_branches": 0,
+      "covered_branches": 4,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    },
+    "coverage_files": {
+      "src/simrecon/__init__.py": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "src/simrecon/_delivery.py": {
+        "covered_lines": 23,
+        "num_statements": 23,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 2,
+        "num_partial_branches": 0,
+        "covered_branches": 2,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "src/simrecon/_pytest_policy.py": {
+        "covered_lines": 7,
+        "num_statements": 7,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 2,
+        "num_partial_branches": 0,
+        "covered_branches": 2,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      }
+    },
+    "tests": "10 passed",
+    "exit_status": 0,
+    "scientific_runtime": "none implemented",
+    "unsupported_metrics": [
+      "Make",
+      "Actions YAML",
+      "hook configuration",
+      "Codex model behavior"
+    ]
+  },
+  "fresh_d": {
+    "session_id": "01a0f3eb-b0de-7901-8b98-dfd354235c94",
+    "model": "gpt-6.1-sol",
+    "packet_sha256": "8cabd90d7a59ede14c74dbc27d1cac4a9d0765ecc78baa6746d3764ddb1eb25f",
+    "final_report": "**D acceptance** for candidate `9c11c1164f6bb1c0aecf90f474d38bc62a4c5598`. No actionable findings.\n\n- Confirmed clean worktree and unchanged B-reviewed tests; both supplied SHA-256 hashes match.\n- Independently reran all ten public-entry tests: passed. D1\u2013D5 match the contract. The wrapper remains simple: one native invocation, no retry or installer.\n- Validated the exact-candidate full-verification receipt and log hash. Coverage includes all owned Python runtime: **30/30 statements, 4/4 branches, zero exclusions**, including subprocess execution.\n- Confirmed wheel source matches the candidate and exposes the correct `delivery` entry point. No scientific runtime exists.\n\nAcceptance covers the local setup candidate. The live doctor demonstration, configured CI platforms, and repository protection observation remain outstanding. Make, YAML, hooks, and model behavior have no claimed Python coverage.\n\nNo edits or repair used. Shared C repair remains **0/1 used; one available**. D used approximately **1 minute of 20 minutes**; approximately 19 minutes remain. Setup hard stop remains **2026-10-01T02:29:01Z**. Merge and release remain unapproved."
+  },
+  "pr_initial": {
+    "baseRefOid": "2a8f8d117602b4ad8bb5bbdbc60b0f8782c2e4cc",
+    "headRefOid": "9c11c1164f6bb1c0aecf90f474d38bc62a4c5598",
+    "isDraft": false,
+    "mergeStateStatus": "BLOCKED",
+    "mergeable": "MERGEABLE",
+    "number": 1,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770425667/job/110075098506",
+        "name": "Verify (ubuntu-24.04)",
+        "startedAt": "2026-09-30T20:07:36Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Verify"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770414291/job/110075060170",
+        "name": "Verify (ubuntu-24.04)",
+        "startedAt": "2026-09-30T20:07:30Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Verify"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770425667/job/110075098200",
+        "name": "Verify (macos-15)",
+        "startedAt": "2026-09-30T20:07:41Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Verify"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770414291/job/110075060658",
+        "name": "Verify (macos-15)",
+        "startedAt": "2026-09-30T20:07:35Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Verify"
+      }
+    ],
+    "url": "https://github.com/david-hoffman/simrecon/pull/1"
+  },
+  "pr_after_ci": {
+    "headRefOid": "9c11c1164f6bb1c0aecf90f474d38bc62a4c5598",
+    "mergeStateStatus": "CLEAN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-30T20:07:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770425667/job/110075098506",
+        "name": "Verify (ubuntu-24.04)",
+        "startedAt": "2026-09-30T20:07:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-30T20:07:48Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770414291/job/110075060170",
+        "name": "Verify (ubuntu-24.04)",
+        "startedAt": "2026-09-30T20:07:30Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-30T20:08:15Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770425667/job/110075098200",
+        "name": "Verify (macos-15)",
+        "startedAt": "2026-09-30T20:07:41Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-30T20:08:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/david-hoffman/simrecon/actions/runs/36770414291/job/110075060658",
+        "name": "Verify (macos-15)",
+        "startedAt": "2026-09-30T20:07:35Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ]
+  },
+  "ci_measurements": {
+    "ubuntu": {
+      "totals": {
+        "covered_lines": 30,
+        "num_statements": 30,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 4,
+        "num_partial_branches": 0,
+        "covered_branches": 4,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "files": {
+        "src/simrecon/__init__.py": {
+          "covered_lines": 0,
+          "num_statements": 0,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 0,
+          "num_partial_branches": 0,
+          "covered_branches": 0,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        },
+        "src/simrecon/_delivery.py": {
+          "covered_lines": 23,
+          "num_statements": 23,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 2,
+          "num_partial_branches": 0,
+          "covered_branches": 2,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        },
+        "src/simrecon/_pytest_policy.py": {
+          "covered_lines": 7,
+          "num_statements": 7,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 2,
+          "num_partial_branches": 0,
+          "covered_branches": 2,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        }
+      }
+    },
+    "macos": {
+      "totals": {
+        "covered_lines": 30,
+        "num_statements": 30,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 4,
+        "num_partial_branches": 0,
+        "covered_branches": 4,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "files": {
+        "src/simrecon/__init__.py": {
+          "covered_lines": 0,
+          "num_statements": 0,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 0,
+          "num_partial_branches": 0,
+          "covered_branches": 0,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        },
+        "src/simrecon/_delivery.py": {
+          "covered_lines": 23,
+          "num_statements": 23,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 2,
+          "num_partial_branches": 0,
+          "covered_branches": 2,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        },
+        "src/simrecon/_pytest_policy.py": {
+          "covered_lines": 7,
+          "num_statements": 7,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 2,
+          "num_partial_branches": 0,
+          "covered_branches": 2,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        }
+      }
+    }
+  }
+}

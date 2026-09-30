@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "observed_at_utc": "2026-09-30T20:13:07.925029+00:00",
+  "candidate": "9c11c1164f6bb1c0aecf90f474d38bc62a4c5598",
+  "native_codex_version": "0.159.2",
+  "check": {
+    "command": "uv run --locked delivery doctor --check",
+    "exit_status": 0,
+    "session_id": "01a0f3ef-95f6-7463-8194-becc2e29294d",
+    "model": "gpt-6.1-sol",
+    "sandbox": "read-only",
+    "git_status_after": "clean",
+    "final_report": "Doctor `--check` completed. One documentation gap found. No files changed; no delegation or optional memory used.\n\n- **Gap:** baseline instructions require a revision but do not explicitly identify ignored or untracked inputs. The [lesson](/Users/davidhoffman/.codex/worktrees/delivery-doctor/simrecon/LESSONS/20260930T184757Z-setup-coordinator-ignored-input-identity.md) is supported by saved evidence. I recalculated the manifest SHA-256; it matches the recorded value. Recommend clarifying spec section 2, the setup prompt, and the project template: record content identity and scope for inputs outside Git, and confirm they remain unchanged.\n- **No new rule needed:** the hidden editable-install failure is classified as environment/tooling. Existing rules already require diagnosis, checkpoint preservation, and renewed checks. The flag-setting process remains unknown.\n\nReviewed candidate: `9c11c1164f6bb1c0aecf90f474d38bc62a4c5598`. Git reported a clean tree. Sandbox restrictions caused tool-cache errors, but commands succeeded.\n\nConfidence is high in the narrow documentation gap. I did not reproduce historical failures, run `make verify`, inspect live CI, or verify external final receipts. This report does not establish setup completion."
+  },
+  "default": {
+    "command": "uv run --locked delivery doctor",
+    "exit_status": 2,
+    "session_started": false,
+    "stderr": "error: the argument '--sandbox <SANDBOX_MODE>' cannot be used with '--approve-for-me'\n\nUsage: codex exec [OPTIONS] [PROMPT]\n       codex exec [OPTIONS] <COMMAND> [ARGS]\n\nFor more information, try '--help'.\n"
+  },
+  "classification": "Product defect in native command construction; controlled-test oracle accepted an invalid combination. Existing native public CLI contract unchanged.",
+  "routing": "Bounded fresh A/B oracle correction in existing D1-D5, then one shared C repair and renewed exact-candidate full gate/fresh D before open-PR update.",
+  "native_codex_path": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+  "version_evidence": "OpenAI Codex v0.159.2 in actual check log header, current codex --version and Python shutil.which; initial0.155 probe is historical.",
+  "current_parser_recheck": {
+    "command": "codex exec --sandbox workspace-write --approve-for-me - < /dev/null",
+    "exit_status": 2,
+    "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\nerror: the argument '--sandbox <SANDBOX_MODE>' cannot be used with '--approve-for-me'\n\nUsage: codex exec [OPTIONS] [PROMPT]\n       codex exec [OPTIONS] <COMMAND> [ARGS]\n\nFor more information, try '--help'.\n",
+    "session_started": false
+  }
+}

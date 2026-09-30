@@ -1,0 +1,12 @@
+gcc-mp-4.9 -I/../INCLUDE -Wall -fopenmp -fcx-limited-range -O3 -DNDEBUG   -c -o sirecon.o sirecon.c
+gcc-mp-4.9 -I/../INCLUDE -Wall -fopenmp -fcx-limited-range -O3 -DNDEBUG   -c -o drift_n_phasestep.o drift_n_phasestep.c
+gcc-mp-4.9 -I/../INCLUDE -Wall -fopenmp -fcx-limited-range -O3 -DNDEBUG   -c -o small_math_funcs.o small_math_funcs.c
+gcc-mp-4.9 -I/../INCLUDE -Wall -fopenmp -fcx-limited-range -O3 -DNDEBUG   -c -o helpers.o helpers.c
+gcc-mp-4.9 -fopenmp -L/../LIB -L/opt/local/lib -Wl,-rpath,/../LIB  sirecon.o drift_n_phasestep.o small_math_funcs.o helpers.o  -limlib  -lfftw3f -lfftw3f_threads -framework Accelerate  -o sirecon
+gcc-mp-4.9 -I/../INCLUDE -Wall -fopenmp -fcx-limited-range -O3 -DNDEBUG   -c -o mainfile.o mainfile.c
+gcc-mp-4.9 -o radialft mainfile.o -fopenmp -L/../LIB -L/opt/local/lib -Wl,-rpath,/../LIB -limlib -lsfftw -lsrfftw
+gcc-mp-4.9 -I/../INCLUDE -Wall -fopenmp -fcx-limited-range -O3 -DNDEBUG   -c -o radialft2d_Hesper.o radialft2d_Hesper.c
+gcc-mp-4.9 -I/opt/local/include   -c -o tiffhandle.o tiffhandle.cpp
+gcc-mp-4.9 -o otf2d radialft2d_Hesper.o tiffhandle.o -fopenmp -L/../LIB -L/opt/local/lib -Wl,-rpath,/../LIB -limlib -lsfftw -lsrfftw -ltiff
+gcc-mp-4.9 -I/../INCLUDE -Wall -fopenmp -fcx-limited-range -O3 -DNDEBUG   -c -o wiener2d.o wiener2d.c
+gcc-mp-4.9 -o wiener2d wiener2d.o -fopenmp -L/../LIB -L/opt/local/lib -Wl,-rpath,/../LIB -limlib -lsfftw -lsrfftw

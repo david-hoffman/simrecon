@@ -1,0 +1,10 @@
+{
+  "observed_at_utc": "2026-09-30T19:14:29.939041+00:00",
+  "path": ".venv/lib/python3.13/site-packages/_editable_impl_simrecon.pth",
+  "flags": 32832,
+  "UF_HIDDEN": 32768,
+  "content": "/Users/davidhoffman/Documents/GitHub/simrecon/src",
+  "classification": "environment/tooling",
+  "setter": "unknown; not attributed to a specific process",
+  "repair": "Clear hidden bit on generated editable-install pth files; no source/test change"
+}

@@ -1,0 +1,51 @@
+{
+  "timestamp_utc": "2026-09-30T17:48:28.644337+00:00",
+  "git_revision": "2a8f8d117602b4ad8bb5bbdbc60b0f8782c2e4cc",
+  "source_is_git_ignored": true,
+  "manifest_sha256": "201d46d1646552c69c453b02e17dfa8d307b895d095904ffcdaec6b3b0244e8d",
+  "file_count": 132,
+  "bytes": 54342967,
+  "svn_pristine_matches": 114,
+  "svn_pristine_mismatches": [],
+  "commands": [
+    {
+      "command": [
+        "make",
+        "--version"
+      ],
+      "cwd": "/private/tmp/simrecon-baseline-ddnd0e96/source",
+      "exit_code": 0,
+      "log": "command-1.log"
+    },
+    {
+      "command": [
+        "make",
+        "-B",
+        "-n",
+        "all"
+      ],
+      "cwd": "/private/tmp/simrecon-baseline-ddnd0e96/source",
+      "exit_code": 0,
+      "log": "command-2.log"
+    },
+    {
+      "command": [
+        "make",
+        "-B",
+        "all"
+      ],
+      "cwd": "/private/tmp/simrecon-baseline-ddnd0e96/source",
+      "exit_code": 2,
+      "log": "command-3.log"
+    },
+    {
+      "command": [
+        "make",
+        "test"
+      ],
+      "cwd": "/private/tmp/simrecon-baseline-ddnd0e96/source",
+      "exit_code": 2,
+      "log": "command-4.log"
+    }
+  ]
+}

@@ -33,3 +33,22 @@ The first tests may fail before implementation; they may be backed up before a P
 Record the effective branch rule, required check names, and evidence links in the setup task's concise Current state section. When a protection feature is unavailable, report the gap rather than building a substitute platform or saying merging is protected. Owner-driven manual review remains a weaker operating choice, not equivalent enforcement.
 
 Preserve existing human-review settings unless the owner explicitly approves changing them. A solo owner may lack an eligible reviewer under existing approval rules; disclose that limitation rather than fabricate reviewer identities or treat an agent report as GitHub human approval. Merge and production release remain explicit owner actions.
+
+## This installation
+
+Repository: `david-hoffman/simrecon`; target: `main`. The owner explicitly authorized repository configuration in the setup conversation. The effective setting evidence and pending real-PR observation are linked from the single Current state section in [the setup task](../tasks/setup-plan.md).
+
+The ordinary matrix checks are `Verify (ubuntu-24.04)` and `Verify (macos-15)`, bound to native GitHub Actions app ID 15368. This is GitHub's existing check provider, not a custom app. Administrators are subject to the same rule. No human approval count was previously configured; the new PR requirement uses zero required human approvals for solo-owner operation. Agent reports do not represent GitHub identity-based approvals. Repository ownership still permits an explicit settings change; this configuration is not an immutable policy boundary.
+
+The exact applied request is [protection-request.json](../setup/evidence/github/protection-request.json). A repeated setup must inspect current settings and reconcile changes before issuing a replacement PUT, because that endpoint replaces settings. Do not blindly replay this historical request over later working choices.
+
+```sh
+gh api repos/david-hoffman/simrecon/branches/main/protection
+gh api repos/david-hoffman/simrecon/rulesets
+gh api repos/david-hoffman/simrecon/actions/permissions/workflow
+# Only after reconciling the inspected current settings and owner authorization:
+gh api --method PUT repos/david-hoffman/simrecon/branches/main/protection \
+  --input docs/setup/evidence/github/protection-request.json
+```
+
+GitHub's current personal-repository API rejected an explicit organization-only bypass list and rejected simultaneous legacy `contexts` and modern `checks` fields. The successful request uses `checks` and omits the unsupported bypass-list object. Read-back confirms the intended protection; the failed validation requests did not alter the repository. See the [official branch-protection API](https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection) for supported fields.

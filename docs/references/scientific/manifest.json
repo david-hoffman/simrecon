@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "generated_at_utc": "2026-09-30T18:22:47.347749+00:00",
+  "repository_baseline_commit": "2a8f8d117602b4ad8bb5bbdbc60b0f8782c2e4cc",
+  "scope": "Two factual citation projections and their actual Docling conversions. No complete paper/abstract/figure is archived.",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "docling_distribution": "docling-slim",
+    "docling_version": "2.131.0",
+    "docling_core_version": "2.99.0",
+    "environment_path_at_run": "/private/tmp/simrecon-papers-qk8r8wi4/docling-env"
+  },
+  "installation": {
+    "initial_spec": "docling-slim[format-html,format-xml-jats,cli]==2.131.0",
+    "initial_failure": "DocumentConverter import failed: ModuleNotFoundError: scipy",
+    "successful_spec": "docling-slim[convert-core,format-html,format-xml-jats,cli]==2.131.0",
+    "mode": "pip, --only-binary=:all:, isolated temporary venv; no product environment changes"
+  },
+  "actual_conversion_command": "/private/tmp/simrecon-papers-qk8r8wi4/docling-env/bin/python /private/tmp/simrecon-papers-qk8r8wi4/convert_citations.py",
+  "reproduction_python": "from pathlib import Path\nfrom docling.document_converter import DocumentConverter\nfrom docling.datamodel.base_models import InputFormat\nconverter = DocumentConverter(allowed_formats=[InputFormat.HTML])\nfor year in (2000, 2008):\n    folder = Path(f\"docs/references/scientific/gustafsson-{year}\")\n    result = converter.convert(folder / \"citation.html\")\n    assert result.status.value == \"success\"\n    (folder / \"citation.docling.md\").write_text(result.document.export_to_markdown() + \"\\n\", encoding=\"utf-8\")\n    result.document.save_as_json(folder / \"citation.docling.json\")\n",
+  "source_projection_method": "Explicit whitelist: title, author fullName strings, journal, year, volume, issue, pages, DOI/PMID/PMCID, URLs and retrieval facts. HTML-escape field values. Exclude abstracts, affiliations, contacts and full text. Citation HTML is generated, not unchanged upstream content.",
+  "references": [
+    {
+      "reference_id": "SCI-2000-2D",
+      "doi": "10.1046/j.1365-2818.2000.00710.x",
+      "metadata_retrieval": {
+        "requested_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:10810003%20AND%20SRC:MED&format=json&resultType=core",
+        "resolved_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:10810003%20AND%20SRC:MED&format=json&resultType=core",
+        "status": 200,
+        "content_type": "application/json;charset=UTF-8",
+        "bytes": 4171,
+        "sha256": "b5970a54d8dd7430369067ca82ffa1a18157c5489ec4824b3e8eeeb83554bd58",
+        "retrieved_at_utc": "2026-09-30T18:16:37.704811+00:00"
+      },
+      "original_metadata_response_archived": false,
+      "original_metadata_response_scope": "Temporary raw API response includes abstract; not stored in repository.",
+      "source_projection": "docs/references/scientific/gustafsson-2000/citation.html",
+      "conversion_status": "success",
+      "full_text_conversion_status": "not performed; full-text redistribution permission not verified",
+      "outputs": [
+        "docs/references/scientific/gustafsson-2000/citation.json",
+        "docs/references/scientific/gustafsson-2000/citation.html",
+        "docs/references/scientific/gustafsson-2000/citation.docling.md",
+        "docs/references/scientific/gustafsson-2000/citation.docling.json"
+      ],
+      "checks": "Title, DOI, PMID, pages, and every author retained in Markdown; JSON parses."
+    },
+    {
+      "reference_id": "SCI-2008-3D",
+      "doi": "10.1529/biophysj.107.120345",
+      "metadata_retrieval": {
+        "requested_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC2397368&format=json&resultType=core",
+        "resolved_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC2397368&format=json&resultType=core",
+        "status": 200,
+        "content_type": "application/json;charset=UTF-8",
+        "bytes": 6566,
+        "sha256": "87b6d21e26bd5ac70896af9ed961bf5f89916e33361f5a64c16f4ae57192bd40",
+        "retrieved_at_utc": "2026-09-30T18:16:38.306273+00:00"
+      },
+      "original_metadata_response_archived": false,
+      "original_metadata_response_scope": "Temporary raw API response includes abstract; not stored in repository.",
+      "source_projection": "docs/references/scientific/gustafsson-2008/citation.html",
+      "conversion_status": "success",
+      "full_text_conversion_status": "not performed; full-text redistribution permission not verified",
+      "outputs": [
+        "docs/references/scientific/gustafsson-2008/citation.json",
+        "docs/references/scientific/gustafsson-2008/citation.html",
+        "docs/references/scientific/gustafsson-2008/citation.docling.md",
+        "docs/references/scientific/gustafsson-2008/citation.docling.json"
+      ],
+      "checks": "Title, DOI, PMID, pages, and every author retained in Markdown; JSON parses."
+    }
+  ],
+  "access_attempts": [
+    {
+      "requested_url": "https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id=PMC2397368",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved_at_utc": "2026-09-30T18:14:47.683920+00:00",
+      "interpretation": "Retired API endpoint; not evidence of article absence."
+    },
+    {
+      "requested_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC2397368/unicode",
+      "resolved_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC2397368/unicode",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 6148,
+      "sha256": "3acc5f4c51ec704cd708d3379196db9f66442a96c9bf275773710e0de0196b52",
+      "retrieved_at_utc": "2026-09-30T18:14:48.050959+00:00",
+      "interpretation": "HTTP 200 body was an error/help page, not article XML; not converted or archived."
+    },
+    {
+      "requested_url": "https://onlinelibrary.wiley.com/doi/10.1046/j.1365-2818.2000.00710.x",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved_at_utc": "2026-09-30T18:14:48.123736+00:00"
+    },
+    {
+      "requested_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC2397368/fullTextXML",
+      "error": "HTTP Error 500: ",
+      "retrieved_at_utc": "2026-09-30T18:14:49.954029+00:00"
+    },
+    {
+      "requested_url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai:pubmedcentral.nih.gov:2397368&metadataPrefix=pmc_fm",
+      "resolved_url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai:pubmedcentral.nih.gov:2397368&metadataPrefix=pmc_fm",
+      "status": 200,
+      "content_type": "application/xml; charset=utf-8",
+      "bytes": 8842,
+      "sha256": "90257131639660e10fea6f7cca425bfcb34dbc7da82a07df81b610d71d436b49",
+      "retrieved_at_utc": "2026-09-30T18:16:38.520252+00:00",
+      "interpretation": "Successful JATS front matter: Copyright 2008 Biophysical Society; no license element. Raw response includes abstract; not archived."
+    }
+  ],
+  "supplemental_reading": [
+    {
+      "url": "https://www.fftw.org/fftw3_doc/The-1d-Discrete-Fourier-Transform-_0028DFT_0029.html",
+      "purpose": "Fourier sign and unnormalized transform convention; read, linked, not archived; not a runtime dependency selection."
+    }
+  ],
+  "git_fidelity": {
+    "working_files": "verified against sha256_files",
+    "index": "Verified staged blob SHA-256 against sha256_files before the initial archive commit.",
+    "committed_blobs": "Verified SHA-256 against sha256_files at 306cbbcfc1cbab60ab95d2371d27436ca0155b55",
+    "normalization": "All archived content is generated UTF-8/LF, not claimed as original retrieval bytes.",
+    "git_filter_comparison": "Compared git hash-object --no-filters with --path for every generated file; no byte changes. This is not index or committed-blob verification."
+  },
+  "sha256_files": {
+    "docs/references/scientific/README.md": "8f4d4345d2472e40784349c3d81fe1384383e0fed65d1ca7ecb0ac833c017570",
+    "docs/references/scientific/conversion-requirements.txt": "efc5bc1698c2d591d0387f8d08ed17fe5765c28c57dd9acc2fe7efe3d657274c",
+    "docs/references/scientific/gustafsson-2000/citation.docling.json": "f94b8c569b5bc812d876512eb4dd9a3e07157f238570a67af58bb0e133a0ae7b",
+    "docs/references/scientific/gustafsson-2000/citation.docling.md": "3eb71842f84ba8c01d4e8411e0c7f4c9277dfe81269a37f2da78566e6d9d9d53",
+    "docs/references/scientific/gustafsson-2000/citation.html": "094ca0794179d1cd2f5062e56b5fe2dad4fed3d9790aa3f7ade2e1e72fd3bc8a",
+    "docs/references/scientific/gustafsson-2000/citation.json": "d4cf38e2974d70c36ed16a0d921fe9a0cf9b80de0c9e4b969573ac3e922990c2",
+    "docs/references/scientific/gustafsson-2008/citation.docling.json": "85f57febd4fde607259d0f1028e3afcb1121e4624c6f53e94b7bbde39d8fe122",
+    "docs/references/scientific/gustafsson-2008/citation.docling.md": "59daaa756a3480381bef5fefd7e3f34f77cc96da71a436f3b1d5d5fbb4139b5a",
+    "docs/references/scientific/gustafsson-2008/citation.html": "d0087ff15808151607a224a01b289bf08c2a9f77074b8f2b9ee43f4209b6acb5",
+    "docs/references/scientific/gustafsson-2008/citation.json": "44688c6b5ed540bc500ccfb5ba153052e96f2c75bbfeaefd4d288985845c3a06",
+    "docs/SCIENTIFIC-CONTEXT.md": "08a8a74bc56344a25ff53e57b70172b9fd43693576c92b2bc536164ba23013d9"
+  },
+  "verification": {
+    "checked_at_utc": "2026-09-30T18:24:56.713462+00:00",
+    "file_count": 12,
+    "manifest_file_hashes_verified": 11,
+    "checks": [
+      "All factual citation fields retained in both Docling outputs",
+      "All JSON parses",
+      "All local Markdown links resolve",
+      "Generated outputs use LF newlines",
+      "Git filters preserve generated bytes",
+      "No Git whitespace diagnostics"
+    ],
+    "documentation_review": "Separate fresh-context Sol discovery reviewer found no actionable issues; not delivery role D.",
+    "limitations": [
+      "No full-paper Docling conversion",
+      "No product or delivery-system verification"
+    ],
+    "archive_commit_verified": "306cbbcfc1cbab60ab95d2371d27436ca0155b55"
+  }
+}

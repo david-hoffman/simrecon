@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "scope": "Availability probe only; not a delivery role or proof of independence",
+  "codex_version": "0.155.0-alpha.16.4",
+  "session_id": "01a0f399-3c2b-74c3-984d-bdfdef136ffb",
+  "command": [
+    "codex",
+    "exec",
+    "--ignore-user-config",
+    "--disable",
+    "memories",
+    "--disable",
+    "multi_agent",
+    "--sandbox",
+    "read-only",
+    "--model",
+    "gpt-6-sol",
+    "--json",
+    "-C",
+    "/Users/davidhoffman/Documents/GitHub/simrecon",
+    "-o",
+    "/private/tmp/simrecon-delivery-setup/native-probe-final.txt",
+    "-"
+  ],
+  "started_at_utc": "2026-09-30T18:35:00.938066+00:00",
+  "observed_output": "native fresh session available.",
+  "process_exit_status": null,
+  "completion_evidence": "Native event stream recorded turn.completed; original outer shell exit status was not retained after interruption."
+}

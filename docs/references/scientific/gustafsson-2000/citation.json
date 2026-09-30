@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "reference_id": "SCI-2000-2D",
+  "record_kind": "generated factual citation projection, not original article bytes",
+  "title": "Surpassing the lateral resolution limit by a factor of two using structured illumination microscopy.",
+  "authors": [
+    "Gustafsson MG"
+  ],
+  "journal": "Journal of microscopy",
+  "year": 2000,
+  "volume": "198",
+  "issue": "Pt 2",
+  "pages": "82-87",
+  "doi": "10.1046/j.1365-2818.2000.00710.x",
+  "pmid": "10810003",
+  "pmcid": null,
+  "user_supplied_urls": [
+    "https://pubmed.ncbi.nlm.nih.gov/10810003/",
+    "https://onlinelibrary.wiley.com/doi/10.1046/j.1365-2818.2000.00710.x"
+  ],
+  "publisher_url": "https://onlinelibrary.wiley.com/doi/10.1046/j.1365-2818.2000.00710.x",
+  "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:10810003%20AND%20SRC:MED&format=json&resultType=core",
+  "retrieved_at_utc": "2026-09-30T18:16:37.704811+00:00",
+  "isOpenAccess_reported_by_Europe_PMC": "N",
+  "license_reported_by_Europe_PMC": null,
+  "full_text_conversion_status": "not performed; full-text redistribution permission not verified"
+}

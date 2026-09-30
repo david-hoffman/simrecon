@@ -1,6 +1,6 @@
 # References and reading scope
 
-**Version 1.0** Source register updated: September 29, 2026; original setup reading: September 26, 2026. This is the source register and adoption note. The selected source archive is [../references/README.md](../references/README.md); it is not a code/security audit or a second operating specification.
+**Version 1.0** Source register updated: September 30, 2026; original setup reading: September 26, 2026. This is the source register and adoption note. The selected source archive is [../references/README.md](../references/README.md); it is not a code/security audit or a second operating specification.
 
 ## Current sources read
 
@@ -70,7 +70,7 @@ Adapt its behavioral-refactor test: an assertion should survive an implementatio
 
 Apply these as judgment criteria. A meaningful correctness check need not use a literal `assert` keyword; approved exception and completion behavior can be checked. Legitimate external callers count for a library's public interfaces. Independently meaningful interface, architecture, platform, and ordering contracts remain valid even when their tests resemble implementation checks; existing tests are not automatically deletable.
 
-Do not import OpenClaw's implementation-reading audit, campaign, or landing workflows into blind A/B roles. Linked skills and commands were not read or installed. This source supplies no numerical-tolerance authority. The [inert archive](../references/openclaw/test-audit.source.txt) preserves the complete source with its [MIT notice](../references/licenses/openclaw-MIT.txt).
+Do not import OpenClaw's implementation-reading audit, campaign, or landing workflows into blind A/B roles. Linked skills and commands were not read or installed. This source supplies no numerical-tolerance authority. The [inert archive](../references/openclaw/test-audit.source.txt) preserves the complete source with its [MIT notice](../references/licenses/openclaw-LICENSE.source.txt).
 
 ## Original articles and earlier supporting references
 
@@ -91,6 +91,6 @@ Known inherited gaps: an introductory Agent Skills course returned HTTP 403; nin
 
 ## Archived setup evidence
 
-The archive contains 19 selected source records. It preserves unchanged licensed pstack, OpenClaw, documentation, and owner-supplied scientific source bytes, their license notices, separately labeled rendered text extracts, and metadata or original summaries where full-source redistribution was not established. Exact source copies occur only under `docs/references/` with inert `.txt` filenames; they are not installed skills. All authored delivery notes remain Version 1.0; upstream source bytes and license versions remain unchanged.
+The delivery-process archive contains 21 selected records: 10 preserved files and 11 metadata-only records. The preserved files are six pstack texts and its MIT notice, the OpenClaw test-audit text and its MIT notice, and claude-trace package metadata. The claude-trace README and website/documentation sources are represented by metadata and original summaries because full-text redistribution was not established. The separately maintained [scientific archive](../references/scientific/README.md) is outside this count. Exact source copies have inert `.source.txt` filenames and are not installed skills. All authored delivery notes remain Version 1.0; upstream source bytes and license versions remain unchanged.
 
 [Archive index](../references/README.md), [retrieval and hash manifest](../references/manifest.json), and [reading scope and adoption notes](../references/READING-NOTES.md) are the setup evidence. Full unlicensed articles, inaccessible original OpenAI article bytes, image/video assets, and the embedded Symphony controller specification remain deliberate limitations. No downloaded instructions were executed; no private material was archived. Keep these sources out of routine worker context. Do not carry forward superseded architecture requirements because an older source proposed them.
