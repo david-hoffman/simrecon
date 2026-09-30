@@ -4,11 +4,11 @@
 
 ## Purpose and non-goals
 
-Build a pristine Python library for structured illumination microscopy (SIM), using NumPy and SciPy. Scientists should eventually reconstruct images through documented array interfaces with independently justified numerical expectations. The owner approved this architecture and an initial eight-hour delivery setup pass in this conversation on September 30, 2026. Installation began at 18:29:01 UTC (11:29:01 PDT); its hard stop is October 1 at 02:29:01 UTC (September 30 at 19:29:01 PDT).
+The setup provides a pristine Python/NumPy/SciPy scaffold for structured illumination microscopy (SIM). Scientists should eventually reconstruct images through documented interfaces with independently justified numerical expectations. The owner approved the initial eight-hour delivery setup pass, then explicitly clarified, “We never decided on architecture.” Library architecture remains provisional and requires a separate decision and approval before scientific implementation. Installation began at 18:29:01 UTC (11:29:01 PDT); its hard stop is October 1 at 02:29:01 UTC (September 30 at 19:29:01 PDT).
 
 The owner explicitly permits studying legacy algorithms but requires all new code to be written independently. `SIMrecon_svn/` remains ignored historical study material. Do not copy, ship, link, or import it. This setup pass implements no scientific algorithm, legacy repair, or file-format compatibility feature.
 
-## Constraints and structure
+## Installed structure and project constraints
 
 - One monorepo; Python 3.13.12, NumPy and SciPy; isolated `.venv`, exact dependency resolution in `uv.lock`.
 - New library under `src/simrecon/`. Delivery helpers are owned runtime and must be measured along with future scientific code.
@@ -54,4 +54,6 @@ No merge or release without explicit owner action. Check failures are classified
 
 ## Approval and next slice
 
-Architecture and eight-hour installation approval: owner's message, “I Approve this Python architecture and an initial eight-hour setup pass?” Repository setting authorization: subsequent message, “Can you configure the github repo correctly as well?” These approve setup and settings, not scientific behavior or an as-yet-unapproved task contract. The owner subsequently instructed completion of architecture and the initial setup pass. The unchanged demonstration cases are now two sequential default-size slices in [the plan](tasks/setup-plan.md); no larger-slice exception or scientific behavior was approved.
+Historical setup approval: owner's message, “I Approve this Python architecture and an initial eight-hour setup pass?” Repository setting authorization: subsequent message, “Can you configure the github repo correctly as well?” Earlier, the owner also instructed completion of architecture and the initial setup pass. The owner later clarified, “We never decided on architecture, add it to the list.” That clarification supersedes the earlier interpretation of architecture approval. Setup/settings authorization remains recorded; neither library architecture nor scientific behavior is approved. The unchanged demonstration cases are now two sequential default-size slices in [the plan](tasks/setup-plan.md); no larger-slice exception or scientific behavior was approved.
+
+The [remaining-work checklist](MIGRATION-ROADMAP.md#remaining-work-checklist) is the entry point for architecture intake and later scientific planning. Resolve public interfaces, data model, numerical pipeline, module boundaries, dependencies, and performance requirements through that intake.
