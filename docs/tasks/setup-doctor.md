@@ -16,11 +16,11 @@
 
 | Scenario ID | Approved input/context and observable success, error, or boundary outcome | Expectation source | Test mapping supplied by A and checked by B |
 |---|---|---|---|
-| D1 | `delivery doctor`, available harness exits 0: one fresh native doctor invocation in write-capable mode; output and success preserved | Existing specification procedure plus proposed CLI contract | Pending A |
-| D2 | `delivery doctor --check`, available harness exits 0: one read-only/report-only invocation; output and success preserved | Approved report-only doctor behavior | Pending A |
-| D3 | Unsupported flag: exit 2, syntax diagnostic, no harness invocation | Proposed CLI error contract | Pending A |
-| D4 | Available harness exits 7: return 7, preserve diagnostics, no retry | Proposed process-boundary contract | Pending A |
-| D5 | Harness unavailable on PATH: exit 127, actionable diagnostic, no installation | Proposed environment-error contract | Pending A |
+| D1 | `delivery doctor`, available harness exits 0: one fresh native doctor invocation in write-capable mode; output and success preserved | Existing specification procedure plus proposed CLI contract | `tests/test_delivery.py::test_doctor_invokes_one_write_capable_native_run` |
+| D2 | `delivery doctor --check`, available harness exits 0: one read-only/report-only invocation; output and success preserved | Approved report-only doctor behavior | `tests/test_delivery.py::test_doctor_check_uses_read_only_native_run` |
+| D3 | Unsupported flag: exit 2, syntax diagnostic, no harness invocation | Proposed CLI error contract | `tests/test_delivery.py::test_doctor_rejects_unsupported_flag_without_invocation` |
+| D4 | Available harness exits 7: return 7, preserve diagnostics, no retry | Proposed process-boundary contract | `tests/test_delivery.py::test_doctor_forwards_native_failure_without_retry` |
+| D5 | Harness unavailable on PATH: exit 127, actionable diagnostic, no installation | Proposed environment-error contract | `tests/test_delivery.py::test_doctor_reports_missing_codex_on_path` |
 
 These five scenarios are unchanged from the ten-case read-back. A may substitute a controlled executable at the external Codex boundary to test wrapper behavior. That is not evidence of an actual doctor run. Before repair, the observing role classifies failures as environment/tooling, test defect, product defect, or unresolved requirement. A's mapping goes into this table only after authoring and B review, without changing approved behavior.
 

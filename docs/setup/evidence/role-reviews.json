@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "scope": "Historical native role handoffs; live status is in the setup plan or its pointer. These are not full session transcripts.",
-  "recorded_at_utc": "2026-09-30T19:21:40.511934+00:00",
+  "recorded_at_utc": "2026-09-30T19:59:23.804579+00:00",
   "reviews": [
     {
       "run": "t-a",
@@ -108,6 +108,147 @@
         "output_tokens": 1983,
         "reasoning_output_tokens": 489
       }
+    },
+    {
+      "run": "d-a",
+      "role": "A",
+      "session_id": "01a0f3ca-8acc-79e1-8c15-5442559b0544",
+      "native_new_root": true,
+      "model": "gpt-6-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "e4e9e13a6998c327b4c4d24f644a4fb5cd590313f8e4fc41f5bbc2d703350f6f",
+      "outcome": "Initial five doctor tests authored; expected feature absence.",
+      "final_report": "Added five public CLI tests in [tests/test_delivery.py](/Users/davidhoffman/Documents/GitHub/simrecon/tests/test_delivery.py). They cover D1\u2013D5 through the installed `delivery` entry and a controlled `codex` executable. The oracle is the approved contract: exact exit codes, one or zero observed calls, native mode and prompt references, working directory, and forwarded output. No numerical tolerance applies.\n\n**Baseline:** `PYTHONPATH=/private/tmp/simrecon-delivery-setup/blind-runtime PYTEST_ADDOPTS='--tb=line --show-capture=no' PYTHONWARNINGS=error .venv/bin/python -m pytest tests/test_delivery.py --tb=line --show-capture=no` collected five tests; all failed with `ModuleNotFoundError: No module named 'simrecon._delivery'`. This is the stated **product feature absence**, not evidence of a test or environment defect. No implementation source was exposed.\n\n`.venv/bin/ruff check tests/test_delivery.py` and `.venv/bin/ruff format --check tests/test_delivery.py` both passed. No implementation, configuration, or other tests were changed. The tests are ready for separate fresh B review; they are not yet a reviewed checkpoint.",
+      "source_exposure": "none reported",
+      "usage": {
+        "input_tokens": 274853,
+        "cached_input_tokens": 254592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6113,
+        "reasoning_output_tokens": 2784
+      },
+      "failed_events": []
+    },
+    {
+      "run": "d-b",
+      "role": "B",
+      "session_id": "01a0f3cd-c327-7b62-bbd2-0d983e3e6663",
+      "native_new_root": true,
+      "model": "gpt-6-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "267d5847121202fa488a5298db0fb4c55214718f2a4e83d7c5a001a6cb9feb18",
+      "outcome": "Window 1 round 1 nonacceptance: process/prompt, report-only and portability oracles.",
+      "final_report": "**B review: REQUEST BOUNDED A CORRECTION.** The reviewed file is [tests/test_delivery.py](/Users/davidhoffman/Documents/GitHub/simrecon/tests/test_delivery.py), SHA-256 `60a215a93eabca30b1eb4b8ebbba1c0fdfb8d6938a2cbfff5efbcd6ef4f69050`. This is round 1 of 2 for this doctor review window. No checkpoint is accepted yet.\n\n- **D2 \u2014 test defect:** The test requires `--sandbox read-only` but would accept a writable override through native options such as `-s`, `--config`, or `--approve-for-me`. It also never checks repository file effects. Make the controlled run reject effective write-capable options and verify that `--check` leaves a disposable caller repository unchanged.\n- **D1, D2, D4 \u2014 test defect:** The assertions search all arguments for `exec` and prompt words. Those words could appear in a prompt without selecting `codex exec`; `--check` could appear as an unsupported Codex option without requesting report-only behavior in the prompt. Check command position and the actual prompt input while allowing the permitted equivalent prompt and option forms.\n- **D1\u2013D5 \u2014 portability defect:** The executable path is fixed to `ROOT/.venv/bin/delivery`. Resolve the installed entry point from the test environment. Run at least the working-directory assertion from a disposable caller repository so a wrapper fixed to the project root cannot pass.\n\nD3, D4\u2019s exact status and single-call count, and D5\u2019s missing-command status have meaningful assertions. The five integer oracles match the contract; no numerical tolerance applies. The baseline collected five tests and all failed because `simrecon._delivery` is absent. That is the stated **feature absence**, not a reproduced legacy bug. No implementation source was exposed. I made no edits. Shared C repair use remains **0/1**; prior accepted T2 rounds remain closed.",
+      "source_exposure": "none reported",
+      "usage": {
+        "input_tokens": 118058,
+        "cached_input_tokens": 101120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2618,
+        "reasoning_output_tokens": 1529
+      },
+      "failed_events": []
+    },
+    {
+      "run": "d-a2",
+      "role": "A",
+      "session_id": "01a0f3d0-57bb-79b0-aa70-00da728ec6a7",
+      "native_new_root": true,
+      "model": "gpt-6-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "3790a4251802acc616aa73dcdbd5e1e6ba7269cd0d173e1041a2c6b668161214",
+      "outcome": "Interrupted by provider model capacity; no final handoff; partial edits retained for correction.",
+      "final_report": null,
+      "source_exposure": "none reported",
+      "usage": null,
+      "failed_events": [
+        {
+          "type": "turn.failed",
+          "error": {
+            "message": "Selected model is at capacity. Please try a different model."
+          }
+        }
+      ]
+    },
+    {
+      "run": "d-a3",
+      "role": "A",
+      "session_id": "01a0f3d3-5506-7f62-9dc8-2dc0f492f7b7",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "cbdcf33f79f1b9875a9da7535b36322aa3c2442ced1a27372473ed08fa61de38",
+      "outcome": "Completed bounded corrections after interrupted A attempt.",
+      "final_report": "Bounded A correction complete in [tests/test_delivery.py](/Users/davidhoffman/Documents/GitHub/simrecon/tests/test_delivery.py). Only that file changed. Ready for separate fresh B; checkpoint remains unaccepted.\n\n| Case | Public assertions |\n|---|---|\n| D1 | One fresh `codex exec`; write-capable mode, including `--approve-for-me`; caller cwd; both output streams; exit 0 |\n| D2 | One read-only invocation; actual report-only prompt; rejects writable overrides; disposable repository entries, contents, and modes unchanged |\n| D3 | Unsupported flag produces syntax diagnostic and exit 2; no invocation |\n| D4 | One native invocation; diagnostics preserved; exit 7; no retry |\n| D5 | Missing Codex produces actionable Codex/PATH diagnostic and exit 127 |\n\nEntry-point resolution uses the Python environment\u2019s scripts directory. Subprocesses preserve caller diagnostic environment. Command and prompt assertions distinguish native arguments from prompt text.\n\nFinal checks used:\n```sh\nexport PYTHONPATH=/private/tmp/simrecon-delivery-setup/blind-runtime\nexport PYTEST_ADDOPTS='--tb=line --show-capture=no'\n.venv/bin/python -m ruff format --check tests/test_delivery.py\n.venv/bin/python -m ruff check tests/test_delivery.py\n.venv/bin/python -m pytest tests/test_delivery.py --tb=line --show-capture=no\n```\n\nBoth Ruff checks passed. Pytest collected five cases; all failed with actual exit 1 and `ModuleNotFoundError: No module named 'simrecon._delivery'`. Classification: stated **feature absence**, not a reproduced legacy bug. Incidental import failure satisfies none of the oracles.\n\nTest-helper probes passed for 14 equivalent mode/prompt forms and rejected eight unsafe overrides plus a wrong command. These establish assertion behavior only. Actual native doctor behavior and patch demonstration remain separate evidence.\n\nOracles come from the approved packet and opened native `codex exec --help`: exact statuses, call counts, modes, cwd, output, and file effects. No numerical tolerance applies.\n\nSHA-256: `8f0723c3c5c104d38069442b0440201f9bef72614c0265c4e356b3f748836b98`\n\nNo implementation source exposure, memory, delegation, commits, staging, push, or PR actions. Five scenarios retained; doctor B window remains 1/2 with one round available; prior T window remains accepted and closed; shared C repairs remain 0/1. This continuation used approximately 4 minutes 26 seconds without resetting the budget.",
+      "source_exposure": "none reported",
+      "usage": {
+        "input_tokens": 211112,
+        "cached_input_tokens": 189952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4810,
+        "reasoning_output_tokens": 1026
+      },
+      "failed_events": []
+    },
+    {
+      "run": "d-b2",
+      "role": "B",
+      "session_id": "01a0f3d9-3234-7ae3-9ff8-9ec773298751",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "4394d316ba9ccb5429472422664ce5d41fac1f43a4c522b8b8c6d4aaf76e5d08",
+      "outcome": "Window 1 round 2 nonacceptance and required diagnosis: relative cwd oracle defect.",
+      "final_report": "**NONACCEPT \u2014 round 2 of 2.** One test defect remains in checkpoint SHA-256 `8f0723c3c5c104d38069442b0440201f9bef72614c0265c4e356b3f748836b98`.\n\n[tests/test_delivery.py:157](/Users/davidhoffman/Documents/GitHub/simrecon/tests/test_delivery.py:157) resolves `-C` values against the reviewer process\u2019s cwd. Native Codex runs in the fixture caller cwd, where `-C .` correctly identifies that repository. My helper probe accepted the absolute equivalent but rejected `-C .`. This violates the packet\u2019s requirement to accept semantically equivalent native options.\n\n**Mandatory B diagnosis:** this is a test defect caused by using the wrong process context for relative-path resolution. It is independent of feature absence and needs no new scenario or product behavior. The two-round window is exhausted; retain both verdicts and document resolution or an authorized extension before another A rewrite/review. No silent reset.\n\nThe other assessed corrections hold:\n\n- D1/D4 assert one fresh invocation, write-capable mode, caller cwd, both streams, and exact statuses 0/7.\n- D2 checks explicit read-only mode, report-only prompt, and fixture entries, contents, and modes. Probes rejected `--approve-for-me` and sandbox text appearing only in the prompt; snapshots detected content and mode changes.\n- D3/D5 require exact statuses 2/127 and relevant diagnostics. D3 also requires no invocation.\n\nThe prescribed source-free pytest run collected five tests. All failed with exit 1 and the stated missing `simrecon._delivery` module. None accepted that incidental failure. This is expected feature absence, not evidence of a reproduced legacy bug.\n\nThe hash remained unchanged. No repository edits, staging, commits, PR actions, delegation, memory access, or implementation source exposure occurred. Native help and permitted files only were read. Linux/worktree execution and actual doctor behavior remain unverified.\n\nFive scenarios; B rounds **2/2, unaccepted**; shared C repairs **0/1**, unchanged. This review used approximately **1 minute 26 seconds**, without resetting prior budget use.",
+      "source_exposure": "none reported",
+      "usage": {
+        "input_tokens": 101260,
+        "cached_input_tokens": 84608,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1927,
+        "reasoning_output_tokens": 352
+      },
+      "failed_events": []
+    },
+    {
+      "run": "d-a4",
+      "role": "A",
+      "session_id": "01a0f3dc-43d5-7323-b864-4370c95af05d",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "e76162abbe1a7f671806347caca80be68790c191103bcb4559986eb5a90719b8",
+      "outcome": "Corrected only relative cwd oracle after documented resolution; prior history retained.",
+      "final_report": "Corrected only [tests/test_delivery.py:157](/Users/davidhoffman/Documents/GitHub/simrecon/tests/test_delivery.py:157): relative `-C`/`--cd` paths now resolve against the asserted caller cwd. Helper probes passed for both an absolute caller path and `-C .`. The five product cases remain unchanged.\n\nSHA-256: `841ee68381d95a34233bb0f10b1574fe91f2c54c58749cbf694b49e63cea21f7`\n\nChecks:\n\n- `.venv/bin/ruff check tests/test_delivery.py` \u2014 passed.\n- `.venv/bin/ruff format --check tests/test_delivery.py` \u2014 passed.\n- `.venv/bin/pyright --pythonpath .venv/bin/python tests/test_delivery.py` \u2014 passed. Initial invocation without interpreter selection failed to resolve pytest; classified as tooling configuration.\n- Source-free pytest command below \u2014 collected five; all failed with missing `simrecon._delivery`, exit 1. Expected feature absence; no incidental import failure satisfied an oracle.\n\n```sh\nPYTHONPATH=/private/tmp/simrecon-delivery-setup/blind-runtime \\\nPYTEST_ADDOPTS='--tb=line --show-capture=no' \\\n.venv/bin/python -m pytest tests/test_delivery.py --tb=line --show-capture=no\n```\n\nMapping remains D1 write invocation/status 0; D2 report-only invocation and unchanged repository; D3 syntax/status 2 without invocation; D4 one invocation/status 7; D5 missing Codex/status 127. Oracles use exact statuses and observed process effects; no tolerance applies.\n\nNo implementation source exposure, delegation, memory access, staging, commits, or product edits occurred. Prior doctor window **2/2 unaccepted** and accepted T window remain retained; shared C repairs **0/1** and budget remain unchanged. Ready for separate fresh B under the documented resolution.",
+      "source_exposure": "none reported",
+      "usage": {
+        "input_tokens": 118993,
+        "cached_input_tokens": 91648,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1251,
+        "reasoning_output_tokens": 11
+      },
+      "failed_events": []
+    },
+    {
+      "run": "d-b3",
+      "role": "B",
+      "session_id": "01a0f3df-9229-7702-b8fe-25b158c6cabc",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "aab6fd52e7e9fddd116c4cdd768eabfda4afe86b8c93bdde0c74b219a28ff834",
+      "outcome": "Window 2 round 1 ACCEPT exact test SHA256 841ee68381d95a34233bb0f10b1574fe91f2c54c58749cbf694b49e63cea21f7.",
+      "final_report": "**ACCEPT \u2014 round 1 of the documented new doctor review window.**\n\nReviewed [tests/test_delivery.py](/Users/davidhoffman/Documents/GitHub/simrecon/tests/test_delivery.py) at SHA-256:\n`841ee68381d95a34233bb0f10b1574fe91f2c54c58749cbf694b49e63cea21f7`\n\nIndependent helper probes accepted absolute cwd and relative `-C .`/`--cd=.` forms. They rejected wrong cwd, resumed commands, incidental prompt/option matches, write overrides in check mode, and enabled optional features. Fixture snapshots detected content and permission changes. Test-only Pyright passed.\n\nSource-free pytest collected exactly five cases. All failed with exit 1 because `simrecon._delivery` is absent; none accepted that incidental failure. This is expected feature absence, not product-red evidence or a reproduced legacy bug. Warning and traceback rendering omitted source; pytest caching was disabled.\n\nAcceptance covers the five public wrapper scenarios and their oracle integrity. The tests use portable path/process operations; actual Linux/worktree execution and real doctor behavior remain unverified.\n\nCurrent state: checkpoint unchanged; B window accepted/closed; ready for C. Prior doctor window remains **2/2 nonaccepted**, prior T2 accepted/closed, shared C repairs **0/1**. This review used approximately **1 minute 47 seconds**, charged to the existing budget; all prior spending and the recorded provider interruption remain retained.\n\nNo repository edits, staging, commits, PR actions, delegation, memory access, or implementation source exposure occurred.",
+      "source_exposure": "none reported",
+      "usage": {
+        "input_tokens": 102684,
+        "cached_input_tokens": 84480,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2130,
+        "reasoning_output_tokens": 163
+      },
+      "failed_events": []
     }
   ]
 }
