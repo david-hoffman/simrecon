@@ -119,7 +119,7 @@
   "git_fidelity": {
     "working_files": "verified against sha256_files",
     "index": "Verified staged blob SHA-256 against sha256_files before the initial archive commit.",
-    "committed_blobs": "not committed; not verified",
+    "committed_blobs": "Verified SHA-256 against sha256_files at 306cbbcfc1cbab60ab95d2371d27436ca0155b55",
     "normalization": "All archived content is generated UTF-8/LF, not claimed as original retrieval bytes.",
     "git_filter_comparison": "Compared git hash-object --no-filters with --path for every generated file; no byte changes. This is not index or committed-blob verification."
   },
@@ -151,8 +151,8 @@
     "documentation_review": "Separate fresh-context Sol discovery reviewer found no actionable issues; not delivery role D.",
     "limitations": [
       "No full-paper Docling conversion",
-      "No product or delivery-system verification",
-      "No index/committed-blob verification before staging/commit"
-    ]
+      "No product or delivery-system verification"
+    ],
+    "archive_commit_verified": "306cbbcfc1cbab60ab95d2371d27436ca0155b55"
   }
 }
