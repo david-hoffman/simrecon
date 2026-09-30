@@ -8,7 +8,9 @@ The setup provides a pristine Python/NumPy/SciPy scaffold for structured illumin
 
 The owner explicitly permits studying legacy algorithms but requires all new code to be written independently. `SIMrecon_svn/` remains ignored historical study material. Do not copy, ship, link, or import it. This setup pass implements no scientific algorithm, legacy repair, or file-format compatibility feature.
 
-## Installed structure and project constraints
+## Detected scaffold and delivery constraints
+
+The stack below describes the installed scaffold. It does not select the scientific library architecture. The historical architecture-approval sentence in `.agents/skills/intake/SKILL.md` is superseded by the owner's clarification and this record.
 
 - One monorepo; Python 3.13.12, NumPy and SciPy; isolated `.venv`, exact dependency resolution in `uv.lock`.
 - New library under `src/simrecon/`. Delivery helpers are owned runtime and must be measured along with future scientific code.
@@ -22,13 +24,28 @@ No scientific API is approved yet. [Scientific context](SCIENTIFIC-CONTEXT.md) m
 
 Citation-only Docling conversions are stored in `docs/references/scientific/`; full-paper conversion remains incomplete. This distinction must not be lost in later task packets.
 
+## Proposed library architecture — approval pending
+
+Recommend functional Python with NumPy arrays, small explicit metadata records, and SciPy for later approved numerical operations. Retain the detected Python 3.13/uv scaffold and macOS/Linux checks initially. The [comparison](tasks/architecture-intake.md#design-comparison) covers xarray/Dask and a compiled core; neither has an evidenced benefit that currently justifies adding it to the core. [Detailed design](architecture/library-design.md) supplies the responsibilities and limits proposed for approval.
+
+- Public API: `inspect`, selected-block `read`, metadata/layout `harmonize`, and streamed `write`. A command-line interface uses the same functions. Operation names describe responsibilities; exact signatures remain task-contract decisions. Future algorithm parameters and calibration are explicit inputs.
+- Data model: a handle-free dataset descriptor with named axes, source layout, sampling/units, provenance, and unresolved fields; a NumPy data block with corresponding metadata. Spatial images and frequency-domain optical transfer functions (OTFs) are distinct data kinds. Counts are data, not hard-coded acquisition limits.
+- Functional boundary: metadata/numerical functions return results without mutating caller-owned arrays. Reads/writes own scoped file resources. Separate operation-specific parameters from image metadata; allow private scratch buffers within calls.
+- Metadata: explicit user values override file values with recorded old/new provenance. Unknown ordering/schema requires an explicit profile before harmonization. Normalize established units, preserve unknown information, and validate the resolved layout against the actual payload. Harmonization does not perform scientific image corrections.
+- Components: model/metadata resolution; format adapters; later numerical/calibration/estimation functions; thin CLI. Begin with explicit legacy/modern MRC adapters and candidate `mrcfile` support for modern files. Verify the legacy codec's applicability or independently author it from documented behavior and fixtures. No legacy import/link/wrapper/copy.
+- Output: modern MRC with a versioned documented extended-metadata schema in one self-contained file. Preserve acquisition axes and provenance. Exact framing, modes, header mapping, supported legacy variants, and independent fixtures require approved contracts.
+- Scale: metadata-only inspection, selective reads, and bounded block writes from the first slice. Baseline 3D processing unit is one channel/time point's complete Z acquisition across phases/orientations. The owner's example is about 4.58 TiB at float32, or 9.375 GiB per channel/time point before numerical scratch. Do not require the whole acquisition in RAM; future scientific contracts settle transform working sets and valid subdivisions.
+- ImageJ: correct X/Y/Z/channel/time interpretation is the goal; the owner accepts current MRC reader support initially with explicit limits and full metadata preservation. The inspected Bio-Formats reader flattens ordinary MRC data into a stack. A later OME-BigTIFF adapter or reader integration is a candidate, not an approved first-slice feature. [Compatibility evidence and limits](architecture/library-design.md).
+
+Architecture approval would select these boundaries and the linked detailed proposal. It would not approve executable product scenarios, numerical estimators/defaults, a performance promise, new adapters, implementation, or the separate doctor patch. Full-paper extraction remains incomplete. Confidence is moderate-high in this starting design; measured kernel bottlenecks, whole-volume memory requirements, or a mandatory distributed workflow could change the implementation strategy without abandoning the public boundaries.
+
 ## Adoption baseline and scope
 
 See [the read-only baseline](setup/BASELINE.md). The legacy build fails before product tests at a missing compiler; no automated test target was found. Statement and branch counts and percentages are unknown, not zero or 100%. Historical binaries are stale evidence.
 
 The owner chose a new library rather than repairing/adopting the legacy runtime. That makes legacy compiler recovery and legacy global coverage separate, unapproved work. Every new owned runtime file, including delivery helpers and never-imported files, belongs to the new measurement scope. A tiny scientific slice could not pass a global legacy gate; treating the legacy snapshot as unshipped reference is an explicit adoption-scope decision, not a coverage exclusion for shipped code.
 
-Delivery installation uses the approved eight-hour cap. Product remediation and reconstruction implementation are outside it; their effort is not yet estimated because public behavior and independent fixtures remain unresolved. [The setup plan](tasks/setup-plan.md) records dependencies, the proposed demonstration contract, and remaining decisions.
+Delivery installation uses the approved eight-hour cap. Product remediation and reconstruction implementation are outside it; their effort is not yet estimated because public behavior and independent fixtures remain unresolved. [The setup plan](tasks/setup-plan.md) records dependencies, the proposed demonstration contract, and remaining decisions. The owner separately authorized architecture intake without a time cap on September 30, 2026. That allowance covers investigation and documentation, not implementation, and does not reuse or extend the historical setup allowance.
 
 ## Verify and operate
 
@@ -57,3 +74,5 @@ No merge or release without explicit owner action. Check failures are classified
 Historical setup approval: owner's message, “I Approve this Python architecture and an initial eight-hour setup pass?” Repository setting authorization: subsequent message, “Can you configure the github repo correctly as well?” Earlier, the owner also instructed completion of architecture and the initial setup pass. The owner later clarified, “We never decided on architecture, add it to the list.” That clarification supersedes the earlier interpretation of architecture approval. Setup/settings authorization remains recorded; neither library architecture nor scientific behavior is approved. The unchanged demonstration cases are now two sequential default-size slices in [the plan](tasks/setup-plan.md); no larger-slice exception or scientific behavior was approved.
 
 The [remaining-work checklist](MIGRATION-ROADMAP.md#remaining-work-checklist) is the entry point for architecture intake and later scientific planning. Resolve public interfaces, data model, numerical pipeline, module boundaries, dependencies, and performance requirements through that intake.
+
+Active [architecture intake](tasks/architecture-intake.md) records the interview, comparison, and pending decision. The owner requests CPU-first operation, functional composition, a minimal public API, image/metadata/algorithm-parameter intake, and input/output adapters. The first requested slice concerns reading, inspecting, harmonizing, and writing legacy MRC image data, with both Python and command-line interfaces; reconstruction remains separate. Explicit user metadata overrides file values with provenance. New output uses modern documented MRC with a documented extended header in one self-contained file. These owner requirements constrain the proposal; no architecture or executable product contract is approved yet. The separate doctor documentation proposal remains outside this intake.

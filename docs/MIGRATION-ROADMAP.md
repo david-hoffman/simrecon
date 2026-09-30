@@ -14,9 +14,10 @@ Use this as the entry point for proposed future work. Setup execution history an
 - [ ] Resolve PR-creation identity if the owner needs to submit GitHub approvals. Agent commits must use codex as author and committer; commit metadata alone does not change the authenticated PR author.
 - [ ] Complete the requested paper extraction and algorithm notes; current Docling records are citation-only. Record access/redistribution limits honestly.
 - [ ] Decide and approve the library architecture: compare practical options for public interfaces, data model, numerical pipeline, module boundaries, dependencies, and performance needs. Record the decision in `docs/PROJECT.md`.
-- [ ] Approve the first bounded scientific slice, numerical conventions, independent expected results, and its own budget. Known-phase separation is a candidate, not a selected or approved feature.
+- [ ] Approve the first bounded product slice, conventions, independent expected results, and its own budget. The architecture interview selected legacy MRC image intake/output as the first requested slice, including Python and command-line interfaces; its detailed contract remains unapproved. Known-phase separation and reconstruction follow separate scientific intake.
 - [ ] Deliver that slice through fresh A/B/C/D roles, passing full verification and measured statement/branch coverage, then a normal PR.
 - [ ] Repeat for calibration, reconstruction, estimation/drift, 3D, and adapters as approved. Parallelize only independent slices; integrate prerequisites before dependent work.
+- [ ] Improve ImageJ X/Y/Z/channel/time interpretation beyond initial MRC reader support through a separately approved adapter or reader integration. Preserve full axis information in the first library/file model and report viewer limitations; do not treat a flattened stack as full five-dimensional support.
 
 Start architecture intake in a fresh local thread in the existing `simrecon` project. Read the project/scientific records and this roadmap; use the owner's latest architecture clarification when reconciling older approval wording. Obtain architecture approval before scientific implementation.
 
