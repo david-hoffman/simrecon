@@ -2,6 +2,8 @@
 
 **Version 1.0** Git versions revisions. Approval pending. [PROJECT.md](../PROJECT.md) is the canonical project decision record; this document supplies its design detail.
 
+[UML data flow](data-flow.md) shows how these responsibilities exchange data, with file access separated from pure functions.
+
 
 Recommend a functional Python library using NumPy arrays and small explicit metadata records, with bounded file access. Retain SciPy for later approved numerical operations. Use the existing Python 3.13/uv scaffold and macOS/Linux checks initially; broadening Python/platform support is a separate packaging decision. [The intake comparison](../tasks/architecture-intake.md#design-comparison) also considers xarray/Dask and a compiled core with Python bindings.
 
@@ -28,4 +30,3 @@ The scale example is `2048 × 2048 × 40 × 3 × 5 × 5 × 100`, provisionally i
 Design inspection and conversion for selected reads and bounded block writes from the first slice. Use plane/range access with deterministic scoped file lifetimes; no whole-file materialization or full acquisition copy is required. The owner's fallback 3D processing unit is one channel/time point's complete Z acquisition across required phases/orientations. Future scientific contracts determine in-memory working sets, scratch staging, Fourier transform scope, and any valid subvolume subdivision. Chunked input/output alone does not make a whole-volume numerical transform bounded-memory. Use explicit memory/worker choices and assess selected-block peak memory; do not promise throughput without benchmarks. [NumPy memory access](https://numpy.org/doc/stable/reference/generated/numpy.memmap.html), [SciPy transform controls](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.fftn.html).
 
 This proposal selects responsibilities and representations for approval. Exact signatures, supported legacy variants/byte orders/modes, numerical conventions, output metadata schema, memory/error contracts, and independent fixtures must enter approved slices before executable tests or implementation. Keeping small function boundaries leaves room for a later xarray bridge, chunked store, GPU backend, or profiled native kernel; none is part of this first delivery or a promise of drop-in compatibility.
-

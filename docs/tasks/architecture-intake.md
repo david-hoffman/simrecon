@@ -51,11 +51,11 @@ Fixtures must establish the supported legacy dialect independently of a successf
 
 ## Current state
 
-- Status: concrete architecture proposal ready for owner approval.
+- Status: concrete architecture proposal and requested UML data flow ready for owner review; approval pending.
 - Approval: owner authorized intake without a time cap and supplied the requirements above. No scientific implementation approval.
 - Candidate: documentation checkpoint for architecture approval; exact final identity/results will be recorded in this conversation outside the tracked tree.
 - Reviewed checkpoint and role results: none for architecture or product; no A/B/C/D role started.
 - Checks: selected legacy file hashes match the retained manifest; draft documentation passes `git diff --check`. Final documentation/full-check evidence belongs in this conversation; no new executable tests written. No A/B/C/D acceptance or scientific coverage is claimed by infrastructure verification.
 - Blockers: owner architecture approval pending. Exact format/schema/fixtures and product budgets remain future contract decisions; the ImageJ requirement is resolved as staged compatibility.
-- Next action: owner reviews the project proposal and design comparison; intake records actual architecture approval before task contracts/tests/implementation.
+- Next action: owner reviews the project proposal, design comparison, and [UML data flow](../architecture/data-flow.md); intake records actual architecture approval before task contracts/tests/implementation.
 - Metrics: product scenarios=0 approved; A/B rounds=0; C repairs=0, product allowance unallocated; intake budget=no time cap; elapsed/token/dollar totals unavailable. First recorded timestamp for this authorized intake turn: `2026-09-30 21:08:40 UTC`.
