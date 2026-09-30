@@ -1,6 +1,6 @@
 SIMrecon_svn/
 .DS_Store
-.venv/
+.venv
 .coverage
 .coverage.*
 .pytest_cache/
