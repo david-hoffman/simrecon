@@ -10,7 +10,7 @@ The owner explicitly permits studying legacy algorithms but requires all new cod
 
 ## Constraints and structure
 
-- One monorepo; Python 3.13, NumPy and SciPy; isolated `.venv`, exact dependency resolution in `uv.lock`.
+- One monorepo; Python 3.13.12, NumPy and SciPy; isolated `.venv`, exact dependency resolution in `uv.lock`.
 - New library under `src/simrecon/`. Delivery helpers are owned runtime and must be measured along with future scientific code.
 - `AGENTS.md` is the shared operational home. The four canonical repository skills live in `.agents/skills/`. Codex supports that location, so no native bridge is needed.
 - The canonical specification remains `docs/agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md`. Source archives are inert reference material. Routine roles receive narrow packets, not the archive.
@@ -54,4 +54,4 @@ No merge or release without explicit owner action. Check failures are classified
 
 ## Approval and next slice
 
-Architecture and eight-hour installation approval: owner's message, “I Approve this Python architecture and an initial eight-hour setup pass?” Repository setting authorization: subsequent message, “Can you configure the github repo correctly as well?” These approve setup and settings, not scientific behavior or an as-yet-unapproved task contract. The proposed setup demonstration awaits the contract read-back in [the plan](tasks/setup-plan.md).
+Architecture and eight-hour installation approval: owner's message, “I Approve this Python architecture and an initial eight-hour setup pass?” Repository setting authorization: subsequent message, “Can you configure the github repo correctly as well?” These approve setup and settings, not scientific behavior or an as-yet-unapproved task contract. The owner subsequently instructed completion of architecture and the initial setup pass. The unchanged demonstration cases are now two sequential default-size slices in [the plan](tasks/setup-plan.md); no larger-slice exception or scientific behavior was approved.

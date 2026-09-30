@@ -12,9 +12,6 @@ dependencies = [
   "scipy>=1.15,<2",
 ]
 
-[project.scripts]
-delivery = "simrecon._delivery:main"
-
 [dependency-groups]
 dev = [
   "coverage>=7.13,<8",
@@ -42,7 +39,7 @@ pythonVersion = "3.13"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = ["--strict-config", "--strict-markers", "-ra"]
+addopts = ["--strict-config", "--strict-markers", "-ra", "-p", "simrecon._pytest_policy"]
 strict_xfail = true
 
 [tool.coverage.run]
