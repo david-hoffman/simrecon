@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "scope": "Historical native role handoffs; live status is in the setup plan or its pointer. These are not full session transcripts.",
-  "recorded_at_utc": "2026-09-30T20:18:56.339267+00:00",
+  "recorded_at_utc": "2026-09-30T20:22:22.126618+00:00",
   "reviews": [
     {
       "run": "t-a",
@@ -305,6 +305,24 @@
         "reasoning_output_tokens": 269
       },
       "environment_note": "Packet cited the historical0.155 probe; current PATH/header identifies0.159.2. Actual live native rejection and resulting test oracle remain evidenced; see doctor-initial.json."
+    },
+    {
+      "run": "d-c2",
+      "role": "C",
+      "session_id": "01a0f3f8-f2ae-7b22-ae39-ab4c176d1bf8",
+      "native_new_root": true,
+      "model": "gpt-6.1-sol",
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "f54c35b107d90c007f9b85d7f4b87553af81d5307b98fa593581dbc4974a49bb",
+      "outcome": "Sole shared C repair consumed; fixed native flag conflict; full verification30/30 statements4/4 branches passed. Exact committed-candidate D/live doctor/CI still required.",
+      "final_report": "Repaired only [src/simrecon/_delivery.py](/Users/davidhoffman/.codex/worktrees/delivery-setup/simrecon/src/simrecon/_delivery.py). Default mode now uses `--approve-for-me` alone, avoiding the confirmed Codex 0.159.2 conflict while retaining workspace-write automatic review. `--check` retains explicit read-only mode. Prompt, disabled features, output and exit propagation remain unchanged.\n\n- Baseline: clean `4df265514569e3d5e615258759d1ca30a8fe3d8b`. Final dirty status: only `_delivery.py`; no staging or commits.\n- Focused: `/Users/davidhoffman/.local/bin/uv run --locked pytest tests/test_delivery.py` \u2014 **5 passed**.\n- Canonical: `make verify UV=/Users/davidhoffman/.local/bin/uv` \u2014 **passed**, Python 3.13.12, **10 tests passed**. Lint, formatting, typing, wheel build/import and audit passed.\n- Coverage, including combined subprocess data: global/package **30/30 statements, 4/4 branches**; delivery **23/23, 2/2**; pytest policy **7/7, 2/2**; initializer **0/0, 0/0**. **Zero exclusions or missing coverage**.\n- Initial cache failure classified as environment/tooling; authorized escalation resolved it. D1/D4 reproduced the product defect before repair.\n\nUnchanged reviewed test SHA256:\n```text\n35c974b7245ea27431d6c4671203bee17c70216b7c302c915cbfc3db4f3058fd\n```\n\nVerified implementation SHA256:\n```text\nbbe3b253050403477da38e2688ce6e66f12a16d23eecdd38042b622822e8228b\n```\n\nRepair allowance: **1/1 consumed; 0 remain**. Elapsed: approximately **47 seconds of 15 minutes**. Prior attempts/spending remain intact.\n\nNo implementation blocker. No live doctor launched; controlled tests do not prove native model behavior. Non-Python infrastructure/model behavior has no supported native coverage metric. Coordinator must record the actual command, commit, verify the exact candidate, obtain fresh D, and repeat real doctor before any open-PR update.",
+      "usage": {
+        "input_tokens": 191783,
+        "cached_input_tokens": 165504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1377,
+        "reasoning_output_tokens": 15
+      }
     }
   ]
 }

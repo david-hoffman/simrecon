@@ -31,13 +31,12 @@ def main() -> int:
         "gpt-6.1-sol",
         "-C",
         str(Path.cwd()),
-        "--sandbox",
     ]
     if args.check:
-        command.append("read-only")
+        command.extend(["--sandbox", "read-only"])
         prompt += "Run with --check: report only and do not write files."
     else:
-        command.extend(["workspace-write", "--approve-for-me"])
+        command.append("--approve-for-me")
         prompt += (
             "Authorize only the bounded documentation patch under the doctor procedure. "
             "Present the exact diff and evidence, then wait for explicit owner approval "
