@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "simrecon"
+version = "0.1.0"
+description = "A Python array library for structured illumination microscopy reconstruction"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "numpy>=2.2,<3",
+  "scipy>=1.15,<2",
+]
+
+[project.scripts]
+delivery = "simrecon._delivery:main"
+
+[dependency-groups]
+dev = [
+  "coverage>=7.13,<8",
+  "pre-commit>=4.3,<5",
+  "pyright[nodejs]>=1.1.400,<2",
+  "pytest>=8.3,<10",
+  "ruff>=0.13,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/simrecon"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.pyright]
+include = ["src", "tests"]
+typeCheckingMode = "standard"
+pythonVersion = "3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-config", "--strict-markers", "-ra"]
+strict_xfail = true
+
+[tool.coverage.run]
+branch = true
+source = ["src/simrecon"]
+patch = ["subprocess"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+skip_empty = false
+
+[tool.coverage.json]
+output = "artifacts/coverage/coverage.json"
+
+[tool.coverage.html]
+directory = "artifacts/coverage/html"

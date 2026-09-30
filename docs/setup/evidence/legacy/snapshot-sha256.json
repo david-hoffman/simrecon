@@ -1,0 +1,662 @@
+[
+  {
+    "bytes": 6162,
+    "path": "IVE/win32/INCLUDE/IM.h",
+    "sha256": "585e1a46478bac6ec2af8c21d05bc293ed7e8b18e931983899e882dd14ecc65f"
+  },
+  {
+    "bytes": 320,
+    "path": "IVE/win32/INCLUDE/IMInclude.h",
+    "sha256": "3deb02c4b654b47efca25106ae94edea573a95ff3af409cf8e163ed3eafd56fd"
+  },
+  {
+    "bytes": 9863,
+    "path": "IVE/win32/INCLUDE/IWApiConstants.h",
+    "sha256": "3c0d20eb9510a74b5e6dde29e6ee237d8be1a1b72311c340f7c2b8a2b13355bb"
+  },
+  {
+    "bytes": 1082,
+    "path": "IVE/win32/INCLUDE/cxxstd.h",
+    "sha256": "042af6da6eace6b3c83743ddf0cfdda34637dd9edde22899008ba6fb09d1724d"
+  },
+  {
+    "bytes": 1071,
+    "path": "IVE/win32/INCLUDE/exhdr.inc",
+    "sha256": "2e79df6f9ea2672a9ef4dbce4d52a1da96a6f992878065b517daed6351e5d5ed"
+  },
+  {
+    "bytes": 1254,
+    "path": "IVE/win32/INCLUDE/fortran_types.h",
+    "sha256": "559754a496e582b63a01273de855d70bfc127332f8b6c0f993aa711362b6d938"
+  },
+  {
+    "bytes": 3311,
+    "path": "IVE/win32/INCLUDE/ive_conf.h",
+    "sha256": "3f29a9a89ac3cf15fc4867beac2e6e9ef55053c24233e227a1561ccea1f9b1eb"
+  },
+  {
+    "bytes": 1119,
+    "path": "IVE/win32/INCLUDE/ive_error.h",
+    "sha256": "4181834b5bdc35abdf6760b9ed60f2e9767318062b975858b31c81a556635b87"
+  },
+  {
+    "bytes": 808,
+    "path": "IVE/win32/INCLUDE/ive_fortran.h",
+    "sha256": "c88d542ce74c252dcf2df54773f9b6254c81348996e94b0e51eaec5bce222f31"
+  },
+  {
+    "bytes": 707,
+    "path": "IVE/win32/INCLUDE/ive_hash.h",
+    "sha256": "be1bca9244828fd7dfe49de40b98c60a0c3546e6aabefd29b0b0888652046e72"
+  },
+  {
+    "bytes": 874,
+    "path": "IVE/win32/INCLUDE/ive_standards.h",
+    "sha256": "4f09ebe2ca5cfa84a67a1d2f0ff646477e2560f71422ee4fa46fea60b3757b8b"
+  },
+  {
+    "bytes": 1951,
+    "path": "IVE/win32/INCLUDE/ive_thread.h",
+    "sha256": "21fa2f666c9e55e5a7479b5a961f765500a5835fd317993995c167b2179eb595"
+  },
+  {
+    "bytes": 1462,
+    "path": "IVE/win32/INCLUDE/ive_time.h",
+    "sha256": "ebb4c50f9172906298cd5d52d7d86c5311102c34dbe8334f565961191ba8c46c"
+  },
+  {
+    "bytes": 1270,
+    "path": "IVE/win32/INCLUDE/kernel/IKInterleave.h",
+    "sha256": "23add743544935c939c8169487d0a9d6e4cff14a72d068c18279e59c9af615ba"
+  },
+  {
+    "bytes": 2493,
+    "path": "IVE/win32/INCLUDE/kernel/IMNetFuncs.h",
+    "sha256": "720c80537d89a50936be78edccbca403a47e36481eda095c4fceaa8d790e3051"
+  },
+  {
+    "bytes": 2344,
+    "path": "IVE/win32/INCLUDE/kernel/convert.h",
+    "sha256": "f85f37e28772f97a349216d5f73f10e64d8859c2e61bfc1625e1369641261c93"
+  },
+  {
+    "bytes": 91828,
+    "path": "IVE/win32/LIB/libimlib.a",
+    "sha256": "584b25f244a9bf20fea809cd5a82f9ab7948fa3439ef782638980c758024673c"
+  },
+  {
+    "bytes": 9078,
+    "path": "IVE/win32/LIB/libive.a",
+    "sha256": "cbb52eed4cde8d0cc05a3eff1d1704aacc4ddbf6050f77256753af550711fe82"
+  },
+  {
+    "bytes": 6162,
+    "path": "IVE/win64/INCLUDE/IM.h",
+    "sha256": "585e1a46478bac6ec2af8c21d05bc293ed7e8b18e931983899e882dd14ecc65f"
+  },
+  {
+    "bytes": 320,
+    "path": "IVE/win64/INCLUDE/IMInclude.h",
+    "sha256": "3deb02c4b654b47efca25106ae94edea573a95ff3af409cf8e163ed3eafd56fd"
+  },
+  {
+    "bytes": 9863,
+    "path": "IVE/win64/INCLUDE/IWApiConstants.h",
+    "sha256": "3c0d20eb9510a74b5e6dde29e6ee237d8be1a1b72311c340f7c2b8a2b13355bb"
+  },
+  {
+    "bytes": 1082,
+    "path": "IVE/win64/INCLUDE/cxxstd.h",
+    "sha256": "042af6da6eace6b3c83743ddf0cfdda34637dd9edde22899008ba6fb09d1724d"
+  },
+  {
+    "bytes": 1071,
+    "path": "IVE/win64/INCLUDE/exhdr.inc",
+    "sha256": "2e79df6f9ea2672a9ef4dbce4d52a1da96a6f992878065b517daed6351e5d5ed"
+  },
+  {
+    "bytes": 1254,
+    "path": "IVE/win64/INCLUDE/fortran_types.h",
+    "sha256": "559754a496e582b63a01273de855d70bfc127332f8b6c0f993aa711362b6d938"
+  },
+  {
+    "bytes": 3311,
+    "path": "IVE/win64/INCLUDE/ive_conf.h",
+    "sha256": "901a213a1ea00b915f074ca9f935b7dfdb3ad6cdaff6ba6cbcc5b932800557e3"
+  },
+  {
+    "bytes": 1119,
+    "path": "IVE/win64/INCLUDE/ive_error.h",
+    "sha256": "4181834b5bdc35abdf6760b9ed60f2e9767318062b975858b31c81a556635b87"
+  },
+  {
+    "bytes": 808,
+    "path": "IVE/win64/INCLUDE/ive_fortran.h",
+    "sha256": "c88d542ce74c252dcf2df54773f9b6254c81348996e94b0e51eaec5bce222f31"
+  },
+  {
+    "bytes": 707,
+    "path": "IVE/win64/INCLUDE/ive_hash.h",
+    "sha256": "be1bca9244828fd7dfe49de40b98c60a0c3546e6aabefd29b0b0888652046e72"
+  },
+  {
+    "bytes": 874,
+    "path": "IVE/win64/INCLUDE/ive_standards.h",
+    "sha256": "8c5741a85d0b3b54e5d76d5ae64ccfeb078fa7b40a8ae7928c22c28886bbd620"
+  },
+  {
+    "bytes": 1951,
+    "path": "IVE/win64/INCLUDE/ive_thread.h",
+    "sha256": "21fa2f666c9e55e5a7479b5a961f765500a5835fd317993995c167b2179eb595"
+  },
+  {
+    "bytes": 1462,
+    "path": "IVE/win64/INCLUDE/ive_time.h",
+    "sha256": "ebb4c50f9172906298cd5d52d7d86c5311102c34dbe8334f565961191ba8c46c"
+  },
+  {
+    "bytes": 1270,
+    "path": "IVE/win64/INCLUDE/kernel/IKInterleave.h",
+    "sha256": "23add743544935c939c8169487d0a9d6e4cff14a72d068c18279e59c9af615ba"
+  },
+  {
+    "bytes": 2493,
+    "path": "IVE/win64/INCLUDE/kernel/IMNetFuncs.h",
+    "sha256": "720c80537d89a50936be78edccbca403a47e36481eda095c4fceaa8d790e3051"
+  },
+  {
+    "bytes": 2344,
+    "path": "IVE/win64/INCLUDE/kernel/convert.h",
+    "sha256": "f85f37e28772f97a349216d5f73f10e64d8859c2e61bfc1625e1369641261c93"
+  },
+  {
+    "bytes": 244,
+    "path": "IVE/win64/INCLUDE/malloc.inc",
+    "sha256": "a1639446a806b6fa8e278c06ac909cec70b3a3eb7bdeefb9a39eddfa2d43a919"
+  },
+  {
+    "bytes": 108900,
+    "path": "IVE/win64/LIB/libimlib.a",
+    "sha256": "173d30ba8e4cde4f4c888c78296489d600b5ba3d8f8106a20b0463c31c448e99"
+  },
+  {
+    "bytes": 13232,
+    "path": "IVE/win64/LIB/libive.a",
+    "sha256": "c79cdced7a32ebe8e476cb3f1378a19e019265287f68e055c2adcd5fb39799ea"
+  },
+  {
+    "bytes": 1920,
+    "path": "Makefile",
+    "sha256": "1dbf51496c6159acf0c00054197c53f57ba93ddc1a1440145a4ed6dc8d13d9a4"
+  },
+  {
+    "bytes": 5135,
+    "path": "README.txt",
+    "sha256": "6afcb91d188a0baeaae26a70994df9a8cdf48db1dad1eb5582d3aea5bc04e266"
+  },
+  {
+    "bytes": 22186,
+    "path": "drift_n_phasestep.c",
+    "sha256": "13d917fa4a59fd05c33bf307822d647ba4f408e52c4a664a210d1a4c396676d2"
+  },
+  {
+    "bytes": 16854,
+    "path": "drift_n_phasestep.o",
+    "sha256": "2323b9067519528ace03c5c7cd1e749f82441c2c916fd3717522b5ba8704f6f3"
+  },
+  {
+    "bytes": 1919,
+    "path": "driftcorr.sh",
+    "sha256": "aa276e9fb36b22913447ad7a3c842816d7ab21cd099ff68d630e58838aa568f7"
+  },
+  {
+    "bytes": 29024,
+    "path": "helpers.c",
+    "sha256": "b6893620163141746d4c869b373a4e52cd53fdeca6293512541f2b9561a5c206"
+  },
+  {
+    "bytes": 22271,
+    "path": "helpers.o",
+    "sha256": "871045dbacf68a05a2c63213496fd3b1b0cd58644909c77c0248d7c9852caa0f"
+  },
+  {
+    "bytes": 2772692,
+    "path": "libfftw3f-3.dll",
+    "sha256": "42ca18fff35dd12890e04478bc990005b3969cb744f6843976bd436ccd7f0a4c"
+  },
+  {
+    "bytes": 80384,
+    "path": "libgcc_s_seh-1.dll",
+    "sha256": "b469bf1d594d957aaa6ca086afe958e281f2f5f0c05d5113d262fbc083f5917d"
+  },
+  {
+    "bytes": 1283072,
+    "path": "libgfortran-3.dll",
+    "sha256": "327f0d0b9da4ef96703c1e455e3f47ae8e44182c813fd01bb8efac211dac2c67"
+  },
+  {
+    "bytes": 81920,
+    "path": "libgomp-1.dll",
+    "sha256": "89159ad3ddc91b8b533fd67745c483f0459920dede152ddcff93f51503477866"
+  },
+  {
+    "bytes": 324096,
+    "path": "libquadmath-0.dll",
+    "sha256": "2d9d038fa710f74a8de40f37f4a992fe55e0a7ed30f764237edca19a4177c499"
+  },
+  {
+    "bytes": 54784,
+    "path": "libwinpthread-1.dll",
+    "sha256": "e569c327d8a34ca95944e2d849e81cd91e13a8defaa20edcb36f47cf7cc5d9f2"
+  },
+  {
+    "bytes": 49548,
+    "path": "mainfile.c",
+    "sha256": "b923813e221127e01eb602f163dd816e0404fef351b46c8f68006f507e0309a8"
+  },
+  {
+    "bytes": 42430,
+    "path": "mainfile.o",
+    "sha256": "43603a4d6d167586b1fe830a9948d321816b8dba1b643ab74f9d8c2f4bf49887"
+  },
+  {
+    "bytes": 1961389,
+    "path": "otf2d.exe",
+    "sha256": "89d822283a677da5d77a7901530dbbc178b7dfb86218d77dc5a19a3ce38c79d5"
+  },
+  {
+    "bytes": 664268,
+    "path": "radialft.exe",
+    "sha256": "460d6b287011ddebb0a4a3750f8fc004e5163184106af36de815996408e7e6f0"
+  },
+  {
+    "bytes": 10542,
+    "path": "radialft2d_Hesper.c",
+    "sha256": "57fb0be2b39efd556cd0e014d7144d1d525d7f6718bd46551eae48f4e70900a9"
+  },
+  {
+    "bytes": 11272,
+    "path": "radialft2d_Hesper.o",
+    "sha256": "de75576c41f8ca747b6e47e24aac925f9e09f0a00521b3d3b8088189563ec3b5"
+  },
+  {
+    "bytes": 309,
+    "path": "recon2D.com",
+    "sha256": "776679a6405db81c35c39a8e6354d50fcc8457da5df2d167f1bb7021f8a48c8b"
+  },
+  {
+    "bytes": 311,
+    "path": "recon3D.com",
+    "sha256": "82d61a1fa16cc8ec85ccc604a9f45185ab9d4f22fb9d263879775121f1c73432"
+  },
+  {
+    "bytes": 107235,
+    "path": "sirecon.c",
+    "sha256": "3f15d3dfddf4db21c8f166de63820870c9775e22a954b6df1ba8be625622c567"
+  },
+  {
+    "bytes": 342844,
+    "path": "sirecon.exe",
+    "sha256": "e8b970b14151a8300a5c1aba6a292f0961b41faba24771edad9fb7b8842abff3"
+  },
+  {
+    "bytes": 13139,
+    "path": "sirecon.h",
+    "sha256": "f493fb31f18423cdc1ae8c7b630bd65777fcf938d0ef580bc963885ddd25a629"
+  },
+  {
+    "bytes": 75098,
+    "path": "sirecon.o",
+    "sha256": "a0ae91b6901ed2b13b3812a7f0d692279717d377f4fe51440ef49589977040e6"
+  },
+  {
+    "bytes": 25520,
+    "path": "small_math_funcs.c",
+    "sha256": "a2d277683f03d38bf924b15e21496cad5595524bc1210c7b1f62c7b851826e3e"
+  },
+  {
+    "bytes": 18954,
+    "path": "small_math_funcs.o",
+    "sha256": "068892ffdff0401877048fe67ea2a57889e0bd6347777f715ef1781e4f165e96"
+  },
+  {
+    "bytes": 14332,
+    "path": "tiffhandle.cpp",
+    "sha256": "2fa6113511b912f59c868bff42812aa83eb5662f3c3fd0a065dd36095a9fa16a"
+  },
+  {
+    "bytes": 39882,
+    "path": "tiffhandle.o",
+    "sha256": "d87f64a09b0539a16414b409026afd8acaea2f3aab6e6aac41661d9b0fac3a3b"
+  },
+  {
+    "bytes": 1177463,
+    "path": "usr_local/bin/bmp2tiff.exe",
+    "sha256": "54858b950504e18e6a43702297802b82d4816e5bd8b08158d2357804a7c301de"
+  },
+  {
+    "bytes": 1175126,
+    "path": "usr_local/bin/fax2ps.exe",
+    "sha256": "939d4d561ae1b22a2afaacc80c938ad098d7f51fb29482d3829a7fa413cee66d"
+  },
+  {
+    "bytes": 1174780,
+    "path": "usr_local/bin/fax2tiff.exe",
+    "sha256": "d21408565076cd5f0627bac552810e928bf9bdd8da8d11df0c2550f266a28d03"
+  },
+  {
+    "bytes": 2279,
+    "path": "usr_local/bin/fftw-wisdom-to-conf",
+    "sha256": "526cfaed79cf5d4964d08419d6fd000ebe0d95e3a57cd07d97e430fde5a6bfa7"
+  },
+  {
+    "bytes": 103648,
+    "path": "usr_local/bin/fftwf-wisdom.exe",
+    "sha256": "6c213ad90a9444ec886b624c4d251defa7450229aac2a4d9c99549a1015fa156"
+  },
+  {
+    "bytes": 1172527,
+    "path": "usr_local/bin/gif2tiff.exe",
+    "sha256": "aca1089b1d7a4691b81d22d7152511a062681c8bd720f02a26aaeffd2eeb4b42"
+  },
+  {
+    "bytes": 1980696,
+    "path": "usr_local/bin/libfftw3f-3.dll",
+    "sha256": "a9c872806eed2077b24f244ad0fb199c18824e00eb09b40c7020e1d0e5f3b77e"
+  },
+  {
+    "bytes": 1166950,
+    "path": "usr_local/bin/pal2rgb.exe",
+    "sha256": "deb3a7a54cee8ce47aaccfbc80e3653e5a8f6cc87bc6559ba45878d5320f901a"
+  },
+  {
+    "bytes": 1164953,
+    "path": "usr_local/bin/ppm2tiff.exe",
+    "sha256": "af32219aaa4f45573cb3c69ddadcbe3038acd7a7c68a8aac5fa03c8c53709520"
+  },
+  {
+    "bytes": 1162847,
+    "path": "usr_local/bin/ras2tiff.exe",
+    "sha256": "0ae84f09aad5637b487ed5f7ef3441e905e127987182770fb2cf5d3279b1b623"
+  },
+  {
+    "bytes": 1181317,
+    "path": "usr_local/bin/raw2tiff.exe",
+    "sha256": "4ff04682831e328427386a4690ab8c7dde14b988f8d9970bba94456d341580d6"
+  },
+  {
+    "bytes": 1355395,
+    "path": "usr_local/bin/rgb2ycbcr.exe",
+    "sha256": "1826a237fe62c4875c14a2fa58740d748a19716e096f4bd1ba340bc8b547112b"
+  },
+  {
+    "bytes": 1179569,
+    "path": "usr_local/bin/thumbnail.exe",
+    "sha256": "a235e1e56d4b70a720f1f2bb2ccbd436405abde3d1ca1ccb81aba5c6816f4b45"
+  },
+  {
+    "bytes": 1169600,
+    "path": "usr_local/bin/tiff2bw.exe",
+    "sha256": "5a4f609a843a9edb7e7416efc86bf20b766aeb44d6cd67115380f781f482a9c5"
+  },
+  {
+    "bytes": 1489917,
+    "path": "usr_local/bin/tiff2pdf.exe",
+    "sha256": "557ae7ffdea6b29f72330af121c37c040577daef367b2a4d527fbe74d8feaea3"
+  },
+  {
+    "bytes": 1276720,
+    "path": "usr_local/bin/tiff2ps.exe",
+    "sha256": "45f053c372c74b63de3d260cacd98aa5f8a5a559f8ff328b76060d8a8b5e28c1"
+  },
+  {
+    "bytes": 1351920,
+    "path": "usr_local/bin/tiff2rgba.exe",
+    "sha256": "54e29c32f73cef639ab122fddbffda45cb1bcdcb8ea480011ddd848fe74fd245"
+  },
+  {
+    "bytes": 1182819,
+    "path": "usr_local/bin/tiffcmp.exe",
+    "sha256": "bffb12f9f952ce86d084b97c6e013ba33960bf96f3599c99c4c4768e47959357"
+  },
+  {
+    "bytes": 1242030,
+    "path": "usr_local/bin/tiffcp.exe",
+    "sha256": "0607fdc5b4e644fe5a66d93ccd4e6e74a4345f7fbd85b806f45e42b5af5caba1"
+  },
+  {
+    "bytes": 1496680,
+    "path": "usr_local/bin/tiffcrop.exe",
+    "sha256": "44cabb6e8013bc1f1f89a6914badb8a25d5c90aaf4d3de09dc8eab9ab93cb30d"
+  },
+  {
+    "bytes": 1164441,
+    "path": "usr_local/bin/tiffdither.exe",
+    "sha256": "858c7934fad77c52195a17257764d787e8cfbc1a26d767f7115bda733817d394"
+  },
+  {
+    "bytes": 1180965,
+    "path": "usr_local/bin/tiffdump.exe",
+    "sha256": "90c7903dadae2cae36107f660f94d71b157b07ffbbce6bff889ac5122a546a2a"
+  },
+  {
+    "bytes": 1229383,
+    "path": "usr_local/bin/tiffinfo.exe",
+    "sha256": "180ad5ae3e89573e113c350699a5cc4c5b5bdc0fcadfcffcdc68ab92b3684c34"
+  },
+  {
+    "bytes": 1185289,
+    "path": "usr_local/bin/tiffmedian.exe",
+    "sha256": "850ea8c86ac655ea222b91f66a15d66d06ff73a7e20944ea9e830ba6b2a0a103"
+  },
+  {
+    "bytes": 1156705,
+    "path": "usr_local/bin/tiffset.exe",
+    "sha256": "074fc8880096047fda48204ae8900bbc4231ac53398104f2f7719af32e7bd5ed"
+  },
+  {
+    "bytes": 1161620,
+    "path": "usr_local/bin/tiffsplit.exe",
+    "sha256": "54c8bb2de103e476ba0f22c8dd4e671f589d8620104d43a710adde4dc7ffc6e3"
+  },
+  {
+    "bytes": 12408,
+    "path": "usr_local/include/dfftw.h",
+    "sha256": "72e8b913d58e599faa0057c664c202acc7883906638e8ab5bcc11b21b310f138"
+  },
+  {
+    "bytes": 3771,
+    "path": "usr_local/include/drfftw.h",
+    "sha256": "d00e990174ef0daed3fa05b5e149e68c1e57831f3d40c980ffbbf7fbf6171881"
+  },
+  {
+    "bytes": 2447,
+    "path": "usr_local/include/fftw3.f",
+    "sha256": "1f8a5c9a48f3e3726b667970907d22e3cb0cb9fdf8ec8be7521fb798fd3befc6"
+  },
+  {
+    "bytes": 54273,
+    "path": "usr_local/include/fftw3.f03",
+    "sha256": "d027338eeca9fada15e5eec32f35f2dcfe644125aa20bd07eb990aa134035383"
+  },
+  {
+    "bytes": 17900,
+    "path": "usr_local/include/fftw3.h",
+    "sha256": "8065447638c2cc8451c415248a89c74de4c5f2d1abbac9966454d7aef1b6839d"
+  },
+  {
+    "bytes": 26820,
+    "path": "usr_local/include/fftw3l.f03",
+    "sha256": "a4eef3d5bd3df2c328241ba899687ccd35374a2db9bc34b38b2364bcf32f9e0f"
+  },
+  {
+    "bytes": 25413,
+    "path": "usr_local/include/fftw3q.f03",
+    "sha256": "f3dc224c65b6c7f74248325eeab85edf2a91079dde774fe4f9e0d8ea49f0fd11"
+  },
+  {
+    "bytes": 12408,
+    "path": "usr_local/include/sfftw.h",
+    "sha256": "72e8b913d58e599faa0057c664c202acc7883906638e8ab5bcc11b21b310f138"
+  },
+  {
+    "bytes": 3771,
+    "path": "usr_local/include/srfftw.h",
+    "sha256": "d7bf4dc6f7a392ae7b36a30375c467269e56471ede148531a8f1bf09b0e8883a"
+  },
+  {
+    "bytes": 35784,
+    "path": "usr_local/include/tiff.h",
+    "sha256": "d5f6f9d162ebe89ed6f449535d508aa97f1cc3d9e52db75d36cce65b695c1c83"
+  },
+  {
+    "bytes": 3459,
+    "path": "usr_local/include/tiffconf.h",
+    "sha256": "751e6a17add19164d3f857c89ca291ff6c6d56e381227cec3668fc77f98e723b"
+  },
+  {
+    "bytes": 23003,
+    "path": "usr_local/include/tiffio.h",
+    "sha256": "8fb70342369b9c922edfef0ca00e30f1b63a23541dbb15519c7fd492c5a15e55"
+  },
+  {
+    "bytes": 1702,
+    "path": "usr_local/include/tiffio.hxx",
+    "sha256": "1ac75ac6bd97627d92dbdd9d9b812b92598cfb1af75cac20257cd4ae08cb982e"
+  },
+  {
+    "bytes": 410,
+    "path": "usr_local/include/tiffvers.h",
+    "sha256": "d8d89cb66fda71af40d9c55eda3f46f70fc56f6fd538cdbab7ea332c28e06bcf"
+  },
+  {
+    "bytes": 15508,
+    "path": "usr_local/include/zconf.h",
+    "sha256": "ec0d0a6e87b749ab5fc3f27c0e8292b7aed139ca0b6121ab27e6eb30e2e9b6ba"
+  },
+  {
+    "bytes": 87883,
+    "path": "usr_local/include/zlib.h",
+    "sha256": "726b0569915917b967f87f3f08a1eec039101bf9dcc29d61c0b2b0b8f271b58d"
+  },
+  {
+    "bytes": 746468,
+    "path": "usr_local/lib/libblas.a",
+    "sha256": "5c8c501b63bbd5ca3cd8ef8831258216f2eff726e8c923ab28d02260d8c7bc6d"
+  },
+  {
+    "bytes": 355390,
+    "path": "usr_local/lib/libdfftw.a",
+    "sha256": "bc75d963043f82eeeb39895a04259dbc655b2de457e064184d4ca8125465fc96"
+  },
+  {
+    "bytes": 661,
+    "path": "usr_local/lib/libdfftw.la",
+    "sha256": "009ff29e6adf49f2afaf399cb3576f54a0fc8b50bd4375eb6192a37c0e634763"
+  },
+  {
+    "bytes": 305004,
+    "path": "usr_local/lib/libdrfftw.a",
+    "sha256": "a6ee187ecca49f26fbefa20259c6c2ef7fc6279816146f72bec1aa265550571e"
+  },
+  {
+    "bytes": 664,
+    "path": "usr_local/lib/libdrfftw.la",
+    "sha256": "497f287cef0df4800543adaa75fe4d4b8ac0cc49d06df4de751c3096b37ae5ce"
+  },
+  {
+    "bytes": 147434,
+    "path": "usr_local/lib/libfftw3f.dll.a",
+    "sha256": "139ec7f614bce47333d457523f8b41bba6c826ce74ea47575349296f24217efe"
+  },
+  {
+    "bytes": 897,
+    "path": "usr_local/lib/libfftw3f.la",
+    "sha256": "068118dff8b3319a6da786fba7f6f6c7da3c7a910389286d2b3844d6fd3b3469"
+  },
+  {
+    "bytes": 10046524,
+    "path": "usr_local/lib/liblapack.a",
+    "sha256": "ed9b340016412da2c5b09b0e85fda38117e6261c03ee4c995f9008956df14c81"
+  },
+  {
+    "bytes": 355390,
+    "path": "usr_local/lib/libsfftw.a",
+    "sha256": "07af11b2850a6c0578241ae5c194aa17296fb80a528390322987d829294372be"
+  },
+  {
+    "bytes": 661,
+    "path": "usr_local/lib/libsfftw.la",
+    "sha256": "bb6e1e0857a23c0746f53eeed8641fefc60fece145c5f999b30b032bbdd6a2fc"
+  },
+  {
+    "bytes": 305004,
+    "path": "usr_local/lib/libsrfftw.a",
+    "sha256": "d9e4d09cfa85dee716e263624a4175b0c9ba06cbc7e45f516728462cb34998bb"
+  },
+  {
+    "bytes": 664,
+    "path": "usr_local/lib/libsrfftw.la",
+    "sha256": "9d1dc0f9d73e36cf73f2d3540b2745b994b45350bd601b2dc95aac94b1538339"
+  },
+  {
+    "bytes": 1589750,
+    "path": "usr_local/lib/libtiff.a",
+    "sha256": "ada86b1ed2a46c7bd0a448442c9c58e4e32c4f7911f760a26e465d91b3b34bbb"
+  },
+  {
+    "bytes": 865,
+    "path": "usr_local/lib/libtiff.la",
+    "sha256": "b3cf0ac39b144c2bdaffb925e717ab92a3503bb05ea8492318c4826bb511dea9"
+  },
+  {
+    "bytes": 47540,
+    "path": "usr_local/lib/libtiffxx.a",
+    "sha256": "774f7015700972f4ef927c8b80bf8fca223fe53f9cca8a9bbca1eacb7451a8d1"
+  },
+  {
+    "bytes": 897,
+    "path": "usr_local/lib/libtiffxx.la",
+    "sha256": "a16f245122b46df6b7f2fca2fab1bc941edc75f9e3360009ff50c9e68ee8483c"
+  },
+  {
+    "bytes": 616988,
+    "path": "usr_local/lib/libtmglib.a",
+    "sha256": "764e38478a7c9b748de74c1ae1c2c678edc530e3f48fb063342ee1e044450f95"
+  },
+  {
+    "bytes": 129810,
+    "path": "usr_local/lib/libz.a",
+    "sha256": "302f70e94c638c12be838e65c44a18cbe3c5017f9bbd38b06803430832e0d56f"
+  },
+  {
+    "bytes": 236,
+    "path": "usr_local/lib/pkgconfig/fftw3f.pc",
+    "sha256": "26daa31a67b9d072cbf4a579aa991e8eeaf34fd22671cc170404fb5629b6d1d2"
+  },
+  {
+    "bytes": 241,
+    "path": "usr_local/lib/pkgconfig/libtiff-4.pc",
+    "sha256": "fe5d45658801be1ffe400fc72599f955013f6f32320978c42f02a30690224fe4"
+  },
+  {
+    "bytes": 261,
+    "path": "usr_local/lib/pkgconfig/zlib.pc",
+    "sha256": "f40beba6a589edde163b8c2f348a0b56ce124412d2876db8cecfbcf5f086f917"
+  },
+  {
+    "bytes": 15662,
+    "path": "wiener2d.c",
+    "sha256": "1b041298f0c3f677880ca2ccf1c0cbf10bacc0b8727892493d4273deaf0e660a"
+  },
+  {
+    "bytes": 674158,
+    "path": "wiener2d.exe",
+    "sha256": "818885ad4db73366e272907685d1babacb7404ec3dfef9fdb1ebbb8591044c18"
+  },
+  {
+    "bytes": 20405,
+    "path": "wiener2d.o",
+    "sha256": "9ca008a7b9116091ba8596f65f3faa0aa50aece9c47fdc648a888bfdce494f42"
+  }
+]
