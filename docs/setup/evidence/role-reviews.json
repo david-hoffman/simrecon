@@ -91,6 +91,23 @@
         "output_tokens": 1583,
         "reasoning_output_tokens": 393
       }
+    },
+    {
+      "run": "t-d",
+      "role": "D",
+      "session_id": "01a0f3c7-a9d1-7fc3-92d2-339341cf332c",
+      "native_new_root": true,
+      "memory_and_delegation": "disabled",
+      "packet_sha256": "c66cae75065ae66e49c37296b848ea08e788d15e369da506a2deb14883d8ad05",
+      "outcome": "ACCEPT exact clean candidate357a672edeed401dab7e940aa01b6c1082270e8b; T complete/integrated in setupbranch",
+      "final_report": "**ACCEPT \u2014 D review of `357a672edeed401dab7e940aa01b6c1082270e8b`.** I found no actionable defect in the SETUP-TEST-RUN slice. The working tree is clean.\n\nThe five [contract scenarios](/Users/davidhoffman/Documents/GitHub/simrecon/docs/tasks/setup-test-run.md) have public subprocess tests with exit-status and diagnostic assertions. The test file still matches B\u2019s accepted SHA-256 checkpoint. No source, test, verification, or workflow file changed after that checkpoint; the later commit records the persistent environment and updates documentation.\n\nThe recorded `make verify UV=/Users/davidhoffman/.local/bin/uv` run passed after the candidate commit: five tests passed, with **7/7 native statements and 2/2 branches** covered across all shipped runtime files. The wheel contains the pytest plugin and passed the isolated import check. The [coverage report](/Users/davidhoffman/Documents/GitHub/simrecon/artifacts/coverage/coverage.json) has zero exclusions. This is infrastructure coverage; the package has no scientific runtime yet.\n\n**Scope limit:** This acceptance covers the local macOS candidate and this slice. The dependent doctor slice and CI runs remain outstanding before pull request submission. One shared C repair remains unused.",
+      "usage": {
+        "input_tokens": 143955,
+        "cached_input_tokens": 108800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1983,
+        "reasoning_output_tokens": 489
+      }
     }
   ]
 }
