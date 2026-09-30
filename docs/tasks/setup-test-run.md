@@ -16,11 +16,11 @@
 
 | Scenario ID | Approved input/context and observable success, error, or boundary outcome | Expectation source | Test mapping supplied by A and checked by B |
 |---|---|---|---|
-| T1 | Complete discovered suite with one passing test: success | Full verification requirement | Pending A |
-| T2 | Empty discovery: nonzero exit with no-tests diagnostic | Native pytest empty-discovery behavior | Pending A |
-| T3 | One skipped test: nonzero exit with skip diagnostic | No silently omitted verification | Pending A |
-| T4 | One expected-failure test: nonzero exit with expected-failure diagnostic | Known failure blocks submission | Pending A |
-| T5 | One unexpectedly passing marked test, even when its marker opts out of strict mode: nonzero exit with diagnostic | Marked exceptions must not hide incomplete verification | Pending A |
+| T1 | Complete discovered suite with one passing test: success | Full verification requirement | `tests/test_test_run.py::test_complete_passing_suite_succeeds` |
+| T2 | Empty discovery: nonzero exit with no-tests diagnostic | Native pytest empty-discovery behavior | `tests/test_test_run.py::test_empty_discovery_fails` |
+| T3 | One skipped test: nonzero exit with skip diagnostic | No silently omitted verification | `tests/test_test_run.py::test_skipped_test_fails` |
+| T4 | One expected-failure test: nonzero exit with expected-failure diagnostic | Known failure blocks submission | `tests/test_test_run.py::test_expected_failure_fails` |
+| T5 | One unexpectedly passing marked test, even when its marker opts out of strict mode: nonzero exit with diagnostic | Marked exceptions must not hide incomplete verification | `tests/test_test_run.py::test_non_strict_unexpected_pass_fails` |
 
 These five scenarios are unchanged from the ten-case read-back. Initially passing existing-infrastructure tests are valid. Before repair, the observing role classifies failures as environment/tooling, test defect, product defect, or unresolved requirement. Import/tooling failure is not intended product-red evidence. A's mapping goes into this table only after authoring and B review, without changing approved behavior.
 

@@ -32,7 +32,7 @@ Delivery installation uses the approved eight-hour cap. Product remediation and 
 
 ## Verify and operate
 
-Install the pinned uv version shown in CI, then run `uv sync --locked --all-groups` in an isolated environment. The local setup installation used `/private/tmp/simrecon-uv/bin/uv` version 0.12.19. No legacy setup script was used for discovery.
+Install the pinned uv version shown in CI, then run `uv sync --locked --all-groups` in an isolated environment. The local setup installation used `/private/tmp/simrecon-uv/bin/uv` version 0.12.19. No legacy setup script was used for discovery. During the first blind test pass, generated editable-install path files repeatedly acquired the macOS hidden flag and Python skipped them. The local environment was rebuilt at `/private/tmp/simrecon-delivery-setup/project-env`, with `.venv` as a symlink. Its interpreter remains the existing CPython 3.13.12 installation. Tests were not changed for that environment repair; the flag-setting process is unknown. CI creates a clean isolated environment on each runner.
 
 Fast generic Git hooks use Ruff from the synchronized `.venv`. Install them with `uv run --locked pre-commit install --hook-type pre-commit --hook-type pre-push`. They provide local lint/format feedback; the full submission gate is the explicit command below. Hooks do not query GitHub or manage PR state.
 
