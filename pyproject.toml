@@ -14,6 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
+simrecon = "simrecon._cli:main"
 delivery = "simrecon._delivery:main"
 
 [dependency-groups]
