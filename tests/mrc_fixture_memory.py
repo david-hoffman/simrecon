@@ -100,6 +100,14 @@ def main() -> None:
             assert f.read(len(expected)) == expected, f"plane {i}"
         assert f.read(1) == b""
     with h5py.File(directory / "extension.h5", "r") as f:
+        for name in ("metadata_json", "original_header", "original_extended_header"):
+            dataset = f[f"simrecon/{name}"]
+            assert isinstance(dataset, h5py.Dataset)
+            if dataset.is_virtual:
+                assert all(v.file_name in (".", b".") for v in dataset.virtual_sources())
+            assert dataset.external is None and dataset.compression is None
+            assert not dataset.shuffle and not dataset.fletcher32 and dataset.scaleoffset is None
+            assert isinstance(f.get(f"simrecon/{name}", getlink=True), h5py.HardLink)
         assert bytes(cast(h5py.Dataset, f["simrecon/original_header"])[:]) == header
         d = cast(h5py.Dataset, f["simrecon/original_extended_header"])
         assert d.shape == (extension_size,)

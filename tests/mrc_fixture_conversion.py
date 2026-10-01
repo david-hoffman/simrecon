@@ -93,6 +93,53 @@ def bits(data: np.ndarray) -> bytes:
     return data.astype("<u2" if data.dtype.kind == "u" else "<f4").tobytes()
 
 
+def provenance_change(entries: Any, field: str, old: Any, new: Any, source: str) -> None:
+    """Accept leaf or grouped records while requiring the actual change."""
+    parent, _, leaf = field.rpartition(".")
+    assert any(
+        v["source"] == source
+        and (
+            (v["field"] in (field, leaf) and v.get("old") == old and v["new"] == new)
+            or (
+                v["field"] == parent
+                and isinstance(v.get("old"), dict)
+                and isinstance(v["new"], dict)
+                and v["old"].get(leaf) == old
+                and v["new"].get(leaf) == new
+            )
+        )
+        for v in entries
+    ), f"missing provenance: {field} {old!r} -> {new!r} from {source}"
+
+
+def expected_changes(entries: Any, cfg: dict[str, Any], original: bytes) -> None:
+    endian = "<" if original[96:98] == struct.pack("<h", -16224) else ">"
+    for axis, offset in (("time", 180), ("channel", 196)):
+        if axis in cfg["plane_axes"]:
+            old = struct.unpack_from(endian + "h", original, offset)[0]
+            new = cfg["plane_shape"][cfg["plane_axes"].index(axis)]
+            if old != new:
+                # Both header-count and logical-axis naming identify this change.
+                aliases = (f"file_metadata.{axis}_count", f"plane_shape.{axis}")
+                matched = False
+                for field in aliases:
+                    try:
+                        provenance_change(entries, field, old, new, "config")
+                    except AssertionError:
+                        continue
+                    matched = True
+                assert matched, f"missing {axis} config provenance {old} -> {new}"
+    for parent, values in cfg["overrides"].items():
+        for leaf, new in values.items():
+            if parent == "sampling_um":
+                old = struct.unpack_from(
+                    endian + "f", original, 40 + 4 * ("x", "y", "z").index(leaf)
+                )[0]
+            else:
+                old = struct.unpack_from(endian + "h", original, 198 + 2 * int(leaf))[0]
+            provenance_change(entries, f"{parent}.{leaf}", old, new, "override")
+
+
 def output(
     path: Path,
     cfg: dict[str, Any],
@@ -132,8 +179,12 @@ def output(
     ext_size = struct.unpack_from("<i", h, 92)[0]
     assert ext_size > 0 and ext_size % 4 == 0
     put(92, "i", ext_size)
-    # Only lateral lengths depend on resolved config; checked against JSON below.
-    expected_header[40:48] = h[40:48]
+    byte_order = "<" if original[96:98] == struct.pack("<h", -16224) else ">"
+    sampling = dict(
+        zip(("x", "y", "z"), struct.unpack_from(byte_order + "3f", original, 40), strict=True)
+    )
+    sampling.update(cfg["overrides"].get("sampling_um", {}))
+    put(40, "2f", x * sampling["x"] * 10000, y * sampling["y"] * 10000)
     assert h == expected_header
     image = raw[1024 : 1024 + ext_size]
     assert image.startswith(b"\x89HDF\r\n\x1a\n")
@@ -159,6 +210,8 @@ def output(
             d = f[name]
             assert isinstance(d, h5py.Dataset)
             assert d.ndim == 1 and d.dtype == np.dtype("uint8")
+            if d.is_virtual:
+                assert all(v.file_name in (".", b".") for v in d.virtual_sources())
             assert d.external is None and d.compression is None
             assert not d.shuffle and not d.fletcher32 and d.scaleoffset is None
             assert isinstance(f.get(name, getlink=True), h5py.HardLink)
@@ -222,6 +275,7 @@ def output(
         assert {"field", "new", "source"} <= set(entry)
         assert "old" in entry or "unresolved" in entry
         assert entry["source"] in ("config", "override")
+    expected_changes(meta["provenance"], cfg, original)
     for i, a in enumerate(("x", "y")):
         actual = struct.unpack_from("<f", h, 40 + i * 4)[0] / (x if a == "x" else y) / 10000
         assert abs(actual / meta["sampling_um"][a] - 1) <= 1e-6

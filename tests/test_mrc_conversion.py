@@ -15,7 +15,15 @@ from typing import Any
 import numpy as np
 import pytest
 
-from mrc_fixture_conversion import bits, config, coordinates, fixture, output, plane
+from mrc_fixture_conversion import (
+    bits,
+    config,
+    coordinates,
+    expected_changes,
+    fixture,
+    output,
+    plane,
+)
 
 
 @pytest.fixture
@@ -40,19 +48,67 @@ def cli(*args: str) -> subprocess.CompletedProcess[str]:
     return subprocess.run(["simrecon", *args], capture_output=True, text=True, check=False)
 
 
-def error(api: Any, code: str, fn: Any, *args: Any, **kwargs: Any) -> None:
+def error(api: Any, code: str, fn: Any, *args: Any, **kwargs: Any) -> str:
     with pytest.raises(api.SimreconError) as caught:
         fn(*args, **kwargs)
     assert caught.value.code == code
     assert isinstance(caught.value.message, str) and caught.value.message
+    return caught.value.message
 
 
-def cli_error(result: subprocess.CompletedProcess[str], code: str, status: int = 2) -> None:
+def cli_error(
+    result: subprocess.CompletedProcess[str],
+    code: str,
+    status: int = 2,
+    *,
+    message: str | None = None,
+) -> None:
     assert result.returncode == status
     assert not result.stdout
     value = json.loads(result.stderr)
     assert value["code"] == code and isinstance(value["message"], str)
+    assert value["message"]
+    if message is not None:
+        assert value["message"] == message
     assert "Traceback" not in result.stderr
+
+
+def cli_inspection(
+    result: subprocess.CompletedProcess[str], source: Path, mode: int, n: int, byte_order: str
+) -> None:
+    assert result.returncode == 0 and result.stderr == ""
+    value = json.loads(result.stdout)
+    assert value["source"] == str(source)
+    assert value["source_size"] == source.stat().st_size
+    assert value["source_mtime_ns"] == source.stat().st_mtime_ns
+    assert value["header_sha256"] == hashlib.sha256(source.read_bytes()[:1024]).hexdigest()
+    assert value["stored_shape"] == [n, 3, 5]
+    assert value["axes"] == ["section", "y", "x"]
+    assert value["shape"] == [n, 3, 5]
+    assert value["pixel_mode"] == mode and value["byte_order"] == byte_order
+    assert value["extended_header_bytes"] == 0 and value["config"] is None
+    assert value["data_kind"] is None and value["unresolved"]
+    assert value["file_metadata"]["time_count"] == 1
+    assert value["file_metadata"]["channel_count"] == 1
+
+
+def cli_report(
+    result: subprocess.CompletedProcess[str],
+    destination: Path,
+    mode: int,
+    n: int,
+    cfg: dict[str, Any],
+    header: bytes,
+) -> None:
+    assert result.returncode == 0 and result.stderr == ""
+    value = json.loads(result.stdout)
+    assert value["destination"] == str(destination)
+    assert value["stored_shape"] == [n, 3, 5]
+    assert value["pixel_mode"] == mode and value["planes_written"] == n
+    assert isinstance(value["limitations"], list) and value["limitations"]
+    assert all(isinstance(v, str) and v for v in value["limitations"])
+    meta = output(destination, cfg, header)
+    assert value["provenance"] == meta["provenance"]
 
 
 def resolved(
@@ -191,14 +247,12 @@ def test_m01_raw(api: Any, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> N
     output(dest, cfg, header)
     assert hashlib.sha256(p.read_bytes()).hexdigest() == source_digest
     inspected = cli("inspect", str(p))
-    assert inspected.returncode == 0
-    assert json.loads(inspected.stdout)["stored_shape"] == [9, 3, 5]
+    cli_inspection(inspected, p, 6, 9, "little")
     cp = tmp_path / "config.json"
     cp.write_text(json.dumps(cfg))
     dest2 = tmp_path / "cli.mrc"
     result = cli("convert", str(p), str(dest2), "--config", str(cp), "--block-planes", "2")
-    assert result.returncode == 0 and json.loads(result.stdout)["planes_written"] == 9
-    output(dest2, cfg, header)
+    cli_report(result, dest2, 6, 9, cfg, header)
 
 
 def test_m02_big_float_2d(api: Any, tmp_path: Path) -> None:
@@ -212,11 +266,10 @@ def test_m02_big_float_2d(api: Any, tmp_path: Path) -> None:
     output(dest, cfg, header)
     cp = tmp_path / "config.json"
     cp.write_text(json.dumps(cfg))
-    assert cli("inspect", str(p)).returncode == 0
+    cli_inspection(cli("inspect", str(p)), p, 2, 1, "big")
     dest2 = tmp_path / "cli.mrc"
     result = cli("convert", str(p), str(dest2), "--config", str(cp))
-    assert result.returncode == 0
-    output(dest2, cfg, header)
+    cli_report(result, dest2, 2, 1, cfg, header)
 
 
 def test_m03_reorder(api: Any, tmp_path: Path) -> None:
@@ -229,7 +282,7 @@ def test_m03_reorder(api: Any, tmp_path: Path) -> None:
     api.write(dest, info, block_planes=3)
     meta = output(dest, cfg, header)
     assert meta["sampling_um"]["z"] == 0.75
-    assert info.provenance
+    expected_changes(info.provenance, cfg, header)
 
 
 def test_m04_ieee_words(api: Any, tmp_path: Path) -> None:
@@ -249,26 +302,7 @@ def test_m05_overrides(api: Any, tmp_path: Path) -> None:
     p, header, info = resolved(api, tmp_path, cfg)
     assert info.sampling_um == {"x": 0.2, "y": 0.125, "z": None}
     assert info.wavelengths_nm["0"] == 561
-    changes = [v for v in info.provenance if v["source"] == "override"]
-    for field, old, new in [
-        ("sampling_um.x", struct.unpack_from("<f", header, 40)[0], 0.2),
-        ("sampling_um.y", 0.125, 0.125),
-        ("wavelengths_nm.0", 488, 561),
-    ]:
-        parent, leaf = field.split(".")
-        # The contract requires identifiable old/new fields, but does not fix
-        # whether a change names a leaf or groups changes in a public mapping.
-        assert any(
-            (v["field"] in (field, leaf) and v.get("old") == old and v["new"] == new)
-            or (
-                v["field"] == parent
-                and isinstance(v.get("old"), dict)
-                and isinstance(v["new"], dict)
-                and v["old"].get(leaf) == old
-                and v["new"].get(leaf) == new
-            )
-            for v in changes
-        )
+    expected_changes(info.provenance, cfg, header)
     cfg["overrides"]["sampling_um"]["x"] = 99
     assert info.sampling_um["x"] == 0.2 and info.config["overrides"]["sampling_um"]["x"] == 0.2
     saved = copy.deepcopy(dict(info.config))
@@ -288,7 +322,10 @@ def test_m06_unresolved(api: Any, tmp_path: Path) -> None:
     error(api, "config_required", api.write, dest, info)
     cp = tmp_path / "config.json"
     cp.write_text("{}")
-    cli_error(cli("convert", str(p), str(dest), "--config", str(cp)), "config_required")
+    message = error(api, "config_required", api.harmonize, info, config={})
+    cli_error(
+        cli("convert", str(p), str(dest), "--config", str(cp)), "config_required", message=message
+    )
     assert not dest.exists()
 
 
@@ -350,8 +387,8 @@ def test_m09_schema(api: Any, tmp_path: Path) -> None:
 def test_m10_short_header(api: Any, tmp_path: Path) -> None:
     p = tmp_path / "input.mrc"
     p.write_bytes(b"\x00" * 1023)
-    error(api, "invalid_header", api.inspect, p)
-    cli_error(cli("inspect", str(p)), "invalid_header")
+    message = error(api, "invalid_header", api.inspect, p)
+    cli_error(cli("inspect", str(p)), "invalid_header", message=message)
 
 
 def test_m11_short_payload(api: Any, tmp_path: Path) -> None:
@@ -359,14 +396,16 @@ def test_m11_short_payload(api: Any, tmp_path: Path) -> None:
     fixture(p, config())
     with p.open("r+b") as f:
         f.truncate(p.stat().st_size - 1)
-    error(api, "payload_size", api.inspect, p)
-    cli_error(cli("inspect", str(p)), "payload_size")
+    message = error(api, "payload_size", api.inspect, p)
+    cli_error(cli("inspect", str(p)), "payload_size", message=message)
     cfg = config()
     cfg["overrides"] = {"sampling_um": {"x": 1}}
     cp = tmp_path / "config.json"
     cp.write_text(json.dumps(cfg))
     dest = tmp_path / "out.mrc"
-    cli_error(cli("convert", str(p), str(dest), "--config", str(cp)), "payload_size")
+    cli_error(
+        cli("convert", str(p), str(dest), "--config", str(cp)), "payload_size", message=message
+    )
     assert not dest.exists()
 
 
