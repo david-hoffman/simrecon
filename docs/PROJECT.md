@@ -2,6 +2,8 @@
 
 **Version 1.0** Git versions revisions.
 
+The owner has now approved the identified functional Python/NumPy architecture and MRC-CONVERSION-01 Proposal 1. The [public conversion contract](contracts/mrc-conversion-v1.md) is binding; approval and execution accounting live in [the single Current state](tasks/architecture-intake.md#current-state). Statements below that describe approval as pending are historical intake context superseded for this specific approved proposal. Other scientific features and the separate reconstruction placeholder remain unapproved.
+
 ## Purpose and non-goals
 
 The setup provides a pristine Python/NumPy/SciPy scaffold for structured illumination microscopy (SIM). Scientists should eventually reconstruct images through documented interfaces with independently justified numerical expectations. The owner approved the initial eight-hour delivery setup pass, then explicitly clarified, “We never decided on architecture.” Library architecture remains provisional and requires a separate decision and approval before scientific implementation. Installation began at 18:29:01 UTC (11:29:01 PDT); its hard stop is October 1 at 02:29:01 UTC (September 30 at 19:29:01 PDT).

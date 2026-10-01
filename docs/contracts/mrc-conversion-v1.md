@@ -1,6 +1,6 @@
 # MRC conversion public contract — proposal 1
 
-**Version 1.0**. Approval pending. [Task and scenario table](../tasks/mrc-conversion.md) govern execution. This contract proposes the missing architecture choices together with one bounded first conversion task. It approves no scientific processing.
+**Version 1.0**. Proposal 1 approved at `a3808d545659556a024b70dca2dae1dc6238a32b`; actual approval and execution accounting are recorded in [the single Current state](../tasks/architecture-intake.md#current-state). [Task and scenario table](../tasks/mrc-conversion.md) govern execution. This contract proposes the missing architecture choices together with one bounded first conversion task. It approves no scientific processing.
 
 ## Architecture and scope
 

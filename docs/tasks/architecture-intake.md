@@ -1,6 +1,6 @@
 # ARCHITECTURE-INTAKE: select the pristine library design
 
-**Version 1.0** Git versions revisions. Architecture and product contracts remain unapproved.
+**Version 1.0** Git versions revisions. Approval and execution accounting live in the single Current state below; the preceding interview/proposal records are historical.
 
 ## Intake scope
 
@@ -52,11 +52,11 @@ Fixtures must establish the supported legacy dialect independently of a successf
 
 ## Current state
 
-- Status: conversion contract proposal 1 is ready for owner read-back. [Public/config/output contract](../contracts/mrc-conversion-v1.md) and [bounded task/scenarios](mrc-conversion.md) make the exact scope reviewable; no product/architecture approval yet.
-- Approval: owner accepted starting conversion in a fresh chat, supplied local raw/processed files, confirmed raw 2D/no Z/single channel and three phases per orientation, and explicitly required acquisition information from config. Unlimited intake remains authorized. These answers do not approve the draft's format/schema/API/budget choices or the separate placeholder.
-- Candidate: documentation proposal based on `4fc8ea2d51d3ed58536b034954a0596a1b9d0dc2`; final proposal commit/hash and check result will be recorded in this conversation outside the tracked tree.
+- Status: owner approved complete MRC-CONVERSION-01 Proposal 1; execution started October 1, 2026 at 14:48:49 UTC (07:48:49 PDT). Coordinator performs authorized dependency setup before fresh-root A/B/C/D.
+- Approval: actual owner response, “Approved!”, in the fresh coordinator chat on October 1, 2026, accepts proposal revision `a3808d545659556a024b70dca2dae1dc6238a32b`: functional Python/NumPy and exact public/config/output contract; direct-micrometre profile and unknown standard-header axial scale; genuine embedded HDF5 metadata; initial independent mrcfile compatibility with ImageJ deferred; 26-scenario exception; runtime h5py==3.16.0 / development mrcfile==1.5.4 setup; 12-hour execution cap, two A/B rounds and one C repair after initial C. Settled explicit acquisition config, override provenance, exact pixels, bounded memory, no overwrite, independent code and local owner data remain binding. Separate reconstruction placeholder, deferred features, push/PR/merge/release remain outside this approval. Unlimited intake remains authorized.
+- Candidate: accepted documentation revision `a3808d545659556a024b70dca2dae1dc6238a32b`; clean worktree and documentation-only diff confirmed at handoff. All new commits use codex <codex@openai.com> as author and committer.
 - Reviewed checkpoint and role results: none; no A/B/C/D session started.
-- Checks: [local read-only sample observations](../architecture/owner-mrc-observations.md) establish storage facts and exact payload lengths; inputs unchanged. Documentation receives `git diff --check`. Handed-off infrastructure verification covers only the clean baseline; no conversion implementation/compatibility or reconstruction claim.
-- Blockers: actual owner approval of identified proposal, including direct-micrometre profile, labeled unknown axial scale, initial mrcfile reader boundary with ImageJ deferred, explicit 26-case exception, pinned runtime/development dependency setup and 12-hour execution cap. Separate placeholder read-back/budget remains pending.
-- Next action: owner read-back; after actual approval, record the accepted revision/allowance, perform permitted dependency setup and prepare narrow fresh-root A/B packets from the public contract. Subsequent C/D use reviewed checkpoints. No implementation in this intake chat; no forked reviews; doctor proposal outside scope.
-- Metrics: conversion scenarios=26 proposed / 0 approved; A/B rounds=0/2; C repairs=0/1 after initial C; intake allowance=unlimited, spending totals unavailable; execution cap=12 hours proposed / 0 used / approval pending. Placeholder scenarios=1 requested, read-back/budget pending; A/B rounds=0/2; C repairs=0/1.
+- Checks: accepted proposal diff passes `git diff --check`. Prior infrastructure evidence does not verify the converter. Setup baseline canonical verification, all public scenarios, exact-candidate verification, independent reader evidence, local owner-file conservation and fresh D acceptance remain required.
+- Blockers: none for approved setup; converter execution awaits verified dependency baseline and B-reviewed tests. Placeholder read-back/budget remains separate and pending.
+- Next action: add and lock approved dependency pins, synchronize and verify the setup baseline; prepare narrow public-input A/B packets and launch independent root sessions with memories/delegation disabled.
+- Metrics: conversion scenarios=26 approved; A/B rounds=0/2; C repairs=0/1 after initial C; intake allowance=unlimited, prior spending totals unavailable; execution cap=12 elapsed working hours, start=2026-10-01T14:48:49Z, spent=0 at start, remaining=12 hours, no owner-wait pause yet; token/dollar totals unavailable. Placeholder scenarios=1 requested, read-back/budget pending; A/B rounds=0/2; C repairs=0/1.
