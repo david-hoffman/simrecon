@@ -11,6 +11,7 @@
 - Budget: owner answered "unlimited" for this intake on September 30, 2026. No time ceiling. Scientific implementation and slice execution need separate approval and allowance. Historical setup spending and repairs remain separate.
 - Commit identity: new commits must use `codex` for author and committer. No change to authenticated GitHub identity is implied.
 - No product scenarios are approved by this document. It does not constitute the first MRC task contract or an A/B packet.
+- Subsequent exception: the owner explicitly requests the reconstruction stage in code as a placeholder during review. [RECONSTRUCTION-PLACEHOLDER](reconstruction-placeholder.md) records that narrow requested scaffold and the read-back behavior; its execution budget is pending. It is not the MRC task or scientific implementation approval.
 
 ## Owner requirements from the interview
 
@@ -51,11 +52,11 @@ Fixtures must establish the supported legacy dialect independently of a successf
 
 ## Current state
 
-- Status: concrete architecture proposal and requested UML data flow ready for owner review; approval pending.
-- Approval: owner authorized intake without a time cap and supplied the requirements above. No scientific implementation approval.
-- Candidate: documentation checkpoint for architecture approval; exact final identity/results will be recorded in this conversation outside the tracked tree.
+- Status: owner accepted the MRC read/harmonize/write task objective and requested starting it in a fresh chat with clean context. The main UML shows conversion reaching output independently of reconstruction. The exact MRC contract and broader architecture approval remain pending.
+- Approval: owner authorized intake without a time cap, supplied the requirements above, and said, "Ok that sounds like a good task let's get this started in a fresh chat/thread with clean context" after the conversion definition. This approves starting that task's intake, not an unstated format contract or scientific algorithm. The separately requested reconstruction placeholder remains a draft with its execution-budget/read-back answer pending.
+- Candidate: working diagram/placeholder-contract revision based on `44c7273`; exact final identity/results will be recorded in this conversation outside the tracked tree.
 - Reviewed checkpoint and role results: none for architecture or product; no A/B/C/D role started.
 - Checks: selected legacy file hashes match the retained manifest; draft documentation passes `git diff --check`. Final documentation/full-check evidence belongs in this conversation; no new executable tests written. No A/B/C/D acceptance or scientific coverage is claimed by infrastructure verification.
-- Blockers: owner architecture approval pending. Exact format/schema/fixtures and product budgets remain future contract decisions; the ImageJ requirement is resolved as staged compatibility.
-- Next action: owner reviews the project proposal, design comparison, and [UML data flow](../architecture/data-flow.md); intake records actual architecture approval before task contracts/tests/implementation.
-- Metrics: product scenarios=0 approved; A/B rounds=0; C repairs=0, product allowance unallocated; intake budget=no time cap; elapsed/token/dollar totals unavailable. First recorded timestamp for this authorized intake turn: `2026-09-30 21:08:40 UTC`.
+- Blockers: placeholder-only execution budget answer pending; broader owner architecture approval pending. Exact MRC format/schema/fixtures and numerical product budgets remain future contract decisions; the ImageJ requirement is resolved as staged compatibility.
+- Next action: hand off the accepted conversion objective and agreed requirements to a fresh project chat; finalize the narrow public MRC contract, remaining architecture decisions, fixtures, and execution allowance there before fresh A/B/C/D sessions. The placeholder draft remains separate from conversion.
+- Metrics: MRC/scientific scenarios=0 approved; placeholder scenarios=1 requested (P1), read-back/budget pending; placeholder A/B rounds=0/2; placeholder C repairs=0/1 after initial C; intake budget=no time cap; placeholder budget=pending; elapsed/token/dollar totals unavailable. First recorded timestamp for this authorized intake turn: `2026-09-30 21:08:40 UTC`.

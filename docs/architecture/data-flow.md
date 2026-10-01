@@ -2,6 +2,56 @@
 
 **Version 1.0** Git versions revisions. Architecture approval is pending. These Unified Modeling Language (UML) diagrams explain the [proposed design](library-design.md); they do not approve function signatures, format contracts, or scientific algorithms.
 
+## Main pipeline: conversion and reconstruction are separate routes
+
+The first MRC slice converts harmonized image data to modern MRC output without calling reconstruction or requiring optical transfer function (OTF) calibration. A caller requesting reconstruction takes a separate route through the numerical stage. The owner requests that stage to be visible in both the diagram and code, including while it is only a placeholder. The placeholder contract is in [RECONSTRUCTION-PLACEHOLDER](../tasks/reconstruction-placeholder.md). It does not approve scientific reconstruction or the rest of the architecture.
+
+```mermaid
+sequenceDiagram
+    actor Caller as Python caller or command-line user
+    participant Input as Input adapters
+    participant Pure as Pure harmonization
+    participant Numeric as reconstruct(image, otf, parameters)
+    participant Output as Output adapters
+
+    Caller->>Input: Inspect image source
+    Input-->>Caller: Dataset description and recorded metadata
+    Caller->>Pure: Resolve metadata overrides and acquisition profile
+    Pure-->>Caller: Resolved description or validation error
+
+    alt Convert: first MRC slice
+        Caller->>Output: Begin modern MRC output
+        loop Selected image blocks
+            Caller->>Input: Read selected stored pixels
+            Input-->>Caller: Decoded pixels and source indices
+            Caller->>Pure: Harmonize block axes and metadata
+            Pure-->>Caller: Harmonized image block
+            Caller->>Output: Write image block
+        end
+        Caller->>Output: Finalize metadata and close file
+        Output-->>Caller: Output file and conversion report
+    else Reconstruct: separate numerical route
+        Caller->>Input: Read image acquisition unit and OTF calibration
+        Input-->>Caller: Image and frequency-domain calibration data
+        Caller->>Pure: Harmonize image and OTF independently
+        Pure-->>Caller: Image unit and OTF with resolved axes and units
+        Caller->>Numeric: Image unit, OTF calibration, explicit parameters
+        alt Placeholder contract (stub delivery pending)
+            Numeric--xCaller: NotImplementedError
+            Note over Caller,Output: No reconstructed result is available to write
+        else Future approved numerical implementation
+            Note over Numeric: Pure numerical functions; no file access
+            Numeric-->>Caller: Reconstructed image and result metadata
+            Caller->>Output: Write reconstructed result
+            Output-->>Caller: Output file and reconstruction write report
+        end
+    end
+```
+
+Input and output functions are also proposed responsibilities. The requested reconstruction placeholder will be a real public function that accepts explicit image, OTF, and parameter inputs and fails visibly; it must not return the input image, fabricated pixels, or a success report. Exact future numerical types and behavior remain contract decisions. The placeholder contract accepts Python objects rather than implementing provisional image/calibration types just to host the stub. Delivery of the runtime stub is pending the execution-budget answer and the required fresh test/review sessions.
+
+Conversion is complete only when its output and report are produced. The placeholder-only task is complete when its public function and intentional failure satisfy the reviewed contract. It supplies no numerical result and is not a prerequisite for conversion. Neither `read`, `harmonize`, `write`, nor the CLI conversion path calls `reconstruct` implicitly. Conversion output remains image data of its original kind; it is not labeled as reconstructed data.
+
 ## First MRC slice: inspect, resolve, and convert
 
 The sequence diagram reads from top to bottom. Arrows carry requests or returned data. The Python caller and command-line interface use the same public functions. Input/output adapters perform file access; harmonization operates on explicit values.
@@ -84,7 +134,7 @@ classDiagram
 - `OperationParameters` illustrates future per-operation parameter records. Parameters remain separate inputs; no generic all-algorithm settings object or new executable parameter API is approved.
 - Metadata records are treated as values. This does not make NumPy buffers deeply immutable. Pure functions must not mutate caller-owned arrays.
 
-## Later reconstruction: separate approval
+## Reconstruction detail: numerical implementation needs separate approval
 
 The proposed numerical data flow is:
 
@@ -92,7 +142,7 @@ The proposed numerical data flow is:
 sequenceDiagram
     actor Caller
     participant Intake as Same intake functions
-    participant Numeric as Numerical functions
+    participant Numeric as reconstruct(image, otf, parameters)
     participant Writer as Same output functions
 
     Caller->>Intake: Select one channel and time point's raw 3D acquisition
@@ -100,7 +150,7 @@ sequenceDiagram
     Caller->>Intake: Read and harmonize OTF calibration independently
     Intake-->>Caller: Frequency-domain calibration with declared axes and units
     Caller->>Numeric: Image unit, OTF calibration, explicit algorithm parameters
-    Note over Numeric: Later approved algorithm; explicit inputs and returned result
+    Note over Numeric: Placeholder raises; diagram below depicts future implemented behavior
     Numeric-->>Caller: Reconstructed spatial image and result metadata
     Caller->>Writer: Write result through selected output adapter
     Writer-->>Caller: Output file and write report

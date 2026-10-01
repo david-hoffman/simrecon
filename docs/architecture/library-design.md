@@ -4,6 +4,8 @@
 
 [UML data flow](data-flow.md) shows how these responsibilities exchange data, with file access separated from pure functions.
 
+The owner's subsequent instruction explicitly requests a public reconstruction placeholder during architecture review. [Its narrow contract](../tasks/reconstruction-placeholder.md) introduces `simrecon.reconstruct(image, otf, parameters)` with visible `NotImplementedError` behavior only; it does not approve a numerical implementation. The main pipeline shows two routes: first-slice conversion writes harmonized image data directly, while reconstruction explicitly calls the numerical stage before writing its result. Conversion does not call the placeholder or require OTF input. The placeholder task and the MRC conversion task have separate completion criteria.
+
 
 Recommend a functional Python library using NumPy arrays and small explicit metadata records, with bounded file access. Retain SciPy for later approved numerical operations. Use the existing Python 3.13/uv scaffold and macOS/Linux checks initially; broadening Python/platform support is a separate packaging decision. [The intake comparison](../tasks/architecture-intake.md#design-comparison) also considers xarray/Dask and a compiled core with Python bindings.
 
