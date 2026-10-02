@@ -11,8 +11,9 @@ from typing import Any
 
 import pytest
 
+import mrc_fixture_conversion
 from mrc_fixture_conversion import config, fixture, output
-from mrc_fixture_events import SourceEvent
+from mrc_fixture_events import SourceEvent, unknown_profile_changes
 from test_mrc_conversion import check_block, cli, cli_error, cli_report, error
 
 
@@ -115,7 +116,12 @@ def test_m38_nonnumeric_channel(api: Any, tmp_path: Path) -> None:
     invalid(api, tmp_path, cfg)
 
 
-def test_m39_unknown_profile_override(api: Any, tmp_path: Path) -> None:
+def test_m39_unknown_profile_override(
+    api: Any, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # Replace only the reviewed test-side provenance oracle for this context.
+    # output/cli_report retain every other independent success assertion.
+    monkeypatch.setattr(mrc_fixture_conversion, "expected_changes", unknown_profile_changes)
     cfg = config((), ())
     cfg["spatial_fields"] = "unknown_convention"
     cfg["overrides"] = {"sampling_um": {"x": 0.2, "y": 0.375}}
@@ -128,6 +134,8 @@ def test_m39_unknown_profile_override(api: Any, tmp_path: Path) -> None:
     assert cfg == before and inspected.config is None
     assert info.original_header == header and info.file_metadata == inspected.file_metadata
     assert info.sampling_um == {"x": 0.2, "y": 0.375, "z": None}
+    assert tuple(info.file_metadata["spatial_fields"]) == struct.unpack_from("<3f", header, 40)
+    unknown_profile_changes(info.provenance, cfg, header)
     check_block(api, info, cfg, 0, 1)
     destination = tmp_path / "python.mrc"
     report = api.write(destination, info, block_planes=1)

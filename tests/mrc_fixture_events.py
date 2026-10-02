@@ -5,11 +5,53 @@ from __future__ import annotations
 import builtins
 import io
 import os
+import struct
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import pytest
+
+
+def unknown_profile_changes(entries: Any, cfg: dict[str, Any], original: bytes) -> None:
+    """M39: canonical overrides do not assign units to uninterpreted file fields."""
+    assert cfg["spatial_fields"] == "unknown_convention"
+    assert cfg["plane_axes"] == [] and cfg["plane_shape"] == []
+    assert cfg["overrides"] == {"sampling_um": {"x": 0.2, "y": 0.375}}
+    endian = "<" if original[96:98] == struct.pack("<h", -16224) else ">"
+    for axis, new in cfg["overrides"]["sampling_um"].items():
+        raw_field = struct.unpack_from(endian + "f", original, 40 + 4 * (axis == "y"))[0]
+        matched = False
+        for entry in entries:
+            if entry.get("source") != "override":
+                continue
+            if entry.get("field") in (f"sampling_um.{axis}", axis):
+                change = entry
+            elif entry.get("field") == "sampling_um" and isinstance(entry.get("new"), dict):
+                change = {"new": entry["new"].get(axis)}
+                if isinstance(entry.get("old"), dict) and axis in entry["old"]:
+                    change["old"] = entry["old"][axis]
+                elif "old" in entry and entry["old"] is None:
+                    change["old"] = None
+                if "unresolved" in entry:
+                    change["unresolved"] = entry["unresolved"]
+            else:
+                continue
+            if change.get("new") != new:
+                continue
+            # The contract specifies no unresolved-state encoding. None or an
+            # explicit nonempty unresolved marker is permitted. A retained old
+            # numeric field must be exact, but is never required as canonical um.
+            old_ok = "old" in change and (
+                change["old"] is None
+                or change["old"] == raw_field
+                or isinstance(change["old"], (str, dict))
+                and bool(change["old"])
+            )
+            unresolved_ok = "unresolved" in change and bool(change["unresolved"])
+            if old_ok or unresolved_ok:
+                matched = True
+        assert matched, f"missing profile-aware {axis} override provenance"
 
 
 class SourceEvent:
