@@ -94,16 +94,10 @@ def harmonize(info: DatasetInfo, *, config: Mapping[str, object]) -> DatasetInfo
     if any(not positive(v) for v in sampling_overrides.values()):
         invalid("Sampling overrides must be finite and positive")
     if any(
-        not isinstance(k, str)
-        or not k.isascii()
-        or not k.isdecimal()
-        or (k != "0" and k.startswith("0"))
-        or not positive(v)
+        not isinstance(k, str) or not k.isdecimal() or not positive(v)
         for k, v in wavelength_overrides.items()
     ):
-        invalid(
-            "Wavelength overrides need canonical nonnegative indices and positive finite values"
-        )
+        invalid("Wavelength overrides need nonnegative indices and positive finite values")
     sampling = {
         axis: value if isinstance(value, float) else None
         for axis, value in zip(("x", "y", "z"), info.file_metadata["spatial_fields"], strict=True)
@@ -151,6 +145,7 @@ def harmonize(info: DatasetInfo, *, config: Mapping[str, object]) -> DatasetInfo
     wavelengths = {str(i): value for i, value in enumerate(slots) if value > 0}
     original_wavelengths = {str(i): value for i, value in enumerate(slots)}
     for channel, value in wavelength_overrides.items():
+        channel = str(int(channel))
         provenance.append(
             {
                 "field": f"wavelengths_nm.{channel}",
