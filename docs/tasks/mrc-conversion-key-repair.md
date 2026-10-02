@@ -1,6 +1,6 @@
 # MRC-CONVERSION-01 wavelength-key repair — proposal 3
 
-**Version 1.0**. This identified proposal requires actual owner approval. Approval and execution accounting remain solely in [architecture intake Current state](architecture-intake.md#current-state). No additional product/test execution is authorized by this document alone.
+**Version 1.0**. Owner approved identified revision `e61172484e7f0ceeb10195745abcec56a52a7e83` on October 2, 2026, by actual response “Approve Proposal 3”. Approval and execution accounting remain solely in [architecture intake Current state](architecture-intake.md#current-state). Execution proceeds only within that accepted scope and retained allowances.
 
 ## Owner read-back
 
