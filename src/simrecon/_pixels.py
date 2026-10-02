@@ -13,16 +13,16 @@ def load_block(handle: BinaryIO, info: DatasetInfo, start: int, stop: int) -> Da
     data = np.empty((stop - start, *info.stored_shape[1:]), dtype=info.stored_dtype)
     coordinates = tuple(coordinate(info, i) for i in range(start, stop))
     plane_bytes = data[0].nbytes
+    word_dtype = np.dtype(f"u{data.dtype.itemsize}")
+    source_order = {"little": "<", "big": ">"}[info.byte_order]
+    source_dtype = np.dtype(f"{source_order}u{data.dtype.itemsize}")
     for plane, coord in zip(data, coordinates, strict=True):
         handle.seek(1024 + info.extended_header_bytes + source_index(info, coord) * plane_bytes)
         raw = handle.read(plane_bytes)
         if len(raw) != plane_bytes:
             raise SimreconError("source_changed", "Source payload shortened during reading")
-        # Copy bytes into the owned destination, then swap integer words in place.
-        # Float assignment/casting could quiet signaling NaNs on some platforms.
-        plane.view(np.uint8).reshape(-1)[:] = np.frombuffer(raw, dtype=np.uint8)
-    if (info.byte_order == "little") != np.little_endian:
-        data.byteswap(inplace=True)
+        # Convert unsigned words, so float32 NaN payloads never enter float arithmetic.
+        plane.view(word_dtype).reshape(-1)[:] = np.frombuffer(raw, dtype=source_dtype)
     return DataBlock(data, info, range(start, stop), coordinates)
 
 

@@ -130,9 +130,9 @@ def write(destination: str | Path, info: DatasetInfo, *, block_planes: int = 1) 
                 block = load_block(
                     source, info, start, min(start + block_planes, info.stored_shape[0])
                 )
-                if not np.little_endian:
-                    block.data.byteswap(inplace=True)
-                output.write(memoryview(block.data).cast("B"))
+                words = block.data.view(np.dtype(f"u{block.data.dtype.itemsize}"))
+                encoded = words.astype(words.dtype.newbyteorder("<"), copy=False)
+                output.write(memoryview(encoded).cast("B"))
     check_source(info)
     return WriteReport(
         destination,
