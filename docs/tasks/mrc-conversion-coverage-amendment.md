@@ -1,6 +1,6 @@
 # MRC-CONVERSION-01 coverage amendment — proposal 2
 
-**Version 1.0**. Approval pending. Approval and accounting remain solely in [architecture intake Current state](architecture-intake.md#current-state).
+**Version 1.0**. Owner approved the identified amendment at `52fa6074671c0b637fad30da641f272a3a562d1f` on October 2, 2026, by response “Approve”. Approval and accounting remain solely in [architecture intake Current state](architecture-intake.md#current-state).
 
 ## Owner read-back and unchanged contract
 
