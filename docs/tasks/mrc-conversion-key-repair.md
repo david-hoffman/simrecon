@@ -1,0 +1,34 @@
+# MRC-CONVERSION-01 wavelength-key repair — proposal 3
+
+**Version 1.0**. Owner approved identified revision `e61172484e7f0ceeb10195745abcec56a52a7e83` on October 2, 2026, by actual response “Approve Proposal 3”. Approval and execution accounting remain solely in [architecture intake Current state](architecture-intake.md#current-state). Execution proceeds only within that accepted scope and retained allowances.
+
+## Owner read-back
+
+Approve a **46-scenario exception** for the same bounded end-to-end task: preserve approved M01–M44 and all five accepted test/fixture files unchanged; add only M45 and M46 below. These cover the existing channel-index contract and the approved M38 statement that no leading-zero or Unicode-digit restriction is introduced. No new scientific behavior, data format, dependency or platform is proposed.
+
+Authorize **one additional fresh-root A/B review window, at most two rounds**, for the evidenced missing regression contexts. Retain both earlier windows as 2/2 used and accepted; do not erase attempts or spending. A/B receive only approved public contracts/scenarios, permitted project context and test-side inputs. They do not receive the implementation, D's implementation-bearing report, history/conversations, coverage/source mappings, task state or existing lesson entries. Changed/new tests get a revised B-reviewed checkpoint.
+
+Authorize **one additional C repair**, beyond the original post-initial repair already consumed 1/1. This extension is limited to removing the unapproved wavelength-key restrictions and preserving the numeric channel's effective metadata, override priority, original config spelling and old/new provenance. It is a second repair after initial C, not a reset. C cannot change reviewed tests/checks/dependencies/delivery rules. Any further product repair needs another explicit extension.
+
+Retain the original **12 elapsed working-hour execution cap**, including all prior spending, coordination, setup, roles and checks. No time increase is requested. Exclude only recorded owner-response waiting. The coordinator will record exact charged use and remaining balance before waiting and upon actual approval. All settled functional Python/NumPy, exact public entry points, explicit acquisition config, direct-micrometre profile, unknown main-header axial scale, HDF5 schema, pixel preservation, bounded memory, no overwrite, independent code and local owner-data requirements remain binding. Runtime h5py==3.16.0 and development mrcfile==1.5.4 stay pinned. ImageJ, modern decoding, array-source writing, reconstruction/OTF/scientific work, push/PR/merge/release stay deferred or outside scope.
+
+## Public regression contexts
+
+Each row is one distinct context. Both use an independently generated supported little-endian mode-6 2D source, one stored plane, nonsquare 5-column ×3-row pixels, no extension, explicit one-channel config with plane_axes=[channel], plane_shape=[1], direct_um sampling and finite positive metadata. Header wavelength slot 0 is explicitly 488 nm; the sole supplied wavelength override is 561 nm. No filename/header acquisition inference or pixel transformation.
+
+| ID | Input/context and observable outcome | Expectation source |
+|---|---|---|
+| M45 | Wavelength override mapping has the sole key ASCII string `00`, value 561. Public harmonize/read/write and CLI conversion succeed. It designates numeric channel 0: effective wavelengths_nm key `0` is 561; original acquisition_config retains `00`; provenance identifies channel 0, old 488, new 561 and source override. Every pixel and original metadata byte is preserved. | Existing channel-index override contract; approved M38 explicitly adds no leading-zero restriction |
+| M46 | Same otherwise valid context, with sole key Arabic-Indic digit zero `٠` (U+0660), value 561. The same successful channel-0 override, original config spelling, precise provenance, independent pixels/container/reader checks hold. | Existing channel-index override contract; approved M38 explicitly adds no Unicode-digit restriction |
+
+Numeric index spelling must not create a second logical channel or leave the original channel-0 wavelength effective. Tests may accept leaf or grouped provenance that unambiguously records the required logical channel old/new/source values. Preserve raw header bytes and the supplied config value; the contract does not prescribe a JSON escaping style for non-ASCII text. Each case has one override, so no conflicting alias policy or extra collision context is introduced. M38's nonnumeric channelA rejection remains unchanged.
+
+A derives expected pixels, byte fields, named coordinates, effective wavelengths and provenance independently from this public contract and analytic fixtures. Successful Python/CLI outputs retain genuine self-contained HDF5, finite compact sorted JSON, original bytes, precise source/output layout and strict mrcfile validation. Pixel/header/original-byte tolerance is zero; only independent header-derived lateral scale allows the existing relative 1e-6. All prior 44 contexts remain unchanged, with no hidden parameter matrix or skip/xfail.
+
+## Coordinator diagnosis and completion
+
+Fresh read-only D did not accept candidate `979348bf717caa40a934290117b6b05c18b508e8`, whose product bytes match C repair `5c84ac3d5a69f5bef69d4a31b1b6f07af9c4855d`. [D report](../../artifacts/mrc-conversion/roles/d-report.txt) reproduces public harmonize accepting key 0 and rejecting 00 and U+0660 with config_invalid. D classifies the unapproved narrowing as a high-confidence product defect at `_metadata.py:98`; the accepted tests covered only M38's nonnumeric rejection. This implementation-bearing diagnosis is excluded from blind A/B packets.
+
+D found no additional pixel, mapping, HDF5, source/resource, CLI or simplicity issue. Exact canonical verification passed 54 tests and measured 377/377 statements plus 100/100 branches; local raw/processed conservation checked 13,631,488 exact pixel words and unchanged source identities. Native memory increment was 24,264,704 bytes, below 33,554,432 bytes. Passing coverage is retained evidence, not approval of a known contract defect.
+
+After actual approval: record response/revision and waiting accounting in Current state; launch fresh blind A and B for the two additional contexts; require B acceptance before fresh C repair. C passes exact-candidate `make verify UV=/Users/davidhoffman/.local/bin/uv` with 100% measured statements/branches globally/per package, including all owned files and CLI subprocesses, without exclusions/check weakening. Repeat local owner conservation for changed runtime and reuse or repeat applicable native-memory/independent-reader evidence. Require another fresh D assessment. Prepare the final task pointer before exact final verification; record the candidate's own hash/results outside its tracked tree. No automatic third A/B round, third C repair or silent budget reset.

@@ -2,7 +2,7 @@
 
 **Version 1.0**. Recorded September 30, 2026. This document connects scientific sources to algorithm responsibilities. It is background for task intake, not an approved numerical specification or a claim that the new library exists.
 
-The owner permits studying `SIMrecon_svn/` to understand algorithms and requires all new library code to be written from scratch. Source code and historical output can inform investigation; neither independently establishes correct behavior. The owner approved the Python NumPy/SciPy architecture and an initial eight-hour delivery installation pass on September 30, 2026. Scientific behavior and implementation remain subject to separate approved task contracts; see [project](PROJECT.md).
+The owner permits studying `SIMrecon_svn/` to understand algorithms and requires all new library code to be written from scratch. Source code and historical output can inform investigation; neither independently establishes correct behavior. The owner authorized an initial eight-hour delivery installation pass on September 30, 2026, then clarified, "We never decided on architecture." The installed Python NumPy/SciPy scaffold is provisional. Architecture, scientific behavior, and implementation require their respective approvals; see [project](PROJECT.md).
 
 ## Primary references
 
@@ -55,6 +55,8 @@ This list does not approve a particular estimator, default parameter, interface,
 ## Proposed work dependencies
 
 An initial phase-separation public API can have a small analytic oracle. Reconstruction with known parameters then adds calibrated band positioning and combination; parameter estimation and 3D support require further contracts. File adapters can be considered independently after array and metadata conventions are approved. This is a dependency sketch, not an approved slice plan or permission to implement features during setup.
+
+In the subsequent architecture interview, the owner selected legacy MRC image intake/output as the first requested slice, with reconstruction approved separately. This changes the intake order, not the numerical approval boundary. [Legacy MRC observations](architecture/legacy-mrc-observations.md) identify header, parameter, layout, and calibration distinctions that the architecture must accommodate. No paper-extraction item is completed by that source study.
 
 Count contract scenarios honestly. For example, three valid cases plus invalid shape, invalid phase pattern, and nonfinite input are **six** scenarios. Those three errors cannot be grouped into one row to claim the five-scenario default was met.
 

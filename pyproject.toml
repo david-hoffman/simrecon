@@ -8,15 +8,18 @@ version = "0.1.0"
 description = "A Python array library for structured illumination microscopy reconstruction"
 requires-python = ">=3.13,<3.14"
 dependencies = [
+  "h5py==3.16.0",
   "numpy>=2.2,<3",
   "scipy>=1.15,<2",
 ]
 
 [project.scripts]
+simrecon = "simrecon._cli:main"
 delivery = "simrecon._delivery:main"
 
 [dependency-groups]
 dev = [
+  "mrcfile==1.5.4",
   "coverage>=7.13,<8",
   "pre-commit>=4.3,<5",
   "pyright[nodejs]>=1.1.400,<2",
@@ -33,7 +36,14 @@ line-length = 100
 src = ["src", "tests"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP", "SIM"]
+select = ["E", "F", "I", "B", "UP", "SIM", "D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+# Test and fixture names describe behavior; existing docstrings still follow NumPy style.
+"tests/**" = ["D102", "D103"]
 
 [tool.pyright]
 include = ["src", "tests"]
