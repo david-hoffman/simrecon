@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 @pytest.fixture
 def controlled_uv(tmp_path: Path) -> tuple[Path, Path, Path]:
     isolated = tmp_path / "isolated"
-    venv.EnvBuilder(with_pip=False).create(isolated)
+    venv.EnvBuilder(with_pip=False, symlinks=True).create(isolated)
     isolated_python = isolated / "bin/python"
     site = Path(
         subprocess.check_output(
