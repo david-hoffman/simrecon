@@ -41,6 +41,7 @@ jobs:
             .coverage
             .coverage.*
             artifacts/coverage/
+            artifacts/verification/
             dist/
           include-hidden-files: true
           if-no-files-found: warn
