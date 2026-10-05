@@ -7,9 +7,11 @@ Record applicable `command -v codex`, `codex --version` and `codex exec --help` 
 ```sh
 codex exec --ignore-user-config --disable memories --disable multi_agent \
   --sandbox read-only --model <packet-model> --json \
-  -C /absolute/path/to/worktree -o /absolute/path/to/report.txt \
+  -C /absolute/path/to/worktree -o /absolute/path/to/final.txt \
   - < /absolute/path/to/packet.txt
 ```
+
+The `-o` destination receives the final assistant message. If the packet asks the role to write a detailed report, use a different path for that report; otherwise the final message can overwrite it.
 
 Select `workspace-write` for authorized A/C authoring. `--approve-for-me` already selects workspace-write; do not combine it with explicit `--sandbox`. Set reasoning only with supported native configuration. Record actual executable/version, header/model/effort, command, packet revision, worktree, timestamps/status/report; unavailable settings/counters stay unknown. Controlled launcher tests do not establish live role/model behavior.
 

@@ -15,7 +15,7 @@ Accept, request bounded A correction, or classify a blocker as environment/tooli
 
 ## D: candidate review
 
-Review only a candidate with passing canonical verification. Inspect behavior against contract, tests, coverage evidence, interfaces, and simplicity. Flag missing scenarios, wrong numerical expectations, hidden exclusions, unsupported metrics, unmeasured owned files, and unverified environment changes. Classify failures before routing. Do not edit product, tests, or rules, or approve your own repair. Return concise acceptance or actionable findings, scope, commands/results, evidence pointers, and remaining allowances; link unchanged mappings and environment records. Product findings route to C within its allowance; test/contract issues return through A/B or intake. Submission still requires passing full verification of the exact candidate.
+Review only a candidate with passing canonical verification. Inspect behavior against contract, tests, coverage evidence, interfaces, and simplicity. Form your independent assessment before reading current-task implementation lessons. Flag missing scenarios, wrong numerical expectations, hidden exclusions, unsupported metrics, unmeasured owned files, and unverified environment changes. Classify failures before routing. Do not edit product, tests, or rules, or approve your own repair. Return concise acceptance or actionable findings, scope, commands/results, evidence pointers, and remaining allowances; link unchanged mappings and environment records. Product findings route to C within its allowance; test/contract issues return through A/B or intake. Submission still requires passing full verification of the exact candidate.
 
 ## Doctor: documentation review
 

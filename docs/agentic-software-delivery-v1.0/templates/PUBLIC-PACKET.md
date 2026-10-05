@@ -9,6 +9,7 @@ You are already the fresh root for this role; perform the work here and do not l
 - Write scope: A's named tests/fixtures; B reports only. No runtime/check/policy edits.
 - Baseline revision; B's exact test/fixture checkpoint and identities:
 - Source-free warning/traceback/subprocess harness and exact checks:
+- A handoff preparation: owned tests/fixtures should pass permitted narrow lint, format, and type checks in the approved locked environment before B checkpoint handoff. Do not inspect implementation or run broad source-revealing checks.
 - Output: verdict/findings; scenario mapping/oracle/tolerance rationale; commands/status; exposure disclosure; evidence pointers.
 - Completion: A handoff ready for B; B exact acceptance or classified bounded findings.
 - Budget/remaining rounds/repairs: actual units; unknown counters stay unknown. Preserve prior attempts/allowances.

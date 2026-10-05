@@ -8,7 +8,7 @@ You are already the fresh root for this role; perform the work here and do not l
 - C authorized product scope / D report-only scope; preserved interfaces:
 - C forbidden edits: reviewed tests/fixtures/snapshots, workflows, discovery/coverage settings, skills/delivery instructions. Route defects through coordinator.
 - Exact focused/full commands and current environment record:
-- D applicable passing exact-candidate receipt/logs/coverage/build/native evidence. Check public units/shapes/errors/memory promises, scope and simplicity; lint establishes no semantic accuracy.
+- D applicable passing exact-candidate receipt/logs/coverage/build/native evidence. Check public units/shapes/errors/memory promises, scope and simplicity; lint establishes no semantic accuracy. Form D's independent assessment before reading current-task implementation lessons.
 - Output: verdict/findings; scope; command/result/evidence; native covered/total statements/branches globally/per package; unsupported metrics; unchanged candidate/frozen-file confirmation.
 - Completion: C passing candidate ready for fresh D; D independent acceptance or classified findings. D does not fix and approve repairs.
 - One Current state pointer; final hash/results outside tracked candidate bytes:
