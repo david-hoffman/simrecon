@@ -1,60 +1,53 @@
 # Agentic Software Delivery System
 
-**Version 1.0** This package specifies a delivery process. It does not install tooling, configure GitHub, or certify repository readiness.
+**Version 1.0** This specifies a delivery process; it does not install tooling, configure GitHub or certify readiness.
 
-> You decide what to build. Separate agents write tests, implement, and review. GitHub runs the checks. Lessons improve the next task.
+> One monorepo, four skills, ordinary continuous integration (CI), and a learning log. Select sessions by risk; preserve independent judgment and full checks.
 
-## The whole scheme
+First inventory existing failures, exact coverage, environment problems and unresolved behavior. Separate tooling setup from product remediation/cost. Reuse approved architecture or resolve affected decisions. Installation alone makes no failing or under-covered product ready.
 
-**One monorepo, four skills, ordinary CI, and a learning log. No custom delivery platform.**
+Intake records observable contracts, edit ownership, route, checks/model/effort, gate mode and budget. Large requests may approve a slice plan and all contracts together. Five distinct decisions/outcomes per slice is the default; equivalent values are coverage examples. A complete explicit mechanical/bounded request may authorize execution without a second yes. High risk and policy need approval of an identified proposal; changed scope/permissions/budget still needs approval.
 
-First, inventory existing failures, measured coverage, environment problems, and unresolved behavior. Separate installing delivery tooling from repairing the product, including their cost and required decisions. Reuse approved architecture or clarify the missing decisions with the owner. Keep the 100% statement and branch coverage requirement; installation alone does not make the product ready.
+| Route | Work | Acceptance |
+|---|---|---|
+| Mechanical | Non-normative/deterministic edits, one worker | Diff/relevant checks and owner acceptance; independent review if contract requires |
+| Bounded | Settled conventional behavior or explicit dependency/platform/check maintenance, with no data-loss behavior; worker with named test/infrastructure ownership | One fresh independent reviewer challenges oracle, product/check behavior, preserved gates and exact passing candidate |
+| High risk | Science/numerics, binary/custom oracle, data-loss behavior, permission/security, substantial interface or uncertain impact | Fresh blind A tests, fresh blind B review, restricted C implementation, fresh D final review |
+| Policy documentation | Explicit approved amendment/adoption scope | Fresh independent policy review before activation |
 
-For a large request, intake proposes small end-to-end slices; the owner approves the plan and all contracts in one read-back. A request that fits one slice needs only its task document. Each task has one checkpoint lineage and, by default, at most five distinct contract scenarios. Independent tasks may run in separate worktrees; dependent slices wait for completed, integrated prerequisites. A legacy baseline that makes a slice unable to reach full verification and global 100% coverage is an adoption decision to expose up front, not an exception to the gate.
+A three-line endian or settled overwrite/truncation repair is high risk; data-loss behavior never qualifies as bounded merely because it is conventional. Mixed work takes highest tier unless independent contracts justify a split. Bounded construction loses blindness; settled expectations and independent oracle review make that tradeoff explicit. It never grants restricted C test/workflow edits. Policy adoption cannot approve itself as mechanical.
 
-For each approved slice:
+Default delivery:
 
 ```text
-Approved task or slice
-    → A writes tests → B reviews tests and their decision logic
-    → establish valid baseline evidence; save the test checkpoint
-    → C implements or confirms no product change is needed
-    → full local verification passes on the exact candidate
-    → open/update the PR and run CI; D reviews the passing candidate
-    → normal GitHub merge after green CI and D's review
+Authorized contract/route
+  → named worker or high-risk A/B checkpoint then C
+  → canonical full local verification on exact unchanged candidate
+  → open/update PR; full required platform CI
+  → fresh required final reviewer acceptance
+  → owner merge action; release remains separate
 ```
 
-A–D are fresh root sessions with narrow packets and concrete completion conditions. Tests focus on actual user behavior: browser journeys, commands, or public APIs. Expected results follow approved behavior, applicable primary references, or mathematical invariants. Existing-code tests may pass initially; no artificial red result or product mutation is required. A claimed bug still needs the intended failure.
+Mechanical tasks use their required acceptance; policy docs use independent policy review. Full local verification gates PR opening/reopening (drafts too) and updates. Known failures/coverage gaps block. Pre-PR backups may be incomplete when labeled; moving/closing a PR bypasses nothing. A conditional CI-authoritative trial is only eligible after separate approval and verified native protections/trusted complete check/head-base/artifact-version proof under [specification section 6](DELIVERY-SYSTEM-SPEC.md#6-ordinary-github-ci). High risk, uncertain proof and own-gate edits keep local gating. No green PR alone proves enforcement.
 
-Full verification gates opening or reopening a PR, including a draft, and pushes updating an open PR. Before a PR exists, pushes may back up failing checkpoints. Backup is not submission or readiness; closing a PR or moving a branch does not bypass the submission gate.
+Use meaningful real-entry tests; expectations derive from approved behavior/applicable sources/invariants. Existing behavior may pass initially; no manufactured red or mandatory mutation platform. Require 100% native measured owned-runtime statements/branches globally/per package, including never-imported code/subprocesses. Report unsupported metrics/exclusions/missing evidence.
 
-Classify failures before repair. After two B reviews without acceptance, B diagnoses contract ambiguity or an oversized slice before another rewrite. Keep A/B rounds separate from C repairs and total budget. One compact line in Current state records scenario count, A/B rounds, C repair use, and spend when known; renaming or splitting work does not erase history or consumed resources.
+Classify environment/tooling, test defect, product defect and unresolved meaning before repair. Risk and failure category differ. High-risk corrections use sanitized public findings, A's changed tests/test-requirement dependents and fresh B; shared fixtures/oracles expand scope, retained evidence needs reviewer confirmation. A/C may continue their own authorized work while scope/blindness hold; reviewers stay fresh. Exposure requires replacement, not context clearing.
 
-## What you do
+Use one Current state and concise packets/handoffs. Record complete metrics or unknowns; no double-counted cumulative tokens or overlapping elapsed times. Default two B reviews/window and one C/bounded corrective cycle; diagnosis after two nonacceptances. Fresh sessions/splits/migration/model swaps reset no charges. Cheap prerequisites and supported bounded waits reduce wasted work; timeout is incomplete. Calibrate capability/effort by hardest judgment before adopting cheaper candidates. Profile local hotspots before optional cache/shard/helper work.
 
-Describe the outcome. Answer the consequential questions. Approve the architecture, task, budget, and any material change. Review the final summary and merge normally. You are not expected to write code or pretend to perform expert code review.
+You supply intent, consequential answers, scope/budget approvals and final merge/release action. Prompted role/file restrictions are not technical barriers or a bug-free guarantee. CI executes repository-controlled checks.
 
-The agents are told not to change reviewed tests or workflows to make their work pass. **That restriction is a prompt, not a technical barrier.** GitHub CI still runs the configured tests, but an agent could change those rules. This is an intentional simplicity tradeoff, not a guarantee of bug-free software.
+Root LESSONS holds one new timestamped evidence-linked file per useful lesson; corrections add superseding entries, no shared index. Doctor proposes an evidenced patch to existing rules, within approved docs scope, with independent policy review before activation. In-flight migration requires explicit authority and preserves historical spending.
 
-## How the system learns
-
-During setup, create root `LESSONS/` with a `README.md` format guide. Record each useful, evidence-linked discovery in its own timestamped Markdown file. Add corrections as new files referencing earlier entries; do not update a shared index. Only lesson entries require append-only treatment; Git preserves superseded task status.
-
-Once installed, run `delivery doctor` when experience reveals a gap; before installation, use [DOCTOR-PROMPT.md](DOCTOR-PROMPT.md). It distinguishes instruction gaps from execution errors and proposes edits to the existing specification/instructions. You review the diff before it is committed and merged.
-
-## Start here
-
-| File | Use it for |
+| Entry | Purpose |
 |---|---|
-| [SETUP-PROMPT.md](SETUP-PROMPT.md) | Give a coding tool this prompt and the package to set up the repository. |
-| [DELIVERY-SYSTEM-SPEC.md](DELIVERY-SYSTEM-SPEC.md) | The single authoritative implementation specification. |
-| [INTAKE-PROMPT.md](INTAKE-PROMPT.md) | Clarify an architecture, feature, or bug request. |
-| [DOCTOR-PROMPT.md](DOCTOR-PROMPT.md) | Improve the specification from observed gaps, even before the command exists. |
-| [GITHUB-SETUP.md](GITHUB-SETUP.md) | Configure ordinary CI and branch protections. |
-| [WORKFLOW-EXAMPLES.md](WORKFLOW-EXAMPLES.md) | See an empty-project start, a feature, and a doctor update. |
+| [Specification](DELIVERY-SYSTEM-SPEC.md) | Canonical policy/rationale |
+| [Setup](SETUP-PROMPT.md) | Install using approved architecture/tooling scope |
+| [Intake](INTAKE-PROMPT.md) | Define risk/contract/ownership/authorization |
+| [Doctor](DOCTOR-PROMPT.md) | Improve evidenced instruction gaps |
+| [GitHub setup](GITHUB-SETUP.md) | Native CI/protection configuration and limits |
+| [Examples](WORKFLOW-EXAMPLES.md) | Risk, corrections, evidence and model choices |
+| [Templates](templates/TASK.md) | Task plus public/candidate/handoff/project starters |
 
-The repository `.agents/skills/` directory contains the four role procedures. Setup adapts them to the selected harness and creates or reconciles repository `AGENTS.md` as the single operational home for shared instructions. `templates/` contains project/task starters and repository instructions. [REFERENCES.md](REFERENCES.md) explains sources and deliberate omissions.
-
-Do not overwrite an existing product README by copying this bundle into its root. Setup should preserve existing docs, install one canonical delivery spec, and update links. No older draft package is needed.
-
-**Vocabulary:** the delivery system is this whole arrangement. A coding harness runs agents. A skill tells a role how to work. Continuous integration (CI) executes checks. No custom controller, external control repository, or tracing tool is part of this design.
+Four `.agents/skills/` procedures implement role modes; repository AGENTS is the single shared operational home. Preserve product README and source/test structure. [References](REFERENCES.md) are background, not fresh authority. No controller, external repository, tracing service or daemon.

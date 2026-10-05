@@ -1,17 +1,18 @@
-# <task> — fresh <C or D> candidate packet
+# <task> — <C / bounded worker / mechanical worker / D / bounded reviewer / policy author or reviewer> packet
 
-You are already the fresh root for this role; perform the work here and do not launch another reviewer or CLI role. Use the named skill and disable optional memory/delegation.
+You are already the assigned worker or fresh independent reviewer. Perform this mode here; do not launch another role. No forked author/implementation conversation for review. Use the named skill/supported memory-delegation controls. Continuing an authorized author session renews no allowance.
 
-- Role/worktree; approved task/scenarios/contract revision/permitted inputs:
-- Intended baseline/candidate/integration base:
-- B-accepted checkpoint, frozen test/fixture identities and scenario mapping:
-- C authorized product scope / D report-only scope; preserved interfaces:
-- C forbidden edits: reviewed tests/fixtures/snapshots, workflows, discovery/coverage settings, skills/delivery instructions. Route defects through coordinator.
-- Exact focused/full commands and current environment record:
-- D applicable passing exact-candidate receipt/logs/coverage/build/native evidence. Check public units/shapes/errors/memory promises, scope and simplicity; lint establishes no semantic accuracy. Form D's independent assessment before reading current-task implementation lessons.
-- Output: verdict/findings; scope; command/result/evidence; native covered/total statements/branches globally/per package; unsupported metrics; unchanged candidate/frozen-file confirmation.
-- Completion: C passing candidate ready for fresh D; D independent acceptance or classified findings. D does not fix and approve repairs.
-- One Current state pointer; final hash/results outside tracked candidate bytes:
-- Actual budget, prior A/B windows and remaining C repairs. Splits/renames/fresh sessions renew nothing.
+- Mode/route/reason/worktree; actual approval/instruction and contract/scenario/example revision; permitted inputs:
+- Model/effort/task family/calibration evidence or pending status; diagnosed escalation triggers:
+- Intended baseline/candidate/integration base and relevant input identities:
+- High-risk C/D: B-accepted frozen tests/fixtures/checkpoint/mapping. C product scope only; no test/fixture/snapshot/workflow/discovery/coverage/skill/policy edits.
+- Bounded worker/reviewer: explicit named product/tests/fixtures/infrastructure ownership and conventional expectation sources; data-loss behavior, including settled overwrite/truncation repair, is excluded and requires high risk; no implicit high-risk C permission. Independent reviewer challenges both oracle and product/check changes.
+- Mechanical: only non-normative/deterministic scope; relevant diff/checks and owner acceptance; independent reviewer if contract requires.
+- Policy author/reviewer: named owner-approved documentation proposal; author edits only named policy/instructions, fresh independent reviewer reports without author history. Activation requires that verdict; no self-repair/approval or fabricated product-red test.
+- Exact focused/full checks and applicable environment preflight/identity record; cheap prerequisites before expensive dependent work:
+- Gate mode default full-local exact candidate before PR submission. Conditional bounded CI-authoritative trial only with separate approval/proved native protection/complete CI/head-base/artifact prerequisites under spec section 6; final review acceptance after full final CI. High risk/unknown/own-gate edits excluded.
+- Applicable passing receipt/log/coverage/build/native inputs; exact covered/total metrics globally/per package and unsupported limits. Challenge API units/shapes/errors/memory promises, permitted positive inputs, evidence reuse/scope/simplicity; lint proves no semantic accuracy. D assesses independently before current-task lessons.
+- Output/completion: concise verdict/findings/scope/command-status/evidence and exact candidate/checkpoint; frozen/owned-file confirmation; required final reviewer acceptance or classified findings. Reviewer never fixes/approves own repair. Policy activation follows its approval/review.
+- One Current state pointer; final hash/results outside tracked candidate bytes; budget unit/use/remaining/hard stop, prior windows/rounds and repairs used/remaining; per-role metrics/evidence or unknown:
 
-Do not submit any known failure. Prepare pointers before verification. No merge/release follows from a packet.
+No known failure may be submitted. Prepare pointers before verification. Changed material inputs renew affected checks/review. Test changes receive route-required independent review; new meaning promotes/returns to intake. Fresh/continued sessions/splits/renames/model swaps reset nothing. No merge/release follows from a packet.

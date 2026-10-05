@@ -1,0 +1,31 @@
+# Model selection and calibration
+
+**Version 1.0.** This is project delivery guidance, not runtime/harness configuration or a model quality/price ranking. Route and scope come first. Capability and supported reasoning effort are distinct choices; use the hardest oracle/implementation/acceptance judgment. The [specification](../agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md#9-cost-and-completion) supplies policy.
+
+## Project choices and adoption
+
+| Responsibility | Initial choice | Adoption status |
+|---|---|---|
+| Scientific/binary/custom-oracle/data-loss A, B and D | `gpt-6.1-sol`, high | Conservative default; broader scientific quality equivalence is unmeasured |
+| Numerical/binary/data-loss/resource-complex C | `gpt-6.1-sol`, high | Match hardest implementation judgment, not merely frozen-test availability |
+| Policy author/reviewer; uncertain infrastructure judgment | `gpt-6.1-sol`, high | Conservative default for authority/gate interactions |
+| Conventional bounded worker/reviewer | `gpt-6.1-sol`, high until applicable calibration | `gpt-6.1-sol` medium and `gpt-6-luna` medium are candidates; each responsibility needs relevant evidence |
+| Mechanical worker | `gpt-6-luna`, medium for the qualified scope below | DOC1 supports already-classified non-normative edits with deterministic checks; use conservative selection for unrepresented work |
+
+The coordinator's October 5, 2026 read-only local capability inspection reported Codex 0.160.0 and available Sol/Luna models supporting medium/high. Recheck actual availability/settings when evidence is stale; a cache entry does not prove launch/quality. Native `-c 'model_reasoning_effort="high"'` supplies the setting in [role launches](role-launches.md). Supported levels depend on model/client. [Official configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference), opened October 5, 2026, documents this key. No pricing/comparative-quality claim follows from family names.
+
+## Calibration and permitted adoption
+
+The [recorded calibration](calibration-results.md) uses one identical 12-group public synthetic packet per configuration, with a closed key derived by a fresh independent designer before the calls and semantic scoring by the coordinator. Requested Luna/medium returned 9/12 decision groups correctly; C05–C07 missed normalized-key oracle validity, unresolved-unit provenance and exact binary meaning. Requested Sol/high returned all 12 decision groups correctly, with minor C11 author/reviewer wording imprecision. Actual served-model attribution is unavailable. These small samples support only the represented judgments and establish no general model superiority, scientific equivalence or defect rate.
+
+The actual [DOC1 pilot](../contracts/delivery-pilots-v1.md) used a fresh Luna/medium worker to add one non-normative references paragraph. Its link/diff checks passed, with one initial edit and no repair. Adopt that configuration only for already-classified non-normative mechanical edits with deterministic checks. It may execute the classified scope; it may not decide the risk tier or design an oracle. Risk intake, blind numerical test design/review, policy review, bounded worker/reviewer responsibility and data-loss behavior remain unqualified by this Luna evidence. Sol/high is the provisional selection for subsequent risk/oracle roles, retaining every required independent gate and no general guarantee.
+
+The results record the exact delivered packet/key identities, requested settings, native usage and their limits. Luna's calibration reported 15,489 input tokens (11,008 cached), 1,300 output tokens and approximately 26.3 s; Sol's reported 16,181 input tokens (12,288 cached), 1,902 output tokens and approximately 71.6 s. DOC1 reported 185,229 input tokens (152,576 cached) and 1,872 output tokens. Cached input is already included in input. Monetary cost and complete rollout resource/critical-path cost remain unknown. The record reports separately available reasoning counters; none of these observations is a savings estimate.
+
+Charge preparation/failed launches/checks/rework and owner effort to the rollout budget without inventing missing metering. Compare oracle validity, missed/false findings, first acceptance, rework and complete resource/critical-path cost, not just initial tokens. Known oracle defects and permitted-positive traps must be found; legitimate alternatives must not be falsely rejected. Same-model independent derivation is allowed; different names alone prove no independence. Reuse unchanged applicable calibration; probe changed settings or unrepresented complexity instead of benchmarking every session.
+
+A passing small deterministic/conventional sample supports only its named task family/configuration. Other cheaper/medium choices remain candidates until applicable results, scope limits and adoption are recorded. It cannot validate scientific/binary/custom-oracle responsibilities, general model equivalence or a defect-escape rate.
+
+Diagnose failures before escalation. Missing semantics go to intake, environment/tool limits to authorized setup, test/product issues through route ownership. A concrete reasoning limitation can justify a stronger setting/model experiment within remaining authority/budget; it does not reset rounds/repairs, clear exposure or automatically fix two B nonacceptances. Actual native counters/money unavailable means unknown, never zero. No automatic fallback/retry or mandatory extra reviewer.
+
+Packets record the actual selection and evidence/status. This file does not renew historical allowances or activate CI-authoritative gating; project full-local gate remains.
