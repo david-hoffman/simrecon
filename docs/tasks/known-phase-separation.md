@@ -18,7 +18,7 @@
 
 ## Approved scenarios
 
-**14-scenario coherent-size exception approved with Proposal 2.** Each row identifies a distinct success, conversion, representation, ownership, rejection, boundary or evidence-artifact outcome. Additional values under the same meaning are coverage examples; A/B must not silently add new contractual decisions. All scenarios below are approved; no A-authored/B-reviewed tests exist yet. The analytic intake preview is explicitly requested and is not a reviewed test fixture.
+**14-scenario coherent-size exception approved with Proposal 2.** Each row identifies a distinct success, conversion, representation, ownership, rejection, boundary or evidence-artifact outcome. Additional values under the same meaning are coverage examples; A/B must not silently add new contractual decisions. All scenarios below are approved. At Proposal 2 approval no A-authored/B-reviewed tests existed; the current accepted checkpoint is identified in the milestone Current state. The analytic intake preview is explicitly requested and is not a reviewed test fixture.
 
 | ID | Distinct input/context and observable outcome | Expected-result source | Equivalent examples / required review |
 |---|---|---|---|
