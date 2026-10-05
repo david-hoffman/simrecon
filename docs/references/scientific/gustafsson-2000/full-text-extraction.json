@@ -3,7 +3,13 @@
   "reference_id": "SCI-2000-2D",
   "recorded_at_utc": "2026-10-05T20:31:02.781852+00:00",
   "repository_baseline_commit": "e88e453b1437858df87d2a2e9b718e801f13ffac",
-  "scope": "Local full publisher-HTML body text/caption conversion. Figure-pixel extraction remains incomplete. No paper body or source figure is redistributed.",
+  "scope": "Local full publisher-HTML body text, inline notation and caption conversion. Paper figure-pixel capture and comparison are outside the owner-amended scope. No paper body or source figure is redistributed.",
+  "owner_scope_amendment": {
+    "date": "2026-10-05",
+    "direction": "Remove paper figure extraction wholesale from scope and prerequisites.",
+    "retained_requirements": "Article text/notation/caption provenance, independent numerical expectations, analytic simulated preview and NF02 actual-candidate human report.",
+    "historical_attempts": "The original conversion/access results and artifact identities below remain unchanged; no further source-figure capture task is retained."
+  },
   "source": {
     "doi": "10.1046/j.1365-2818.2000.00710.x",
     "requested_url": "https://onlinelibrary.wiley.com/doi/10.1046/j.1365-2818.2000.00710.x",
@@ -163,7 +169,7 @@
   },
   "gaps": [
     "Four picture records have no embedded pixel data; only a separate Figure 1 source image was saved.",
-    "Figures 2\u20134 still need local pixel capture and visual comparison before the entire-paper extraction is complete.",
+    "Figures 2\u20134 pixel data were not captured or visually compared; capture/comparison are outside the owner-amended scope.",
     "HTML superscript/subscript presentation and some punctuation are flattened in text output.",
     "Figure viewer/download control links collide in Docling output.",
     "No PDF was successfully downloaded or converted.",
@@ -202,5 +208,5 @@
       "reported_elapsed_ms": 1741474.398833
     }
   ],
-  "completion": "Full-body text/caption conversion completed; entire-paper extraction remains incomplete. NF02 still requires completed, integrated NF01."
+  "completion": "The approved article-text/notation/caption conversion and comparison are complete. A complete paper-graphics archive is not claimed or required. Paper figure capture supplies no NF01 completion gate or NF02 dependency; NF02 still requires completed, integrated NF01 and its accepted test checkpoint."
 }
