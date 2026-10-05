@@ -61,7 +61,7 @@ def identity() -> dict[str, Any]:
     """Collect tracked Git identity and byte manifest."""
 
     def git(*args: str) -> str:
-        status, output = capture(["git", *args])
+        status, output = capture(["git", "--no-optional-locks", *args])
         if status:
             raise ValueError("Git identity unavailable")
         return output.rstrip("\n")
@@ -76,15 +76,11 @@ def identity() -> dict[str, Any]:
     }
 
 
-def safe_output(path: Path, tracked: list[str]) -> bool:
-    """Protect tracked files and Git internals from artifact writes."""
+def safe_output(path: Path, protected: list[Path]) -> bool:
+    """Protect resolved candidate and Git paths from artifact writes."""
     target = path.resolve()
-    git_dir = Path(capture(["git", "rev-parse", "--absolute-git-dir"])[1].strip()).resolve()
-    protected = [Path(name).resolve() for name in tracked] + [Path(".git").resolve()]
-    return not (
-        target == git_dir
-        or git_dir in target.parents
-        or any(target == item or target in item.parents for item in protected)
+    return not any(
+        target == item or item in target.parents or target in item.parents for item in protected
     )
 
 
@@ -95,7 +91,7 @@ def metrics(problems: list[str]) -> dict[str, Any]:
         "html": "artifacts/coverage/html/index.html",
     }
     if not Path(reports["html"]).is_file():
-        raise ValueError("Missing coverage HTML")
+        problems.append("Missing coverage HTML")
     report = json.loads(Path(reports["json"]).read_text())
     if report["meta"]["branch_coverage"] is not True:
         raise ValueError("Native branch measurement unavailable")
@@ -190,10 +186,15 @@ def artifact() -> dict[str, Any]:
                     raise ValueError("Invalid RECORD self entry")
             else:
                 data = archive.read(name)
+                algorithm, encoded = digest.split("=", 1)
+                if algorithm not in {"sha256", "sha384", "sha512"}:
+                    raise ValueError("Insecure wheel member hash")
                 expected = (
-                    base64.urlsafe_b64encode(hashlib.sha256(data).digest()).rstrip(b"=").decode()
+                    base64.urlsafe_b64encode(hashlib.new(algorithm, data).digest())
+                    .rstrip(b"=")
+                    .decode()
                 )
-                if digest != "sha256=" + expected or size != str(len(data)):
+                if encoded != expected or size != str(len(data)):
                     raise ValueError("Wheel member fingerprint mismatch")
     return {"path": path.as_posix(), **fingerprint(path), "version": version}
 
@@ -252,13 +253,25 @@ def main() -> int:
     destination = Path(args.receipt)
     exitcode = 1
     try:
-        receipt["before"] = identity()
-        tracked = list(receipt["before"]["manifest"])
-        if not safe_output(destination, tracked) or not safe_output(
-            Path("artifacts/verification/logs"), tracked
+        protected = [Path(".git").resolve()]
+        for arguments in (
+            ["ls-files", "-z"],
+            ["rev-parse", "--absolute-git-dir"],
+            ["rev-parse", "--git-common-dir"],
         ):
-            print("Unsafe receipt/log destination", file=sys.stderr)
-            return 1
+            status, output = capture(["git", "--no-optional-locks", *arguments])
+            if status:
+                raise ValueError("Output protection unavailable")
+            protected.extend(Path(name).resolve() for name in output.rstrip("\n\0").split("\0"))
+        if not safe_output(destination, protected) or not safe_output(
+            Path("artifacts/verification/logs"), protected
+        ):
+            raise ValueError("Unsafe receipt/log destination")
+    except (OSError, ValueError) as error:
+        print(str(error), file=sys.stderr)
+        return 1
+    try:
+        receipt["before"] = identity()
         for name, path in inputs.items():
             receipt["inputs"][name] = {"before": None, "after": None}
             if not path.is_file():
@@ -298,12 +311,12 @@ def main() -> int:
         receipt["problems"].append(
             str(error) if not isinstance(error, OSError) else "Evidence file unavailable"
         )
-    completed = {phase["name"] for phase in receipt["phases"] if phase["returncode"] == 0}
+    attempted = {phase["name"] for phase in receipt["phases"]}
     for field, required, collect in (
-        ("coverage", {"coverage-json", "coverage-html"}, lambda: metrics(receipt["problems"])),
+        ("coverage", {"coverage-json"}, lambda: metrics(receipt["problems"])),
         ("artifact", {"wheel"}, artifact),
     ):
-        if required <= completed:
+        if required <= attempted:
             try:
                 receipt[field] = collect()
             except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile) as error:
@@ -338,5 +351,4 @@ def main() -> int:
     return exitcode
 
 
-if __name__ == "__main__":
-    sys.exit(main())
+sys.exit(main())
