@@ -4,10 +4,12 @@
 
 | Reference | Citation metadata | Actual Docling output | Full-paper conversion |
 |---|---|---|---|
-| SCI-2000-2D, Gustafsson 2000 | [JSON](gustafsson-2000/citation.json) | [Markdown](gustafsson-2000/citation.docling.md), [structured JSON](gustafsson-2000/citation.docling.json) | Not performed; full-text reuse permission unverified |
+| SCI-2000-2D, Gustafsson 2000 | [JSON](gustafsson-2000/citation.json) | [Citation Markdown](gustafsson-2000/citation.docling.md), [citation JSON](gustafsson-2000/citation.docling.json); local full-body text/caption conversion in [new evidence](gustafsson-2000/full-text-extraction.json) | HTML text/captions converted locally; source figure pixels not embedded and capture outside approved scope; full-text reuse permission unverified |
 | SCI-2008-3D, Gustafsson et al. 2008 | [JSON](gustafsson-2008/citation.json) | [Markdown](gustafsson-2008/citation.docling.md), [structured JSON](gustafsson-2008/citation.docling.json) | Not performed; full-text reuse permission unverified |
 
 ## What was converted
+
+The October 5, 2026 [phase-separation notes](phase-separation-notes.md) and [new extraction record](gustafsson-2000/full-text-extraction.json) document a separate full-body HTML conversion of the 2000 paper. The original citation manifest below remains a historical record. The new full text and source image are local/ignored; they are not redistributed here. The owner removed paper figure capture and comparison from scope; prior access attempts remain recorded as provenance.
 
 Docling Slim 2.131.0, the official modular Docling distribution, ran locally in a temporary Python 3.12 environment. Its HTML converter processed each `citation.html` into Markdown and Docling JSON. The HTML is a generated view of selected factual citation fields from Europe PMC records, with a link to the original paper. It is **not an upstream article snapshot**. It omits abstracts, paper text, figures, affiliations, and contact details.
 
@@ -21,7 +23,7 @@ Europe PMC reported `isOpenAccess: N` and no license for both articles. PMC fron
 
 The [PMC OAI-PMH API](https://pmc.ncbi.nlm.nih.gov/tools/oai/) successfully supplied front matter for the 2008 record. The old [OA Web Service](https://pmc.ncbi.nlm.nih.gov/tools/oa-service/) was retired on August 25, 2026; its failed endpoint probe is recorded as an access attempt, not evidence that the paper does not exist.
 
-No paper PDF, raw article text, or near-verbatim full-text conversion is included in this repository. A supplied copy can support a later conversion; public redistribution still requires appropriate rights. Preserve originals and label extraction errors if that work becomes possible.
+No paper PDF, raw article text, or near-verbatim full-text conversion is included in this repository. Local extraction does not establish public redistribution rights. Preserve originals and label extraction errors.
 
 ## Reproduce the citation conversions
 
