@@ -8,6 +8,7 @@ import csv
 import hashlib
 import io
 import json
+import os
 import platform
 import re
 import shutil
@@ -19,6 +20,7 @@ from email.parser import Parser
 from itertools import product
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 PHASES = (
     "sync",
@@ -35,6 +37,7 @@ PHASES = (
     "wheel-import",
     "audit",
 )
+MEASUREMENTS_PATH = Path("artifacts/verification/measurements.json")
 
 
 def now() -> str:
@@ -48,11 +51,20 @@ def fingerprint(path: Path) -> dict[str, Any]:
     return {"size_bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
 
 
-def capture(command: list[str]) -> tuple[int, str]:
-    """Capture command output without altering its environment."""
+def capture(command: list[str], environment: dict[str, str] | None = None) -> tuple[int, str]:
+    """Confine measurement export to an explicitly supplied phase environment."""
+    if environment is None:
+        environment = os.environ.copy()
+        environment.pop("SIMRECON_MEASUREMENTS_PATH", None)
+        environment.pop("SIMRECON_MEASUREMENTS_RUN_ID", None)
     try:
         result = subprocess.run(
-            command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            check=False,
+            env=environment,
         )
         return result.returncode, result.stdout
     except OSError:
@@ -84,6 +96,65 @@ def safe_output(path: Path, protected: list[Path]) -> bool:
     return not any(
         target == item or item in target.parents or target in item.parents for item in protected
     )
+
+
+def clear_measurements(protected: list[Path]) -> None:
+    """Remove prior evidence only after protecting the resolved destination."""
+    if not safe_output(MEASUREMENTS_PATH, protected):
+        raise ValueError("Unsafe measurement destination")
+    MEASUREMENTS_PATH.unlink(missing_ok=True)
+
+
+def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Reject duplicate JSON keys at every object level."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("Duplicate measurement JSON key")
+        result[key] = value
+    return result
+
+
+def measurements(run_id: str) -> dict[str, Any]:
+    """Validate current M25 evidence and fingerprint the exact parsed bytes."""
+    data = MEASUREMENTS_PATH.read_bytes()
+    report = json.loads(data, object_pairs_hook=unique_object)
+    if (
+        not isinstance(report, dict)
+        or report.get("schema") != "org.simrecon.measurements"
+        or type(report.get("version")) is not int
+        or report["version"] != 1
+        or report.get("run_id") != run_id
+    ):
+        raise ValueError("Invalid measurement report identity")
+    records = report.get("measurements")
+    if not isinstance(records, dict) or set(records) != {"M25"}:
+        raise ValueError("Expected exactly the M25 measurement")
+    record = records["M25"]
+    if not isinstance(record, dict):
+        raise ValueError("Invalid M25 measurement record")
+    fields = ("baseline", "peak", "increment_bytes", "limit_bytes")
+    if any(type(record.get(key)) is not int or record[key] < 0 for key in fields):
+        raise ValueError("Invalid measurement integer")
+    units = record.get("units")
+    if units not in ("bytes", "KiB"):
+        raise ValueError("Invalid measurement units")
+    increment = (record["peak"] - record["baseline"]) * (1 if units == "bytes" else 1024)
+    if (
+        record["peak"] < record["baseline"]
+        or record["increment_bytes"] != increment
+        or record["limit_bytes"] != 33554432
+        or increment > record["limit_bytes"]
+    ):
+        raise ValueError("Invalid measurement arithmetic or limit")
+    return {
+        "schema": report["schema"],
+        "version": report["version"],
+        "run_id": run_id,
+        "measurements": {"M25": {**{key: record[key] for key in fields}, "units": units}},
+        "path": MEASUREMENTS_PATH.as_posix(),
+        "sha256": hashlib.sha256(data).hexdigest(),
+    }
 
 
 def metrics(problems: list[str]) -> dict[str, Any]:
@@ -224,7 +295,16 @@ def main() -> int:
     for name in ("contract", "reviewed-tests", "base"):
         parser.add_argument("--" + name)
     parser.add_argument("--input", action="append", default=[])
+    parser.add_argument("--measurements-required", action="store_true")
     args = parser.parse_args()
+    run_id = str(uuid4())
+    phase_environment = None
+    if args.measurements_required:
+        phase_environment = {
+            **os.environ,
+            "SIMRECON_MEASUREMENTS_PATH": MEASUREMENTS_PATH.as_posix(),
+            "SIMRECON_MEASUREMENTS_RUN_ID": run_id,
+        }
     inputs = {}
     for value in args.input:
         if "=" not in value:
@@ -255,6 +335,7 @@ def main() -> int:
         "inputs": {},
         "coverage": None,
         "artifact": None,
+        "measurements": None,
         "problems": [],
     }
     for name, executable in (("make", args.make), ("uv", args.uv), ("git", "git")):
@@ -274,8 +355,14 @@ def main() -> int:
         ):
             status, output = capture(["git", "--no-optional-locks", *arguments])
             if status:
-                raise ValueError("Output protection unavailable")
+                raise ValueError(
+                    "Measurement output protection unavailable"
+                    if args.measurements_required
+                    else "Output protection unavailable"
+                )
             protected.extend(Path(name).resolve() for name in output.rstrip("\n\0").split("\0"))
+        if args.measurements_required and not safe_output(MEASUREMENTS_PATH, protected):
+            raise ValueError("Unsafe measurement destination")
         logs = Path("artifacts/verification/logs")
         if not safe_output(destination, protected) or not safe_output(logs, protected):
             raise ValueError("Unsafe receipt/log destination")
@@ -285,6 +372,8 @@ def main() -> int:
     try:
         if any(not safe_output(logs / (phase + ".log"), protected) for phase in PHASES):
             raise ValueError("Unsafe phase-log destination")
+        if args.measurements_required:
+            clear_measurements(protected)
         receipt["before"] = identity()
         for name, path in inputs.items():
             receipt["inputs"][name] = {"before": None, "after": None}
@@ -294,9 +383,11 @@ def main() -> int:
         if receipt["before"]["dirty"]:
             raise ValueError("Tracked candidate is dirty at start")
         for phase in PHASES:
+            if args.measurements_required and phase == "tests":
+                clear_measurements(protected)
             command = [args.make, "--no-print-directory", phase, "UV=" + args.uv]
             started = now()
-            status, output = capture(command)
+            status, output = capture(command, phase_environment)
             print(output, end="", flush=True)
             log = Path("artifacts/verification/logs") / (phase + ".log")
             log.parent.mkdir(parents=True, exist_ok=True)
@@ -311,6 +402,13 @@ def main() -> int:
                     "log": log.as_posix(),
                 }
             )
+            if args.measurements_required and phase == "tests":
+                try:
+                    receipt["measurements"] = measurements(run_id)
+                except (OSError, ValueError) as error:
+                    receipt["problems"].append(
+                        "Measurement evidence invalid or unavailable: " + str(error)
+                    )
             if status:
                 exitcode = status
                 raise ValueError("Phase failed: " + phase)
@@ -355,6 +453,16 @@ def main() -> int:
                 receipt["problems"].append("Input changed or unavailable: " + name)
     except (OSError, ValueError):
         receipt["problems"].append("Final identity unavailable")
+    if receipt["measurements"] is not None:
+        try:
+            if (
+                not safe_output(MEASUREMENTS_PATH, protected)
+                or fingerprint(MEASUREMENTS_PATH)["sha256"] != receipt["measurements"]["sha256"]
+            ):
+                raise ValueError("Measurement evidence changed after tests")
+        except (OSError, ValueError) as error:
+            receipt["measurements"] = None
+            receipt["problems"].append("Measurement evidence invalid or unavailable: " + str(error))
     if receipt["problems"]:
         exitcode = exitcode or 1
     else:
