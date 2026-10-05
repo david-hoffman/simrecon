@@ -9,12 +9,14 @@ import hashlib
 import io
 import json
 import platform
+import re
 import shutil
 import subprocess
 import sys
 import zipfile
 from datetime import datetime, timedelta, timezone
 from email.parser import Parser
+from itertools import product
 from pathlib import Path
 from typing import Any
 
@@ -174,8 +176,19 @@ def artifact() -> dict[str, Any]:
             raise ValueError("Wheel identity mismatch")
         info = prefix + ".dist-info/"
         wheel = Parser().parsestr(archive.read(info + "WHEEL").decode())
-        if wheel["Wheel-Version"] != "1.0" or not wheel["Tag"]:
+        tags = wheel.get_all("Tag")
+        if wheel["Wheel-Version"] != "1.0" or not tags:
             raise ValueError("Invalid wheel format")
+        filename_tags = {
+            "-".join(parts)
+            for parts in product(*(part.split(".") for part in path.stem.split("-")[-3:]))
+        }
+        if any(
+            re.fullmatch(r"[A-Za-z0-9_]+-[A-Za-z0-9_]+-[A-Za-z0-9_]+", tag) is None for tag in tags
+        ):
+            raise ValueError("Invalid expanded wheel tag")
+        if set(tags) != filename_tags:
+            raise ValueError("Wheel tags disagree with filename")
         record = info + "RECORD"
         rows = list(csv.reader(io.StringIO(archive.read(record).decode())))
         if {row[0] for row in rows} != set(names) or len(rows) != len(names):
@@ -263,14 +276,15 @@ def main() -> int:
             if status:
                 raise ValueError("Output protection unavailable")
             protected.extend(Path(name).resolve() for name in output.rstrip("\n\0").split("\0"))
-        if not safe_output(destination, protected) or not safe_output(
-            Path("artifacts/verification/logs"), protected
-        ):
+        logs = Path("artifacts/verification/logs")
+        if not safe_output(destination, protected) or not safe_output(logs, protected):
             raise ValueError("Unsafe receipt/log destination")
     except (OSError, ValueError) as error:
         print(str(error), file=sys.stderr)
         return 1
     try:
+        if any(not safe_output(logs / (phase + ".log"), protected) for phase in PHASES):
+            raise ValueError("Unsafe phase-log destination")
         receipt["before"] = identity()
         for name, path in inputs.items():
             receipt["inputs"][name] = {"before": None, "after": None}
