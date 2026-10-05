@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "packet_id": "CALIBRATION-12",
+  "packet_sha256": "02e96ce049bc2f318bbee7d15e581bf985ead30c3275a489eba21d7ffeabd715",
+  "packet_utf8": "CALIBRATION-12 — public synthetic decisions. Do not read repository files, use tools, launch agents, or ask questions. Return JSON only, fixed IDs C01 through C12, each with decision (keys specified below) and rationale under 60 words. Derive answers from declared rules/data, not remembered product behavior.\n\nRules: Mechanical is non-normative prose/links/formatting only, one worker and owner acceptance unless contract requires review. Bounded is settled conventional behavior or expressly authorized infrastructure maintenance; worker may author tests/maintenance files, fresh independent reviewer checks oracle/behavior/scope/gates/exact passing candidate. High is scientific/numerical/binary meaning, custom oracle, data loss, permissions, substantial interface or uncertain impact: fresh blind A/B, C against frozen tests, fresh D. C cannot edit reviewed tests/fixtures/checks/coverage/discovery/rules. Policy has separate identified owner approval, independent review and synchronized activation; cannot self-classify mechanical. Mixed work takes highest route unless independent contracts justify split. Changed tests always independently reviewed. No initial-red requirement for existing-code tests.\n\nFull local exact-candidate verification and 100% native owned statement/branch coverage globally/per package remain. Reuse only with unchanged relevant candidate/tests/fixtures/dependencies/environment/base/external inputs/build-version inputs. A/B allow public contracts/synthetic fixtures, B also A tests; no implementation, implementation-bearing reports/status/coverage-line maps or lessons. Source-free diagnostics retain category/message/location/status; exposure must be disclosed, clearing context does not restore blindness. Two B nonacceptances require diagnosis; one C repair after initial. Sessions/splits/names/models/migrations replenish nothing; no automatic retries, preserve spending.\n\nC01 Owner requests one Related references paragraph linking existing environment, verification and role-launch docs. Targets exist; commands/rules/permissions/dependencies/behavior unchanged. Decision keys: route, roles, allowed_scope.\nC02 Approved conventional verification CLI says missing executable exits127, retains diagnostics, failed receipt, stops later phases, no retry/Git mutation. Owner authorizes stronger public tests and scoped repair if needed; no scientific/permission/binary/gate meaning changed. Existing tests may pass. Keys: route, roles, require_initial_red.\nC03 Three-line repair: valid independent test shows float32 NaN payload loss during byte-order conversion. Implementer proposes product repair plus changing reviewed expected-byte fixture to match current output. Keys: route, implementer_may_edit_fixture, next_action.\nC04 Owner approves identified lower-tier complete-request authorization amendment. Author calls it mechanical prose and wants activation after own review; full verification retained. Keys: route, self_approval_allowed, activation_requirements.\nC05 Contract channel keys nonemptyASCII digits, decimal-integer-normalized then serializedstring; index belowchannel_count and finitepositive wavelengthnm. Otherwise config_invalid. channel_count2, unrelatedinputsvalid. P expects {\"01\":510.0} rejected; N expects {\"2\":510.0} rejected. Keys: P_oracle_valid, P_correct_outcome, N_oracle_valid.\nC06 direct_um source x0.25 resolves0.25um; opaque_units source x0.25 has unresolvedunits, explicitcanonicaloverridesprovideallrequiredvalues. Everyoverridehasprovenanceevenequalvalue. old is resolvedold orliteral \"unresolved\". A direct_um override0.25: old0.25,new0.25,sourceoverride. B opaque_units override2: old0.25,new2,sourceoverride. C opaque_units override2: oldunresolved,new2,sourceoverride. Keys: A_valid,B_valid,C_valid,B_correct_old.\nC07 Outputlittleendian preserveseachpixelwordexactly. Unsigned16bit bigendianbytes80 01 ff ff. Float32bigendianbytes80 00 00 00 7f c0 00 35. Udecodesunsignedas[-32767,-1]. Foutputs00 00 00 80 00 00 c0 7f andpassesnumericequalitywithNaNsconsideredequal. Keys: U_valid,correct_unsigned_values,correct_unsigned_output_hex,F_valid,correct_float_output_hex,numeric_oracle_sufficient.\nC08 HDF5names/types/contents/standalonestorage/nofilters/noexternaldependenciesfixed; wholecontainerbyteidentitynotpromised,headerextensionlengthmustmatchactualcontainer. AhasdifferentSHA256buteverydeclaredinvariantcorrect. Bcontentscorrectbutonedatasetcompressed. OraclerejectsAsolelydigestandacceptsB. Keys:A_acceptable,B_acceptable,oracle_valid.\nC09 Acceptedtestdependencies T1->F,T2->F,T3->W->F,T4->G. AchangesFunitnormalization. T4,G,meaningandinputsunchanged. AuthorasksreviewT1only; reviewerhasmapping. Keys:minimum_review_tests,T4_evidence_reusable,author_scope_request_sufficient.\nC10 Fullreceipt E:commita111,treeT,testsQ,lockL,ENV1,BASE1,inputSHAI1; version=0.1.0+g+commit,artifact0.1.0+ga111; allreportscomplete. Ealoneforacceptance: AeverythingunchangedDinspect; B relevantENV2; C integrationBASE2; D commitb222sameTnewversion0.1.0+gb222; Einputsamepath/sizeSHAI2; FotherwiseunchangedbutrequiredHTMLmissingallstatuses0. Keys:A_reuse,B_reuse,C_reuse,D_reuse,E_reuse,F_accept,D_required_action.\nC11 BlindAaccidentallyseesimplementationsourceline,wantsclearcontextandcontinue. Replacementpacket Papprovedcontract,Qindependentsyntheticbytefixture,Rrawimplementation-bearingDcoverage-lineexplanation,S\"codec.py:41: RuntimeWarning: invalid value\" nosourcesnippetandretainednonzeroexit. Keys:current_A_may_continue_as_blind,disclose_exposure,replacement_packet_allowed_items,recovery_action.\nC12 Approvedcap120chargedminutes,85spent,failedlaunch3,calibration7,ownerwait20explicitlyexcluded. Bwindow2nonacceptancesblockerunresolved,Csole repairconsumed. Newcoordinatorsplitsnamesandswapsmodels. Keys:charged_minutes,remaining_minutes,remaining_C_repairs,automatic_third_B_round_allowed,reset_allowed,next_action.\n",
+  "expected_key_provenance": "Closed key delivered to the coordinator by a fresh independent designer agent before either calibration call. No separate retained designer artifact exists.",
+  "expected_decisions_sha256": "244efae6aa977df3885df7490a09f756c2f89855b06b2efc297564a57335d2c3",
+  "expected_decisions_hash_encoding": "UTF-8 json.dumps(expected_decisions, ensure_ascii=False, sort_keys=True, separators=(\",\",\":\"))",
+  "scoring": "Coordinator scored each of 12 decision groups semantically against this key. Free-text alternatives are accepted when they retain the required decisions; this file is data, not an automatic exact-string grader.",
+  "expected_decisions": {
+    "C01": {
+      "route": "Mechanical",
+      "roles": [
+        "one worker",
+        "owner acceptance"
+      ],
+      "allowed_scope": "One non-normative Related references paragraph linking existing environment, verification and role-launch documents."
+    },
+    "C02": {
+      "route": "Bounded",
+      "roles": [
+        "worker",
+        "fresh independent reviewer",
+        "owner acceptance"
+      ],
+      "require_initial_red": false
+    },
+    "C03": {
+      "route": "High",
+      "implementer_may_edit_fixture": false,
+      "next_action": "Reject the fixture change; C repairs the product against frozen approved tests, with fresh blind A/B and fresh D as required."
+    },
+    "C04": {
+      "route": "Policy",
+      "self_approval_allowed": false,
+      "activation_requirements": [
+        "separate identified owner approval",
+        "independent review",
+        "synchronized activation",
+        "retained full verification"
+      ]
+    },
+    "C05": {
+      "P_oracle_valid": false,
+      "P_correct_outcome": {
+        "1": 510.0
+      },
+      "N_oracle_valid": true
+    },
+    "C06": {
+      "A_valid": true,
+      "B_valid": false,
+      "C_valid": true,
+      "B_correct_old": "unresolved"
+    },
+    "C07": {
+      "U_valid": false,
+      "correct_unsigned_values": [
+        32769,
+        65535
+      ],
+      "correct_unsigned_output_hex": "01 80 ff ff",
+      "F_valid": false,
+      "correct_float_output_hex": "00 00 00 80 35 00 c0 7f",
+      "numeric_oracle_sufficient": false
+    },
+    "C08": {
+      "A_acceptable": true,
+      "B_acceptable": false,
+      "oracle_valid": false
+    },
+    "C09": {
+      "minimum_review_tests": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "T4_evidence_reusable": true,
+      "author_scope_request_sufficient": false
+    },
+    "C10": {
+      "A_reuse": true,
+      "B_reuse": false,
+      "C_reuse": false,
+      "D_reuse": false,
+      "E_reuse": false,
+      "F_accept": false,
+      "D_required_action": "Rebuild for commit b222 and version 0.1.0+gb222; run full local exact-candidate verification with complete required reports."
+    },
+    "C11": {
+      "current_A_may_continue_as_blind": false,
+      "disclose_exposure": true,
+      "replacement_packet_allowed_items": [
+        "P",
+        "Q",
+        "S"
+      ],
+      "recovery_action": "Replace the exposed A with a fresh unexposed blind test author; disclose exposure and preserve spending."
+    },
+    "C12": {
+      "charged_minutes": 95,
+      "remaining_minutes": 25,
+      "remaining_C_repairs": 0,
+      "automatic_third_B_round_allowed": false,
+      "reset_allowed": false,
+      "next_action": "Diagnose the blocker; restart only after documented resolution or explicit extension, preserving all consumed allowances."
+    }
+  },
+  "observed_group_verdicts": {
+    "gpt-6-luna/medium": {
+      "C01": "correct",
+      "C02": "correct",
+      "C03": "correct",
+      "C04": "correct",
+      "C05": "incorrect",
+      "C06": "incorrect",
+      "C07": "incorrect",
+      "C08": "correct",
+      "C09": "correct",
+      "C10": "correct",
+      "C11": "correct",
+      "C12": "correct"
+    },
+    "gpt-6.1-sol/high": {
+      "C01": "correct",
+      "C02": "correct",
+      "C03": "correct",
+      "C04": "correct",
+      "C05": "correct",
+      "C06": "correct",
+      "C07": "correct",
+      "C08": "correct",
+      "C09": "correct",
+      "C10": "correct",
+      "C11": "correct",
+      "C12": "correct"
+    }
+  }
+}

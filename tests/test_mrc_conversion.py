@@ -15,6 +15,7 @@ from typing import Any
 import numpy as np
 import pytest
 
+from measurement_fixture_export import export_measurement
 from mrc_fixture_conversion import (
     bits,
     config,
@@ -559,3 +560,4 @@ def test_m25_native_memory(api: Any, tmp_path: Path) -> None:
     measurement = json.loads(result.stdout)
     assert measurement["increment_bytes"] <= 32 * 1024 * 1024
     assert measurement["units"] == ("bytes" if sys.platform == "darwin" else "KiB")
+    export_measurement(measurement)

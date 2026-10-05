@@ -33,7 +33,7 @@ packages = ["src/simrecon"]
 [tool.ruff]
 target-version = "py313"
 line-length = 100
-src = ["src", "tests"]
+src = ["src", "tests", "scripts"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "D"]
@@ -46,7 +46,7 @@ convention = "numpy"
 "tests/**" = ["D102", "D103"]
 
 [tool.pyright]
-include = ["src", "tests"]
+include = ["src", "tests", "scripts"]
 typeCheckingMode = "standard"
 pythonVersion = "3.13"
 
@@ -57,7 +57,7 @@ strict_xfail = true
 
 [tool.coverage.run]
 branch = true
-source = ["src/simrecon"]
+source = ["src/simrecon", "scripts"]
 patch = ["subprocess"]
 
 [tool.coverage.report]

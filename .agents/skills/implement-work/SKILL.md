@@ -1,14 +1,28 @@
 ---
 name: implement-work
-description: Implement an approved SIMrecon slice as role C against a B-reviewed test checkpoint.
+description: Implement high-risk SIMrecon work as restricted C, or perform an explicitly authorized mechanical or bounded worker packet.
 ---
 
-# Implement work: role C
+# Implement work
 
-**Version 1.0.** Follow root `AGENTS.md`. Start a fresh root session from the approved C packet and B-reviewed test checkpoint. Use `docs/PROJECT.md` for actual environment and verification commands. `SIMrecon_svn` is reference-only: study algorithm ideas if needed, but write pristine Python NumPy/SciPy code from the approved contract and applicable primary sources. Do not copy legacy source or quietly import legacy product features.
+**Version 1.0.** Follow AGENTS.md; select only the mode in the approved packet. Use PROJECT for actual commands/model guidance and CANDIDATE-PACKET for scope/evidence. You are already the assigned worker; no nested role launch. Continue authorized author work without renewing scope/allowances. Reviewers are separate fresh roots. Legacy algorithms may inform study, but pristine NumPy/SciPy behavior comes from approved contracts/primary sources, never copied legacy code or imported unapproved features.
 
-Change only authorized product scope. Do not edit reviewed tests, fixtures, snapshots, workflows, test discovery, coverage configuration, skills, or delivery rules. Preserve unrelated interfaces. Classify and report defective or ambiguous tests/requirements for coordinator routing; do not fix them within C or fit product code to an invalid expectation.
+## High-risk C
 
-Implement the smallest clear behavior satisfying the approved contract. Run focused checks and the canonical full verification in `docs/PROJECT.md`. Report exact command, environment, candidate identity, results, and measured statement/branch coverage for all owned instrumentable runtime, globally and per package. Include never-imported owned files and relevant subprocesses; report unsupported native metrics separately. A missing report, known failure, or less than 100% measured statements or branches blocks submission. Existing code satisfying a scenario needs no contrived product change.
+Start initial C fresh with B's exact accepted checkpoint/frozen identities. Edit only named product scope. Do not change reviewed tests/fixtures/snapshots, workflows, discovery/coverage configuration, skills/delivery rules or unrelated interfaces. Classify invalid tests/ambiguous requirements and route through coordinator; never fit product to an invalid expectation or fix tests yourself. Test corrections require authorized blind A/fresh B checkpoint before resuming. One default corrective C cycle remains separate from A/B rounds; continuation/split/rename cannot reset it.
 
-After initial C, the default allowance is one repair; rename or split never resets it. Changed tests/fixtures need new A/B review and checkpoint. Hand off only a candidate with passing applicable full verification for fresh D review. Before opening/reopening a pull request, draft included, or pushing to an open one, verify that exact candidate with the full gate. A pre-PR backup may fail if labeled incomplete. Record remaining budget without claiming unobserved results.
+## Bounded worker
+
+The packet must explicitly grant named product, test/fixture and infrastructure ownership, establish conventional expectations, name fresh independent reviewer and record remaining repair/review allowance. You may inspect implementation and author meaningful public-entry tests, then implement/repair in that scope. State expectation sources and distinguishing positive/error cases; coverage alone validates no oracle. Infrastructure changes must preserve approved platform/check semantics and gates. Removing assertions needs obligation mapping. Do not edit unlisted discovery/coverage/workflow/dependency files. Scientific/binary/custom-oracle/data-loss behavior, security/execution-permission changes, substantial interfaces or unresolved meaning/impact require high risk and return to intake; a failure grants no expansion. Default one corrective cycle after initial work unless the contract specifies another. Every test/candidate correction receives the required fresh independent final review; never self-approve.
+
+## Mechanical worker
+
+Only non-normative deterministic/prose/link/format scope. Review diff and relevant checks, then owner acceptance. Changed behavior/dependency/gate/permission/policy is outside this mode. A contract requiring independent review still requires it. Delivery-policy authoring uses the separate approved doctor/policy scope.
+
+## Verification and handoff
+
+Implement the smallest clear contract behavior, preserving interfaces and resource/data promises. Run cheap bounded prerequisites/focused checks before canonical full verification. Existing behavior may need no product change; no artificial red. Classify failures before repair and retain status/logs. Stop dependent work for environment failures; recheck affected evidence after authorized repair.
+
+Default before opening/reopening a PR, draft included, or pushing to an open PR: full local gate on exact unchanged candidate. Known failures, incomplete supported coverage or missing reports block submission. Conditional CI-authoritative mode is only for a separately approved eligible bounded trial with section 6 prerequisites; never high-risk C or this gate's own proof edits. Pre-PR failing backups are labeled incomplete and grant no readiness.
+
+Report candidate/tree/checkpoint/base, exact commands/status, relevant lock/check/environment/executable/external-input identities, coverage integers globally/per package, never-imported/subprocess scope, artifact/version and limitations. Unsupported native metrics stay explicit. Reuse only for unchanged material inputs/no challenging failure; reviewers need not repeat valid evidence. Final hash/results stay outside tracked candidate bytes; prepare one state pointer before verification. Return concise scope/findings/evidence and remaining budget/repairs for fresh required review. No hidden retry, merge or release authority.
