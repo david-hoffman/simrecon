@@ -22,6 +22,14 @@ def main() -> int:
     phase = next((arg for arg in args if arg in PHASES), None)
     status = receipt_main()
     mode = os.environ.get("EXPORT_FIXTURE_MODE", "valid")
+    if phase == "types" and mode == "redirect-before-tests" and status == 0:
+        if path_value is None:
+            raise ValueError("controlled redirect requires measurement destination")
+        destination = root / path_value
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.unlink(missing_ok=True)
+        destination.symlink_to(Path(os.environ["EXPORT_FIXTURE_REDIRECT_TARGET"]))
+        print("controlled successful types phase redirected measurement destination")
     if phase == "tests" and mode == "tests-no-report":
         print("controlled tests failure without measurements", file=sys.stderr)
         return 37

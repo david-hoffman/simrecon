@@ -635,6 +635,54 @@ def test_e2_ancestor_symlink_cannot_write_git_metadata(
     assert after == metadata
 
 
+@pytest.mark.parametrize("protected_area", ["tracked", "git", "private", "common"])
+def test_e2_successful_earlier_phase_redirect_rejected_before_tests(
+    repository: Repository, monkeypatch: pytest.MonkeyPatch, protected_area: str
+) -> None:
+    root, bin_dir = repository
+    original_root = root
+    if protected_area in {"private", "common"}:
+        root = original_root.parent / "redirect-linked"
+        git(original_root, "worktree", "add", "-q", "--detach", str(root), "HEAD")
+        private = Path(git(root, "rev-parse", "--absolute-git-dir"))
+        protected = (
+            private / "HEAD" if protected_area == "private" else original_root / ".git/config"
+        )
+    else:
+        protected = root / ("candidate.txt" if protected_area == "tracked" else ".git/config")
+    original = protected.read_bytes()
+    candidate_bytes = (root / "candidate.txt").read_bytes()
+    monkeypatch.setenv("EXPORT_FIXTURE_REDIRECT_TARGET", str(protected))
+    result, receipt = invoke((root, bin_dir), mode="redirect-before-tests")
+
+    # Check preservation first even if verification later fails for another reason.
+    assert protected.read_bytes() == original
+    assert (root / "candidate.txt").read_bytes() == candidate_bytes
+    destination = root / MEASUREMENTS_PATH
+    assert destination.is_symlink() and destination.resolve() == protected.resolve()
+    calls = observations(root)
+    phases = [c for c in calls if any(p in c["args"] for p in PHASES)]
+    assert [next(p for p in PHASES if p in c["args"]) for c in phases] == PHASES[:5]
+    assert not any("tests" in c["args"] for c in calls)
+    assert all(c["path"] == MEASUREMENTS_PATH.as_posix() for c in phases)
+    run_id = phases[0]["run_id"]
+    assert str(UUID(run_id)) == run_id
+    assert all(c["run_id"] == run_id for c in phases)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "controlled successful types phase redirected measurement destination" in (
+        result.stdout + result.stderr
+    )
+    assert receipt is not None and receipt["result"] == "failed"
+    assert [p["name"] for p in receipt["phases"]] == PHASES[:5]
+    assert all(p["returncode"] == 0 for p in receipt["phases"])
+    assert receipt["measurements"] is None
+    assert any("measurement" in p.lower() for p in receipt["problems"]), receipt["problems"]
+    assert receipt["before"] is not None and receipt["before"]["dirty"] is False
+    assert receipt["before"] == receipt["after"]
+    assert receipt["coverage"] is None and receipt["artifact"] is None
+
+
 def test_e2_no_report_without_stale_seed(repository: Repository) -> None:
     result, receipt = invoke(repository, mode="missing")
     assert result.returncode == 1, result.stdout + result.stderr
