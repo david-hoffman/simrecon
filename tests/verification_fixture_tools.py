@@ -99,8 +99,17 @@ def main():
                 "missing_branches": [],
                 "summary": summary,
             }
-            if mode == "partial-coverage":
-                summary.update(covered_branches=1, missing_branches=1, num_partial_branches=1)
+            if (
+                mode in {"partial-coverage", "partial-json-failure"}
+                and name != "scripts/branchless.py"
+            ):
+                summary.update(
+                    covered_branches=1,
+                    missing_branches=1,
+                    num_partial_branches=1,
+                    percent_covered=75.0,
+                    percent_covered_display="75",
+                )
                 item["executed_branches"] = [[1, 2]]
                 item["missing_branches"] = [[1, -1]]
             if mode == "excluded-coverage":
@@ -137,11 +146,15 @@ def main():
             if key != "covered_lines" or mode != "malformed-coverage"
         }
         totals.update(percent_covered=100.0, percent_covered_display="100")
+        if mode in {"partial-coverage", "partial-json-failure"}:
+            totals.update(percent_covered=700 / 9, percent_covered_display="78")
         report = {
             "meta": {"version": "7.13.4", "format": 3, "branch_coverage": True},
             "files": files,
             "totals": totals,
         }
+        if mode == "inconsistent-native-destinations":
+            files["src/simrecon/sample.py"]["executed_branches"] = [[1, 2]]
         if mode == "missing-native-numerator":
             del files["src/simrecon/sample.py"]["summary"]["covered_branches"]
         if mode == "missing-native-destinations":
@@ -151,6 +164,9 @@ def main():
         path = root / "artifacts/coverage/coverage.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(report))
+        if mode == "partial-json-failure":
+            print("controlled partial JSON failure", file=sys.stderr)
+            return 29
     if phase == "coverage-html" and mode != "missing-html":
         path = root / "artifacts/coverage/html/index.html"
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -166,26 +182,53 @@ def main():
                 with zipfile.ZipFile(path, "w") as archive:
                     archive.writestr(
                         f"simrecon-1.2.{index}.dist-info/METADATA",
-                        f"Metadata-Version: 2.1\nName: simrecon\nVersion: 1.2.{index}\n",
+                        f"Metadata-Version: 2.1\nName: simrecon\nVersion: 1.2.{index}\n"
+                        if mode != "conflicting-metadata"
+                        else "Metadata-Version: 2.1\nName: other\nVersion: 9.0\n",
                     )
                     archive.writestr(
                         f"simrecon-1.2.{index}.dist-info/WHEEL",
-                        "Wheel-Version: 1.0\nGenerator: fixture\n"
+                        (
+                            "Wheel-Version: invalid\n"
+                            if mode == "invalid-wheel-format"
+                            else "Wheel-Version: 1.0\n"
+                        )
+                        + "Generator: fixture\n"
                         "Root-Is-Purelib: true\nTag: py3-none-any\n",
                     )
                     archive.writestr("simrecon/__init__.py", f"__version__ = '1.2.{index}'\n")
                     records = []
                     for name in archive.namelist():
                         data = archive.read(name)
+                        algorithm = (
+                            "sha512"
+                            if mode == "sha512-wheel"
+                            else "sha1"
+                            if mode == "weak-wheel-hash"
+                            else "sha256"
+                        )
                         fingerprint = (
-                            base64.urlsafe_b64encode(hashlib.sha256(data).digest())
+                            base64.urlsafe_b64encode(hashlib.new(algorithm, data).digest())
                             .rstrip(b"=")
                             .decode("ascii")
                         )
-                        records.append(f"{name},sha256={fingerprint},{len(data)}")
+                        size = len(data) + (1 if mode == "record-size-mismatch" else 0)
+                        if mode == "record-hash-mismatch":
+                            fingerprint = "A" * len(fingerprint)
+                        if mode != "incomplete-record" or name != "simrecon/__init__.py":
+                            records.append(f"{name},{algorithm}={fingerprint},{size}")
                     record_name = f"simrecon-1.2.{index}.dist-info/RECORD"
-                    records.append(f"{record_name},,")
+                    records.append(
+                        f"{record_name},,"
+                        if mode != "invalid-record-self"
+                        else f"{record_name},sha256=AAAA,1"
+                    )
                     archive.writestr(record_name, "\n".join(records) + "\n")
+    if phase == "wheel" and mode == "wheel-build-failure":
+        print("controlled wheel build failure", file=sys.stderr)
+        return 31
+    if phase == "audit" and mode == "unavailable-final-identity":
+        (root / ".git/HEAD").unlink()
     return 0
 
 
