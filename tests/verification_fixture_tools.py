@@ -44,6 +44,33 @@ PHASES = [
 ]
 
 
+def write_metadata_evidence_wheel(path: Path, mode: str) -> None:
+    """Build independent V3 fixtures with valid evidence apart from one ambiguity."""
+    info = "simrecon-1.2.0.dist-info"
+    metadata = b"Metadata-Version: 2.1\nName: simrecon\nVersion: 1.2.0\n"
+    members = [
+        (f"{info}/WHEEL", b"Wheel-Version: 1.0\nRoot-Is-Purelib: true\nTag: py3-none-any\n"),
+        ("simrecon/__init__.py", b"__version__ = '1.2.0'\n"),
+    ]
+    if mode != "missing-metadata":
+        members.append((f"{info}/METADATA", metadata))
+    if mode == "multiple-metadata":
+        members.append(("simrecon_extra-1.2.0.dist-info/METADATA", metadata))
+    if mode == "duplicate-member":
+        # Identical payloads isolate archive-name ambiguity from hash/size defects.
+        members.append(("simrecon/__init__.py", b"__version__ = '1.2.0'\n"))
+    records = []
+    for name, data in dict(members).items():
+        fingerprint = base64.urlsafe_b64encode(hashlib.sha256(data).digest()).rstrip(b"=")
+        records.append(f"{name},sha256={fingerprint.decode('ascii')},{len(data)}")
+    record_name = f"{info}/RECORD"
+    records.append(f"{record_name},,")
+    with zipfile.ZipFile(path, "w") as archive:
+        for name, data in members:
+            archive.writestr(name, data)
+        archive.writestr(record_name, "\n".join(records) + "\n")
+
+
 def main():
     """Run a controlled Make or uv executable without product imports."""
     if sys.argv[1:] == ["--version"]:
@@ -176,7 +203,9 @@ def main():
         dist.mkdir(exist_ok=True)
         for index in range(2 if mode == "multiple-wheels" else 1):
             path = dist / f"simrecon-1.2.{index}-py3-none-any.whl"
-            if mode == "invalid-wheel":
+            if mode in {"missing-metadata", "multiple-metadata", "duplicate-member"}:
+                write_metadata_evidence_wheel(path, mode)
+            elif mode == "invalid-wheel":
                 path.write_bytes(b"not a zip")
             else:
                 with zipfile.ZipFile(path, "w") as archive:

@@ -6,6 +6,7 @@ import os
 import shutil
 import subprocess
 import sys
+import zipfile
 from datetime import datetime
 from pathlib import Path
 
@@ -586,3 +587,29 @@ def test_v1_linked_worktree_normal_receipt_succeeds(linked_repository):
     assert [phase["name"] for phase in receipt["phases"]] == PHASES
     assert all(phase["returncode"] == 0 for phase in receipt["phases"])
     assert git(root, "status", "--porcelain") == ""
+
+
+@pytest.mark.parametrize("mode", ["missing-metadata", "multiple-metadata", "duplicate-member"])
+def test_v3_malformed_sole_wheel_metadata_or_archive(repository, mode):
+    root, _ = repository
+    result, receipt = invoke(repository, mode)
+    assert receipt is not None
+    failed(result, receipt)
+    assert result.returncode == 1
+    assert receipt["artifact"] is None
+    assert [phase["name"] for phase in receipt["phases"]] == PHASES
+    assert all(phase["returncode"] == 0 for phase in receipt["phases"])
+    assert receipt["before"] == receipt["after"]
+    assert receipt["coverage"]["global"] == {
+        "statements": {"covered": 5, "total": 5},
+        "branches": {"covered": 4, "total": 4},
+    }
+    wheels = list((root / "dist").glob("*.whl"))
+    assert len(wheels) == 1
+    with zipfile.ZipFile(wheels[0]) as archive:
+        names = archive.namelist()
+        metadata_names = [name for name in names if name.endswith(".dist-info/METADATA")]
+        assert len(metadata_names) == (
+            0 if mode == "missing-metadata" else 2 if mode == "multiple-metadata" else 1
+        )
+        assert names.count("simrecon/__init__.py") == (2 if mode == "duplicate-member" else 1)
