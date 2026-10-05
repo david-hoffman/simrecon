@@ -1,5 +1,7 @@
 """Blind public CLI tests for verification receipt contract V1–V5."""
 
+import base64
+import csv
 import hashlib
 import json
 import os
@@ -12,7 +14,7 @@ from pathlib import Path
 
 import pytest
 
-from verification_fixture_tools import PHASES
+from verification_fixture_tools import PHASES, TAG_WHEELS
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = Path(__file__).with_name("verification_fixture_tools.py")
@@ -613,3 +615,115 @@ def test_v3_malformed_sole_wheel_metadata_or_archive(repository, mode):
             0 if mode == "missing-metadata" else 2 if mode == "multiple-metadata" else 1
         )
         assert names.count("simrecon/__init__.py") == (2 if mode == "duplicate-member" else 1)
+
+
+@pytest.mark.parametrize("phase", ["sync", "audit"])
+@pytest.mark.parametrize(
+    "target_kind", ["tracked", "ordinary-config", "common-config", "private-head"]
+)
+def test_v1_phase_log_symlink_protects_target(repository, linked_repository, phase, target_kind):
+    ordinary_root, _ = repository
+    linked, common_git = linked_repository
+    selected = linked if target_kind in {"common-config", "private-head"} else repository
+    root, _ = selected
+    targets = {
+        "tracked": ordinary_root / "candidate.txt",
+        "ordinary-config": ordinary_root / ".git/config",
+        "common-config": common_git / "config",
+        "private-head": Path(git(root, "rev-parse", "--absolute-git-dir")) / "HEAD",
+    }
+    target = targets[target_kind].resolve(strict=True)
+    original = target.read_bytes()
+    result, receipt = invoke(selected)
+    assert result.returncode == 0, result.stderr
+    assert receipt is not None
+    leaf = root / next(item["log"] for item in receipt["phases"] if item["name"] == phase)
+    leaf.unlink()
+    leaf.symlink_to(target)
+    assert leaf.is_symlink()
+    assert leaf.resolve(strict=True) == target
+    assert leaf.read_bytes() == original
+    assert git(root, "check-ignore", str(leaf.relative_to(root))) == str(leaf.relative_to(root))
+    assert git(root, "status", "--porcelain") == ""
+    result, receipt = invoke(selected)
+    # Check bytes first: an eventual failed identity check cannot excuse damage.
+    assert target.read_bytes() == original, f"protected {target_kind} overwritten by {phase} log"
+    assert result.returncode != 0
+    if receipt is not None:
+        failed(result, receipt)
+
+
+def assert_tag_wheel_fixture(root, mode):
+    """Independently verify sole fixture tags and every RECORD hash and size."""
+    suffix, tags = TAG_WHEELS[mode]
+    wheels = list((root / "dist").glob("*.whl"))
+    assert [wheel.name for wheel in wheels] == [f"simrecon-1.2.0-{suffix}.whl"]
+    info = "simrecon-1.2.0.dist-info"
+    with zipfile.ZipFile(wheels[0]) as archive:
+        wheel_text = archive.read(f"{info}/WHEEL").decode("ascii")
+        assert (
+            tuple(
+                line.removeprefix("Tag: ")
+                for line in wheel_text.splitlines()
+                if line.startswith("Tag: ")
+            )
+            == tags
+        )
+        rows = list(csv.reader(archive.read(f"{info}/RECORD").decode("ascii").splitlines()))
+        assert {row[0] for row in rows} == set(archive.namelist())
+        assert len(rows) == len(archive.namelist())
+        for name, fingerprint, size in rows:
+            if name == f"{info}/RECORD":
+                assert (fingerprint, size) == ("", "")
+            else:
+                data = archive.read(name)
+                expected = base64.urlsafe_b64encode(hashlib.sha256(data).digest()).rstrip(b"=")
+                assert fingerprint == f"sha256={expected.decode('ascii')}"
+                assert int(size) == len(data)
+
+
+@pytest.mark.parametrize(
+    "mode",
+    [
+        "tag-missing-component",
+        "tag-extra-component",
+        "tag-empty-python",
+        "tag-empty-abi",
+        "tag-empty-platform",
+        "tag-python-mismatch",
+        "tag-abi-mismatch",
+        "tag-platform-mismatch",
+        "tag-incomplete-expansion",
+        "tag-extra-expansion",
+    ],
+)
+def test_v3_declared_wheel_tags_rejected(repository, mode):
+    result, receipt = invoke(repository, mode)
+    assert_tag_wheel_fixture(repository[0], mode)
+    assert receipt is not None
+    failed(result, receipt)
+    assert result.returncode == 1
+    assert receipt["artifact"] is None
+    assert [item["name"] for item in receipt["phases"]] == PHASES
+    assert all(item["returncode"] == 0 for item in receipt["phases"])
+    assert receipt["before"] == receipt["after"]
+
+
+@pytest.mark.parametrize("mode", ["tag-valid-compressed", "tag-valid-build-platform"])
+def test_v1_declared_wheel_tags_accepted(repository, mode):
+    root, _ = repository
+    result, receipt = invoke(repository, mode)
+    assert_tag_wheel_fixture(root, mode)
+    assert result.returncode == 0, result.stderr
+    assert receipt is not None
+    assert receipt["result"] == "passed"
+    assert receipt["problems"] == []
+    wheels = list((root / "dist").glob("*.whl"))
+    assert len(wheels) == 1
+    assert receipt["artifact"] == {
+        "path": str(wheels[0].relative_to(root)),
+        "size_bytes": wheels[0].stat().st_size,
+        "sha256": digest(wheels[0]),
+        "version": "1.2.0",
+    }
+    assert [item["name"] for item in receipt["phases"]] == PHASES

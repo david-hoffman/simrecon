@@ -43,6 +43,45 @@ PHASES = [
     "audit",
 ]
 
+# Filename suffix and independently declared expanded WHEEL tags.
+TAG_WHEELS = {
+    "tag-missing-component": ("py3-none-any", ("py3-none",)),
+    "tag-extra-component": ("py3-none-any", ("py3-none-any-extra",)),
+    "tag-empty-python": ("py3-none-any", ("-none-any",)),
+    "tag-empty-abi": ("py3-none-any", ("py3--any",)),
+    "tag-empty-platform": ("py3-none-any", ("py3-none-",)),
+    "tag-python-mismatch": ("py3-none-any", ("py2-none-any",)),
+    "tag-abi-mismatch": ("py3-none-any", ("py3-abi3-any",)),
+    "tag-platform-mismatch": ("py3-none-any", ("py3-none-linux_x86_64",)),
+    "tag-incomplete-expansion": ("py2.py3-none-any", ("py3-none-any",)),
+    "tag-extra-expansion": ("py3-none-any", ("py2-none-any", "py3-none-any")),
+    "tag-valid-compressed": ("py2.py3-none-any", ("py2-none-any", "py3-none-any")),
+    "tag-valid-build-platform": ("1-py3-none-linux_x86_64", ("py3-none-linux_x86_64",)),
+}
+
+
+def write_tag_evidence_wheel(path: Path, tags: tuple[str, ...]) -> None:
+    """Write complete SHA-256 RECORD evidence after choosing declared tags."""
+    info = "simrecon-1.2.0.dist-info"
+    members = {
+        f"{info}/METADATA": b"Metadata-Version: 2.1\nName: simrecon\nVersion: 1.2.0\n",
+        f"{info}/WHEEL": (
+            "Wheel-Version: 1.0\nRoot-Is-Purelib: true\n"
+            + ("Build: 1\n" if "-1-" in path.name else "")
+            + "".join(f"Tag: {tag}\n" for tag in tags)
+        ).encode("ascii"),
+        "simrecon/__init__.py": b"__version__ = '1.2.0'\n",
+    }
+    records = []
+    for name, data in members.items():
+        value = base64.urlsafe_b64encode(hashlib.sha256(data).digest()).rstrip(b"=")
+        records.append(f"{name},sha256={value.decode('ascii')},{len(data)}")
+    record_name = f"{info}/RECORD"
+    members[record_name] = ("\n".join([*records, f"{record_name},,"]) + "\n").encode("ascii")
+    with zipfile.ZipFile(path, "w") as archive:
+        for name, data in members.items():
+            archive.writestr(name, data)
+
 
 def write_metadata_evidence_wheel(path: Path, mode: str) -> None:
     """Build independent V3 fixtures with valid evidence apart from one ambiguity."""
@@ -203,7 +242,10 @@ def main():
         dist.mkdir(exist_ok=True)
         for index in range(2 if mode == "multiple-wheels" else 1):
             path = dist / f"simrecon-1.2.{index}-py3-none-any.whl"
-            if mode in {"missing-metadata", "multiple-metadata", "duplicate-member"}:
+            if mode in TAG_WHEELS:
+                suffix, tags = TAG_WHEELS[mode]
+                write_tag_evidence_wheel(dist / f"simrecon-1.2.0-{suffix}.whl", tags)
+            elif mode in {"missing-metadata", "multiple-metadata", "duplicate-member"}:
                 write_metadata_evidence_wheel(path, mode)
             elif mode == "invalid-wheel":
                 path.write_bytes(b"not a zip")
