@@ -1,8 +1,18 @@
-# NF02: separate three equally spaced known phases through the public array API
+# NF02: known-phase 2D separation and its explicit-angle amendment
 
-**Version 1.0. Proposal 2, owner-approved October 5, 2026.** The sole first-milestone Current state and actual approval record are in [the slice plan](numerical-foundations-plan.md#current-state).
+**Version 2 amendment intake, October 5, 2026.** The owner approved the generalized direction and fresh-task handoff. The original Proposal 2 remains the historical version-1 approval; final v2 numerical policies/checkpoint authority are tracked in [the single milestone Current state](numerical-foundations-plan.md#current-state).
 
-## Contract
+## Active amendment
+
+The owner authorized [version 2 intake](../contracts/known-phase-separation-v2.md): variable `N >= 3`, an explicit `phases_rad` vector, unequal known phases, broader real integer/floating inputs and first-harmonic least-squares separation. Update existing [PR #5](https://github.com/david-hoffman/simrecon/pull/5) from a fresh coordinator task; do not open another implementation PR. Version 1 below remains the historical approved scope and charged checkpoint, not authority to reject inputs required by the amendment.
+
+Complete numerical-rank/conditioning, accuracy and operation-time representation/failure policy before amended tests. The new scenario inventory and any coherent-size exception must identify distinct new outcomes rather than automatically reusing the old 14-scenario approval. Existing public signature/shape/dtype/offset/range/oracle assumptions and report need corresponding replacement; unchanged MRC behavior remains protected.
+
+A's proposed amendment ownership is `tests/test_phase_separation.py` and `tests/phase_separation_fixture.py`, including their changed shared oracle/phantom/observers. This is a new meaning/checkpoint, not a C test repair. C's proposed ownership remains `src/simrecon/_phase.py`, additive exports if required in `src/simrecon/__init__.py`, `docs/usage/phase-separation.md`, `docs/reports/phase-separation-comparison.md` and `docs/figures/phase-separation-comparison.png`. Intake owns this task, the v2 public contract, the milestone plan and targeted independent-convention notes. No dependency, infrastructure, workflow, coverage, instruction or policy changes are included.
+
+Preserve initial A/B **2/2 used, closed by ACCEPT**, C corrections **0/1 used**, all six native invocations and prior spending. A later review window must be explicitly recorded with its amendment reason and allowance before launches; neither the new app task nor the scope label resets counters. The fresh coordinator resolves any needed extension under AGENTS.md and gives blind roles only approved public packets. The default exact-candidate full-local gate, fresh D and configured CI apply before updating PR #5.
+
+## Historical version-1 contract
 
 - Slice/plan: NF02 in [NUMERICAL-FOUNDATIONS](numerical-foundations-plan.md). Prerequisite: owner-approved, completed and integrated NF01 with its public contract and independent oracle documentation. Paper figure capture is outside scope and is not a prerequisite. Coordinator identifies the actual integrated baseline before fresh A; another worktree's draft is insufficient.
 - Public references: [PROJECT](../PROJECT.md), [approved MRC boundary](../contracts/mrc-conversion-v1.md) for preservation, and [approved separation contract](../contracts/known-phase-separation-v1.md) for all new behavior.
@@ -16,9 +26,9 @@
 - Budget/allowances: owner's no-time-cap answer covers this first milestone; report spending/unknown metering. Two B reviews in the initial window; one C repair after initial C. No reset for new sessions, splits or renames. Additional repairs or material test/meaning changes need the established authorization route.
 - Completion: approved public contract and size exception; accepted reviewed checkpoint; passing exact numerical candidate/full gate; correctly labelled human report from that candidate; fresh D acceptance; normal implementation PR. Owner merge/release actions remain explicit.
 
-## Approved scenarios
+## Historical version-1 approved scenarios
 
-**14-scenario coherent-size exception approved with Proposal 2.** Each row identifies a distinct success, conversion, representation, ownership, rejection, boundary or evidence-artifact outcome. Additional values under the same meaning are coverage examples; A/B must not silently add new contractual decisions. All scenarios below are approved. At Proposal 2 approval no A-authored/B-reviewed tests existed; the current accepted checkpoint is identified in the milestone Current state. The analytic intake preview is explicitly requested and is not a reviewed test fixture.
+**14-scenario coherent-size exception approved with Proposal 2.** Each row identifies a distinct success, conversion, representation, ownership, rejection, boundary or evidence-artifact outcome. Additional values under the same meaning are coverage examples; A/B must not silently add new contractual decisions. All scenarios below were approved for version 1; amended meanings require the finalized version-2 inventory. At Proposal 2 approval no A-authored/B-reviewed tests existed; the current accepted checkpoint is identified in the milestone Current state. The analytic intake preview is explicitly requested and is not a reviewed test fixture.
 
 | ID | Distinct input/context and observable outcome | Expected-result source | Equivalent examples / required review |
 |---|---|---|---|

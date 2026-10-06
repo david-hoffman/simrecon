@@ -2,6 +2,8 @@
 
 **Version 1.0. Proposal 2, owner-approved October 5, 2026.** [NF02](../tasks/known-phase-separation.md) counts the scenarios; [the slice plan](../tasks/numerical-foundations-plan.md#current-state) owns the actual approval and accounting. This specification defines approved scientific behavior; current delivery state and exact-candidate evidence are recorded by the slice plan and its linked PR/conversation.
 
+The owner subsequently requested variable phase count, explicit possibly unequal phase angles and broader real dtypes. The [version-2 amendment draft](known-phase-separation-v2.md) records that direction and remaining numerical decisions. This version describes the tested historical candidate on PR #5, not the intended generalized API.
+
 ## Scope and approved public interface
 
 One channel/time point, one orientation, one 2D plane at each of three equally spaced known phases. Callers select the three images and provide the phase offset explicitly. File plane indices are ordinal labels and do not supply phase angles. No phase estimation, OTF handling, spatial Fourier transform, band shifting, reconstruction, file adapter, CLI, brightness correction or metadata mutation is included.
