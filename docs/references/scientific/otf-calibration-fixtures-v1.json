@@ -1,0 +1,720 @@
+{
+  "version": "1.0",
+  "status": "Intake reference examples; not blind-A tests or a reviewed executable checkpoint.",
+  "expected_value_policy": "The exact formula is authoritative. JSON complex entries are rounded display values, not a tight-error oracle.",
+  "frequency_policy": "f=k/(N*d) cycles/um; ordered signed mode lists are explicit.",
+  "fixtures": [
+    {
+      "id": "delta-odd",
+      "shape_yx": [
+        3,
+        5
+      ],
+      "origin_yx": [
+        1,
+        2
+      ],
+      "pixel_size_um": [
+        0.125,
+        0.25
+      ],
+      "source": "analytic:delta-odd",
+      "input_dtype": "uint8",
+      "psf_samples": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "mode_y": [
+        -1,
+        0,
+        1
+      ],
+      "mode_x": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "frequency_y_per_um": [
+        -2.6666666666666665,
+        0.0,
+        2.6666666666666665
+      ],
+      "frequency_x_per_um": [
+        -1.6,
+        -0.8,
+        0.0,
+        0.8,
+        1.6
+      ],
+      "expected_formula": "H(ky,kx)=1",
+      "expected_otf_real": [
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "expected_otf_imag": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "oracle": "Exact delta/root-of-unity identities; separable factors are exact rationals; asymmetric roots use binary64 sqrt(3) display values.",
+      "example_fft_cross_check_max_abs": 0.0
+    },
+    {
+      "id": "uniform-even",
+      "shape_yx": [
+        4,
+        6
+      ],
+      "origin_yx": [
+        1,
+        2
+      ],
+      "pixel_size_um": [
+        0.125,
+        0.25
+      ],
+      "source": "analytic:uniform-even",
+      "input_dtype": "uint8",
+      "psf_samples": [
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      ],
+      "mode_y": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "mode_x": [
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "frequency_y_per_um": [
+        -4.0,
+        -2.0,
+        0.0,
+        2.0
+      ],
+      "frequency_x_per_um": [
+        -2.0,
+        -1.3333333333333333,
+        -0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        1.3333333333333333
+      ],
+      "expected_formula": "H(0,0)=1; all other bins zero",
+      "expected_otf_real": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "expected_otf_imag": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "oracle": "Exact delta/root-of-unity identities; separable factors are exact rationals; asymmetric roots use binary64 sqrt(3) display values.",
+      "example_fft_cross_check_max_abs": 0.0
+    },
+    {
+      "id": "asymmetric-even",
+      "shape_yx": [
+        4,
+        6
+      ],
+      "origin_yx": [
+        1,
+        2
+      ],
+      "pixel_size_um": [
+        0.125,
+        0.25
+      ],
+      "source": "analytic:asymmetric-even",
+      "input_dtype": "uint8",
+      "psf_samples": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "mode_y": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "mode_x": [
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "frequency_y_per_um": [
+        -4.0,
+        -2.0,
+        0.0,
+        2.0
+      ],
+      "frequency_x_per_um": [
+        -2.0,
+        -1.3333333333333333,
+        -0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        1.3333333333333333
+      ],
+      "expected_formula": "H(ky,kx)=3/8+exp(-2*pi*i*ky/4)/8+exp(-2*pi*i*kx/6)/2",
+      "expected_otf_real": [
+        [
+          -0.25,
+          0.0,
+          0.5,
+          0.75,
+          0.5,
+          0.0
+        ],
+        [
+          -0.125,
+          0.125,
+          0.625,
+          0.875,
+          0.625,
+          0.125
+        ],
+        [
+          0.0,
+          0.25,
+          0.75,
+          1.0,
+          0.75,
+          0.25
+        ],
+        [
+          -0.125,
+          0.125,
+          0.625,
+          0.875,
+          0.625,
+          0.125
+        ]
+      ],
+      "expected_otf_imag": [
+        [
+          0.0,
+          0.4330127018922193,
+          0.4330127018922193,
+          0.0,
+          -0.4330127018922193,
+          -0.4330127018922193
+        ],
+        [
+          0.125,
+          0.5580127018922193,
+          0.5580127018922193,
+          0.125,
+          -0.3080127018922193,
+          -0.3080127018922193
+        ],
+        [
+          0.0,
+          0.4330127018922193,
+          0.4330127018922193,
+          0.0,
+          -0.4330127018922193,
+          -0.4330127018922193
+        ],
+        [
+          -0.125,
+          0.3080127018922193,
+          0.3080127018922193,
+          -0.125,
+          -0.5580127018922193,
+          -0.5580127018922193
+        ]
+      ],
+      "oracle": "Exact delta/root-of-unity identities; separable factors are exact rationals; asymmetric roots use binary64 sqrt(3) display values.",
+      "example_fft_cross_check_max_abs": 1.1102230246251565e-16
+    },
+    {
+      "id": "asymmetric-translated",
+      "shape_yx": [
+        4,
+        6
+      ],
+      "origin_yx": [
+        0,
+        4
+      ],
+      "pixel_size_um": [
+        0.125,
+        0.25
+      ],
+      "source": "analytic:asymmetric-translated",
+      "input_dtype": "uint8",
+      "psf_samples": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "mode_y": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "mode_x": [
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "frequency_y_per_um": [
+        -4.0,
+        -2.0,
+        0.0,
+        2.0
+      ],
+      "frequency_x_per_um": [
+        -2.0,
+        -1.3333333333333333,
+        -0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        1.3333333333333333
+      ],
+      "expected_formula": "H(ky,kx)=3/8+exp(-2*pi*i*ky/4)/8+exp(-2*pi*i*kx/6)/2",
+      "expected_otf_real": [
+        [
+          -0.25,
+          0.0,
+          0.5,
+          0.75,
+          0.5,
+          0.0
+        ],
+        [
+          -0.125,
+          0.125,
+          0.625,
+          0.875,
+          0.625,
+          0.125
+        ],
+        [
+          0.0,
+          0.25,
+          0.75,
+          1.0,
+          0.75,
+          0.25
+        ],
+        [
+          -0.125,
+          0.125,
+          0.625,
+          0.875,
+          0.625,
+          0.125
+        ]
+      ],
+      "expected_otf_imag": [
+        [
+          0.0,
+          0.4330127018922193,
+          0.4330127018922193,
+          0.0,
+          -0.4330127018922193,
+          -0.4330127018922193
+        ],
+        [
+          0.125,
+          0.5580127018922193,
+          0.5580127018922193,
+          0.125,
+          -0.3080127018922193,
+          -0.3080127018922193
+        ],
+        [
+          0.0,
+          0.4330127018922193,
+          0.4330127018922193,
+          0.0,
+          -0.4330127018922193,
+          -0.4330127018922193
+        ],
+        [
+          -0.125,
+          0.3080127018922193,
+          0.3080127018922193,
+          -0.125,
+          -0.5580127018922193,
+          -0.5580127018922193
+        ]
+      ],
+      "oracle": "Exact delta/root-of-unity identities; separable factors are exact rationals; asymmetric roots use binary64 sqrt(3) display values.",
+      "example_fft_cross_check_max_abs": 1.1102230246251565e-16
+    },
+    {
+      "id": "separable-mixed",
+      "shape_yx": [
+        3,
+        4
+      ],
+      "origin_yx": [
+        1,
+        0
+      ],
+      "pixel_size_um": [
+        0.125,
+        0.25
+      ],
+      "source": "analytic:separable-mixed",
+      "input_dtype": "uint8",
+      "psf_samples": [
+        [
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          0
+        ]
+      ],
+      "mode_y": [
+        -1,
+        0,
+        1
+      ],
+      "mode_x": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "frequency_y_per_um": [
+        -2.6666666666666665,
+        0.0,
+        2.6666666666666665
+      ],
+      "frequency_x_per_um": [
+        -2.0,
+        -1.0,
+        0.0,
+        1.0
+      ],
+      "expected_formula": "H=outer([1/4,1,1/4],[1,0,1,0]) in declared shifted mode order",
+      "expected_otf_real": [
+        [
+          0.25,
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.0,
+          0.25,
+          0.0
+        ]
+      ],
+      "expected_otf_imag": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "oracle": "Exact delta/root-of-unity identities; separable factors are exact rationals; asymmetric roots use binary64 sqrt(3) display values.",
+      "example_fft_cross_check_max_abs": 0.0
+    },
+    {
+      "id": "singleton",
+      "shape_yx": [
+        1,
+        1
+      ],
+      "origin_yx": [
+        0,
+        0
+      ],
+      "pixel_size_um": [
+        0.125,
+        0.25
+      ],
+      "source": "analytic:singleton",
+      "input_dtype": "uint8",
+      "psf_samples": [
+        [
+          7
+        ]
+      ],
+      "mode_y": [
+        0
+      ],
+      "mode_x": [
+        0
+      ],
+      "frequency_y_per_um": [
+        0.0
+      ],
+      "frequency_x_per_um": [
+        0.0
+      ],
+      "expected_formula": "H(ky,kx)=1",
+      "expected_otf_real": [
+        [
+          1.0
+        ]
+      ],
+      "expected_otf_imag": [
+        [
+          0.0
+        ]
+      ],
+      "oracle": "Exact delta/root-of-unity identities; separable factors are exact rationals; asymmetric roots use binary64 sqrt(3) display values.",
+      "example_fft_cross_check_max_abs": 0.0
+    }
+  ]
+}

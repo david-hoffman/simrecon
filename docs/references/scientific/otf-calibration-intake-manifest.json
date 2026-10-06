@@ -1,0 +1,108 @@
+{
+  "version": "1.0",
+  "status": "Observed intake simulation only; no product or instrument correctness claim.",
+  "python": "3.13.12",
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "pyotf_source_commit": "d641ff6cde1fac6e77ff2d47629d981831a75912",
+  "pyotf_source_tree": "e90f55cf46b355250a66586aa6ed3a033df4a01f",
+  "pyotf_reported_version": "0+unknown",
+  "pyotf_archive_sha256": "76d928502657c647ec1854cb058b2d955be54012d9c67b00c96bc11d0af285e4",
+  "archived_source_files_sha256": {
+    "pyotf/__init__.py": "e465ab99e9ffd02fcd938e7a627536c34308736ef9c7056e6dda97dbbb33b6ba",
+    "pyotf/_version.py": "d21c8f7da8790807b026bb7a41801c6720b9f818fceadd99c0e756b19e20828a",
+    "pyotf/display.py": "0a276fa326d44bb3aa338ac03a7b5d459036fb719b315863e9b096bfa8b50e58",
+    "pyotf/labview.py": "d5fbd9b4a9395413001075ee2bcb69bdb2458a1f619d6c4d68889ef52a24d13d",
+    "pyotf/microscope.py": "eda46da70e6ccacd15107ee8d9577d4bfcd3a92c5db4f2edaa6a1c9d701f476f",
+    "pyotf/otf.py": "569cdbf22262ac3a044a137f3509f8ccb765a78a5f162a80bd75707ce0cb5884",
+    "pyotf/phaseretrieval.py": "4a594c810d7b0c767925a8cbe8a3796f33c26b4dfe476a325b07bced78e2efc5",
+    "pyotf/utils.py": "36253f7fac9e87c37081b62dc7695a14a0511608f07a5322fd724699c650db1e",
+    "pyotf/zernike.py": "aaddae298a55ff19c161e0d158f89611a7734dddf4a54b530b18552915cf65b2"
+  },
+  "tracked_source_blob_sha256": {
+    "pyotf/__init__.py": "e465ab99e9ffd02fcd938e7a627536c34308736ef9c7056e6dda97dbbb33b6ba",
+    "pyotf/_version.py": "7be1f37403ee2a8c77d4cbc619461d6ffb102d3982e7377be4c69d45e83931f6",
+    "pyotf/display.py": "0a276fa326d44bb3aa338ac03a7b5d459036fb719b315863e9b096bfa8b50e58",
+    "pyotf/labview.py": "d5fbd9b4a9395413001075ee2bcb69bdb2458a1f619d6c4d68889ef52a24d13d",
+    "pyotf/microscope.py": "eda46da70e6ccacd15107ee8d9577d4bfcd3a92c5db4f2edaa6a1c9d701f476f",
+    "pyotf/otf.py": "569cdbf22262ac3a044a137f3509f8ccb765a78a5f162a80bd75707ce0cb5884",
+    "pyotf/phaseretrieval.py": "4a594c810d7b0c767925a8cbe8a3796f33c26b4dfe476a325b07bced78e2efc5",
+    "pyotf/utils.py": "36253f7fac9e87c37081b62dc7695a14a0511608f07a5322fd724699c650db1e",
+    "pyotf/zernike.py": "aaddae298a55ff19c161e0d158f89611a7734dddf4a54b530b18552915cf65b2"
+  },
+  "archive_transformations": {
+    "pyotf/_version.py": "Git export-subst expands refnames, commit hash and date; archived bytes are intentionally distinct from the tracked blob."
+  },
+  "environment": {
+    "ImageIO": "2.38.0",
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "dphtools": "0.0.5",
+    "fonttools": "4.66.1",
+    "kiwisolver": "1.5.1",
+    "lazy-loader": "0.6",
+    "matplotlib": "3.11.2",
+    "networkx": "3.7",
+    "numpy": "2.5.3",
+    "packaging": "26.3",
+    "pandas": "3.0.6",
+    "pillow": "12.3.0",
+    "pyparsing": "3.3.3",
+    "python-dateutil": "2.9.0.post0",
+    "scikit-image": "0.26.0",
+    "scipy": "1.18.1",
+    "six": "1.17.0",
+    "tifffile": "2026.9.20"
+  },
+  "simulation_parameters": {
+    "wl": 520.0,
+    "na": 1.2,
+    "ni": 1.33,
+    "res": 40.0,
+    "size": 257,
+    "zres": 40.0,
+    "zsize": 1,
+    "zrange": [
+      0.0
+    ],
+    "vec_corr": "total",
+    "condition": "sine"
+  },
+  "length_unit": "nm in Pyotf; um for displayed spatial/frequency coordinates",
+  "focal_plane_index": 0,
+  "origin_yx": [
+    128,
+    128
+  ],
+  "pixel_size_um": [
+    0.04,
+    0.04
+  ],
+  "raw_psf_shape_yx": [
+    257,
+    257
+  ],
+  "raw_psf_sum": 0.07459011740074398,
+  "raw_psf_min": 6.199181334874953e-10,
+  "raw_psf_max": 0.0014808791987563161,
+  "normalized_sum": 1.0,
+  "otf_dc": [
+    0.9999999999999998,
+    1.1796119636642288e-16
+  ],
+  "otf_max_abs": 0.9999999999999998,
+  "otf_max_abs_imag": 4.568287023546654e-16,
+  "analytic_cross_check_max_abs": 1.1102230246251565e-16,
+  "artifacts_sha256": {
+    "otf-calibration-fixtures-v1.json": "ba2dcd790738cf950b184995e1c12935266ddaa1738c9f874b46a6dd442c9dcf",
+    "otf-calibration-intake-preview.png": "e4f48326ffeff21ce099654eeeecd0c3ce8cc677a125cb3cc1a5d9bf20adeaf4",
+    "calibration-intake-arrays.npz": "ee8368dbc288824cf11f6d2116ddc01e689115283073ea9685a7f648af44ad0a"
+  },
+  "generator_sha256": "a5ea55dd9310021c447d1eef80b517484f50a7c766bf3b659f55449e43ae6021",
+  "scope_limits": [
+    "No SIMrecon calibration operation exists.",
+    "No experimental calibration or optical convergence claim.",
+    "No pixel integration model.",
+    "Pyotf is not a SIMrecon dependency.",
+    "Expected fixtures are independently defined mathematical references, not an A/B checkpoint."
+  ]
+}
