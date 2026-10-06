@@ -26,6 +26,17 @@ class PhaseComponents:
     c1: npt.NDArray[np.complex128]
 
 
+def _as_finite_float64(
+    array: npt.NDArray[np.generic], *, error_code: str, label: str
+) -> npt.NDArray[np.float64]:
+    """Copy a validated real array into owned finite float64 storage."""
+    with np.errstate(all="ignore"):
+        values = array.astype(np.float64, order="C", copy=True)
+        if not (np.isfinite(array).all() & np.isfinite(values).all()):
+            raise SimreconError(error_code, f"source and converted {label} must be finite")
+    return values
+
+
 def separate_phases(
     images: npt.NDArray[np.generic], *, phases_rad: npt.NDArray[np.generic]
 ) -> PhaseComponents:
@@ -86,17 +97,9 @@ def separate_phases(
 
     # Conversion, subnormal quantization and final overflow have explicit
     # outcomes, independent of the caller's warning and floating-error modes.
+    values = _as_finite_float64(images, error_code="nonfinite_phase_images", label="images")
+    angles = _as_finite_float64(phases_rad, error_code="nonfinite_phase_angles", label="phases")
     with np.errstate(all="ignore"):
-        values = images.astype(np.float64, order="C", copy=True)
-        angles = phases_rad.astype(np.float64, copy=True)
-        if not (np.isfinite(images).all() & np.isfinite(values).all()):
-            raise SimreconError(
-                "nonfinite_phase_images", "source and converted images must be finite"
-            )
-        if not (np.isfinite(phases_rad).all() & np.isfinite(angles).all()):
-            raise SimreconError(
-                "nonfinite_phase_angles", "source and converted phases must be finite"
-            )
         h = np.column_stack((np.ones(angles.size), np.cos(angles), np.sin(angles)))
         try:
             u, singular, vh = np.linalg.svd(h, full_matrices=False)

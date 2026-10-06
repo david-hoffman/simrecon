@@ -124,7 +124,8 @@ module paths and environment inputs are recorded locally.
 | Frozen fixture | `519a41115bb05ba17f369ebe77466b567c08a9417db70be17043e9128b25485b` |
 | Frozen tests | `becb7c1d737e1fb4ea69dc9a2db11e606c78b178c74f5692543f4d04a4a09f99` |
 | Approved contract | `af8b0bc503a2c6d73ed54d0cd21083ded11e26007a32b1fd320d11254018562d` |
-| Candidate _phase.py | `92ff9728f0362cd37cadd130da0ebd02325d10cf2ff365095a1e6e2a86f539a4` |
+| Original rendered _phase.py | `92ff9728f0362cd37cadd130da0ebd02325d10cf2ff365095a1e6e2a86f539a4` |
+| Current _phase.py after private helper extraction | `c5bd012e554d781b11a4f439b84099f3e598e080dbf121aed8103d29cfa9e025` |
 | Local renderer C-render-comparison.py | `0804275f30ca48b8631bf3d329f192449f8ba7942619b0452565feaeef473b9a` |
 | PNG | `464247a7de1211ac17ceee85517dcea8971bff4fbc067359434eaf542373fba1` |
 | Local array archive C-comparison-arrays.npz | `7bd0536bfa208fc66dce728f39f64e47475f5562e5282556c61cca40192ea18e` |
@@ -157,8 +158,15 @@ The local renderer, `C-comparison-arrays.npz` and
 They are evidence, not shipped runtime or a plotting dependency, and may be
 absent in a clean clone. The frozen fixture, stored equations, API and recorded
 renderer identify the comparison. C viewed the real PNG and checked all panels,
-labels, sign conventions and shared scales. Independent D correspondence
-review remains pending.
+labels, sign conventions and shared scales. The original rendering received independent D correspondence
+acceptance. After extracting the private float64 conversion helper, a new
+public-API call reproduced all 15 archived fixture, output, fitted, residual
+and error arrays bitwise on the recorded local environment. Their hashes in
+the table above and the PNG bytes are unchanged. The separate local
+`comparison-reuse.json` records the current source hash and this new check;
+its SHA256 is `f584611e5307fddd76e61ab7c95bb65fe390c3d9f8e8a0ca02d4ee796cfc5c07`.
+This binds the displayed data to the refactored API without rerendering.
+Fresh bounded review and the new exact full gate remain external evidence.
 
 Final candidate commit, exact canonical `make verify` results, fresh D verdict
 and configured continuous integration (CI) results belong outside these tracked
