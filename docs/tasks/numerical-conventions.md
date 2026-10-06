@@ -2,6 +2,8 @@
 
 **Version 1.0. Proposal 2, owner-approved October 5, 2026; figure-capture scope removed by the owner the same day.** The sole first-milestone Current state and actual approval record are in [the slice plan](numerical-foundations-plan.md#current-state).
 
+NF01 completed the version-1 conventions. The later [version-2 amendment draft](../contracts/known-phase-separation-v2.md) changes the intended NF02 phase interface/model and dtype boundary; this historical NF01 scope is not a restriction on that amendment.
+
 ## Contract
 
 - Slice plan/ID: [NUMERICAL-FOUNDATIONS](numerical-foundations-plan.md), NF01. Prerequisite: existing approved functional architecture and MRC conversion. Intended baseline is identified in the plan.

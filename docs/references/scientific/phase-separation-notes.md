@@ -1,8 +1,18 @@
 # Phase separation: source notes and independent expectations
 
-**Version 1.0.** This supports the owner-approved [first numerical contract](../../contracts/known-phase-separation-v1.md). Execution and approvals belong to the [single milestone Current state](../../tasks/numerical-foundations-plan.md#current-state).
+**Version 2 amendment Proposal 3, owner-approved October 5, 2026; version-1 derivation retained below.** This supports the owner-approved [first numerical contract](../../contracts/known-phase-separation-v1.md). Execution and approvals belong to the [single milestone Current state](../../tasks/numerical-foundations-plan.md#current-state).
 
 The [Gustafsson 2000 article](https://onlinelibrary.wiley.com/doi/10.1046/j.1365-2818.2000.00710.x) motivates separating three contributions using known illumination phases. Its acquisition section uses three exposures separated by 120 degrees for each orientation. Its processing section separates components before spatial Fourier transforms and subsequent reconstruction. These locators support the operation's physical motivation. They do not specify this project's API, output ownership, precision bound or complex-sign convention.
+
+## Proposed variable-phase conventions
+
+The [v2 public contract](../../contracts/known-phase-separation-v2.md) replaces the scalar-offset grid with one converted known angle per image. Its represented matrix is `H=[1, np.cos(phi), np.sin(phi)]`; the unweighted minimizer gives `dc=A`, `c1=(B-i*C)/2`. Full numerical rank supplies identifiability under its explicit cutoff. Unequal phases do not generally have zero cosine/sine sums, so the fitted `dc` is not generally the arithmetic image mean. More observations still fit three real coefficients; they introduce no higher-order output.
+
+The complex sign follows directly: `2*Re((B-i*C)/2 * exp(i*phi)) = B*cos(phi)+C*sin(phi)`. Set `K=H @ diag(1,2,-2)` and `z=(dc,Re(c1),Im(c1))`. The exact least-squares minimizer satisfies `K.T*(K*z-b)=0`. The proposed contract requires the returned vector, up to final subnormal quantization, to minimize a nearby problem with explicitly bounded perturbations of `K` and the observations. Its exact finite forward-error derivation uses the perturbed normal equations and the lower bound `sigma_min(K+E) >= sigma_min(K)-||E||_2`. Model-consistent data has first-order condition amplification; off-model fit residual adds a squared-condition term. If the perturbation budget reaches the smallest singular value, no coefficient-digit bound follows. Stationarity alone is supplemental, because its inverse-squared gain can permit large errors near deficiency. The chosen tolerance is a project proposal, not a universal LAPACK constant.
+
+Blind A independently authors stored-value expectations and justified observers; fresh B assesses them before implementation. Product output or another call to the selected least-squares solver supplies no oracle. The report uses a revised unequal-phase `N>3` fixture and actual recovered arrays, with stored-value and fit residuals explained separately. This original note supplies algebra, not a prewritten executable test or optical simulator.
+
+## Historical version-1 derivation and preview
 
 The approved operation uses phase indices `p=0,1,2`, `phi_p=phi_0+2*pi*p/3`, and coefficients `dc=sum(I_p)/3` and `c1=sum(I_p*exp(-i*phi_p))/3`. These are project-selected conventions. Expanding `cos(phi)` and `sin(phi)` into exponentials, and summing the three complex roots of unity, gives `dc=A` and `c1=(B-i*C)/2` for `I_p=A+B*cos(phi_p)+C*sin(phi_p)`. The inverse is `I_p=dc+2*Re(c1*exp(i*phi_p))`. No legacy output supplies these expectations.
 

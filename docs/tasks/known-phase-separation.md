@@ -1,8 +1,73 @@
-# NF02: separate three equally spaced known phases through the public array API
+# NF02: known-phase 2D separation and its explicit-angle amendment
 
-**Version 1.0. Proposal 2, owner-approved October 5, 2026.** The sole first-milestone Current state and actual approval record are in [the slice plan](numerical-foundations-plan.md#current-state).
+**Version 2 amendment Proposal 3, October 5, 2026; owner-approved October 5, 2026.** The owner approved the generalized direction and fresh-task handoff. The original Proposal 2 remains the historical version-1 approval; final v2 numerical policies/checkpoint authority are tracked in [the single milestone Current state](numerical-foundations-plan.md#current-state).
 
-## Contract
+## Active amendment
+
+The owner authorized [version 2 intake](../contracts/known-phase-separation-v2.md): variable `N >= 3`, an explicit `phases_rad` vector, unequal known phases, broader real integer/floating inputs and first-harmonic least-squares separation. Update existing [PR #5](https://github.com/david-hoffman/simrecon/pull/5) from a fresh coordinator task; do not open another implementation PR. Version 1 below remains the historical approved scope and charged checkpoint, not authority to reject inputs required by the amendment.
+
+Proposal 3 completes the remaining material policies in the v2 contract: explicit SVD rank cutoff with equality rejected and no extra condition/span restriction; independently checkable, scale-aware backward-error accuracy and its exact condition-sensitive forward-error consequence; stable vector/rank/solver/output errors, represented trigonometric matrix and computed-output range handling. Poor conditioning and the float64 range edge carry explicit limits. The owner explicitly approved the whole identified Proposal 3, its then-recorded scenario exception and execution window on October 5, 2026. These delivery defaults are historical and superseded by the accepted policy migration below.
+
+## Active amended execution and ownership
+
+- Route: high-risk numerical behavior/custom oracle. Fresh native blind A, fresh native blind B, restricted fresh native C and fresh native D. Coordinator controls launches; no author-history forks or reviewer history inheritance. Disable optional memory/delegation where supported. Report-only intake advisers are not blind roles or acceptance verdicts.
+- Public packet: approved v2 contract, the scenario table below, PROJECT's public environment/boundaries and selected role skill. Exclude this task's historical section, milestone Current state, coordinator handoff, runtime/history/coverage and prior lessons. A/B use source-free traceback/warning/subprocess diagnostics retaining category/message/location/status; unsupported channels or exposure stop blind work for routing.
+- A owns replacement `tests/test_phase_separation.py` and `tests/phase_separation_fixture.py`, including affected shared oracle/phantom/observers. Fresh B reviews every affected dependent, positive input and rejection, and decides which historical evidence survives. The v1 checkpoint cannot validate amended meaning by inference.
+- C owns only `src/simrecon/_phase.py`, additive exports if required in `src/simrecon/__init__.py`, `docs/usage/phase-separation.md`, `docs/reports/phase-separation-comparison.md` and `docs/figures/phase-separation-comparison.png`, after accepted exact checkpoint. C cannot alter frozen tests/fixtures, dependencies, infrastructure, workflows, discovery/coverage, instructions, policy or other interfaces. Temporary external plotting may render the actual evidence without a product dependency or persistent owned helper.
+- Intake owns this task, v2 contract, milestone plan and targeted `docs/references/scientific/phase-separation-notes.md` consistency/derivation notes. Historical v1 records remain historical. No MRC interface/error change, optical simulator, Pyotf integration, higher harmonic, estimator or reconstruction is included.
+- Role selection: `gpt-6.1-sol`/high for native A/B/C/D under existing project calibration; actual served-model attribution and missing metering remain unknown. No model experiment or lower-risk route is authorized.
+- Checks: cheap bounded interpreter/platform/lock/install/import preflight before dependent native work; reviewed public tests with source-free diagnostics; exact-candidate `make verify UV=/Users/davidhoffman/.local/bin/uv`, including 100% supported native statements/branches globally/per owned package and relevant subprocesses, wheel/import/audit; independent fresh D; push/update existing PR #5; observe complete configured Ubuntu/macOS CI and retain exact receipt/artifact/version evidence. Known failures or coverage gaps block submission. Prepare the evidence pointer before final verification; final own commit/check identities stay outside tracked candidate bytes.
+- Publication: use the existing worktree/branch/PR #5. The human request authorizes routine named checks/launches, diagnosed in-scope corrections and fresh required reviews without repeated quota approvals. No new implementation PR, merge or release is authorized.
+
+### Execution accounting and policy migration
+
+The original v1 record was 2/2 B reviews, CLOSED by ACCEPT, and 0/1 C corrections. The amendment's original two-review window spent B1 NONACCEPT and B2 INCOMPLETE; the owner approved the extra tooling-completion review and B3 returned ACCEPT. These denominators record the superseded policy, not current limits. Preserve the historical 14-scenario/133-case checkpoint, six native invocations, test defect, tooling attempts and measured spending.
+
+The owner explicitly requested removal of delivery-system allowances and repeated approvals. The independently accepted [policy migration](delivery-without-allowances.md) removes default scenario/review/repair caps and applies to current NF02. Named ownership, blind fresh checkpoint review, frozen C tests, fresh D and the full exact-candidate gate remain. Diagnosed in-scope corrections and fresh reviews continue without quota extensions; test defects route to unexposed A/fresh B, and missing material scientific decisions return to intake. Recurring failures require diagnosis, not an uncontrolled automatic loop.
+
+The owner's no-time-cap instruction within NF02 remains. Native invocations retain a bounded 1800 s terminal timeout; timeout is incomplete evidence and charged work. Cheap checks and terminal interactions use bounded waits. No daemon, gate optimization, fallback/helper expansion or unrelated environment-repair scope is introduced. Complete cost/coordinator/owner-wait metrics remain unknown where unmeasured.
+
+## Approved version-2 scenario inventory
+
+**29 approved scenarios for this single operation.** The original size exception is historical; current policy has no default scenario cap. Each row identifies a distinct interpretation, guarantee, rejection or evidence boundary. Endian, storage layout, individual dtypes and different values under the same meaning are coverage examples. A supplies test/requirement dependencies and independent expectation/tolerance evidence; B independently assesses them. No product-derived expectations or manufactured red are permitted.
+
+| ID | Distinct decision and observable outcome | Expected-result source / equivalent examples |
+|---|---|---|
+| V01 | Variable `N >= 3`, explicit identifiable unequal phases recover the declared first-harmonic coefficients/sign/normalization under the accuracy policy. | Represented `H`/`K` model; asymmetric nonsquare planes, signed intensities, three and more observations. |
+| V02 | Constant observations recover the constant and zero first harmonic within accuracy. | First column of `H`; zero/nonzero, cancellation and zero-residual forward-error specialization. |
+| V03 | Off-model `N > 3` observations produce the unique unweighted least-squares projection; fitted `dc` need not be the image mean and residual need not vanish. | Least-squares objective/normal-equation invariant; independent stored-value oracle. |
+| V04 | Equally spaced cycle samples agree with the historical ideal orthogonal formulas within represented-value/roundoff accuracy. | Analytic orthogonality; no bitwise agreement promise. |
+| V05 | Joint image/phase permutation preserves the mathematical fit and accepted results within accuracy; rank-ambiguous boundary classifications may vary. | Row-permutation invariance. |
+| V06 | Finite converted angles outside a principal interval are valid, with direct NumPy trig interpretation; represented periodic shifts are not new independent observations or exact-bit guarantees. | Represented-matrix policy; negative/large angles, periodic deficient counterpart. |
+| V07 | Exactly promotable image/angle values retain their float64 values. | Conversion semantics; float16/32 and through-32-bit real integers, byte order/read-only/strided arrays. |
+| V08 | Allowed lossy rounding/underflow defines the converted problem rather than unquantized truth. | Conversion semantics; int64/uint64 and platform-available wider floats. |
+| V09 | Non-plain-ndarray images reject without coercion/subclass interpretation. | `invalid_phase_images`; list/scalar/subclass, paired plain arrays. |
+| V10 | Unsupported image dtype rejects. | `invalid_phase_dtype`; bool/complex/object/string/datetime/structured versus real integer/floating. |
+| V11 | Invalid image rank/count/spatial shape rejects. | `invalid_phase_shape`; fewer than three, empty planes, wrong rank. |
+| V12 | Nonfinite source or converted images reject. | `nonfinite_phase_images`; NaN/infinities and available wider-float conversion overflow. |
+| V13 | Non-plain-ndarray phase vectors reject. | `invalid_phase_angles`; list/scalar/subclass versus plain vector. |
+| V14 | Unsupported phase dtype rejects. | `invalid_phase_angles_dtype`; paired valid real dtypes. |
+| V15 | Invalid phase rank/length, including image-count mismatch, rejects. | `invalid_phase_angles_shape`; paired valid `(N,)`. |
+| V16 | Nonfinite source or converted phases reject. | `nonfinite_phase_angles`; source nonfinite/conversion overflow, finite positive counterpart. |
+| V17 | Numerical rank below three rejects with the explicit strict cutoff; accepted full-rank sets receive no extra span/condition restriction. | `rank_deficient_phases`; duplicate/periodic/clustered examples and supported full-rank counterparts. |
+| V18 | Nonconvergent SVD/solve or unusable nonfinite factors raise the designated solver error. | `phase_solver_failure`; approved dependency failure stimulation only, no runtime-source oracle. |
+| V19 | Nonfinite final returned coordinates raise the designated range error for the whole call, with explicit range-edge uncertainty and no clipping/partial result. | `unrepresentable_phase_components`; returned lanes, not `B/C` or complex magnitude. |
+| V20 | Safely representable near-range/subnormal outputs satisfy accuracy without avoidable intermediate overflow. | Scale-aware backward/forward-error policy; safe interior cases and halving before restoration. |
+| V21 | Outputs have `(y,x)`, native-endian float64/complex128 and C-contiguous representation. | Public output representation; nonsquare/singleton/strided examples. |
+| V22 | Returned arrays are mutable, independently allocated and mutually/input independent. | Ownership contract; mutations cannot affect other storage. |
+| V23 | Both inputs retain data/shape/dtype/writeability on success and rejection. | Functional contract; read-only and strided examples. |
+| V24 | `PhaseComponents` exposes the two attributes; direct record construction adds no validating numerical API or frozen arrays. | Preserved record boundary; do not infer a new attribute-reassignment guarantee. |
+| V25 | Missing/extra/positional keyword-only arguments and removed scalar-offset keyword retain ordinary argument-binding `TypeError`. | Required signature; no alias/default. |
+| V26 | Allocation failure retains `MemoryError`. | Resource boundary; no generic exception masking. |
+| V27 | Existing MRC conversion interfaces/errors remain unchanged. | Approved MRC contract and complete existing suite. |
+| V28 | Actual unequal-phase `N > 3` comparison shows all inputs/residuals, independent expected and actual signed outputs/errors, explicit shared scales and provenance. | Owner human-check request; reviewed analytic fixture, actual public API, D image/correspondence check. |
+| V29 | Handled conversion/underflow/range outcomes respect and restore caller NumPy floating-error mode and do not leak arithmetic warnings. | Declared diagnostic boundary; default/raising modes, paired valid calls. |
+
+Usage docs must explain the fitted constant, off-model residual, ordinary conversion, condition-sensitive accuracy, explicit errors and range limits. No screenshot oracle, reconstruction-quality promise or new performance requirement is added.
+
+## Historical version-1 contract
+
+This section records version-1 behavior and delivery defaults. Its quotas and approval procedures do not govern ongoing NF02 after the accepted policy migration.
 
 - Slice/plan: NF02 in [NUMERICAL-FOUNDATIONS](numerical-foundations-plan.md). Prerequisite: owner-approved, completed and integrated NF01 with its public contract and independent oracle documentation. Paper figure capture is outside scope and is not a prerequisite. Coordinator identifies the actual integrated baseline before fresh A; another worktree's draft is insufficient.
 - Public references: [PROJECT](../PROJECT.md), [approved MRC boundary](../contracts/mrc-conversion-v1.md) for preservation, and [approved separation contract](../contracts/known-phase-separation-v1.md) for all new behavior.
@@ -16,9 +81,9 @@
 - Budget/allowances: owner's no-time-cap answer covers this first milestone; report spending/unknown metering. Two B reviews in the initial window; one C repair after initial C. No reset for new sessions, splits or renames. Additional repairs or material test/meaning changes need the established authorization route.
 - Completion: approved public contract and size exception; accepted reviewed checkpoint; passing exact numerical candidate/full gate; correctly labelled human report from that candidate; fresh D acceptance; normal implementation PR. Owner merge/release actions remain explicit.
 
-## Approved scenarios
+## Historical version-1 approved scenarios
 
-**14-scenario coherent-size exception approved with Proposal 2.** Each row identifies a distinct success, conversion, representation, ownership, rejection, boundary or evidence-artifact outcome. Additional values under the same meaning are coverage examples; A/B must not silently add new contractual decisions. All scenarios below are approved; no A-authored/B-reviewed tests exist yet. The analytic intake preview is explicitly requested and is not a reviewed test fixture.
+**14-scenario coherent-size exception approved with Proposal 2.** Each row identifies a distinct success, conversion, representation, ownership, rejection, boundary or evidence-artifact outcome. Additional values under the same meaning are coverage examples; A/B must not silently add new contractual decisions. All scenarios below were approved for version 1; amended meanings require the finalized version-2 inventory. At Proposal 2 approval no A-authored/B-reviewed tests existed; the current accepted checkpoint is identified in the milestone Current state. The analytic intake preview is explicitly requested and is not a reviewed test fixture.
 
 | ID | Distinct input/context and observable outcome | Expected-result source | Equivalent examples / required review |
 |---|---|---|---|

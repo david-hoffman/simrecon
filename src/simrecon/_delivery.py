@@ -38,9 +38,12 @@ def main() -> int:
     else:
         command.append("--approve-for-me")
         prompt += (
-            "Authorize only the bounded documentation patch under the doctor procedure. "
-            "Present the exact diff and evidence, then wait for explicit owner approval "
-            "before committing, pushing, or merging."
+            "Perform only the human-requested bounded documentation patch under the doctor "
+            "procedure. Record concrete scope and present the exact diff and evidence. "
+            "Continue through diagnosed in-scope corrections and fresh required reviews "
+            "without repeated document approval. Require fresh independent policy acceptance "
+            "before activation and full exact-candidate verification before PR submission. "
+            "Merge or release requires an explicit human instruction."
         )
     command.append("-")
     try:
