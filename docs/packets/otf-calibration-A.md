@@ -17,7 +17,7 @@
 
 ## Exact execution baseline and diagnostics
 
-The integrated prerequisite is `a44e9d0c67403d5a001340b65ba04ea2f559256a`, tree `73ef9bba76d9ae4be2d83d8032bc36442b70ace3`. The coordinator added only this public packet, task record and the explicit `(oy+1, ox)` clarification preserving existing meaning before launch. Do not read the task record. Worktree root is `/Users/davidhoffman/.codex/worktrees/otf-calibration/simrecon`; use it for every check. Do not read Git diffs/history or source to discover interfaces.
+The integrated prerequisite is `a44e9d0c67403d5a001340b65ba04ea2f559256a`, tree `73ef9bba76d9ae4be2d83d8032bc36442b70ace3`. The coordinator added only this public packet, task record and the explicit `(oy+1, ox)` clarification preserving existing meaning before launch. Do not read the task record. Worktree root is `the coordinator-supplied worktree`; use it for every check. Do not read Git diffs/history or source to discover interfaces.
 
 Observed preflight: PASS; Python 3.13.12 in `.venv`, uv 0.12.19; NumPy 2.5.3, SciPy 1.18.1, h5py 3.16.0; macOS 27 arm64. Before probes independently confirm interpreter/platform/longdouble capabilities through the approved invocation, without reading implementation. Cache setup is already complete; use `.venv/bin` directly for narrow commands.
 

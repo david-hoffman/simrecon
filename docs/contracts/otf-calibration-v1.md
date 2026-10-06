@@ -1,6 +1,6 @@
 # OTF-CALIBRATION v1: sampled 2D intensity PSF preparation
 
-**Version 1.0.** Selected intake contract, October 6, 2026. The owner's “Do it” follows the recommendation to start the optical-calibration contract and independent synthetic fixtures. This document defines that operation for later implementation; `prepare_otf` and `Otf2D` are not implemented. It creates no extra document-approval checkpoint.
+**Version 1.1.** Approved numerical contract, October 6, 2026. The owner requested implementation of `prepare_otf` and `Otf2D` after the calibration foundations in PR #6 integrated. This document defines that authorized operation; it creates no extra document-approval checkpoint. K01–K29 and their numerical meaning remain unchanged.
 
 ## Scientific scope and public interface
 
