@@ -265,7 +265,8 @@ def test_v10_reject_image_dtype(dtype: Any) -> None:
     "shape", [(7,), (7, 3), (7, 1, 2, 3), (2, 2, 3), (0, 2, 3), (7, 0, 3), (7, 2, 0), ()]
 )
 def test_v11_reject_image_shapes(shape: tuple[int, ...]) -> None:
-    domain(np.zeros(shape), phases(), "invalid_phase_shape")
+    angles = np.arange(shape[0], dtype=np.float64) if len(shape) == 3 and shape[0] < 3 else phases()
+    domain(np.zeros(shape), angles, "invalid_phase_shape")
 
 
 @pytest.mark.parametrize("value", [np.nan, np.inf, -np.inf])
