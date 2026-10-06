@@ -1,7 +1,6 @@
-"""Separate three known, equally spaced phases at the acquired spatial sampling."""
+"""Fit the first harmonic at explicitly supplied image phases."""
 
 from dataclasses import dataclass
-from math import cos, isfinite, pi, sin, sqrt
 
 import numpy as np
 import numpy.typing as npt
@@ -16,7 +15,8 @@ class PhaseComponents:
     Attributes
     ----------
     dc : numpy.ndarray
-        Zero-order coefficient, a native C-contiguous float64 array of shape (y, x).
+        Fitted constant coefficient, a native C-contiguous float64 array of
+        shape (y, x). It is not generally the arithmetic image mean.
     c1 : numpy.ndarray
         Coefficient of exp(+i*phase), a native C-contiguous complex128 array of
         shape (y, x). The negative-order coefficient is its complex conjugate.
@@ -27,88 +27,101 @@ class PhaseComponents:
 
 
 def separate_phases(
-    images: npt.NDArray[np.generic], *, phase_offset_rad: int | float | np.integer | np.floating
+    images: npt.NDArray[np.generic], *, phases_rad: npt.NDArray[np.generic]
 ) -> PhaseComponents:
-    """Separate three real images with explicit phase offset and 2*pi/3 spacing.
+    """Fit an unweighted first harmonic to three or more real phase images.
 
     Parameters
     ----------
     images : numpy.ndarray
-        Plain array of shape (3, y, x), with positive spatial dimensions and
-        finite uint16, float32 or float64 values. Either byte order and strided
-        or read-only storage are accepted. Spatial axes retain their order.
-    phase_offset_rad : int or float or numpy.integer or numpy.floating
-        Required keyword-only first phase in radians. Its float64 conversion
-        must be finite and within [-pi, pi]. Booleans are rejected.
+        Plain real integer or floating array of shape (N, y, x), with N >= 3
+        and positive spatial dimensions. Source and converted float64 values
+        must be finite. Either byte order and strided or read-only storage work.
+    phases_rad : numpy.ndarray
+        Required keyword-only plain real integer or floating array of shape
+        (N,), giving each image's known phase in radians. Source and converted
+        float64 values must be finite. Angles are evaluated without reduction.
 
     Returns
     -------
     PhaseComponents
-        Independently owned mutable dc and c1 arrays in the input intensity
-        units. Separation uses a negative exponential and divides by three.
+        Independently owned mutable dc and c1 arrays in input intensity units,
+        at the acquired sampling. For I=A+B*cos(phi)+C*sin(phi), dc=A and
+        c1=(B-i*C)/2. Off-model observations can have nonzero fit residuals.
 
     Raises
     ------
     SimreconError
-        If the image object, dtype, shape, finite values or offset violates
-        the public phase-separation contract. The input is never modified.
+        If inputs violate the domain, the represented separation matrix lacks
+        numerical rank three, the numerical solver fails, or final coefficient
+        coordinates cannot be stored as finite float64 values.
 
     Notes
     -----
-    This is phase separation at the acquired sampling, with no modulation
-    correction or spatial reconstruction. Per-pixel power-of-two scaling
-    prevents intermediate overflow without a data-dependent intensity ceiling.
+    Float64 singular value decomposition supplies both the numerical rank and
+    the least-squares solve. Singular values must strictly exceed eps*N*s_max;
+    no additional conditioning cutoff or regularization is applied. Rank does
+    not guarantee useful coefficient digits near deficiency. Per-pixel binary
+    scaling protects the solve; harmonic lanes are halved before restoring
+    scale. Inputs and the caller's floating-error policy are preserved.
     """
     if type(images) is not np.ndarray:
         raise SimreconError("invalid_phase_images", "images must be a plain NumPy ndarray")
-    if images.dtype.newbyteorder("=") not in (
-        np.dtype(np.uint16),
-        np.dtype(np.float32),
-        np.dtype(np.float64),
-    ):
+    if images.dtype.kind not in "iuf":
         raise SimreconError(
-            "invalid_phase_dtype", "images must have uint16, float32 or float64 dtype"
+            "invalid_phase_dtype", "images must have real integer or floating dtype"
         )
-    if images.ndim != 3 or images.shape[0] != 3 or 0 in images.shape[1:]:
+    if images.ndim != 3 or images.shape[0] < 3 or 0 in images.shape[1:]:
         raise SimreconError(
-            "invalid_phase_shape", "images must have shape (3, positive_y, positive_x)"
+            "invalid_phase_shape", "images must have shape (N >= 3, positive_y, positive_x)"
         )
-    if not np.all(np.isfinite(images)):
-        raise SimreconError("nonfinite_phase_images", "images must contain only finite values")
-    if isinstance(phase_offset_rad, (bool, np.bool_)) or not isinstance(
-        phase_offset_rad, (int, float, np.integer, np.floating)
-    ):
-        raise SimreconError("invalid_phase_offset", "phase offset must be a real nonboolean scalar")
-    try:
-        offset = float(phase_offset_rad)
-    except OverflowError as error:
+    if type(phases_rad) is not np.ndarray:
+        raise SimreconError("invalid_phase_angles", "phases must be a plain NumPy ndarray")
+    if phases_rad.dtype.kind not in "iuf":
         raise SimreconError(
-            "invalid_phase_offset", "phase offset must convert to finite float64"
-        ) from error
-    if not isfinite(offset) or not -pi <= offset <= pi:
-        raise SimreconError(
-            "invalid_phase_offset", "phase offset must be finite and within [-pi, pi]"
+            "invalid_phase_angles_dtype", "phases must have real integer or floating dtype"
         )
+    if phases_rad.shape != (images.shape[0],):
+        raise SimreconError("invalid_phase_angles_shape", "phases must have shape (N,)")
 
-    values = np.array(images, dtype=np.float64, order="C", copy=True)
-    # Scaling each pixel separately also preserves subnormal-only pixels beside
-    # bright pixels. Zero has exponent zero; no division by its magnitude occurs.
-    _, exponent = np.frexp(np.max(np.abs(values), axis=0))
-    with np.errstate(under="ignore"):
-        first, second, third = np.ldexp(values, -exponent)
-        mean = (first + second + third) / 3
-        # The exact mean is inside the input range. Clamp rounding overshoot
-        # before restoring the exponent, including a constant at float64 max.
-        mean = np.clip(
-            mean,
-            np.minimum.reduce((first, second, third)),
-            np.maximum.reduce((first, second, third)),
-        )
-        dc = np.ldexp(mean, exponent)
-        real = (2 * first - second - third) / 6
-        imag = (third - second) * (sqrt(3) / 6)
-        cosine, sine = cos(offset), sin(offset)
-        c1 = np.empty(dc.shape, dtype=np.complex128)
-        c1.real = np.ldexp(real * cosine + imag * sine, exponent)
-        c1.imag = np.ldexp(imag * cosine - real * sine, exponent)
+    # Conversion, subnormal quantization and final overflow have explicit
+    # outcomes, independent of the caller's warning and floating-error modes.
+    with np.errstate(all="ignore"):
+        values = images.astype(np.float64, order="C", copy=True)
+        angles = phases_rad.astype(np.float64, copy=True)
+        if not (np.isfinite(images).all() & np.isfinite(values).all()):
+            raise SimreconError(
+                "nonfinite_phase_images", "source and converted images must be finite"
+            )
+        if not (np.isfinite(phases_rad).all() & np.isfinite(angles).all()):
+            raise SimreconError(
+                "nonfinite_phase_angles", "source and converted phases must be finite"
+            )
+        h = np.column_stack((np.ones(angles.size), np.cos(angles), np.sin(angles)))
+        try:
+            u, singular, vh = np.linalg.svd(h, full_matrices=False)
+        except np.linalg.LinAlgError as error:
+            raise SimreconError("phase_solver_failure", "phase SVD did not converge") from error
+        if not (np.isfinite(u).all() & np.isfinite(singular).all() & np.isfinite(vh).all()):
+            raise SimreconError("phase_solver_failure", "phase SVD returned nonfinite factors")
+        cutoff = np.finfo(np.float64).eps * angles.size * singular[0]
+        if np.count_nonzero(singular > cutoff) < 3:
+            raise SimreconError(
+                "rank_deficient_phases", "phase matrix has numerical rank below three"
+            )
+
+        # Each pixel gets its own power-of-two scale, including subnormal-only
+        # pixels beside bright pixels. frexp assigns exponent zero to zero.
+        _, exponent = np.frexp(np.max(np.abs(values), axis=0))
+        scaled = np.ldexp(values, -exponent).reshape(angles.size, -1)
+        coefficients = vh.T @ ((u.T @ scaled) / singular[:, None])
+        shape = values.shape[1:]
+        dc = np.array(np.ldexp(coefficients[0].reshape(shape), exponent), order="C", copy=True)
+        c1 = np.empty(shape, dtype=np.complex128)
+        c1.real = np.ldexp((coefficients[1] * 0.5).reshape(shape), exponent)
+        c1.imag = np.ldexp((coefficients[2] * -0.5).reshape(shape), exponent)
+        if not (np.isfinite(dc).all() & np.isfinite(c1).all()):
+            raise SimreconError(
+                "unrepresentable_phase_components", "final phase coefficient coordinates overflow"
+            )
     return PhaseComponents(dc, c1)
