@@ -1,16 +1,71 @@
 # NF02: known-phase 2D separation and its explicit-angle amendment
 
-**Version 2 amendment intake, October 5, 2026.** The owner approved the generalized direction and fresh-task handoff. The original Proposal 2 remains the historical version-1 approval; final v2 numerical policies/checkpoint authority are tracked in [the single milestone Current state](numerical-foundations-plan.md#current-state).
+**Version 2 amendment Proposal 3, October 5, 2026; owner-approved October 5, 2026.** The owner approved the generalized direction and fresh-task handoff. The original Proposal 2 remains the historical version-1 approval; final v2 numerical policies/checkpoint authority are tracked in [the single milestone Current state](numerical-foundations-plan.md#current-state).
 
 ## Active amendment
 
 The owner authorized [version 2 intake](../contracts/known-phase-separation-v2.md): variable `N >= 3`, an explicit `phases_rad` vector, unequal known phases, broader real integer/floating inputs and first-harmonic least-squares separation. Update existing [PR #5](https://github.com/david-hoffman/simrecon/pull/5) from a fresh coordinator task; do not open another implementation PR. Version 1 below remains the historical approved scope and charged checkpoint, not authority to reject inputs required by the amendment.
 
-Complete numerical-rank/conditioning, accuracy and operation-time representation/failure policy before amended tests. The new scenario inventory and any coherent-size exception must identify distinct new outcomes rather than automatically reusing the old 14-scenario approval. Existing public signature/shape/dtype/offset/range/oracle assumptions and report need corresponding replacement; unchanged MRC behavior remains protected.
+Proposal 3 completes the remaining material policies in the v2 contract: explicit SVD rank cutoff with equality rejected and no extra condition/span restriction; independently checkable, scale-aware backward-error accuracy and its exact condition-sensitive forward-error consequence; stable vector/rank/solver/output errors, represented trigonometric matrix and computed-output range handling. Poor conditioning and the float64 range edge carry explicit limits. The owner explicitly approved the whole identified Proposal 3, its scenario exception and execution window on October 5, 2026.
 
-A's proposed amendment ownership is `tests/test_phase_separation.py` and `tests/phase_separation_fixture.py`, including their changed shared oracle/phantom/observers. This is a new meaning/checkpoint, not a C test repair. C's proposed ownership remains `src/simrecon/_phase.py`, additive exports if required in `src/simrecon/__init__.py`, `docs/usage/phase-separation.md`, `docs/reports/phase-separation-comparison.md` and `docs/figures/phase-separation-comparison.png`. Intake owns this task, the v2 public contract, the milestone plan and targeted independent-convention notes. No dependency, infrastructure, workflow, coverage, instruction or policy changes are included.
+## Proposed amended execution and ownership
 
-Preserve initial A/B **2/2 used, closed by ACCEPT**, C corrections **0/1 used**, all six native invocations and prior spending. A later review window must be explicitly recorded with its amendment reason and allowance before launches; neither the new app task nor the scope label resets counters. The fresh coordinator resolves any needed extension under AGENTS.md and gives blind roles only approved public packets. The default exact-candidate full-local gate, fresh D and configured CI apply before updating PR #5.
+- Route: high-risk numerical behavior/custom oracle. Fresh native blind A, fresh native blind B, restricted fresh native C and fresh native D. Coordinator controls launches; no author-history forks or reviewer history inheritance. Disable optional memory/delegation where supported. Report-only intake advisers are not blind roles or acceptance verdicts.
+- Public packet: approved v2 contract, the scenario table below, PROJECT's public environment/boundaries and selected role skill. Exclude this task's historical section, milestone Current state, coordinator handoff, runtime/history/coverage and prior lessons. A/B use source-free traceback/warning/subprocess diagnostics retaining category/message/location/status; unsupported channels or exposure stop blind work for routing.
+- A owns replacement `tests/test_phase_separation.py` and `tests/phase_separation_fixture.py`, including affected shared oracle/phantom/observers. Fresh B reviews every affected dependent, positive input and rejection, and decides which historical evidence survives. The v1 checkpoint cannot validate amended meaning by inference.
+- C owns only `src/simrecon/_phase.py`, additive exports if required in `src/simrecon/__init__.py`, `docs/usage/phase-separation.md`, `docs/reports/phase-separation-comparison.md` and `docs/figures/phase-separation-comparison.png`, after accepted exact checkpoint. C cannot alter frozen tests/fixtures, dependencies, infrastructure, workflows, discovery/coverage, instructions, policy or other interfaces. Temporary external plotting may render the actual evidence without a product dependency or persistent owned helper.
+- Intake owns this task, v2 contract, milestone plan and targeted `docs/references/scientific/phase-separation-notes.md` consistency/derivation notes. Historical v1 records remain historical. No MRC interface/error change, optical simulator, Pyotf integration, higher harmonic, estimator or reconstruction is included.
+- Role selection: `gpt-6.1-sol`/high for native A/B/C/D under existing project calibration; actual served-model attribution and missing metering remain unknown. No model experiment or lower-risk route is authorized.
+- Checks: cheap bounded interpreter/platform/lock/install/import preflight before dependent native work; reviewed public tests with source-free diagnostics; exact-candidate `make verify UV=/Users/davidhoffman/.local/bin/uv`, including 100% supported native statements/branches globally/per owned package and relevant subprocesses, wheel/import/audit; independent fresh D; push/update existing PR #5; observe complete configured Ubuntu/macOS CI and retain exact receipt/artifact/version evidence. Known failures or coverage gaps block submission. Prepare the evidence pointer before final verification; final own commit/check identities stay outside tracked candidate bytes.
+- Publication: use the existing worktree/branch/PR #5. Approval includes routine named checks/launches and in-scope repairs within the allowance below. No new implementation PR, merge or release is authorized.
+
+### Proposed amendment window, conserving prior charges
+
+The initial v1 A/B window remains **2/2 used, CLOSED by ACCEPT**. Prior C corrections remain **0/1 used, one remaining**. Retain the 14-scenario/133-case checkpoint, six completed native invocations, corrected test defect, tooling attempts and all measured spending; none is reset by Proposal 3 or the fresh coordinator task.
+
+For this changed-meaning checkpoint, propose one explicitly new amendment A/B window with **at most two fresh B reviews**, closing on acceptance. A may correct the amended tests in its own unexposed session between those reviews. Two nonacceptances require diagnosis/documented resolution and explicit extension before further rewriting. This is new-window authority requested for the changed contract, not retrospective renewal of the closed v1 window.
+
+Propose one fresh C amendment implementation after accepted tests, using the **existing one remaining C corrective cycle** for any later in-scope repair. No new C correction is allocated. Any test defect routes to unexposed A/fresh B under a separately recorded correction authority/window when the current window is closed; any new scientific meaning returns to intake. Fresh D reviews each exact passing candidate after authorized work; no self-reviewed fixes.
+
+The owner's existing no-time-cap budget within NF02 is retained. Native invocations use a bounded 1800 s maximum wait each, without automatic retries; timeout is incomplete evidence and charged work. Cheap checks and routine terminal interactions also use bounded waits. No daemon, repair loop, gate optimization, fallback/helper expansion or blanket environment-repair authority is introduced. Complete response/cost/coordinator/owner-wait metrics remain unknown where unmeasured.
+
+## Proposed version-2 scenario inventory
+
+**29-scenario coherent-size exception owner-approved for this single operation.** Each row identifies a distinct interpretation, guarantee, rejection or evidence boundary. Endian, storage layout, individual dtypes and different values under the same meaning are coverage examples. A supplies test/requirement dependencies and independent expectation/tolerance evidence; B independently assesses them. No product-derived expectations or manufactured red are permitted.
+
+| ID | Distinct decision and observable outcome | Expected-result source / equivalent examples |
+|---|---|---|
+| V01 | Variable `N >= 3`, explicit identifiable unequal phases recover the declared first-harmonic coefficients/sign/normalization under the accuracy policy. | Represented `H`/`K` model; asymmetric nonsquare planes, signed intensities, three and more observations. |
+| V02 | Constant observations recover the constant and zero first harmonic within accuracy. | First column of `H`; zero/nonzero, cancellation and zero-residual forward-error specialization. |
+| V03 | Off-model `N > 3` observations produce the unique unweighted least-squares projection; fitted `dc` need not be the image mean and residual need not vanish. | Least-squares objective/normal-equation invariant; independent stored-value oracle. |
+| V04 | Equally spaced cycle samples agree with the historical ideal orthogonal formulas within represented-value/roundoff accuracy. | Analytic orthogonality; no bitwise agreement promise. |
+| V05 | Joint image/phase permutation preserves the mathematical fit and accepted results within accuracy; rank-ambiguous boundary classifications may vary. | Row-permutation invariance. |
+| V06 | Finite converted angles outside a principal interval are valid, with direct NumPy trig interpretation; represented periodic shifts are not new independent observations or exact-bit guarantees. | Represented-matrix policy; negative/large angles, periodic deficient counterpart. |
+| V07 | Exactly promotable image/angle values retain their float64 values. | Conversion semantics; float16/32 and through-32-bit real integers, byte order/read-only/strided arrays. |
+| V08 | Allowed lossy rounding/underflow defines the converted problem rather than unquantized truth. | Conversion semantics; int64/uint64 and platform-available wider floats. |
+| V09 | Non-plain-ndarray images reject without coercion/subclass interpretation. | `invalid_phase_images`; list/scalar/subclass, paired plain arrays. |
+| V10 | Unsupported image dtype rejects. | `invalid_phase_dtype`; bool/complex/object/string/datetime/structured versus real integer/floating. |
+| V11 | Invalid image rank/count/spatial shape rejects. | `invalid_phase_shape`; fewer than three, empty planes, wrong rank. |
+| V12 | Nonfinite source or converted images reject. | `nonfinite_phase_images`; NaN/infinities and available wider-float conversion overflow. |
+| V13 | Non-plain-ndarray phase vectors reject. | `invalid_phase_angles`; list/scalar/subclass versus plain vector. |
+| V14 | Unsupported phase dtype rejects. | `invalid_phase_angles_dtype`; paired valid real dtypes. |
+| V15 | Invalid phase rank/length, including image-count mismatch, rejects. | `invalid_phase_angles_shape`; paired valid `(N,)`. |
+| V16 | Nonfinite source or converted phases reject. | `nonfinite_phase_angles`; source nonfinite/conversion overflow, finite positive counterpart. |
+| V17 | Numerical rank below three rejects with the explicit strict cutoff; accepted full-rank sets receive no extra span/condition restriction. | `rank_deficient_phases`; duplicate/periodic/clustered examples and supported full-rank counterparts. |
+| V18 | Nonconvergent SVD/solve or unusable nonfinite factors raise the designated solver error. | `phase_solver_failure`; approved dependency failure stimulation only, no runtime-source oracle. |
+| V19 | Nonfinite final returned coordinates raise the designated range error for the whole call, with explicit range-edge uncertainty and no clipping/partial result. | `unrepresentable_phase_components`; returned lanes, not `B/C` or complex magnitude. |
+| V20 | Safely representable near-range/subnormal outputs satisfy accuracy without avoidable intermediate overflow. | Scale-aware backward/forward-error policy; safe interior cases and halving before restoration. |
+| V21 | Outputs have `(y,x)`, native-endian float64/complex128 and C-contiguous representation. | Public output representation; nonsquare/singleton/strided examples. |
+| V22 | Returned arrays are mutable, independently allocated and mutually/input independent. | Ownership contract; mutations cannot affect other storage. |
+| V23 | Both inputs retain data/shape/dtype/writeability on success and rejection. | Functional contract; read-only and strided examples. |
+| V24 | `PhaseComponents` exposes the two attributes; direct record construction adds no validating numerical API or frozen arrays. | Preserved record boundary; do not infer a new attribute-reassignment guarantee. |
+| V25 | Missing/extra/positional keyword-only arguments and removed scalar-offset keyword retain ordinary argument-binding `TypeError`. | Required signature; no alias/default. |
+| V26 | Allocation failure retains `MemoryError`. | Resource boundary; no generic exception masking. |
+| V27 | Existing MRC conversion interfaces/errors remain unchanged. | Approved MRC contract and complete existing suite. |
+| V28 | Actual unequal-phase `N > 3` comparison shows all inputs/residuals, independent expected and actual signed outputs/errors, explicit shared scales and provenance. | Owner human-check request; reviewed analytic fixture, actual public API, D image/correspondence check. |
+| V29 | Handled conversion/underflow/range outcomes respect and restore caller NumPy floating-error mode and do not leak arithmetic warnings. | Declared diagnostic boundary; default/raising modes, paired valid calls. |
+
+Usage docs must explain the fitted constant, off-model residual, ordinary conversion, condition-sensitive accuracy, explicit errors and range limits. No screenshot oracle, reconstruction-quality promise or new performance requirement is added.
 
 ## Historical version-1 contract
 
