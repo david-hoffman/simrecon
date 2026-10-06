@@ -1,164 +1,292 @@
-"""Independent NF02 stored-value oracle and reusable analytic visual fixture.
+"""Blind A: stored-value rational oracle and unequal-phase analytic fixture.
 
-No SIMrecon imports or recovered values belong here. Array identities hash C-order,
-little-endian float64 bytes (complex128 for complex arrays), with shape and dtype.
+No product solve is used. All least-squares algebra and certificate checks use
+exact Fractions; square-root enclosures use integer arithmetic (192 bits).
+Normal equations here are exact oracle algebra, never a shipped solver.
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass
-from decimal import Decimal, localcontext
-from hashlib import sha256
+from fractions import Fraction as F
+from math import isqrt
+from typing import Any
 
 import numpy as np
-import numpy.typing as npt
+from numpy.typing import NDArray
 
-RealArray = npt.NDArray[np.float64]
-ComplexArray = npt.NDArray[np.complex128]
-DecimalArray = npt.NDArray[np.object_]
-ORACLE_PRECISION = 120
-
-
-def _rotation(offset: float) -> tuple[Decimal, Decimal]:
-    # Taylor series at the exact stored float64 angle, never a product result.
-    angle = Decimal.from_float(offset)
-    squared = angle * angle
-    cosine = cosine_term = Decimal(1)
-    sine = sine_term = angle
-    for k in range(1, 100):
-        cosine_term *= -squared / Decimal((2 * k - 1) * (2 * k))
-        sine_term *= -squared / Decimal((2 * k) * (2 * k + 1))
-        cosine += cosine_term
-        sine += sine_term
-    return cosine, sine
+Array = NDArray[Any]
+Vector = list[F]
+Matrix = list[Vector]
+EPS = F(1, 2**52)
+Q_HALF = F(1, 2**1075)
+PHASES = (-0.43, 0.21, 1.34, 2.57, 3.18, 4.73, 5.81)
 
 
-def stored_value_oracle(
-    images: npt.NDArray[np.generic], offset: float
-) -> tuple[DecimalArray, DecimalArray, DecimalArray]:
-    """Evaluate the contract's closed form from exact stored real values.
-
-    At 120 significant decimal digits, sqrt and trigonometric error is far below
-    the 64*2**-52 relative allowance, even for near-max and subnormal data.
-    Decimal exponents encompass the entire float64 range. No float intermediate
-    sum, difference, intensity product or tiny tolerance is used.
-    """
-    shape = images.shape[1:]
-    dc = np.empty(shape, dtype=object)
-    real = np.empty(shape, dtype=object)
-    imag = np.empty(shape, dtype=object)
-    with localcontext() as context:
-        context.prec = ORACLE_PRECISION
-        cosine, sine = _rotation(offset)
-        root_three = Decimal(3).sqrt()
-        for index in np.ndindex(shape):
-            first, second, third = (
-                Decimal.from_float(float(images[(phase, *index)])) for phase in range(3)
-            )
-            # Roots of unity: r+r**2=-1 and r**2-r=-i*sqrt(3).
-            unrotated_real = (2 * first - second - third) / 6
-            unrotated_imag = root_three * (third - second) / 6
-            dc[index] = (first + second + third) / 3
-            real[index] = unrotated_real * cosine + unrotated_imag * sine
-            imag[index] = unrotated_imag * cosine - unrotated_real * sine
-    return dc, real, imag
+class OracleUnresolved(RuntimeError):
+    """No supplied sufficient certificate succeeded; this is not product-red."""
 
 
-def array_identity(array: npt.NDArray[np.generic]) -> str:
-    canonical = np.ascontiguousarray(array, dtype=array.dtype.newbyteorder("<"))
-    digest = sha256()
-    digest.update(str(canonical.shape).encode("ascii"))
-    digest.update(canonical.dtype.str.encode("ascii"))
-    digest.update(canonical.tobytes())
-    return digest.hexdigest()
+def rational(value: Any) -> F:
+    return F.from_float(float(value))
 
 
-@dataclass(frozen=True)
-class AnalyticPhantom:
-    """Frozen record of declared inputs, analytic truth and stored-value truth."""
-
-    images: RealArray
-    expected_dc: RealArray
-    expected_c1: ComplexArray
-    analytic_dc: RealArray
-    analytic_c1: ComplexArray
-    theta_rad: RealArray
-    phase_offset_rad: float
-    modulation: float
-    carrier_cycles_per_pixel: tuple[float, float]
-    carrier_origin_rad: float
-
-    def parameters(self) -> dict[str, object]:
-        return {
-            "shape_yx": self.analytic_dc.shape,
-            "phase_offset_rad": self.phase_offset_rad,
-            "phase_spacing_rad": 2 * np.pi / 3,
-            "modulation": self.modulation,
-            "carrier_cycles_per_pixel_xy": self.carrier_cycles_per_pixel,
-            "carrier_origin_rad": self.carrier_origin_rad,
-            "intensity_units": "arbitrary units",
-            "object_definition": (
-                "2+x/64+2*y/40; disk (x=12,y=9,r=4) +19; "
-                "disk (x=48,y=27,r=6) +11; bar 7<=x<11,19<=y<34 +14; "
-                "bar 24<=x<43,5<=y<8 +9; "
-                "curve |y-(25+0.022*(x-27)^2)|<=1.2,18<=x<55 +13"
-            ),
-            "expected_definition": "closed form for actual stored float64 observations",
-            "analytic_definition": "dc=A; c1=0.8*A*exp(i*theta)/2",
-            "oracle_decimal_precision": ORACLE_PRECISION,
-        }
-
-    def array_identities(self) -> dict[str, str]:
-        return {
-            name: array_identity(array)
-            for name, array in (
-                ("images", self.images),
-                ("expected_dc", self.expected_dc),
-                ("expected_c1", self.expected_c1),
-                ("analytic_dc", self.analytic_dc),
-                ("analytic_c1", self.analytic_c1),
-                ("theta_rad", self.theta_rad),
-            )
-        }
+def dot(a: Vector, b: Vector) -> F:
+    return sum((x * y for x, y in zip(a, b, strict=True)), F(0))
 
 
-def analytic_phantom() -> AnalyticPhantom:
-    """Build an asymmetric 40 by 64 pixel signal with a diagonal carrier.
+def norm2(a: Vector) -> F:
+    return dot(a, a)
 
-    I_p=A*(1+m*cos(theta+phi_p)). Expanding the angle sum gives
-    B=m*A*cos(theta), C=-m*A*sin(theta); hence c1=(B-i*C)/2.
-    The separate stored-value expectations include float64 generation rounding.
-    """
-    y, x = np.indices((40, 64), dtype=np.float64)
-    amplitude = 2 + x / 64 + 2 * y / 40
-    amplitude += 19 * ((x - 12) ** 2 + (y - 9) ** 2 <= 4**2)
-    amplitude += 11 * ((x - 48) ** 2 + (y - 27) ** 2 <= 6**2)
-    amplitude += 14 * ((x >= 7) & (x < 11) & (y >= 19) & (y < 34))
-    amplitude += 9 * ((x >= 24) & (x < 43) & (y >= 5) & (y < 8))
-    amplitude += 13 * ((np.abs(y - (25 + 0.022 * (x - 27) ** 2)) <= 1.2) & (x >= 18) & (x < 55))
-    modulation = 0.8
-    carrier = (0.071, -0.043)  # cycles/pixel, x then y
-    origin = 0.37  # radians
-    theta = 2 * np.pi * (carrier[0] * x + carrier[1] * y) + origin
-    offset = float(np.pi / 6)
-    phases = offset + 2 * np.pi * np.arange(3, dtype=np.float64) / 3
-    images = amplitude[None, :, :] * (
-        1 + modulation * np.cos(theta[None, :, :] + phases[:, None, None])
+
+def mv(a: Matrix, x: Vector) -> Vector:
+    return [dot(row, x) for row in a]
+
+
+def transpose(a: Matrix) -> Matrix:
+    return [list(col) for col in zip(*a, strict=True)]
+
+
+def gram(a: Matrix) -> Matrix:
+    cols = transpose(a)
+    return [[dot(x, y) for y in cols] for x in cols]
+
+
+def inverse(a: Matrix) -> Matrix:
+    n = len(a)
+    work = [row.copy() + [F(i == j) for j in range(n)] for i, row in enumerate(a)]
+    for j in range(n):
+        pivot = work[j][j]
+        assert pivot != 0, "oracle requires nonsingular exact represented Gram matrix"
+        work[j] = [v / pivot for v in work[j]]
+        for i in range(n):
+            if i != j:
+                factor = work[i][j]
+                work[i] = [x - factor * y for x, y in zip(work[i], work[j], strict=True)]
+    return [row[n:] for row in work]
+
+
+def determinant3(a: Matrix) -> F:
+    return (
+        a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1])
+        - a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0])
+        + a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0])
     )
-    exact_dc, exact_real, exact_imag = stored_value_oracle(images, offset)
-    expected_dc = exact_dc.astype(np.float64)
-    expected_c1 = exact_real.astype(np.float64).astype(np.complex128)
-    expected_c1.imag = exact_imag.astype(np.float64)
-    analytic_c1 = modulation * amplitude * (np.cos(theta) + 1j * np.sin(theta)) / 2
-    for array in (images, expected_dc, expected_c1, amplitude, analytic_c1, theta):
-        array.flags.writeable = False
-    return AnalyticPhantom(
-        images,
-        expected_dc,
-        expected_c1,
-        amplitude,
-        analytic_c1,
-        theta,
-        offset,
-        modulation,
-        carrier,
-        origin,
-    )
+
+
+def positive_definite(a: Matrix) -> bool:
+    return a[0][0] > 0 and a[0][0] * a[1][1] - a[0][1] * a[1][0] > 0 and determinant3(a) > 0
+
+
+def sqrt_interval(value: F) -> tuple[F, F]:
+    """Exact enclosing endpoints; no overflow or zeroed subnormal allowance."""
+    assert value >= 0
+    if value == 0:
+        return F(0), F(0)
+    exponent = (value.numerator.bit_length() - value.denominator.bit_length()) // 2
+    scale = F(2) ** (192 - exponent)
+    scaled = value * scale * scale
+    root = isqrt(scaled.numerator // scaled.denominator)
+    return F(root) / scale, F(root + 1) / scale
+
+
+def spectral2_interval(g: Matrix) -> tuple[F, F]:
+    """Enclose lambda_max(G) by exact Sylvester tests, not a numeric eigensolve."""
+    low = max(g[i][i] for i in range(3))
+    high = sum((g[i][i] for i in range(3)), F(0))
+    for _ in range(128):
+        mid = (low + high) / 2
+        shift = [[F(i == j) * mid - g[i][j] for j in range(3)] for i in range(3)]
+        if positive_definite(shift):
+            high = mid
+        else:
+            low = mid
+    return low, high
+
+
+@dataclass
+class RationalFit:
+    """Represent an exact stored-matrix fit and sufficient backward witnesses."""
+
+    k: Matrix
+    inv: Matrix
+    a2_low: F
+    a2_high: F
+    s2_low: F
+
+    @classmethod
+    def from_phases(cls, phases: Array) -> RationalFit:
+        h = represented_h(phases)
+        k = [[rational(row[0]), 2 * rational(row[1]), -2 * rational(row[2])] for row in h]
+        return cls.from_k(k)
+
+    @classmethod
+    def from_k(cls, k: Matrix) -> RationalFit:
+        g = gram(k)
+        assert positive_definite(g), "exact represented matrix is not full rank"
+        inv = inverse(g)
+        low, high = spectral2_interval(g)
+        # trace(G^-1) >= 1/lambda_min(G): rigorous lower singular bound.
+        s2 = 1 / sum((inv[i][i] for i in range(3)), F(0))
+        return cls(k, inv, low, high, s2)
+
+    def expected(self, b: Vector) -> Vector:
+        return mv(self.inv, mv(transpose(self.k), b))
+
+    def residual(self, b: Vector, z: Vector) -> Vector:
+        return [v - w for v, w in zip(b, mv(self.k, z), strict=True)]
+
+    def forward_bound(self, b: Vector, star: Vector) -> F | None:
+        eta = 128 * max(len(self.k), 3) * EPS
+        alpha = eta * sqrt_interval(self.a2_high)[1]
+        s = sqrt_interval(self.s2_low)[0]
+        if alpha >= s:
+            return None
+        beta = eta * sqrt_interval(norm2(b))[1]
+        r = self.residual(b, star)
+        return (
+            (beta + alpha * sqrt_interval(norm2(star))[1]) / (s - alpha)
+            + alpha * sqrt_interval(norm2(r))[1] / (s - alpha) ** 2
+            + sqrt_interval(F(3))[1] * Q_HALF
+        )
+
+    def _valid(self, b: Vector, z: Vector, e: Matrix, f: Vector) -> bool:
+        eta = 128 * max(len(self.k), 3) * EPS
+        # Frobenius is a conservative upper bound for spectral E. Exact lower
+        # endpoint for ||K|| makes this a sufficient, never optimistic, check.
+        if sum((norm2(row) for row in e), F(0)) > eta**2 * self.a2_low:
+            return False
+        if norm2(f) > eta**2 * norm2(b):
+            return False
+        changed = [
+            [x + y for x, y in zip(r, s, strict=True)] for r, s in zip(self.k, e, strict=True)
+        ]
+        if not positive_definite(gram(changed)):
+            return False
+        residual = self.residual_with(changed, [x + y for x, y in zip(b, f, strict=True)], z)
+        # Exact full-rank normal equations are sufficient for unique minimizer.
+        return all(v == 0 for v in mv(transpose(changed), residual))
+
+    @staticmethod
+    def residual_with(k: Matrix, b: Vector, z: Vector) -> Vector:
+        return [x - y for x, y in zip(b, mv(k, z), strict=True)]
+
+    def certify(self, b: Vector, returned: Vector) -> str:
+        star = self.expected(b)
+        # Exact final quantization d, independently bounded by q/2 per lane.
+        d = [max(-Q_HALF, min(Q_HALF, x - y)) for x, y in zip(returned, star, strict=True)]
+        z = [x - y for x, y in zip(returned, d, strict=True)]
+        delta = [x - y for x, y in zip(z, star, strict=True)]
+        u = mv(self.k, delta)
+        zero_e = [[F(0)] * 3 for _ in self.k]
+        if self._valid(b, z, zero_e, u):
+            return "rhs-only"
+        zz = norm2(z)
+        if zz:
+            # Split u between E*z=-t*u and f=(1-t)*u. Every candidate has
+            # residual r_star and E columns in col(K), so orthogonality is exact.
+            unorm = sqrt_interval(norm2(u))[1]
+            bnorm = sqrt_interval(norm2(b))[0]
+            eta = 128 * max(len(self.k), 3) * EPS
+            needed = max(F(0), 1 - eta * bnorm / unorm) if unorm else F(0)
+            for t in (F(1), needed):
+                e = [[-t * v * w / zz for w in z] for v in u]
+                f = [(1 - t) * v for v in u]
+                if self._valid(b, z, e, f):
+                    return "column-space/split"
+        r = self.residual(b, z)
+        rr = norm2(r)
+        if rr:
+            # Residual projection construction: E=-r*(K.T*r).T/||r||^2,
+            # f=E*z. Residual remains r and (K+E).T*r=0 exactly.
+            g = mv(transpose(self.k), r)
+            e = [[-v * w / rr for w in g] for v in r]
+            if self._valid(b, z, e, mv(e, z)):
+                return "residual-projection"
+        if rr and zz:
+            # E-only alternative: v=t*r, t=(b.T*r)/||r||^2. Then
+            # v.T*(b-v)=0. Satisfy E*z=w=b-v-K*z and E.T*v=-K.T*v.
+            t = dot(b, r) / rr
+            v = [t * x for x in r]
+            vv = norm2(v)
+            if vv:
+                w = [x - y for x, y in zip(r, v, strict=True)]
+                g = [-x for x in mv(transpose(self.k), v)]
+                correction = [x - y * dot(v, w) / zz for x, y in zip(g, z, strict=True)]
+                e = [
+                    [wi * zj / zz + vi * cj / vv for zj, cj in zip(z, correction, strict=True)]
+                    for wi, vi in zip(w, v, strict=True)
+                ]
+                if self._valid(b, z, e, [F(0)] * len(b)):
+                    return "rescaled-residual"
+        bound = self.forward_bound(b, star)
+        if (
+            bound is not None
+            and norm2([x - y for x, y in zip(returned, star, strict=True)]) > bound**2
+        ):
+            raise AssertionError(
+                "V01/V03/V20: violates necessary finite forward consequence of backward policy"
+            )
+        if not norm2(b) and any(returned):
+            raise AssertionError("V02: zero observations require zero returned float64 lanes")
+        raise OracleUnresolved(
+            "no sufficient full-rank certificate; alternatives need independent review, "
+            "not product-red"
+        )
+
+
+def represented_h(phases: Array) -> Array:
+    with np.errstate(all="ignore"):
+        p = phases.astype(np.float64)
+        return np.column_stack((np.ones(p.size), np.cos(p), np.sin(p)))
+
+
+def expected_arrays(images: Array, phases: Array) -> tuple[Array, Array, Array]:
+    """Compute dc, c1 and all fitted-minus-input residuals for stored values."""
+    with np.errstate(all="ignore"):
+        values = images.astype(np.float64)
+    fit = RationalFit.from_phases(phases)
+    shape = values.shape[1:]
+    dc = np.empty(shape, dtype=np.float64)
+    c1 = np.empty(shape, dtype=np.complex128)
+    residuals = np.empty(values.shape, dtype=np.float64)
+    for index in np.ndindex(shape):
+        b = [rational(v) for v in values[(slice(None), *index)]]
+        z = fit.expected(b)
+        dc[index] = float(z[0])
+        c1[index] = complex(float(z[1]), float(z[2]))
+        residuals[(slice(None), *index)] = [-float(v) for v in fit.residual(b, z)]
+    return dc, c1, residuals
+
+
+@dataclass
+class AnalyticFixture:
+    """Hold all independent numeric panels for the later real comparison."""
+
+    phases_rad: Array
+    images: Array
+    h: Array
+    generating_dc: Array
+    generating_c1: Array
+    expected_dc: Array
+    expected_c1: Array
+    expected_residuals: Array
+
+
+def analytic_fixture(shape: tuple[int, int] = (9, 14)) -> AnalyticFixture:
+    """Signed, asymmetric, nonsquare phantom; N=7 unequal well-spaced phases.
+
+    Coordinates x,y each span [-1,1]. All intensities use arbitrary common
+    input intensity units. The stored rounded problem defines expectations.
+    C can render these fields and its actual public output; no fake output.
+    """
+    y, x = np.meshgrid(np.linspace(-1, 1, shape[0]), np.linspace(-1, 1, shape[1]), indexing="ij")
+    dc = 1.2 + 0.4 * x - 0.7 * y + 1.8 * np.exp(-((x - 0.31) ** 2 / 0.09 + (y + 0.22) ** 2 / 0.21))
+    real = -0.9 + 0.65 * x + 0.31 * np.sin(2.1 * y + 0.3)
+    imag = 0.6 - 0.47 * y + 0.8 * np.exp(-((x + 0.42) ** 2 / 0.16 + (y - 0.37) ** 2 / 0.07))
+    c1 = real + 1j * imag
+    phases = np.array(PHASES, dtype=np.float64)
+    h = represented_h(phases)
+    images = dc[None] + 2 * real[None] * h[:, 1, None, None] - 2 * imag[None] * h[:, 2, None, None]
+    expected_dc, expected_c1, residuals = expected_arrays(images, phases)
+    return AnalyticFixture(phases, images, h, dc, c1, expected_dc, expected_c1, residuals)
