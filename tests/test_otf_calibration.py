@@ -421,8 +421,8 @@ def test_record_bindings_are_frozen(prepare: PrepareOtf, attribute: str) -> None
 
 
 def test_direct_record_construction_does_not_validate(record_factory: RecordFactory) -> None:
-    """K07 direct construction is not proof of preparation validity."""
-    record_factory(
+    """K07 unvalidated direct construction still binds its fields without rebinding."""
+    result = record_factory(
         values=None,
         fy_per_um=None,
         fx_per_um=None,
@@ -430,6 +430,14 @@ def test_direct_record_construction_does_not_validate(record_factory: RecordFact
         origin_yx=(-2, 99),
         source="",
     )
+    for attribute in ("values", "fy_per_um", "fx_per_um", "pixel_size_um", "origin_yx", "source"):
+        original = getattr(result, attribute)
+        with suppress(Exception):
+            setattr(result, attribute, object())
+        assert getattr(result, attribute) is original, "direct-record field must not be rebound"
+        with suppress(Exception):
+            delattr(result, attribute)
+        assert getattr(result, attribute) is original, "direct-record field must not be deleted"
 
 
 class _ArraySubclass(np.ndarray[Any, Any]):
@@ -518,24 +526,42 @@ def test_reject_zero_converted_mass(prepare: PrepareOtf, psf: RealArray) -> None
 # Wider cases deliberately have no pytest skip on unsupported platforms.
 if WIDER_CASES:
 
+    @pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log", "mixed"])
     @pytest.mark.parametrize("name,psf,code", WIDER_CASES, ids=[case[0] for case in WIDER_CASES])
     def test_wider_source_rejection(
-        prepare: PrepareOtf, name: str, psf: RealArray, code: str
+        prepare: PrepareOtf, name: str, psf: RealArray, code: str, mode: str
     ) -> None:
-        """K13/K14/K15 actual native wider-range evidence only."""
-        _reject(prepare, psf, code)
+        """K08/K13--K15/K26 source rejection under every caller arithmetic policy."""
+        # Capability values and strided storage are prepared before observing
+        # product execution. Setup arithmetic supplies no policy evidence.
+        backing = np.ones((psf.shape[0], 2 * psf.shape[1]), dtype=psf.dtype)
+        candidate = backing[:, ::2]
+        candidate[...] = psf
+        candidate.flags.writeable = False
+        inputs: tuple[object, ...] = (candidate, backing, SPACING, (0, 0), LABEL)
+        with _check_operation_preservation(mode, inputs):
+            _reject(prepare, candidate, code)
 
 
 WIDER_UNDERFLOW = tuple(case for case in WIDER_CASES if case[0] == "all-underflow")
 if WIDER_UNDERFLOW:
 
+    @pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log", "mixed"])
     @pytest.mark.parametrize("name,psf,code", WIDER_UNDERFLOW)
     def test_partial_wider_underflow_is_permitted(
-        prepare: PrepareOtf, name: str, psf: RealArray, code: str
+        prepare: PrepareOtf, name: str, psf: RealArray, code: str, mode: str
     ) -> None:
-        """K06/K15 positive mass after conversion, despite a lost tiny sample."""
-        positive = np.array([[psf[0, 0], np.longdouble(1)]], dtype=np.longdouble)
-        _call(prepare, positive, (0, 1))
+        """K06/K08/K15/K26 permitted conversion loss under every arithmetic policy."""
+        backing = np.ones((1, 4), dtype=np.longdouble)
+        positive = backing[:, ::2]
+        positive[0, 0] = psf[0, 0]
+        positive.flags.writeable = False
+        inputs: tuple[object, ...] = (positive, backing, SPACING, (0, 1), LABEL)
+        with _check_operation_preservation(mode, inputs):
+            result = _call(prepare, positive, (0, 1))
+            # t converts to zero; the remaining mass is at the declared origin.
+            # This exact identity supplements the unchanged converted-value oracle.
+            assert_transfer(result.values, (((Fraction(1), Fraction(0)),) * 2,))
 
 
 BAD_PAIRS: tuple[tuple[str, object], ...] = (
@@ -583,16 +609,24 @@ def test_reject_pixel_size_range(prepare: PrepareOtf, value: object, axis: int) 
 
 if WIDER_CASES:
 
+    @pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log", "mixed"])
     @pytest.mark.parametrize(
         "name,psf,code",
         [case for case in WIDER_CASES if case[0] != "negative-underflow"],
         ids=[case[0] for case in WIDER_CASES if case[0] != "negative-underflow"],
     )
     def test_wider_spacing_rejection(
-        prepare: PrepareOtf, name: str, psf: RealArray, code: str
+        prepare: PrepareOtf, name: str, psf: RealArray, code: str, mode: str
     ) -> None:
-        """K17 conversion overflow/underflow only when native capability exists."""
-        _reject(prepare, np.array([[1]]), "invalid_otf_pixel_size", spacing=(psf[0, 0], 1))
+        """K08/K17/K26 wider spacing rejection under every arithmetic policy."""
+        backing = np.ones(4, dtype=np.longdouble)
+        spacing = backing[::2]
+        spacing[0] = psf[0, 0]
+        spacing.flags.writeable = False
+        valid_psf = np.array([[1]])
+        inputs: tuple[object, ...] = (valid_psf, spacing, backing, (0, 0), LABEL)
+        with _check_operation_preservation(mode, inputs):
+            _reject(prepare, valid_psf, "invalid_otf_pixel_size", spacing=spacing)
 
 
 @pytest.mark.parametrize("name,pair", BAD_PAIRS, ids=[pair[0] for pair in BAD_PAIRS])
