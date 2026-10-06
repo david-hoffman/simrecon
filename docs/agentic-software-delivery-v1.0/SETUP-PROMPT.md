@@ -17,13 +17,13 @@ Identify the revision, environment, and commands; label stale evidence and block
 measurement. Use existing checks in an isolated usable environment without changing
 product/tooling files or running setup scripts for discovery. Preserve sound tooling.
 Find usable approved architecture; otherwise route to architecture intake. An empty
-repo needs an owner-approved minimal project record before choosing a stack. Existing
+repo needs a concrete minimal project record and resolved material stack choices before dependent work. Existing
 code is evidence, not automatically the intended behavior. Repeated setup must not
 overwrite working choices. Do not implement product features during setup.
 
-Show the small setup plan and obtain approval of the identified scope; an existing explicit approval of that proposal needs no duplicate yes. Separate delivery-tooling installation
+Show the concrete setup plan and proceed within the human-requested scope; the record needs no extra document approval. Resolve only missing material decisions, unclear/outside-request objectives or human-required external authority. Separate delivery-tooling installation
 from existing-product remediation, with effort, measurement gaps, and owner decisions.
-Installation approval does not authorize product repairs or resolve missing behavior.
+A setup request does not itself request product repairs or resolve missing behavior.
 Expose legacy baseline dependencies that make small slices unable to pass the full
 gate, including global 100% coverage. Let the owner choose adoption scope case by case,
 including an explicitly larger slice where needed; do not weaken readiness criteria.
@@ -42,21 +42,25 @@ Retain 100% measured statement/branch coverage and report unsupported measuremen
 Use GITHUB-SETUP.md; apply settings only with permission or give exact owner actions.
 
 Implement delivery doctor as a thin invocation of review-work in doctor mode using
-DOCTOR-PROMPT.md. No daemon or scheduled LLM loop. Default behavior writes an evidenced spec/instruction patch on a docs branch. Policy activation requires approval of the identified scope (reuse existing authorization) and fresh independent policy review; --check only reports. Keep every delivery document at version 1.0. Git versions edits.
+DOCTOR-PROMPT.md. No daemon or scheduled LLM loop. Default behavior writes an evidenced spec/instruction patch on a docs branch. Policy activation requires human-requested scope and fresh independent policy review; --check only reports. Keep every delivery document at version 1.0. Git versions edits.
 
 Use spec sections 3–4 for risk routing and named ownership: mechanical one worker;
 bounded worker may own authorized product/tests/infrastructure and needs one fresh
 reviewer; high risk fresh blind A/B, restricted C and fresh D. Data-loss behavior, including settled overwrite/truncation repairs, is high risk and cannot use bounded ownership. Policy adoption has a
-separate approved independently reviewed docs path. Mixed highest tier unless independent
+separate human-requested independently reviewed docs path. Mixed highest tier unless independent
 contracts justify a split. Never grant high-risk C maintenance edits by renaming its mode.
-A complete explicit lower-route instruction may authorize scope; high risk/policy retain
-approval of identified proposals. Routine authorized transitions need no repeat permission.
-Default five behavioral scenarios; equivalent values are coverage examples. New meaning
-needs approval; shared-oracle/fixture corrections expand review and preserve valid retained
+A direct human request authorizes its intended scope for every route; record the concrete
+contract and proceed without another document approval. Routine named transitions/checks,
+diagnosed in-scope corrections and fresh required reviews need no repeated permission.
+There is no default scenario cap; equivalent values are coverage examples. Resolve missing
+or outside-request meaning through intake; shared-oracle/fixture corrections expand review and preserve valid retained
 evidence. Author continuation is allowed within scope/blindness; reviewers stay fresh.
 Record one Current state with complete metrics/unknowns and link detail. Preserve every
-attempt/window/repair/budget through splits, fresh context or migration. Default two B
-reviews/window and one C/bounded corrective cycle; no automatic fallback/retry.
+review/repair/diagnosis/failed attempt/expenditure through splits, fresh context or accepted
+policy migration. There are no default review/repair/execution quotas or new-window approval
+stops. Explicit human-set limits still bind; do not infer caps from defaults or historical
+records. Diagnose recurring failures and each correction before proceeding within scope.
+No silent model fallback or uncontrolled automatic repair loop.
 Independent tasks use worktrees; dependent slices wait for integrated prerequisites.
 Use bounded terminal waits/timeouts; incomplete waits are no passing review. Profile this
 project before cache/shard/launcher changes; those are conditional authorized tasks.
@@ -66,11 +70,11 @@ full local verification passing on the exact candidate, fresh D, and a normal PR
 Apply section 4's gate before opening/reopening a PR (drafts included) or pushing an
 update to an open PR. Pre-PR pushes may back up failing checkpoints. Use fast generic
 hooks and the full command at submission, not a custom controller or backup branch.
-Known failures, including incomplete coverage, block submission. A conditional CI-authoritative trial requires separate scope/budget and proved native protections/trusted complete CI/head-base/artifact-version prerequisites under section 6; high risk/unknown proof/own-gate changes remain local. Do not configure or infer eligibility silently.
+Known failures, including incomplete coverage, block submission. A conditional CI-authoritative evaluation must be part of the human request and proved native protections/trusted complete CI/head-base/artifact-version prerequisites under section 6; high risk/unknown proof/own-gate changes remain local. Do not configure or infer eligibility silently.
 CI repeats verification on its configured platforms. Inspect native protections and
 reuse existing failure-blocking evidence; do not submit a known failure to create it.
 Add one honest lesson and demonstrate doctor editing the spec with independent policy review. Pilot mechanical docs, conventional bounded repair, authorized infrastructure and a high-risk public/synthetic case under recorded quality criteria; keep route/model/gate/hotspot changes distinguishable. Record complete cost/critical-path time, defects and unknowns; small pilots prove no general defect rate.
 Label setup evidence honestly; do not fabricate independent sessions
 or active protections. Preserve required source references once; do not make routine
-agents reread the archive. Stop at the approved budget and report remaining gaps.
+agents reread the archive. Honor actual human-set limits and report remaining gaps. Record absent limits as not set and missing measurements as unknown. No merge/release or external messaging authority follows from setup.
 ```
