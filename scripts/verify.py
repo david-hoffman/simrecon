@@ -219,8 +219,6 @@ def metrics(problems: list[str]) -> dict[str, Any]:
                 raise ValueError("Invalid native coverage counters")
             if excluded:
                 problems.append("Excluded owned coverage: " + path.as_posix())
-            if summary["num_partial_branches"] > summary["missing_branches"]:
-                raise ValueError("Invalid native coverage counters")
             current = {}
             for kind, numerator, denominator, native, missing in (
                 (
@@ -251,6 +249,9 @@ def metrics(problems: list[str]) -> dict[str, Any]:
                 current[kind] = {"covered": covered, "total": total}
                 for counter in ("covered", "total"):
                     packages[package][kind][counter] += current[kind][counter]
+            partial = sum(arc[0] not in item["missing_lines"] for arc in item["missing_branches"])
+            if summary["num_partial_branches"] != partial:
+                raise ValueError("Invalid native partial branch counter")
             files[path.as_posix()] = current
     aggregate = {
         kind: {

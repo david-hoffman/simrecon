@@ -333,6 +333,35 @@ def test_advisory_coverage_still_rejects_invalid_native_evidence(repository, mod
     ]
 
 
+@pytest.mark.parametrize(
+    "mode,missing_lines,missing_branches,reported",
+    [
+        ("partial-counter-overstatement", [1, 2], [[1, 2], [1, -1]], 1),
+        ("partial-counter-understatement", [], [[1, -1]], 0),
+    ],
+)
+def test_partial_counter_matches_native_missing_arc_sources(
+    repository, mode, missing_lines, missing_branches, reported
+):
+    result, receipt = invoke(repository, mode)
+    root, _ = repository
+    report = json.loads((root / "artifacts/coverage/coverage.json").read_text())
+    item = report["files"]["src/simrecon/sample.py"]
+    assert item["missing_lines"] == missing_lines
+    assert item["missing_branches"] == missing_branches
+    assert item["summary"]["num_partial_branches"] == reported
+    assert reported <= item["summary"]["missing_branches"]
+    assert report["totals"]["num_partial_branches"] == sum(
+        file["summary"]["num_partial_branches"] for file in report["files"].values()
+    )
+    assert receipt is not None
+    failed(result, receipt)
+    assert result.returncode == 1
+    assert [(phase["name"], phase["returncode"]) for phase in receipt["phases"]] == [
+        (name, 0) for name in PHASES
+    ]
+
+
 @pytest.mark.parametrize("execute_statements", [False, True])
 def test_project_coverage_commands_allow_advisory_percentages(repository, execute_statements):
     root, _ = repository

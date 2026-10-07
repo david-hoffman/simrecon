@@ -141,6 +141,10 @@ def main():
         if mode == "input-change":
             Path(os.environ["RECEIPT_PRIVATE_INPUT"]).write_bytes(b"changed input")
     if phase == "coverage-json" and mode != "missing-json":
+        coverage_mode = {
+            "partial-counter-overstatement": "zero-coverage",
+            "partial-counter-understatement": "partial-coverage",
+        }.get(mode, mode)
         files = {}
         for name in ("src/simrecon/sample.py", "scripts/sample.py", "scripts/branchless.py"):
             if mode == "missing-owned" and name.startswith("scripts/"):
@@ -166,7 +170,7 @@ def main():
                 "summary": summary,
             }
             if (
-                mode in {"partial-coverage", "partial-json-failure", "partial-combined"}
+                coverage_mode in {"partial-coverage", "partial-json-failure", "partial-combined"}
                 and name != "scripts/branchless.py"
             ):
                 summary.update(
@@ -204,8 +208,8 @@ def main():
                     percent_covered_display="0",
                 )
                 item.update(executed_lines=[], missing_lines=[1])
-            if mode in {"partial-combined", "zero-coverage"}:
-                covered = 0 if mode == "zero-coverage" else 1
+            if coverage_mode in {"partial-combined", "zero-coverage"}:
+                covered = 0 if coverage_mode == "zero-coverage" else 1
                 summary.update(
                     covered_lines=covered,
                     missing_lines=summary["num_statements"] - covered,
@@ -215,7 +219,7 @@ def main():
             if mode == "partial-combined" and summary["num_branches"]:
                 summary.update(percent_covered=50.0, percent_covered_display="50")
                 item.update(executed_branches=[[1, -1]], missing_branches=[[1, 2]])
-            if mode == "zero-coverage":
+            if coverage_mode == "zero-coverage":
                 summary.update(
                     covered_branches=0,
                     missing_branches=summary["num_branches"],
@@ -225,6 +229,11 @@ def main():
                 )
                 item["missing_branches"] = item["executed_branches"]
                 item["executed_branches"] = []
+            if name == "src/simrecon/sample.py":
+                if mode == "partial-counter-overstatement":
+                    summary["num_partial_branches"] = 1
+                if mode == "partial-counter-understatement":
+                    summary["num_partial_branches"] = 0
             files[name] = item
         totals: dict[str, int | float | str] = {
             key: sum(item["summary"][key] for item in files.values())
@@ -241,14 +250,14 @@ def main():
             if key != "covered_lines" or mode != "malformed-coverage"
         }
         totals.update(percent_covered=100.0, percent_covered_display="100")
-        if mode in {"partial-coverage", "partial-json-failure"}:
+        if coverage_mode in {"partial-coverage", "partial-json-failure"}:
             totals.update(percent_covered=700 / 9, percent_covered_display="78")
-        if mode in {"partial-statements", "partial-combined", "zero-coverage"}:
+        if coverage_mode in {"partial-statements", "partial-combined", "zero-coverage"}:
             percent = {
                 "partial-statements": 800 / 9,
                 "partial-combined": 500 / 9,
                 "zero-coverage": 0.0,
-            }[mode]
+            }[coverage_mode]
             totals.update(percent_covered=percent, percent_covered_display=str(round(percent)))
         report = {
             "meta": {"version": "7.13.4", "format": 3, "branch_coverage": True},
