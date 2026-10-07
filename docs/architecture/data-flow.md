@@ -4,14 +4,14 @@
 
 ## Main pipeline: conversion and reconstruction are separate routes
 
-The first MRC slice converts harmonized image data to modern MRC output without calling reconstruction or requiring optical transfer function (OTF) calibration. A caller requesting reconstruction takes a separate route through the numerical stage. The owner requests that stage to be visible in both the diagram and code, including while it is only a placeholder. The placeholder contract is in [RECONSTRUCTION-PLACEHOLDER](../tasks/reconstruction-placeholder.md). It does not approve scientific reconstruction or the rest of the architecture.
+The first MRC slice converts harmonized image data to modern MRC output without calling reconstruction or requiring optical transfer function (OTF) calibration. A caller requesting reconstruction takes a separate route through the numerical stage. The historical placeholder is superseded by the separately approved [known-parameter first-harmonic 2D contract](../contracts/known-parameter-reconstruction-v1.md), with [public usage](../usage/reconstruction.md) and [actual comparison](../reports/reconstruction-comparison.md). Its owner-authorized candidate is stacked above verified, independently reviewed, unmerged calibration PR #7; exact candidate verification/review and owner integration remain pending. The broader 3D/adaptor flow below remains architectural context.
 
 ```mermaid
 sequenceDiagram
     actor Caller as Python caller or command-line user
     participant Input as Input adapters
     participant Pure as Pure harmonization
-    participant Numeric as reconstruct(image, otf, parameters)
+    participant Numeric as reconstruct(images, explicit keywords)
     participant Output as Output adapters
 
     Caller->>Input: Inspect image source
@@ -36,21 +36,21 @@ sequenceDiagram
         Caller->>Pure: Harmonize image and OTF independently
         Pure-->>Caller: Image unit and OTF with resolved axes and units
         Caller->>Numeric: Image unit, OTF calibration, explicit parameters
-        alt Placeholder contract (stub delivery pending)
-            Numeric--xCaller: NotImplementedError
+        alt Invalid inputs or specified numerical failure
+            Numeric--xCaller: Explicit error; no partial result
             Note over Caller,Output: No reconstructed result is available to write
-        else Future approved numerical implementation
+        else Contracted 2D candidate
             Note over Numeric: Pure numerical functions; no file access
-            Numeric-->>Caller: Reconstructed image and result metadata
+            Numeric-->>Caller: Reconstruction2D signed complex arrays and sampling
             Caller->>Output: Write reconstructed result
             Output-->>Caller: Output file and reconstruction write report
         end
     end
 ```
 
-Input and output functions are also proposed responsibilities. The requested reconstruction placeholder will be a real public function that accepts explicit image, OTF, and parameter inputs and fails visibly; it must not return the input image, fabricated pixels, or a success report. Exact future numerical types and behavior remain contract decisions. The placeholder contract accepts Python objects rather than implementing provisional image/calibration types just to host the stub. Delivery of the runtime stub is pending the execution-budget answer and the required fresh test/review sessions.
+Input and output functions in the broad pipeline diagram describe responsibilities. The concrete 2D candidate consumes plain `(R,N,Ny,Nx)` arrays, a matching `Otf2D` and all required explicit keyword parameters. It composes public `separate_phases` per orientation, Fourier-series bands, closed-axis interpolation, complex transfer weighting and explicit ridge/mask. It returns independently owned signed complex image/spectrum and frequency axes at half spacing and unchanged field. This pure numerical operation performs no file I/O; no reconstruction adapter or CLI command is introduced.
 
-Conversion is complete only when its output and report are produced. The placeholder-only task is complete when its public function and intentional failure satisfy the reviewed contract. It supplies no numerical result and is not a prerequisite for conversion. Neither `read`, `harmonize`, `write`, nor the CLI conversion path calls `reconstruct` implicitly. Conversion output remains image data of its original kind; it is not labeled as reconstructed data.
+Conversion is complete only when its output and report are produced. Reconstruction has its own [task evidence pointer](../tasks/known-parameter-reconstruction.md) and independent acceptance requirements. Neither `read`, `harmonize`, `write`, nor the CLI conversion path calls `reconstruct` implicitly. Conversion output remains image data of its original kind; it is not labeled as reconstructed data.
 
 ## First MRC slice: inspect, resolve, and convert
 
@@ -134,7 +134,11 @@ classDiagram
 - `OperationParameters` illustrates future per-operation parameter records. Parameters remain separate inputs; no generic all-algorithm settings object or new executable parameter API is approved.
 - Metadata records are treated as values. This does not make NumPy buffers deeply immutable. Pure functions must not mutate caller-owned arrays.
 
-## Reconstruction detail: numerical implementation needs separate approval
+## Reconstruction detail: concrete 2D candidate and future 3D context
+
+The concrete 2D operation is defined by the linked contract and usage above. The
+following broader 3D diagram is future architectural context; it supplies no 3D
+implementation, estimation or adapter authorization.
 
 The proposed numerical data flow is:
 
@@ -142,7 +146,7 @@ The proposed numerical data flow is:
 sequenceDiagram
     actor Caller
     participant Intake as Same intake functions
-    participant Numeric as reconstruct(image, otf, parameters)
+    participant Numeric as Future 3D numerical operation
     participant Writer as Same output functions
 
     Caller->>Intake: Select one channel and time point's raw 3D acquisition
@@ -150,7 +154,7 @@ sequenceDiagram
     Caller->>Intake: Read and harmonize OTF calibration independently
     Intake-->>Caller: Frequency-domain calibration with declared axes and units
     Caller->>Numeric: Image unit, OTF calibration, explicit algorithm parameters
-    Note over Numeric: Placeholder raises; diagram below depicts future implemented behavior
+    Note over Numeric: Future 3D context; concrete candidate currently accepts 2D acquisition arrays
     Numeric-->>Caller: Reconstructed spatial image and result metadata
     Caller->>Writer: Write result through selected output adapter
     Writer-->>Caller: Output file and write report
