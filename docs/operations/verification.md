@@ -1,5 +1,7 @@
 # Full verification and receipts
 
+**Version 1.0** Git versions revisions.
+
 Prepare the single task pointer/intended docs before the final candidate commit. Run the canonical full gate for that clean exact candidate; retain failures and give D applicable evidence. `make check` provides fast feedback only.
 
 ```sh
@@ -16,4 +18,4 @@ Passing requires every full phase, a clean tracked start, unchanged candidate/in
 
 D may inspect applicable successful evidence without automatically rerunning it. Changed candidate/tests/fixtures/dependencies/checks/environment/base/relevant inputs invalidate affected reuse. The current submission rule still requires full verification of a changed exact submission candidate. Present package version is static 0.1.0; future Git-derived versions would additionally require commit/tag/dirty build identity. Receipts are ordinary evidence, not certificates/controllers.
 
-Before opening/reopening a PR or pushing to an open one, confirm the exact candidate and passing full local gate. Any known failure/incomplete supported metric blocks submission. Supported-platform CI still repeats the complete gate. Owner action is required to merge/release.
+Before opening/reopening a PR or pushing to an open one, confirm the exact candidate and passing full local gate. Any known check failure, missing required evidence or unmet selected coverage target blocks submission. Unselected percentages are advisory under the recorded [project policy](../PROJECT.md#coverage-policy-and-adoption-provenance); required report integrity still binds. Installed receipt/coverage thresholds remain binding until the adoption task records the owner choice and authorized independently reviewed infrastructure migration. Supported-platform CI still repeats the complete gate. Owner action is required to merge/release.

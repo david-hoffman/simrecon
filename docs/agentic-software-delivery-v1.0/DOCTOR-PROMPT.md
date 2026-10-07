@@ -15,7 +15,27 @@ an execution error under an existing rule. Verify lessons before generalizing th
 A green rerun does not prove a previous failure harmless. Hypotheses remain hypotheses.
 Use one compact Current state and linked metrics: scenarios/examples, route/model/effort, cumulative full/delta review rounds, repairs/spending, actual human-set limits, per-role responses/input-cached-output tokens, launch/check/critical-path/owner-wait time, defects/false findings/exposure and explicit unknowns. Avoid cumulative-counter/child/overlap double counting. There is no default scenario/review/repair cap or execution budget. Diagnose recurring
 failures and each correction with evidence. Preserve cumulative attempts/spending and
-actual human-set limits; never lower the verification/coverage gate.
+actual human-set limits; do not silently lower the verification/coverage gate.
+
+Use the task's inherited approved coverage policy under spec section 5.1 and classify
+coverage friction under section 5.2 before correction. State the missing approved outcome
+or concrete reachable risk, evidence and why tests miss it. Test gaps belong to the
+authorized test owner, needless implementation to its author, unresolved semantics to
+intake and measurement faults to authorized infrastructure. A bare uncovered branch
+does not justify a new requirement or another A/B cycle. Keep blind corrections
+source-free; preserve role ownership, supplemental-test labels and prior accounting.
+Behavior/risk evidence always applies; selected target failures and missing required
+measurement block acceptance, while unselected metrics are advisory. The full exact-
+candidate local gate and required CI remain in force under the approved policy.
+
+Ordinary doctor cannot select an easier policy or activate a relaxation through a failing
+task's repair. A separately authorized coverage-policy adoption records the explicit
+owner choice and requires fresh independent policy review before activation. Reconcile
+affected instructions and authorize any executable gate changes to their named
+infrastructure owner; explicitly migrate active tasks before applying changed gates.
+An irreducible selected-target conflict needs an explicit owner policy decision or remains
+blocked. This distinction adds no approval checkpoint for a record that restates the
+human request and replenishes no attempts or spending.
 
 For a confirmed spec gap, create a small docs branch and actually edit the existing
 docs/agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md plus directly affected
