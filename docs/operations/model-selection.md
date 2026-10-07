@@ -11,6 +11,11 @@
 | Policy author/reviewer; uncertain infrastructure judgment | `gpt-6.1-sol`, high | Conservative default for authority/gate interactions |
 | Conventional bounded worker/reviewer | `gpt-6.1-sol`, high until applicable calibration | `gpt-6.1-sol` medium and `gpt-6-luna` medium are candidates; each responsibility needs relevant evidence |
 | Mechanical worker | `gpt-6-luna`, medium for the qualified scope below | DOC1 supports already-classified non-normative edits with deterministic checks; use conservative selection for unrepresented work |
+| Scoped advisor for sticky situations | `gpt-6-astra`, ultra | Owner-requested consultation on October 7, 2026; report-only advice, no replacement of required roles |
+
+For sticky situations, diagnose the uncertainty and state a concrete, scoped question before consulting Astra/ultra. The coordinator launches advisors; launched roles request consultation through it. Advisors gain no file ownership, supply no missing owner meaning and replace neither fresh blind A/B nor fresh independent D. Existing routes and gates remain binding. A/B advisors follow the same public-input allowlist and blindness restrictions; their inputs and advice contain no implementation-bearing material. Disclose exposure and stop affected blind work for routing.
+
+Record requested and actual advisor settings, availability/attribution limitations, launches/responses and available usage/cost in existing cumulative accounting. Unavailable values are unknown. Consultation erases no attempts/spending and restores no blindness; a requested configuration alone proves neither availability nor quality.
 
 The coordinator's October 5, 2026 read-only local capability inspection reported Codex 0.160.0 and available Sol/Luna models supporting medium/high. Recheck actual availability/settings when evidence is stale; a cache entry does not prove launch/quality. Native `-c 'model_reasoning_effort="high"'` supplies the setting in [role launches](role-launches.md). Supported levels depend on model/client. [Official configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference), opened October 5, 2026, documents this key. No pricing/comparative-quality claim follows from family names.
 

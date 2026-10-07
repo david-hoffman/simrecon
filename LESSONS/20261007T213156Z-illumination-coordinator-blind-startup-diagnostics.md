@@ -1,0 +1,7 @@
+# Protect blind diagnostic startup and scratch channels
+
+- Role: coordinator; ILLUMINATION-01.
+- Observation: a read-only reviewer could not start pytest's default file-descriptor capture because it required writable temporary files. A fresh attempt then left an allowed scratch file handle open; its unraisable ResourceWarning escaped the scratch channel. Both attempts stopped without an accepted test checkpoint. No SIMrecon implementation was exposed.
+- Evidence: local ignored `artifacts/illumination-execution/B-final.txt`, `B2-final.txt`, and the same task's `execution-record.json` preserve both attempts and diagnoses. The protected launcher `blind_pytest.py` selects in-memory sys capture and disables the pytest cache. Controlled no-temp collection succeeded; deliberately unclosed-file and startup-failure probes retained category/message/location and returned status 3 without source snippets; a clean closed read returned status 0.
+- Action: protect startup, warnings, unraisable events and every scratch/subprocess channel before blind numerical work. Use closed file reads. An expected missing-API baseline remains product absence, not evidence that all oracles are valid. Keep failed launches/accounting and use a fresh required reviewer after a diagnostic stop.
+- Limit: the one-off ignored launcher is local setup. It changes no shipped numerical oracle, gate or coverage configuration and proves no universal diagnostic containment. Prompt allowlists are not engineered access controls.
