@@ -166,7 +166,7 @@ def main():
                 "summary": summary,
             }
             if (
-                mode in {"partial-coverage", "partial-json-failure"}
+                mode in {"partial-coverage", "partial-json-failure", "partial-combined"}
                 and name != "scripts/branchless.py"
             ):
                 summary.update(
@@ -196,6 +196,35 @@ def main():
                 item.update(
                     executed_lines=[1], executed_branches=[], missing_branches=[], excluded_lines=[]
                 )
+            if mode == "partial-statements" and name == "scripts/branchless.py":
+                summary.update(
+                    covered_lines=0,
+                    missing_lines=1,
+                    percent_covered=0.0,
+                    percent_covered_display="0",
+                )
+                item.update(executed_lines=[], missing_lines=[1])
+            if mode in {"partial-combined", "zero-coverage"}:
+                covered = 0 if mode == "zero-coverage" else 1
+                summary.update(
+                    covered_lines=covered,
+                    missing_lines=summary["num_statements"] - covered,
+                )
+                item["executed_lines"] = [1] if covered else []
+                item["missing_lines"] = list(range(covered + 1, summary["num_statements"] + 1))
+            if mode == "partial-combined" and summary["num_branches"]:
+                summary.update(percent_covered=50.0, percent_covered_display="50")
+                item.update(executed_branches=[[1, -1]], missing_branches=[[1, 2]])
+            if mode == "zero-coverage":
+                summary.update(
+                    covered_branches=0,
+                    missing_branches=summary["num_branches"],
+                    num_partial_branches=0,
+                    percent_covered=0.0,
+                    percent_covered_display="0",
+                )
+                item["missing_branches"] = item["executed_branches"]
+                item["executed_branches"] = []
             files[name] = item
         totals: dict[str, int | float | str] = {
             key: sum(item["summary"][key] for item in files.values())
@@ -214,11 +243,67 @@ def main():
         totals.update(percent_covered=100.0, percent_covered_display="100")
         if mode in {"partial-coverage", "partial-json-failure"}:
             totals.update(percent_covered=700 / 9, percent_covered_display="78")
+        if mode in {"partial-statements", "partial-combined", "zero-coverage"}:
+            percent = {
+                "partial-statements": 800 / 9,
+                "partial-combined": 500 / 9,
+                "zero-coverage": 0.0,
+            }[mode]
+            totals.update(percent_covered=percent, percent_covered_display=str(round(percent)))
         report = {
             "meta": {"version": "7.13.4", "format": 3, "branch_coverage": True},
             "files": files,
             "totals": totals,
         }
+        invalid = files["src/simrecon/sample.py"]
+        summary = invalid["summary"]
+        if mode == "covered-statements-over-total":
+            summary["covered_lines"] = 3
+            invalid["executed_lines"] = [1, 2, 3]
+        if mode == "covered-branches-over-total":
+            summary["covered_branches"] = 3
+            invalid["executed_branches"] = [[1, 2], [1, -1], [1, 3]]
+        if mode in {"statement-count-mismatch", "overlapping-lines", "missing-line-length"}:
+            summary.update(
+                covered_lines=1, missing_lines=0 if mode == "statement-count-mismatch" else 1
+            )
+            invalid["executed_lines"] = [1]
+            invalid["missing_lines"] = (
+                [] if mode == "missing-line-length" else [1 if mode == "overlapping-lines" else 2]
+            )
+        if mode in {"branch-count-mismatch", "overlapping-branches", "missing-branch-length"}:
+            summary.update(
+                covered_branches=1,
+                missing_branches=0 if mode == "branch-count-mismatch" else 1,
+            )
+            invalid["executed_branches"] = [[1, 2]]
+            invalid["missing_branches"] = (
+                []
+                if mode == "missing-branch-length"
+                else [[1, 2 if mode == "overlapping-branches" else -1]]
+            )
+        if mode == "duplicate-executed-lines":
+            invalid["executed_lines"] = [1, 1]
+        if mode == "duplicate-missing-lines":
+            summary.update(covered_lines=0, missing_lines=2)
+            invalid.update(executed_lines=[], missing_lines=[1, 1])
+        if mode == "duplicate-executed-branches":
+            invalid["executed_branches"] = [[1, 2], [1, 2]]
+        if mode == "duplicate-missing-branches":
+            summary.update(covered_branches=0, missing_branches=2)
+            invalid.update(executed_branches=[], missing_branches=[[1, 2], [1, 2]])
+        if mode == "malformed-line-destination":
+            invalid["executed_lines"] = [True, 2]
+        if mode == "malformed-branch-destination":
+            invalid["executed_branches"] = [[1, "2"], [1, -1]]
+        if mode == "negative-counter":
+            summary["num_branches"] = -1
+        if mode == "boolean-counter":
+            summary["num_branches"] = True
+        if mode == "inconsistent-zero-counter":
+            summary["num_statements"] = 0
+        if mode == "invalid-partial-counter":
+            summary["num_partial_branches"] = 3
         if mode == "inconsistent-native-destinations":
             files["src/simrecon/sample.py"]["executed_branches"] = [[1, 2]]
         if mode == "missing-native-numerator":

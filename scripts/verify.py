@@ -157,6 +157,31 @@ def measurements(run_id: str) -> dict[str, Any]:
     }
 
 
+def native_destinations(values: Any, branches: bool) -> set[int | tuple[int, int]]:
+    """Validate unique native lines or branch arcs, including negative exit destinations."""
+    if not isinstance(values, list):
+        raise ValueError("Invalid native coverage destinations")
+    destinations: set[int | tuple[int, int]] = set()
+    for value in values:
+        if branches:
+            if (
+                not isinstance(value, list)
+                or len(value) != 2
+                or any(type(line) is not int for line in value)
+                or value[0] <= 0
+                or value[1] == 0
+            ):
+                raise ValueError("Invalid native coverage destinations")
+            destinations.add((value[0], value[1]))
+        else:
+            if type(value) is not int or value <= 0:
+                raise ValueError("Invalid native coverage destinations")
+            destinations.add(value)
+    if len(destinations) != len(values):
+        raise ValueError("Duplicate native coverage destinations")
+    return destinations
+
+
 def metrics(problems: list[str]) -> dict[str, Any]:
     """Validate and aggregate native owned-file coverage evidence."""
     reports = {
@@ -189,26 +214,40 @@ def metrics(problems: list[str]) -> dict[str, Any]:
             )
             if any(type(summary[key]) is not int or summary[key] < 0 for key in keys):
                 raise ValueError("Invalid native coverage counters")
-            if (
-                summary["missing_lines"]
-                or summary["excluded_lines"]
-                or summary["missing_branches"]
-                or summary["num_partial_branches"]
-                or item["missing_lines"]
-                or item["excluded_lines"]
-                or item["missing_branches"]
-            ):
-                problems.append("Incomplete or excluded owned coverage: " + path.as_posix())
+            excluded = native_destinations(item["excluded_lines"], False)
+            if len(excluded) != summary["excluded_lines"]:
+                raise ValueError("Invalid native coverage counters")
+            if excluded:
+                problems.append("Excluded owned coverage: " + path.as_posix())
+            if summary["num_partial_branches"] > summary["missing_branches"]:
+                raise ValueError("Invalid native coverage counters")
             current = {}
-            for kind, numerator, denominator, native in (
-                ("statements", "covered_lines", "num_statements", "executed_lines"),
-                ("branches", "covered_branches", "num_branches", "executed_branches"),
+            for kind, numerator, denominator, native, missing in (
+                (
+                    "statements",
+                    "covered_lines",
+                    "num_statements",
+                    "executed_lines",
+                    "missing_lines",
+                ),
+                (
+                    "branches",
+                    "covered_branches",
+                    "num_branches",
+                    "executed_branches",
+                    "missing_branches",
+                ),
             ):
                 covered, total = summary[numerator], summary[denominator]
-                if len(item[native]) != covered:
+                executed = native_destinations(item[native], kind == "branches")
+                unexecuted = native_destinations(item[missing], kind == "branches")
+                if (
+                    covered + summary[missing] != total
+                    or len(executed) != covered
+                    or len(unexecuted) != summary[missing]
+                    or executed & unexecuted
+                ):
                     raise ValueError("Invalid native coverage destinations")
-                if covered != total:
-                    problems.append("Incomplete native coverage: " + path.as_posix())
                 current[kind] = {"covered": covered, "total": total}
                 for counter in ("covered", "total"):
                     packages[package][kind][counter] += current[kind][counter]

@@ -4,6 +4,8 @@
 
 The subsequent whole-plan approval adds [MEASUREMENTS-EXPORT-01](measurements-export-v1.md) without weakening V1–V5. It authorizes the narrow existing M25 export and mandatory collector for this repository’s `make verify`; direct helper callers without the new flag retain this contract’s behavior.
 
+The owner subsequently instructed “Switch percentages to advisory”. [VERIFICATION-COVERAGE-ADVISORY-01](verification-coverage-advisory-v1.md) supersedes only the original percentage-completeness obligations below. V1 permits valid partial/zero execution, and V3 rejects missing/malformed measurement rather than a low percentage. All other phases, fields, identity/output/artifact protections and measurement-export guarantees remain binding. The original full-coverage requirements below preserve the historical contract; they are not additional current percentage gates.
+
 ## Public entry points
 
 `make check UV=/absolute/path/to/uv` synchronizes the locked environment, then runs exactly the Ruff lint, Ruff formatting and Pyright commands used by full verification. It does not replace `make verify`.
@@ -43,7 +45,7 @@ Exact nested field names:
 - Artifact contains the sole built wheel's relative name, byte size, SHA-256 and resolved distribution version from its metadata. Ordinary wheel evidence follows the [Python Packaging Authority binary distribution format](https://packaging.python.org/en/latest/specifications/binary-distribution-format/): consistent distribution/version metadata, WHEEL format/tags and a complete RECORD with correct secure member hashes (SHA-256 or stronger) and an unhashed self-entry. Expanded WHEEL compatibility tags must have the three nonempty Python/ABI/platform components required by the [platform compatibility tag specification](https://packaging.python.org/en/latest/specifications/platform-compatibility-tags/) and agree with the filename's expanded tag set. Preserve valid compressed filename tag sets with multiple expanded Tag fields, ordinary underscore-containing platform tags, and the optional filename build component; malformed or mismatching tags fail. This checks declared format consistency, not whether the artifact is installable on the current host. This is evidence collection for the current build gate, not a general installer. Missing, ambiguous or invalid wheel evidence fails. This project has a static version; commit/tree and dependency/check manifests remain recorded build inputs.
 - `problems` identifies missing/incomplete/changed evidence. Failed runs retain collected identities, logs and any available metrics or valid artifact evidence, including valid partial native counts emitted by a failing coverage JSON phase before HTML runs, and valid same-run wheel evidence emitted by a failing build phase; they cannot reuse stale reports to pass. Phase logs retain only output actually emitted by the check commands. The original V1–V5 scope did not authorize changes to existing scientific tests. The separately approved additive measurement contract now supplies same-run export from the existing M25 invocation, with its assertions and memory limit unchanged; no second scientific run is required solely to retrieve numbers. Its additional `measurements` receipt field is null for legacy callers and validated current evidence for opted-in callers.
 
-## Contract
+## Original contract and coverage amendment
 
 | Scenario | Public input/context and observable outcome | Expectation source |
 |---|---|---|

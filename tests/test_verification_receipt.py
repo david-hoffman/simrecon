@@ -224,7 +224,6 @@ def test_v2_missing_executable(repository):
         "missing-json",
         "missing-html",
         "missing-owned",
-        "partial-coverage",
         "excluded-coverage",
         "malformed-coverage",
         "no-native-branches",
@@ -258,6 +257,111 @@ def test_v3_incomplete_evidence(repository, mode):
     assert receipt is not None
     failed(result, receipt)
     assert result.returncode == 1
+
+
+@pytest.mark.parametrize(
+    "mode,line_counts,branch_counts",
+    [
+        ("partial-coverage", (2, 2, 1), (1, 1)),
+        ("partial-statements", (2, 2, 0), (2, 2)),
+        ("partial-combined", (1, 1, 1), (1, 1)),
+        ("zero-coverage", (0, 0, 0), (0, 0)),
+    ],
+)
+def test_advisory_coverage_preserves_exact_evidence(repository, mode, line_counts, branch_counts):
+    result, receipt = invoke(repository, mode)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert receipt is not None
+    assert receipt["result"] == "passed"
+    assert receipt["problems"] == []
+    assert [(phase["name"], phase["returncode"]) for phase in receipt["phases"]] == [
+        (name, 0) for name in PHASES
+    ]
+    sample = {
+        "statements": {"covered": line_counts[0], "total": 2},
+        "branches": {"covered": branch_counts[0], "total": 2},
+    }
+    scripts = {
+        "statements": {"covered": line_counts[1] + line_counts[2], "total": 3},
+        "branches": {"covered": branch_counts[1], "total": 2},
+    }
+    assert receipt["coverage"]["files"] == {
+        "src/simrecon/sample.py": sample,
+        "scripts/sample.py": sample,
+        "scripts/branchless.py": {
+            "statements": {"covered": line_counts[2], "total": 1},
+            "branches": {"covered": 0, "total": 0},
+        },
+    }
+    assert receipt["coverage"]["packages"] == {"simrecon": sample, "scripts": scripts}
+    assert receipt["coverage"]["global"] == {
+        "statements": {"covered": sum(line_counts), "total": 5},
+        "branches": {"covered": sum(branch_counts), "total": 4},
+    }
+
+
+@pytest.mark.parametrize(
+    "mode",
+    [
+        "covered-statements-over-total",
+        "covered-branches-over-total",
+        "statement-count-mismatch",
+        "branch-count-mismatch",
+        "missing-line-length",
+        "missing-branch-length",
+        "duplicate-executed-lines",
+        "duplicate-missing-lines",
+        "duplicate-executed-branches",
+        "duplicate-missing-branches",
+        "overlapping-lines",
+        "overlapping-branches",
+        "malformed-line-destination",
+        "malformed-branch-destination",
+        "negative-counter",
+        "boolean-counter",
+        "inconsistent-zero-counter",
+        "invalid-partial-counter",
+    ],
+)
+def test_advisory_coverage_still_rejects_invalid_native_evidence(repository, mode):
+    result, receipt = invoke(repository, mode)
+    assert receipt is not None
+    failed(result, receipt)
+    assert result.returncode == 1
+    assert [(phase["name"], phase["returncode"]) for phase in receipt["phases"]] == [
+        (name, 0) for name in PHASES
+    ]
+
+
+@pytest.mark.parametrize("execute_statements", [False, True])
+def test_project_coverage_commands_allow_advisory_percentages(repository, execute_statements):
+    root, _ = repository
+    empty = root / "scripts/empty.py"
+    empty.touch()
+    program = root / "scripts/branchless.py" if execute_statements else empty
+    command = [sys.executable, "-m", "coverage"]
+    config = f"--rcfile={ROOT / 'pyproject.toml'}"
+    for args in (
+        ["run", config, str(program)],
+        ["json", config],
+        ["html", config],
+        ["report", config],
+    ):
+        result = run([*command, *args], root)
+        assert result.returncode == 0, result.stdout + result.stderr
+    report = json.loads((root / "artifacts/coverage/coverage.json").read_text())
+    assert report["meta"]["branch_coverage"] is True
+    assert set(report["files"]) == {
+        "src/simrecon/sample.py",
+        "scripts/sample.py",
+        "scripts/branchless.py",
+        "scripts/empty.py",
+    }
+    assert report["totals"]["covered_lines"] == int(execute_statements)
+    assert report["totals"]["num_statements"] == 5
+    assert report["totals"]["covered_branches"] == 0
+    assert report["totals"]["num_branches"] == 4
+    assert (root / "artifacts/coverage/html/index.html").is_file()
 
 
 @pytest.mark.parametrize("mode", ["dirty-start", "tracked-change", "commit-change"])
