@@ -362,6 +362,58 @@ def test_partial_counter_matches_native_missing_arc_sources(
     ]
 
 
+@pytest.mark.parametrize(
+    "mode,missing_line",
+    [("executed-branch-missing-source", 1), ("executed-branch-missing-destination", 2)],
+)
+def test_executed_branch_endpoints_cannot_be_missing_statements(repository, mode, missing_line):
+    result, receipt = invoke(repository, mode)
+    root, _ = repository
+    report = json.loads((root / "artifacts/coverage/coverage.json").read_text())
+    item = report["files"]["src/simrecon/sample.py"]
+    assert item["executed_lines"] == [3 - missing_line]
+    assert item["missing_lines"] == [missing_line]
+    assert item["executed_branches"] == [[1, 2], [1, -1]]
+    assert item["missing_branches"] == []
+    assert item["summary"]["num_partial_branches"] == 0
+    for key, value in (
+        ("covered_lines", 1),
+        ("num_statements", 2),
+        ("missing_lines", 1),
+        ("covered_branches", 2),
+        ("num_branches", 2),
+        ("missing_branches", 0),
+        ("num_partial_branches", 0),
+    ):
+        assert item["summary"][key] == value
+        assert report["totals"][key] == sum(
+            file["summary"][key] for file in report["files"].values()
+        )
+    assert receipt is not None
+    failed(result, receipt)
+    assert result.returncode == 1
+    assert [(phase["name"], phase["returncode"]) for phase in receipt["phases"]] == [
+        (name, 0) for name in PHASES
+    ]
+
+
+def test_unmeasured_native_endpoint_remains_permitted(repository):
+    result, receipt = invoke(repository, "unmeasured-native-endpoint")
+    root, _ = repository
+    report = json.loads((root / "artifacts/coverage/coverage.json").read_text())
+    item = report["files"]["src/simrecon/sample.py"]
+    assert item["executed_branches"] == [[1, 3], [1, -1]]
+    assert 3 not in item["executed_lines"] + item["missing_lines"]
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert receipt is not None
+    assert receipt["result"] == "passed"
+    assert receipt["problems"] == []
+    assert receipt["coverage"]["global"] == {
+        "statements": {"covered": 5, "total": 5},
+        "branches": {"covered": 4, "total": 4},
+    }
+
+
 @pytest.mark.parametrize("execute_statements", [False, True])
 def test_project_coverage_commands_allow_advisory_percentages(repository, execute_statements):
     root, _ = repository

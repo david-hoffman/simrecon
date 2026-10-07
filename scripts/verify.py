@@ -249,7 +249,12 @@ def metrics(problems: list[str]) -> dict[str, Any]:
                 current[kind] = {"covered": covered, "total": total}
                 for counter in ("covered", "total"):
                     packages[package][kind][counter] += current[kind][counter]
-            partial = sum(arc[0] not in item["missing_lines"] for arc in item["missing_branches"])
+            missing_lines = set(item["missing_lines"])
+            if any(
+                endpoint in missing_lines for arc in item["executed_branches"] for endpoint in arc
+            ):
+                raise ValueError("Executed branch endpoint is a missing statement")
+            partial = sum(arc[0] not in missing_lines for arc in item["missing_branches"])
             if summary["num_partial_branches"] != partial:
                 raise ValueError("Invalid native partial branch counter")
             files[path.as_posix()] = current

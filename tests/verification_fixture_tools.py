@@ -234,6 +234,20 @@ def main():
                     summary["num_partial_branches"] = 1
                 if mode == "partial-counter-understatement":
                     summary["num_partial_branches"] = 0
+                if mode in {
+                    "executed-branch-missing-source",
+                    "executed-branch-missing-destination",
+                }:
+                    missing_line = 1 if mode == "executed-branch-missing-source" else 2
+                    summary.update(
+                        covered_lines=1,
+                        missing_lines=1,
+                        percent_covered=75.0,
+                        percent_covered_display="75",
+                    )
+                    item.update(executed_lines=[3 - missing_line], missing_lines=[missing_line])
+                if mode == "unmeasured-native-endpoint":
+                    item["executed_branches"] = [[1, 3], [1, -1]]
             files[name] = item
         totals: dict[str, int | float | str] = {
             key: sum(item["summary"][key] for item in files.values())
@@ -252,6 +266,8 @@ def main():
         totals.update(percent_covered=100.0, percent_covered_display="100")
         if coverage_mode in {"partial-coverage", "partial-json-failure"}:
             totals.update(percent_covered=700 / 9, percent_covered_display="78")
+        if mode in {"executed-branch-missing-source", "executed-branch-missing-destination"}:
+            totals.update(percent_covered=800 / 9, percent_covered_display="89")
         if coverage_mode in {"partial-statements", "partial-combined", "zero-coverage"}:
             percent = {
                 "partial-statements": 800 / 9,
