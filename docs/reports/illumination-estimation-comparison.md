@@ -7,6 +7,42 @@ image-quality, noise-reliability or physical recovery claim. Exact candidate and
 canonical verification evidence belong to the coordinator's execution record;
 this report is not the full gate or independent D verdict.
 
+![Actual and independent phase, modulation and residual values for five finite synthetic cases, with measured absolute gain and residual errors.](../figures/illumination-estimation-comparison.png)
+
+**Figure 1. Finite synthetic fit correspondence.** Open circles show actual
+public outputs; crosses show the independent fit to the stored observations.
+The markers often coincide at display precision. Phase offset is in radians;
+modulation and relative residual are dimensionless. Phase and modulation use
+linear axes; the positive direct residual uses a logarithmic axis. The lower
+linear axis shows absolute complex gain error for `z=(m/2)*exp(i*theta)` and
+absolute residual error, including the exact zero for the off-model residual
+error. The off-model reference is its stored-input fit, not its generating
+parameters. Residual describes model fit, not confidence. The gain/residual
+acceptance budgets are `3.8198777474462986e-10` (six steps) and
+`5.093170329928398e-10` (eight steps); the small-residual assertion additionally
+requires error below `2e-12`. These budgets do not apply directly to phase.
+
+![Independent specimen samples, actual signed real reconstruction and absolute complex reconstruction error on identical physical pixel grids.](../figures/illumination-estimation-reconstruction.png)
+
+**Figure 2. Alias-free finite reconstruction correspondence.** The brightness-1.7
+case feeds its actual estimated phases and modulation into the public
+reconstruction operation. The independently sampled continuous specimen and
+the actual signed real image share one linear intensity scale. The third panel
+shows `abs(actual_complex_image-independent_specimen)` on its own linear scale
+in intensity units, including the imaginary component; its maximum is
+`6.661360429966720e-15`. Each panel shows all `(10,14)` output pixels without
+smoothing or clipping. Pixel centres start at `(y,x)=(0,0)` micrometres, with
+sampling `(0.1,0.175)` micrometres and y increasing upward. The equal physical
+axis scale uses pixel-edge bounds x `[-0.0875,2.3625]` and y `[-0.05,0.95]`
+micrometres; the last centres are x `2.275` and y `0.9` micrometres. This is
+correspondence for the accepted finite fixture, with no general image-quality,
+noise-reliability or physical recovery promise.
+
+The [plot data and provenance manifest](../references/scientific/illumination-estimation-comparison.json)
+contains the actual/reference scalars, complete plotted arrays, shapes, dtypes,
+C-order array digests, frozen input/checkpoint/source identities, numerical and
+rendering environments, generator/renderer digests and final PNG digests.
+
 The [contract](../contracts/illumination-estimation-v1.md) defines the operation.
 The independent fixture in `tests/illumination_fixture.py` generates observations
 by explicit periodic convolution and computes truth with a 90-digit Decimal
@@ -144,8 +180,8 @@ ccd7074a3f3aeb4ac43f61df0c8576d1007fd78aa0a2dc1bbadc5d221e21463b
 
 Measured from the repository root on macOS 27.0 arm64: Python 3.13.12,
 NumPy 2.5.3, SciPy 1.18.1. Use the existing worktree `.venv`; no plotting or
-other dependency was added. The following command reproduces the numerical
-comparison and input digests using the accepted fixture:
+other dependency was added to the project. The following command reproduces the
+numerical comparison and input digests using the accepted fixture:
 
 ```sh
 .venv/bin/python - <<'PY'
@@ -190,6 +226,28 @@ for name, f in [("default", base), ("off-model", off), ("small-residual", small)
             print(array.shape, array.dtype.str, hashlib.sha256(array.tobytes(order="C")).hexdigest())
 PY
 ```
+
+The figures were rendered separately with Matplotlib 3.11.2, NumPy 2.5.3 and
+Pillow 12.3.0, the noninteractive Agg backend and bundled DejaVu Sans font.
+Both PNGs use 300 dots per inch: Figure 1 is `3600 x 2220` pixels; Figure 2 is
+`3840 x 1380` pixels. Numerical generation uses the project interpreter;
+rendering reads the persisted manifest and imports no product or fixture code.
+The presentation-only generators are retained as ignored local evidence under
+`artifacts/illumination-execution/figures/`, not shipped runtime tools. Their
+exact hashes and portable commands are in the manifest. The executed commands
+from the repository root are:
+
+```sh
+.venv/bin/python artifacts/illumination-execution/figures/generate.py
+MPLBACKEND=Agg MPLCONFIGDIR=artifacts/illumination-execution/figures/mplconfig \
+  uv run --offline --no-project --python .venv/bin/python \
+  --with matplotlib==3.11.2 --with numpy==2.5.3 \
+  python artifacts/illumination-execution/figures/render.py
+```
+
+The offline rendering command uses an already populated external uv cache.
+The numerical example above remains reproducible without the ignored scripts;
+the tracked manifest also retains every plotted value for independent replotting.
 
 Focused execution: `.venv/bin/python -m pytest --tb=short -q tests/test_illumination.py`
 passed all 189 tests with no skips. Owned-source Ruff lint/format checks and the

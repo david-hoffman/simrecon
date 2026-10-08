@@ -10,6 +10,10 @@ Ownership: A authors tests/test_illumination.py and tests/illumination_fixture.p
 
 Inherited coverage choice is approved behavior coverage with independent risk review and advisory native statement/branch percentages. A/B map and audit all approved outcomes and concrete high-risk paths; D assesses actual omissions. Measurement integrity remains required for every owned Python file, subprocess, package and global report. Missing/inconsistent reports still fail. No numerical percentage target is introduced. Full local exact-candidate make verify with locked uv 0.12.19/Python 3.13.12, all phases, coverage JSON/HTML, same-run M25 evidence, wheel/isolated import and audit precedes D and PR publication. Configured Ubuntu/macOS CI repeats the full gate. No merge/release or external messages are authorized.
 
+## Figure follow-up
+
+The owner subsequently requested appropriate figures in PR #11. This is mechanical presentation of the same accepted five fixtures and reconstruction correspondence: measured plots, a plot-input/provenance manifest and explanatory report captions. The figure worker owns only those named documentation/assets and ignored render evidence; numerical source, tests, fixtures, contracts, dependencies and gates stay frozen. The original comparison contract retains fresh final D review after canonical exact-candidate verification. Changing follow-up evidence and cumulative accounting remain in the same execution record below; prior results are historical evidence for their original candidate.
+
 ## Current state
 
 This is the single tracked pointer for ILLUMINATION-01. Changing candidate/checkpoint identities, A/B/C/D and policy verdicts, canonical commands/results, classifications, launches/corrections and cumulative measured accounting live outside tracked bytes in `artifacts/illumination-execution/execution-record.json`, with native packets/events/final reports and `artifacts/verification/receipt.json`. This pointer makes no preemptive passing or acceptance claim; final candidate identity/results belong in conversation/PR and those ignored records.
