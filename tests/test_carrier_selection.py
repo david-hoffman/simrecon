@@ -635,7 +635,8 @@ def test_error_mode_and_warning_preservation(
         assert_code(
             "invalid_carrier_selection_policy", invoke, fixture, max_relative_residual=overflow
         )
-        assert invoke(fixture, max_relative_residual=tiny).failure_code == "no_acceptable_carrier"
+        result = invoke(fixture, max_relative_residual=tiny)
+        assert_decision(result, float(tiny), 1, (0.0, 20.0))
         assert np.geterr() == dict.fromkeys(before, mode)
     assert np.geterr() == before
     assert not [warning for warning in caught if issubclass(warning.category, RuntimeWarning)]
