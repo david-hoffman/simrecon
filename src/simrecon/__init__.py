@@ -2,6 +2,7 @@
 
 from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
+from ._drift import DriftCorrection, correct_integer_drift
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._legacy import inspect
 from ._metadata import harmonize
@@ -18,6 +19,7 @@ __all__ = [
     "CarrierSelection",
     "DataBlock",
     "DatasetInfo",
+    "DriftCorrection",
     "IlluminationEstimate",
     "Otf2D",
     "PhaseComponents",
@@ -25,6 +27,7 @@ __all__ = [
     "SimreconError",
     "TranslationEstimate",
     "WriteReport",
+    "correct_integer_drift",
     "estimate_illumination",
     "estimate_translation",
     "harmonize",
