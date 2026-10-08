@@ -11,6 +11,7 @@ from ._otf import Otf2D, prepare_otf
 from ._phase import PhaseComponents, separate_phases
 from ._pixels import read
 from ._reconstruction import Reconstruction2D, reconstruct
+from ._translation import TranslationEstimate, estimate_translation
 
 __all__ = [
     "CarrierCandidate",
@@ -22,8 +23,10 @@ __all__ = [
     "PhaseComponents",
     "Reconstruction2D",
     "SimreconError",
+    "TranslationEstimate",
     "WriteReport",
     "estimate_illumination",
+    "estimate_translation",
     "harmonize",
     "inspect",
     "prepare_otf",
