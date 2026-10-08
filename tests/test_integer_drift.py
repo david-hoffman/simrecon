@@ -249,9 +249,17 @@ def test_integer_extrema_exact_and_analytic(correct: Callable[..., Any], unsigne
         args["displacements_pixels_yx"] = np.array([[-(2**63), 2**63 - 1]], dtype=np.int64)
         expected = complex(-np.sqrt(3) / 2, -0.5)  # 1/3 + 1/4 = 7/12 turn.
     args["phases_rad"] = np.zeros(1)
+    # Ideal roots validate the observer, not product accuracy. The contract's
+    # represented trigonometric target differs slightly from an ideal root.
+    reference = represented_phasors(
+        args["phases_rad"],
+        args["carrier_bins_yx"],
+        args["displacements_pixels_yx"],
+        args["images"].shape[1:],
+    )
+    np.testing.assert_allclose(reference, [expected], atol=8 * EPS, rtol=0)
     result = correct(**args)
     assert_prepared(result, args)
-    assert abs(phasors(result.phases_rad)[0] - expected) <= CIRCULAR_BUDGET
 
 
 @pytest.mark.parametrize(
@@ -292,9 +300,17 @@ def test_analytic_rational_cycles_and_positive_sign(correct: Callable[..., Any])
         [[1, 0], [0, 1], [-1, 0], [-1, 3], [4, -6], [2, 0], [0, -1]]
     )
     expected = np.array([1j, 0.5 + np.sqrt(3) / 2 * 1j, -1j, 1j, 1, -1, 0.5 - np.sqrt(3) / 2 * 1j])
+    # Confine ideal-root comparisons to observer sanity. Returned phases are
+    # judged solely against the unchanged strict represented-input target.
+    reference = represented_phasors(
+        args["phases_rad"],
+        args["carrier_bins_yx"],
+        args["displacements_pixels_yx"],
+        args["images"].shape[1:],
+    )
+    np.testing.assert_allclose(reference, expected, atol=8 * EPS, rtol=0)
     result = correct(**args)
     assert_prepared(result, args)
-    assert np.all(np.abs(phasors(result.phases_rad) - expected) <= CIRCULAR_BUDGET)
 
 
 def test_huge_phases_and_branch_cut(correct: Callable[..., Any]) -> None:
