@@ -7,6 +7,16 @@ neither establishes a physical carrier. See the
 [contract](../contracts/carrier-selection-v1.md) and
 [executed usage](../usage/carrier-selection.md).
 
+![Three aligned diagnostic panels show residual, modulation and geometric overlap for all four supplied rows, with inclusive policy ranges and a retained no-overlap gap.](../figures/carrier-selection-diagnostics.png)
+
+**Figure 1.** Actual scan diagnostics (blue crosses) and independent stored-input
+expectations (open circles) nearly coincide. Shaded vertical ranges show the
+explicit unique-case policy: residual <=0.05, modulation in [0.6,1], and at least
+12 geometric pairs. Rows keep the supplied (y,x) detector-bin order. Row 1 is
+selected because all gates pass. Row 3, (100,0), retains its no-overlap failure;
+its missing diagnostics are gaps, not zero fits. Geometric counts do not measure
+informative support. [Export Figure 1 as SVG](../figures/carrier-selection-diagnostics.svg).
+
 ## Independent method and inputs
 
 The accepted read-only `tests/carrier_selection_fixture.py` supplies expectations.
@@ -88,6 +98,17 @@ within the explicit comparison tolerance; neither is rounded into a decision.
 
 ## Policy outcomes
 
+![Ten cases in recorded order show integer eligible-row counts, inclusive thresholds, selected or ambiguous outcomes, eligible indices and retained local-failure counts.](../figures/carrier-selection-outcomes.png)
+
+**Figure 2.** Counts are 1,0,3,2,1,0,1,0,2,0 in recorded case order. Square, circle
+and diamond markers distinguish no acceptable row, one selected row and ambiguity.
+The aligned columns retain each case's policy, eligible indices and local-failure
+counts. NO denotes `no_illumination_overlap`; UI denotes
+`unidentifiable_illumination`. Duplicates count as separate supplied rows.
+Sparse and one-pair passes do not establish physical identification, and minimum
+pair counts are geometric rather than counts of informative samples.
+[Export Figure 2 as SVG](../figures/carrier-selection-outcomes.svg).
+
 Each comparison asserts the independently expected eligible indices, selected
 index and failure code. It also checks every actual diagnostic against the exact
 inclusive predicate. Every row and local failure remains available.
@@ -121,8 +142,27 @@ Its [actual JSON output](../../artifacts/carrier-selection-execution/carrier-sel
 retains all stored images, phase steps, full signed complex OTF values, axes,
 metadata, candidate order, unrounded actual and independent diagnostics, corrected
 phases, eligible indices and outcomes. It records source/check/lock hashes and
-fixture array byte hashes, shapes and dtypes. No plot is needed for this scalar
-policy comparison. The generator is task evidence, not a shipped interface.
+fixture array byte hashes, shapes and dtypes. The generator is task evidence,
+not a shipped interface.
+
+The figures consume that existing JSON without rerunning the numerical producer
+or changing independent expectations. Render from the repository root with:
+
+```sh
+MPLCONFIGDIR="$PWD/artifacts/carrier-selection-execution/mplconfig-figures" \
+  /Users/davidhoffman/miniconda3/bin/python artifacts/carrier-selection-execution/C-figures.py
+```
+
+This report-only renderer uses CPython 3.13.12 and Matplotlib 3.11.0 with the Agg
+backend and bundled DejaVu Sans font. It uses the existing rendering executable;
+project dependencies and the locked numerical producer remain unchanged. PNG
+dimensions are 2484 by 1044 pixels for Figure 1 and 2664 by 1584 pixels for Figure 2,
+at 180 dots per inch. Matching SVG exports retain vector markers and text.
+The ignored [figure manifest](../../artifacts/carrier-selection-execution/C-figures-manifest.json)
+records source JSON, rendering script and output SHA-256 hashes, the exact command,
+rendering runtime and case order. Rendering and image inspection supply no new
+numerical or full-verification claim; the coordinator owns the exact final gate
+and fresh review for this supplement.
 
 The frozen fixture SHA-256 is
 `e422c78d3fa81b9386ef4d734e09b49d44327b9424048d849b490b67557fd1ba`;
