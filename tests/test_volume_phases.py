@@ -597,6 +597,41 @@ def test_intensity_scaled_accuracy_and_preserved_error_mode(api: Any, scale: flo
         assert_stored_fit(result, images, UNEQUAL_PHASES)
 
 
+def test_mixed_voxel_intensities_use_each_voxels_accuracy_budget(api: Any) -> None:
+    """V07/V09: bright neighbors must not erase independently fitted tiny voxels."""
+    base = spatial_coordinates((2, 2, 2))
+    scales = (
+        1e-200,
+        1.0,
+        np.finfo(np.float64).max / 64,
+        float.fromhex("0x0.0000000000001p-1022"),
+        0.0,
+        float.fromhex("0x1p-1022"),
+        1e100,
+        1e-100,
+    )
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        coordinates = np.array(
+            [
+                [exact(value) * exact(scale) for value, scale in zip(row, scales, strict=True)]
+                for row in base.reshape(5, -1)
+            ],
+            dtype=object,
+        ).reshape(base.shape)
+    images = synthesize(UNEQUAL_PHASES, coordinates)
+    for mode in ("warn", "raise"):
+        with warnings.catch_warnings(record=True) as caught, np.errstate(all=mode):
+            warnings.simplefilter("always")
+            before = np.geterr().copy()
+            result = api(images, phases_rad=UNEQUAL_PHASES)
+            assert np.geterr() == before
+        assert not any(issubclass(w.category, RuntimeWarning) for w in caught)
+        # The unchanged observer checks every coordinate against that voxel's
+        # own B and the contract's allowance of eight minimum subnormals.
+        assert_stored_fit(result, images, UNEQUAL_PHASES)
+
+
 @pytest.mark.parametrize("case", ["large_dc", "unhalved_harmonic", "complex_magnitude"])
 def test_safely_finite_coordinates_avoid_intermediate_overflow(api: Any, case: str) -> None:
     maximum = exact(np.finfo(np.float64).max)
