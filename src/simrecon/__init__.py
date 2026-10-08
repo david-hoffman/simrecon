@@ -1,5 +1,6 @@
 """Spatial image conversion through explicit, value-oriented interfaces."""
 
+from ._carrier import CarrierCandidate, scan_carriers
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._legacy import inspect
 from ._metadata import harmonize
@@ -11,6 +12,7 @@ from ._pixels import read
 from ._reconstruction import Reconstruction2D, reconstruct
 
 __all__ = [
+    "CarrierCandidate",
     "DataBlock",
     "DatasetInfo",
     "IlluminationEstimate",
@@ -25,6 +27,7 @@ __all__ = [
     "prepare_otf",
     "read",
     "reconstruct",
+    "scan_carriers",
     "separate_phases",
     "write",
 ]

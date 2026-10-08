@@ -83,6 +83,8 @@ def _transform(plane: npt.NDArray[Any]) -> tuple[npt.NDArray[np.complex128], int
     scaled = _scale_complex(values, -int(exponent))
     try:
         result = np.fft.fftshift(np.fft.fft2(scaled, norm="forward"))
+    except SimreconError:
+        raise
     except (ValueError, FloatingPointError, OverflowError) as error:
         raise SimreconError("illumination_solver_failure", "numerical transform failed") from error
     if not np.isfinite(result).all():
@@ -156,6 +158,18 @@ def estimate_illumination(
     # Keep the inherited output-range decision as well as its rank/solver rules.
     components = separate_phases(images, phases_rad=phase_steps_rad)
     with np.errstate(all="ignore"):
+        # The original-scale call above remains the validation/rank/solver/range
+        # authority. Its rounded subnormal outputs must not quantize the
+        # dimensionless fit. An exact common binary scaling of the converted
+        # observations retains their stored ratios before coefficient rounding;
+        # its scale cancels from gain and residual, so never restore it here.
+        values = images.astype(np.float64, order="C", copy=True)
+        peak = np.max(np.abs(values))
+        if 0 < peak < np.finfo(np.float64).tiny:
+            _, exponent = np.frexp(peak)
+            components = separate_phases(
+                np.ldexp(values, -int(exponent)), phases_rad=phase_steps_rad
+            )
         shape = components.dc.shape
         calibration = _validated_otf(otf, shape)
         ky, kx = _carrier(carrier_bins_yx)
