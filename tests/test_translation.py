@@ -576,6 +576,34 @@ def test_t06_inclusive_same_call_subtraction_and_no_hidden_epsilon(
         evaluate(api, result_type, moving, reference, tolerance, independent_membership=False)
 
 
+@pytest.mark.parametrize(
+    "tolerance,expected_candidates",
+    [(0.0, ((0, 0),)), (2.5e-7, ((0, 0), (0, 1)))],
+)
+def test_t06_nonzero_minimum_has_no_relative_allowance(
+    api: Any,
+    result_type: Any,
+    tolerance: float,
+    expected_candidates: tuple[tuple[int, int], ...],
+) -> None:
+    reference = np.array([[1.0, 0.0, 0.0]])
+    moving = np.array([[1001.0, 1000.5, 1000.0]])
+    # B=1001, P=3. Canonical squared-score numerators are 3001002.25,
+    # 3001000.25, 3001001.25, all divided by 3006003. The minimum is
+    # nonzero, so an unintended relative allowance can admit wrong shifts.
+    # At tolerance 2.5e-7, the closest boundary is >8.29e-8 away, versus
+    # 2 delta <5.46e-12. Zero tolerance also has a separated sole minimum.
+    result = evaluate(api, result_type, moving, reference, tolerance)
+    assert result.minimum_normalized_rms > 0.99
+    assert result.candidate_displacements_pixels_yx == expected_candidates
+    if len(expected_candidates) == 1:
+        assert result.displacement_pixels_yx == (0, 0)
+        assert result.failure_code is None
+    else:
+        assert result.displacement_pixels_yx is None
+        assert result.failure_code == "ambiguous_translation"
+
+
 def test_t06_exact_computed_ties_zero_tolerance(api: Any, result_type: Any) -> None:
     for moving, reference in (
         (np.zeros((2, 3)), np.zeros((2, 3))),
