@@ -19,6 +19,15 @@ spectrum and volume errors use arbitrary input intensity units. Calibration
 frequencies use cycles per micrometre; spacing uses micrometres; supplied
 fundamental phases use radians.
 
+![Complex gains for both alias-free orders and the deliberately aliased example](../figures/volume-order-gain-fit.png)
+
+Figure 1. The alias-free composition's fitted gains overlap its supplied model
+gains at the displayed scale. The deliberately aliased example returns a
+different gain despite coherence one and residual zero. High coherence does
+not establish alias freedom or physical calibration. The panels use different
+axis ranges; all gain components and diagnostics are dimensionless.
+[Vector figure](../figures/volume-order-gain-fit.svg).
+
 | Case | Returned gain | Residual | Coherence | Stored-input gain error | Informative regime |
 |---|---:|---:|---:|---:|---|
 | off model order 1 | 0.559751+0.113307i | 0.144615 | 0.989488 | 5.274E-17 | yes |
@@ -100,6 +109,20 @@ rounding allowance for conversion of Decimal observer arrays to native floats.
 Volume errors also meet the tighter case-specific `2e-10` margin. Uncorrected
 and corrected spectra differ by more than `0.05` intensity units in both rows.
 Positive-ridge bias is separate from gain and stored-input estimator errors.
+
+![Real-volume profiles comparing nominal and fitted calibration at ridge zero and positive ridge](../figures/volume-order-gain-reconstruction.png)
+
+Figure 2. One stored 12-voxel real-volume profile at output indices `z=0, y=0`
+shows the effect of applying the fitted gains to copied calibration rows.
+Both panels use the same intensity scale. The zero-ridge corrected profile
+overlaps the supplied specimen; positive ridge retains reconstruction bias.
+The full-volume error annotation concerns the complex arrays and their stored
+estimator expectations, rather than error against the supplied specimen.
+[Vector figure](../figures/volume-order-gain-reconstruction.svg).
+
+Both figures plot values from the existing numeric JSON with Matplotlib
+3.11.2. They add no simulations or numerical expectations. These finite
+synthetic examples do not establish measured-instrument performance.
 
 The deliberately aliased example uses distinct extended transfer weights at
 modes zero and four. Detector sampling folds their contributions together.
