@@ -1,10 +1,12 @@
 """Independent stored-input Decimal DFT observers for VOLUME-ORDER-01."""
 
 import warnings
+from collections.abc import Iterator
+from contextlib import contextmanager
 from decimal import Decimal, localcontext
 from fractions import Fraction
 from functools import cache
-from itertools import product
+from itertools import permutations, product
 from typing import Any
 
 import numpy as np
@@ -172,6 +174,49 @@ def storage(result: Any, psf: Array, coefficients: Array, other: Any = None) -> 
                 assert not np.shares_memory(array, getattr(other, name))
 
 
+def input_state(value: Any) -> tuple[Any, ...]:
+    if isinstance(value, np.ndarray):
+        return (value.tobytes(), value.dtype, value.shape, value.strides, value.flags.writeable)
+    view = memoryview(value)
+    return (view.tobytes(), view.format, view.shape, view.strides, view.readonly)
+
+
+def snapshot_inputs(*values: Any) -> list[tuple[Any, tuple[Any, ...]]]:
+    """Observe each caller array and reachable ndarray/buffer backing storage."""
+    pending: list[Any] = [value for value in values if isinstance(value, np.ndarray)]
+    saved: list[tuple[Any, tuple[Any, ...]]] = []
+    seen: set[int] = set()
+    while pending:
+        value = pending.pop()
+        if id(value) in seen:
+            continue
+        seen.add(id(value))
+        saved.append((value, input_state(value)))
+        if isinstance(value, np.ndarray):
+            base = value.base
+        elif isinstance(value, memoryview):
+            base = value.obj
+        else:
+            base = None
+        if isinstance(base, (np.ndarray, memoryview, bytes, bytearray)):
+            pending.append(base)
+    return saved
+
+
+def assert_inputs_preserved(saved: list[tuple[Any, tuple[Any, ...]]]) -> None:
+    for value, before in saved:
+        assert input_state(value) == before, "caller array or backing buffer changed"
+
+
+@contextmanager
+def preserved_inputs(*values: Any) -> Iterator[None]:
+    saved = snapshot_inputs(*values)
+    try:
+        yield
+    finally:
+        assert_inputs_preserved(saved)
+
+
 def state(result: Any) -> list[Any]:
     saved = []
     for name in FIELDS:
@@ -198,6 +243,93 @@ def unchanged(result: Any, before: list[Any]) -> None:
     assert state(result) == before
 
 
+def assert_frozen_bindings(record: Any) -> None:
+    before = state(record)
+    for name in FIELDS:
+        for operation in ("assign", "delete"):
+            try:
+                if operation == "assign":
+                    setattr(record, name, None)
+                else:
+                    delattr(record, name)
+            except Exception:
+                pass  # Exception type and silent refusal are both unspecified.
+            unchanged(record, before)  # Includes every field, identity and array metadata.
+
+
+def normalized_transform_observer(
+    psf: Array, g: Array, origin: tuple[int, int, int], original: Any
+) -> tuple[Any, set[int]]:
+    gs, expected = gains(g), direct(psf, g, origin)
+    normalized = []
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        mass = sum((dec(v) for v in psf.flat), Decimal(0))
+        for m in range(3):
+            kernel = np.empty(psf.shape, dtype=np.complex128)
+            for index in product(*(range(n) for n in psf.shape)):
+                v = 1 + 0j if m == 0 else g[m - 1, index[0]]
+                kernel[index] = complex(
+                    float(dec(psf[index]) * dec(v.real) / mass / gs[m]),
+                    float(dec(psf[index]) * dec(v.imag) / mass / gs[m]),
+                )
+            normalized.append(np.roll(kernel, tuple(-o for o in origin), (0, 1, 2)))
+    observed: set[int] = set()
+
+    def observe(a: Any, s: Any = None, axes: Any = None, norm: Any = None, out: Any = None) -> Any:
+        data = np.asarray(a)
+        raw_axes = tuple(range(data.ndim)) if axes is None else tuple(axes)
+        assert all(-data.ndim <= axis < data.ndim for axis in raw_axes)
+        chosen = tuple(axis % data.ndim for axis in raw_axes)
+        assert len(chosen) == 3 and len(set(chosen)) == 3
+        assert norm in (None, "backward")
+        if s is not None:
+            assert all(
+                length in (None, -1, data.shape[axis])
+                for length, axis in zip(s, chosen, strict=True)
+            )
+        batch_axes = tuple(axis for axis in range(data.ndim) if axis not in chosen)
+        layouts = [
+            (*batch_axes, *spatial)
+            for spatial in permutations(chosen)
+            if tuple(data.shape[axis] for axis in spatial) == psf.shape
+        ]
+        assert layouts, "transformed spatial sizes changed"
+        # These fixtures have unequal dimensions, so their canonical z/y/x
+        # arrangement is unambiguous. Shape alone never establishes order identity.
+        assert len(layouts) == 1
+        layout = layouts[0]
+        inputs = data.transpose(layout).reshape((-1, *psf.shape))
+        matches = []
+        for kernel in inputs:
+            candidates = [
+                m
+                for m in range(3)
+                if np.max(np.abs(kernel - normalized[m]))
+                <= float(budget(psf.size, Decimal(1), True))
+            ]
+            assert len(candidates) == 1, (
+                "fftn input is not a declared normalized origin-rolled order kernel"
+            )
+            matches.append(candidates[0])
+        transformed = original(a, s=s, axes=axes, norm=norm, out=out)
+        assert transformed.shape == data.shape
+        outputs = transformed.transpose(layout).reshape((-1, *psf.shape))
+        for m, transform in zip(matches, outputs, strict=True):
+            centered = np.fft.fftshift(transform)
+            with localcontext() as ctx:
+                ctx.prec = PRECISION
+                for index in product(*(range(n) for n in psf.shape)):
+                    target = expected[(m, *index)]
+                    dr = dec(centered[index].real) - target[0] / gs[m]
+                    di = dec(centered[index].imag) - target[1] / gs[m]
+                    assert (dr * dr + di * di).sqrt() <= budget(psf.size, Decimal(1), True)
+            observed.add(m)
+        return transformed
+
+    return observe, observed
+
+
 @pytest.fixture
 def api() -> Any:
     # Missing API is setup evidence; it does not prevent collection.
@@ -220,21 +352,14 @@ def call(api: Any, psf: Any, coefficients: Any, **kwargs: Any) -> Any:
 
 
 def reject(api: Any, code: str, psf: Any, coefficients: Any, **kwargs: Any) -> None:
-    inputs = [v for v in (psf, coefficients, *kwargs.values()) if isinstance(v, np.ndarray)]
-    saved = [(v.tobytes(), v.shape, v.strides, v.dtype, v.flags.writeable) for v in inputs]
     floating, filters = np.geterr(), list(warnings.filters)
-    with pytest.raises(simrecon.SimreconError) as caught:
+    with (
+        preserved_inputs(psf, coefficients, *kwargs.values()),
+        pytest.raises(simrecon.SimreconError) as caught,
+    ):
         call(api, psf, coefficients, **kwargs)
     assert np.geterr() == floating and warnings.filters == filters
     error: Any = caught.value
     assert isinstance(error, ValueError)
     assert getattr(error, "code", None) == code
     assert isinstance(getattr(error, "message", None), str)
-    for value, before in zip(inputs, saved, strict=True):
-        assert (
-            value.tobytes(),
-            value.shape,
-            value.strides,
-            value.dtype,
-            value.flags.writeable,
-        ) == before

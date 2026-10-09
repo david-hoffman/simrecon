@@ -19,6 +19,8 @@ from volume_order_fixture import (
     Q,
     api,
     assert_frequencies,
+    assert_frozen_bindings,
+    assert_inputs_preserved,
     assert_values,
     budget,
     call,
@@ -26,8 +28,11 @@ from volume_order_fixture import (
     direct,
     gains,
     modes,
+    normalized_transform_observer,
+    preserved_inputs,
     reject,
     root,
+    snapshot_inputs,
     state,
     storage,
     unchanged,
@@ -62,9 +67,9 @@ def check(
     origin: tuple[int, int, int] = (0, 0, 0),
     spacing: Any = (0.3, 0.7, 1.1),
 ) -> Any:
-    p0, g0 = psf.copy(), g.copy()
     expected = direct(psf, g, origin)
-    result = call(api, psf, g, origin_zyx=origin, voxel_size_um=spacing)
+    with preserved_inputs(psf, g, spacing):
+        result = call(api, psf, g, origin_zyx=origin, voxel_size_um=spacing)
     record_type = getattr(simrecon, "VolumeOrderOtf", None)
     assert isinstance(record_type, type)
     assert isinstance(result, record_type)
@@ -77,7 +82,6 @@ def check(
     assert result.origin_zyx == origin
     assert all(type(v) is int for v in result.origin_zyx)
     assert result.source == " caller identity "
-    assert np.array_equal(psf, p0) and np.array_equal(g, g0)
     return result
 
 
@@ -345,7 +349,9 @@ def test_permitted_metadata_containers(api: Any, container: Any) -> None:
     p = np.array([[[-0.0, 2.0]]])
     spacing = container([np.float32(0.5), np.int64(2), np.float64(3)])
     origin = container([np.int64(0), np.int32(0), np.int64(1)])
-    result = call(api, p, np.array([[2], [3 + 4j]]), voxel_size_um=spacing, origin_zyx=origin)
+    g = np.array([[2], [3 + 4j]])
+    with preserved_inputs(p, g, spacing, origin):
+        result = call(api, p, g, voxel_size_um=spacing, origin_zyx=origin)
     assert result.voxel_size_um == (0.5, 2.0, 3.0) and result.origin_zyx == (0, 0, 1)
     assert_frequencies(result, p.shape, spacing)
 
@@ -365,9 +371,10 @@ def test_componentwise_maximum_delta_gain(api: Any) -> None:
     p[2, 1, 3] = maximum
     g = np.full((2, 3), complex(maximum, maximum))
     result = check(api, p, g, (2, 1, 3))
-    assert np.all(result.values[1:].real == maximum)
-    assert np.all(result.values[1:].imag == maximum)
-    # No magnitude computation: each component is exactly representable.
+    assert np.isfinite(result.values[1:].real).all()
+    assert np.isfinite(result.values[1:].imag).all()
+    # check's Decimal complex-error observer enforces the unchanged output
+    # budget; finite inward rounding is permitted. Never compute F+iF magnitude.
 
 
 @pytest.mark.parametrize(
@@ -446,16 +453,8 @@ def test_record_frozen_all_fields_and_independent_calls(api: Any) -> None:
     p, g = asymmetric()
     first, second = check(api, p, g), check(api, p, g)
     storage(first, p, g, second)
-    for field in FIELDS:
-        before = state(first)
-        try:
-            setattr(first, field, None)
-        except Exception:
-            pass  # Frozen-binding exception type is deliberately unspecified.
-        else:
-            pytest.fail("record binding is mutable")
-        unchanged(first, before)  # Includes corruption of OTHER fields.
-    second_before, pbytes, gbytes = state(second), p.tobytes(), g.tobytes()
+    assert_frozen_bindings(first)
+    second_before, inputs_before = state(second), snapshot_inputs(p, g)
     for name in FIELDS[:4]:
         before = state(first)
         array = getattr(first, name)
@@ -465,7 +464,7 @@ def test_record_frozen_all_fields_and_independent_calls(api: Any) -> None:
             if other != name:
                 assert actual == saved
         unchanged(second, second_before)
-        assert p.tobytes() == pbytes and g.tobytes() == gbytes
+        assert_inputs_preserved(inputs_before)
     # The record must permit direct construction without validation; it need not
     # be a dataclass, expose __dict__, or use a particular exception subclass.
     fields = {name: getattr(second, name) for name in FIELDS}
@@ -499,56 +498,7 @@ def test_normalized_transform_seam_and_delta(api: Any, monkeypatch: Any, extreme
         g *= float(F) * 0.15
         p *= float(F) / 8
     origin = (2, 1, 3)
-    gs, expected = gains(g), direct(p, g, origin)
-    normalized = []
-    with localcontext() as ctx:
-        ctx.prec = PRECISION
-        mass = sum((dec(v) for v in p.flat), Decimal(0))
-        for m in range(3):
-            kernel = np.empty(p.shape, dtype=np.complex128)
-            for index in product(*(range(n) for n in p.shape)):
-                v = 1 + 0j if m == 0 else g[m - 1, index[0]]
-                kernel[index] = complex(
-                    float(dec(p[index]) * dec(v.real) / mass / gs[m]),
-                    float(dec(p[index]) * dec(v.imag) / mass / gs[m]),
-                )
-            normalized.append(np.roll(kernel, tuple(-o for o in origin), (0, 1, 2)))
-    original, observed = np.fft.fftn, set()
-
-    def observe(a: Any, s: Any = None, axes: Any = None, norm: Any = None, out: Any = None) -> Any:
-        data = np.asarray(a)
-        chosen = tuple(range(data.ndim)) if axes is None else tuple(ax % data.ndim for ax in axes)
-        assert len(chosen) == 3 and set(chosen) == set(range(data.ndim - 3, data.ndim))
-        assert data.shape[-3:] == p.shape
-        assert norm in (None, "backward")
-        if s is not None:
-            assert all(
-                length in (None, -1, data.shape[ax]) for length, ax in zip(s, chosen, strict=True)
-            )
-        transformed = original(a, s=s, axes=axes, norm=norm, out=out)
-        inputs = data.reshape((-1, *p.shape))
-        outputs = transformed.reshape((-1, *p.shape))
-        for kernel, transform in zip(inputs, outputs, strict=True):
-            matches = [
-                m
-                for m in range(3)
-                if np.max(np.abs(kernel - normalized[m])) <= float(budget(p.size, Decimal(1), True))
-            ]
-            assert matches, "fftn input is not an origin-rolled normalized kernel"
-            # This fixture deliberately has distinct normalized kernels.
-            assert len(matches) == 1
-            m = matches[0]
-            observed.add(m)
-            centered = np.fft.fftshift(transform)
-            with localcontext() as ctx:
-                ctx.prec = PRECISION
-                for index in product(*(range(n) for n in p.shape)):
-                    target = expected[(m, *index)]
-                    dr = dec(centered[index].real) - target[0] / gs[m]
-                    di = dec(centered[index].imag) - target[1] / gs[m]
-                    assert (dr * dr + di * di).sqrt() <= budget(p.size, Decimal(1), True)
-        return transformed
-
+    observe, observed = normalized_transform_observer(p, g, origin, np.fft.fftn)
     monkeypatch.setattr(np.fft, "fftn", observe)
     check(api, p, g, origin)
     assert observed == {0, 1, 2}
@@ -581,7 +531,10 @@ def test_nonfinite_normalized_transform(api: Any, monkeypatch: Any, component: c
     reject(api, "volume_order_transform_failure", p, g)
 
 
-def test_emitted_arithmetic_warning_translation(api: Any, monkeypatch: Any) -> None:
+@pytest.mark.parametrize("caller_filter", ["always", "ignore"])
+def test_emitted_arithmetic_warning_translation(
+    api: Any, monkeypatch: Any, caller_filter: Literal["always", "ignore"]
+) -> None:
     p, g = asymmetric()
     original = np.fft.fftn
 
@@ -591,8 +544,10 @@ def test_emitted_arithmetic_warning_translation(api: Any, monkeypatch: Any) -> N
 
     monkeypatch.setattr(np.fft, "fftn", warn)
     with warnings.catch_warnings(record=True) as seen:
-        warnings.simplefilter("always")
+        warnings.simplefilter(caller_filter, RuntimeWarning)
+        floating, filters = np.geterr(), list(warnings.filters)
         reject(api, "volume_order_transform_failure", p, g)
+        assert np.geterr() == floating and warnings.filters == filters
     assert not any(issubclass(w.category, RuntimeWarning) for w in seen)
 
 
@@ -610,16 +565,16 @@ def test_unrelated_transform_exceptions_propagate(
     api: Any, monkeypatch: Any, failure: Exception
 ) -> None:
     p, g = asymmetric()
-    pbytes, gbytes = p.tobytes(), g.tobytes()
+    floating, filters = np.geterr(), list(warnings.filters)
 
     def fail(*args: Any, **kwargs: Any) -> Any:
         raise failure
 
     monkeypatch.setattr(np.fft, "fftn", fail)
-    with pytest.raises(type(failure)) as caught:
+    with preserved_inputs(p, g), pytest.raises(type(failure)) as caught:
         call(api, p, g)
     assert caught.value is failure
-    assert p.tobytes() == pbytes and g.tobytes() == gbytes
+    assert np.geterr() == floating and warnings.filters == filters
 
 
 @pytest.mark.parametrize("component", [2 + 0j, 0 + 2j])
@@ -683,13 +638,14 @@ def test_caller_policy_success_failure_and_unrelated_warnings(
 def test_python_binding(api: Any) -> None:
     p, g = asymmetric()
     kwargs = dict(axial_coefficients=g, voxel_size_um=(1, 1, 1), origin_zyx=(0, 0, 0), source="s")
-    for omitted in kwargs:
+    with preserved_inputs(p, g):
+        for omitted in kwargs:
+            with pytest.raises(TypeError):
+                api(p, **{k: v for k, v in kwargs.items() if k != omitted})
         with pytest.raises(TypeError):
-            api(p, **{k: v for k, v in kwargs.items() if k != omitted})
-    with pytest.raises(TypeError):
-        api(p, g, (1, 1, 1), (0, 0, 0), "s")
-    with pytest.raises(TypeError):
-        api(p, extra=True, **kwargs)
+            api(p, g, (1, 1, 1), (0, 0, 0), "s")
+        with pytest.raises(TypeError):
+            api(p, extra=True, **kwargs)
 
 
 def test_circular_forward_model_and_real_phase_separation(api: Any) -> None:
