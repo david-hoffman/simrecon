@@ -1046,3 +1046,212 @@ if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
             "native wider partial-underflow self-check: source=(q/4,3q/4); "
             "stored=(0,q); signed H=(-1,1): PASS"
         )
+
+
+@contextmanager
+def wider_conversion_policy_guard(
+    mode: Literal["ignore", "warn", "raise", "call", "print", "log"], capfd: Any
+) -> Iterator[None]:
+    """Observe a real call, including NumPy's direct file-descriptor warning path."""
+    prior = np.geterr()
+    prior_handler = np.geterrcall()
+    callbacks: list[Any] = []
+    log = io.StringIO()
+    handler = (lambda *args: callbacks.append(args)) if mode == "call" else log
+    capfd.readouterr()
+    try:
+        np.seterrcall(handler)
+        np.seterr(all=mode)
+        expected_policy = np.geterr().copy()
+        with warnings.catch_warnings(record=True) as seen:
+            warnings.simplefilter("always", RuntimeWarning)
+            expected_filters = cast(Any, warnings.filters).copy()
+            yield
+            assert np.geterr() == expected_policy
+            assert np.geterrcall() is handler
+            assert warnings.filters == expected_filters
+        assert not [item for item in seen if issubclass(item.category, RuntimeWarning)]
+        assert not callbacks
+        assert log.getvalue() == ""
+        captured = capfd.readouterr()
+        assert "Warning:" not in captured.out + captured.err
+    finally:
+        np.seterr(**prior)
+        np.seterrcall(prior_handler)
+    assert np.geterr() == prior
+    assert np.geterrcall() is prior_handler
+
+
+if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
+
+    @pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log"])
+    def test_wider_partial_underflow_preserves_caller_policy(
+        api: Any, mode: Literal["ignore", "warn", "raise", "call", "print", "log"], capfd: Any
+    ) -> None:
+        psf = wider_partial_underflow_source()
+        spacing = np.array([0.7, 1.25, 2.5])
+        spacing.flags.writeable = False
+        inputs = (psf, spacing)
+        before = [
+            (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
+            for array in inputs
+        ]
+        expected = {
+            (0, 0, 0): (Decimal(-1), Decimal(0)),
+            (0, 0, 1): (Decimal(1), Decimal(0)),
+        }
+        with wider_conversion_policy_guard(mode, capfd):
+            result = prepare(api, psf, voxel_size_um=spacing, origin_zyx=(0, 0, 0))
+            assert result.values.shape == (1, 1, 2)
+            assert_transfer(result.values, expected, 2)
+            assert_frequencies(result, psf.shape, spacing)
+            assert [
+                (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
+                for array in inputs
+            ] == before
+
+    def test_native_wider_conversion_policy_selfcheck(capsys: Any) -> None:
+        """Observe actual dependency casts; prescribe no product conversion algorithm."""
+        import json
+
+        prior = np.geterr()
+        prior_handler = np.geterrcall()
+        psf = wider_partial_underflow_source()
+        before = (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable)
+        observations: list[dict[str, Any]] = []
+        stored_problem = None
+        try:
+            for mode in ("ignore", "warn", "raise"):
+                np.seterr(all=mode)
+                expected_policy = np.geterr().copy()
+                converted = None
+                failure = None
+                with warnings.catch_warnings(record=True) as seen:
+                    warnings.simplefilter("always", RuntimeWarning)
+                    expected_filters = cast(Any, warnings.filters).copy()
+                    try:
+                        converted = psf.astype(np.float64)
+                    except FloatingPointError as error:
+                        assert mode == "raise"
+                        failure = str(error)
+                    assert warnings.filters == expected_filters
+                assert np.geterr() == expected_policy
+                assert np.geterrcall() is prior_handler
+                arithmetic = [item for item in seen if issubclass(item.category, RuntimeWarning)]
+                assert not arithmetic or mode == "warn"
+                if converted is not None:
+                    assert converted.dtype == np.dtype(np.float64) and converted.dtype.isnative
+                    assert tuple(converted.flat) == (0.0, float(Q))
+                    if mode == "ignore":
+                        stored_problem = converted
+                else:
+                    assert mode == "raise" and failure is not None
+                observations.append(
+                    {
+                        "mode": mode,
+                        "outcome": "FloatingPointError" if failure is not None else "converted",
+                        "exception_message": failure,
+                        "stored_samples_q_units": [0, 1] if converted is not None else None,
+                        "warnings": [
+                            {
+                                "category": item.category.__name__,
+                                "message": str(item.message),
+                                "filename": item.filename,
+                                "line": item.lineno,
+                            }
+                            for item in seen
+                        ],
+                    }
+                )
+                assert (
+                    psf.tobytes(),
+                    psf.shape,
+                    psf.strides,
+                    psf.dtype,
+                    psf.flags.writeable,
+                ) == before
+            assert stored_problem is not None
+            with np.errstate(all="ignore"):
+                exact = reference(stored_problem, (0, 0, 0))
+                signed = np.array([-1, 1], dtype=np.complex128).reshape(1, 1, 2)
+                assert_transfer(signed, exact, 2)
+        finally:
+            np.seterr(**prior)
+            np.seterrcall(prior_handler)
+        assert np.geterr() == prior
+        assert np.geterrcall() is prior_handler
+        mechanism_observed = bool(observations[1]["warnings"]) and (
+            observations[2]["outcome"] == "FloatingPointError"
+        )
+        # A silent backend is recorded honestly; B decides mechanism evidence adequacy.
+        with capsys.disabled():
+            print(
+                "native wider conversion-policy self-check: "
+                + json.dumps(
+                    {
+                        "dtype": str(psf.dtype),
+                        "numpy_version": np.__version__,
+                        "longdouble_minexp": int(np.finfo(np.longdouble).minexp),
+                        "longdouble_nmant": int(np.finfo(np.longdouble).nmant),
+                        "source_q_units": ["1/4", "3/4"],
+                        "signed_H": [-1, 1],
+                        "warn_raise_mechanism_observed": mechanism_observed,
+                        "observations": observations,
+                        "caller_policy_handler_and_input_restored": True,
+                    },
+                    sort_keys=True,
+                )
+            )
+
+
+if WIDER_RANGE or np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
+
+    @pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log"])
+    @pytest.mark.parametrize(
+        "case",
+        (["psf-overflow", "spacing-overflow"] if WIDER_RANGE else [])
+        + (
+            ["psf-zero-underflow", "psf-negative-underflow", "spacing-underflow"]
+            if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076
+            else []
+        ),
+    )
+    def test_wider_invalid_conversions_preserve_caller_policy(
+        api: Any,
+        mode: Literal["ignore", "warn", "raise", "call", "print", "log"],
+        case: str,
+        capfd: Any,
+    ) -> None:
+        with np.errstate(all="ignore"):
+            psf = np.ones((1, 1, 2))
+            spacing = np.ones(3, dtype=np.longdouble)
+            if case.endswith("overflow"):
+                bad = np.finfo(np.longdouble).max
+            else:
+                bad = wider_partial_underflow_source()[0, 0, 0]
+            if case == "psf-overflow":
+                psf = np.array([1, bad], dtype=np.longdouble).reshape(1, 1, 2)
+                code = "nonfinite_psf"
+            elif case == "psf-zero-underflow":
+                psf = np.full((1, 1, 2), bad, dtype=np.longdouble)
+                code = "zero_psf_mass"
+            elif case == "psf-negative-underflow":
+                # Source is genuinely negative despite conversion to negative zero.
+                psf = np.array([1, -bad], dtype=np.longdouble).reshape(1, 1, 2)
+                code = "negative_psf"
+            else:
+                spacing[0] = bad
+                code = "invalid_otf_voxel_size"
+        psf.flags.writeable = False
+        spacing.flags.writeable = False
+        inputs = (psf, spacing)
+        before = [
+            (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
+            for array in inputs
+        ]
+        with wider_conversion_policy_guard(mode, capfd):
+            assert_error(api, code, psf, voxel_size_um=spacing, origin_zyx=(0, 0, 0))
+            assert [
+                (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
+                for array in inputs
+            ] == before
