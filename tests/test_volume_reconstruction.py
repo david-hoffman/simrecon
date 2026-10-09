@@ -347,6 +347,9 @@ def invalid_value(case: dict[str, Any], key: str, variant: str) -> Any:
             "datetime": "datetime64[D]",
             "structured": [("a", "f8")],
         }[variant]
+        # Isolate forbidden gain representation from the strictly positive value rule.
+        if key == "gains":
+            return np.full(a.shape, 1, dtype=dtype)
         return np.zeros(a.shape, dtype=dtype)
     if variant == "shape":
         return a.reshape(-1)
@@ -427,7 +430,8 @@ def test_nonfinite_source_rejections(reconstruct: Any, key: str, code: str, vari
 )
 def test_array_shape_rejections(reconstruct: Any, key: str, code: str) -> None:
     case = dc_case()
-    case[key] = np.empty((2, 3, 4))
+    # Deterministic finite values avoid a simultaneous gain/mask value violation.
+    case[key] = np.ones((2, 3, 4))
     assert_error(reconstruct, case, code)
 
 
