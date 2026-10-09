@@ -45,7 +45,7 @@ This is a finite discrete periodic kernel. It supplies no infinite-field or cont
 
 ## Numerical, range and failure boundaries
 
-Use float64/complex128 arithmetic. Avoid raw-sum overflow and loss of all-subnormal positive mass: all-maximum and all-positive-subnormal kernels are valid. Let eps=2^-52 and q=2^-1074. For every complex transfer sample require
+Use float64/complex128 arithmetic. The production transform boundary is NumPy's public `numpy.fft.fftn`, applied to the normalized volume with the declared origin rolled to zero and all three spatial axes transformed, using default forward normalization. This named dependency supplies a real-caller seam for controlled U25 failure tests without reading implementation. The origin roll and final full-spectrum shift remain as defined above. Avoid raw-sum overflow and loss of all-subnormal positive mass: all-maximum and all-positive-subnormal kernels are valid. Let eps=2^-52 and q=2^-1074. For every complex transfer sample require
 
 ```text
 abs(H_returned-H_exact) <= 128*M*eps + 4*M*q
