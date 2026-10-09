@@ -37,7 +37,7 @@ Order OTFs is an exact built-in tuple or list of length R containing `VolumeOrde
 
 Voxel spacing is an exact built-in tuple/list of three nonboolean Python/NumPy real scalars, converted finite and strictly positive; values are micrometres. Origin is an exact built-in tuple/list of three nonboolean Python/NumPy integers in bounds. Source is a nonblank string, retained only as opaque caller metadata. Every orientation has exactly the same converted spacing. Origins and source labels may differ: origin phase is already in each supplied transfer and must not be applied again.
 
-For dimension K and spacing d, expected frequency is k/(K*d) cycles/µm, k=-floor(K/2)..ceil(K/2)-1. Validate each component against `8*eps*abs(f_exact)+q`, eps=2^-52, q=2^-1074, evaluated without overflow/underflow in the observer. No physical support, E0 normalization, Hermitian symmetry, positive side gain or illumination realizability is inferred. Zero transfers, arbitrary finite complex values and phase gauges are accepted. All records are fully validated even when gains, mask or a side order makes some observations ineffective.
+For dimension K and spacing d, expected frequency is k/(K*d) cycles/µm, k=-floor(K/2)..ceil(K/2)-1. Validate each component against `8*eps*abs(f_exact)+q`, eps=2^-52, q=2^-1074, evaluated without overflow/underflow in the observer. No physical support, E0 normalization, Hermitian symmetry, positive side gain or illumination realizability is inferred. Zero transfers, arbitrary finite complex values and phase gauges are accepted; directly constructed records need not satisfy the prerequisite physical forward model. All records are fully validated even when gains, mask or a side order makes some observations ineffective.
 
 ## Signed window and estimator
 
@@ -65,8 +65,9 @@ For output q, include exactly the detector bins j=q+m*carrier that lie in the ca
 t = gains[r]*Em(j)
 U(q) = sum_(r,m available) conj(t)*Dm(j)
 V(q) = sum_(r,m available) [t.real**2+t.imag**2]
-T(q) = apodization(q)*U(q)/(V(q)+lambda), if V(q)+lambda>0
-T(q) = 0, otherwise.
+Q(q) = U(q)/(V(q)+lambda), if V(q)+lambda>0
+Q(q) = 0, otherwise.
+T(q) = apodization(q)*Q(q)
 volume(z,y,x) = sum_q T(q)*exp(2*pi*i*[
     qz*z/Nz + qy*y/Ly + qx*x/Lx]).
 ```
@@ -85,7 +86,7 @@ Return frozen-binding `Reconstruction3D` with exactly six fields: `volume` and `
 
 Use native float64/complex128 arithmetic. Phase solving follows its existing contract. The production transform seams are public `numpy.fft.fftn` for each separated spatial band and `numpy.fft.ifftn` for synthesis, over all three spatial axes without transforming an order/orientation axis. Separate or batched calls, equivalent spatial-axis permutations and equivalent normalization arrangements are permitted. Forward coefficients divide by M; inverse synthesis performs the positive-exponent sum without an extra output normalization. Transform sizes are unchanged from their respective band/output grids. Call counts/private organization are unspecified; exact-zero bands may bypass their forward transform.
 
-Avoid raw-sum overflow in band transforms and synthesis by scaling finite real/imaginary components before transforms, then restoring components separately. A zero scale can use one. No complex magnitude/division overflow may reject a permitted finite input merely while computing such a scale. Forward FFT scaling must occur before an unnormalized sum; a normalized transform or an equivalent safe arrangement is valid. The estimator's arithmetic range is deliberately operational: gain-times-transfer, squares, products, sums, denominator, division/mask and restored coefficients/volume must be finite. A nonfinite estimator stage rejects with the range code, even if a differently scaled mathematical quotient would be finite. No universal acceptance of every exact-real finite answer is selected. Underflow to zero is permitted; no clipping, saturation, partial results or fallback is allowed.
+Avoid raw-sum overflow in band transforms and synthesis by scaling finite real/imaginary components before transforms, then restoring components separately. A zero scale can use one. No complex magnitude/division overflow may reject a permitted finite input merely while computing such a scale. Forward FFT scaling must occur before an unnormalized sum; a normalized transform or an equivalent safe arrangement is valid only when it actually avoids internal raw-sum overflow. Merely requesting norm="forward" does not waive safe component scaling. The estimator's arithmetic range is deliberately operational: gain-times-transfer, squares, products, sums, denominator, unmasked quotient Q, masked coefficients T and restored coefficients/volume must be finite. Apply the mask only after a finite quotient: zero or tiny apodization does not rescue an overflowing unmasked quotient. A nonfinite estimator stage rejects with the range code, even if a differently scaled mathematical quotient would be finite. No universal acceptance of every exact-real finite answer is selected. Underflow to zero is permitted; no clipping, saturation, partial results or fallback is allowed.
 
 During normalized numerical FFT execution, FloatingPointError, OverflowError, arithmetic RuntimeWarning or nonfinite transform coordinates produce the transform code. The arithmetic-warning rule applies even under a caller ignore filter. A nonfinite restored transform component uses the range code. MemoryError and unrelated exceptions, including transform RuntimeError/TypeError/ValueError, propagate. Expected input conversion TypeError/ValueError/OverflowError translates to its representation error. Preserve caller NumPy floating policy and warning filters; handled conversion/range arithmetic emits no RuntimeWarning. Do not suppress unrelated warning categories.
 
