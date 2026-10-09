@@ -13,6 +13,7 @@ from ._phase import PhaseComponents, separate_phases
 from ._pixels import read
 from ._reconstruction import Reconstruction2D, reconstruct
 from ._translation import TranslationEstimate, estimate_translation
+from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
 from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
 
@@ -29,6 +30,7 @@ __all__ = [
     "Reconstruction2D",
     "SimreconError",
     "TranslationEstimate",
+    "VolumeOrderOtf",
     "VolumePhaseComponents",
     "WriteReport",
     "correct_integer_drift",
@@ -37,6 +39,7 @@ __all__ = [
     "harmonize",
     "inspect",
     "prepare_otf",
+    "prepare_volume_order_otfs",
     "prepare_volume_otf",
     "read",
     "reconstruct",
