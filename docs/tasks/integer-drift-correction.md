@@ -6,6 +6,17 @@ The [public contract](../contracts/integer-drift-correction-v1.md) selects calle
 
 ## Current state
 
+The owner's October 8 follow-up, “needs figures in the pr,” authorizes a separate
+mechanical documentation addition: two PNG figures in `docs/figures/`, their
+display data in `docs/references/scientific/integer-drift-figures.json`, captions
+in the comparison report, this pointer and PR #15's description. Figures reuse
+the saved reviewed comparison; they add no scientific behavior, oracle, gate or
+policy. The worker checks source identities, scales, units and rendered layout.
+The exact changed candidate still requires full local verification before push
+and all configured CI legs. Original A/B/C/D evidence remains linked for the
+unchanged runtime, tests, fixture and contract. Follow-up attempts and results
+join the same ignored execution record; prior accounting is preserved.
+
 High-risk numerical/custom-oracle route: fresh native blind A/B, restricted fresh C and fresh D. The verified stacked prerequisite is PR #14 / codex/translation-diagnostics; live head/base identities were checked before work. Default full-local exact-candidate gate and all configured Ubuntu24.04/macOS15 push/PR jobs remain binding. The inherited coverage policy selects behavior/risk review with complete native report integrity; percentages are advisory.
 
 This is the single tracked pre-verification pointer. Exact checkpoints, frozen file identities, candidate/tree/base, role reports, canonical gate/build/coverage/M25 results and publication/CI provenance are retained outside tracked bytes in ignored `artifacts/integer-drift-execution/execution-record.json`. The record links the preceding translation execution record, preserving all prior attempts and spending without copying or recounting them. Final identities/results are reported in conversation/PR.

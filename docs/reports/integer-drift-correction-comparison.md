@@ -9,6 +9,40 @@ of error. These are measured finite-model results under the
 [approved contract](../contracts/integer-drift-correction-v1.md), not physical
 microscope accuracy or automatic drift-estimation evidence.
 
+![Known integer specimen drift, negative pixel alignment and positive illumination-phase correction](../figures/integer-drift-geometry.png)
+
+**Figure 1.** Frame index 1 of the saved `5 x 6` finite periodic example.
+The supplied specimen displacement `(dy,dx)=(1,-2)` pixels requires alignment
+by `(-1,+2)` pixels. For carrier `(ky,kx)=(1,-1)`, the positive phase increment
+is `2*pi*(1/5+2/6) = 3.351032` radians. The input phase is `0.7` radians; the
+returned principal phase is `-2.232153` radians. Image panels share one
+intensity scale and display pixel indices with rows increasing downward.
+Aligned pixels exactly match the independent literal-index permutation across
+all five frames. Their maximum difference from the independent stationary
+finite-convolution model is `1.77636e-15` intensity units across those frames.
+
+![Analytic specimen, joint correction, pixel-only control, complex error maps and circular-phase agreement](../figures/integer-drift-reconstruction.png)
+
+**Figure 2.** Two-orientation reconstruction on a `10 x 12` output grid, with
+`(dy,dx)=(0.25,0.125)` µm per pixel. Image panels show real parts on a common
+intensity scale. Error maps show absolute complex differences from the
+analytic specimen on another common scale: joint correction has maximum error
+`1.3323136419103216e-15` intensity units; retaining the original phases after
+pixel alignment gives `0.8180860809928696`. The corrected residual is too small
+to distinguish on that shared error scale. The circular-phase panel uses the
+seven independently recorded Decimal-observer maxima, with a maximum
+dimensionless phasor distance of `2.4988890488986086e-16`, below the project
+budget `1.1368683772161603e-13`. Phasor distance is not an angle in radians.
+These are noiseless finite-model results with supplied motion; the pixel-only
+result is a deliberately wrong control with inconsistent illumination phases.
+
+The [figure data](../references/scientific/integer-drift-figures.json) retain
+the displayed arrays, recorded metrics and source archive/fixture hashes.
+Images use nearest-neighbor display without smoothing. Plotting reads these
+saved values and makes no new product calls. Error maps are the absolute complex
+differences derived from the saved reconstruction arrays; phase distances reuse
+the original high-precision measurements rather than rounded complex snapshots.
+
 Reproduce from the repository root:
 
 ```sh
