@@ -24,6 +24,7 @@ from volume_order_gain_fixture import (
     fields,
     index,
     observe,
+    phase_matrix,
     reconstruction_observer,
     separated_exact,
     steps_default,
@@ -77,6 +78,14 @@ def agreement(actual: Any, expected: Oracle, informative: bool = True) -> None:
         assert abs(dec(actual.coherence) - expected.coherence) <= expected.delta
         assert actual.overlap_count == expected.count
         assert actual.status == "fitted"
+
+
+def assert_metadata(actual: Any, order: int, carrier: tuple[int, int]) -> None:
+    assert type(actual.order) is int
+    assert actual.order == order
+    assert type(actual.carrier_bins_yx) is tuple
+    assert actual.carrier_bins_yx == carrier
+    assert all(type(value) is int for value in actual.carrier_bins_yx)
 
 
 def test_exports() -> None:
@@ -301,8 +310,10 @@ def test_representations(dtype: Any) -> None:
 @pytest.mark.parametrize("order", [1, 2, np.int8(1), np.uint64(2)])
 def test_order_valid(order: Any) -> None:
     images, steps, data = arbitrary_case()
+    actual = fit(images, steps, data, order=order)
+    assert_metadata(actual, int(order), (0, 0))
     agreement(
-        fit(images, steps, data, order=order),
+        actual,
         observe(images, steps, data["values"], (0, 0), int(order)),
     )
 
@@ -327,6 +338,7 @@ def test_order_invalid(order: Any) -> None:
 def test_carrier_valid(carrier: Any) -> None:
     images, steps, data = constant_case()
     result = fit(images, steps, data, carrier)
+    assert_metadata(result, 1, (int(carrier[0]), int(carrier[1])))
     agreement(result, observe(images, steps, data["values"], (0, 0), 1))
 
 
@@ -546,6 +558,7 @@ def test_geometry(shape: tuple[int, int, int], carrier: tuple[int, int], order: 
     images, steps, data = arbitrary_case(shape)
     expected = observe(images, steps, data["values"], carrier, order)
     actual = fit(images, steps, data, carrier, order)
+    assert_metadata(actual, order, carrier)
     agreement(actual, expected, informative=False)
     assert actual.overlap_count == shape[0] * max(shape[1] - abs(order * carrier[0]), 0) * max(
         shape[2] - abs(order * carrier[1]), 0
@@ -734,7 +747,7 @@ def test_extreme_range() -> None:
     assert not any(issubclass(w.category, RuntimeWarning) for w in caught)
 
 
-def test_snapshots(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_snapshots(monkeypatch: pytest.MonkeyPatch, record_property: Any) -> None:
     images, steps, data = arbitrary_case()
     expected = observe(images, steps, data["values"], (0, 0), 1)
     data["voxel_size_um"] = list(data["voxel_size_um"])
@@ -756,7 +769,10 @@ def test_snapshots(monkeypatch: pytest.MonkeyPatch) -> None:
 
     monkeypatch.setattr(np, "cos", mutate)
     result = fit(images, steps, data)
-    assert seen
+    # A retained np.cos alias computes the same represented matrix without
+    # reaching this optional mutation seam. That route still owes the ordinary
+    # fit; snapshot-at-mutation coverage is unexercised and needs D assessment.
+    record_property("snapshot_mutation_seam", "reached" if seen else "unexercised")
     agreement(result, expected)
 
 
@@ -955,6 +971,36 @@ def test_phase_valid(kind: str) -> None:
     agreement(fit(images, steps, data, order=2), observe(images, steps, data["values"], (0, 0), 2))
 
 
+def test_full_rank_condition_above_ten() -> None:
+    steps = np.arange(7) * 0.4
+    images = exposures(
+        np.ones((1, 1, 1)), np.full((1, 1, 1), 0.3 + 0.2j), np.zeros((1, 1, 1)), steps
+    )
+    data = fields((1, 1, 1), np.ones((3, 1, 1, 1), dtype=complex))
+    singular = np.linalg.svd(phase_matrix(steps), compute_uv=False)
+    threshold = 2**-52 * max(len(steps), 5) * singular[0]
+    assert np.count_nonzero(singular > threshold) == 5
+    expected = observe(images, steps, data["values"], (0, 0), 1)
+    # For five columns, trace-product upper <= 5*cond_2(H), so upper/5
+    # independently certifies that this case lies outside cond<=10.
+    assert expected.condition_bound / 5 > 10
+    assert not expected.informative()
+    result = fit(images, steps, data)
+    assert_metadata(result, 1, (0, 0))
+    assert result.status == "fitted"
+    assert result.overlap_count == 1
+    with localcontext() as ctx:
+        ctx.prec = 80
+        # Case-specific margins, not the contract's uniform informative budget.
+        # A 1e-8 coordinate allowance gives a scalar ratio error below 1.4e-8;
+        # 1e-7 leaves ample room for alternate stable numerical organizations.
+        assert (z(result.gain) - expected.gain).modulus() <= Decimal("1e-7")
+        # One nonzero geometric sample has coherence one and residual zero
+        # independently of the fitted phase-coordinate errors.
+        assert abs(dec(result.coherence) - expected.coherence) <= Decimal("1e-12")
+        assert abs(dec(result.relative_residual) - expected.residual) <= Decimal("1e-12")
+
+
 @pytest.mark.parametrize("spacing", [np.nextafter(0.0, 1.0), np.finfo(float).max])
 def test_singleton_metadata(spacing: float) -> None:
     images, steps, data = constant_case()
@@ -996,6 +1042,7 @@ def test_composition(ridge: float) -> None:
     }
     for order in [1, 2]:
         result = fit(images, steps, data, (0, 1), order)
+        assert_metadata(result, order, (0, 1))
         expected = observe(images, steps, original, (0, 1), order)
         agreement(result, expected)
         assert abs(result.gain - truth[order - 1]) < 3e-12
