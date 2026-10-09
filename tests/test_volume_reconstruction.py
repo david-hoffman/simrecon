@@ -93,6 +93,20 @@ def compare(reconstruct: Any, case: dict[str, Any]) -> Any:
     return result
 
 
+def assert_zero_result(result: Any, case: dict[str, Any]) -> None:
+    """Exact zero retains contracted geometry and independent mutable complex storage."""
+    shape = (case["images"].shape[2], *case["output_shape_yx"])
+    arrays = (result.spectrum, result.volume)
+    for a in arrays:
+        assert isinstance(a, np.ndarray) and a.shape == shape
+        assert a.dtype == np.dtype("complex128") and a.dtype.isnative
+        assert a.flags.c_contiguous and a.flags.owndata and a.flags.writeable
+        assert np.count_nonzero(a) == 0
+        for source in input_arrays(case):
+            assert not np.shares_memory(a, source)
+    assert not np.shares_memory(*arrays)
+
+
 def dc_case(
     shape: tuple[int, int, int] = (1, 1, 4), output: tuple[int, int] = (1, 8)
 ) -> dict[str, Any]:
@@ -108,6 +122,71 @@ def dc_case(
         apodization=np.ones((shape[0], *output)),
     )
     return case
+
+
+def test_oracle_zero_result_geometry_and_exact_zero() -> None:
+    case = dc_case()
+    shape = (1, 1, 8)
+
+    def zero_result() -> Any:
+        return SimpleNamespace(
+            spectrum=np.zeros(shape, dtype=np.complex128),
+            volume=np.zeros(shape, dtype=np.complex128),
+        )
+
+    assert_zero_result(zero_result(), case)
+    signed = zero_result()
+    signed.volume.real[:] = -0.0
+    signed.spectrum.imag[:] = -0.0
+    assert_zero_result(signed, case)
+    for variant in (
+        "empty",
+        "scalar",
+        "wrong_shape",
+        "real_dtype",
+        "readonly",
+        "view",
+        "alias",
+        "subnormal",
+        "imaginary",
+        "nan",
+        "inf",
+    ):
+        result = zero_result()
+        if variant == "empty":
+            result.volume = np.zeros((0,), dtype=np.complex128)
+        elif variant == "scalar":
+            result.spectrum = np.zeros((), dtype=np.complex128)
+        elif variant == "wrong_shape":
+            result.volume = np.zeros((1, 8, 1), dtype=np.complex128)
+        elif variant == "real_dtype":
+            result.volume = np.zeros(shape)
+        elif variant == "readonly":
+            result.volume.flags.writeable = False
+        elif variant == "view":
+            result.volume = result.volume.view()
+        elif variant == "alias":
+            result.volume = result.spectrum
+        else:
+            result.volume.flat[0] = {
+                "subnormal": np.nextafter(0.0, 1.0),
+                "imaginary": 1j,
+                "nan": np.nan,
+                "inf": np.inf,
+            }[variant]
+        with pytest.raises(AssertionError):
+            assert_zero_result(result, case)
+    shared = zero_result()
+    case["apodization"] = shared.volume.real
+    with pytest.raises(AssertionError):
+        assert_zero_result(shared, case)
+    case = make_case((2, 3, 4), ((0, 0),))
+    result = SimpleNamespace(
+        spectrum=np.zeros((2, 3, 4), dtype=np.complex128),
+        volume=np.zeros((2, 3, 4), dtype=np.complex128, order="F"),
+    )
+    with pytest.raises(AssertionError):
+        assert_zero_result(result, case)
 
 
 def assert_constant_restoration(result: Any, case: dict[str, Any], intensity: float) -> None:
@@ -229,7 +308,7 @@ def test_ridge_mask_zero_denominator_and_zero_sides(reconstruct: Any, ridge: Any
     compare(reconstruct, case)
     case["order_otfs"][0].values[:] = 0
     result = call(reconstruct, case)
-    assert np.count_nonzero(result.spectrum) == np.count_nonzero(result.volume) == 0
+    assert_zero_result(result, case)
 
 
 def test_gauge_gain_and_origin_encoded_once(reconstruct: Any) -> None:
@@ -877,7 +956,7 @@ def test_informative_accuracy_zero_subnormal_mandatory_success(
     case["regularization"] = 0.5  # positive denominator everywhere >=1/4
     result = compare(reconstruct, case)
     if scale == 0:
-        assert np.count_nonzero(result.spectrum) == np.count_nonzero(result.volume) == 0
+        assert_zero_result(result, case)
 
 
 def test_safe_large_components_transform_scaling(reconstruct: Any) -> None:
@@ -894,7 +973,16 @@ def test_safe_large_components_transform_scaling(reconstruct: Any) -> None:
 
 @pytest.mark.parametrize(
     "stage",
-    ["gain_transfer", "square", "sum", "product", "quotient_zero_mask", "quotient_tiny_mask"],
+    [
+        "gain_transfer",
+        "square",
+        "sum",
+        "product",
+        "denominator_addition",
+        "numerator_sum",
+        "quotient_zero_mask",
+        "quotient_tiny_mask",
+    ],
 )
 def test_operational_range_no_mask_rescue(reconstruct: Any, stage: str) -> None:
     case = dc_case((1, 1, 1), (1, 1))
@@ -910,6 +998,18 @@ def test_operational_range_no_mask_rescue(reconstruct: Any, stage: str) -> None:
     elif stage == "product":
         values[0] = 4
         case["images"][:] = np.finfo(float).max / 2
+    elif stage == "denominator_addition":
+        values[0] = 1e154
+        case["regularization"] = 1e308
+        # V and lambda are finite individually; their materialized sum exceeds F.
+    elif stage == "numerator_sum":
+        case["images"] = np.repeat(case["images"], 3, axis=0)
+        case["images"][:] = np.finfo(float).max / 2
+        case["phases_rad"] = np.repeat(case["phases_rad"], 3, axis=0)
+        case["carriers_bins"] = np.repeat(case["carriers_bins"], 3, axis=0)
+        case["gains"] = np.ones(3)
+        case["order_otfs"] = [make_record(values.copy()) for _ in range(3)]
+        # Each U contribution is F/2, while V=3; U=3F/2 must still reject.
     else:
         values[0] = 1e-160
         case["images"][:] = 1e160
@@ -1041,7 +1141,7 @@ def test_conversion_overflow_and_underflow_when_wider_float_available(reconstruc
         tiny = np.longdouble(np.nextafter(0.0, 1.0)) / 4
         case["images"] = np.full(case["images"].shape, tiny, dtype=np.longdouble)
         result = call(reconstruct, case)
-        assert np.count_nonzero(result.volume) == np.count_nonzero(result.spectrum) == 0
+        assert_zero_result(result, case)
         case["gains"] = np.array([tiny], dtype=np.longdouble)
         assert_error(reconstruct, case, "invalid_volume_reconstruction_gain_values")
         case = dc_case((1, 1, 1), (1, 1))
@@ -1081,7 +1181,7 @@ def test_signed_samples_phases_large_gain_and_unreduced_carrier(reconstruct: Any
     assert np.isfinite(result.volume).all() and result.volume.item().real > 0
     case["apodization"][:] = -0.0
     result = call(reconstruct, case)
-    assert np.count_nonzero(result.volume) == 0
+    assert_zero_result(result, case)
 
 
 def test_valid_repeated_phase_rows_and_huge_represented_angles(reconstruct: Any) -> None:
