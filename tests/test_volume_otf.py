@@ -999,3 +999,47 @@ def test_public_transform_seam_receives_normalized_origin_shifted_full_volume(
     assert_transfer(result.values, reference(psf, origin), psf.size)
     assert_frequencies(result, psf.shape, kwargs["voxel_size_um"])
     assert_transform_inputs_preserved(snapshots)
+
+
+# q/4 = 2**-1076 must be natively representable before constructing the wider source.
+if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
+
+    def wider_partial_underflow_source() -> Any:
+        with np.errstate(under="ignore"):
+            quarter_q = np.ldexp(np.longdouble(1), -1076)
+            psf = np.array([quarter_q, 3 * quarter_q], dtype=np.longdouble).reshape(1, 1, 2)
+        psf.flags.writeable = False
+        return psf
+
+    def test_wider_partial_underflow_stored_samples_are_normalized(api: Any) -> None:
+        psf = wider_partial_underflow_source()
+        before = (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable)
+        # Converted samples are (0,q): modes (-1,0) give 0-1 and 0+1.
+        expected = {
+            (0, 0, 0): (Decimal(-1), Decimal(0)),
+            (0, 0, 1): (Decimal(1), Decimal(0)),
+        }
+        result = prepare(api, psf, origin_zyx=(0, 0, 0))
+        assert result.values.shape == (1, 1, 2)
+        assert_transfer(result.values, expected, 2)
+        assert (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable) == before
+
+    def test_wider_partial_underflow_stored_problem_selfcheck() -> None:
+        psf = wider_partial_underflow_source()
+        before = (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable)
+        assert np.isfinite(psf).all() and (psf > 0).all()
+        assert psf[0, 0, 1] == 3 * psf[0, 0, 0]
+        assert 4 * psf[0, 0, 0] == np.longdouble(float(Q))
+        with np.errstate(under="ignore"):
+            stored = psf.astype(np.float64)
+        assert stored.dtype == np.dtype(np.float64) and stored.dtype.isnative
+        assert tuple(stored.flat) == (0.0, float(Q))
+        assert tuple(float(value) for value in psf.flat) == (0.0, float(Q))
+        expected = reference(psf, (0, 0, 0))
+        signed_analytic = np.array([-1, 1], dtype=np.complex128).reshape(1, 1, 2)
+        assert_transfer(signed_analytic, expected, 2)
+        assert (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable) == before
+        print(
+            "native wider partial-underflow self-check: source=(q/4,3q/4); "
+            "stored=(0,q); signed H=(-1,1): PASS"
+        )
