@@ -1,0 +1,240 @@
+"""Independent stored-input Decimal DFT observers for VOLUME-ORDER-01."""
+
+import warnings
+from decimal import Decimal, localcontext
+from fractions import Fraction
+from functools import cache
+from itertools import product
+from typing import Any
+
+import numpy as np
+import pytest
+
+import simrecon
+
+type Array = np.ndarray[Any, Any]
+type Pair = tuple[Decimal, Decimal]
+PRECISION = 120
+PI = Decimal(
+    "3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582"
+)
+FIELDS = (
+    "values",
+    "fz_per_um",
+    "fy_per_um",
+    "fx_per_um",
+    "voxel_size_um",
+    "origin_zyx",
+    "source",
+)
+EPS = Decimal.from_float(2.0**-52)
+# Exact constants must not be rounded by Decimal's default 28-digit context.
+Q = Decimal.from_float(float.fromhex("0x0.0000000000001p-1022"))
+F = Decimal.from_float(float(np.finfo(np.float64).max))
+
+
+def dec(value: Any) -> Decimal:
+    return Decimal.from_float(float(value))
+
+
+@cache
+def root(turn: Fraction) -> Pair:
+    """exp(-2*pi*i*turn), with exact quarter roots and 120-digit Taylor sums."""
+    turn %= 1
+    exact = {
+        Fraction(0): (Decimal(1), Decimal(0)),
+        Fraction(1, 4): (Decimal(0), Decimal(-1)),
+        Fraction(1, 2): (Decimal(-1), Decimal(0)),
+        Fraction(3, 4): (Decimal(0), Decimal(1)),
+    }
+    if turn in exact:
+        return exact[turn]
+    if turn > Fraction(1, 2):
+        turn -= 1
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        x = -2 * PI * Decimal(turn.numerator) / Decimal(turn.denominator)
+        sin_term = x
+        cos_term = Decimal(1)
+        sine, cosine = sin_term, cos_term
+        for n in range(1, 240):
+            sin_term *= -x * x / ((2 * n) * (2 * n + 1))
+            cos_term *= -x * x / ((2 * n - 1) * (2 * n))
+            sine += sin_term
+            cosine += cos_term
+        return +cosine, +sine
+
+
+def mul(a: Pair, b: Pair) -> Pair:
+    return a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]
+
+
+def modes(n: int) -> list[int]:
+    return list(range(-(n // 2), (n + 1) // 2))
+
+
+def gains(coefficients: Array) -> list[Decimal]:
+    converted = np.array(coefficients, dtype=np.complex128)
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        return [Decimal(1)] + [
+            max([abs(dec(v.real)) for v in row] + [abs(dec(v.imag)) for v in row]) or Decimal(1)
+            for row in converted
+        ]
+
+
+def direct(
+    psf: Array, coefficients: Array, origin: tuple[int, int, int]
+) -> dict[tuple[int, ...], Pair]:
+    """Exact-real stored snapshots; no FFT, product result or legacy oracle."""
+    a = np.array(psf, dtype=np.float64)
+    g = np.array(coefficients, dtype=np.complex128)
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        mass = sum((dec(v) for v in a.flat), Decimal(0))
+        result = {}
+        for index in product(*(range(n) for n in a.shape)):
+            k = tuple(modes(n)[j] for n, j in zip(a.shape, index, strict=True))
+            sums = [[Decimal(0), Decimal(0)] for _ in range(3)]
+            for r in product(*(range(n) for n in a.shape)):
+                turn = sum(
+                    (
+                        Fraction(ki * (ri - oi), ni)
+                        for ki, ri, oi, ni in zip(k, r, origin, a.shape, strict=True)
+                    ),
+                    Fraction(0),
+                )
+                phase = root(turn)
+                weight = dec(a[r]) / mass
+                for m in range(3):
+                    coefficient = (
+                        (Decimal(1), Decimal(0))
+                        if m == 0
+                        else (dec(g[m - 1, r[0]].real), dec(g[m - 1, r[0]].imag))
+                    )
+                    term = mul(coefficient, phase)
+                    sums[m][0] += weight * term[0]
+                    sums[m][1] += weight * term[1]
+            for m in range(3):
+                result[(m, *index)] = (sums[m][0], sums[m][1])
+        return result
+
+
+def budget(size: int, gain: Decimal, detection: bool = False) -> Decimal:
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        return (128 if detection else 256) * size * EPS * gain + (4 if detection else 8) * size * Q
+
+
+def assert_values(
+    values: Array, expected: dict[tuple[int, ...], Pair], gs: list[Decimal], size: int
+) -> None:
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        for index, target in expected.items():
+            v = values[index]
+            assert np.isfinite(v.real) and np.isfinite(v.imag)
+            dr, di = dec(v.real) - target[0], dec(v.imag) - target[1]
+            error = (dr * dr + di * di).sqrt()
+            assert error <= budget(size, gs[index[0]], index[0] == 0), f"DFT error at {index}"
+
+
+def assert_frequencies(result: Any, shape: tuple[int, ...], spacing: Any) -> None:
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        for name, n, d in zip(FIELDS[1:4], shape, spacing, strict=True):
+            grid = getattr(result, name)
+            assert grid.shape == (n,)
+            assert np.isfinite(grid).all()
+            assert np.all(grid[1:] > grid[:-1])
+            for value, k in zip(grid, modes(n), strict=True):
+                exact = Decimal(k) / (n * dec(d))
+                if k == 0:
+                    assert value == 0
+                else:
+                    assert value != 0
+                assert abs(dec(value) - exact) <= 8 * EPS * abs(exact) + Q
+
+
+def storage(result: Any, psf: Array, coefficients: Array, other: Any = None) -> None:
+    arrays = [getattr(result, name) for name in FIELDS[:4]]
+    for j, array in enumerate(arrays):
+        assert isinstance(array, np.ndarray)  # Output subclasses are permitted.
+        assert array.dtype == np.dtype(np.complex128 if j == 0 else np.float64)
+        assert array.dtype.isnative and array.flags.c_contiguous
+        assert array.flags.owndata and array.flags.writeable
+        assert not np.shares_memory(array, psf)
+        assert not np.shares_memory(array, coefficients)
+        for peer in arrays[:j]:
+            assert not np.shares_memory(array, peer)
+        if other is not None:
+            for name in FIELDS[:4]:
+                assert not np.shares_memory(array, getattr(other, name))
+
+
+def state(result: Any) -> list[Any]:
+    saved = []
+    for name in FIELDS:
+        value = getattr(result, name)
+        if name in FIELDS[:4]:
+            saved.append(
+                (
+                    id(value),
+                    value.tobytes(),
+                    value.shape,
+                    value.strides,
+                    value.dtype,
+                    value.flags.owndata,
+                    value.flags.c_contiguous,
+                    value.flags.writeable,
+                )
+            )
+        else:
+            saved.append(value)
+    return saved
+
+
+def unchanged(result: Any, before: list[Any]) -> None:
+    assert state(result) == before
+
+
+@pytest.fixture
+def api() -> Any:
+    # Missing API is setup evidence; it does not prevent collection.
+    prepare = getattr(simrecon, "prepare_volume_order_otfs", None)
+    record = getattr(simrecon, "VolumeOrderOtf", None)
+    assert callable(prepare), "public prepare_volume_order_otfs API absent (setup)"
+    assert record is not None, "public VolumeOrderOtf API absent (setup)"
+    return prepare
+
+
+def call(api: Any, psf: Any, coefficients: Any, **kwargs: Any) -> Any:
+    return api(
+        psf,
+        axial_coefficients=coefficients,
+        voxel_size_um=kwargs.pop("voxel_size_um", (0.3, 0.7, 1.1)),
+        origin_zyx=kwargs.pop("origin_zyx", (0, 0, 0)),
+        source=kwargs.pop("source", " caller identity "),
+        **kwargs,
+    )
+
+
+def reject(api: Any, code: str, psf: Any, coefficients: Any, **kwargs: Any) -> None:
+    inputs = [v for v in (psf, coefficients, *kwargs.values()) if isinstance(v, np.ndarray)]
+    saved = [(v.tobytes(), v.shape, v.strides, v.dtype, v.flags.writeable) for v in inputs]
+    floating, filters = np.geterr(), list(warnings.filters)
+    with pytest.raises(simrecon.SimreconError) as caught:
+        call(api, psf, coefficients, **kwargs)
+    assert np.geterr() == floating and warnings.filters == filters
+    error: Any = caught.value
+    assert isinstance(error, ValueError)
+    assert getattr(error, "code", None) == code
+    assert isinstance(getattr(error, "message", None), str)
+    for value, before in zip(inputs, saved, strict=True):
+        assert (
+            value.tobytes(),
+            value.shape,
+            value.strides,
+            value.dtype,
+            value.flags.writeable,
+        ) == before
