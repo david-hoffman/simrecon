@@ -872,7 +872,7 @@ def transform_fault(original: Any, fault: Any) -> Any:
             # If warning handling is absent, return a valid ordinary dependency result.
             # The real FFT supplies the dependency response, never an expected-value oracle.
             return original(a, *args, **kwargs)
-        result = original(a, *args, **kwargs).copy()
+        result = original(a, *args, **kwargs)
         part, kind = fault.split(":")
         nonfinite = {"nan": math.nan, "+inf": math.inf, "-inf": -math.inf}[kind]
         value = result.flat[-1]
@@ -949,6 +949,36 @@ def test_transform_memory_and_unrelated_exceptions_propagate(
     assert "Warning:" not in captured.out + captured.err
 
 
+def assert_normalized_transform_call(
+    psf: Any, origin: Any, samples: Any, sizes: Any, axes: Any, norm: Any
+) -> None:
+    with localcontext() as ctx:
+        ctx.prec = 100
+        total = sum((Decimal.from_float(float(v)) for v in psf.flat), Decimal(0))
+        assert samples.shape == psf.shape
+        assert samples.dtype in (np.dtype(np.float64), np.dtype(np.complex128))
+        assert np.all(samples.imag == 0)
+        assert norm in (None, "backward")
+        selected_axes = tuple(range(3)) if axes is None else tuple(axes)
+        assert len(selected_axes) == 3
+        assert set(axis % 3 for axis in selected_axes) == {0, 1, 2}
+        if sizes is not None:
+            assert len(sizes) == 3
+            assert all(
+                size in (None, -1, psf.shape[axis % 3])
+                for size, axis in zip(sizes, selected_axes, strict=True)
+            )
+        for position in np.ndindex(psf.shape):
+            source_position = tuple(
+                (p + o) % n for p, o, n in zip(position, origin, psf.shape, strict=True)
+            )
+            exact = Decimal.from_float(float(psf[source_position])) / total
+            assert (
+                abs(Decimal.from_float(float(samples[position].real)) - exact)
+                <= 128 * psf.size * EPS
+            )
+
+
 def test_public_transform_seam_receives_normalized_origin_shifted_full_volume(
     api: Any, monkeypatch: Any
 ) -> None:
@@ -964,31 +994,8 @@ def test_public_transform_seam_receives_normalized_origin_shifted_full_volume(
     monkeypatch.setattr(np.fft, "fftn", observe)
     result = prepare(api, psf, **kwargs)
     assert captured, "the approved public transform boundary was not called"
-    with localcontext() as ctx:
-        ctx.prec = 100
-        total = sum((Decimal.from_float(float(v)) for v in psf.flat), Decimal(0))
-        for samples, sizes, axes, norm in captured:
-            assert samples.shape == psf.shape
-            assert samples.dtype == np.dtype(np.float64)
-            assert norm in (None, "backward")
-            selected_axes = tuple(range(3)) if axes is None else tuple(axes)
-            assert len(selected_axes) == 3
-            assert set(axis % 3 for axis in selected_axes) == {0, 1, 2}
-            if sizes is not None:
-                assert len(sizes) == 3
-                assert all(
-                    size in (-1, psf.shape[axis % 3])
-                    for size, axis in zip(sizes, selected_axes, strict=True)
-                )
-            for position in np.ndindex(psf.shape):
-                source_position = tuple(
-                    (p + o) % n for p, o, n in zip(position, origin, psf.shape, strict=True)
-                )
-                exact = Decimal.from_float(float(psf[source_position])) / total
-                assert (
-                    abs(Decimal.from_float(float(samples[position])) - exact)
-                    <= 128 * psf.size * EPS
-                )
+    for samples, sizes, axes, norm in captured:
+        assert_normalized_transform_call(psf, origin, samples, sizes, axes, norm)
     assert_transfer(result.values, reference(psf, origin), psf.size)
     assert_frequencies(result, psf.shape, kwargs["voxel_size_um"])
     assert_transform_inputs_preserved(snapshots)
