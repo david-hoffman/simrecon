@@ -575,6 +575,9 @@ def test_extreme_mass_and_cancellation_budget(api: Any, psf: Any) -> None:
         ((3, 1, 2), (0.5, float(Q), MAX)),
         ((2, 3, 1), (MAX, 0.5, float(Q))),
         ((2, 3, 4), (float.fromhex("0x1p-1022"), 1, 2)),
+        ((2, 3, 4), (float.fromhex("0x1p-1024"), 1, 1)),
+        ((2, 3, 4), (1, float.fromhex("0x1p-1024"), 1)),
+        ((2, 3, 4), (1, 1, float.fromhex("0x1p-1024"))),
     ],
 )
 def test_representable_extreme_frequency_formula(api: Any, shape: Any, spacing: Any) -> None:
@@ -584,7 +587,7 @@ def test_representable_extreme_frequency_formula(api: Any, shape: Any, spacing: 
 
 
 @pytest.mark.parametrize("axis", [0, 1, 2])
-@pytest.mark.parametrize("spacing", [float(Q), float.fromhex("0x1p-1024")])
+@pytest.mark.parametrize("spacing", [float(Q)])
 def test_reject_unrepresentable_final_frequencies(api: Any, axis: int, spacing: float) -> None:
     sizes: list[Any] = [1, 1, 1]
     sizes[axis] = spacing
