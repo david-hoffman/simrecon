@@ -596,7 +596,7 @@ def test_reject_unrepresentable_final_frequencies(api: Any, axis: int, spacing: 
 
 @pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log"])
 def test_preserve_floating_policy_and_no_arithmetic_warnings(
-    api: Any, mode: Literal["ignore", "warn", "raise", "call", "print", "log"], capsys: Any
+    api: Any, mode: Literal["ignore", "warn", "raise", "call", "print", "log"], capfd: Any
 ) -> None:
     class ErrorLog:
         def __init__(self) -> None:
@@ -633,8 +633,8 @@ def test_preserve_floating_policy_and_no_arithmetic_warnings(
         assert not [warning for warning in seen if issubclass(warning.category, RuntimeWarning)]
         assert not callbacks
         assert not log.messages
-        captured = capsys.readouterr()
-        assert "Warning:" not in captured.err
+        captured = capfd.readouterr()
+        assert "Warning:" not in captured.out + captured.err
     finally:
         np.seterr(**prior)
         np.seterrcall(prior_handler)
@@ -1251,6 +1251,61 @@ if WIDER_RANGE or np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant
         ]
         with wider_conversion_policy_guard(mode, capfd):
             assert_error(api, code, psf, voxel_size_um=spacing, origin_zyx=(0, 0, 0))
+            assert [
+                (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
+                for array in inputs
+            ] == before
+
+
+if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
+
+    @pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log"])
+    @pytest.mark.parametrize("axis", [0, 1, 2])
+    def test_wider_positive_subnormal_spacing_preserves_caller_policy(
+        api: Any,
+        mode: Literal["ignore", "warn", "raise", "call", "print", "log"],
+        axis: int,
+        capfd: Any,
+    ) -> None:
+        shape = [2, 2, 2]
+        shape[axis] = 1
+        psf = np.array([5.0, 1.0, 2.0, 3.0]).reshape(shape)
+        with np.errstate(all="ignore"):
+            spacing = np.array([0.5, 1.0, 2.0], dtype=np.longdouble)
+            spacing[axis] = 3 * np.ldexp(np.longdouble(1), -1076)
+        origin = np.array([n - 1 for n in shape], dtype=np.int64)
+        inputs = (psf, spacing, origin)
+        for array in inputs:
+            array.flags.writeable = False
+        before = [
+            (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
+            for array in inputs
+        ]
+        expected_spacing = [0.5, 1.0, 2.0]
+        # The unique nearest float64 value to 3q/4 is q, never zero.
+        expected_spacing[axis] = float(Q)
+        expected_origin = tuple(n - 1 for n in shape)
+        expected = reference(psf, expected_origin)
+        source = " positive wider spacing \n"
+        with wider_conversion_policy_guard(mode, capfd):
+            result = prepare(api, psf, voxel_size_um=spacing, origin_zyx=origin, source=source)
+            assert isinstance(result, api[1])
+            assert result.voxel_size_um == tuple(expected_spacing)
+            assert all(type(value) is float for value in result.voxel_size_um)
+            assert result.origin_zyx == expected_origin
+            assert all(type(value) is int for value in result.origin_zyx)
+            assert result.source == source
+            assert result.values.shape == tuple(shape)
+            assert_transfer(result.values, expected, psf.size)
+            assert_frequencies(result, shape, expected_spacing)
+            outputs = [getattr(result, name) for name in ARRAY_FIELDS]
+            for index, array in enumerate(outputs):
+                assert type(array) is np.ndarray
+                assert array.dtype == np.dtype(np.complex128 if index == 0 else np.float64)
+                assert array.dtype.isnative
+                assert array.flags.c_contiguous and array.flags.owndata and array.flags.writeable
+                for other in (*inputs, *outputs[index + 1 :]):
+                    assert not np.shares_memory(array, other)
             assert [
                 (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
                 for array in inputs
