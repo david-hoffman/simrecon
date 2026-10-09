@@ -1202,6 +1202,186 @@ class ListSubclass(list):
     """Forbidden exact-container subtype."""
 
 
+class PermittedInt(int):
+    """An integer scalar subclass remains a permitted representation."""
+
+
+class ConversionFailureInt(int):
+    """Fail only if a caller chooses overridden integer conversion."""
+
+    failure: BaseException
+    attempted: bool
+
+    def __new__(cls, value: int, failure: BaseException) -> "ConversionFailureInt":
+        scalar = super().__new__(cls, value)
+        scalar.failure = failure
+        scalar.attempted = False
+        return scalar
+
+    def __int__(self) -> int:
+        """Record attempted conversion, then raise the supplied public failure."""
+        self.attempted = True
+        raise self.failure
+
+
+def set_integer_representation(
+    case: dict[str, Any], field: str, axis: int, scalar: int, container: Any
+) -> None:
+    if field == "output_shape_yx":
+        values = list(case[field])
+        values[axis] = scalar
+        case[field] = container(values)
+    else:
+        record = case["order_otfs"][0]
+        values = list(record.origin_zyx)
+        values[axis] = scalar
+        case["order_otfs"][0] = replace_record(record, origin_zyx=container(values))
+
+
+def assert_integer_conversion_outcome(
+    reconstruct: Any,
+    case: dict[str, Any],
+    scalar: ConversionFailureInt,
+    code: str,
+    expected: Any,
+    budgets: tuple[D, D],
+) -> None:
+    from simrecon import SimreconError
+
+    try:
+        result = call(reconstruct, case)
+    except SimreconError as exc:
+        assert scalar.attempted
+        assert isinstance(scalar.failure, (TypeError, ValueError, OverflowError))
+        assert exc.code == code
+        assert isinstance(exc.message, str)
+    except (TypeError, ValueError, OverflowError, RuntimeError, MemoryError) as exc:
+        assert scalar.attempted
+        assert isinstance(scalar.failure, (RuntimeError, MemoryError)), (
+            f"expected input conversion {type(scalar.failure).__name__} leaked; required {code}"
+        )
+        assert exc is scalar.failure
+    else:
+        # Safely retrieving the underlying exact integer is a legitimate alternative.
+        # Swallowing an invoked failing hook and returning success is not that bypass.
+        assert not scalar.attempted
+        assert_result_accuracy(result, expected, budgets)
+
+
+@pytest.mark.parametrize(
+    "field,axis",
+    [("output_shape_yx", 0), ("output_shape_yx", 1), *(("origin_zyx", i) for i in range(3))],
+)
+@pytest.mark.parametrize("container", [tuple, list])
+def test_permitted_integer_subclass_positive(
+    reconstruct: Any, field: str, axis: int, container: Any
+) -> None:
+    case = make_case((2, 3, 4), ((0, 0),))
+    expected, budgets = accuracy_expectation(case)
+    values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
+    set_integer_representation(case, field, axis, PermittedInt(values[axis]), container)
+    result = call(reconstruct, case)
+    assert_result_accuracy(result, expected, budgets)
+
+
+@pytest.mark.parametrize(
+    "field,axis",
+    [("output_shape_yx", 0), ("output_shape_yx", 1), *(("origin_zyx", i) for i in range(3))],
+)
+@pytest.mark.parametrize("container", [tuple, list])
+@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
+def test_integer_subclass_conversion_translation_or_legitimate_bypass(
+    reconstruct: Any, field: str, axis: int, container: Any, kind: Any
+) -> None:
+    # Supplemental W15/W17/W21/W25: expectation is computed before hook insertion.
+    case = make_case((2, 3, 4), ((0, 0),))
+    expected, budgets = accuracy_expectation(case)
+    values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
+    scalar = ConversionFailureInt(values[axis], kind("controlled integer conversion"))
+    set_integer_representation(case, field, axis, scalar, container)
+    code = "invalid_volume_reconstruction_" + (
+        "output_shape" if field == "output_shape_yx" else "otfs"
+    )
+    arrays = input_arrays(case)
+    before = [(a.copy(), a.strides, a.flags.writeable) for a in arrays]
+    with warnings.catch_warnings(record=True) as caught, np.errstate(all="raise"):
+        warnings.simplefilter("always", RuntimeWarning)
+        policy, filters = np.geterr().copy(), list(warnings.filters)
+        try:
+            assert_integer_conversion_outcome(reconstruct, case, scalar, code, expected, budgets)
+        finally:
+            assert np.geterr() == policy and warnings.filters == filters
+            assert not any(issubclass(w.category, RuntimeWarning) for w in caught)
+            for a, (saved, strides, writable) in zip(arrays, before, strict=True):
+                np.testing.assert_array_equal(a, saved)
+                assert a.strides == strides and a.flags.writeable == writable
+
+
+@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
+@pytest.mark.parametrize(
+    "outcome",
+    [
+        "bypass",
+        "translated",
+        "raw",
+        "swallowed",
+        "wrong_code",
+        "uninvoked",
+        "replaced",
+        "bad_bypass",
+    ],
+)
+def test_oracle_integer_conversion_observer_alternatives(kind: Any, outcome: str) -> None:
+    from simrecon import SimreconError
+
+    case = make_case((2, 3, 4), ((0, 0),))
+    expected, budgets = accuracy_expectation(case)
+    scalar = ConversionFailureInt(3, kind("controlled integer conversion"))
+    code = "invalid_volume_reconstruction_output_shape"
+    arrays = []
+    for exact in expected:
+        array = np.empty(exact.shape, dtype=np.complex128)
+        for index in np.ndindex(exact.shape):
+            real, imag = exact[index]
+            array[index] = complex(float(real), float(imag))
+        arrays.append(array)
+    result = SimpleNamespace(spectrum=arrays[0], volume=arrays[1])
+
+    def observed(*args: Any, **kwargs: Any) -> Any:
+        if outcome == "bad_bypass":
+            result.spectrum.flat[0] += 1
+        if outcome in ("bypass", "bad_bypass"):
+            return result
+        if outcome == "uninvoked":
+            raise SimreconError(code, "controlled representation failure")
+        try:
+            int(scalar)
+        except (TypeError, ValueError, OverflowError, RuntimeError, MemoryError):
+            if outcome == "swallowed":
+                return result
+            if outcome in ("translated", "wrong_code"):
+                raise SimreconError(
+                    code if outcome == "translated" else "invalid_volume_reconstruction_otfs",
+                    "controlled representation failure",
+                ) from None
+            if outcome == "replaced":
+                raise kind("replacement exception") from None
+            raise
+        raise AssertionError("controlled integer hook must raise")
+
+    expected_failure = kind in (TypeError, ValueError, OverflowError)
+    accepted = (
+        outcome == "bypass"
+        or (outcome == "translated" and expected_failure)
+        or (outcome == "raw" and not expected_failure)
+    )
+    if accepted:
+        assert_integer_conversion_outcome(observed, case, scalar, code, expected, budgets)
+    else:
+        with pytest.raises(AssertionError):
+            assert_integer_conversion_outcome(observed, case, scalar, code, expected, budgets)
+
+
 @pytest.mark.parametrize("key", ["output_shape_yx", "order_otfs"])
 @pytest.mark.parametrize("kind", [TupleSubclass, ListSubclass])
 def test_exact_container_subclasses_rejected(reconstruct: Any, key: str, kind: Any) -> None:
