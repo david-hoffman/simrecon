@@ -335,8 +335,21 @@ def test_ownership_mutability_snapshots_and_frozen_bindings(api: Any, layout: st
     np.testing.assert_array_equal(origin, [2, 1, 1])
     frozen_snapshot = [array.copy() for array in other_outputs]
     for name in FIELDS:
-        with pytest.raises((AttributeError, TypeError)):
-            setattr(first, name, getattr(first, name))
+        original = getattr(first, name)
+        if name in ARRAY_FIELDS:
+            replacement = np.array(original, copy=True)
+        elif name == "voxel_size_um":
+            replacement = tuple(2 * value for value in original)
+        elif name == "origin_zyx":
+            replacement = (0, 0, 0)
+        else:
+            replacement = original + " alternate binding"
+        assert replacement is not original
+        try:
+            setattr(first, name, replacement)
+        except BaseException:
+            assert getattr(first, name) is original
+        assert getattr(first, name) is original
     for i, array in enumerate(outputs):
         unaffected = [a.copy() for a in outputs]
         array.flat[0] = 99 + (1j if i == 0 else 0)
