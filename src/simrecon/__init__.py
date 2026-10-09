@@ -16,6 +16,7 @@ from ._translation import TranslationEstimate, estimate_translation
 from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
 from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
+from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
 
 __all__ = [
@@ -32,12 +33,14 @@ __all__ = [
     "Reconstruction3D",
     "SimreconError",
     "TranslationEstimate",
+    "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
     "VolumePhaseComponents",
     "WriteReport",
     "correct_integer_drift",
     "estimate_illumination",
     "estimate_translation",
+    "estimate_volume_order_gain",
     "harmonize",
     "inspect",
     "prepare_otf",
