@@ -68,7 +68,7 @@ def check(
     spacing: Any = (0.3, 0.7, 1.1),
 ) -> Any:
     expected = direct(psf, g, origin)
-    with preserved_inputs(psf, g, spacing):
+    with preserved_inputs(psf, g, spacing, origin):
         result = call(api, psf, g, origin_zyx=origin, voxel_size_um=spacing)
     record_type = getattr(simrecon, "VolumeOrderOtf", None)
     assert isinstance(record_type, type)
@@ -561,8 +561,9 @@ def test_emitted_arithmetic_warning_translation(
         UserWarning("controlled"),
     ],
 )
+@pytest.mark.parametrize("container", [tuple, list, np.array])
 def test_unrelated_transform_exceptions_propagate(
-    api: Any, monkeypatch: Any, failure: Exception
+    api: Any, monkeypatch: Any, failure: Exception, container: Any
 ) -> None:
     p, g = asymmetric()
     floating, filters = np.geterr(), list(warnings.filters)
@@ -571,8 +572,12 @@ def test_unrelated_transform_exceptions_propagate(
         raise failure
 
     monkeypatch.setattr(np.fft, "fftn", fail)
-    with preserved_inputs(p, g), pytest.raises(type(failure)) as caught:
-        call(api, p, g)
+    spacing = container([0.3, 0.7, 1.1])
+    origin = container([0, 0, 0])
+    # The preservation context exits before pytest consumes the original error,
+    # retaining it as exception context if caller mutation is detected.
+    with pytest.raises(type(failure)) as caught, preserved_inputs(p, g, spacing, origin):
+        call(api, p, g, voxel_size_um=spacing, origin_zyx=origin)
     assert caught.value is failure
     assert np.geterr() == floating and warnings.filters == filters
 
@@ -742,3 +747,14 @@ def test_mixed_maximum_and_subnormal_detection_samples(api: Any) -> None:
     p[:] = float(Q)
     p[2, 1, 3] = float(F)
     check(api, p, g, (1, 0, 2))
+
+
+@pytest.mark.parametrize("container", [tuple, list, np.array])
+def test_metadata_preserved_on_coefficient_rejection(api: Any, container: Any) -> None:
+    p, g = asymmetric()
+    g[1, 1] = complex(0, np.nan)
+    spacing = container([0.3, 0.7, 1.1])
+    origin = container([2, 1, 3])
+    reject(
+        api, "nonfinite_volume_order_coefficients", p, g, voxel_size_um=spacing, origin_zyx=origin
+    )

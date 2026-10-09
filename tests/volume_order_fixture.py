@@ -177,13 +177,15 @@ def storage(result: Any, psf: Array, coefficients: Array, other: Any = None) -> 
 def input_state(value: Any) -> tuple[Any, ...]:
     if isinstance(value, np.ndarray):
         return (value.tobytes(), value.dtype, value.shape, value.strides, value.flags.writeable)
+    if isinstance(value, (list, tuple)):
+        return tuple(value)  # Retain original elements, including their identities.
     view = memoryview(value)
     return (view.tobytes(), view.format, view.shape, view.strides, view.readonly)
 
 
 def snapshot_inputs(*values: Any) -> list[tuple[Any, tuple[Any, ...]]]:
-    """Observe each caller array and reachable ndarray/buffer backing storage."""
-    pending: list[Any] = [value for value in values if isinstance(value, np.ndarray)]
+    """Observe mutable metadata, caller arrays and reachable backing storage."""
+    pending: list[Any] = [value for value in values if isinstance(value, (np.ndarray, list, tuple))]
     saved: list[tuple[Any, tuple[Any, ...]]] = []
     seen: set[int] = set()
     while pending:
@@ -198,6 +200,10 @@ def snapshot_inputs(*values: Any) -> list[tuple[Any, tuple[Any, ...]]]:
             base = value.obj
         else:
             base = None
+            if isinstance(value, (list, tuple)):
+                pending.extend(
+                    child for child in value if isinstance(child, (np.ndarray, list, tuple))
+                )
         if isinstance(base, (np.ndarray, memoryview, bytes, bytearray)):
             pending.append(base)
     return saved
@@ -205,7 +211,12 @@ def snapshot_inputs(*values: Any) -> list[tuple[Any, tuple[Any, ...]]]:
 
 def assert_inputs_preserved(saved: list[tuple[Any, tuple[Any, ...]]]) -> None:
     for value, before in saved:
-        assert input_state(value) == before, "caller array or backing buffer changed"
+        if isinstance(value, (list, tuple)):
+            assert len(value) == len(before) and all(
+                current is original for current, original in zip(value, before, strict=True)
+            ), "caller metadata container changed"
+        else:
+            assert input_state(value) == before, "caller array or backing buffer changed"
 
 
 @contextmanager
@@ -278,7 +289,13 @@ def normalized_transform_observer(
 
     def observe(a: Any, s: Any = None, axes: Any = None, norm: Any = None, out: Any = None) -> Any:
         data = np.asarray(a)
-        raw_axes = tuple(range(data.ndim)) if axes is None else tuple(axes)
+        if axes is None:
+            # NumPy chooses trailing len(s) axes when sizes are provided;
+            # with neither sizes nor axes, it transforms every axis.
+            first = 0 if s is None else data.ndim - len(s)
+            raw_axes = tuple(range(first, data.ndim))
+        else:
+            raw_axes = tuple(axes)
         assert all(-data.ndim <= axis < data.ndim for axis in raw_axes)
         chosen = tuple(axis % data.ndim for axis in raw_axes)
         assert len(chosen) == 3 and len(set(chosen)) == 3
@@ -354,8 +371,8 @@ def call(api: Any, psf: Any, coefficients: Any, **kwargs: Any) -> Any:
 def reject(api: Any, code: str, psf: Any, coefficients: Any, **kwargs: Any) -> None:
     floating, filters = np.geterr(), list(warnings.filters)
     with (
-        preserved_inputs(psf, coefficients, *kwargs.values()),
         pytest.raises(simrecon.SimreconError) as caught,
+        preserved_inputs(psf, coefficients, *kwargs.values()),
     ):
         call(api, psf, coefficients, **kwargs)
     assert np.geterr() == floating and warnings.filters == filters
