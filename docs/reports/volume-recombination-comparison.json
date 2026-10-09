@@ -1,8 +1,8 @@
 {
   "schema": "simrecon-volume-comparison-v1",
   "task": "VOLUME-RECOMBINE-01",
-  "checkpoint": "3e8af6474da3a9a8455f5917823fcd4b774e25e1",
-  "tree": "660dd03570a842b407639e159f4206889fe48968",
+  "checkpoint": "1c714741a8ae43c7591d165fac007687f272d471",
+  "tree": "fe8606ec004a0dea15720e7c7400cb595161a584",
   "environment": {
     "python": "3.13.12",
     "numpy": "2.5.3",
@@ -20,25 +20,25 @@
     }
   },
   "commands": {
-    "compute": "PYTHONPATH=tests .venv/bin/python artifacts/volume-recombination-execution/c-comparison-generate-03.py",
-    "render": "MPLCONFIGDIR=artifacts/volume-recombination-execution/c-mplconfig plotting-python artifacts/volume-recombination-execution/c-comparison-render-03.py",
+    "compute": "PYTHONPATH=tests .venv/bin/python artifacts/volume-recombination-execution/c-correction-03-generate-01.py",
+    "render": "MPLCONFIGDIR=artifacts/volume-recombination-execution/c-mplconfig plotting-python artifacts/volume-recombination-execution/c-correction-03-render-01.py",
     "plotting_python": "separately identified plotting-only Python; see ignored execution provenance"
   },
   "source_sha256": {
     "docs/contracts/volume-recombination-v1.md": "ec7cba92ebab0c4c47534a5deaf306711ab15b414bf02e0e3c656175fa25ba6c",
-    "tests/test_volume_reconstruction.py": "a89f9032203a3d611f7b65d4ac4d1bf2f36cd12807dca698995197ac6c411236",
+    "tests/test_volume_reconstruction.py": "5c02889b7060415d000efb0e25d5bcffb5cb842786448ff9050bdff636e74119",
     "tests/volume_reconstruction_fixture.py": "c230ece93d158712f5ee5bd9859c82048db09f03d7f20ffb1703880e712c1083",
     "uv.lock": "e6ff14aa7d6c2108292aaef624d150f48876954ff3989e1bc3955ef2aa1ddb2b",
     "pyproject.toml": "30dd0a1372df0c54484d22a1443510b9badc2a61d90b611a3b839a06217d596c",
-    "src/simrecon/volume_reconstruction.py": "5839243735bad9372196fe2e18a580d07a02907218b7839deef9726d0be4b635",
+    "src/simrecon/volume_reconstruction.py": "b211f0cd0e65083ca2b32ce727c421e133b83fd5c4111837a4bb8bfd763293bb",
     "src/simrecon/__init__.py": "9114d04b2cf64bbcccd38681b9c5d7503ae5d0fbf4d03176756f385eacbb4a4b",
     "src/simrecon/_volume_phase.py": "f07541d70b66fcbeec571c950301064fb3cfb32a270b64c1159b6e059c5dbd62",
     "src/simrecon/_volume_order_otf.py": "d5c9d081ffb214fe7c97eb8237f279e38dbe5ac3fccee74eeec5eec339a16e09",
     "src/simrecon/_volume_otf.py": "ddf9f472b2d65897ff66b512364504a68f1d73072b207c7ba3c5c07dd0a482fc",
-    "artifacts/volume-recombination-execution/c-comparison-generate-03.py": "ec99ac5c3a9195229407c3e38df81d19f319061c2e596995e729776a10f361f3",
-    "artifacts/volume-recombination-execution/c-comparison-render-03.py": "a4400e9181d1f931748859eef3d704a7132bedde559d4e73d15dff42e8078fa1",
-    "artifacts/volume-recombination-execution/c-frozen-public-inventory-02.json": "176774f9ac53e7b1e4470a04ace2d38e82bae9e953fc63a9782079398e204444",
-    "artifacts/volume-recombination-execution/b-final-06.txt": "de82081a4d5d2689eb92d5692125ea5574c9c7242038937460b5a621c600f84b"
+    "artifacts/volume-recombination-execution/c-correction-03-generate-01.py": "c089b5c7a97a9736220a59ff1f485d2cd2bf0101fce6732db67aadc0382a51a6",
+    "artifacts/volume-recombination-execution/c-correction-03-render-01.py": "a4400e9181d1f931748859eef3d704a7132bedde559d4e73d15dff42e8078fa1",
+    "artifacts/volume-recombination-execution/c-frozen-public-inventory-03.json": "9a5729a6f90358b1eafe7ae5ca1c0708ec7e2dbfc32d620c91ff0750e930f7af",
+    "artifacts/volume-recombination-execution/b-final-08.txt": "398ad73393b027ff28a826a65283150a4c26e3663ec4550b36d3de05fcc628d5"
   },
   "array_hash_encoding": "C-order bytes in declared little-endian dtype; exact pairs hash compact JSON [flat decimal pair strings, shape]",
   "limits": [
@@ -11488,10 +11488,16 @@
     }
   ],
   "refresh": {
-    "previous_checkpoint": "48424efe7a0b0ad139361a79e24d86840577aa44",
-    "previous_comparison_sha256": "46ddc1ee003be126ba0811a2056be10d2b382abaa7e37bc6bb23297f147bea07",
-    "accepted_verdict": "artifacts/volume-recombination-execution/b-final-06.txt",
+    "previous_checkpoint": "3e8af6474da3a9a8455f5917823fcd4b774e25e1",
+    "previous_comparison_sha256": "ad992c56ddde03c44dd9c3237e4554b32df04e4dedef997019abb09c9bebdf58",
+    "accepted_verdict": "artifacts/volume-recombination-execution/b-final-08.txt",
     "previous_cases_exactly_equal": true,
     "comparison_scope": "All five complete case records: inputs, exact Decimal pairs, rounded oracles, runtime outputs, coordinates, phase components, object truth, metrics and numerical byte hashes"
+  },
+  "correction": {
+    "meaning": "Expected integer extraction TypeError/ValueError/OverflowError translate to the field representation code; unrelated exceptions propagate",
+    "targeted_examples": 739,
+    "tests_are_supplemental": true,
+    "numerical_contract_unchanged": true
   }
 }

@@ -70,18 +70,20 @@ These order-one imaginary values are the estimator's selected lift, not numerica
 
 ## Execution and identities
 
-Evidence was refreshed against accepted checkpoint `3e8af6474da3a9a8455f5917823fcd4b774e25e1`, tree `660dd03570a842b407639e159f4206889fe48968`, after four fixture helpers were corrected to use exact Python integers for accepted dimensions. Fixture SHA256 is `c230ece93d158712f5ee5bd9859c82048db09f03d7f20ffb1703880e712c1083`; the test assertions and contract hashes are unchanged. The complete 259-example targeted run, including seven oracle controls, passes. These current public API observations are supplemental; they do not recreate test-first evidence.
+Evidence was corrected and replayed against accepted supplemental checkpoint `1c714741a8ae43c7591d165fac007687f272d471`, tree `fe8606ec004a0dea15720e7c7400cb595161a584`. The current targeted run passes all **739 examples**. The retained 259 numerical/representation examples and fixture remain unchanged; additional tests are supplemental after implementation and do not recreate test-first evidence. Current test SHA256 is `5c02889b7060415d000efb0e25d5bcffb5cb842786448ff9050bdff636e74119`; fixture SHA256 remains `c230ece93d158712f5ee5bd9859c82048db09f03d7f20ffb1703880e712c1083`. Contract and tolerance formulas are unchanged.
 
-The regenerated five-case records were compared with preserved previous evidence. Every numerical input, exact Decimal expectation, rounded oracle, runtime output, coordinate, phase component, object-truth array, metric and numerical byte hash is identical. Prior five-case numerical evidence remains materially applicable; prior checkpoint/fixture fingerprints are historical. The previous JSON SHA256 was `46ddc1ee003be126ba0811a2056be10d2b382abaa7e37bc6bb23297f147bea07`. Runtime and export source hashes are unchanged. Current JSON records the revised checkpoint, fixture/verdict/inventory fingerprints, new evidence-script labels and this measured equality result.
+The runtime correction translates expected `TypeError`, `ValueError` and `OverflowError` from integer extraction into the corresponding output-shape or calibration representation error. Unrelated `RuntimeError` and `MemoryError` propagate. No numerical estimator behavior changed.
+
+All five regenerated case records are exactly equal to preserved refresh02 evidence: numerical inputs, exact Decimal expectations, rounded oracles, runtime outputs, coordinates, phase components, object truth, metrics and numerical byte hashes. Prior five-case numerical measurements remain materially applicable; the earlier error-path implementation and checkpoint fingerprints are historical. The previous JSON SHA256 was `ad992c56ddde03c44dd9c3237e4554b32df04e4dedef997019abb09c9bebdf58`. Current JSON records the accepted B8 inventory/verdict, corrected runtime and reviewed test fingerprints, new evidence-script labels and measured equality result. Public artifact snapshots and execution provenance remain in ignored evidence.
 
 Computation used locked product Python `3.13.12`, NumPy `2.5.3`, SIMrecon `0.1.0`, on Darwin arm64. Rendering used a separately identified plotting-only environment: Python `3.13.12`, Matplotlib `3.11.0`, Pillow `12.3.0`, Darwin arm64. The renderer imports neither the runtime nor the oracle, reads only the stored numerical JSON, validates plotted array hashes and writes PNG/SVG. Plotting dependencies were not added to the product.
 
 Public command labels use repository-relative paths:
 
 ```sh
-PYTHONPATH=tests .venv/bin/python artifacts/volume-recombination-execution/c-comparison-generate-03.py
-MPLCONFIGDIR=artifacts/volume-recombination-execution/c-mplconfig plotting-python artifacts/volume-recombination-execution/c-comparison-render-03.py
-.venv/bin/python artifacts/volume-recombination-execution/c-usage-snippet-02.py
+PYTHONPATH=tests .venv/bin/python artifacts/volume-recombination-execution/c-correction-03-generate-01.py
+MPLCONFIGDIR=artifacts/volume-recombination-execution/c-mplconfig plotting-python artifacts/volume-recombination-execution/c-correction-03-render-01.py
+.venv/bin/python artifacts/volume-recombination-execution/c-correction-03-usage-01.py
 ```
 
 `plotting-python` denotes the separately recorded plotting interpreter. Private executable paths and command logs remain in ignored execution evidence. Generator/renderer scripts are task evidence in that ignored directory. The [standalone usage snippet](../usage/volume-recombination.md) was extracted and executed; its numeric inputs and outputs correspond to the second-order comparison.

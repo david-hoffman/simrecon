@@ -64,7 +64,10 @@ def _integer(value: object, code: str) -> int:
     """Accept integer scalars without rounding or modular reduction."""
     if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, np.integer)):
         raise SimreconError(code, "a nonboolean integer is required")
-    return int(value)
+    try:
+        return int(value)
+    except (TypeError, ValueError, OverflowError) as error:
+        raise SimreconError(code, "integer conversion failed") from error
 
 
 def _container(value: Any, count: int, code: str) -> Any:
