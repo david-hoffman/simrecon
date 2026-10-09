@@ -334,8 +334,9 @@ def test_ownership_mutability_snapshots_and_frozen_bindings(api: Any, layout: st
     np.testing.assert_array_equal(spacing, [0.7, 1.25, 2.5])
     np.testing.assert_array_equal(origin, [2, 1, 1])
     frozen_snapshot = [array.copy() for array in other_outputs]
+    original_bindings = {name: getattr(first, name) for name in FIELDS}
     for name in FIELDS:
-        original = getattr(first, name)
+        original = original_bindings[name]
         if name in ARRAY_FIELDS:
             replacement = np.array(original, copy=True)
         elif name == "voxel_size_um":
@@ -348,8 +349,10 @@ def test_ownership_mutability_snapshots_and_frozen_bindings(api: Any, layout: st
         try:
             setattr(first, name, replacement)
         except BaseException:
-            assert getattr(first, name) is original
-        assert getattr(first, name) is original
+            assert all(
+                getattr(first, field) is binding for field, binding in original_bindings.items()
+            )
+        assert all(getattr(first, field) is binding for field, binding in original_bindings.items())
     for i, array in enumerate(outputs):
         unaffected = [a.copy() for a in outputs]
         array.flat[0] = 99 + (1j if i == 0 else 0)
