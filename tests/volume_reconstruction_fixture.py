@@ -59,6 +59,8 @@ def root(turns: D, precision: int) -> Pair:
 
 
 def modes(size: int) -> range:
+    # Exact Python arithmetic avoids fixed-width negation and endpoint overflow.
+    size = int(size)
     return range(-(size // 2), (size + 1) // 2)
 
 
@@ -110,7 +112,7 @@ def direct_oracle(
         images = np.array(case["images"], dtype=np.float64)
         r_count, _, nz, ny, nx = images.shape
         detector = (nz, ny, nx)
-        output = (nz, *case["output_shape_yx"])
+        output = (nz, *map(int, case["output_shape_yx"]))
         q_modes = list(product(*(modes(k) for k in output)))
         numerator = dict.fromkeys(q_modes, ZERO)
         denominator = dict.fromkeys(q_modes, D(0))
@@ -169,7 +171,7 @@ def accuracy_bounds(case: dict[str, Any]) -> tuple[D, D]:
     with localcontext() as ctx:
         ctx.prec = 90
         r, n, nz, ny, nx = case["images"].shape
-        ly, lx = case["output_shape_yx"]
+        ly, lx = map(int, case["output_shape_yx"])
         j, m, p = D(5 * r), D(nz * ny * nx), D(int(nz * ly * lx))
         b = max(decimal(abs(v)) for v in np.array(case["images"], dtype=np.float64).flat)
         eps, tiny = D(2) ** -52, D(2) ** -1074
@@ -227,7 +229,7 @@ def assert_informative_regime(case: dict[str, Any]) -> None:
         images = np.array(case["images"], dtype=np.float64)
         r_count, n, nz, ny, nx = images.shape
         detector = (nz, ny, nx)
-        output = (nz, *case["output_shape_yx"])
+        output = (nz, *map(int, case["output_shape_yx"]))
         denominator = dict.fromkeys(product(*(modes(k) for k in output)), D(0))
         for r in range(r_count):
             assert condition_upper(case["phases_rad"][r]) <= 10
