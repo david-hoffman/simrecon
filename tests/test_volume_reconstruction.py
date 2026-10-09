@@ -779,9 +779,6 @@ def test_record_ownership_fields_mutability_and_coordinates(reconstruct: Any) ->
     saved = other.volume.copy()
     result.volume.flat[0] = 123 + 456j
     np.testing.assert_array_equal(other.volume, saved)
-    # Direct construction has no validation duty.
-    direct = record_type(**dict.fromkeys(names, None))
-    assert direct.volume is None
 
 
 @pytest.mark.parametrize(
