@@ -63,7 +63,9 @@ def modes(size: int) -> range:
 
 
 def basis(phases: Any) -> Any:
-    phi = np.array(phases, dtype=np.float64)
+    # On this host equal-width longdouble can survive np.array(dtype=float64) as 'g'.
+    # Build from Python binary64 scalars to ensure native 'd' trigonometric operations.
+    phi = np.fromiter((float(v) for v in phases), dtype=np.float64, count=len(phases))
     c, s = np.cos(phi), np.sin(phi)
     return np.column_stack((np.ones(len(phi)), c, s, c * c - s * s, (2 * c) * s))
 
@@ -175,6 +177,137 @@ def accuracy_bounds(case: dict[str, Any]) -> tuple[D, D]:
         return beta, p * beta + 16384 * j * p * eps * b + 64 * p * tiny
 
 
+def condition_upper(phases: Any) -> D:
+    """Bound represented-H conditioning using a high-precision SVD residual observer."""
+    with localcontext() as ctx:
+        ctx.prec = 90
+        h = basis(phases)
+        u, singular, vt = np.linalg.svd(h, full_matrices=False)
+        hd = [[decimal(v) for v in row] for row in h]
+        ud = [[decimal(v) for v in row] for row in u]
+        vd = [[decimal(v) for v in row] for row in vt]
+        sd = [decimal(v) for v in singular]
+        assert len(sd) == 5
+        u_defect = sum(
+            (
+                (sum((row[i] * row[j] for row in ud), D(0)) - D(int(i == j))) ** 2
+                for i in range(5)
+                for j in range(5)
+            ),
+            D(0),
+        ).sqrt()
+        v_defect = sum(
+            (
+                (sum((vd[i][k] * vd[j][k] for k in range(5)), D(0)) - D(int(i == j))) ** 2
+                for i in range(5)
+                for j in range(5)
+            ),
+            D(0),
+        ).sqrt()
+        residual = sum(
+            (
+                (hd[i][j] - sum((ud[i][k] * sd[k] * vd[k][j] for k in range(5)), D(0))) ** 2
+                for i in range(len(hd))
+                for j in range(5)
+            ),
+            D(0),
+        ).sqrt()
+        assert max(u_defect, v_defect) < 1
+        largest = max(sd) * ((1 + u_defect) * (1 + v_defect)).sqrt() + residual
+        smallest = min(sd) * ((1 - u_defect) * (1 - v_defect)).sqrt() - residual
+        assert smallest > 0
+        # Guard Decimal observer rounding; fixture margins are many orders larger.
+        return largest / smallest + D("1e-60")
+
+
+def assert_informative_regime(case: dict[str, Any]) -> None:
+    """Check sufficient accuracy conditions for these fixtures, never product rejection rules."""
+    with localcontext() as ctx:
+        ctx.prec = 90
+        images = np.array(case["images"], dtype=np.float64)
+        r_count, n, nz, ny, nx = images.shape
+        detector = (nz, ny, nx)
+        output = (nz, *case["output_shape_yx"])
+        denominator = dict.fromkeys(product(*(modes(k) for k in output)), D(0))
+        for r in range(r_count):
+            assert condition_upper(case["phases_rad"][r]) <= 10
+            gain = decimal(case["gains"][r])
+            assert D("0.5") <= gain <= 2
+            values = case["order_otfs"][r].values
+            assert max(abs(decimal(v)) for v in values.real.flat) <= 1
+            assert max(abs(decimal(v)) for v in values.imag.flat) <= 1
+            cy, cx = map(int, case["carriers_bins"][r])
+            for m in (-2, -1, 0, 1, 2):
+                for j in product(*(modes(k) for k in detector)):
+                    q = (j[0], j[1] - m * cy, j[2] - m * cx)
+                    lookup = (
+                        j
+                        if m >= 0
+                        else tuple(
+                            ((-jj + k // 2) % k) - k // 2 for jj, k in zip(j, detector, strict=True)
+                        )
+                    )
+                    index = tuple(jj + k // 2 for jj, k in zip(lookup, detector, strict=True))
+                    e = values[(abs(m), *index)]
+                    denominator[q] += (gain * decimal(e.real)) ** 2 + (gain * decimal(e.imag)) ** 2
+        ridge = decimal(case["regularization"])
+        assert 0 <= ridge <= 1
+        assert all(v + ridge == 0 or v + ridge >= D("0.25") for v in denominator.values())
+        j_count, m_count = D(5 * r_count), D(nz * ny * nx)
+        p_count = D(int(nz * output[1] * output[2]))
+        b = max(decimal(abs(v)) for v in images.flat)
+        assert 65536 * j_count * (D(n) + m_count + p_count) * D(2) ** -52 <= D(2) ** -10
+        assert 64 * j_count * p_count * max(b, D(2) ** -1074) <= decimal(np.finfo(float).max)
+
+
+def assert_complex_error(actual: Any, expected: Pair, budget: D) -> None:
+    """Compare complex modulus in Decimal without complex-magnitude overflow."""
+    with localcontext() as ctx:
+        ctx.prec = 90
+        assert budget.is_finite() and budget > 0
+        assert np.isfinite(actual.real) and np.isfinite(actual.imag)
+        error = (
+            (decimal(actual.real) - expected[0]) ** 2 + (decimal(actual.imag) - expected[1]) ** 2
+        ).sqrt()
+        assert error <= budget
+
+
+def assert_phase_accuracy(images: Any, phases: Any, separated: Any) -> None:
+    """Use the prerequisite's per-real-coordinate stored-input budget."""
+    with localcontext() as ctx:
+        ctx.prec = 90
+        assert condition_upper(phases) <= 10
+        converted = np.array(images, dtype=np.float64)
+        exact = coordinates(converted, phases)
+        for x, bands in exact.items():
+            b = max(decimal(abs(converted[(p, *x)])) for p in range(len(phases)))
+            budget = 8192 * D(len(phases)) * D(2) ** -52 * b + 8 * D(2) ** -1074
+            actual = (
+                separated.dc[x],
+                separated.c1[x].real,
+                separated.c1[x].imag,
+                separated.c2[x].real,
+                separated.c2[x].imag,
+            )
+            expected = (bands[0][0], bands[1][0], bands[1][1], bands[2][0], bands[2][1])
+            for got, want in zip(actual, expected, strict=True):
+                assert abs(decimal(got) - want) <= budget
+
+
+def effective_order_mode(psf: Any, axial: Any, mode: tuple[int, int, int]) -> Pair:
+    """Independent stored-kernel direct sum for the origin-zero composition fixture."""
+    with localcontext() as ctx:
+        ctx.prec = 90
+        mass = sum((decimal(v) for v in psf.flat), D(0))
+        value = ZERO
+        for x in np.ndindex(psf.shape):
+            g = axial[x[0]]
+            kernel = scale((decimal(g.real), decimal(g.imag)), decimal(psf[x]) / mass)
+            turns = -sum(D(j) * D(v) / D(k) for j, v, k in zip(mode, x, psf.shape, strict=True))
+            value = add(value, mul(kernel, root(turns, 90)))
+        return value
+
+
 def make_record(
     values: Any, spacing: Any = (0.7, 1.3, 0.4), origin: Any = None, source: str = "opaque"
 ) -> Any:
@@ -234,7 +367,8 @@ def make_case(
         phases_rad=phases,
         carriers_bins=carriers,
         gains=np.linspace(0.75, 1.5, r),
-        regularization=0.125,
+        # Unobserved output modes have V=0: this ridge keeps the fixture informative.
+        regularization=0.5,
         output_shape_yx=(ly, lx),
         apodization=mask,
     )

@@ -5,6 +5,7 @@ from dataclasses import fields, is_dataclass
 from decimal import Decimal as D
 from decimal import localcontext
 from itertools import combinations
+from types import SimpleNamespace
 from typing import Any, Literal, cast
 
 import numpy as np
@@ -12,11 +13,15 @@ import pytest
 
 from volume_reconstruction_fixture import (
     accuracy_bounds,
+    assert_complex_error,
+    assert_informative_regime,
+    assert_phase_accuracy,
     basis,
     call,
     coordinates,
     decimal,
     direct_oracle,
+    effective_order_mode,
     input_arrays,
     make_case,
     make_record,
@@ -69,11 +74,22 @@ def assert_error(reconstruct: Any, case: dict[str, Any], code: str | tuple[str, 
         assert a.strides == strides and a.flags.writeable == writable
 
 
-def compare(reconstruct: Any, case: dict[str, Any], atol: float = 3e-12) -> Any:
-    expected_s, expected_v = direct_oracle(case)
+def accuracy_expectation(case: dict[str, Any]) -> tuple[Any, tuple[D, D]]:
+    assert_informative_regime(case)
+    return direct_oracle(case, 75, decimal_output=True), accuracy_bounds(case)
+
+
+def assert_result_accuracy(result: Any, expected: Any, budgets: tuple[D, D]) -> None:
+    for got, want, budget in zip((result.spectrum, result.volume), expected, budgets, strict=True):
+        assert got.shape == want.shape
+        for actual, exact in zip(got.flat, want.flat, strict=True):
+            assert_complex_error(actual, exact, budget)
+
+
+def compare(reconstruct: Any, case: dict[str, Any]) -> Any:
+    expected, budgets = accuracy_expectation(case)
     result = call(reconstruct, case)
-    np.testing.assert_allclose(result.spectrum, expected_s, rtol=0, atol=atol)
-    np.testing.assert_allclose(result.volume, expected_v, rtol=0, atol=atol)
+    assert_result_accuracy(result, expected, budgets)
     return result
 
 
@@ -92,6 +108,62 @@ def dc_case(
         apodization=np.ones((shape[0], *output)),
     )
     return case
+
+
+def assert_constant_restoration(result: Any, case: dict[str, Any], intensity: float) -> None:
+    """Check analytic brightness of the selected constant fixture without floating overflow."""
+    unit_case = case | {"images": np.ones_like(case["images"], dtype=np.float64)}
+    assert_informative_regime(unit_case)
+    with localcontext() as ctx:
+        ctx.prec = 90
+        # Conservative margins for this homogeneous identity-DC problem only.
+        # They exceed separator/normalized-transform roundoff and retain the input scale.
+        beta_s, beta_v = (v * decimal(intensity) for v in accuracy_bounds(unit_case))
+        shape = (case["images"].shape[2], *case["output_shape_yx"])
+        assert result.spectrum.shape == result.volume.shape == shape
+        dc_index = tuple(k // 2 for k in shape)
+        for index in np.ndindex(shape):
+            spectrum_exact = (decimal(intensity) if index == dc_index else D(0), D(0))
+            assert_complex_error(result.spectrum[index], spectrum_exact, beta_s)
+            assert_complex_error(result.volume[index], (decimal(intensity), D(0)), beta_v)
+
+
+def test_oracle_budgeted_coherent_perturbation_and_wrong_outcomes() -> None:
+    case = make_case((1, 1, 3), ((0, 0), (0, 0)))
+    case["regularization"] = 0.125  # retain the exact public counterexample's fixture
+    spectrum, volume = direct_oracle(case)
+    spectrum[0, 0, 1] += 1e-10
+    volume += 1e-10  # changing DC by delta changes every synthesis sample by delta
+    permitted = SimpleNamespace(spectrum=spectrum, volume=volume)
+    compare(lambda *args, **kwargs: permitted, case)
+    for wrong in (
+        SimpleNamespace(spectrum=-spectrum, volume=-volume),
+        SimpleNamespace(spectrum=2 * spectrum, volume=2 * volume),
+        SimpleNamespace(spectrum=spectrum.conjugate(), volume=volume.conjugate()),
+    ):
+        with pytest.raises(AssertionError):
+            compare(lambda *args, value=wrong, **kwargs: value, case)
+
+
+def test_oracle_large_constant_restoration_observer() -> None:
+    case = dc_case((2, 8, 8), (8, 16))
+    intensity = np.finfo(float).max / 64
+    case["images"][:] = intensity
+    shape = (2, 8, 16)
+    spectrum = np.zeros(shape, dtype=np.complex128)
+    spectrum[1, 4, 8] = intensity
+    correct = SimpleNamespace(
+        spectrum=spectrum, volume=np.full(shape, intensity, dtype=np.complex128)
+    )
+    assert_constant_restoration(correct, case, intensity)
+    for wrong_scale in (1.0, intensity / 128, intensity / 256):
+        wrong_spectrum = np.zeros(shape, dtype=np.complex128)
+        wrong_spectrum[1, 4, 8] = wrong_scale
+        wrong = SimpleNamespace(
+            spectrum=wrong_spectrum, volume=np.full(shape, wrong_scale, dtype=np.complex128)
+        )
+        with pytest.raises(AssertionError):
+            assert_constant_restoration(wrong, case, intensity)
 
 
 def test_oracle_roots_and_exact_stored_ls() -> None:
@@ -143,9 +215,10 @@ def test_five_order_direct_estimator(reconstruct: Any, shape: Any, carriers: Any
 def test_nyquist_remains_complex_single_signed_lift(reconstruct: Any) -> None:
     case = dc_case()
     case["images"][:] = np.array([1, -1, 1, -1])
-    result = compare(reconstruct, case, 2e-13)
-    assert abs(result.volume[0, 0, 1].imag + 1) < 2e-13
-    assert abs(result.spectrum[0, 0, 6]) < 2e-13  # no positive-Nyquist copy
+    result = compare(reconstruct, case)
+    beta_s, beta_v = accuracy_bounds(case)
+    assert_complex_error(result.volume[0, 0, 1], (D(0), D(-1)), beta_v)
+    assert_complex_error(result.spectrum[0, 0, 6], (D(0), D(0)), beta_s)
 
 
 @pytest.mark.parametrize("ridge", [0, np.float32(0.5), np.int64(1)])
@@ -153,8 +226,7 @@ def test_ridge_mask_zero_denominator_and_zero_sides(reconstruct: Any, ridge: Any
     case = dc_case()
     case["regularization"] = ridge
     case["apodization"][:] = 0.25
-    result = compare(reconstruct, case)
-    assert abs(result.volume[0, 0, 0] - 0.25 / (1 + float(ridge))) < 2e-13
+    compare(reconstruct, case)
     case["order_otfs"][0].values[:] = 0
     result = call(reconstruct, case)
     assert np.count_nonzero(result.spectrum) == np.count_nonzero(result.volume) == 0
@@ -162,12 +234,11 @@ def test_ridge_mask_zero_denominator_and_zero_sides(reconstruct: Any, ridge: Any
 
 def test_gauge_gain_and_origin_encoded_once(reconstruct: Any) -> None:
     case = make_case((2, 2, 3), ((0, 1),))
-    result = compare(reconstruct, case)
+    compare(reconstruct, case)
     # Changing opaque origin/source metadata alone must not rephase supplied values.
     record = case["order_otfs"][0]
     case["order_otfs"] = [replace_record(record, origin_zyx=(0, 1, 0), source="other label")]
-    second = call(reconstruct, case)
-    np.testing.assert_allclose(second.spectrum, result.spectrum, rtol=0, atol=2e-13)
+    compare(reconstruct, case)
     # Gauge shifts are represented jointly in data and E_m, not inferred by reconstruction.
     theta = 0.37
     h = basis(case["phases_rad"][0])
@@ -175,14 +246,13 @@ def test_gauge_gain_and_origin_encoded_once(reconstruct: Any) -> None:
     base = dc_case((1, 1, 1), (1, 1))
     base["images"][0, :, 0, 0, 0] = basis(base["phases_rad"][0]) @ coefficients
     base["order_otfs"][0].values[:] = np.array([1, 0.7 + 0.2j, -0.3 + 0.4j])[:, None, None, None]
-    original = compare(reconstruct, base)
+    compare(reconstruct, base)
     for m in (1, 2):
         band = (coefficients[2 * m - 1] - 1j * coefficients[2 * m]) / 2 * np.exp(1j * m * theta)
         coefficients[2 * m - 1], coefficients[2 * m] = 2 * band.real, -2 * band.imag
         base["order_otfs"][0].values[m] *= np.exp(1j * m * theta)
     base["images"][0, :, 0, 0, 0] = basis(base["phases_rad"][0]) @ coefficients
-    rotated = compare(reconstruct, base)
-    np.testing.assert_allclose(rotated.spectrum, original.spectrum, rtol=0, atol=3e-13)
+    compare(reconstruct, base)
     assert h.shape[1] == 5
 
 
@@ -215,9 +285,7 @@ def test_real_widths_endian_and_converted_truth(reconstruct: Any, key: str, dtyp
     if key == "images" and np.dtype(dtype).kind == "u":
         case[key][:] = np.iinfo(dtype).max
     # Integer extrema are compared after float64 conversion, never unrounded truth.
-    expected = float(np.array(case["images"], dtype=np.float64).flat[0])
-    result = call(reconstruct, case)
-    np.testing.assert_allclose(result.volume, expected, rtol=4e-13, atol=1e-13)
+    compare(reconstruct, case)
 
 
 @pytest.mark.parametrize("layout", ["fortran", "strided", "readonly", "big_endian"])
@@ -381,7 +449,7 @@ def test_image_shape_rejections(reconstruct: Any, shape: Any) -> None:
     codes = ("invalid_volume_reconstruction_shape",)
     if len(shape) == 5:
         r, n, nz, ny, nx = shape
-        case["phases_rad"] = np.zeros((r, n))
+        case["phases_rad"] = np.tile(np.arange(n, dtype=float), (r, 1))
         case["gains"] = np.ones(r)
         case["carriers_bins"] = np.zeros((r, 2), dtype=np.int64)
         case["order_otfs"] = case["order_otfs"] * r
@@ -435,7 +503,17 @@ def test_regularization_rejections(reconstruct: Any, value: Any) -> None:
 def test_output_shape_representation(reconstruct: Any, value: Any) -> None:
     case = dc_case()
     case["output_shape_yx"] = value
-    assert_error(reconstruct, case, "invalid_volume_reconstruction_output_shape")
+    codes = ("invalid_volume_reconstruction_output_shape",)
+    if (
+        type(value) in (tuple, list)
+        and len(value) == 2
+        and all(
+            isinstance(v, (int, np.integer)) and not isinstance(v, (bool, np.bool_)) for v in value
+        )
+        and tuple(value) != case["apodization"].shape[1:]
+    ):
+        codes += ("invalid_volume_reconstruction_apodization",)
+    assert_error(reconstruct, case, codes)
 
 
 @pytest.mark.parametrize("axis", [0, 1])
@@ -453,8 +531,7 @@ def test_exact_carriers_and_no_practical_output_cap(reconstruct: Any) -> None:
     case = dc_case((1, 1, 1), (1, 1025))
     case["output_shape_yx"] = [np.int64(1), np.uint64(1025)]
     case["carriers_bins"] = np.zeros((1, 2), dtype=np.uint64)
-    result = call(reconstruct, case)
-    np.testing.assert_allclose(result.volume, 1, rtol=0, atol=3e-13)
+    compare(reconstruct, case)
     case["carriers_bins"][0, 1] = np.iinfo(np.uint64).max
     assert_error(reconstruct, case, "invalid_volume_reconstruction_output_shape")
     case["carriers_bins"] = np.zeros((1, 2), dtype=float)
@@ -639,12 +716,11 @@ def test_extreme_output_grid(reconstruct: Any, spacing: Any, output: Any, code: 
     if code:
         assert_error(reconstruct, case, code)
     else:
-        result = call(reconstruct, case)
+        result = compare(reconstruct, case)
         assert all(
             np.isfinite(getattr(result, key)).all()
             for key in ("fz_per_um", "fy_per_um", "fx_per_um")
         )
-        np.testing.assert_allclose(result.volume, 1, rtol=0, atol=1e-13)
 
 
 def test_phase_dependency_rank_solver_and_range_codes(reconstruct: Any, monkeypatch: Any) -> None:
@@ -669,19 +745,13 @@ def test_separator_composition_and_joint_permutation(reconstruct: Any) -> None:
     from simrecon import separate_volume_phases
 
     case = make_case((2, 2, 3), ((0, -1),))
-    with localcontext() as ctx:
-        ctx.prec = 70
-        exact = coordinates(case["images"][0], case["phases_rad"][0])
-        separated = separate_volume_phases(case["images"][0], phases_rad=case["phases_rad"][0])
-        for x, bands in exact.items():
-            for array, value in zip((separated.dc, separated.c1, separated.c2), bands, strict=True):
-                assert abs(complex(array[x]) - complex(float(value[0]), float(value[1]))) < 3e-13
-    first = compare(reconstruct, case)
+    separated = separate_volume_phases(case["images"][0], phases_rad=case["phases_rad"][0])
+    assert_phase_accuracy(case["images"][0], case["phases_rad"][0], separated)
+    compare(reconstruct, case)
     order = [6, 2, 0, 5, 1, 4, 3]
     case["images"] = case["images"][:, order]
     case["phases_rad"] = case["phases_rad"][:, order]
-    second = compare(reconstruct, case)
-    np.testing.assert_allclose(second.spectrum, first.spectrum, rtol=0, atol=3e-13)
+    compare(reconstruct, case)
 
 
 def composition_case() -> dict[str, Any]:
@@ -725,7 +795,7 @@ def composition_case() -> dict[str, Any]:
         - 2 * components[2].imag[None] * h[:, 4, None, None, None]
     )
     separated = separate_volume_phases(data, phases_rad=phase)
-    np.testing.assert_allclose(separated.c2, components[2], rtol=0, atol=2e-14)
+    assert_phase_accuracy(data, phase, separated)
     case = dict(
         images=data[None],
         order_otfs=[calibration],
@@ -736,8 +806,19 @@ def composition_case() -> dict[str, Any]:
         output_shape_yx=(1, 13),
         apodization=np.ones((3, 1, 13)),
     )
-    assert abs(calibration.values[0, 2, 0, 2]) < 1e-14
-    assert abs(calibration.values[2, 2, 0, 2] - 0.8) < 2e-14
+    with localcontext() as ctx:
+        ctx.prec = 90
+        m = D(psf.size)
+        eps, tiny = D(2) ** -52, D(2) ** -1074
+        assert_complex_error(
+            calibration.values[0, 2, 0, 2], (D(0), D(0)), 128 * m * eps + 4 * m * tiny
+        )
+        gain = max(abs(decimal(v)) for v in np.concatenate((g[1].real, g[1].imag)))
+        assert_complex_error(
+            calibration.values[2, 2, 0, 2],
+            effective_order_mode(psf, g[1], (1, 0, 0)),
+            256 * m * eps * gain + 8 * m * tiny,
+        )
     return case
 
 
@@ -752,8 +833,6 @@ def test_actual_effective_transfer_forward_composition_second_order_information(
     reconstruct: Any,
 ) -> None:
     result = compare(reconstruct, composition_case())
-    expected = (0.1 * np.exp(0.3j)) * 0.8**2 / (0.8**2 + 0.25)
-    assert abs(result.spectrum[2, 0, 10] - expected) < 3e-13
     assert abs(result.spectrum[2, 0, 10]) > 0.05
 
 
@@ -761,7 +840,7 @@ def test_inputs_snapshotted_before_transform_and_caller_policy_preserved(
     reconstruct: Any, monkeypatch: Any
 ) -> None:
     case = make_case((1, 2, 3), ((0, 1),))
-    expected = direct_oracle(case)
+    expected, budgets = accuracy_expectation(case)
     arrays = input_arrays(case)
     original = np.fft.fftn
     touched = False
@@ -782,8 +861,7 @@ def test_inputs_snapshotted_before_transform_and_caller_policy_preserved(
             result = call(reconstruct, case)
         assert np.geterr() == policy and warnings.filters == old_filters
     assert touched
-    for got, want in zip((result.spectrum, result.volume), expected, strict=True):
-        np.testing.assert_allclose(got, want, rtol=0, atol=3e-12)
+    assert_result_accuracy(result, expected, budgets)
 
 
 @pytest.mark.parametrize("scale", [0.0, np.nextafter(0.0, 1.0), 1e-300, 1.0])
@@ -793,25 +871,9 @@ def test_informative_accuracy_zero_subnormal_mandatory_success(
     case = make_case((1, 2, 3), ((0, 0),))
     case["images"] *= scale
     case["regularization"] = 0.5  # positive denominator everywhere >=1/4
-    for phi in case["phases_rad"]:
-        assert np.linalg.cond(basis(phi)) < 10
-    r, n, nz, ny, nx = case["images"].shape
-    p = nz * np.prod(case["output_shape_yx"])
-    with localcontext() as ctx:
-        ctx.prec = 90
-        b = max(decimal(abs(v)) for v in case["images"].flat)
-        assert 65536 * D(5 * r) * D(int(n + nz * ny * nx + p)) * D(2) ** -52 <= D(2) ** -10
-        assert 64 * D(5 * r) * D(int(p)) * max(b, D(2) ** -1074) <= decimal(np.finfo(float).max)
-        expected = direct_oracle(case, 75, decimal_output=True)
-        result = call(reconstruct, case)
-        for got, want, budget in zip(
-            (result.spectrum, result.volume), expected, accuracy_bounds(case), strict=True
-        ):
-            for a, e in zip(got.flat, want.flat, strict=True):
-                error_sq = (decimal(a.real) - e[0]) ** 2 + (decimal(a.imag) - e[1]) ** 2
-                assert error_sq.sqrt() <= budget
-        if scale == 0:
-            assert np.count_nonzero(result.spectrum) == np.count_nonzero(result.volume) == 0
+    result = compare(reconstruct, case)
+    if scale == 0:
+        assert np.count_nonzero(result.spectrum) == np.count_nonzero(result.volume) == 0
 
 
 def test_safe_large_components_transform_scaling(reconstruct: Any) -> None:
@@ -822,10 +884,8 @@ def test_safe_large_components_transform_scaling(reconstruct: Any) -> None:
         warnings.simplefilter("always")
         result = call(reconstruct, case)
     assert not caught
-    # This scale lies outside the informative regime: success and finite components
-    # are binding, but no uniform digit budget is asserted here.
-    assert np.isfinite(result.spectrum).all() and np.isfinite(result.volume).all()
-    assert result.spectrum[1, 4, 8].real > 0
+    # Specific analytic restoration obligation; no general out-of-regime budget.
+    assert_constant_restoration(result, case, intensity)
 
 
 @pytest.mark.parametrize(
@@ -1086,17 +1146,15 @@ def test_oracle_analytic_complex_overlap() -> None:
 
 
 def test_analytic_complex_overlap_weighting(reconstruct: Any) -> None:
-    case, expected = scalar_overlap_case()
-    result = call(reconstruct, case)
-    assert abs(result.spectrum.item() - expected) < 3e-13
-    assert abs(result.volume.item() - expected) < 3e-13
+    case, _ = scalar_overlap_case()
+    compare(reconstruct, case)
 
 
 def test_representable_grid_despite_overflowing_field_length_product(reconstruct: Any) -> None:
     case = dc_case((2, 3, 4), (3, 4))
     f = np.finfo(float).max
     case["order_otfs"] = [make_record(case["order_otfs"][0].values, spacing=(f, f, f))]
-    result = call(reconstruct, case)
+    result = compare(reconstruct, case)
     assert result.voxel_size_um == (f, f, f)
     with localcontext() as ctx:
         ctx.prec = 90
@@ -1109,4 +1167,3 @@ def test_representable_grid_despite_overflowing_field_length_product(reconstruct
                     abs(decimal(value) - expected)
                     <= 8 * D(2) ** -52 * abs(expected) + D(2) ** -1074
                 )
-    np.testing.assert_allclose(result.volume, 1, rtol=0, atol=3e-13)
