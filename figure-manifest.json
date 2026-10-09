@@ -1,0 +1,49 @@
+{
+  "candidate": "cdf4a0745d6b9681e371b006db60239f3f5af0f9",
+  "source_json_sha256": "d8b6c0a074ae901b37d3e14eb7c54612d6d585611ecee6dd37e2ae7cdefbbd56",
+  "environment": {
+    "python": "3.13.12",
+    "numpy": "2.5.1",
+    "matplotlib": "3.11.0"
+  },
+  "transformations": [
+    "Signed actual coordinate maps at both z indices; shared limits per component",
+    "Maximum of five Decimal coordinate differences per voxel divided by its stored Decimal budget before float conversion",
+    "Decimal logarithms for mixed-scale absolute errors and budgets; explicitly marked exact zero",
+    "Saved off-model observations, predictions and residual samples only"
+  ],
+  "files": {
+    "volume-components.png": {
+      "sha256": "8d5bc3326f3b3a4bc3f0e1482839df56744e0c3411a7fc7df2d257a454ea6e9b",
+      "bytes": 308853
+    },
+    "volume-local-error.png": {
+      "sha256": "7b67d354033b9e7b09867b31ba5453b3d2ec0c026d83127a2d3b243b01d2d7e0",
+      "bytes": 244149
+    },
+    "volume-off-model-projection.png": {
+      "sha256": "e2d78a32a4f1c7bce88936205a514ecc3586c0a60030f9b988ae7a8408e6489d",
+      "bytes": 218789
+    },
+    "figure-metrics.json": {
+      "sha256": "cf1fcafcca5bf893c28534acfb8bb49c35160a044d46e3c0a1dbe246882f4310",
+      "bytes": 31736
+    },
+    "render_figures.py": {
+      "sha256": "e58414ef602907d40ccbfa30ac4916bcac4ae3dcb4602ab0e7842306a538505a",
+      "bytes": 11984
+    },
+    "data/comparison-data.json": {
+      "sha256": "b1ee32bf9cc3584df282cfdd679acb41ac37fedbba86db3a8e804855590f8180",
+      "bytes": 83986
+    },
+    "data/volume-comparison-inputs.npz": {
+      "sha256": "d70143d5d7e5e901474aa5e70f2d56952d225673653bee2d8d3fe1295e1d092d",
+      "bytes": 8758
+    },
+    "data/volume-comparison-outputs.npz": {
+      "sha256": "de6f71f929bd365cc9e66b30a38ace1b7e51d5f93a123067270089729075601e",
+      "bytes": 44702
+    }
+  }
+}
