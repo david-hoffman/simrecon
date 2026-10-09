@@ -320,7 +320,7 @@ def test_ownership_mutability_snapshots_and_frozen_bindings(api: Any, layout: st
     outputs = [getattr(first, name) for name in ARRAY_FIELDS]
     other_outputs = [getattr(second, name) for name in ARRAY_FIELDS]
     for i, array in enumerate(outputs):
-        assert type(array) is np.ndarray
+        assert isinstance(array, np.ndarray)
         assert array.dtype == np.dtype(np.complex128 if i == 0 else np.float64)
         assert array.dtype.isnative
         assert array.flags.c_contiguous and array.flags.owndata and array.flags.writeable
@@ -1300,7 +1300,7 @@ if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
             assert_frequencies(result, shape, expected_spacing)
             outputs = [getattr(result, name) for name in ARRAY_FIELDS]
             for index, array in enumerate(outputs):
-                assert type(array) is np.ndarray
+                assert isinstance(array, np.ndarray)
                 assert array.dtype == np.dtype(np.complex128 if index == 0 else np.float64)
                 assert array.dtype.isnative
                 assert array.flags.c_contiguous and array.flags.owndata and array.flags.writeable
