@@ -17,6 +17,7 @@ verify:
 
 sync:
 	$(UV) sync --locked --all-groups
+	$(UV) run --locked --no-sync python scripts/prepare_imagej_reader.py
 
 # Cheap prerequisite health only; check and verify retain their complete phases.
 preflight: sync
@@ -43,7 +44,7 @@ tests:
 	$(UV) run --locked coverage run -m pytest
 
 coverage-combine:
-	$(UV) run --locked coverage combine
+	$(UV) run --locked python -W error -m coverage combine
 
 coverage-json:
 	$(UV) run --locked coverage json

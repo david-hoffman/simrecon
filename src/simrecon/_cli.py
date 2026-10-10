@@ -9,6 +9,7 @@ from typing import Any, NoReturn
 
 import numpy as np
 
+from ._imagej import export_imagej
 from ._legacy import inspect
 from ._metadata import harmonize
 from ._model import SimreconError
@@ -61,13 +62,19 @@ def main() -> int:
     conversion.add_argument("destination")
     conversion.add_argument("--config", required=True)
     conversion.add_argument("--block-planes", type=int, default=1)
+    imagej = commands.add_parser("export-imagej")
+    imagej.add_argument("source")
+    imagej.add_argument("destination")
+    imagej.add_argument("--config", required=True)
+    imagej.add_argument("--block-planes", type=int, default=1)
     try:
         args = parser.parse_args()
         info = inspect(args.source)
         if args.command == "inspect":
             result = info
         else:
-            result = write(
+            exporter = export_imagej if args.command == "export-imagej" else write
+            result = exporter(
                 args.destination,
                 harmonize(info, config=load_config(args.config)),
                 block_planes=args.block_planes,
