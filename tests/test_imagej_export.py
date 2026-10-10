@@ -1032,6 +1032,7 @@ def test_source_change_during_real_export_never_returns_success(
 def test_real_operation_time_write_failure(tmp_path: Path, api: Callable[..., Any]) -> None:
     # Both required platforms implement POSIX RLIMIT_FSIZE. Limit only the child,
     # ignore SIGXFSZ so a real write returns EFBIG rather than killing pytest.
+    # Restore the prior limit after observation so native subprocess coverage can save.
     spec = Acquisition(plane_axes=("z",), plane_shape=(8,), x=64, y=64, extension=b"")
     source, _, config = input_info(tmp_path, spec)
     original = sha256(source), source.stat().st_mtime_ns
@@ -1045,14 +1046,17 @@ def test_real_operation_time_write_failure(tmp_path: Path, api: Callable[..., An
         "info = simrecon.harmonize(simrecon.inspect(source), "
         "config=json.loads(config_path.read_text()))\n"
         "signal.signal(signal.SIGXFSZ, signal.SIG_IGN)\n"
-        "resource.setrlimit(resource.RLIMIT_FSIZE, "
-        "(8192, resource.getrlimit(resource.RLIMIT_FSIZE)[1]))\n"
+        "original_soft, original_hard = resource.getrlimit(resource.RLIMIT_FSIZE)\n"
         "try:\n"
-        "    simrecon.export_imagej(output, info)\n"
-        "except OSError as error:\n"
-        "    print(json.dumps({'error_errno': error.errno, 'success': False}))\n"
-        "else:\n"
-        "    raise AssertionError('operation-time write failure returned success')\n"
+        "    resource.setrlimit(resource.RLIMIT_FSIZE, (8192, original_hard))\n"
+        "    try:\n"
+        "        simrecon.export_imagej(output, info)\n"
+        "    except OSError as error:\n"
+        "        print(json.dumps({'error_errno': error.errno, 'success': False}))\n"
+        "    else:\n"
+        "        raise AssertionError('operation-time write failure returned success')\n"
+        "finally:\n"
+        "    resource.setrlimit(resource.RLIMIT_FSIZE, (original_soft, original_hard))\n"
     )
     result = subprocess.run(
         [sys.executable, str(probe), str(source), str(config_path), str(output)],

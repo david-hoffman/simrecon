@@ -44,7 +44,7 @@ tests:
 	$(UV) run --locked coverage run -m pytest
 
 coverage-combine:
-	$(UV) run --locked coverage combine
+	$(UV) run --locked python -W error -m coverage combine
 
 coverage-json:
 	$(UV) run --locked coverage json
