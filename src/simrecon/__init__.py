@@ -4,6 +4,7 @@ from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
 from ._drift import DriftCorrection, correct_integer_drift
 from ._illumination import IlluminationEstimate, estimate_illumination
+from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
 from ._legacy import inspect
 from ._metadata import harmonize
 from ._model import DataBlock, DatasetInfo, SimreconError, WriteReport
@@ -26,6 +27,8 @@ __all__ = [
     "DatasetInfo",
     "DriftCorrection",
     "IlluminationEstimate",
+    "ImagejSeries",
+    "ImagejWriteReport",
     "Otf2D",
     "Otf3D",
     "PhaseComponents",
@@ -41,6 +44,7 @@ __all__ = [
     "estimate_illumination",
     "estimate_translation",
     "estimate_volume_order_gain",
+    "export_imagej",
     "harmonize",
     "inspect",
     "prepare_otf",

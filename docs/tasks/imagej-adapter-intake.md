@@ -4,6 +4,8 @@
 
 One file has one named X/Y/Z/channel/time view per orientation/phase pair. The first coherent slice uses approved harmonized Priism file sources. Originals remain unchanged and necessary for opaque-byte recovery. Modern MRC input and reconstruction-array export remain separate scope.
 
+[Export usage](../usage/imagej-export.md) and the [executed reader report](../reports/imagej-export-interop.md) accompany the implementation candidate.
+
 Route: high risk, fresh native blind A/B, restricted C and fresh D. The contract names ownership,29 scenarios, reader profile, representation/resource/error boundaries and expectation sources. A independently maps tests/examples; B audits. Separate conventional reader/dependency/check setup has named bounded ownership and fresh independent review before dependent roles. Superpowers has not been invoked.
 
 ## Current state pointer
