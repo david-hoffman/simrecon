@@ -97,6 +97,55 @@ def _frequencies(length: int, spacing: float) -> npt.NDArray[np.float64]:
     return frequencies
 
 
+def _prepare_volume_inputs(
+    psf: npt.NDArray[Any], voxel_size_um: object, origin_zyx: object, source: str
+) -> tuple[
+    npt.NDArray[np.float64],
+    tuple[npt.NDArray[np.float64], npt.NDArray[np.float64], npt.NDArray[np.float64]],
+    tuple[float, float, float],
+    tuple[int, int, int],
+]:
+    """Snapshot, validate and normalize detection mass and its coordinates."""
+    if type(psf) is not np.ndarray:
+        raise SimreconError("invalid_psf", "psf must be a plain NumPy ndarray")
+    if psf.dtype.kind not in "iuf":
+        raise SimreconError("invalid_psf_dtype", "psf must have real integer or floating dtype")
+    if psf.ndim != 3 or 0 in psf.shape:
+        raise SimreconError("invalid_psf_shape", "psf must have three positive dimensions")
+    if not isinstance(source, str) or not source.strip():
+        raise SimreconError("invalid_otf_source", "source must be a nonblank string")
+
+    # Conversion loss, discarded tiny contributions and rejected final-grid
+    # overflow have defined outcomes regardless of the caller's error handlers.
+    with np.errstate(all="ignore"):
+        if not np.isfinite(psf).all():
+            raise SimreconError("nonfinite_psf", "source psf samples must be finite")
+        if np.any(psf < 0):
+            raise SimreconError("negative_psf", "source psf samples must be nonnegative")
+        try:
+            working = psf.astype(np.float64, order="C", copy=True)
+        except (TypeError, ValueError, OverflowError) as error:
+            raise SimreconError("nonfinite_psf", "psf conversion failed") from error
+        if not np.isfinite(working).all():
+            raise SimreconError("nonfinite_psf", "converted psf samples must be finite")
+        maximum = working.max()
+        if maximum == 0:
+            raise SimreconError("zero_psf_mass", "converted psf must have positive mass")
+
+        dz, dy, dx = (_spacing(v) for v in _triple(voxel_size_um, "invalid_otf_voxel_size"))
+        oz, oy, ox = _triple(origin_zyx, "invalid_otf_origin")
+        origin = (_origin(oz, psf.shape[0]), _origin(oy, psf.shape[1]), _origin(ox, psf.shape[2]))
+        fz = _frequencies(psf.shape[0], dz)
+        fy = _frequencies(psf.shape[1], dy)
+        fx = _frequencies(psf.shape[2], dx)
+
+        # Maximum scaling avoids overflow in the raw sum and preserves mass
+        # when every positive source sample is subnormal.
+        working /= maximum
+        working /= working.sum()
+    return working, (fz, fy, fx), (dz, dy, dx), origin
+
+
 def prepare_volume_otf(
     psf: npt.NDArray[Any],
     *,
@@ -141,40 +190,10 @@ def prepare_volume_otf(
     or order-specific illumination transfer is supplied. Scoped arithmetic and
     warning handling preserve the caller's floating-error and warning policies.
     """
-    if type(psf) is not np.ndarray:
-        raise SimreconError("invalid_psf", "psf must be a plain NumPy ndarray")
-    if psf.dtype.kind not in "iuf":
-        raise SimreconError("invalid_psf_dtype", "psf must have real integer or floating dtype")
-    if psf.ndim != 3 or 0 in psf.shape:
-        raise SimreconError("invalid_psf_shape", "psf must have three positive dimensions")
-    if not isinstance(source, str) or not source.strip():
-        raise SimreconError("invalid_otf_source", "source must be a nonblank string")
-
-    # Conversion loss, discarded tiny contributions and rejected final-grid
-    # overflow have defined outcomes regardless of the caller's error handlers.
+    working, (fz, fy, fx), spacing, origin = _prepare_volume_inputs(
+        psf, voxel_size_um, origin_zyx, source
+    )
     with np.errstate(all="ignore"):
-        if not np.isfinite(psf).all():
-            raise SimreconError("nonfinite_psf", "source psf samples must be finite")
-        if np.any(psf < 0):
-            raise SimreconError("negative_psf", "source psf samples must be nonnegative")
-        working = psf.astype(np.float64, order="C", copy=True)
-        if not np.isfinite(working).all():
-            raise SimreconError("nonfinite_psf", "converted psf samples must be finite")
-        maximum = working.max()
-        if maximum == 0:
-            raise SimreconError("zero_psf_mass", "converted psf must have positive mass")
-
-        dz, dy, dx = (_spacing(v) for v in _triple(voxel_size_um, "invalid_otf_voxel_size"))
-        oz, oy, ox = _triple(origin_zyx, "invalid_otf_origin")
-        origin = (_origin(oz, psf.shape[0]), _origin(oy, psf.shape[1]), _origin(ox, psf.shape[2]))
-        fz = _frequencies(psf.shape[0], dz)
-        fy = _frequencies(psf.shape[1], dy)
-        fx = _frequencies(psf.shape[2], dx)
-
-        # Maximum scaling avoids overflow in the raw sum and preserves mass
-        # when every positive source sample is subnormal.
-        working /= maximum
-        working /= working.sum()
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("error", RuntimeWarning)
@@ -185,4 +204,4 @@ def prepare_volume_otf(
         values = np.array(transformed, dtype=np.complex128, order="C", copy=True)
         if not np.isfinite(values).all():
             raise SimreconError("otf_transform_failure", "transform returned nonfinite values")
-    return Otf3D(values, fz, fy, fx, (dz, dy, dx), origin, source)
+    return Otf3D(values, fz, fy, fx, spacing, origin, source)
