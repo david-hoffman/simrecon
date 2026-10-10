@@ -1,5 +1,6 @@
 """Spatial image conversion through explicit, value-oriented interfaces."""
 
+from ._illumination import IlluminationEstimate, estimate_illumination
 from ._legacy import inspect
 from ._metadata import harmonize
 from ._model import DataBlock, DatasetInfo, SimreconError, WriteReport
@@ -12,11 +13,13 @@ from ._reconstruction import Reconstruction2D, reconstruct
 __all__ = [
     "DataBlock",
     "DatasetInfo",
+    "IlluminationEstimate",
     "Otf2D",
     "PhaseComponents",
     "Reconstruction2D",
     "SimreconError",
     "WriteReport",
+    "estimate_illumination",
     "harmonize",
     "inspect",
     "prepare_otf",
