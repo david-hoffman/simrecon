@@ -29,6 +29,12 @@ jobs:
       - name: Install pinned Python
         run: uv python install
 
+      - name: Install pinned development-reader Java
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: "21.0.7+6"
+
       - name: Run full verification
         run: make verify
 
@@ -42,6 +48,7 @@ jobs:
             .coverage.*
             artifacts/coverage/
             artifacts/verification/
+            artifacts/imagej-reader/inputs.json
             dist/
           include-hidden-files: true
           if-no-files-found: warn

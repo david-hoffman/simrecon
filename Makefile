@@ -17,6 +17,7 @@ verify:
 
 sync:
 	$(UV) sync --locked --all-groups
+	$(UV) run --locked --no-sync python scripts/prepare_imagej_reader.py
 
 # Cheap prerequisite health only; check and verify retain their complete phases.
 preflight: sync

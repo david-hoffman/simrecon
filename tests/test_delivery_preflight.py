@@ -52,6 +52,13 @@ def controlled_uv(tmp_path: Path) -> tuple[Path, Path, Path]:
                 if failure == 'sync':
                     sys.exit('controlled locked sync failure')
                 sys.exit(0)
+            if args == [
+                'run', '--locked', '--no-sync', 'python', 'scripts/prepare_imagej_reader.py'
+            ]:
+                if failure == 'reader':
+                    sys.exit('controlled reader preparation failure')
+                print('preflight: reader inputs authenticated (controlled fixture)')
+                sys.exit(0)
             if args == ['--version']:
                 print('uv controlled test executable')
                 sys.exit(0)
@@ -120,6 +127,7 @@ def _preflight(
 def _assert_order(calls: list[list[str]], count: int) -> None:
     expected = [
         ["sync", "--locked", "--all-groups"],
+        ["run", "--locked", "--no-sync", "python", "scripts/prepare_imagej_reader.py"],
         ["--version"],
         ["run", "--locked", "--no-sync", "python", "-c"],
         ["run", "--no-project", "--with", "hatchling==1.32.4", "python", "-c"],
@@ -127,7 +135,7 @@ def _assert_order(calls: list[list[str]], count: int) -> None:
     assert len(calls) == count
     for actual, prefix in zip(calls, expected, strict=False):
         assert actual[: len(prefix)] == prefix
-        assert len(actual) == len(prefix) + (1 if prefix[0] == "run" else 0)
+        assert len(actual) == len(prefix) + (1 if prefix[-1] == "-c" else 0)
 
 
 def test_preflight_success_reports_actual_identity_and_order(
@@ -135,9 +143,10 @@ def test_preflight_success_reports_actual_identity_and_order(
 ) -> None:
     result, calls = _preflight(controlled_uv, "")
     assert result.returncode == 0, result.stdout + result.stderr
-    _assert_order(calls, 4)
+    _assert_order(calls, 5)
     # Inspect emitted health output, rather than Make's echoed Python command.
     lines = result.stdout.splitlines()
+    assert "preflight: reader inputs authenticated (controlled fixture)" in lines
     assert any(line.startswith("preflight: python ") and sys.executable in line for line in lines)
     imports = next(line for line in lines if line.startswith("preflight: imports "))
     for name in ("simrecon", "numpy", "h5py"):
@@ -155,10 +164,11 @@ def test_preflight_success_reports_actual_identity_and_order(
     ("failure", "count", "diagnostic"),
     [
         ("sync", 1, "controlled locked sync failure"),
-        ("import", 3, "import of numpy halted"),
-        ("interpreter", 3, "expected Python 3.13.12"),
-        ("environment", 3, "expected current-worktree .venv"),
-        ("package-path", 3, "simrecon import is outside current-worktree"),
+        ("reader", 2, "controlled reader preparation failure"),
+        ("import", 4, "import of numpy halted"),
+        ("interpreter", 4, "expected Python 3.13.12"),
+        ("environment", 4, "expected current-worktree .venv"),
+        ("package-path", 4, "simrecon import is outside current-worktree"),
     ],
 )
 def test_preflight_sync_or_health_failure_stops_without_retry(
@@ -188,4 +198,4 @@ def test_preflight_isolated_prerequisite_failure_is_reported_without_retry(
     result, calls = _preflight(controlled_uv, failure)
     assert result.returncode != 0
     assert diagnostic in result.stderr
-    _assert_order(calls, 4)
+    _assert_order(calls, 5)
