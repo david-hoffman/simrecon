@@ -16,6 +16,7 @@ from ._translation import TranslationEstimate, estimate_translation
 from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
 from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
+from .volume_reconstruction import Reconstruction3D, reconstruct_volume
 
 __all__ = [
     "CarrierCandidate",
@@ -28,6 +29,7 @@ __all__ = [
     "Otf3D",
     "PhaseComponents",
     "Reconstruction2D",
+    "Reconstruction3D",
     "SimreconError",
     "TranslationEstimate",
     "VolumeOrderOtf",
@@ -43,6 +45,7 @@ __all__ = [
     "prepare_volume_otf",
     "read",
     "reconstruct",
+    "reconstruct_volume",
     "scan_carriers",
     "select_carrier",
     "separate_phases",
