@@ -1,5 +1,6 @@
 """Spatial image conversion through explicit, value-oriented interfaces."""
 
+from ._acquisition import RawAcquisition, declare_acquisition
 from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
 from ._drift import DriftCorrection, correct_integer_drift
@@ -32,6 +33,7 @@ __all__ = [
     "Otf2D",
     "Otf3D",
     "PhaseComponents",
+    "RawAcquisition",
     "Reconstruction2D",
     "Reconstruction3D",
     "SimreconError",
@@ -41,6 +43,7 @@ __all__ = [
     "VolumePhaseComponents",
     "WriteReport",
     "correct_integer_drift",
+    "declare_acquisition",
     "estimate_illumination",
     "estimate_translation",
     "estimate_volume_order_gain",
