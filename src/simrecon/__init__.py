@@ -13,6 +13,7 @@ from ._phase import PhaseComponents, separate_phases
 from ._pixels import read
 from ._reconstruction import Reconstruction2D, reconstruct
 from ._translation import TranslationEstimate, estimate_translation
+from ._volume_phase import VolumePhaseComponents, separate_volume_phases
 
 __all__ = [
     "CarrierCandidate",
@@ -26,6 +27,7 @@ __all__ = [
     "Reconstruction2D",
     "SimreconError",
     "TranslationEstimate",
+    "VolumePhaseComponents",
     "WriteReport",
     "correct_integer_drift",
     "estimate_illumination",
@@ -38,5 +40,6 @@ __all__ = [
     "scan_carriers",
     "select_carrier",
     "separate_phases",
+    "separate_volume_phases",
     "write",
 ]
