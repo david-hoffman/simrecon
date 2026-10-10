@@ -6,8 +6,13 @@ import sys
 import threading
 import traceback
 import warnings
+from collections.abc import Generator
+from copy import copy
 from types import TracebackType
-from typing import TextIO
+from typing import Any, TextIO
+
+ORIGINAL_FRAME_FORMATTER: Any = traceback.StackSummary.format_frame_summary
+ORIGINAL_EXCEPTION_ONLY_FORMATTER: Any = traceback.TracebackException.format_exception_only
 
 
 def format_warning(
@@ -91,6 +96,36 @@ def clean_snapshot(snapshot: traceback.TracebackException) -> None:
         clean_snapshot(child)
 
 
+def format_frame_summary(
+    self: traceback.StackSummary, frame_summary: traceback.FrameSummary, **kwargs: Any
+) -> str:
+    """Render a standard stack frame with location but no source or locals."""
+    safe_frame = traceback.FrameSummary(
+        frame_summary.filename,
+        frame_summary.lineno,
+        frame_summary.name,
+        lookup_line=False,
+        line="",
+    )
+    return ORIGINAL_FRAME_FORMATTER(self, safe_frame, **kwargs)
+
+
+def format_snapshot_exception_only(
+    self: traceback.TracebackException,
+    *,
+    show_group: bool = False,
+    _depth: int = 0,
+    **kwargs: Any,
+) -> Generator[str]:
+    """Suppress SyntaxError source in every standard exception-only renderer."""
+    safe_snapshot = copy(self)
+    if hasattr(safe_snapshot, "text"):
+        safe_snapshot.text = ""
+    yield from ORIGINAL_EXCEPTION_ONLY_FORMATTER(
+        safe_snapshot, show_group=show_group, _depth=_depth, **kwargs
+    )
+
+
 def format_exception(
     exc: BaseException | type[BaseException],
     value: BaseException | None = None,
@@ -153,6 +188,8 @@ def install() -> None:
     traceback.print_exception = print_exception
     traceback.format_exc = format_exc
     traceback.print_exc = print_exc
+    traceback.StackSummary.format_frame_summary = format_frame_summary
+    traceback.TracebackException.format_exception_only = format_snapshot_exception_only
 
 
 install()

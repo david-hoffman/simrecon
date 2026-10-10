@@ -53,7 +53,10 @@ Use the diagnostic harness before blind Python or pytest probes:
 The harness preserves subprocess exit status and warning categories, messages,
 filenames and line numbers. Uncaught Python exceptions retain categories,
 messages, chains, groups and stack locations. Source snippets and locals are not
-rendered. Pytest uses `--tb=line`, `--no-showlocals` and `--assert=plain`; discovery,
+rendered. Standard traceback frame/stack formatting and exception-only
+SyntaxError formatting use the same source suppression. A command timeout
+reports `TimeoutExpired`, duration, executable and mode without command arguments
+or inline Python source. Pytest uses `--tb=line`, `--no-showlocals` and `--assert=plain`; discovery,
 warning filters, test policy and expected outcomes remain unchanged. Python
 children inherit `sitecustomize` through `PYTHONPATH`. The default command timeout
 is 300 s; an explicit positive `--timeout` before the mode changes it. Python

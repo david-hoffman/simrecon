@@ -212,6 +212,45 @@ def test_java_failure_is_bounded_and_diagnostic(fake_java: Path, monkeypatch, ti
         reader.java_identity()
 
 
+@pytest.mark.parametrize("failure", ["nonzero", "wrong-output", "os-error", "timeout"])
+def test_java_source_launcher_failures_are_bounded_and_cleaned(
+    fake_java: Path, monkeypatch, failure: str
+) -> None:
+    original_run = reader.subprocess.run
+    calls = []
+
+    def run(argv, **kwargs):
+        calls.append(argv)
+        assert kwargs["timeout"] == 15
+        assert kwargs.get("shell", False) is False
+        if "-version" in argv:
+            return original_run(argv, **kwargs)
+        assert argv[0] == str(fake_java.resolve())
+        assert Path(argv[1]).name == "ReaderSetupProbe.java"
+        if failure == "os-error":
+            raise OSError("controlled source-launcher OS failure")
+        if failure == "timeout":
+            raise subprocess.TimeoutExpired(argv, 15)
+        return subprocess.CompletedProcess(
+            argv,
+            2 if failure == "nonzero" else 0,
+            "wrong source-launcher output",
+            "controlled source-launcher diagnostic",
+        )
+
+    monkeypatch.setattr(reader.subprocess, "run", run)
+    with pytest.raises(ValueError, match="Java source launcher failed") as caught:
+        reader.java_identity()
+    assert len(calls) == 2
+    if failure in ("nonzero", "wrong-output"):
+        assert "controlled source-launcher diagnostic" in str(caught.value)
+    elif failure == "os-error":
+        assert "controlled source-launcher OS failure" in str(caught.value)
+    else:
+        assert "15 seconds" in str(caught.value)
+    assert not list(fake_java.parent.glob("java-probe-*"))
+
+
 def test_manifest_reports_exact_jars_and_selected_java(fake_java: Path, monkeypatch) -> None:
     items = (input_for(b"trusted"),)
     monkeypatch.setattr(reader, "INPUTS", items)

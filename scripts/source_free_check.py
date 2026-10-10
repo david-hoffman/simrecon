@@ -48,7 +48,14 @@ def main() -> int:
     try:
         argv = command(arguments.mode, arguments.arguments)
         result = subprocess.run(argv, env=environment(), timeout=arguments.timeout, check=False)
-    except (OSError, ValueError, subprocess.TimeoutExpired) as error:
+    except subprocess.TimeoutExpired:
+        print(
+            f"Source-free command failed: TimeoutExpired: {sys.executable} "
+            f"({arguments.mode}) exceeded {arguments.timeout:g} seconds",
+            file=sys.stderr,
+        )
+        return 1
+    except (OSError, ValueError) as error:
         print(f"Source-free command failed: {type(error).__name__}: {error}", file=sys.stderr)
         return 1
     return result.returncode if result.returncode >= 0 else 128 - result.returncode
