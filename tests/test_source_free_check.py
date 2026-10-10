@@ -13,9 +13,12 @@ ROOT = Path(__file__).resolve().parents[1]
 HARNESS = ROOT / "scripts/source_free_check.py"
 
 
-def execute(mode: str, *arguments: str) -> subprocess.CompletedProcess[str]:
+def execute(
+    mode: str, *arguments: str, cwd: Path | None = None
+) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         [sys.executable, str(HARNESS), "--timeout", "30", mode, *arguments],
+        cwd=cwd,
         capture_output=True,
         text=True,
         timeout=40,
@@ -174,6 +177,66 @@ def assert_subprocess_diagnostics(output: str, kind: str) -> None:
         assert "exit status 7" in output
 
 
+def assert_pytest_failure_identity(output: str, source: Path, cwd: Path) -> None:
+    for line in output.splitlines():
+        if not line.startswith("FAILED "):
+            continue
+        nodeid = line.removeprefix("FAILED ").split(" - ", 1)[0]
+        filename, separator, test_name = nodeid.partition("::")
+        if (
+            separator
+            and test_name == "test_subprocess_failure"
+            and (cwd / filename).resolve() == source.resolve()
+        ):
+            return
+    raise AssertionError(f"No pytest failure identity resolves to {source}")
+
+
+@pytest.mark.parametrize("absolute", [False, True])
+def test_pytest_failure_identity_accepts_full_relative_and_absolute_paths(
+    tmp_path: Path, absolute: bool
+) -> None:
+    source = tmp_path / "inputs" / "test_nested.py"
+    cwd = tmp_path / "invocation"
+    filename = str(source) if absolute else os.path.relpath(source, cwd)
+    output = f"FAILED {filename}::test_subprocess_failure\n"
+    assert_pytest_failure_identity(output, source, cwd)
+
+
+@pytest.mark.parametrize("absolute", [False, True])
+def test_pytest_failure_identity_rejects_a_different_path_with_the_same_basename(
+    tmp_path: Path, absolute: bool
+) -> None:
+    source = tmp_path / "inputs" / "test_nested.py"
+    wrong_source = tmp_path / "other" / source.name
+    cwd = tmp_path / "invocation"
+    filename = str(wrong_source) if absolute else os.path.relpath(wrong_source, cwd)
+    output = f"FAILED {filename}::test_subprocess_failure\n"
+    with pytest.raises(AssertionError, match="No pytest failure identity resolves to"):
+        assert_pytest_failure_identity(output, source, cwd)
+
+
+@pytest.mark.parametrize("layout", ["source-parent", "sibling-directory"])
+def test_pytest_subprocess_failure_preserves_source_identity_across_cwd_layouts(
+    tmp_path: Path, layout: str
+) -> None:
+    source = tmp_path / "inputs" / "test_nested.py"
+    source.parent.mkdir()
+    cwd = source.parent if layout == "source-parent" else tmp_path / "invocation" / "nested"
+    cwd.mkdir(parents=True, exist_ok=True)
+    source.write_text(
+        "import subprocess, sys\n"
+        "def test_subprocess_failure():\n"
+        f"    {subprocess_statement('called')}\n"
+    )
+    result = execute("pytest", "-q", str(source), cwd=cwd)
+    output = result.stdout + result.stderr
+    assert result.returncode == 1
+    assert_subprocess_diagnostics(output, "called")
+    assert_pytest_failure_identity(output, source, cwd)
+    assert "1 failed" in output
+
+
 @pytest.mark.parametrize("kind", ["timeout", "called"])
 @pytest.mark.parametrize("mode", ["direct", "print-exc", "exception-only", "snapshot"])
 def test_nested_subprocess_exception_renderers_suppress_inline_source(
@@ -247,7 +310,10 @@ def test_nested_subprocess_errors_share_safe_chain_group_thread_and_pytest_diagn
     assert result.returncode == (0 if mode == "thread" else 1)
     output = result.stdout + result.stderr
     assert_subprocess_diagnostics(output, "called")
-    assert str(source) in output
+    if mode == "pytest":
+        assert_pytest_failure_identity(output, source, Path.cwd())
+    else:
+        assert str(source) in output
     if mode in ("chain", "group"):
         assert_subprocess_diagnostics(output, "timeout")
     if mode == "chain":
