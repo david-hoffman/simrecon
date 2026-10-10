@@ -1,0 +1,49 @@
+# Phase 1: decision register
+
+**Version 1.0.** [Task](../tasks/scientific-phase1-intake.md), [baseline/dependencies](scientific-phase1-baseline.md), [acquisition evidence](scientific-phase1-acquisition.md), [ordered packets](scientific-phase1-packets.md).
+
+All rows below remain pending unless explicitly marked observed/resolved. The responsible coordinator resolves only what the next slice needs, with fresh Astra advice for material ambiguity. Owner provenance records facts; scientific intake selects behavior; integration requires separate owner authority. Silence and a reference-source default settle none of them. Missing experimental files permit these documents, but cannot supply a numerical contract.
+
+## Integration and expectation readiness
+
+| ID | Decision / evidence needed | Earliest dependent work | Responsible action and status |
+|---|---|---|---|
+| I1 | Choose a completed execution baseline and concrete prerequisite closure for the next scientific slice. Old open PRs are absent here. | Before dependent scientific work; phases 2–3 first. | Coordinator prepares exact closure/evidence; owner authorizes any integration action. Current task grants no integration/transplant/reimplementation authority. |
+| I2 | Reconcile old scientific candidates with this baseline's installed strict verification and review policy. #9's advisory policy is not inherited. | Before any reuse/integration of #11–21; also any changed candidate. | Assess tree/test/fixture/base/environment and retained review applicability, all owned-file coverage, source-free diagnostics and full exact gate. Historical installed-gate pass is insufficient. |
+| I3 | Inspect applicable original scientific A/B/C/D acceptance checkpoints and changed-base evidence. Maintenance bounded review only assessed its named correction. | Before reuse of each candidate. | Read exact original verdicts and dependency/test mappings; record gaps and renew affected independent evidence. No blanket old-stack reacceptance. |
+| I4 | Preserve explicit coordinates when reusing the asymmetric 2D OTF example. “One row above” means `oy+1` under the integrated fixture notes' upward-display convention; formula and JSON agree. Open #7 v1.1 makes coordinates explicit. | Any foundation/OTF expectation packet, first relevant in phase 3. | Resolved interpretation after Astra's narrow inspection; no numerical inconsistency or new blanket blocker established. Carry existing coordinates/formula for normal independent oracle review. Candidate prose clarification is not integrated; no contract/fixture edit here. |
+| I5 | Decide result-file adapter necessity versus arrays, and separate viewing adapter scope from numerical prerequisites. | Phase 6 output; phase 7 composition. | Coordinator proposes only needed adapter contracts; owner supplies intended consumers. Open #21 exports acquisitions, not arbitrary reconstruction arrays. |
+
+## Missing owner provenance
+
+| ID | Needed fact / artifact | Earliest dependency | Responsible action and status |
+|---|---|---|---|
+| O1 | Specimen section order, channel/time counts, volume/plane meaning, phases/orientations, nominal commands, wavelengths and spacings with units. | Phase 2 target mapping. | Owner/acquisition record; coordinator can draft metadata alternatives now. Unknown. |
+| O2 | Calibration kind (detection-only or phase-resolved), section order/pairing, bead diameter/emission/isolation and reuse across orientation/channel/time. | Phase 2 input identification; phase 3 calibration. | Owner/calibration provenance, or separately approved synthetic mode for independent development. Unknown. |
+| O3 | Actual reference revision/build flags, commands/configuration and effective overrides, including phase counts, optical mode, extra exposures and help/default discrepancies. | Phase 2 selected mode; phases 3–6 algorithms. | Owner's existing records; never execute/rebuild reference programs. Unknown. |
+| O4 | Camera/dark/flat-field/gain maps, exposure/timestamps, raw intensity/noise units, background/bleaching/saturation/bad-pixel provenance. | Phase 2 correction contract; phase 5 estimation. | Owner/instrument documentation. Unknown; no camera constant inferred. |
+| O5 | Reference calibration artifacts/settings: per-order identity, radial/Cartesian form, dimensions/frequency increments, gauge, cleanup/compensation/scaling and missing-order fallback. | Phase 3 response meaning; phase 4 grids. | Owner artifacts/configuration; source supports possibilities only. Unknown. |
+| O6 | Reference output axes, sampling/origin, padding/crop/zoom, intensity/type/projection and enabled filters. | Phase 6 output; phase 9 parity. | Owner outputs/settings. Unknown. |
+| O7 | Private-data sharing/storage constraints, matched dataset scope/digests, reference build/platform/version and supplied outputs/logs. | Before handling owner data; phase 9 acceptance. | Owner supplies artifacts/provenance through approved storage; unknown data are not uploaded. Missing files do not block planning. |
+
+## Scientific meaning and acceptance
+
+| ID | Decision required; no choice made here | Earliest dependent phase | Expected evidence / next responsible role |
+|---|---|---|---|
+| S1 | Raw array/metadata boundary, canonical axes, section mapping, physical units, channel/time handling and absent/contradictory metadata outcomes. | 2 | Intake from O1/O2/O4 plus conversion contract; include valid alternate orderings and mismatched-count rejection. |
+| S2 | Target mode; detection PSF versus empirical SIM response; calibration/specimen pairing/reuse; explicitly unsupported modes. | 2, then 3 | O2/O3 and source mode branches; owner selects required experiment if facts do not settle it. |
+| S3 | Empirical phase/order counts, equal-phase assumption, commanded versus actual phase deviations and rejection or separate unequal-phase path. | 3; provenance captured in 2 | Raw calibration model and independent identifiability/oracle evidence. Five is a source default, not an owner setting. |
+| S4 | Background/camera correction sequence, units and valid combinations, negative values, exposure differences, saturation/bad pixels and missing maps. | 2 | Compare separate source paths with O4; contract preserves supplied/estimated/applied provenance. No blanket correction default. |
+| S5 | Bead selection/localization and centering estimator, multiple/edge beads, ambiguity, origin/gauge and zero-information failure. | 3 | Independent translated/sampled bead cases, chosen estimator objective and build-path evidence. |
+| S6 | Finite-bead emission/compensation model, order-shift coordinates, zero/near-zero transfer and supported size/model range. | 3 | O2/O5, analytic sphere or independently justified alternative and singular-case expectations. |
+| S7 | Radial/Cartesian representation, averaging weights/symmetry, anisotropic/nonsquare sampling and support cleanup. | 3 | Physical model and source behavior; independent symmetry/support counterexamples. |
+| S8 | Signed complex order convention, origin/phase gauge, conjugation, relative order normalization, zero-order axial response and no-signal outcomes. | 3 | Independent Fourier/order identities and target artifacts. `g0=1`, magnitude-only output and peak versus DC normalization are not silently adopted. DC means zero frequency. |
+| S9 | Independent frequency grids, domain/endpoints, complex interpolation, physical zero support versus unavailable coverage, and interpolation accuracy. | 4 | Phase-3 response contract plus independent analytic complex transfers on different grids. No detector-grid shortcut. |
+| S10 | 3D carrier/phase-step/offset/order-gain estimators, continuous refinement, objectives, aliasing/weak-overlap/no-information outcomes. | 5 | Selected physical/stored-observation model and independent truth/error evidence. Residual/coherence does not establish recovery. |
+| S11 | Fractional/axial drift, comparable references, fading/bleaching and correction/illumination interaction. | 5 | O4, source-supported settings, independently identifiable motion cases; existing integer periodic helpers remain narrow. |
+| S12 | 3D band placement, weights/noise, regularization/Wiener/apodization, support and numerical error. | 6 | Completed phases 3–5, target mode/configuration and independent forward limits. No estimator/default invented. |
+| S13 | Output geometry, units/normalization, real/complex projection, imaginary residue, negatives, padding/crop and persistence/provenance. | 6 | O6 and independent geometry/intensity cases; separate representation from scientific recovery. |
+| S14 | Public composition, diagnostics and allocation strategy; independent simulator/acceptance criteria and hidden-truth boundary. | 7 for workflow; 8 for full simulation | Completed integrated components, resource measurements and independent forward-model convergence. Phase-8 optics remain trial proposals. |
+| S15 | Parity metrics/tolerances, relative-error zero case, deterministic/fitted scaling, registration/resampling/cropping, legacy output conventions and dataset scope. | 9 before acceptance run | Owner artifacts plus precision/interpolation/noise evidence; unscaled/unregistered comparison first, adjustments separately reported. No thresholds selected here. |
+
+The ordered packets name the subset of these rows that blocks their own readiness. No unresolved scientific packet is ready for blind test authors or implementation. Full phase-1 exit additionally needs completed integrated prerequisites and concrete behavior contracts for dependent slices; this task completes reconciliation documentation only.
