@@ -49,4 +49,4 @@ Human numeric limits: not set. Missing tokens/cached/output/cost/served attribut
 
 ## Current state
 
-Single active Current state and detailed accounting/evidence live in ignored artifacts/raw-acquisition-r1-20261010/CURRENT.md in this managed worktree. This pointer is prepared before final verification. Final candidate/checkpoint/receipt hashes/results stay outside tracked bytes. Current stage: concrete public contract prepared, blind tests not yet authored. Required final outcome remains implementation, passing exact gate, fresh review and stacked reviewable PR; actual target-mode/provenance remains open for later dependent scientific slices.
+Single active Current state and detailed accounting/evidence live in ignored artifacts/raw-acquisition-r1-20261010/CURRENT.md in this managed worktree. Final candidate/checkpoint/receipt identities and results stay outside tracked bytes. This declaration-only foundation leaves full phase 2 and actual target 3D acquisition/optical settings unresolved for dependent scientific slices.
