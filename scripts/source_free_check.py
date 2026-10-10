@@ -10,11 +10,35 @@ import sys
 from pathlib import Path
 
 
+def check_interpreter_options(arguments: list[str]) -> None:
+    """Reject disabling interpreter options before the Python program boundary."""
+    index = 0
+    while index < len(arguments):
+        argument = arguments[index]
+        if argument in ("-", "--") or not argument.startswith("-"):
+            return
+        if argument.startswith("--"):
+            index += 2 if argument == "--check-hash-based-pycs" else 1
+            continue
+        flags = argument[1:]
+        for position, flag in enumerate(flags):
+            if flag in "ISE":
+                raise ValueError(
+                    "Python -I, -S and -E disable the inherited diagnostic environment"
+                )
+            if flag in "cm":
+                return
+            if flag in "WX":
+                if position == len(flags) - 1:
+                    index += 1
+                break
+        index += 1
+
+
 def command(mode: str, arguments: list[str]) -> list[str]:
     """Construct argv with pytest's source and local-variable output disabled."""
     if mode == "python":
-        if any(item in ("-I", "-S", "-E") for item in arguments):
-            raise ValueError("Python -I, -S and -E disable the inherited diagnostic environment")
+        check_interpreter_options(arguments)
         return [sys.executable, *arguments]
     return [
         sys.executable,

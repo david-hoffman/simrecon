@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+import subprocess
 import sys
 import threading
 import traceback
@@ -13,6 +15,31 @@ from typing import Any, TextIO
 
 ORIGINAL_FRAME_FORMATTER: Any = traceback.StackSummary.format_frame_summary
 ORIGINAL_EXCEPTION_ONLY_FORMATTER: Any = traceback.TracebackException.format_exception_only
+ORIGINAL_TIMEOUT_MESSAGE: Any = subprocess.TimeoutExpired.__str__
+ORIGINAL_PROCESS_MESSAGE: Any = subprocess.CalledProcessError.__str__
+
+
+def executable_label(command: Any) -> str:
+    """Retain an argv executable without rendering its command arguments."""
+    if isinstance(command, (list, tuple)) and command:
+        executable = command[0]
+        if isinstance(executable, (str, bytes, os.PathLike)):
+            return os.fsdecode(executable)
+    return "<command executable not recorded>"
+
+
+def timeout_message(self: subprocess.TimeoutExpired) -> str:
+    """Preserve the standard timeout meaning with source-free command identity."""
+    safe_exception = copy(self)
+    safe_exception.cmd = executable_label(self.cmd)
+    return ORIGINAL_TIMEOUT_MESSAGE(safe_exception)
+
+
+def process_message(self: subprocess.CalledProcessError) -> str:
+    """Preserve standard child exit or signal meaning without command arguments."""
+    safe_exception = copy(self)
+    safe_exception.cmd = executable_label(self.cmd)
+    return ORIGINAL_PROCESS_MESSAGE(safe_exception)
 
 
 def format_warning(
@@ -190,6 +217,8 @@ def install() -> None:
     traceback.print_exc = print_exc
     traceback.StackSummary.format_frame_summary = format_frame_summary
     traceback.TracebackException.format_exception_only = format_snapshot_exception_only
+    subprocess.TimeoutExpired.__str__ = timeout_message
+    subprocess.CalledProcessError.__str__ = process_message
 
 
 install()

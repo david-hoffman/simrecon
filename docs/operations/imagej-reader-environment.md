@@ -56,16 +56,24 @@ messages, chains, groups and stack locations. Source snippets and locals are not
 rendered. Standard traceback frame/stack formatting and exception-only
 SyntaxError formatting use the same source suppression. A command timeout
 reports `TimeoutExpired`, duration, executable and mode without command arguments
-or inline Python source. Pytest uses `--tb=line`, `--no-showlocals` and `--assert=plain`; discovery,
+or inline Python source. Standard nested `TimeoutExpired` and `CalledProcessError`
+messages also omit arguments while retaining executable identity and timeout or
+child status. Their original exception fields remain available to callers. A
+string command does not record a separate executable, so its diagnostic labels
+that identity unavailable. Pytest uses `--tb=line`, `--no-showlocals` and `--assert=plain`; discovery,
 warning filters, test policy and expected outcomes remain unchanged. Python
 children inherit `sitecustomize` through `PYTHONPATH`. The default command timeout
 is 300 s; an explicit positive `--timeout` before the mode changes it. Python
-`-I`, `-S` and `-E` are rejected because they disable this environment.
+`-I`, `-S` and `-E`, including combined interpreter options, are rejected because
+they disable this environment. Arguments after `-c`, `-m` or a script belong to
+the program and remain unchanged, including literal strings such as `-S`.
 
 This is a diagnostic rendering aid, not an engineered source access boundary.
 Explicit source printing, custom traceback formatting, child environment
 replacement, interpreter startup failures and third-party diagnostic plugins
 require separate source-free handling before their output enters a blind packet.
+Custom messages or exception notes that explicitly contain source are also
+outside this rendering aid's guarantee.
 The setup self-probes use source-only markers to prove the direct warning,
 exception, pytest failure and inherited Python-child channels. Their logs are
 kept under the ignored task evidence directory.

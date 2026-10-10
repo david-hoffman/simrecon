@@ -101,12 +101,161 @@ def test_syntax_error_and_exception_chain_do_not_render_source(tmp_path: Path) -
     assert "SOURCE_ONLY_" not in result.stderr
 
 
-@pytest.mark.parametrize("flag", ["-I", "-S", "-E"])
+@pytest.mark.parametrize("flag", ["-I", "-S", "-E", "-ES", "-IS"])
 def test_environment_disabling_flags_fail_explicitly(flag: str) -> None:
     result = execute("python", flag, "-c", "print('should not run')")
     assert result.returncode == 1
     assert "disable the inherited diagnostic environment" in result.stderr
     assert "should not run" not in result.stdout
+
+
+@pytest.mark.parametrize("mode", ["command", "module", "script"])
+def test_literal_disabling_flags_after_program_boundary_are_preserved(
+    tmp_path: Path, mode: str
+) -> None:
+    source = "import sys; print('PROGRAM_ARGUMENTS', sys.argv[1:])"
+    program = tmp_path / "literal_arguments.py"
+    program.write_text(source + "\n")
+    arguments = (
+        ["-c", source]
+        if mode == "command"
+        else ["-m", "literal_arguments"]
+        if mode == "module"
+        else [str(program)]
+    )
+    result = subprocess.run(
+        [sys.executable, str(HARNESS), "python", *arguments, "-I", "-S", "-E"],
+        env={**os.environ, "PYTHONPATH": str(tmp_path)},
+        capture_output=True,
+        text=True,
+        timeout=30,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "PROGRAM_ARGUMENTS ['-I', '-S', '-E']" in result.stdout
+
+
+def test_interpreter_option_values_and_attached_command_preserve_program_arguments() -> None:
+    result = execute(
+        "python",
+        "-W",
+        "ignore",
+        "-X",
+        "utf8",
+        "--check-hash-based-pycs",
+        "default",
+        "-cimport sys; print('ATTACHED_ARGUMENTS', sys.argv[1:])",
+        "-S",
+    )
+    assert result.returncode == 0, result.stderr
+    assert "ATTACHED_ARGUMENTS ['-S']" in result.stdout
+
+
+def subprocess_statement(kind: str) -> str:
+    inner = (
+        "import time; time.sleep(2) # SOURCE_ONLY_NESTED_TIMEOUT_11"
+        if kind == "timeout"
+        else "raise SystemExit(7) # SOURCE_ONLY_NESTED_CALLED_11"
+    )
+    option = "timeout=0.05" if kind == "timeout" else "check=True"
+    return f"subprocess.run([sys.executable, '-c', {inner!r}], {option})"
+
+
+def assert_subprocess_diagnostics(output: str, kind: str) -> None:
+    assert sys.executable in output
+    assert "SOURCE_ONLY_" not in output
+    assert "time.sleep" not in output
+    assert "raise SystemExit" not in output
+    if kind == "timeout":
+        assert "TimeoutExpired" in output
+        assert "0.05 seconds" in output
+    else:
+        assert "CalledProcessError" in output
+        assert "exit status 7" in output
+
+
+@pytest.mark.parametrize("kind", ["timeout", "called"])
+@pytest.mark.parametrize("mode", ["direct", "print-exc", "exception-only", "snapshot"])
+def test_nested_subprocess_exception_renderers_suppress_inline_source(
+    tmp_path: Path, kind: str, mode: str
+) -> None:
+    statement = subprocess_statement(kind)
+    source = tmp_path / "nested_exception.py"
+    header = "import subprocess, sys, traceback\n"
+    if mode == "direct":
+        source.write_text(header + statement + "\n")
+    else:
+        renderer = {
+            "print-exc": "traceback.print_exc()",
+            "exception-only": "print(''.join(traceback.format_exception_only(error)))",
+            "snapshot": (
+                "print(''.join(traceback.TracebackException.from_exception("
+                "error, capture_locals=True).format()))"
+            ),
+        }[mode]
+        source.write_text(
+            header + "try:\n    " + statement + "\nexcept Exception as error:\n"
+            "    assert error.cmd[1] == '-c'\n"
+            "    assert 'SOURCE_ONLY_' in error.cmd[2]\n"
+            "    assert getattr(error, 'returncode', 7) == 7\n"
+            "    assert getattr(error, 'timeout', 0.05) == 0.05\n"
+            f"    {renderer}\n"
+        )
+    result = execute("python", str(source))
+    assert result.returncode == (1 if mode == "direct" else 0)
+    output = result.stdout + result.stderr
+    assert_subprocess_diagnostics(output, kind)
+    if mode != "exception-only":
+        assert f'File "{source}", line' in output
+
+
+@pytest.mark.parametrize("mode", ["chain", "group", "thread", "pytest"])
+def test_nested_subprocess_errors_share_safe_chain_group_thread_and_pytest_diagnostics(
+    tmp_path: Path, mode: str
+) -> None:
+    header = "import subprocess, sys, threading\n"
+    timeout = subprocess_statement("timeout")
+    called = subprocess_statement("called")
+    if mode == "chain":
+        body = (
+            f"try:\n    {timeout}\nexcept subprocess.TimeoutExpired as first:\n"
+            f"    try:\n        {called}\n"
+            "    except subprocess.CalledProcessError as second:\n"
+            "        raise second from first\n"
+        )
+    elif mode == "group":
+        body = (
+            "errors = []\n"
+            f"try:\n    {timeout}\nexcept subprocess.TimeoutExpired as error:\n"
+            "    errors.append(error)\n"
+            f"try:\n    {called}\nexcept subprocess.CalledProcessError as error:\n"
+            "    errors.append(error)\n"
+            "raise ExceptionGroup('GROUP_MESSAGE_11', errors)\n"
+        )
+    elif mode == "thread":
+        body = (
+            f"def failure():\n    {called}\n"
+            "thread = threading.Thread(target=failure)\nthread.start()\nthread.join()\n"
+        )
+    else:
+        body = f"def test_subprocess_failure():\n    {called}\n"
+    source = tmp_path / ("test_nested.py" if mode == "pytest" else "nested_shared.py")
+    source.write_text(header + body)
+    result = (
+        execute("pytest", "-q", str(source)) if mode == "pytest" else execute("python", str(source))
+    )
+    assert result.returncode == (0 if mode == "thread" else 1)
+    output = result.stdout + result.stderr
+    assert_subprocess_diagnostics(output, "called")
+    assert str(source) in output
+    if mode in ("chain", "group"):
+        assert_subprocess_diagnostics(output, "timeout")
+    if mode == "chain":
+        assert "direct cause" in output
+    if mode == "group":
+        assert "GROUP_MESSAGE_11" in output
+    if mode == "pytest":
+        assert "1 failed" in output
 
 
 def test_timeout_preserves_failure_status() -> None:
