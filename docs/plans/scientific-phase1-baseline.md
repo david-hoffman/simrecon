@@ -9,16 +9,16 @@ The owner selected the completed PR #21 work as the roadmap/phase-1 continuation
 | Identity | Observed value |
 |---|---|
 | Parent/new continuation PR | [#22, roadmap amendment](https://github.com/david-hoffman/simrecon/pull/22), corrected above merged main containing PR #21 |
-| Parent branch/head | `codex/scientific-migration-roadmap` / corrected publication confirmation pending |
-| Parent tree | Publication confirmation pending; exact identity will be recorded before phase-1 verification. |
+| Parent branch/head | `codex/scientific-migration-roadmap` / `599361faeb1e4a518e53bb3f8617c148d4895f75` |
+| Parent tree | `c1de61f76291029ff89e13cebfde264422f3b0c4` |
 | Inherited PR #21 head/tree | `d3ba7639ebec99dd67026332771fad99cf452d51` / `88e46436701c5b634ec2fb9aa49a3596a2e0a934` |
 | Merged main head/tree | `8f7148d405ade2a71da554b881a7153a2a66d6c9` / `88e46436701c5b634ec2fb9aa49a3596a2e0a934` |
 | Earlier main history | `a44e9d0c67403d5a001340b65ba04ea2f559256a`; source of the superseded main-based draft |
 | Phase-1 branch / PR base | `codex/phase1-scientific-intake` / `codex/scientific-migration-roadmap` |
-| Migration | Preserve the incomplete main-based draft/evidence checkpoint, then replay only phase-1 work after corrected #22 publication confirmation. Old PR heads/bases and owner checkouts stay intact. |
+| Migration | Completed after the roadmap/README task finished and the owner resumed this task. Only phase-1 documentation commits were replayed onto exact #22 head above; ancestry verified. Earlier draft/evidence checkpoints remain recoverable. Old PR heads/bases and owner checkouts stay intact. |
 | Final phase-1 candidate/evidence | Outside tracked bytes at the task's single Current state; fresh exact-candidate gate required. |
 
-The owner's correction supersedes the initial main-based prompt and its absent-component/strict-percentage assumptions. The wrong-baseline draft and earlier measurements remain historical evidence, not the execution baseline or a reset of charges. PR #21's runtime, tests/fixtures, dependency lock and installed checks are present in merged main; the roadmap adds documentation only. The verified merge changed Git identity, not the component tree. Exact changed-candidate verification remains required.
+The owner's correction supersedes the initial main-based prompt and its absent-component/strict-percentage assumptions. The wrong-baseline draft and earlier measurements remain historical evidence, not the execution baseline or a reset of charges. PR #21's runtime, tests/fixtures, dependency lock and installed checks are present in merged main; the completed roadmap/README task adds documentation only. Its [README](../../README.md) describes the inherited component library and unfinished raw workflow. The verified merge changed Git identity, not the component tree. Exact changed-candidate verification remains required.
 
 Merged history includes [MRC conversion #2](https://github.com/david-hoffman/simrecon/pull/2), [explicit-phase 2D separation #5](https://github.com/david-hoffman/simrecon/pull/5), and [2D PSF/OTF foundations #6](https://github.com/david-hoffman/simrecon/pull/6). MRC is the microscopy volume format; PSF means point spread function and OTF means optical transfer function. Subsequent stacked PRs add the runtime and fixtures listed below. The six original 2D mathematical intake examples remain distinct from executable A/B checkpoints and rounded JSON remains unsuitable as a tight oracle.
 
