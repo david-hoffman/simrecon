@@ -2,22 +2,23 @@
 
 **Version 1.0.** Observed October 10, 2026. [Task/authority](../tasks/scientific-phase1-intake.md), [acquisition/settings](scientific-phase1-acquisition.md), [decision register](scientific-phase1-decisions.md), [ordered intake packets](scientific-phase1-packets.md).
 
-The owner selected PR #21 → corrected roadmap PR #22 → this phase-1 continuation. Its execution baseline contains all inherited completed component implementations, contracts, tests and fixtures, although the PRs remain unmerged into main. Their narrow scientific limits remain. Reconciliation documents do not settle the target acquisition or complete the new scientific contracts required for full phase-1 exit.
+The owner selected the completed PR #21 work as the roadmap/phase-1 continuation and then merged all fourteen old PRs. The execution chain is now merged main → corrected roadmap PR #22 → phase 1. Main's tree exactly matches PR #21's verified tree and contains all completed component implementations, contracts, tests and fixtures. Their narrow scientific limits remain. Reconciliation documents do not settle the target acquisition or complete the new scientific contracts required for full phase-1 exit.
 
 ## Exact execution baseline
 
 | Identity | Observed value |
 |---|---|
-| Parent/new continuation PR | [#22, roadmap amendment](https://github.com/david-hoffman/simrecon/pull/22), directly above PR #21 |
-| Parent branch/head | `codex/scientific-migration-roadmap` / publication confirmation pending; prepared candidate `01db3d08a7c32b1dca5f2b8160a6e99ab24365d2` |
+| Parent/new continuation PR | [#22, roadmap amendment](https://github.com/david-hoffman/simrecon/pull/22), corrected above merged main containing PR #21 |
+| Parent branch/head | `codex/scientific-migration-roadmap` / corrected publication confirmation pending |
 | Parent tree | Publication confirmation pending; exact identity will be recorded before phase-1 verification. |
 | Inherited PR #21 head/tree | `d3ba7639ebec99dd67026332771fad99cf452d51` / `88e46436701c5b634ec2fb9aa49a3596a2e0a934` |
-| Merged main history | `a44e9d0c67403d5a001340b65ba04ea2f559256a`; distinct from this stacked execution baseline |
+| Merged main head/tree | `8f7148d405ade2a71da554b881a7153a2a66d6c9` / `88e46436701c5b634ec2fb9aa49a3596a2e0a934` |
+| Earlier main history | `a44e9d0c67403d5a001340b65ba04ea2f559256a`; source of the superseded main-based draft |
 | Phase-1 branch / PR base | `codex/phase1-scientific-intake` / `codex/scientific-migration-roadmap` |
 | Migration | Preserve the incomplete main-based draft/evidence checkpoint, then replay only phase-1 work after corrected #22 publication confirmation. Old PR heads/bases and owner checkouts stay intact. |
 | Final phase-1 candidate/evidence | Outside tracked bytes at the task's single Current state; fresh exact-candidate gate required. |
 
-The owner's correction supersedes the initial main-based prompt and its absent-component/strict-percentage assumptions. The wrong-baseline draft and earlier measurements remain historical evidence, not the execution baseline or a reset of charges. PR #21's runtime, tests/fixtures, dependency lock and installed checks are inherited; the roadmap adds documentation only. No component transplant or owner merge is required to make those existing components present.
+The owner's correction supersedes the initial main-based prompt and its absent-component/strict-percentage assumptions. The wrong-baseline draft and earlier measurements remain historical evidence, not the execution baseline or a reset of charges. PR #21's runtime, tests/fixtures, dependency lock and installed checks are present in merged main; the roadmap adds documentation only. The verified merge changed Git identity, not the component tree. Exact changed-candidate verification remains required.
 
 Merged history includes [MRC conversion #2](https://github.com/david-hoffman/simrecon/pull/2), [explicit-phase 2D separation #5](https://github.com/david-hoffman/simrecon/pull/5), and [2D PSF/OTF foundations #6](https://github.com/david-hoffman/simrecon/pull/6). MRC is the microscopy volume format; PSF means point spread function and OTF means optical transfer function. Subsequent stacked PRs add the runtime and fixtures listed below. The six original 2D mathematical intake examples remain distinct from executable A/B checkpoints and rounded JSON remains unsuitable as a tight oracle.
 
@@ -33,11 +34,11 @@ Native statement/branch measurement is required globally/per owned package, incl
 
 Existing numeric test contracts, including M25's memory limit, stay unchanged. Human task/review/scenario caps are not set. Inherited Java reader checks use the existing Fiji Java selected through `SIMRECON_JAVA`; executable/environment identities stay in local evidence. This is independent of the forbidden reference C/binary execution.
 
-## Inherited open stack: read-only manifest
+## Completed stack: read-only historical manifest
 
-Fresh reads initially verified all fourteen exact heads/base refs below. They remain open/unmerged; corrected #22 continues above #21 without changing them. Final live readback is recorded outside tracked bytes. The archived bundle was read in a separate evidence object store before migration; its reading alone was not integration. Presence after migration comes from the owner-selected PR #21 ancestry.
+Fresh reads first verified the fourteen heads/base refs below while open. A later live read confirmed all fourteen MERGED on October 10, 2026, at 22:01 UTC, with recorded heads and base names unchanged. Main's exact tree equals PR #21's tree. Final readbacks stay outside tracked bytes. The archived bundle was read as evidence before migration; component presence now comes from merged main, not from those evidence reads.
 
-| PR | Exact head | Base branch / exact base commit |
+| Merged PR | Preserved head | Historical base branch / exact base commit |
 |---|---|---|
 | [#7](https://github.com/david-hoffman/simrecon/pull/7) | `aa39de2daec1871adcfe945cd0e6b87ffe5d5745` | `main` / `a44e9d0c67403d5a001340b65ba04ea2f559256a` |
 | [#8](https://github.com/david-hoffman/simrecon/pull/8) | `2da42d1234b200730d7e77970ad8f929592499ab` | `codex/otf-calibration` / `aa39de2daec1871adcfe945cd0e6b87ffe5d5745` |
@@ -88,17 +89,32 @@ The public contracts below are inherited files under `docs/contracts/` in this e
 | Phase 8 full simulation | Inherited independent component cases/illustrations. | Phase-7 route plus separately contracted independent generator/acceptance; both raw acquisitions, hidden truth, convergence and resource plan (S14). |
 | Phase 9 reference comparison | Conversion/provenance and later completed public workflow. | Successful phase 8, supplied matched cases/settings/outputs O7 and comparison decisions S15. Never execute reference programs. |
 
-I1/I2 are owner-resolved baseline/policy choices; they do not require another merge/integration interview. Future new numerical components must be completed and present in their dependent slice's baseline. Applicable evidence is inspected by interface and intended use, not by reopening every unchanged historical component solely because PRs are open. Material contract/test/fixture/base/environment changes renew affected evidence under the installed rules. This task remains documentation-only.
+I1/I2 are owner-resolved baseline/policy choices. The old components are merged and present; future new numerical components must be completed and present in their dependent slice's baseline. Applicable evidence is inspected by interface and intended use, without reopening every unchanged historical component solely because merge/version identity changed. Material contract/test/fixture/base/environment changes renew affected evidence under the installed rules. This task remains documentation-only.
 
 ## What evidence was actually inspected
 
 | Evidence class | Inspected facts | Limit / reuse consequence |
 |---|---|---|
-| Exact inherited baseline | PR #21 tree, public exports/contracts, tests/fixture identities; prepared corrected roadmap ancestry and documentation-only delta; fresh old-head/base snapshots. | Present component functionality is distinct from merged-main status and future scientific completeness. Source reading is not a new acceptance verdict. |
+| Exact inherited baseline | PR #21 tree, public exports/contracts, tests/fixture identities; merged-main tree equality; corrected roadmap ancestry/documentation-only delta; live merged states and preserved old-head/base snapshots. | Component presence is established in merged main; it remains distinct from future scientific completeness. Source reading is not a new acceptance verdict. |
 | Original main-based roadmap | Accepted documentation review/full receipt for superseded `9022cfd…`: thirteen phases, 697/697 statements, 246/246 branches. Receipt SHA-256 `2aa76ce29b76f487f1afcaad29a75f330533de01f212257dc682491f4c750494`. | Historical only; neither baseline authority nor verification of corrected #22 or phase 1. Archived unchanged. |
 | PR #21 maintenance | Canonical state, final-local-evidence manifest, exact tip receipt/coverage/measurement/logs and fresh bounded correction verdict inspected narrowly. Tip receipt SHA-256 `835e43d93223150f98906c4fda3efcd7c62f39b648c49a562fdbbbb60d98adff`; thirteen phases/4115 tests recorded. | Maintenance acceptance covers its named diagnostic correction. Applicable original scientific role/checkpoint evidence is inventoried separately; no claim of complete historical re-audit. |
 | Native measurement | Tip reports 2304/2353 statements and 724/762 branches across 28 owned files; complete reports inspected. | Valid advisory measurement, not a percentage failure or a reason to add tests. Report integrity/behavioral findings remain review obligations. |
-| Scientific acceptance/provenance | Inherited task pointers, contracts and signed reports identify approved checkpoints and independent comparisons; local inventory distinguishes actual verdicts inspected from reported claims. | Missing audit records are evidence gaps, not absent runtime. Review only applicability challenged by intended reuse or changed material inputs (I3). |
+| Scientific acceptance/provenance | Actual B/D acceptance conclusions read for #7/8/11–21 and material runtime/contract/test/fixture identities compared with PR #21. Two later source updates match downstream accepted D candidates: illumination under #12 and shared volume-PSF preparation under #18. | Applicability inspection, not new oracle derivation or blanket scientific reacceptance. Complete original CI archives were not re-audited; #20's historical requested-base discrepancy remains recorded. Missing audit records are evidence gaps, not absent runtime (I3). |
 | Corrected roadmap / phase-1 checks | Exact receipts, fresh documentation verdicts, source/contract fingerprints and publication readback retained in local evidence outside tracked bytes. | Each changed candidate needs its own full gate/review. Local evidence is separate from configured platform CI; no new scientific correctness or parity claim. |
+
+The narrow historical review inventory below records what was actually opened. B is the blind test reviewer; D is the final candidate reviewer. Original report paths/hashes, accepted candidates/checkpoints and byte comparisons remain in local evidence; no fresh scientific role was launched by this audit.
+
+| Inherited component | Actual acceptance records inspected | Applicability limit |
+|---|---|---|
+| #7 2D OTF | B3 and D | Supplied PSF/origin/grid; material files match. |
+| #8 2D reconstruction | B4 and D | Known parameters/fractional interpolation limits; material files match. |
+| #11 illumination / #12 scan | #11 B4/D plus D2 figure supplement; #12 B2/D | Later illumination subnormal/error-propagation update matches #12's accepted D candidate. |
+| #13 selection / #14 translation / #15 drift | B2/D for each, with retained figure supplements where applicable | Caller limits, comparable references and supplied integer drift; scientific files match. |
+| #16 volume separation | B2/D | Known phases and voxelwise harmonics; material files match. |
+| #17 volume PSF / #18 order profiles | #17 B10/D; #18 B4/D2 | Later shared PSF-input preparation matches #18's accepted D2 candidate; supplied profiles and `g0=1` remain narrow. |
+| #19 volume recombination | B5 baseline, B6 revised fixture, B8 supplemental observer; D3 | B8 alone is not whole-baseline acceptance. Material files match; integer lateral/native axial/complex output model. |
+| #20 relative gain | B2/D2 | Material files match; historical requested-base CI provenance discrepancy not independently resolved here. |
+| #21 viewing export | Whole A08 accepted by B08; D02, plus later maintenance bounded correction acceptance | Material files match accepted scopes; later infrastructure/correction evidence distinct. GUI viewing was not tested. |
+| #2/#5/#6 merged foundations; #9 policy | Contracts/fixture formulas, task pointers and retained receipt/policy evidence | Original #2/#5 removed-worktree ledgers and original #9 policy-review payload not re-audited in this task. Owner explicitly retained the inherited policy; no new policy adoption. |
 
 Historical attempts/spending stay in original records; new accounting preserves the superseded draft/checkpoint and correction without counting cumulative children again. Confidence is high in present component boundaries and empirical/grid/estimation gaps. Target behavior and specific evidence applicability remain uncertain until provenance, scientific contracts and narrow audits close.
