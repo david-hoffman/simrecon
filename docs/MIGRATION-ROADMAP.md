@@ -49,6 +49,8 @@ Phases 1–7 close and integrate the component gaps. **Phase 8 is the penultimat
 
 This turns the useful component stack into a precise execution baseline and identifies the reference mode to reproduce.
 
+The [phase-1 reconciliation manifest](plans/scientific-phase1-baseline.md), [acquisition/settings matrix](plans/scientific-phase1-acquisition.md), [decision register](plans/scientific-phase1-decisions.md) and [ordered planning packets](plans/scientific-phase1-packets.md) record the merged baseline above final PR #22. These documentation deliverables do not settle target settings or the new scientific contracts; full phase-1 exit remains pending. [Task/authority and evidence pointer](tasks/scientific-phase1-intake.md).
+
 1. Record merged main’s exact baseline, the corresponding completed component contracts and applicable accepted evidence. Retain historical PR candidate identities separately from squash-merge identities. Use the present prerequisites; identify genuinely missing dependencies without reopening completed components. Preserve old branches and historical accounting. Future merge/release remains an owner action.
 2. Make a target-mode/settings matrix from source text and available owner provenance: raw section ordering, channels/time, phases/orientations, illumination orders, calibration type, corrections and output geometry.
 3. Create a decision register for phases 2–9. Complete relevant source/paper method notes where needed; full-paper extraction and viewing polish are not independent prerequisites for every slice.
