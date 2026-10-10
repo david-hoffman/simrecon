@@ -184,6 +184,7 @@ def test_v1_real_make_check(repository):
     calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
     assert calls == [
         ["sync", "--locked", "--all-groups"],
+        ["run", "--locked", "--no-sync", "python", "scripts/prepare_imagej_reader.py"],
         ["run", "--locked", "ruff", "check", "src", "tests", "scripts"],
         ["run", "--locked", "ruff", "format", "--check", "src", "tests", "scripts"],
         ["run", "--locked", "pyright"],
