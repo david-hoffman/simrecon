@@ -181,8 +181,9 @@ def assert_pytest_failure_identity(output: str, source: Path, cwd: Path) -> None
     for line in output.splitlines():
         if not line.startswith("FAILED "):
             continue
-        nodeid = line.removeprefix("FAILED ").split(" - ", 1)[0]
+        nodeid = line.removeprefix("FAILED ")
         filename, separator, test_name = nodeid.partition("::")
+        test_name = test_name.split(" - ", 1)[0]
         if (
             separator
             and test_name == "test_subprocess_failure"
@@ -193,21 +194,24 @@ def assert_pytest_failure_identity(output: str, source: Path, cwd: Path) -> None
 
 
 @pytest.mark.parametrize("absolute", [False, True])
+@pytest.mark.parametrize("directory", ["inputs", "inputs - legitimate"])
+@pytest.mark.parametrize("summary", ["", " - CalledProcessError"])
 def test_pytest_failure_identity_accepts_full_relative_and_absolute_paths(
-    tmp_path: Path, absolute: bool
+    tmp_path: Path, absolute: bool, directory: str, summary: str
 ) -> None:
-    source = tmp_path / "inputs" / "test_nested.py"
+    source = tmp_path / directory / "test_nested.py"
     cwd = tmp_path / "invocation"
     filename = str(source) if absolute else os.path.relpath(source, cwd)
-    output = f"FAILED {filename}::test_subprocess_failure\n"
+    output = f"FAILED {filename}::test_subprocess_failure{summary}\n"
     assert_pytest_failure_identity(output, source, cwd)
 
 
 @pytest.mark.parametrize("absolute", [False, True])
+@pytest.mark.parametrize("directory", ["inputs", "inputs - legitimate"])
 def test_pytest_failure_identity_rejects_a_different_path_with_the_same_basename(
-    tmp_path: Path, absolute: bool
+    tmp_path: Path, absolute: bool, directory: str
 ) -> None:
-    source = tmp_path / "inputs" / "test_nested.py"
+    source = tmp_path / directory / "test_nested.py"
     wrong_source = tmp_path / "other" / source.name
     cwd = tmp_path / "invocation"
     filename = str(wrong_source) if absolute else os.path.relpath(wrong_source, cwd)
@@ -217,10 +221,11 @@ def test_pytest_failure_identity_rejects_a_different_path_with_the_same_basename
 
 
 @pytest.mark.parametrize("layout", ["source-parent", "sibling-directory"])
+@pytest.mark.parametrize("directory", ["inputs", "inputs - legitimate"])
 def test_pytest_subprocess_failure_preserves_source_identity_across_cwd_layouts(
-    tmp_path: Path, layout: str
+    tmp_path: Path, layout: str, directory: str
 ) -> None:
-    source = tmp_path / "inputs" / "test_nested.py"
+    source = tmp_path / directory / "test_nested.py"
     source.parent.mkdir()
     cwd = source.parent if layout == "source-parent" else tmp_path / "invocation" / "nested"
     cwd.mkdir(parents=True, exist_ok=True)
