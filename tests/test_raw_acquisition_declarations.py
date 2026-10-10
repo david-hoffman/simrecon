@@ -8,6 +8,7 @@ import os
 import struct
 import warnings
 from collections import UserDict
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
@@ -78,6 +79,34 @@ def input_identity(value):
     return (type(value), id(value))
 
 
+def snapshot_equal(actual: Any, expected: Any, *, mapping_root: bool = True) -> bool:
+    """Compare supplied value snapshots by type/value, accepting copied NaNs."""
+    if isinstance(expected, Mapping):
+        if not isinstance(actual, Mapping):
+            return False
+        # Root Mapping implementations need not survive snapshot construction.
+        # Nested built-in dictionaries and list/tuple structure do survive.
+        if not mapping_root and type(actual) is not type(expected):
+            return False
+        if not all(type(key) is str for key in actual):
+            return False
+        return actual.keys() == expected.keys() and all(
+            snapshot_equal(actual[key], value, mapping_root=False)
+            for key, value in expected.items()
+        )
+    if type(actual) is not type(expected):
+        return False
+    if type(expected) in (list, tuple):
+        return len(actual) == len(expected) and all(
+            snapshot_equal(a, e, mapping_root=False) for a, e in zip(actual, expected, strict=True)
+        )
+    if type(expected) is float:
+        return math.isnan(actual) if math.isnan(expected) else actual == expected
+    if type(expected) in (str, bytes, bool, int, type(None)):
+        return actual == expected
+    raise TypeError("Snapshot comparator expects supported built-in metadata values")
+
+
 def assert_coordinate_identity(result, source, axes):
     expected_axes = tuple(a for a in CANONICAL if a in axes)
     assert type(result.axes) is tuple
@@ -128,7 +157,7 @@ def test_all_sim_axis_orders(kind, prefix):
     assert issubclass(type(result), record_type)
     assert result.acquisition_kind == kind
     assert_coordinate_identity(result, data, axes)
-    assert cfg == before
+    assert snapshot_equal(cfg, before)
 
 
 PSF_PREFIXES = [p for n in range(4) for p in itertools.permutations(("time", "channel", "z"), n)]
@@ -376,7 +405,7 @@ def test_nominal_tuple_commands_keep_signed_zero_and_negative_angles():
     assert result.nominal_phases_rad.tobytes() == b"".join(
         struct.pack("=d", v) for row in commands for v in row
     )
-    assert result.original_config["nominal_phases_rad"] == commands
+    assert snapshot_equal(result.original_config["nominal_phases_rad"], commands)
 
 
 @pytest.mark.parametrize(
@@ -436,15 +465,17 @@ def test_supported_mapping_roots_and_opaque_metadata_snapshots():
         }
     )
     result = declare_acquisition(labeled_samples(SIM_AXES), config=cfg, original_metadata=metadata)
+    assert snapshot_equal(result.original_config, cfg)
+    assert snapshot_equal(result.original_metadata, metadata)
     assert type(result.original_metadata["nested"]) is list
     values = result.original_metadata["nested"][0]["tuple"]
     assert type(values) is tuple
-    assert values[:5] == (b"\x00\xff", True, None, -5, math.inf)
+    assert snapshot_equal(values[:5], (b"\x00\xff", True, None, -5, math.inf))
     assert math.isnan(values[5])
     metadata["nested"][0]["tuple"] = ()
     cfg["sampling_um"]["x"] = 99
-    assert result.original_metadata["nested"][0]["tuple"] == values
-    assert result.original_config["sampling_um"]["x"] == 1
+    assert snapshot_equal(result.original_metadata["nested"][0]["tuple"], values)
+    assert snapshot_equal(result.original_config["sampling_um"]["x"], 1)
     assert result.sampling_um["x"] == 1.0
 
 
@@ -457,21 +488,25 @@ def test_nested_snapshot_mutation_is_independent_in_both_directions():
     metadata = {"nested": [{"values": [1, (b"header", None)]}], "nonfinite": -math.inf}
     cfg_before, metadata_before = input_identity(cfg), input_identity(metadata)
     result = declare_acquisition(labeled_samples(SIM_AXES), config=cfg, original_metadata=metadata)
+    assert snapshot_equal(result.original_config, cfg)
+    assert snapshot_equal(result.original_metadata, metadata)
     assert input_identity(cfg) == cfg_before
     assert input_identity(metadata) == metadata_before
     result.original_metadata["nested"][0]["values"].append(2)
     assert input_identity(metadata) == metadata_before
     metadata["nested"][0]["values"][0] = 9
-    assert result.original_metadata["nested"][0]["values"][0] == 1
+    assert snapshot_equal(result.original_metadata["nested"][0]["values"][0], 1)
     result.wavelengths_nm["0"] = 600.0
     result.nominal_phases_rad.fill(99)
     assert input_identity(cfg) == cfg_before
-    assert result.original_config["wavelengths_nm"] == {"0": 520}
-    assert result.original_config["nominal_phases_rad"] == [[0, 1, 2, 3], [4, 5, 6, 7]]
+    assert snapshot_equal(result.original_config["wavelengths_nm"], {"0": 520})
+    assert snapshot_equal(
+        result.original_config["nominal_phases_rad"], [[0, 1, 2, 3], [4, 5, 6, 7]]
+    )
     commands_entry = next(e for e in result.provenance if e["field"] == "nominal_phases_rad")
     commands_entry["new"][0][0] = 42
-    assert result.original_config["nominal_phases_rad"][0][0] == 0
-    assert cfg["nominal_phases_rad"][0][0] == 0
+    assert snapshot_equal(result.original_config["nominal_phases_rad"][0][0], 0)
+    assert snapshot_equal(cfg["nominal_phases_rad"][0][0], 0)
 
 
 @pytest.mark.parametrize("metadata", [None, {}])
@@ -479,10 +514,10 @@ def test_original_metadata_defaults_to_empty_owned_dict(metadata):
     result = declare_acquisition(
         labeled_samples(SIM_AXES), config=config_for(), original_metadata=metadata
     )
-    assert result.original_metadata == {}
+    assert snapshot_equal(result.original_metadata, {})
     if metadata is not None:
         result.original_metadata["new"] = 1
-        assert metadata == {}
+        assert snapshot_equal(metadata, {})
 
 
 def test_provenance_raw_values_order_and_independence():
@@ -508,10 +543,10 @@ def test_provenance_raw_values_order_and_independence():
         for name, value in sorted(before["overrides"].items())
     ]
     assert type(result.provenance) is tuple
-    assert result.provenance == tuple(expected)
-    assert result.original_config == before
-    assert cfg == before
-    assert result.sampling_um == {"x": 3.0, "y": None, "z": None}
+    assert snapshot_equal(result.provenance, tuple(expected))
+    assert snapshot_equal(result.original_config, before)
+    assert snapshot_equal(cfg, before)
+    assert snapshot_equal(result.sampling_um, {"x": 3.0, "y": None, "z": None})
     # Mutate each returned snapshot independently; record mutability is allowed.
     initial = next(
         e for e in result.provenance if e["field"] == "sampling_um" and e["source"] == "config"
@@ -520,14 +555,16 @@ def test_provenance_raw_values_order_and_independence():
         e for e in result.provenance if e["field"] == "sampling_um" and e["source"] == "override"
     )
     initial["new"]["x"] = 77
-    assert override["old"]["x"] == 1
-    assert result.original_config["sampling_um"]["x"] == 1
+    assert snapshot_equal(override["old"]["x"], 1)
+    assert snapshot_equal(result.original_config["sampling_um"]["x"], 1)
     override["new"]["x"] = 88
-    assert result.original_config["overrides"]["sampling_um"]["x"] == 3
+    assert snapshot_equal(result.original_config["overrides"]["sampling_um"]["x"], 3)
     result.sampling_um["x"] = 90
     result.original_config["axes"].append("changed")
-    assert next(e for e in result.provenance if e["field"] == "axes")["new"] == list(SIM_AXES)
-    assert cfg == before
+    assert snapshot_equal(
+        next(e for e in result.provenance if e["field"] == "axes")["new"], list(SIM_AXES)
+    )
+    assert snapshot_equal(cfg, before)
 
 
 @pytest.mark.parametrize(
@@ -544,12 +581,12 @@ def test_provenance_raw_values_order_and_independence():
 def test_invalid_original_field_can_be_replaced(field, original, replacement, expected):
     cfg = config_for(**{field: original}, overrides={field: replacement})
     result = declare_acquisition(labeled_samples(SIM_AXES), config=cfg)
-    assert getattr(result, field) == expected
-    assert result.original_config[field] == original
+    assert snapshot_equal(getattr(result, field), expected)
+    assert snapshot_equal(result.original_config[field], original)
     override = next(e for e in result.provenance if e["source"] == "override")
     assert override["field"] == field
-    assert override["old"] == original
-    assert override["new"] == replacement
+    assert snapshot_equal(override["old"], original)
+    assert snapshot_equal(override["new"], replacement)
 
 
 def test_whole_field_command_and_string_overrides():
@@ -567,6 +604,7 @@ def test_whole_field_command_and_string_overrides():
         },
     )
     result = declare_acquisition(labeled_samples(SIM_AXES), config=cfg)
+    assert result.nominal_phases_rad.dtype == np.dtype("float64")
     assert result.nominal_phases_rad.tolist() == replacement
     assert result.intensity_unit is None
     assert result.acquisition_id == result.calibration_id == "new"
@@ -586,12 +624,16 @@ def test_none_overrides_are_recorded_even_when_equal_or_originally_absent(explic
     cfg = config_for(**original, overrides=dict.fromkeys(fields))
     result = declare_acquisition(labeled_samples(SIM_AXES), config=cfg)
     overrides = tuple(e for e in result.provenance if e["source"] == "override")
-    assert overrides == tuple(
-        {"field": field, "old": None, "new": None, "source": "override"} for field in sorted(fields)
+    assert snapshot_equal(
+        overrides,
+        tuple(
+            {"field": field, "old": None, "new": None, "source": "override"}
+            for field in sorted(fields)
+        ),
     )
     initial_fields = tuple(e["field"] for e in result.provenance if e["source"] == "config")
     assert initial_fields == tuple(sorted({"axes", "acquisition_kind", *original}))
-    assert result.original_config == cfg
+    assert snapshot_equal(result.original_config, cfg)
     assert result.sampling_um == {"x": None, "y": None, "z": None}
     assert result.wavelengths_nm == {}
     assert result.nominal_phases_rad is None
@@ -995,7 +1037,7 @@ def test_public_mrc_composition_and_independent_coordinate_labels(
     for index, native_bytes in expected.items():
         assert sample_bytes(result.data, index) == native_bytes
     assert_coordinate_identity(result, source, info.axes)
-    assert result.original_metadata["header"] == bytes(header)
+    assert snapshot_equal(result.original_metadata["header"], bytes(header))
     assert result.sampling_um == {"x": 0.125, "y": 0.25, "z": 0.5}
     assert result.wavelengths_nm == dict(info.wavelengths_nm)
     assert result.wavelengths_nm == {"0": 520.0}
