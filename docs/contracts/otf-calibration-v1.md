@@ -1,6 +1,6 @@
 # OTF-CALIBRATION v1: sampled 2D intensity PSF preparation
 
-**Version 1.0.** Selected intake contract, October 6, 2026. The owner's “Do it” follows the recommendation to start the optical-calibration contract and independent synthetic fixtures. This document defines that operation for later implementation; `prepare_otf` and `Otf2D` are not implemented. It creates no extra document-approval checkpoint.
+**Version 1.1.** Approved numerical contract, October 6, 2026. The owner requested implementation of `prepare_otf` and `Otf2D` after the calibration foundations in PR #6 integrated. This document defines that authorized operation; it creates no extra document-approval checkpoint. K01–K29 and their numerical meaning remain unchanged.
 
 ## Scientific scope and public interface
 
@@ -108,7 +108,7 @@ Existing MRC conversion and `separate_phases` interfaces remain unchanged. No CL
 
 The [fixture notes](../references/scientific/otf-calibration-fixture-notes.md) and [JSON examples](../references/scientific/otf-calibration-fixtures-v1.json) contain six small mathematical cases. Delta and constant kernels use root-sum identities; a separable `(3,4)` kernel has exact real output in `{0,1/4,1}`; a signed asymmetric `(4,6)` case gives phase and axis checks. Translating both the kernel and declared origin must preserve its transfer.
 
-For the asymmetric case, masses `3,1,4` lie at the declared origin, one row above and one column right. Their sum is 8:
+For the asymmetric case, masses `3,1,4` lie at `(oy, ox)`, `(oy+1, ox)` and `(oy, ox+1)`, respectively. Increasing row index is positive y; their sum is 8:
 
 ```text
 H(ky,kx) = 3/8 + exp(-2*pi*i*ky/4)/8 + exp(-2*pi*i*kx/6)/2
