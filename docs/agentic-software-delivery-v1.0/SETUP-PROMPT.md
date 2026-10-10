@@ -25,7 +25,7 @@ Show the concrete setup plan and proceed within the human-requested scope; the r
 from existing-product remediation, with effort, measurement gaps, and owner decisions.
 A setup request does not itself request product repairs or resolve missing behavior.
 Expose legacy baseline dependencies that make small slices unable to pass the full
-gate, including global 100% coverage. Let the owner choose adoption scope case by case,
+gate, including any selected global numerical coverage target. Let the owner choose adoption scope case by case,
 including an explicitly larger slice where needed; do not weaken readiness criteria.
 Adapt paths and instructions without creating two live specs or overwriting the
 product README. Create root LESSONS/ with a README.md format guide for one timestamped
@@ -38,7 +38,33 @@ native bridge only when required. Record actual launch/check/wait commands, mode
 Infer languages/frameworks. Research suitable native formatting/lint/type/test tools.
 Create or adapt ordinary CI and minimal test infrastructure as authorized setup work.
 Prefer real end-to-end/public-entry-point tests, smaller tests only for useful gaps.
-Retain 100% measured statement/branch coverage and report unsupported measurement.
+Before formal test design, obtain or inherit the owner's coverage policy under spec
+section 5.1. Explain behavior coverage with independent risk review and optional line,
+statement, branch or combined measured targets. Behavior coverage is recommended for
+ordinary application work; it is not an assumed choice, and 100% is a valid explicit
+target. Lines and statements are distinct metrics. Record the choice/reason/actual
+authorization in PROJECT, plus each selected metric's tool/command, exact threshold,
+runtime/package/platform scope, aggregation, exclusions and reporting limits. Tasks
+inherit settled choices without another interview and identify relevant high-risk paths.
+Unless explicitly approved otherwise, selected measurement includes instrumentable
+owned runtime globally/per package on each required platform, never-imported files and
+relevant subprocess/server/browser code. Inspect exact values and all required reports;
+never union platforms to hide gaps. Missing/unsupported required measurement or an unmet
+selected target blocks acceptance; unselected metrics are advisory. Preserve installed
+gates until independently reviewed, owner-authorized policy migration and authorized
+infrastructure changes reconcile them. This setup prompt silently changes no gate.
+
+A maps approved requirements/risks to tests; B independently audits plausible high-impact
+omissions and distinguishing assertions before accepting the checkpoint. Bounded review
+performs the same audit; D checks actual implementation for concrete missed behavior/risk.
+Record short mappings/risk dispositions through existing roles. Under spec section 5.2,
+classify coverage findings before correction: approved behavior/test gaps go to the test
+owner through source-free public reproductions, needless implementation to its author,
+new semantics to intake and measurement/configuration defects to authorized infrastructure.
+A bare uncovered branch is no new public requirement. An irreducible selected-target
+conflict needs an explicit owner policy decision or remains blocked. Do not add speculative
+guards, force impossible internal states or duplicate tests solely for a percentage;
+preserve required validation, real invariants, ownership, blindness and all prior accounting.
 Use GITHUB-SETUP.md; apply settings only with permission or give exact owner actions.
 
 Implement delivery doctor as a thin invocation of review-work in doctor mode using
@@ -70,7 +96,7 @@ full local verification passing on the exact candidate, fresh D, and a normal PR
 Apply section 4's gate before opening/reopening a PR (drafts included) or pushing an
 update to an open PR. Pre-PR pushes may back up failing checkpoints. Use fast generic
 hooks and the full command at submission, not a custom controller or backup branch.
-Known failures, including incomplete coverage, block submission. A conditional CI-authoritative evaluation must be part of the human request and proved native protections/trusted complete CI/head-base/artifact-version prerequisites under section 6; high risk/unknown proof/own-gate changes remain local. Do not configure or infer eligibility silently.
+Known failures, including unmet selected coverage targets or missing required measurement, block submission. A conditional CI-authoritative evaluation must be part of the human request and proved native protections/trusted complete CI/head-base/artifact-version prerequisites under section 6; high risk/unknown proof/own-gate changes remain local. Do not configure or infer eligibility silently.
 CI repeats verification on its configured platforms. Inspect native protections and
 reuse existing failure-blocking evidence; do not submit a known failure to create it.
 Add one honest lesson and demonstrate doctor editing the spec with independent policy review. Pilot mechanical docs, conventional bounded repair, authorized infrastructure and a high-risk public/synthetic case under recorded quality criteria; keep route/model/gate/hotspot changes distinguishable. Record complete cost/critical-path time, defects and unknowns; small pilots prove no general defect rate.

@@ -22,6 +22,14 @@ Existing approved behavior may pass initially. Do not mutate product or invent r
 
 For a numerical API, unspecified intercept units return to intake. An approved scale-ratio invariant can support a narrower claim while the absolute interpretation stays unresolved. A derives tolerances from approved math/precision, not output; B independently checks legitimate variation and plausible wrong values. A three-line endian, unit or settled overwrite/truncation repair remains high risk despite size. Conventional expected behavior does not qualify data-loss risk for bounded work. Green tests and 100% coverage cannot establish omitted allowed inputs.
 
+## Coverage choice and finding classification
+
+Setup explains behavior coverage with independent risk review and optional exact line/statement/branch/combined targets. The owner records the project choice once; a scientific task inherits it alongside its independently justified numerical oracle and high-risk route. A maps approved decisions and risks to tests, B audits omissions, and D checks the real implementation. If a selected metric is 100%, it stays binding; an unselected percentage creates no gate. Full local verification and all required platforms still run.
+
+A report shows an uncovered error branch. First diagnose its public obligation: a missing approved failure guarantee returns to the test owner through a sanitized reproduction and fresh required review; a redundant unreachable guard returns to the implementer for scoped simplification; a new interpretation returns to intake; broken subprocess instrumentation goes to authorized infrastructure. An uncovered branch alone starts no blind A/B correction. Retain necessary validation. An unavoidable selected-target conflict requires an explicit independently reviewed owner policy change, not contrived state manipulation or a silent waiver. Later tests remain supplemental, with dependencies and earlier charges intact.
+
+A documentation adoption does not remove a configured `fail_under` or receipt threshold. Name their authorized infrastructure/test migration separately, independently review it, and renew exact-candidate verification. Ordinary doctor cannot change those gates. Active tasks keep their approved policy until explicitly named for migration.
+
 ## Scenarios and coverage examples
 
 One approved decision says the command accepts a non-empty sequence of ordinary names and preserves their order. Three lengths may be equivalent coverage examples under that scenario. A new rule rejecting an empty sequence, interpreting a name as a path, or promising stable output on disk-write failure is a distinct decision/outcome and another scenario. Branch count, parameterized test count and data volume do not determine scope. No default scenario count applies. Record all requested decisions and use coherent slices; ask only when meaning is missing or the objective falls outside the request.

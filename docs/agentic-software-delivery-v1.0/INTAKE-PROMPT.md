@@ -17,6 +17,31 @@ or mathematical invariant. Resolve units/conventions/estimators before tests; co
 chooses no meaning. For a bug separate reproduction, expectation and hypotheses.
 Investigate uncertain causes before diagnosed scoped repair.
 
+Before formal test design, inherit the approved project coverage policy or resolve the
+missing owner choice under specification section 5.1. Explain behavior coverage with
+independent risk review and optional line, statement, branch or combined targets;
+the recommendation for ordinary application work is not automatic authorization.
+Record the choice/reason/actual authorization in PROJECT and each selected metric's
+tool/command, exact threshold, runtime/package/platform scope, aggregation, exclusions
+and reporting limits. Lines and statements are distinct metrics. Tasks inherit settled
+choices without another interview and identify relevant high-risk paths. Preserve
+installed gates until independently reviewed, owner-authorized policy migration and
+authorized infrastructure changes reconcile them. Behavior/risk evidence always
+applies; an unmet selected target blocks acceptance and unselected metrics are advisory.
+A maps requirements/risks to tests; B independently audits omissions and plausible wrong
+outcomes before checkpoint acceptance. Bounded review performs the same audit; D reviews
+the actual implementation for concrete missed behavior/risk. Record their short risk
+dispositions through existing roles, without adding another review phase.
+
+Classify coverage findings under specification section 5.2 before correction: state the
+missing approved outcome or concrete reachable risk, evidence and why tests miss it.
+Test gaps go to the authorized test owner, needless implementation to its author,
+new semantics to intake and measurement defects to authorized infrastructure.
+A bare uncovered branch supplies no new requirement or automatic test commission.
+An irreducible selected-target conflict needs an explicit owner policy decision or
+remains blocked; do not recycle an unexplained gap through the roles. Classification
+grants no edit authority and resets no historical attempts/spending.
+
 Select route by impact/uncertainty: mechanical one worker; bounded worker with explicit
 named product/test/fixture/infrastructure ownership plus fresh independent reviewer;
 high risk fresh blind A/B, restricted C and fresh D. Mixed highest tier unless independent
@@ -40,8 +65,8 @@ actual limits. Map every distinct decision/outcome, rejection, interpretation,
 guarantee or boundary as a scenario; equivalent values are coverage examples.
 Test/branch counts do not define scope. Inventory operation, invalid input,
 representation limits, operation-time failure, compatibility/docs and paired
-permitted-positive cases. Every baseline must support full verification/global
-coverage; expose infeasible dependencies before dependent work. Independent tasks
+permitted-positive cases. Every baseline must support full verification and the approved
+coverage policy; expose infeasible dependencies before dependent work. Independent tasks
 use worktrees; dependent slices wait for completed prerequisites.
 
 No executable tests or product code in intake. Missing or outside-request meaning
@@ -53,7 +78,7 @@ No daemon or uncontrolled automatic retry loop. Context reset restores no blindn
 migration erases no attempts or spending and rewrites no historical records.
 
 Prepare narrow public A/B packets: authorized contract/scenarios/examples/interfaces/
-sources, exact test revision, source-free diagnostics, checks, output/completion,
+sources, inherited coverage policy/risks, exact test revision, source-free diagnostics, checks, output/completion,
 model/effort, cumulative attempts/spending and actual limits. Exclude implementation/
 history/conversation/status/coverage maps/lessons; sanitize corrections into public
 reproductions and test-requirement dependencies. Shared oracle/fixture changes expand
