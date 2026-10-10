@@ -13,6 +13,7 @@ from ._phase import PhaseComponents, separate_phases
 from ._pixels import read
 from ._reconstruction import Reconstruction2D, reconstruct
 from ._translation import TranslationEstimate, estimate_translation
+from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
 
 __all__ = [
@@ -23,6 +24,7 @@ __all__ = [
     "DriftCorrection",
     "IlluminationEstimate",
     "Otf2D",
+    "Otf3D",
     "PhaseComponents",
     "Reconstruction2D",
     "SimreconError",
@@ -35,6 +37,7 @@ __all__ = [
     "harmonize",
     "inspect",
     "prepare_otf",
+    "prepare_volume_otf",
     "read",
     "reconstruct",
     "scan_carriers",
