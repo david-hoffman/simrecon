@@ -7,6 +7,7 @@ from ._drift import DriftCorrection, correct_integer_drift
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
 from ._legacy import inspect
+from ._linear_response import LinearResponseCorrection, correct_linear_response
 from ._metadata import harmonize
 from ._model import DataBlock, DatasetInfo, SimreconError, WriteReport
 from ._modern import write
@@ -30,6 +31,7 @@ __all__ = [
     "IlluminationEstimate",
     "ImagejSeries",
     "ImagejWriteReport",
+    "LinearResponseCorrection",
     "Otf2D",
     "Otf3D",
     "PhaseComponents",
@@ -43,6 +45,7 @@ __all__ = [
     "VolumePhaseComponents",
     "WriteReport",
     "correct_integer_drift",
+    "correct_linear_response",
     "declare_acquisition",
     "estimate_illumination",
     "estimate_translation",
