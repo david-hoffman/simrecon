@@ -7,6 +7,7 @@ from collections import UserDict
 from copy import deepcopy
 from dataclasses import FrozenInstanceError, fields
 from decimal import Decimal
+from inspect import Parameter, signature
 from itertools import combinations
 from types import SimpleNamespace
 from typing import Any, Literal
@@ -240,6 +241,9 @@ def test_public_exports_binding_and_frozen_exact_records(calibrate: Any) -> None
         with pytest.raises(FrozenInstanceError):
             setattr(record, field, getattr(record, field))
     for key in kwargs:
+        parameter = signature(calibrate).parameters[key]
+        assert parameter.kind is Parameter.KEYWORD_ONLY
+        assert parameter.default is Parameter.empty
         omitted = kwargs.copy()
         omitted.pop(key)
         with pytest.raises(TypeError):
@@ -366,6 +370,52 @@ def test_present_singleton_group_axes_required_and_extrema_distinct(calibrate: A
     assert_code(calibrate, acquisition, "invalid_point_bead_group", group={**group, "time": 1})
     assert_code(
         calibrate, acquisition, "invalid_point_bead_group", group={**group, "orientation": 2}
+    )
+
+
+@pytest.mark.parametrize("optional_axis", ["time", "channel"])
+@pytest.mark.parametrize("count", [1, 2])
+def test_independently_optional_group_profiles(
+    calibrate: Any, optional_axis: str, count: int
+) -> None:
+    axes = (optional_axis, "orientation", "phase", "z", "y", "x")
+    signals = np.array(
+        [
+            [
+                physical_images(ACTUAL, brightness=64 + 64 * index, orientation=orientation)
+                for orientation in range(2)
+            ]
+            for index in range(count)
+        ]
+    )
+    # Optional-axis brightness differs in components even when response
+    # normalization cancels it. Orientation also changes complex side orders.
+    raw = 10 + 2 * signals
+    acquisition = declare(raw, axes=axes, nominal=True)
+    group = {optional_axis: count - 1, "orientation": 1}
+    result = calibrate(acquisition, **arguments(group=group, offset=10, response=2))
+    selected = converted_correction(raw, 10, 2)[count - 1, 1]
+    selected_oracle = observe(selected, ACTUAL, SPACING)
+    assert_observation(result, selected_oracle)
+    equal_tree(result.provenance["group"], group)
+    other_group = {optional_axis: 0, "orientation": 0}
+    other = calibrate(acquisition, **arguments(group=other_group, offset=10, response=2))
+    other_oracle = observe(converted_correction(raw, 10, 2)[0, 0], ACTUAL, SPACING)
+    assert_observation(other, other_oracle)
+    assert np.max(np.abs(result.response.values - other.response.values)) > 0.01
+    if count == 2:
+        assert np.max(np.abs(result.components.dc - other.components.dc)) > 1
+    for key in group:
+        assert_code(
+            calibrate,
+            acquisition,
+            "invalid_point_bead_group",
+            group={k: v for k, v in group.items() if k != key},
+        )
+    absent_axis = "channel" if optional_axis == "time" else "time"
+    assert_code(calibrate, acquisition, "invalid_point_bead_group", group={**group, absent_axis: 0})
+    assert_code(
+        calibrate, acquisition, "invalid_point_bead_group", group={**group, optional_axis: count}
     )
 
 
@@ -536,6 +586,17 @@ def test_too_few_exposures_propagates_shape_error(calibrate: Any) -> None:
         "invalid_volume_phase_shape",
         phases_rad=ACTUAL[:4],
     )
+
+
+def test_five_exposure_full_rank_minimum_with_independent_expectations(calibrate: Any) -> None:
+    phases = np.arange(5, dtype=np.float64) * (2 * np.pi / 5)
+    images = physical_images(phases)
+    acquisition = declare(10 + 2 * images, nominal=True)
+    result = calibrate(acquisition, **arguments(offset=10, response=2, phases_rad=phases))
+    corrected = converted_correction(acquisition.data[0], 10, 2)
+    assert_observation(result, observe(corrected, phases, SPACING))
+    equal_tree(result.provenance["phases_rad"]["supplied"], phases)
+    equal_tree(result.provenance["phases_rad"]["applied"], phases)
 
 
 @pytest.mark.parametrize(
@@ -719,6 +780,84 @@ def test_ndarray_spacing_preserved_on_inherited_rejection(calibrate: Any, failur
     )
     equal_tree(spacing, spacing_before)
     equal_tree(backing, backing_before)
+    assert (spacing.strides, spacing.flags.writeable, backing.flags.writeable) == layout_before
+
+
+def invalid_ndarray_spacing(case: str) -> tuple[Array, Array]:
+    """Unsupported container/shape/leaves, each with visible caller backing."""
+    dtype = np.float64 if case in ("zero", "negative", "nan", "inf") else object
+    backing = np.full(8, 7, dtype=dtype)
+    spacing = backing[4::-2]
+    spacing[:] = [0.31, 0.17, 0.09]
+    if case == "scalar":
+        spacing = backing[4:5].reshape(())
+    elif case == "matrix":
+        spacing = spacing.reshape(1, 3)
+    elif case == "empty":
+        spacing = backing[:0]
+    elif case == "short":
+        spacing = spacing[:2]
+    elif case == "long":
+        spacing = backing[::2]
+    elif case == "subclass":
+        spacing = spacing.view(ArraySubclass)
+    elif case == "masked":
+        spacing = np.ma.array(spacing, mask=[False, True, False], copy=False)
+    else:
+        leaves: dict[str, Any] = {
+            "bool": True,
+            "numpy-bool": np.bool_(True),
+            "string": "0.31",
+            "bytes": b"0.31",
+            "complex": 0.31 + 0j,
+            "none": None,
+            "list": [0.31],
+            "zero": 0,
+            "negative": -1,
+            "nan": np.nan,
+            "inf": np.inf,
+            "huge-int": 10**400,
+        }
+        spacing[0] = leaves[case]
+    spacing.flags.writeable = False
+    return spacing, backing
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "scalar",
+        "matrix",
+        "empty",
+        "short",
+        "long",
+        "subclass",
+        "masked",
+        "bool",
+        "numpy-bool",
+        "string",
+        "bytes",
+        "complex",
+        "none",
+        "list",
+        "zero",
+        "negative",
+        "nan",
+        "inf",
+        "huge-int",
+    ],
+)
+def test_ndarray_spacing_boundaries_and_rejection_preservation(calibrate: Any, case: str) -> None:
+    spacing, backing = invalid_ndarray_spacing(case)
+    spacing_before, backing_before = deepcopy(spacing), deepcopy(backing)
+    mask_before = np.ma.getmaskarray(spacing).copy()
+    layout_before = (spacing.strides, spacing.flags.writeable, backing.flags.writeable)
+    assert_code(
+        calibrate, declare(physical_images(ACTUAL)), "invalid_otf_voxel_size", voxel_size_um=spacing
+    )
+    equal_tree(spacing, spacing_before)
+    equal_tree(backing, backing_before)
+    np.testing.assert_array_equal(np.ma.getmaskarray(spacing), mask_before)
     assert (spacing.strides, spacing.flags.writeable, backing.flags.writeable) == layout_before
 
 
@@ -964,7 +1103,7 @@ def test_raw_width_endian_readonly_strided_and_scalar_provenance(
 
 
 def test_subnormal_response_and_signed_underflow_no_floor_or_clipping(calibrate: Any) -> None:
-    tiny = np.nextafter(0.0, 1.0)
+    tiny = float(np.nextafter(0.0, 1.0))
     dc = np.array([[[16, -1, 2]]], dtype=np.float64)
     raw = np.repeat((dc * tiny)[None], len(ACTUAL), axis=0)
     result = calibrate(declare(raw), **arguments(response=tiny))
