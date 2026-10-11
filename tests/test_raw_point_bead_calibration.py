@@ -436,7 +436,17 @@ def test_other_valid_kinds_rejected(calibrate: Any, kind: str) -> None:
 
 
 def test_missing_explicit_z_rejected(calibrate: Any) -> None:
-    acquisition = declare(np.ones((1, 7, 2, 3)), axes=("orientation", "phase", "y", "x"))
+    acquisition = declare_acquisition(
+        np.ones((1, 7, 2, 3)),
+        config={
+            "version": 1,
+            "acquisition_kind": "sim_beads",
+            "axes": ["orientation", "phase", "y", "x"],
+            "intensity_unit": " count ",
+        },
+    )
+    assert acquisition.axes == ("orientation", "phase", "y", "x")
+    assert acquisition.data.shape == (1, 7, 2, 3)
     assert_code(calibrate, acquisition, "invalid_point_bead_axes")
 
 
