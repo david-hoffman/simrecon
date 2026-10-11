@@ -597,11 +597,11 @@ def test_scaled_public_fft_inputs_axes_and_pretransform_snapshots(
 
     def observe(a: Any, s: Any = None, axes: Any = None, norm: Any = None, out: Any = None) -> Any:
         incoming = np.asarray(a)
-        transform_axes = (
-            tuple(range(incoming.ndim))
-            if axes is None
-            else tuple(int(ax) % incoming.ndim for ax in axes)
-        )
+        if axes is None:
+            count = incoming.ndim if s is None else len(s)
+            transform_axes = tuple(range(incoming.ndim - count, incoming.ndim))
+        else:
+            transform_axes = tuple(int(ax) % incoming.ndim for ax in axes)
         assert len(transform_axes) == 3 and len(set(transform_axes)) == 3
         assert norm in (None, "backward")
         if s is not None:
