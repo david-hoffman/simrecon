@@ -542,6 +542,17 @@ if WIDER_RANGE:
         parts[which] = array
         reject("nonfinite_empirical_response_array", *parts)
 
+    @pytest.mark.parametrize("which", [1, 2])
+    def test_wider_finite_imaginary_source_conversion_overflow(which: int) -> None:
+        parts: list[Any] = list(asymmetric())
+        array: Array = np.array(parts[which], dtype=np.clongdouble)
+        parts[which] = array
+        checked(*parts)
+        array.imag.flat[-1] = np.longdouble(MAX) * np.longdouble(2)
+        assert np.all(np.isfinite(array.real)) and np.all(np.isfinite(array.imag))
+        assert array.imag.flat[-1] > np.longdouble(MAX)
+        reject("nonfinite_empirical_response_array", *parts)
+
     def test_wider_finite_underflow_defines_converted_problem() -> None:
         dc = np.array([[[1, 0]]], dtype=np.longdouble)
         dc.flat[-1] = np.longdouble(TINY) / np.longdouble(4)
@@ -648,15 +659,23 @@ def test_single_correctly_rounded_rational_restoration(monkeypatch: pytest.Monke
     original = np.fft.fftn
     t_real = float(np.nextafter(0.5, 1.0))
     t_imag = TINY
-    calls = 0
 
     def perturb(a: Any, *args: Any, **kwargs: Any) -> Any:
-        nonlocal calls
-        calls += 1
+        arguments = inspect.signature(original).bind(a, *args, **kwargs)
+        arguments.apply_defaults()
         transformed = original(a, *args, **kwargs).astype(np.complex128)
+        axes = arguments.arguments["axes"]
+        sizes = arguments.arguments["s"]
+        if axes is None:
+            count = transformed.ndim if sizes is None else len(sizes)
+            spatial_axes = tuple(range(transformed.ndim - count, transformed.ndim))
+        else:
+            spatial_axes = tuple(int(axis) % transformed.ndim for axis in axes)
+        assert len(spatial_axes) == 3 and len(set(spatial_axes)) == 3
+        assert sorted(transformed.shape[axis] for axis in spatial_axes) == [1, 1, 2]
         # A valid within-budget perturbation of the sole nonzero frequency;
-        # index 1 is on whichever spatial axis has length 2.
-        axis = next(ax for ax, n in enumerate(transformed.shape) if n == 2)
+        # select the length-2 transformed axis, never an untransformed batch.
+        axis = next(axis for axis in spatial_axes if transformed.shape[axis] == 2)
         index: list[Any] = [slice(None)] * transformed.ndim
         index[axis] = 1
         transformed[tuple(index)] = complex(t_real, t_imag)
@@ -664,7 +683,6 @@ def test_single_correctly_rounded_rational_restoration(monkeypatch: pytest.Monke
 
     monkeypatch.setattr(np.fft, "fftn", perturb)
     result = run(dc, dc, dc)
-    assert calls > 0
     rational_real = float(dyadic(t_real) * Fraction(2, 3))
     rational_imag = float(dyadic(t_imag) * Fraction(2, 3))
     for order in range(3):
