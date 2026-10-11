@@ -607,6 +607,121 @@ def test_spacing_container_scalars_and_independent_source_sampling(
     assert b.provenance["source_metadata"]["sampling_um"] == {"z": 3.0, "y": 2.0, "x": 1.0}
 
 
+def ndarray_spacing(dtype: Any, storage: str) -> tuple[Array, Array]:
+    """Permitted scalar examples; object storage is not a dtype rejection rule."""
+    if np.dtype(dtype).kind == "O":
+        values = [np.float32(0.31), np.int64(2), 0.09]
+    elif np.dtype(dtype) == np.dtype("u8"):
+        values = [2**53 + 1, 2**53 + 3, 2**53 + 5]
+    elif np.dtype(dtype).kind in "iu":
+        values = [1, 2, 3]
+    else:
+        values = [0.31, 0.17, 0.09]
+    if storage == "contiguous":
+        backing = np.array(values, dtype=dtype)
+        return backing, backing
+    backing = np.full(6, 7, dtype=dtype)
+    if storage == "strided":
+        spacing = backing[::2]
+    else:
+        assert storage == "reversed-readonly"
+        spacing = backing[4::-2]
+    spacing[:] = values
+    if storage == "reversed-readonly":
+        spacing.flags.writeable = False
+    return spacing, backing
+
+
+@pytest.mark.parametrize("dtype", ["i1", ">i2", "u8", "f2", ">f4", ">f8", np.longdouble, object])
+@pytest.mark.parametrize("storage", ["contiguous", "strided", "reversed-readonly"])
+def test_ndarray_spacing_numeric_provenance_ownership_and_preservation(
+    calibrate: Any, dtype: Any, storage: str
+) -> None:
+    spacing, backing = ndarray_spacing(dtype, storage)
+    spacing_before, backing_before = spacing.copy(), backing.copy()
+    layout_before = (spacing.strides, spacing.flags.writeable, backing.flags.writeable)
+    applied = tuple(float(value) for value in spacing_before)
+    images = physical_images(ACTUAL)
+    raw = 10 + 2 * images
+    acquisitions = [
+        declare(raw, sampling=None),
+        declare(raw, sampling={"z": 3, "y": 2, "x": 1}),
+    ]
+    sources_before = [record_snapshot(acquisition) for acquisition in acquisitions]
+    kwargs = arguments(offset=10, response=2, voxel_size_um=spacing)
+    kwargs_before = deepcopy(kwargs)
+    results = [calibrate(acquisition, **kwargs) for acquisition in acquisitions]
+    # Stored correction, represented fit and every signed bin are independent
+    # expectations. Frequencies use the converted spacing, never source sampling.
+    oracle = observe(converted_correction(raw, 10, 2), ACTUAL, spacing_before)
+    for result, source in zip(results, sources_before, strict=True):
+        assert_observation(result, oracle)
+        equal_tree(result.provenance["source_metadata"]["sampling_um"], source["sampling_um"])
+        record = result.provenance["voxel_size_um"]
+        assert type(record) is dict
+        assert set(record) == {"source", "supplied", "applied"}
+        assert record["source"] == "supplied"
+        supplied = record["supplied"]
+        equal_tree(supplied, spacing_before)
+        assert supplied.dtype.str == spacing.dtype.str
+        assert supplied.shape == (3,)
+        assert supplied.flags.c_contiguous and supplied.flags.owndata
+        assert type(record["applied"]) is tuple
+        assert all(type(value) is float for value in record["applied"])
+        assert record["applied"] == applied == result.response.voxel_size_um
+        independent(
+            [result.provenance, result_arrays(result)],
+            [kwargs, backing, *[acquisition.data for acquisition in acquisitions]],
+        )
+        for array in result_arrays(result):
+            assert not np.shares_memory(supplied, array)
+    independent(
+        [results[0].provenance, result_arrays(results[0])],
+        [results[1].provenance, result_arrays(results[1])],
+    )
+    equal_tree(kwargs, kwargs_before)
+    equal_tree(spacing, spacing_before)
+    equal_tree(backing, backing_before)
+    assert (spacing.strides, spacing.flags.writeable, backing.flags.writeable) == layout_before
+    for acquisition, source in zip(acquisitions, sources_before, strict=True):
+        equal_tree(record_snapshot(acquisition), source)
+
+    saved_second = deepcopy([results[1].provenance, result_arrays(results[1])])
+    results[0].provenance["voxel_size_um"]["supplied"][0] = 8
+    equal_tree(spacing, spacing_before)
+    equal_tree(backing, backing_before)
+    equal_tree([results[1].provenance, result_arrays(results[1])], saved_second)
+    saved_first = deepcopy([results[0].provenance, result_arrays(results[0])])
+    # Mutate writable backing even when the supplied view is read-only.
+    backing[:] = 9
+    equal_tree([results[0].provenance, result_arrays(results[0])], saved_first)
+    equal_tree([results[1].provenance, result_arrays(results[1])], saved_second)
+
+
+@pytest.mark.parametrize("failure", ["phase-rank", "frequency-range"])
+def test_ndarray_spacing_preserved_on_inherited_rejection(calibrate: Any, failure: str) -> None:
+    spacing, backing = ndarray_spacing(">f8", "reversed-readonly")
+    changes: dict[str, Any] = {}
+    if failure == "phase-rank":
+        changes["phases_rad"] = np.zeros(len(ACTUAL))
+        code = "rank_deficient_volume_phases"
+    else:
+        backing[4] = np.nextafter(0.0, 1.0)
+        code = "unrepresentable_otf_frequencies"
+    spacing_before, backing_before = spacing.copy(), backing.copy()
+    layout_before = (spacing.strides, spacing.flags.writeable, backing.flags.writeable)
+    assert_code(
+        calibrate,
+        declare(physical_images(ACTUAL)),
+        code,
+        voxel_size_um=spacing,
+        **changes,
+    )
+    equal_tree(spacing, spacing_before)
+    equal_tree(backing, backing_before)
+    assert (spacing.strides, spacing.flags.writeable, backing.flags.writeable) == layout_before
+
+
 @pytest.mark.parametrize(
     "spacing",
     [
