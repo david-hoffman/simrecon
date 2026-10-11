@@ -94,6 +94,7 @@ def test_C01_public_record_binding_and_explicit_declarations():
         name for name in dir(out) if not name.startswith("_") and not callable(getattr(out, name))
     } == set(FIELDS) | {"source"}, "seven public record fields"
     assert out.source == SOURCE
+    assert out.voxel_size_um == tuple(float(x) for x in response.voxel_size_um)
     assert out.origin_zyx == response.origin_zyx
     for name in (*FIELDS, "source"):
         with pytest.raises((AttributeError, TypeError)):
@@ -131,6 +132,8 @@ def test_C02_C04_signed_complex_exact_carrier_rotation(carrier, offset, delta):
         response, carrier_bins=carrier, coordinate_offset_yx=offset, phase_reference_shift_rad=delta
     )
     assert_rotation(result, response, carrier, offset, delta)
+    assert result.voxel_size_um == tuple(float(x) for x in response.voxel_size_um)
+    assert result.origin_zyx == tuple(int(x) for x in response.origin_zyx)
     assert snapshots(response) == before
 
 
@@ -458,18 +461,30 @@ def test_C11_origin_grammar_and_bounds_rejections(bad):
 )
 def test_C08_C10_C11_extreme_grids_and_algebraic_positives(shape, spacing):
     vectors = [grid(n, d) for n, d in zip(shape, spacing, strict=True)]
+    declared_spacing = list(spacing)
+    declared_origin = [np.int16(shape[0] - 1), np.uint64(shape[1] - 1), shape[2] - 1]
+    expected_spacing = tuple(float(x) for x in declared_spacing)
+    expected_origin = tuple(int(x) for x in declared_origin)
     response = record(
         values=np.full((3, *shape), -0.25 + 0.5j),
-        voxel_size_um=list(spacing),
-        origin_zyx=[np.int16(0), np.uint64(0), 0],
+        voxel_size_um=declared_spacing,
+        origin_zyx=declared_origin,
         **dict(zip(FIELDS[1:4], vectors, strict=True)),
     )
+    before = snapshots(response)
     result = invoke(response)
     assert_rotation(result, response, (1, -1), (0, 0), 0.375)
+    assert type(result.voxel_size_um) is tuple and result.voxel_size_um == expected_spacing
+    assert type(result.origin_zyx) is tuple and result.origin_zyx == expected_origin
     assert all(type(x) is float for x in result.voxel_size_um)
     assert all(type(x) is int for x in result.origin_zyx)
     for name in FIELDS[1:4]:
         assert getattr(result, name).tobytes() == getattr(response, name).tobytes()
+    assert snapshots(response) == before
+    declared_spacing[:] = [1.0, 1.0, 1.0]
+    declared_origin[:] = [-1, -1, -1]
+    assert result.voxel_size_um == expected_spacing, "metadata must not alias accepted lists"
+    assert result.origin_zyx == expected_origin, "metadata must not alias accepted lists"
 
 
 def test_C10_permitted_frequency_rounding_is_copied_without_recomputation():
@@ -493,10 +508,24 @@ class ResponseSubclass(public.EmpiricalVolumeResponse):
 def test_C08_response_subclass_and_scalar_families_are_valid():
     r = record()
     response = ResponseSubclass(**{name: getattr(r, name) for name in FIELDS})
-    response = revised(
-        response, voxel_size_um=[np.float32(0.25), np.float16(0.5), np.float64(0.125)]
-    )
-    invoke(ResponseSubclass(**{name: getattr(response, name) for name in FIELDS}))
+    spacing = [np.float32(0.25), np.float16(0.5), np.float64(0.125)]
+    origin = [np.uint8(1), np.int32(2), np.uint64(3)]
+    expected_spacing = tuple(float(x) for x in spacing)
+    expected_origin = tuple(int(x) for x in origin)
+    response = revised(response, voxel_size_um=spacing, origin_zyx=origin)
+    response = ResponseSubclass(**{name: getattr(response, name) for name in FIELDS})
+    before = snapshots(response)
+    result = invoke(response)
+    assert_rotation(result, response, (1, -1), (0, 0), 0.375)
+    assert type(result.voxel_size_um) is tuple and result.voxel_size_um == expected_spacing
+    assert type(result.origin_zyx) is tuple and result.origin_zyx == expected_origin
+    assert all(type(x) is float for x in result.voxel_size_um)
+    assert all(type(x) is int for x in result.origin_zyx)
+    assert snapshots(response) == before
+    spacing[:] = [1.0, 1.0, 1.0]
+    origin[:] = [-1, -1, -1]
+    assert result.voxel_size_um == expected_spacing
+    assert result.origin_zyx == expected_origin
 
 
 @pytest.mark.parametrize("layout", ["fortran", "reversed", "strided", "readonly", "big_endian"])
@@ -523,6 +552,9 @@ def test_C16_storage_snapshots_ownership_and_call_independence(layout):
     before = snapshots(response)
     first, second = invoke(response), invoke(response)
     assert_rotation(first, response, (1, -1), (0, 0), 0.375)
+    for result in (first, second):
+        assert result.voxel_size_um == tuple(float(x) for x in response.voxel_size_um)
+        assert result.origin_zyx == tuple(int(x) for x in response.origin_zyx)
     outputs = [getattr(call, name) for call in (first, second) for name in FIELDS[:4]]
     for i, output in enumerate(outputs):
         assert type(output) is np.ndarray
@@ -566,8 +598,54 @@ def test_C17_safe_success_extreme_cancellation_and_subnormal_budgets(value):
     assert_rotation(result, response, (0, 1), (0, 0), 0.0)
 
 
+def test_C17_C18_nonidentity_safe_success_with_overflowing_input_magnitude():
+    maximum_float = np.finfo(np.float64).max
+    value = complex(0.8 * maximum_float, 0.8 * maximum_float)
+    response = record(values=np.full((3, 1, 1, 1), value), origin_zyx=(0, 0, 0))
+    before = snapshots(response)
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        maximum = represented(maximum_float)
+        re, im = pair(value)
+        assert re * re + im * im > maximum * maximum, "input magnitude exceeds Fmax"
+        bound = 128 * EPS * (abs(re) + abs(im)) + 16 * Q
+        expected = rotation(response, (0, 0), (0, 0), 0.1)
+        for index, target in expected.items():
+            if index[0] > 0:
+                assert all(abs(component) + bound < maximum for component in target), (
+                    "both orders satisfy mandatory component safe-success margins"
+                )
+    result = invoke(response, carrier_bins=(0, 0), phase_reference_shift_rad=0.1)
+    assert_rotation(result, response, (0, 0), (0, 0), 0.1)
+    assert snapshots(response) == before
+
+
+def native_wider_conversion_cases():
+    """Generate only source-finite cases justified by this platform's native range."""
+    narrow, wide = np.finfo(np.float64), np.finfo(np.longdouble)
+    cases = []
+    with np.errstate(all="ignore"), warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        if wide.maxexp > narrow.maxexp:
+            large = np.ldexp(np.longdouble(1), int(narrow.maxexp))
+            assert np.isfinite(large) and np.isinf(float(large))
+            cases.extend([("phase_infinity", large), ("phase_infinity", -large)])
+            cases.append(("spacing_infinity", large))
+        narrow_min = int(narrow.minexp) - int(narrow.nmant)
+        wide_min = int(wide.minexp) - int(wide.nmant)
+        if wide_min < narrow_min:
+            tiny = np.ldexp(np.longdouble(1), max(wide_min, narrow_min - 2))
+            assert np.isfinite(tiny) and tiny > 0 and float(tiny) == 0.0
+            assert np.signbit(float(-tiny)) and not np.signbit(float(tiny))
+            cases.extend([("phase_zero", tiny), ("phase_zero", -tiny)])
+            cases.append(("spacing_zero", tiny))
+    return cases
+
+
 @pytest.mark.parametrize("mode", ["raise", "warn", "ignore", "call", "print", "log", "mixed"])
 def test_C18_caller_modes_preserved_for_identity_underflow_and_rejection(mode):
+    wider_cases = native_wider_conversion_cases()
+
     class Logger:
         def write(self, message):
             raise AssertionError(f"handled arithmetic must not log: {message}")
@@ -596,6 +674,14 @@ def test_C18_caller_modes_preserved_for_identity_underflow_and_rejection(mode):
             assert result.values.tobytes() == identity.values.tobytes(), (
                 "overflowing complex magnitude is no rejection at identity"
             )
+            nonidentity = record(
+                values=np.full((3, 1, 1, 1), complex(0.8 * maximum, 0.8 * maximum)),
+                origin_zyx=(0, 0, 0),
+            )
+            before = snapshots(nonidentity)
+            result = invoke(nonidentity, carrier_bins=(0, 0), phase_reference_shift_rad=0.1)
+            assert_rotation(result, nonidentity, (0, 0), (0, 0), 0.1)
+            assert snapshots(nonidentity) == before
             tiny = record(
                 values=np.full((3, 1, 1, 1), complex(float.fromhex("0x1p-1074"), 0)),
                 origin_zyx=(0, 0, 0),
@@ -616,6 +702,33 @@ def test_C18_caller_modes_preserved_for_identity_underflow_and_rejection(mode):
                 "invalid_empirical_transfer_phase_shift",
                 phase_reference_shift_rad=2**2000,
             )
+            for kind, scalar in wider_cases:
+                if kind == "phase_infinity":
+                    reject(
+                        record(),
+                        "invalid_empirical_transfer_phase_shift",
+                        phase_reference_shift_rad=scalar,
+                    )
+                elif kind == "phase_zero":
+                    converted_identity = record()
+                    converted_identity.values.real.flat[::4] = -0.0
+                    converted_identity.values.imag.flat[::5] = -0.0
+                    before = snapshots(converted_identity)
+                    result = invoke(
+                        converted_identity, carrier_bins=(0, 0), phase_reference_shift_rad=scalar
+                    )
+                    assert result.values.tobytes() == converted_identity.values.tobytes(), (
+                        "nonzero wider phase converting to signed zero defines exact identity"
+                    )
+                    assert snapshots(converted_identity) == before
+                else:
+                    reject(
+                        revised(record(), voxel_size_um=[scalar, 0.5, 0.125]),
+                        "invalid_empirical_transfer_response",
+                    )
+                assert np.geterr() == desired
+                assert np.geterrcall() is expected_callback
+                assert warnings.filters == inside_filters
             assert np.geterr() == desired
             assert np.geterrcall() is expected_callback
             assert warnings.filters == inside_filters
