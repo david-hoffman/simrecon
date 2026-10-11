@@ -69,6 +69,12 @@ permitted-positive cases. Every baseline must support full verification and the 
 coverage policy; expose infeasible dependencies before dependent work. Independent tasks
 use worktrees; dependent slices wait for completed prerequisites.
 
+Prepare coordinator-owned PR presentation under specification section 4.1: a plain-English
+scientist/engineer summary, useful figure/caption if warranted, and a collapsible technical
+appendix retaining material evidence and limits. Record the plan/figure decision in
+candidate/handoff context, never blind A/B packets. A requested default amendment uses
+fresh independent policy review before activation; restricted C ownership stays unchanged.
+
 No executable tests or product code in intake. Missing or outside-request meaning
 returns here for the material decision, not another document-approval interview.
 Splits/redistribution preserve objective, dependencies, cumulative attempts and actual
