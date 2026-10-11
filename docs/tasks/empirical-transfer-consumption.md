@@ -1,0 +1,5 @@
+# Empirical point-bead transfer consumption
+
+**Version 1.0.** The owner-authorized continuing roadmap selects the [contract](../contracts/empirical-transfer-consumption-v1.md) above completed raw point-bead PR29. High-risk scientific/custom-oracle route; fresh native Sol/high A/B/C/D. No numeric limits are set. No Superpowers, legacy execution, private upload, merge or release.
+
+The sole Current state and cumulative accounting live in ignored `artifacts/empirical-calibration-consumption-20261011/CURRENT.md` and `accounting.json` in this task's managed worktree. The predecessor accounting chain is preserved by exact local reference, never reset or summed as duplicate cumulative snapshots. This pointer precedes final verification. Exact candidate/checkpoint/receipts/verdicts, same-run measurements and separate platform/event CI associations stay outside tracked candidate bytes. Broader grids, unknown parameters, finite-bead optics, complete raw workflow/full simulation and owner-reference parity remain unfinished dependencies.
