@@ -16,6 +16,7 @@ from ._modern import write
 from ._otf import Otf2D, prepare_otf
 from ._phase import PhaseComponents, separate_phases
 from ._pixels import read
+from ._point_bead_calibration import PointBeadCalibration, calibrate_raw_point_bead
 from ._reconstruction import Reconstruction2D, reconstruct
 from ._translation import TranslationEstimate, estimate_translation
 from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
@@ -39,6 +40,7 @@ __all__ = [
     "Otf2D",
     "Otf3D",
     "PhaseComponents",
+    "PointBeadCalibration",
     "RawAcquisition",
     "Reconstruction2D",
     "Reconstruction3D",
@@ -48,6 +50,7 @@ __all__ = [
     "VolumeOrderOtf",
     "VolumePhaseComponents",
     "WriteReport",
+    "calibrate_raw_point_bead",
     "correct_integer_drift",
     "correct_linear_response",
     "declare_acquisition",
