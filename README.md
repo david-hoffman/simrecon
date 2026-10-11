@@ -7,14 +7,21 @@ illumination orientations and phases into a reconstructed 2D image or 3D volume.
 It uses NumPy arrays and explicit acquisition parameters, with independently
 written numerical code and documented, testable interfaces.
 
-The goal is one complete workflow:
+The goal is one complete workflow. The diagram below shows the **planned
+raw-input pipeline**, with specimen and bead data kept as distinct acquisitions:
 
-```text
-Raw specimen images + raw bead calibration images + acquisition metadata
-    → instrument calibration
-    → illumination and motion estimation
-    → reconstruction
-    → output with settings, diagnostics and provenance
+```mermaid
+flowchart TD
+    Specimen["Raw specimen images"] --> Intake["Raw intake<br/>metadata / corrections"]
+    Beads["Raw SIM bead images"] --> Intake
+    Settings["Acquisition metadata<br/>and explicit settings"] --> Intake
+    Intake -->|bead acquisition| Calibration["Bead-based calibration<br/>and grid mapping"]
+    Intake -->|specimen acquisition| Estimation["Illumination / motion<br/>estimation and corrections"]
+    Calibration --> Estimation
+    Intake -->|specimen acquisition| Reconstruction["Reconstruction"]
+    Calibration --> Reconstruction
+    Estimation --> Reconstruction
+    Reconstruction --> Output["Result and settings<br/>diagnostics / provenance"]
 ```
 
 **Status: the component library works; the complete raw-input workflow is still
@@ -39,6 +46,56 @@ agreement with a finite model does not establish accuracy on an experimental
 specimen or parity with the legacy reconstruction program.
 Some detailed guides retain historical stack status; use this README and the
 [migration roadmap](docs/MIGRATION-ROADMAP.md) for current integration status.
+
+## Software architecture
+
+SIMrecon is a functional library: callers pass arrays, calibration and explicit
+parameters to functions, then receive result arrays and small records. File
+access is a separate boundary. There is no long-lived reconstruction session or
+image object that accumulates changing processing settings.
+
+The diagram shows the **current software boundaries**. Arrows labeled `calls`
+show entry points; the other arrows show data entering or leaving those functions.
+
+```mermaid
+flowchart TD
+    Python["Python callers"] -->|calls| Files
+    Python -->|calls| Metadata
+    Python -->|calls| Numerics
+    CLI["Command-line interface<br/>file commands"] -->|calls| Files
+    CLI -->|calls| Metadata
+
+    subgraph Library["Public library: src/simrecon"]
+        Files["File adapters<br/>inspect / read<br/>write / export_imagej"]
+        Metadata["Pure metadata resolution<br/>harmonize"]
+        Numerics["Numerical functions<br/>NumPy arrays"]
+    end
+
+    Priism["Supported Priism files"] -->|source data| Files
+    Files -->|converted or viewing copy| Exports["Modern MRC / OME-BigTIFF"]
+    Files -->|selected reads| Blocks["DataBlock<br/>selected pixels / metadata"]
+    Metadata -->|resolved description| Info["DatasetInfo<br/>axes / sampling / provenance"]
+    Arrays["Arrays, calibration<br/>and explicit parameters"] --> Numerics
+    Numerics --> Results["Result arrays<br/>and records"]
+```
+
+`inspect` describes a source without loading its pixels; `read` loads selected
+blocks. `harmonize` resolves metadata and layout from explicit configuration,
+without reading pixels or applying scientific corrections. The file writers
+stream a described source into a conversion or viewing copy. Conversion and
+Fiji export do not invoke reconstruction.
+
+The numerical functions operate on NumPy arrays and perform no file access.
+The caller connects selected pixel data to those functions and supplies the
+required calibration and parameters. Reconstruction returns arrays; a
+reconstruction-file adapter and complete workflow orchestration remain planned.
+Metadata records carry values rather than open file handles. NumPy buffers are
+not deeply immutable.
+
+Library code lives in `src/simrecon/`; independent fixtures and public-entry
+tests live in `tests/`; verification and reader-setup tools live in `scripts/`.
+The [project record](docs/PROJECT.md) defines approved boundaries, and the
+[public contracts](docs/contracts/mrc-conversion-v1.md) define concrete behavior.
 
 ## Get started
 
