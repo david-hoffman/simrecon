@@ -120,6 +120,16 @@ Keep one concise **Current state** in the task or a linked PR/discussion: human 
 
 After full required CI and independent acceptance where required, present the PR for the owner's normal merge action. Further changes renew affected checks/review. Merge and release remain explicit owner actions; release also follows project smoke/recovery instructions.
 
+### 4.1. Human-readable pull requests
+
+The coordinator prepares descriptions using [PULL-REQUEST.md](templates/PULL-REQUEST.md). Start with a concise plain-English explanation of the concrete problem, resulting operation or user/scientific change, and essential assumptions or limits. A scientist or engineer unfamiliar with the implementation should understand what the PR enables and what its evidence establishes. Define unavoidable acronyms and give units where quantities appear.
+
+Include a figure when it materially clarifies the change, mechanism, comparison or outcome; no decorative or mandatory figure. Place it near the summary, before technical evidence, with a plain-English caption. Label conceptual diagrams as conceptual and make no measured-performance claim from them. Numerical figures must use identified observed or reproducible evidence. Captions state inputs/outputs, units/scales, comparison source and relevant model/claim limits; distinguish measured results, independent expectations and assumptions. Preserve meaningful signs, normalization and display transformations when they affect interpretation.
+
+Put detailed implementation, APIs/shapes, exact commits/checkpoints, tests, CI, coverage, resource measurements and provenance in one clearly named collapsible technical appendix. Keep material validation evidence, failures, unresolved gaps and claim limits when rewriting an existing description; link detailed retained records rather than accumulating historical narrative. Missing evidence stays missing. Presentation never replaces the exact-candidate gate, required reviews, per-platform CI evidence or owner merge authority.
+
+The coordinator owns PR presentation and separately authorized policy-documentation changes; restricted C gains no rule/template or frozen-test edit permission. Record the presentation plan and figure decision in candidate/handoff context, keeping implementation-bearing drafts out of blind A/B packets. An authorized default-format amendment requires fresh independent policy review before activation. Tracked documentation or figure changes renew exact-candidate verification. A description-only reformat may reuse unchanged valid candidate evidence under the existing evidence-validity rules.
+
 ## 5. End-to-end first, not end-to-end only
 
 **Coverage is primarily earned by exercising useful behavior through the real entry point.** For a web app, run important browser journeys through the real application/backend and a disposable test database. For a CLI, run its executable and inspect outputs, exit codes, and files. For a service or library, use its public API and observable effects; do not invent a browser layer.
