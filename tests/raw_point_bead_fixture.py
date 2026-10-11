@@ -27,7 +27,8 @@ CANONICAL = ("time", "channel", "orientation", "phase", "z", "y", "x")
 
 def represented_matrix(phases: Array) -> Array:
     """Normative rounded basis entries; no product solver or output is used."""
-    angles = np.array(phases, dtype=np.float64)
+    angles = np.empty(phases.shape, dtype=np.float64)
+    angles[:] = phases
     c, s = np.cos(angles), np.sin(angles)
     return np.column_stack((np.ones(angles.size), c, s, c * c - s * s, (2 * c) * s))
 
@@ -111,7 +112,7 @@ class Oracle:
     values: Array
     budgets: Array
     origin: tuple[int, int, int]
-    frequencies: tuple[Array, Array, Array]
+    frequencies: tuple[list[Fraction], list[Fraction], list[Fraction]]
     exact_mass: Decimal
 
 
@@ -162,10 +163,10 @@ def observe(images: Array, phases: Array, spacing: Any) -> Oracle:
                 observer = 4 * EPS * magnitude_bound + Q + D("1e-90") * (1 + lam)
                 values[(order, *index)] = complex(float(real), float(imag))
                 budgets[(order, *index)] = float(propagated + inherited + observer)
-        frequencies: list[Array] = []
+        frequencies: list[list[Fraction]] = []
         for n, d, axis_modes in zip(shape, spacing, modes, strict=True):
-            step = D.from_float(float(d))
-            frequencies.append(np.array([float(D(k) / (n * step)) for k in axis_modes]))
+            step = Fraction.from_float(float(d))
+            frequencies.append([Fraction(k) / (n * step) for k in axis_modes])
         return Oracle(
             coordinates,
             error,
@@ -178,9 +179,31 @@ def observe(images: Array, phases: Array, spacing: Any) -> Oracle:
         )
 
 
+def assert_frequency_axis(actual: Array, expected: list[Fraction]) -> None:
+    """Exact rational error/bound in cycles/um; no rounded expectation slack."""
+    assert type(actual) is np.ndarray
+    assert actual.dtype == np.dtype(np.float64)
+    assert actual.shape == (len(expected),)
+    assert np.all(np.isfinite(actual))
+    eps = Fraction.from_float(float(EPS))
+    quantum = Fraction.from_float(float(Q))
+    for value, exact in zip(actual, expected, strict=True):
+        error = abs(Fraction.from_float(float(value)) - exact)
+        assert error <= 8 * eps * abs(exact) + quantum
+        if exact != 0:
+            assert value != 0
+    assert actual[len(actual) // 2] == 0
+    assert np.all(np.diff(actual) > 0)
+
+
 def assert_observation(result: Any, oracle: Oracle) -> None:
     """Budgets constrain real fitted coordinates and complex Fourier errors."""
     components = result.components
+    # Oracle dimensions come from supplied images, never the returned record.
+    shape = oracle.values.shape[1:]
+    for component in (components.dc, components.c1, components.c2):
+        assert component.shape == shape
+    assert result.response.values.shape == (3, *shape)
     actual = (
         components.dc,
         components.c1.real,
@@ -198,17 +221,14 @@ def assert_observation(result: Any, oracle: Oracle) -> None:
                 assert abs(D.from_float(float(value)) - exact) <= (error + observer_error)
     assert result.response.origin_zyx == oracle.origin
     assert np.all(np.abs(result.response.values - oracle.values) <= oracle.budgets)
-    center = tuple(n // 2 for n in components.dc.shape)
+    center = tuple(n // 2 for n in shape)
     assert result.response.values[(0, *center)] == 1 + 0j
     for actual_axis, expected_axis in zip(
         (result.response.fz_per_um, result.response.fy_per_um, result.response.fx_per_um),
         oracle.frequencies,
         strict=True,
     ):
-        assert actual_axis.dtype == np.dtype(np.float64)
-        np.testing.assert_allclose(actual_axis, expected_axis, rtol=8 * float(EPS), atol=float(Q))
-        assert actual_axis[len(actual_axis) // 2] == 0
-        assert np.all(np.diff(actual_axis) > 0)
+        assert_frequency_axis(actual_axis, expected_axis)
 
 
 def kernel(shape: tuple[int, int, int]) -> Array:
