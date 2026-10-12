@@ -127,6 +127,17 @@ DATASET_SCHEMAS: tuple[tuple[str, frozenset[str], frozenset[str]], ...] = (
         ),
     ),
 )
+REAL_DATA_FIELDS = {
+    "fixtures": ("psf_samples", "expected_otf_real", "expected_otf_imag"),
+    "entries": ("images", "independent_psf", "conventional_unilluminated_observation"),
+}
+COMPLEX_DATA_FIELDS = (
+    "otf",
+    "object_truth",
+    "object_truth_spectrum",
+    "rounded_data_estimator_spectrum",
+    "rounded_data_estimator_image",
+)
 
 
 def diagnostic_environment(child_temporary: Path) -> dict[str, str]:
@@ -197,13 +208,46 @@ def parse(payload: bytes) -> Any:
     return json.loads(payload, object_pairs_hook=unique_object, parse_constant=reject_nonfinite)
 
 
+def numeric_tensor(value: Any, dimensions: int) -> bool:
+    """Recognize represented numeric samples, without value/accuracy thresholds.
+
+    Nonempty lists at the declared payload rank distinguish scientific arrays
+    from scalar metadata and absence/error placeholders. Boolean flags are not
+    intensity coordinates. Scientific validity remains a separate assertion.
+    """
+    if dimensions == 0:
+        return type(value) in (int, float)
+    return (
+        isinstance(value, list)
+        and bool(value)
+        and all(numeric_tensor(item, dimensions - 1) for item in value)
+    )
+
+
+def carries_scientific_data(record: dict[str, Any], container: str) -> bool:
+    for field in REAL_DATA_FIELDS[container]:
+        if numeric_tensor(record[field], 4 if field == "images" else 2):
+            return True
+    if container == "entries":
+        for field in COMPLEX_DATA_FIELDS:
+            value = record[field]
+            if (
+                isinstance(value, dict)
+                and numeric_tensor(value.get("real"), 2)
+                and numeric_tensor(value.get("imag"), 2)
+            ):
+                return True
+    return False
+
+
 def assert_no_success_document(payload: bytes) -> None:
     """Reject data-bearing family schemas independently of exact success equality.
 
-    Field order, additional claims/elements and scientific values do not turn
-    retained data into a diagnostic. Recognize complete records even among
-    nonmatching elements. Empty/partial diagnostics and prose remain unrestricted.
-    Exact success validation uses the separate strict observer.
+    Field names alone may be diagnostic placeholders. Recognize numeric payloads
+    in complete family signatures even among extra error/nonrecord elements.
+    Order, extra claims and coordinate values are not equality conditions here.
+    Exact success validation uses the separate strict observer. Diagnostics with
+    no scientific payload remain unrestricted.
     """
     try:
         document = json.loads(payload)
@@ -218,7 +262,10 @@ def assert_no_success_document(payload: bytes) -> None:
         assert not (
             isinstance(records, list)
             and any(
-                isinstance(record, dict) and record_fields.issubset(record) for record in records
+                isinstance(record, dict)
+                and record_fields.issubset(record)
+                and carries_scientific_data(record, container)
+                for record in records
             )
         ), "rejection emitted a dataset document"
 
@@ -495,10 +542,52 @@ def test_observer_distinguishes_preserved_representations() -> None:
         ):
             diagnostic[container] = records
             assert_no_success_document(json.dumps(diagnostic).encode())
-        # Schema-only negative control, with no scientific payload/arrays.
+        # Full absence/error templates are legal; keys and scalar metadata do
+        # not establish scientific output, irrespective of diagnostic vocabulary.
+        for placeholder in (
+            None,
+            {"error": "unsupported selector"},
+            {"code": 17, "message": "unavailable"},
+            "unavailable",
+            17,
+            False,
+            [],
+            [[None]],
+            [[False]],
+            [["unavailable"]],
+            [[{"code": 17, "message": "unavailable"}]],
+            {"real": [[None]], "imag": [[None]]},
+        ):
+            record = dict.fromkeys(sorted(record_fields), placeholder)
+            record["error"] = "unsupported selector"
+            diagnostic[container] = [None, record, {"message": "unavailable"}]
+            assert_no_success_document(json.dumps(diagnostic).encode())
+        mixed_record: dict[str, Any] = {
+            field: None if index % 2 else {"message": "unavailable"}
+            for index, field in enumerate(sorted(record_fields))
+        }
+        mixed_record["shape_yx" if container == "fixtures" else "shape_detector"] = [7, 9]
+        mixed_record["id" if container == "fixtures" else "name"] = "diagnostic context"
+        diagnostic[container] = [mixed_record]
+        assert_no_success_document(json.dumps(diagnostic).encode())
+
+        # Tiny scalar-generated payload controls test representation presence;
+        # they encode no historical arrays or scientific numerical expectations.
         document: dict[str, Any] = dict.fromkeys(sorted(root_fields))
-        document[container] = [dict.fromkeys(sorted(record_fields))]
-        assert_dataset_rejection_controls(document)
+        for field in REAL_DATA_FIELDS[container]:
+            sample: Any = 0.0
+            for _ in range(4 if field == "images" else 2):
+                sample = [sample]
+            record = dict.fromkeys(sorted(record_fields))
+            record[field] = sample
+            document[container] = [record]
+            assert_dataset_rejection_controls(document)
+        if container == "entries":
+            for field in COMPLEX_DATA_FIELDS:
+                record = dict.fromkeys(sorted(record_fields))
+                record[field] = {"real": [[0.0]], "imag": [[0.0]]}
+                document[container] = [record]
+                assert_dataset_rejection_controls(document)
 
 
 def assert_dataset_rejection_controls(document: dict[str, Any]) -> None:
