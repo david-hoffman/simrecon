@@ -6,6 +6,7 @@ from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
 from ._drift import DriftCorrection, correct_integer_drift
 from ._empirical_response import EmpiricalVolumeResponse, prepare_empirical_volume_response
+from ._empirical_transfer import adapt_empirical_volume_response
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
 from ._legacy import inspect
@@ -50,6 +51,7 @@ __all__ = [
     "VolumeOrderOtf",
     "VolumePhaseComponents",
     "WriteReport",
+    "adapt_empirical_volume_response",
     "calibrate_raw_point_bead",
     "correct_integer_drift",
     "correct_linear_response",
