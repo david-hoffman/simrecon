@@ -509,10 +509,10 @@ def test_nonselected_correction_failures_still_reject_and_selected_only_is_valid
         np.float64(1),
         [1],
         1 + 0j,
-        np.array(True),
-        np.array([1], dtype=object),
-        np.array([1], dtype=complex),
-        np.ma.array([1]),
+        pytest.param(lambda shape: np.ones(shape, dtype=bool), id="bool-map"),
+        pytest.param(lambda shape: np.ones(shape, dtype=object), id="object-map"),
+        pytest.param(lambda shape: np.ones(shape, dtype=complex), id="complex-map"),
+        pytest.param(lambda shape: np.ma.array(np.ones(shape), mask=False), id="masked-map"),
         float("nan"),
         float("inf"),
         10**400,
@@ -521,12 +521,93 @@ def test_nonselected_correction_failures_still_reject_and_selected_only_is_valid
 def test_coefficient_representation_and_conversion_errors(
     calibrate: Any, name: str, value: Any
 ) -> None:
+    acquisition = declare(physical_images(ACTUAL))
+    # Match the public canonical shape so only representation/conversion is
+    # invalid. Simultaneous shape/dtype error precedence is unspecified.
+    if callable(value):
+        value = value(acquisition.data.shape)
+    # Masked-array equality can hide both mask changes and underlying values.
+    # Save plain independent observations before invoking the public operation.
+    masked_before = (
+        (np.ma.getmaskarray(value).copy(), np.ma.getdata(value).copy())
+        if isinstance(value, np.ma.MaskedArray)
+        else None
+    )
     assert_code(
         calibrate,
-        declare(physical_images(ACTUAL)),
+        acquisition,
         f"invalid_linear_response_{name}",
         **{name: value},
     )
+    if masked_before is not None:
+        np.testing.assert_array_equal(np.ma.getmaskarray(value), masked_before[0])
+        np.testing.assert_array_equal(np.ma.getdata(value), masked_before[1])
+
+
+@pytest.mark.parametrize(
+    "mutation,mask_preserved,data_preserved",
+    [
+        ("unchanged", True, True),
+        ("mask", False, True),
+        ("unmasked-data", True, False),
+        ("masked-data", True, False),
+    ],
+)
+def test_masked_coefficient_preservation_observer_controls(
+    mutation: str, mask_preserved: bool, data_preserved: bool
+) -> None:
+    # A pre-existing mask isolates hidden-payload detection from mask changes.
+    coefficient = np.ma.array([1.0, 2.0], mask=[False, True])
+    masked_before = (np.ma.getmaskarray(coefficient).copy(), np.ma.getdata(coefficient).copy())
+    if mutation == "mask":
+        np.ma.getmaskarray(coefficient)[0] = True
+    elif mutation == "unmasked-data":
+        coefficient.data[0] = 3.0
+    elif mutation == "masked-data":
+        coefficient.data[1] = 3.0
+    if mask_preserved:
+        np.testing.assert_array_equal(np.ma.getmaskarray(coefficient), masked_before[0])
+    else:
+        with pytest.raises(AssertionError):
+            np.testing.assert_array_equal(np.ma.getmaskarray(coefficient), masked_before[0])
+    if data_preserved:
+        np.testing.assert_array_equal(np.ma.getdata(coefficient), masked_before[1])
+    else:
+        with pytest.raises(AssertionError):
+            np.testing.assert_array_equal(np.ma.getdata(coefficient), masked_before[1])
+
+
+@pytest.mark.parametrize("name", ["offset", "response"])
+@pytest.mark.parametrize(
+    "value",
+    [
+        pytest.param(1, id="builtin-int"),
+        pytest.param(1.0, id="builtin-float"),
+        pytest.param(np.dtype("i1"), id="signed-map"),
+        pytest.param(np.dtype(">u2"), id="unsigned-map"),
+        pytest.param(np.dtype(">f4"), id="float-map"),
+        pytest.param(np.dtype(np.longdouble), id="longdouble-map"),
+    ],
+)
+def test_supported_coefficient_representation_controls(
+    calibrate: Any, name: str, value: Any
+) -> None:
+    images = physical_images(ACTUAL)
+    acquisition = declare(images)
+    if isinstance(value, np.dtype):
+        value = np.ones(acquisition.data.shape, dtype=value)
+    kwargs = arguments(**{name: value})
+    source_before, kwargs_before = record_snapshot(acquisition), deepcopy(kwargs)
+    source_bytes = acquisition.data.tobytes()
+    result = calibrate(acquisition, **kwargs)
+    # Every supported representation supplies exactly one. The stored-input
+    # expectation is independent of product output and all-bin assertions
+    # also prove that later calibration stages accept this control.
+    corrected = converted_correction(images, 1 if name == "offset" else 0, 1)
+    assert_observation(result, observe(corrected, ACTUAL, SPACING))
+    equal_tree(record_snapshot(acquisition), source_before)
+    assert acquisition.data.tobytes() == source_bytes
+    equal_tree(kwargs, kwargs_before)
 
 
 @pytest.mark.parametrize("name", ["offset", "response"])
