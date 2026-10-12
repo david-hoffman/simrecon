@@ -74,6 +74,31 @@ from verification_fixture_tools import PHASES
 root = Path.cwd()
 args = sys.argv[1:]
 phase = next((arg for arg in args if arg in PHASES), None)
+# Observe already persisted output before the next external command. Discovery
+# uses actual current streams, including directory aliases, not log leaf names.
+previous = root / 'evidence-calls.jsonl'
+prior_calls = ([json.loads(line) for line in previous.read_text().splitlines()]
+               if previous.exists() else [])
+retained_logs = {}
+visited = set()
+for directory, dirs, names in os.walk(root / 'artifacts', followlinks=True):
+    resolved = str(Path(directory).resolve())
+    if resolved in visited:
+        dirs[:] = []
+        continue
+    visited.add(resolved)
+    for name in sorted(names):
+        path = Path(directory) / name
+        if not path.is_file():
+            continue
+        payload = path.read_bytes()
+        for call in prior_calls:
+            if (call['phase'] and call['stdout'].encode() in payload
+                    and call['stderr'].encode() in payload):
+                retained_logs.setdefault(call['phase'], {
+                    'path': str(path.relative_to(root)),
+                    'payload': base64.b64encode(payload).decode('ascii'),
+                })
 stdout, stderr = io.StringIO(), io.StringIO()
 with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
     queried_tool = next((name for name in ('ruff', 'pyright', 'coverage', 'pytest')
@@ -196,12 +221,19 @@ if phase is not None and phase == action.get('phase'):
     }
 if phase == 'audit' and os.environ.get('EVIDENCE_AUDIT_FAILURE') == '1':
     status = 37
+blocked_log = None
+if phase == 'audit' and os.environ.get('EVIDENCE_BLOCK_LOG'):
+    blocked_log = os.environ['EVIDENCE_BLOCK_LOG']
+    path = root / blocked_log
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.mkdir()
 observation = {
     'argv': [sys.argv[0], *args], 'phase': phase, 'status': status,
     'stdout': stdout.getvalue(), 'stderr': stderr.getvalue(),
     'measurement_path': os.environ.get('SIMRECON_MEASUREMENTS_PATH'),
     'run_id': os.environ.get('SIMRECON_MEASUREMENTS_RUN_ID'),
     'snapshots': snapshots, 'action': action_observation,
+    'retained_logs': retained_logs, 'blocked_log': blocked_log,
     'wheel_members': {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
                       for path in (root / 'dist').glob('*.whl')}
                      if phase == 'wheel' else {},
@@ -235,6 +267,9 @@ class Observation:
     native_anchors: tuple[str, ...]
     report_anchors: tuple[str, ...]
     expected_environment: dict[str, Any]
+    retained_logs: dict[str, dict[str, str]]
+    blocked_logs: tuple[str, ...]
+    coverage_profile: str
 
 
 def prepare_evidence_repository(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Repository:
@@ -291,6 +326,7 @@ def invoke(
     audit_failure: bool = False,
     failure_phase: str | None = None,
     receipt_mode: str = "complete",
+    block_log: str = "",
 ) -> Observation:
     root, bin_dir = repository.root, repository.bin_dir
     before = identity(repository)
@@ -318,6 +354,7 @@ def invoke(
         EVIDENCE_DATA_FILE=data_file,
         EVIDENCE_AUDIT_FAILURE=str(int(audit_failure)),
         EVIDENCE_FAILURE_PHASE=failure_phase or "",
+        EVIDENCE_BLOCK_LOG=block_log,
     )
     command = [
         str(ROOT / ".venv/bin/python"),
@@ -384,6 +421,26 @@ def invoke(
             path = root / name
             if path.is_file():
                 files[name] = path.read_bytes()
+    retained_logs = {}
+    for call in calls:
+        for phase, anchor in call["retained_logs"].items():
+            retained_logs.setdefault(phase, anchor)
+            path = root / anchor["path"]
+            if path.is_file():
+                files[anchor["path"]] = path.read_bytes()
+    for call in calls:
+        if call["phase"] is not None:
+            for name, payload in files.items():
+                if call["stdout"].encode() in payload and call["stderr"].encode() in payload:
+                    retained_logs.setdefault(
+                        call["phase"],
+                        {"path": name, "payload": base64.b64encode(payload).decode()},
+                    )
+    blocked_logs = tuple(
+        call["blocked_log"]
+        for call in calls
+        if call["blocked_log"] and (root / call["blocked_log"]).is_dir()
+    )
     observed = Observation(
         command,
         result.returncode,
@@ -411,6 +468,9 @@ def invoke(
             "git_version": git(root, "--version"),
             "tools": {name: version(name) for name in ("ruff", "pyright", "coverage", "pytest")},
         },
+        retained_logs,
+        blocked_logs,
+        "complete" if native else receipt_mode,
     )
     evidence = os.environ.get("A04_EVIDENCE")
     if evidence:
@@ -465,10 +525,27 @@ def invoke(
             "report_anchors": list(observed.report_anchors),
             "native_anchors": list(observed.native_anchors),
             "expected_environment": observed.expected_environment,
+            "retained_logs": {
+                phase: {
+                    "path": anchor["path"],
+                    "sha256": sha256(base64.b64decode(anchor["payload"])),
+                    "size_bytes": len(base64.b64decode(anchor["payload"])),
+                }
+                for phase, anchor in retained_logs.items()
+            },
+            "blocked_logs": list(blocked_logs),
             "action_requested": action,
             "calls": [
                 {
                     **call,
+                    "retained_logs": {
+                        phase: {
+                            "path": anchor["path"],
+                            "sha256": sha256(base64.b64decode(anchor["payload"])),
+                            "size_bytes": len(base64.b64decode(anchor["payload"])),
+                        }
+                        for phase, anchor in call["retained_logs"].items()
+                    },
                     "snapshots": {
                         name: {
                             "sha256": sha256(base64.b64decode(value)),
@@ -651,36 +728,68 @@ def assert_measurement(observed: Observation, receipt: dict[str, Any]) -> None:
 
 
 def coverage_expectation(observed: Observation, payload: bytes) -> dict[str, Any]:
+    """Exact independent inputs, including approved partial/zero native profiles."""
     native = json.loads(payload, object_pairs_hook=unique_keys)
     assert native["meta"]["branch_coverage"] is True
+    profile = observed.coverage_profile
+    line_counts, branch_counts = {
+        "partial-coverage": ((2, 2, 1), (1, 1, 0)),
+        "partial-json-failure": ((2, 2, 1), (1, 1, 0)),
+        "partial-statements": ((2, 2, 0), (2, 2, 0)),
+        "partial-combined": ((1, 1, 1), (1, 1, 0)),
+        "zero-coverage": ((0, 0, 0), (0, 0, 0)),
+    }.get(profile, ((2, 2, 1), (2, 2, 0)))
     expected_files = {}
-    for name, lines, branches in (
-        ("src/simrecon/sample.py", 2, 2),
-        ("scripts/sample.py", 2, 2),
-        ("scripts/branchless.py", 1, 0),
+    counter_keys = (
+        "covered_lines",
+        "num_statements",
+        "missing_lines",
+        "excluded_lines",
+        "covered_branches",
+        "num_branches",
+        "missing_branches",
+        "num_partial_branches",
+    )
+    for index, (name, lines, branches) in enumerate(
+        (
+            ("src/simrecon/sample.py", 2, 2),
+            ("scripts/sample.py", 2, 2),
+            ("scripts/branchless.py", 1, 0),
+        )
     ):
         item = native["files"][name]
-        assert item["executed_lines"] == list(range(1, lines + 1))
-        assert item["missing_lines"] == item["missing_branches"] == item["excluded_lines"] == []
-        expected_branches = [[1, 2], [1, -1]] if branches else []
-        assert item["executed_branches"] == (
-            sorted(expected_branches) if observed.native_emissions else expected_branches
-        )
+        covered_lines, covered_branches = line_counts[index], branch_counts[index]
+        assert item["executed_lines"] == list(range(1, covered_lines + 1))
+        assert item["missing_lines"] == list(range(covered_lines + 1, lines + 1))
+        assert item["excluded_lines"] == []
+        destinations = [[1, 2], [1, -1]] if branches else []
+        if profile == "partial-combined" and branches:
+            destinations.reverse()
+        executed, missing = destinations[:covered_branches], destinations[covered_branches:]
+        assert sorted(item["executed_branches"]) == sorted(executed)
+        assert sorted(item["missing_branches"]) == sorted(missing)
+        partial = len({arc[0] for arc in missing} & set(item["executed_lines"]))
         for key, count in (
-            ("covered_lines", lines),
+            ("covered_lines", covered_lines),
             ("num_statements", lines),
-            ("covered_branches", branches),
+            ("covered_branches", covered_branches),
             ("num_branches", branches),
-            ("missing_lines", 0),
-            ("missing_branches", 0),
+            ("missing_lines", lines - covered_lines),
+            ("missing_branches", branches - covered_branches),
             ("excluded_lines", 0),
+            ("num_partial_branches", partial),
         ):
             assert type(item["summary"][key]) is int and item["summary"][key] == count
         expected_files[name] = {
-            "statements": {"covered": lines, "total": lines},
-            "branches": {"covered": branches, "total": branches},
+            "statements": {"covered": covered_lines, "total": lines},
+            "branches": {"covered": covered_branches, "total": branches},
         }
     assert set(native["files"]) == set(expected_files)
+    for key in counter_keys:
+        assert type(native["totals"][key]) is int
+        assert native["totals"][key] == sum(
+            item["summary"][key] for item in native["files"].values()
+        )
     return expected_files
 
 
@@ -694,16 +803,20 @@ def assert_coverage(observed: Observation, receipt: dict[str, Any]) -> None:
             assert observed.files[name] == generated[name], f"emitted {name} was replaced"
     expected_files = coverage_expectation(observed, observed.files[COVERAGE_JSON])
     assert coverage["files"] == expected_files
-    assert coverage["global"] == {
-        "statements": {"covered": 5, "total": 5},
-        "branches": {"covered": 4, "total": 4},
-    }
+
+    def aggregate(names: list[str]) -> dict[str, Any]:
+        return {
+            metric: {
+                count: sum(expected_files[name][metric][count] for name in names)
+                for count in ("covered", "total")
+            }
+            for metric in ("statements", "branches")
+        }
+
+    assert coverage["global"] == aggregate(list(expected_files))
     assert coverage["packages"] == {
         "simrecon": expected_files["src/simrecon/sample.py"],
-        "scripts": {
-            "statements": {"covered": 3, "total": 3},
-            "branches": {"covered": 2, "total": 2},
-        },
+        "scripts": aggregate(["scripts/sample.py", "scripts/branchless.py"]),
     }
     if not observed.native_emissions and COVERAGE_HTML in generated:
         assert observed.files[COVERAGE_HTML] == b"<html>controlled coverage</html>"
@@ -843,6 +956,75 @@ def assert_wheel_container(payload: bytes) -> None:
                 assert int(size) == len(data)
 
 
+def unavailable_current_log(observed: Observation, call: dict[str, Any], name: str) -> bool:
+    """Independent obstruction of uncreated final-phase persistence, not lost logs."""
+    if (
+        observed.status == 0
+        or call is not phase_calls(observed)[-1]
+        or call["phase"] in observed.retained_logs
+    ):
+        return False
+    if name in observed.blocked_logs and call["blocked_log"] == name:
+        return True
+    # Honest rejection can leave protected current evidence at the log path.
+    # It is not a previously retained log for this phase. Bind obstruction to
+    # independently emitted bytes and actual phase-created alias/inode facts.
+    protected = valid_emitted_reports(observed)
+    for event in observed.native_emissions:
+        if event["database"]:
+            protected[event["database"]] = base64.b64decode(event["database_payload"])
+        protected.update(
+            {name: base64.b64decode(value) for name, value in event["members"].items()}
+        )
+    protected.update(
+        {
+            anchor["path"]: base64.b64decode(anchor["payload"])
+            for anchor in observed.retained_logs.values()
+        }
+    )
+    payload = observed.files.get(name)
+    if name in protected and payload == protected[name]:
+        return True
+    action = call["action"]
+    return bool(
+        action
+        and action["destination"] == name
+        and action["applied"]
+        and action["shares_inode"] is True
+        and action["target"] in protected
+        and action["before"] == action["after"] == sha256(protected[action["target"]])
+        and payload == protected[action["target"]]
+    )
+
+
+def assert_retained_logs(observed: Observation) -> None:
+    """Actual retained output binds even failed or receipt-unavailable outcomes."""
+    calls = phase_calls(observed)
+    for call in calls:
+        anchor = observed.retained_logs.get(call["phase"])
+        if anchor is not None:
+            payload = base64.b64decode(anchor["payload"])
+            assert call["stdout"].encode() in payload and call["stderr"].encode() in payload
+            assert observed.files.get(anchor["path"]) == payload, (
+                "previously retained current phase log lost/replaced"
+            )
+    if observed.receipt is not None:
+        for item, call in zip(observed.receipt["phases"], calls, strict=True):
+            payload = observed.files.get(item["log"])
+            if unavailable_current_log(observed, call, item["log"]):
+                continue
+            if payload is not None:
+                assert call["stdout"].encode() in payload and call["stderr"].encode() in payload, (
+                    "current emitted phase output was replaced"
+                )
+            else:
+                # Independent phase-created directory proves unavailable
+                # persistence. A failed status or problem string alone does not.
+                raise AssertionError(
+                    "reported current phase log unavailable without persistence evidence"
+                )
+
+
 def assert_outcome(observed: Observation) -> None:
     """Permit honest early rejection and layouts that safely avoid a log example."""
     calls = phase_calls(observed)
@@ -895,6 +1077,7 @@ def assert_outcome(observed: Observation) -> None:
             assert receipt["result"] == "failed" and receipt["problems"]
     # Preservation follows actual emission, not receipt presence or inclusion.
     assert_emitted_reports(observed)
+    assert_retained_logs(observed)
     if receipt is None:
         if observed.native_emissions:
             assert_native_evidence(observed)
@@ -948,7 +1131,7 @@ def assert_outcome(observed: Observation) -> None:
     assert [item["returncode"] for item in receipt["phases"]] == [
         call["status"] for call in calls
     ], "invented phase status"
-    for item, call in zip(receipt["phases"], calls, strict=True):
+    for item in receipt["phases"]:
         phase_begin, phase_end = (
             datetime.fromisoformat(item[key]) for key in ("started_at", "finished_at")
         )
@@ -958,14 +1141,6 @@ def assert_outcome(observed: Observation) -> None:
         assert begin <= phase_begin <= phase_end <= end, "phase timestamps outside current receipt"
         path = Path(item["log"])
         assert not path.is_absolute() and ".." not in path.parts
-        # Failed persistence can leave an unavailable log. A current receipt
-        # written at a reported log path cannot silently replace emitted output,
-        # including when the original phase failure status is kept.
-        if observed.status == 0 or item["log"] == observed.command[-1]:
-            log = observed.files[item["log"]].decode()
-            assert call["stdout"] in log and call["stderr"] in log, (
-                "current emitted phase output was replaced"
-            )
     if expected_measurement(observed) is not None:
         assert receipt.get("measurements") is not None, "valid current measurements omitted"
     if receipt.get("measurements") is not None:
@@ -1066,6 +1241,7 @@ def test_local_observer_allows_safe_layout_alternatives(
         phase["log"] = "artifacts/verification/another-run/audit.log"
         observed.files[phase["log"]] = payload
         observed.files[original] = b"unrelated unused layout example\n"
+        observed.retained_logs[phase["name"]]["path"] = phase["log"]
     # Safe replacement may retain the reported pathname. The observer requires
     # real current output at that pathname, never traversal of a former alias.
     assert_outcome(observed)
@@ -1285,6 +1461,7 @@ def test_local_native_observer_allows_legitimate_alternatives(
         phase["log"] = "artifacts/verification/unused-layout/current-audit.log"
         observed.files[phase["log"]] = observed.files[original]
         observed.files[original] = b"unused prior layout example"
+        observed.retained_logs[phase["name"]]["path"] = phase["log"]
     assert_outcome(observed)
 
 
@@ -1489,6 +1666,9 @@ def test_local_log_observer_allows_both_stream_orders(
         if order == "stderr-first":
             streams.reverse()
         observed.files[item["log"]] = "".join(streams).encode()
+        observed.retained_logs[item["name"]]["payload"] = base64.b64encode(
+            observed.files[item["log"]]
+        ).decode()
     assert_outcome(observed)
 
 
@@ -1580,16 +1760,21 @@ def test_local_failed_measurement_observer_rejects_lost_valid_evidence(
 
 @pytest.mark.parametrize("alternative", ["ordinary", "no-receipt", "failed-log-persistence"])
 def test_local_late_failure_observer_allows_preserved_evidence(
-    observed_late_failure: Observation, alternative: str
+    observed_late_failure: Observation,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    alternative: str,
 ) -> None:
     observed = copy.deepcopy(observed_late_failure)
     if alternative == "no-receipt":
         observed.receipt = None
         observed.files.pop(DEFAULT_RECEIPT)
     elif alternative == "failed-log-persistence":
-        assert observed.receipt is not None
-        observed.files.pop(observed.receipt["phases"][-1]["log"])
-        observed.receipt["problems"].append("Current audit log persistence unavailable")
+        # A separate owned public invocation creates a real directory blocker
+        # before persistence. The example may be unused by another valid layout.
+        repository = prepare_evidence_repository(tmp_path / "blocked", monkeypatch)
+        observed = invoke(repository, audit_failure=True, block_log=LOG_EXAMPLES[-1])
+        assert observed.status == 37
     assert_outcome(observed)
 
 
@@ -1695,4 +1880,143 @@ def test_local_failure_observer_allows_unavailable_or_invalid_report_evidence(
         observed.files.pop(name, None)
     assert_outcome(observed)
     observed.receipt = None
+    assert_outcome(observed)
+
+
+@pytest.fixture(params=["tests", "audit"])
+def current_log_failure(
+    evidence_repository: Repository, request: pytest.FixtureRequest
+) -> Observation:
+    observed = invoke(evidence_repository, failure_phase=request.param)
+    assert observed.status == 37
+    assert phase_calls(observed)[-1]["phase"] == request.param
+    assert_outcome(observed)
+    return observed
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+@pytest.mark.parametrize("order", ["stdout-first", "stderr-first"])
+def test_local_failed_log_observer_allows_current_output_and_layouts(
+    current_log_failure: Observation, receipt_available: bool, order: str
+) -> None:
+    observed = copy.deepcopy(current_log_failure)
+    assert observed.receipt is not None
+    for item, call in zip(observed.receipt["phases"], phase_calls(observed), strict=True):
+        # Model another actual legitimate emission/layout: neither stream order
+        # nor the public example leaves define the preservation contract.
+        streams = [call["stdout"], call["stderr"]]
+        if order == "stderr-first":
+            streams.reverse()
+        payload = "".join(streams).encode()
+        old = item["log"]
+        item["log"] = f"artifacts/alternate-logs/current-{call['phase']}.txt"
+        observed.files[item["log"]] = payload
+        observed.files[old] = b"unused layout example"
+        observed.retained_logs[call["phase"]] = {
+            "path": item["log"],
+            "payload": base64.b64encode(payload).decode(),
+        }
+    if not receipt_available:
+        observed.receipt = None
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+@pytest.mark.parametrize("defect", ["deleted", "replaced"])
+def test_local_failed_log_observer_rejects_loss_of_earlier_retention(
+    current_log_failure: Observation, receipt_available: bool, defect: str
+) -> None:
+    observed = copy.deepcopy(current_log_failure)
+    anchor = observed.retained_logs["sync"]
+    # Retention was already observed by a later real external phase command.
+    assert any("sync" in call["retained_logs"] for call in observed.calls)
+    if defect == "deleted":
+        del observed.files[anchor["path"]]
+    else:
+        observed.files[anchor["path"]] = b"forged old output"
+    if not receipt_available:
+        observed.receipt = None
+    with pytest.raises(AssertionError):
+        assert_outcome(observed)
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+def test_local_failed_log_observer_allows_genuine_unavailable_persistence(
+    evidence_repository: Repository, receipt_available: bool
+) -> None:
+    observed = invoke(evidence_repository, audit_failure=True, block_log=LOG_EXAMPLES[-1])
+    assert observed.status == 37
+    assert observed.blocked_logs == (LOG_EXAMPLES[-1],)
+    assert_outcome(observed)
+    if not receipt_available:
+        observed.receipt = None
+    assert_outcome(observed)
+
+
+PARTIAL_PROFILES = ["partial-coverage", "partial-statements", "partial-combined", "zero-coverage"]
+
+
+@pytest.fixture(params=[*PARTIAL_PROFILES, "partial-json-failure"])
+def current_partial_failure(
+    evidence_repository: Repository, request: pytest.FixtureRequest
+) -> Observation:
+    phase = None if request.param == "partial-json-failure" else "coverage-json"
+    observed = invoke(evidence_repository, receipt_mode=request.param, failure_phase=phase)
+    assert observed.status == (29 if phase is None else 37)
+    assert COVERAGE_JSON in valid_emitted_reports(observed)
+    assert COVERAGE_HTML not in generated_bytes(observed)
+    assert_outcome(observed)
+    return observed
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+def test_local_partial_coverage_observer_allows_current_failed_diagnostics(
+    current_partial_failure: Observation, receipt_available: bool
+) -> None:
+    observed = copy.deepcopy(current_partial_failure)
+    if not receipt_available:
+        observed.receipt = None
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted"])
+def test_local_partial_coverage_observer_rejects_lost_current_diagnostics(
+    current_partial_failure: Observation, receipt_available: bool, defect: str
+) -> None:
+    observed = copy.deepcopy(current_partial_failure)
+    assert observed.receipt is not None
+    if defect == "replaced":
+        observed.files[COVERAGE_JSON] = b"{}"
+    elif defect == "omitted" and receipt_available:
+        observed.receipt["coverage"] = None
+    else:
+        del observed.files[COVERAGE_JSON]
+    if not receipt_available:
+        observed.receipt = None
+    with pytest.raises((AssertionError, KeyError)):
+        assert_outcome(observed)
+
+
+@pytest.mark.parametrize("profile", PARTIAL_PROFILES)
+def test_p07_advisory_profiles_preserve_exact_current_counts(
+    evidence_repository: Repository, profile: str
+) -> None:
+    observed = invoke(evidence_repository, receipt_mode=profile)
+    assert observed.status == 0
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+def test_p07_partial_json_status29_retains_current_report_without_html(
+    evidence_repository: Repository, receipt_available: bool
+) -> None:
+    observed = invoke(evidence_repository, receipt_mode="partial-json-failure")
+    assert observed.status == 29
+    assert phase_calls(observed)[-1]["phase"] == "coverage-json"
+    assert COVERAGE_JSON in valid_emitted_reports(observed)
+    assert COVERAGE_HTML not in generated_bytes(observed)
+    assert_outcome(observed)
+    if not receipt_available:
+        observed.receipt = None
     assert_outcome(observed)
