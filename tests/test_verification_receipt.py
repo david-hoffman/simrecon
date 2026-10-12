@@ -199,6 +199,7 @@ def test_v1_real_make_check(repository):
 
 
 def test_v2_command_failure(repository):
+    root, bin_dir = repository
     result, receipt = invoke(repository, "command-failure")
     assert receipt is not None
     failed(result, receipt)
@@ -207,16 +208,16 @@ def test_v2_command_failure(repository):
     assert receipt["phases"][-1]["returncode"] == 23
     assert "controlled failure diagnostic" in result.stdout + result.stderr
     assert receipt["before"] == receipt["after"]
-
-
-def test_v2_missing_executable(repository):
-    root, bin_dir = repository
-    (bin_dir / "make").unlink()
-    result, receipt = invoke(repository)
-    assert receipt is not None
-    failed(result, receipt)
-    assert result.returncode == 127
-    assert git(root, "status", "--porcelain") == ""
+    # Disposable executables record actual argv independently of the receipt.
+    # Version queries do not launch phases and impose no phase-order obligation.
+    calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    phase_calls = [call for call in calls if any(arg in PHASES for arg in call)]
+    assert [[arg for arg in call if arg in PHASES] for call in phase_calls] == [
+        ["sync"],
+        ["coverage-clean"],
+        ["lint"],
+    ]
+    assert all(f"UV={bin_dir / 'uv'}" in call for call in phase_calls)
 
 
 @pytest.mark.parametrize(

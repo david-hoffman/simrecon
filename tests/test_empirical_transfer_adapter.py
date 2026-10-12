@@ -412,7 +412,7 @@ def test_C10_every_frequency_field_fully_validated(field, kind):
         (1, 1),
         (1, 1, 1, 1),
         (True, 1, 1),
-        (np.bool_(False), 1, 1),
+        (np.bool_(True), 1, 1),
         (1 + 0j, 1, 1),
         ("1", 1, 1),
         (0, 1, 1),
@@ -423,7 +423,35 @@ def test_C10_every_frequency_field_fully_validated(field, kind):
     ],
 )
 def test_C11_spacing_grammar_and_conversion_rejections(bad):
-    reject(revised(record(), voxel_size_um=bad), "invalid_empirical_transfer_response")
+    # Only DC exists on singleton axes, so even nonpositive/coercible spacing
+    # cannot be rejected incidentally by a noncanonical nonzero frequency.
+    response = record(values=np.ones((3, 1, 1, 1), dtype=np.complex128))
+    for allowed in ((1, 1, 1), [1, 1, 1]):
+        control = revised(response, voxel_size_um=allowed)
+        assert_rotation(invoke(control), control, (1, -1), (0, 0), 0.375)
+    reject(revised(response, voxel_size_um=bad), "invalid_empirical_transfer_response")
+
+
+@pytest.mark.parametrize("kind", ["ndarray", "list_subclass", "boolean", "string"])
+def test_C11_spacing_grammar_with_matching_nonsingleton_grid(kind):
+    spacing = (1.0, 1.0, 1.0)
+    response = revised(
+        record(),
+        voxel_size_um=spacing,
+        fz_per_um=grid(2, 1.0),
+        fy_per_um=grid(3, 1.0),
+        fx_per_um=grid(4, 1.0),
+    )
+    for allowed in (spacing, list(spacing)):
+        control = revised(response, voxel_size_um=allowed)
+        assert_rotation(invoke(control), control, (1, -1), (0, 0), 0.375)
+    bad = {
+        "ndarray": np.array(spacing),
+        "list_subclass": ListSubclass(spacing),
+        "boolean": (True, 1.0, 1.0),
+        "string": ("1", 1.0, 1.0),
+    }[kind]
+    reject(revised(response, voxel_size_um=bad), "invalid_empirical_transfer_response")
 
 
 @pytest.mark.parametrize(
@@ -722,8 +750,13 @@ def test_C18_caller_modes_preserved_for_identity_underflow_and_rejection(mode):
                     )
                     assert snapshots(converted_identity) == before
                 else:
+                    # A singleton grid isolates converted spacing failure
+                    # from any nonzero-frequency mismatch/collapse.
                     reject(
-                        revised(record(), voxel_size_um=[scalar, 0.5, 0.125]),
+                        revised(
+                            record(values=np.ones((3, 1, 1, 1), dtype=np.complex128)),
+                            voxel_size_um=[scalar, 0.5, 0.125],
+                        ),
                         "invalid_empirical_transfer_response",
                     )
                 assert np.geterr() == desired
@@ -754,16 +787,114 @@ def test_C19_adapter_uses_no_spatial_transform_or_supplied_psf(monkeypatch):
     assert_rotation(invoke(response), response, (1, -1), (0, 0), 0.375)
 
 
+def generator_fit_bound(corrected, cal_phases, physical_phases, kernels, origin, offset, alpha_c):
+    """Bound represented generator error, then amplify by an independent fit.
+
+    Kernels are exact stored generator inputs, brightness is 16 electrons.
+    The point-model component path has fewer than 64 real rounding operations;
+    the five-term exposure and affine camera round trip have fewer than 32.
+    Use 64*eps for components and a conservative 128*eps for exposure/camera
+    (including the offset 4). Phase-matrix mismatch is evaluated independently
+    in Decimal, not estimated from observed calibration or adapter differences.
+    """
+    shape = corrected.shape[1:]
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        raw_h = [[represented(v) for v in row] for row in represented_basis(physical_phases)]
+        cal_h = [[represented(v) for v in row] for row in represented_basis(cal_phases)]
+        # P=(H' H)^-1 H': high-precision elimination, no numerical SVD oracle.
+        gram = [[sum((row[i] * row[j] for row in cal_h), D(0)) for j in range(5)] for i in range(5)]
+        augmented = [row + [D(int(i == j)) for j in range(5)] for i, row in enumerate(gram)]
+        for j in range(5):
+            pivot = max(range(j, 5), key=lambda i: abs(augmented[i][j]))
+            augmented[j], augmented[pivot] = augmented[pivot], augmented[j]
+            divisor = augmented[j][j]
+            assert divisor != 0
+            augmented[j] = [v / divisor for v in augmented[j]]
+            for i in range(5):
+                if i != j:
+                    factor = augmented[i][j]
+                    augmented[i] = [
+                        a - factor * b for a, b in zip(augmented[i], augmented[j], strict=True)
+                    ]
+        fit_norm = max(
+            sum(
+                (abs(sum((augmented[j][5 + i] * row[i] for i in range(5)), D(0))) for row in cal_h),
+                D(0),
+            )
+            / (1 if j == 0 else 2)
+            for j in range(5)
+        )
+        assert sum((represented(v) for v in kernels[0].flat), D(0)) == 1
+        rho = Fraction(origin[1] + offset[0], shape[1]) - Fraction(origin[2] + offset[1], shape[2])
+        raw_phase = root(rho)
+        cal_phase = multiply(raw_phase, root(Fraction(), -alpha_c))
+        raw_phases = ((D(1), D(0)), raw_phase, multiply(raw_phase, raw_phase))
+        cal_phases_exact = ((D(1), D(0)), cal_phase, multiply(cal_phase, cal_phase))
+        residual_bound = D(0)
+        for coordinate in np.ndindex(shape):
+            u = tuple((x - b) % n for x, b, n in zip(coordinate, origin, shape, strict=True))
+            unphased = [(16 * pair(k[u])[0], 16 * pair(k[u])[1]) for k in kernels]
+            raw_c = [multiply(c, p) for c, p in zip(unphased, raw_phases, strict=True)]
+            cal_c = [multiply(c, p) for c, p in zip(unphased, cal_phases_exact, strict=True)]
+            raw_z = [
+                raw_c[0][0],
+                2 * raw_c[1][0],
+                -2 * raw_c[1][1],
+                2 * raw_c[2][0],
+                -2 * raw_c[2][1],
+            ]
+            cal_z = [
+                cal_c[0][0],
+                2 * cal_c[1][0],
+                -2 * cal_c[1][1],
+                2 * cal_c[2][0],
+                -2 * cal_c[2][1],
+            ]
+            component_error = 64 * EPS * max(abs(a) + abs(b) for a, b in unphased) + 64 * Q
+            exposure_scale = abs(raw_z[0]) + sum((abs(v) for v in raw_z[1:]), D(0))
+            for p, (raw_row, cal_row) in enumerate(zip(raw_h, cal_h, strict=True)):
+                component_amplification = abs(raw_row[0]) + 2 * sum(
+                    (abs(v) for v in raw_row[1:]), D(0)
+                )
+                rounding = (
+                    128 * EPS * (exposure_scale + 4)
+                    + component_amplification * component_error
+                    + 128 * Q
+                )
+                raw_prediction = sum((a * b for a, b in zip(raw_row, raw_z, strict=True)), D(0))
+                cal_prediction = sum((a * b for a, b in zip(cal_row, cal_z, strict=True)), D(0))
+                allowance = abs(raw_prediction - cal_prediction) + rounding
+                assert (
+                    abs(represented(corrected[(p, *coordinate)]) - cal_prediction) <= allowance
+                ), "generator representation exceeds independently derived rounding bound"
+                residual_bound = max(residual_bound, allowance)
+        return fit_norm * residual_bound
+
+
 def check_selected_gauge(
-    orders, response, corrected, cal_phases, kernels, alpha_s, delta, offset=(0, 0)
+    orders,
+    response,
+    corrected,
+    cal_phases,
+    kernels,
+    alpha_s,
+    delta,
+    physical_phases,
+    alpha_c,
+    offset=(0, 0),
 ):
-    """Triangle bound separates rounded stored-estimator and generator-model truth."""
+    """Independent generator/fit, separator, transform and adapter error bounds."""
     shape = corrected.shape[1:]
     exact = exact_separation(corrected, cal_phases)
     assert np.linalg.cond(represented_basis(cal_phases)) <= 10
     with localcontext() as ctx:
         ctx.prec = PRECISION
         count = int(np.prod(shape))
+        generator_error = generator_fit_bound(
+            corrected, cal_phases, physical_phases, kernels, response.origin_zyx, offset, alpha_c
+        )
+        assert count * generator_error < 16, "stable generator-mass margin"
         bmax = represented(np.max(np.abs(corrected)))
         e = 8192 * len(cal_phases) * EPS * bmax + 8 * Q
         dc_values = [exact[0][index][0] for index in np.ndindex(shape)]
@@ -790,6 +921,18 @@ def check_selected_gauge(
             primitive = (
                 512 * count * EPS * ((l1 + 2 * count * e) / (mass - count * e)) + 16 * count * Q
             )
+            model_l1 = 16 * sum((abs(pair(v)[0]) + abs(pair(v)[1]) for v in kernels[m].flat), D(0))
+            # delta was rounded by the caller's binary64 subtraction. The
+            # exact declared alpha_c + delta may differ from alpha_s.
+            gauge_rounding = (
+                m
+                * abs(represented(alpha_c) + represented(delta) - represented(alpha_s))
+                * model_l1
+                / 16
+            )
+            representation = (
+                2 * count * generator_error + (model_l1 / 16) * count * generator_error
+            ) / (16 - count * generator_error) + gauge_rounding
             for index, value in transforms[m].items():
                 target = value[0] / mass, value[1] / mass
                 # Two real side coordinates: complex error <=sqrt(2)*e <=2*e.
@@ -799,10 +942,12 @@ def check_selected_gauge(
                 )
                 stored_f = multiply(target, adapter_phases[m])
                 model_f = multiply(kernel_dfts[m][index], physical_phases[m])
-                model_gap = abs(stored_f[0] - model_f[0]) + abs(stored_f[1] - model_f[1])
+                assert_close(
+                    stored_f, model_f, representation, f"independent generator fit {m}/{index}"
+                )
                 re, im = pair(response.values[(m, *index)])
                 adapter_budget = 128 * EPS * (abs(re) + abs(im)) + 16 * Q if m else D(0)
-                budget = model_gap + propagated + adapter_budget
+                budget = representation + propagated + adapter_budget
                 budgets[(m, *index)] = budget
                 assert_close(
                     orders.values[(m, *index)], model_f, budget, f"selected model gauge {m}/{index}"
@@ -851,8 +996,41 @@ def test_C05_C06_C20_raw_bead_movement_storage_roll_and_phase_gauge(
     assert_rotation(orders, calibrated.response, (1, -1), (0, 0), delta)
     # Generator comparison is a separate physical gauge control, never calibration input.
     baseline_budgets = check_selected_gauge(
-        orders, calibrated.response, corrected, cal_phases, kernels, alpha_s, delta
+        orders, calibrated.response, corrected, cal_phases, kernels, alpha_s, delta, phases, alpha_c
     )
+    for mismatch in ("phase", "gain"):
+        factor = -1 if mismatch == "phase" else 1.25
+        wrong_kernels = (kernels[0], kernels[1] * factor, kernels[2])
+        with pytest.raises(AssertionError, match="generator representation"):
+            check_selected_gauge(
+                orders,
+                calibrated.response,
+                corrected,
+                cal_phases,
+                wrong_kernels,
+                alpha_s,
+                delta,
+                phases,
+                alpha_c,
+            )
+        wrong_values = orders.values.copy()
+        wrong_values[1] *= factor
+        wrong_orders = public.VolumeOrderOtf(
+            **{name: getattr(orders, name) for name in (*FIELDS, "source")}
+            | {"values": wrong_values}
+        )
+        with pytest.raises(AssertionError, match="selected model gauge"):
+            check_selected_gauge(
+                wrong_orders,
+                calibrated.response,
+                corrected,
+                cal_phases,
+                kernels,
+                alpha_s,
+                delta,
+                phases,
+                alpha_c,
+            )
     rolled = public.declare_acquisition(
         np.roll(raw, roll, axis=(1, 2, 3))[None],
         config={
@@ -885,6 +1063,8 @@ def test_C05_C06_C20_raw_bead_movement_storage_roll_and_phase_gauge(
         kernels,
         alpha_s,
         delta,
+        phases,
+        alpha_c,
         (-roll[1], -roll[2]),
     )
     with localcontext() as ctx:
@@ -927,6 +1107,8 @@ def test_C05_C06_C20_raw_bead_movement_storage_roll_and_phase_gauge(
         kernels,
         alpha_s,
         delta,
+        phases,
+        alpha_c,
     )
     with localcontext() as ctx:
         ctx.prec = PRECISION

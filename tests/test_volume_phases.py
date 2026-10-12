@@ -2,7 +2,7 @@
 
 import warnings
 from decimal import Decimal, localcontext
-from typing import Any
+from typing import Any, Literal
 
 import numpy as np
 import pytest
@@ -733,3 +733,74 @@ def test_returned_outputs_are_snapshots_of_both_inputs(api: Any) -> None:
     images[...] = 0
     phases[...] = 0
     np.testing.assert_array_equal(output_coordinates(result), saved)
+
+
+@pytest.mark.parametrize("mode", ["warn", "raise"])
+@pytest.mark.parametrize("failure_kind", ["linalg", "nan", "inf", "unrelated", "allocation"])
+def test_V08_numerical_dependency_failure_is_whole_call_and_preserves_inputs(
+    api: Any, monkeypatch: pytest.MonkeyPatch, mode: Literal["warn", "raise"], failure_kind: str
+) -> None:
+    """Inject at NumPy's public SVD/least-squares boundary, not private helpers.
+
+    Both entry points receive the same fault, allowing either legitimate
+    SVD-based route and any call organization. No call count is asserted.
+    """
+    phases = UNEQUAL_PHASES.copy()[::-1]
+    images = synthesize(phases, spatial_coordinates()).transpose(0, 1, 3, 2)
+    phases.flags.writeable = False
+    images.flags.writeable = False
+    # The exact same otherwise-valid inputs succeed before fault injection.
+    assert_stored_fit(api(images, phases_rad=phases), images, phases)
+    before = (array_state(images), array_state(phases))
+    marker = {
+        "linalg": np.linalg.LinAlgError("A03 numerical convergence failure"),
+        "unrelated": RuntimeError("A03 unrelated numerical dependency exception"),
+        "allocation": MemoryError("A03 numerical dependency allocation failure"),
+    }.get(failure_kind)
+
+    def numerical_fault(original: Any) -> Any:
+        def injected(*args: Any, **kwargs: Any) -> Any:
+            warnings.warn("A03 unrelated dependency warning", UserWarning, stacklevel=2)
+            if marker is not None:
+                raise marker
+            # Corrupt returned numerical arrays while retaining documented
+            # return shapes and scalar metadata. This is unusable numerical
+            # evidence, distinct from finite final-coordinate overflow.
+            result = original(*args, **kwargs)
+            value = np.nan if failure_kind == "nan" else np.inf
+
+            def unusable(item: Any) -> Any:
+                return np.full_like(item, value) if isinstance(item, np.ndarray) else item
+
+            if isinstance(result, tuple):
+                return tuple(unusable(item) for item in result)
+            return unusable(result)
+
+        return injected
+
+    with monkeypatch.context() as patch:
+        patch.setattr(np.linalg, "svd", numerical_fault(np.linalg.svd))
+        patch.setattr(np.linalg, "lstsq", numerical_fault(np.linalg.lstsq))
+        with warnings.catch_warnings(record=True) as caught, np.errstate(all=mode):
+            warnings.simplefilter("always")
+            error_mode = np.geterr().copy()
+            warning_filters = list(warnings.filters)
+            if failure_kind in ("unrelated", "allocation"):
+                assert marker is not None
+                with pytest.raises(type(marker)) as failure:
+                    api(images, phases_rad=phases)
+                assert failure.value is marker
+            else:
+                with pytest.raises(simrecon.SimreconError) as numerical_failure:
+                    api(images, phases_rad=phases)
+                assert numerical_failure.value.code == "volume_phase_solver_failure"
+            assert np.geterr() == error_mode
+            assert warnings.filters == warning_filters
+        assert not any(issubclass(w.category, RuntimeWarning) for w in caught)
+        assert any(
+            w.category is UserWarning and str(w.message) == "A03 unrelated dependency warning"
+            for w in caught
+        )
+        assert (array_state(images), array_state(phases)) == before
+    # Removing the dependency fault restores the normal public result.
+    assert_stored_fit(api(images, phases_rad=phases), images, phases)
