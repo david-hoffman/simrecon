@@ -281,3 +281,15 @@ def test_valid_current_wheel_retained_after_wheel_phase_failure(hash_repository,
     assert receipt["problems"]
     assert "controlled hash wheel phase failure" in result.stdout + result.stderr
     assert_artifact(receipt, wheel)
+
+
+@pytest.mark.parametrize("defect", ("digest", "size"))
+def test_one_later_mixed_secure_record_member_cannot_pass(hash_repository, defect):
+    target_index = tuple(MEMBERS).index(TARGET)
+    assert target_index > 0
+    assert SECURE_EXAMPLES[target_index] != SECURE_EXAMPLES[0]
+    result, receipt, _ = run_hash_cli(hash_repository, SECURE_EXAMPLES, defect)
+    assert result.returncode == 1
+    assert receipt["result"] == "failed"
+    assert receipt["problems"]
+    assert receipt["artifact"] is None
