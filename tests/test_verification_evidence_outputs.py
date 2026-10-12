@@ -525,6 +525,15 @@ def invoke(
             "report_anchors": list(observed.report_anchors),
             "native_anchors": list(observed.native_anchors),
             "expected_environment": observed.expected_environment,
+            "wheel_emissions": [
+                {
+                    "phase": call["phase"],
+                    "container_sha256": sha256(base64.b64decode(call["snapshots"][WHEEL])),
+                    **wheel_observation(base64.b64decode(call["snapshots"][WHEEL])),
+                }
+                for call in calls
+                if WHEEL in call["snapshots"]
+            ],
             "retained_logs": {
                 phase: {
                     "path": anchor["path"],
@@ -935,25 +944,70 @@ def assert_wheel(observed: Observation, receipt: dict[str, Any]) -> None:
 def assert_wheel_container(payload: bytes) -> None:
     with zipfile.ZipFile(io.BytesIO(payload)) as archive:
         info = "simrecon-1.2.0.dist-info"
+        names = archive.namelist()
+        assert len(names) == len(set(names)), "ambiguous duplicate archive member"
+        assert [name for name in names if name.endswith(".dist-info/METADATA")] == [
+            f"{info}/METADATA"
+        ], "no sole distribution metadata"
         assert (
             archive.read(f"{info}/METADATA")
             == b"Metadata-Version: 2.1\nName: simrecon\nVersion: 1.2.0\n"
         )
-        assert b"Wheel-Version: 1.0\n" in archive.read(f"{info}/WHEEL")
-        assert b"Tag: py3-none-any\n" in archive.read(f"{info}/WHEEL")
+        wheel_fields = archive.read(f"{info}/WHEEL").decode().splitlines()
+        assert [line for line in wheel_fields if line.startswith("Wheel-Version:")] == [
+            "Wheel-Version: 1.0"
+        ]
+        # This fixture's emitted filename establishes its independent tag set.
+        assert {line for line in wheel_fields if line.startswith("Tag:")} == {"Tag: py3-none-any"}
         rows = list(csv.reader(archive.read(f"{info}/RECORD").decode().splitlines()))
-        assert len(rows) == len(archive.namelist())
-        assert {row[0] for row in rows} == set(archive.namelist())
+        assert len(rows) == len(names)
+        assert {row[0] for row in rows} == set(names)
         for name, fingerprint, size in rows:
             if name == f"{info}/RECORD":
                 assert (fingerprint, size) == ("", "")
             else:
                 data = archive.read(name)
-                digest = (
-                    base64.urlsafe_b64encode(hashlib.sha256(data).digest()).rstrip(b"=").decode()
+                algorithm, separator, encoded = fingerprint.partition("=")
+                assert separator and algorithm and encoded, "malformed member hash"
+                member_hash = hashlib.new(algorithm, data)
+                # Admit supported secure fixed-size member hashes by strength,
+                # not a fixture-only algorithm whitelist. MD5/SHA1 and their
+                # concatenation remain weak regardless of digest byte length.
+                assert member_hash.name not in {"md5", "sha1", "md5-sha1"}, "weak member hash"
+                assert member_hash.digest_size >= hashlib.sha256().digest_size, (
+                    "member hash below SHA256 strength"
                 )
-                assert fingerprint == "sha256=" + digest
+                digest = base64.urlsafe_b64encode(member_hash.digest()).rstrip(b"=").decode()
+                assert encoded == digest, "member digest does not describe actual bytes"
                 assert int(size) == len(data)
+
+
+def wheel_observation(payload: bytes) -> dict[str, Any]:
+    """Export actual pre-persistence archive observation without member source bytes."""
+    operation = "zipfile.ZipFile/read;csv.reader"
+    try:
+        with zipfile.ZipFile(io.BytesIO(payload)) as archive:
+            members = [
+                {
+                    "name": item.filename,
+                    "sha256": sha256(archive.read(item)),
+                    "size_bytes": len(archive.read(item)),
+                }
+                for item in archive.infolist()
+            ]
+            records = {
+                item.filename: list(csv.reader(archive.read(item).decode().splitlines()))
+                for item in archive.infolist()
+                if item.filename.endswith(".dist-info/RECORD")
+            }
+    except (zipfile.BadZipFile, ValueError, UnicodeError) as error:
+        return {
+            "operation": operation,
+            "available": False,
+            "error_category": type(error).__name__,
+            "message": str(error),
+        }
+    return {"operation": operation, "available": True, "members": members, "records": records}
 
 
 def unavailable_current_log(observed: Observation, call: dict[str, Any], name: str) -> bool:
@@ -2019,4 +2073,204 @@ def test_p07_partial_json_status29_retains_current_report_without_html(
     assert_outcome(observed)
     if not receipt_available:
         observed.receipt = None
+    assert_outcome(observed)
+
+
+@pytest.fixture(params=["wheel", "audit"])
+def current_stronger_wheel_failure(
+    evidence_repository: Repository, request: pytest.FixtureRequest
+) -> Observation:
+    observed = invoke(evidence_repository, receipt_mode="sha512-wheel", failure_phase=request.param)
+    assert observed.status == 37
+    assert phase_calls(observed)[-1]["phase"] == request.param
+    assert WHEEL in valid_emitted_reports(observed)
+    wheel = wheel_observation(generated_bytes(observed)[WHEEL])
+    assert wheel["available"] is True
+    assert {
+        row[1].split("=")[0] for rows in wheel["records"].values() for row in rows if row[1]
+    } == {"sha512"}
+    assert_outcome(observed)
+    return observed
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+def test_local_stronger_wheel_observer_allows_failed_current_diagnostics(
+    current_stronger_wheel_failure: Observation, receipt_available: bool
+) -> None:
+    observed = copy.deepcopy(current_stronger_wheel_failure)
+    assert observed.receipt is not None
+    assert_wheel(observed, observed.receipt)
+    # The outer transport identity is still actual archive SHA256, independent
+    # of stronger RECORD member hashes. No receipt creates no new diagnostic.
+    assert observed.receipt["artifact"]["sha256"] == sha256(generated_bytes(observed)[WHEEL])
+    if not receipt_available:
+        observed.receipt = None
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted"])
+def test_local_stronger_wheel_observer_rejects_lost_valid_current_evidence(
+    current_stronger_wheel_failure: Observation, receipt_available: bool, defect: str
+) -> None:
+    observed = copy.deepcopy(current_stronger_wheel_failure)
+    assert observed.receipt is not None
+    if defect == "replaced":
+        observed.files[WHEEL] = b"replaced current stronger-hash archive"
+    elif defect == "omitted" and receipt_available:
+        observed.receipt["artifact"] = None
+    else:
+        # Receipt absence cannot excuse losing actual valid emitted wheel bytes.
+        del observed.files[WHEEL]
+    if not receipt_available:
+        observed.receipt = None
+    with pytest.raises((AssertionError, KeyError)):
+        assert_outcome(observed)
+
+
+def test_p08_stronger_record_hash_keeps_success_evidence(evidence_repository: Repository) -> None:
+    observed = invoke(evidence_repository, receipt_mode="sha512-wheel")
+    assert observed.status == 0
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+def test_p07_wheel_build_status31_keeps_valid_current_artifact(
+    evidence_repository: Repository, receipt_available: bool
+) -> None:
+    observed = invoke(evidence_repository, receipt_mode="wheel-build-failure")
+    assert observed.status == 31
+    assert phase_calls(observed)[-1]["phase"] == "wheel"
+    assert WHEEL in valid_emitted_reports(observed)
+    assert_outcome(observed)
+    if not receipt_available:
+        observed.receipt = None
+    assert_outcome(observed)
+
+
+def record_fixture_wheel(payload: bytes, algorithm: str, defect: str = "") -> bytes:
+    """Standalone archive-input control; never a verifier persistence decision.
+
+    Rebuild the actual public fixture's archive using standard ZIP/CSV/hash
+    primitives. Authentic fixture/control bytes prove bounded validity only,
+    not production build provenance or actual isolated import/installability.
+    """
+    info = "simrecon-1.2.0.dist-info"
+    record = f"{info}/RECORD"
+    with zipfile.ZipFile(io.BytesIO(payload)) as archive:
+        members = {name: archive.read(name) for name in archive.namelist() if name != record}
+    if defect == "missing-metadata":
+        del members[f"{info}/METADATA"]
+    elif defect == "multiple-metadata":
+        members["simrecon_extra-1.2.0.dist-info/METADATA"] = members[f"{info}/METADATA"]
+    elif defect == "invalid-wheel-format":
+        members[f"{info}/WHEEL"] = members[f"{info}/WHEEL"].replace(b"1.0", b"invalid")
+    elif defect == "mismatched-tag":
+        members[f"{info}/WHEEL"] += b"Tag: py3-none-other\n"
+    rows = []
+    for name, data in members.items():
+        encoded = base64.urlsafe_b64encode(hashlib.new(algorithm, data).digest()).rstrip(b"=")
+        fingerprint = algorithm + "=" + encoded.decode()
+        if defect == "digest":
+            fingerprint = algorithm + "=" + "A" * len(encoded)
+        elif defect == "unknown-algorithm":
+            fingerprint = "unknown-member-hash=" + encoded.decode()
+        elif defect == "malformed-hash":
+            fingerprint = encoded.decode()
+        if defect != "missing-member" or name != "simrecon/__init__.py":
+            rows.append([name, fingerprint, str(len(data) + (1 if defect == "size" else 0))])
+    if defect == "duplicate-record":
+        rows.append(rows[0])
+    rows.append([record, "sha512=AAAA" if defect == "hashed-self" else "", ""])
+    text = io.StringIO()
+    csv.writer(text, lineterminator="\n").writerows(rows)
+    result = io.BytesIO()
+    with zipfile.ZipFile(result, "w") as archive:
+        for name, data in members.items():
+            archive.writestr(name, data)
+        if defect == "duplicate-member":
+            archive.writestr("simrecon/__init__.py", members["simrecon/__init__.py"])
+        archive.writestr(record, text.getvalue())
+    return result.getvalue()
+
+
+@pytest.mark.parametrize(
+    "algorithm", ["sha256", "sha384", "sha512", "sha3_256", "sha3_512", "blake2b", "blake2s"]
+)
+def test_local_wheel_observer_accepts_secure_record_algorithms(
+    observed_success: Observation, algorithm: str
+) -> None:
+    payload = record_fixture_wheel(generated_bytes(observed_success)[WHEEL], algorithm)
+    assert_wheel_container(payload)
+    with zipfile.ZipFile(io.BytesIO(payload)) as archive:
+        rows = list(
+            csv.reader(archive.read("simrecon-1.2.0.dist-info/RECORD").decode().splitlines())
+        )
+        assert {row[1].split("=")[0] for row in rows if row[1]} == {algorithm}
+
+
+@pytest.mark.parametrize(
+    "defect",
+    [
+        "digest",
+        "size",
+        "weak-sha1",
+        "weak-md5",
+        "below-sha256",
+        "unknown-algorithm",
+        "malformed-hash",
+        "missing-member",
+        "duplicate-record",
+        "hashed-self",
+        "duplicate-member",
+        "missing-metadata",
+        "multiple-metadata",
+        "invalid-wheel-format",
+        "mismatched-tag",
+    ],
+)
+def test_local_wheel_observer_rejects_invalid_record_and_archive_evidence(
+    observed_success: Observation, defect: str
+) -> None:
+    algorithm = {"weak-sha1": "sha1", "weak-md5": "md5", "below-sha256": "sha224"}.get(
+        defect, "sha512"
+    )
+    if defect == "duplicate-member":
+        with pytest.warns(UserWarning):
+            payload = record_fixture_wheel(
+                generated_bytes(observed_success)[WHEEL], algorithm, defect
+            )
+    else:
+        payload = record_fixture_wheel(generated_bytes(observed_success)[WHEEL], algorithm, defect)
+    with pytest.raises((AssertionError, ValueError, KeyError)):
+        assert_wheel_container(payload)
+    observed = copy.deepcopy(observed_success)
+    wheel = next(call for call in phase_calls(observed) if call["phase"] == "wheel")
+    wheel["snapshots"][WHEEL] = base64.b64encode(payload).decode()
+    assert WHEEL not in valid_emitted_reports(observed)
+
+
+@pytest.mark.parametrize(
+    "mode",
+    [
+        "weak-wheel-hash",
+        "record-hash-mismatch",
+        "record-size-mismatch",
+        "incomplete-record",
+        "invalid-record-self",
+        "duplicate-member",
+        "multiple-metadata",
+    ],
+)
+def test_p07_invalid_wheel_profiles_keep_honest_unavailable_diagnostics(
+    evidence_repository: Repository, mode: str
+) -> None:
+    observed = invoke(evidence_repository, receipt_mode=mode)
+    assert observed.status == 1
+    assert observed.receipt is not None and observed.receipt["artifact"] is None
+    assert WHEEL not in valid_emitted_reports(observed)
+    assert_outcome(observed)
+    observed.files.pop(WHEEL)
+    assert_outcome(observed)
+    observed.receipt = None
     assert_outcome(observed)
