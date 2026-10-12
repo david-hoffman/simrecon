@@ -134,6 +134,25 @@ def protect_evidence(paths: list[Path], protected: list[Path]) -> None:
             protected.extend((path.absolute(), path.resolve()))
 
 
+def evidence_files(root: Path) -> dict[Path, tuple[int, int, int, int, int]]:
+    """Observe file writes without reading payloads or assuming native output names."""
+    files = {}
+    for directory, _, names in os.walk(root):
+        for name in names:
+            path = Path(directory) / name
+            with suppress(FileNotFoundError):
+                metadata = path.stat()
+                if stat.S_ISREG(metadata.st_mode):
+                    files[path] = (
+                        metadata.st_dev,
+                        metadata.st_ino,
+                        metadata.st_size,
+                        metadata.st_mtime_ns,
+                        metadata.st_ctime_ns,
+                    )
+    return files
+
+
 def collect_final_identity(receipt: dict[str, Any], inputs: dict[str, Path]) -> None:
     """Record actual candidate/input identities independently of output availability."""
     problems = []
@@ -497,6 +516,11 @@ def main() -> int:
                 clear_measurements([*protected, *evidence_protected])
             command = [args.make, "--no-print-directory", phase, "UV=" + args.uv]
             started = now()
+            evidence_root = {
+                "coverage-combine": Path("."),
+                "coverage-html": Path("artifacts/coverage/html"),
+            }.get(phase)
+            emitted_before = evidence_files(evidence_root) if evidence_root is not None else {}
             status, output = capture(command, phase_environment)
             if status:
                 exitcode = status
@@ -511,6 +535,15 @@ def main() -> int:
                     "log": log.as_posix(),
                 }
             )
+            if evidence_root is not None:
+                protect_evidence(
+                    [
+                        path
+                        for path, metadata in evidence_files(evidence_root).items()
+                        if emitted_before.get(path) != metadata
+                    ],
+                    evidence_protected,
+                )
             report = {
                 "coverage-json": Path("artifacts/coverage/coverage.json"),
                 "coverage-html": Path("artifacts/coverage/html/index.html"),
