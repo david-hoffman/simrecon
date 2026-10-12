@@ -9,6 +9,7 @@ import hashlib
 import io
 import json
 import os
+import platform
 import shutil
 import subprocess
 import sys
@@ -64,6 +65,7 @@ import io
 import json
 import os
 import sys
+from importlib.metadata import version
 from pathlib import Path
 from measurements_fixture_commands import main
 from verification_fixture_tools import PHASES
@@ -73,7 +75,14 @@ args = sys.argv[1:]
 phase = next((arg for arg in args if arg in PHASES), None)
 stdout, stderr = io.StringIO(), io.StringIO()
 with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
-    status = main()
+    queried_tool = next((name for name in ('ruff', 'pyright', 'coverage', 'pytest')
+                         if name in args), None)
+    if Path(sys.argv[0]).name == 'uv' and queried_tool and args[-1:] == ['--version']:
+        # Truthful controlled metadata, from this executable's actual environment.
+        print(f'{queried_tool} {version(queried_tool)}')
+        status = 0
+    else:
+        status = main()
     native = os.environ.get('EVIDENCE_NATIVE') == '1'
     if native and phase in ('tests', 'coverage-combine', 'coverage-json', 'coverage-html'):
         # Genuine public native APIs over independently declared synthetic arcs.
@@ -152,7 +161,7 @@ if phase in generated:
         snapshots[name] = base64.b64encode(payload).decode('ascii')
 action = json.loads(os.environ.get('EVIDENCE_ACTION', '{}'))
 action_observation = None
-if phase == action.get('phase'):
+if phase is not None and phase == action.get('phase'):
     if action.get('selector'):
         lines = (root / 'native-emissions.jsonl').read_text().splitlines()
         events = [json.loads(line) for line in lines]
@@ -169,14 +178,18 @@ if phase == action.get('phase'):
     if applied:
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.unlink(missing_ok=True)
-        if action['kind'] == 'symlink':
+        if action['kind'] == 'directory-alias':
+            destination.symlink_to(target.parent, target_is_directory=True)
+        elif action['kind'] == 'symlink':
             destination.symlink_to(target)
         else:
             destination.hardlink_to(target)
     after = hashlib.sha256(target.read_bytes()).hexdigest() if target.is_file() else None
     action_observation = {
         **action, 'applied': applied, 'before': before, 'after': after,
-        'shares_inode': destination.samefile(target) if applied and target.is_file() else None,
+        'shares_inode': ((destination / target.name if action['kind'] == 'directory-alias'
+                          else destination).samefile(target)
+                         if applied and target.is_file() else None),
     }
 if phase == 'audit' and os.environ.get('EVIDENCE_AUDIT_FAILURE') == '1':
     status = 37
@@ -351,6 +364,15 @@ def invoke(
             candidate = None
         if isinstance(candidate, dict) and candidate.get("schema") == "org.simrecon.verification":
             receipt = candidate
+    if receipt is not None:
+        # Path.rglob does not traverse directory symlinks. Observe the actual
+        # reported current log paths, including ignored external aliases;
+        # never infer log membership from a directory/layout example.
+        for item in receipt["phases"]:
+            name = item["log"]
+            path = root / name
+            if path.is_file():
+                files[name] = path.read_bytes()
     observed = Observation(
         command,
         result.returncode,
@@ -451,6 +473,17 @@ def invoke(
                 for event in emissions
             ],
             "receipt": receipt,
+            "native_database_reported_log_phases": [
+                item["name"]
+                for item in receipt["phases"]
+                if any(
+                    event["database"]
+                    and (root / item["log"]).resolve() == (root / event["database"]).resolve()
+                    for event in emissions
+                )
+            ]
+            if receipt
+            else None,
             "files": {
                 name: {"sha256": sha256(payload), "size_bytes": len(payload)}
                 for name, payload in files.items()
@@ -721,9 +754,9 @@ def assert_outcome(observed: Observation) -> None:
     # A genuine late command failure does not authorize own persistence to
     # destroy the complete native evidence already emitted by this invocation.
     # Honest early rejection can have no HTML emission and needs no such proof.
-    if observed.native_emissions and observed.native_emissions[-1]["phase"] == "coverage-html":
-        assert_native_evidence(observed)
     if receipt is None:
+        if observed.native_emissions and observed.native_emissions[-1]["phase"] == "coverage-html":
+            assert_native_evidence(observed)
         return
     assert (
         receipt["schema"] == "org.simrecon.verification"
@@ -736,6 +769,32 @@ def assert_outcome(observed: Observation) -> None:
         "integration_base": None,
     }
     assert receipt["inputs"] == {}
+    environment = receipt["environment"]
+    assert environment["platform"] == platform.platform()
+    assert Path(environment["python"]["executable"]).resolve() == Path(sys.executable).resolve()
+    assert sys.version.split()[0] in environment["python"]["version"]
+    for name in ("make", "uv"):
+        assert environment[name]["executable"] == observed.bin_dir + "/" + name
+        assert environment[name]["version"] == "fixture tool 1.0"
+        assert any(
+            call["argv"] == [observed.bin_dir + "/" + name, "--version"]
+            and call["status"] == 0
+            and call["stdout"].strip() == environment[name]["version"]
+            for call in observed.calls
+        ), "tool metadata lacks genuine command provenance"
+    assert environment["git"]["executable"] and environment["git"]["version"]
+    assert set(environment["tools"]) == {"ruff", "pyright", "coverage", "pytest"}
+    for name, value in environment["tools"].items():
+        if value is not None:
+            assert any(
+                name in call["argv"]
+                and call["argv"][-1] == "--version"
+                and call["status"] == 0
+                and call["stdout"].strip() == value
+                for call in observed.calls
+            ), "check-tool version lacks genuine command provenance"
+        elif observed.status == 0:
+            pytest.fail("available controlled check-tool version missing")
     assert receipt["before"] == receipt["after"] == observed.identity
     begin, end = (datetime.fromisoformat(receipt[key]) for key in ("started_at", "finished_at"))
     for stamp in (begin, end):
@@ -775,6 +834,8 @@ def assert_outcome(observed: Observation) -> None:
         assert receipt["measurements"] is not None
         assert_coverage(observed, receipt)
         assert receipt["artifact"] is not None
+    elif observed.native_emissions and observed.native_emissions[-1]["phase"] == "coverage-html":
+        assert_native_evidence(observed)
 
 
 @pytest.mark.parametrize("destination", [*REPORTS, *LOG_EXAMPLES])
@@ -1171,4 +1232,127 @@ def test_local_native_failure_observer_rejects_replaced_current_evidence(
     )
     observed.files[target] = b"own persistence replaced current native evidence on failure"
     with pytest.raises(AssertionError):
+        assert_outcome(observed)
+
+
+def prepare_native_directory(repository: Repository, name: str, alias: bool) -> None:
+    """Ignored public layout; external storage belongs only to this disposable fixture."""
+    directory = repository.root / name
+    directory.parent.mkdir(parents=True, exist_ok=True)
+    if alias:
+        external = repository.root.parent / "owned-native-storage"
+        external.mkdir()
+        directory.symlink_to(external, target_is_directory=True)
+        assert directory.resolve() == external.resolve()
+    else:
+        directory.mkdir()
+    assert git(repository.root, "check-ignore", name) == name
+
+
+@pytest.mark.parametrize("alias", [False, True], ids=["ordinary", "directory-alias"])
+@pytest.mark.parametrize("collision", [False, True], ids=["neighbor", "collision"])
+def test_p11_directory_receipt_preserves_current_native_evidence(
+    evidence_repository: Repository, alias: bool, collision: bool
+) -> None:
+    directory = "artifacts/native-output"
+    prepare_native_directory(evidence_repository, directory, alias)
+    data_file = directory + "/current.data"
+    destination = data_file if collision else directory + "/receipt.json"
+    observed = invoke(evidence_repository, destination, native=True, data_file=data_file)
+    if not collision:
+        assert observed.status == 0, observed.stdout + observed.stderr
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("alias", [False, True], ids=["ordinary", "directory-alias"])
+@pytest.mark.parametrize("leaf", ["audit.log", "unused-native.data"])
+def test_p11_directory_log_example_preserves_current_native_evidence(
+    evidence_repository: Repository, alias: bool, leaf: str
+) -> None:
+    # The leaf is only a layout example. assert_outcome binds actually reported
+    # current log output, and independently preserves the actual emitted DB.
+    # A different log layout can pass; no leaf recurrence or alias ban follows.
+    directory = "artifacts/verification/logs"
+    prepare_native_directory(evidence_repository, directory, alias)
+    observed = invoke(evidence_repository, native=True, data_file=directory + "/" + leaf)
+    if leaf == "unused-native.data":
+        assert observed.status == 0, observed.stdout + observed.stderr
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("entry", ["receipt", "current-log-example"])
+def test_p07_directory_alias_keeps_native_evidence_and_actual_failure(
+    evidence_repository: Repository, entry: str
+) -> None:
+    directory = "artifacts/native-output" if entry == "receipt" else "artifacts/verification/logs"
+    prepare_native_directory(evidence_repository, directory, True)
+    data_file = directory + ("/current.data" if entry == "receipt" else "/audit.log")
+    destination = data_file if entry == "receipt" else DEFAULT_RECEIPT
+    observed = invoke(
+        evidence_repository, destination, native=True, data_file=data_file, audit_failure=True
+    )
+    # Honest early rejection may precede audit. If audit ran, the common oracle
+    # requires its genuine status 37, no continuation and all retained evidence.
+    assert_outcome(observed)
+
+
+def test_p04_p11_phase_created_directory_receipt_alias(
+    evidence_repository: Repository,
+) -> None:
+    prepare_native_directory(evidence_repository, "artifacts/native-output", True)
+    action = {
+        "phase": "audit",
+        "destination": "artifacts/new-alias",
+        "selector": "database",
+        "kind": "directory-alias",
+    }
+    observed = invoke(
+        evidence_repository,
+        "artifacts/new-alias/current.data",
+        action=action,
+        native=True,
+        data_file="artifacts/native-output/current.data",
+    )
+    assert_outcome(observed)
+
+
+def test_p10_finite_cyclic_receipt_alias_rejects_honestly(
+    evidence_repository: Repository,
+) -> None:
+    root = evidence_repository.root
+    (root / "artifacts").mkdir(exist_ok=True)
+    (root / "artifacts/cycle-a").symlink_to("cycle-b", target_is_directory=True)
+    (root / "artifacts/cycle-b").symlink_to("cycle-a", target_is_directory=True)
+    observed = invoke(evidence_repository, "artifacts/cycle-a/receipt.json", native=True)
+    assert observed.status == 1
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("order", ["stdout-first", "stderr-first"])
+def test_local_log_observer_allows_both_stream_orders(
+    observed_success: Observation, order: str
+) -> None:
+    observed = copy.deepcopy(observed_success)
+    assert observed.receipt is not None
+    for item, call in zip(observed.receipt["phases"], phase_calls(observed), strict=True):
+        streams = [call["stdout"], call["stderr"]]
+        if order == "stderr-first":
+            streams.reverse()
+        observed.files[item["log"]] = "".join(streams).encode()
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("defect", ["version-missing", "version-invented", "unemitted-version"])
+def test_local_metadata_observer_rejects_untruthful_versions(
+    observed_success: Observation, defect: str
+) -> None:
+    observed = copy.deepcopy(observed_success)
+    assert observed.receipt is not None
+    if defect == "version-missing":
+        observed.receipt["environment"]["tools"]["coverage"] = None
+    elif defect == "version-invented":
+        observed.receipt["environment"]["tools"]["coverage"] = "invented coverage version"
+    else:
+        observed.calls = [call for call in observed.calls if "coverage" not in call["argv"]]
+    with pytest.raises((AssertionError, pytest.fail.Exception)):
         assert_outcome(observed)
