@@ -12,9 +12,11 @@ description: Apply the test-value questions when authoring or reviewing tests; r
 Before adding or changing a test, name:
 
 1. The approved observable behavior, invariant or independent contract it protects.
-2. A credible wrong outcome it distinguishes, with an expectation independent of product output.
+2. A credible wrong outcome it distinguishes, with an expected relation or value independently specified by the approved contract, reference or invariant.
 3. The strongest existing proof at the owning boundary and the distinct gap this test fills. Extend that proof when it can cover the gap; another layer needs a risk it uniquely reaches.
 4. Whether it demands a production export, flag, wrapper or injection seam no real caller needs. Exercise a production or real-caller boundary instead; external public library callers count.
+
+An independently specified relation or conditional rule may use genuinely returned fields as observations, such as applying an approved selection policy to returned diagnostics. That proof establishes the relation, not the numerical accuracy of those fields. Supplemental public-API compatibility checks are valid within their stated proof limits. Numerical-accuracy claims require independent expected truth; do not derive that truth from product output or let mocks supply the production decision being checked.
 
 A missing answer calls for diagnosis or intake, not invented behavior. A/B answer from permitted public sources and tests only. They do not inspect implementation to establish callers or discover production seams. An uncertain production relationship goes to a nonblind audit lane or D.
 
