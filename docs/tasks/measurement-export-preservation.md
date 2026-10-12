@@ -1,0 +1,5 @@
+# Measurement export preservation correction
+
+The requested ASD final swarm confirmed a hard-link preservation defect in the actual same-run M25 test-support exporter. The [contract](../contracts/measurement-writer-preservation-v1.md) records the existing E2 writer boundary and high-risk supplemental A/B ownership. This isolated slice starts from exact scientific candidate e28b84fbde51c1df30baf4e240a255dc1c2e2901. It changes no scientific runtime/M25 assertion or gate. Prior scientific, verifier, raw, CI and ASD charges remain referenced in the predecessor ledger, not reset or duplicated.
+
+The sole Current state and cumulative evidence live in ignored artifacts/measurement-export-preservation-20261012/CURRENT.md and accounting.json. Exact final hashes/verdicts/results remain outside tracked bytes. Complete this correction, integrate it into the scientific candidate, renew exact verification/fresh swarm/D/platform proof, then continue the already drafted roadmap. No Superpowers, reference execution, private upload, merge or release; human numeric limits not set.
