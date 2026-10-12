@@ -17,6 +17,7 @@ import tempfile
 import zipfile
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from importlib.metadata import version
 from pathlib import Path
 from typing import Any
 from uuid import UUID, uuid4
@@ -83,6 +84,8 @@ with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
         status = 0
     else:
         status = main()
+    if phase == os.environ.get('EVIDENCE_FAILURE_PHASE'):
+        status = 37
     native = os.environ.get('EVIDENCE_NATIVE') == '1'
     if native and phase in ('tests', 'coverage-combine', 'coverage-json', 'coverage-html'):
         # Genuine public native APIs over independently declared synthetic arcs.
@@ -199,6 +202,9 @@ observation = {
     'measurement_path': os.environ.get('SIMRECON_MEASUREMENTS_PATH'),
     'run_id': os.environ.get('SIMRECON_MEASUREMENTS_RUN_ID'),
     'snapshots': snapshots, 'action': action_observation,
+    'wheel_members': {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
+                      for path in (root / 'dist').glob('*.whl')}
+                     if phase == 'wheel' else {},
 }
 with (root / 'evidence-calls.jsonl').open('a') as stream:
     stream.write(json.dumps(observation) + '\n')
@@ -227,6 +233,8 @@ class Observation:
     action: dict[str, Any]
     native_emissions: list[dict[str, Any]]
     native_anchors: tuple[str, ...]
+    report_anchors: tuple[str, ...]
+    expected_environment: dict[str, Any]
 
 
 def prepare_evidence_repository(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Repository:
@@ -281,6 +289,8 @@ def invoke(
     native: bool = False,
     data_file: str = ".coverage",
     audit_failure: bool = False,
+    failure_phase: str | None = None,
+    receipt_mode: str = "complete",
 ) -> Observation:
     root, bin_dir = repository.root, repository.bin_dir
     before = identity(repository)
@@ -300,13 +310,14 @@ def invoke(
                 "measurements": {"M25": M25},
             }
         ),
-        RECEIPT_FIXTURE_MODE="complete",
+        RECEIPT_FIXTURE_MODE=receipt_mode,
         EVIDENCE_TOKEN=token,
         EVIDENCE_ACTION=json.dumps(action or {}),
         EVIDENCE_NATIVE=str(int(native)),
         EVIDENCE_ARCS=json.dumps(NATIVE_ARCS),
         EVIDENCE_DATA_FILE=data_file,
         EVIDENCE_AUDIT_FAILURE=str(int(audit_failure)),
+        EVIDENCE_FAILURE_PHASE=failure_phase or "",
     )
     command = [
         str(ROOT / ".venv/bin/python"),
@@ -389,6 +400,17 @@ def invoke(
         action or {},
         emissions,
         tuple(sha256(json.dumps(event, sort_keys=True).encode()) for event in emissions),
+        report_anchors(calls),
+        {
+            "platform": platform.platform(),
+            "python_executable": str(Path(sys.executable).resolve()),
+            "python_version": sys.version.split()[0],
+            "make_version": "fixture tool 1.0",
+            "uv_version": "fixture tool 1.0",
+            "git_executable": str(Path(shutil.which("git", path=env["PATH"]) or "").resolve()),
+            "git_version": git(root, "--version"),
+            "tools": {name: version(name) for name in ("ruff", "pyright", "coverage", "pytest")},
+        },
     )
     evidence = os.environ.get("A04_EVIDENCE")
     if evidence:
@@ -437,7 +459,12 @@ def invoke(
             "receipt_path": receipt_path,
             "mode": mode,
             "native": native,
+            "failure_phase": failure_phase,
+            "receipt_mode": receipt_mode,
             "token": token,
+            "report_anchors": list(observed.report_anchors),
+            "native_anchors": list(observed.native_anchors),
+            "expected_environment": observed.expected_environment,
             "action_requested": action,
             "calls": [
                 {
@@ -501,12 +528,104 @@ def phase_calls(observed: Observation) -> list[dict[str, Any]]:
     return [call for call in observed.calls if call["phase"] is not None]
 
 
+def report_anchors(calls: list[dict[str, Any]]) -> tuple[str, ...]:
+    """Anchor actual pre-persistence snapshots independently of receipt inclusion."""
+    return tuple(
+        sha256(
+            json.dumps(
+                {
+                    "phase": call["phase"],
+                    "run_id": call["run_id"],
+                    "snapshots": call["snapshots"],
+                    "wheel_members": call["wheel_members"],
+                },
+                sort_keys=True,
+            ).encode()
+        )
+        for call in calls
+        if call["phase"] is not None and call["snapshots"]
+    )
+
+
 def generated_bytes(observed: Observation) -> dict[str, bytes]:
     return {
         name: base64.b64decode(encoded)
         for call in phase_calls(observed)
         for name, encoded in call["snapshots"].items()
     }
+
+
+def expected_measurement(observed: Observation) -> dict[str, Any] | None:
+    tests = [call for call in phase_calls(observed) if call["phase"] == "tests"]
+    if not tests or MEASUREMENT not in generated_bytes(observed):
+        return None
+    assert len(tests) == 1, "no single tests-phase measurement provenance"
+    run_id = tests[0]["run_id"]
+    assert str(UUID(run_id)) == run_id
+    expected = {
+        "schema": "org.simrecon.measurements",
+        "version": 1,
+        "run_id": run_id,
+        "measurements": {"M25": M25},
+    }
+    try:
+        actual = json.loads(generated_bytes(observed)[MEASUREMENT], object_pairs_hook=unique_keys)
+    except (ValueError, UnicodeError):
+        return None
+    if actual != expected or type(actual["version"]) is not int:
+        return None
+    return expected
+
+
+def unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate evidence key")
+        result[key] = value
+    return result
+
+
+def valid_emitted_reports(observed: Observation) -> dict[str, bytes]:
+    """Independent fixture validity; invalid/unavailable emission is no diagnostic."""
+    valid = {}
+    for name, payload in generated_bytes(observed).items():
+        try:
+            if name == MEASUREMENT:
+                assert expected_measurement(observed) is not None
+            elif name == COVERAGE_JSON:
+                coverage_expectation(observed, payload)
+            elif name == COVERAGE_HTML:
+                if observed.native_emissions:
+                    html = observed.native_emissions[-1]
+                    assert html["phase"] == "coverage-html"
+                    assert payload == base64.b64decode(html["members"][name])
+                    assert observed.token.encode() in payload
+                else:
+                    assert payload == b"<html>controlled coverage</html>"
+            elif name == WHEEL:
+                assert_wheel_container(payload)
+            else:
+                raise AssertionError("unrecognized fixture emission")
+        except (AssertionError, ValueError, KeyError, TypeError, UnicodeError, zipfile.BadZipFile):
+            continue
+        valid[name] = payload
+    return valid
+
+
+def assert_emitted_reports(observed: Observation) -> None:
+    """Own writes preserve actual valid current emission, even without a receipt.
+
+    Synthetic fixture snapshots prove preservation, not production measurement.
+    Invalid M25 emission is unavailable diagnostic evidence, never valid success.
+    """
+    assert report_anchors(observed.calls) == observed.report_anchors, (
+        "report emission anchor changed"
+    )
+    for name, payload in valid_emitted_reports(observed).items():
+        assert observed.files.get(name) == payload, (
+            f"current emitted evidence lost/replaced: {name}"
+        )
 
 
 def assert_measurement(observed: Observation, receipt: dict[str, Any]) -> None:
@@ -518,12 +637,8 @@ def assert_measurement(observed: Observation, receipt: dict[str, Any]) -> None:
     assert len(tests) == 1, "no single tests-phase measurement provenance"
     run_id = tests[0]["run_id"]
     assert str(UUID(run_id)) == run_id
-    expected = {
-        "schema": "org.simrecon.measurements",
-        "version": 1,
-        "run_id": run_id,
-        "measurements": {"M25": M25},
-    }
+    expected = expected_measurement(observed)
+    assert expected is not None, "no valid current emitted measurements"
     assert actual == expected, "emitted measurement schema/payload changed"
     assert actual["version"] is not True
     assert value == {**expected, "path": MEASUREMENT, "sha256": sha256(payload)}, (
@@ -535,13 +650,8 @@ def assert_measurement(observed: Observation, receipt: dict[str, Any]) -> None:
     )
 
 
-def assert_coverage(observed: Observation, receipt: dict[str, Any]) -> None:
-    coverage = receipt["coverage"]
-    assert coverage["reports"] == {"json": COVERAGE_JSON, "html": COVERAGE_HTML}
-    generated = generated_bytes(observed)
-    for name in (COVERAGE_JSON, COVERAGE_HTML):
-        assert observed.files[name] == generated[name], f"emitted {name} was replaced"
-    native = json.loads(observed.files[COVERAGE_JSON])
+def coverage_expectation(observed: Observation, payload: bytes) -> dict[str, Any]:
+    native = json.loads(payload, object_pairs_hook=unique_keys)
     assert native["meta"]["branch_coverage"] is True
     expected_files = {}
     for name, lines, branches in (
@@ -571,6 +681,18 @@ def assert_coverage(observed: Observation, receipt: dict[str, Any]) -> None:
             "branches": {"covered": branches, "total": branches},
         }
     assert set(native["files"]) == set(expected_files)
+    return expected_files
+
+
+def assert_coverage(observed: Observation, receipt: dict[str, Any]) -> None:
+    coverage = receipt["coverage"]
+    assert coverage["reports"] == {"json": COVERAGE_JSON, "html": COVERAGE_HTML}
+    generated = generated_bytes(observed)
+    assert COVERAGE_JSON in generated, "no current coverage JSON emission"
+    for name in (COVERAGE_JSON, COVERAGE_HTML):
+        if name in generated:
+            assert observed.files[name] == generated[name], f"emitted {name} was replaced"
+    expected_files = coverage_expectation(observed, observed.files[COVERAGE_JSON])
     assert coverage["files"] == expected_files
     assert coverage["global"] == {
         "statements": {"covered": 5, "total": 5},
@@ -583,9 +705,7 @@ def assert_coverage(observed: Observation, receipt: dict[str, Any]) -> None:
             "branches": {"covered": 2, "total": 2},
         },
     }
-    if observed.native_emissions:
-        assert_native_evidence(observed)
-    else:
+    if not observed.native_emissions and COVERAGE_HTML in generated:
         assert observed.files[COVERAGE_HTML] == b"<html>controlled coverage</html>"
 
 
@@ -615,30 +735,41 @@ def assert_native_evidence(observed: Observation) -> None:
     assert tuple(sha256(json.dumps(event, sort_keys=True).encode()) for event in events) == (
         observed.native_anchors
     ), "native emission anchor changed"
-    assert [event["phase"] for event in events] == [
+    expected_phases = [
         "tests",
         "coverage-combine",
         "coverage-json",
         "coverage-html",
-    ], "incomplete native generation"
+    ]
+    assert events and [event["phase"] for event in events] == expected_phases[: len(events)], (
+        "incomplete native generation"
+    )
     calls = {call["phase"]: call for call in phase_calls(observed)}
+    assert [event["phase"] for event in events] == [
+        call["phase"] for call in phase_calls(observed) if call["phase"] in expected_phases
+    ], "actual native phase emission omitted"
     for event in events:
         assert event["token"] == observed.token, "stale native generation"
-        assert event["status"] == calls[event["phase"]]["status"] == 0
-    assert [event["operation"] for event in events] == [
+        assert event["status"] == calls[event["phase"]]["status"]
+    expected_operations = [
         "CoverageData.add_arcs/write",
         "Coverage.combine/save",
         "Coverage.json_report",
         "Coverage.html_report",
     ]
-    shard, combined, _, html = events
+    assert [event["operation"] for event in events] == expected_operations[: len(events)]
+    if len(events) == 1:
+        # A tests-phase shard is an input, not a claimed retained current DB.
+        return
+    shard, combined = events[:2]
     assert shard["shards"] and set(shard["shards"]) == set(combined["shards"])
     for name, before in shard["shards"].items():
         assert before["exists"] is True
         assert combined["shards"][name] == {"sha256": before["sha256"], "exists": False}
-    database = html["database"]
+    current = events[-1]
+    database = current["database"]
     assert database and all(event["database"] == database for event in events[1:])
-    expected = base64.b64decode(html["database_payload"])
+    expected = base64.b64decode(current["database_payload"])
     assert_native_container(expected, NATIVE_ARCS)
     final = observed.files.get(database)
     assert final is not None and sha256(final) == sha256(expected), (
@@ -646,6 +777,9 @@ def assert_native_evidence(observed: Observation) -> None:
     )
     assert final == expected, "complete native container changed"
     assert_native_container(final, NATIVE_ARCS)
+    if current["phase"] != "coverage-html":
+        return
+    html = current
     members = {name: base64.b64decode(value) for name, value in html["members"].items()}
     assert COVERAGE_HTML in members and len(members) > 1, "no complete public HTML emission"
     assert observed.token.encode() in members[COVERAGE_HTML], "HTML index from another invocation"
@@ -670,6 +804,10 @@ def assert_native_evidence(observed: Observation) -> None:
 
 
 def assert_wheel(observed: Observation, receipt: dict[str, Any]) -> None:
+    wheel_calls = [call for call in phase_calls(observed) if call["phase"] == "wheel"]
+    assert len(wheel_calls) == 1 and set(wheel_calls[0]["wheel_members"]) == {WHEEL}, (
+        "no sole current emitted wheel"
+    )
     payload = observed.files[receipt["artifact"]["path"]]
     assert payload == generated_bytes(observed)[WHEEL], "emitted wheel replaced"
     assert receipt["artifact"] == {
@@ -678,6 +816,10 @@ def assert_wheel(observed: Observation, receipt: dict[str, Any]) -> None:
         "sha256": sha256(payload),
         "version": "1.2.0",
     }
+    assert_wheel_container(payload)
+
+
+def assert_wheel_container(payload: bytes) -> None:
     with zipfile.ZipFile(io.BytesIO(payload)) as archive:
         info = "simrecon-1.2.0.dist-info"
         assert (
@@ -751,11 +893,10 @@ def assert_outcome(observed: Observation) -> None:
         assert (observed.stdout + observed.stderr).strip(), "silent rejection"
         if receipt is not None:
             assert receipt["result"] == "failed" and receipt["problems"]
-    # A genuine late command failure does not authorize own persistence to
-    # destroy the complete native evidence already emitted by this invocation.
-    # Honest early rejection can have no HTML emission and needs no such proof.
+    # Preservation follows actual emission, not receipt presence or inclusion.
+    assert_emitted_reports(observed)
     if receipt is None:
-        if observed.native_emissions and observed.native_emissions[-1]["phase"] == "coverage-html":
+        if observed.native_emissions:
             assert_native_evidence(observed)
         return
     assert (
@@ -770,30 +911,29 @@ def assert_outcome(observed: Observation) -> None:
     }
     assert receipt["inputs"] == {}
     environment = receipt["environment"]
-    assert environment["platform"] == platform.platform()
-    assert Path(environment["python"]["executable"]).resolve() == Path(sys.executable).resolve()
-    assert sys.version.split()[0] in environment["python"]["version"]
+    expected_environment = observed.expected_environment
+    assert environment["platform"] == expected_environment["platform"]
+    assert (
+        str(Path(environment["python"]["executable"]).resolve())
+        == (expected_environment["python_executable"])
+    )
+    assert expected_environment["python_version"] in environment["python"]["version"]
     for name in ("make", "uv"):
         assert environment[name]["executable"] == observed.bin_dir + "/" + name
-        assert environment[name]["version"] == "fixture tool 1.0"
-        assert any(
-            call["argv"] == [observed.bin_dir + "/" + name, "--version"]
-            and call["status"] == 0
-            and call["stdout"].strip() == environment[name]["version"]
-            for call in observed.calls
-        ), "tool metadata lacks genuine command provenance"
-    assert environment["git"]["executable"] and environment["git"]["version"]
-    assert set(environment["tools"]) == {"ruff", "pyright", "coverage", "pytest"}
+        assert environment[name]["version"] in {expected_environment[name + "_version"], "1.0"}
+    assert (
+        str(Path(environment["git"]["executable"]).resolve())
+        == (expected_environment["git_executable"])
+    )
+    assert environment["git"]["version"] == expected_environment["git_version"]
+    assert set(environment["tools"]) == set(expected_environment["tools"])
     for name, value in environment["tools"].items():
         if value is not None:
-            assert any(
-                name in call["argv"]
-                and call["argv"][-1] == "--version"
-                and call["status"] == 0
-                and call["stdout"].strip() == value
-                for call in observed.calls
-            ), "check-tool version lacks genuine command provenance"
-        elif observed.status == 0:
+            independent_version = expected_environment["tools"][name]
+            assert value in {independent_version, f"{name} {independent_version}"}, (
+                "untruthful check-tool version"
+            )
+        elif any(call["phase"] == "sync" and call["status"] == 0 for call in calls):
             pytest.fail("available controlled check-tool version missing")
     assert receipt["before"] == receipt["after"] == observed.identity
     begin, end = (datetime.fromisoformat(receipt[key]) for key in ("started_at", "finished_at"))
@@ -826,15 +966,25 @@ def assert_outcome(observed: Observation) -> None:
             assert call["stdout"] in log and call["stderr"] in log, (
                 "current emitted phase output was replaced"
             )
+    if expected_measurement(observed) is not None:
+        assert receipt.get("measurements") is not None, "valid current measurements omitted"
     if receipt.get("measurements") is not None:
         assert_measurement(observed, receipt)
+    generated = valid_emitted_reports(observed)
+    if COVERAGE_JSON in generated:
+        assert receipt.get("coverage") is not None, "valid current coverage diagnostics omitted"
+    if receipt.get("coverage") is not None:
+        assert_coverage(observed, receipt)
+    wheel_calls = [call for call in calls if call["phase"] == "wheel"]
+    if WHEEL in generated and len(wheel_calls) == 1 and len(wheel_calls[0]["wheel_members"]) == 1:
+        assert receipt.get("artifact") is not None, "valid current wheel diagnostics omitted"
     if receipt.get("artifact") is not None:
         assert_wheel(observed, receipt)
     if observed.status == 0:
+        assert set(REPORTS) <= set(generated), "missing complete current report emission"
         assert receipt["measurements"] is not None
-        assert_coverage(observed, receipt)
         assert receipt["artifact"] is not None
-    elif observed.native_emissions and observed.native_emissions[-1]["phase"] == "coverage-html":
+    if observed.native_emissions:
         assert_native_evidence(observed)
 
 
@@ -1353,6 +1503,196 @@ def test_local_metadata_observer_rejects_untruthful_versions(
     elif defect == "version-invented":
         observed.receipt["environment"]["tools"]["coverage"] = "invented coverage version"
     else:
-        observed.calls = [call for call in observed.calls if "coverage" not in call["argv"]]
+        # Self-consistent query output cannot justify fabricated metadata.
+        observed.receipt["environment"]["tools"]["coverage"] = "coverage 0.0.fabricated"
+        for call in observed.calls:
+            if "coverage" in call["argv"] and call["phase"] is None:
+                call["stdout"] = "coverage 0.0.fabricated\n"
     with pytest.raises((AssertionError, pytest.fail.Exception)):
         assert_outcome(observed)
+
+
+@pytest.mark.parametrize("form", ["display", "distribution"])
+def test_local_metadata_observer_allows_truth_without_query_records(
+    observed_success: Observation, form: str
+) -> None:
+    observed = copy.deepcopy(observed_success)
+    assert observed.receipt is not None
+    observed.calls = [call for call in observed.calls if call["phase"] is not None]
+    if form == "distribution":
+        observed.receipt["environment"]["tools"] = observed.expected_environment["tools"].copy()
+        for name in ("make", "uv"):
+            observed.receipt["environment"][name]["version"] = "1.0"
+    assert_outcome(observed)
+
+
+@pytest.fixture
+def observed_tests_failure(evidence_repository: Repository) -> Observation:
+    observed = invoke(evidence_repository, mode="tests-failure")
+    assert observed.status == 37
+    assert_outcome(observed)
+    return observed
+
+
+@pytest.fixture
+def observed_late_failure(evidence_repository: Repository) -> Observation:
+    observed = invoke(evidence_repository, audit_failure=True)
+    assert observed.status == 37
+    assert_outcome(observed)
+    return observed
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+def test_local_failed_measurement_observer_allows_current_diagnostics(
+    observed_tests_failure: Observation, receipt_available: bool
+) -> None:
+    observed = copy.deepcopy(observed_tests_failure)
+    if not receipt_available:
+        observed.receipt = None
+        observed.files.pop(DEFAULT_RECEIPT)
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted", "suppressed-anchor"])
+@pytest.mark.parametrize("receipt_available", [False, True])
+def test_local_failed_measurement_observer_rejects_lost_valid_evidence(
+    observed_tests_failure: Observation, defect: str, receipt_available: bool
+) -> None:
+    observed = copy.deepcopy(observed_tests_failure)
+    if defect == "deleted":
+        del observed.files[MEASUREMENT]
+    elif defect == "replaced":
+        observed.files[MEASUREMENT] = b"not current M25 evidence"
+    elif defect == "suppressed-anchor":
+        phase_calls(observed)[-1]["snapshots"].pop(MEASUREMENT)
+    else:
+        assert observed.receipt is not None
+        observed.receipt["measurements"] = None
+    if not receipt_available:
+        observed.receipt = None
+        # Omission of an unavailable receipt alone is legitimate. Combine it
+        # with loss of emitted bytes to exercise the original no-receipt hole.
+        if defect == "omitted":
+            del observed.files[MEASUREMENT]
+    with pytest.raises((AssertionError, KeyError)):
+        assert_outcome(observed)
+
+
+@pytest.mark.parametrize("alternative", ["ordinary", "no-receipt", "failed-log-persistence"])
+def test_local_late_failure_observer_allows_preserved_evidence(
+    observed_late_failure: Observation, alternative: str
+) -> None:
+    observed = copy.deepcopy(observed_late_failure)
+    if alternative == "no-receipt":
+        observed.receipt = None
+        observed.files.pop(DEFAULT_RECEIPT)
+    elif alternative == "failed-log-persistence":
+        assert observed.receipt is not None
+        observed.files.pop(observed.receipt["phases"][-1]["log"])
+        observed.receipt["problems"].append("Current audit log persistence unavailable")
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("target", [COVERAGE_JSON, COVERAGE_HTML, WHEEL])
+@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted", "no-receipt"])
+def test_local_late_failure_observer_rejects_lost_valid_reports(
+    observed_late_failure: Observation, target: str, defect: str
+) -> None:
+    observed = copy.deepcopy(observed_late_failure)
+    if defect == "replaced":
+        observed.files[target] = b"replaced actual emitted evidence"
+    elif defect == "omitted":
+        assert observed.receipt is not None
+        observed.receipt["artifact" if target == WHEEL else "coverage"] = None
+    else:
+        del observed.files[target]
+        if defect == "no-receipt":
+            observed.receipt = None
+    with pytest.raises((AssertionError, KeyError)):
+        assert_outcome(observed)
+
+
+@pytest.mark.parametrize("phase", ["coverage-json", "wheel"])
+def test_p07_valid_phase_emission_survives_its_genuine_failure(
+    evidence_repository: Repository, phase: str
+) -> None:
+    observed = invoke(evidence_repository, failure_phase=phase, native=True)
+    assert observed.status == 37
+    assert phase_calls(observed)[-1]["phase"] == phase
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize("receipt_available", [False, True])
+@pytest.mark.parametrize("target", ["database", "html-member"])
+def test_local_native_failure_observer_rejects_loss_without_receipt_dependency(
+    evidence_repository: Repository, receipt_available: bool, target: str
+) -> None:
+    observed = invoke(evidence_repository, native=True, audit_failure=True)
+    assert observed.status == 37
+    assert_outcome(observed)
+    if not receipt_available:
+        observed.receipt = None
+    assert_outcome(observed)
+    html = observed.native_emissions[-1]
+    name = (
+        html["database"]
+        if target == "database"
+        else next(name for name in html["members"] if name != COVERAGE_HTML)
+    )
+    del observed.files[name]
+    with pytest.raises((AssertionError, KeyError)):
+        assert_outcome(observed)
+
+
+@pytest.mark.parametrize("phase", ["coverage-combine", "coverage-json"])
+def test_local_partial_native_failure_observer_rejects_lost_container(
+    evidence_repository: Repository, phase: str
+) -> None:
+    observed = invoke(evidence_repository, native=True, failure_phase=phase)
+    assert observed.status == 37
+    assert_outcome(observed)
+    observed.receipt = None
+    assert_outcome(observed)
+    del observed.files[observed.native_emissions[-1]["database"]]
+    with pytest.raises(AssertionError):
+        assert_outcome(observed)
+
+
+@pytest.mark.parametrize("mode", ["tests-no-report", "malformed", "duplicate-top"])
+def test_local_failed_measurement_observer_allows_absent_or_invalid_emission(
+    evidence_repository: Repository, mode: str
+) -> None:
+    observed = invoke(evidence_repository, mode=mode)
+    assert observed.status != 0
+    assert expected_measurement(observed) is None
+    assert_outcome(observed)
+    observed.files.pop(MEASUREMENT, None)
+    assert_outcome(observed)
+    observed.receipt = None
+    assert_outcome(observed)
+
+
+@pytest.mark.parametrize(
+    "mode",
+    [
+        "missing-json",
+        "missing-html",
+        "missing-wheel",
+        "malformed-coverage",
+        "invalid-wheel",
+        "multiple-wheels",
+    ],
+)
+def test_local_failure_observer_allows_unavailable_or_invalid_report_evidence(
+    evidence_repository: Repository, mode: str
+) -> None:
+    observed = invoke(evidence_repository, receipt_mode=mode)
+    assert observed.status == 1
+    assert_outcome(observed)
+    # Only valid actually emitted fixture evidence is retained. Invalid bytes
+    # and unrun/missing phases cannot fabricate available diagnostics.
+    for name in set(generated_bytes(observed)) - set(valid_emitted_reports(observed)):
+        observed.files.pop(name, None)
+    assert_outcome(observed)
+    observed.receipt = None
+    assert_outcome(observed)
