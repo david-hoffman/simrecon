@@ -13,6 +13,7 @@ import os
 import subprocess
 import sys
 from collections.abc import Iterator
+from copy import deepcopy
 from decimal import Decimal, localcontext
 from fractions import Fraction
 from pathlib import Path
@@ -208,46 +209,127 @@ def parse(payload: bytes) -> Any:
     return json.loads(payload, object_pairs_hook=unique_object, parse_constant=reject_nonfinite)
 
 
-def numeric_tensor(value: Any, dimensions: int) -> bool:
-    """Recognize represented numeric samples, without value/accuracy thresholds.
+def scalar_tensor(shape: tuple[int, ...]) -> Any:
+    """Generate shape controls from one scalar; no historical samples are stored."""
+    if not shape:
+        return 0.0
+    return [scalar_tensor(shape[1:]) for _ in range(shape[0])]
 
-    Nonempty lists at the declared payload rank distinguish scientific arrays
-    from scalar metadata and absence/error placeholders. Boolean flags are not
-    intensity coordinates. Scientific validity remains a separate assertion.
+
+def dataset_representation(container: str) -> dict[str, Any]:
+    """Public complete-document structures, independent of scientific values.
+
+    These scalar-generated controls describe every field, fixed extent and case
+    identity. They are neither numerical expectations nor valid fixture data.
+    Rejection recognition does not test accuracy, ordering or exact leaf values.
     """
-    if dimensions == 0:
+    _, root_fields, record_fields = next(s for s in DATASET_SCHEMAS if s[0] == container)
+    root: dict[str, Any] = dict.fromkeys(sorted(root_fields), "")
+    records = []
+    if container == "fixtures":
+        cases = (
+            ("delta-odd", (3, 5)),
+            ("uniform-even", (4, 6)),
+            ("asymmetric-even", (4, 6)),
+            ("asymmetric-translated", (4, 6)),
+            ("separable-mixed", (3, 4)),
+            ("singleton", (1, 1)),
+        )
+        for name, shape in cases:
+            record: dict[str, Any] = dict.fromkeys(sorted(record_fields), "")
+            record.update(
+                id=name,
+                shape_yx=list(shape),
+                origin_yx=[0, 0],
+                pixel_size_um=scalar_tensor((2,)),
+                mode_y=scalar_tensor((shape[0],)),
+                mode_x=scalar_tensor((shape[1],)),
+                frequency_y_per_um=scalar_tensor((shape[0],)),
+                frequency_x_per_um=scalar_tensor((shape[1],)),
+                example_fft_cross_check_max_abs=0.0,
+            )
+            for field in REAL_DATA_FIELDS[container]:
+                record[field] = scalar_tensor(shape)
+            records.append(record)
+    else:
+        root.update(
+            version=0,
+            product_outputs=False,
+            oracle_precision_decimal_digits=0,
+            oracle_methods=[""] * 6,
+            units=dict.fromkeys(("spatial", "wavevectors", "phases", "otf", "intensity"), ""),
+            object_coefficients={
+                **{mode: scalar_tensor((2,)) for mode in ("0,0", "1,0", "0,3", "2,1")},
+                "negative_modes": "",
+            },
+            independent_input_hashes=dict.fromkeys(
+                (
+                    "tests/test_reconstruction.py",
+                    "tests/reconstruction_fixture.py",
+                    "tests/reconstruction_failure_controls.py",
+                    "docs/contracts/known-parameter-reconstruction-v1.md",
+                    "docs/contracts/known-phase-separation-v2.md",
+                    "docs/contracts/otf-calibration-v1.md",
+                    "uv.lock",
+                    "pyproject.toml",
+                ),
+                "",
+            ),
+            primary_references=[""] * 2,
+        )
+        for name in ("commensurate-recovery", "fractional-estimator"):
+            record = dict.fromkeys(sorted(record_fields), "")
+            record.update(
+                name=name,
+                shape_detector=[7, 9],
+                images=scalar_tensor((2, 7, 7, 9)),
+                phases_rad=scalar_tensor((2, 7)),
+                wavevectors_per_um=scalar_tensor((2, 2)),
+                modulation=scalar_tensor((2,)),
+                brightness=scalar_tensor((2,)),
+                regularization=0.0,
+                apodization=scalar_tensor((14, 18)),
+                pixel_size_um_detector=scalar_tensor((2,)),
+                origin_yx_psf=[0, 0],
+                independent_psf=scalar_tensor((7, 9)),
+                conventional_unilluminated_observation=scalar_tensor((7, 9)),
+                informative_budget_coordinate=0.0,
+                min_positive_V=0.0,
+                max_V=0.0,
+            )
+            for field in COMPLEX_DATA_FIELDS:
+                shape = (7, 9) if field == "otf" else (14, 18)
+                record[field] = {part: scalar_tensor(shape) for part in ("real", "imag")}
+            records.append(record)
+    root[container] = records
+    return root
+
+
+def complete_representation(value: Any, template: Any) -> bool:
+    """Recognize structure and leaf kinds; never impose scientific tolerances."""
+    if isinstance(template, dict):
+        return isinstance(value, dict) and all(
+            key in value and complete_representation(value[key], item)
+            for key, item in template.items()
+        )
+    if isinstance(template, list):
+        return (
+            isinstance(value, list)
+            and len(value) == len(template)
+            and all(complete_representation(v, t) for v, t in zip(value, template, strict=True))
+        )
+    if type(template) in (int, float):
         return type(value) in (int, float)
-    return (
-        isinstance(value, list)
-        and bool(value)
-        and all(numeric_tensor(item, dimensions - 1) for item in value)
-    )
-
-
-def carries_scientific_data(record: dict[str, Any], container: str) -> bool:
-    for field in REAL_DATA_FIELDS[container]:
-        if numeric_tensor(record[field], 4 if field == "images" else 2):
-            return True
-    if container == "entries":
-        for field in COMPLEX_DATA_FIELDS:
-            value = record[field]
-            if (
-                isinstance(value, dict)
-                and numeric_tensor(value.get("real"), 2)
-                and numeric_tensor(value.get("imag"), 2)
-            ):
-                return True
-    return False
+    return type(value) is type(template)
 
 
 def assert_no_success_document(payload: bytes) -> None:
-    """Reject data-bearing family schemas independently of exact success equality.
+    """Recognize a complete family, independently of exact success equality.
 
-    Field names alone may be diagnostic placeholders. Recognize numeric payloads
-    in complete family signatures even among extra error/nonrecord elements.
-    Order, extra claims and coordinate values are not equality conditions here.
-    Exact success validation uses the separate strict observer. Diagnostics with
-    no scientific payload remain unrestricted.
+    All public cases and their entire representations must be present. Numeric
+    fragments, incomplete case collections and unavailable metadata are legal
+    diagnostics. Extra claims/nonrecords cannot mask a retained complete family.
+    Malformed framing and arbitrary text are not scanned for embedded data.
     """
     try:
         document = json.loads(payload)
@@ -255,17 +337,23 @@ def assert_no_success_document(payload: bytes) -> None:
         return
     if not isinstance(document, dict):
         return
-    for container, root_fields, record_fields in DATASET_SCHEMAS:
-        if not root_fields.issubset(document):
+    for container, _, _ in DATASET_SCHEMAS:
+        template = dataset_representation(container)
+        expected_records = template.pop(container)
+        if not complete_representation(document, template):
             continue
-        records = document[container]
+        records = document.get(container)
+        identity = "id" if container == "fixtures" else "name"
         assert not (
             isinstance(records, list)
-            and any(
-                isinstance(record, dict)
-                and record_fields.issubset(record)
-                and carries_scientific_data(record, container)
-                for record in records
+            and all(
+                any(
+                    isinstance(record, dict)
+                    and record.get(identity) == expected[identity]
+                    and complete_representation(record, expected)
+                    for record in records
+                )
+                for expected in expected_records
             )
         ), "rejection emitted a dataset document"
 
@@ -571,23 +659,91 @@ def test_observer_distinguishes_preserved_representations() -> None:
         diagnostic[container] = [mixed_record]
         assert_no_success_document(json.dumps(diagnostic).encode())
 
-        # Tiny scalar-generated payload controls test representation presence;
-        # they encode no historical arrays or scientific numerical expectations.
+        # Numeric context fragments remain incomplete, even at a payload's rank.
+        # Full field names do not supply absent identities, parameters or planes.
         document: dict[str, Any] = dict.fromkeys(sorted(root_fields))
         for field in REAL_DATA_FIELDS[container]:
-            sample: Any = 0.0
-            for _ in range(4 if field == "images" else 2):
-                sample = [sample]
-            record = dict.fromkeys(sorted(record_fields))
-            record[field] = sample
-            document[container] = [record]
-            assert_dataset_rejection_controls(document)
+            for scalar in (7, 0.0, -0.0, -17.5, 1e200):
+                sample: Any = scalar
+                for _ in range(4 if field == "images" else 2):
+                    sample = [sample]
+                record = dict.fromkeys(sorted(record_fields))
+                record[field] = sample
+                document[container] = [record]
+                assert_no_success_document(json.dumps(document).encode())
         if container == "entries":
             for field in COMPLEX_DATA_FIELDS:
                 record = dict.fromkeys(sorted(record_fields))
                 record[field] = {"real": [[0.0]], "imag": [[0.0]]}
                 document[container] = [record]
-                assert_dataset_rejection_controls(document)
+                assert_no_success_document(json.dumps(document).encode())
+
+
+@pytest.mark.parametrize("container", ("fixtures", "entries"))
+def test_no_success_observer_complete_representation_controls(container: str) -> None:
+    """Pair entire scalar-generated representations with incomplete diagnostics."""
+    complete = dataset_representation(container)
+    assert_dataset_rejection_controls(complete)
+    # Values need not be historically correct to constitute complete output.
+    # Recognition must not inherit the strict success digest or error vocabulary.
+    assert_dataset_rejection_controls({**complete, container: list(reversed(complete[container]))})
+    for index in range(len(complete[container])):
+        partial = deepcopy(complete)
+        del partial[container][index]
+        assert_no_success_document(json.dumps(partial).encode())
+    for field in complete:
+        if field == container:
+            continue
+        for missing in (False, True):
+            partial = deepcopy(complete)
+            if missing:
+                del partial[field]
+            else:
+                partial[field] = {"message": "unavailable"}
+            assert_no_success_document(json.dumps(partial).encode())
+        if isinstance(complete[field], dict):
+            for part in complete[field]:
+                partial = deepcopy(complete)
+                partial[field][part] = None
+                assert_no_success_document(json.dumps(partial).encode())
+        elif isinstance(complete[field], list):
+            partial = deepcopy(complete)
+            partial[field] = partial[field][:-1]
+            assert_no_success_document(json.dumps(partial).encode())
+    for field, value in complete[container][0].items():
+        # Hold all other data intact. An absent field, wrong leaf kind, or
+        # truncated extent cannot silently become a complete record witness.
+        alternatives: list[Any] = [None, {"message": "unavailable"}, False]
+        if isinstance(value, list):
+            alternatives.append(value[:-1])
+        if isinstance(value, dict):
+            alternatives.extend({**value, part: None} for part in value)
+        for alternative in alternatives:
+            partial = deepcopy(complete)
+            partial[container][0][field] = alternative
+            assert_no_success_document(json.dumps(partial).encode())
+        partial = deepcopy(complete)
+        del partial[container][0][field]
+        assert_no_success_document(json.dumps(partial).encode())
+    identity = "id" if container == "fixtures" else "name"
+    partial = deepcopy(complete)
+    partial[container][0][identity] = "diagnostic context"
+    assert_no_success_document(json.dumps(partial).encode())
+
+    # Numeric samples inside otherwise complete arrays are still incomplete
+    # when one coordinate or one complex plane is unavailable/non-numeric.
+    fields = (*REAL_DATA_FIELDS[container],)
+    if container == "entries":
+        fields += COMPLEX_DATA_FIELDS
+    for field in fields:
+        partial = deepcopy(complete)
+        value = partial[container][0][field]
+        if isinstance(value, dict):
+            value = value["real"]
+        while isinstance(value[0], list):
+            value = value[0]
+        value[0] = False
+        assert_no_success_document(json.dumps(partial).encode())
 
 
 def assert_dataset_rejection_controls(document: dict[str, Any]) -> None:
@@ -720,4 +876,13 @@ def test_no_success_observer_historical_controls() -> None:
         )
         assert set(document) == root_fields
         assert all(set(record) == record_fields for record in document[container])
+        # Full shapes/leaf kinds, not merely rank, come from these public inputs.
+        template = dataset_representation(container)
+        expected_records = template.pop(container)
+        assert complete_representation(document, template)
+        assert len(document[container]) == len(expected_records)
+        assert all(
+            complete_representation(record, expected)
+            for record, expected in zip(document[container], expected_records, strict=True)
+        )
         assert_dataset_rejection_controls(document)
