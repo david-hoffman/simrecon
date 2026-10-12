@@ -23,3 +23,11 @@ You are already the fresh initial root for this role; perform it here without la
 No default scenario/review/repair/execution cap or new-window approval applies. Diagnose recurring failures and each correction with evidence, preserving fresh review, blindness and named ownership. Honor actual human-set limits. Remove implementation maps/explanations/line clues/repair suggestions/raw D logs from corrections. Clearing context or a clean run restores no blindness or accounting. Equivalent values add no semantics. B independently challenges legitimate positive inputs as well as rejections.
 
 Behavior coverage and independent risk review always apply; A's authorship does not certify adequacy. The accepted checkpoint is the agreed baseline, not proof of every possible behavior or future branch. Selected target failures remain blocking; unselected metrics are advisory. Inherit settled choices without repeating intake, and preserve installed gates until independently reviewed, owner-authorized policy migration. Do not invent rejection rules, force impossible internal states or duplicate tests solely for a percentage. Classification grants no additional edit authority.
+
+## Test-audit authoring / sanitized correction
+
+- Approved observable obligation, credible wrong outcome, strongest existing public-boundary proof and distinct gap; real-caller interface and known proof limits:
+- Sanitized declaration IDs/dispositions and obligation-to-keeper mapping for changed/removed assertions; missing/new meaning and shared test/requirement dependencies:
+- Intended pre-fix failure evidence where available, unavailable baseline limits and supplemental additions:
+
+Use only the public portion of test-audit. No production/caller/history/coverage discovery report, raw nonblind ledger, implementation seam analysis or repair hypothesis is permitted. The coordinator retains excluded evidence and routes uncertain production relationships to nonblind discovery/D. Prior checkpoints, blind A/fresh B and cumulative accounting remain binding.

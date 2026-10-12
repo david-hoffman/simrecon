@@ -21,3 +21,7 @@ Preserve installed gates until independently reviewed, owner-authorized migratio
 ## PR presentation (coordinator / permitted candidate context)
 
 Use specification section 4.1 and PULL-REQUEST.md. Record the plain-English summary, figure decision (why useful or omitted), caption/evidence/claim limits and technical-appendix evidence references. Keep implementation-bearing drafts out of blind A/B packets. No change to role ownership or gates.
+
+## Requested test-audit continuation (nonblind coordinator context)
+
+Link scope/baseline/inventory, declaration ledger, obligation-to-keeper mapping, retained false positives, diagnosed findings/correction owners and sanitized A/B packets. Record keeper preservation verdict, exact passing candidate/final independent sweep scope/findings/limits, pre-fix proof availability, supplemental tests and named follow-ups. Preserve prior checkpoint applicability decisions and every role charge across migration/batches; no competing Current state, deletion target or inferred limits. Changed material inputs renew proof; the next roadmap contract waits for completed prerequisites. This handoff remains excluded from blind A/B.

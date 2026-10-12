@@ -69,6 +69,17 @@ permitted-positive cases. Every baseline must support full verification and the 
 coverage policy; expose infeasible dependencies before dependent work. Independent tasks
 use worktrees; dependent slices wait for completed prerequisites.
 
+For a requested test audit, use the cross-cutting test-audit skill and section 5.3.
+Record focused/subsystem inventory, baseline results/unknowns, authorized native
+read-only lanes, declaration ledger and obligation-to-keeper mapping. Discovery
+reports do not transfer edit authority. Nonblind production/history evidence stays
+out of A/B packets; sanitized test corrections retain blind A/fresh B and C's frozen
+files. Diagnose coherent corrections, preserve initially passing tests and unavailable
+pre-fix proof limits, and require a fresh final independent sweep of the declared exact
+passing scope. No deletion target or mandatory mutation applies. Audit adoption needs
+fresh policy acceptance; any named active-task migration retains evidence applicability
+and every prior charge. Keep installed gates and native reports unchanged.
+
 Prepare coordinator-owned PR presentation under specification section 4.1: a plain-English
 scientist/engineer summary, useful figure/caption if warranted, and a collapsible technical
 appendix retaining material evidence and limits. Record the plan/figure decision in
