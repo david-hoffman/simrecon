@@ -52,7 +52,7 @@ ACQUISITION_HASHES = (
 )
 
 
-def diagnostic_environment() -> dict[str, str]:
+def diagnostic_environment(child_temporary: Path) -> dict[str, str]:
     """Inherit diagnostics and ensure all child interpreters install the harness."""
     assert "sitecustomize" in sys.modules, "run via scripts/source_free_check.py"
     result = os.environ.copy()
@@ -61,19 +61,47 @@ def diagnostic_environment() -> dict[str, str]:
     result["PYTHONPATH"] = site + (os.pathsep + previous if previous else "")
     result["PYTHONDONTWRITEBYTECODE"] = "1"
     result["PATH"] = str(ROOT / ".venv/bin") + os.pathsep + result.get("PATH", "")
+    for variable in ("TMPDIR", "TEMP", "TMP"):
+        result[variable] = str(child_temporary)
     return result
 
 
-def run(arguments: list[str], directory: Path, *, stdout: Any = subprocess.PIPE) -> Any:
-    return subprocess.run(
-        [sys.executable, str(EXPORTER), *arguments],
-        cwd=directory,
-        env=diagnostic_environment(),
-        stdout=stdout,
-        stderr=subprocess.PIPE,
-        timeout=240,
-        check=False,
+def assert_no_child_residue(
+    directory: Path, child_temporary: Path, caller_entries: set[Path], returncode: int
+) -> None:
+    """Observe cwd and the child's dedicated tempfile root before cleanup."""
+    label = f"child exit status {returncode}"
+    assert set(directory.iterdir()) == caller_entries | {child_temporary}, (
+        f"child changed caller directory entries; {label}"
     )
+    assert child_temporary.is_dir() and not child_temporary.is_symlink(), (
+        f"child changed its temporary root; {label}"
+    )
+    assert not list(child_temporary.iterdir()), f"child left temporary residue; {label}"
+
+
+def assert_capture_unchanged(capture: Path, payload: bytes) -> None:
+    assert capture.is_file() and capture.read_bytes() == payload, (
+        "repeated invocation changed caller-owned capture"
+    )
+
+
+def run(arguments: list[str], directory: Path, *, stdout: Any = subprocess.PIPE) -> Any:
+    caller_entries = set(directory.iterdir())
+    with TemporaryDirectory(prefix="child-temp-", dir=directory) as temporary:
+        child_temporary = Path(temporary)
+        result = subprocess.run(
+            [sys.executable, str(EXPORTER), *arguments],
+            cwd=directory,
+            env=diagnostic_environment(child_temporary),
+            stdout=stdout,
+            stderr=subprocess.PIPE,
+            timeout=240,
+            check=False,
+        )
+        assert_no_child_residue(directory, child_temporary, caller_entries, result.returncode)
+    assert set(directory.iterdir()) == caller_entries, "invocation temporary root did not clean up"
+    return result
 
 
 def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
@@ -93,12 +121,19 @@ def parse(payload: bytes) -> Any:
 
 
 def assert_no_success_document(payload: bytes) -> None:
-    """Error diagnostic prose/streams are unspecified; a dataset is not success."""
+    """Reject complete successful datasets without prescribing diagnostic keys.
+
+    The unchanged complete representation digests identify both valid success
+    documents. Other diagnostic schemas/prose are unspecified, including JSON
+    objects containing entries/fixtures or nonfinite diagnostic values.
+    Successful exports still have unconditional strict representation checks.
+    """
     try:
         document = json.loads(payload)
-    except (ValueError, UnicodeError):
+        representation_hash = digest(document)
+    except (AssertionError, ValueError, UnicodeError):
         return
-    assert not (isinstance(document, dict) and {"fixtures", "entries"}.intersection(document)), (
+    assert representation_hash not in {record[2] for record in DOCUMENTS.values()}, (
         "rejection emitted a dataset document"
     )
 
@@ -121,6 +156,7 @@ def exported(request: Any) -> Iterator[tuple[str, Any]]:
         second = run([selector], directory)
         assert second.returncode == 0, second.stderr.decode(errors="replace")
         assert second.stdout == payload, "unchanged-input generation is not byte deterministic"
+        assert_capture_unchanged(capture, payload)
         assert sorted(path.name for path in directory.iterdir()) == [capture.name]
         yield selector, document
     assert not directory.exists(), "caller TemporaryDirectory did not clean up"
@@ -131,6 +167,8 @@ def test_complete_historical_representation(exported: tuple[str, Any]) -> None:
     selector, document = exported
     filename, byte_hash, representation_hash = DOCUMENTS[selector]
     assert digest(document) == representation_hash, "complete historical representation mismatch"
+    with pytest.raises(AssertionError, match="dataset document"):
+        assert_no_success_document(json.dumps(document).encode())
     historical = ROOT / "docs/references/scientific" / filename
     if historical.exists():
         payload = historical.read_bytes()
@@ -347,8 +385,111 @@ def test_observer_distinguishes_preserved_representations() -> None:
     for value in (float("inf"), float("nan")):
         with pytest.raises(AssertionError, match="nonfinite"):
             digest(value)
-    for payload in (b"", b"selector error\n", b'{"error":"selector"}'):
+    for payload in (
+        b"",
+        b"selector error\n",
+        b'{"error":"selector"}',
+        b'{"error":"unsupported selector","entries":[]}',
+        b'{"error":"unsupported selector","fixtures":[]}',
+        b'{"error":"unsupported selector","entries":[],"fixtures":[]}',
+        b'{"entries":[]}',
+        b'{"fixtures":[]}',
+    ):
         assert_no_success_document(payload)
-    for payload in (b'{"fixtures":[]}', b'{"entries":[]}'):
+
+
+@pytest.mark.parametrize("returncode", (0, 1, 2))
+@pytest.mark.parametrize("residue", ("none", "file", "directory"))
+def test_child_temp_observer_controls(residue: str, returncode: int) -> None:
+    """Standard-library controls exercise tempfile routing, not exporter behavior."""
+    with TemporaryDirectory(prefix="observer-control-") as temporary:
+        directory = Path(temporary)
+        capture = directory / "capture.txt"
+        payload = b"caller-owned capture\n"
+        capture.write_bytes(payload)
+        with TemporaryDirectory(prefix="child-temp-", dir=directory) as child:
+            child_temporary = Path(child)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-c",
+                    "import os, sys, tempfile; "
+                    "assert 'sitecustomize' in sys.modules; "
+                    "assert tempfile.gettempdir() == sys.argv[1]; "
+                    "assert all(os.environ[k] == sys.argv[1] for k in ('TMPDIR','TMP','TEMP')); "
+                    "\nwith tempfile.NamedTemporaryFile(): pass"
+                    "\nwith tempfile.TemporaryDirectory(): pass"
+                    "\nif sys.argv[2] == 'file':"
+                    "\n    descriptor, _ = tempfile.mkstemp(); os.close(descriptor)"
+                    "\nelif sys.argv[2] == 'directory': tempfile.mkdtemp()"
+                    "\nsys.exit(int(sys.argv[3]))",
+                    child,
+                    residue,
+                    str(returncode),
+                ],
+                cwd=directory,
+                env=diagnostic_environment(child_temporary),
+                capture_output=True,
+                timeout=30,
+                check=False,
+            )
+            assert result.returncode == returncode, result.stderr.decode(errors="replace")
+            assert not result.stderr, "observer control failed unexpectedly"
+            if residue == "none":
+                assert_no_child_residue(directory, child_temporary, {capture}, result.returncode)
+            else:
+                with pytest.raises(AssertionError, match="child left temporary residue"):
+                    assert_no_child_residue(
+                        directory, child_temporary, {capture}, result.returncode
+                    )
+            assert_capture_unchanged(capture, payload)
+        assert set(directory.iterdir()) == {capture}
+    assert not directory.exists()
+
+
+def test_repeated_capture_observer_controls() -> None:
+    """Exercise real caller redirection twice, then distinguish capture changes."""
+    with TemporaryDirectory(prefix="observer-capture-") as temporary:
+        directory = Path(temporary)
+        capture = directory / "capture.txt"
+        payload = b"observer-only stdout\n"
+        child_roots: list[Path] = []
+        for first in (True, False):
+            with TemporaryDirectory(prefix="child-temp-", dir=directory) as child:
+                child_temporary = Path(child)
+                child_roots.append(child_temporary)
+                with capture.open("wb") if first else capture.open("rb") as stream:
+                    result = subprocess.run(
+                        [sys.executable, "-c", "print('observer-only stdout')"],
+                        cwd=directory,
+                        env=diagnostic_environment(child_temporary),
+                        stdout=stream if first else subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        timeout=30,
+                        check=False,
+                    )
+                assert result.returncode == 0, result.stderr.decode(errors="replace")
+                assert_no_child_residue(directory, child_temporary, {capture}, result.returncode)
+                assert_capture_unchanged(capture, payload)
+                if not first:
+                    assert result.stdout == payload
+            assert set(directory.iterdir()) == {capture}
+        assert child_roots[0] != child_roots[1]
+        capture.write_bytes(b"changed capture\n")
+        with pytest.raises(AssertionError, match="changed caller-owned capture"):
+            assert_capture_unchanged(capture, payload)
+    assert not directory.exists()
+
+
+def test_no_success_observer_historical_controls() -> None:
+    """Reject the actual public historical documents where still available."""
+    for filename, byte_hash, _ in DOCUMENTS.values():
+        historical = ROOT / "docs/references/scientific" / filename
+        if not historical.exists():
+            continue
+        payload = historical.read_bytes()
+        assert hashlib.sha256(payload).hexdigest() == byte_hash, "historical input changed"
         with pytest.raises(AssertionError, match="dataset document"):
             assert_no_success_document(payload)
+        with pytest.raises(AssertionError, match="dataset document"):
+            assert_no_success_document(json.dumps(parse(payload), separators=(",", ":")).encode())
