@@ -1,5 +1,6 @@
 """Supplemental public CLI proof for the bounded FIX1 delivery pilot."""
 
+import json
 from pathlib import Path
 
 import pytest
@@ -55,8 +56,12 @@ def test_missing_make_retains_first_failure_without_later_phases_or_git_changes(
     assert diagnostic.strip()
     assert "unavailable" in diagnostic.casefold()
     assert (result.stdout + result.stderr).count(diagnostic) == 1
-    # Fixture commands record every non-version invocation independently of receipts.
-    assert not (root / "calls.jsonl").exists()
+    # Metadata queries may run even when Make is missing; none launches a phase.
+    ledger = root / "calls.jsonl"
+    calls = (
+        [json.loads(line) for line in ledger.read_text().splitlines()] if ledger.exists() else []
+    )
+    assert not [call for call in calls if any(arg in PHASES for arg in call)]
     assert list((root / log.parent).glob("*.log")) == [root / log]
 
     assert receipt["before"] == expected_state

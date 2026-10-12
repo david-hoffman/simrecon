@@ -44,6 +44,9 @@ def main() -> int:
         if kind == "alias":
             assert target is not None
             destination.symlink_to(target)
+        elif kind == "hardlink":
+            assert target is not None
+            destination.hardlink_to(target)
         elif kind == "regular":
             destination.write_bytes(b"ordinary ignored phase-created output\n")
         elif kind == "unwritable-directory":
@@ -51,7 +54,16 @@ def main() -> int:
         else:
             raise ValueError(f"unknown disposable action: {kind}")
     after = fingerprint(target) if target else None
-    observation = {"phase": phase, "kind": kind, "before": before, "after": after}
+    observation = {
+        "phase": phase,
+        "kind": kind,
+        "destination": str(configuration["destination"]),
+        "before": before,
+        "after": after,
+        "shares_target_inode": (
+            destination.samefile(target) if target and destination.is_file() else None
+        ),
+    }
     with (root / "actions.jsonl").open("a", encoding="utf-8") as stream:
         stream.write(json.dumps(observation) + "\n")
     # Both streams contain real phase output after the redirect. The fixture

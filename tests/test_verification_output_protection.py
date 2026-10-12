@@ -129,7 +129,28 @@ def invoke(
             "action": action,
             "stdout": result.stdout,
             "stderr": result.stderr,
+            "calls": calls(repository),
+            "actions": action_observations(repository),
         }
+        target = repository.root / action["target"] if action and action.get("target") else None
+        record["target_after"] = (
+            hashlib.sha256(target.read_bytes()).hexdigest() if target and target.is_file() else None
+        )
+        try:
+            observed_receipt = load_receipt(repository, receipt_path)
+        except (ValueError, OSError):
+            observed_receipt = None
+        record["receipt_phases"] = observed_receipt["phases"] if observed_receipt else None
+        record["receipt_result"] = observed_receipt["result"] if observed_receipt else None
+        record["challenged_log_phases"] = (
+            [
+                item["name"]
+                for item in observed_receipt["phases"]
+                if action and Path(item["log"]) == Path(action["destination"])
+            ]
+            if observed_receipt
+            else None
+        )
         with Path(evidence).open("a", encoding="utf-8") as stream:
             stream.write(json.dumps(record) + "\n")
     return result
@@ -140,6 +161,12 @@ def load_receipt(repository: Repository, path: Path = RECEIPT) -> dict[str, Any]
     # An unsafe alias is observed via target bytes, never parsed as receipt JSON.
     if destination.is_symlink() or not destination.is_file():
         return None
+    protected = [repository.root / name for name in ("candidate.txt", "scripts/branchless.py")]
+    protected.extend(path for path in repository.common_git.rglob("*") if path.is_file())
+    if (repository.root / ".git").is_file():
+        protected.append(repository.root / ".git")
+    if any(path.exists() and destination.samefile(path) for path in protected):
+        return None
     return json.loads(destination.read_text(encoding="utf-8"))
 
 
@@ -149,11 +176,14 @@ def calls(repository: Repository) -> list[list[str]]:
 
 
 def metadata(repository: Repository) -> dict[Path, bytes]:
-    return {
+    snapshot = {
         path.relative_to(repository.common_git): path.read_bytes()
         for path in repository.common_git.rglob("*")
         if path.is_file()
     }
+    if (repository.root / ".git").is_file():
+        snapshot[Path("__linked_root_git_pointer__")] = (repository.root / ".git").read_bytes()
+    return snapshot
 
 
 def tracked_markers(repository: Repository) -> dict[str, bytes]:
@@ -180,14 +210,51 @@ def assert_trace(repository: Repository, receipt: dict[str, Any] | None) -> list
     return phases
 
 
+def action_observations(repository: Repository) -> list[dict[str, Any]]:
+    path = repository.root / "actions.jsonl"
+    return [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
+
+
 def assert_action(repository: Repository, phase: str, kind: str) -> None:
-    actions = [
-        json.loads(line) for line in (repository.root / "actions.jsonl").read_text().splitlines()
-    ]
+    actions = action_observations(repository)
     assert len(actions) == 1
     assert actions[0]["phase"] == phase
     assert actions[0]["kind"] == kind
     assert actions[0]["before"] == actions[0]["after"], "phase itself changed protected bytes"
+    if kind == "hardlink":
+        assert actions[0]["shares_target_inode"] is True
+
+
+def assert_safe_outcome(
+    repository: Repository,
+    result: subprocess.CompletedProcess[str],
+    receipt: dict[str, Any] | None,
+    phase: str,
+    kind: str,
+    status: int = 0,
+) -> list[str]:
+    """Allow unused challenges, safe replacement and valid early rejection."""
+    phases = assert_trace(repository, receipt)
+    if action_observations(repository):
+        assert_action(repository, phase, kind)
+        assert phase in phases
+        if status:
+            assert result.returncode == status
+            assert phases[-1] == phase
+            if receipt is not None:
+                assert receipt["phases"][-1]["returncode"] == status
+    else:
+        assert phase not in phases
+        assert_rejected(result, receipt)
+    if result.returncode == 0:
+        assert receipt is not None and receipt["result"] == "passed"
+        assert receipt["problems"] == []
+        assert phases == PHASES
+        assert all(item["returncode"] == 0 for item in receipt["phases"])
+        assert receipt["before"] == receipt["after"]
+    else:
+        assert_rejected(result, receipt)
+    return phases
 
 
 def assert_rejected(
@@ -200,10 +267,11 @@ def assert_rejected(
 
 
 @pytest.fixture(scope="module")
-def log_names(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Path]:
-    # Obtain public log names from a separately valid successful entry. They are
-    # observations, not expected bytes or a mandated persistence backend.
-    repository = create_repository(tmp_path_factory.mktemp("output-public-control"))
+def log_candidates(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Path]:
+    # Publicly observed examples only. No name is required to recur in another
+    # invocation; unused aliases and safe replacement satisfy the safety oracle.
+    # The tested invocation's receipt alone supplies any actual leaf match.
+    repository = create_repository(tmp_path_factory.mktemp("output-public-examples"))
     result = invoke(repository)
     receipt = load_receipt(repository)
     assert result.returncode == 0, result.stdout + result.stderr
@@ -255,54 +323,61 @@ def test_p08_ordinary_outputs_preserve_identity_and_public_evidence(
 
 
 @pytest.mark.parametrize(
-    "target_kind,phase,status",
+    "target_kind,phase,status,kind",
     [
-        ("tracked", "types", 0),
-        ("tracked", "audit", 0),
-        ("tracked", "types", 23),
-        ("missing-tracked", "types", 0),
-        ("ordinary-config", "types", 0),
-        ("common-config", "audit", 0),
-        ("private-head", "types", 0),
+        (target, phase, status, kind)
+        for target, phase, status in [
+            ("tracked", "types", 0),
+            ("tracked", "audit", 0),
+            ("tracked", "types", 23),
+            ("missing-tracked", "types", 0),
+            ("ordinary-config", "types", 0),
+            ("common-config", "audit", 0),
+            ("private-head", "types", 0),
+            ("git-pointer", "types", 0),
+        ]
+        for kind in ("alias", "hardlink")
+        if target != "missing-tracked" or kind == "alias"
     ],
 )
 def test_p02_phase_receipt_alias_preserves_protected_bytes(
-    tmp_path: Path, target_kind: str, phase: str, status: int
+    tmp_path: Path, target_kind: str, phase: str, status: int, kind: str
 ) -> None:
-    repository = create_repository(tmp_path, target_kind in {"common-config", "private-head"})
+    repository = create_repository(
+        tmp_path, target_kind in {"common-config", "private-head", "git-pointer"}
+    )
     targets = {
         "tracked": repository.root / "candidate.txt",
         "missing-tracked": repository.root / "candidate.txt",
         "ordinary-config": repository.common_git / "config",
         "common-config": repository.common_git / "config",
         "private-head": repository.private_git / "HEAD",
+        "git-pointer": repository.root / ".git",
     }
     target = targets[target_kind]
     before_markers = tracked_markers(repository)
     before_metadata = metadata(repository)
     action: dict[str, Any] = {
         "phase": phase,
-        "kind": "alias",
+        "kind": kind,
         "destination": str(RECEIPT),
         "target": str(target),
         "status": status,
     }
     if target_kind == "missing-tracked":
         action["identity_loss"] = "candidate.txt"
-        del before_markers["candidate.txt"]
     result = invoke(repository, action)
+    removed = target_kind == "missing-tracked" and bool(action_observations(repository))
+    if removed:
+        del before_markers["candidate.txt"]
     assert tracked_markers(repository) == before_markers, "receipt overwrote tracked bytes"
     assert metadata(repository) == before_metadata, "receipt altered Git metadata"
-    if target_kind == "missing-tracked":
+    if removed:
         assert not target.exists(), "receipt recreated a missing tracked file"
-    assert_action(repository, phase, "alias")
     receipt = load_receipt(repository)
-    assert_rejected(result, receipt)
-    phases = assert_trace(repository, receipt)
-    assert phase in phases
-    if status:
-        assert result.returncode == status
-        assert phases[-1] == phase
+    assert_safe_outcome(repository, result, receipt, phase, kind, status)
+    if target_kind == "missing-tracked":
+        assert_rejected(result, receipt)
 
 
 @pytest.mark.parametrize(
@@ -313,10 +388,17 @@ def test_p02_phase_receipt_alias_preserves_protected_bytes(
         ("tracked", "sync", 23),
         ("common-config", "sync", 0),
         ("private-head", "audit", 0),
+        ("git-pointer", "sync", 0),
     ],
 )
+@pytest.mark.parametrize("kind", ["alias", "hardlink"])
 def test_p03_current_log_alias_preserves_bytes_and_original_failure(
-    tmp_path: Path, log_names: dict[str, Path], target_kind: str, phase: str, status: int
+    tmp_path: Path,
+    log_candidates: dict[str, Path],
+    target_kind: str,
+    phase: str,
+    status: int,
+    kind: str,
 ) -> None:
     repository = create_repository(tmp_path, target_kind != "tracked")
     target = (
@@ -324,6 +406,8 @@ def test_p03_current_log_alias_preserves_bytes_and_original_failure(
         if target_kind == "tracked"
         else repository.common_git / "config"
         if target_kind == "common-config"
+        else repository.root / ".git"
+        if target_kind == "git-pointer"
         else repository.private_git / "HEAD"
     )
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
@@ -331,27 +415,22 @@ def test_p03_current_log_alias_preserves_bytes_and_original_failure(
         repository,
         {
             "phase": phase,
-            "kind": "alias",
-            "destination": str(log_names[phase]),
+            "kind": kind,
+            "destination": str(log_candidates[phase]),
             "target": str(target),
             "status": status,
         },
     )
     assert tracked_markers(repository) == before_markers, "current log overwrote tracked bytes"
     assert metadata(repository) == before_metadata, "current log altered Git metadata"
-    assert_action(repository, phase, "alias")
     receipt = load_receipt(repository)
-    assert_rejected(result, receipt)
-    phases = assert_trace(repository, receipt)
-    assert phase in phases
-    if status:
-        assert result.returncode == status
-        assert phases[-1] == phase
+    assert_safe_outcome(repository, result, receipt, phase, kind, status)
 
 
-@pytest.mark.parametrize("target_kind", ["tracked", "common-config", "private-head"])
+@pytest.mark.parametrize("target_kind", ["tracked", "common-config", "private-head", "git-pointer"])
+@pytest.mark.parametrize("kind", ["alias", "hardlink"])
 def test_p04_future_log_alias_is_revalidated(
-    tmp_path: Path, log_names: dict[str, Path], target_kind: str
+    tmp_path: Path, log_candidates: dict[str, Path], target_kind: str, kind: str
 ) -> None:
     repository = create_repository(tmp_path, target_kind != "tracked")
     target = (
@@ -359,6 +438,8 @@ def test_p04_future_log_alias_is_revalidated(
         if target_kind == "tracked"
         else repository.common_git / "config"
         if target_kind == "common-config"
+        else repository.root / ".git"
+        if target_kind == "git-pointer"
         else repository.private_git / "HEAD"
     )
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
@@ -366,17 +447,15 @@ def test_p04_future_log_alias_is_revalidated(
         repository,
         {
             "phase": "sync",
-            "kind": "alias",
-            "destination": str(log_names["types"]),
+            "kind": kind,
+            "destination": str(log_candidates["types"]),
             "target": str(target),
         },
     )
     assert tracked_markers(repository) == before_markers, "future log overwrote tracked bytes"
     assert metadata(repository) == before_metadata, "future log altered Git metadata"
-    assert_action(repository, "sync", "alias")
     receipt = load_receipt(repository)
-    assert_rejected(result, receipt)
-    assert "sync" in assert_trace(repository, receipt)
+    assert_safe_outcome(repository, result, receipt, "sync", kind)
 
 
 @pytest.mark.parametrize("ancestor", [False, True])
@@ -399,60 +478,58 @@ def test_p04_output_directory_or_ancestor_redirect_preserves_all_git_metadata(
     )
     assert tracked_markers(repository) == before_markers
     assert metadata(repository) == before_metadata, "redirected ancestor created/changed Git bytes"
-    assert_action(repository, "audit", "directory-alias")
     receipt = load_receipt(repository)
-    assert_rejected(result, receipt)
-    assert "audit" in assert_trace(repository, receipt)
+    assert_safe_outcome(repository, result, receipt, "audit", "directory-alias")
 
 
 @pytest.mark.parametrize("entry", ["receipt", "current-log"])
 @pytest.mark.parametrize("identity", ["missing-file", "unavailable-head", "dirty-start"])
+@pytest.mark.parametrize("kind", ["alias", "hardlink"])
 def test_p06_incomplete_or_dirty_identity_does_not_authorize_later_protected_write(
-    tmp_path: Path, log_names: dict[str, Path], entry: str, identity: str
+    tmp_path: Path, log_candidates: dict[str, Path], entry: str, identity: str, kind: str
 ) -> None:
     repository = create_repository(tmp_path, linked=True)
     if identity == "dirty-start":
         (repository.root / "candidate.txt").write_bytes(MARKER + b"dirty fixture\n")
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
-    destination = RECEIPT if entry == "receipt" else log_names["audit"]
+    destination = RECEIPT if entry == "receipt" else log_candidates["audit"]
     action: dict[str, Any] = {
         "phase": "audit",
-        "kind": "alias",
+        "kind": kind,
         "destination": str(destination),
         "target": str(repository.common_git / "config"),
     }
     if identity == "missing-file":
         action["identity_loss"] = "scripts/branchless.py"
-        del before_markers["scripts/branchless.py"]
     elif identity == "unavailable-head":
         action["identity_loss"] = str(repository.private_git / "HEAD")
-        del before_metadata[(repository.private_git / "HEAD").relative_to(repository.common_git)]
     result = invoke(repository, action)
+    if action_observations(repository) and identity == "missing-file":
+        del before_markers["scripts/branchless.py"]
+    elif action_observations(repository) and identity == "unavailable-head":
+        del before_metadata[(repository.private_git / "HEAD").relative_to(repository.common_git)]
     assert tracked_markers(repository) == before_markers
     assert metadata(repository) == before_metadata, "identity failure excused protected write"
     receipt = load_receipt(repository)
     assert_rejected(result, receipt)
-    phases = assert_trace(repository, receipt)
+    phases = assert_safe_outcome(repository, result, receipt, "audit", kind)
     if identity == "dirty-start" and not (repository.root / "actions.jsonl").exists():
         # Rejecting a dirty start before executing the action is a legitimate
         # alternative. The contract does not require unsafe phases to execute.
         assert receipt is not None and receipt["before"]["dirty"] is True
         assert "audit" not in phases
-    else:
-        assert_action(repository, "audit", "alias")
-        assert "audit" in phases
 
 
 @pytest.mark.parametrize("entry", ["receipt", "current-log", "future-log"])
 def test_p08_phase_replaced_ignored_regular_output_remains_valid(
-    repository: Repository, log_names: dict[str, Path], entry: str
+    repository: Repository, log_candidates: dict[str, Path], entry: str
 ) -> None:
     destination = (
         RECEIPT
         if entry == "receipt"
-        else log_names["types"]
+        else log_candidates["types"]
         if entry == "current-log"
-        else log_names["audit"]
+        else log_candidates["audit"]
     )
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
     result = invoke(
@@ -470,9 +547,9 @@ def test_p08_phase_replaced_ignored_regular_output_remains_valid(
 
 @pytest.mark.parametrize("entry,status", [("receipt", 0), ("current-log", 0), ("current-log", 23)])
 def test_p10_local_output_failure_is_honest_and_preserves_protected_bytes(
-    repository: Repository, log_names: dict[str, Path], entry: str, status: int
+    repository: Repository, log_candidates: dict[str, Path], entry: str, status: int
 ) -> None:
-    destination = RECEIPT if entry == "receipt" else log_names["types"]
+    destination = RECEIPT if entry == "receipt" else log_candidates["types"]
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
     result = invoke(
         repository,
@@ -485,15 +562,10 @@ def test_p10_local_output_failure_is_honest_and_preserves_protected_bytes(
     )
     assert tracked_markers(repository) == before_markers
     assert metadata(repository) == before_metadata
-    assert_action(repository, "types", "unwritable-directory")
     receipt = load_receipt(repository)
-    assert_rejected(result, receipt)
-    if status:
-        assert result.returncode == status
-    phases = assert_trace(repository, receipt)
-    assert "types" in phases
-    if status:
-        assert phases[-1] == "types"
+    assert_safe_outcome(repository, result, receipt, "types", "unwritable-directory", status)
+    if entry == "receipt":
+        assert_rejected(result, receipt)
 
 
 @pytest.mark.parametrize("missing", [False, True])
@@ -517,7 +589,10 @@ def test_p07_original_command_failure_or_missing_command_keeps_status_and_safe_e
     assert [item["name"] for item in receipt["phases"]] == expected
     assert receipt["phases"][-1]["returncode"] == result.returncode
     if missing:
-        assert calls(repository) == []
+        assert not [call for call in calls(repository) if any(arg in PHASES for arg in call)]
+        assert receipt["phases"][-1]["command"][0] == str(repository.bin_dir / "make")
+        assert "sync" in receipt["phases"][-1]["command"]
+        assert f"UV={repository.bin_dir / 'uv'}" in receipt["phases"][-1]["command"]
     else:
         assert assert_trace(repository, receipt) == expected
         assert_action(repository, "types", "regular")
