@@ -144,6 +144,7 @@ def assert_measurements(receipt: dict[str, Any], root: Path, expected: dict[str,
         ("KiB", 100, 107),
         ("bytes", 100, 107),
         ("KiB", 0, 0),
+        ("bytes", 0, 0),
         ("bytes", 19, 19),
         ("KiB", 31, 31 + 32768),
         ("bytes", 31, 31 + 33554432),
@@ -278,7 +279,8 @@ def invalid_reports() -> list[Any]:
             value["measurements"]["M25"][field] = invalid
             values.append(value)
     for unit in ("KB", "kib", "Bytes", "MiB", "", None, 1, True):
-        value = report()
+        # Zero is exact under both approved native scales: only the unit is invalid.
+        value = report("bytes", 0, 0)
         value["measurements"]["M25"]["units"] = unit
         values.append(value)
     lower_peak = report()
