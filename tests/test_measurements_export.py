@@ -147,6 +147,10 @@ def assert_measurements(receipt: dict[str, Any], root: Path, expected: dict[str,
         ("bytes", 19, 19),
         ("KiB", 31, 31 + 32768),
         ("bytes", 31, 31 + 33554432),
+        # Integer counterparts to the isolated Boolean/negative-baseline rejections.
+        ("bytes", 1, 1),
+        ("bytes", 0, 1),
+        ("KiB", 0, 7),
     ],
 )
 def test_e1_e3_same_run_exact_report(
@@ -289,6 +293,17 @@ def invalid_reports() -> list[Any]:
         value["measurements"]["M25"]["limit_bytes"] = invalid_limit
         values.append(value)
     values += [report("bytes", 0, LIMIT_BYTES + 1), report("KiB", 0, 32769)]
+    # Isolate numeric representation from arithmetic, order and the fixed limit.
+    # Under ordinary numeric coercion each otherwise satisfies the public equation.
+    for units, fields in (
+        ("bytes", {"baseline": True, "peak": 1, "increment_bytes": 0}),
+        ("bytes", {"baseline": 0, "peak": True, "increment_bytes": 1}),
+        ("bytes", {"baseline": 0, "peak": 1, "increment_bytes": True}),
+        ("KiB", {"baseline": -1, "peak": 6, "increment_bytes": 7168}),
+    ):
+        value = report(units)
+        value["measurements"]["M25"].update(fields)
+        values.append(value)
     return values
 
 
@@ -506,11 +521,19 @@ def test_e2_writer_preserves_protected_bytes(
     writer_environment: tuple[Path, pytest.MonkeyPatch], kind: str
 ) -> None:
     root, monkeypatch = writer_environment
+    monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
     protected, original = protected_setup(root, kind)
+    before = writer_protected_snapshot(root)
     enable_writer(monkeypatch)
-    with pytest.raises(ValueError, match="ignored|tracked|Git metadata"):
-        export_measurement(native_record())
+    if kind == "tracked":
+        # A directly tracked destination must still reject, not replace its bytes.
+        with pytest.raises(ValueError, match="ignored|tracked|Git metadata"):
+            export_measurement(native_record())
+    else:
+        assert_writer_safe_alias_outcome(root, native_record())
     assert protected.read_bytes() == original
+    assert {path: path.read_bytes() for path in before} == before
+    assert writer_protected_snapshot(root) == before
 
 
 @pytest.mark.parametrize("caller_failure", ["none", "status", "limit", "units"])
@@ -583,6 +606,7 @@ def test_e2_linked_worktree_metadata_protected(
     writer: bool,
 ) -> None:
     root, bin_dir = repository
+    monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
     linked = root.parent / "linked"
     git(root, "worktree", "add", "-q", "--detach", str(linked), "HEAD")
     private = Path(git(linked, "rev-parse", "--absolute-git-dir"))
@@ -591,11 +615,11 @@ def test_e2_linked_worktree_metadata_protected(
     destination = linked / MEASUREMENTS_PATH
     destination.parent.mkdir(parents=True)
     destination.symlink_to(protected)
+    before = writer_protected_snapshot(linked)
     if writer:
         monkeypatch.chdir(linked)
         enable_writer(monkeypatch)
-        with pytest.raises(ValueError, match="Git metadata"):
-            export_measurement(native_record())
+        assert_writer_safe_alias_outcome(linked, native_record())
     else:
         result, _ = invoke((linked, bin_dir))
         assert result.returncode == 1, result.stdout + result.stderr
@@ -603,6 +627,8 @@ def test_e2_linked_worktree_metadata_protected(
         calls = observations(linked) if calls_path.exists() else []
         assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
     assert protected.read_bytes() == original
+    assert {path: path.read_bytes() for path in before} == before
+    assert writer_protected_snapshot(linked) == before
 
 
 @pytest.mark.parametrize("writer", [False, True])
@@ -610,6 +636,7 @@ def test_e2_ancestor_symlink_cannot_write_git_metadata(
     repository: Repository, monkeypatch: pytest.MonkeyPatch, writer: bool
 ) -> None:
     root, _ = repository
+    monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
     metadata = {
         p.relative_to(root / ".git"): p.read_bytes()
         for p in (root / ".git").rglob("*")
@@ -617,22 +644,24 @@ def test_e2_ancestor_symlink_cannot_write_git_metadata(
     }
     (root / "artifacts").mkdir()
     (root / "artifacts/verification").symlink_to(root / ".git", target_is_directory=True)
+    before = writer_protected_snapshot(root)
     if writer:
         monkeypatch.chdir(root)
         enable_writer(monkeypatch)
-        with pytest.raises(ValueError, match="ignored|Git metadata"):
-            export_measurement(native_record())
+        assert_writer_safe_alias_outcome(root, native_record())
     else:
         result, _ = invoke(repository)
         assert result.returncode == 1, result.stdout + result.stderr
         calls = observations(root) if (root / "measurement-calls.jsonl").exists() else []
         assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
+    assert {path: path.read_bytes() for path in before} == before
     after = {
         p.relative_to(root / ".git"): p.read_bytes()
         for p in (root / ".git").rglob("*")
         if p.is_file()
     }
     assert after == metadata
+    assert writer_protected_snapshot(root) == before
 
 
 @pytest.mark.parametrize("protected_area", ["tracked", "git", "private", "common"])
@@ -727,6 +756,18 @@ def assert_writer_report(root: Path, supplied: dict[str, Any]) -> None:
         "run_id": STALE_ID,
         "measurements": {"M25": {**supplied, "limit_bytes": 33554432}},
     }
+
+
+def assert_writer_safe_alias_outcome(root: Path, supplied: dict[str, Any]) -> None:
+    """Allow honest rejection or exact output; callers independently prove preservation."""
+    original = copy.deepcopy(supplied)
+    try:
+        export_measurement(supplied)
+    except (ValueError, OSError):
+        pass
+    else:
+        assert_writer_report(root, original)
+    assert supplied == original
 
 
 @pytest.mark.parametrize(
@@ -900,12 +941,19 @@ def test_e2_writer_local_failure_is_honest_and_preserves_protected_bytes(
     elif failure_kind == "parent-file":
         destination.parent.parent.mkdir()
         destination.parent.write_bytes(b"local obstruction marker\n")
-    else:
-        (root / ".git/HEAD").unlink()
-    # Unavailable identity cannot be used to collect a Git-dependent snapshot.
-    before = {path: path.read_bytes() for path in root.rglob("*") if path.is_file()}
+    # Save the protected inventory while identity is available, then observe bytes
+    # without querying Git after the unavailable-identity case.
+    tracked = [root / name for name in git(root, "ls-files", "-z").split("\x00") if name]
+    metadata = root / ".git"
+    before = writer_protected_snapshot(root)
+    if failure_kind == "unavailable-git":
+        head = metadata / "HEAD"
+        head.unlink()
+        del before[head]
     enable_writer(monkeypatch)
     with pytest.raises((ValueError, OSError)):
         export_measurement(native_record())
-    after = {path: path.read_bytes() for path in root.rglob("*") if path.is_file()}
+    assert {path: path.read_bytes() for path in before} == before
+    protected_paths = [*tracked, *(path for path in metadata.rglob("*") if path.is_file())]
+    after = {path: path.read_bytes() for path in protected_paths if path.is_file()}
     assert after == before
