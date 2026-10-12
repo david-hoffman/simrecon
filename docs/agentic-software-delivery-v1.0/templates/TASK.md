@@ -45,3 +45,7 @@ Use this section or point to one Current state in PR/discussion. Prepare the poi
 - Blockers; next responsible role/action/narrow packet/completion:
 
 There are no default B review windows, review quotas, C/bounded repair quotas or execution budgets. Diagnose recurring failures and every correction with evidence, then continue through fresh required review until the objective is complete or an actual blocker remains. No uncontrolled automatic repair loop. Fresh/continued sessions, renamed tasks, checkpoints/model swaps/splits/migration erase no attempts. Blind A/B receive PUBLIC-PACKET only, never this implementation-bearing state. Only root LESSONS entries are append-only.
+
+## PR presentation (coordinator / permitted candidate context)
+
+Use specification section 4.1 and PULL-REQUEST.md. Record the plain-English summary, figure decision (why useful or omitted), caption/evidence/claim limits and technical-appendix evidence references. Keep implementation-bearing drafts out of blind A/B packets. No change to role ownership or gates.

@@ -23,3 +23,18 @@ You are already the assigned worker or fresh independent reviewer. Perform this 
 The human request authorizes intended scope and needed in-scope checks/transitions/diagnosed corrections/fresh reviews without repeated document approval. No default numeric caps or new-window/exhausted-default-allowance stop applies. Each correction needs diagnosed cause and evidence; no uncontrolled automatic repair loop. Ask only for missing material decisions, unclear/outside-request objectives or human-required external authority. Known failures block submission; changed inputs renew affected checks/review. Test corrections get route-required independent review. Fresh/continued sessions/splits/renames/model swaps/migration erase no accounting. No merge/release/external message authority follows from a packet.
 
 Behavior coverage and independent risk review always apply. Selected targets remain binding; unselected percentages cannot block acceptance. Preserve installed gates until independently reviewed, owner-authorized migration and authorized infrastructure changes reconcile them. An irreducible selected-target conflict needs an explicit owner policy decision or remains blocked, never a worker/reviewer waiver. An uncovered branch alone does not reopen test design; keep any blind A/B correction source-free and label later tests supplemental. Diagnosis/classification can precede readiness review but cannot establish readiness. Ordinary doctor cannot silently select an easier policy; separate adoption scope names the explicit owner choice and infrastructure ownership.
+
+## PR presentation (coordinator / permitted candidate context)
+
+Use specification section 4.1 and PULL-REQUEST.md. Record the plain-English summary, figure decision (why useful or omitted), caption/evidence/claim limits and technical-appendix evidence references. Keep implementation-bearing drafts out of blind A/B packets. No change to role ownership or gates.
+
+## Requested test audit / preservation (permitted nonblind context)
+
+- Focused/subsystem scope/exclusions, pinned baseline/inventory/results/unknowns; authorized native discovery lanes and one declaration/shared-helper owner:
+- Read-only declaration ledger IDs/R-F-C-D evidence, actual detectable failures, callers/history/dependency context and retained false positives:
+- Approved obligation-to-keeper mapping, assertions/positive/error rows carried forward, retired layers/seams, named correction ownership and independent review scope:
+- Diagnosed finding classifications/dispositions, sanitized A/B handoff reference, revised checkpoint/retained-evidence decisions and supplemental status:
+- Intended pre-fix failure and passing proof or unavailable baseline limits; focused/full proof and exact-candidate final independent sweep findings/scope/limits:
+- Migration after fresh policy acceptance: named tasks, retained historical attempts/spending and evidence applicability; actual limits or not set; metering unknown where unavailable:
+
+Test-audit supplies no new edit, delegation or publication authority. C stays frozen out of reviewed tests/policy. A diagnostic sweep is no readiness verdict; default full-local gates, native integrity/platform/same-run measurements remain binding.
