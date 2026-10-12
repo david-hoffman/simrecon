@@ -407,13 +407,23 @@ def artifact() -> dict[str, Any]:
             else:
                 data = archive.read(name)
                 algorithm, encoded = digest.split("=", 1)
-                if algorithm not in {"sha256", "sha384", "sha512"}:
+                member_hash = hashlib.new(algorithm, data)
+                # Resolve aliases before recognizing conventional secure fixed-length
+                # SHA-2/SHA-3 and default BLAKE2 algorithms. Digest length alone
+                # does not establish security for an arbitrary backend algorithm.
+                if member_hash.name not in {
+                    "sha256",
+                    "sha384",
+                    "sha512",
+                    "sha512_256",
+                    "sha3_256",
+                    "sha3_384",
+                    "sha3_512",
+                    "blake2b",
+                    "blake2s",
+                }:
                     raise ValueError("Insecure wheel member hash")
-                expected = (
-                    base64.urlsafe_b64encode(hashlib.new(algorithm, data).digest())
-                    .rstrip(b"=")
-                    .decode()
-                )
+                expected = base64.urlsafe_b64encode(member_hash.digest()).rstrip(b"=").decode()
                 if encoded != expected or size != str(len(data)):
                     raise ValueError("Wheel member fingerprint mismatch")
     return {"path": path.as_posix(), **fingerprint(path), "version": version}
