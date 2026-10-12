@@ -526,12 +526,55 @@ def test_coefficient_representation_and_conversion_errors(
     # invalid. Simultaneous shape/dtype error precedence is unspecified.
     if callable(value):
         value = value(acquisition.data.shape)
+    # Masked-array equality can hide both mask changes and underlying values.
+    # Save plain independent observations before invoking the public operation.
+    masked_before = (
+        (np.ma.getmaskarray(value).copy(), np.ma.getdata(value).copy())
+        if isinstance(value, np.ma.MaskedArray)
+        else None
+    )
     assert_code(
         calibrate,
         acquisition,
         f"invalid_linear_response_{name}",
         **{name: value},
     )
+    if masked_before is not None:
+        np.testing.assert_array_equal(np.ma.getmaskarray(value), masked_before[0])
+        np.testing.assert_array_equal(np.ma.getdata(value), masked_before[1])
+
+
+@pytest.mark.parametrize(
+    "mutation,mask_preserved,data_preserved",
+    [
+        ("unchanged", True, True),
+        ("mask", False, True),
+        ("unmasked-data", True, False),
+        ("masked-data", True, False),
+    ],
+)
+def test_masked_coefficient_preservation_observer_controls(
+    mutation: str, mask_preserved: bool, data_preserved: bool
+) -> None:
+    # A pre-existing mask isolates hidden-payload detection from mask changes.
+    coefficient = np.ma.array([1.0, 2.0], mask=[False, True])
+    masked_before = (np.ma.getmaskarray(coefficient).copy(), np.ma.getdata(coefficient).copy())
+    if mutation == "mask":
+        np.ma.getmaskarray(coefficient)[0] = True
+    elif mutation == "unmasked-data":
+        coefficient.data[0] = 3.0
+    elif mutation == "masked-data":
+        coefficient.data[1] = 3.0
+    if mask_preserved:
+        np.testing.assert_array_equal(np.ma.getmaskarray(coefficient), masked_before[0])
+    else:
+        with pytest.raises(AssertionError):
+            np.testing.assert_array_equal(np.ma.getmaskarray(coefficient), masked_before[0])
+    if data_preserved:
+        np.testing.assert_array_equal(np.ma.getdata(coefficient), masked_before[1])
+    else:
+        with pytest.raises(AssertionError):
+            np.testing.assert_array_equal(np.ma.getdata(coefficient), masked_before[1])
 
 
 @pytest.mark.parametrize("name", ["offset", "response"])
