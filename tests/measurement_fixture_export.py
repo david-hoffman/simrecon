@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -44,6 +45,8 @@ def export_measurement(measurement: dict[str, Any]) -> None:
     resolved = destination.resolve()
     if any(resolved == (root / name).resolve() for name in tracked if name):
         raise ValueError("measurement export would overwrite tracked content")
+    if resolved == (root / ".git").resolve():
+        raise ValueError("measurement export would overwrite Git metadata")
     for option in ("--absolute-git-dir", "--git-common-dir"):
         metadata = (root / git_output(root, "rev-parse", option)).resolve()
         if resolved.is_relative_to(metadata):
@@ -55,5 +58,22 @@ def export_measurement(measurement: dict[str, Any]) -> None:
         "run_id": run_id,
         "measurements": {"M25": record},
     }
+    payload = json.dumps(report) + "\n"
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(report) + "\n", encoding="utf-8")
+    temporary: Path | None = None
+    try:
+        # Replacing the ignored leaf preserves any hard-linked target's bytes.
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=destination.parent,
+            prefix=".measurements-",
+            suffix=".tmp",
+            delete=False,
+        ) as stream:
+            temporary = Path(stream.name)
+            stream.write(payload)
+        os.replace(temporary, destination)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
