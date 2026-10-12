@@ -12,9 +12,11 @@ import os
 import platform
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import zipfile
+from contextlib import suppress
 from datetime import datetime, timedelta, timezone
 from email.parser import Parser
 from itertools import product
@@ -91,11 +93,65 @@ def identity() -> dict[str, Any]:
 
 
 def safe_output(path: Path, protected: list[Path]) -> bool:
-    """Protect resolved candidate and Git paths from artifact writes."""
-    target = path.resolve()
+    """Protect retained and currently resolved candidate and Git locations."""
+    targets = (path.absolute(), path.resolve())
+    locations = {location for item in protected for location in (item, item.resolve())}
     return not any(
-        target == item or item in target.parents or target in item.parents for item in protected
+        target == item or item in target.parents or target in item.parents
+        for target in targets
+        for item in locations
     )
+
+
+def persist_output(path: Path, text: str, protected: list[Path]) -> None:
+    """Revalidate each write and replace leaves without truncating hard-link targets."""
+    if not safe_output(path, protected):
+        raise ValueError("Unsafe output destination")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    permissions = stat.S_IMODE(path.stat().st_mode) if path.is_file() else None
+    candidate = path.parent / ("." + uuid4().hex + ".tmp")
+    if not safe_output(candidate, protected):
+        raise ValueError("Unsafe output destination")
+    temporary = None
+    try:
+        with candidate.open("x", encoding="utf-8") as stream:
+            temporary = candidate
+            if permissions is not None:
+                os.fchmod(stream.fileno(), permissions)
+            stream.write(text)
+        if not safe_output(path, protected):
+            raise ValueError("Unsafe output destination")
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
+def collect_final_identity(receipt: dict[str, Any], inputs: dict[str, Path]) -> None:
+    """Record actual candidate/input identities independently of output availability."""
+    problems = []
+    receipt["after"] = None
+    try:
+        receipt["after"] = identity()
+        if (
+            receipt["before"] is None
+            or any(
+                receipt["before"][key] != receipt["after"][key]
+                for key in ("commit", "tree", "manifest")
+            )
+            or receipt["after"]["dirty"]
+        ):
+            problems.append("Tracked candidate changed or unavailable")
+    except (OSError, ValueError):
+        problems.append("Final identity unavailable")
+    for name, path in inputs.items():
+        entry = receipt["inputs"].setdefault(name, {"before": None, "after": None})
+        entry["after"] = None
+        with suppress(OSError):
+            entry["after"] = fingerprint(path) if path.is_file() else None
+        if entry["before"] is None or entry["before"] != entry["after"]:
+            problems.append("Input changed or unavailable: " + name)
+    receipt["problems"].extend(item for item in problems if item not in receipt["problems"])
 
 
 def clear_measurements(protected: list[Path]) -> None:
@@ -392,7 +448,7 @@ def main() -> int:
     destination = Path(args.receipt)
     exitcode = 1
     try:
-        protected = [Path(".git").resolve()]
+        protected = [Path(".git").absolute(), Path(".git").resolve()]
         for arguments in (
             ["ls-files", "-z"],
             ["rev-parse", "--absolute-git-dir"],
@@ -405,7 +461,8 @@ def main() -> int:
                     if args.measurements_required
                     else "Output protection unavailable"
                 )
-            protected.extend(Path(name).resolve() for name in output.rstrip("\n\0").split("\0"))
+            for name in output.rstrip("\n\0").split("\0"):
+                protected.extend((Path(name).absolute(), Path(name).resolve()))
         if args.measurements_required and not safe_output(MEASUREMENTS_PATH, protected):
             raise ValueError("Unsafe measurement destination")
         logs = Path("artifacts/verification/logs")
@@ -433,10 +490,9 @@ def main() -> int:
             command = [args.make, "--no-print-directory", phase, "UV=" + args.uv]
             started = now()
             status, output = capture(command, phase_environment)
-            print(output, end="", flush=True)
+            if status:
+                exitcode = status
             log = Path("artifacts/verification/logs") / (phase + ".log")
-            log.parent.mkdir(parents=True, exist_ok=True)
-            log.write_text(output, encoding="utf-8")
             receipt["phases"].append(
                 {
                     "name": phase,
@@ -447,6 +503,8 @@ def main() -> int:
                     "log": log.as_posix(),
                 }
             )
+            print(output, end="", flush=True)
+            persist_output(log, output, protected)
             if args.measurements_required and phase == "tests":
                 try:
                     receipt["measurements"] = measurements(run_id)
@@ -455,7 +513,6 @@ def main() -> int:
                         "Measurement evidence invalid or unavailable: " + str(error)
                     )
             if status:
-                exitcode = status
                 raise ValueError("Phase failed: " + phase)
             if phase == "sync":
                 for tool in receipt["environment"]["tools"]:
@@ -480,24 +537,7 @@ def main() -> int:
                 receipt["problems"].append(
                     str(error) if not isinstance(error, OSError) else "Evidence file unavailable"
                 )
-    try:
-        receipt["after"] = identity()
-        if (
-            receipt["before"] is None
-            or any(
-                receipt["before"][key] != receipt["after"][key]
-                for key in ("commit", "tree", "manifest")
-            )
-            or receipt["after"]["dirty"]
-        ):
-            receipt["problems"].append("Tracked candidate changed or unavailable")
-        for name, path in inputs.items():
-            entry = receipt["inputs"].setdefault(name, {"before": None, "after": None})
-            entry["after"] = fingerprint(path) if path.is_file() else None
-            if entry["before"] is None or entry["before"] != entry["after"]:
-                receipt["problems"].append("Input changed or unavailable: " + name)
-    except (OSError, ValueError):
-        receipt["problems"].append("Final identity unavailable")
+    collect_final_identity(receipt, inputs)
     if receipt["measurements"] is not None:
         try:
             if (
@@ -513,8 +553,24 @@ def main() -> int:
     else:
         receipt["result"] = "passed"
     receipt["finished_at"] = now()
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    # Approved inputs cannot be overwritten by the evidence that describes them.
+    receipt_protected = [
+        *protected,
+        *(path.absolute() for path in inputs.values() if not path.is_dir()),
+    ]
+    try:
+        persist_output(destination, json.dumps(receipt, indent=2) + "\n", receipt_protected)
+        recorded = json.dumps((receipt["after"], receipt["inputs"], receipt["problems"]))
+        collect_final_identity(receipt, inputs)
+        if recorded != json.dumps((receipt["after"], receipt["inputs"], receipt["problems"])):
+            if receipt["problems"]:
+                receipt["result"] = "failed"
+                exitcode = exitcode or 1
+            receipt["finished_at"] = now()
+            persist_output(destination, json.dumps(receipt, indent=2) + "\n", receipt_protected)
+    except (OSError, ValueError):
+        print("Receipt output unsafe or unavailable", file=sys.stderr)
+        return exitcode or 1
     return exitcode
 
 
