@@ -50,6 +50,83 @@ ACQUISITION_HASHES = (
     "83281edcbaf738af9f78b025630a27ed50f8270349114fb7b7bbca427ffc97e2",
     "bb1f007740ae091fdae2037bf83cae210147c6d5e0bf3d343fc682e14520bcc5",
 )
+# Public dataset schemas identify data-bearing output, not diagnostic keywords.
+# These compact field names contain neither retired payload nor generated arrays.
+DATASET_SCHEMAS: tuple[tuple[str, frozenset[str], frozenset[str]], ...] = (
+    (
+        "fixtures",
+        frozenset(("version", "status", "expected_value_policy", "frequency_policy", "fixtures")),
+        frozenset(
+            (
+                "id",
+                "shape_yx",
+                "origin_yx",
+                "pixel_size_um",
+                "source",
+                "input_dtype",
+                "psf_samples",
+                "mode_y",
+                "mode_x",
+                "frequency_y_per_um",
+                "frequency_x_per_um",
+                "expected_formula",
+                "expected_otf_real",
+                "expected_otf_imag",
+                "oracle",
+                "example_fft_cross_check_max_abs",
+            )
+        ),
+    ),
+    (
+        "entries",
+        frozenset(
+            (
+                "version",
+                "role",
+                "product_outputs",
+                "oracle_precision_decimal_digits",
+                "oracle_methods",
+                "units",
+                "object_coefficients",
+                "psf_formula",
+                "psf_preprocessing",
+                "independent_input_hashes",
+                "primary_references",
+                "entries",
+            )
+        ),
+        frozenset(
+            (
+                "name",
+                "shape_detector",
+                "images",
+                "images_sha256",
+                "images_dtype",
+                "images_layout",
+                "phases_rad",
+                "wavevectors_per_um",
+                "modulation",
+                "brightness",
+                "regularization",
+                "apodization",
+                "otf",
+                "pixel_size_um_detector",
+                "origin_yx_psf",
+                "source_label",
+                "independent_psf",
+                "object_truth",
+                "object_truth_spectrum",
+                "rounded_data_estimator_spectrum",
+                "rounded_data_estimator_image",
+                "conventional_unilluminated_observation",
+                "informative_budget_coordinate",
+                "min_positive_V",
+                "max_V",
+                "physical_limitation",
+            )
+        ),
+    ),
+)
 
 
 def diagnostic_environment(child_temporary: Path) -> dict[str, str]:
@@ -121,21 +198,29 @@ def parse(payload: bytes) -> Any:
 
 
 def assert_no_success_document(payload: bytes) -> None:
-    """Reject complete successful datasets without prescribing diagnostic keys.
+    """Reject data-bearing family schemas independently of exact success equality.
 
-    The unchanged complete representation digests identify both valid success
-    documents. Other diagnostic schemas/prose are unspecified, including JSON
-    objects containing entries/fixtures or nonfinite diagnostic values.
-    Successful exports still have unconditional strict representation checks.
+    Field order, additional claims and scientific values do not turn a dataset
+    into a diagnostic. Empty/partial diagnostic containers and prose remain
+    unrestricted. Exact success validation uses the separate strict observer.
     """
     try:
         document = json.loads(payload)
-        representation_hash = digest(document)
-    except (AssertionError, ValueError, UnicodeError):
+    except (ValueError, UnicodeError):
         return
-    assert representation_hash not in {record[2] for record in DOCUMENTS.values()}, (
-        "rejection emitted a dataset document"
-    )
+    if not isinstance(document, dict):
+        return
+    for container, root_fields, record_fields in DATASET_SCHEMAS:
+        if not root_fields.issubset(document):
+            continue
+        records = document[container]
+        assert not (
+            isinstance(records, list)
+            and records
+            and all(
+                isinstance(record, dict) and record_fields.issubset(record) for record in records
+            )
+        ), "rejection emitted a dataset document"
 
 
 @pytest.fixture(scope="module", params=("otf", "reconstruction"))
@@ -167,8 +252,7 @@ def test_complete_historical_representation(exported: tuple[str, Any]) -> None:
     selector, document = exported
     filename, byte_hash, representation_hash = DOCUMENTS[selector]
     assert digest(document) == representation_hash, "complete historical representation mismatch"
-    with pytest.raises(AssertionError, match="dataset document"):
-        assert_no_success_document(json.dumps(document).encode())
+    assert_dataset_rejection_controls(document)
     historical = ROOT / "docs/references/scientific" / filename
     if historical.exists():
         payload = historical.read_bytes()
@@ -396,6 +480,37 @@ def test_observer_distinguishes_preserved_representations() -> None:
         b'{"fixtures":[]}',
     ):
         assert_no_success_document(payload)
+    for container, root_fields, record_fields in DATASET_SCHEMAS:
+        # A diagnostic may report every root metadata key with an empty body,
+        # or a partial error record. No arbitrary root/record key is reserved.
+        diagnostic: dict[str, Any] = dict.fromkeys(sorted(root_fields))
+        diagnostic["error"] = "unsupported selector"
+        for records in ([], [{"error": "unsupported selector"}]):
+            diagnostic[container] = records
+            assert_no_success_document(json.dumps(diagnostic).encode())
+        # Schema-only negative control, with no scientific payload/arrays.
+        document: dict[str, Any] = dict.fromkeys(sorted(root_fields))
+        document[container] = [dict.fromkeys(sorted(record_fields))]
+        assert_dataset_rejection_controls(document)
+
+
+def assert_dataset_rejection_controls(document: dict[str, Any]) -> None:
+    """Whole-data variants must remain identifiable on rejected invocations."""
+    reordered_records = {
+        key: [dict(reversed(list(record.items()))) for record in value]
+        if key in ("fixtures", "entries")
+        else value
+        for key, value in document.items()
+    }
+    for variant in (
+        document,
+        dict(reversed(list(document.items()))),
+        {**document, "success": True},
+        {**document, "error": "unsupported selector"},
+        reordered_records,
+    ):
+        with pytest.raises(AssertionError, match="dataset document"):
+            assert_no_success_document(json.dumps(variant, separators=(",", ":")).encode())
 
 
 @pytest.mark.parametrize("returncode", (0, 1, 2))
@@ -491,5 +606,11 @@ def test_no_success_observer_historical_controls() -> None:
         assert hashlib.sha256(payload).hexdigest() == byte_hash, "historical input changed"
         with pytest.raises(AssertionError, match="dataset document"):
             assert_no_success_document(payload)
-        with pytest.raises(AssertionError, match="dataset document"):
-            assert_no_success_document(json.dumps(parse(payload), separators=(",", ":")).encode())
+        document = parse(payload)
+        # Confirm these compact signatures against the exact public inputs.
+        container, root_fields, record_fields = next(
+            schema for schema in DATASET_SCHEMAS if schema[0] in document
+        )
+        assert set(document) == root_fields
+        assert all(set(record) == record_fields for record in document[container])
+        assert_dataset_rejection_controls(document)
