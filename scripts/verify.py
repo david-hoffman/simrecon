@@ -137,13 +137,22 @@ def protect_evidence(paths: list[Path], protected: list[Path]) -> None:
 def evidence_files(root: Path) -> dict[Path, tuple[int, int, int, int, int]]:
     """Observe file writes without reading payloads or assuming native output names."""
     files = {}
-    for directory, _, names in os.walk(root):
+    visited = set()
+    for directory, directories, names in os.walk(root, followlinks=True):
+        directory_metadata = Path(directory).stat()
+        directory_identity = (directory_metadata.st_dev, directory_metadata.st_ino)
+        if directory_identity in visited:
+            directories[:] = []
+            continue
+        visited.add(directory_identity)
         for name in names:
             path = Path(directory) / name
             with suppress(FileNotFoundError):
                 metadata = path.stat()
                 if stat.S_ISREG(metadata.st_mode):
-                    files[path] = (
+                    # Compare the same destination even when reached through a
+                    # different directory alias before and after the phase.
+                    files[path.resolve()] = (
                         metadata.st_dev,
                         metadata.st_ino,
                         metadata.st_size,
