@@ -27,3 +27,14 @@ Behavior coverage and independent risk review always apply. Selected targets rem
 ## PR presentation (coordinator / permitted candidate context)
 
 Use specification section 4.1 and PULL-REQUEST.md. Record the plain-English summary, figure decision (why useful or omitted), caption/evidence/claim limits and technical-appendix evidence references. Keep implementation-bearing drafts out of blind A/B packets. No change to role ownership or gates.
+
+## Requested test audit / preservation (permitted nonblind context)
+
+- Focused/subsystem scope/exclusions, pinned baseline/inventory/results/unknowns; authorized native discovery lanes and one declaration/shared-helper owner:
+- Read-only declaration ledger IDs/R-F-C-D evidence, actual detectable failures, callers/history/dependency context and retained false positives:
+- Approved obligation-to-keeper mapping, assertions/positive/error rows carried forward, retired layers/seams, named correction ownership and independent review scope:
+- Diagnosed finding classifications/dispositions, sanitized A/B handoff reference, revised checkpoint/retained-evidence decisions and supplemental status:
+- Intended pre-fix failure and passing proof or unavailable baseline limits; focused/full proof and exact-candidate final independent sweep findings/scope/limits:
+- Migration after fresh policy acceptance: named tasks, retained historical attempts/spending and evidence applicability; actual limits or not set; metering unknown where unavailable:
+
+Test-audit supplies no new edit, delegation or publication authority. C stays frozen out of reviewed tests/policy. A diagnostic sweep is no readiness verdict; default full-local gates, native integrity/platform/same-run measurements remain binding.
