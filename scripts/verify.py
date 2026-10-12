@@ -127,6 +127,13 @@ def persist_output(path: Path, text: str, protected: list[Path]) -> None:
             temporary.unlink(missing_ok=True)
 
 
+def protect_evidence(paths: list[Path], protected: list[Path]) -> None:
+    """Retain actual evidence locations for subsequent verifier-owned writes."""
+    for path in paths:
+        if path.is_file():
+            protected.extend((path.absolute(), path.resolve()))
+
+
 def collect_final_identity(receipt: dict[str, Any], inputs: dict[str, Path]) -> None:
     """Record actual candidate/input identities independently of output availability."""
     problems = []
@@ -447,6 +454,7 @@ def main() -> int:
         }
     destination = Path(args.receipt)
     exitcode = 1
+    evidence_protected: list[Path] = []
     try:
         protected = [Path(".git").absolute(), Path(".git").resolve()]
         for arguments in (
@@ -486,7 +494,7 @@ def main() -> int:
             raise ValueError("Tracked candidate is dirty at start")
         for phase in PHASES:
             if args.measurements_required and phase == "tests":
-                clear_measurements(protected)
+                clear_measurements([*protected, *evidence_protected])
             command = [args.make, "--no-print-directory", phase, "UV=" + args.uv]
             started = now()
             status, output = capture(command, phase_environment)
@@ -503,15 +511,25 @@ def main() -> int:
                     "log": log.as_posix(),
                 }
             )
-            print(output, end="", flush=True)
-            persist_output(log, output, protected)
+            report = {
+                "coverage-json": Path("artifacts/coverage/coverage.json"),
+                "coverage-html": Path("artifacts/coverage/html/index.html"),
+            }.get(phase)
+            if report is not None:
+                protect_evidence([report], evidence_protected)
+            if phase == "wheel":
+                protect_evidence(list(Path("dist").glob("*.whl")), evidence_protected)
             if args.measurements_required and phase == "tests":
+                protect_evidence([MEASUREMENTS_PATH], evidence_protected)
                 try:
                     receipt["measurements"] = measurements(run_id)
                 except (OSError, ValueError) as error:
                     receipt["problems"].append(
                         "Measurement evidence invalid or unavailable: " + str(error)
                     )
+            print(output, end="", flush=True)
+            persist_output(log, output, [*protected, *evidence_protected])
+            protect_evidence([log], evidence_protected)
             if status:
                 raise ValueError("Phase failed: " + phase)
             if phase == "sync":
@@ -556,6 +574,8 @@ def main() -> int:
     # Approved inputs cannot be overwritten by the evidence that describes them.
     receipt_protected = [
         *protected,
+        *evidence_protected,
+        *(Path(phase["log"]).absolute() for phase in receipt["phases"]),
         *(path.absolute() for path in inputs.values() if not path.is_dir()),
     ]
     try:
