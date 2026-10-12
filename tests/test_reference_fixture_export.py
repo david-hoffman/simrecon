@@ -200,9 +200,10 @@ def parse(payload: bytes) -> Any:
 def assert_no_success_document(payload: bytes) -> None:
     """Reject data-bearing family schemas independently of exact success equality.
 
-    Field order, additional claims and scientific values do not turn a dataset
-    into a diagnostic. Empty/partial diagnostic containers and prose remain
-    unrestricted. Exact success validation uses the separate strict observer.
+    Field order, additional claims/elements and scientific values do not turn
+    retained data into a diagnostic. Recognize complete records even among
+    nonmatching elements. Empty/partial diagnostics and prose remain unrestricted.
+    Exact success validation uses the separate strict observer.
     """
     try:
         document = json.loads(payload)
@@ -216,8 +217,7 @@ def assert_no_success_document(payload: bytes) -> None:
         records = document[container]
         assert not (
             isinstance(records, list)
-            and records
-            and all(
+            and any(
                 isinstance(record, dict) and record_fields.issubset(record) for record in records
             )
         ), "rejection emitted a dataset document"
@@ -485,7 +485,14 @@ def test_observer_distinguishes_preserved_representations() -> None:
         # or a partial error record. No arbitrary root/record key is reserved.
         diagnostic: dict[str, Any] = dict.fromkeys(sorted(root_fields))
         diagnostic["error"] = "unsupported selector"
-        for records in ([], [{"error": "unsupported selector"}]):
+        fields = sorted(record_fields)
+        for records in (
+            [],
+            [{"error": "unsupported selector"}],
+            [None],
+            [None, {"error": "unsupported selector"}, None],
+            [dict.fromkeys(fields[:-1]), dict.fromkeys(fields[1:])],
+        ):
             diagnostic[container] = records
             assert_no_success_document(json.dumps(diagnostic).encode())
         # Schema-only negative control, with no scientific payload/arrays.
@@ -511,6 +518,17 @@ def assert_dataset_rejection_controls(document: dict[str, Any]) -> None:
     ):
         with pytest.raises(AssertionError, match="dataset document"):
             assert_no_success_document(json.dumps(variant, separators=(",", ":")).encode())
+    for container in ("fixtures", "entries"):
+        if container not in document:
+            continue
+        records = document[container]
+        for extra in ({"error": "unsupported selector"}, None):
+            # Preserve every complete record. A nonmatching element at either
+            # end cannot mask retained scientific output or the added claim.
+            for augmented in ([extra, *records], [*records, extra]):
+                variant = {**document, container: augmented, "success": True}
+                with pytest.raises(AssertionError, match="dataset document"):
+                    assert_no_success_document(json.dumps(variant).encode())
 
 
 @pytest.mark.parametrize("returncode", (0, 1, 2))
