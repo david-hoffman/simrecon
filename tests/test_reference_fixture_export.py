@@ -18,6 +18,7 @@ from decimal import Decimal, localcontext
 from fractions import Fraction
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import ModuleType
 from typing import Any
 
 import numpy as np
@@ -142,8 +143,7 @@ COMPLEX_DATA_FIELDS = (
 
 
 def diagnostic_environment(child_temporary: Path) -> dict[str, str]:
-    """Inherit diagnostics and ensure all child interpreters install the harness."""
-    assert "sitecustomize" in sys.modules, "run via scripts/source_free_check.py"
+    """Install child diagnostics independently of the parent's module registry."""
     result = os.environ.copy()
     site = str(ROOT / "scripts/source_free_sitecustomize")
     previous = result.get("PYTHONPATH", "")
@@ -774,6 +774,63 @@ def assert_dataset_rejection_controls(document: dict[str, Any]) -> None:
                 variant = {**document, container: augmented, "success": True}
                 with pytest.raises(AssertionError, match="dataset document"):
                     assert_no_success_document(json.dumps(variant).encode())
+
+
+@pytest.mark.parametrize("parent_mode", ("unregistered", "unrelated"))
+def test_child_diagnostics_without_parent_precondition(
+    parent_mode: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Supplemental harness control; installed parent hooks remain active.
+
+    Changing only registry/env metadata models the faulty precondition safely.
+    It does not reproduce the ordinary full canonical gate, which root owns.
+    """
+    with TemporaryDirectory(prefix="observer-diagnostics-") as temporary:
+        directory = Path(temporary)
+        script = directory / "diagnostic_control.py"
+        script.write_text(
+            "import warnings\n"
+            "warnings.warn('child warning control', UserWarning)  # source-marker\n"
+            "raise RuntimeError('child failure control')  # source-marker\n",
+            encoding="utf-8",
+        )
+        with TemporaryDirectory(prefix="child-temp-", dir=directory) as child:
+            child_temporary = Path(child)
+            with monkeypatch.context() as parent:
+                if parent_mode == "unregistered":
+                    parent.delitem(sys.modules, "sitecustomize", raising=False)
+                    parent.delenv("PYTHONPATH", raising=False)
+                    inherited = ""
+                else:
+                    parent.setitem(sys.modules, "sitecustomize", ModuleType("sitecustomize"))
+                    inherited = str(directory / "caller-imports")
+                    parent.setenv("PYTHONPATH", inherited)
+                environment = diagnostic_environment(child_temporary)
+            site = str(ROOT / "scripts/source_free_sitecustomize")
+            assert environment["PYTHONPATH"] == site + (os.pathsep + inherited if inherited else "")
+            assert environment["PATH"].split(os.pathsep)[0] == str(ROOT / ".venv/bin")
+            assert environment["PYTHONDONTWRITEBYTECODE"] == "1"
+            assert all(environment[key] == child for key in ("TMPDIR", "TEMP", "TMP"))
+            result = subprocess.run(
+                [sys.executable, str(script)],
+                cwd=directory,
+                env=environment,
+                capture_output=True,
+                timeout=30,
+                check=False,
+            )
+            assert result.returncode == 1, "diagnostic control lost failure status"
+            assert not result.stdout, "diagnostic control wrote unexpected stdout"
+            diagnostics = result.stderr.decode(errors="replace")
+            assert "UserWarning: child warning control" in diagnostics
+            assert "RuntimeError: child failure control" in diagnostics
+            assert str(script) in diagnostics, "diagnostic control lost its location"
+            for line in (2, 3):
+                assert f":{line}:" in diagnostics or f"line {line}" in diagnostics
+            assert "source-marker" not in diagnostics, "child diagnostics exposed source lines"
+            assert_no_child_residue(directory, child_temporary, {script}, result.returncode)
+        assert set(directory.iterdir()) == {script}
+    assert not directory.exists()
 
 
 @pytest.mark.parametrize("returncode", (0, 1, 2))
