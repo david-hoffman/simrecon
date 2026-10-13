@@ -4,7 +4,7 @@
 
 ## Exact expectation sources
 
-Every mathematical case follows the normalized negative-exponential discrete Fourier sum for the **converted** float64 samples and explicit origin. The [JSON file](otf-calibration-fixtures-v1.json) records input integers, origin, binary-exact spacings `(0.125,0.25)` µm, signed mode lists, rounded frequency vectors and rounded complex expected values. The formula is authoritative; future tests must independently derive a sufficiently accurate oracle, not compare tightly against rounded JSON or another FFT call.
+Every mathematical case follows the normalized negative-exponential discrete Fourier sum for the **converted** float64 samples and explicit origin. The [on-demand JSON recipe](../../usage/reference-fixtures.md) records input integers, origin, binary-exact spacings `(0.125,0.25)` µm, signed mode lists, rounded frequency vectors and rounded complex expected values. Its [historical-resolution table](../../usage/reference-fixtures.md#historical-resolution) gives the original blob's exact revision, path and digest. The formula is authoritative; future tests must independently derive a sufficiently accurate oracle, not compare tightly against rounded JSON or another FFT call.
 
 | Case | Input / origin | Exact transfer in declared shifted order |
 |---|---|---|

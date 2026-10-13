@@ -106,7 +106,7 @@ Existing MRC conversion and `separate_phases` interfaces remain unchanged. No CL
 
 ## Independent reference fixtures
 
-The [fixture notes](../references/scientific/otf-calibration-fixture-notes.md) and [JSON examples](../references/scientific/otf-calibration-fixtures-v1.json) contain six small mathematical cases. Delta and constant kernels use root-sum identities; a separable `(3,4)` kernel has exact real output in `{0,1/4,1}`; a signed asymmetric `(4,6)` case gives phase and axis checks. Translating both the kernel and declared origin must preserve its transfer.
+The [fixture notes](../references/scientific/otf-calibration-fixture-notes.md) describe six small mathematical cases. Generate their JSON with the [on-demand recipe](../usage/reference-fixtures.md); its [historical-resolution table](../usage/reference-fixtures.md#historical-resolution) identifies the original revision, path and digest. Delta and constant kernels use root-sum identities; a separable `(3,4)` kernel has exact real output in `{0,1/4,1}`; a signed asymmetric `(4,6)` case gives phase and axis checks. Translating both the kernel and declared origin must preserve its transfer.
 
 For the asymmetric case, masses `3,1,4` lie at `(oy, ox)`, `(oy+1, ox)` and `(oy, ox+1)`, respectively. Increasing row index is positive y; their sum is 8:
 

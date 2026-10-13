@@ -12,11 +12,13 @@ integration remain pending for this stacked implementation.
 The [machine-readable manifest](../references/scientific/reconstruction-comparison.json)
 contains the full actual image/spectrum, independent expected arrays, acquisitions,
 PSF/OTF, all parameters, public phase components, maxima and provenance. Expectations
-come from the B4-accepted independent
-[fixture](../references/scientific/reconstruction-fixtures-v1.json), never from
+come from the B4-accepted independent fixture, reproduced by the
+[on-demand recipe](../usage/reference-fixtures.md), never from
 product outputs. Its embedded historical “not yet B accepted” label describes its
 creation; the accepted checkpoint and verdict hash in the comparison manifest
-identify the later acceptance. The [contract](../contracts/known-parameter-reconstruction-v1.md)
+identify the later acceptance. The recipe's
+[historical-resolution table](../usage/reference-fixtures.md#historical-resolution)
+pins the original fixture revision, path and digest. The [contract](../contracts/known-parameter-reconstruction-v1.md)
 and [usage](../usage/reconstruction.md) define interpretation and limits.
 
 Each case occupies two figure rows. Truth, conventional unilluminated observation,
