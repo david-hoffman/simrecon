@@ -58,7 +58,7 @@ def _image_snapshot(value: object) -> npt.NDArray[np.float64]:
 
 
 def _tolerance(value: object) -> float:
-    """Validate the source sign before potentially underflowing conversion."""
+    """Validate stored source values before potentially underflowing conversion."""
     code = "invalid_translation_tolerance"
     if type(value) is np.ndarray and value.ndim == 0 and value.dtype.kind in "iuf":
         value = value[()]
@@ -66,11 +66,19 @@ def _tolerance(value: object) -> float:
         value, (int, float, np.integer, np.floating)
     ):
         raise SimreconError(code, "tolerance must be a nonboolean real scalar or plain 0D array")
+    # Read a Python float's stored value without its virtual conversion. NumPy
+    # finiteness can otherwise inspect the overridden conversion instead.
+    source = float.__float__(value) if isinstance(value, float) else value
     # Python integers are finite without narrowing their arbitrary precision.
-    if value < 0 or (isinstance(value, (float, np.floating)) and not np.isfinite(value)):
+    if source < 0 or (isinstance(source, (float, np.floating)) and not np.isfinite(source)):
         raise SimreconError(code, "source tolerance must be finite and nonnegative")
-    with conversion_errors(code, "tolerance cannot convert to float64"), np.errstate(all="ignore"):
-        converted = float(value)
+    try:
+        with np.errstate(all="ignore"):
+            converted = float(value)
+    except SimreconError:
+        raise
+    except (TypeError, ValueError, OverflowError) as error:
+        raise SimreconError(code, "tolerance cannot convert to float64") from error
     if not math.isfinite(converted) or converted < 0:
         raise SimreconError(code, "converted tolerance must be finite and nonnegative")
     return converted

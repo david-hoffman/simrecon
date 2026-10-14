@@ -8,6 +8,7 @@ import sys
 import time
 from fractions import Fraction
 from pathlib import Path
+from typing import cast
 
 import numpy as np
 
@@ -37,11 +38,14 @@ def illumination_expected_gain(images, steps):
         for step in steps
     ]
     observations = [Fraction(float(value)) for value in images[:, 0, 0]]
-    augmented = [
-        [sum(row[i] * row[j] for row in rows) for j in range(3)]
-        + [sum(row[i] * value for row, value in zip(rows, observations, strict=True))]
-        for i in range(3)
-    ]
+    augmented = cast(
+        list[list[Fraction]],
+        [
+            [sum(row[i] * row[j] for row in rows) for j in range(3)]
+            + [sum(row[i] * value for row, value in zip(rows, observations, strict=True))]
+            for i in range(3)
+        ],
+    )
     for column in range(3):
         pivot = augmented[column][column]
         augmented[column] = [value / pivot for value in augmented[column]]
