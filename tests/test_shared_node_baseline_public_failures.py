@@ -7,6 +7,7 @@ import math
 import os
 import warnings
 import xml.etree.ElementTree as ET
+from typing import cast
 
 import numpy as np
 import pytest
@@ -20,6 +21,7 @@ from shared_node_baseline_public_failures_fixture import (
     write_priism,
 )
 from simrecon import (
+    IlluminationEstimate,
     SimreconError,
     estimate_illumination,
     estimate_translation,
@@ -37,6 +39,9 @@ class OrdinaryFloat(float):
 
 class ConvertingFloat(float):
     """Record an ordinary float conversion and supply its caller-owned value."""
+
+    converted: float
+    events: list[str]
 
     def __new__(cls, source, converted):
         result = super().__new__(cls, source)
@@ -57,6 +62,9 @@ class OrdinaryInteger(int):
 class RaisingInteger(int):
     """Raise a caller-owned exception from ordinary integer conversion."""
 
+    error: SimreconError
+    events: list[str]
+
     def __new__(cls, value, error):
         result = super().__new__(cls, value)
         result.error = error
@@ -75,6 +83,9 @@ class OrdinaryLabel(str):
 
 class RaisingLabel(str):
     """Raise a caller-owned exception from an ordinary string operation."""
+
+    error: SimreconError
+    events: list[str]
 
     def __new__(cls, value, error):
         result = super().__new__(cls, value)
@@ -264,8 +275,13 @@ def test_ordinary_integer_subclass_scan_positive_and_named_local_outcomes(contai
     assert results[1].estimate is None
     for index in (0, 2):
         assert_illumination(results[index].estimate, source)
-        assert not np.shares_memory(results[index].estimate.phases_rad, steps)
-    assert not np.shares_memory(results[0].estimate.phases_rad, results[2].estimate.phases_rad)
+        assert not np.shares_memory(
+            cast(IlluminationEstimate, results[index].estimate).phases_rad, steps
+        )
+    assert not np.shares_memory(
+        cast(IlluminationEstimate, results[0].estimate).phases_rad,
+        cast(IlluminationEstimate, results[2].estimate).phases_rad,
+    )
     assert snapshot_arrays(arrays) == saved
 
 
@@ -322,10 +338,12 @@ def test_used_integer_protocol_preserves_original_caller_exception(
     record_property("integer_callback_exercised", exercised)
     if exercised:
         assert caught is error
+        assert caught is not None
         assert caught.code == "caller_coordinate_failure"
         assert results is None
     else:
         assert caught is None
+        assert results is not None
         assert len(results) == 1
         assert results[0].carrier_bins_yx == (0, 0)
         assert results[0].failure_code is None
@@ -374,6 +392,7 @@ def test_used_label_protocol_preserves_original_caller_exception(
     record_property("label_callback_exercised", exercised)
     if exercised:
         assert caught is error
+        assert caught is not None
         assert caught.code == "caller_label_failure"
         assert result is None
     else:
@@ -407,11 +426,11 @@ def test_genuine_opaque_priism_mutation_free_export_twin(tmp_path, caller_state)
         assert output.is_bigtiff
         assert len(output.pages) == 1
         assert np.array_equal(output.pages[0].asarray(), pixels[0])
-        root = ET.fromstring(output.ome_metadata)
+        root = ET.fromstring(cast(str, output.ome_metadata))
         namespace = {"ome": "http://www.openmicroscopy.org/Schemas/OME/2016-06"}
         entries = root.findall(".//ome:MapAnnotation/ome:Value/ome:M", namespace)
         metadata = json.loads(
-            next(entry.text for entry in entries if entry.get("K") == "metadata_json")
+            cast(str, next(entry.text for entry in entries if entry.get("K") == "metadata_json"))
         )
     assert base64.b64decode(metadata["original_header_base64"]) == header
     assert metadata["original_extension"] == {
@@ -451,11 +470,11 @@ def test_genuine_operation_time_shortening_reports_source_changed(
         assert output.is_bigtiff
         assert len(output.pages) == 1
         assert np.array_equal(output.pages[0].asarray(), pixels[0])
-        root = ET.fromstring(output.ome_metadata)
+        root = ET.fromstring(cast(str, output.ome_metadata))
         namespace = {"ome": "http://www.openmicroscopy.org/Schemas/OME/2016-06"}
         entries = root.findall(".//ome:MapAnnotation/ome:Value/ome:M", namespace)
         metadata = json.loads(
-            next(entry.text for entry in entries if entry.get("K") == "metadata_json")
+            cast(str, next(entry.text for entry in entries if entry.get("K") == "metadata_json"))
         )
     assert base64.b64decode(metadata["original_header_base64"]) == header
     assert metadata["original_extension"] == {
@@ -518,6 +537,9 @@ def test_genuine_operation_time_shortening_reports_source_changed(
 class RaisingFloat(float):
     """Always raise the caller's exception when ordinary conversion is used."""
 
+    error: SimreconError
+    events: list[str]
+
     def __new__(cls, value, error):
         result = super().__new__(cls, value)
         result.error = error
@@ -554,6 +576,7 @@ def test_used_float_protocol_preserves_original_caller_exception(caller_state, r
     record_property("float_exception_callback_exercised", exercised)
     if exercised:
         assert caught is error
+        assert caught is not None
         assert caught.code == "caller_tolerance_failure"
         assert result is None
         record_property("float_exception_path_evidence", "original object and code propagated")
