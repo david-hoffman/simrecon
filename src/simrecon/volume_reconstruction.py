@@ -8,6 +8,7 @@ from typing import Any
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
 from ._volume_order_otf import VolumeOrderOtf
 from ._volume_phase import separate_volume_phases
@@ -51,10 +52,8 @@ def _real_scalar(value: object, code: str) -> float:
         value, (int, float, np.integer, np.floating)
     ):
         raise SimreconError(code, "a real nonboolean scalar is required")
-    try:
+    with conversion_errors(code, "scalar conversion failed"):
         result = float(value)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "scalar conversion failed") from error
     if not np.isfinite(result):
         raise SimreconError(code, "converted scalar must be finite")
     return result
@@ -64,10 +63,8 @@ def _integer(value: object, code: str) -> int:
     """Accept integer scalars without rounding or modular reduction."""
     if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, np.integer)):
         raise SimreconError(code, "a nonboolean integer is required")
-    try:
+    with conversion_errors(code, "integer conversion failed"):
         return int(value)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "integer conversion failed") from error
 
 
 def _container(value: Any, count: int, code: str) -> Any:
@@ -83,14 +80,10 @@ def _real_array(
     """Validate source values and take an independent native float64 snapshot."""
     if type(value) is not np.ndarray or value.dtype.kind not in "iuf" or value.shape != shape:
         raise SimreconError(code, "a plain real ndarray of the required shape is needed")
-    if not np.isfinite(value).all():
-        raise SimreconError(finite_code, "source values must be finite")
-    try:
+    require_finite(value, finite_code, "source values must be finite")
+    with conversion_errors(code, "array conversion failed"):
         result = value.astype(np.float64, order="C", copy=True)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "array conversion failed") from error
-    if not np.isfinite(result).all():
-        raise SimreconError(finite_code, "converted values must be finite")
+    require_finite(result, finite_code, "converted values must be finite")
     return result
 
 

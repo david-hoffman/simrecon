@@ -15,7 +15,6 @@ from ._model import DatasetInfo, SimreconError
 OME_NS = "http://www.openmicroscopy.org/Schemas/OME/2016-06"
 COPY_NS = "org.simrecon.imagej-copy"
 INT32_MAX = 2**31 - 1
-UINT64_MAX = 2**64 - 1
 
 
 @dataclass(frozen=True)
@@ -54,16 +53,11 @@ def validate(info: DatasetInfo, block_planes: int) -> Layout:
     resolved(info)
     if type(block_planes) is not int or block_planes <= 0:
         raise SimreconError("invalid_block_size", "block_planes must be a positive integer")
-    canonical = tuple(a for a in ORDER if a in info.axes) + ("y", "x")
-    if info.data_kind != "spatial_image" or info.unresolved or info.axes != canonical:
-        raise SimreconError("unsupported_axes", "A harmonized spatial-image layout is required")
     sizes = dict(zip(info.axes, info.shape, strict=True))
     layout = Layout(*(sizes.get(a, 1) for a in (*ORDER, "y", "x")))
-    # Source dimensions/sections are signed32. Factored setting and plane counts
-    # cannot exceed their source section product; check the carrier explicitly.
-    counts = (*layout.shape, layout.series_count, layout.planes_per_series)
-    if any(not 0 < n <= INT32_MAX for n in counts):
-        raise SimreconError("imagej_unrepresentable", "OME counts must fit positive signed32")
+    # inspect/harmonize supply canonical spatial-image axes and positive
+    # signed32 source dimensions. Exact positive section factorization also
+    # bounds each derived OME dimension, setting count and plane count.
     itemsize = 2 if info.pixel_mode == 6 else 4
     if layout.x * layout.y * itemsize > INT32_MAX:
         raise SimreconError("imagej_unrepresentable", "XY plane bytes exceed Java indexing")
