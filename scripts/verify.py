@@ -284,6 +284,16 @@ def metrics(problems: list[str]) -> dict[str, Any]:
     report = json.loads(Path(reports["json"]).read_text())
     if report["meta"]["branch_coverage"] is not True:
         raise ValueError("Native branch measurement unavailable")
+    # Native totals include all reported files, not nested function/class regions.
+    excluded_total = 0
+    for item in report["files"].values():
+        excluded_count = item["summary"]["excluded_lines"]
+        if type(excluded_count) is not int or excluded_count < 0:
+            raise ValueError("Invalid native coverage counters")
+        excluded_total += excluded_count
+    reported_excluded = report["totals"]["excluded_lines"]
+    if type(reported_excluded) is not int or reported_excluded != excluded_total:
+        raise ValueError("Invalid native coverage exclusion total")
     files = {}
     packages = {
         name: {kind: {"covered": 0, "total": 0} for kind in ("statements", "branches")}
