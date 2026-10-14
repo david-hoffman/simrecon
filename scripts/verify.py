@@ -12,6 +12,7 @@ import os
 import platform
 import re
 import shutil
+import sqlite3
 import stat
 import subprocess
 import sys
@@ -132,6 +133,32 @@ def protect_evidence(paths: list[Path], protected: list[Path]) -> None:
     for path in paths:
         if path.is_file():
             protected.extend((path.absolute(), path.resolve()))
+
+
+def protect_test_databases(paths: list[Path], protected: list[Path]) -> None:
+    """Associate test-emitted native databases with the current complete report."""
+    try:
+        report = json.loads(Path("artifacts/coverage/coverage.json").read_text())
+        reported = {Path(name).resolve() for name in report["files"]}
+    except (OSError, ValueError, KeyError, TypeError):
+        # The ordinary report collector diagnoses invalid/unavailable reports.
+        return
+    for path in paths:
+        try:
+            with path.open("rb") as stream:
+                if stream.read(16) != b"SQLite format 3\x00":
+                    continue
+            connection = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)
+            try:
+                measured = {
+                    Path(name).resolve() for (name,) in connection.execute("SELECT path FROM file")
+                }
+            finally:
+                connection.close()
+        except (OSError, sqlite3.Error):
+            continue
+        if measured & reported:
+            protect_evidence([path], protected)
 
 
 def evidence_files(root: Path) -> dict[Path, tuple[int, int, int, int, int]]:
@@ -285,15 +312,27 @@ def metrics(problems: list[str]) -> dict[str, Any]:
     if report["meta"]["branch_coverage"] is not True:
         raise ValueError("Native branch measurement unavailable")
     # Native totals include all reported files, not nested function/class regions.
-    excluded_total = 0
+    keys = (
+        "covered_lines",
+        "num_statements",
+        "covered_branches",
+        "num_branches",
+        "missing_lines",
+        "excluded_lines",
+        "missing_branches",
+        "num_partial_branches",
+    )
+    totals = dict.fromkeys(keys, 0)
     for item in report["files"].values():
-        excluded_count = item["summary"]["excluded_lines"]
-        if type(excluded_count) is not int or excluded_count < 0:
+        summary = item["summary"]
+        if any(type(summary[key]) is not int or summary[key] < 0 for key in keys):
             raise ValueError("Invalid native coverage counters")
-        excluded_total += excluded_count
-    reported_excluded = report["totals"]["excluded_lines"]
-    if type(reported_excluded) is not int or reported_excluded != excluded_total:
-        raise ValueError("Invalid native coverage exclusion total")
+        for key in keys:
+            totals[key] += summary[key]
+    if any(type(report["totals"][key]) is not int or report["totals"][key] < 0 for key in keys):
+        raise ValueError("Invalid native coverage counters")
+    if any(report["totals"][key] != totals[key] for key in keys):
+        raise ValueError("Invalid native coverage totals")
     files = {}
     packages = {
         name: {kind: {"covered": 0, "total": 0} for kind in ("statements", "branches")}
@@ -303,18 +342,6 @@ def metrics(problems: list[str]) -> dict[str, Any]:
         for path in sorted(Path(directory).rglob("*.py")):
             item = report["files"][path.as_posix()]
             summary = item["summary"]
-            keys = (
-                "covered_lines",
-                "num_statements",
-                "covered_branches",
-                "num_branches",
-                "missing_lines",
-                "excluded_lines",
-                "missing_branches",
-                "num_partial_branches",
-            )
-            if any(type(summary[key]) is not int or summary[key] < 0 for key in keys):
-                raise ValueError("Invalid native coverage counters")
             excluded = native_destinations(item["excluded_lines"], False)
             if len(excluded) != summary["excluded_lines"]:
                 raise ValueError("Invalid native coverage counters")
@@ -503,6 +530,7 @@ def main() -> int:
     destination = Path(args.receipt)
     exitcode = 1
     evidence_protected: list[Path] = []
+    test_emitted: list[Path] = []
     try:
         protected = [Path(".git").absolute(), Path(".git").resolve()]
         for arguments in (
@@ -546,6 +574,7 @@ def main() -> int:
             command = [args.make, "--no-print-directory", phase, "UV=" + args.uv]
             started = now()
             evidence_root = {
+                "tests": Path("."),
                 "coverage-combine": Path("."),
                 "coverage-html": Path("artifacts/coverage/html"),
             }.get(phase)
@@ -565,14 +594,17 @@ def main() -> int:
                 }
             )
             if evidence_root is not None:
-                protect_evidence(
-                    [
-                        path
-                        for path, metadata in evidence_files(evidence_root).items()
-                        if emitted_before.get(path) != metadata
-                    ],
-                    evidence_protected,
-                )
+                emitted = [
+                    path
+                    for path, metadata in evidence_files(evidence_root).items()
+                    if emitted_before.get(path) != metadata
+                ]
+                if phase == "tests":
+                    test_emitted = emitted
+                else:
+                    protect_evidence(emitted, evidence_protected)
+            if phase == "coverage-json":
+                protect_test_databases(test_emitted, evidence_protected)
             report = {
                 "coverage-json": Path("artifacts/coverage/coverage.json"),
                 "coverage-html": Path("artifacts/coverage/html/index.html"),
