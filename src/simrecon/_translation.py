@@ -7,6 +7,7 @@ from typing import Any
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
 
 
@@ -49,15 +50,10 @@ def _image_snapshot(value: object) -> npt.NDArray[np.float64]:
         or value.size == 0
     ):
         raise SimreconError(code, "images must be plain nonempty real two-dimensional arrays")
-    if not np.isfinite(value).all():
-        raise SimreconError(code, "source images must be finite")
-    try:
-        with np.errstate(all="ignore"):
-            snapshot = np.array(value, dtype=np.float64, order="C", copy=True)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "image cannot convert to float64") from error
-    if not np.isfinite(snapshot).all():
-        raise SimreconError(code, "converted images must be finite")
+    require_finite(value, code, "source images must be finite")
+    with conversion_errors(code, "image cannot convert to float64"), np.errstate(all="ignore"):
+        snapshot = np.array(value, dtype=np.float64, order="C", copy=True)
+    require_finite(snapshot, code, "converted images must be finite")
     return snapshot
 
 
@@ -73,11 +69,8 @@ def _tolerance(value: object) -> float:
     # Python integers are finite without narrowing their arbitrary precision.
     if value < 0 or (isinstance(value, (float, np.floating)) and not np.isfinite(value)):
         raise SimreconError(code, "source tolerance must be finite and nonnegative")
-    try:
-        with np.errstate(all="ignore"):
-            converted = float(value)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "tolerance cannot convert to float64") from error
+    with conversion_errors(code, "tolerance cannot convert to float64"), np.errstate(all="ignore"):
+        converted = float(value)
     if not math.isfinite(converted) or converted < 0:
         raise SimreconError(code, "converted tolerance must be finite and nonnegative")
     return converted

@@ -7,6 +7,7 @@ from typing import Any
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
 
 
@@ -118,16 +119,12 @@ def _prepare_volume_inputs(
     # Conversion loss, discarded tiny contributions and rejected final-grid
     # overflow have defined outcomes regardless of the caller's error handlers.
     with np.errstate(all="ignore"):
-        if not np.isfinite(psf).all():
-            raise SimreconError("nonfinite_psf", "source psf samples must be finite")
+        require_finite(psf, "nonfinite_psf", "source psf samples must be finite")
         if np.any(psf < 0):
             raise SimreconError("negative_psf", "source psf samples must be nonnegative")
-        try:
+        with conversion_errors("nonfinite_psf", "psf conversion failed"):
             working = psf.astype(np.float64, order="C", copy=True)
-        except (TypeError, ValueError, OverflowError) as error:
-            raise SimreconError("nonfinite_psf", "psf conversion failed") from error
-        if not np.isfinite(working).all():
-            raise SimreconError("nonfinite_psf", "converted psf samples must be finite")
+        require_finite(working, "nonfinite_psf", "converted psf samples must be finite")
         maximum = working.max()
         if maximum == 0:
             raise SimreconError("zero_psf_mass", "converted psf must have positive mass")
