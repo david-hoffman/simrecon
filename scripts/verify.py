@@ -23,7 +23,7 @@ from datetime import datetime, timedelta, timezone
 from email.parser import Parser
 from itertools import product
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 from uuid import uuid4
 
 PHASES = (
@@ -183,13 +183,12 @@ def coverage_data_path() -> Path:
     return Path(json.loads(result.stdout)).expanduser().absolute()
 
 
-def coverage_data_files() -> list[Path]:
+def coverage_data_files(native: Path) -> list[Path]:
     """Observe the selected database and parallel shards without directory traversal."""
-    native = coverage_data_path()
     return [native, *native.parent.glob(glob.escape(native.name) + ".*")]
 
 
-def evidence_files(root: Path) -> dict[Path, tuple[int, int, int, int, int]]:
+def evidence_files(root: Path, native: Path | None) -> dict[Path, tuple[int, int, int, int, int]]:
     """Observe file writes without reading payloads or assuming native output names."""
     files = {}
     visited = set()
@@ -217,8 +216,8 @@ def evidence_files(root: Path) -> dict[Path, tuple[int, int, int, int, int]]:
         visited.add(directory_identity)
         for name in names:
             observe(Path(directory) / name)
-    if root == Path("."):
-        for path in coverage_data_files():
+    if native is not None:
+        for path in coverage_data_files(native):
             observe(path)
     return files
 
@@ -613,7 +612,11 @@ def main() -> int:
                 "coverage-combine": Path("."),
                 "coverage-html": Path("artifacts/coverage/html"),
             }.get(phase)
-            emitted_before = evidence_files(evidence_root) if evidence_root is not None else {}
+            # Retain the selected location even if the phase loses its configuration.
+            native = coverage_data_path() if evidence_root == Path(".") else None
+            emitted_before = (
+                evidence_files(evidence_root, native) if evidence_root is not None else {}
+            )
             status, output = capture(command, phase_environment)
             if status:
                 exitcode = status
@@ -631,14 +634,13 @@ def main() -> int:
             if evidence_root is not None:
                 emitted = [
                     path
-                    for path, metadata in evidence_files(evidence_root).items()
+                    for path, metadata in evidence_files(evidence_root, native).items()
                     if emitted_before.get(path) != metadata
                 ]
                 if phase == "tests":
                     test_emitted = emitted
-                    native = coverage_data_path().resolve()
                     protect_evidence(
-                        [path for path in emitted if path == native],
+                        [path for path in emitted if path == cast(Path, native).resolve()],
                         native_protected,
                     )
                 else:

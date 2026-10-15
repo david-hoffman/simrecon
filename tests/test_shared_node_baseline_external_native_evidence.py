@@ -179,8 +179,9 @@ def test_configuration_loss_after_emission_preserves_native_evidence(
 
 
 @pytest.mark.parametrize("loss", ["missing", "invalid"])
+@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
 def test_configuration_loss_before_reporting_fails_without_losing_native_data(
-    tmp_path: Path, loss: str
+    tmp_path: Path, loss: str, output_stream: str
 ) -> None:
     """Real Coverage configuration errors stop verification and preserve its data."""
     case = prepare(
@@ -190,6 +191,7 @@ def test_configuration_loss_before_reporting_fails_without_losing_native_data(
         local_python=True,
         configuration_loss=loss,
         loss_phase="coverage-combine",
+        output_stream=output_stream,
     )
     result = invoke(case)
     observations = case["observations"]
@@ -215,3 +217,33 @@ def test_configuration_loss_before_reporting_fails_without_losing_native_data(
         assert (case["repo"] / receipt["phases"][-1]["log"]).read_bytes() == (
             observations / "coverage-json.txt"
         ).read_bytes()
+    assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
+
+
+def assert_attempted_output_retained(case: dict, forwarded: str, receipt: dict) -> None:
+    """Each real attempted command owns output even when later validation fails."""
+    observations = case["observations"]
+    trace = [json.loads(line) for line in (observations / "trace.jsonl").read_text().splitlines()]
+    assert [phase["name"] for phase in receipt["phases"]] == [item["phase"] for item in trace]
+    for item, phase in zip(trace, receipt["phases"], strict=True):
+        assert item["nonce"] == case["nonce"]
+        emitted = (observations / (item["phase"] + ".txt")).read_bytes()
+        assert emitted.startswith(f"{case['nonce']}:{item['phase']}\n".encode())
+        assert emitted.decode() in forwarded, (
+            f"Already emitted {item['phase']} output must be forwarded on failure or success"
+        )
+        log = case["repo"] / phase["log"]
+        assert log.is_file(), f"Attempted {item['phase']} must retain its captured output log"
+        assert log.read_bytes() == emitted, (
+            f"Attempted {item['phase']} log must preserve all actual emitted bytes"
+        )
+
+
+def test_valid_configuration_retains_stderr_and_native_evidence(tmp_path: Path) -> None:
+    """Ordinary stderr output is not a failed command or invalid native evidence."""
+    case = prepare(tmp_path, "rcfile", "neighbor", local_python=True, output_stream="stderr")
+    result = invoke(case)
+    assert result.returncode == 0
+    assert_passed_truth(case, assert_current_evidence(case))
+    receipt = json.loads(case["receipt"].read_text())
+    assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
