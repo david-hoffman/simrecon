@@ -54,6 +54,7 @@ phase = next(arg for arg in sys.argv[1:] if not arg.startswith("-"))
 with (observations / "trace.jsonl").open("a") as trace:
     trace.write(json.dumps({"nonce": nonce, "phase": phase, "argv": sys.argv[1:]}) + "\n")
 output = f"{nonce}:{phase}\n"
+output_stream = sys.stderr if os.environ["A15_OUTPUT_STREAM"] == "stderr" else sys.stdout
 
 def command(*args):
     global output
@@ -62,7 +63,7 @@ def command(*args):
     output += result.stdout + result.stderr
     if result.returncode:
         (observations / (phase + ".txt")).write_text(output)
-        print(output, end="")
+        print(output, end="", file=output_stream)
         raise SystemExit(result.returncode)
 
 if phase == "coverage-clean":
@@ -149,7 +150,7 @@ if phase == os.environ.get("A14_CONFIG_LOSS_PHASE"):
     }))
 
 (observations / (phase + ".txt")).write_text(output)
-print(output, end="")
+print(output, end="", file=output_stream)
 """
 
 
@@ -161,6 +162,7 @@ def prepare(
     local_python: bool = False,
     configuration_loss: str | None = None,
     loss_phase: str = "audit",
+    output_stream: str = "stdout",
 ) -> dict:
     """Create only owned disposable inputs and a clean independent Git repo."""
     repo = root / "repository"
@@ -251,6 +253,7 @@ def prepare(
     driver.chmod(0o755)
     env.update(
         PYTHONDONTWRITEBYTECODE="1",
+        A15_OUTPUT_STREAM=output_stream,
         A13_NONCE=nonce,
         A13_OBSERVATIONS=str(observations),
         A13_DATABASE=str(database),
@@ -278,6 +281,7 @@ def prepare(
         "destination": destination,
         "local_python": local_python,
         "configuration_loss": configuration_loss,
+        "output_stream": output_stream,
         "loss_phase": loss_phase if configuration_loss else None,
         "nonce": nonce,
         "repository": str(repo),
