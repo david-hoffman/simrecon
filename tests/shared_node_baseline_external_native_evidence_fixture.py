@@ -7,6 +7,7 @@ import json
 import os
 import subprocess
 import sys
+import sysconfig
 import uuid
 from pathlib import Path
 
@@ -134,12 +135,33 @@ elif phase == "audit":
                 "reports": reports, "wheels": wheels}
     (observations / "snapshot.json").write_text(json.dumps(snapshot))
 
+if phase == os.environ.get("A14_CONFIG_LOSS_PHASE"):
+    configuration = Path(os.environ["COVERAGE_RCFILE"])
+    (observations / "configuration-before.ini").write_bytes(configuration.read_bytes())
+    loss = os.environ["A14_CONFIG_LOSS"]
+    if loss == "missing":
+        configuration.unlink()
+    else:
+        configuration.write_text("[run\nbranch = True\n")
+    (observations / "configuration-loss.json").write_text(json.dumps({
+        "nonce": nonce, "phase": phase, "loss": loss,
+        "exists_after": configuration.exists(),
+    }))
+
 (observations / (phase + ".txt")).write_text(output)
 print(output, end="")
 """
 
 
-def prepare(root: Path, selector: str, destination: str) -> dict:
+def prepare(
+    root: Path,
+    selector: str,
+    destination: str,
+    *,
+    local_python: bool = False,
+    configuration_loss: str | None = None,
+    loss_phase: str = "audit",
+) -> dict:
     """Create only owned disposable inputs and a clean independent Git repo."""
     repo = root / "repository"
     external = root / "external"
@@ -169,7 +191,30 @@ def prepare(root: Path, selector: str, destination: str) -> dict:
         "    else:\n"
         "        assert VALUE != 8\n"
     )
-    (repo / ".gitignore").write_text("artifacts/\ndist/\n__pycache__/\n")
+    (repo / ".gitignore").write_text(
+        "artifacts/\ndist/\n__pycache__/\n" + (".venv/\n" if local_python else "")
+    )
+    if local_python:
+        # A genuine disposable venv uses the installed locked dependencies via
+        # Python's supported .pth mechanism; no install/network or shim module.
+        local_venv = repo / ".venv"
+        subprocess.run(
+            [sys.executable, "-m", "venv", "--without-pip", str(local_venv)],
+            check=True,
+            capture_output=True,
+            timeout=30,
+        )
+        site = local_venv / "lib" / f"python{sys.version_info.major}.{sys.version_info.minor}"
+        (site / "site-packages" / "locked-dependencies.pth").write_text(
+            sysconfig.get_path("purelib") + "\n"
+        )
+        health = subprocess.run(
+            [str(local_venv / "bin/python"), "-m", "coverage", "--version"],
+            check=True,
+            capture_output=True,
+            timeout=20,
+        )
+        (observations / "local-python-health.txt").write_bytes(health.stdout + health.stderr)
     project = '[project]\nname = "simrecon"\nversion = "0.0.0"\n'
     configuration = (
         "[run]\nbranch = True\nrelative_files = True\n"
@@ -180,6 +225,8 @@ def prepare(root: Path, selector: str, destination: str) -> dict:
     env.pop("COVERAGE_FILE", None)
     env.pop("COVERAGE_RCFILE", None)
     env.pop("COVERAGE_PROCESS_START", None)
+    env.pop("A14_CONFIG_LOSS", None)
+    env.pop("A14_CONFIG_LOSS_PHASE", None)
     if selector == "pyproject":
         project += (
             "[tool.coverage.run]\nbranch = true\nrelative_files = true\n"
@@ -188,12 +235,17 @@ def prepare(root: Path, selector: str, destination: str) -> dict:
             + "\n[tool.coverage.report]\nfail_under = 0\n"
         )
     elif selector == "rcfile":
-        config = repo / "selected-coverage.ini"
+        config = (external if configuration_loss else repo) / "selected-coverage.ini"
         config.write_text(configuration)
         env["COVERAGE_RCFILE"] = str(config)
     else:
         (repo / ".coveragerc").write_text(configuration)
     (repo / "pyproject.toml").write_text(project)
+    if configuration_loss:
+        assert selector == "rcfile"
+        assert configuration_loss in ("missing", "invalid")
+        env["A14_CONFIG_LOSS"] = configuration_loss
+        env["A14_CONFIG_LOSS_PHASE"] = loss_phase
     driver = root / "phase-driver"
     driver.write_text("#!" + sys.executable + "\n" + DRIVER)
     driver.chmod(0o755)
@@ -224,6 +276,9 @@ def prepare(root: Path, selector: str, destination: str) -> dict:
     declared = {
         "selector": selector,
         "destination": destination,
+        "local_python": local_python,
+        "configuration_loss": configuration_loss,
+        "loss_phase": loss_phase if configuration_loss else None,
         "nonce": nonce,
         "repository": str(repo),
         "database": str(database),
@@ -232,7 +287,7 @@ def prepare(root: Path, selector: str, destination: str) -> dict:
         "input_sha256": {
             str(path.relative_to(repo)): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in repo.rglob("*")
-            if path.is_file() and ".git" not in path.relative_to(repo).parts
+            if path.is_file() and not {".git", ".venv"}.intersection(path.relative_to(repo).parts)
         },
         "coverage_environment": {
             name: env.get(name)
