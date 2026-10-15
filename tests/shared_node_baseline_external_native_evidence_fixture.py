@@ -66,6 +66,23 @@ def command(*args):
         print(output, end="", file=output_stream)
         raise SystemExit(result.returncode)
 
+def lose_configuration():
+    configuration = Path(os.environ["COVERAGE_RCFILE"])
+    (observations / "configuration-before.ini").write_bytes(configuration.read_bytes())
+    loss = os.environ["A14_CONFIG_LOSS"]
+    if loss == "missing":
+        configuration.unlink()
+    else:
+        configuration.write_text("[run\nbranch = True\n")
+    (observations / "configuration-loss.json").write_text(json.dumps({
+        "nonce": nonce, "phase": phase, "loss": loss,
+        "exists_after": configuration.exists(),
+    }))
+
+if (phase == os.environ.get("A14_CONFIG_LOSS_PHASE")
+        and os.environ["A16_CONFIG_LOSS_TIMING"] == "before"):
+    lose_configuration()
+
 if phase == "coverage-clean":
     command("erase")
 elif phase == "tests":
@@ -136,18 +153,9 @@ elif phase == "audit":
                 "reports": reports, "wheels": wheels}
     (observations / "snapshot.json").write_text(json.dumps(snapshot))
 
-if phase == os.environ.get("A14_CONFIG_LOSS_PHASE"):
-    configuration = Path(os.environ["COVERAGE_RCFILE"])
-    (observations / "configuration-before.ini").write_bytes(configuration.read_bytes())
-    loss = os.environ["A14_CONFIG_LOSS"]
-    if loss == "missing":
-        configuration.unlink()
-    else:
-        configuration.write_text("[run\nbranch = True\n")
-    (observations / "configuration-loss.json").write_text(json.dumps({
-        "nonce": nonce, "phase": phase, "loss": loss,
-        "exists_after": configuration.exists(),
-    }))
+if (phase == os.environ.get("A14_CONFIG_LOSS_PHASE")
+        and os.environ["A16_CONFIG_LOSS_TIMING"] == "after"):
+    lose_configuration()
 
 (observations / (phase + ".txt")).write_text(output)
 print(output, end="", file=output_stream)
@@ -162,9 +170,11 @@ def prepare(
     local_python: bool = False,
     configuration_loss: str | None = None,
     loss_phase: str = "audit",
+    loss_timing: str = "after",
     output_stream: str = "stdout",
 ) -> dict:
     """Create only owned disposable inputs and a clean independent Git repo."""
+    assert loss_timing in ("before", "after")
     repo = root / "repository"
     external = root / "external"
     observations = root / "observations"
@@ -253,6 +263,7 @@ def prepare(
     driver.chmod(0o755)
     env.update(
         PYTHONDONTWRITEBYTECODE="1",
+        A16_CONFIG_LOSS_TIMING=loss_timing,
         A15_OUTPUT_STREAM=output_stream,
         A13_NONCE=nonce,
         A13_OBSERVATIONS=str(observations),
@@ -283,6 +294,7 @@ def prepare(
         "configuration_loss": configuration_loss,
         "output_stream": output_stream,
         "loss_phase": loss_phase if configuration_loss else None,
+        "loss_timing": loss_timing if configuration_loss else None,
         "nonce": nonce,
         "repository": str(repo),
         "database": str(database),

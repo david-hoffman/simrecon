@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -247,3 +248,200 @@ def test_valid_configuration_retains_stderr_and_native_evidence(tmp_path: Path) 
     assert_passed_truth(case, assert_current_evidence(case))
     receipt = json.loads(case["receipt"].read_text())
     assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
+
+
+@pytest.mark.parametrize("loss", [None, "missing", "invalid"])
+@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
+def test_configuration_loss_inside_reporting_preserves_failed_command_evidence(
+    tmp_path: Path, loss: str | None, output_stream: str
+) -> None:
+    """A real reporting error retains its own output and independently bound identity."""
+    case = prepare(
+        tmp_path,
+        "rcfile",
+        "neighbor",
+        local_python=True,
+        configuration_loss=loss,
+        loss_phase="coverage-json",
+        loss_timing="before",
+        output_stream=output_stream,
+    )
+    repo = case["repo"]
+    observations = case["observations"]
+    declared = json.loads((observations / "declared-case.json").read_text())
+    # These bytes and Git identities precede the invocation. Receipt self-equality
+    # alone could accept two equally false identities or an omitted tracked file.
+    protected = {
+        name: (repo / name).read_bytes()
+        for name in (*declared["input_sha256"], ".git/HEAD", ".git/config")
+    }
+    identity = subprocess.run(
+        ["git", "rev-parse", "HEAD", "HEAD^{tree}"],
+        cwd=repo,
+        capture_output=True,
+        text=True,
+        check=True,
+        timeout=20,
+    ).stdout.splitlines()
+    expected_identity = {
+        "commit": identity[0],
+        "tree": identity[1],
+        "dirty": False,
+        "untracked": [],
+        "manifest": declared["input_sha256"],
+    }
+    (observations / "caller-before.json").write_text(
+        json.dumps(
+            {
+                "identity": expected_identity,
+                "protected_sha256": {
+                    name: hashlib.sha256(content).hexdigest() for name, content in protected.items()
+                },
+            },
+            indent=2,
+        )
+    )
+    result = invoke(case)
+    for name, content in protected.items():
+        assert (repo / name).read_bytes() == content, f"Caller content changed: {name}"
+    receipt = json.loads(case["receipt"].read_text())
+    for when in ("before", "after"):
+        for field, expected in expected_identity.items():
+            assert receipt[when][field] == expected, f"Untruthful {when} identity: {field}"
+    assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
+    measured = json.loads((observations / "native-measured.json").read_text())
+    assert measured["nonce"] == case["nonce"]
+    assert measured["database"] == str(case["database"])
+    assert measured["contexts"] == [case["nonce"]]
+    assert case["database"].read_bytes() == (observations / "native-measured.bin").read_bytes()
+    if loss is None:
+        assert not (observations / "configuration-loss.json").exists()
+        assert result.returncode == 0, "Valid reporting must remain a permitted positive"
+        assert_passed_truth(case, assert_current_evidence(case))
+        return
+    event = json.loads((observations / "configuration-loss.json").read_text())
+    assert event == {
+        "nonce": case["nonce"],
+        "phase": "coverage-json",
+        "loss": loss,
+        "exists_after": loss != "missing",
+    }
+    assert result.returncode == 1, "The real Coverage reporting failure must fail verification"
+    assert receipt["result"] == "failed"
+    assert receipt["problems"]
+    # Configuration remains valid until the reporting phase has actually started.
+    # Its real nonzero command must stop all later phases, without a retry.
+    assert [phase["name"] for phase in receipt["phases"]] == list(PHASES[:8])
+    assert [phase["returncode"] for phase in receipt["phases"]] == [0] * 7 + [1]
+    emitted = (observations / "coverage-json.txt").read_bytes()
+    assert len(emitted) > len(f"{case['nonce']}:coverage-json\n".encode()), (
+        "The real Coverage error must contribute output beyond the fixture marker"
+    )
+
+
+@pytest.mark.parametrize("loss", [None, "missing", "invalid"])
+@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
+def test_configuration_loss_inside_tests_preserves_emitted_evidence(
+    tmp_path: Path, loss: str | None, output_stream: str
+) -> None:
+    """Loss after real measurement but before tests return preserves attempted output."""
+    case = prepare(
+        tmp_path,
+        "rcfile",
+        "neighbor",
+        local_python=True,
+        configuration_loss=loss,
+        loss_phase="tests",
+        loss_timing="after",
+        output_stream=output_stream,
+    )
+    repo = case["repo"]
+    observations = case["observations"]
+    declared = json.loads((observations / "declared-case.json").read_text())
+    protected = {
+        name: (repo / name).read_bytes()
+        for name in (*declared["input_sha256"], ".git/HEAD", ".git/config")
+    }
+    identity = subprocess.run(
+        ["git", "rev-parse", "HEAD", "HEAD^{tree}"],
+        cwd=repo,
+        capture_output=True,
+        text=True,
+        check=True,
+        timeout=20,
+    ).stdout.splitlines()
+    expected_identity = {
+        "commit": identity[0],
+        "tree": identity[1],
+        "dirty": False,
+        "untracked": [],
+        "manifest": declared["input_sha256"],
+    }
+    (observations / "caller-before.json").write_text(
+        json.dumps(
+            {
+                "identity": expected_identity,
+                "protected_sha256": {
+                    name: hashlib.sha256(content).hexdigest() for name, content in protected.items()
+                },
+            },
+            indent=2,
+        )
+    )
+    configuration = Path(case["env"]["COVERAGE_RCFILE"])
+    valid_configuration = configuration.read_bytes()
+    result = invoke(case)
+    for name, content in protected.items():
+        assert (repo / name).read_bytes() == content, f"Caller content changed: {name}"
+    receipt = json.loads(case["receipt"].read_text())
+    for when in ("before", "after"):
+        for field, expected in expected_identity.items():
+            assert receipt[when][field] == expected, f"Untruthful {when} identity: {field}"
+    assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
+    for phase in receipt["phases"]:
+        assert phase["name"] in phase["command"]
+        assert "UV=" + str(case["driver"]) in phase["command"]
+    measured = json.loads((observations / "native-measured.json").read_text())
+    assert measured["nonce"] == case["nonce"]
+    assert measured["database"] == str(case["database"])
+    assert measured["contexts"] == [case["nonce"]]
+    assert case["database"].read_bytes() == (observations / "native-measured.bin").read_bytes()
+    # Read the genuine emitted database without consulting the now-lost config.
+    data = CoverageData(basename=str(case["database"]))
+    data.read()
+    assert sorted(data.measured_contexts()) == [case["nonce"]]
+    assert set(data.measured_files()) == {"src/simrecon/__init__.py", "scripts/probe.py"}
+    assert sorted(data.lines("src/simrecon/__init__.py") or []) == [1]
+    assert sorted(data.lines("scripts/probe.py") or []) == [1, 2, 3, 4, 6]
+    assert data.has_arcs()
+    if loss is None:
+        assert not (observations / "configuration-loss.json").exists()
+        assert configuration.read_bytes() == valid_configuration
+        assert result.returncode == 0, "The healthy selected configuration must remain valid"
+        assert_passed_truth(case, assert_current_evidence(case))
+        return
+    # The driver snapshots native data, then really removes/corrupts the selected
+    # config inside tests, before emitting tests output and returning to verify.
+    # No later coverage phase is needed to witness this earlier boundary.
+    assert json.loads((observations / "configuration-loss.json").read_text()) == {
+        "nonce": case["nonce"],
+        "phase": "tests",
+        "loss": loss,
+        "exists_after": loss != "missing",
+    }
+    assert (observations / "configuration-before.ini").read_bytes() == valid_configuration
+    if loss == "missing":
+        assert not configuration.exists()
+    else:
+        assert configuration.read_bytes() == b"[run\nbranch = True\n"
+    assert result.returncode == 1, "Incomplete evidence after configuration loss cannot pass"
+    assert receipt["result"] == "failed"
+    assert receipt["problems"]
+    attempted = [phase["name"] for phase in receipt["phases"]]
+    # Evidence validation may stop at either boundary before reporting. If the
+    # real reporting command is attempted, its failure stops the remaining phases.
+    assert attempted in [list(PHASES[:6]), list(PHASES[:7]), list(PHASES[:8])]
+    expected_statuses = [0] * len(attempted)
+    if attempted[-1] == "coverage-json":
+        expected_statuses[-1] = 1
+    assert [phase["returncode"] for phase in receipt["phases"]] == expected_statuses
