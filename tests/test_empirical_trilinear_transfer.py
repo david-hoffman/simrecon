@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import dataclasses
 import math
 import warnings
 from decimal import Decimal, localcontext
@@ -16,6 +15,7 @@ import pytest
 import simrecon as sr
 from empirical_trilinear_fixture import (
     EPS,
+    FMAX,
     FREQUENCY_FIELDS,
     PRECISION,
     QUANTUM,
@@ -23,6 +23,7 @@ from empirical_trilinear_fixture import (
     assert_budget,
     asymmetric_values,
     coordinates,
+    decimal,
     direct_dft,
     frequency_arrays,
     multiply,
@@ -93,9 +94,16 @@ def identity(**updates: Any) -> dict[str, Any]:
 
 
 def changed(record: Any, **updates: Any) -> Any:
-    fields = {field.name: getattr(record, field.name) for field in dataclasses.fields(record)}
+    fields = response_fields(record)
     fields.update(updates)
     return sr.EmpiricalVolumeResponse(**fields)
+
+
+def response_fields(record: Any) -> dict[str, Any]:
+    return {
+        name: getattr(record, name)
+        for name in ("values", *FREQUENCY_FIELDS, "voxel_size_um", "origin_zyx")
+    }
 
 
 def expect_code(api: Any, record: Any, code: str, kwargs: Any = None) -> None:
@@ -173,10 +181,12 @@ def test_oracle_self_direct_sum_roundtrip_and_multiaffine() -> None:
 
 def test_public_binding_exports_and_direct_record(api: Any) -> None:
     wrapper = public_export("TrilinearVolumeTransfer")
-    assert {f.name for f in dataclasses.fields(wrapper)} == {"orders", "provenance"}
-    constructed = wrapper(orders=None, provenance={"opaque": 1})
-    assert constructed.orders is None
+    marker = object()
+    constructed = wrapper(orders=marker, provenance={"opaque": 1})
+    assert constructed.orders is marker
+    assert constructed.provenance == {"opaque": 1}
     constructed.provenance["opaque"] = 2
+    assert constructed.provenance == {"opaque": 2}
     for name in ("orders", "provenance"):
         with pytest.raises((AttributeError, TypeError)):
             setattr(constructed, name, None)
@@ -681,7 +691,7 @@ def test_missing_source_attributes_and_unrelated_getter_failure(api: Any, field:
                 raise RuntimeError("unrelated public getter failure")
             return super().__getattribute__(name)
 
-    fields = {f.name: getattr(base, f.name) for f in dataclasses.fields(base)}
+    fields = response_fields(base)
     expect_code(api, Missing(**fields), "invalid_empirical_transfer_response")
     with pytest.raises(RuntimeError, match="unrelated public getter failure"):
         api(Broken(**fields), **identity())
@@ -706,14 +716,62 @@ def test_target_spacing_grammar_and_conversion(api: Any, bad: Any) -> None:
     )
 
 
-@pytest.mark.parametrize("spacing", [float(QUANTUM), np.nextafter(0.0, 1.0) * 2])
-def test_target_unrepresentable_frequency_error(api: Any, spacing: float) -> None:
+def tolerance_admitted_extreme_source() -> Any:
+    spacing = float.fromhex("0x0.1555555555555p-1022")
+    maximum = float(np.finfo(np.float64).max)
+    # The ideal z endpoints exceed Fmax. Finite stored endpoints still satisfy
+    # the source metadata allowance; do not round the ideal source coordinates.
+    return sr.EmpiricalVolumeResponse(
+        values=asymmetric_values((3, 1, 1)),
+        fz_per_um=np.array([-maximum, 0.0, maximum], dtype=np.float64),
+        fy_per_um=np.array([0.0], dtype=np.float64),
+        fx_per_um=np.array([0.0], dtype=np.float64),
+        voxel_size_um=(spacing, 1.0, 1.0),
+        origin_zyx=(0, 0, 0),
+    )
+
+
+def test_oracle_self_tolerance_admitted_source_and_isolated_target_range() -> None:
+    record = tolerance_admitted_extreme_source()
+    ideal = coordinates(3, record.voxel_size_um[0])
+    # Beyond the round-to-nearest overflow midpoint, not merely above Fmax.
+    assert ideal[2] > FMAX + 2**970
+    assert abs(FMAX - ideal[2]) <= 8 * EPS * abs(ideal[2]) + QUANTUM
+    for axis, field in enumerate(FREQUENCY_FIELDS):
+        nodes = coordinates(record.values.shape[axis + 1], record.voxel_size_um[axis])
+        for stored, exact in zip(getattr(record, field), nodes, strict=True):
+            assert abs(Fraction.from_float(float(stored)) - exact) <= 8 * EPS * abs(exact) + QUANTUM
+    for factor in (1, 2):
+        target = coordinates(3, factor * record.voxel_size_um[0])
+        assert ideal[0] <= target[0] <= target[-1] <= ideal[-1]
+    finite = coordinates(3, 2 * record.voxel_size_um[0])
+    assert 0 < finite[2] < FMAX
+    assert math.isfinite(float(finite[2]))
+
+
+def test_target_unrepresentable_frequency_error(api: Any) -> None:
+    record = tolerance_admitted_extreme_source()
     expect_code(
         api,
-        response(),
+        record,
         "unrepresentable_otf_frequencies",
-        identity(target_voxel_size_um=(spacing, 1.5, 2.5)),
+        identity(target_shape_zyx=(3, 1, 1), target_voxel_size_um=record.voxel_size_um),
     )
+
+
+def test_tolerance_admitted_extreme_source_with_finite_target(api: Any) -> None:
+    record = tolerance_admitted_extreme_source()
+    target_spacing = (2 * record.voxel_size_um[0], 1.0, 1.0)
+    kwargs = identity(target_shape_zyx=(3, 1, 1), target_voxel_size_um=target_spacing)
+    actual = api(record, **kwargs).orders
+    assert_budget(actual.values, oracle(record, kwargs))
+    for axis, field in enumerate(FREQUENCY_FIELDS):
+        expected = np.array(
+            [float(f) for f in coordinates(actual.values.shape[axis + 1], target_spacing[axis])],
+            dtype=np.float64,
+        )
+        assert getattr(actual, field).tobytes() == expected.tobytes()
+    assert actual.origin_zyx == (0, 0, 0)
 
 
 @pytest.mark.parametrize("spacing", [float(np.finfo(float).max), 1e308])
@@ -857,9 +915,7 @@ def test_storage_snapshots_ownership_and_frozen_wrapper(api: Any, layout: str) -
     class OrdinarySubclass(sr.EmpiricalVolumeResponse):
         pass
 
-    record = OrdinarySubclass(
-        **{f.name: getattr(record, f.name) for f in dataclasses.fields(record)}
-    )
+    record = OrdinarySubclass(**response_fields(record))
     before = snapshot(record)
     spacing = [1, np.float64(1.5), 2.5]
     offset = [np.int64(-1), 4]
@@ -943,6 +999,58 @@ def test_safe_finite_cancellation_and_rotation_avoid_intermediate_overflow(api: 
         phase_reference_shift_rad=0.2,
     )
     assert_budget(api(record, **kwargs).orders.values, oracle(record, kwargs))
+
+
+def weighted_extreme_corner_case() -> tuple[Any, dict[str, Any]]:
+    record = response((1, 1, 3), (1.0, 1.0, 1.0), origin=(0, 0, 0))
+    record.values[:] = 0
+    maximum = float(np.finfo(np.float64).max)
+    record.values[1:, 0, 0, 0] = complex(maximum, maximum)
+    record.values[1:, 0, 0, 2] = complex(maximum, maximum)
+    kwargs = identity(
+        target_shape_zyx=(1, 1, 3),
+        target_voxel_size_um=(1.0, 1.0, 2.0),
+        phase_reference_shift_rad=math.pi / 4,
+    )
+    return record, kwargs
+
+
+def test_oracle_self_weighted_corner_success_margin_despite_corner_overflow() -> None:
+    record, kwargs = weighted_extreme_corner_case()
+    expected = oracle(record, kwargs)
+    with localcontext() as context:
+        context.prec = PRECISION
+        maximum = decimal(FMAX)
+        c, s = phasor(angle=-float(kwargs["phase_reference_shift_rad"]))
+        corner_real = maximum * (c - s)
+        assert corner_real > Decimal("1.4") * maximum
+        first = (corner_real / 2, maximum * (c + s) / 2)
+        second = (
+            maximum * (c * c - s * s - 2 * c * s) / 2,
+            maximum * (c * c - s * s + 2 * c * s) / 2,
+        )
+        allowance = decimal(1024 * EPS * FMAX + 64 * QUANTUM)
+        observer_rounding = maximum * Decimal("1e-780")
+        for order, components in ((1, first), (2, second)):
+            for x in (0, 2):
+                re, im, delta = expected[(order, 0, 0, x)]
+                assert abs(re - components[0]) <= observer_rounding
+                assert abs(im - components[1]) <= observer_rounding
+                assert delta == allowance
+        margin = min(
+            maximum - abs(component) - delta
+            for re, im, delta in expected.values()
+            for component in (re, im)
+        )
+        assert margin > Decimal("0.29") * maximum
+
+
+def test_safe_weighted_rotation_when_unweighted_corner_would_overflow(api: Any) -> None:
+    record, kwargs = weighted_extreme_corner_case()
+    expected = oracle(record, kwargs)
+    actual = api(record, **kwargs).orders.values
+    assert_budget(actual, expected)
+    assert np.count_nonzero(actual[0]) == 0
 
 
 def test_tensor_weight_product_underflow_keeps_representable_contribution(api: Any) -> None:
@@ -1032,7 +1140,7 @@ def test_unrelated_and_allocation_getter_exceptions_propagate(
             return super().__getattribute__(name)
 
     base = response()
-    record = Broken(**{f.name: getattr(base, f.name) for f in dataclasses.fields(base)})
+    record = Broken(**response_fields(base))
     with pytest.raises(type(exception)) as caught:
         api(record, **identity())
     assert caught.value is exception
@@ -1046,7 +1154,7 @@ def test_unrelated_getter_warning_is_preserved(api: Any) -> None:
             return super().__getattribute__(name)
 
     base = response()
-    record = Warns(**{f.name: getattr(base, f.name) for f in dataclasses.fields(base)})
+    record = Warns(**response_fields(base))
     with pytest.warns(UserWarning, match="public getter warning"):
         api(record, **identity())
 
