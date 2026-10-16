@@ -143,9 +143,13 @@ def test_required_bindings_and_exact_frozen_record() -> None:
         with pytest.raises(TypeError):
             scan(args)
     with pytest.raises(TypeError):
-        scan_volume_carriers(*case.values())
+        # Deliberate signature violation: keep the real runtime binding call.
+        scan_volume_carriers(*case.values())  # pyright: ignore[reportCallIssue]
     with pytest.raises(TypeError):
-        scan_volume_carriers(**case, undeclared_option=True)
+        scan_volume_carriers(
+            **case,
+            undeclared_option=True,  # pyright: ignore[reportCallIssue]
+        )
     without_images = dict(case)
     del without_images["images"]
     with pytest.raises(TypeError):
@@ -691,6 +695,41 @@ def test_all_response_fields_validated_even_if_no_overlap(field: str, bad: Any) 
     case = inputs()
     case["response"] = dataclasses.replace(case["response"], **{field: bad})
     case["candidate_carriers_yx"] = [(2**2000, -(2**2000))]
+    assert_code(case, "invalid_empirical_transfer_response")
+
+
+@pytest.mark.parametrize("carrier", [(0, 0), (10, 0)])
+def test_supplemental_non_response_object_is_globally_rejected(carrier: tuple[int, int]) -> None:
+    """Post-implementation supplemental proof of the response instance boundary."""
+    case = inputs((1, 1, 1))
+    case.update(
+        images=np.zeros((5, 1, 1, 1)),
+        phase_steps_rad=np.arange(5) * (2 * np.pi / 5),
+        response=object(),
+        candidate_carriers_yx=[carrier],
+    )
+    assert_code(case, "invalid_empirical_transfer_response")
+
+
+@pytest.mark.parametrize("carrier", [(0, 0), (10, 0)])
+def test_supplemental_response_spacing_must_be_positive(carrier: tuple[int, int]) -> None:
+    """Post-implementation supplemental spacing validation, with a valid control."""
+    case = inputs((1, 1, 1))
+    valid_response = response_from_values(np.ones((3, 1, 1, 1), dtype=complex))
+    case.update(
+        images=np.zeros((5, 1, 1, 1)),
+        phase_steps_rad=np.arange(5) * (2 * np.pi / 5),
+        response=valid_response,
+        candidate_carriers_yx=[carrier],
+    )
+    row = scan(case)[0]
+    assert row.status == ("zero_predictor" if carrier == (0, 0) else "no_overlap")
+    assert row.overlap_count == (1 if carrier == (0, 0) else 0)
+    assert row.gain is row.relative_residual is row.coherence is None
+    assert row.source == case["source"]
+    # Keep all six source fields and the singleton zero frequency vectors.
+    # Only source spacing is invalid; specimen spacing and phases remain valid.
+    case["response"] = dataclasses.replace(valid_response, voxel_size_um=(0.0, 1.0, 1.0))
     assert_code(case, "invalid_empirical_transfer_response")
 
 
