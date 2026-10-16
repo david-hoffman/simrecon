@@ -23,6 +23,7 @@ from simrecon import (
     correct_linear_response,
     declare_acquisition,
     scan_volume_carriers,
+    separate_volume_phases,
 )
 from volume_carrier_diagnostics_fixture import (
     EPS,
@@ -36,8 +37,10 @@ from volume_carrier_diagnostics_fixture import (
     finite_dft,
     frequency,
     observations,
+    phase_condition_upper_bound,
     phase_matrix,
     root,
+    solve_exact,
     z,
 )
 
@@ -471,6 +474,32 @@ def test_full_pair_information_outcomes_and_zero_predictor_pairs(kind: str) -> N
             assert type(row.coherence) is float and row.coherence == 0.0
 
 
+@pytest.mark.parametrize("order", [1, 2])
+def test_zero_observed_bands_with_nonzero_response(order: int) -> None:
+    case = inputs((1, 1, 1))
+    case.update(
+        images=np.zeros((5, 1, 1, 1)),
+        phase_steps_rad=np.arange(5) * (2 * np.pi / 5),
+        response=response_from_values(np.ones((3, 1, 1, 1), dtype=complex)),
+        candidate_carriers_yx=[(0, 0), (2**1000, 0), (0, 0)],
+        order=order,
+    )
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        assert phase_condition_upper_bound(case["phase_steps_rad"]) < 10
+        dc, cm = bands(case["images"], case["phase_steps_rad"], order)
+        assert all(value.re == 0 and value.im == 0 for value in (*dc, *cm))
+    # All observed bands vanish. No transform call or zero-band organization is
+    # selected: an exact-zero band may bypass the public transform entirely.
+    rows = scan(case)
+    assert [row.status for row in rows] == ["zero_predictor", "no_overlap", "zero_predictor"]
+    assert [row.overlap_count for row in rows] == [1, 0, 1]
+    assert [row.carrier_bins_yx for row in rows] == case["candidate_carriers_yx"]
+    for row in rows:
+        assert row.gain is row.relative_residual is row.coherence is None
+        assert row.order == order and row.source == case["source"]
+
+
 @pytest.mark.parametrize("image_power,transfer_power", [(900, 900), (-900, -900), (0, -700)])
 def test_informative_scaled_products_without_raw_product_range(
     image_power: int, transfer_power: int
@@ -700,6 +729,34 @@ def test_inherited_phase_errors_are_not_local_rows(field: str, bad: Any, code: s
     case.update(candidate_carriers_yx=[(2**1000, 0)])
     case[field] = bad
     assert_code(case, code)
+
+
+@pytest.mark.parametrize("order", [1, 2])
+@pytest.mark.parametrize("candidates", [[(0, 0)], [(2**1000, 0)], [(2**1000, 0), (0, 0)]])
+def test_inherited_phase_component_range_failure_is_global(order: int, candidates: Any) -> None:
+    case = inputs((1, 1, 1))
+    case.update(
+        images=(np.array([1.0, -1.0, 1.0, -1.0, 1.0]) * (float(FMAX) / 16)).reshape(5, 1, 1, 1),
+        phase_steps_rad=0.5 * np.arange(5),
+        response=response_from_values(np.ones((3, 1, 1, 1), dtype=complex)),
+        candidate_carriers_yx=candidates,
+        order=order,
+    )
+    assert np.isfinite(case["images"]).all()
+    singular = np.linalg.svd(phase_matrix(case["phase_steps_rad"]), compute_uv=False)
+    tau = np.finfo(float).eps * 5 * singular[0]
+    assert singular[-1] > 10**8 * tau
+    with localcontext() as ctx:
+        ctx.prec = PRECISION
+        solution = solve_exact(case["images"], case["phase_steps_rad"])
+        assert dec(solution[0][0]) > 3 * FMAX
+    # The exact represented-input dc is far outside range. Observe the real
+    # prerequisite's operational error as well; neither rank failure nor a
+    # nonfinite input explains it. Even all-no-overlap must propagate that error.
+    with pytest.raises(SimreconError) as caught:
+        separate_volume_phases(case["images"], phases_rad=case["phase_steps_rad"])
+    assert caught.value.code == "unrepresentable_volume_phase_components"
+    assert_code(case, "unrepresentable_volume_phase_components")
 
 
 class GetterFailure(RuntimeError):
