@@ -17,10 +17,11 @@ rows = scan_volume_carriers(
     calibration_carrier_bins=(ky_c, kx_c),
     coordinate_offset_yx=(oy, ox),
     phase_reference_shift_rad=delta,
+    source="declared calibration/specimen pairing",
 )
 ```
 
-Only images is positional. All eight keywords are required; ordinary Python argument-binding TypeError applies. One call handles one orientation/channel/time and one positive order m=1 or2. Images have phase/z/y/x axes. Spacing is z/y/x in micrometres (µm); physical frequencies are cycles/µm; phases are radians. Output gains and fit diagnostics are dimensionless. The result is a built-in tuple of new frozen-binding VolumeCarrierCandidate records in caller order, including duplicates.
+Only images is positional. All nine keywords are required; ordinary Python argument-binding TypeError applies. One call handles one orientation/channel/time and one positive order m=1 or2. Images have phase/z/y/x axes. Spacing is z/y/x in micrometres (µm); physical frequencies are cycles/µm; phases are radians. Output gains and fit diagnostics are dimensionless. The result is a built-in tuple of new frozen-binding VolumeCarrierCandidate records in caller order, including duplicates.
 
 The supplied empirical response, calibration carrier, coordinate offset and calibration-to-specimen phase-reference shift stay **fixed across all candidate rows**. They select the already approved phenomenological response and constant gauge in [physical-frequency sampling](empirical-frequency-sampling-v1.md). Calibration carrier sets that gauge; it need not equal any candidate. No physical invariance of an actual optical response under changing illumination geometry is inferred. The caller establishes calibration/specimen compatibility and provides genuinely known actual phases for this intermediate slice. Nominal commands alone are not unknown-step estimates.
 
@@ -30,13 +31,13 @@ The operation separates observed volumes once under the supplied actual phases, 
 
 Images and phase_steps_rad inherit exactly the public representations, binary64 snapshots, finite checks, represented phase basis, numerical rank rule, SVD least-squares semantics, accuracy/range rules and errors of [volume separation](volume-phase-separation-v1.md). N>=5; every spatial size is positive. Both positive orders select c1/c2 from that same five-column fit; do not double fundamental phase steps for m=2. Signed data, unequal N>5 steps, off-model projection, huge represented angles, every real integer/floating width/endian, singleton axes, strided/Fortran/read-only plain arrays remain valid.
 
-response is an EmpiricalVolumeResponse instance, including ordinary record subclasses. Validate every public field with the source-response rules of [physical-frequency sampling](empirical-frequency-sampling-v1.md#response-and-scalar-validation-ownership), including unused rows/samples, tolerated coordinate metadata, exact canonical source geometry, spacing/origin/source and unrelated getter exceptions. Finite arbitrary complex values, zero/nonunit DC, non-Hermitian zero row and zero side rows are valid. There is no normalization or realizability test. Its opaque nonblank source label supplies each returned row's source.
+response is an EmpiricalVolumeResponse instance, including ordinary record subclasses. Validate every public field with the source-response rules of [physical-frequency sampling](empirical-frequency-sampling-v1.md#response-and-scalar-validation-ownership), including unused rows/samples, tolerated coordinate metadata, exact canonical source geometry, spacing/origin and unrelated getter exceptions. Finite arbitrary complex values, zero/nonunit DC, non-Hermitian zero row and zero side rows are valid. There is no normalization or realizability test. The upstream record has no source-label field.
 
 voxel_size_um is an exact built-in tuple/list of three nonboolean Python/NumPy real integer/floating scalars, individually converted to finite positive binary64. Converted values define the specimen geometry as exact represented rationals. Conversion underflow to zero rejects. Use source-free expected conversion TypeError/ValueError/OverflowError translation at this boundary; unrelated exceptions and MemoryError propagate.
 
 candidate_carriers_yx is either a nonempty exact built-in tuple/list of rows, each an exact built-in tuple/list of length2 nonboolean Python/NumPy integer scalars, or a plain signed/unsigned integer ndarray of shape (C,2), C>=1, excluding bool and subclasses. Layout/endian/read-only alternatives are valid. Extract exact Python ints without floating conversion, numpy.intp limits, magnitude caps or principal-period reduction. Zero, negative, unsigned and arbitrarily huge list/tuple integers are valid. Snapshot caller order and duplicates. A scalar pair alone is not a candidate table. Other iterables, ragged rows and mixed floating/bool entries reject.
 
-order is a nonboolean Python/NumPy integer equal to1 or2. calibration_carrier_bins and coordinate_offset_yx inherit the physical sampler's exact tuple/list integer-pair grammar, including huge integers. phase_reference_shift_rad inherits its real scalar conversion, finite huge/subnormal/signed-zero values and bounded-angle gauge semantics. No separate source keyword is added.
+order is a nonboolean Python/NumPy integer equal to1 or2. calibration_carrier_bins and coordinate_offset_yx inherit the physical sampler's exact tuple/list integer-pair grammar, including huge integers. phase_reference_shift_rad inherits its real scalar conversion, finite huge/subnormal/signed-zero values and bounded-angle gauge semantics. source is a caller-supplied nonblank opaque string, retained unchanged in each row; it authenticates no provenance.
 
 Snapshot all accepted images, phases, response arrays/metadata and scalar/container declarations before phase solving, transforms or interpolation. Validate all input fields even if every candidate has no overlap or lacks coverage. Preserve caller storage/layout/write flags, NumPy floating policy and warning filters on success and failure. Concurrent external mutation is outside the guarantee. Full snapshots, scratch allocations and ordinary MemoryError are allowed; no practical-size, memory or throughput promise is selected.
 
@@ -139,7 +140,7 @@ This allowance compares arithmetic to the selected exact interpolant at rounded 
 
 ## Result and stable errors
 
-Each VolumeCarrierCandidate has exactly eight fields: gain (Python complex or None), relative_residual and coherence (Python floats or None), overlap_count (Python int), status (one table string), order (Python int), carrier_bins_yx (Python-int tuple), source (unchanged response source string). Field rebinding/deletion fails. Direct construction requires no validation/deep immutability. Repeated candidates produce distinct record instances with equivalent data; scalars/immutable tuples share no mutable caller state. No calibration copy, phase vector, inferred confidence, carrier ranking or automatic correction is returned. Keep raw/correction/calibration identities, spacing, phase schedules and supplied gauge externally.
+Each VolumeCarrierCandidate has exactly eight fields: gain (Python complex or None), relative_residual and coherence (Python floats or None), overlap_count (Python int), status (one table string), order (Python int), carrier_bins_yx (Python-int tuple), source (unchanged caller source string). Field rebinding/deletion fails. Direct construction requires no validation/deep immutability. Repeated candidates produce distinct record instances with equivalent data; scalars/immutable tuples share no mutable caller state. No calibration copy, phase vector, inferred confidence, carrier ranking or automatic correction is returned. Keep raw/correction/calibration identities, spacing, phase schedules and supplied gauge externally.
 
 Use SimreconError with stable code. Message prose and simultaneous-invalid precedence are unspecified.
 
@@ -152,6 +153,7 @@ Use SimreconError with stable code. Message prose and simultaneous-invalid prece
 | Candidate table/row/scalar grammar or expected extraction failure | invalid_volume_carrier_candidates |
 | Nonboolean integer order1 or2 | invalid_volume_carrier_order |
 | Calibration carrier, offset or phase shift | Inherited physical-sampler scalar codes |
+| Caller source label not a nonblank string | invalid_otf_source |
 | Handled FFT failure/nonfinite normalized transform | volume_carrier_transform_failure |
 | Final sampled interpolation nonfiniteness | unrepresentable_empirical_interpolation |
 | Nonfinite fitting/restoration/final gain or diagnostic | unrepresentable_volume_carrier_fit |
