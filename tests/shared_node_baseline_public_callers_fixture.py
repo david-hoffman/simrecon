@@ -33,7 +33,7 @@ GENERATOR = ROOT / "scripts/generate_reference_fixtures.py"
 CACHE = ROOT / "artifacts/imagej-reader"
 ACTIVE: set[int] = set()
 DECLARATIONS: dict[str, Any] = json.loads(
-    (EVIDENCE / "public/reader-public-input-context.json").read_text()
+    (ROOT / "tests/data/reader-public-input-context.json").read_text()
 )["artifact_declarations"]
 PHASES = [
     "sync",
