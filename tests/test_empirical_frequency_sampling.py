@@ -87,7 +87,19 @@ def test_public_bindings_record_and_direct_construction(api: Any) -> None:
     assert cls is not None
     names = ("values", "frequencies_zyx_per_um", "order", "source", "provenance")
     assert type(result) is cls
-    assert tuple(f.name for f in dataclasses.fields(result)) == names
+    for name in names:
+        getattr(result, name)
+    # Observe public data without requiring dataclass/tuple/slot metadata.
+    # Methods are not fields; required fields need not be advertised by dir().
+    absent = object()
+    public_data = {
+        name
+        for name in dir(result)
+        if not name.startswith("_")
+        and (value := getattr(result, name, absent)) is not absent
+        and not callable(value)
+    }
+    assert public_data <= set(names)
     assert type(result.order) is int
     assert result.order == 1
     assert type(result.source) is str and result.source == kw["source"]
