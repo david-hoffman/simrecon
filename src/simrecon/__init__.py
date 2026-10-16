@@ -33,6 +33,7 @@ from ._volume_carrier_diagnostics import VolumeCarrierCandidate, scan_volume_car
 from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
 from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
+from .volume_carrier_selection import VolumeCarrierSelection, select_volume_carrier
 from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
 
@@ -61,6 +62,7 @@ __all__ = [
     "TranslationEstimate",
     "TrilinearVolumeTransfer",
     "VolumeCarrierCandidate",
+    "VolumeCarrierSelection",
     "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
     "VolumePhaseComponents",
@@ -90,6 +92,7 @@ __all__ = [
     "scan_carriers",
     "scan_volume_carriers",
     "select_carrier",
+    "select_volume_carrier",
     "separate_phases",
     "separate_volume_phases",
     "write",
