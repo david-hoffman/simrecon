@@ -512,7 +512,8 @@ def test_local_statuses_and_zero_gain_eligibility(kind: str) -> None:
             assert row.gain == 0j and row.coherence == 0.0
             assert row.relative_residual == (0.0 if kind == "zero_response" else 1.0)
         else:
-            assert result.candidates[0].gain is None
+            for row in result.candidates:
+                assert (row.gain, row.relative_residual, row.coherence) == (None, None, None)
 
 
 def test_fitted_gain_underflow_is_not_reclassified_or_cut_off() -> None:
