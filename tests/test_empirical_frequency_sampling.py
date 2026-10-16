@@ -782,10 +782,10 @@ def test_final_component_range_rejects_entire_call(api: Any) -> None:
     r.values[1, 0, 0] = [0.0, complex(big, big)]
     p = np.array([[0.0, 0.0, -1.0], [0.0, 0.0, 0.0]])
     kw = arguments(p, phase_reference_shift_rad=-math.pi / 4)
-    er, _, _ = oracle(r, p[1], **kw)
+    _, ei, _ = oracle(r, p[1], **kw)
     with localcontext() as ctx:
         ctx.prec = 440
-        assert er > dec(FMAX) * Decimal("1.2")
+        assert ei > dec(FMAX) * Decimal("1.2")
     reject(api, "unrepresentable_empirical_interpolation", r, **kw)
 
 
