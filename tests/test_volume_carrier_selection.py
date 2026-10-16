@@ -262,6 +262,9 @@ def test_exact_arbitrary_integer_minimum_and_all_unavailable() -> None:
             np.ones((1, 2)),
             np.ones((2, 1)),
             np.array([0, 1]).view(np.ma.MaskedArray),
+            np.array([False, True]),
+            np.array(["0", "100"]),
+            np.array([0, Decimal("100")], dtype=object),
             (True, 1),
             (0, np.bool_(True)),
             (0j, 1),
@@ -618,28 +621,51 @@ def test_public_fft_arithmetic_warning_even_under_ignore_and_unrelated_warning(
         assert_selection(select(images, args), POLICY)
 
 
-def test_global_fit_failure_after_an_otherwise_eligible_first_row() -> None:
+def _late_failure_inputs(large_transfer_x_index: int) -> tuple[Any, dict[str, Any]]:
     images, args = matched_case()
-    # Only one positive-transfer bin. Candidate 0 fits a moderate DC gain;
-    # candidate +1 compares near-zero object bin -1 to an enormous response.
+    # The positive transfer has only its DC bin. For candidate +1, that bin
+    # pairs with object bin -1. The x-index 1 is bin -1; index 3 is bin +1.
     r = args["response"]
     r.values[1] = 0
     r.values[1, 1, 2, 2] = 1
     r.values[0] = 0
     r.values[0, 1, 2, 2] = 1
-    r.values[0, :, :, 3] = float(np.finfo(float).max) / 4
-    # A spatially constant observed side band but nonconstant DC.
+    r.values[0, :, :, large_transfer_x_index] = float(np.finfo(float).max) / 4
     h = phase_matrix(args["phase_steps_rad"])
     dc = np.full((2, 4, 4), 2.0)
     dc[:, :, 1] += 0.25
     images = h[:, 0, None, None, None] * dc + h[:, 1, None, None, None] * 2
     args["candidate_carriers_yx"] = [(0, 0)]
-    first = select(images, args)
-    assert first.eligible_indices == (0,)
+    return images, args
+
+
+def test_global_fit_failure_after_an_otherwise_eligible_first_row() -> None:
+    # Preserve the original valid input: its huge transfer lies outside the
+    # later nonwrapping objective, so both rows must remain legitimate fits.
+    images, args = _late_failure_inputs(3)
     args["candidate_carriers_yx"] = [(0, 0), (0, 1)]
-    with pytest.raises(SimreconError) as caught:
-        select(images, args)
-    assert caught.value.code == "unrepresentable_volume_carrier_fit"
+    control = select(images, args)
+    assert_selection(control, POLICY)
+    assert control.eligible_indices == (0, 1)
+    assert [row.overlap_count for row in control.candidates] == [32, 24]
+    later = control.candidates[1]
+    assert later.gain == 0j and later.coherence == 0.0
+    # The computed response norm may vanish with a different allowed solver.
+    assert later.status in ("zero_response", "zero_correlation")
+    assert later.relative_residual == (0.0 if later.status == "zero_response" else 1.0)
+
+    # Move the large transfer into the later pair at p_x=-1, j_x=0.
+    # D0(-1) is approximately i/16 and Dm(0) approximately 1, giving a
+    # restored imaginary gain near -4*Fmax. The first row's gain stays finite.
+    images, args = _late_failure_inputs(1)
+    first = select(images, args)
+    assert_selection(first, POLICY)
+    assert first.eligible_indices == (0,)
+    for candidates in ([(0, 1)], [(0, 0), (0, 1)]):
+        args["candidate_carriers_yx"] = candidates
+        with pytest.raises(SimreconError) as caught:
+            select(images, args)
+        assert caught.value.code == "unrepresentable_volume_carrier_fit"
 
 
 def test_layouts_inputs_state_and_public_scan_compatibility() -> None:
@@ -693,6 +719,7 @@ def test_snapshots_precede_public_solver_and_do_not_alias_later_inputs(monkeypat
         (np.fft, "fftn", np.fft.fftn),
     ]
     bounds = [0.0, 100.0]
+    original_policy = POLICY | {"gain_magnitude_bounds": tuple(bounds)}
     changed = False
 
     def at_boundary(original: Any) -> Any:
@@ -713,6 +740,11 @@ def test_snapshots_precede_public_solver_and_do_not_alias_later_inputs(monkeypat
         monkeypatch.setattr(module, name, at_boundary(original))
     after = select(images, args, gain_magnitude_bounds=bounds)
     assert changed
+    assert bounds == [1000.0, 2000.0]
+    assert_selection(after, original_policy)
+    assert after.eligible_indices == (0, 1, 2)
+    assert after.selected_index is None and after.failure_code == "ambiguous_volume_carrier"
+    assert exact_indices(after.candidates, POLICY | {"gain_magnitude_bounds": bounds}) == ()
     assert len(after.candidates) == len(before.candidates)
     for observed, prior, expected in zip(after.candidates, before.candidates, truth, strict=True):
         assert row_tuple(observed)[3:] == row_tuple(prior)[3:]
