@@ -8,6 +8,7 @@ from typing import Any
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import require_finite
 from ._model import SimreconError
 from ._volume_order_otf import VolumeOrderOtf
 from ._volume_phase import separate_volume_phases
@@ -88,8 +89,7 @@ def _carrier(value: Any) -> tuple[int, int]:
 
 def _finite(value: Any) -> None:
     """Reject nonfinite components without inspecting complex magnitudes."""
-    if not np.isfinite(value).all():
-        raise SimreconError(_RANGE, "computed component is outside finite float64 range")
+    require_finite(value, _RANGE, "computed component is outside finite float64 range")
 
 
 def _scaled(value: npt.NDArray[np.complex128]) -> tuple[npt.NDArray[np.complex128], float]:
@@ -144,8 +144,6 @@ def _restore(
     component: float, numerator: tuple[float, ...], denominator: tuple[float, ...], exponent: int
 ) -> float:
     """Include correlation before restoring a gain component's binary scale."""
-    if component == 0:
-        return component
     mantissa, power = math.frexp(component)
     exponent += power
     for factor in numerator:

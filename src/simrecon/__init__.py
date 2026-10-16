@@ -6,6 +6,10 @@ from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
 from ._drift import DriftCorrection, correct_integer_drift
 from ._empirical_response import EmpiricalVolumeResponse, prepare_empirical_volume_response
+from ._empirical_shared_nodes import (
+    SharedNodeVolumeTransfer,
+    adapt_empirical_volume_response_shared_nodes,
+)
 from ._empirical_transfer import adapt_empirical_volume_response
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
@@ -46,12 +50,14 @@ __all__ = [
     "Reconstruction2D",
     "Reconstruction3D",
     "SimreconError",
+    "SharedNodeVolumeTransfer",
     "TranslationEstimate",
     "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
     "VolumePhaseComponents",
     "WriteReport",
     "adapt_empirical_volume_response",
+    "adapt_empirical_volume_response_shared_nodes",
     "calibrate_raw_point_bead",
     "correct_integer_drift",
     "correct_linear_response",

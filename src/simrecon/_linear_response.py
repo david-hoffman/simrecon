@@ -9,6 +9,7 @@ import numpy as np
 import numpy.typing as npt
 
 from ._acquisition import RawAcquisition
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
 
 _SOURCE_FIELDS = (
@@ -49,14 +50,10 @@ class LinearResponseCorrection:
 def _normalized_array(array: npt.NDArray[Any], *, code: str) -> npt.NDArray[np.float64]:
     """Copy finite source values once to finite native binary64."""
     with np.errstate(all="ignore"):
-        if not np.isfinite(array).all():
-            raise SimreconError(code, "source values must be finite")
-        try:
+        require_finite(array, code, "source values must be finite")
+        with conversion_errors(code, "values cannot be converted to binary64"):
             result = array.astype(np.float64, order="C", copy=True)
-        except (TypeError, ValueError, OverflowError) as error:
-            raise SimreconError(code, "values cannot be converted to binary64") from error
-        if not np.isfinite(result).all():
-            raise SimreconError(code, "converted values must be finite")
+        require_finite(result, code, "converted values must be finite")
     return result
 
 
@@ -64,10 +61,8 @@ def _coefficient(value: Any, *, name: str, shape: tuple[int, ...]) -> dict[str, 
     """Retain the supplied value separately from its normalized coefficient."""
     code = f"invalid_linear_response_{name}"
     if type(value) in (int, float):
-        try:
+        with conversion_errors(code, "coefficient cannot be converted to binary64"):
             applied = float(value)
-        except (TypeError, ValueError, OverflowError) as error:
-            raise SimreconError(code, "coefficient cannot be converted to binary64") from error
         if not math.isfinite(applied) or (name == "response" and applied <= 0):
             raise SimreconError(code, "coefficient must be finite; response must be positive")
         supplied = value

@@ -6,6 +6,7 @@ from typing import Any
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
 
 
@@ -36,15 +37,10 @@ def _plain_array(value: object, *, kinds: str, code: str) -> npt.NDArray[Any]:
 
 def _float_snapshot(values: npt.NDArray[Any], *, code: str) -> npt.NDArray[np.float64]:
     """Own the converted values, permitting finite rounding and underflow."""
-    if not np.isfinite(values).all():
-        raise SimreconError(code, "source values must be finite")
-    try:
-        with np.errstate(all="ignore"):
-            snapshot = np.array(values, dtype=np.float64, order="C", copy=True)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "values cannot convert to float64") from error
-    if not np.isfinite(snapshot).all():
-        raise SimreconError(code, "converted values must be finite")
+    require_finite(values, code, "source values must be finite")
+    with conversion_errors(code, "values cannot convert to float64"), np.errstate(all="ignore"):
+        snapshot = np.array(values, dtype=np.float64, order="C", copy=True)
+    require_finite(snapshot, code, "converted values must be finite")
     return snapshot
 
 

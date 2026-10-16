@@ -7,6 +7,7 @@ from typing import Any
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
 from ._volume_otf import _prepare_volume_inputs
 
@@ -58,14 +59,10 @@ def _coefficients(value: npt.NDArray[Any], nz: int) -> npt.NDArray[np.complex128
             "invalid_volume_order_coefficients_shape", "coefficients must have shape (2,Nz)"
         )
     code = "nonfinite_volume_order_coefficients"
-    if not np.isfinite(value).all():
-        raise SimreconError(code, "source coefficient components must be finite")
-    try:
+    require_finite(value, code, "source coefficient components must be finite")
+    with conversion_errors(code, "coefficient conversion failed"):
         snapshot = value.astype(np.complex128, order="C", copy=True)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "coefficient conversion failed") from error
-    if not np.isfinite(snapshot).all():
-        raise SimreconError(code, "converted coefficient components must be finite")
+    require_finite(snapshot, code, "converted coefficient components must be finite")
     return snapshot
 
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import base64
 import csv
+import glob
 import hashlib
 import io
 import json
@@ -12,6 +13,7 @@ import os
 import platform
 import re
 import shutil
+import sqlite3
 import stat
 import subprocess
 import sys
@@ -21,7 +23,7 @@ from datetime import datetime, timedelta, timezone
 from email.parser import Parser
 from itertools import product
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 from uuid import uuid4
 
 PHASES = (
@@ -134,10 +136,77 @@ def protect_evidence(paths: list[Path], protected: list[Path]) -> None:
             protected.extend((path.absolute(), path.resolve()))
 
 
-def evidence_files(root: Path) -> dict[Path, tuple[int, int, int, int, int]]:
+def protect_test_databases(paths: list[Path], protected: list[Path]) -> None:
+    """Associate test-emitted native databases with the current complete report."""
+    try:
+        report = json.loads(Path("artifacts/coverage/coverage.json").read_text())
+        reported = {Path(name).resolve() for name in report["files"]}
+    except (OSError, ValueError, KeyError, TypeError):
+        # The ordinary report collector diagnoses invalid/unavailable reports.
+        return
+    for path in paths:
+        try:
+            with path.open("rb") as stream:
+                if stream.read(16) != b"SQLite format 3\x00":
+                    continue
+            connection = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)
+            try:
+                measured = {
+                    Path(name).resolve() for (name,) in connection.execute("SELECT path FROM file")
+                }
+            finally:
+                connection.close()
+        except (OSError, sqlite3.Error):
+            continue
+        if measured & reported:
+            protect_evidence([path], protected)
+
+
+def coverage_data_path() -> Path:
+    """Resolve storage through the installed Coverage.py public configuration API."""
+    interpreter = Path(".venv/bin/python")
+    if not interpreter.is_file():
+        interpreter = Path(__file__).resolve().parents[1] / ".venv/bin/python"
+    result = subprocess.run(
+        [
+            str(interpreter),
+            "-c",
+            "import json; from coverage import Coverage; "
+            "print(json.dumps(Coverage().get_option('run:data_file')))",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode:
+        raise ValueError("Coverage data-file configuration unavailable")
+    return Path(json.loads(result.stdout)).expanduser().absolute()
+
+
+def coverage_data_files(native: Path) -> list[Path]:
+    """Observe the selected database and parallel shards without directory traversal."""
+    return [native, *native.parent.glob(glob.escape(native.name) + ".*")]
+
+
+def evidence_files(root: Path, native: Path | None) -> dict[Path, tuple[int, int, int, int, int]]:
     """Observe file writes without reading payloads or assuming native output names."""
     files = {}
     visited = set()
+
+    def observe(path: Path) -> None:
+        with suppress(FileNotFoundError):
+            metadata = path.stat()
+            if stat.S_ISREG(metadata.st_mode):
+                # Compare the same destination even when reached through a
+                # different directory alias before and after the phase.
+                files[path.resolve()] = (
+                    metadata.st_dev,
+                    metadata.st_ino,
+                    metadata.st_size,
+                    metadata.st_mtime_ns,
+                    metadata.st_ctime_ns,
+                )
+
     for directory, directories, names in os.walk(root, followlinks=True):
         directory_metadata = Path(directory).stat()
         directory_identity = (directory_metadata.st_dev, directory_metadata.st_ino)
@@ -146,19 +215,10 @@ def evidence_files(root: Path) -> dict[Path, tuple[int, int, int, int, int]]:
             continue
         visited.add(directory_identity)
         for name in names:
-            path = Path(directory) / name
-            with suppress(FileNotFoundError):
-                metadata = path.stat()
-                if stat.S_ISREG(metadata.st_mode):
-                    # Compare the same destination even when reached through a
-                    # different directory alias before and after the phase.
-                    files[path.resolve()] = (
-                        metadata.st_dev,
-                        metadata.st_ino,
-                        metadata.st_size,
-                        metadata.st_mtime_ns,
-                        metadata.st_ctime_ns,
-                    )
+            observe(Path(directory) / name)
+    if native is not None:
+        for path in coverage_data_files(native):
+            observe(path)
     return files
 
 
@@ -284,6 +344,28 @@ def metrics(problems: list[str]) -> dict[str, Any]:
     report = json.loads(Path(reports["json"]).read_text())
     if report["meta"]["branch_coverage"] is not True:
         raise ValueError("Native branch measurement unavailable")
+    # Native totals include all reported files, not nested function/class regions.
+    keys = (
+        "covered_lines",
+        "num_statements",
+        "covered_branches",
+        "num_branches",
+        "missing_lines",
+        "excluded_lines",
+        "missing_branches",
+        "num_partial_branches",
+    )
+    totals = dict.fromkeys(keys, 0)
+    for item in report["files"].values():
+        summary = item["summary"]
+        if any(type(summary[key]) is not int or summary[key] < 0 for key in keys):
+            raise ValueError("Invalid native coverage counters")
+        for key in keys:
+            totals[key] += summary[key]
+    if any(type(report["totals"][key]) is not int or report["totals"][key] < 0 for key in keys):
+        raise ValueError("Invalid native coverage counters")
+    if any(report["totals"][key] != totals[key] for key in keys):
+        raise ValueError("Invalid native coverage totals")
     files = {}
     packages = {
         name: {kind: {"covered": 0, "total": 0} for kind in ("statements", "branches")}
@@ -293,18 +375,6 @@ def metrics(problems: list[str]) -> dict[str, Any]:
         for path in sorted(Path(directory).rglob("*.py")):
             item = report["files"][path.as_posix()]
             summary = item["summary"]
-            keys = (
-                "covered_lines",
-                "num_statements",
-                "covered_branches",
-                "num_branches",
-                "missing_lines",
-                "excluded_lines",
-                "missing_branches",
-                "num_partial_branches",
-            )
-            if any(type(summary[key]) is not int or summary[key] < 0 for key in keys):
-                raise ValueError("Invalid native coverage counters")
             excluded = native_destinations(item["excluded_lines"], False)
             if len(excluded) != summary["excluded_lines"]:
                 raise ValueError("Invalid native coverage counters")
@@ -493,6 +563,8 @@ def main() -> int:
     destination = Path(args.receipt)
     exitcode = 1
     evidence_protected: list[Path] = []
+    native_protected: list[Path] = []
+    test_emitted: list[Path] = []
     try:
         protected = [Path(".git").absolute(), Path(".git").resolve()]
         for arguments in (
@@ -536,10 +608,15 @@ def main() -> int:
             command = [args.make, "--no-print-directory", phase, "UV=" + args.uv]
             started = now()
             evidence_root = {
+                "tests": Path("."),
                 "coverage-combine": Path("."),
                 "coverage-html": Path("artifacts/coverage/html"),
             }.get(phase)
-            emitted_before = evidence_files(evidence_root) if evidence_root is not None else {}
+            # Retain the selected location even if the phase loses its configuration.
+            native = coverage_data_path() if evidence_root == Path(".") else None
+            emitted_before = (
+                evidence_files(evidence_root, native) if evidence_root is not None else {}
+            )
             status, output = capture(command, phase_environment)
             if status:
                 exitcode = status
@@ -555,14 +632,21 @@ def main() -> int:
                 }
             )
             if evidence_root is not None:
-                protect_evidence(
-                    [
-                        path
-                        for path, metadata in evidence_files(evidence_root).items()
-                        if emitted_before.get(path) != metadata
-                    ],
-                    evidence_protected,
-                )
+                emitted = [
+                    path
+                    for path, metadata in evidence_files(evidence_root, native).items()
+                    if emitted_before.get(path) != metadata
+                ]
+                if phase == "tests":
+                    test_emitted = emitted
+                    protect_evidence(
+                        [path for path in emitted if path == cast(Path, native).resolve()],
+                        native_protected,
+                    )
+                else:
+                    protect_evidence(emitted, evidence_protected)
+            if phase == "coverage-json":
+                protect_test_databases(test_emitted, evidence_protected)
             report = {
                 "coverage-json": Path("artifacts/coverage/coverage.json"),
                 "coverage-html": Path("artifacts/coverage/html/index.html"),
@@ -580,7 +664,7 @@ def main() -> int:
                         "Measurement evidence invalid or unavailable: " + str(error)
                     )
             print(output, end="", flush=True)
-            persist_output(log, output, [*protected, *evidence_protected])
+            persist_output(log, output, [*protected, *evidence_protected, *native_protected])
             protect_evidence([log], evidence_protected)
             if status:
                 raise ValueError("Phase failed: " + phase)
@@ -627,6 +711,7 @@ def main() -> int:
     receipt_protected = [
         *protected,
         *evidence_protected,
+        *native_protected,
         *(Path(phase["log"]).absolute() for phase in receipt["phases"]),
         *(path.absolute() for path in inputs.values() if not path.is_dir()),
     ]

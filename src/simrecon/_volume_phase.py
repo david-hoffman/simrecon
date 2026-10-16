@@ -1,11 +1,23 @@
 """Separate two known phase harmonics independently at each volume voxel."""
 
+from collections.abc import Iterator
+from contextlib import contextmanager
 from dataclasses import dataclass
 
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
+
+
+@contextmanager
+def _solver_errors(message: str) -> Iterator[None]:
+    """Translate solver failures around each isolated numerical execution."""
+    try:
+        yield
+    except np.linalg.LinAlgError as error:
+        raise SimreconError("volume_phase_solver_failure", message) from error
 
 
 @dataclass(frozen=True)
@@ -34,14 +46,10 @@ def _snapshot(
 ) -> npt.NDArray[np.float64]:
     """Copy real input, allowing finite float64 rounding and underflow."""
     with np.errstate(all="ignore"):
-        if not np.isfinite(array).all():
-            raise SimreconError(finite_code, "source values must be finite")
-        try:
+        require_finite(array, finite_code, "source values must be finite")
+        with conversion_errors(dtype_code, "values cannot be converted to float64"):
             values = array.astype(np.float64, order="C", copy=True)
-        except (TypeError, ValueError, OverflowError) as error:
-            raise SimreconError(dtype_code, "values cannot be converted to float64") from error
-        if not np.isfinite(values).all():
-            raise SimreconError(finite_code, "converted values must be finite")
+        require_finite(values, finite_code, "converted values must be finite")
     return values
 
 
@@ -120,12 +128,8 @@ def separate_volume_phases(
         c = np.cos(angles)
         s = np.sin(angles)
         h = np.column_stack((np.ones(angles.size), c, s, c * c - s * s, (2 * c) * s))
-        try:
+        with _solver_errors("phase SVD did not converge"):
             u, singular, vh = np.linalg.svd(h, full_matrices=False)
-        except np.linalg.LinAlgError as error:
-            raise SimreconError(
-                "volume_phase_solver_failure", "phase SVD did not converge"
-            ) from error
         if not (np.isfinite(u).all() & np.isfinite(singular).all() & np.isfinite(vh).all()):
             raise SimreconError(
                 "volume_phase_solver_failure", "phase SVD returned nonfinite factors"
@@ -139,10 +143,8 @@ def separate_volume_phases(
         # frexp gives exponent zero for zero, and handles subnormal-only voxels.
         _, exponent = np.frexp(np.max(np.abs(values), axis=0))
         scaled = np.ldexp(values, -exponent).reshape(angles.size, -1)
-        try:
+        with _solver_errors("phase fit failed"):
             coefficients = vh.T @ ((u.T @ scaled) / singular[:, None])
-        except np.linalg.LinAlgError as error:
-            raise SimreconError("volume_phase_solver_failure", "phase fit failed") from error
         shape = values.shape[1:]
         dc = np.array(np.ldexp(coefficients[0].reshape(shape), exponent), order="C", copy=True)
         c1 = np.empty(shape, dtype=np.complex128)

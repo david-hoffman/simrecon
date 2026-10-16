@@ -7,6 +7,7 @@ from fractions import Fraction
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._bead_peak import locate_bead_peak
 from ._model import SimreconError
 from ._volume_otf import _frequencies, _spacing, _triple
@@ -46,14 +47,10 @@ def _snapshot(
 ) -> npt.NDArray[np.float64 | np.complex128]:
     """Validate source components and independently copy their converted values."""
     code = "nonfinite_empirical_response_array"
-    if not np.isfinite(array).all():
-        raise SimreconError(code, "source components must be finite")
-    try:
+    require_finite(array, code, "source components must be finite")
+    with conversion_errors(code, "component conversion failed"):
         snapshot = array.astype(np.float64 if real else np.complex128, order="C", copy=True)
-    except (TypeError, ValueError, OverflowError) as error:
-        raise SimreconError(code, "component conversion failed") from error
-    if not np.isfinite(snapshot).all():
-        raise SimreconError(code, "converted components must be finite")
+    require_finite(snapshot, code, "converted components must be finite")
     return snapshot
 
 
