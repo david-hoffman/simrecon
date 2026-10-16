@@ -1,0 +1,9 @@
+# Explicit physical-frequency empirical transfer sampling
+
+**Version 1.0.** Standing owner authorization in originating chat 01a14019-23b9-7cd3-a571-607bad4faa30: “kick off the next roadmap item with my permission in a new task stacking on 35, and that task should continue when finished and so on and so forth until the roadmap is complete”. This authorizes necessary intake, implementation/checks, independent reviews, a new PR and dependency-ready successors; no merge/release or earlier-PR repair.
+
+The [public contract](../contracts/empirical-frequency-sampling-v1.md) selects a high-risk G1 primitive: one signed order sampled at explicit physical frequency triples with the existing real/imaginary trilinear meaning. The consumer query geometry is settled independently from future carrier refinement/observation interpolation. Exact represented query values, physical negative-order reflection and endpoint coverage are explicit. Existing odd-grid adaptation and modular reconstruction semantics remain intact.
+
+Baseline: accepted PR35 head cb6be9f65ceff6454bfbae0b69a3d0d66530901c; base branch codex/independent-otf-offgrid. No human numeric execution/review/spend limits. No Superpowers. Fresh native A/B/C/D and exact full-local gate, task-selected100% native measured statements/branches and both configured CI platforms apply.
+
+One local Current state and cumulative accounting: artifacts/physical-frequency-transfer-20261016/current-state.md. Final exact-candidate proof belongs outside tracked bytes in artifacts/physical-frequency-transfer-20261016/final-local-delivery.json and the new PR. Inherited predecessor accounting/custody limits remain linked without reset or duplicate sums. The roadmap's old “Next: phase1” note is historical; completion is measured against actual phase exits, including full public workflow, separately contracted512×512×64 truth-hidden simulation and actual owner-data/reference parity.
