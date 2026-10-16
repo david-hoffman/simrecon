@@ -35,7 +35,7 @@ jobs:
           java-version: "21.0.7+6.0.LTS"
 
       - name: Run full verification
-        run: make verify
+        run: SIMRECON_JAVA="$JAVA_HOME/bin/java" make verify
 
       - name: Retain verification evidence
         if: always()
