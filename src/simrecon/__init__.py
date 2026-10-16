@@ -11,6 +11,10 @@ from ._empirical_shared_nodes import (
     adapt_empirical_volume_response_shared_nodes,
 )
 from ._empirical_transfer import adapt_empirical_volume_response
+from ._empirical_trilinear import (
+    TrilinearVolumeTransfer,
+    adapt_empirical_volume_response_trilinear,
+)
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
 from ._legacy import inspect
@@ -52,12 +56,14 @@ __all__ = [
     "SimreconError",
     "SharedNodeVolumeTransfer",
     "TranslationEstimate",
+    "TrilinearVolumeTransfer",
     "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
     "VolumePhaseComponents",
     "WriteReport",
     "adapt_empirical_volume_response",
     "adapt_empirical_volume_response_shared_nodes",
+    "adapt_empirical_volume_response_trilinear",
     "calibrate_raw_point_bead",
     "correct_integer_drift",
     "correct_linear_response",
