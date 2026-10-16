@@ -5,6 +5,7 @@ from ._bead_peak import BeadPeak, locate_bead_peak
 from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
 from ._drift import DriftCorrection, correct_integer_drift
+from ._empirical_frequency import EmpiricalFrequencySamples, sample_empirical_volume_transfer
 from ._empirical_response import EmpiricalVolumeResponse, prepare_empirical_volume_response
 from ._empirical_shared_nodes import (
     SharedNodeVolumeTransfer,
@@ -41,6 +42,7 @@ __all__ = [
     "DataBlock",
     "DatasetInfo",
     "DriftCorrection",
+    "EmpiricalFrequencySamples",
     "EmpiricalVolumeResponse",
     "IlluminationEstimate",
     "ImagejSeries",
@@ -82,6 +84,7 @@ __all__ = [
     "read",
     "reconstruct",
     "reconstruct_volume",
+    "sample_empirical_volume_transfer",
     "scan_carriers",
     "select_carrier",
     "separate_phases",
