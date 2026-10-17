@@ -550,6 +550,142 @@ def test_safely_certified_nonidentity_near_policy(case: Case) -> None:
     check_truth(result, generated)
 
 
+EXACT_CERTIFICATE_WITNESSES = (
+    pytest.param(
+        (3, 1),
+        "0x1.ffffffffffc00p-2",
+        (0.5 + 0j, 1 + 0j),
+        False,
+        id="exact-eta-tail-rejects",
+    ),
+    pytest.param(
+        (6, 0, 1, 1),
+        "0x1.465655f122bf6p-1",
+        (0.75 + 0j, 0.625 - 0.125j, 1 + 0j, 0.625 + 0.125j),
+        True,
+        id="rounded-magnitude-false-rejection",
+    ),
+    pytest.param(
+        (1, 0, 14, 1),
+        "0x1.a13a9cb996251p-1",
+        (0.875 + 0j, -0.8125 - 0.0625j, 1 + 0j, -0.8125 + 0.0625j),
+        False,
+        id="rounded-magnitude-and-boundary-false-acceptance",
+    ),
+)
+
+
+def exact_certificate_case(weights: tuple[int, ...], carrier: tuple[int, int]) -> Case:
+    """Build valid stored raw data with fixed dc and mathematically zero sides."""
+    dc = np.zeros((1, 1, len(weights)), dtype=np.float64)
+    dc.flat[:2] = (8, 1)
+    generated = algebra_case(dc)
+    generated.profile = np.array(weights, dtype=np.float64).reshape(dc.shape)
+    generated.carrier = carrier
+    return generated
+
+
+@pytest.mark.parametrize("weights,minimum_hex,transfer,accepted", EXACT_CERTIFICATE_WITNESSES)
+def test_independent_exact_certificate_witnesses(
+    weights: tuple[int, ...],
+    minimum_hex: str,
+    transfer: tuple[complex, ...],
+    accepted: bool,
+) -> None:
+    """Prove exact policy and native public-input attainability before the API exists."""
+    generated = exact_certificate_case(weights, (0, 0))
+    acquisition = declare(generated)
+    assert acquisition.acquisition_kind == "sim_beads"
+    assert acquisition.axes == ("orientation", "phase", "z", "y", "x")
+    assert acquisition.data.shape == (1, len(generated.phases), 1, 1, len(weights))
+    assert np.array_equal(acquisition.data[0], generated.images)
+    assert np.all(generated.images == generated.kernel[None])
+    assert np.linalg.cond(represented_basis(generated.phases)) <= 10
+    assert exact_mass(generated.kernel) == 9
+
+    minimum = float.fromhex(minimum_hex)
+    target = np.array(transfer, dtype=np.complex128).reshape(generated.profile.shape)
+    with localcontext() as context:
+        context.prec = PRECISION
+        applied, profile = normalized_profile(generated.profile)
+        assert [value.native() for value in transform(profile, generated.profile.shape)] == list(
+            transfer
+        )
+        assert all(
+            Fraction.from_float(float(value)) == Fraction(weight, sum(weights))
+            for value, weight in zip(applied.flat, weights, strict=True)
+        )
+        # Both singleton permutations and the four-site transform have exact
+        # dyadic outputs here. Verify every allowed spatial-axis permutation
+        # through the native public dependency, never a finite-value mock.
+        for axes in ((0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)):
+            assert np.array_equal(np.fft.fftshift(np.fft.fftn(applied, axes=axes)), target)
+
+        eta = Fraction(128 * len(weights), 2**52) + Fraction(4 * len(weights), 2**1074)
+        boundary = Fraction.from_float(minimum) + eta
+        squares = [
+            Fraction.from_float(value.real) ** 2 + Fraction.from_float(value.imag) ** 2
+            for value in transfer
+        ]
+        decisions = [
+            square >= (Fraction.from_float(minimum) if i == len(weights) // 2 else boundary) ** 2
+            for i, square in enumerate(squares)
+        ]
+        assert all(decisions) is accepted
+        assert certificate(target, generated.profile, minimum) is accepted
+        limiting = min(range(len(transfer)), key=squares.__getitem__)
+        value = transfer[limiting]
+        rounded_mu = Fraction.from_float(float(np.hypot(value.real, value.imag)))
+        rounded_boundary = Fraction.from_float(rounded_weight(boundary))
+        assert rounded_mu >= rounded_boundary
+        assert rounded_mu < boundary
+        if accepted:
+            # The legitimate positive differs from a policy that rounds only
+            # magnitude, while preserving the exact threshold plus eta.
+            assert rounded_mu**2 < squares[limiting]
+            truth = expected(generated, minimum)
+            size = len(weights)
+            mass_lower = 9 - size * truth.separation_budget
+            lambda_upper = (9 + 2 * size * truth.separation_budget) / mass_lower
+            da_upper = 512 * size * EPS * lambda_upper + 16 * size * Q0
+            assert 64 * (lambda_upper + da_upper) / d(minimum) < FMAX
+            assert truth.origin == (0, 0, 0)
+            ordered = sorted(truth.localization, reverse=True)
+            assert ordered[0] - ordered[1] > 2 * truth.spatial_budget
+        elif len(weights) == 2:
+            assert boundary == Fraction(1, 2) + Fraction(8, 2**1074)
+            assert squares[limiting] == Fraction(1, 4)
+        else:
+            assert squares[limiting] == Fraction(170, 256)
+            assert rounded_mu**2 > squares[limiting]
+
+
+@pytest.mark.parametrize("weights,minimum_hex,transfer,accepted", EXACT_CERTIFICATE_WITNESSES)
+@pytest.mark.parametrize("carrier", [(0, 0), (10**80 + 1, -(10**90) + 3)])
+def test_raw_exact_profile_certificate_decisions(
+    weights: tuple[int, ...],
+    minimum_hex: str,
+    transfer: tuple[complex, ...],
+    accepted: bool,
+    carrier: tuple[int, int],
+) -> None:
+    generated = exact_certificate_case(weights, carrier)
+    minimum = float.fromhex(minimum_hex)
+    if accepted:
+        result = run(generated, min_profile_transfer=minimum)
+        assert np.array_equal(
+            result.provenance["profile_transfer"],
+            np.array(transfer, dtype=np.complex128).reshape(generated.profile.shape),
+        )
+        check_truth(result, generated, minimum)
+    else:
+        error(
+            "unstable_finite_bead_transfer",
+            declare(generated),
+            arguments(generated, min_profile_transfer=minimum),
+        )
+
+
 @pytest.mark.parametrize("bad", [None, {}, np.zeros((1, 1, 1))])
 def test_nonacquisition_rejected(case: Case, bad: Any) -> None:
     error("invalid_finite_bead_acquisition", bad, arguments(case))
