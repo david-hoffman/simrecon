@@ -1,6 +1,6 @@
 # Volume carrier selection: retained small comparisons
 
-The nine retained C01 cases pass their independent diagnostic and exact policy
+The nine retained C02 cases pass their independent diagnostic and exact policy
 checks. They show that explicit limits select a sole row, reject all rows or
 retain ambiguity, including duplicates. They also show why an excellent fit
 cannot establish a physical carrier. These are finite algebraic examples with
@@ -13,24 +13,45 @@ the [diagnostics contract](../contracts/volume-carrier-diagnostics-v1.md) suppli
 the numerical objective and allowances.
 
 The closed evidence directory is
-`artifacts/volume-carrier-selection-20261016/C01/examples/`. It retains the
+`artifacts/volume-carrier-selection-20261016/C02/examples/`. It retains the
 generator, raw input arrays, expected and returned diagnostic arrays in JSON,
 per-field errors/budgets, independent report, exact executed guide block,
 commands and logs. This document was written from those retained outputs after
 generation. It was not a generation input. The guide was a frozen input and
 has not changed since its separate execution.
 
-The successful generation ran on October 16, 2026, from
-23:50:59.830470 to 23:51:00.941889 UTC. Its actual commit was
-`e3f3ee5b7b2bd1c38542e5705db039a9c61a3cf1`, tree
-`9258c2c8b1df5ab5b5bdd367cdcc7d2935629e95`, with tracked
-`src/simrecon/__init__.py` modified and new implementation/guide files not yet
-tracked. The association preserves this observation. It makes no future clean
-commit claim. All 2,692 scientific/dependency input records have equal before
-and after pins, including the complete Python source census, frozen tests and
-fixture, contracts, lock/build declaration, guide, generators, managed
-environment configuration and actual executable. Endpoint agreement is not
-atomic snapshot or universal process/dependency custody.
+The current-input generation ran from `2026-10-17T00:06:00.966634+00:00` to
+`2026-10-17T00:06:02.572424+00:00`. Its actual commit was
+`a0850aae2a8e5f7f58f6e611bebcfe52ab0ca330`, tree
+`76db8554f800caa224ddb892dadbd0e08cab5d37`, with clean tracked state
+at both generation endpoints. This document was updated afterward from the
+retained outputs. These observations describe that actual generation, not a
+future final candidate. All 2,693 scientific/dependency input records have equal
+before and after pins, including the complete 36-file Python source census,
+current reviewed test and unchanged fixture, contracts, lock/build declaration,
+guide, generators, managed environment configuration and actual executable.
+The additional C02 entry-integrity record is pinned as a dependency used by the
+before-generation validation. Endpoint agreement is not an atomic snapshot or
+universal process/dependency custody claim.
+
+The fixed closure envelopes are `C02/examples/manifest.json` and
+`C02/examples/association.json`. Eight generator/data/report/log members plus
+those two envelopes form the complete closed directory. Envelopes are not
+self-hashed members or generation inputs. The separate C02 closure wrapper pins
+both envelopes. Later postcommit admission and full/platform gates belong to
+the coordinator.
+
+The revised test checkpoint is explicitly **POSTIMPLEMENTATION TYPING-ONLY
+SUPPLEMENTAL**, accepted by fresh B04. Only line-local accommodations for
+intentional invalid argument calls changed; runtime assertions, scientific
+expectations, fixture and product remain unchanged. B03's original semantic
+proof remains historical; no test-first claim is restored. The changed test
+bytes required a new current-input closure. C01's original observations and
+all artifacts, including its failed generation, remain preserved. C01's
+envelopes were outside its closed root and did not match the reviewed binder's
+fixed layout; C02 supplies the required layout without changing any helper or
+gate. All nine C02 observations equal the retained C01 observations exactly,
+so the numerical tables below describe the actual current run as well.
 
 The asymmetric example uses seven actual unequal phases, a 2×2×3 specimen,
 spacing `(1,2,4)` µm, a 4×4×8 full complex empirical response on spacing
