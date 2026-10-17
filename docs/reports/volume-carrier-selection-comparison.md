@@ -1,6 +1,6 @@
 # Volume carrier selection: retained small comparisons
 
-The nine retained C02 cases pass their independent diagnostic and exact policy
+The nine retained C03 cases pass their independent diagnostic and exact policy
 checks. They show that explicit limits select a sole row, reject all rows or
 retain ambiguity, including duplicates. They also show why an excellent fit
 cannot establish a physical carrier. These are finite algebraic examples with
@@ -13,45 +13,63 @@ the [diagnostics contract](../contracts/volume-carrier-diagnostics-v1.md) suppli
 the numerical objective and allowances.
 
 The closed evidence directory is
-`artifacts/volume-carrier-selection-20261016/C02/examples/`. It retains the
+`artifacts/volume-carrier-selection-20261016/C03/examples/`. It retains the
 generator, raw input arrays, expected and returned diagnostic arrays in JSON,
 per-field errors/budgets, independent report, exact executed guide block,
 commands and logs. This document was written from those retained outputs after
 generation. It was not a generation input. The guide was a frozen input and
 has not changed since its separate execution.
 
-The current-input generation ran from `2026-10-17T00:06:00.966634+00:00` to
-`2026-10-17T00:06:02.572424+00:00`. Its actual commit was
-`a0850aae2a8e5f7f58f6e611bebcfe52ab0ca330`, tree
-`76db8554f800caa224ddb892dadbd0e08cab5d37`, with clean tracked state
-at both generation endpoints. This document was updated afterward from the
-retained outputs. These observations describe that actual generation, not a
-future final candidate. All 2,693 scientific/dependency input records have equal
-before and after pins, including the complete 36-file Python source census,
-current reviewed test and unchanged fixture, contracts, lock/build declaration,
-guide, generators, managed environment configuration and actual executable.
-The additional C02 entry-integrity record is pinned as a dependency used by the
-before-generation validation. Endpoint agreement is not an atomic snapshot or
-universal process/dependency custody claim.
+The actual current-input cohort command ran from `2026-10-17T00:49:26.948395+00:00` to
+`2026-10-17T00:49:27.378437+00:00`. Its command names the closed generator member
+`C03/examples/cohort.py`, which executes the scientific generator and exact
+guide separately. The outer observer is a pinned source input. It is not the
+recorded generation command. The actual timestamps satisfy:
 
-The fixed closure envelopes are `C02/examples/manifest.json` and
-`C02/examples/association.json`. Eight generator/data/report/log members plus
-those two envelopes form the complete closed directory. Envelopes are not
-self-hashed members or generation inputs. The separate C02 closure wrapper pins
-both envelopes. Later postcommit admission and full/platform gates belong to
-the coordinator.
+```text
+before observation: 2026-10-17T00:49:26.945969+00:00
+cohort start:       2026-10-17T00:49:26.948395+00:00
+cohort end:         2026-10-17T00:49:27.378437+00:00
+after observation:  2026-10-17T00:49:27.580411+00:00
+```
 
-The revised test checkpoint is explicitly **POSTIMPLEMENTATION TYPING-ONLY
-SUPPLEMENTAL**, accepted by fresh B04. Only line-local accommodations for
+The actual generation commit was
+`0c674af963b0f40e5630d781ae6a54e26dab0291`, tree
+`e4706aac108a501844a8bcaee8349967c918ce38`, with clean tracked state
+at both endpoints. This document was updated afterward from retained outputs.
+These observations describe that actual generation, not a future final
+candidate. All 2,694 scientific/dependency input records have equal before
+and after pins, including the complete 36-file Python source census, current
+reviewed test and unchanged fixture, contracts, lock/build declaration, guide,
+closed generator cohort, science/guide scripts, outer observer, managed
+environment configuration and actual executable. The C03 entry-integrity
+record is a pinned dependency of before-generation validation. Endpoint
+agreement is not an atomic snapshot or universal process/dependency custody.
+
+The fixed closure envelopes are `C03/examples/manifest.json` and
+`C03/examples/association.json`. Ten generator/data/report/log members plus
+those two envelopes form the complete closed directory. All three closed
+generator members also appear as pinned generator source inputs, including the
+actually invoked cohort. Envelopes are not self-hashed members or generation
+inputs. The separate C03 closure wrapper pins both envelopes. Later postcommit
+admission and full/platform gates belong to the coordinator.
+
+The revised test checkpoint remains **POSTIMPLEMENTATION TYPING-ONLY
+SUPPLEMENTAL**, accepted by fresh B04 at
+`a0850aae2a8e5f7f58f6e611bebcfe52ab0ca330`. Only line-local accommodations for
 intentional invalid argument calls changed; runtime assertions, scientific
 expectations, fixture and product remain unchanged. B03's original semantic
-proof remains historical; no test-first claim is restored. The changed test
-bytes required a new current-input closure. C01's original observations and
-all artifacts, including its failed generation, remain preserved. C01's
-envelopes were outside its closed root and did not match the reviewed binder's
-fixed layout; C02 supplies the required layout without changing any helper or
-gate. All nine C02 observations equal the retained C01 observations exactly,
-so the numerical tables below describe the actual current run as well.
+proof remains historical; no test-first claim is restored.
+
+C01 and C02 observations and all artifacts remain preserved. C02's source
+closure used the current test bytes but failed the unchanged qualifier:
+its association command named an outer driver outside the closed generator
+members, and its interval described that observer rather than the command
+bracketed by source observations. C03 supplies a new actual closed cohort
+command with its own honest interval and complete current-input observations.
+No old proof or qualification record was rewritten, and no helper, schema or
+gate was relaxed. All nine C03 observations equal retained C02 observations
+exactly, so the numerical tables below describe the actual current run as well.
 
 The asymmetric example uses seven actual unequal phases, a 2×2×3 specimen,
 spacing `(1,2,4)` µm, a 4×4×8 full complex empirical response on spacing
