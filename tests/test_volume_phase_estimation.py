@@ -25,6 +25,7 @@ from volume_phase_estimation_fixture import (
     copy_order_record,
     estimate,
     example,
+    forward_observed_callbacks,
     local_phase_budget,
     observe,
     powers,
@@ -303,9 +304,9 @@ def test_full_off_model_jacobian_and_actual_scipy_controls(
             calls.append((np.array(x), np.array(value), finite_difference))
             return value
 
-        bound.arguments["fun"] = residual
-        bound.arguments["jac"] = jacobian
-        return original(*bound.args, **bound.kwargs)
+        return forward_observed_callbacks(
+            original, args, kwargs, {"fun": residual, "jac": jacobian}
+        )
 
     with public_observation(optimizer=real_solver):
         result = estimate(api, e, max_nfev=1)
@@ -1377,3 +1378,105 @@ def test_nuisance_fault_recognizes_public_linear_operator_operand(
             decomposition(nuisance_operator)
     assert exc.value is marker
     assert fault.passed_shapes and fault.matched_shapes
+
+
+@pytest.mark.parametrize("binding", ["direct", "module"])
+@pytest.mark.parametrize(
+    "call_form",
+    ["standard", "jac_positional", "prefix_controls", "all_keywords", "callback_arguments"],
+)
+def test_scipy_observer_preserves_genuine_call_form_and_controls(
+    request: pytest.FixtureRequest,
+    call_form: str,
+    binding: str,
+) -> None:
+    # Supplemental postimplementation test-correction regression. The genuine
+    # public dependency, not a fabricated solver result, supplies every result.
+    if run_dependency_child(request):
+        return
+    import scipy.optimize
+
+    direct = scipy.optimize.least_squares
+    x0 = np.zeros(1)
+
+    def residual(x: Any, offset: float = 1.0, scale: float = 2.0) -> Any:
+        return np.array([x[0] - offset, scale * (x[0] - offset)])
+
+    def jacobian(x: Any, offset: float = 1.0, scale: float = 2.0) -> Any:
+        return np.array([[1.0], [scale]])
+
+    controls: dict[str, Any] = dict(
+        jac=jacobian,
+        method="trf",
+        bounds=(-np.inf, np.inf),
+        loss="linear",
+        x_scale=1,
+        tr_solver="exact",
+        ftol=None,
+        gtol=1e-9,
+        xtol=1e-10,
+        max_nfev=1,
+    )
+    offset, scale = 1.0, 2.0
+    if call_form == "callback_arguments":
+        offset, scale = 1.25, 3.0
+        controls.update(args=(offset,), kwargs={"scale": scale})
+    expected_cost = 0.5 * offset**2 * (1 + scale**2)
+    args: tuple[Any, ...] = (residual, x0)
+    kwargs = controls.copy()
+    if call_form == "jac_positional":
+        args = (residual, x0, kwargs.pop("jac"))
+    elif call_form == "prefix_controls":
+        args = (residual, x0, kwargs.pop("jac"), kwargs.pop("bounds"), kwargs.pop("method"))
+    elif call_form == "all_keywords":
+        args = ()
+        kwargs.update(fun=residual, x0=x0)
+    supplied_args = args
+    supplied_kwargs = kwargs.copy()
+
+    def solve() -> Any:
+        function = direct if binding == "direct" else scipy.optimize.least_squares
+        return function(*args, **kwargs)
+
+    baseline = solve()  # Establish that this actual decorated public call works.
+    assert baseline.status == 0 and baseline.nfev == baseline.njev == 1
+    assert baseline.cost == expected_cost
+    residual_calls = 0
+    jacobian_calls = 0
+    observed: dict[str, Any] = {}
+
+    def observer(original: Any, *incoming: Any, **named: Any) -> Any:
+        bound = inspect.signature(original).bind(*incoming, **named)
+        bound.apply_defaults()  # Observation only; never replay these containers.
+        observed.update(bound.arguments)
+        assert len(incoming) == len(args) and set(named) == set(kwargs)
+
+        def real_residual(x: Any, *extra: Any, **kw: Any) -> Any:
+            nonlocal residual_calls
+            residual_calls += 1
+            return bound.arguments["fun"](x, *extra, **kw)
+
+        def real_jacobian(x: Any, *extra: Any, **kw: Any) -> Any:
+            nonlocal jacobian_calls
+            jacobian_calls += 1
+            return bound.arguments["jac"](x, *extra, **kw)
+
+        return forward_observed_callbacks(
+            original, incoming, named, {"fun": real_residual, "jac": real_jacobian}
+        )
+
+    with public_observation(optimizer=observer) as observation:
+        result = solve()
+    assert observation.events
+    assert result.status == 0 and result.nfev == result.njev == 1
+    assert result.cost == expected_cost  # Analytic quadratic; not product-derived truth.
+    assert_allclose(result.x, x0, atol=0, rtol=0)
+    assert_allclose(result.fun, [-offset, -scale * offset], atol=0, rtol=0)
+    assert_allclose(result.jac, [[1], [scale]], atol=0, rtol=0)
+    assert residual_calls == result.nfev and jacobian_calls == result.njev
+    for name, expected in controls.items():
+        assert observed[name] == expected
+    assert observed["workers"] is None and observed["callback"] is None
+    assert observed["jac_sparsity"] is None
+    assert args is supplied_args and kwargs.keys() == supplied_kwargs.keys()
+    assert all(kwargs[name] is value for name, value in supplied_kwargs.items())
