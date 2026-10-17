@@ -6,6 +6,7 @@ circular sums; the observer constructs each real matrix column by Fourier sums.
 
 from __future__ import annotations
 
+import inspect
 import os
 import subprocess
 import sys
@@ -391,6 +392,40 @@ def copy_order_record(orders: Any, **changes: Any) -> Any:
     fields = {name: getattr(orders, name) for name in ORDER_FIELDS}
     fields.update(changes)
     return simrecon.VolumeOrderOtf(**fields)
+
+
+def forward_observed_callbacks(
+    original: Any,
+    args: tuple[Any, ...],
+    kwargs: dict[str, Any],
+    replacements: dict[str, Any],
+) -> Any:
+    """Replace supplied callbacks while preserving the actual public call form.
+
+    Signature defaults are useful for observation, but a decorated callable may
+    not support replaying those defaults as positional arguments. Copy only the
+    caller's supplied containers and replace callback values in their original
+    slots. Never materialize defaults or move the remaining controls.
+    """
+    positional_names = [
+        parameter.name
+        for parameter in inspect.signature(original).parameters.values()
+        if parameter.kind
+        in (
+            inspect.Parameter.POSITIONAL_ONLY,
+            inspect.Parameter.POSITIONAL_OR_KEYWORD,
+        )
+    ]
+    forwarded_args = list(args)
+    forwarded_kwargs = kwargs.copy()
+    for name, value in replacements.items():
+        if name in forwarded_kwargs:
+            forwarded_kwargs[name] = value
+        elif name in positional_names and positional_names.index(name) < len(args):
+            forwarded_args[positional_names.index(name)] = value
+        else:
+            raise AssertionError(f"observer callback {name} was not supplied")
+    return original(*forwarded_args, **forwarded_kwargs)
 
 
 @dataclass
