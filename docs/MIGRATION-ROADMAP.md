@@ -78,6 +78,9 @@ This replaces caller-prepared response with response measured from raw calibrati
 
 **Dependencies:** phase 2 and integrated separation/calibration foundations. **Deliverables:** empirical calibration contract and public operation, independent bead/order fixtures, diagnostics and provenance. **Exit:** raw bead arrays produce documented order transfers with independent sign, origin, scaling and order checks; questionable source behavior is an explicit compatibility decision or remains unresolved.
 
+The continuing stack above completed PR38 next contracts [known-profile raw finite-bead calibration](contracts/finite-bead-compensation-v1.md) as a C3 development-model obligation. It removes a declared discrete periodic emission profile before compensated-origin localization, using known actual phases/carrier and the original common observed mass. This is no completion claim for all Phase3 settings, continuous bead sampling, unknown-parameter calibration or the later full-workflow/simulation/reference exits. Its [task pointer](tasks/finite-bead-compensation.md) owns exact readiness and delivery evidence.
+
+
 ### 4. Independent OTF sampling and interpolation
 
 This allows calibration and specimen acquisitions to have different grids.
