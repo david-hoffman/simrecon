@@ -1876,3 +1876,140 @@ def test_huge_finite_phase_uses_represented_phasor_square(case: Case) -> None:
     generated = copy.deepcopy(case)
     generated.phases[0] = float(FMAX)
     check_truth(run(generated), generated)
+
+
+# A04 SUPPLEMENTAL_POST_IMPLEMENTATION: public required-stage range witnesses.
+def required_finite_bead_range_case(stage: Literal["normalized", "division"]) -> Case:
+    """Supply real raw data, not a substituted phase/FFT/policy result."""
+    amplitude = float(FMAX) / (64 if stage == "normalized" else 8)
+    dc = np.array([0.0, 0.0, 1e-5 if stage == "normalized" else 1.0, 0.0]).reshape(1, 1, 4)
+    first = np.array([amplitude, -amplitude, 0.0, 0.0], dtype=np.complex128).reshape(1, 1, 4)
+    generated = algebra_case(dc, first)
+    if stage == "division":
+        generated.profile = np.array([9.0, 7.0, 0.0, 0.0]).reshape(1, 1, 4)
+    return generated
+
+
+def assert_required_finite_bead_range_policy(
+    generated: Case,
+    observed: simrecon.VolumePhaseComponents,
+    stage: Literal["normalized", "division"],
+) -> None:
+    """Qualify a range witness from public stored observations, not scientific truth.
+
+    The public separator's numerical domain permits mass cancellation. Its
+    observed mass is a policy-applicability observation; no local BLAS bits or
+    tight mass accuracy are promised. A failed applicability assertion requires
+    witness/backend diagnosis, not an automatic finite-calibration bug finding.
+    """
+    mass = exact_mass(observed.dc)
+    assert mass > 0, "F25 witness needs positive observed mass; diagnose applicability"
+    eps, quantum = Fraction(1, 2**52), Fraction(1, 2**1074)
+    maximum = Fraction.from_float(float(FMAX))
+    rows = (observed.dc, observed.c1, observed.c2)
+    lambdas = []
+    allowances = []
+    for row in rows:
+        assert np.all(np.isfinite(row.real)) and np.all(np.isfinite(row.imag))
+        lam = (
+            sum(
+                (
+                    Fraction.from_float(float(abs(value.real)))
+                    + Fraction.from_float(float(abs(value.imag)))
+                    for value in row.flat
+                ),
+                Fraction(),
+            )
+            / mass
+        )
+        lambdas.append(lam)
+        allowances.append(512 * 4 * eps * lam + 16 * 4 * quantum)
+        scale = max(float(np.max(np.abs(row.real))), float(np.max(np.abs(row.imag)))) or 1.0
+        scaled = np.empty(row.shape, dtype=np.complex128)
+        scaled.real, scaled.imag = row.real / scale, row.imag / scale
+        # Genuine native scaled transforms are finite. The expected range code
+        # concerns restoration/division, not a manufactured dependency failure.
+        transformed = np.fft.fftn(scaled)
+        assert np.all(np.isfinite(transformed.real))
+        assert np.all(np.isfinite(transformed.imag))
+
+    # The real Nyquist Fourier sum is exact for every represented sample,
+    # including any observed phase residual. No product FFT supplies this value.
+    nyquist = (
+        sum(
+            (
+                Fraction.from_float(float(value.real)) * (1 if i % 2 == 0 else -1)
+                for i, value in enumerate(observed.c1.flat)
+            ),
+            Fraction(),
+        )
+        / mass
+    )
+    applied, _ = normalized_profile(generated.profile)
+    profile = np.fft.fftshift(np.fft.fftn(applied))
+    assert certificate(profile, generated.profile, 0.1)
+    if stage == "normalized":
+        assert np.array_equal(profile, np.ones((1, 1, 4), dtype=np.complex128))
+        lower = abs(nyquist) - allowances[1]
+    else:
+        target = np.array([0.125 + 0j, 9 / 16 + 7j / 16, 1 + 0j, 9 / 16 - 7j / 16])
+        assert np.array_equal(profile.reshape(-1), target)
+        # |DFT(a)/S| <= Lambda. Thus every normalized A component, including
+        # its allowance, is finite before the Nyquist division by exactly 1/8.
+        assert all(
+            lam + allowance < maximum for lam, allowance in zip(lambdas, allowances, strict=True)
+        ), "F25 division witness needs finite normalized A; diagnose applicability"
+        mu, minimum = Fraction(1, 8), Fraction.from_float(0.1)
+        eta = 128 * 4 * eps + 4 * 4 * quantum
+        upper, da = lambdas[1], allowances[1]
+        dq = da / mu + upper * eta / (minimum * mu)
+        dq += 128 * eps * (upper + da) / mu + 16 * quantum
+        delta = dq + 128 * eps * (upper / mu + dq) + 16 * quantum
+        # Nyquist recentering is +/-1 at every possible grid origin. Even the
+        # conservative final spectral allowance cannot make its real part finite.
+        lower = abs(nyquist) / mu - delta
+    assert lower > maximum, "F25 range margin not certified; diagnose public-stage applicability"
+
+
+@pytest.mark.parametrize("stage", ["normalized", "division"])
+def test_independent_required_finite_bead_range_witness(
+    stage: Literal["normalized", "division"],
+) -> None:
+    """Separate independent phase accuracy from observed range applicability."""
+    generated = required_finite_bead_range_case(stage)
+    acquisition = declare(generated)
+    assert acquisition.axes == ("orientation", "phase", "z", "y", "x")
+    assert acquisition.acquisition_kind == "sim_beads"
+    assert np.all(np.isfinite(acquisition.data))
+    assert np.array_equal(generated.images[:, 0, 0, 0], -generated.images[:, 0, 0, 1])
+    assert np.linalg.cond(represented_basis(generated.phases)) <= 10
+    before = caller_state((acquisition, generated.phases, generated.profile))
+    observed = simrecon.separate_volume_phases(acquisition.data[0], phases_rad=generated.phases)
+    with localcontext() as context:
+        context.prec = PRECISION
+        truth = fit(generated.images, generated.phases)
+        for voxel in range(4):
+            magnitude = max(abs(d(value)) for value in generated.images[:, 0, 0, voxel])
+            allowance = 8192 * len(generated.phases) * EPS * magnitude + 8 * Q0
+            for actual, row in zip((observed.dc, observed.c1, observed.c2), truth, strict=True):
+                target = row[voxel]
+                assert max(abs(target.re), abs(target.im)) + allowance < FMAX
+                assert abs(d(actual.flat[voxel].real) - target.re) <= allowance
+                assert abs(d(actual.flat[voxel].imag) - target.im) <= allowance
+    assert_required_finite_bead_range_policy(generated, observed, stage)
+    assert caller_state((acquisition, generated.phases, generated.profile)) == before
+
+
+@pytest.mark.parametrize("stage", ["normalized", "division"])
+def test_raw_finite_bead_required_stage_range_rejection(
+    stage: Literal["normalized", "division"],
+) -> None:
+    """Supplemental public range regression; no original product-red claim."""
+    generated = required_finite_bead_range_case(stage)
+    acquisition = declare(generated)
+    kwargs = arguments(generated)
+    before = caller_state((acquisition, kwargs))
+    observed = simrecon.separate_volume_phases(acquisition.data[0], phases_rad=generated.phases)
+    assert_required_finite_bead_range_policy(generated, observed, stage)
+    error("unrepresentable_finite_bead_response", acquisition, kwargs)
+    assert caller_state((acquisition, kwargs)) == before
