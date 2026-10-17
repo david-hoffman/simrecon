@@ -19,6 +19,7 @@ import simrecon
 from volume_phase_estimation_fixture import (
     ORDER_FIELDS,
     Example,
+    NuisanceSvdFailure,
     calibrated_example,
     canonical,
     copy_order_record,
@@ -1133,9 +1134,8 @@ def test_genuine_initial_nuisance_svd_failure_before_optimizer(
     e = example(1)
     before = [a.tobytes() for a in (e.images, e.initial, e.orders.values)]
     marker = error_type("initial public nuisance SVD failure")
-
-    def failing_svd(original: Any, *args: Any, **kwargs: Any) -> Any:
-        raise marker
+    initial = observe(e.images, e.orders.values, canonical(e.initial), e.carrier)
+    failing_svd = NuisanceSvdFailure(initial.nuisance_s, marker)
 
     def forbidden_optimizer(original: Any, *args: Any, **kwargs: Any) -> Any:
         pytest.fail("initial nuisance SVD failure must precede optimizer entry")
@@ -1145,7 +1145,7 @@ def test_genuine_initial_nuisance_svd_failure_before_optimizer(
         pytest.raises(simrecon.SimreconError if code else error_type) as exc,
     ):
         estimate(api, e)
-    assert observed.events and observed.events[0][0] == "svd"
+    assert failing_svd.matched_shapes, "no independent initial nuisance decomposition witness"
     assert all(category != "optimizer" for category, _ in observed.events)
     if code:
         assert exc.value.code == code
@@ -1242,3 +1242,138 @@ def test_public_dependency_bootstrap_admits_binding_and_backend_alternatives(
     assert exc.value is marker
     assert observed.events and all(event[0] == category for event in observed.events)
     call()  # Disarming restores ordinary computation for later oracle checks.
+
+
+@pytest.mark.parametrize("binding", ["direct", "module"])
+@pytest.mark.parametrize("backend", ["numpy_svd", "scipy_lstsq", "lapack_factory"])
+@pytest.mark.parametrize(
+    "organization",
+    [
+        "full",
+        "transpose",
+        "column_permuted",
+        "orthogonal",
+        "qr_scaled",
+        "spatial",
+        "padded_batch",
+        "spectral_block",
+    ],
+)
+def test_nuisance_fault_reaches_past_design_and_decoy_decompositions(
+    request: pytest.FixtureRequest,
+    organization: str,
+    backend: str,
+    binding: str,
+) -> None:
+    # Genuine public dependency executions establish the targeting mechanism;
+    # this harness proof is independent of the absent new product API.
+    if run_dependency_child(request):
+        return
+    import scipy.linalg
+
+    e = example(1)
+    o = observe(e.images, e.orders.values, canonical(e.initial), e.carrier)
+    a = o.a
+    n, size = len(e.initial), e.specimen.size
+    c, s = np.cos(canonical(e.initial)), np.sin(canonical(e.initial))
+    design = np.column_stack([np.ones(n), c, s, c * c - s * s, (2 * c) * s])
+    design_expected = np.linalg.svd(design, compute_uv=False)
+    decoy = np.pad(np.eye(size), ((0, len(a) - size), (0, 0)))
+    target = a.copy()
+    if organization == "transpose":
+        target = a.T.copy()
+    elif organization == "column_permuted":
+        target = a[::-1, ::-1].copy(order="F")
+    elif organization == "orthogonal":
+        row = np.arange(1, len(a) + 1, dtype=float)
+        row /= np.linalg.norm(row)
+        column = np.arange(1, size + 1, dtype=float)
+        column /= np.linalg.norm(column)
+        left = a - 2 * np.outer(row, row @ a)
+        target = left - 2 * np.outer(left @ column, column)
+    elif organization == "qr_scaled":
+        _, triangular = np.linalg.qr(a, mode="reduced")
+        target = -7.25 * triangular
+    elif organization == "spatial":
+        # U* maps Fourier rows into real-compatible spatial observations.
+        from volume_phase_estimation_fixture import fourier_matrix
+
+        transform = fourier_matrix(e.specimen.shape)
+        complex_a = a[: n * size].reshape(n, size, size) + 1j * a[n * size :].reshape(n, size, size)
+        spatial = np.array([transform.conj().T @ row for row in complex_a], dtype=np.complex128)
+        assert np.max(np.abs(spatial.imag)) < 1e-13
+        target = spatial.real.reshape(n * size, size)
+    elif organization == "padded_batch":
+        target = np.zeros((2, len(a) + 3, size + 2))
+        target[0, :n, :5] = design
+        target[1, : len(a), :size] = a
+    elif organization == "spectral_block":
+        left, _, right = np.linalg.svd(a, full_matrices=False)
+        diagonal = left.T @ a @ right.T
+        target = 3.5 * diagonal[5:12, 5:12]
+
+    if backend == "numpy_svd":
+        module, name = np.linalg, "svd"
+    elif backend == "scipy_lstsq":
+        module, name = scipy.linalg, "lstsq"
+    else:
+        module, name = scipy.linalg, "get_lapack_funcs"
+    direct = getattr(module, name)
+
+    def decomposition(matrix: Any) -> Any:
+        if matrix.ndim > 2 and backend != "numpy_svd":
+            return [decomposition(part) for part in matrix]
+        function = direct if binding == "direct" else getattr(module, name)
+        if backend == "numpy_svd":
+            return function(matrix, compute_uv=False)
+        if backend == "scipy_lstsq":
+            return function(matrix, np.zeros(matrix.shape[0]), lapack_driver="gelsd")[3]
+        return function("gesvd", (matrix,))(matrix, compute_uv=0)[1]
+
+    marker = RuntimeError("independently recognized initial nuisance decomposition")
+    fault = NuisanceSvdFailure(o.nuisance_s, marker)
+    with public_observation(svd=fault):
+        # The diagnosed legitimate preceding 7x5 design computation must finish.
+        assert_allclose(
+            np.sort(decomposition(design)), np.sort(design_expected), atol=2e-13, rtol=0
+        )
+        # Same shape as A, different spectrum: shape alone cannot target a call.
+        assert_allclose(decomposition(decoy), np.ones(size), atol=2e-13, rtol=0)
+        assert not fault.matched_shapes
+        with pytest.raises(RuntimeError) as exc:
+            decomposition(target)
+    assert exc.value is marker
+    assert fault.passed_shapes and fault.matched_shapes
+
+
+@pytest.mark.parametrize("binding", ["direct", "module"])
+def test_nuisance_fault_recognizes_public_linear_operator_operand(
+    request: pytest.FixtureRequest,
+    binding: str,
+) -> None:
+    if run_dependency_child(request):
+        return
+    import scipy.sparse.linalg
+
+    e = example(1)
+    o = observe(e.images, e.orders.values, canonical(e.initial), e.carrier)
+    c, s = np.cos(canonical(e.initial)), np.sin(canonical(e.initial))
+    design = np.column_stack([np.ones(len(c)), c, s, c * c - s * s, (2 * c) * s])
+    design_operator = scipy.sparse.linalg.aslinearoperator(design)
+    nuisance_operator = scipy.sparse.linalg.aslinearoperator(o.a)
+    direct = scipy.sparse.linalg.svds
+
+    def decomposition(operator: Any) -> Any:
+        function = direct if binding == "direct" else scipy.sparse.linalg.svds
+        return function(operator, k=2, solver="propack", rng=21)
+
+    marker = MemoryError("recognized public nuisance LinearOperator")
+    fault = NuisanceSvdFailure(o.nuisance_s, marker)
+    with public_observation(svd=fault):
+        _, singular_values, _ = decomposition(design_operator)
+        assert np.all(np.isfinite(singular_values)) and np.all(singular_values > 0)
+        assert not fault.matched_shapes
+        with pytest.raises(MemoryError) as exc:
+            decomposition(nuisance_operator)
+    assert exc.value is marker
+    assert fault.passed_shapes and fault.matched_shapes
