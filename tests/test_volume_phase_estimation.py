@@ -6,7 +6,6 @@ possible. Missing exports are setup failures, never expected scientific red.
 
 from __future__ import annotations
 
-import dataclasses
 import inspect
 import warnings
 from fractions import Fraction
@@ -14,20 +13,23 @@ from typing import Any
 
 import numpy as np
 import pytest
-import scipy.optimize
 from numpy.testing import assert_allclose, assert_array_equal
 
 import simrecon
 from volume_phase_estimation_fixture import (
+    ORDER_FIELDS,
     Example,
     calibrated_example,
     canonical,
+    copy_order_record,
     estimate,
     example,
     local_phase_budget,
     observe,
     powers,
+    public_observation,
     record,
+    run_dependency_child,
     spatial_images,
     transfer_from_kernels,
 )
@@ -35,6 +37,11 @@ from volume_phase_estimation_fixture import (
 
 @pytest.fixture
 def api() -> Any:
+    return phase_api()
+
+
+def phase_api() -> Any:
+    """Resolve the public operation after an isolated child's preimport setup."""
     operation = getattr(simrecon, "estimate_volume_phases", None)
     assert callable(operation), "setup: estimate_volume_phases public API unavailable"
     return operation
@@ -154,7 +161,12 @@ def test_api_binding_and_exact_frozen_record(api: Any) -> None:
     }
     cls = getattr(simrecon, "VolumePhaseEstimate", None)
     assert cls is not None and isinstance(result, cls)
-    assert {f.name for f in dataclasses.fields(result)} == expected
+    public_data = {
+        name
+        for name in dir(result)
+        if not name.startswith("_") and not callable(getattr(result, name))
+    }
+    assert public_data == expected
     assert result.source == " specimen/calibration pairing "
     assert inspect.signature(api).parameters["images"].kind in (
         inspect.Parameter.POSITIONAL_ONLY,
@@ -189,10 +201,11 @@ def test_api_binding_and_exact_frozen_record(api: Any) -> None:
         api(e.images, e.orders, **{k: v for k, v in valid.items() if k != "order_otf"})
     with pytest.raises(TypeError):
         api(e.images, **valid, unexpected=True)
-    with pytest.raises((AttributeError, TypeError)):
-        result.source = "changed"
-    with pytest.raises((AttributeError, TypeError)):
-        del result.source
+    for name in expected:
+        with pytest.raises((AttributeError, TypeError)):
+            setattr(result, name, getattr(result, name))
+        with pytest.raises((AttributeError, TypeError)):
+            delattr(result, name)
     direct = cls(**{name: None for name in expected})
     assert direct.phases_rad is None  # Direct construction does not validate.
     again = estimate(api, e)
@@ -245,18 +258,20 @@ def test_api_binding_and_exact_frozen_record(api: Any) -> None:
 
 
 def test_full_off_model_jacobian_and_actual_scipy_controls(
-    api: Any, monkeypatch: pytest.MonkeyPatch
+    request: pytest.FixtureRequest,
 ) -> None:
+    if run_dependency_child(request):
+        return
+    api = phase_api()
     e = example(1)
     e.orders.values[0] += 0.27j  # Algebraically valid, deliberately non-Hermitian.
     e.images[2, 1, 0, 3] += 0.13  # A genuinely off-model exposure.
-    original = scipy.optimize.least_squares
     calls: list[tuple[np.ndarray, np.ndarray, np.ndarray]] = []
     observed: dict[str, Any] = {}
     residual_count = 0
     jacobian_count = 0
 
-    def real_solver(*args: Any, **kwargs: Any) -> Any:
+    def real_solver(original: Any, *args: Any, **kwargs: Any) -> Any:
         nonlocal residual_count, jacobian_count
         bound = inspect.signature(original).bind(*args, **kwargs)
         bound.apply_defaults()
@@ -291,8 +306,8 @@ def test_full_off_model_jacobian_and_actual_scipy_controls(
         bound.arguments["jac"] = jacobian
         return original(*bound.args, **bound.kwargs)
 
-    monkeypatch.setattr(scipy.optimize, "least_squares", real_solver)
-    result = estimate(api, e, max_nfev=1)
+    with public_observation(optimizer=real_solver):
+        result = estimate(api, e, max_nfev=1)
     assert calls, "the contracted public SciPy boundary must execute"
     for x, actual, finite_difference in calls:
         o = observe(e.images, e.orders.values, x, e.carrier)
@@ -494,8 +509,15 @@ def test_image_and_phase_grammar(api: Any, field: str, change: Any, prefix: str)
     original = e.images if field == "images" else e.initial
     value = change(original)
     suffix = "images" if field == "images" else "initial_phases"
+    changes = {field: value}
+    if (
+        field == "images"
+        and isinstance(value, np.ndarray)
+        and value.shape == (4, *e.images.shape[1:])
+    ):
+        changes["initial_phases_rad"] = e.initial[:4]
     with pytest.raises(simrecon.SimreconError) as exc:
-        estimate(api, e, **{field: value})
+        estimate(api, e, **changes)
     assert exc.value.code == f"{prefix}_volume_phase_estimation_{suffix}"
 
 
@@ -647,7 +669,7 @@ def test_positive_control_scalars_and_no_arbitrary_work_cap(api: Any, max_nfev: 
 )
 def test_every_calibration_field_is_validated(api: Any, field: str, change: Any) -> None:
     e = example(1)
-    broken = dataclasses.replace(e.orders, **{field: change(getattr(e.orders, field))})
+    broken = copy_order_record(e.orders, **{field: change(getattr(e.orders, field))})
     with pytest.raises(simrecon.SimreconError) as exc:
         estimate(api, e, order_otf=broken)
     assert exc.value.code == "invalid_volume_phase_estimation_otf"
@@ -674,7 +696,7 @@ def test_otf_instance_and_subclass_getter_semantics(api: Any) -> None:
     class Ordinary(simrecon.VolumeOrderOtf):
         pass
 
-    fields = {f.name: getattr(e.orders, f.name) for f in dataclasses.fields(e.orders)}
+    fields = {name: getattr(e.orders, name) for name in ORDER_FIELDS}
     with pytest.raises(simrecon.SimreconError) as exc:
         estimate(api, e, order_otf=Missing(**fields))
     assert exc.value.code == "invalid_volume_phase_estimation_otf"
@@ -701,7 +723,7 @@ def test_calibration_endian_storage_and_frequency_tolerance_positive(api: Any) -
             view[a == 0] = 0
         view.flags.writeable = False
         fields[name] = view
-    alternate = dataclasses.replace(
+    alternate = copy_order_record(
         e.orders,
         **fields,
         voxel_size_um=list(e.orders.voxel_size_um),
@@ -757,24 +779,28 @@ def test_component_scales_extreme_finite_values_and_canonical_angles(api: Any, w
     ],
 )
 def test_genuine_fft_failure_and_unrelated_exception_propagation(
-    api: Any, monkeypatch: pytest.MonkeyPatch, error_type: Any, code: str | None
+    request: pytest.FixtureRequest, error_type: Any, code: str | None
 ) -> None:
+    if run_dependency_child(request):
+        return
+    api = phase_api()
     e = example(1)
     snapshots = [a.tobytes() for a in (e.images, e.initial, e.orders.values)]
     marker = error_type("public FFT failure")
 
-    def failing(*args: Any, **kwargs: Any) -> Any:
+    def failing(original: Any, *args: Any, **kwargs: Any) -> Any:
         if error_type is RuntimeWarning:
             warnings.warn("public FFT failure", RuntimeWarning, stacklevel=1)
             # Genuine bounded transform result if caller incorrectly ignores it.
             return original(*args, **kwargs)
         raise marker
 
-    original = np.fft.fftn
-    monkeypatch.setattr(np.fft, "fftn", failing)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", RuntimeWarning)
-        with pytest.raises(simrecon.SimreconError if code else error_type) as exc:
+        with (
+            public_observation(fft=failing),
+            pytest.raises(simrecon.SimreconError if code else error_type) as exc,
+        ):
             estimate(api, e)
     if code:
         assert exc.value.code == code
@@ -797,21 +823,25 @@ def test_genuine_fft_failure_and_unrelated_exception_propagation(
     ],
 )
 def test_genuine_optimizer_failure_and_unrelated_propagation(
-    api: Any, monkeypatch: pytest.MonkeyPatch, error_type: Any, code: str | None
+    request: pytest.FixtureRequest, error_type: Any, code: str | None
 ) -> None:
-    original = scipy.optimize.least_squares
+    if run_dependency_child(request):
+        return
+    api = phase_api()
     marker = error_type("public solver failure")
 
-    def failing(*args: Any, **kwargs: Any) -> Any:
+    def failing(original: Any, *args: Any, **kwargs: Any) -> Any:
         if error_type is RuntimeWarning:
             warnings.warn("public solver failure", RuntimeWarning, stacklevel=1)
             return original(*args, **kwargs)
         raise marker
 
-    monkeypatch.setattr(scipy.optimize, "least_squares", failing)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", RuntimeWarning)
-        with pytest.raises(simrecon.SimreconError if code else error_type) as exc:
+        with (
+            public_observation(optimizer=failing),
+            pytest.raises(simrecon.SimreconError if code else error_type) as exc,
+        ):
             estimate(api, example(1))
     if code:
         assert exc.value.code == code
@@ -850,18 +880,22 @@ def test_input_preservation_and_caller_numerical_warning_policy(api: Any, failur
 
 
 def test_unrelated_warning_visible_at_fft_boundary(
-    api: Any, monkeypatch: pytest.MonkeyPatch
+    request: pytest.FixtureRequest,
 ) -> None:
+    if run_dependency_child(request):
+        return
+    api = phase_api()
     e = example(1)
     e.initial = e.truth.copy()
-    original = np.fft.fftn
 
-    def warning_fft(*args: Any, **kwargs: Any) -> Any:
+    def warning_fft(original: Any, *args: Any, **kwargs: Any) -> Any:
         warnings.warn("unrelated FFT observer warning", UserWarning, stacklevel=1)
         return original(*args, **kwargs)
 
-    monkeypatch.setattr(np.fft, "fftn", warning_fft)
-    with pytest.warns(UserWarning, match="unrelated FFT observer warning"):
+    with (
+        public_observation(fft=warning_fft),
+        pytest.warns(UserWarning, match="unrelated FFT observer warning"),
+    ):
         estimate(api, e)
 
 
@@ -885,7 +919,7 @@ def test_joint_exposure_permutation_and_common_scales(api: Any) -> None:
         e,
         images=e.images[permutation] * 4,
         initial_phases_rad=e.initial[permutation],
-        order_otf=dataclasses.replace(e.orders, values=e.orders.values * 2),
+        order_otf=copy_order_record(e.orders, values=e.orders.values * 2),
     )
     assert_allclose(
         canonical(second.phases_rad - first.phases_rad[permutation]), 0, atol=2e-7, rtol=0
@@ -908,8 +942,11 @@ def test_huge_initial_phases_drive_nonzero_fundamental_and_second_order(api: Any
 
 
 def test_deficient_nonzero_design_uses_algebraic_truncated_diagnostics(
-    api: Any, monkeypatch: pytest.MonkeyPatch
+    request: pytest.FixtureRequest,
 ) -> None:
+    if run_dependency_child(request):
+        return
+    api = phase_api()
     shape = (1, 1, 5)
     values = np.zeros((3, *shape), dtype=np.complex128)
     values[:, 0, 0, 2] = [1 + 0.23j, 0.2 + 0.15j, 0.11 - 0.07j]
@@ -924,8 +961,8 @@ def test_deficient_nonzero_design_uses_algebraic_truncated_diagnostics(
     def forbidden_optimizer(*args: Any, **kwargs: Any) -> Any:
         pytest.fail("a deficient initial point must not run the optimizer")
 
-    monkeypatch.setattr(scipy.optimize, "least_squares", forbidden_optimizer)
-    result = estimate(api, e)
+    with public_observation(optimizer=forbidden_optimizer):
+        result = estimate(api, e)
     assert result.termination == "nuisance_rank_deficient"
     assert result.nuisance_rank == 1
     assert_allclose(result.phases_rad, canonical(initial), atol=0, rtol=0)
@@ -947,17 +984,19 @@ def test_mismatched_fixed_order_gains_are_not_refitted(api: Any) -> None:
 
 
 def test_all_input_snapshots_precede_observation_transform(
-    api: Any, monkeypatch: pytest.MonkeyPatch
+    request: pytest.FixtureRequest,
 ) -> None:
+    if run_dependency_child(request):
+        return
+    api = phase_api()
     e = example(1)
     e.initial = e.truth.copy()
-    original = np.fft.fftn
     pristine_images = e.images.copy()
     pristine_initial = e.initial.copy()
     pristine_values = e.orders.values.copy()
     entered = False
 
-    def transform_after_external_change(*args: Any, **kwargs: Any) -> Any:
+    def transform_after_external_change(original: Any, *args: Any, **kwargs: Any) -> Any:
         nonlocal entered
         if not entered:
             entered = True
@@ -967,8 +1006,8 @@ def test_all_input_snapshots_precede_observation_transform(
             e.orders.fx_per_um.fill(np.nan)
         return original(*args, **kwargs)
 
-    monkeypatch.setattr(np.fft, "fftn", transform_after_external_change)
-    result = estimate(api, e)
+    with public_observation(fft=transform_after_external_change):
+        result = estimate(api, e)
     assert entered
     # This synchronous public-boundary observer tests the before-numerics
     # snapshot promise. It makes no concurrent-mutation guarantee.
@@ -986,7 +1025,7 @@ def test_extreme_canonical_calibration_grid_avoids_period_overflow(api: Any) -> 
     values = np.zeros((3, *shape), dtype=np.complex128)
     orders = record(values)
     fx = np.array([float(Fraction(k) / 5 / Fraction(float(largest))) for k in range(-2, 3)])
-    orders = dataclasses.replace(orders, voxel_size_um=(largest, tiny, largest), fx_per_um=fx)
+    orders = copy_order_record(orders, voxel_size_um=(largest, tiny, largest), fx_per_um=fx)
     initial = np.arange(5, dtype=float)
     images = np.ones((5, *shape))
     e = Example(images, initial, initial, np.zeros(shape), values.copy(), orders, (0, 0))
@@ -1071,3 +1110,135 @@ def test_weak_nonzero_side_orders_have_no_arbitrary_information_threshold(api: A
     assert result.termination == "stationary"
     assert result.phase_rank == len(e.initial)
     check_observer(result, e)
+
+
+@pytest.mark.parametrize(
+    "error_type,code",
+    [
+        (np.linalg.LinAlgError, "volume_phase_estimation_solver_failure"),
+        (RuntimeError, None),
+        (TypeError, None),
+        (ValueError, None),
+        (MemoryError, None),
+    ],
+)
+def test_genuine_initial_nuisance_svd_failure_before_optimizer(
+    request: pytest.FixtureRequest,
+    error_type: Any,
+    code: str | None,
+) -> None:
+    if run_dependency_child(request):
+        return
+    api = phase_api()
+    e = example(1)
+    before = [a.tobytes() for a in (e.images, e.initial, e.orders.values)]
+    marker = error_type("initial public nuisance SVD failure")
+
+    def failing_svd(original: Any, *args: Any, **kwargs: Any) -> Any:
+        raise marker
+
+    def forbidden_optimizer(original: Any, *args: Any, **kwargs: Any) -> Any:
+        pytest.fail("initial nuisance SVD failure must precede optimizer entry")
+
+    with (
+        public_observation(svd=failing_svd, optimizer=forbidden_optimizer) as observed,
+        pytest.raises(simrecon.SimreconError if code else error_type) as exc,
+    ):
+        estimate(api, e)
+    assert observed.events and observed.events[0][0] == "svd"
+    assert all(category != "optimizer" for category, _ in observed.events)
+    if code:
+        assert exc.value.code == code
+    else:
+        assert exc.value is marker
+    assert [a.tobytes() for a in (e.images, e.initial, e.orders.values)] == before
+
+
+@pytest.mark.parametrize("binding", ["direct", "module"])
+@pytest.mark.parametrize(
+    "surface",
+    [
+        "numpy_svd",
+        "numpy_svdvals",
+        "numpy_lstsq",
+        "scipy_svd",
+        "scipy_svdvals",
+        "scipy_lstsq",
+        "scipy_interpolative_svd",
+        "scipy_sparse_svds",
+        "lapack_gesvd",
+        "lapack_gesdd",
+        "factory_gesvd",
+        "factory_gesdd",
+        "fft",
+        "optimizer",
+    ],
+)
+def test_public_dependency_bootstrap_admits_binding_and_backend_alternatives(
+    request: pytest.FixtureRequest,
+    surface: str,
+    binding: str,
+) -> None:
+    # This validates the observer, not scientific product behavior. It remains
+    # executable on the missing-API baseline and uses real dependency results.
+    if run_dependency_child(request):
+        return
+    import scipy.linalg
+    import scipy.linalg.interpolative
+    import scipy.linalg.lapack
+    import scipy.optimize
+    import scipy.sparse.linalg
+
+    identity = np.eye(2)
+    surfaces = {
+        "numpy_svd": (np.linalg, "svd", (identity,)),
+        "numpy_svdvals": (np.linalg, "svdvals", (identity,)),
+        "numpy_lstsq": (np.linalg, "lstsq", (identity, np.ones(2))),
+        "scipy_svd": (scipy.linalg, "svd", (identity,)),
+        "scipy_svdvals": (scipy.linalg, "svdvals", (identity,)),
+        "scipy_lstsq": (scipy.linalg, "lstsq", (identity, np.ones(2))),
+        "scipy_interpolative_svd": (scipy.linalg.interpolative, "svd", (identity, 2)),
+        "scipy_sparse_svds": (
+            scipy.sparse.linalg,
+            "svds",
+            (np.array([[3.0, 0.0], [0.0, 1.0], [0.2, 0.4], [0.3, -0.2]]),),
+        ),
+        "lapack_gesvd": (scipy.linalg.lapack, "dgesvd", (identity,)),
+        "lapack_gesdd": (scipy.linalg.lapack, "dgesdd", (identity,)),
+        "factory_gesvd": (scipy.linalg, "get_lapack_funcs", ("gesvd", (identity,))),
+        "factory_gesdd": (scipy.linalg.lapack, "get_lapack_funcs", ("gesdd", (identity,))),
+        "fft": (np.fft, "fftn", (np.ones((1, 2, 3)),)),
+        "optimizer": (scipy.optimize, "least_squares", (lambda x: x - 1, np.zeros(1))),
+    }
+    module, name, args = surfaces[surface]
+    direct = getattr(module, name)
+    kwargs = {"k": 2, "solver": "propack", "rng": 21} if surface == "scipy_sparse_svds" else {}
+    if surface.startswith("factory_"):
+        # Bind a LAPACK handle before the armed call, just like a direct import.
+        direct = direct(*args)
+        call = (
+            (lambda: direct(identity))
+            if binding == "direct"
+            else (lambda: getattr(module, name)(*args)(identity))
+        )
+    else:
+        call = (
+            (lambda: direct(*args, **kwargs))
+            if binding == "direct"
+            else (lambda: getattr(module, name)(*args, **kwargs))
+        )
+    call()  # Normal setup must perform genuine arithmetic without an injection.
+    marker = RuntimeError("armed public dependency probe")
+
+    def injected(original: Any, *args: Any, **kwargs: Any) -> Any:
+        raise marker
+
+    category = surface if surface in {"fft", "optimizer"} else "svd"
+    with (
+        public_observation(**{category: injected}) as observed,
+        pytest.raises(RuntimeError) as exc,
+    ):
+        call()
+    assert exc.value is marker
+    assert observed.events and all(event[0] == category for event in observed.events)
+    call()  # Disarming restores ordinary computation for later oracle checks.
