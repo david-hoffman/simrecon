@@ -23,6 +23,9 @@ from numpy.typing import NDArray
 
 Real = NDArray[np.float64]
 Complex = NDArray[np.complex128]
+# A genuine public callable bound before the child installs fault observers.
+# Fingerprint arithmetic must not be mistaken for product dependency work.
+_FINGERPRINT_SVD = np.linalg.svd
 
 
 def canonical(phases: Any) -> Real:
@@ -485,6 +488,75 @@ def public_observation(**handlers: Any) -> Iterator[_PublicObservation]:
         yield state
     finally:
         state.handlers.clear()
+
+
+@dataclass
+class NuisanceSvdFailure:
+    """Raise only on an independently recognized nuisance decomposition.
+
+    Recognition observes public matrix operands, never private call order or
+    production factors. The positive spectrum is invariant under orthogonal
+    organization; common scaling is removed. Nontrivial blocks can match a
+    spectral subset. A scalar alone has no scale-free fingerprint and is not
+    accepted as evidence of nuisance reachability.
+    """
+
+    singular_values: Real
+    marker: BaseException
+    passed_shapes: list[tuple[int, ...]] = field(default_factory=list)
+    matched_shapes: list[tuple[int, ...]] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        """Snapshot independent expected values before observation is armed."""
+        expected = np.array(self.singular_values, dtype=np.float64, copy=True)
+        assert expected.ndim == 1 and len(expected) > 1
+        assert np.all(np.isfinite(expected)) and np.all(expected > 0)
+        self.singular_values = np.sort(expected)[::-1] / np.max(expected)
+
+    def _matches(self, matrix: Any) -> bool:
+        if not isinstance(matrix, np.ndarray):
+            # LinearOperator.matmat is public; support genuine sparse-SVD
+            # callers without reading operator internals.
+            if not hasattr(matrix, "shape") or not callable(getattr(matrix, "matmat", None)):
+                return False
+            matrix = matrix.matmat(np.eye(matrix.shape[1]))
+        if matrix.ndim < 2 or matrix.dtype.kind not in "fc":
+            return False
+        expected = self.singular_values
+        for block in matrix.reshape((-1, *matrix.shape[-2:])):
+            scale = max(float(np.max(np.abs(block.real))), float(np.max(np.abs(block.imag))))
+            if not scale or not np.isfinite(scale):
+                continue
+            bounded = block.real / scale + 1j * (block.imag / scale)
+            actual = _FINGERPRINT_SVD(bounded, compute_uv=False)
+            if not len(actual) or not actual[0]:
+                continue
+            actual = actual[actual > np.finfo(float).eps * max(block.shape) * actual[0]]
+            if len(actual) < 2 or len(actual) > len(expected):
+                continue
+            actual = actual / actual[0]
+            for anchor in range(len(expected) - len(actual) + 1):
+                scaled = actual * expected[anchor]
+                remaining = list(expected[anchor:])
+                for value in scaled:
+                    nearest = int(np.argmin(np.abs(np.array(remaining) - value)))
+                    if abs(remaining[nearest] - value) > 2e-10:
+                        break
+                    remaining.pop(nearest)
+                else:
+                    return True
+        return False
+
+    def __call__(self, original: Any, *args: Any, **kwargs: Any) -> Any:
+        """Pass other genuine decompositions; raise at a nuisance witness."""
+        matrix = args[0] if args else kwargs.get("a", kwargs.get("A"))
+        matched = self._matches(matrix)
+        shape = tuple(getattr(matrix, "shape", ()))
+        if matched:
+            self.matched_shapes.append(shape)
+            raise self.marker
+        self.passed_shapes.append(shape)
+        return original(*args, **kwargs)
 
 
 def run_dependency_child(request: Any) -> bool:
