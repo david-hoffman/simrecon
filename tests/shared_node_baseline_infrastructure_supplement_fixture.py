@@ -246,6 +246,10 @@ def verifier_repo(path: Path, *, change: str = "", fail: str = "") -> Path:
     )
     for args in (
         ("init", "-q"),
+        # Quiesce fixture setup before byte snapshots: commit can otherwise
+        # launch detached maintenance that removes its lock during verification.
+        # Repository-local only; https://git-scm.com/docs/git-config#maintenanceauto
+        ("config", "--local", "maintenance.auto", "false"),
         ("add", "."),
         (
             "-c",
