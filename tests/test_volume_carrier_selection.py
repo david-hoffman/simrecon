@@ -131,10 +131,12 @@ def test_required_keyword_binding_and_frozen_four_field_record() -> None:
             select_volume_carrier(images, **without)
     with pytest.raises(TypeError):
         select_volume_carrier(
-            images, args["response"], **{k: v for k, v in kwargs.items() if k != "response"}
+            images,
+            args["response"],  # pyright: ignore[reportCallIssue]
+            **{k: v for k, v in kwargs.items() if k != "response"},
         )
     with pytest.raises(TypeError):
-        select_volume_carrier(images, **kwargs, unexpected=True)
+        select_volume_carrier(images, **kwargs, unexpected=True)  # pyright: ignore[reportCallIssue]
     assert tuple(inspect.signature(VolumeCarrierSelection).parameters) == FIELDS
     result = select(images, args)
     for field in FIELDS:
