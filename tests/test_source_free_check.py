@@ -486,3 +486,177 @@ def test_existing_pythonpath_remains_available(tmp_path: Path) -> None:
     )
     assert result.returncode == 0
     assert "PYTHONPATH_PRESERVED" in result.stdout
+
+
+@pytest.mark.parametrize("entry", ["module", "initial_conftest", "nested_conftest"])
+@pytest.mark.parametrize("failure", ["syntax", "import"])
+def test_pytest_collection_errors_preserve_diagnostics_without_source(
+    tmp_path: Path, entry: str, failure: str
+) -> None:
+    directory = tmp_path / "nested" if entry == "nested_conftest" else tmp_path
+    directory.mkdir(exist_ok=True)
+    source = directory / ("test_collection.py" if entry == "module" else "conftest.py")
+    if failure == "syntax":
+        source.write_text("if SOURCE_ONLY_COLLECTION_SYNTAX\n")
+        expected = ["SyntaxError: expected ':'", f'File "{source}", line 1']
+    else:
+        source.write_text(
+            "try:\n"
+            "    raise ValueError('COLLECTION_CAUSE') # SOURCE_ONLY_COLLECTION_CAUSE\n"
+            "except ValueError as error:\n"
+            "    raise ImportError('COLLECTION_IMPORT') from error "
+            "# SOURCE_ONLY_COLLECTION_IMPORT\n"
+        )
+        expected = [
+            "ValueError: COLLECTION_CAUSE",
+            "ImportError: COLLECTION_IMPORT",
+            "direct cause",
+            f'File "{source}", line 2',
+            f'File "{source}", line 4',
+        ]
+    if entry != "module":
+        (directory / "test_inert.py").write_text("def test_inert():\n    pass\n")
+    result = execute("pytest", "-q", str(tmp_path), cwd=tmp_path)
+    output = result.stdout + result.stderr
+    assert result.returncode == (4 if entry == "initial_conftest" else 2), output
+    for diagnostic in expected:
+        assert diagnostic in output
+    assert "SOURCE_ONLY_" not in output
+    assert "importlib.import_module(" not in output
+    assert "return _bootstrap." not in output
+    assert "mod = import_path(" not in output
+
+
+@pytest.mark.parametrize("explicit_cause", [False, True])
+def test_pytest_collection_runtime_chain_preserves_diagnostics_without_source(
+    tmp_path: Path, explicit_cause: bool
+) -> None:
+    source = tmp_path / "test_chain.py"
+    suffix = " from error" if explicit_cause else ""
+    source.write_text(
+        "try:\n"
+        "    raise ValueError('COLLECTION_RUNTIME_CAUSE') # SOURCE_ONLY_RUNTIME_CAUSE\n"
+        "except ValueError as error:\n"
+        f"    raise RuntimeError('COLLECTION_RUNTIME_OUTER'){suffix} "
+        "# SOURCE_ONLY_RUNTIME_OUTER\n"
+    )
+    result = execute("pytest", "-q", str(source), cwd=tmp_path)
+    output = result.stdout + result.stderr
+    assert result.returncode == 2, output
+    assert "ValueError: COLLECTION_RUNTIME_CAUSE" in output
+    assert "RuntimeError: COLLECTION_RUNTIME_OUTER" in output
+    assert ("direct cause" if explicit_cause else "During handling") in output
+    assert f'File "{source}", line 2' in output
+    assert f'File "{source}", line 4' in output
+    assert "SOURCE_ONLY_" not in output
+
+
+def test_pytest_setup_import_failure_preserves_status_and_location(tmp_path: Path) -> None:
+    source = tmp_path / "test_setup.py"
+    source.write_text(
+        "def setup_module():\n"
+        "    raise ImportError('SETUP_IMPORT_MESSAGE') # SOURCE_ONLY_SETUP_IMPORT\n"
+        "def test_inert():\n"
+        "    pass\n"
+    )
+    result = execute("pytest", "-q", str(source), cwd=tmp_path)
+    output = result.stdout + result.stderr
+    assert result.returncode == 1, output
+    assert "ImportError: SETUP_IMPORT_MESSAGE" in output
+    assert f"{source.name}::test_inert" in output
+    assert "1 error" in output
+    assert "SOURCE_ONLY_" not in output
+
+
+@pytest.mark.parametrize("option", ["--help", "--version"])
+def test_pytest_information_options_survive_broken_initial_conftest(
+    tmp_path: Path, option: str
+) -> None:
+    (tmp_path / "conftest.py").write_text(
+        "raise ImportError('BROKEN_CONFTEST') # SOURCE_ONLY_INFORMATION_CONFTEST\n"
+    )
+    result = execute("pytest", option, str(tmp_path), cwd=tmp_path)
+    output = result.stdout + result.stderr
+    assert result.returncode == 0, output
+    assert ("usage:" if option == "--help" else "pytest ") in output
+    assert "SOURCE_ONLY_" not in output
+
+
+def test_python_pytest_inherits_collection_renderer_and_preserves_existing_plugins(
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "existing_plugin.py").write_text(
+        "def pytest_sessionfinish():\n    print('EXISTING_PLUGIN_ACTIVE SOURCE_ONLY_USER_OUTPUT')\n"
+    )
+    source = tmp_path / "test_import.py"
+    source.write_text("raise ImportError('INHERITED_IMPORT') # SOURCE_ONLY_IMPORT_CODE\n")
+    result = subprocess.run(
+        [sys.executable, str(HARNESS), "python", "-m", "pytest", "-q", str(source)],
+        cwd=tmp_path,
+        env={**os.environ, "PYTHONPATH": str(tmp_path), "PYTEST_PLUGINS": "existing_plugin"},
+        capture_output=True,
+        text=True,
+        timeout=40,
+        check=False,
+    )
+    output = result.stdout + result.stderr
+    assert result.returncode == 2, output
+    assert "ImportError: INHERITED_IMPORT" in output
+    assert f'File "{source}", line 1' in output
+    assert "EXISTING_PLUGIN_ACTIVE SOURCE_ONLY_USER_OUTPUT" in output
+    assert "SOURCE_ONLY_IMPORT_CODE" not in output
+
+
+def test_pytest_collection_import_mismatch_retains_its_specific_diagnostic(tmp_path: Path) -> None:
+    for name in ("first", "second"):
+        directory = tmp_path / name
+        directory.mkdir()
+        (directory / "test_duplicate.py").write_text("def test_inert():\n    pass\n")
+    result = execute("pytest", "-q", str(tmp_path), cwd=tmp_path)
+    output = result.stdout + result.stderr
+    assert result.returncode == 2, output
+    assert "import file mismatch" in output
+    assert "ImportPathMismatchError" in output
+    assert str(tmp_path / "first" / "test_duplicate.py") in output
+    assert str(tmp_path / "second" / "test_duplicate.py") in output
+    assert "unique basename" in output
+    assert "importlib.import_module(" not in output
+
+
+@pytest.mark.parametrize("cause", ["syntax", "import"])
+def test_pytest_caller_collecterror_retains_message_category_and_cause(
+    tmp_path: Path, cause: str
+) -> None:
+    source = tmp_path / "test_custom.py"
+    source.write_text("def test_inert():\n    pass\n")
+    statement = (
+        'compile("if SOURCE_ONLY_CALLER_INPUT\\n", "caller-input.txt", "exec")'
+        if cause == "syntax"
+        else "raise ImportError('CALLER_IMPORT_CAUSE') # SOURCE_ONLY_CALLER_IMPORT"
+    )
+    conftest = tmp_path / "conftest.py"
+    conftest.write_text(
+        "import pytest\n"
+        "class DiagnosticCollector(pytest.Module):\n"
+        "    def collect(self):\n"
+        "        try:\n"
+        f"            {statement}\n"
+        "        except (SyntaxError, ImportError) as error:\n"
+        "            raise self.CollectError('CALLER_CONTEXT: invalid configuration') from error\n"
+        "@pytest.hookimpl(tryfirst=True)\n"
+        "def pytest_pycollect_makemodule(module_path, parent):\n"
+        "    return DiagnosticCollector.from_parent(parent, path=module_path)\n"
+    )
+    result = execute("pytest", "-q", str(source), cwd=tmp_path)
+    output = result.stdout + result.stderr
+    assert result.returncode == 2, output
+    assert "CollectError: CALLER_CONTEXT: invalid configuration" in output
+    assert f'File "{conftest}", line 7' in output
+    assert "direct cause" in output
+    if cause == "syntax":
+        assert "SyntaxError: expected ':'" in output
+        assert 'File "caller-input.txt", line 1' in output
+    else:
+        assert "ImportError: CALLER_IMPORT_CAUSE" in output
+        assert f'File "{conftest}", line 5' in output
+    assert "SOURCE_ONLY_" not in output

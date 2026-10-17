@@ -57,6 +57,8 @@ def environment() -> dict[str, str]:
     site = Path(__file__).resolve().parent / "source_free_sitecustomize"
     previous = result.get("PYTHONPATH")
     result["PYTHONPATH"] = str(site) + (os.pathsep + previous if previous else "")
+    plugins = result.get("PYTEST_PLUGINS")
+    result["PYTEST_PLUGINS"] = "pytest_plugin" + ("," + plugins if plugins else "")
     return result
 
 
