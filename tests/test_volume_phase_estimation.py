@@ -1,0 +1,1073 @@
+"""Blind public-contract tests for fixed-transfer local phase estimation v1.
+
+Small dense examples deliberately make independent all-sample observation
+possible. Missing exports are setup failures, never expected scientific red.
+"""
+
+from __future__ import annotations
+
+import dataclasses
+import inspect
+import warnings
+from fractions import Fraction
+from typing import Any
+
+import numpy as np
+import pytest
+import scipy.optimize
+from numpy.testing import assert_allclose, assert_array_equal
+
+import simrecon
+from volume_phase_estimation_fixture import (
+    Example,
+    calibrated_example,
+    canonical,
+    estimate,
+    example,
+    local_phase_budget,
+    observe,
+    powers,
+    record,
+    spatial_images,
+    transfer_from_kernels,
+)
+
+
+@pytest.fixture
+def api() -> Any:
+    operation = getattr(simrecon, "estimate_volume_phases", None)
+    assert callable(operation), "setup: estimate_volume_phases public API unavailable"
+    return operation
+
+
+def check_observer(result: Any, e: Example, *, tight: bool = True) -> None:
+    o = observe(e.images, e.orders.values, result.phases_rad, e.carrier)
+    tol = 5e-10 if tight else o.allowance
+    assert_allclose(result.specimen_normalized.ravel(), o.u, atol=tol, rtol=0)
+    assert_allclose(result.nuisance_singular_values, o.nuisance_s, atol=tol, rtol=0)
+    assert_allclose(result.phase_singular_values, o.phase_s, atol=tol, rtol=0)
+    for field, expected in (
+        ("relative_residual", o.relative),
+        ("normalized_residual_rms", o.rms),
+        ("normalized_imaginary_rms", o.imaginary),
+        ("calibration_reality_defect", o.reality),
+        ("gradient_inf_norm", o.gradient),
+        ("image_scale", o.b),
+        ("transfer_scale", o.t),
+    ):
+        assert getattr(result, field) == pytest.approx(expected, abs=tol, rel=0)
+    assert result.nuisance_rank == o.nuisance_rank
+    assert result.phase_design_rank == o.design_rank
+    # No numerical-rank claim at an exact nullspace polluted by observer roundoff.
+    if o.phase_rank == len(e.initial):
+        assert result.phase_rank == o.phase_rank
+    assert_allclose(result.phasors, powers(result.phases_rad)[1], atol=2e-15, rtol=0)
+    assert_allclose(
+        result.phase_deviations_rad,
+        canonical(result.phases_rad - canonical(e.initial)),
+        atol=2e-14,
+        rtol=0,
+    )
+    assert np.all(result.phases_rad >= -np.pi)
+    assert np.all(result.phases_rad < np.pi)
+    assert result.global_ambiguity == "unassessed"
+    assert result.carrier_bins_yx == e.carrier
+    for field in ("nfev", "njev", "nuisance_rank", "phase_rank", "phase_design_rank"):
+        assert type(getattr(result, field)) is int
+    assert result.nfev >= 0 and result.njev >= 0
+    if result.termination == "stationary":
+        assert result.gradient_inf_norm <= 1e-9
+
+
+@pytest.mark.parametrize(
+    "group,n,uniform", [(0, 5, False), (0, 7, False), (1, 7, False), (1, 5, True)]
+)
+def test_hidden_independent_phase_steps(api: Any, group: int, n: int, uniform: bool) -> None:
+    e = example(group, n=n, uniform=uniform)
+    initial = observe(e.images, e.orders.values, canonical(e.initial), e.carrier)
+    truth = observe(e.images, e.orders.values, canonical(e.truth), e.carrier)
+    assert truth.nuisance_rank == e.specimen.size
+    assert truth.phase_rank == n
+    assert np.linalg.norm(truth.r) < 2e-13
+    assert initial.rms > 1e-4  # Initial commands cannot masquerade as actual phases.
+    result = estimate(api, e)
+    check_observer(result, e)
+    assert result.termination == "stationary"
+    # This checked local ball has an independent positive curvature lower bound.
+    # It is not a global uniqueness or physical phase accuracy promise.
+    phase_budget, mu = local_phase_budget(e)
+    assert mu > 0
+    assert np.linalg.norm(canonical(result.phases_rad - e.truth)) < 1e-4
+    assert np.linalg.norm(canonical(result.phases_rad - e.truth)) <= phase_budget
+    assert result.normalized_residual_rms < 1e-7
+    assert result.normalized_residual_rms < initial.rms / 100
+
+
+@pytest.mark.parametrize("group", [0, 1])
+def test_correct_initialization_signed_specimen_and_conservative_envelope(
+    api: Any, group: int
+) -> None:
+    e = example(group)
+    e.specimen = e.specimen - 0.85
+    e.images = spatial_images(e.specimen, e.kernels, e.truth, e.carrier)
+    e.initial = e.truth.copy()
+    o = observe(e.images, e.orders.values, canonical(e.truth), e.carrier)
+    assert o.nuisance_s[0] / o.nuisance_s[-1] <= 10
+    assert o.nuisance_s[-1] >= 1 / 16
+    assert o.allowance <= 1 / 1024
+    result = estimate(api, e)
+    assert result.termination == "stationary"
+    check_observer(result, e)
+    check_observer(result, e, tight=False)
+    assert_allclose(result.specimen_normalized, e.specimen * o.t / o.b, atol=2e-12, rtol=0)
+    assert_allclose(result.phases_rad, canonical(e.truth), atol=2e-12, rtol=0)
+    assert np.min(result.specimen_normalized) < 0
+
+
+def test_api_binding_and_exact_frozen_record(api: Any) -> None:
+    e = example(1)
+    e.initial = e.truth.copy()
+    result = estimate(api, e)
+    expected = {
+        "phases_rad",
+        "phasors",
+        "phase_deviations_rad",
+        "specimen_normalized",
+        "image_scale",
+        "transfer_scale",
+        "relative_residual",
+        "normalized_residual_rms",
+        "normalized_imaginary_rms",
+        "calibration_reality_defect",
+        "nuisance_rank",
+        "nuisance_singular_values",
+        "phase_rank",
+        "phase_singular_values",
+        "phase_design_rank",
+        "gradient_inf_norm",
+        "termination",
+        "nfev",
+        "njev",
+        "carrier_bins_yx",
+        "source",
+        "global_ambiguity",
+    }
+    cls = getattr(simrecon, "VolumePhaseEstimate", None)
+    assert cls is not None and isinstance(result, cls)
+    assert {f.name for f in dataclasses.fields(result)} == expected
+    assert result.source == " specimen/calibration pairing "
+    assert inspect.signature(api).parameters["images"].kind in (
+        inspect.Parameter.POSITIONAL_ONLY,
+        inspect.Parameter.POSITIONAL_OR_KEYWORD,
+    )
+    required = {
+        "order_otf",
+        "carrier_bins_yx",
+        "initial_phases_rad",
+        "max_nfev",
+        "gradient_tolerance",
+        "step_tolerance",
+        "source",
+    }
+    for name in required:
+        parameter = inspect.signature(api).parameters[name]
+        assert parameter.kind == inspect.Parameter.KEYWORD_ONLY
+        assert parameter.default is inspect.Parameter.empty
+    valid = dict(
+        order_otf=e.orders,
+        carrier_bins_yx=e.carrier,
+        initial_phases_rad=e.initial,
+        max_nfev=1,
+        gradient_tolerance=1e-9,
+        step_tolerance=1e-10,
+        source="label",
+    )
+    for missing in required:
+        with pytest.raises(TypeError):
+            api(e.images, **{k: v for k, v in valid.items() if k != missing})
+    with pytest.raises(TypeError):
+        api(e.images, e.orders, **{k: v for k, v in valid.items() if k != "order_otf"})
+    with pytest.raises(TypeError):
+        api(e.images, **valid, unexpected=True)
+    with pytest.raises((AttributeError, TypeError)):
+        result.source = "changed"
+    with pytest.raises((AttributeError, TypeError)):
+        del result.source
+    direct = cls(**{name: None for name in expected})
+    assert direct.phases_rad is None  # Direct construction does not validate.
+    again = estimate(api, e)
+    arrays = []
+    other_call_arrays = [
+        getattr(again, name)
+        for name in (
+            "phases_rad",
+            "phasors",
+            "phase_deviations_rad",
+            "specimen_normalized",
+            "nuisance_singular_values",
+            "phase_singular_values",
+        )
+    ]
+    for field, dtype, shape in (
+        ("phases_rad", np.float64, (7,)),
+        ("phasors", np.complex128, (7,)),
+        ("phase_deviations_rad", np.float64, (7,)),
+        ("specimen_normalized", np.float64, e.specimen.shape),
+        ("nuisance_singular_values", np.float64, (e.specimen.size,)),
+        ("phase_singular_values", np.float64, (7,)),
+    ):
+        a = getattr(result, field)
+        assert type(a) is np.ndarray and a.dtype == np.dtype(dtype) and a.shape == shape
+        assert a.flags.c_contiguous and a.flags.owndata and a.flags.writeable
+        assert all(not np.shares_memory(a, other) for other in other_call_arrays)
+        for other in [
+            e.images,
+            e.initial,
+            e.orders.values,
+            e.orders.fz_per_um,
+            e.orders.fy_per_um,
+            e.orders.fx_per_um,
+            *arrays,
+        ]:
+            assert not np.shares_memory(a, other)
+        arrays.append(a)
+        a.flat[0] = 0
+    for field in (
+        "image_scale",
+        "transfer_scale",
+        "relative_residual",
+        "normalized_residual_rms",
+        "normalized_imaginary_rms",
+        "calibration_reality_defect",
+        "gradient_inf_norm",
+    ):
+        assert type(getattr(result, field)) is float
+
+
+def test_full_off_model_jacobian_and_actual_scipy_controls(
+    api: Any, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    e = example(1)
+    e.orders.values[0] += 0.27j  # Algebraically valid, deliberately non-Hermitian.
+    e.images[2, 1, 0, 3] += 0.13  # A genuinely off-model exposure.
+    original = scipy.optimize.least_squares
+    calls: list[tuple[np.ndarray, np.ndarray, np.ndarray]] = []
+    observed: dict[str, Any] = {}
+    residual_count = 0
+    jacobian_count = 0
+
+    def real_solver(*args: Any, **kwargs: Any) -> Any:
+        nonlocal residual_count, jacobian_count
+        bound = inspect.signature(original).bind(*args, **kwargs)
+        bound.apply_defaults()
+        observed.update(bound.arguments)
+        fun, x0, jac = (bound.arguments[name] for name in ("fun", "x0", "jac"))
+        assert_allclose(x0, canonical(e.initial), atol=0, rtol=0)
+
+        def residual(x: Any, *args: Any, **kw: Any) -> Any:
+            nonlocal residual_count
+            residual_count += 1
+            return fun(x, *args, **kw)
+
+        def jacobian(x: Any, *args: Any, **kw: Any) -> Any:
+            nonlocal jacobian_count
+            jacobian_count += 1
+            value = jac(x, *args, **kw)
+            # Genuine finite public residual probes check the Jacobian sign
+            # in whatever fixed row organization the solver actually receives.
+            # They return no invented numerical factors or solver result.
+            step = 2e-6
+            directions = np.eye(len(x)) * step
+            finite_difference = np.column_stack(
+                [
+                    (residual(x + v, *args, **kw) - residual(x - v, *args, **kw)) / (2 * step)
+                    for v in directions
+                ]
+            )
+            calls.append((np.array(x), np.array(value), finite_difference))
+            return value
+
+        bound.arguments["fun"] = residual
+        bound.arguments["jac"] = jacobian
+        return original(*bound.args, **bound.kwargs)
+
+    monkeypatch.setattr(scipy.optimize, "least_squares", real_solver)
+    result = estimate(api, e, max_nfev=1)
+    assert calls, "the contracted public SciPy boundary must execute"
+    for x, actual, finite_difference in calls:
+        o = observe(e.images, e.orders.values, x, e.carrier)
+        assert np.linalg.norm(o.jac + o.k) > 1e-3
+        # Equivalent residual row organization is permitted. Compare column Gram
+        # and projected directional derivatives rather than forcing row storage.
+        assert_allclose(actual.T @ actual, o.jac.T @ o.jac, atol=2e-10, rtol=2e-10)
+        assert_allclose(actual, finite_difference, atol=2e-8, rtol=2e-8)
+    assert observed.get("method", "trf") == "trf"
+    assert observed.get("loss", "linear") == "linear"
+    assert observed.get("x_scale", 1) == 1
+    assert observed["tr_solver"] == "exact"
+    assert observed["ftol"] is None
+    assert observed["gtol"] == 1e-9 and observed["xtol"] == 1e-10
+    assert observed["max_nfev"] == 1
+    bounds = observed.get("bounds", (-np.inf, np.inf))
+    assert np.all(np.asarray(bounds[0]) == -np.inf) and np.all(np.asarray(bounds[1]) == np.inf)
+    for name in ("callback", "workers", "jac_sparsity"):
+        assert observed.get(name) is None
+    assert result.nfev >= residual_count and result.njev >= jacobian_count
+    assert result.termination == "evaluation_limit"
+    assert result.gradient_inf_norm > 1e-9
+    assert result.calibration_reality_defect > 0.1
+    assert result.normalized_imaginary_rms > 0.01
+    check_observer(result, e)
+
+
+@pytest.mark.parametrize(
+    "mode",
+    [
+        "zero_transfer",
+        "invisible_modes",
+        "zero_data",
+        "even_only",
+        "stationary_uninformative",
+        "low_design_rank",
+    ],
+)
+def test_availability_and_ambiguity_are_separate(api: Any, mode: str) -> None:
+    e = example(1)
+    if mode == "zero_transfer":
+        e.orders.values.fill(0)
+    elif mode == "invisible_modes":
+        e.orders.values.fill(0)
+        e.orders.values[0, 1, 0, 2] = 1  # Only DC observes the real specimen mean.
+    elif mode == "zero_data":
+        e.images.fill(0)
+    elif mode == "even_only":
+        e.kernels[1].fill(0)
+        e.orders = record(transfer_from_kernels(e.kernels))
+        e.images = spatial_images(e.specimen, e.kernels, e.truth, e.carrier)
+        e.initial = e.truth.copy()
+        e.initial[[0, 2]] += np.pi  # Legitimate independent pi alternatives.
+    elif mode == "stationary_uninformative":
+        shape = (1, 1, 1)
+        kernels = np.array([[[[1]]], [[[0.2]]], [[[0.1]]]], dtype=np.complex128)
+        truth = np.array([-2.5, -1.3, -0.1, 0.9, 2.4])
+        e = Example(
+            spatial_images(np.ones(shape), kernels, truth, (0, 0)),
+            np.zeros(5),
+            truth,
+            np.ones(shape),
+            kernels,
+            record(transfer_from_kernels(kernels)),
+            (0, 0),
+        )
+    else:
+        e.initial.fill(0.31)
+        e.images = spatial_images(e.specimen, e.kernels, e.initial, e.carrier)
+    result = estimate(api, e)
+    check_observer(result, e)
+    if mode in {"zero_transfer", "invisible_modes"}:
+        assert result.termination == "nuisance_rank_deficient"
+        assert result.nuisance_rank == (0 if mode == "zero_transfer" else 1)
+        assert_allclose(result.phases_rad, canonical(e.initial), atol=0, rtol=0)
+        if mode == "zero_transfer":
+            assert_array_equal(result.specimen_normalized, np.zeros_like(e.specimen))
+            assert result.phase_rank == 0
+            assert result.gradient_inf_norm == 0
+    else:
+        assert result.termination == "stationary"
+    if mode == "zero_data":
+        assert (
+            result.relative_residual
+            == result.normalized_residual_rms
+            == result.gradient_inf_norm
+            == 0
+        )
+        assert result.phase_rank == 0
+    if mode in {"stationary_uninformative", "low_design_rank"}:
+        assert result.phase_design_rank < 5
+    if mode == "stationary_uninformative":
+        assert result.relative_residual > 0.01  # Stationary does not mean accurate.
+        assert result.phase_rank == 0
+
+
+@pytest.mark.parametrize(
+    "carrier", [(0, 0), (-(10**100) + 1, 10**100 - 1), (np.uint64(2**64 - 1), np.int64(-7))]
+)
+def test_periodic_carrier_aliasing_keeps_declared_integers(api: Any, carrier: Any) -> None:
+    e = example(0)
+    e.carrier = (int(carrier[0]), int(carrier[1]))
+    reduced = (e.carrier[0] % 3, e.carrier[1] % 4)
+    e.images = spatial_images(e.specimen, e.kernels, e.truth, reduced)
+    e.initial = e.truth.copy()
+    first = estimate(api, e, carrier_bins_yx=list(carrier))
+    second = estimate(api, e, carrier_bins_yx=reduced)
+    assert first.carrier_bins_yx == e.carrier
+    assert all(type(v) is int for v in first.carrier_bins_yx)
+    assert_allclose(first.phases_rad, second.phases_rad, atol=2e-12, rtol=0)
+    assert_allclose(first.specimen_normalized, second.specimen_normalized, atol=2e-12, rtol=0)
+    check_observer(first, e)
+
+
+@pytest.mark.parametrize("group", [0, 1])
+def test_fixed_gauge_and_coordinate_translation_covariance(api: Any, group: int) -> None:
+    e = example(group)
+    base = estimate(api, e)
+    alpha = 0.37
+    shifted_values = e.orders.values.copy()
+    shifted_values[1] *= np.exp(-1j * alpha)
+    shifted_values[2] *= np.exp(-2j * alpha)
+    changed = estimate(
+        api, e, order_otf=record(shifted_values), initial_phases_rad=e.initial + alpha
+    )
+    assert_allclose(
+        canonical(changed.phases_rad - base.phases_rad),
+        np.full(len(e.initial), alpha),
+        atol=2e-7,
+        rtol=0,
+    )
+    assert_allclose(
+        changed.specimen_normalized * changed.image_scale / changed.transfer_scale,
+        base.specimen_normalized * base.image_scale / base.transfer_scale,
+        atol=2e-7,
+        rtol=0,
+    )
+    shift = (1, 0, 1)
+    delta = (
+        2
+        * np.pi
+        * (
+            e.carrier[0] * shift[1] / e.specimen.shape[1]
+            + e.carrier[1] * shift[2] / e.specimen.shape[2]
+        )
+    )
+    rolled = estimate(
+        api,
+        e,
+        images=np.roll(e.images, shift, axis=(1, 2, 3)),
+        initial_phases_rad=e.initial - delta,
+    )
+    assert_allclose(canonical(rolled.phases_rad - (base.phases_rad - delta)), 0, atol=2e-7, rtol=0)
+    assert_allclose(
+        rolled.specimen_normalized,
+        np.roll(base.specimen_normalized, shift, axis=(0, 1, 2)),
+        atol=2e-7,
+        rtol=0,
+    )
+
+
+def test_raw_finite_bead_adapter_to_hidden_specimen_inference(api: Any) -> None:
+    e, calibrated_orders = calibrated_example(1)
+    # Existing calibration output is an input only. Independent kernel DFT is truth.
+    assert_allclose(calibrated_orders.values, e.orders.values, atol=2e-12, rtol=0)
+    result = estimate(api, e, order_otf=calibrated_orders)
+    e.orders = calibrated_orders
+    check_observer(result, e)
+    assert result.termination == "stationary"
+    phase_budget, _ = local_phase_budget(e)
+    assert np.linalg.norm(canonical(result.phases_rad - e.truth)) < 1e-4
+    assert np.linalg.norm(canonical(result.phases_rad - e.truth)) <= phase_budget
+
+
+class ArraySubclass(np.ndarray):
+    """A prohibited array representation, paired with ordinary-array positives."""
+
+
+INVALID_ARRAYS = [
+    pytest.param(lambda a: a.tolist(), "invalid", id="list"),
+    pytest.param(lambda a: a.view(ArraySubclass), "invalid", id="subclass"),
+    pytest.param(lambda a: np.ma.array(a), "invalid", id="masked"),
+    *[
+        pytest.param(lambda a, d=d: a.astype(d), "invalid", id=f"kind-{d}")
+        for d in (bool, complex, object, "U8", "datetime64[D]")
+    ],
+    pytest.param(lambda a: np.zeros((*a.shape, 1)), "invalid", id="rank"),
+    pytest.param(lambda a: a[:4], "invalid", id="count"),
+    pytest.param(lambda a: np.full(a.shape, np.nan), "nonfinite", id="nan"),
+    pytest.param(lambda a: np.full(a.shape, np.inf), "nonfinite", id="positive-infinity"),
+    pytest.param(lambda a: np.full(a.shape, -np.inf), "nonfinite", id="negative-infinity"),
+]
+
+
+@pytest.mark.parametrize("field", ["images", "initial_phases_rad"])
+@pytest.mark.parametrize("change,prefix", INVALID_ARRAYS)
+def test_image_and_phase_grammar(api: Any, field: str, change: Any, prefix: str) -> None:
+    e = example(1)
+    original = e.images if field == "images" else e.initial
+    value = change(original)
+    suffix = "images" if field == "images" else "initial_phases"
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, e, **{field: value})
+    assert exc.value.code == f"{prefix}_volume_phase_estimation_{suffix}"
+
+
+@pytest.mark.parametrize(
+    "shape", [(7, 0, 1, 2), (7, 1, 0, 2), (7, 1, 2, 0), (7,), (7, 1, 2), (7, 1, 1, 2, 1)]
+)
+def test_image_shape_rejections(api: Any, shape: tuple[int, ...]) -> None:
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, example(1), images=np.zeros(shape))
+    assert exc.value.code == "invalid_volume_phase_estimation_images"
+
+
+@pytest.mark.parametrize("phase_shape", [(7, 1), (6,), (8,), ()])
+def test_initial_count_and_shape(api: Any, phase_shape: tuple[int, ...]) -> None:
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, example(1), initial_phases_rad=np.zeros(phase_shape))
+    assert exc.value.code == "invalid_volume_phase_estimation_initial_phases"
+
+
+@pytest.mark.parametrize(
+    "dtype",
+    [np.int8, np.int64, np.uint64, np.float16, np.float32, np.float64, ">f8", np.longdouble],
+)
+@pytest.mark.parametrize("layout", ["fortran", "reverse", "readonly"])
+def test_permitted_widths_and_layouts_without_phase_design_requirement(
+    api: Any, dtype: Any, layout: str
+) -> None:
+    e = example(1)
+    images = np.arange(e.images.size).reshape(e.images.shape).astype(dtype)
+    phases = np.arange(7).astype(dtype)
+    if layout == "fortran":
+        images = np.asfortranarray(images)
+    elif layout == "reverse":
+        images = images[..., ::-1]
+        phases = phases[::-1]
+    else:
+        images.flags.writeable = phases.flags.writeable = False
+    e.orders.values.fill(0)
+    snapshots = [(a.tobytes(), a.strides, a.flags.writeable) for a in (images, phases)]
+    result = estimate(api, e, images=images, initial_phases_rad=phases)
+    assert result.termination == "nuisance_rank_deficient"
+    assert_allclose(result.phases_rad, canonical(phases), atol=0, rtol=0)
+    assert result.image_scale == (float(np.max(np.abs(images.astype(np.float64)))) or 1.0)
+    for a, (content, strides, writeable) in zip((images, phases), snapshots, strict=True):
+        assert a.tobytes() == content and a.strides == strides and a.flags.writeable == writeable
+
+
+@pytest.mark.parametrize("field", ["images", "initial_phases_rad"])
+def test_source_finite_conversion_overflow_if_available(api: Any, field: str) -> None:
+    # Native capability is explicit; no skip or claim about an unavailable width.
+    if np.finfo(np.longdouble).max <= np.finfo(np.float64).max:
+        return
+    e = example(1)
+    shape = e.images.shape if field == "images" else e.initial.shape
+    value = np.full(shape, np.longdouble(np.finfo(float).max) * 2, dtype=np.longdouble)
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, e, **{field: value})
+    suffix = "images" if field == "images" else "initial_phases"
+    assert exc.value.code == f"nonfinite_volume_phase_estimation_{suffix}"
+
+
+@pytest.mark.parametrize(
+    "field,bad",
+    [
+        ("carrier_bins_yx", (True, 0)),
+        ("carrier_bins_yx", (0, 0.0)),
+        ("carrier_bins_yx", np.array([0, 1])),
+        ("carrier_bins_yx", (0,)),
+        ("carrier_bins_yx", (0, 1, 2)),
+        ("carrier_bins_yx", "01"),
+        *[("max_nfev", v) for v in (0, -1, True, 1.0, "2", np.array(2))],
+        *[
+            (name, value)
+            for name in ("gradient_tolerance", "step_tolerance")
+            for value in (
+                True,
+                0,
+                np.finfo(float).eps,
+                -1,
+                1,
+                np.inf,
+                np.nan,
+                1j,
+                "0.1",
+                np.array(0.1),
+                10**1000,
+            )
+        ],
+        *[("source", value) for value in (None, 1, "", " \t\n")],
+    ],
+)
+def test_carrier_controls_and_source_rejections(api: Any, field: str, bad: Any) -> None:
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, example(1), **{field: bad})
+    code = (
+        "invalid_otf_source"
+        if field == "source"
+        else (
+            "invalid_volume_phase_estimation_carrier"
+            if field == "carrier_bins_yx"
+            else "invalid_volume_phase_estimation_controls"
+        )
+    )
+    assert exc.value.code == code
+
+
+@pytest.mark.parametrize("max_nfev", [np.int64(1), np.uint64(2**64 - 1), 10**100])
+def test_positive_control_scalars_and_no_arbitrary_work_cap(api: Any, max_nfev: Any) -> None:
+    e = example(1)
+    e.images.fill(0)
+    result = estimate(
+        api,
+        e,
+        max_nfev=max_nfev,
+        gradient_tolerance=np.float32(1e-5),
+        step_tolerance=np.float64(0.5),
+    )
+    assert result.termination == "stationary"
+
+
+@pytest.mark.parametrize(
+    "field,change",
+    [
+        ("values", lambda v: v.tolist()),
+        ("values", lambda v: v.view(ArraySubclass)),
+        ("values", lambda v: v.astype(np.complex64)),
+        ("values", lambda v: v.real.copy()),
+        ("values", lambda v: v[:2]),
+        ("values", lambda v: v[..., :0]),
+        ("values", lambda v: np.full(v.shape, complex(0, np.inf))),
+        ("fz_per_um", lambda v: v.astype(np.float32)),
+        ("fy_per_um", lambda v: v.tolist()),
+        ("fx_per_um", lambda v: v.view(ArraySubclass)),
+        ("fx_per_um", lambda v: v[:-1]),
+        ("fx_per_um", lambda v: v[::-1]),
+        ("fx_per_um", lambda v: v + 0.01),
+        ("fz_per_um", lambda v: np.full(v.shape, np.nan)),
+        ("voxel_size_um", lambda v: np.array(v)),
+        ("voxel_size_um", lambda v: (0, v[1], v[2])),
+        ("voxel_size_um", lambda v: (True, v[1], v[2])),
+        ("voxel_size_um", lambda v: (np.inf, v[1], v[2])),
+        ("origin_zyx", lambda v: (-1, 0, 0)),
+        ("origin_zyx", lambda v: (3, 0, 0)),
+        ("origin_zyx", lambda v: (0.0, 0, 0)),
+        ("origin_zyx", lambda v: (False, 0, 0)),
+        ("source", lambda v: " "),
+        ("source", lambda v: None),
+    ],
+)
+def test_every_calibration_field_is_validated(api: Any, field: str, change: Any) -> None:
+    e = example(1)
+    broken = dataclasses.replace(e.orders, **{field: change(getattr(e.orders, field))})
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, e, order_otf=broken)
+    assert exc.value.code == "invalid_volume_phase_estimation_otf"
+
+
+def test_otf_instance_and_subclass_getter_semantics(api: Any) -> None:
+    e = example(1)
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, e, order_otf=object())
+    assert exc.value.code == "invalid_volume_phase_estimation_otf"
+
+    class Missing(simrecon.VolumeOrderOtf):
+        def __getattribute__(self, name: str) -> Any:
+            if name == "values":
+                raise AttributeError("missing required public values")
+            return super().__getattribute__(name)
+
+    class Broken(simrecon.VolumeOrderOtf):
+        def __getattribute__(self, name: str) -> Any:
+            if name == "source":
+                raise RuntimeError("unrelated public getter failure")
+            return super().__getattribute__(name)
+
+    class Ordinary(simrecon.VolumeOrderOtf):
+        pass
+
+    fields = {f.name: getattr(e.orders, f.name) for f in dataclasses.fields(e.orders)}
+    with pytest.raises(simrecon.SimreconError) as exc:
+        estimate(api, e, order_otf=Missing(**fields))
+    assert exc.value.code == "invalid_volume_phase_estimation_otf"
+    with pytest.raises(RuntimeError, match="unrelated public getter failure"):
+        estimate(api, e, order_otf=Broken(**fields))
+    e.initial = e.truth.copy()
+    result = estimate(api, e, order_otf=Ordinary(**fields))
+    check_observer(result, e)
+
+
+def test_calibration_endian_storage_and_frequency_tolerance_positive(api: Any) -> None:
+    e = example(0)
+    e.initial = e.truth.copy()
+    fields: dict[str, Any] = {}
+    for name in ("values", "fz_per_um", "fy_per_um", "fx_per_um"):
+        a = getattr(e.orders, name)
+        padded = np.empty(
+            (*a.shape[:-1], 2 * a.shape[-1]), dtype=">c16" if name == "values" else ">f8"
+        )
+        padded[..., ::2] = a
+        view = padded[..., ::2]
+        if name != "values":
+            view[...] = np.nextafter(view, np.copysign(np.inf, view))
+            view[a == 0] = 0
+        view.flags.writeable = False
+        fields[name] = view
+    alternate = dataclasses.replace(
+        e.orders,
+        **fields,
+        voxel_size_um=list(e.orders.voxel_size_um),
+        origin_zyx=list(e.orders.origin_zyx),
+    )
+    result = estimate(api, e, order_otf=alternate)
+    check_observer(result, e)
+
+
+@pytest.mark.parametrize("which", ["maximum", "subnormal", "zero", "huge_angles"])
+def test_component_scales_extreme_finite_values_and_canonical_angles(api: Any, which: str) -> None:
+    shape = (1, 1, 1)
+    huge = np.finfo(float).max
+    q = np.nextafter(0.0, 1.0)
+    initial = np.array([huge, -huge, np.pi, -np.pi, 0.0])
+    values = np.zeros((3, *shape), dtype=np.complex128)
+    images = np.zeros((5, *shape))
+    if which == "maximum":
+        values[0].real = huge
+        values[0].imag = huge  # A complex-magnitude norm would overflow.
+        images.fill(huge)
+    elif which == "subnormal":
+        values[0].real = q
+        images.fill(q)
+    elif which == "huge_angles":
+        images[:, 0, 0, 0] = [-2, 1, -1, 3, 0]
+    e = Example(images, initial, initial, np.zeros(shape), values.copy(), record(values), (0, 0))
+    result = estimate(api, e)
+    check_observer(result, e)
+    assert_allclose(result.phases_rad, canonical(initial), atol=0, rtol=0)
+    if which == "maximum":
+        assert result.image_scale == result.transfer_scale == huge
+        assert_allclose(result.specimen_normalized, 0.5, atol=1e-14, rtol=0)
+        assert result.normalized_imaginary_rms == pytest.approx(0.5, abs=1e-14)
+        assert result.calibration_reality_defect == 2.0
+    elif which == "subnormal":
+        assert result.image_scale == result.transfer_scale == q
+        assert_allclose(result.specimen_normalized, 1, atol=1e-14, rtol=0)
+    elif which == "zero":
+        assert result.image_scale == result.transfer_scale == 1.0
+
+
+@pytest.mark.parametrize(
+    "error_type,code",
+    [
+        (FloatingPointError, "volume_phase_estimation_transform_failure"),
+        (OverflowError, "volume_phase_estimation_transform_failure"),
+        (RuntimeWarning, "volume_phase_estimation_transform_failure"),
+        (RuntimeError, None),
+        (TypeError, None),
+        (ValueError, None),
+        (MemoryError, None),
+    ],
+)
+def test_genuine_fft_failure_and_unrelated_exception_propagation(
+    api: Any, monkeypatch: pytest.MonkeyPatch, error_type: Any, code: str | None
+) -> None:
+    e = example(1)
+    snapshots = [a.tobytes() for a in (e.images, e.initial, e.orders.values)]
+    marker = error_type("public FFT failure")
+
+    def failing(*args: Any, **kwargs: Any) -> Any:
+        if error_type is RuntimeWarning:
+            warnings.warn("public FFT failure", RuntimeWarning, stacklevel=1)
+            # Genuine bounded transform result if caller incorrectly ignores it.
+            return original(*args, **kwargs)
+        raise marker
+
+    original = np.fft.fftn
+    monkeypatch.setattr(np.fft, "fftn", failing)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        with pytest.raises(simrecon.SimreconError if code else error_type) as exc:
+            estimate(api, e)
+    if code:
+        assert exc.value.code == code
+    else:
+        assert exc.value is marker
+    assert [a.tobytes() for a in (e.images, e.initial, e.orders.values)] == snapshots
+
+
+@pytest.mark.parametrize(
+    "error_type,code",
+    [
+        (np.linalg.LinAlgError, "volume_phase_estimation_solver_failure"),
+        (FloatingPointError, "volume_phase_estimation_solver_failure"),
+        (OverflowError, "volume_phase_estimation_solver_failure"),
+        (RuntimeWarning, "volume_phase_estimation_solver_failure"),
+        (RuntimeError, None),
+        (TypeError, None),
+        (ValueError, None),
+        (MemoryError, None),
+    ],
+)
+def test_genuine_optimizer_failure_and_unrelated_propagation(
+    api: Any, monkeypatch: pytest.MonkeyPatch, error_type: Any, code: str | None
+) -> None:
+    original = scipy.optimize.least_squares
+    marker = error_type("public solver failure")
+
+    def failing(*args: Any, **kwargs: Any) -> Any:
+        if error_type is RuntimeWarning:
+            warnings.warn("public solver failure", RuntimeWarning, stacklevel=1)
+            return original(*args, **kwargs)
+        raise marker
+
+    monkeypatch.setattr(scipy.optimize, "least_squares", failing)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        with pytest.raises(simrecon.SimreconError if code else error_type) as exc:
+            estimate(api, example(1))
+    if code:
+        assert exc.value.code == code
+    else:
+        assert exc.value is marker
+
+
+@pytest.mark.parametrize("failure", [False, True])
+def test_input_preservation_and_caller_numerical_warning_policy(api: Any, failure: bool) -> None:
+    e = example(1)
+    e.initial = e.truth.copy()
+    arrays = [
+        e.images,
+        e.initial,
+        e.orders.values,
+        e.orders.fz_per_um,
+        e.orders.fy_per_um,
+        e.orders.fx_per_um,
+    ]
+    for a in arrays:
+        a.flags.writeable = False
+    before = [(a.tobytes(), a.strides, a.flags.writeable) for a in arrays]
+    with np.errstate(all="raise"), warnings.catch_warnings():
+        warnings.simplefilter("error", UserWarning)
+        filters = list(warnings.filters)
+        mode = np.geterr().copy()
+        if failure:
+            with pytest.raises(simrecon.SimreconError):
+                estimate(api, e, max_nfev=0)
+        else:
+            estimate(api, e)
+        assert np.geterr() == mode
+        assert warnings.filters == filters
+    for a, (content, strides, writeable) in zip(arrays, before, strict=True):
+        assert a.tobytes() == content and a.strides == strides and a.flags.writeable == writeable
+
+
+def test_unrelated_warning_visible_at_fft_boundary(
+    api: Any, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    e = example(1)
+    e.initial = e.truth.copy()
+    original = np.fft.fftn
+
+    def warning_fft(*args: Any, **kwargs: Any) -> Any:
+        warnings.warn("unrelated FFT observer warning", UserWarning, stacklevel=1)
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(np.fft, "fftn", warning_fft)
+    with pytest.warns(UserWarning, match="unrelated FFT observer warning"):
+        estimate(api, e)
+
+
+def test_real_step_stagnation_is_not_stationarity(api: Any) -> None:
+    e = example(1)
+    # A large permitted step tolerance induces an actual positive xtol stop.
+    # No fabricated finite OptimizeResult supplies the classification.
+    result = estimate(api, e, gradient_tolerance=4 * np.finfo(float).eps, step_tolerance=0.9)
+    o = observe(e.images, e.orders.values, result.phases_rad, e.carrier)
+    assert o.gradient > 4 * np.finfo(float).eps
+    assert result.termination == "stagnated"
+    assert result.gradient_inf_norm == pytest.approx(o.gradient, abs=5e-10, rel=0)
+
+
+def test_joint_exposure_permutation_and_common_scales(api: Any) -> None:
+    e = example(1)
+    first = estimate(api, e)
+    permutation = np.array([3, 0, 6, 1, 5, 2, 4])
+    second = estimate(
+        api,
+        e,
+        images=e.images[permutation] * 4,
+        initial_phases_rad=e.initial[permutation],
+        order_otf=dataclasses.replace(e.orders, values=e.orders.values * 2),
+    )
+    assert_allclose(
+        canonical(second.phases_rad - first.phases_rad[permutation]), 0, atol=2e-7, rtol=0
+    )
+    assert_allclose(second.specimen_normalized, first.specimen_normalized, atol=2e-7, rtol=0)
+    assert second.image_scale == first.image_scale * 4
+    assert second.transfer_scale == first.transfer_scale * 2
+
+
+def test_huge_initial_phases_drive_nonzero_fundamental_and_second_order(api: Any) -> None:
+    e = example(1)
+    largest = np.finfo(float).max
+    e.initial = np.array([largest, -largest, 1e300, -1e300, np.pi, -np.pi, 0.0])
+    e.truth = canonical(e.initial)
+    e.images = spatial_images(e.specimen, e.kernels, e.truth, e.carrier)
+    result = estimate(api, e)
+    assert result.termination == "stationary"
+    assert_allclose(result.phases_rad, e.truth, atol=2e-12, rtol=0)
+    check_observer(result, e)
+
+
+def test_deficient_nonzero_design_uses_algebraic_truncated_diagnostics(
+    api: Any, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    shape = (1, 1, 5)
+    values = np.zeros((3, *shape), dtype=np.complex128)
+    values[:, 0, 0, 2] = [1 + 0.23j, 0.2 + 0.15j, 0.11 - 0.07j]
+    initial = np.array([-2.8, -1.3, -0.2, 0.9, 2.4])
+    images = np.arange(25, dtype=float).reshape(5, *shape) / 7 - 1
+    e = Example(images, initial, initial, np.zeros(shape), values.copy(), record(values), (0, 0))
+    o = observe(images, values, canonical(initial), (0, 0))
+    assert o.nuisance_rank == 1
+    assert np.linalg.norm(o.d) > 0.1
+    assert np.linalg.norm(o.jac + o.k) > 0.01
+
+    def forbidden_optimizer(*args: Any, **kwargs: Any) -> Any:
+        pytest.fail("a deficient initial point must not run the optimizer")
+
+    monkeypatch.setattr(scipy.optimize, "least_squares", forbidden_optimizer)
+    result = estimate(api, e)
+    assert result.termination == "nuisance_rank_deficient"
+    assert result.nuisance_rank == 1
+    assert_allclose(result.phases_rad, canonical(initial), atol=0, rtol=0)
+    check_observer(result, e)
+
+
+def test_mismatched_fixed_order_gains_are_not_refitted(api: Any) -> None:
+    e = example(1)
+    e.initial = e.truth.copy()
+    e.orders.values[1] *= 1.7 * np.exp(0.2j)
+    e.orders.values[2] *= 0.6 * np.exp(-0.3j)
+    initial = observe(e.images, e.orders.values, canonical(e.initial), e.carrier)
+    assert initial.rms > 1e-3
+    result = estimate(api, e, max_nfev=1)
+    assert result.termination == "evaluation_limit"
+    assert_allclose(result.phases_rad, canonical(e.initial), atol=0, rtol=0)
+    assert result.normalized_residual_rms > 1e-3
+    check_observer(result, e)
+
+
+def test_all_input_snapshots_precede_observation_transform(
+    api: Any, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    e = example(1)
+    e.initial = e.truth.copy()
+    original = np.fft.fftn
+    pristine_images = e.images.copy()
+    pristine_initial = e.initial.copy()
+    pristine_values = e.orders.values.copy()
+    entered = False
+
+    def transform_after_external_change(*args: Any, **kwargs: Any) -> Any:
+        nonlocal entered
+        if not entered:
+            entered = True
+            e.images.fill(0)
+            e.initial.fill(0)
+            e.orders.values.fill(0)
+            e.orders.fx_per_um.fill(np.nan)
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(np.fft, "fftn", transform_after_external_change)
+    result = estimate(api, e)
+    assert entered
+    # This synchronous public-boundary observer tests the before-numerics
+    # snapshot promise. It makes no concurrent-mutation guarantee.
+    e.images = pristine_images
+    e.initial = pristine_initial
+    e.orders = record(pristine_values)
+    check_observer(result, e)
+    assert_allclose(result.phases_rad, canonical(pristine_initial), atol=2e-12, rtol=0)
+
+
+def test_extreme_canonical_calibration_grid_avoids_period_overflow(api: Any) -> None:
+    shape = (1, 1, 5)
+    largest = np.finfo(float).max
+    tiny = np.nextafter(0.0, 1.0)
+    values = np.zeros((3, *shape), dtype=np.complex128)
+    orders = record(values)
+    fx = np.array([float(Fraction(k) / 5 / Fraction(float(largest))) for k in range(-2, 3)])
+    orders = dataclasses.replace(orders, voxel_size_um=(largest, tiny, largest), fx_per_um=fx)
+    initial = np.arange(5, dtype=float)
+    images = np.ones((5, *shape))
+    e = Example(images, initial, initial, np.zeros(shape), values.copy(), orders, (0, 0))
+    result = estimate(api, e)
+    assert result.termination == "nuisance_rank_deficient"
+    assert result.nuisance_rank == 0
+
+
+def test_permitted_normalization_underflow_does_not_reject(api: Any) -> None:
+    e = example(1)
+    e.orders.values.fill(0)
+    e.orders.values[0].real = np.finfo(float).max
+    e.orders.values[1].real = np.nextafter(0.0, 1.0)
+    e.images.fill(np.finfo(float).max)
+    with np.errstate(all="raise"):
+        result = estimate(api, e)
+    assert result.termination == "stationary"
+    assert result.transfer_scale == result.image_scale == np.finfo(float).max
+    assert_allclose(result.specimen_normalized, np.ones_like(e.specimen), atol=2e-12, rtol=0)
+    assert result.relative_residual < 1e-12
+
+
+def test_genuine_trial_rank_change_returns_initial_availability(api: Any) -> None:
+    # Off-model DC pins the amplitude; the weak Nyquist response tends to zero
+    # as the real trust-region trial moves the equal phases from one to zero.
+    # Initial rank is far above cutoff, and rank at zero is exactly deficient.
+    values = np.zeros((3, 1, 1, 2), dtype=np.complex128)
+    values[0, 0, 0, 1], values[1, 0, 0, 1] = 1 + 0.4j, 0.2
+    values[0, 0, 0, 0], values[1, 0, 0, 0] = 1e-10, -0.5e-10
+    images = np.ones((5, 1, 1, 2))
+    initial = np.ones(5)
+    e = Example(
+        images, initial, initial, np.zeros((1, 1, 2)), values.copy(), record(values), (0, 0)
+    )
+    first = observe(images, values, initial, (0, 0))
+    lost = observe(images, values, np.zeros(5), (0, 0))
+    assert first.nuisance_rank == 2 and first.nuisance_s[-1] > 1e-11
+    assert lost.nuisance_rank == 1
+    result = estimate(api, e)
+    assert result.termination == "rank_changed"
+    assert_allclose(result.phases_rad, canonical(initial), atol=0, rtol=0)
+    # This case is outside the informative arithmetic regime. Its exact Fourier
+    # directions decouple. Compare the mean nuisance and fit, not a uniform
+    # digit guarantee for its weak unobserved Nyquist coordinate.
+    assert np.mean(result.specimen_normalized) == pytest.approx(np.mean(first.u), abs=2e-12)
+    assert result.nuisance_rank == first.nuisance_rank
+    assert result.normalized_residual_rms == pytest.approx(first.rms, abs=2e-12)
+    assert result.gradient_inf_norm == pytest.approx(first.gradient, abs=2e-10)
+    assert_allclose(result.nuisance_singular_values, first.nuisance_s, atol=2e-12, rtol=0)
+    assert_allclose(result.phase_singular_values, first.phase_s, atol=2e-10, rtol=0)
+    assert result.global_ambiguity == "unassessed"
+    assert type(result.nfev) is int and result.nfev > 0
+    assert type(result.njev) is int and result.njev > 0
+
+
+def test_proportional_kernel_point_specimen_keeps_ambiguity_unassessed(api: Any) -> None:
+    e = example(1)
+    h = e.kernels[0].real
+    e.kernels = np.array([h, (0.21 + 0.08j) * h, (0.11 - 0.07j) * h])
+    e.specimen.fill(0)
+    e.specimen[1, 0, 2] = 3
+    e.orders = record(transfer_from_kernels(e.kernels))
+    e.images = spatial_images(e.specimen, e.kernels, e.truth, e.carrier)
+    e.initial = e.truth.copy()
+    result = estimate(api, e)
+    check_observer(result, e)
+    assert result.termination == "stationary"
+    assert result.phase_singular_values[-1] < 1e-10
+    assert result.global_ambiguity == "unassessed"
+
+
+def test_weak_nonzero_side_orders_have_no_arbitrary_information_threshold(api: Any) -> None:
+    e = example(1)
+    e.kernels[1:] *= 1e-8
+    e.orders = record(transfer_from_kernels(e.kernels))
+    e.images = spatial_images(e.specimen, e.kernels, e.truth, e.carrier)
+    e.initial = e.truth.copy()
+    o = observe(e.images, e.orders.values, canonical(e.initial), e.carrier)
+    assert o.phase_rank == len(e.initial)
+    assert 1e-10 < o.phase_s[-1] < 1e-6
+    result = estimate(api, e)
+    assert result.termination == "stationary"
+    assert result.phase_rank == len(e.initial)
+    check_observer(result, e)
