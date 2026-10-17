@@ -9,6 +9,7 @@ from __future__ import annotations
 import inspect
 import warnings
 from fractions import Fraction
+from itertools import product
 from typing import Any
 
 import numpy as np
@@ -28,6 +29,7 @@ from volume_phase_estimation_fixture import (
     forward_observed_callbacks,
     local_phase_budget,
     observe,
+    periodic_carrier,
     powers,
     public_observation,
     record,
@@ -424,6 +426,226 @@ def test_periodic_carrier_aliasing_keeps_declared_integers(api: Any, carrier: An
     check_observer(first, e)
 
 
+@pytest.mark.parametrize("container", [tuple, list], ids=["tuple", "list"])
+@pytest.mark.parametrize(
+    "shape",
+    [(2, 3, 4), (3, 4, 3), (1, 1, 1), (1, 2, 3), (2, 3, 1), (3, 1, 2), (2, 2, 2), (3, 3, 3)],
+)
+@pytest.mark.parametrize(
+    "carrier",
+    [
+        (0, 0),
+        (1, -1),
+        (-7, -11),
+        (-(10**100) + 1, 10**100 - 1),
+        (2**64 - 1, -7),
+        (np.int64(-(2**63)), np.int64(2**63 - 1)),
+        (np.uint64(2**64 - 1), np.uint64(2**64 - 2)),
+        (np.uint64(2**64 - 1), np.int64(-7)),
+        (np.int8(-128), np.uint8(255)),
+        (np.int16(-32768), np.uint16(65535)),
+        (np.int32(-(2**31)), np.uint32(2**32 - 1)),
+        (2**53 + 1, -(2**53 + 3)),
+    ],
+    ids=[
+        "zero",
+        "small",
+        "negative",
+        "python_huge",
+        "python_mixed_range",
+        "numpy_signed",
+        "numpy_unsigned",
+        "numpy_mixed",
+        "numpy_small_width",
+        "numpy_16bit",
+        "numpy_32bit",
+        "binary64_boundary",
+    ],
+)
+def test_integer_carrier_oracles_against_exact_finite_matrices(
+    shape: tuple[int, int, int], carrier: Any, container: Any
+) -> None:
+    # Supplemental shared-oracle proof. Expected indices use Python integers;
+    # exact rational turns independently define the finite Fourier matrices.
+    coords = list(np.ndindex(shape))
+    bins = list(product(*(range(-(length // 2), (length + 1) // 2) for length in shape)))
+    size, n = len(coords), 7
+    original = (int(carrier[0]), int(carrier[1]))
+    declared = container(carrier)
+    reduced = (original[0] % shape[1], original[1] % shape[2])
+
+    def root(turns: Fraction) -> complex:
+        turns %= 1
+        quarter = 4 * turns
+        if quarter.denominator == 1:
+            return (1, 1j, -1, -1j)[int(quarter)]
+        return complex(np.exp(2j * np.pi * float(turns)))
+
+    def row(mode: tuple[int, ...]) -> Any:
+        return np.array(
+            [
+                root(
+                    -sum(
+                        (
+                            Fraction(k * j, length)
+                            for k, j, length in zip(mode, position, shape, strict=True)
+                        ),
+                        Fraction(),
+                    )
+                )
+                for position in coords
+            ]
+        ) / np.sqrt(size)
+
+    transform = np.array([row(mode) for mode in bins])
+    index = {
+        tuple(k % length for k, length in zip(mode, shape, strict=True)): i
+        for i, mode in enumerate(bins)
+    }
+    h = np.zeros(shape)
+    h.flat[0] = 0.9
+    h.flat[-1] += 0.1
+    ramp = np.arange(size).reshape(shape) / (size + 1)
+    kernels = np.array(
+        [h, (0.2 + 0.11j) * h + (0.01 - 0.02j) * ramp, (-0.09 + 0.08j) * h + (0.02 + 0.01j) * ramp],
+        dtype=np.complex128,
+    )
+    values = np.array(
+        [(np.sqrt(size) * transform @ kernel.ravel()).reshape(shape) for kernel in kernels],
+        dtype=np.complex128,
+    )
+    phases = 2 * np.pi * np.arange(n) / n - 2.5
+
+    def signed_matrices(transfers: Any) -> dict[int, Any]:
+        result = {}
+        for m in range(-2, 3):
+            matrix = np.empty((size, size), dtype=np.complex128)
+            for ki, mode in enumerate(bins):
+                source = tuple(
+                    (k - m * shift) % length
+                    for k, shift, length in zip(mode, (0, *original), shape, strict=True)
+                )
+                alias = tuple(
+                    (k - m * shift) % length
+                    for k, shift, length in zip(mode, (0, *reduced), shape, strict=True)
+                )
+                assert source == alias
+                if m >= 0:
+                    gain = transfers[m].ravel()[ki]
+                else:
+                    negative = tuple(-k % length for k, length in zip(mode, shape, strict=True))
+                    gain = transfers[-m].ravel()[index[negative]].conjugate()
+                matrix[ki] = gain * row(source)
+            result[m] = matrix
+        return result
+
+    bands = signed_matrices(values)
+    specimen = (np.arange(size).reshape(shape) % 5 - 2) / 3 + 0.2
+    prediction: Any = sum(
+        np.exp(1j * m * phases)[:, None, None] * band for m, band in bands.items()
+    )
+    expected_images = ((prediction @ specimen.ravel()) @ transform.conj()).reshape(n, *shape)
+    assert np.max(np.abs(expected_images.imag)) < 3e-12
+    generated = spatial_images(specimen, kernels, phases, declared)
+    assert_allclose(generated, expected_images.real, atol=3e-12, rtol=0)
+    assert_array_equal(generated, spatial_images(specimen, kernels, phases, reduced))
+    assert all(type(value) is int for value in periodic_carrier(declared, shape))
+
+    # Deliberately off-model inputs exercise residual-dependent derivatives,
+    # both component scales, real nuisance and the complex T0 diagnostics too.
+    values[0].flat[0] += 0.13j
+    generated[2].flat[-1] += 0.017
+    b = float(np.max(np.abs(generated))) or 1.0
+    t = max(float(np.max(np.abs(values.real))), float(np.max(np.abs(values.imag)))) or 1.0
+    bands = signed_matrices(values / t)
+    model: Any = sum(np.exp(1j * m * phases)[:, None, None] * band for m, band in bands.items())
+    derivative: Any = sum(
+        1j * m * np.exp(1j * m * phases)[:, None, None] * band for m, band in bands.items()
+    )
+    a = np.concatenate([model.real.reshape(n * size, size), model.imag.reshape(n * size, size)])
+    transformed = generated.reshape(n, size) @ transform.T / b
+    y = np.concatenate([transformed.real.ravel(), transformed.imag.ravel()])
+    ap = []
+    for p in range(n):
+        masked = np.zeros_like(derivative)
+        masked[p] = derivative[p]
+        ap.append(
+            np.concatenate(
+                [masked.real.reshape(n * size, size), masked.imag.reshape(n * size, size)]
+            )
+        )
+    cutoff = np.finfo(float).eps * max(a.shape)
+    plus = np.linalg.pinv(a, rtol=cutoff)
+    u = plus @ y
+    r = y - a @ u
+    d = np.column_stack([v @ u for v in ap])
+    k = d - a @ (plus @ d)
+    jac = -k - np.column_stack([plus.T @ (v.T @ r) for v in ap])
+    observed = observe(generated, values, phases, declared)
+    assert observed.b == b and observed.t == t
+    for actual, expected in [
+        (observed.a, a),
+        (observed.y, y),
+        (observed.u, u),
+        (observed.r, r),
+        (observed.d, d),
+        (observed.k, k),
+        (observed.jac, jac),
+    ]:
+        assert_allclose(actual, expected, atol=3e-12, rtol=0)
+    for actual, expected in zip(observed.ap, ap, strict=True):
+        assert_allclose(actual, expected, atol=3e-12, rtol=0)
+    actual_model = observed.a[: n * size].reshape(n, size, size) + 1j * observed.a[
+        n * size :
+    ].reshape(n, size, size)
+    for m, band in bands.items():
+        extracted = np.einsum("p,pij->ij", np.exp(-1j * m * phases), actual_model) / n
+        assert_allclose(extracted, band, atol=3e-12, rtol=0)
+    singular = np.linalg.svd(a, compute_uv=False)
+    phase_s = np.linalg.svd(k, compute_uv=False)
+    assert observed.nuisance_rank == int(np.count_nonzero(singular > cutoff * singular[0]))
+    assert_allclose(observed.nuisance_s, singular, atol=3e-12, rtol=0)
+    assert_allclose(observed.phase_s, phase_s, atol=3e-12, rtol=0)
+    # Claim differential rank only well away from a numerical nullspace.
+    phase_cutoff = np.finfo(float).eps * max(k.shape) * phase_s[0]
+    if phase_s[-1] > 64 * phase_cutoff:
+        assert observed.phase_rank == n
+    design = np.column_stack(
+        [np.ones(n), np.cos(phases), np.sin(phases), np.cos(2 * phases), np.sin(2 * phases)]
+    )
+    assert observed.design_rank == np.linalg.matrix_rank(design) == 5
+    assert observed.relative == pytest.approx(
+        np.linalg.norm(r) / np.linalg.norm(y), abs=3e-12, rel=0
+    )
+    assert observed.rms == pytest.approx(np.linalg.norm(r) / np.sqrt(n * size), abs=3e-12, rel=0)
+    assert observed.imaginary == pytest.approx(
+        np.linalg.norm((a @ u)[n * size :]) / np.sqrt(n * size), abs=3e-12, rel=0
+    )
+    assert observed.gradient == pytest.approx(np.max(np.abs(jac.T @ r)), abs=3e-12, rel=0)
+    mirrored = (
+        np.array(
+            [
+                values[0]
+                .ravel()[index[tuple(-v % length for v, length in zip(mode, shape, strict=True))]]
+                .conjugate()
+                for mode in bins
+            ]
+        )
+        / t
+    )
+    assert observed.reality == pytest.approx(
+        np.linalg.norm(values[0].ravel() / t - mirrored) / np.sqrt(size), abs=3e-12, rel=0
+    )
+    expected_allowance = (
+        2**20
+        * len(y)
+        * (size + n + 1)
+        * np.finfo(float).eps
+        * (1 + np.linalg.norm(y) + np.linalg.norm(u) + np.linalg.norm(d)) ** 2
+    )
+    assert observed.allowance == pytest.approx(expected_allowance, abs=3e-12, rel=0)
+
+
 @pytest.mark.parametrize("group", [0, 1])
 def test_fixed_gauge_and_coordinate_translation_covariance(api: Any, group: int) -> None:
     e = example(group)
@@ -448,14 +670,8 @@ def test_fixed_gauge_and_coordinate_translation_covariance(api: Any, group: int)
         rtol=0,
     )
     shift = (1, 0, 1)
-    delta = (
-        2
-        * np.pi
-        * (
-            e.carrier[0] * shift[1] / e.specimen.shape[1]
-            + e.carrier[1] * shift[2] / e.specimen.shape[2]
-        )
-    )
+    ky, kx = periodic_carrier(e.carrier, e.specimen.shape)
+    delta = 2 * np.pi * (ky * shift[1] / e.specimen.shape[1] + kx * shift[2] / e.specimen.shape[2])
     rolled = estimate(
         api,
         e,
