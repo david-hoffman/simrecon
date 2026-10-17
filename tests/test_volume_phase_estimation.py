@@ -1067,6 +1067,185 @@ def test_genuine_optimizer_failure_and_unrelated_propagation(
         assert exc.value is marker
 
 
+def nonfinite_optimizer_return(
+    original: Any,
+    args: tuple[Any, ...],
+    kwargs: dict[str, Any],
+    *,
+    field: str,
+    invalid: float,
+    completed: list[dict[str, Any]],
+    max_nfev: int = 1,
+) -> Any:
+    """Execute the real selected solve, then corrupt only its returned output.
+
+    This is an explicitly invalid dependency fault, not a finite scientific
+    oracle or a manufactured termination. Defaults are inspected, never replayed.
+    """
+    bound = inspect.signature(original).bind(*args, **kwargs)
+    bound.apply_defaults()
+    selected = bound.arguments
+    assert selected["method"] == "trf" and selected["tr_solver"] == "exact"
+    assert selected["loss"] == "linear" and selected["x_scale"] == 1
+    assert selected["ftol"] is None
+    assert selected["gtol"] == 1e-9 and selected["xtol"] == 1e-10
+    assert selected["max_nfev"] == max_nfev
+    assert np.all(np.asarray(selected["bounds"][0]) == -np.inf)
+    assert np.all(np.asarray(selected["bounds"][1]) == np.inf)
+    for name in ("callback", "workers", "jac_sparsity"):
+        assert selected[name] is None
+    assert callable(selected["fun"]) and callable(selected["jac"])
+    calls = {"fun": 0, "jac": 0}
+
+    def residual(x: Any, *extra: Any, **named: Any) -> Any:
+        calls["fun"] += 1
+        return selected["fun"](x, *extra, **named)
+
+    def jacobian(x: Any, *extra: Any, **named: Any) -> Any:
+        calls["jac"] += 1
+        return selected["jac"](x, *extra, **named)
+
+    result = forward_observed_callbacks(original, args, kwargs, {"fun": residual, "jac": jacobian})
+    assert calls["fun"] > 0 and calls["jac"] > 0
+    assert result.status in (0, 1, 2, 3, 4)
+    assert np.all(np.isfinite(result.x)) and np.all(np.isfinite(result.fun))
+    assert np.all(np.isfinite(result.jac)) and np.isfinite(result.cost)
+    before = dict(result)  # Actual public OptimizeResult; never construct one.
+    genuine_x = result.x.copy()
+    genuine_status = result.status
+    if field == "status":
+        result.status = invalid
+        assert not np.isfinite(result.status)
+        assert_array_equal(result.x, genuine_x)
+    elif field == "x":
+        corrupted = result.x.copy()
+        corrupted[0] = invalid
+        result.x = corrupted
+        assert not np.isfinite(result.x[0])
+        assert_array_equal(result.x[1:], genuine_x[1:])
+        assert result.status == genuine_status
+    else:
+        raise AssertionError("unknown invalid-result fault field")
+    assert all(result[key] is value for key, value in before.items() if key != field)
+    completed.append({"genuine_status": genuine_status, "calls": calls, "field": field})
+    return result
+
+
+@pytest.mark.parametrize("max_nfev", [1, 200], ids=["short_solve", "converging_solve"])
+@pytest.mark.parametrize("field", ["status", "x"])
+@pytest.mark.parametrize("invalid", [np.nan, np.inf, -np.inf], ids=["nan", "posinf", "neginf"])
+def test_genuine_optimizer_nonfinite_return_rejected(
+    request: pytest.FixtureRequest, max_nfev: int, field: str, invalid: float
+) -> None:
+    # Supplemental returned-result fault proof, separate from finite-fit accuracy.
+    if run_dependency_child(request):
+        return
+    api = phase_api()
+    e = example(1)
+    arrays = [e.images, e.initial, *(getattr(e.orders, name) for name in ORDER_FIELDS[:4])]
+    for array in arrays:
+        array.flags.writeable = False
+    snapshots = [(array.tobytes(), array.strides, array.flags.writeable) for array in arrays]
+    completed: list[dict[str, Any]] = []
+
+    def returned_fault(original: Any, *args: Any, **kwargs: Any) -> Any:
+        return nonfinite_optimizer_return(
+            original,
+            args,
+            kwargs,
+            field=field,
+            invalid=invalid,
+            completed=completed,
+            max_nfev=max_nfev,
+        )
+
+    with np.errstate(all="raise"), warnings.catch_warnings():
+        warnings.simplefilter("error", RuntimeWarning)
+        filters, mode = list(warnings.filters), np.geterr().copy()
+        with (
+            public_observation(optimizer=returned_fault),
+            pytest.raises(simrecon.SimreconError) as exc,
+        ):
+            estimate(api, e, max_nfev=max_nfev)
+        assert exc.value.code == "volume_phase_estimation_solver_failure"
+        assert completed, "the genuine selected solve must finish before returning the fault"
+        assert np.geterr() == mode and warnings.filters == filters
+    for array, (content, strides, writeable) in zip(arrays, snapshots, strict=True):
+        assert array.tobytes() == content and array.strides == strides
+        assert array.flags.writeable == writeable
+
+
+@pytest.mark.parametrize("binding", ["direct", "module"])
+@pytest.mark.parametrize("call_form", ["positional_jacobian", "all_keywords"])
+@pytest.mark.parametrize("field", ["status", "x"])
+@pytest.mark.parametrize("invalid", [np.nan, np.inf, -np.inf], ids=["nan", "posinf", "neginf"])
+def test_nonfinite_return_observer_executes_genuine_scipy(
+    request: pytest.FixtureRequest, binding: str, call_form: str, field: str, invalid: float
+) -> None:
+    if run_dependency_child(request):
+        return
+    import scipy.optimize
+
+    direct = scipy.optimize.least_squares
+    x0 = np.zeros(1)
+
+    def residual(x: Any) -> Any:
+        return np.array([x[0] - 1, 2 * (x[0] - 1)])
+
+    def jacobian(x: Any) -> Any:
+        return np.array([[1.0], [2.0]])
+
+    kwargs: dict[str, Any] = dict(
+        method="trf",
+        bounds=(-np.inf, np.inf),
+        loss="linear",
+        x_scale=1,
+        tr_solver="exact",
+        ftol=None,
+        gtol=1e-9,
+        xtol=1e-10,
+        max_nfev=1,
+    )
+    args: tuple[Any, ...] = (residual, x0, jacobian)
+    if call_form == "all_keywords":
+        args = ()
+        kwargs.update(fun=residual, x0=x0, jac=jacobian)
+    supplied = kwargs.copy()
+    completed: list[dict[str, Any]] = []
+
+    def solve() -> Any:
+        function = direct if binding == "direct" else scipy.optimize.least_squares
+        return function(*args, **kwargs)
+
+    baseline = solve()  # No fault is armed during normal setup or this real call.
+    assert not completed
+    assert baseline.status == 0 and baseline.cost == 2.5
+    assert_array_equal(baseline.x, x0)
+    assert_array_equal(baseline.fun, [-1.0, -2.0])
+    assert_array_equal(baseline.jac, [[1.0], [2.0]])
+
+    def returned_fault(original: Any, *incoming: Any, **named: Any) -> Any:
+        return nonfinite_optimizer_return(
+            original, incoming, named, field=field, invalid=invalid, completed=completed
+        )
+
+    with public_observation(optimizer=returned_fault) as observation:
+        result = solve()
+    assert completed and observation.events
+    if field == "status":
+        assert not np.isfinite(result.status)
+        assert_array_equal(result.x, x0)
+    else:
+        assert not np.isfinite(result.x[0])
+        assert result.status == baseline.status
+    assert result.cost == baseline.cost
+    assert_array_equal(result.fun, baseline.fun)
+    assert_array_equal(result.jac, baseline.jac)
+    assert_array_equal(x0, np.zeros(1))
+    assert kwargs.keys() == supplied.keys()
+    assert all(kwargs[name] is value for name, value in supplied.items())
+
+
 @pytest.mark.parametrize("failure", [False, True])
 def test_input_preservation_and_caller_numerical_warning_policy(api: Any, failure: bool) -> None:
     e = example(1)
