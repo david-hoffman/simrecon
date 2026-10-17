@@ -6,15 +6,20 @@ circular sums; the observer constructs each real matrix column by Fourier sums.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+import os
+import subprocess
+import sys
+from collections.abc import Iterator
+from contextlib import contextmanager
+from dataclasses import dataclass, field
+from functools import wraps
 from itertools import product
 from math import lcm
+from pathlib import Path
 from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
-
-import simrecon
 
 Real = NDArray[np.float64]
 Complex = NDArray[np.complex128]
@@ -57,6 +62,8 @@ def transfer_from_kernels(kernels: Complex) -> Complex:
 
 
 def record(values: Complex, origin: tuple[int, int, int] = (0, 0, 0)) -> Any:
+    import simrecon
+
     shape = values.shape[1:]
     spacing = (0.5, 0.25, 0.125)
     freq = [
@@ -280,6 +287,8 @@ def estimate(api: Any, e: Example, **changes: Any) -> Any:
 
 def calibrated_example(group: int = 0) -> tuple[Example, Any]:
     """Real caller: raw finite bead -> compensated response -> existing adapter."""
+    import simrecon
+
     e = example(group)
     shape = e.specimen.shape
     # The all-odd group is required by the trilinear adapter's endpoint policy.
@@ -359,3 +368,168 @@ def local_phase_budget(e: Example, radius: float = 1e-4) -> tuple[float, float]:
     # truth gradient and a further 1e-12 roundoff margin.
     budget = (np.sqrt(len(e.truth)) * (1e-9 + 5e-10) + np.linalg.norm(o.jac.T @ o.r) + 1e-12) / mu
     return float(budget), float(mu)
+
+
+ORDER_FIELDS = (
+    "values",
+    "fz_per_um",
+    "fy_per_um",
+    "fx_per_um",
+    "voxel_size_um",
+    "origin_zyx",
+    "source",
+)
+
+
+def copy_order_record(orders: Any, **changes: Any) -> Any:
+    """Construct an OTF through its public fields, without record metadata."""
+    import simrecon
+
+    fields = {name: getattr(orders, name) for name in ORDER_FIELDS}
+    fields.update(changes)
+    return simrecon.VolumeOrderOtf(**fields)
+
+
+@dataclass
+class _PublicObservation:
+    """Preimport public callables; only an explicit estimator region is armed."""
+
+    handlers: dict[str, Any] = field(default_factory=dict)
+    events: list[tuple[str, str]] = field(default_factory=list)
+
+    def wrap(self, category: str, name: str, original: Any) -> Any:
+        """Keep real dependency execution unless this category is armed."""
+
+        @wraps(original)
+        def call(*args: Any, **kwargs: Any) -> Any:
+            handler = self.handlers.get(category)
+            if handler is None:
+                return original(*args, **kwargs)
+            self.events.append((category, name))
+            return handler(original, *args, **kwargs)
+
+        return call
+
+
+_PUBLIC_OBSERVATION: _PublicObservation | None = None
+_CHILD_FLAG = "SIMRECON_PHASE_PUBLIC_OBSERVATION_CHILD"
+
+
+def _install_preimport_observation() -> _PublicObservation:
+    if any(name == "simrecon" or name.startswith("simrecon.") for name in sys.modules):
+        raise RuntimeError("setup: public observation must precede SIMrecon import")
+    import scipy.linalg
+    import scipy.linalg.interpolative
+    import scipy.linalg.lapack
+    import scipy.optimize
+    import scipy.sparse.linalg
+
+    state = _PublicObservation()
+    for module, names, category in (
+        (np.fft, ("fftn",), "fft"),
+        (scipy.optimize, ("least_squares",), "optimizer"),
+        (np.linalg, ("svd", "svdvals", "lstsq"), "svd"),
+        (scipy.linalg, ("svd", "svdvals", "lstsq"), "svd"),
+        (scipy.linalg.interpolative, ("svd",), "svd"),
+        (scipy.sparse.linalg, ("svds",), "svd"),
+        (
+            scipy.linalg.lapack,
+            tuple(
+                prefix + driver
+                for prefix in "sdcz"
+                for driver in ("gesdd", "gesvd", "gelsd", "gelss")
+            ),
+            "svd",
+        ),
+    ):
+        for name in names:
+            original = getattr(module, name, None)
+            if callable(original):
+                setattr(module, name, state.wrap(category, f"{module.__name__}.{name}", original))
+
+    # Public LAPACK factories can return a function independently of the named
+    # module attribute. Cover those handles without touching private symbols.
+    factory_module: Any
+    for factory_module in (scipy.linalg, scipy.linalg.lapack):
+        original_factory = factory_module.get_lapack_funcs
+
+        def factory(
+            names: Any, *args: Any, _original: Any = original_factory, **kwargs: Any
+        ) -> Any:
+            functions = _original(names, *args, **kwargs)
+
+            def selected(name: str, function: Any) -> Any:
+                if name in {"gesdd", "gesvd", "gelsd", "gelss"}:
+                    return state.wrap("svd", f"scipy.linalg.lapack.factory.{name}", function)
+                return function
+
+            if isinstance(names, str):
+                return selected(names, functions)
+            return type(functions)(
+                selected(name, function) for name, function in zip(names, functions, strict=True)
+            )
+
+        factory_module.get_lapack_funcs = factory
+    return state
+
+
+@contextmanager
+def public_observation(**handlers: Any) -> Iterator[_PublicObservation]:
+    """Arm public observers only after fixture/oracle setup has completed."""
+    state = _PUBLIC_OBSERVATION
+    assert state is not None, "setup: use the isolated preimport dependency child"
+    assert not state.handlers, "overlapping public observations are unsupported"
+    state.events.clear()
+    state.handlers.update(handlers)
+    try:
+        yield state
+    finally:
+        state.handlers.clear()
+
+
+def run_dependency_child(request: Any) -> bool:
+    """Run one node after preimport setup in the committed fixture.
+
+    The existing source-free wrapper owns child diagnostics and true status.
+    No ignored author artifact is imported or executed by this test harness.
+    """
+    if os.environ.get(_CHILD_FLAG) == "1":
+        assert _PUBLIC_OBSERVATION is not None
+        return False
+    import pytest
+
+    root = Path(__file__).resolve().parents[1]
+    env = os.environ.copy()
+    env[_CHILD_FLAG] = "1"
+    env["PYTHONPATH"] = str(root / "tests") + os.pathsep + env.get("PYTHONPATH", "")
+    bootstrap = (
+        "import volume_phase_estimation_fixture; import pytest; import sys; "
+        "raise SystemExit(pytest.main(sys.argv[1:]))"
+    )
+    command = [
+        sys.executable,
+        "-B",
+        str(root / "scripts/source_free_check.py"),
+        "--timeout",
+        "60",
+        "python",
+        "-c",
+        bootstrap,
+        "--assert=plain",
+        "--tb=line",
+        "-q",
+        "-x",
+        request.node.nodeid,
+    ]
+    child = subprocess.run(command, cwd=root, env=env, capture_output=True, text=True, timeout=90)
+    if child.returncode:
+        pytest.fail(
+            f"source-free dependency child status={child.returncode}\n"
+            f"{child.stdout}\n{child.stderr}",
+            pytrace=False,
+        )
+    return True
+
+
+if os.environ.get(_CHILD_FLAG) == "1":
+    _PUBLIC_OBSERVATION = _install_preimport_observation()
