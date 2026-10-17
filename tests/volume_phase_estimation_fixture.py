@@ -65,6 +65,21 @@ def transfer_from_kernels(kernels: Complex) -> Complex:
     return np.stack([(transform @ row.ravel()).reshape(shape) for row in kernels])
 
 
+def periodic_carrier(carrier: tuple[int, int], shape: tuple[int, ...]) -> tuple[int, int]:
+    """Extract exact integers before reducing to small centered periodic bins.
+
+    A mixed NumPy vector may round unsigned-sized and negative integers to
+    float64. NumPy scalar multiplication can also overflow before reduction.
+    Neither operation belongs before exact Python-integer periodic reduction.
+    Keep the caller's original carrier separately for provenance assertions.
+    """
+    ky, kx = (int(value) % length for value, length in zip(carrier, shape[1:], strict=True))
+    return (
+        ky - shape[1] if ky > shape[1] // 2 else ky,
+        kx - shape[2] if kx > shape[2] // 2 else kx,
+    )
+
+
 def record(values: Complex, origin: tuple[int, int, int] = (0, 0, 0)) -> Any:
     import simrecon
 
@@ -90,12 +105,13 @@ def spatial_images(
 ) -> Real:
     """Circular convolution of carrier-modulated specimen, without any FFT."""
     shape = specimen.shape
+    ky, kx = periodic_carrier(carrier, shape)
     coords = list(np.ndindex(shape))
     bands = np.zeros((3, *shape), dtype=np.complex128)
     for n in coords:
         for j in coords:
             displacement = tuple((a - b) % k for a, b, k in zip(n, j, shape, strict=True))
-            cycles = carrier[0] * j[1] / shape[1] + carrier[1] * j[2] / shape[2]
+            cycles = ky * j[1] / shape[1] + kx * j[2] / shape[2]
             for m in range(3):
                 bands[(m, *n)] += (
                     kernels[(m, *displacement)] * specimen[j] * np.exp(2j * np.pi * m * cycles)
@@ -197,7 +213,11 @@ def observe(images: Real, values: Complex, phases: Real, carrier: tuple[int, int
     y_complex = (images.reshape(n, size) / b) @ transform.T
     y = np.concatenate([y_complex.real.ravel(), y_complex.imag.ravel()])
     bins = modes(shape).astype(int)
-    index = {tuple(k % np.array(shape)): i for i, k in enumerate(bins)}
+    index = {
+        tuple(int(kv) % length for kv, length in zip(k, shape, strict=True)): i
+        for i, k in enumerate(bins)
+    }
+    ky, kx = periodic_carrier(carrier, shape)
     rows = f.reshape(3, size)
     z = powers(phases)
     model = np.zeros((n, size, size), dtype=np.complex128)
@@ -206,7 +226,10 @@ def observe(images: Real, values: Complex, phases: Real, carrier: tuple[int, int
         for m in range(-2, 3):
             fm = rows[m, ki] if m >= 0 else rows[-m, index[tuple(-k % np.array(shape))]].conjugate()
             source = index[
-                tuple((k - np.array([0, m * carrier[0], m * carrier[1]])) % np.array(shape))
+                tuple(
+                    (int(kv) - m * shift) % length
+                    for kv, shift, length in zip(k, (0, ky, kx), shape, strict=True)
+                )
             ]
             term = z[m][:, None] * fm * transform[source][None, :]
             model[:, ki, :] += term
