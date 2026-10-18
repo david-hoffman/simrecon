@@ -30,6 +30,7 @@ from ._observable_volume_phase_estimation import (
 )
 from ._otf import Otf2D, prepare_otf
 from ._phase import PhaseComponents, separate_phases
+from ._phase_carrier_scan import scan_volume_phase_carriers
 from ._pixels import read
 from ._point_bead_calibration import PointBeadCalibration, calibrate_raw_point_bead
 from ._reconstruction import Reconstruction2D, reconstruct
@@ -103,6 +104,7 @@ __all__ = [
     "sample_empirical_volume_transfer",
     "scan_carriers",
     "scan_volume_carriers",
+    "scan_volume_phase_carriers",
     "select_carrier",
     "select_volume_carrier",
     "separate_phases",
