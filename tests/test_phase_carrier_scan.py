@@ -234,8 +234,16 @@ def test_all_unobservable_rows_are_retained_with_ordinary_diagnostics(signal):
         np.testing.assert_array_equal(row.observable_fourier_mask, np.zeros((1, 2, 3), bool))
         np.testing.assert_array_equal(row.phases_rad, canonical(group["commands"]))
         assert row.gradient_inf_norm == row.normalized_imaginary_rms == 0.0
-        assert row.normalized_residual_rms == (1.0 if signal else 0.0)
-        assert row.relative_residual == (1.0 if signal else 0.0)
+        if signal:
+            # Parseval gives RMS=1 and residual/data norm ratio=1 for d=-1, r=y.
+            # Allow small-DFT/norm/sqrt/division rounding: a conservative binary64
+            # budget of 128 eps per real observation, independent of returned values.
+            allowance = 128 * np.finfo(np.float64).eps * group["images"].size
+            assert abs(row.normalized_residual_rms - 1.0) <= allowance
+            assert abs(row.relative_residual - 1.0) <= allowance
+        else:
+            assert row.normalized_residual_rms == 0.0
+            assert row.relative_residual == 0.0
         assert row.image_scale == (3.0 if signal else 1.0)
         assert row.transfer_scale == 1.0
         assert row.global_ambiguity == "unassessed"
@@ -387,10 +395,11 @@ def test_result_arrays_are_owned_mutable_and_independent_across_fields_rows_and_
         for row, snapshot in zip((*rows[1:], *more), before, strict=True):
             np.testing.assert_array_equal(getattr(row, name), snapshot)
     for row in rows:
+        dynamic_row: Any = row
         with pytest.raises((AttributeError, FrozenInstanceError)):
-            row.source = "changed"
+            dynamic_row.source = "changed"
         with pytest.raises((AttributeError, FrozenInstanceError)):
-            del row.phases_rad
+            del dynamic_row.phases_rad
     candidates[0][0] = 77
     assert rows[0].carrier_bins_yx == (1, -1)
     for array, snapshot, state in zip(inputs, snapshots, layout, strict=True):
@@ -701,8 +710,9 @@ def test_all_keywords_are_required_and_only_images_is_positional():
             scan_volume_phase_carriers(group["images"], **missing)
     remaining = dict(arguments)
     positional_order_otf = remaining.pop("order_otf")
+    dynamic_scan: Any = scan_volume_phase_carriers
     with pytest.raises(TypeError):
-        scan_volume_phase_carriers(group["images"], positional_order_otf, **remaining)
+        dynamic_scan(group["images"], positional_order_otf, **remaining)
 
 
 @pytest.mark.parametrize(
