@@ -444,49 +444,68 @@ def reduced_inference_fixture(exposures: int) -> dict[str, Any]:
     }
 
 
-# The CI test starts a fresh interpreter so public dependency controls are in
-# place before product-bound imports. Blind probes execute this exact literal
-# directly as fresh tool-level source-free entries, never as nested children.
+# Fresh interpreters arm public controls before product/fixture-bound imports.
+# Blind probes run this same literal directly through the admitted tool entry.
 SOLVER_FAILURE_PAYLOAD = r"""
 import json
 import sys
 import warnings
 import numpy as np
 import scipy.linalg
+import scipy.linalg.lapack
 import scipy.optimize
 
 api_name, boundary, kind = sys.argv[1:4]
 assert 'simrecon' not in sys.modules, 'controls require a fresh product import'
-state = {'active': False, 'hits': 0}
+assert 'observable_volume_phase_estimation_fixture' not in sys.modules
+state = {'active': False, 'fault': False, 'calls': 0, 'delivered': 0}
 errors = {
-    'linalg': np.linalg.LinAlgError('controlled public solver numerical exception'),
-    'floating': FloatingPointError('controlled public solver numerical exception'),
-    'overflow': OverflowError('controlled public solver numerical exception'),
-    'memory': MemoryError('controlled public solver allocation exception'),
-    'runtime': RuntimeError('controlled public solver unrelated exception'),
-    'type': TypeError('controlled public solver unrelated exception'),
-    'value': ValueError('controlled public solver unrelated exception'),
+    'linalg': np.linalg.LinAlgError('controlled public numerical exception'),
+    'floating': FloatingPointError('controlled public numerical exception'),
+    'overflow': OverflowError('controlled public numerical exception'),
+    'memory': MemoryError('controlled public allocation exception'),
+    'runtime': RuntimeError('controlled public unrelated exception'),
+    'type': TypeError('controlled public unrelated exception'),
+    'value': ValueError('controlled public unrelated exception'),
 }
+assert kind in (*errors, 'none', 'runtime_warning', 'user_warning',
+                'zero', 'nonzero', 'deficient')
 error = errors.get(kind)
 originals = []
+def diagnostic(error):
+    frames = []
+    cursor = error.__traceback__
+    while cursor is not None:
+        frames.append({'filename': cursor.tb_frame.f_code.co_filename,
+                       'lineno': cursor.tb_lineno,
+                       'function': cursor.tb_frame.f_code.co_name})
+        cursor = cursor.tb_next
+    item = {'type': type(error).__module__+'.'+type(error).__name__,
+            'message': str(error), 'frames': frames}
+    chained = error.__cause__ if error.__cause__ is not None else (
+        error.__context__ if not error.__suppress_context__ else None)
+    if chained is not None and chained is not error:
+        item['chained'] = diagnostic(chained)
+    return item
 def control(original):
     def invoke(*args, **kwargs):
         if state['active']:
-            state['hits'] += 1
-            if kind == 'runtime_warning':
-                warnings.warn('controlled public solver arithmetic warning', RuntimeWarning,
-                              stacklevel=1)
-            elif kind == 'user_warning':
-                warnings.warn('controlled public solver unrelated warning', UserWarning,
-                              stacklevel=1)
-            else:
-                raise error
+            state['calls'] += 1
+            if state['fault'] and kind != 'none':
+                state['delivered'] += 1
+                if kind == 'runtime_warning':
+                    warnings.warn('controlled public arithmetic warning', RuntimeWarning,
+                                  stacklevel=1)
+                elif kind == 'user_warning':
+                    warnings.warn('controlled public unrelated warning', UserWarning,
+                                  stacklevel=1)
+                else:
+                    raise error
         return original(*args, **kwargs)
     return invoke
 
-# Arm public SVD-based alternatives without selecting a particular backend or
-# requiring a module lookup at call time. Imports can legitimately do their own
-# work: controls remain inactive until the public operation is invoked.
+# Finite instrumentation, NOT an exhaustive SVD-family or mathematical-role claim.
+# Neither LAPACK adapters nor private helpers are controlled or selected.
 if boundary == 'svd':
     for module in (np.linalg, scipy.linalg):
         for name in ('svd', 'svdvals', 'pinv', 'lstsq'):
@@ -495,56 +514,181 @@ if boundary == 'svd':
                 originals.append((module, name, original))
                 setattr(module, name, control(original))
 else:
-    assert boundary == 'optimizer'
-    original = scipy.optimize.least_squares
-    originals.append((scipy.optimize, 'least_squares', original))
-    scipy.optimize.least_squares = control(original)
+    module, name = (np.fft, 'fftn') if boundary == 'fft' else (
+        scipy.optimize, 'least_squares')
+    assert boundary in ('fft', 'optimizer', 'no_optimizer')
+    original = getattr(module, name)
+    originals.append((module, name, original))
+    setattr(module, name, control(original))
 
-import simrecon as sr
-images = np.array([1., -.2, .5, -.4, .8, .1]).reshape(6, 1, 1, 1)
-phases = np.array([-2.7, -1.4, -.2, .9, 2.2, 2.9])
-values = np.array([1., .23+.08j, .11-.04j], dtype=np.complex128).reshape(3, 1, 1, 1)
-frequencies = [np.zeros(1) for _ in range(3)]
-orders = sr.VolumeOrderOtf(values=values, fz_per_um=frequencies[0],
-    fy_per_um=frequencies[1], fx_per_um=frequencies[2], voxel_size_um=(1.,1.,1.),
-    origin_zyx=(0,0,0), source='supplied public solver exception control')
-arrays = [images, phases, values, *frequencies]
-for array in arrays:
-    array.setflags(write=False)
-before = [(a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable) for a in arrays]
-metadata = (orders.voxel_size_um, orders.origin_zyx, orders.source)
-report = {'api': api_name, 'boundary': boundary, 'kind': kind}
-with np.errstate(all='raise'), warnings.catch_warnings(record=True) as observed:
-    warnings.simplefilter('ignore', RuntimeWarning)
-    warnings.simplefilter('always', UserWarning)
-    mode, filters = np.geterr(), list(warnings.filters)
-    state['active'] = True
-    try:
-        result = getattr(sr, api_name)(images, order_otf=orders, carrier_bins_yx=(0,0),
-            initial_phases_rad=phases, max_nfev=3, gradient_tolerance=1e-9,
-            step_tolerance=1e-10, source='public exception-only controls')
-    except Exception as caught:
-        report.update(outcome='exception', exception_type=type(caught).__name__,
-                      message=str(caught), code=getattr(caught, 'code', None),
-                      identical=caught is error, domain_error=isinstance(caught, sr.SimreconError))
+installed = [module.__name__ + '.' + name for module, name, _ in originals]
+def measured(operation, fault, arrays, metadata_check):
+    before = [(a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable)
+              for a in arrays]
+    row = {'phase': 'measured_public_operation', 'requested_fault': fault and kind != 'none'}
+    state.update(active=False, fault=fault, calls=0, delivered=0)
+    with np.errstate(all='raise'), warnings.catch_warnings(record=True) as observed:
+        warnings.simplefilter('ignore', RuntimeWarning)
+        warnings.simplefilter('always', UserWarning)
+        mode, filters = np.geterr(), list(warnings.filters)
+        state['active'] = True
+        result = None
+        try:
+            result = operation()
+        except Exception as caught:
+            row.update(outcome='exception', exception_type=type(caught).__name__,
+                       message=str(caught), code=getattr(caught, 'code', None),
+                       identical=caught is error, diagnostic=diagnostic(caught))
+            if 'sr' in globals():
+                row['domain_error'] = isinstance(caught, sr.SimreconError)
+        else:
+            row['outcome'] = 'normal'
+        finally:
+            state['active'] = False
+        row['mode_preserved'] = np.geterr() == mode
+        row['filters_preserved'] = warnings.filters == filters
+        row['warnings'] = [{'category': w.category.__name__, 'message': str(w.message),
+                            'filename': w.filename, 'lineno': w.lineno} for w in observed]
+    row.update(calls=state['calls'], delivered=state['delivered'],
+        inputs_preserved=before == [
+            (a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable) for a in arrays],
+        metadata_preserved=metadata_check())
+    return row, result
+
+report = {'schema': 'public-dependency-control.v2', 'api': api_name,
+          'boundary': boundary, 'kind': kind, 'installed': installed}
+if api_name in ('lapack_direct', 'lapack_selected'):
+    assert boundary == 'svd'
+    matrix = np.array([[1., 2.], [2., -1.], [0., 3.]])
+    matrix.setflags(write=False)
+    # A.T A=diag(5,14); signs of singular vectors are intentionally unspecified.
+    routine = scipy.linalg.lapack.dgesdd if api_name == 'lapack_direct' else (
+        scipy.linalg.get_lapack_funcs('gesdd', (matrix,)))
+    def operation():
+        return routine(matrix, compute_uv=1, full_matrices=0, overwrite_a=0)
+    def scientific(result):
+        u, singular, vt, info = result
+        assert info == 0
+        np.testing.assert_allclose(singular, np.sqrt([14., 5.]), atol=2e-14, rtol=2e-14)
+        np.testing.assert_allclose((u * singular) @ vt, matrix, atol=3e-14, rtol=2e-14)
+        np.testing.assert_allclose(u.T @ u, np.eye(2), atol=2e-14, rtol=0)
+        np.testing.assert_allclose(vt @ vt.T, np.eye(2), atol=2e-14, rtol=0)
+        return {'checked': True, 'info': int(info), 'singular': singular.tolist(),
+                'reconstruction_error': float(np.max(np.abs((u * singular) @ vt-matrix)))}
+    arrays = [matrix]
+    metadata_check = lambda: True
+else:
+    # Controls precede BOTH product and fixture imports, and remain inactive here.
+    import simrecon as sr
+    sys.path.insert(0, 'tests')
+    from observable_volume_phase_estimation_fixture import canonical, observe
+    images = np.array([1., -.2, .5, -.4, .8, .1]).reshape(6, 1, 1, 1)
+    phases = np.array([-2.7, -1.4, -.2, .9, 2.2, 2.9])
+    values = np.array([1., .23+.08j, .11-.04j], dtype=np.complex128).reshape(3,1,1,1)
+    # |c(phi)| >= 1-2|F1|-2|F2| > .27, so the nuisance rank cannot change.
+    def prepare():
+        frequencies = [np.arange(-(n//2), (n+1)//2)/n for n in images.shape[1:]]
+        orders = sr.VolumeOrderOtf(values=values, fz_per_um=frequencies[0],
+            fy_per_um=frequencies[1], fx_per_um=frequencies[2], voxel_size_um=(1.,1.,1.),
+            origin_zyx=(0,0,0), source='supplied public dependency control')
+        arrays = [images, phases, values, *frequencies]
+        for array in arrays:
+            array.setflags(write=False)
+        metadata = (orders.voxel_size_um, orders.origin_zyx, orders.source)
+        def metadata_check():
+            return metadata == (orders.voxel_size_um, orders.origin_zyx, orders.source) and (
+                orders.values is values and all(getattr(orders, name) is original
+                for name, original in zip(('fz_per_um','fy_per_um','fx_per_um'),
+                                          frequencies, strict=True)))
+        def operation():
+            return getattr(sr, api_name)(images, order_otf=orders, carrier_bins_yx=(0,0),
+                initial_phases_rad=phases, max_nfev=1, gradient_tolerance=1e-9,
+                step_tolerance=1e-10, source='public dependency control')
+        def scientific(result):
+            # Independent stored-input targets at the prescribed unadvanced point.
+            truth = observe(images, values, (0,0), canonical(phases))
+            np.testing.assert_allclose(result.phases_rad, canonical(phases), atol=2e-14, rtol=0)
+            np.testing.assert_allclose(result.phasors, np.cos(phases)+1j*np.sin(phases),
+                                       atol=2e-14, rtol=0)
+            np.testing.assert_allclose(result.phase_deviations_rad, 0, atol=2e-14, rtol=0)
+            np.testing.assert_allclose(result.specimen_normalized.ravel(), truth.u,
+                                       atol=2e-11, rtol=2e-11)
+            expected_singular = (np.zeros(images[0].size) if api_name == 'estimate_volume_phases'
+                                 and not np.any(truth.mask) else truth.singular)
+            np.testing.assert_allclose(result.nuisance_singular_values, expected_singular,
+                                       atol=2e-11, rtol=2e-11)
+            np.testing.assert_allclose(result.phase_singular_values, truth.phase_singular,
+                                       atol=2e-11, rtol=2e-10)
+            assert result.nuisance_rank == truth.rank
+            assert result.phase_design_rank == truth.design_rank
+            if truth.phase_singular[0] > 1e-9:
+                assert result.phase_rank == truth.phase_rank
+            for field, expected in (
+                ('relative_residual', truth.relative), ('normalized_residual_rms', truth.rms),
+                ('normalized_imaginary_rms', truth.imaginary),
+                ('calibration_reality_defect', truth.defect),
+                ('gradient_inf_norm', truth.gradient)):
+                np.testing.assert_allclose(getattr(result,field), expected, atol=2e-11, rtol=2e-10)
+            if api_name == 'estimate_observable_volume_phases':
+                np.testing.assert_array_equal(result.observable_fourier_mask, truth.mask)
+                assert result.observable_dimension == int(np.count_nonzero(truth.mask))
+                assert result.unobservable_dimension == images[0].size-result.observable_dimension
+            expected_termination = (('no_observable_specimen' if (
+                 api_name == 'estimate_observable_volume_phases')
+                 else 'nuisance_rank_deficient') if not np.any(truth.mask) else
+                'nuisance_rank_deficient' if truth.rank < len(truth.singular) else
+                'stationary' if truth.gradient <= 1e-9 else 'evaluation_limit')
+            assert result.termination == expected_termination
+            assert result.image_scale == (float(np.max(np.abs(images))) if np.any(images) else 1.)
+            assert result.transfer_scale == (float(max(np.max(np.abs(values.real)),
+                np.max(np.abs(values.imag)))) if np.any(values) else 1.)
+            assert result.global_ambiguity == 'unassessed'
+            assert result.carrier_bins_yx == (0,0) and result.source == 'public dependency control'
+            assert result.nfev >= 0 and result.njev >= 0
+            if not np.any(truth.mask):
+                assert result.phase_rank == result.nuisance_rank == 0
+                assert result.nuisance_singular_values.shape == expected_singular.shape
+                np.testing.assert_array_equal(result.phase_singular_values, np.zeros(6))
+                np.testing.assert_array_equal(result.specimen_normalized, 0)
+                assert result.gradient_inf_norm == result.normalized_imaginary_rms == 0
+            return {'checked': True, 'termination': result.termination,
+                'rank': truth.rank, 'phase_rank': truth.phase_rank,
+                'gradient': truth.gradient, 'condition':
+                float(truth.singular[0]/truth.singular[-1]) if truth.rank == len(
+                    truth.singular) and truth.rank else None,
+                'allowance': truth.allowance, 'rms': truth.rms,
+                'specimen': truth.u.tolist(), 'nuisance_singular': truth.singular.tolist()}
+        return operation, scientific, arrays, metadata_check
+    operation, scientific, arrays, metadata_check = prepare()
+
+# Matched genuine pass-through companion in the same fresh interpreter.
+baseline, result = measured(operation, False, arrays, metadata_check)
+assert baseline['outcome'] == 'normal', baseline
+baseline['science'] = scientific(result)
+report['baseline'] = baseline
+if boundary == 'no_optimizer':
+    assert kind in ('zero','nonzero','deficient')
+    assert baseline['calls'] >= 1 and baseline['science']['gradient'] > 1e-4
+    if kind in ('zero','nonzero'):
+        images = (np.arange(36, dtype=float).reshape(6,1,2,3)-18
+                  if kind == 'nonzero' else np.zeros((6,1,2,3)))
+        values = np.zeros((3,1,2,3), dtype=np.complex128)
     else:
-        report.update(outcome='finite_result', finite=bool(
-            np.isfinite(result.specimen_normalized).all()
-            and np.isfinite(result.phases_rad).all()
-            and np.isfinite(result.normalized_residual_rms)))
-    finally:
-        state['active'] = False
-    report['mode_preserved'] = np.geterr() == mode
-    report['filters_preserved'] = warnings.filters == filters
-    report['warnings'] = [{'category': w.category.__name__, 'message': str(w.message),
-                           'filename': w.filename, 'lineno': w.lineno} for w in observed]
-report['hits'] = state['hits']
-report['inputs_preserved'] = before == [
-    (a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable) for a in arrays]
-report['metadata_preserved'] = metadata == (
-    orders.voxel_size_um, orders.origin_zyx, orders.source) and orders.values is values and all(
-        getattr(orders, name) is original for name, original in zip(
-            ('fz_per_um', 'fy_per_um', 'fx_per_um'), frequencies, strict=True))
+        images = np.tile(np.array([[[1.,-.25]]]), (6,1,1,1))
+        values = np.zeros((3,1,1,2), dtype=np.complex128)
+        values[0,0,0] = [1,1]
+        values[1,0,0,0] = -.5
+        phases = np.zeros(6)
+    operation, scientific, arrays, metadata_check = prepare()
+    # Count only; no fault or synthetic solver output is needed for no-call proof.
+    observed, result = measured(operation, False, arrays, metadata_check)
+else:
+    observed, result = measured(operation, kind != 'none', arrays, metadata_check)
+if observed['outcome'] == 'normal':
+    observed['science'] = scientific(result)
+report['observed'] = observed
+report['fault_evidence'] = ('delivered' if observed['delivered'] else
+    'unexercised' if kind != 'none' and boundary != 'no_optimizer' else 'not_requested')
 for module, name, original in originals:
     setattr(module, name, original)
 print('SOLVER_PUBLIC_PROBE ' + json.dumps(report, sort_keys=True))

@@ -351,11 +351,7 @@ def test_normalization_underflow_changes_support_without_original_value_promise(
 
 
 @pytest.mark.parametrize("nonzero", [False, True])
-def test_zero_dimension_diagnostics_without_optimizer(nonzero: bool, monkeypatch: Any) -> None:
-    def forbidden(*args: Any, **kwargs: Any) -> Any:
-        raise AssertionError("no optimizer is permitted for r=0")
-
-    monkeypatch.setattr(scipy.optimize, "least_squares", forbidden)
+def test_zero_dimension_diagnostics_without_optimizer(nonzero: bool) -> None:
     images = np.arange(36, dtype=np.float64).reshape(6, 1, 2, 3) - 18
     if not nonzero:
         images.fill(0)
@@ -382,18 +378,13 @@ def test_zero_dimension_diagnostics_without_optimizer(nonzero: bool, monkeypatch
     assert result.nfev >= 0 and result.njev >= 0
 
 
-def test_deficiency_is_phase_specific_and_does_not_delete_retained_orbit(monkeypatch: Any) -> None:
+def test_deficiency_is_phase_specific_and_does_not_delete_retained_orbit() -> None:
     values = np.zeros((3, 1, 1, 2), dtype=np.complex128)
     values[0, 0, 0] = [1, 1]
     values[1, 0, 0, 0] = -0.5
     images = np.tile(np.array([[[1.0, -0.25]]]), (6, 1, 1, 1))
 
-    def forbidden(*args: Any, **kwargs: Any) -> Any:
-        raise AssertionError("initial numerical deficiency must bypass optimizer")
-
-    with monkeypatch.context() as local:
-        local.setattr(scipy.optimize, "least_squares", forbidden)
-        result = estimate(images, values, initial_phases_rad=np.zeros(6))
+    result = estimate(images, values, initial_phases_rad=np.zeros(6))
     assert result.observable_dimension == 2 and result.nuisance_rank == 1
     assert result.termination == "nuisance_rank_deficient"
     assert_array_equal(result.phases_rad, np.zeros(6))
@@ -1074,94 +1065,17 @@ def test_common_component_scaling_extrema_zero_and_caller_policies() -> None:
     assert_array_equal(values, original_values)
 
 
-@pytest.mark.parametrize(
-    "failure",
-    [
-        "floating",
-        "overflow",
-        "memory",
-        "runtime",
-        "type",
-        "value",
-    ],
-)
-def test_public_fft_exceptions_classify_without_finite_fabrication(
-    failure: str,
-    monkeypatch: Any,
-) -> None:
-    images, values, _, nominal, _, _ = inference_group(0)
-    errors = {
-        "floating": FloatingPointError("genuine numeric exception probe"),
-        "overflow": OverflowError("genuine numeric exception probe"),
-        "memory": MemoryError("genuine allocation exception probe"),
-        "runtime": RuntimeError("unrelated dependency exception probe"),
-        "type": TypeError("unrelated dependency exception probe"),
-        "value": ValueError("unrelated dependency exception probe"),
-    }
-    error = errors[failure]
-
-    def fail(*args: Any, **kwargs: Any) -> Any:
-        raise error
-
-    monkeypatch.setattr(np.fft, "fftn", fail)
-    unrelated = failure in ("memory", "runtime", "type", "value")
-    if unrelated:
-        with pytest.raises(type(error)) as caught:
-            estimate(images, values, carrier_bins_yx=(0, 1), initial_phases_rad=nominal)
-        assert caught.value is error
-    else:
-        expect_code(
-            "volume_phase_estimation_transform_failure",
-            images,
-            values,
-            carrier_bins_yx=(0, 1),
-            initial_phases_rad=nominal,
-        )
+@pytest.mark.parametrize("failure", ["floating", "overflow", "memory", "runtime", "type", "value"])
+def test_public_fft_exceptions_classify_without_finite_fabrication(failure: str) -> None:
+    assert_solver_failure_report(run_dependency_probe("fft", failure), failure)
 
 
-def test_arithmetic_runtime_warning_handled_under_caller_ignore(
-    monkeypatch: Any,
-) -> None:
-    images, values, _, nominal, _, _ = inference_group(0)
-    actual = np.fft.fftn
-
-    def warn_then_call(*args: Any, **kwargs: Any) -> Any:
-        warnings.warn("arithmetic dependency probe", RuntimeWarning, stacklevel=1)
-        return actual(*args, **kwargs)
-
-    monkeypatch.setattr(np.fft, "fftn", warn_then_call)
-    with warnings.catch_warnings(record=True) as caught:
-        warnings.simplefilter("ignore", RuntimeWarning)
-        before = list(warnings.filters)
-        expect_code(
-            "volume_phase_estimation_transform_failure",
-            images,
-            values,
-            carrier_bins_yx=(0, 1),
-            initial_phases_rad=nominal,
-        )
-        assert warnings.filters == before
-        assert not any(issubclass(item.category, RuntimeWarning) for item in caught)
+def test_arithmetic_runtime_warning_handled_under_caller_ignore() -> None:
+    assert_solver_failure_report(run_dependency_probe("fft", "runtime_warning"), "runtime_warning")
 
 
-def test_unrelated_warning_visible_and_input_bytes_preserved_after_failure(
-    monkeypatch: Any,
-) -> None:
-    images, values, _, nominal, _, _ = inference_group(0)
-    snapshots = [array.tobytes() for array in (images, values, nominal)]
-    actual = np.fft.fftn
-
-    def warn_then_call(*args: Any, **kwargs: Any) -> Any:
-        warnings.warn("visible unrelated dependency warning", UserWarning, stacklevel=1)
-        return actual(*args, **kwargs)
-
-    with monkeypatch.context() as local:
-        local.setattr(np.fft, "fftn", warn_then_call)
-        with pytest.warns(UserWarning, match="visible unrelated dependency warning"):
-            estimate(images, values, carrier_bins_yx=(0, 1), initial_phases_rad=nominal)
-    expect_code(PREFIX + "controls", images, values, initial_phases_rad=nominal, max_nfev=0)
-    for array, before in zip((images, values, nominal), snapshots, strict=True):
-        assert array.tobytes() == before
+def test_unrelated_warning_visible_and_input_bytes_preserved_after_failure() -> None:
+    assert_solver_failure_report(run_dependency_probe("fft", "user_warning"), "user_warning")
 
 
 def test_actual_solver_stagnation_vs_stationary_ordering() -> None:
@@ -1526,28 +1440,109 @@ def test_observable_estimator_consumes_actual_raw_empirical_calibration_adapter(
     assert_profile(result, pair["specimen_images"], orders.values, pair["carrier"])
 
 
+def run_dependency_probe(
+    boundary: str, kind: str, api_name: str = "estimate_observable_volume_phases"
+) -> dict[str, Any]:
+    """Run the gate child; blind roles exercise its literal as a direct entry."""
+    completed = subprocess.run(
+        [sys.executable, "-c", SOLVER_FAILURE_PAYLOAD, api_name, boundary, kind],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+    assert completed.returncode == 0, completed.stderr
+    rows = [
+        line.removeprefix("SOLVER_PUBLIC_PROBE ")
+        for line in completed.stdout.splitlines()
+        if line.startswith("SOLVER_PUBLIC_PROBE ")
+    ]
+    assert len(rows) == 1
+    report = json.loads(rows[0])
+    assert isinstance(report, dict)
+    assert report["api"] == api_name and report["boundary"] == boundary
+    assert report["kind"] == kind
+    return report
+
+
 def assert_solver_failure_report(report: dict[str, Any], kind: str) -> None:
-    """Assert only public failure, identity, warning and preservation outcomes."""
-    assert report["hits"] >= 1
-    assert report["mode_preserved"] and report["filters_preserved"]
-    assert report["inputs_preserved"]
-    assert report["metadata_preserved"]
+    """Check normal science on a miss without claiming fault-handling proof."""
+    assert report["schema"] == "public-dependency-control.v2"
+    assert report["kind"] == kind
+    boundary = report["boundary"]
+    assert boundary in ("svd", "fft", "optimizer", "no_optimizer")
+    assert report["installed"] and len(report["installed"]) == len(set(report["installed"]))
+    baseline, observed = report["baseline"], report["observed"]
+    for row in (baseline, observed):
+        assert row["phase"] == "measured_public_operation"
+        assert type(row["calls"]) is int and row["calls"] >= 0
+        assert type(row["delivered"]) is int and 0 <= row["delivered"] <= row["calls"]
+        assert row["mode_preserved"] and row["filters_preserved"]
+        assert row["inputs_preserved"] and row["metadata_preserved"]
+        assert isinstance(row["warnings"], list)
+        for warning in row["warnings"]:
+            assert isinstance(warning["category"], str)
+            assert isinstance(warning["message"], str)
+            assert isinstance(warning["filename"], str) and warning["filename"]
+            assert type(warning["lineno"]) is int and warning["lineno"] > 0
+    assert baseline["outcome"] == "normal" and baseline["science"]["checked"] is True
+    assert baseline["delivered"] == 0 and baseline["requested_fault"] is False
+    assert not baseline["warnings"]
+    if boundary == "no_optimizer":
+        assert kind in ("zero", "nonzero", "deficient")
+        assert baseline["calls"] >= 1 and baseline["science"]["gradient"] > 1e-4
+        assert observed["calls"] == observed["delivered"] == 0
+        assert observed["requested_fault"] is False
+        assert observed["outcome"] == "normal" and observed["science"]["checked"] is True
+        assert not observed["warnings"]
+        assert report["fault_evidence"] == "not_requested"
+        return
+    requested = kind != "none"
+    assert observed["requested_fault"] is requested
+    # A matched informative operation cannot disappear only in its fault run.
+    assert (baseline["calls"] > 0) == (observed["calls"] > 0)
+    if boundary in ("fft", "optimizer"):
+        assert baseline["calls"] >= 1 and observed["calls"] >= 1
+    if not requested or observed["delivered"] == 0:
+        assert observed["delivered"] == 0
+        assert not requested or (boundary == "svd" and observed["calls"] == 0)
+        assert report["fault_evidence"] == ("unexercised" if requested else "not_requested")
+        assert observed["outcome"] == "normal" and observed["science"]["checked"] is True
+        assert not observed["warnings"]
+        return
+    assert report["fault_evidence"] == "delivered"
+    if observed["outcome"] == "exception":
+        diagnostic = observed["diagnostic"]
+        while True:
+            assert isinstance(diagnostic["type"], str)
+            assert isinstance(diagnostic["message"], str)
+            assert diagnostic["frames"]
+            for frame in diagnostic["frames"]:
+                assert isinstance(frame["filename"], str) and frame["filename"]
+                assert isinstance(frame["function"], str) and frame["function"]
+                assert type(frame["lineno"]) is int and frame["lineno"] > 0
+            if "chained" not in diagnostic:
+                break
+            diagnostic = diagnostic["chained"]
     if kind in ("linalg", "floating", "overflow", "runtime_warning"):
-        assert report["outcome"] == "exception"
-        assert report["code"] == "volume_phase_estimation_solver_failure"
-        assert report["domain_error"]
-        assert not any(w["category"] == "RuntimeWarning" for w in report["warnings"])
+        assert observed["outcome"] == "exception"
+        expected = (
+            "volume_phase_estimation_transform_failure"
+            if boundary == "fft"
+            else "volume_phase_estimation_solver_failure"
+        )
+        assert observed["code"] == expected and observed["domain_error"]
+        assert not any(w["category"] == "RuntimeWarning" for w in observed["warnings"])
     elif kind == "user_warning":
-        assert report["outcome"] == "finite_result" and report["finite"]
+        assert observed["outcome"] == "normal" and observed["science"]["checked"] is True
         assert any(
-            w["category"] == "UserWarning"
-            and w["message"] == "controlled public solver unrelated warning"
-            for w in report["warnings"]
+            w["category"] == "UserWarning" and w["message"] == "controlled public unrelated warning"
+            for w in observed["warnings"]
         )
     else:
-        assert report["outcome"] == "exception" and report["identical"]
+        assert observed["outcome"] == "exception" and observed["identical"]
         assert (
-            report["exception_type"]
+            observed["exception_type"]
             == {
                 "memory": "MemoryError",
                 "runtime": "RuntimeError",
@@ -1575,31 +1570,30 @@ def assert_solver_failure_report(report: dict[str, Any], kind: str) -> None:
 def test_public_solver_failures_with_controls_before_product_import(
     boundary: str, kind: str
 ) -> None:
-    # Normal C/full-gate execution uses real fresh interpreters. Blind A/B run the
-    # same literal directly through the admitted source-free tool entry, since
-    # the diagnostic helper explicitly does not adapt nested child channels.
-    completed = subprocess.run(
-        [
-            sys.executable,
-            "-c",
-            SOLVER_FAILURE_PAYLOAD,
-            "estimate_observable_volume_phases",
-            boundary,
-            kind,
-        ],
-        capture_output=True,
-        text=True,
-        check=False,
-        timeout=60,
-    )
-    assert completed.returncode == 0, completed.stderr
-    rows = [
-        line.removeprefix("SOLVER_PUBLIC_PROBE ")
-        for line in completed.stdout.splitlines()
-        if line.startswith("SOLVER_PUBLIC_PROBE ")
-    ]
-    assert len(rows) == 1
-    assert_solver_failure_report(json.loads(rows[0]), kind)
+    assert_solver_failure_report(run_dependency_probe(boundary, kind), kind)
+
+
+@pytest.mark.parametrize("boundary", ["fft", "svd", "optimizer"])
+def test_preimport_dependency_controls_pass_through_real_product(boundary: str) -> None:
+    assert_solver_failure_report(run_dependency_probe(boundary, "none"), "none")
+
+
+@pytest.mark.parametrize("kind", ["zero", "nonzero", "deficient"])
+def test_preimport_optimizer_counts_unavailable_and_informative_companion(kind: str) -> None:
+    assert_solver_failure_report(run_dependency_probe("no_optimizer", kind), kind)
+
+
+@pytest.mark.parametrize("api_name", ["lapack_direct", "lapack_selected"])
+def test_finite_svd_controls_permit_genuine_lapack_alternatives(api_name: str) -> None:
+    # These public numerical callers demonstrate the finite control scope. They
+    # supply no product factors, solver record or exhaustive backend claim.
+    report = run_dependency_probe("svd", "linalg", api_name)
+    assert_solver_failure_report(report, "linalg")
+    for row in (report["baseline"], report["observed"]):
+        assert row["calls"] == row["delivered"] == 0
+        assert row["science"]["info"] == 0
+        assert_allclose(row["science"]["singular"], np.sqrt([14, 5]), atol=2e-14)
+        assert row["science"]["reconstruction_error"] < 3e-14
 
 
 @pytest.mark.parametrize("exposures", [5, 6])
