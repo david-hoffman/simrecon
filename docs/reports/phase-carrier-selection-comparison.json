@@ -1,0 +1,718 @@
+{
+  "schema": "simrecon.phase-carrier-selection-comparison.v1",
+  "status": "OBSERVED_ACTUAL_EXAMPLES02",
+  "operation": "select_volume_phase_carrier",
+  "evidence_role": "Actual restricted C producer; independent public forward/observer construction; coordinator verifies closed inputs/outputs. Formal exact-candidate verification and platform evidence are recorded separately.",
+  "eligibility": {
+    "termination": "stationary",
+    "relative_residual": "<= converted max_relative_residual",
+    "phase_rank": ">= exact min_phase_rank",
+    "comparison": "inclusive, exact returned represented fields; no extra tolerance"
+  },
+  "selection": {
+    "one_eligible": "sole index",
+    "zero_eligible": "no_acceptable_volume_phase_carrier",
+    "multiple_eligible": "ambiguous_volume_phase_carrier",
+    "duplicates_and_aliases": "distinct rows; no arbitrary winner"
+  },
+  "input_pins": [
+    {
+      "path": "docs/contracts/phase-carrier-selection-v1.md",
+      "size_bytes": 11086,
+      "sha256": "9405f291d05124a1eb0b57cd269a9d7acefcb1d1ffe05242de800732ea722d21"
+    },
+    {
+      "path": "docs/usage/phase-carrier-selection.md",
+      "size_bytes": 7965,
+      "sha256": "b431b8cae9a78c77fb7f923e1a0186441ad92b9fe8e0a61373381bf90880163b"
+    },
+    {
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/summary.json",
+      "size_bytes": 124056,
+      "sha256": "ac6acba16ff91a22ded4e99450c27ff1b0c61c50d654de5f07aad6b314c1aaf2"
+    },
+    {
+      "path": "artifacts/phase-carrier-selection-20261018/C01/candidate-example-closure02.json",
+      "size_bytes": 1322,
+      "sha256": "1855224acffb141ca9cf7c1582c9eed7e6b9bbba46dad490974bc188e04c474f"
+    }
+  ],
+  "raw_composition": {
+    "actual_steps_as_reported": [
+      "raw declaration",
+      "camera correction",
+      "point-bead calibration",
+      "empirical transfer adaptation"
+    ],
+    "supplied_camera_offset_counts": 13,
+    "supplied_response_counts_per_signal_unit": 2.1,
+    "supplied_bead_intensity_signal_units": 4.1,
+    "supplied_reference_angles_rad": {
+      "calibration": 0.21,
+      "specimen": -0.16
+    },
+    "intentional_supplied_truth": [
+      "calibration phases",
+      "calibration carrier",
+      "voxel spacing",
+      "reference shift"
+    ],
+    "coverage_limit": "physical specimen carrier deliberately included in candidate table; evaluator specimen and actual exposure phases withheld from fit"
+  },
+  "groups": [
+    {
+      "group": "finite_fourier",
+      "shape_zyx": [
+        2,
+        3,
+        3
+      ],
+      "exposure_count": 7,
+      "informative_signed_orders": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "hidden_unequal_phase_deviations": true,
+      "calibration_error_signed_max_component": 0.0,
+      "max_abs_signed_diagnostic_difference": 3.9968028886505635e-15,
+      "max_abs_stored_minus_independent_objective": 1.7763568394002505e-15,
+      "decisions": [
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "sole",
+            "rank": 1,
+            "residual": 0.02
+          },
+          "eligible_indices": [
+            1
+          ],
+          "selected_index": 1,
+          "failure_code": null,
+          "curated_rows": [
+            {
+              "row_index": 0,
+              "carrier_yx_detector_bins": [
+                0,
+                0
+              ],
+              "termination": "stagnated",
+              "relative_residual_dimensionless": 0.30050846761372885,
+              "phase_rank": 7,
+              "wrapped_phase_error_rms_rad": 1.5116038695282614,
+              "independent_normalized_objective": 1.4043339420928511,
+              "stored_minus_independent_normalized_objective": 0.0,
+              "nfev": 27,
+              "njev": 22
+            },
+            {
+              "row_index": 1,
+              "carrier_yx_detector_bins": [
+                1,
+                -1
+              ],
+              "termination": "stationary",
+              "relative_residual_dimensionless": 3.190420538599076e-16,
+              "phase_rank": 7,
+              "wrapped_phase_error_rms_rad": 3.1419367640407046e-16,
+              "independent_normalized_objective": 4.8276016873978797e-29,
+              "stored_minus_independent_normalized_objective": -4.669311924061099e-29,
+              "nfev": 7,
+              "njev": 7
+            }
+          ]
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "none_huge_rank",
+            "rank": {
+              "exact_integer_expression": "10**400"
+            },
+            "residual": 0.02
+          },
+          "eligible_indices": [],
+          "selected_index": null,
+          "failure_code": "no_acceptable_volume_phase_carrier"
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "alias_duplicate_ambiguity",
+            "rank": 1,
+            "residual": 0.02
+          },
+          "eligible_indices": [
+            1,
+            2,
+            3
+          ],
+          "selected_index": null,
+          "failure_code": "ambiguous_volume_phase_carrier"
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "loose_ambiguity",
+            "rank": 0,
+            "residual": 1.0
+          },
+          "eligible_indices": [
+            1,
+            2,
+            3
+          ],
+          "selected_index": null,
+          "failure_code": "ambiguous_volume_phase_carrier"
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 1,
+            "name": "evaluation_limit",
+            "rank": 0,
+            "residual": 1.0
+          },
+          "eligible_indices": [],
+          "selected_index": null,
+          "failure_code": "no_acceptable_volume_phase_carrier",
+          "curated_rows": [
+            {
+              "row_index": 0,
+              "carrier_yx_detector_bins": [
+                0,
+                0
+              ],
+              "termination": "evaluation_limit",
+              "relative_residual_dimensionless": 0.3921741252558492,
+              "phase_rank": 7,
+              "wrapped_phase_error_rms_rad": 0.07091242083423342,
+              "independent_normalized_objective": 2.391744797335077,
+              "stored_minus_independent_normalized_objective": 0.0,
+              "nfev": 3,
+              "njev": 3
+            },
+            {
+              "row_index": 1,
+              "carrier_yx_detector_bins": [
+                1,
+                -1
+              ],
+              "termination": "evaluation_limit",
+              "relative_residual_dimensionless": 0.02682320889807742,
+              "phase_rank": 7,
+              "wrapped_phase_error_rms_rad": 0.07091242083423342,
+              "independent_normalized_objective": 0.011188669065695676,
+              "stored_minus_independent_normalized_objective": -1.3010426069826053e-16,
+              "nfev": 3,
+              "njev": 3
+            }
+          ]
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "unavailable",
+            "rank": 0,
+            "residual": 1.0
+          },
+          "eligible_indices": [],
+          "selected_index": null,
+          "failure_code": "no_acceptable_volume_phase_carrier",
+          "curated_rows": [
+            {
+              "row_index": 0,
+              "carrier_yx_detector_bins": [
+                0,
+                0
+              ],
+              "termination": "no_observable_specimen",
+              "relative_residual_dimensionless": 1.0,
+              "phase_rank": 0,
+              "wrapped_phase_error_rms_rad": 0.07091242083423342,
+              "independent_normalized_objective": 15.550951427360486,
+              "stored_minus_independent_normalized_objective": 1.7763568394002505e-15,
+              "nfev": 0,
+              "njev": 0
+            },
+            {
+              "row_index": 1,
+              "carrier_yx_detector_bins": [
+                1,
+                -1
+              ],
+              "termination": "no_observable_specimen",
+              "relative_residual_dimensionless": 1.0,
+              "phase_rank": 0,
+              "wrapped_phase_error_rms_rad": 0.07091242083423342,
+              "independent_normalized_objective": 15.550951427360486,
+              "stored_minus_independent_normalized_objective": 1.7763568394002505e-15,
+              "nfev": 0,
+              "njev": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "raw_spatial",
+      "shape_zyx": [
+        1,
+        3,
+        4
+      ],
+      "exposure_count": 7,
+      "informative_signed_orders": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "hidden_unequal_phase_deviations": true,
+      "calibration_error_signed_max_component": -2.220446049250313e-16,
+      "max_abs_signed_diagnostic_difference": 2.886579864025407e-15,
+      "max_abs_stored_minus_independent_objective": 3.552713678800501e-15,
+      "decisions": [
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "sole",
+            "rank": 1,
+            "residual": 0.02
+          },
+          "eligible_indices": [
+            1
+          ],
+          "selected_index": 1,
+          "failure_code": null,
+          "curated_rows": [
+            {
+              "row_index": 0,
+              "carrier_yx_detector_bins": [
+                0,
+                0
+              ],
+              "termination": "stationary",
+              "relative_residual_dimensionless": 0.17578341925951632,
+              "phase_rank": 6,
+              "wrapped_phase_error_rms_rad": 1.6125726390637587,
+              "independent_normalized_objective": 0.6407787106955383,
+              "stored_minus_independent_normalized_objective": 0.0,
+              "nfev": 34,
+              "njev": 18
+            },
+            {
+              "row_index": 1,
+              "carrier_yx_detector_bins": [
+                1,
+                -1
+              ],
+              "termination": "stationary",
+              "relative_residual_dimensionless": 5.432685627632365e-16,
+              "phase_rank": 7,
+              "wrapped_phase_error_rms_rad": 7.418175056449349e-16,
+              "independent_normalized_objective": 2.075575813985182e-29,
+              "stored_minus_independent_normalized_objective": -1.463533557771568e-29,
+              "nfev": 6,
+              "njev": 6
+            }
+          ]
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "none_huge_rank",
+            "rank": {
+              "exact_integer_expression": "10**400"
+            },
+            "residual": 0.02
+          },
+          "eligible_indices": [],
+          "selected_index": null,
+          "failure_code": "no_acceptable_volume_phase_carrier"
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "alias_duplicate_ambiguity",
+            "rank": 1,
+            "residual": 0.02
+          },
+          "eligible_indices": [
+            1,
+            2,
+            3
+          ],
+          "selected_index": null,
+          "failure_code": "ambiguous_volume_phase_carrier"
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "loose_ambiguity",
+            "rank": 0,
+            "residual": 1.0
+          },
+          "eligible_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selected_index": null,
+          "failure_code": "ambiguous_volume_phase_carrier"
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 1,
+            "name": "evaluation_limit",
+            "rank": 0,
+            "residual": 1.0
+          },
+          "eligible_indices": [],
+          "selected_index": null,
+          "failure_code": "no_acceptable_volume_phase_carrier",
+          "curated_rows": [
+            {
+              "row_index": 0,
+              "carrier_yx_detector_bins": [
+                0,
+                0
+              ],
+              "termination": "evaluation_limit",
+              "relative_residual_dimensionless": 0.35823609246888166,
+              "phase_rank": 6,
+              "wrapped_phase_error_rms_rad": 0.07406560798180413,
+              "independent_normalized_objective": 2.661282245663973,
+              "stored_minus_independent_normalized_objective": 1.7763568394002505e-15,
+              "nfev": 3,
+              "njev": 3
+            },
+            {
+              "row_index": 1,
+              "carrier_yx_detector_bins": [
+                1,
+                -1
+              ],
+              "termination": "evaluation_limit",
+              "relative_residual_dimensionless": 0.014943890305834538,
+              "phase_rank": 7,
+              "wrapped_phase_error_rms_rad": 0.07406560798180413,
+              "independent_normalized_objective": 0.004631051391281239,
+              "stored_minus_independent_normalized_objective": -4.336808689942018e-18,
+              "nfev": 3,
+              "njev": 3
+            }
+          ]
+        },
+        {
+          "policy": {
+            "candidates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "limit": 200,
+            "name": "unavailable",
+            "rank": 0,
+            "residual": 1.0
+          },
+          "eligible_indices": [],
+          "selected_index": null,
+          "failure_code": "no_acceptable_volume_phase_carrier",
+          "curated_rows": [
+            {
+              "row_index": 0,
+              "carrier_yx_detector_bins": [
+                0,
+                0
+              ],
+              "termination": "no_observable_specimen",
+              "relative_residual_dimensionless": 1.0,
+              "phase_rank": 0,
+              "wrapped_phase_error_rms_rad": 0.07406560798180413,
+              "independent_normalized_objective": 20.73730228779573,
+              "stored_minus_independent_normalized_objective": 3.552713678800501e-15,
+              "nfev": 0,
+              "njev": 0
+            },
+            {
+              "row_index": 1,
+              "carrier_yx_detector_bins": [
+                1,
+                -1
+              ],
+              "termination": "no_observable_specimen",
+              "relative_residual_dimensionless": 1.0,
+              "phase_rank": 0,
+              "wrapped_phase_error_rms_rad": 0.07406560798180413,
+              "independent_normalized_objective": 20.73730228779573,
+              "stored_minus_independent_normalized_objective": 3.552713678800501e-15,
+              "nfev": 0,
+              "njev": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "comparison_allowance": {
+    "value": 2e-10,
+    "scope": "original example observer comparisons, not selector tolerance or general error bound"
+  },
+  "limits": [
+    "Policy decisions are separate from independent returned-point numerical checks and evaluator-only phase error.",
+    "Stationarity does not prove a minimum; rank and residual do not prove physical identity, correct basin, global uniqueness, calibration applicability or uncertainty.",
+    "Tiny noiseless finite periodic grids with nearby nominal starts; no measured instrument accuracy or noise validation.",
+    "No arbitrary-start recovery, continuous carrier/drift/gain inference, dense scalability or complete raw workflow claim.",
+    "Endpoint hash equality does not prove continuous custody; original dirty generation is not final clean-candidate or full-gate acceptance.",
+    "Actual regenerated summary agrees with original examples01; original evidence is retained separately, never relabeled. Local ignored producer/array/association artifacts must accompany reproduction; they are not tracked report attachments."
+  ],
+  "prior_generation": {
+    "id": "C01/evidence/examples01",
+    "producer_status_as_reported": 0,
+    "producer_start_utc_as_reported": "2026-10-18T17:43:08.383100+00:00",
+    "producer_end_utc_as_reported": "2026-10-18T17:43:08.936975+00:00",
+    "producer_elapsed_s_as_reported": 0.553875,
+    "generation_state": "original dirty state preserved",
+    "closure_status": "CLOSED",
+    "closure_all_before_after_hashes_equal": true
+  },
+  "generation": {
+    "id": "C01/evidence/examples02",
+    "producer_status": 0,
+    "producer_start_utc": "2026-10-18T18:12:51.590662+00:00",
+    "producer_end_utc": "2026-10-18T18:12:52.134887+00:00",
+    "producer_elapsed_s": 0.544225,
+    "generation_state": "original actual dirty state preserved; later clean static-version admission is separate",
+    "closure_status": "CLOSED",
+    "all_before_after_input_hashes_equal": true,
+    "material_inputs": 16003,
+    "closed_members": 43,
+    "scientific_summary_equal_original_examples01": true,
+    "accepted_tests_sha256": "b5bf1253e4eb516d0eeed9ddc7ecda6733ebf70e642d0ee465ce917ce1202c41",
+    "frozen_case_count": 170
+  },
+  "prior_envelope_pins": [
+    {
+      "size_bytes": 11109,
+      "sha256": "13525dc28fc2f798eb597c70ca27a4e7e7d42f52ed400add4eaa2d7690329c06",
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples01/manifest.json"
+    },
+    {
+      "size_bytes": 10552795,
+      "sha256": "9749ed30d098777d91697def15b5a6d784a42e58c2f245a7d1fdfc176c2756a4",
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples01/association.json"
+    }
+  ],
+  "envelope_pins": [
+    {
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/manifest.json",
+      "size_bytes": 11109,
+      "sha256": "f023374581bf0481157e0aa898eb79af4d2b3945fef967d2853ef7405965c518"
+    },
+    {
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/association.json",
+      "size_bytes": 10553173,
+      "sha256": "51c594df6652260d570725e8240c1afb1c4ee034d585d4c88af876120adafe24"
+    }
+  ]
+}
