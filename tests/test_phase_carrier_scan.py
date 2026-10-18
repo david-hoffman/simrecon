@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import warnings
 from dataclasses import FrozenInstanceError
+from inspect import Parameter, signature
 from typing import Any
 
 import numpy as np
@@ -688,13 +689,20 @@ def test_all_keywords_are_required_and_only_images_is_positional():
         "step_tolerance": 1e-10,
         "source": SOURCE,
     }
+    public_signature = signature(scan_volume_phase_carriers)
+    public_signature.bind(group["images"], **arguments)
     for key in arguments:
+        parameter = public_signature.parameters[key]
+        assert parameter.kind is Parameter.KEYWORD_ONLY
+        assert parameter.default is Parameter.empty
         missing = dict(arguments)
         del missing[key]
         with pytest.raises(TypeError):
             scan_volume_phase_carriers(group["images"], **missing)
+    remaining = dict(arguments)
+    positional_order_otf = remaining.pop("order_otf")
     with pytest.raises(TypeError):
-        scan_volume_phase_carriers(group["images"], group["orders"], **arguments)
+        scan_volume_phase_carriers(group["images"], positional_order_otf, **remaining)
 
 
 @pytest.mark.parametrize(
