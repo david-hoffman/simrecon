@@ -18,6 +18,7 @@ from phase_carrier_selection_fixture import (
     Observation,
     direct_observation,
     independent_fit,
+    observe,
     phase_blind_observation,
     raw_observation,
 )
@@ -423,6 +424,10 @@ def test_complete_real_fits_independent_objective_and_policy(factory: Any) -> No
     assert result.failure_code == "ambiguous_volume_phase_carrier"
     assert_policy(result, 0.02, 1)
     for row in result.candidates:
+        # Every informative real fit evaluates its residual and analytic
+        # Jacobian. Their exact counts may vary with valid organization.
+        assert type(row.nfev) is int and row.nfev > 0
+        assert type(row.njev) is int and row.njev > 0
         expected = independent_fit(case, row)
         assert expected["condition"] <= 10
         assert expected["singular"][-1] >= 1 / 16
@@ -460,6 +465,40 @@ def test_sole_none_multiple_order_and_no_residual_ranking() -> None:
     multiple = select(case, residual=1.0, rank=0)
     assert_policy(multiple, 1.0, 0)
     assert multiple.selected_index is None
+
+
+@pytest.mark.parametrize("sparse", [False, True], ids=["unequal-residual", "unequal-rank"])
+def test_unequal_eligible_rows_remain_ambiguous_without_ranking(sparse: bool) -> None:
+    case = direct_observation()
+    if sparse:
+        values = np.zeros_like(case.orders.values)
+        values[:, 0, 1, 1] = [1, 0.1 + 0.03j, 0.05 - 0.02j]
+        case.orders = changed_orders(case.orders, values=values)
+        # Independently regenerate observations from the supplied transfer.
+        # Hidden specimen/phases remain evaluator-only, outside selection inputs.
+        case.images = observe(case.specimen, values, case.truth, case.carrier)
+    carriers = [(0, 0), (0, 1)] if sparse else [(1, 0), (0, 1)]
+    result = select(
+        case,
+        residual=1.0,
+        rank=1,
+        candidate_carriers_yx=carriers,
+        gradient_tolerance=0.9,
+        **({"max_nfev": 1} if sparse else {}),
+    )
+    assert len(result.candidates) == 2
+    assert [row.carrier_bins_yx for row in result.candidates] == carriers
+    # Reachability guards distinguish forbidden ranking from equal-value ties.
+    # Returned values establish policy inputs, not diagnostic accuracy truth.
+    assert all(row.termination == "stationary" for row in result.candidates)
+    assert all(row.relative_residual <= 1.0 and row.phase_rank >= 1 for row in result.candidates)
+    assert result.candidates[0].relative_residual != result.candidates[1].relative_residual
+    if sparse:
+        assert result.candidates[0].phase_rank != result.candidates[1].phase_rank
+    assert_policy(result, 1.0, 1)
+    assert result.eligible_indices == (0, 1)
+    assert result.selected_index is None
+    assert result.failure_code == "ambiguous_volume_phase_carrier"
 
 
 @pytest.mark.parametrize(
