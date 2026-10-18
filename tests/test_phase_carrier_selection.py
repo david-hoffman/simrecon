@@ -316,16 +316,36 @@ def test_available_wider_float_source_and_conversion_boundaries() -> None:
 
 
 @pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, MemoryError, RuntimeError])
-def test_residual_conversion_exception_boundary(kind: type[Exception]) -> None:
+@pytest.mark.parametrize("exact_limit", [0.5, 1.0, 2.0], ids=["below", "inclusive", "above"])
+def test_residual_conversion_exception_boundary(kind: type[Exception], exact_limit: float) -> None:
+    encountered: list[str] = []
+    marker = kind("test-owned residual conversion failure")
+
     class ConversionFailure(float):
         def __float__(self) -> float:
-            raise kind("public scalar conversion failure")
+            encountered.append("__float__")
+            raise marker
 
-    expected = SimreconError if kind in (TypeError, ValueError, OverflowError) else kind
-    with pytest.raises(expected) as caught:
-        select(phase_blind_observation(), residual=ConversionFailure(1.0))
-    if expected is SimreconError:
-        assert caught.value.code == POLICY_ERROR  # type: ignore[attr-defined]
+    try:
+        result = select(
+            phase_blind_observation(),
+            residual=ConversionFailure(exact_limit),
+            candidate_carriers_yx=[(0, 0)],
+        )
+    except SimreconError as error:
+        assert encountered
+        assert kind in (TypeError, ValueError, OverflowError)
+        assert error.code == POLICY_ERROR
+    except (MemoryError, RuntimeError) as error:
+        assert encountered
+        assert error is marker
+    else:
+        # A valid exact conversion may bypass an optional subtype override.
+        # Success after encountering its raising hook would swallow the error.
+        assert not encountered
+        assert_policy(result, exact_limit, 0)
+        assert result.eligible_indices == ((0,) if exact_limit >= 1.0 else ())
+        assert result.selected_index == (0 if exact_limit >= 1.0 else None)
 
 
 @pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, MemoryError, RuntimeError])
