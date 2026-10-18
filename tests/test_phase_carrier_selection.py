@@ -328,6 +328,45 @@ def test_residual_conversion_exception_boundary(kind: type[Exception]) -> None:
         assert caught.value.code == POLICY_ERROR  # type: ignore[attr-defined]
 
 
+@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, MemoryError, RuntimeError])
+@pytest.mark.parametrize("exact_rank", [0, 10**400], ids=["zero", "huge"])
+def test_rank_extraction_exception_boundary_or_legitimate_bypass(
+    kind: type[Exception], exact_rank: int
+) -> None:
+    encountered: list[str] = []
+    marker = kind("test-owned rank extraction failure")
+
+    class ObservedRank(int):
+        def __int__(self) -> int:
+            encountered.append("__int__")
+            raise marker
+
+        def __index__(self) -> int:
+            encountered.append("__index__")
+            raise marker
+
+    try:
+        result = select(
+            phase_blind_observation(),
+            rank=ObservedRank(exact_rank),
+            candidate_carriers_yx=[(0, 0)],
+        )
+    except SimreconError as error:
+        assert encountered
+        assert kind in (TypeError, ValueError, OverflowError)
+        assert error.code == POLICY_ERROR
+    except (MemoryError, RuntimeError) as error:
+        assert encountered
+        assert error is marker
+    else:
+        # Exact extraction may legitimately bypass an optional subtype hook.
+        # Success after actually encountering its exception would swallow it.
+        assert not encountered
+        assert_policy(result, 1.0, exact_rank)
+        assert result.eligible_indices == ((0,) if exact_rank == 0 else ())
+        assert result.selected_index == (0 if exact_rank == 0 else None)
+
+
 def test_policy_is_validated_before_numerical_dependencies(monkeypatch: pytest.MonkeyPatch) -> None:
     def unexpected(*args: Any, **kwargs: Any) -> Any:
         raise AssertionError("numerical dependency ran before policy validation")
