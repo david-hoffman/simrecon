@@ -313,3 +313,52 @@ def independent_fit(case: Case, budget: int, *, projected_only: bool = False) ->
         xtol=1e-10,
         max_nfev=budget,
     )
+
+
+def growing_global_cutoff_case(multiplier: float) -> Case:
+    """Give a varying strong DC block and a constant weak Nyquist block.
+
+    The two singular values are norm(1+cos(phi)) and sqrt(6)*w.
+    Choosing w relative to the initial global cutoff separates a later
+    cross-block rank loss from the retained-availability companion.
+    """
+    initial = canonical(PHASES.copy())
+    values = np.zeros((3, 1, 1, 4), dtype=np.complex128)
+    values[0, 0, 0, 0] = 1
+    values[1, 0, 0, 0] = 0.5
+    values[0, 0, 0, 2] = multiplier * EPS * 48 * np.linalg.norm(1 + np.cos(initial)) / np.sqrt(6)
+    return Case(np.ones((6, 1, 1, 4)), values, (0, 0), initial)
+
+
+def cutoff_growth_trajectory(case: Case) -> tuple[list[tuple[Real, Profile]], Any]:
+    """Observe real independent solver trials, stopping only on global rank loss."""
+    visits: list[tuple[Real, Profile]] = []
+
+    class RankLoss(Exception):
+        pass
+
+    def residual(phases: Real) -> Real:
+        point = profile(case, phases)
+        visits.append((phases.copy(), point))
+        if point.rank != 2:
+            raise RankLoss("independent same-point global cutoff loses nuisance rank")
+        return point.residual
+
+    try:
+        result = least_squares(
+            residual,
+            case.initial,
+            jac=cast(Any, lambda phases: profile(case, phases).jacobian),
+            method="trf",
+            bounds=(-np.inf, np.inf),
+            loss="linear",
+            x_scale=1,
+            tr_solver="exact",
+            ftol=cast(Any, None),
+            gtol=1e-9,
+            xtol=1e-10,
+            max_nfev=200,
+        )
+    except RankLoss:
+        return visits, None
+    return visits, result

@@ -13,7 +13,9 @@ from fourier_block_phase_estimation_fixture import (
     Case,
     canonical,
     coupled_case,
+    cutoff_growth_trajectory,
     dft,
+    growing_global_cutoff_case,
     independent_fit,
     model,
     partition,
@@ -185,6 +187,62 @@ def test_global_cutoff_discards_entire_weak_pair_but_retains_structural_support(
     assert np.count_nonzero(row.nuisance_singular_values > cutoff) == 2
     assert_allclose(row.phases_rad, canonical(case.initial), atol=5e-16, rtol=0)
     assert np.linalg.norm(row.specimen_normalized) < 5
+
+
+def test_cross_block_trial_cutoff_growth_restores_initial_candidate_and_diagnostics() -> None:
+    case = growing_global_cutoff_case(1.05)
+    initial = profile(case, case.initial)
+    length = 2 * case.images.size
+    sigma0 = np.linalg.norm(1 + np.cos(case.initial))
+    weak = np.sqrt(6) * case.values[0, 0, 0, 2].real
+    cutoff0 = EPS * length * sigma0
+    # Analytic one-column blocks: the initial weak direction has a 5% margin.
+    assert weak > 1.04 * cutoff0
+    assert initial.rank == initial.basis.shape[1] == 2
+    visits, result = cutoff_growth_trajectory(case)
+    assert result is None  # A real independently selected trial caused rank loss.
+    trial_phases, lost = visits[-1]
+    trial_max = np.linalg.norm(1 + np.cos(trial_phases))
+    trial_cutoff = EPS * length * trial_max
+    # No exact trial is prescribed. These strict margins distinguish the
+    # same-point global decision from frozen initial or block-local cutoffs.
+    assert trial_cutoff > 1.01 * weak > cutoff0
+    assert lost.rank == 1
+    assert lost.local_ranks == initial.local_ranks
+    assert_allclose(lost.singular[0], trial_max, atol=2e-14, rtol=0)
+    assert_array_equal(lost.block_singular[2], initial.block_singular[2])
+    row = case.estimate(200)
+    assert row.termination == "rank_changed"
+    assert row.observable_dimension == row.nuisance_rank == 2
+    assert_allclose(row.phases_rad, case.initial, atol=1e-15, rtol=0)
+    assert_allclose(row.phase_deviations_rad, 0, atol=1e-15, rtol=0)
+    assert_allclose(row.nuisance_singular_values[0], sigma0, atol=2e-14, rtol=0)
+    assert np.count_nonzero(row.nuisance_singular_values > cutoff0) == 2
+    # Restoration includes the complete initial nuisance/residual/information
+    # and full-profile gradient, rather than diagnostics from the failed trial.
+    assert_profile(row, case)
+    assert_allclose(row.calibration_reality_defect, 0, atol=2e-14, rtol=0)
+
+
+def test_cross_block_cutoff_growth_retains_a_sufficiently_available_weak_block() -> None:
+    case = growing_global_cutoff_case(2.0)
+    weak = np.sqrt(6) * case.values[0, 0, 0, 2].real
+    # Since 0<=1+cos(phi)<=2, this upper bound covers every possible phase
+    # vector, not merely the observed independent solver trajectory.
+    maximum_cutoff = EPS * (2 * case.images.size) * (2 * np.sqrt(6))
+    assert weak > 1.2 * maximum_cutoff
+    visits, result = cutoff_growth_trajectory(case)
+    assert result is not None and result.status > 0
+    assert all(point.rank == 2 for _, point in visits)
+    assert max(point.singular[0] for _, point in visits) > 1.2 * visits[0][1].singular[0]
+    row = case.estimate(200)
+    assert row.termination == "stationary"
+    assert row.observable_dimension == row.nuisance_rank == 2
+    assert row.gradient_inf_norm <= 1e-9
+    assert np.max(np.abs(row.phase_deviations_rad)) > 0.01
+    # No phase-truth or matching final-trajectory claim: check the independent
+    # complete objective and diagnostics at the actually returned candidate.
+    assert_profile(row, case)
 
 
 def test_full_off_model_derivative_and_global_coupled_step() -> None:
