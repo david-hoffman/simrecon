@@ -419,3 +419,133 @@ def empirical_pair_fixture() -> dict[str, Any]:
             "intensity_unit": "counts",
         },
     }
+
+
+def reduced_inference_fixture(exposures: int) -> dict[str, Any]:
+    """Hide axial-antisymmetric specimen content from all supplied order maps."""
+    _, base_values, actual, nominal, base_specimen, base_kernels = inference_group(0)
+    kernels = np.repeat(base_kernels, 2, axis=1) / 2
+    observable = np.repeat(base_specimen, 2, axis=0)
+    amplitude = 0.07 + 0.013 * np.arange(base_specimen.size).reshape(base_specimen.shape)
+    invisible = np.concatenate((amplitude, -amplitude), axis=0)
+    hidden = observable + invisible
+    values = np.zeros((3, *hidden.shape), dtype=np.complex128)
+    values[:, 1] = base_values[:, 0]  # Axial DC only; other bins are exact stored zeros.
+    images = spatial_images(hidden, kernels, (0, 1), actual[:exposures])
+    return {
+        "images": images,
+        "values": values,
+        "actual": actual[:exposures].copy(),
+        "nominal": nominal[:exposures].copy(),
+        "observable": observable,
+        "hidden": hidden,
+        "invisible": invisible,
+        "kernels": kernels,
+    }
+
+
+# The CI test starts a fresh interpreter so public dependency controls are in
+# place before product-bound imports. Blind probes execute this exact literal
+# directly as fresh tool-level source-free entries, never as nested children.
+SOLVER_FAILURE_PAYLOAD = r"""
+import json
+import sys
+import warnings
+import numpy as np
+import scipy.linalg
+import scipy.optimize
+
+api_name, boundary, kind = sys.argv[1:4]
+assert 'simrecon' not in sys.modules, 'controls require a fresh product import'
+state = {'active': False, 'hits': 0}
+errors = {
+    'linalg': np.linalg.LinAlgError('controlled public solver numerical exception'),
+    'floating': FloatingPointError('controlled public solver numerical exception'),
+    'overflow': OverflowError('controlled public solver numerical exception'),
+    'memory': MemoryError('controlled public solver allocation exception'),
+    'runtime': RuntimeError('controlled public solver unrelated exception'),
+    'type': TypeError('controlled public solver unrelated exception'),
+    'value': ValueError('controlled public solver unrelated exception'),
+}
+error = errors.get(kind)
+originals = []
+def control(original):
+    def invoke(*args, **kwargs):
+        if state['active']:
+            state['hits'] += 1
+            if kind == 'runtime_warning':
+                warnings.warn('controlled public solver arithmetic warning', RuntimeWarning,
+                              stacklevel=1)
+            elif kind == 'user_warning':
+                warnings.warn('controlled public solver unrelated warning', UserWarning,
+                              stacklevel=1)
+            else:
+                raise error
+        return original(*args, **kwargs)
+    return invoke
+
+# Arm public SVD-based alternatives without selecting a particular backend or
+# requiring a module lookup at call time. Imports can legitimately do their own
+# work: controls remain inactive until the public operation is invoked.
+if boundary == 'svd':
+    for module in (np.linalg, scipy.linalg):
+        for name in ('svd', 'svdvals', 'pinv', 'lstsq'):
+            if hasattr(module, name):
+                original = getattr(module, name)
+                originals.append((module, name, original))
+                setattr(module, name, control(original))
+else:
+    assert boundary == 'optimizer'
+    original = scipy.optimize.least_squares
+    originals.append((scipy.optimize, 'least_squares', original))
+    scipy.optimize.least_squares = control(original)
+
+import simrecon as sr
+images = np.array([1., -.2, .5, -.4, .8, .1]).reshape(6, 1, 1, 1)
+phases = np.array([-2.7, -1.4, -.2, .9, 2.2, 2.9])
+values = np.array([1., .23+.08j, .11-.04j], dtype=np.complex128).reshape(3, 1, 1, 1)
+frequencies = [np.zeros(1) for _ in range(3)]
+orders = sr.VolumeOrderOtf(values=values, fz_per_um=frequencies[0],
+    fy_per_um=frequencies[1], fx_per_um=frequencies[2], voxel_size_um=(1.,1.,1.),
+    origin_zyx=(0,0,0), source='supplied public solver exception control')
+arrays = [images, phases, values, *frequencies]
+for array in arrays:
+    array.setflags(write=False)
+before = [(a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable) for a in arrays]
+metadata = (orders.voxel_size_um, orders.origin_zyx, orders.source)
+report = {'api': api_name, 'boundary': boundary, 'kind': kind}
+with np.errstate(all='raise'), warnings.catch_warnings(record=True) as observed:
+    warnings.simplefilter('ignore', RuntimeWarning)
+    warnings.simplefilter('always', UserWarning)
+    mode, filters = np.geterr(), list(warnings.filters)
+    state['active'] = True
+    try:
+        result = getattr(sr, api_name)(images, order_otf=orders, carrier_bins_yx=(0,0),
+            initial_phases_rad=phases, max_nfev=3, gradient_tolerance=1e-9,
+            step_tolerance=1e-10, source='public exception-only controls')
+    except Exception as caught:
+        report.update(outcome='exception', exception_type=type(caught).__name__,
+                      message=str(caught), code=getattr(caught, 'code', None),
+                      identical=caught is error, domain_error=isinstance(caught, sr.SimreconError))
+    else:
+        report.update(outcome='finite_result', finite=bool(
+            np.isfinite(result.specimen_normalized).all()
+            and np.isfinite(result.phases_rad).all()
+            and np.isfinite(result.normalized_residual_rms)))
+    finally:
+        state['active'] = False
+    report['mode_preserved'] = np.geterr() == mode
+    report['filters_preserved'] = warnings.filters == filters
+    report['warnings'] = [{'category': w.category.__name__, 'message': str(w.message),
+                           'filename': w.filename, 'lineno': w.lineno} for w in observed]
+report['hits'] = state['hits']
+report['inputs_preserved'] = before == [
+    (a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable) for a in arrays]
+report['metadata_preserved'] = metadata == (
+    orders.voxel_size_um, orders.origin_zyx, orders.source) and orders.values is values and all(
+        getattr(orders, name) is original for name, original in zip(
+            ('fz_per_um', 'fy_per_um', 'fx_per_um'), frequencies, strict=True))
+for module, name, original in originals:
+    setattr(module, name, original)
+print('SOLVER_PUBLIC_PROBE ' + json.dumps(report, sort_keys=True))
+"""

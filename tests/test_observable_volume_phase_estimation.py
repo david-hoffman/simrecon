@@ -6,6 +6,9 @@ used.  Tests compare the full lifted representative, never a particular Q.
 """
 
 import dataclasses
+import json
+import subprocess
+import sys
 import warnings
 from itertools import combinations
 from typing import Any, cast
@@ -19,6 +22,7 @@ import simrecon as sr
 from observable_volume_phase_estimation_fixture import (
     EPS,
     QUANTUM,
+    SOLVER_FAILURE_PAYLOAD,
     canonical,
     empirical_pair_fixture,
     geometry,
@@ -32,6 +36,7 @@ from observable_volume_phase_estimation_fixture import (
     powers,
     rank_change_fixture,
     record_fields,
+    reduced_inference_fixture,
     spatial_images,
     support,
 )
@@ -1519,3 +1524,174 @@ def test_observable_estimator_consumes_actual_raw_empirical_calibration_adapter(
     # now a supplied input; this observer checks the downstream stored-input fit,
     # not physical truth inferred from a returned estimator diagnostic.
     assert_profile(result, pair["specimen_images"], orders.values, pair["carrier"])
+
+
+def assert_solver_failure_report(report: dict[str, Any], kind: str) -> None:
+    """Assert only public failure, identity, warning and preservation outcomes."""
+    assert report["hits"] >= 1
+    assert report["mode_preserved"] and report["filters_preserved"]
+    assert report["inputs_preserved"]
+    assert report["metadata_preserved"]
+    if kind in ("linalg", "floating", "overflow", "runtime_warning"):
+        assert report["outcome"] == "exception"
+        assert report["code"] == "volume_phase_estimation_solver_failure"
+        assert report["domain_error"]
+        assert not any(w["category"] == "RuntimeWarning" for w in report["warnings"])
+    elif kind == "user_warning":
+        assert report["outcome"] == "finite_result" and report["finite"]
+        assert any(
+            w["category"] == "UserWarning"
+            and w["message"] == "controlled public solver unrelated warning"
+            for w in report["warnings"]
+        )
+    else:
+        assert report["outcome"] == "exception" and report["identical"]
+        assert (
+            report["exception_type"]
+            == {
+                "memory": "MemoryError",
+                "runtime": "RuntimeError",
+                "type": "TypeError",
+                "value": "ValueError",
+            }[kind]
+        )
+
+
+@pytest.mark.parametrize("boundary", ["svd", "optimizer"])
+@pytest.mark.parametrize(
+    "kind",
+    [
+        "linalg",
+        "floating",
+        "overflow",
+        "memory",
+        "runtime",
+        "type",
+        "value",
+        "runtime_warning",
+        "user_warning",
+    ],
+)
+def test_public_solver_failures_with_controls_before_product_import(
+    boundary: str, kind: str
+) -> None:
+    # Normal C/full-gate execution uses real fresh interpreters. Blind A/B run the
+    # same literal directly through the admitted source-free tool entry, since
+    # the diagnostic helper explicitly does not adapt nested child channels.
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            SOLVER_FAILURE_PAYLOAD,
+            "estimate_observable_volume_phases",
+            boundary,
+            kind,
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+    assert completed.returncode == 0, completed.stderr
+    rows = [
+        line.removeprefix("SOLVER_PUBLIC_PROBE ")
+        for line in completed.stdout.splitlines()
+        if line.startswith("SOLVER_PUBLIC_PROBE ")
+    ]
+    assert len(rows) == 1
+    assert_solver_failure_report(json.loads(rows[0]), kind)
+
+
+@pytest.mark.parametrize("exposures", [5, 6])
+def test_oracle_successful_reduced_phase_update_and_invisible_physical_content(
+    exposures: int,
+) -> None:
+    pair = reduced_inference_fixture(exposures)
+    images, values = pair["images"], pair["values"]
+    visited = []
+
+    def residual(phases: Any) -> Any:
+        point = observe(images, values, (0, 1), phases)
+        visited.append(point)
+        return point.residual
+
+    fit = scipy.optimize.least_squares(
+        residual,
+        canonical(pair["nominal"]),
+        jac=cast(Any, lambda phases: observe(images, values, (0, 1), phases).jacobian),
+        method="trf",
+        bounds=(-np.inf, np.inf),
+        loss="linear",
+        x_scale=1,
+        tr_solver="exact",
+        ftol=cast(Any, None),
+        gtol=1e-12,
+        xtol=1e-12,
+        max_nfev=200,
+    )
+    assert fit.status > 0
+    assert all(
+        point.rank == 6
+        and point.singular[-1] >= 1 / 16
+        and point.singular[0] / point.singular[-1] <= 10
+        and point.allowance <= 1 / 1024
+        for point in visited
+    )
+    assert np.max(np.abs(canonical(fit.x - pair["actual"]))) < 2e-7
+    assert np.linalg.norm(visited[-1].residual) < np.linalg.norm(visited[0].residual) / 1000
+    hidden = observe(images, values, (0, 1), canonical(pair["actual"]))
+    assert hidden.phase_rank == exposures
+    assert hidden.q.shape == (12, 6)
+    assert_array_equal(hidden.mask[0], False)
+    assert_array_equal(hidden.mask[1], True)
+    assert np.linalg.norm(hidden.a @ pair["invisible"].ravel()) < 2e-14
+    _, _, bscale, tscale = normalize(values, images)
+    expected = pair["observable"].ravel() * tscale / bscale
+    assert_allclose(hidden.u, expected, atol=2e-13, rtol=0)
+    assert np.linalg.norm(hidden.u - pair["hidden"].ravel() * tscale / bscale) > 0.05
+    predicted = spatial_images(pair["observable"], pair["kernels"], (0, 1), pair["actual"])
+    assert_allclose(images, predicted, atol=3e-15, rtol=0)
+
+
+@pytest.mark.parametrize("exposures", [5, 6])
+def test_successful_reduced_fit_updates_phases_and_returns_observable_lift(exposures: int) -> None:
+    pair = reduced_inference_fixture(exposures)
+    images, values = pair["images"], pair["values"]
+    initial = observe(images, values, (0, 1), canonical(pair["nominal"]))
+    result = estimate(
+        images,
+        values,
+        carrier_bins_yx=(0, 1),
+        initial_phases_rad=pair["nominal"],
+        max_nfev=200,
+        gradient_tolerance=1e-12,
+        step_tolerance=1e-12,
+    )
+    final = assert_profile(result, images, values, (0, 1))
+    assert result.observable_dimension == result.nuisance_rank == initial.rank == 6
+    assert result.unobservable_dimension == 6
+    assert result.phase_rank == exposures
+    assert result.termination == "stationary"
+    assert result.phases_rad.shape == result.phasors.shape == (exposures,)
+    assert result.phase_deviations_rad.shape == (exposures,)
+    assert_allclose(result.phasors, powers(result.phases_rad)[1], atol=0, rtol=0)
+    assert_allclose(
+        result.phase_deviations_rad,
+        canonical(result.phases_rad - canonical(pair["nominal"])),
+        atol=1e-14,
+        rtol=0,
+    )
+    assert np.max(np.abs(canonical(result.phases_rad - pair["nominal"]))) > 1e-3
+    assert np.max(np.abs(canonical(result.phases_rad - pair["actual"]))) < 2e-6
+    assert np.linalg.norm(final.residual) < np.linalg.norm(initial.residual) / 1000
+    _, _, bscale, tscale = normalize(values, images)
+    assert result.image_scale == bscale and result.transfer_scale == tscale
+    representative = pair["observable"] * tscale / bscale
+    hidden_physical = pair["hidden"] * tscale / bscale
+    assert_allclose(result.specimen_normalized, representative, atol=2e-6, rtol=2e-6)
+    assert np.linalg.norm(result.specimen_normalized - hidden_physical) > 0.05
+    _, _, transform = geometry(pair["hidden"].shape)
+    fourier = transform @ result.specimen_normalized.ravel()
+    assert_allclose(fourier[~final.mask.ravel()], 0, atol=2e-11, rtol=0)
+    full = np.linalg.lstsq(final.a, final.y, rcond=EPS * len(final.y))[0]
+    assert_allclose(result.specimen_normalized.ravel(), full, atol=2e-11, rtol=2e-11)
