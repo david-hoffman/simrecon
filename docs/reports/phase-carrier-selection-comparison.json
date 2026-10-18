@@ -1,6 +1,6 @@
 {
   "schema": "simrecon.phase-carrier-selection-comparison.v1",
-  "status": "OBSERVED_ACTUAL_EXAMPLES02",
+  "status": "OBSERVED_ACTUAL_EXAMPLES03",
   "operation": "select_volume_phase_carrier",
   "evidence_role": "Actual restricted C producer; independent public forward/observer construction; coordinator verifies closed inputs/outputs. Formal exact-candidate verification and platform evidence are recorded separately.",
   "eligibility": {
@@ -27,14 +27,14 @@
       "sha256": "b431b8cae9a78c77fb7f923e1a0186441ad92b9fe8e0a61373381bf90880163b"
     },
     {
-      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/summary.json",
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples03/summary.json",
       "size_bytes": 124056,
       "sha256": "ac6acba16ff91a22ded4e99450c27ff1b0c61c50d654de5f07aad6b314c1aaf2"
     },
     {
-      "path": "artifacts/phase-carrier-selection-20261018/C01/candidate-example-closure02.json",
-      "size_bytes": 1322,
-      "sha256": "1855224acffb141ca9cf7c1582c9eed7e6b9bbba46dad490974bc188e04c474f"
+      "path": "artifacts/phase-carrier-selection-20261018/C01/candidate-example-closure03.json",
+      "size_bytes": 1447,
+      "sha256": "1f33c37371937d8495fa917f5d4b846cbcaf06a8586e27b13fcf0364ce9490f8"
     }
   ],
   "raw_composition": {
@@ -663,8 +663,8 @@
     "Stationarity does not prove a minimum; rank and residual do not prove physical identity, correct basin, global uniqueness, calibration applicability or uncertainty.",
     "Tiny noiseless finite periodic grids with nearby nominal starts; no measured instrument accuracy or noise validation.",
     "No arbitrary-start recovery, continuous carrier/drift/gain inference, dense scalability or complete raw workflow claim.",
-    "Endpoint hash equality does not prove continuous custody; original dirty generation is not final clean-candidate or full-gate acceptance.",
-    "Actual regenerated summary agrees with original examples01; original evidence is retained separately, never relabeled. Local ignored producer/array/association artifacts must accompany reproduction; they are not tracked report attachments."
+    "Endpoint hash equality does not prove continuous custody. Original dirty generations and the fresh clean generation keep their actual identities; final candidate static-version admission and full-gate acceptance are separate.",
+    "Fresh examples03 scientific summary agrees exactly with original examples01 and examples02. Original evidence is retained separately. Local ignored producer/array/association artifacts must accompany reproduction; they are not tracked report attachments."
   ],
   "prior_generation": {
     "id": "C01/evidence/examples01",
@@ -677,19 +677,21 @@
     "closure_all_before_after_hashes_equal": true
   },
   "generation": {
-    "id": "C01/evidence/examples02",
+    "id": "C01/evidence/examples03",
     "producer_status": 0,
-    "producer_start_utc": "2026-10-18T18:12:51.590662+00:00",
-    "producer_end_utc": "2026-10-18T18:12:52.134887+00:00",
-    "producer_elapsed_s": 0.544225,
-    "generation_state": "original actual dirty state preserved; later clean static-version admission is separate",
+    "producer_start_utc": "2026-10-18T18:43:56.904836+00:00",
+    "producer_end_utc": "2026-10-18T18:43:57.454191+00:00",
+    "producer_elapsed_s": 0.549355,
+    "generation_state": "actual clean generation; later metadata-only candidate static-version admission is separate",
     "closure_status": "CLOSED",
     "all_before_after_input_hashes_equal": true,
-    "material_inputs": 16003,
-    "closed_members": 43,
-    "scientific_summary_equal_original_examples01": true,
+    "material_inputs": 16011,
+    "closed_members": 44,
+    "scientific_summary_equal_original_examples01_and_examples02": true,
     "accepted_tests_sha256": "b5bf1253e4eb516d0eeed9ddc7ecda6733ebf70e642d0ee465ce917ce1202c41",
-    "frozen_case_count": 170
+    "frozen_case_count": 170,
+    "metadata_grammar_checked_before_scientific_producer": true,
+    "dispatch_resolver_endpoints_observed_before_and_after": true
   },
   "prior_envelope_pins": [
     {
@@ -705,14 +707,52 @@
   ],
   "envelope_pins": [
     {
-      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/manifest.json",
-      "size_bytes": 11109,
-      "sha256": "f023374581bf0481157e0aa898eb79af4d2b3945fef967d2853ef7405965c518"
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples03/manifest.json",
+      "size_bytes": 11352,
+      "sha256": "ba0ae49d3ae4aabb3b2de62e72626f16cfadddc994b00a3523b77f2ef74109f5"
     },
     {
-      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/association.json",
-      "size_bytes": 10553173,
-      "sha256": "51c594df6652260d570725e8240c1afb1c4ee034d585d4c88af876120adafe24"
+      "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples03/association.json",
+      "size_bytes": 10560330,
+      "sha256": "eb022c30e510b336bb92dc959dc6be1f36d9df13efb856847c9648086dbafdc7"
     }
-  ]
+  ],
+  "prior_regenerations": [
+    {
+      "generation": {
+        "id": "C01/evidence/examples02",
+        "producer_status": 0,
+        "producer_start_utc": "2026-10-18T18:12:51.590662+00:00",
+        "producer_end_utc": "2026-10-18T18:12:52.134887+00:00",
+        "producer_elapsed_s": 0.544225,
+        "generation_state": "original actual dirty state preserved; later clean static-version admission is separate",
+        "closure_status": "CLOSED",
+        "all_before_after_input_hashes_equal": true,
+        "material_inputs": 16003,
+        "closed_members": 43,
+        "scientific_summary_equal_original_examples01": true,
+        "accepted_tests_sha256": "b5bf1253e4eb516d0eeed9ddc7ecda6733ebf70e642d0ee465ce917ce1202c41",
+        "frozen_case_count": 170
+      },
+      "envelope_pins": [
+        {
+          "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/manifest.json",
+          "size_bytes": 11109,
+          "sha256": "f023374581bf0481157e0aa898eb79af4d2b3945fef967d2853ef7405965c518"
+        },
+        {
+          "path": "artifacts/phase-carrier-selection-20261018/C01/evidence/examples02/association.json",
+          "size_bytes": 10553173,
+          "sha256": "51c594df6652260d570725e8240c1afb1c4ee034d585d4c88af876120adafe24"
+        }
+      ]
+    }
+  ],
+  "recorder_correction": {
+    "scope": "metadata-only compatibility with existing accepted input schema; numeric producer is byte-identical",
+    "unsupported_build_check_role_reclassified_as": "dependency",
+    "absolute_managed_environment_tool_roles": "dependency only; paths and bytes retained",
+    "preservation": "All original scientific and material input paths and bytes retained except generation-specific environment descriptor; prior files retained with original identities. New recorder, grammar sources and observed resolver endpoints are additionally pinned.",
+    "custody_limit": "Observed resolver endpoints do not establish dispatched-process, native-image or continuous custody."
+  }
 }
