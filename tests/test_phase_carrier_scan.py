@@ -770,3 +770,51 @@ def test_arithmetic_dependency_warning_translates_and_unrelated_warning_remains_
         rows = scan(group, max_nfev=1)
     assert len(rows) == len(group["candidates"])
     assert np.geterr() == mode and warnings.filters == filters
+
+
+@pytest.mark.parametrize("successful_conversions", [0, 1], ids=["immediate", "after-one-success"])
+@pytest.mark.parametrize(
+    "failure", [TypeError, ValueError, OverflowError, MemoryError, RuntimeError]
+)
+def test_otf_origin_conversion_failures_keep_named_boundary_even_after_success(
+    failure, successful_conversions
+):
+    conversion_error = failure("A01 OTF origin integer conversion")
+    successes = []
+    raised = []
+
+    class OriginInteger(int):
+        def __int__(self):
+            if len(successes) >= successful_conversions:
+                raised.append(True)
+                raise conversion_error
+            successes.append(True)
+            return 0
+
+    group = {
+        "images": np.ones((5, 1, 1, 1)),
+        "commands": np.arange(5, dtype=float),
+        "orders": record(np.zeros((3, 1, 1, 1), complex), origin=(OriginInteger(0), 0, 0)),
+        "candidates": [(0, 0)],
+    }
+    try:
+        rows = scan(group, max_nfev=1)
+    except SimreconError as error:
+        assert raised
+        assert failure in (TypeError, ValueError, OverflowError)
+        assert error.code == "invalid_volume_phase_estimation_otf"
+    except (TypeError, ValueError, OverflowError, MemoryError, RuntimeError) as error:
+        assert raised
+        assert failure in (MemoryError, RuntimeError)
+        assert error is conversion_error
+    else:
+        # Exact extraction may bypass __int__, or valid execution may use only the
+        # successful conversion. Neither strategy is required to reach the failure.
+        assert not raised
+        assert type(rows) is tuple and len(rows) == 1
+        row = rows[0]
+        assert type(row) is ObservableVolumePhaseEstimate
+        assert row.termination == "no_observable_specimen"
+        assert row.observable_dimension == 0
+        assert row.carrier_bins_yx == (0, 0)
+        assert row.source == SOURCE
