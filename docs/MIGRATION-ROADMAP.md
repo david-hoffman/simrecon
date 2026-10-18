@@ -102,6 +102,8 @@ This supplies quantities the current known-parameter volume path requires from i
 
 **Dependencies:** phases 2–4 and integrated estimation/reconstruction foundations. **Deliverables:** estimator/correction contracts, diagnostics, independent synthetic observations and correction provenance. **Exit:** required nuisance quantities are estimated without supplied truth; ambiguous inputs get contracted outcomes; signs, units and correction order are independently checked.
 
+The continuation above completed PR42 selects [caller-policy selection of unknown-phase carrier rows](contracts/phase-carrier-selection-v1.md). It composes the independent local fits with explicit residual/phase-rank policy, retains every row and selects only a sole passing stationary fit. This does not establish physical carrier identity, global phase recovery or completion of Phase5. Its [task pointer](tasks/phase-carrier-selection.md) retains exact high-risk review and delivery evidence.
+
 ### 6. Reference-compatible 3D reconstruction and output
 
 This closes the difference between finite-grid known-parameter recombination and the selected experimental mode.
