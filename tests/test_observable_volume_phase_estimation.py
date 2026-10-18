@@ -768,22 +768,130 @@ def test_permitted_real_widths_endian_layouts_and_signed_data(dtype: str, layout
     assert images.strides == strides and images.flags.writeable == writeable
 
 
+def native_representation_capabilities() -> dict[str, Any]:
+    """Measure actual source domains instead of assuming a platform dtype name."""
+    wide = np.finfo(np.longdouble)
+    overflow_source = np.longdouble(wide.max)
+    underflow_source = np.longdouble(wide.smallest_subnormal)
+    assert np.isfinite(overflow_source) and overflow_source > 0
+    assert np.isfinite(underflow_source) and underflow_source > 0
+    # These are observer conversions, not fabricated wider values or product faults.
+    with np.errstate(over="ignore", under="ignore"):
+        maximum_snapshot = np.array([overflow_source], dtype=np.longdouble).astype(np.float64)
+        minimum_snapshot = np.array([underflow_source], dtype=np.longdouble).astype(np.float64)
+    return {
+        "overflow_source": overflow_source,
+        "underflow_source": underflow_source,
+        "conversion_overflow": bool(np.isinf(maximum_snapshot[0])),
+        "conversion_underflow": bool(minimum_snapshot[0] == 0),
+        "longdouble_itemsize": np.dtype(np.longdouble).itemsize,
+        "clongdouble_itemsize": np.dtype(np.clongdouble).itemsize,
+    }
+
+
+def assert_permitted_native_representation(
+    images: Any, values: Any, phases: Any, operation: Any = estimate
+) -> Any:
+    """Check a real public operation against the one-voxel zero-order closed form."""
+    assert images.shape == (6, 1, 1, 1) and values.shape == (3, 1, 1, 1)
+    assert not np.any(values[1:]) and values[0, 0, 0, 0] != 0
+    snapshots = (
+        np.array(images, dtype=np.float64),
+        np.array(values, dtype=np.complex128),
+        np.array(phases, dtype=np.float64),
+    )
+    assert all(np.isfinite(array).all() for array in snapshots)
+    orders = make_orders(values)
+    arrays = [images, values, phases, orders.fz_per_um, orders.fy_per_um, orders.fx_per_um]
+    for array in arrays:
+        array.setflags(write=False)
+    before = [(a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable) for a in arrays]
+    mode, filters = np.geterr(), list(warnings.filters)
+    with np.errstate(all="raise"), warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        strict_mode, strict_filters = np.geterr(), list(warnings.filters)
+        result = operation(
+            images,
+            order_otf=orders,
+            carrier_bins_yx=(0, 0),
+            initial_phases_rad=phases,
+            max_nfev=1,
+            gradient_tolerance=1e-9,
+            step_tolerance=1e-10,
+            source=SOURCE,
+        )
+        assert np.geterr() == strict_mode and warnings.filters == strict_filters
+    assert np.geterr() == mode and warnings.filters == filters
+    assert not any(issubclass(item.category, RuntimeWarning) for item in caught)
+    data, transfer, angles = snapshots
+    image_scale = float(np.max(np.abs(data))) if np.any(data) else 1.0
+    transfer_scale = float(max(np.max(np.abs(transfer.real)), np.max(np.abs(transfer.imag))))
+    d = (data / image_scale).ravel()
+    a = transfer[0, 0, 0, 0] / transfer_scale
+    # min_u sum_p |d_p-a*u|^2, u real: u=Re(a)*sum(d)/(N*|a|^2).
+    target = a.real * np.sum(d) / (len(d) * (a.real * a.real + a.imag * a.imag))
+    residual_norm = np.hypot(
+        np.linalg.norm(d - a.real * target), np.sqrt(len(d)) * abs(a.imag * target)
+    )
+    expected = {
+        "normalized_residual_rms": residual_norm / np.sqrt(len(d)),
+        "relative_residual": residual_norm / np.linalg.norm(d) if np.any(d) else 0.0,
+        "normalized_imaginary_rms": abs(a.imag * target),
+        "calibration_reality_defect": 2 * abs(a.imag),
+    }
+    assert result.termination == "stationary" and result.nuisance_rank == 1
+    assert result.phase_rank == 0 and result.gradient_inf_norm == 0
+    assert result.image_scale == image_scale and result.transfer_scale == transfer_scale
+    assert_allclose(result.specimen_normalized, target, atol=2e-11, rtol=2e-11)
+    assert_allclose(
+        result.nuisance_singular_values,
+        [np.sqrt(len(d) * (a.real * a.real + a.imag * a.imag))],
+        atol=2e-11,
+        rtol=2e-11,
+    )
+    for name, value in expected.items():
+        assert_allclose(getattr(result, name), value, atol=2e-11, rtol=2e-10)
+    assert_allclose(result.phases_rad, canonical(angles), atol=2e-15, rtol=0)
+    assert_array_equal(result.phase_singular_values, np.zeros(6))
+    for field in ARRAY_FIELDS.keys() - {"observable_fourier_mask"}:
+        returned = getattr(result, field)
+        assert returned.flags.writeable
+        assert all(not np.shares_memory(returned, array) for array in arrays)
+    assert before == [
+        (a.tobytes(), a.shape, a.strides, a.dtype.str, a.flags.writeable) for a in arrays
+    ]
+    return result
+
+
 @pytest.mark.parametrize("field", ["images", "phases"])
 def test_wider_source_finite_but_converted_infinite_is_nonfinite(field: str) -> None:
-    if np.finfo(np.longdouble).max <= np.finfo(np.float64).max:
-        pytest.skip("platform has no wider finite real source domain")
-    value = np.longdouble(np.finfo(np.float64).max) * np.longdouble(2)
+    capabilities = native_representation_capabilities()
+    value = capabilities["overflow_source"]
     images = np.zeros((6, 1, 1, 1), dtype=np.longdouble)
     phases = PHASES.astype(np.longdouble)
     if field == "images":
         images.flat[-1] = value
     else:
         phases[-1] = value
-    suffix = "images" if field == "images" else "initial_phases"
-    code = "nonfinite_volume_phase_estimation_" + suffix
-    expect_code(
-        code, images, np.zeros((3, 1, 1, 1), dtype=np.complex128), initial_phases_rad=phases
-    )
+    assert np.isfinite(images).all() and np.isfinite(phases).all()
+    if capabilities["conversion_overflow"]:
+        suffix = "images" if field == "images" else "initial_phases"
+        code = "nonfinite_volume_phase_estimation_" + suffix
+        expect_code(
+            code,
+            images,
+            np.zeros((3, 1, 1, 1), dtype=np.complex128),
+            initial_phases_rad=phases,
+        )
+    else:
+        # No wider finite-to-infinite domain: exercise the actual finite maximum.
+        if field == "phases":
+            images.flat[-1] = 1
+        values = np.zeros((3, 1, 1, 1), dtype=np.complex128)
+        values[0] = 1
+        result = assert_permitted_native_representation(images, values, phases)
+        assert_profile(result, images.astype(np.float64), values, (0, 0))
+        assert_allclose(result.specimen_normalized, 1 / 6, atol=2e-11, rtol=2e-11)
 
 
 @pytest.mark.parametrize(
@@ -924,7 +1032,14 @@ def test_all_otf_fields_and_unused_samples_validated_with_zero_data(case: str) -
             "values_cwide": "clongdouble",
         }[case]
         if case == "values_cwide" and np.dtype(dtype).itemsize == 16:
-            pytest.skip("no distinct wider complex width on this platform")
+            # This actual representation meets the complex128-width rule.
+            permitted = np.zeros((3, 1, 1, 1), dtype=dtype)
+            permitted[0] = 1 + 0.25j
+            images = np.array([1, -0.25, 0.5, -0.75, 0.125, -0.5]).reshape(6, 1, 1, 1)
+            result = assert_permitted_native_representation(images, permitted, PHASES.copy())
+            assert_profile(result, images, permitted.astype(np.complex128), (0, 0))
+            assert_allclose(result.specimen_normalized, 1 / 51, atol=2e-11, rtol=2e-11)
+            return
         fields["values"] = np.zeros(values.shape, dtype=dtype)
     elif case == "values_rank":
         fields["values"] = values[None]
@@ -1155,18 +1270,25 @@ def test_uniform_specimen_can_have_phase_information() -> None:
 
 
 def test_finite_conversion_underflow_is_permitted_for_data_and_initial_phases() -> None:
-    if np.finfo(np.longdouble).tiny >= np.finfo(np.float64).tiny:
-        pytest.skip("no wider underflow example on this platform")
-    tiny = np.longdouble(QUANTUM) / np.longdouble(4)
+    capabilities = native_representation_capabilities()
+    tiny = capabilities["underflow_source"]
     images = np.full((6, 1, 1, 1), tiny, dtype=np.longdouble)
     angles = np.full(6, -tiny, dtype=np.longdouble)
-    values = np.ones((3, 1, 1, 1), dtype=np.complex128)
-    result = estimate(images, values, initial_phases_rad=angles)
-    assert result.termination == "stationary"
-    assert result.image_scale == 1
-    assert_array_equal(result.specimen_normalized, 0)
-    assert result.relative_residual == result.normalized_residual_rms == 0
-    assert_allclose(result.phases_rad, 0, atol=0, rtol=0)
+    values = np.zeros((3, 1, 1, 1), dtype=np.complex128)
+    values[0] = 1
+    assert np.all(images > 0) and np.all(angles < 0)
+    result = assert_permitted_native_representation(images, values, angles)
+    assert_profile(result, images.astype(np.float64), values, (0, 0))
+    if capabilities["conversion_underflow"]:
+        assert result.image_scale == 1
+        assert_array_equal(result.specimen_normalized, 0)
+        assert result.relative_residual == result.normalized_residual_rms == 0
+        assert_allclose(result.phases_rad, 0, atol=0, rtol=0)
+    else:
+        # No smaller source domain: retain the actual nonzero subnormal instead.
+        assert result.image_scale == QUANTUM
+        assert np.all(images.astype(np.float64) == QUANTUM)
+        assert_allclose(result.specimen_normalized, 1, atol=2e-11, rtol=2e-11)
 
 
 def test_frequency_tolerance_and_overflowing_period_have_permitted_positives() -> None:
