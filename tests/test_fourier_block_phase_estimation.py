@@ -1,5 +1,6 @@
 """Complementary public proofs for exact Fourier-block phase execution."""
 
+import warnings
 from typing import Any
 
 import numpy as np
@@ -17,6 +18,7 @@ from fourier_block_phase_estimation_fixture import (
     dft,
     growing_global_cutoff_case,
     independent_fit,
+    inverse_result_control,
     model,
     partition,
     profile,
@@ -366,3 +368,64 @@ def test_inverse_transform_failures_if_used_keep_the_inherited_boundary(
         # Do not require a backend merely to make injected failure observable.
         assert not calls
         assert_profile(row, case)
+
+
+@pytest.mark.parametrize("boundary", ["ifftn", "ifft", "irfftn"])
+@pytest.mark.parametrize(
+    "mode", ["nonfinite_nan", "nonfinite_inf", "missing_coordinate", "arithmetic_warning"]
+)
+def test_inverse_result_failures_if_used_keep_the_numerical_boundary_and_caller_policy(
+    monkeypatch: pytest.MonkeyPatch, boundary: str, mode: str
+) -> None:
+    case = coupled_case()
+    observations: list[dict[str, Any]] = []
+    controlled = inverse_result_control(getattr(np.fft, boundary), mode, observations)
+    monkeypatch.setattr(np.fft, boundary, controlled)
+    old_mode, old_filters = np.geterr(), list(warnings.filters)
+    with np.errstate(all="raise"), warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
+        caller_mode, caller_filters = np.geterr(), list(warnings.filters)
+        try:
+            row = case.estimate()
+        except SimreconError as error:
+            assert observations
+            assert error.code == "volume_phase_estimation_transform_failure"
+        else:
+            # An exact direct real lift or another inverse backend need not
+            # use the watched API. No dependency invocation is required.
+            assert not observations
+            assert_profile(row, case)
+        assert np.geterr() == caller_mode
+        assert warnings.filters == caller_filters
+    assert np.geterr() == old_mode
+    assert warnings.filters == old_filters
+
+
+@pytest.mark.parametrize("boundary", ["ifftn", "ifft", "irfftn"])
+def test_valid_inverse_result_and_unrelated_warning_preserve_fit_and_caller_policy(
+    monkeypatch: pytest.MonkeyPatch, boundary: str
+) -> None:
+    case = coupled_case()
+    observations: list[dict[str, Any]] = []
+    controlled = inverse_result_control(
+        getattr(np.fft, boundary), "user_warning_valid_result", observations
+    )
+    monkeypatch.setattr(np.fft, boundary, controlled)
+    old_mode, old_filters = np.geterr(), list(warnings.filters)
+    with np.errstate(all="raise"), warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        caller_mode, caller_filters = np.geterr(), list(warnings.filters)
+        row = case.estimate()
+        assert row.termination == "evaluation_limit"
+        assert_profile(row, case)
+        if observations:
+            assert any(
+                warning.category is UserWarning
+                and str(warning.message) == "supplemental inverse unrelated warning"
+                for warning in caught
+            )
+        assert not any(issubclass(warning.category, RuntimeWarning) for warning in caught)
+        assert np.geterr() == caller_mode
+        assert warnings.filters == caller_filters
+    assert np.geterr() == old_mode
+    assert warnings.filters == old_filters

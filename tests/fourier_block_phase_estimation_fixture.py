@@ -4,6 +4,7 @@ These deliberately dense independent observers are not production algorithms.
 All internal frequency labels are modular; public records use centered storage.
 """
 
+import warnings
 from dataclasses import dataclass
 from typing import Any, cast
 
@@ -362,3 +363,53 @@ def cutoff_growth_trajectory(case: Case) -> tuple[list[tuple[Real, Profile]], An
     except RankLoss:
         return visits, None
     return visits, result
+
+
+def inverse_result_control(original: Any, mode: str, observations: list[dict[str, Any]]) -> Any:
+    """Wrap a genuine public inverse result with a narrowly named failure.
+
+    No finite numerical answer is invented: faults lose a real coordinate,
+    replace one component with a nonfinite value, or emit a numerical warning.
+    The positive control keeps every indexed value and changes storage only.
+    """
+
+    def controlled(*args: Any, **kwargs: Any) -> Any:
+        genuine = original(*args, **kwargs)
+        assert isinstance(genuine, np.ndarray) and genuine.size > 0
+        assert np.all(np.isfinite(genuine))
+        observation: dict[str, Any] = {
+            "mode": mode,
+            "genuine_shape": genuine.shape,
+            "genuine_dtype": str(genuine.dtype),
+            "genuine_coordinates": genuine.size,
+        }
+        observations.append(observation)
+        if mode == "nonfinite_nan":
+            result = genuine.copy()
+            result.real.flat[0] = np.nan
+            observation["nonfinite_component"] = "real_nan"
+            return result
+        if mode == "nonfinite_inf":
+            result = genuine.copy()
+            if np.iscomplexobj(result):
+                result.imag.flat[0] = np.inf
+                observation["nonfinite_component"] = "imaginary_inf"
+            else:
+                result.flat[0] = np.inf
+                observation["nonfinite_component"] = "real_inf"
+            return result
+        if mode == "missing_coordinate":
+            result = genuine.reshape(-1)[:-1].copy()
+            observation["returned_coordinates"] = result.size
+            return result
+        if mode == "arithmetic_warning":
+            warnings.warn("supplemental inverse arithmetic warning", RuntimeWarning, stacklevel=2)
+            return genuine
+        if mode == "user_warning_valid_result":
+            result = np.array(genuine, order="F", copy=True)
+            assert np.array_equal(result, genuine)
+            warnings.warn("supplemental inverse unrelated warning", UserWarning, stacklevel=2)
+            return result
+        raise ValueError("unknown inverse-result control mode")
+
+    return controlled
