@@ -123,31 +123,50 @@ def invoke(
     failure: BaseException | None = None
     cleanup_events: list[dict[str, Any]] = []
 
-    def group_exists() -> bool:
-        try:
-            os.killpg(process.pid, 0)
-            return True
-        except ProcessLookupError:
-            return False
-
-    def stop_group() -> tuple[str, str]:
-        # The new session belongs to this call. Bounded cleanup precedes restore.
-        for sig, bound in ((signal.SIGTERM, 3), (signal.SIGKILL, 7)):
-            if group_exists():
-                with contextlib.suppress(ProcessLookupError):
-                    os.killpg(process.pid, sig)
-                cleanup_events.append({"signal": sig.name, "bound_s": bound})
+    def owned_processes() -> dict[int, tuple[int, str]]:
+        owned = {}
+        for pid, entry in process_table().items():
             try:
-                output = process.communicate(timeout=bound)
-            except subprocess.TimeoutExpired:
+                if os.getsid(pid) == process.pid:
+                    owned[pid] = entry
+            except ProcessLookupError:
                 continue
+        return owned
+
+    def stop_owned_session() -> tuple[str, str]:
+        # A descendant may change group while remaining in our new session.
+        # Keep waiting parents alive so they can reap terminated children.
+        for sig, bound in ((signal.SIGTERM, 3), (signal.SIGKILL, 7)):
             deadline = time.monotonic() + bound
-            while group_exists() and time.monotonic() < deadline:
+            signalled: set[int] = set()
+            while time.monotonic() < deadline:
+                process.poll()
+                owned = owned_processes()
+                if not owned:
+                    try:
+                        output = process.communicate(timeout=max(0.01, deadline - time.monotonic()))
+                    except subprocess.TimeoutExpired:
+                        break
+                    if not owned_processes():
+                        ACTIVE.discard(process.pid)
+                        return output
+                parents = {parent for parent, _ in owned.values()}
+                leaves = set(owned) - parents
+                for pid in leaves - signalled:
+                    if "Z" in owned[pid][1]:
+                        continue
+                    with contextlib.suppress(ProcessLookupError):
+                        # Recheck session ownership immediately before signalling.
+                        if os.getsid(pid) == process.pid:
+                            os.kill(pid, sig)
+                            cleanup_events.append(
+                                {"signal": sig.name, "bound_s": bound, "pid": pid}
+                            )
+                    signalled.add(pid)
                 time.sleep(0.05)
-            if not group_exists():
-                ACTIVE.discard(process.pid)
-                return output
-        raise AssertionError("Tooling blocker: owned process group remains; cache restore blocked")
+        raise AssertionError(
+            "Tooling blocker: owned session cleanup unproven; cache restore blocked"
+        )
 
     try:
         if monitor is not None:
@@ -155,11 +174,11 @@ def invoke(
         stdout, stderr = process.communicate(timeout=timeout)
     except subprocess.TimeoutExpired:
         timed_out = True
-        stdout, stderr = stop_group()
+        stdout, stderr = stop_owned_session()
     except BaseException as error:
         failure = error
         try:
-            stdout, stderr = stop_group()
+            stdout, stderr = stop_owned_session()
         except BaseException as cleanup_error:
             record(
                 "cleanup-blocked",
@@ -193,8 +212,8 @@ def invoke(
                 if failure is None:
                     raise AssertionError("Tooling blocker: child observer did not stop")
         if failure is None:
-            if group_exists():
-                stdout, stderr = stop_group()
+            if owned_processes():
+                stdout, stderr = stop_owned_session()
             else:
                 ACTIVE.discard(process.pid)
         record(

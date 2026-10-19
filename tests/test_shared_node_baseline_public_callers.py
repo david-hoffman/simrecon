@@ -2,16 +2,20 @@
 
 from __future__ import annotations
 
+import contextlib
 import json
 import os
+import subprocess
 import sys
 import tempfile
 import time
+from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
 
 import pytest
 
+import shared_node_baseline_public_callers_fixture as callers_fixture
 from shared_node_baseline_public_callers_fixture import (
     CACHE,
     DECLARATIONS,
@@ -720,3 +724,349 @@ def test_owned_invoke_exception_cleanup_before_cache_restore(
         with pytest.raises(ProcessLookupError):
             os.kill(pid, 0)
     assert interrupted and inventory(CACHE) == original and CACHE.stat().st_ino == inode
+
+
+def _lifecycle_states(pids: list[int]) -> list[dict[str, Any]]:
+    result = subprocess.run(
+        ["ps", "-p", ",".join(map(str, pids)), "-o", "pid=,ppid=,pgid=,stat="],
+        capture_output=True,
+        text=True,
+        timeout=3,
+    )
+    assert result.returncode in (0, 1)
+    states = []
+    for line in result.stdout.splitlines():
+        pid, parent, group, state = line.split()
+        states.append(
+            {
+                "pid": int(pid),
+                "ppid": int(parent),
+                "pgid": int(group),
+                "state": state,
+                "session": os.getsid(int(pid)),
+            }
+        )
+    return states
+
+
+@contextlib.contextmanager
+def _disposable_lifecycle_cache(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> Iterator[callers_fixture.ReaderReservation]:
+    cache_path = tmp_path / "owned-cache"
+    cache_path.mkdir()
+    marker = cache_path / "preserved.bin"
+    marker.write_bytes(b"A02-independent-owned-cache\x00\xff")
+    marker.chmod(0o640)
+    cache_path.chmod(0o750)
+    before = inventory(cache_path)
+    inode, mode = cache_path.stat().st_ino, cache_path.stat().st_mode
+    evidence = tmp_path / "owned-evidence"
+    evidence.mkdir()
+    with monkeypatch.context() as patch:
+        patch.setattr(callers_fixture, "CACHE", cache_path)
+        patch.setattr(callers_fixture, "EVIDENCE", evidence)
+        patch.setattr(callers_fixture, "RUN", evidence / "run")
+        with callers_fixture.ReaderReservation() as reservation:
+            yield reservation
+        assert inventory(cache_path) == before
+        assert cache_path.stat().st_ino == inode and cache_path.stat().st_mode == mode
+        assert not reservation.backup.exists() and not reservation.lock.exists()
+
+
+class _OwnedLifecycle:
+    """Real owned processes, independent observations and bounded emergency rescue."""
+
+    def __init__(self, directory: Path, separate: bool, mode: str, status: int = 0) -> None:
+        self.directory = directory
+        directory.mkdir()
+        self.separate = separate
+        self.mode = mode
+        self.failure = RuntimeError("A02-supplemental-original-interruption")
+        self.roots: list[subprocess.Popen[str]] = []
+        self.child_pid: int | None = None
+        self.observation_failed = False
+        self.first = True
+        self.stop = directory / "stop-child"
+        self.parent_identity = directory / "parent.json"
+        self.child_identity = directory / "child.json"
+        self.parent = directory / "parent.py"
+        child = directory / "child.py"
+        child.write_text(
+            "import json,os,pathlib,sys,time\n"
+            "print('A02-child-out',flush=True)\n"
+            "print('A02-child-err',file=sys.stderr,flush=True)\n"
+            f"identity=pathlib.Path({str(self.child_identity)!r})\n"
+            "temporary=identity.with_suffix('.tmp')\n"
+            "temporary.write_text(json.dumps(dict(pid=os.getpid(),ppid=os.getppid(),"
+            "pgid=os.getpgrp(),session=os.getsid(0))))\n"
+            "temporary.replace(identity)\n"
+            f"stop=pathlib.Path({str(self.stop)!r})\n"
+            f"deadline=time.monotonic()+{1 if mode == 'complete' else 20}\n"
+            "while time.monotonic()<deadline and not stop.exists(): time.sleep(0.02)\n"
+            f"sys.exit({status})\n"
+        )
+        self.parent.write_text(
+            "import json,os,pathlib,subprocess,sys\n"
+            "print('A02-parent-out',flush=True)\n"
+            "print('A02-parent-err',file=sys.stderr,flush=True)\n"
+            f"child=subprocess.Popen([sys.executable,{str(child)!r}]"
+            + (",process_group=0" if separate else "")
+            + ")\ntry:\n"
+            f"    identity=pathlib.Path({str(self.parent_identity)!r})\n"
+            "    temporary=identity.with_suffix('.tmp')\n"
+            "    temporary.write_text(json.dumps(dict(pid=os.getpid(),child=child.pid,"
+            "pgid=os.getpgrp(),session=os.getsid(0))))\n"
+            "    temporary.replace(identity)\n"
+            "    status=child.wait(timeout=24)\n"
+            "finally:\n"
+            f"    pathlib.Path({str(self.stop)!r}).touch()\n"
+            "    if child.poll() is None:\n"
+            "        child.terminate()\n"
+            "        try: child.wait(timeout=2)\n"
+            "        except subprocess.TimeoutExpired:\n"
+            "            child.kill()\n"
+            "            child.wait(timeout=2)\n"
+            "sys.exit(status)\n"
+        )
+        self.unrelated_stop = directory / "stop-unrelated"
+        unrelated_script = directory / "unrelated.py"
+        unrelated_script.write_text(
+            "import pathlib,time\n"
+            f"stop=pathlib.Path({str(self.unrelated_stop)!r})\n"
+            "deadline=time.monotonic()+30\n"
+            "while time.monotonic()<deadline and not stop.exists(): time.sleep(0.02)\n"
+        )
+        self.unrelated = subprocess.Popen(
+            [sys.executable, unrelated_script],
+            start_new_session=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        self.native_init = subprocess.Popen.__init__
+        self.native_communicate = subprocess.Popen.communicate
+        self.native_run = subprocess.run
+
+    def install(self, patch: pytest.MonkeyPatch) -> None:
+        def capture(process: Any, args: Any, *more: Any, **kwargs: Any) -> None:
+            self.native_init(process, args, *more, **kwargs)
+            if args == [sys.executable, str(self.parent)]:
+                self.roots.append(process)
+                record("A02-root-identity", {"pid": process.pid})
+
+        def communicate(process: Any, *args: Any, **kwargs: Any) -> Any:
+            if self.roots and process is self.roots[0] and self.first:
+                self.first = False
+                deadline = time.monotonic() + 5
+                while not (self.parent_identity.exists() and self.child_identity.exists()):
+                    assert time.monotonic() < deadline, (
+                        "Tooling nonwitness: identity markers absent"
+                    )
+                    time.sleep(0.02)
+                parent = json.loads(self.parent_identity.read_text())
+                self.child_pid = int(parent["child"])
+                record("A02-child-identity", {"parent": parent, "child_pid": self.child_pid})
+                child = json.loads(self.child_identity.read_text())
+                assert child["pid"] == self.child_pid and child["ppid"] == process.pid
+                assert parent["session"] == child["session"] == process.pid
+                assert (parent["pgid"] != child["pgid"]) == self.separate
+                states = _lifecycle_states([process.pid, self.child_pid, self.unrelated.pid])
+                record("A02-before-process-states", {"states": states})
+                assert {entry["pid"] for entry in states} == {
+                    process.pid,
+                    self.child_pid,
+                    self.unrelated.pid,
+                }
+                assert os.getsid(self.unrelated.pid) != process.pid
+                if self.mode in {"interrupt", "observation-failure"}:
+                    self.observation_failed = self.mode == "observation-failure"
+                    raise self.failure
+            return self.native_communicate(process, *args, **kwargs)
+
+        def run(args: Any, *more: Any, **kwargs: Any) -> Any:
+            if self.observation_failed and args[:2] == ["ps", "-axo"]:
+                raise PermissionError("A02-injected-public-process-observation-denied")
+            return self.native_run(args, *more, **kwargs)
+
+        patch.setattr(subprocess.Popen, "__init__", capture)
+        patch.setattr(subprocess.Popen, "communicate", communicate)
+        patch.setattr(subprocess, "run", run)
+
+    def assert_stopped(self) -> None:
+        assert self.child_pid is not None
+        with pytest.raises(ProcessLookupError):
+            os.kill(self.child_pid, 0)
+        with pytest.raises(ProcessLookupError):
+            os.kill(self.roots[0].pid, 0)
+        assert self.roots[0].pid not in callers_fixture.ACTIVE
+        assert self.unrelated.poll() is None
+        os.kill(self.unrelated.pid, 0)
+        states = _lifecycle_states([self.unrelated.pid])
+        assert len(states) == 1 and "Z" not in states[0]["state"]
+        record("A02-after-process-states", {"unrelated": states, "strict_owned_absence": True})
+
+    def rescue(self) -> None:
+        # No ps dependency and no remembered-child PID signal. Recovery is separate
+        # from the fixture's outcome; ACTIVE changes only after actual proof.
+        self.stop.touch()
+        self.unrelated_stop.touch()
+        rescue_errors: list[Exception] = []
+        try:
+            for process in [*self.roots, self.unrelated]:
+                try:
+                    try:
+                        process.wait(timeout=3)
+                    except subprocess.TimeoutExpired:
+                        process.terminate()
+                        try:
+                            process.wait(timeout=2)
+                        except subprocess.TimeoutExpired:
+                            process.kill()
+                            process.wait(timeout=2)
+                    stdout, stderr = self.native_communicate(process, timeout=1)
+                    record(
+                        "A02-rescue-native",
+                        {
+                            "pid": process.pid,
+                            "status": process.returncode,
+                            "stdout": stdout,
+                            "stderr": stderr,
+                        },
+                    )
+                except Exception as error:
+                    rescue_errors.append(error)
+        finally:
+            if self.child_pid is None and self.parent_identity.exists():
+                self.child_pid = int(json.loads(self.parent_identity.read_text())["child"])
+            if self.child_pid is not None:
+                deadline = time.monotonic() + 22
+                while time.monotonic() < deadline:
+                    try:
+                        os.kill(self.child_pid, 0)
+                    except ProcessLookupError:
+                        break
+                    time.sleep(0.02)
+                with pytest.raises(ProcessLookupError):
+                    os.kill(self.child_pid, 0)
+                for process in self.roots:
+                    assert process.returncode is not None
+                    with pytest.raises(ProcessLookupError):
+                        os.kill(process.pid, 0)
+                    # Only release this test's guard after independent disappearance.
+                    callers_fixture.ACTIVE.discard(process.pid)
+            elif self.roots:
+                raise AssertionError("Tooling blocker: rescue lacks owned child identity")
+        if rescue_errors:
+            raise ExceptionGroup("A02 bounded rescue incomplete", rescue_errors)
+
+
+@contextlib.contextmanager
+def _owned_lifecycle(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, *, separate: bool, mode: str, status: int = 0
+) -> Iterator[_OwnedLifecycle]:
+    lifecycle = _OwnedLifecycle(tmp_path / "processes", separate, mode, status)
+    try:
+        with monkeypatch.context() as patch:
+            lifecycle.install(patch)
+            yield lifecycle
+    finally:
+        lifecycle.rescue()
+
+
+@pytest.mark.parametrize("status", [0, 23])
+def test_owned_session_native_status_streams_and_disposable_restore(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, status: int
+) -> None:
+    """L01/L02: independent native streams/status and cache inode/bytes preservation."""
+    with (
+        _disposable_lifecycle_cache(tmp_path, monkeypatch),
+        _owned_lifecycle(
+            tmp_path, monkeypatch, separate=False, mode="complete", status=status
+        ) as life,
+    ):
+        observation: dict[str, Any] = {}
+        result = invoke([sys.executable, life.parent], timeout=6, observation=observation)
+        assert result.returncode == status
+        assert result.stdout == "A02-parent-out\nA02-child-out\n"
+        assert result.stderr == "A02-parent-err\nA02-child-err\n"
+        assert observation["status"] == status and observation["outer_timeout"] is False
+        life.assert_stopped()
+
+
+@pytest.mark.parametrize("separate", [False, True])
+def test_owned_session_interruption_and_unrelated_process_preserved(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, separate: bool
+) -> None:
+    """L03/L06: real session-owned descendants disappear before disposable restoration."""
+    with (
+        _disposable_lifecycle_cache(tmp_path, monkeypatch),
+        _owned_lifecycle(tmp_path, monkeypatch, separate=separate, mode="interrupt") as life,
+    ):
+        with pytest.raises(RuntimeError) as caught:
+            invoke([sys.executable, life.parent], timeout=6)
+        assert caught.value is life.failure
+        life.assert_stopped()
+
+
+@pytest.mark.parametrize("separate", [False, True])
+def test_owned_session_actual_outer_timeout_before_disposable_restore(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, separate: bool
+) -> None:
+    """L04: actual wait expiration remains nonwitness failure after strict cleanup."""
+    with (
+        _disposable_lifecycle_cache(tmp_path, monkeypatch),
+        _owned_lifecycle(tmp_path, monkeypatch, separate=separate, mode="timeout") as life,
+    ):
+        with pytest.raises(
+            AssertionError, match="^Tooling nonwitness: supported outer wait expired$"
+        ):
+            invoke([sys.executable, life.parent], timeout=0.15)
+        life.assert_stopped()
+        observations = list((callers_fixture.RUN / "observations").glob("command-*.json"))
+        assert len(observations) == 1
+        assert json.loads(observations[0].read_text())["outer_timeout"] is True
+
+
+def test_owned_session_unproven_cleanup_retains_guard_and_disposable_backup(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """L05: real live processes plus observation failure cannot release cache backup."""
+    with _disposable_lifecycle_cache(tmp_path, monkeypatch) as reservation:
+        before = inventory(reservation.backup)
+        inode, mode = reservation.backup.stat().st_ino, reservation.backup.stat().st_mode
+        fixture_inode = callers_fixture.CACHE.stat().st_ino
+        with _owned_lifecycle(
+            tmp_path, monkeypatch, separate=True, mode="observation-failure"
+        ) as life:
+            with pytest.raises(RuntimeError) as caught:
+                invoke([sys.executable, life.parent], timeout=6)
+            assert caught.value is life.failure
+            assert life.child_pid is not None
+            os.kill(life.child_pid, 0)
+            os.kill(life.roots[0].pid, 0)
+            assert life.roots[0].pid in callers_fixture.ACTIVE
+            with pytest.raises(
+                AssertionError, match="owned process cleanup incomplete; backup retained"
+            ):
+                reservation.__exit__()
+            assert inventory(reservation.backup) == before
+            assert reservation.backup.stat().st_ino == inode
+            assert reservation.backup.stat().st_mode == mode
+            assert callers_fixture.CACHE.stat().st_ino == fixture_inode
+            assert reservation.lock.is_dir()
+            assert (
+                json.loads(reservation.journal.read_text())["stage"]
+                == "BLOCKED-owned-processes-active"
+            )
+
+
+def test_owned_session_start_failure_preserves_disposable_cache(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Native launch rejection creates no false active ownership or cache loss."""
+    before_active = set(callers_fixture.ACTIVE)
+    with _disposable_lifecycle_cache(tmp_path, monkeypatch):
+        with pytest.raises(FileNotFoundError):
+            invoke([tmp_path / "missing-owned-executable"], timeout=1)
+        assert before_active == callers_fixture.ACTIVE
