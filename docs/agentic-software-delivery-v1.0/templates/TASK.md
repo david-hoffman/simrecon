@@ -17,6 +17,7 @@
 - Gate: default full-local exact candidate. Conditional CI-authoritative evaluation only within the human request and proved section 6 eligibility; complete CI/head/base/event/artifact proof/final-review ownership:
 - Actual human-set limits/units/hard stops, if any; otherwise not set. Measurements unavailable are unknown:
 - Completion/required independent acceptance/publication permissions; merge/release/external messages need explicit human authority for that action:
+- Completion cleanup (coordinator, specification section 9.1): task-owned generated fixture/scratch inventory and exact identities; owned-process closure; retained evidence/regular-file/link/dependency/cache/environment/Python pins; proposed safe disjoint trimming and preservation/blocked exceptions; actual cleanup route/ownership/reviews/checks/limits. Automatic duty adds no destructive-tool or risk-route exemption:
 
 | Scenario ID | Distinct requested decision and observable success/error/boundary outcome | Expectation source | Equivalent coverage examples | Test mapping / required review |
 |---|---|---|---|---|
@@ -43,6 +44,7 @@ Use this section or point to one Current state in PR/discussion. Prepare the poi
 - Accounting detail: per-role input/cached-input/output tokens/responses; verified money if complete; timestamps/dependencies/critical-path elapsed/owner-wait/check wall time/time to PR-readiness-merge; defects/false findings/exposure. Do not double-count cumulative counters/children/overlapping time; include calibration, failed attempts and rework:
 - Split/migration: preserve objective/dependencies/all prior attempts/spending and any actual limits; leave historical records intact:
 - Blockers; next responsible role/action/narrow packet/completion:
+- Completion cleanup receipt/status: exact removed/trimmed/preserved/blocked scopes and reasons, defined counts/native allocated-byte units, before/after retained hashes/original link texts/resolutions/dependencies and protected pins, activity/identity/tracked-state checks, actual commands/reviews/limits; unknowns and next cleanup owner. Do not declare unchecked/blocked cleanup complete:
 
 There are no default B review windows, review quotas, C/bounded repair quotas or execution budgets. Diagnose recurring failures and every correction with evidence, then continue through fresh required review until the objective is complete or an actual blocker remains. No uncontrolled automatic repair loop. Fresh/continued sessions, renamed tasks, checkpoints/model swaps/splits/migration erase no attempts. Blind A/B receive PUBLIC-PACKET only, never this implementation-bearing state. Only root LESSONS entries are append-only.
 
