@@ -17,3 +17,5 @@ The sole Current state is artifacts/roadmap-successor-20261018/current-state.md.
 ## Presentation plan
 
 Lead the owned PR with the concrete ability to measure a periodic integer shift between supplied comparable 3D volumes and preserve visible ambiguity. State equal-intensity and periodic assumptions. Use a figure only if actual score/volume evidence materially helps; otherwise concise prose and an executed table suffice. Place exact candidate/checkpoint/CI/coverage/resources/provenance and limits in the collapsible technical appendix. Coordinator owns the comparison report and publication; C supplies actual independent producer evidence.
+
+The [actual independent comparison](../reports/volume-translation-estimation-comparison.md) and [executed usage](../usage/volume-translation-estimation.md) retain two modest synthetic observation groups, full-surface score checks and displacement truth separately. They establish no physical-motion or full-size feasibility claim. Final delivery evidence remains outside tracked bytes at the Current-state pointer above.
