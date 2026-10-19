@@ -786,6 +786,7 @@ class _OwnedLifecycle:
         self.roots: list[subprocess.Popen[str]] = []
         self.child_pid: int | None = None
         self.observation_failed = False
+        self.observer_denials: list[dict[str, str]] = []
         self.first = True
         self.stop = directory / "stop-child"
         self.parent_identity = directory / "parent.json"
@@ -885,7 +886,16 @@ class _OwnedLifecycle:
             return self.native_communicate(process, *args, **kwargs)
 
         def run(args: Any, *more: Any, **kwargs: Any) -> Any:
-            if self.observation_failed and args[:2] == ["ps", "-axo"]:
+            if self.observation_failed and _lifecycle_process_query(args, kwargs.get("executable")):
+                denial = {
+                    "category": "PermissionError",
+                    "executable": str(
+                        kwargs.get("executable")
+                        or (args[0] if isinstance(args, (list, tuple)) else args)
+                    ),
+                }
+                self.observer_denials.append(denial)
+                record("A02-observer-denied", denial)
                 raise PermissionError("A02-injected-public-process-observation-denied")
             return self.native_run(args, *more, **kwargs)
 
@@ -1028,10 +1038,60 @@ def test_owned_session_actual_outer_timeout_before_disposable_restore(
         assert json.loads(observations[0].read_text())["outer_timeout"] is True
 
 
+def _lifecycle_process_query(args: Any, executable: Any = None) -> bool:
+    """Select public ps calls independently of executable path or query options."""
+    command = executable
+    if command is None:
+        command = args[0] if isinstance(args, (list, tuple)) and args else args
+    return (
+        isinstance(command, (str, bytes, os.PathLike)) and Path(os.fsdecode(command)).name == "ps"
+    )
+
+
+def _lifecycle_cleanup_snapshot(life: _OwnedLifecycle) -> dict[str, Any]:
+    """Observe actual post-cleanup state through an independent public observer."""
+    assert life.child_pid is not None and life.roots
+    pids = {"parent": life.roots[0].pid, "child": life.child_pid, "unrelated": life.unrelated.pid}
+    # The saved public run function belongs to the test's external observer. It
+    # does not supply state to invoke or disable its injected observation fault.
+    observed = life.native_run(
+        ["ps", "-p", ",".join(map(str, pids.values())), "-o", "pid=,ppid=,pgid=,stat="],
+        capture_output=True,
+        text=True,
+        timeout=3,
+    )
+    assert observed.returncode in (0, 1)
+    states = []
+    for line in observed.stdout.splitlines():
+        pid, parent, group, state = line.split()
+        states.append({"pid": int(pid), "ppid": int(parent), "pgid": int(group), "state": state})
+    present = {}
+    for name, pid in pids.items():
+        try:
+            os.kill(pid, 0)
+        except ProcessLookupError:
+            present[name] = False
+        else:
+            present[name] = True
+    snapshot = {
+        "pids": pids,
+        "present": present,
+        "states": states,
+        "observer_status": observed.returncode,
+        "active": sorted(callers_fixture.ACTIVE),
+        "injected_denials": list(life.observer_denials),
+    }
+    record("A02-independent-cleanup-snapshot", snapshot)
+    assert present["unrelated"] and life.unrelated.poll() is None
+    assert os.getsid(life.unrelated.pid) != life.roots[0].pid
+    assert any(entry["pid"] == life.unrelated.pid and "Z" not in entry["state"] for entry in states)
+    return snapshot
+
+
 def test_owned_session_unproven_cleanup_retains_guard_and_disposable_backup(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """L05: real live processes plus observation failure cannot release cache backup."""
+    """L05: refuse unproven cleanup; permit independently proved safe cleanup."""
     with _disposable_lifecycle_cache(tmp_path, monkeypatch) as reservation:
         before = inventory(reservation.backup)
         inode, mode = reservation.backup.stat().st_ino, reservation.backup.stat().st_mode
@@ -1042,22 +1102,49 @@ def test_owned_session_unproven_cleanup_retains_guard_and_disposable_backup(
             with pytest.raises(RuntimeError) as caught:
                 invoke([sys.executable, life.parent], timeout=6)
             assert caught.value is life.failure
-            assert life.child_pid is not None
-            os.kill(life.child_pid, 0)
-            os.kill(life.roots[0].pid, 0)
-            assert life.roots[0].pid in callers_fixture.ACTIVE
-            with pytest.raises(
-                AssertionError, match="owned process cleanup incomplete; backup retained"
-            ):
-                reservation.__exit__()
+            snapshot = _lifecycle_cleanup_snapshot(life)
+            remaining = [name for name in ("parent", "child") if snapshot["present"][name]]
+            unproven = bool(remaining) or life.roots[0].pid in callers_fixture.ACTIVE
+            if unproven:
+                # One surviving owned process is enough; neither PID is required
+                # to survive when a lawful stronger strategy can prove cleanup.
+                assert life.roots[0].pid in callers_fixture.ACTIVE
+                with pytest.raises(
+                    AssertionError, match="owned process cleanup incomplete; backup retained"
+                ):
+                    reservation.__exit__()
+                assert reservation.lock.is_dir()
+                assert (
+                    json.loads(reservation.journal.read_text())["stage"]
+                    == "BLOCKED-owned-processes-active"
+                )
+            else:
+                for name in ("parent", "child"):
+                    with pytest.raises(ProcessLookupError):
+                        os.kill(snapshot["pids"][name], 0)
+                assert life.roots[0].pid not in callers_fixture.ACTIVE
             assert inventory(reservation.backup) == before
             assert reservation.backup.stat().st_ino == inode
             assert reservation.backup.stat().st_mode == mode
             assert callers_fixture.CACHE.stat().st_ino == fixture_inode
-            assert reservation.lock.is_dir()
-            assert (
-                json.loads(reservation.journal.read_text())["stage"]
-                == "BLOCKED-owned-processes-active"
+            record(
+                "A02-L05-outcome",
+                {
+                    "refusal_witness": unproven,
+                    "remaining_owned": remaining,
+                    "strict_owned_absence": not remaining,
+                    "injected_denials": list(life.observer_denials),
+                    "backup_inventory": inventory(reservation.backup),
+                    "backup_inode": inode,
+                    "backup_mode": mode,
+                    "reserved_inode": fixture_inode,
+                    "proof_gap": None
+                    if unproven
+                    else (
+                        "Safe cleanup accepted; no L05 refusal witness in this run; "
+                        "route lawful additional proof."
+                    ),
+                },
             )
 
 
