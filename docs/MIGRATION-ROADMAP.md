@@ -80,6 +80,8 @@ This replaces caller-prepared response with response measured from raw calibrati
 
 The continuing stack above completed PR38 has an implementation candidate for [known-profile raw finite-bead calibration](contracts/finite-bead-compensation-v1.md), a C3 development-model obligation. It removes a declared discrete periodic emission profile before compensated-origin localization, using known actual phases/carrier and the original common observed mass. The [usage guide](usage/finite-bead-compensation.md) describes its raw-input and existing-consumer composition. This does not complete all Phase3 settings, continuous bead sampling, unknown-parameter calibration or the later full-workflow/simulation/reference exits. Its [task pointer](tasks/finite-bead-compensation.md) owns exact readiness and delivery evidence.
 
+Above verified PR47, the [raw calibration information report](reports/raw-calibration-identifiability.md) identifies a separate prerequisite: current raw calibration needs independently supplied actual phases, carrier and profile. Exactly five unrestricted coefficient images cannot identify unknown phases by separation residual, and a free order response can absorb a changed carrier for one finite profile. Fixed/shared transfer structure, known spatial probes or measured labels can add information. Its [dependency material](plans/raw-calibration-public-dependencies.md) and [task pointer](tasks/raw-calibration-intake.md) select no new model or estimator; the information source must be concrete before the next numerical self-calibration contract.
+
 
 ### 4. Independent OTF sampling and interpolation
 
