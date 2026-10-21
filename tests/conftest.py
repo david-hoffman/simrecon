@@ -42,6 +42,11 @@ _EVIDENCE_BASELINES = frozenset(
 )
 
 
+def pytest_itemcollected(item: pytest.Item) -> None:
+    """Retain original identity before grouping changes xdist transport IDs."""
+    item.user_properties.append(("simrecon.semantic_nodeid", item.nodeid))
+
+
 @pytest.hookimpl(tryfirst=True)
 def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
     """Assign each shared-resource consumer one group before xdist reads marks."""
