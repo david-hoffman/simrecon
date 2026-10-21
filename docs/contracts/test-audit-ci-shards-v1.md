@@ -1,5 +1,11 @@
 # CI-SHARDS-01: standard jobs and a narrow evidence gate
 
+**Superseded before implementation.** The independently reviewed
+[standard workflow contract](test-audit-standard-ci-v1.md) retires this proposed
+generic protocol. No B checkpoint was accepted and no production module was
+implemented. Preserve its historical tests, reports and charges; this file is
+not the active CI contract.
+
 **Version 1.0.** The owner requests Ubuntu-only continuous integration (CI)
 below 300 seconds, with valuable end-to-end/public-entry proof preserved. The
 owner first prioritized test fixture disk use; that prerequisite has passed its

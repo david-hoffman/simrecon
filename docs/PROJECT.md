@@ -54,6 +54,14 @@ make verify UV=/Users/davidhoffman/.local/bin/uv
 
 Coverage.py measures executable source lines (reported here as native statements) and possible line-to-line branch destinations; it supplies no distinct language-level statement instrumentation or separate line target. Report exact covered/total integers and unsupported measurements. Make, YAML, native dependency internals and model behavior have no owned-Python coverage claim. Their command paths require actual exercised evidence.
 
+[Standard CI jobs](contracts/test-audit-standard-ci-v1.md) distribute the complete
+Ubuntu verification across preparation, complementary test groups and finalization.
+Native job logs and per-job identity observations retain actual command origins;
+CI emits no synthetic passed single-process receipt. Local `make verify`, its
+13 phases and v1 receipt remain unchanged. The standing advisory coverage policy
+below remains installed; the test-audit task separately qualifies its selected
+exact native targets before acceptance.
+
 ## Coverage policy and adoption provenance
 
 The [coverage-policy adoption task](tasks/asd-coverage-policy.md) ports the focused coverage change from [dstack PR #7](https://github.com/david-hoffman/dstack/pull/7), head `94f8b856ae708d062fc6054adff9a9ce02af0614`, merged as `f55af3b18eff1d43d4d0e89ea21ca688ffce1f5c`. This is a local amendment to the existing Version 1.0 package, not a wholesale upstream replacement or new release. Local no-default-caps, direct-request authorization, role separation, blindness and full-local submission rules remain.

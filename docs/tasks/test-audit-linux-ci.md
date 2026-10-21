@@ -82,17 +82,24 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   runtime/test/gate behavior. The final audit blocked an otherwise passing
   lifecycle run; a focused audit pass requires renewed exact full verification
   and fresh independent review before submission.
-- The next CI scheduling slice follows the [standard jobs and evidence contract](../contracts/test-audit-ci-shards-v1.md).
-  It uses ordinary prepare, complementary test-matrix and finalizer jobs. The
-  recurring completeness predicate is high risk: fresh blind A/B, restricted C
-  and fresh D. A owns only the two named new CI tests/fixture files; C owns only
-  the two new evidence/plugin modules and the exact import guard named there.
-  Coordinator owns the contract, workflow and narrowly pinned development
-  dependencies. Independent B/D review the CI-only scheduling exception before
-  workflow activation. Existing local v1 phases and every selected gate remain.
-  The initial 12-shard configuration and empty timing fallback are candidates,
-  not an achieved performance claim. Native closed-run records must establish
-  the entire required interval below 300 seconds.
+- The active CI scheduling slice follows the independently reviewed
+  [standard CI contract](../contracts/test-audit-standard-ci-v1.md). It replaces
+  the coordinator-selected, unimplemented generic admission protocol with
+  maintained complementary scheduling, existing validators and passive test
+  metadata. Its route is bounded conventional infrastructure, not a lower-risk
+  label for the retired custom oracle. One named worker owns only the ordinary
+  import guard in `scripts/verify.py`, original-nodeid metadata in
+  `tests/conftest.py` and new `tests/test_ci_observations.py`; coordinator owns
+  workflow, contract and existing pinned dependency wiring. Preserve all
+  scientific assertions, original validator bodies and existing local v1 phases.
+  The old unaccepted proposal sources/evidence and every charge remain retained.
+  Fresh independent review covers scheduling, shared-hook effects, keeper mapping
+  and exact passing candidate. Prove genuine controlled pinned multi-shard
+  metadata/miniature union before publication alongside exact full local checks;
+  qualify actual configured Ubuntu full union and closed timing after the push.
+  The initial 12 groups and empty timing input remain unmeasured candidates.
+  Keep the standing advisory automatic coverage gate; this task's independently
+  checked exact100% native targets remain blocking locally and on Ubuntu.
 - Scientific/binary oracle redesign or uncertain preservation is separate
   high-risk work: concrete public contract and sanitized preservation obligations,
   fresh blind A/fresh B, frozen tests for C, exact verification and fresh D.

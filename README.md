@@ -202,6 +202,8 @@ pinned ImageJ/Bio-Formats jars. See the
 The numerical library and Fiji export itself do not require Java.
 
 Continuous integration repeats the full verification on Ubuntu 24.04 only.
+The [standard CI workflow](docs/contracts/test-audit-standard-ci-v1.md) distributes
+those checks across complementary jobs; `make verify` remains the full local command.
 Native statement and branch coverage are measured for the library and verification
 tools; percentages are advisory under the current project policy.
 See the [verification guide](docs/operations/verification.md) for receipts,
