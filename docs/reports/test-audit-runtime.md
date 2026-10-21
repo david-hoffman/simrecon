@@ -28,10 +28,11 @@ preserved; the audit does not claim a fresh derivation of every fixture.
 
 ## Retired proof and primary owners
 
-The focused bounded batch removes 39 declarations and 305 expanded cases.
+The focused bounded batch removes 38 declarations and six equivalent parameter
+examples, retiring 310 expanded cases.
 Distributed execution adds 13 net policy cases: 18 replace the previous five.
-The complete candidate collects 8,782 unique cases, versus 9,074 before the
-audit. Its 55 test modules contain 1,523 test declarations and 48,451 lines,
+The complete candidate collects 8,777 unique cases on the local macOS environment, versus 9,074 before the
+audit. Its 55 test modules contain 1,524 test declarations and 48,473 lines,
 versus 1,557 declarations and 49,459 lines. These module counts exclude helper
 and conftest files. Every removal has an exact source identity and keeper
 mapping in the [applied deletion ledger](test-audit-deletions.md); complete
@@ -46,13 +47,18 @@ execution remains part of the final gate.
 | Export inventories and standalone reader startup smoke | Actual file conversion/export and reader/ImagePlus cases; exact series names and shapes remain checked by `test_every_setting_file_raw_and_imageplus[all-absent]` through `assert_report` |
 | Duplicate source-free formatting, cache-size rejection and verifier failure/alias tests | Stronger real traceback/exception callers, authentic cache preservation, public receipt command-order/status, exact retained-log and protected-output tests |
 
-The preservation diagnosis retained thirteen initially proposed removals. These
+The preservation diagnoses retained fourteen initially proposed removals. These
 include closed-form Fourier references, subnormal and comparison-budget
 boundaries, permitted numerical alternatives, extreme-range and forced-accuracy
 premises, copied-exception/bypass admission and legitimate LAPACK controls.
 Calling the same general reference from a product test does not independently
 verify that reference. The original broader deletion plan remains superseded
 in the task evidence; its preparation and correction charges remain counted.
+
+Final independent review restored the direct reconstruction estimator-versus-
+phantom qualification from the baseline. Its product comparer's allowance
+includes estimator-to-analytic discrepancy, so a passing product comparison
+cannot establish this separate reference premise.
 
 The removed controls often originated in earlier diagnoses of observer defects.
 The corrected observers and real-product regression controls remain. The audit
@@ -81,6 +87,20 @@ safe snapshot batch: those calls change actual inputs, protected files or
 invocation provenance. Output protection already shares its discovery fixture.
 Those distinct real-call obligations remain in the full suite; resemblance
 between commands is insufficient reason to remove them.
+
+Ubuntu Git 2.55 exposed a fixture race: detached maintenance removed its own
+lock between metadata snapshots. The measurement-export repository fixture
+now disables automatic maintenance locally before its first commit. Metadata
+equality and protected-output assertions remain unchanged; isolated global
+maintenance settings qualify the fixture's local override.
+
+Four measurement payload examples were rejected by both their intended numeric
+rule and an unrelated arithmetic/order rule. Retain the existing isolated
+counterparts and remove those four confounded repeats. Both complete symlink
+HTML-member sweeps remain because receipt and log persistence can regress
+independently. Remove the two full hardlink sweeps: the existing representative
+and genuine-native cases retain atomic leaf replacement at both write sites.
+Keep private discovery and every-member preservation assertions unchanged.
 
 ## Reader deadline and platforms
 

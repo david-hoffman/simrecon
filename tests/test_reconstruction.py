@@ -1103,6 +1103,22 @@ def test_no_file_access_during_public_numerical_call(monkeypatch: Any) -> None:
         call(arguments)
 
 
+def test_fixture_derivation_and_informative_regime(exact_phantom: Any) -> None:
+    """Validate oracle prerequisites independently; does not imply product red."""
+    arguments, truth_spectrum, truth_image = exact_phantom
+    for phases in arguments["phases_rad"]:
+        matrix = np.column_stack((np.ones(len(phases)), np.cos(phases), np.sin(phases)))
+        assert np.linalg.cond(matrix) < 10
+    spectrum, image = estimator(arguments)
+    np.testing.assert_allclose(spectrum, truth_spectrum, rtol=0, atol=3e-13)
+    np.testing.assert_allclose(image, truth_image, rtol=0, atol=3e-13)
+    # Separate scalar sanity check. No transform or phase product result used.
+    arguments = basic((1, 1))
+    spectrum, image = estimator(arguments)
+    assert abs(spectrum[1, 1] + 2.5 / 1.125) < 1e-15
+    assert abs(image[0, 0] + 2.5 / 1.125) < 1e-15
+
+
 @pytest.mark.parametrize("field", ["images", "phases_rad", "wavevectors_per_um"])
 def test_source_to_float64_underflow_is_permitted(field: str) -> None:
     arguments = basic((1, 1))

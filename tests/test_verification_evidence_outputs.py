@@ -1414,7 +1414,7 @@ def test_p11_phase_link_at_current_native_database(
 
 
 @pytest.mark.parametrize("entry", ["receipt", "current-log-example"])
-@pytest.mark.parametrize("kind", ["symlink", "hardlink"])
+@pytest.mark.parametrize("kind", ["symlink"])
 def test_p11_phase_link_sweeps_actual_current_html_members(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, entry: str, kind: str
 ) -> None:

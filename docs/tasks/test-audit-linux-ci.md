@@ -34,6 +34,25 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   The [parallel execution packet](../contracts/test-audit-parallel-execution-v1.md)
   names optional scheduling/dependency/policy-hook maintenance and its separate
   qualification obligations.
+- Bounded preservation/environment correction: restore the exact baseline
+  `tests/test_reconstruction.py::test_fixture_derivation_and_informative_regime`
+  declaration after independent review found its direct reference qualification
+  was not redundant. Own only that restoration and
+  `tests/test_measurements_export.py::repository`'s local
+  `maintenance.auto=false` setup before its first commit. Keep all assertions,
+  tolerances, metadata comparisons and runtime behavior unchanged. Qualify the
+  23 focused reconstruction rows, existing ancestor-symlink rows and complete
+  measurement-export file with isolated inherited maintenance enabled; retain
+  native Git trace/config evidence. Fresh review and renewed full gates bind.
+- Coordinator owns the separately mapped six equivalent parameter examples in
+  `tests/test_measurements_export.py::invalid_reports` and
+  `tests/test_verification_evidence_outputs.py::test_p11_phase_link_sweeps_actual_current_html_members`.
+  Retain isolated numeric counterparts, both complete symlink write-site
+  sweeps, all 20 representative link cases and four native-database cases;
+  discovery, observers, assertions, helpers and runtime remain unchanged.
+  Keep four outer workers; the 40-case comparison did not establish a useful
+  six-worker gain. Retain the slowest 25 pytest durations in normal gate output
+  for evidence-guided follow-up. Exact full gate and fresh review still bind.
 - Scientific/binary oracle redesign or uncertain preservation is separate
   high-risk work: concrete public contract and sanitized preservation obligations,
   fresh blind A/fresh B, frozen tests for C, exact verification and fresh D.

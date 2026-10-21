@@ -1,13 +1,13 @@
 # Applied test deletions and retained proof
 
-This ledger covers **39 applied test-declaration deletions and 305 parameterized cases**. It excludes unapplied consolidation proposals and superseded deletion candidates. Counts identify removed baseline cases; they are separate from fixture setup reuse and from other test additions.
+This ledger covers **38 applied test-declaration deletions and six equivalent parameter-example removals, retiring 310 parameterized cases**. It excludes unapplied consolidation proposals and superseded deletion candidates. Counts identify removed baseline cases; they are separate from fixture setup reuse and from other test additions.
 
 | Owner group | Removed declarations | Removed cases |
 |---|---:|---:|
 | Volume | 9 | 218 |
-| IO/2D | 23 | 69 |
-| Verification | 7 | 18 |
-| **Total** | **39** | **305** |
+| IO/2D | 22 | 68 |
+| Verification | 7 | 24 |
+| **Total** | **38** | **310** |
 
 Each row identifies the removed declaration and its current genuine-product keeper or intentionally retired support qualification. A retained product check does not independently duplicate every removed adapter/comparer self-test. Numerical helpers, independent expected values and tolerances remain unchanged; the limits below are deliberate.
 
@@ -42,7 +42,6 @@ Each row identifies the removed declaration and its current genuine-product keep
 | `tests/test_reconstruction.py::test_warning_observer_permits_arithmetic_vocabulary_diagnostics` | 20 | `tests/test_reconstruction.py::test_range_and_arithmetic_policy`<br>`tests/test_reconstruction.py::test_public_transform_failure_controls`<br>`tests/test_reconstruction.py::test_public_phase_backend_failures_propagate` | Retire local warning-text matcher alternatives. Unchanged warning classifier remains applied to real public numerical operations. |
 | `tests/test_reconstruction.py::test_warning_observer_rejects_real_numpy_error_reports` | 20 | `tests/test_reconstruction.py::test_range_and_arithmetic_policy`<br>`tests/test_reconstruction.py::test_public_transform_failure_controls`<br>`tests/test_reconstruction.py::test_public_phase_backend_failures_propagate` | Retire standalone NumPy-warning classifier rejection examples. Genuine reconstruction still checks absence of arithmetic warnings under caller policies. |
 | `tests/test_reconstruction.py::test_preservation_observer_detects_each_calibration_array_change` | 3 | `tests/test_reconstruction.py::test_storage_and_input_preservation`<br>`tests/test_reconstruction.py::test_permitted_otf_array_storage`<br>`tests/test_reconstruction.py::test_synthesis_overflow_rejects_whole_result` | Retire local snapshot-checker mutation controls. Real success, validation rejection and synthesis-range rejection retain exact bytes/identity/storage preservation checks. |
-| `tests/test_reconstruction.py::test_fixture_derivation_and_informative_regime` | 1 | `tests/test_reconstruction.py::test_end_to_end_recovery_beyond_dc_support`<br>`tests/test_reconstruction.py::test_constant_normalization_shape_origin_and_sampling`<br>`tests/test_reconstruction.py::test_scalar_ridge_joint_gains_and_zero_wave` | Retire standalone phantom/estimator qualification. Actual reconstruction retains independent object and stored-estimator comparisons, scalar brightness and ridge checks. |
 | `tests/test_reconstruction.py::test_numeric_observer_accepts_envelope_and_distinguishes_wrong_conventions` | 1 | `tests/test_reconstruction.py::test_end_to_end_recovery_beyond_dc_support`<br>`tests/test_reconstruction.py::test_scalar_ridge_joint_gains_and_zero_wave`<br>`tests/test_reconstruction.py::test_even_negative_nyquist_synthesis_retains_complex_residue` | Retire standalone fabricated-coordinate comparer alternatives. Unchanged comparer and accuracy budgets remain on genuine object/DC/ridge/Nyquist outputs; this does not duplicate every retired admission probe. |
 | `tests/test_illumination.py::test_e16_existing_public_numeric_exports_remain_available` | 1 | `tests/test_phase_separation.py::test_v01_unequal_signed_asymmetric_recovery`<br>`tests/test_otf_calibration.py::test_analytic_public_transfer`<br>`tests/test_reconstruction.py::test_end_to_end_recovery_beyond_dc_support` | Remove non-None export inventory. Owner tests call the real separation, transfer preparation and reconstruction APIs and inspect their records. |
 | `tests/test_illumination.py::test_independent_oracle_roots_and_known_phase_coefficients` | 1 | `tests/test_illumination.py::test_e01_exports_record_and_success`<br>`tests/test_illumination.py::test_e06_model_sign_factor_two_specimen_brightness_cancellation`<br>`tests/test_illumination.py::test_e15_actual_reconstruct_with_estimated_parameters` | Retire standalone roots/known-coefficient qualification. Real illumination and reconstruction retain unchanged independent finite-sum/Decimal and object expectations. |
@@ -67,7 +66,14 @@ Each row identifies the removed declaration and its current genuine-product keep
 
 ## Qualification tests retained after the preservation correction
 
-The following thirteen original declarations remain. They preserve independent mathematical premises or legitimate observer alternatives that passing product comparisons alone do not establish. They are excluded from the 39 deletions above.
+Six additional example removals leave their owning declarations and assertions intact:
+
+| Owning test | Removed examples | Retained proof |
+|---|---:|---|
+| `tests/test_measurements_export.py::test_e2_e3_invalid_report_rejected_for_measurements` | 4 | The final isolated Boolean baseline, Boolean peak, Boolean increment and negative-baseline payloads reject those same field/type rules without the originals' additional arithmetic/order violations. All 65 other payloads and valid integer counterparts remain. The real CLI, complete phase/coverage/wheel checks, null measurements, diagnostic and identity assertions remain unchanged. |
+| `tests/test_verification_evidence_outputs.py::test_p11_phase_link_sweeps_actual_current_html_members` | 2 | Both complete symlink sweeps remain, one per receipt/log write site. The 20-row representative matrix and four genuine-native database cases retain hard links at both sites. Atomic leaf replacement preserves hard-link targets even if a member is omitted from discovery; repeating every HTML member adds no enumeration proof. Every-member symlink protection is still challenged independently at both write sites. |
+
+The following fourteen original declarations remain. They preserve independent mathematical premises or legitimate observer alternatives that passing product comparisons alone do not establish. They are excluded from the 38 deletions above.
 
 - `tests/test_otf_calibration.py::test_independent_root_and_budget_sanity`
 - `tests/test_otf_calibration.py::test_independent_full_root_identities`
@@ -75,6 +81,7 @@ The following thirteen original declarations remain. They preserve independent m
 - `tests/test_phase_separation.py::test_oracle_exact_quantization_and_full_rank_certificates`
 - `tests/test_phase_separation.py::test_oracle_off_model_rotation_alternative`
 - `tests/test_phase_separation.py::test_oracle_distinguishes_plausible_wrong_answers`
+- `tests/test_reconstruction.py::test_fixture_derivation_and_informative_regime`
 - `tests/test_carrier.py::test_decimal_range_observer_selfcheck_roots_and_forward_sign`
 - `tests/test_carrier.py::test_range_witness_selfcheck_exact_dc_and_finite_final_modulation`
 - `tests/test_carrier.py::test_fixture_analytic_true_gain_and_informative_accuracy_regime`
@@ -85,10 +92,12 @@ The following thirteen original declarations remain. They preserve independent m
 
 The integer-conversion observer helper and its SimpleNamespace import also remain because the retained alternative cases use them. The LAPACK alternative declaration is conservatively retained; no replacement numerical oracle was introduced.
 
+Independent final review restored the reconstruction fixture qualification byte for byte from the baseline. The product comparer adds estimator-to-analytic bias to its allowance, so agreement with that estimator cannot independently bound the bias. The direct estimator-versus-phantom check supplies that premise.
+
 ## Scope and verification limits
 
 - ImageJ positive export series name and shape are retained by `tests/test_imagej_export.py::test_every_setting_file_raw_and_imageplus[all-absent]` through `assert_report` and explicit series checks. The shortening test alone does not assert those fields.
 - Failed-verifier exact current log payloads are retained through `assert_outcome` → `assert_retained_logs` in `test_p07_valid_phase_emission_survives_its_genuine_failure`; substring checks alone are insufficient.
 - Reusing thirteen real same-run verifier outcome captures instead of 158 fixture replays preserves all 158 observer rows. This changes setup cost rather than removing or renaming those cases.
-- The separate policy-test change adds thirteen net cases (18 replacing 5). That addition is outside this 305-case deletion count.
-- Static inspection confirms all 39 removed declaration names are absent and all named keeper functions/helpers are present. This ledger is a preservation record, not an independent review verdict or a substitute for exact-candidate full verification.
+- The separate policy-test change adds thirteen net cases (18 replacing 5). That addition is outside this 310-case deletion count.
+- Static inspection confirms all 38 removed declaration names are absent and all named keeper functions/helpers are present. This ledger is a preservation record, not an independent review verdict or a substitute for exact-candidate full verification.
