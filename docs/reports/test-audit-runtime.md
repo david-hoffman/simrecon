@@ -5,7 +5,8 @@
 The owner requested a smaller, faster suite using the upstream
 [OpenClaw test-audit procedure](https://github.com/openclaw/openclaw/blob/main/.agents/skills/test-audit/SKILL.md),
 end-to-end/public-entry proof, Ubuntu-only CI, and a full-suite objective of at
-most 600 seconds. The audit starts from PR50,
+most 600 seconds, subsequently tightened to below 300 seconds. The audit starts
+from PR50,
 `8a0e488b66588d7d943dbf52fc48a276dbb14253`.
 
 ## Baseline and scope

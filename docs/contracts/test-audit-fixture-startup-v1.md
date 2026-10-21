@@ -2,8 +2,8 @@
 
 **Version 1.0.** Bounded test maintenance within the owner's
 [test-audit request](../tasks/test-audit-linux-ci.md). The full-suite objective
-remains 600 seconds. Full local verification, independent review and observed
-Ubuntu timing remain required.
+is now below 300 seconds, following the owner's October 21 revision. Full local
+verification, independent review and observed Ubuntu timing remain required.
 
 ## Ownership and expectations
 

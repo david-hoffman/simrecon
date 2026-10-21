@@ -5,7 +5,10 @@
 The owner's October 20, 2026 request authorizes applying the upstream OpenClaw
 test-audit procedure to reduce redundant tests, favor end-to-end/public-entry
 proof, and remove macOS from CI. The owner subsequently set a target of at most
-600 seconds for the full suite. This is a performance objective, not permission
+600 seconds for the full suite, then tightened the target to below 300 seconds
+on October 21. Aim for complete canonical verification below 300 seconds as
+well, and report tests, verification and CI job time separately. This is a
+performance objective, not permission
 to stop a diagnostic run at 600 seconds or silently waive a check. No total
 execution, review, or spending limit was set. Consult a fresh clean-context
 `gpt-6-astra`/ultra advisor for blockers and issues.
