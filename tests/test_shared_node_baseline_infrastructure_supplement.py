@@ -44,23 +44,6 @@ def test_reader_authentic_cached_acceptance(tmp_path: Path) -> None:
     assert {key: digest(value) for key, value in jars.items()} == before
 
 
-@pytest.mark.parametrize("pin", tuple(PINS))
-def test_reader_cached_byte_limit_retains_bytes_and_removes_stale_identity(
-    tmp_path: Path, pin: str
-) -> None:
-    cache, jars = reader_repo(tmp_path)
-    oversized = jars[pin]
-    with oversized.open("wb") as output:
-        output.write(b"A07 diagnostic cache bytes")
-        output.truncate(PINS[pin] + 1)
-    before = digest(oversized)
-    result = run_reader(tmp_path)
-    assert result.returncode != 0
-    assert oversized.stat().st_size == PINS[pin] + 1
-    assert digest(oversized) == before
-    assert not (cache / "inputs.json").exists()
-
-
 @pytest.mark.parametrize("mode", ("version-only", "launcher-failure"))
 def test_reader_selected_java_requires_identity_and_source_launcher(
     tmp_path: Path, mode: str

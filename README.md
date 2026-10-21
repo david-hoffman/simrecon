@@ -201,9 +201,9 @@ pinned ImageJ/Bio-Formats jars. See the
 [reader environment guide](docs/operations/imagej-reader-environment.md).
 The numerical library and Fiji export itself do not require Java.
 
-Continuous integration repeats the full verification on Ubuntu 24.04 and
-macOS 15. Native statement and branch coverage are measured for the library and
-verification tools; percentages are advisory under the current project policy.
+Continuous integration repeats the full verification on Ubuntu 24.04 only.
+Native statement and branch coverage are measured for the library and verification
+tools; percentages are advisory under the current project policy.
 See the [verification guide](docs/operations/verification.md) for receipts,
 reports and exact-candidate checks, and [AGENTS.md](AGENTS.md) for contributor
 instructions.

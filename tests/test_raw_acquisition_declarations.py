@@ -34,12 +34,6 @@ def declare_acquisition(*args, **kwargs) -> Any:
     return public_declaration()(*args, **kwargs)
 
 
-def test_public_exports():
-    public_declaration()
-    record_type = getattr(simrecon, "RawAcquisition", None)
-    assert isinstance(record_type, type), "Missing simrecon.RawAcquisition record type export"
-
-
 def config_for(axes: Any = SIM_AXES, kind: Any = "specimen_sim", **fields: Any) -> dict[str, Any]:
     return {"version": 1, "acquisition_kind": kind, "axes": list(axes), **fields}
 

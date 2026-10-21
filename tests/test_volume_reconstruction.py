@@ -124,71 +124,6 @@ def dc_case(
     return case
 
 
-def test_oracle_zero_result_geometry_and_exact_zero() -> None:
-    case = dc_case()
-    shape = (1, 1, 8)
-
-    def zero_result() -> Any:
-        return SimpleNamespace(
-            spectrum=np.zeros(shape, dtype=np.complex128),
-            volume=np.zeros(shape, dtype=np.complex128),
-        )
-
-    assert_zero_result(zero_result(), case)
-    signed = zero_result()
-    signed.volume.real[:] = -0.0
-    signed.spectrum.imag[:] = -0.0
-    assert_zero_result(signed, case)
-    for variant in (
-        "empty",
-        "scalar",
-        "wrong_shape",
-        "real_dtype",
-        "readonly",
-        "view",
-        "alias",
-        "subnormal",
-        "imaginary",
-        "nan",
-        "inf",
-    ):
-        result = zero_result()
-        if variant == "empty":
-            result.volume = np.zeros((0,), dtype=np.complex128)
-        elif variant == "scalar":
-            result.spectrum = np.zeros((), dtype=np.complex128)
-        elif variant == "wrong_shape":
-            result.volume = np.zeros((1, 8, 1), dtype=np.complex128)
-        elif variant == "real_dtype":
-            result.volume = np.zeros(shape)
-        elif variant == "readonly":
-            result.volume.flags.writeable = False
-        elif variant == "view":
-            result.volume = result.volume.view()
-        elif variant == "alias":
-            result.volume = result.spectrum
-        else:
-            result.volume.flat[0] = {
-                "subnormal": np.nextafter(0.0, 1.0),
-                "imaginary": 1j,
-                "nan": np.nan,
-                "inf": np.inf,
-            }[variant]
-        with pytest.raises(AssertionError):
-            assert_zero_result(result, case)
-    shared = zero_result()
-    case["apodization"] = shared.volume.real
-    with pytest.raises(AssertionError):
-        assert_zero_result(shared, case)
-    case = make_case((2, 3, 4), ((0, 0),))
-    result = SimpleNamespace(
-        spectrum=np.zeros((2, 3, 4), dtype=np.complex128),
-        volume=np.zeros((2, 3, 4), dtype=np.complex128, order="F"),
-    )
-    with pytest.raises(AssertionError):
-        assert_zero_result(result, case)
-
-
 def assert_constant_restoration(result: Any, case: dict[str, Any], intensity: float) -> None:
     """Check analytic brightness of the selected constant fixture without floating overflow."""
     unit_case = case | {"images": np.ones_like(case["images"], dtype=np.float64)}
@@ -222,27 +157,6 @@ def test_oracle_budgeted_coherent_perturbation_and_wrong_outcomes() -> None:
     ):
         with pytest.raises(AssertionError):
             compare(lambda *args, value=wrong, **kwargs: value, case)
-
-
-def test_oracle_large_constant_restoration_observer() -> None:
-    case = dc_case((2, 8, 8), (8, 16))
-    intensity = np.finfo(float).max / 64
-    case["images"][:] = intensity
-    shape = (2, 8, 16)
-    spectrum = np.zeros(shape, dtype=np.complex128)
-    spectrum[1, 4, 8] = intensity
-    correct = SimpleNamespace(
-        spectrum=spectrum, volume=np.full(shape, intensity, dtype=np.complex128)
-    )
-    assert_constant_restoration(correct, case, intensity)
-    for wrong_scale in (1.0, intensity / 128, intensity / 256):
-        wrong_spectrum = np.zeros(shape, dtype=np.complex128)
-        wrong_spectrum[1, 4, 8] = wrong_scale
-        wrong = SimpleNamespace(
-            spectrum=wrong_spectrum, volume=np.full(shape, wrong_scale, dtype=np.complex128)
-        )
-        with pytest.raises(AssertionError):
-            assert_constant_restoration(wrong, case, intensity)
 
 
 def test_oracle_roots_and_exact_stored_ls() -> None:
@@ -1428,26 +1342,6 @@ def assert_controlled_integer_conversion_observer(
     else:
         with pytest.raises(AssertionError):
             assert_integer_conversion_outcome(observed, case, code, expected, budgets)
-
-
-@pytest.mark.parametrize(
-    "field,axis",
-    [("output_shape_yx", 0), ("output_shape_yx", 1), *(("origin_zyx", i) for i in range(3))],
-)
-@pytest.mark.parametrize("container", [tuple, list])
-@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
-@pytest.mark.parametrize("swallowed", [False, True])
-def test_oracle_integer_conversion_snapshot_positions(
-    field: str, axis: int, container: Any, kind: Any, swallowed: bool
-) -> None:
-    outcome = (
-        "swallowed"
-        if swallowed
-        else "translated"
-        if kind in (TypeError, ValueError, OverflowError)
-        else "raw"
-    )
-    assert_controlled_integer_conversion_observer(kind, outcome, "snapshot", field, axis, container)
 
 
 @pytest.mark.parametrize("key", ["output_shape_yx", "order_otfs"])

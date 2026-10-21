@@ -1274,12 +1274,21 @@ def test_p07_honest_early_rejection_needs_no_unavailable_phase_evidence(
     assert_outcome(observed)
 
 
+@pytest.fixture(scope="module")
+def _observed_success_baseline(tmp_path_factory: pytest.TempPathFactory) -> Observation:
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        repository = prepare_evidence_repository(
+            tmp_path_factory.mktemp("observed-success"), monkeypatch
+        )
+        observed = invoke(repository)
+        assert observed.status == 0, observed.stdout + observed.stderr
+        assert_outcome(observed)
+        return observed
+
+
 @pytest.fixture
-def observed_success(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository)
-    assert observed.status == 0, observed.stdout + observed.stderr
-    assert_outcome(observed)
-    return observed
+def observed_success(_observed_success_baseline: Observation) -> Observation:
+    return copy.deepcopy(_observed_success_baseline)
 
 
 @pytest.mark.parametrize("alternative", ["unused-example", "safe-replacement"])
@@ -1487,12 +1496,21 @@ def test_p07_native_current_evidence_keeps_genuine_failure_status_and_stop(
         assert_native_evidence(observed)
 
 
+@pytest.fixture(scope="module")
+def _native_success_baseline(tmp_path_factory: pytest.TempPathFactory) -> Observation:
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        repository = prepare_evidence_repository(
+            tmp_path_factory.mktemp("native-success"), monkeypatch
+        )
+        observed = invoke(repository, native=True)
+        assert observed.status == 0, observed.stdout + observed.stderr
+        assert_outcome(observed)
+        return observed
+
+
 @pytest.fixture
-def native_success(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository, native=True)
-    assert observed.status == 0, observed.stdout + observed.stderr
-    assert_outcome(observed)
-    return observed
+def native_success(_native_success_baseline: Observation) -> Observation:
+    return copy.deepcopy(_native_success_baseline)
 
 
 @pytest.mark.parametrize("alternative", ["unused-stale", "safe-replacement", "unused-log-layout"])
@@ -1760,20 +1778,38 @@ def test_local_metadata_observer_allows_truth_without_query_records(
     assert_outcome(observed)
 
 
-@pytest.fixture
-def observed_tests_failure(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository, mode="tests-failure")
-    assert observed.status == 37
-    assert_outcome(observed)
-    return observed
+@pytest.fixture(scope="module")
+def _observed_tests_failure_baseline(tmp_path_factory: pytest.TempPathFactory) -> Observation:
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        repository = prepare_evidence_repository(
+            tmp_path_factory.mktemp("observed-tests-failure"), monkeypatch
+        )
+        observed = invoke(repository, mode="tests-failure")
+        assert observed.status == 37
+        assert_outcome(observed)
+        return observed
 
 
 @pytest.fixture
-def observed_late_failure(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository, audit_failure=True)
-    assert observed.status == 37
-    assert_outcome(observed)
-    return observed
+def observed_tests_failure(_observed_tests_failure_baseline: Observation) -> Observation:
+    return copy.deepcopy(_observed_tests_failure_baseline)
+
+
+@pytest.fixture(scope="module")
+def _observed_late_failure_baseline(tmp_path_factory: pytest.TempPathFactory) -> Observation:
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        repository = prepare_evidence_repository(
+            tmp_path_factory.mktemp("observed-late-failure"), monkeypatch
+        )
+        observed = invoke(repository, audit_failure=True)
+        assert observed.status == 37
+        assert_outcome(observed)
+        return observed
+
+
+@pytest.fixture
+def observed_late_failure(_observed_late_failure_baseline: Observation) -> Observation:
+    return copy.deepcopy(_observed_late_failure_baseline)
 
 
 @pytest.mark.parametrize("receipt_available", [False, True])
@@ -1937,15 +1973,24 @@ def test_local_failure_observer_allows_unavailable_or_invalid_report_evidence(
     assert_outcome(observed)
 
 
-@pytest.fixture(params=["tests", "audit"])
-def current_log_failure(
-    evidence_repository: Repository, request: pytest.FixtureRequest
+@pytest.fixture(scope="module", params=["tests", "audit"])
+def _current_log_failure_baseline(
+    tmp_path_factory: pytest.TempPathFactory, request: pytest.FixtureRequest
 ) -> Observation:
-    observed = invoke(evidence_repository, failure_phase=request.param)
-    assert observed.status == 37
-    assert phase_calls(observed)[-1]["phase"] == request.param
-    assert_outcome(observed)
-    return observed
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        repository = prepare_evidence_repository(
+            tmp_path_factory.mktemp("current-log-failure"), monkeypatch
+        )
+        observed = invoke(repository, failure_phase=request.param)
+        assert observed.status == 37
+        assert phase_calls(observed)[-1]["phase"] == request.param
+        assert_outcome(observed)
+        return observed
+
+
+@pytest.fixture
+def current_log_failure(_current_log_failure_baseline: Observation) -> Observation:
+    return copy.deepcopy(_current_log_failure_baseline)
 
 
 @pytest.mark.parametrize("receipt_available", [False, True])
@@ -2010,17 +2055,26 @@ def test_local_failed_log_observer_allows_genuine_unavailable_persistence(
 PARTIAL_PROFILES = ["partial-coverage", "partial-statements", "partial-combined", "zero-coverage"]
 
 
-@pytest.fixture(params=[*PARTIAL_PROFILES, "partial-json-failure"])
-def current_partial_failure(
-    evidence_repository: Repository, request: pytest.FixtureRequest
+@pytest.fixture(scope="module", params=[*PARTIAL_PROFILES, "partial-json-failure"])
+def _current_partial_failure_baseline(
+    tmp_path_factory: pytest.TempPathFactory, request: pytest.FixtureRequest
 ) -> Observation:
-    phase = None if request.param == "partial-json-failure" else "coverage-json"
-    observed = invoke(evidence_repository, receipt_mode=request.param, failure_phase=phase)
-    assert observed.status == (29 if phase is None else 37)
-    assert COVERAGE_JSON in valid_emitted_reports(observed)
-    assert COVERAGE_HTML not in generated_bytes(observed)
-    assert_outcome(observed)
-    return observed
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        repository = prepare_evidence_repository(
+            tmp_path_factory.mktemp("current-partial-failure"), monkeypatch
+        )
+        phase = None if request.param == "partial-json-failure" else "coverage-json"
+        observed = invoke(repository, receipt_mode=request.param, failure_phase=phase)
+        assert observed.status == (29 if phase is None else 37)
+        assert COVERAGE_JSON in valid_emitted_reports(observed)
+        assert COVERAGE_HTML not in generated_bytes(observed)
+        assert_outcome(observed)
+        return observed
+
+
+@pytest.fixture
+def current_partial_failure(_current_partial_failure_baseline: Observation) -> Observation:
+    return copy.deepcopy(_current_partial_failure_baseline)
 
 
 @pytest.mark.parametrize("receipt_available", [False, True])
@@ -2076,21 +2130,32 @@ def test_p07_partial_json_status29_retains_current_report_without_html(
     assert_outcome(observed)
 
 
-@pytest.fixture(params=["wheel", "audit"])
-def current_stronger_wheel_failure(
-    evidence_repository: Repository, request: pytest.FixtureRequest
+@pytest.fixture(scope="module", params=["wheel", "audit"])
+def _current_stronger_wheel_failure_baseline(
+    tmp_path_factory: pytest.TempPathFactory, request: pytest.FixtureRequest
 ) -> Observation:
-    observed = invoke(evidence_repository, receipt_mode="sha512-wheel", failure_phase=request.param)
-    assert observed.status == 37
-    assert phase_calls(observed)[-1]["phase"] == request.param
-    assert WHEEL in valid_emitted_reports(observed)
-    wheel = wheel_observation(generated_bytes(observed)[WHEEL])
-    assert wheel["available"] is True
-    assert {
-        row[1].split("=")[0] for rows in wheel["records"].values() for row in rows if row[1]
-    } == {"sha512"}
-    assert_outcome(observed)
-    return observed
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        repository = prepare_evidence_repository(
+            tmp_path_factory.mktemp("current-stronger-wheel-failure"), monkeypatch
+        )
+        observed = invoke(repository, receipt_mode="sha512-wheel", failure_phase=request.param)
+        assert observed.status == 37
+        assert phase_calls(observed)[-1]["phase"] == request.param
+        assert WHEEL in valid_emitted_reports(observed)
+        wheel = wheel_observation(generated_bytes(observed)[WHEEL])
+        assert wheel["available"] is True
+        assert {
+            row[1].split("=")[0] for rows in wheel["records"].values() for row in rows if row[1]
+        } == {"sha512"}
+        assert_outcome(observed)
+        return observed
+
+
+@pytest.fixture
+def current_stronger_wheel_failure(
+    _current_stronger_wheel_failure_baseline: Observation,
+) -> Observation:
+    return copy.deepcopy(_current_stronger_wheel_failure_baseline)
 
 
 @pytest.mark.parametrize("receipt_available", [False, True])

@@ -1018,68 +1018,6 @@ def test_public_phase_backend_failures_propagate(failure: str) -> None:
         assert evidence["code"] == "phase_solver_failure", evidence
 
 
-@pytest.mark.parametrize("phase", [False, True])
-@pytest.mark.parametrize("warning_kind", ["arithmetic", "user", "runtime_diagnostic"])
-def test_warning_observer_retains_normal_return_and_selects_arithmetic(
-    phase: bool, warning_kind: str
-) -> None:
-    """Observer evidence only: correct backend-free output can still warn."""
-
-    def boundary() -> Any:
-        if warning_kind == "arithmetic":
-            # Generate an actual floating-point arithmetic warning independently
-            # of the product and of the patched transform/phase boundaries.
-            with np.errstate(over="warn"):
-                np.add(np.finfo(float).max, np.finfo(float).max)
-        else:
-            category = UserWarning if warning_kind == "user" else RuntimeWarning
-            warnings.warn("optional backend diagnostic", category, stacklevel=1)
-        spectrum = np.zeros((6, 8), dtype=np.complex128)
-        spectrum[3, 4] = -2.5 / 1.125
-        return SimpleNamespace(
-            spectrum=spectrum, image=np.full((6, 8), -2.5 / 1.125, dtype=np.complex128)
-        )
-
-    evidence = numerical_probe("memory", phase=phase, operation=boundary)
-    assert evidence["outcome"] == "normal" and evidence["events"] == [], evidence
-    assert len(evidence["warnings"]) == 1
-    item = evidence["warnings"][0]
-    assert item["filename"] == boundary.__code__.co_filename
-    assert isinstance(item["line"], int) and item["line"] > 0
-    assert item["category"] == ("UserWarning" if warning_kind == "user" else "RuntimeWarning")
-    if warning_kind == "arithmetic":
-        assert item["message"] == "overflow encountered in add"
-        with pytest.raises(AssertionError):
-            assert_no_arithmetic_warnings(evidence)
-    else:
-        assert item["message"] == "optional backend diagnostic"
-        assert_no_arithmetic_warnings(evidence)
-
-
-@pytest.mark.parametrize("phase", [False, True])
-def test_warning_observer_retains_diagnostic_before_memory_error(phase: bool) -> None:
-    """A permitted diagnostic must not invalidate public allocation propagation."""
-
-    def boundary() -> Any:
-        warnings.warn("optional backend diagnostic", UserWarning, stacklevel=1)
-        if phase:
-            return np.linalg.svd(np.ones((3, 3)))
-        return np.fft.fft2(np.ones((3, 4)))
-
-    evidence = numerical_probe("memory", phase=phase, operation=boundary)
-    assert evidence["outcome"] == "error" and evidence["type"] == "MemoryError", evidence
-    assert evidence["message"] == "public backend control"
-    assert evidence["events"] == ["numpy.linalg.svd" if phase else "numpy.fft.fft2"]
-    assert evidence["frames"]
-    assert len(evidence["warnings"]) == 1
-    item = evidence["warnings"][0]
-    assert item["category"] == "UserWarning"
-    assert item["message"] == "optional backend diagnostic"
-    assert item["filename"] == boundary.__code__.co_filename
-    assert isinstance(item["line"], int) and item["line"] > 0
-    assert_no_arithmetic_warnings(evidence)
-
-
 def emit_numpy_arithmetic_control(kind: str) -> None:
     """Generate real floating errors with independently known result classes."""
     with np.errstate(all="warn"):
@@ -1145,47 +1083,6 @@ def warning_semantic_control(
     return evidence
 
 
-@pytest.mark.parametrize("phase", [False, True])
-@pytest.mark.parametrize("outcome", ["normal", "memory"])
-@pytest.mark.parametrize("diagnostic", ARITHMETIC_VOCABULARY_DIAGNOSTICS)
-def test_warning_observer_permits_arithmetic_vocabulary_diagnostics(
-    phase: bool, outcome: Literal["normal", "memory"], diagnostic: str
-) -> None:
-    evidence = warning_semantic_control(phase, outcome, diagnostic=diagnostic)
-    assert evidence["warnings"][0]["message"] == diagnostic
-    assert_no_arithmetic_warnings(evidence)
-
-
-@pytest.mark.parametrize("phase", [False, True])
-@pytest.mark.parametrize("outcome", ["normal", "memory"])
-@pytest.mark.parametrize("kind", NUMPY_WARNING_CONTROLS)
-def test_warning_observer_rejects_real_numpy_error_reports(
-    phase: bool, outcome: Literal["normal", "memory"], kind: str
-) -> None:
-    evidence = warning_semantic_control(phase, outcome, arithmetic_kind=kind)
-    # The operation/result defines the expected semantics independently of the
-    # classifier. Retain actual NumPy prose; do not invent runtime message rules.
-    with pytest.raises(AssertionError):
-        assert_no_arithmetic_warnings(evidence)
-
-
-@pytest.mark.parametrize("field", ["values", "fy_per_um", "fx_per_um"])
-def test_preservation_observer_detects_each_calibration_array_change(field: str) -> None:
-    """Owned observer validation: even a changed zero sign must be detected."""
-    arguments = basic((2, 3))
-    before = input_snapshot(arguments)
-    assert_inputs_preserved(arguments, before)
-    value = getattr(arguments["otf"], field)
-    if field == "values":
-        # All imaginary coordinates initially +0. This changes bits without
-        # changing numerical equality, so array_equal alone would miss it.
-        value.flat[0] = complex(float(value.flat[0].real), -0.0)
-    else:
-        value[value == 0] = -0.0
-    with pytest.raises(AssertionError, match=f"otf.{field}"):
-        assert_inputs_preserved(arguments, before)
-
-
 def test_no_file_access_during_public_numerical_call(monkeypatch: Any) -> None:
     import builtins
     import io
@@ -1204,22 +1101,6 @@ def test_no_file_access_during_public_numerical_call(monkeypatch: Any) -> None:
         scoped.setattr(np, "load", fail_io)
         scoped.setattr(np, "save", fail_io)
         call(arguments)
-
-
-def test_fixture_derivation_and_informative_regime(exact_phantom: Any) -> None:
-    """Validate oracle prerequisites independently; does not imply product red."""
-    arguments, truth_spectrum, truth_image = exact_phantom
-    for phases in arguments["phases_rad"]:
-        matrix = np.column_stack((np.ones(len(phases)), np.cos(phases), np.sin(phases)))
-        assert np.linalg.cond(matrix) < 10
-    spectrum, image = estimator(arguments)
-    np.testing.assert_allclose(spectrum, truth_spectrum, rtol=0, atol=3e-13)
-    np.testing.assert_allclose(image, truth_image, rtol=0, atol=3e-13)
-    # Separate scalar sanity check. No transform or phase product result used.
-    arguments = basic((1, 1))
-    spectrum, image = estimator(arguments)
-    assert abs(spectrum[1, 1] + 2.5 / 1.125) < 1e-15
-    assert abs(image[0, 0] + 2.5 / 1.125) < 1e-15
 
 
 @pytest.mark.parametrize("field", ["images", "phases_rad", "wavevectors_per_um"])
@@ -1427,23 +1308,3 @@ def test_known_brightness_scaling_invariance(exact_phantom: Any) -> None:
     arguments["brightness"] = arguments["brightness"] * 2
     result = call(arguments)
     assert_analytic(arguments, result, image=truth)
-
-
-def test_numeric_observer_accepts_envelope_and_distinguishes_wrong_conventions() -> None:
-    """Exercise observer alternatives independently, without product mutation."""
-    arguments = basic((1, 1))
-    budget = accuracy_budget(arguments)
-    expected = np.array([[complex(2, -1)]])
-    admitted = expected + complex(float(budget / 2), float(-budget / 2))
-    assert_coordinates(admitted, expected, budget)
-    # A permitted result differing by more than the former fixed 2e-12 bound
-    # still passes the contract observer. Sign/gain/normalization changes do not.
-    assert_coordinates(expected + 1.2e-11, expected, budget)
-    for wrong in (expected.conjugate(), expected * 2, expected / 4):
-        with pytest.raises(AssertionError):
-            assert_coordinates(wrong, expected, budget)
-    for unusable_reference in (np.inf, np.nan):
-        with pytest.raises(AssertionError):
-            assert_coordinates(expected, unusable_reference, budget)
-    # Rebasing to analytic truth includes stored-data bias, not a tighter test.
-    assert_coordinates(admitted, expected, budget, analytic=expected + 0.01)

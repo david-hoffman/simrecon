@@ -1,0 +1,77 @@
+# Test audit and Ubuntu-only verification
+
+**Version 1.0.**
+
+The owner's October 20, 2026 request authorizes applying the upstream OpenClaw
+test-audit procedure to reduce redundant tests, favor end-to-end/public-entry
+proof, and remove macOS from CI. The owner subsequently set a target of at most
+600 seconds for the full suite. This is a performance objective, not permission
+to stop a diagnostic run at 600 seconds or silently waive a check. No total
+execution, review, or spending limit was set. Consult a fresh clean-context
+`gpt-6-astra`/ultra advisor for blockers and issues.
+
+Baseline: PR50, commit `8a0e488b66588d7d943dbf52fc48a276dbb14253`.
+Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
+
+## Contract and ownership
+
+- Inventory the complete suite by production owner, then audit the measured
+  high-cost layers and concrete redundancy candidates in focused owner batches.
+  Record baseline results and cost, each assessed retain/consolidate/delete
+  decision, and the independent obligation and keeper before removing proof.
+  Untouched or partially inspected tests remain explicitly outside a focused
+  batch's audit claim. Baseline failures are defects to classify, never deletion
+  candidates merely because they fail. Continue scoped corrections until the
+  requested runtime objective is achieved or a material blocker is established.
+- Bounded partition: explicitly authorized Ubuntu-only workflow/platform
+  maintenance and demonstrated duplicate/conventional test consolidation, with
+  unchanged public behavior and independent expectations. Named maintenance
+  ownership: `.github/workflows/verify.yml`, relevant current platform guidance
+  in `docs/PROJECT.md`, `docs/operations/verification.md` and `README.md`, and
+  test/fixture paths named in the per-lane correction packet. Coordinator owns
+  this record, audit report, unique lesson and ignored evidence. A fresh
+  independent reviewer assesses preservation and the exact passing candidate.
+  The [parallel execution packet](../contracts/test-audit-parallel-execution-v1.md)
+  names optional scheduling/dependency/policy-hook maintenance and its separate
+  qualification obligations.
+- Scientific/binary oracle redesign or uncertain preservation is separate
+  high-risk work: concrete public contract and sanitized preservation obligations,
+  fresh blind A/fresh B, frozen tests for C, exact verification and fresh D.
+  Discovery agents do not become blind authors/reviewers. No runtime behavior,
+  scientific defaults, tolerance, public API or binary representation change is
+  authorized by a test-count objective.
+- Preserve the complete Ubuntu verification phases, coverage report integrity,
+  same-run measurements, wheel/import/audit checks, no-skips policy and inherited
+  task-selected 100% native executable-line/branch-destination targets. Removal
+  of the macOS CI obligation follows the owner's explicit instruction. Any
+  concrete percentage conflict requires diagnosis and an actual owner decision;
+  neither the target time nor advisory project defaults silently waive it.
+- Keep one primary proof per obligation at the strongest useful boundary.
+  Focused tests remain where compositions cannot distinguish the same failure.
+  Do not rename thousands of executions as one test or move them out of the
+  full suite to manufacture a performance claim.
+
+## Checks and completion
+
+Run cheap pinned environment checks first. Use saved baseline evidence only for
+unchanged identities and label environment/timing limits. Obtain current
+per-test durations and file results. Apply coherent reviewed keeper plans,
+serializing shared helper edits. Run focused owner/sibling checks, lint, types,
+format and `git diff --check`, then canonical exact-candidate `make verify`.
+Measure full-suite and full-verification wall time independently. Required
+Ubuntu CI timing remains unverified until actually observed. Do not equate local
+macOS timing with Ubuntu timing. No merge, release or external message is
+authorized. Publication follows the existing exact-candidate gate only when
+requested or necessary under the authorized delivery scope.
+
+The final independent preservation review includes the final audit sweep and
+compares every removed obligation with its keeper. Report count/line changes,
+retained contracts, measured before/after cost and limitations.
+
+## Current state
+
+The sole current state, declaration inventories, lane packets, baseline/current
+results, advisor reports, review rounds, corrections and cumulative accounting
+live in ignored `artifacts/test-audit-ci/CURRENT.md`. Final candidate identities
+and results stay outside tracked candidate bytes. Actual serving attribution,
+complete metering and monetary cost are unknown unless directly observed.

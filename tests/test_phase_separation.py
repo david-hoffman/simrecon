@@ -27,7 +27,6 @@ from phase_separation_fixture import (
     RationalFit,
     analytic_fixture,
     dot,
-    expected_arrays,
     gram,
     mv,
     norm2,
@@ -598,17 +597,6 @@ def test_v25_required_keyword_only_signature(binding: str) -> None:
             separate(phases_rad=p)
 
 
-def test_v27_public_mrc_exports_preserved_complete_suite_required() -> None:
-    # Minimal public boundary observation; full preservation remains a later
-    # full-local gate dependency on the untouched MRC suite, not duplicated here.
-    from simrecon import DataBlock, DatasetInfo, WriteReport, harmonize, inspect, read, write
-
-    assert all(
-        callable(v) for v in (inspect, harmonize, read, write, DatasetInfo, DataBlock, WriteReport)
-    )
-    assert issubclass(SimreconError, ValueError)
-
-
 def test_v28_reviewed_numeric_fixture_all_input_residuals() -> None:
     fixture = analytic_fixture()
     assert fixture.images.shape == (7, 9, 14)
@@ -763,79 +751,3 @@ def test_oracle_off_model_rotation_alternative() -> None:
     assert positive_definite(gram(changed))
     alt = RationalFit.from_k(changed).expected(b)
     assert fit.certify(b, [rational(float(v)) for v in alt]) == "residual-projection"
-
-
-def test_fixture_stored_oracle_not_unrounded_generating_signal() -> None:
-    fixture = analytic_fixture((2, 3))
-    dc, c1, residuals = expected_arrays(fixture.images, fixture.phases_rad)
-    np.testing.assert_array_equal(dc, fixture.expected_dc)
-    np.testing.assert_array_equal(c1, fixture.expected_c1)
-    np.testing.assert_array_equal(residuals, fixture.expected_residuals)
-    fit = RationalFit.from_phases(fixture.phases_rad)
-    b = [rational(v) for v in fixture.images[:, 0, 0]]
-    assert mv(transpose(fit.k), fit.residual(b, fit.expected(b))) == [F(0)] * 3
-
-
-def test_subprocess_observer_portable_source_free() -> None:
-    # -I ignores PYTHONPATH, so no temporary harness can supply these renderers.
-    # The subprocess still inherits the required environment for blind work.
-    script = (
-        SOURCE_FREE_SCRIPT
-        + r"""
-assert sys.flags.isolated
-warnings.warn("portable observer probe", RuntimeWarning)
-raise ValueError("portable observer probe")
-"""
-    )
-    completed = subprocess.run(
-        [sys.executable, "-I", "-c", script],
-        env=os.environ.copy(),
-        capture_output=True,
-        text=True,
-        timeout=30,
-        check=False,
-    )
-    assert completed.returncode == 1
-    assert completed.stdout == ""
-    lines = completed.stderr.splitlines()
-    assert len(lines) == 3, "observer must emit only warning, location and exception"
-    assert lines[0].startswith("<string>:")
-    assert lines[0].endswith("RuntimeWarning: portable observer probe")
-    assert lines[1].startswith("  <string>:") and lines[1].endswith(": <module>")
-    assert lines[2] == "ValueError: portable observer probe"
-    # Validate the nonfinite stimulus itself without any product import/solve.
-    # The original dependency call supplies only return type/shape information,
-    # never an expected phase coefficient. Keep legitimate tuple records intact.
-    dependency_probe = (
-        FAULT_SCRIPT.split("for module, prefix in", 1)[0]
-        + r"""
-matrix = np.eye(3)
-rhs = np.ones(3)
-for module in (np.linalg, sla):
-    for name, args in (
-        ('svd', (matrix,)), ('lstsq', (matrix, rhs)), ('pinv', (matrix,)),
-    ):
-        original = getattr(module, name)
-        before = original(*args)
-        after = wrapper(original, name)(*args)
-        assert type(before) is type(after)
-        if isinstance(before, tuple):
-            for old, new in zip(before, after, strict=True):
-                if isinstance(old, np.ndarray):
-                    assert old.shape == new.shape and old.dtype == new.dtype
-                    assert np.isnan(new).all()
-        else:
-            assert before.shape == after.shape and before.dtype == after.dtype
-            assert np.isnan(after).all()
-"""
-    )
-    proof = subprocess.run(
-        [sys.executable, "-I", "-c", dependency_probe, "nonfinite"],
-        env=os.environ.copy(),
-        capture_output=True,
-        text=True,
-        timeout=30,
-        check=False,
-    )
-    assert proof.returncode == 0, "source-free dependency return-form portability proof failed"
-    assert proof.stdout == proof.stderr == ""

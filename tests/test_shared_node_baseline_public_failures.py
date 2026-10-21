@@ -404,48 +404,6 @@ def test_used_label_protocol_preserves_original_caller_exception(
     assert snapshot_arrays(arrays) == saved
 
 
-def test_genuine_opaque_priism_mutation_free_export_twin(tmp_path, caller_state):
-    source = tmp_path / "valid.priism"
-    header, pixels, config, extension_digest = write_priism(source)
-    source_bytes = source.read_bytes()
-    source_stat = source.stat()
-    original_config = json.dumps(config, sort_keys=True)
-    info = harmonize(inspect(source), config=config)
-    assert info.original_header == header
-    assert info.source_size == 1024 + 4096 + pixels.nbytes
-    assert info.extended_header_bytes == 4096
-    assert info.header_sha256 == hashlib.sha256(header).hexdigest()
-    block = read(info, plane_start=0, plane_stop=1)
-    assert np.array_equal(block.data, pixels)
-    destination = tmp_path / "valid.ome.tif"
-    report = export_imagej(destination, info, block_planes=1)
-    assert report.series_count == 1 and report.planes_written == 1
-    assert report.series[0].name == "orientation=absent; phase=absent"
-    assert report.series[0].shape == (1, 1, 1, 2, 3)
-    with tifffile.TiffFile(destination) as output:
-        assert output.is_bigtiff
-        assert len(output.pages) == 1
-        assert np.array_equal(output.pages[0].asarray(), pixels[0])
-        root = ET.fromstring(cast(str, output.ome_metadata))
-        namespace = {"ome": "http://www.openmicroscopy.org/Schemas/OME/2016-06"}
-        entries = root.findall(".//ome:MapAnnotation/ome:Value/ome:M", namespace)
-        metadata = json.loads(
-            cast(str, next(entry.text for entry in entries if entry.get("K") == "metadata_json"))
-        )
-    assert base64.b64decode(metadata["original_header_base64"]) == header
-    assert metadata["original_extension"] == {
-        "schema": "opaque",
-        "bytes": 4096,
-        "sha256": extension_digest,
-        "content_retained": False,
-    }
-    assert source.read_bytes() == source_bytes
-    assert source.stat().st_size == source_stat.st_size
-    assert source.stat().st_mtime_ns == source_stat.st_mtime_ns
-    assert info.original_header == header
-    assert json.dumps(config, sort_keys=True) == original_config
-
-
 def test_genuine_operation_time_shortening_reports_source_changed(
     tmp_path, caller_state, record_property
 ):
