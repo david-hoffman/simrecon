@@ -76,6 +76,12 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   execution and documentation. Stop the unmanaged profiling launcher that makes
   unique explicit temporary bases without cleanup; use owned isolated numbered
   namespaces and retain required native/report data outside them.
+- Necessary bounded development-dependency maintenance follows the
+  [virtualenv refresh contract](../contracts/test-audit-virtualenv-refresh-v1.md).
+  Change only its locked vendor release, preserving all other packages and
+  runtime/test/gate behavior. The final audit blocked an otherwise passing
+  lifecycle run; a focused audit pass requires renewed exact full verification
+  and fresh independent review before submission.
 - Scientific/binary oracle redesign or uncertain preservation is separate
   high-risk work: concrete public contract and sanitized preservation obligations,
   fresh blind A/fresh B, frozen tests for C, exact verification and fresh D.
