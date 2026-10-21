@@ -64,9 +64,9 @@ No phase average, known zero-order image, or full continuous phase curve was use
 
 ## 2. The anchored peak plane fixes its spatial shape
 
-Let v=h[:,:,0]. At z=0, C=1, and
+Let v=h[0,:,:]. At z=0, C=1, and
 
-    D_p[:,:,0]=B [a A_p v+b L_p T v],
+    D_p[0,:,:]=B [a A_p v+b L_p T v],
     A_p=1+2 gamma cos 2 eta_p+4 q cos eta_p,
     L_p=1-2 gamma cos 2 eta_p-4 q sin eta_p.               (5)
 
