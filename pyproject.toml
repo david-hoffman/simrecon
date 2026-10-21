@@ -53,6 +53,7 @@ typeCheckingMode = "standard"
 pythonVersion = "3.13"
 
 [tool.pytest.ini_options]
+tmp_path_retention_policy = "failed"
 testpaths = ["tests"]
 addopts = ["--strict-config", "--strict-markers", "-ra", "-p", "simrecon._pytest_policy"]
 strict_xfail = true

@@ -6,12 +6,18 @@ The owner's October 20, 2026 request authorizes applying the upstream OpenClaw
 test-audit procedure to reduce redundant tests, favor end-to-end/public-entry
 proof, and remove macOS from CI. The owner subsequently set a target of at most
 600 seconds for the full suite, then tightened the target to below 300 seconds
-on October 21. Aim for complete canonical verification below 300 seconds as
-well, and report tests, verification and CI job time separately. This is a
-performance objective, not permission
+on October 21. Measure complete CI time, including setup and evidence transfer,
+and report tests, local verification and CI job time separately. The full local
+gate has no additional 300-second limit. This is a performance objective, not permission
 to stop a diagnostic run at 600 seconds or silently waive a check. No total
 execution, review, or spending limit was set. Consult a fresh clean-context
 `gpt-6-astra`/ultra advisor for blockers and issues.
+
+On October 21 the owner prioritized reducing fixture disk use and fixing cleanup
+before further speed work. The [disk lifecycle contract](../contracts/test-fixture-disk-lifecycle-v1.md)
+defines the earlier release of newly created disposable scratch, exact locked
+pytest failure semantics, external evidence preservation and repeated-run disk
+qualification. Historical cleanup and new-run lifecycle changes remain distinct.
 
 Baseline: PR50, commit `8a0e488b66588d7d943dbf52fc48a276dbb14253`.
 Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
@@ -62,6 +68,14 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   only the independent C74 controlled timeout input and matching duration
   expectations. The former containing-module hash is superseded explicitly;
   the separately reviewed reader function and its dependencies remain frozen.
+- High-risk fixture lifetime correction uses fresh blind A/B, restricted C and
+  fresh D. A owns only new `tests/test_fixture_lifecycle.py` and
+  `tests/fixture_lifecycle_fixture.py`; C owns only the named retention key in
+  `pyproject.toml`. Keep the existing count of three, local worker grouping,
+  strict outcome policy and all prior assertions. Coordinator owns diagnostic
+  execution and documentation. Stop the unmanaged profiling launcher that makes
+  unique explicit temporary bases without cleanup; use owned isolated numbered
+  namespaces and retain required native/report data outside them.
 - Scientific/binary oracle redesign or uncertain preservation is separate
   high-risk work: concrete public contract and sanitized preservation obligations,
   fresh blind A/fresh B, frozen tests for C, exact verification and fresh D.
