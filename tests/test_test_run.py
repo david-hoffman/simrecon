@@ -139,7 +139,9 @@ def test_collection_error_keeps_failure_status(tmp_path: Path, workers: int) -> 
         diagnostic=r"\b1 error\b" if workers == 0 else r"\b[1-9]\d* errors?\b",
         collection_error=True,
     )
-    assert re.search(r"ERROR collecting .*suite[/\\]test_case\.py", result.stdout + result.stderr)
+    assert re.search(
+        r"\bERROR collecting (?:[^\r\n]*[/\\])?test_case\.py(?:\s|$)", result.stdout + result.stderr
+    )
     assert "RuntimeError: POLICY_COLLECTION_SENTINEL" in result.stdout + result.stderr
 
 

@@ -31,7 +31,7 @@ preserved; the audit does not claim a fresh derivation of every fixture.
 The focused bounded batch removes 39 declarations and 305 expanded cases.
 Distributed execution adds 13 net policy cases: 18 replace the previous five.
 The complete candidate collects 8,782 unique cases, versus 9,074 before the
-audit. Its 55 test modules contain 1,523 test declarations and 48,449 lines,
+audit. Its 55 test modules contain 1,523 test declarations and 48,451 lines,
 versus 1,557 declarations and 49,459 lines. These module counts exclude helper
 and conftest files. Every removal has an exact source identity and keeper
 mapping in the [applied deletion ledger](test-audit-deletions.md); complete
