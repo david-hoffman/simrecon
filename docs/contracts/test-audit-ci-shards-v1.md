@@ -90,8 +90,10 @@ The companion CLI is:
     python3 scripts/ci_evidence.py complete --root PATH --run-id UUID --shards N
         --admission PATH
 
-STAGE is prepare, shard-ID or finalize. N is a positive integer, IDs1..N.
-UUID must satisfy existing canonical measurement-run identity rules. Snapshot
+STAGE is prepare, shard-ID or finalize. N is a positive integer; shard IDs
+are canonical positive decimal strings 1..N without sign or leading zero.
+UUID is a lowercase hyphenated canonical UUID string (the standard str(UUID)
+representation); no additional UUID-version restriction is imposed. Snapshot
 only reads current identity/tools/members. Successful snapshot and tests each
 emit exactly one JSON value on stdout; successful complete emits a concise JSON
 result, with diagnostics on stderr. Tests/complete read original inputs and
