@@ -90,14 +90,21 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   label for the retired custom oracle. One named worker owns only the ordinary
   import guard in `scripts/verify.py`, original-nodeid metadata in
   `tests/conftest.py` and new `tests/test_ci_observations.py`; coordinator owns
-  workflow, contract and existing pinned dependency wiring. Preserve all
+  workflow, contract, immutable `.github/pytest-durations.json` timing data and
+  existing pinned dependency wiring. Preserve all
   scientific assertions, original validator bodies and existing local v1 phases.
   The old unaccepted proposal sources/evidence and every charge remain retained.
   Fresh independent review covers scheduling, shared-hook effects, keeper mapping
   and exact passing candidate. Prove genuine controlled pinned multi-shard
   metadata/miniature union before publication alongside exact full local checks;
   qualify actual configured Ubuntu full union and closed timing after the push.
-  The initial 12 groups and empty timing input remain unmeasured candidates.
+  The initial 12-group workflow with empty timing input passed all 14 native
+  jobs in 355 seconds, missing the strict 300-second objective. The next
+  candidate runs quality independently and uses independently reviewed immutable
+  native timing weights. Keep the observed semantic association separately for
+  comparison with the complete serial reference. Actual configured execution,
+  native-key matches and the complete closed-job interval remain mandatory;
+  recorded timing sums do not forecast elapsed time.
   Keep the standing advisory automatic coverage gate; this task's independently
   checked exact100% native targets remain blocking locally and on Ubuntu.
 - Scientific/binary oracle redesign or uncertain preservation is separate

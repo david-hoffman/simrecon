@@ -1,6 +1,6 @@
 # CI-STANDARD-01: standard complementary jobs and existing validators
 
-**Version 1.0.** This supersedes the unimplemented CI-SHARDS-01 mechanism. It continues the
+**Version 1.1.** This supersedes the unimplemented CI-SHARDS-01 mechanism. It continues the
 owner's test-audit task: Ubuntu-only continuous integration (CI), complete valuable
 proof and a measured required-job interval strictly below 300 seconds. Disk
 lifecycle already has accepted exact local evidence. No scientific behavior,
@@ -74,10 +74,36 @@ The passive metadata hook is shipped test infrastructure; declare it as code.
 
 Pin checkout to exact event SHA in every job. Preserve Ubuntu24.04, Python3.13.12,
 uv0.12.19, Java21.0.7, pytest9.1.1, xdist3.8.0, Coverage7.16.2 and pinned Actions.
-Bootstrap locked dependencies before participating checks. Use prepare, an
-explicit matrix of groups1..12 and finalizer, fail-fast:false, least_duration,
-one immutable initial timing file containing {} plus LF, four local loadgroup
-workers and max-worker-restart=0. Twelve is an unmeasured candidate, not a promise.
+Bootstrap locked dependencies before participating checks. Use independent prepare
+and quality jobs, an explicit matrix of groups1..12 depending only on prepare,
+and finalizer depending on prepare, quality and every matrix job. Preserve
+fail-fast:false, least_duration, four local loadgroup workers and
+max-worker-restart=0. Quality has no dependency on prepare or its UUID. The actual
+configured workflow has 15 required native jobs: prepare, quality, 12 shards and
+finalizer. Twelve groups remain an unmeasured timing candidate for this changed
+workflow, not a speed promise or a complete qualification.
+
+The immutable standard pytest-split timing input is the tracked
+.github/pytest-durations.json. Derive its native timing data from the retained
+actual Ubuntu run's original reports in a separate evidence preparation scope,
+record exact source run/attempt/head/report identities and hashes, and obtain
+fresh independent review before activation. Timing keys are whole observed native
+TestReport.nodeid values used by the configured grouped worker scheduler. Keep
+their observed semantic-property association separately for comparison with the
+complete original serial reference. Require unique native keys; do not reconstruct
+resource suffixes, add aliases or replace the scheduler. Actual configured
+execution must confirm native timing-key matches and complementary semantic
+selections. Collection-only execution does not prove worker-side scheduling.
+These measured scheduling weights are not scientific expectations or a new
+result/completeness oracle. Prepare
+copies the exact tracked bytes to a fresh artifacts/ci/durations.json under
+noclobber. The existing full tracked source manifest pins the source before and
+after participating phases; existing fingerprint/collect_final_identity checks
+pin the copied timing input before and after use. Every shard consumes those same
+prepare-artifact bytes through the unchanged native plugin options. No runtime
+timing writeback, --store-durations, custom parser, scheduler, admission protocol
+or recurring schema is introduced. The controlled miniature proof retains its
+{} plus LF timing input unchanged.
 
 Every job checks clean-start exact identity before its participating phases and
 unchanged identity afterward using existing identity()/collect_final_identity().
@@ -85,11 +111,34 @@ Preserve actual source manifests, tool versions/paths, platform, lock/config and
 environment evidence without arbitrary environment/secrets. Authentic GitHub
 steps/logs provide command outcomes; emit no synthetic passed 13-phase receipt.
 
-Prepare genuinely runs sync, coverage-clean, lint, format, types and full unsharded
-serial collect-only. Its reference inventory is a JSON list of actual original
-Item.nodeid values captured through a small public collection observer in that
-actual invocation. Retain observer source. This is passive observation, not a
-recurring acceptance schema or custom selection algorithm.
+Prepare genuinely runs sync, coverage-clean and full unsharded serial collect-only.
+Its reference inventory is a JSON list of actual original Item.nodeid values
+captured through a small public collection observer in that actual invocation.
+Retain observer source. This is passive observation, not a recurring acceptance
+schema or custom selection algorithm.
+
+Quality independently checks out the exact event SHA, installs the same pinned
+Python/uv/Java and genuinely runs full make sync, then the unchanged make lint,
+make format and make types commands with separate original logs. It records the
+same actual tool, package, reader-input and clean-start/final source identities,
+including ignored participating inputs and untracked-input enforcement. It needs
+neither the timing input, serial reference collection nor common UUID. It always
+retains its original logs/identity/input observations in the independent immutable
+artifact ci-${run_id}-${run_attempt}-quality, without an M25 UUID. Only actual
+native command outcomes establish success; emit no invented 13-phase receipt.
+Quality does not emit a canonical M25 report or receive the M25 path/run-id pair.
+
+Truthful command origins are required:
+
+| Actual native origin | Participating work |
+| --- | --- |
+| Prepare | Locked sync, fresh coverage-clean, complete serial collection/reference and immutable timing delivery. |
+| Quality | Independent locked sync, lint, format and types, with original separate logs and identity evidence. |
+| Each of 12 test shards | Its own locked sync, fresh coverage-clean and actual complementary selected test run under native coverage/reportlog. |
+| Finalizer | Its own locked sync, fresh coverage-clean, native combine and official JSON/HTML/report, unchanged validators, wheel build/import and locked audit. |
+
+This table records distributed command origins. It does not claim that any job
+ran the unchanged local all 13-phase make verify protocol.
 
 Each shard downloads the exact immutable timing input, runs its actual selected
 tests under existing branch/subprocess coverage and strict outcome policy, and
@@ -97,12 +146,19 @@ retains original native reportlog (including semantic property and worker_id),
 all root .coverage/.coverage.* files and any original M25/interop outputs.
 
 Finalization retains the existing required check identity exactly: Verify (ubuntu-24.04).
-Finalizer always first requires successful prepare and every matrix job. Keep
-downloaded bundles outside its cleaning/report/output paths. Require the fixed
-expected stage artifacts and use pinned digest-failing transfer. Coverage-clean
-only its new output root. Combine every explicitly enumerated current native
-input, including unsuffixed/empty/equal-byte distinct inputs, with --keep and
-warnings-as-errors. No stale ambient auto-combine or original deletion.
+Finalizer always first explicitly requires successful prepare, quality and every
+matrix job. Keep downloaded bundles outside its cleaning/report/output paths.
+Require the fixed expected stage artifacts and use pinned digest-failing transfer.
+Download the quality artifact by exact run-id/attempt to the disjoint
+runner.temp/standard-ci-inputs/quality root. Preserve the existing 13 explicit
+prepare/shard downloads without a new transfer-pattern optimization. Retain all
+original bundles and digest-fatal behavior. Coverage-clean only its new output
+root. Enumerate prepare, quality and every shard root explicitly; include every
+actual current native input, including unsuffixed/empty/equal-byte distinct inputs,
+with --keep and warnings-as-errors. Absence of a native coverage file in the
+quality root is valid, since its commands need not generate one; this does not
+waive any actual native path from other roots. No stale ambient auto-combine, original
+deletion or weakened after-identity check is allowed.
 
 Run genuine official JSON, complete HTML and the existing terminal report under
 its adopted fail_under=0 advisory configuration, then actual wheel build, isolated
@@ -153,6 +209,11 @@ blocks task qualification despite a valid advisory workflow result. Rounded
 percentages and platform/candidate union cannot substitute. The standing advisory
 project policy and original installed gate are preserved; this task's selected
 100% proof remains blocking before publication locally and afterpush on Ubuntu.
+The currently declared 49 owned-file scope and all per-file/package/global native
+integer targets remain unchanged. The adopted fail_under=0 advisory report and
+this task's strict exact 100% qualification are separate and both retain their
+existing meanings. No native HTML/source/wheel correspondence, M25,
+55 interop records / 24 pair qualification, reader/tool-source or custody limit is relaxed.
 
 Qualify actual native coverage against current original JSON/fullHTML, complete
 owned source scope, wheel/source correspondence, M25 and current interop reports.
@@ -171,9 +232,26 @@ pending; never relabel known/missing local evidence as pending. After authorized
 push, qualify actual closed configured Ubuntu and final task readiness separately.
 
 Timing is max(required completed_at)-min(required started_at), strictly<300s.
+The required set for the changed workflow is all 15 native jobs, including quality.
 Initial queue is separate; later waits/setup/transfers/finalization/post-job
 completion count. Native closed metadata, exact head/base/integration/workflow/
 run/attempt/artifact/version identities and retained originals bind the claim.
+
+Actual run 39688634685 attempt 1 at candidate
+bffeb97c067b7d5de9a434de5ba7521b64e9525c completed all 14 then-required jobs
+successfully, but its closed interval was 355 s (5 min 55 s), so it failed the owner's
+strict 300 s timing target. Native originals are retained in
+artifacts/test-audit-ci/standard-ci/ubuntu-run/metadata/{run,jobs}.json.
+Prepare took 96 s, including 47 s types and 1 s formatting; the longest shard
+took 182 s, including 142 s tests; finalization took 73 s, including 27 s sync
+and 17 s downloads.
+Removing the 48 s quality segment from that observed critical path alone gives
+355 s - 48 s = 307 s, still above 300 s. This is counterfactual arithmetic, not an actual
+changed-workflow run or a guaranteed saving. Equalizing sums of recorded item
+durations does not establish elapsed makespan under grouped workers, setup,
+transfer or queue costs. The two small proposed changes are concurrent quality and immutable
+measured native timing weights. Actual closed configured Ubuntu timing for the
+next exact candidate remains mandatory; its value is unknown until measured.
 Failures/changes renew affected checks and fresh reviews. No CI-authoritative,
 merge/release/external-message authority follows. Human total execution/review/
 spending limits are not set; all historical charges remain, unknown metering is

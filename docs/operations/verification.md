@@ -23,8 +23,10 @@ Before opening/reopening a PR or pushing to an open one, confirm the exact candi
 ## Distributed Ubuntu verification
 
 The [standard CI contract](../contracts/test-audit-standard-ci-v1.md) preserves
-all logical checks with genuine preparation, complementary test and finalizer
-commands. Each job records clean-start and unchanged source/input identity.
+all logical checks with genuine preparation, independent quality, complementary
+test and finalizer commands. Each job records clean-start and unchanged
+source/input identity. Quality runs locked sync, lint, format and types, retaining
+its own run-id/attempt artifact without a measurement UUID or preparation dependency.
 Original native coverage and reportlog inputs remain in separate downloaded
 bundles; finalization combines explicit originals with `--keep`, generates current
 JSON and complete HTML, and runs wheel, isolated import and locked audit. Existing

@@ -57,7 +57,7 @@ jobs:
           set -euo pipefail
           "$(uv python find 3.13.12)" -c 'import uuid; print("ci_uuid=" + str(uuid.uuid4()))' >> "$GITHUB_OUTPUT"
           set -o noclobber
-          printf '{}\n' > artifacts/ci/durations.json
+          cat .github/pytest-durations.json > artifacts/ci/durations.json
       - name: Synchronize locked dependencies and genuine reader inputs
         run: |
           set -euo pipefail
@@ -112,18 +112,6 @@ jobs:
         run: |
           set -euo pipefail
           make coverage-clean 2>&1 | tee artifacts/ci/coverage-clean.log
-      - name: Lint
-        run: |
-          set -euo pipefail
-          make lint 2>&1 | tee artifacts/ci/lint.log
-      - name: Check formatting
-        run: |
-          set -euo pipefail
-          make format 2>&1 | tee artifacts/ci/format.log
-      - name: Check types
-        run: |
-          set -euo pipefail
-          make types 2>&1 | tee artifacts/ci/types.log
       - name: Observe actual complete serial collection without changing items
         run: |
           set -euo pipefail
@@ -170,6 +158,148 @@ jobs:
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ steps.identity.outputs.ci_uuid }}-prepare
+          path: |
+            .coverage
+            .coverage.*
+            artifacts/ci/
+            artifacts/imagej-reader/inputs.json
+            artifacts/coverage/pytest-reportlog.jsonl
+            artifacts/verification/measurements.json
+            artifacts/verification/imagej-interop/
+            .python-version
+            uv.lock
+            pyproject.toml
+            Makefile
+            scripts/verify.py
+            .github/workflows/verify.yml
+          include-hidden-files: true
+          overwrite: false
+          if-no-files-found: error
+  quality:
+    name: Quality verification
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact event candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Install pinned uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: 0.12.19
+      - name: Install pinned Python
+        run: |
+          uv python install 3.13.12
+      - name: Install pinned development-reader Java
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c
+        with:
+          distribution: temurin
+          java-version: 21.0.7+6.0.LTS
+      - name: Record clean source identity before participating phases
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          import os
+          from pathlib import Path
+          from scripts import verify
+
+          before = verify.identity()
+          if before['commit'] != os.environ['EXPECTED_SHA'] or before['dirty'] or before['untracked']:
+              raise SystemExit('Expected clean exact event candidate')
+          # The existing manifest already fingerprints every tracked configuration/source.
+          with Path('artifacts/ci/source-identity.json').open('x') as stream:
+              json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
+              stream.write('\n')
+          PYCODE
+      - name: Synchronize locked dependencies and genuine reader inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          make sync 2>&1 | tee artifacts/ci/sync.log
+      - name: Record actual platform, tools, packages and selected inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          uv run --locked --no-sync python - <<'PYCODE'
+          import importlib.metadata
+          import json
+          import os
+          import platform
+          import shutil
+          import subprocess
+          import sys
+          from pathlib import Path
+          from scripts import verify
+
+          commands = {
+              'uv': ['uv', '--version'], 'git': ['git', '--version'], 'make': ['make', '--version'],
+              'ruff': ['.venv/bin/ruff', '--version'], 'pyright': ['.venv/bin/pyright', '--version'],
+              'coverage': ['.venv/bin/coverage', '--version'], 'pytest': ['.venv/bin/pytest', '--version'],
+              'java': [os.environ['SIMRECON_JAVA'], '-XshowSettings:properties', '-version'],
+          }
+          tools = {}
+          for name, command in commands.items():
+              result = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True)
+              selected = Path(shutil.which(command[0]) or command[0]).absolute()
+              tools[name] = {'selected': str(selected), 'resolved': str(selected.resolve()),
+                             **verify.fingerprint(selected), 'command': command, 'output': result.stdout}
+          packages = sorted((d.metadata['Name'], d.version, str(d.locate_file(''))) for d in importlib.metadata.distributions())
+          record = {'platform': platform.platform(), 'python': {'executable': sys.executable,
+                    'resolved': str(Path(sys.executable).resolve()), 'version': sys.version,
+                    **verify.fingerprint(Path(sys.executable))}, 'tools': tools, 'packages': packages,
+                    'environment': {k: os.environ[k] for k in ('SIMRECON_JAVA', 'JAVA_HOME',
+                    'COVERAGE_FILE', 'COVERAGE_PROCESS_START', 'PYTEST_ADDOPTS', 'PYTHONPATH', 'UV_PYTHON') if k in os.environ}}
+          Path('artifacts/ci/environment.json').write_text(json.dumps(record, indent=2) + '\n')
+          # Existing final identity collector checks ignored participating inputs as well.
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          inputs = [Path(sys.executable), *(Path(tool['selected']) for tool in tools.values()),
+                    Path('artifacts/imagej-reader/inputs.json'), Path('artifacts/imagej-reader/bioformats_package.jar'),
+                    Path('artifacts/imagej-reader/ij-1.54p.jar')]
+          if Path('artifacts/ci/durations.json').is_file():
+              inputs.append(Path('artifacts/ci/durations.json'))
+          observation['inputs'].update({str(p): {'before': verify.fingerprint(p), 'after': None} for p in inputs})
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          PYCODE
+      - name: Lint
+        run: |
+          set -euo pipefail
+          make lint 2>&1 | tee artifacts/ci/lint.log
+      - name: Check formatting
+        run: |
+          set -euo pipefail
+          make format 2>&1 | tee artifacts/ci/format.log
+      - name: Check types
+        run: |
+          set -euo pipefail
+          make types 2>&1 | tee artifacts/ci/types.log
+      - name: Record final source identity even after phase failure
+        if: always()
+        run: |
+          set -euo pipefail
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          verify.collect_final_identity(observation, {name: Path(name) for name in observation['inputs']})
+          if observation['after'] is not None and observation['after']['untracked'] != observation['before']['untracked']:
+              observation['problems'].append('Untracked candidate inputs changed')
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          if observation['problems']:
+              raise SystemExit('\n'.join(observation['problems']))
+          PYCODE
+      - name: Retain original quality observations
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-quality
           path: |
             .coverage
             .coverage.*
@@ -379,20 +509,22 @@ jobs:
     name: Verify (ubuntu-24.04)
     needs:
       - prepare
+      - quality
       - tests
     if: ${{ always() }}
     runs-on: ubuntu-24.04
     env:
       CI_UUID: ${{ needs.prepare.outputs.ci_uuid }}
     steps:
-      - name: Require successful prepare and every test matrix job
+      - name: Require successful prepare, quality and every test matrix job
         env:
           PREPARE_RESULT: ${{ needs.prepare.result }}
+          QUALITY_RESULT: ${{ needs.quality.result }}
           TESTS_RESULT: ${{ needs.tests.result }}
         run: |
           set -euo pipefail
-          if [[ "$PREPARE_RESULT" != success || "$TESTS_RESULT" != success ]]; then
-            echo 'Required prepare or test jobs did not succeed.' >&2
+          if [[ "$PREPARE_RESULT" != success || "$QUALITY_RESULT" != success || "$TESTS_RESULT" != success ]]; then
+            echo 'Required prepare, quality or test jobs did not succeed.' >&2
             exit 1
           fi
       - name: Check out exact event candidate
@@ -490,6 +622,13 @@ jobs:
         with:
           name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-prepare
           path: ${{ runner.temp }}/standard-ci-inputs/prepare
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original quality artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-quality
+          path: ${{ runner.temp }}/standard-ci-inputs/quality
           merge-multiple: false
           digest-mismatch: error
       - name: Download exact original shard-1 artifact
@@ -612,7 +751,7 @@ jobs:
           observation = json.loads(identity_path.read_text())
           # Every existing original root file, including unsuffixed, official empty,
           # and equal-byte files at distinct paths. No content-based deduplication.
-          for stage in ['prepare', *(f'shard-{i}' for i in range(1, 13))]:
+          for stage in ['prepare', 'quality', *(f'shard-{i}' for i in range(1, 13))]:
               directory = root / stage
               for path in sorted(directory.iterdir()):
                   if path.is_file() and (path.name == '.coverage' or path.name.startswith('.coverage.')):
