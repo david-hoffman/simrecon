@@ -540,7 +540,7 @@ def test_source_free_live_path_subprocess_fields(
             "                assert process.poll() is None, 'Tooling nonwitness: child exited'\n"
             "                time.sleep(0.01)\n"
             "            assert ready.is_file(), 'Tooling nonwitness: child did not become ready'\n"
-            "            process.communicate(timeout=0.15)\n"
+            "            process.communicate(timeout=1.0)\n"
             "        finally:\n"
             "            if process.poll() is None: process.kill()\n"
             "            process.communicate(timeout=5)\n"
@@ -560,7 +560,7 @@ def test_source_free_live_path_subprocess_fields(
         "    assert error.cmd == command\n"
         "    assert error.stdout in ('A08-child-output\\n',b'A08-child-output\\n')\n"
         "    assert error.stderr in ('A08-child-error\\n',b'A08-child-error\\n')\n"
-        "    if isinstance(error,subprocess.TimeoutExpired): assert error.timeout == 0.15\n"
+        "    if isinstance(error,subprocess.TimeoutExpired): assert error.timeout == 1.0\n"
         "    else: assert error.returncode == 23\n"
         "    print(json.dumps({'fields_preserved':True}),flush=True)\n"
         "    raise # A08_SOURCE_SECRET\n"
@@ -571,7 +571,7 @@ def test_source_free_live_path_subprocess_fields(
     assert (
         "TimeoutExpired" if failure == "child-timeout" else "CalledProcessError"
     ) in result.stderr
-    assert ("0.15" if failure == "child-timeout" else "23") in result.stderr
+    assert ("timed out after 1.0 seconds" if failure == "child-timeout" else "23") in result.stderr
     if representation == "argv-path":
         assert str(executable) in result.stderr
     assert "A08_ARG_SECRET" not in result.stderr

@@ -14,6 +14,7 @@ from typing import Any
 
 import pytest
 
+from fixture_command_launcher import launcher
 from verification_fixture_tools import PHASES
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -77,8 +78,11 @@ def create_repository(directory: Path, linked: bool = False) -> Repository:
     for name in ("make", "uv"):
         command = bin_dir / name
         command.write_text(
-            f"#!{sys.executable}\n"
-            + Path(__file__).with_name("verification_output_fixture.py").read_text(),
+            launcher(
+                Path(__file__).with_name("verification_output_fixture.py").read_text(),
+                python=sys.executable,
+                kind="protection",
+            ),
             encoding="utf-8",
         )
         command.chmod(0o755)

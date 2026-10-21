@@ -53,6 +53,12 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   Keep four outer workers; the 40-case comparison did not establish a useful
   six-worker gain. Retain the slowest 25 pytest durations in normal gate output
   for evidence-guided follow-up. Exact full gate and fresh review still bind.
+- Follow-up bounded fixture-startup maintenance is owned by the
+  [controlled-command packet](../contracts/test-audit-fixture-startup-v1.md).
+  It preserves all four command-fixture modules' cases/assertions and corrects
+  only the independent C74 controlled timeout input and matching duration
+  expectations. The former containing-module hash is superseded explicitly;
+  the separately reviewed reader function and its dependencies remain frozen.
 - Scientific/binary oracle redesign or uncertain preservation is separate
   high-risk work: concrete public contract and sanitized preservation obligations,
   fresh blind A/fresh B, frozen tests for C, exact verification and fresh D.

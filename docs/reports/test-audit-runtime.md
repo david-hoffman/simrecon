@@ -34,7 +34,9 @@ Distributed execution adds 13 net policy cases: 18 replace the previous five.
 The complete candidate collects 8,777 unique cases on the local macOS environment, versus 9,074 before the
 audit. Its 55 test modules contain 1,524 test declarations and 48,473 lines,
 versus 1,557 declarations and 49,459 lines. These module counts exclude helper
-and conftest files. Every removal has an exact source identity and keeper
+and conftest files. The follow-up command builders add 11 module lines, bringing
+the current total to 48,484 without changing cases or declarations. Every
+removal has an exact source identity and keeper
 mapping in the [applied deletion ledger](test-audit-deletions.md); complete
 execution remains part of the final gate.
 
@@ -103,6 +105,29 @@ and genuine-native cases retain atomic leaf replacement at both write sites.
 Keep private discovery and every-member preservation assertions unchanged.
 
 ## Reader deadline and platforms
+
+The [controlled-command startup correction](../contracts/test-audit-fixture-startup-v1.md)
+keeps all four receipt, measurement, output-protection and wheel-hash modules'
+assertions. Exact version queries and established no-op external-tool phases
+use shell builtins; producing and rejecting commands retain their original
+Python bodies. The actual verifier and owned child processes still run.
+Original-versus-candidate command comparisons and an order-balanced public-CLI
+cohort qualify the fixture change. Their timings and native evidence remain
+outside tracked bytes; they establish no full-suite or Ubuntu result.
+
+A separate controlled subprocess test could exhaust its 150 ms timeout before
+printing the prelude that its assertions require. The merged fixture inherits
+the approved upstream readiness gate after both streams are flushed, an
+event-blocked timeout child and bounded kill/drain cleanup. It uses the exact
+float 1.0-second timeout and checks the specific native duration phrase. This
+readiness and cleanup replaces the former 3-second-sleep and no-observer
+implementation prescriptions for this merged fixture only; no additional
+observer is introduced. All four rows, immediate status exits through
+`run(check=True)` with a 6-second timeout, exception fields, streams, Path forms,
+command equality and redaction assertions remain. This supersedes the
+containing-module identity; the separately reviewed reader test and its
+dependencies remain unchanged. Other helper, scientific and gate restrictions
+remain in force.
 
 The [reader deadline correction](../contracts/test-audit-reader-deadline-v1.md)
 has separate blind author/reviewer ownership. It retains real transport and

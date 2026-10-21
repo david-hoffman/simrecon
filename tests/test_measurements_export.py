@@ -15,6 +15,7 @@ from uuid import UUID
 
 import pytest
 
+from fixture_command_launcher import launcher
 from measurement_fixture_export import LIMIT_BYTES, MEASUREMENTS_PATH, export_measurement
 from verification_fixture_tools import PHASES
 
@@ -79,7 +80,11 @@ def repository(tmp_path: Path) -> Repository:
     for name in ("make", "uv"):
         target = bin_dir / name
         target.write_text(
-            f"#!{sys.executable}\n" + (FIXTURES / "measurements_fixture_commands.py").read_text()
+            launcher(
+                (FIXTURES / "measurements_fixture_commands.py").read_text(),
+                python=sys.executable,
+                kind="measurement",
+            )
         )
         target.chmod(0o755)
     return root, bin_dir

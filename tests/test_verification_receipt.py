@@ -14,6 +14,7 @@ from pathlib import Path
 
 import pytest
 
+from fixture_command_launcher import launcher
 from verification_fixture_tools import PHASES, TAG_WHEELS
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,7 +53,7 @@ def repository(tmp_path):
     bin_dir.mkdir()
     for name in ("make", "uv"):
         target = bin_dir / name
-        target.write_text(f"#!{sys.executable}\n" + TOOLS.read_text())
+        target.write_text(launcher(TOOLS.read_text(), python=sys.executable, kind="receipt"))
         target.chmod(0o755)
     return root, bin_dir
 
