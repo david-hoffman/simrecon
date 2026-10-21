@@ -82,6 +82,17 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   runtime/test/gate behavior. The final audit blocked an otherwise passing
   lifecycle run; a focused audit pass requires renewed exact full verification
   and fresh independent review before submission.
+- The next CI scheduling slice follows the [standard jobs and evidence contract](../contracts/test-audit-ci-shards-v1.md).
+  It uses ordinary prepare, complementary test-matrix and finalizer jobs. The
+  recurring completeness predicate is high risk: fresh blind A/B, restricted C
+  and fresh D. A owns only the two named new CI tests/fixture files; C owns only
+  the two new evidence/plugin modules and the exact import guard named there.
+  Coordinator owns the contract, workflow and narrowly pinned development
+  dependencies. Independent B/D review the CI-only scheduling exception before
+  workflow activation. Existing local v1 phases and every selected gate remain.
+  The initial 12-shard configuration and empty timing fallback are candidates,
+  not an achieved performance claim. Native closed-run records must establish
+  the entire required interval below 300 seconds.
 - Scientific/binary oracle redesign or uncertain preservation is separate
   high-risk work: concrete public contract and sanitized preservation obligations,
   fresh blind A/fresh B, frozen tests for C, exact verification and fresh D.
