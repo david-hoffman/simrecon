@@ -257,7 +257,14 @@ def verifier_repo(path: Path, *, change: str = "", fail: str = "") -> Path:
             "public fixture",
         ),
     ):
-        subprocess.run(["git", *args], cwd=path, check=True, capture_output=True, timeout=15)
+        # Keep fixture setup from leaving detached maintenance in the byte snapshot.
+        subprocess.run(
+            ["git", "-c", "maintenance.auto=false", *args],
+            cwd=path,
+            check=True,
+            capture_output=True,
+            timeout=15,
+        )
     # Parameters are passed through the fixture's explicit environment in verify().
     assert change in {
         "",
