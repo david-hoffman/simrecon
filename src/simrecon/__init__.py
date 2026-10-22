@@ -5,6 +5,7 @@ from ._bead_peak import BeadPeak, locate_bead_peak
 from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
 from ._drift import DriftCorrection, correct_integer_drift
+from ._empirical_response import EmpiricalVolumeResponse, prepare_empirical_volume_response
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
 from ._legacy import inspect
@@ -30,6 +31,7 @@ __all__ = [
     "DataBlock",
     "DatasetInfo",
     "DriftCorrection",
+    "EmpiricalVolumeResponse",
     "IlluminationEstimate",
     "ImagejSeries",
     "ImagejWriteReport",
@@ -56,6 +58,7 @@ __all__ = [
     "harmonize",
     "inspect",
     "locate_bead_peak",
+    "prepare_empirical_volume_response",
     "prepare_otf",
     "prepare_volume_order_otfs",
     "prepare_volume_otf",
