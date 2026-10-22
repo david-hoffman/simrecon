@@ -29,6 +29,7 @@ from ._pixels import read
 from ._point_bead_calibration import PointBeadCalibration, calibrate_raw_point_bead
 from ._reconstruction import Reconstruction2D, reconstruct
 from ._translation import TranslationEstimate, estimate_translation
+from ._volume_carrier_diagnostics import VolumeCarrierCandidate, scan_volume_carriers
 from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
 from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
@@ -59,6 +60,7 @@ __all__ = [
     "SharedNodeVolumeTransfer",
     "TranslationEstimate",
     "TrilinearVolumeTransfer",
+    "VolumeCarrierCandidate",
     "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
     "VolumePhaseComponents",
@@ -86,6 +88,7 @@ __all__ = [
     "reconstruct_volume",
     "sample_empirical_volume_transfer",
     "scan_carriers",
+    "scan_volume_carriers",
     "select_carrier",
     "separate_phases",
     "separate_volume_phases",
