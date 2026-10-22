@@ -755,6 +755,7 @@ class VerificationFixture:
         self.make.chmod(0o700)
         for args in (
             ["init", "-q"],
+            ["config", "--local", "maintenance.auto", "false"],
             ["add", "."],
             [
                 "-c",
