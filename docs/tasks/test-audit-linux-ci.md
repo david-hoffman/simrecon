@@ -105,6 +105,16 @@ Branch: `codex/test-audit-linux-ci`. This worktree owns this task only.
   comparison with the complete serial reference. Actual configured execution,
   native-key matches and the complete closed-job interval remain mandatory;
   recorded timing sums do not forecast elapsed time.
+  After two attempts failed before tests on matching pinned-reader TLS timeouts,
+  one bounded infrastructure worker owns only four workflow setup insertions:
+  acquire the identical Bio-Formats JAR from its official GitHub release, with
+  bounded HTTPS-only transfer, exclusive temporary publication, original SHA-256
+  validation and retained actual acquisition/tool/byte provenance. Coordinator
+  owns the narrow documentation. Existing reader code/pins, tests, scientific
+  producers, timing data, all validators and local phases remain frozen. One
+  successful local same-byte acquisition is evidence for the proposal, not
+  Ubuntu connectivity or a speed claim. Fresh review and full exact local gate
+  precede publication; full actual Ubuntu proof and timing remain mandatory.
   Keep the standing advisory automatic coverage gate; this task's independently
   checked exact100% native targets remain blocking locally and on Ubuntu.
 - Scientific/binary oracle redesign or uncertain preservation is separate

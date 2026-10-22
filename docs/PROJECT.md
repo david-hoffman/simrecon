@@ -57,6 +57,9 @@ Coverage.py measures executable source lines (reported here as native statements
 [Standard CI jobs](contracts/test-audit-standard-ci-v1.md) distribute the complete
 Ubuntu verification across independent preparation and quality jobs,
 complementary test groups and finalization.
+Each job bootstraps the identical pinned Bio-Formats JAR from its official GitHub
+release before unchanged locked sync, retaining bounded-transfer and tool/byte
+provenance. Reader versions, checksum validation and scientific behavior stay fixed.
 Native job logs and per-job identity observations retain actual command origins;
 CI emits no synthetic passed single-process receipt. Local `make verify`, its
 13 phases and v1 receipt remain unchanged. The standing advisory coverage policy

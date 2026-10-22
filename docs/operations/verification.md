@@ -27,6 +27,10 @@ all logical checks with genuine preparation, independent quality, complementary
 test and finalizer commands. Each job records clean-start and unchanged
 source/input identity. Quality runs locked sync, lint, format and types, retaining
 its own run-id/attempt artifact without a measurement UUID or preparation dependency.
+Each job first acquires the identical checksum-pinned Bio-Formats JAR from its
+official GitHub release using bounded HTTPS-only transfer. Retained bootstrap
+provenance distinguishes that acquisition URL from the canonical pin declared
+by the unchanged reader validator; full locked sync still authenticates it.
 Original native coverage and reportlog inputs remain in separate downloaded
 bundles; finalization combines explicit originals with `--keep`, generates current
 JSON and complete HTML, and runs wheel, isolated import and locked audit. Existing

@@ -1,6 +1,6 @@
 # CI-STANDARD-01: standard complementary jobs and existing validators
 
-**Version 1.1.** This supersedes the unimplemented CI-SHARDS-01 mechanism. It continues the
+**Version 1.2.** This supersedes the unimplemented CI-SHARDS-01 mechanism. It continues the
 owner's test-audit task: Ubuntu-only continuous integration (CI), complete valuable
 proof and a measured required-job interval strictly below 300 seconds. Disk
 lifecycle already has accepted exact local evidence. No scientific behavior,
@@ -56,6 +56,14 @@ the actual existing workflow path), immutable CI timing input and ordinary
 dependency wiring. Pytest-split0.11.0 and pytest-reportlog1.0.0 pins/locks retain
 their existing bounded worker/review evidence where actual inputs are unchanged.
 
+The reader transport correction assigns one bounded infrastructure worker only
+.github/workflows/verify.yml: add the same checksum-pinned acquisition step to
+its four existing job definitions. The coordinator owns this contract and narrow
+project/verification/task documentation. Reader code, pins, tests, fixtures,
+scientific producers, timing data and validators remain frozen. Fresh independent
+review and exact full local verification precede publication; actual Ubuntu
+delivery, full proof and the closed timing interval remain required afterward.
+
 One fresh bounded worker owns ONLY:
 - scripts/verify.py: replace final unconditional sys.exit(main()) with the ordinary
   __main__ guard; all existing validators/imports/constants/CLI remain unchanged;
@@ -82,6 +90,34 @@ max-worker-restart=0. Quality has no dependency on prepare or its UUID. The actu
 configured workflow has 15 required native jobs: prepare, quality, 12 shards and
 finalizer. Twelve groups remain an unmeasured timing candidate for this changed
 workflow, not a speed promise or a complete qualification.
+
+Before each job's make sync, after its clean source-identity capture, bootstrap
+the existing Bio-Formats 8.5.0 input from the official release URL
+https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar.
+Require exactly 53,843,906 bytes and the unchanged SHA-256
+c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9.
+Use stock curl >=8.4.0 with -q first, HTTPS-only initial/redirect protocols, at
+most three redirects, 15 s connection and 180 s total bounds, a 70,000,000-byte
+maximum and no retry or TLS bypass. Download to an exclusively created owned
+temporary file, verify before publication, publish without replacing an existing
+destination and clean only that owned temporary name after the process closes.
+Record selected tool identities before use and unchanged afterward, the actual
+acquisition URL, bounds, outcome and byte/hash observations under artifacts/ci/.
+Existing artifact retention includes this provenance. The canonical source URL
+later reported by inputs.json remains the reader's declared pin; it is not a
+claim that bootstrap downloaded from that URL. Unchanged make sync must still
+authenticate the cached JAR and the other genuine reader/Java inputs. Bootstrap
+setup and cleanup count in the full required-job timing interval.
+
+This correction follows two complete failed attempts of run39699741369, each
+with matching Bio-Formats TLS handshake timeouts in prepare and quality before
+tests. The immediate failure is transport/environment; its underlying cause is
+unknown. The official v8.5.0 release advertises the existing checksum, and one
+isolated local acquisition delivered all 53,843,906 matching bytes in 2.209353 s
+with HTTP200, one redirect and TLS verification result0. Original cache/tool
+identities were unchanged. This proves local delivered-byte equality, not Ubuntu
+connectivity or future elapsed time. Original failed attempts and acquisition
+evidence remain under artifacts/test-audit-ci/standard-ci/performance/.
 
 The immutable standard pytest-split timing input is the tracked
 .github/pytest-durations.json. Derive its native timing data from the retained

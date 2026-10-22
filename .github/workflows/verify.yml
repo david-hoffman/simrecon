@@ -58,6 +58,75 @@ jobs:
           "$(uv python find 3.13.12)" -c 'import uuid; print("ci_uuid=" + str(uuid.uuid4()))' >> "$GITHUB_OUTPUT"
           set -o noclobber
           cat .github/pytest-durations.json > artifacts/ci/durations.json
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
       - name: Synchronize locked dependencies and genuine reader inputs
         run: |
           set -euo pipefail
@@ -215,6 +284,75 @@ jobs:
               json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
               stream.write('\n')
           PYCODE
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
       - name: Synchronize locked dependencies and genuine reader inputs
         run: |
           set -euo pipefail
@@ -376,6 +514,75 @@ jobs:
               json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
               stream.write('\n')
           PYCODE
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
       - name: Synchronize locked dependencies and genuine reader inputs
         run: |
           set -euo pipefail
@@ -563,6 +770,75 @@ jobs:
               json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
               stream.write('\n')
           PYCODE
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
       - name: Synchronize locked dependencies and genuine reader inputs
         run: |
           set -euo pipefail
