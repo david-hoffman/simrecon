@@ -12,10 +12,12 @@ The [roadmap](../MIGRATION-ROADMAP.md#8-penultimate--full-end-to-end-3d-simulati
 
 | Slice | Concrete result and dependency | State |
 |---|---|---|
-| NS01 | Pure Poisson/background/Gaussian camera sampling under the [public camera contract](../contracts/simulation-camera-v1.md). Independent of the calibration-information choice. | Authorized first numerical prerequisite |
-| NS02 | Independent expected-image optical operator, then phantom and raw bead/specimen generation, with analytic/convergence proofs and a measured memory plan. The pure optical operator is independent of NS01; noisy composition uses completed NS01. Requires its concrete public numerical contract. | Next generator contract |
+| NS01 | Pure Poisson/background/Gaussian camera sampling under the [public camera contract](../contracts/simulation-camera-v1.md). Independent of the calibration-information choice. | Implemented; camera-only verification retained, final combined/platform acceptance pending |
+| NS02 | Independent expected-image optical operator, then phantom and raw bead/specimen generation, with analytic/convergence proofs and a measured memory plan. The pure optical operator is independent of NS01; noisy composition uses completed NS01. Requires its concrete public numerical contract. | Optical/source prerequisites implemented; exact combined verification and independent acceptance pending |
 | NS03 | Missing raw calibration and parameter operations, continuous carrier/grid consumption and scalable execution. Uses a concrete image-only or independently measured information channel. | Material acquisition choice pending |
 | NS04 | Public raw workflow, small complete noisy cases, full-size sequential generation/calibration/estimation/reconstruction and independent error/resource assessment. | Dependent on completed NS02/NS03 |
+
+The independent pure source-catalogue prerequisite is contracted in [simulation-sources-v1](../contracts/simulation-sources-v1.md), with [named role ownership](simulation-sources.md). It selects a disclosed total-normalized midpoint sphere model. Exact sphere-cell integration and continuum accuracy are not inferred. Source refinement and grid-offset sensitivity remain measured scientific evidence. This pure geometry slice does not depend on the optical/camera implementations or supply an inverse information channel.
 
 The owner has been asked whether phase/carrier information must be inferred from noisy images or may use independently simulated measurement channels. No answer is inferred from silence. No phase monitor or extra metrology is silently added. No true phases/carriers/optical responses/offsets/gains/drift may enter the inverse as unmeasured “metadata.” Current point/two-site information theorems are not general finite-sphere noisy calibration algorithms. Existing integer-carrier APIs may not silently round the proposed continuous optical carriers.
 

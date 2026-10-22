@@ -175,8 +175,8 @@ def _transform(
     # Binary scaling also preserves subnormal-only bands without a tiny divisor.
     exponent = int(np.frexp(maximum)[1]) if maximum else 0
     scaled = np.empty(band.shape, dtype=np.complex128)
-    scaled.real = np.ldexp(band.real, -exponent)
-    scaled.imag = np.ldexp(band.imag, -exponent)
+    np.ldexp(band.real, -exponent, out=scaled.real)
+    np.ldexp(band.imag, -exponent, out=scaled.imag)
     code = "volume_reconstruction_transform_failure"
     try:
         with warnings.catch_warnings():
@@ -189,11 +189,51 @@ def _transform(
         raise SimreconError(code, "numerical FFT execution failed") from error
     if not np.isfinite(normalized).all():
         raise SimreconError(code, "FFT returned nonfinite normalized coordinates")
-    result = np.empty(band.shape, dtype=np.complex128)
-    result.real = np.ldexp(normalized.real, exponent)
-    result.imag = np.ldexp(normalized.imag, exponent)
-    _finite(result)
-    return result
+    # The transform has finished reading scaled. Reuse its owned C buffer for
+    # component restoration instead of retaining another full complex array.
+    np.ldexp(normalized.real, exponent, out=scaled.real)
+    np.ldexp(normalized.imag, exponent, out=scaled.imag)
+    _finite(scaled)
+    return scaled
+
+
+def _accumulate_orientation(
+    observed: npt.NDArray[np.float64],
+    phases: npt.NDArray[np.float64],
+    transfers: npt.NDArray[np.complex128],
+    gain: float,
+    carrier: tuple[int, int],
+    numerator: npt.NDArray[np.complex128],
+    denominator: npt.NDArray[np.float64],
+) -> None:
+    """Accumulate one orientation, bounding separated-band and scratch lifetimes."""
+    detector = observed.shape[1:]
+    _, ny, nx = detector
+    _, ly, lx = numerator.shape
+    cy, cx = carrier
+    negation = np.ix_(*[(2 * (k // 2) - np.arange(k)) % k for k in detector])
+    separated = separate_volume_phases(observed, phases_rad=phases)
+    bands = (separated.dc, separated.c1, separated.c2)
+    for m in (-2, -1, 0, 1, 2):
+        band = bands[abs(m)]
+        transfer = transfers[abs(m)]
+        if m < 0:
+            band = np.conj(band)
+            transfer = np.conj(transfer[negation])
+        coefficients = _transform(band, inverse=False)
+        t = transfer * gain
+        _finite(t)
+        weight = t.real * t.real + t.imag * t.imag
+        _finite(weight)
+        contribution = np.conj(t) * coefficients
+        _finite(contribution)
+        y0 = ly // 2 - ny // 2 - m * cy
+        x0 = lx // 2 - nx // 2 - m * cx
+        window = (slice(None), slice(y0, y0 + ny), slice(x0, x0 + nx))
+        numerator[window] += contribution
+        denominator[window] += weight
+        _finite(numerator[window])
+        _finite(denominator[window])
 
 
 def reconstruct_volume(
@@ -336,40 +376,35 @@ def reconstruct_volume(
 
         numerator = np.zeros(output, dtype=np.complex128)
         denominator = np.zeros(output, dtype=np.float64)
-        negation = np.ix_(*[(2 * (k // 2) - np.arange(k)) % k for k in detector])
-        for r, ((transfers, _), (cy, cx)) in enumerate(zip(calibrations, carriers, strict=True)):
-            separated = separate_volume_phases(observed[r], phases_rad=phases[r])
-            bands = (separated.dc, separated.c1, separated.c2)
-            for m in (-2, -1, 0, 1, 2):
-                band = bands[abs(m)]
-                transfer = transfers[abs(m)]
-                if m < 0:
-                    band = np.conj(band)
-                    transfer = np.conj(transfer[negation])
-                coefficients = _transform(band, inverse=False)
-                t = transfer * gain[r]
-                _finite(t)
-                weight = t.real * t.real + t.imag * t.imag
-                _finite(weight)
-                contribution = np.conj(t) * coefficients
-                _finite(contribution)
-                y0 = ly // 2 - ny // 2 - m * cy
-                x0 = lx // 2 - nx // 2 - m * cx
-                window = (slice(None), slice(y0, y0 + ny), slice(x0, x0 + nx))
-                numerator[window] += contribution
-                denominator[window] += weight
-                _finite(numerator[window])
-                _finite(denominator[window])
+        for r, carrier in enumerate(carriers):
+            _accumulate_orientation(
+                observed[r],
+                phases[r],
+                calibrations[r][0],
+                float(gain[r]),
+                carrier,
+                numerator,
+                denominator,
+            )
+        # All snapshots precede numerical work, but need not survive their last
+        # use. No loop-local band or transfer view keeps these copies alive.
+        del observed, phases, calibrations, gain
         denominator += penalty
         _finite(denominator)
-        quotient = np.zeros(output, dtype=np.complex128)
-        np.divide(numerator.real, denominator, out=quotient.real, where=denominator > 0)
-        np.divide(numerator.imag, denominator, out=quotient.imag, where=denominator > 0)
-        _finite(quotient)
-        spectrum = np.empty(output, dtype=np.complex128)
-        spectrum.real = quotient.real * mask
-        spectrum.imag = quotient.imag * mask
+        # Reuse U for Q, then T. A zero denominator explicitly writes zero even
+        # when its squared transfers underflowed while its numerator did not.
+        spectrum = numerator
+        del numerator
+        positive = denominator > 0
+        spectrum[~positive] = 0
+        np.divide(spectrum.real, denominator, out=spectrum.real, where=positive)
+        np.divide(spectrum.imag, denominator, out=spectrum.imag, where=positive)
+        _finite(spectrum)  # Unmasked Q must be finite; the mask cannot rescue it.
+        del denominator, positive
+        np.multiply(spectrum.real, mask, out=spectrum.real)
+        np.multiply(spectrum.imag, mask, out=spectrum.imag)
         _finite(spectrum)
+        del mask
         volume = _transform(spectrum, inverse=True)
     return Reconstruction3D(
         volume, spectrum, fz, fy, fx, (out_spacing[0], out_spacing[1], out_spacing[2])
