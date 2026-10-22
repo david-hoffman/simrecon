@@ -31,6 +31,7 @@ from ._observable_volume_phase_estimation import (
 from ._otf import Otf2D, prepare_otf
 from ._phase import PhaseComponents, separate_phases
 from ._phase_carrier_scan import scan_volume_phase_carriers
+from ._phase_carrier_selection import VolumePhaseCarrierSelection, select_volume_phase_carrier
 from ._pixels import read
 from ._point_bead_calibration import PointBeadCalibration, calibrate_raw_point_bead
 from ._reconstruction import Reconstruction2D, reconstruct
@@ -74,6 +75,7 @@ __all__ = [
     "VolumeCarrierSelection",
     "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
+    "VolumePhaseCarrierSelection",
     "VolumePhaseComponents",
     "VolumePhaseEstimate",
     "WriteReport",
@@ -107,6 +109,7 @@ __all__ = [
     "scan_volume_phase_carriers",
     "select_carrier",
     "select_volume_carrier",
+    "select_volume_phase_carrier",
     "separate_phases",
     "separate_volume_phases",
     "write",
