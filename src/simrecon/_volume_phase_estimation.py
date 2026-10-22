@@ -356,30 +356,27 @@ def _estimate(
     signed = [f[2][negative].conj(), f[1][negative].conj(), f[0], f[1], f[2]]
     y_complex = _transform(values / b, (1, 2, 3))
     y = np.concatenate((y_complex.real.ravel(), y_complex.imag.ravel()))
-    reduction = None
+    block_profile = None
     if observable:
-        from ._observable_volume_phase_estimation import _observable_subspace
+        from ._fourier_block_phase import _BlockProfile
 
-        reduction = _observable_subspace(signed, (cy, cx), shape)
-        _, q = reduction
-        dimension = q.shape[1]
-        basis = (
-            _transform(q.reshape(*shape, dimension), (0, 1, 2))
-            if dimension
-            else np.empty((*shape, 0), dtype=np.complex128)
-        )
+        block_profile = _BlockProfile(signed, (cy, cx), shape, y, n)
+        profile = block_profile
+        dimension = profile.dimension
     else:
         dimension = size
         basis = _transform(np.eye(size).reshape(*shape, size), (0, 1, 2))
-    operators = np.array(
-        [
-            row.reshape(size, 1)
-            * np.roll(basis, (m * (cy % ny), m * (cx % nx)), axis=(1, 2)).reshape(size, dimension)
-            for m, row in zip(range(-2, 3), signed, strict=True)
-        ]
-    )
-    _finite(y, operators)
-    profile = _Profile(operators, y, n, size)
+        operators = np.array(
+            [
+                row.reshape(size, 1)
+                * np.roll(basis, (m * (cy % ny), m * (cx % nx)), axis=(1, 2)).reshape(
+                    size, dimension
+                )
+                for m, row in zip(range(-2, 3), signed, strict=True)
+            ]
+        )
+        _finite(y, operators)
+        profile = _Profile(operators, y, n, size)
     if dimension:
         profile.residual(initial_angles)
         profile.jacobian(initial_angles)
@@ -462,7 +459,7 @@ def _estimate(
     deviations = _canonical(result_angles - initial_angles)
     phasors = c + 1j * s
     _finite(relative, rms, imaginary, reality, gradient, phasors, deviations)
-    specimen = reduction[1] @ point.specimen if reduction is not None else point.specimen
+    specimen = block_profile.lift(point.specimen) if block_profile is not None else point.specimen
     _finite(specimen)
     fields = (
         result_angles.copy(order="C"),
@@ -488,12 +485,12 @@ def _estimate(
         source,
         "unassessed",
     )
-    if reduction is not None:
+    if block_profile is not None:
         from ._observable_volume_phase_estimation import ObservableVolumePhaseEstimate
 
         return ObservableVolumePhaseEstimate(
             *fields,
-            observable_fourier_mask=reduction[0].copy(order="C"),
+            observable_fourier_mask=block_profile.mask.copy(order="C"),
             observable_dimension=dimension,
             unobservable_dimension=size - dimension,
         )

@@ -104,6 +104,8 @@ This supplies quantities the current known-parameter volume path requires from i
 
 The continuation above completed PR42 selects [caller-policy selection of unknown-phase carrier rows](contracts/phase-carrier-selection-v1.md). It composes the independent local fits with explicit residual/phase-rank policy, retains every row and selects only a sole passing stationary fit. This does not establish physical carrier identity, global phase recovery or completion of Phase5. Its [task pointer](tasks/phase-carrier-selection.md) retains exact high-risk review and delivery evidence.
 
+The continuation above completed PR43 selects [Fourier-block observable phase execution](contracts/fourier-block-phase-estimation-v1.md). This scalability foundation preserves the existing local model, global rank cutoff and full residual/Jacobian while solving independent Fourier carrier-orbit nuisance blocks. Long lateral cycles can still be expensive; the full-volume workflow is not yet established. Its [task pointer](tasks/fourier-block-phase-estimation.md) retains high-risk ownership and inherited exact local/independent-platform gates.
+
 ### 6. Reference-compatible 3D reconstruction and output
 
 This closes the difference between finite-grid known-parameter recombination and the selected experimental mode.
