@@ -1,0 +1,306 @@
+{
+  "schema": "simrecon.phase-carrier-scan-observed-comparison.v1",
+  "observation": "examples02 actual corrected-code execution",
+  "generation_utc": {
+    "start": "2026-10-18T08:10:59.305713+00:00",
+    "end": "2026-10-18T08:11:00.359646+00:00",
+    "returncode": 0,
+    "timed_out": false
+  },
+  "units": {
+    "objective": "dimensionless J=0.5*sum(residual**2)",
+    "objective_difference": "stored product J minus independent returned-point J",
+    "phase_error": "wrapped fitted minus hidden phase, radians",
+    "evaluation_counts": "per-row reported residual/Jacobian evaluations",
+    "grid_shape": "phase/z/y/x samples",
+    "spacing": "micrometres"
+  },
+  "provenance": {
+    "manifest.json": {
+      "size_bytes": 5159,
+      "sha256": "d924dd7eb8671acfd8c1c88df3c009af6d422194a731d50b8430c150c72e1016"
+    },
+    "association.json": {
+      "size_bytes": 10466123,
+      "sha256": "f5e99c64f04f0fd273052c9efe325a4cebc46fb7aa68feca6ddb876b6a743617"
+    },
+    "summary.json": {
+      "size_bytes": 17188,
+      "sha256": "17b1374d176a7d5cc84a79543cde71d78d9ebe991ebfd93e24103e02cd7af193"
+    }
+  },
+  "source_pins": {
+    "src/simrecon/_phase_carrier_scan.py": "a040757ee3a5a02aefb220bcece3f2748b8114b2762b1ef3710b206bd240dfa2",
+    "src/simrecon/__init__.py": "ac0daa5b98cab2c98f6512228381dcdede09182ee2391231c5d84e0a57737409",
+    "tests/test_phase_carrier_scan.py": "012d2076dc49b0b786d0accb4e13223a6bccfa117685133bb40e6784a424bfa3",
+    "tests/phase_carrier_scan_fixture.py": "e514daa818429b93705174804cd8041d458726e33deaf916f6aaccd90b3598d9",
+    "docs/contracts/phase-carrier-scan-v1.md": "88ffe65efd9b9340fda0234dcb2ba3026ba8337f4aeb95245a791f0808315a06",
+    "docs/usage/phase-carrier-scan.md": "132e1349e025088c6e0bec988d7c6fd337dc1510e6e12ae5777bdd62bdffe388"
+  },
+  "environment": {
+    "python": "3.13.12",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "platform": "Darwin arm64",
+    "project_static_version": "0.1.0"
+  },
+  "groups": [
+    {
+      "name": "finite_fourier",
+      "image_shape_phase_zyx": [
+        7,
+        2,
+        3,
+        3
+      ],
+      "voxel_size_um": [
+        0.5,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "calibration_error_signed_max_component": 0.0,
+      "input_pins": {
+        "finite_fourier-scan-inputs.npz": {
+          "size_bytes": 4318,
+          "sha256": "7f7d4fb09a69daf344a28cc719747257a17013e61abb3ad674b2d2ea5d9a8984"
+        }
+      },
+      "rows": [
+        {
+          "row": 0,
+          "candidate_yx": [
+            0,
+            0
+          ],
+          "independent_objective": 1.5884798086433993,
+          "stored_minus_independent_objective": -2.220446049250313e-16,
+          "phase_error_rms_rad": 1.456322710801765,
+          "phase_error_signed_max_rad": 2.875078862307901,
+          "termination": "stagnated",
+          "nfev": 33,
+          "njev": 28,
+          "observable_dimension": 18,
+          "nuisance_rank": 18,
+          "phase_rank": 7,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        },
+        {
+          "row": 1,
+          "candidate_yx": [
+            1,
+            -1
+          ],
+          "independent_objective": 5.12438749136067e-29,
+          "stored_minus_independent_objective": -4.661597221595176e-29,
+          "phase_error_rms_rad": 8.970554928959674e-16,
+          "phase_error_signed_max_rad": -1.7763568394002505e-15,
+          "termination": "stationary",
+          "nfev": 7,
+          "njev": 7,
+          "observable_dimension": 18,
+          "nuisance_rank": 18,
+          "phase_rank": 7,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        },
+        {
+          "row": 2,
+          "candidate_yx": [
+            4,
+            2
+          ],
+          "independent_objective": 5.12438749136067e-29,
+          "stored_minus_independent_objective": -4.661597221595176e-29,
+          "phase_error_rms_rad": 8.970554928959674e-16,
+          "phase_error_signed_max_rad": -1.7763568394002505e-15,
+          "termination": "stationary",
+          "nfev": 7,
+          "njev": 7,
+          "observable_dimension": 18,
+          "nuisance_rank": 18,
+          "phase_rank": 7,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        },
+        {
+          "row": 3,
+          "candidate_yx": [
+            1,
+            -1
+          ],
+          "independent_objective": 5.12438749136067e-29,
+          "stored_minus_independent_objective": -4.661597221595176e-29,
+          "phase_error_rms_rad": 8.970554928959674e-16,
+          "phase_error_signed_max_rad": -1.7763568394002505e-15,
+          "termination": "stationary",
+          "nfev": 7,
+          "njev": 7,
+          "observable_dimension": 18,
+          "nuisance_rank": 18,
+          "phase_rank": 7,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        }
+      ]
+    },
+    {
+      "name": "raw_spatial",
+      "image_shape_phase_zyx": [
+        7,
+        1,
+        3,
+        4
+      ],
+      "voxel_size_um": [
+        1.0,
+        0.3333333333333333,
+        0.25
+      ],
+      "calibration_error_signed_max_component": -4.440892098500626e-16,
+      "input_pins": {
+        "raw_spatial-scan-inputs.npz": {
+          "size_bytes": 3694,
+          "sha256": "9e3c39913c88c3f5620f73f7c2e7f1bbd32dd7ba314ff04834715c28eecc3e6d"
+        }
+      },
+      "rows": [
+        {
+          "row": 0,
+          "candidate_yx": [
+            0,
+            0
+          ],
+          "independent_objective": 0.5994612403448174,
+          "stored_minus_independent_objective": 1.1102230246251565e-16,
+          "phase_error_rms_rad": 1.8204219400085029,
+          "phase_error_signed_max_rad": -2.8014859454035763,
+          "termination": "stationary",
+          "nfev": 34,
+          "njev": 19,
+          "observable_dimension": 12,
+          "nuisance_rank": 12,
+          "phase_rank": 6,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        },
+        {
+          "row": 1,
+          "candidate_yx": [
+            1,
+            -1
+          ],
+          "independent_objective": 1.0043747535713573e-29,
+          "stored_minus_independent_objective": -4.678206615548267e-30,
+          "phase_error_rms_rad": 9.882505121672174e-16,
+          "phase_error_signed_max_rad": 1.9567680809018384e-15,
+          "termination": "stationary",
+          "nfev": 6,
+          "njev": 6,
+          "observable_dimension": 12,
+          "nuisance_rank": 12,
+          "phase_rank": 7,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        },
+        {
+          "row": 2,
+          "candidate_yx": [
+            4,
+            3
+          ],
+          "independent_objective": 1.0043747535713573e-29,
+          "stored_minus_independent_objective": -4.678206615548267e-30,
+          "phase_error_rms_rad": 9.882505121672174e-16,
+          "phase_error_signed_max_rad": 1.9567680809018384e-15,
+          "termination": "stationary",
+          "nfev": 6,
+          "njev": 6,
+          "observable_dimension": 12,
+          "nuisance_rank": 12,
+          "phase_rank": 7,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        },
+        {
+          "row": 3,
+          "candidate_yx": [
+            1,
+            -1
+          ],
+          "independent_objective": 1.0043747535713573e-29,
+          "stored_minus_independent_objective": -4.678206615548267e-30,
+          "phase_error_rms_rad": 9.882505121672174e-16,
+          "phase_error_signed_max_rad": 1.9567680809018384e-15,
+          "termination": "stationary",
+          "nfev": 6,
+          "njev": 6,
+          "observable_dimension": 12,
+          "nuisance_rank": 12,
+          "phase_rank": 7,
+          "phase_design_rank": 5,
+          "global_ambiguity": "unassessed"
+        }
+      ]
+    }
+  ],
+  "unavailable_control": {
+    "intervention": "all transfer components exactly zero",
+    "nfev": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "njev": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "normalized_residual_rms": [
+      0.6803650188391814,
+      0.6803650188391814,
+      0.6803650188391814,
+      0.6803650188391814
+    ],
+    "signed_diagnostic_differences": [
+      {
+        "calibration_reality_defect": 0.0,
+        "gradient_inf_norm": 0.0,
+        "normalized_imaginary_rms": 0.0,
+        "normalized_residual_rms": 2.220446049250313e-16,
+        "relative_residual": 0.0
+      },
+      {
+        "calibration_reality_defect": 0.0,
+        "gradient_inf_norm": 0.0,
+        "normalized_imaginary_rms": 0.0,
+        "normalized_residual_rms": 2.220446049250313e-16,
+        "relative_residual": 0.0
+      },
+      {
+        "calibration_reality_defect": 0.0,
+        "gradient_inf_norm": 0.0,
+        "normalized_imaginary_rms": 0.0,
+        "normalized_residual_rms": 2.220446049250313e-16,
+        "relative_residual": 0.0
+      },
+      {
+        "calibration_reality_defect": 0.0,
+        "gradient_inf_norm": 0.0,
+        "normalized_imaginary_rms": 0.0,
+        "normalized_residual_rms": 2.220446049250313e-16,
+        "relative_residual": 0.0
+      }
+    ],
+    "source_scan_inputs": "raw_spatial-scan-inputs.npz",
+    "terminations": [
+      "no_observable_specimen",
+      "no_observable_specimen",
+      "no_observable_specimen",
+      "no_observable_specimen"
+    ]
+  },
+  "limits": "No physical noise/instrument validation; no arbitrary-start/global recovery; dense small-case execution only."
+}
