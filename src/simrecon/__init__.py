@@ -16,6 +16,7 @@ from ._empirical_trilinear import (
     TrilinearVolumeTransfer,
     adapt_empirical_volume_response_trilinear,
 )
+from ._finite_bead_calibration import FiniteBeadCalibration, calibrate_raw_finite_bead
 from ._illumination import IlluminationEstimate, estimate_illumination
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
 from ._legacy import inspect
@@ -46,6 +47,7 @@ __all__ = [
     "DriftCorrection",
     "EmpiricalFrequencySamples",
     "EmpiricalVolumeResponse",
+    "FiniteBeadCalibration",
     "IlluminationEstimate",
     "ImagejSeries",
     "ImagejWriteReport",
@@ -71,6 +73,7 @@ __all__ = [
     "adapt_empirical_volume_response_shared_nodes",
     "adapt_empirical_volume_response_trilinear",
     "calibrate_raw_point_bead",
+    "calibrate_raw_finite_bead",
     "correct_integer_drift",
     "correct_linear_response",
     "declare_acquisition",

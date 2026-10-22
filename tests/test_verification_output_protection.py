@@ -58,6 +58,7 @@ def create_repository(directory: Path, linked: bool = False) -> Repository:
         "artifacts/\ndist/\ncalls.jsonl\nactions.jsonl\n", encoding="utf-8"
     )
     git(root, "init", "-q")
+    git(root, "config", "--local", "maintenance.auto", "false")
     git(root, "config", "user.email", "fixture@example.invalid")
     git(root, "config", "user.name", "Output protection fixture")
     git(root, "add", ".")
