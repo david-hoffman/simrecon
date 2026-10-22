@@ -106,6 +106,8 @@ The continuation above completed PR42 selects [caller-policy selection of unknow
 
 The continuation above completed PR43 selects [Fourier-block observable phase execution](contracts/fourier-block-phase-estimation-v1.md). This scalability foundation preserves the existing local model, global rank cutoff and full residual/Jacobian while solving independent Fourier carrier-orbit nuisance blocks. Long lateral cycles can still be expensive; the full-volume workflow is not yet established. Its [task pointer](tasks/fourier-block-phase-estimation.md) retains high-risk ownership and inherited exact local/independent-platform gates.
 
+Above completed PR44, [known-reference periodic 3D integer translation](contracts/volume-translation-estimation-v1.md) extends the settled 2D common-scale all-pixel objective to z/y/x volumes. It is the next comparable-reference drift foundation, retaining explicit ambiguity and supplied equal-intensity references. It does not construct comparable references from different raw phase exposures, infer fractional or physical motion, or correct illumination/axial profiles. Its [task pointer](tasks/volume-translation-estimation.md) retains high-risk ownership and inherited100%native/full-local/independent-platform gates. Its [executed comparison](reports/volume-translation-estimation-comparison.md) records the two observation groups and keeps physical-motion and full-size exits open.
+
 ### 6. Reference-compatible 3D reconstruction and output
 
 This closes the difference between finite-grid known-parameter recombination and the selected experimental mode.

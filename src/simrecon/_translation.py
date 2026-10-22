@@ -57,9 +57,8 @@ def _image_snapshot(value: object) -> npt.NDArray[np.float64]:
     return snapshot
 
 
-def _tolerance(value: object) -> float:
+def _tolerance(value: object, *, code: str = "invalid_translation_tolerance") -> float:
     """Validate stored source values before potentially underflowing conversion."""
-    code = "invalid_translation_tolerance"
     if type(value) is np.ndarray and value.ndim == 0 and value.dtype.kind in "iuf":
         value = value[()]
     if isinstance(value, (bool, np.bool_)) or not isinstance(

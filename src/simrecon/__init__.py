@@ -41,6 +41,7 @@ from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
 from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
 from ._volume_phase_estimation import VolumePhaseEstimate, estimate_volume_phases
+from ._volume_translation_estimation import VolumeTranslationEstimate, estimate_volume_translation
 from .volume_carrier_selection import VolumeCarrierSelection, select_volume_carrier
 from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
@@ -78,6 +79,7 @@ __all__ = [
     "VolumePhaseCarrierSelection",
     "VolumePhaseComponents",
     "VolumePhaseEstimate",
+    "VolumeTranslationEstimate",
     "WriteReport",
     "adapt_empirical_volume_response",
     "adapt_empirical_volume_response_shared_nodes",
@@ -92,6 +94,7 @@ __all__ = [
     "estimate_translation",
     "estimate_volume_order_gain",
     "estimate_volume_phases",
+    "estimate_volume_translation",
     "export_imagej",
     "harmonize",
     "inspect",
