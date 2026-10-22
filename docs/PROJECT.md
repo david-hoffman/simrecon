@@ -30,6 +30,8 @@ The owner permits studying legacy algorithms but requires independently written 
 
 The [raw acquisition declaration contract](contracts/raw-acquisition-declarations-v1.md) supplies `declare_acquisition` / `RawAcquisition` for caller-declared array layouts and metadata. [Usage](usage/raw-acquisition-declarations.md) covers owned bit-preserving canonical arrays, explicit declarations and caller-selected MRC composition. Its [task pointer](tasks/raw-acquisition-declarations.md) owns exact role/check/publication evidence. This declaration-only foundation does not complete phase 2; target 3D acquisition and optical settings remain unresolved.
 
+The continuing-roadmap instruction next supplies the [declared linear-response correction contract](contracts/linear-response-correction-v1.md): explicitly supplied offset and positive response for raw=offset+response*signal, inverted with sequential finite binary64 arithmetic. The caller declares the physical relation and both unit labels; no instrument calibration or saturation inference is selected. Its [task pointer](tasks/linear-response-correction.md) owns exact role/check/publication evidence. This is a partial R2 foundation; actual specimen/bead correction settings and later calibration remain unresolved.
+
 ## Stack and structure
 
 - Python 3.13.12, uv 0.12.19, locked `uv.lock`, one isolated `.venv` per worktree. NumPy/SciPy form the numerical stack; h5py 3.16.0 is runtime and mrcfile 1.5.4 a development reference.
