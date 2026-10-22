@@ -1,6 +1,7 @@
 """Spatial image conversion through explicit, value-oriented interfaces."""
 
 from ._acquisition import RawAcquisition, declare_acquisition
+from ._bead_peak import BeadPeak, locate_bead_peak
 from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
 from ._drift import DriftCorrection, correct_integer_drift
@@ -23,6 +24,7 @@ from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_ga
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
 
 __all__ = [
+    "BeadPeak",
     "CarrierCandidate",
     "CarrierSelection",
     "DataBlock",
@@ -53,6 +55,7 @@ __all__ = [
     "export_imagej",
     "harmonize",
     "inspect",
+    "locate_bead_peak",
     "prepare_otf",
     "prepare_volume_order_otfs",
     "prepare_volume_otf",
