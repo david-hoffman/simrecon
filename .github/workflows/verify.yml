@@ -1,53 +1,1183 @@
 name: Verify
-
-on:
-  pull_request:
-
+'on':
+  pull_request: null
 permissions:
   contents: read
-
+defaults:
+  run:
+    shell: bash
+env:
+  EXPECTED_SHA: ${{ github.sha }}
 jobs:
-  verify:
-    name: Verify (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-24.04, macos-15]
+  prepare:
+    name: Prepare verification
+    runs-on: ubuntu-24.04
+    outputs:
+      ci_uuid: ${{ steps.identity.outputs.ci_uuid }}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out exact event candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
           persist-credentials: false
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      - name: Install pinned uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
         with:
-          version: "0.12.19"
-
+          version: 0.12.19
       - name: Install pinned Python
-        run: uv python install
-
+        run: |
+          uv python install 3.13.12
       - name: Install pinned development-reader Java
-        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c
         with:
           distribution: temurin
-          java-version: "21.0.7+6.0.LTS"
+          java-version: 21.0.7+6.0.LTS
+      - name: Record clean source identity before participating phases
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          import os
+          from pathlib import Path
+          from scripts import verify
 
-      - name: Run full verification
-        run: SIMRECON_JAVA="$JAVA_HOME/bin/java" make verify
+          before = verify.identity()
+          if before['commit'] != os.environ['EXPECTED_SHA'] or before['dirty'] or before['untracked']:
+              raise SystemExit('Expected clean exact event candidate')
+          # The existing manifest already fingerprints every tracked configuration/source.
+          with Path('artifacts/ci/source-identity.json').open('x') as stream:
+              json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
+              stream.write('\n')
+          PYCODE
+      - name: Create fresh common UUID and immutable initial timing bytes
+        id: identity
+        run: |
+          set -euo pipefail
+          "$(uv python find 3.13.12)" -c 'import uuid; print("ci_uuid=" + str(uuid.uuid4()))' >> "$GITHUB_OUTPUT"
+          set -o noclobber
+          cat .github/pytest-durations.json > artifacts/ci/durations.json
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
 
-      - name: Retain verification evidence
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
+      - name: Synchronize locked dependencies and genuine reader inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          make sync 2>&1 | tee artifacts/ci/sync.log
+      - name: Record actual platform, tools, packages and selected inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          uv run --locked --no-sync python - <<'PYCODE'
+          import importlib.metadata
+          import json
+          import os
+          import platform
+          import shutil
+          import subprocess
+          import sys
+          from pathlib import Path
+          from scripts import verify
+
+          commands = {
+              'uv': ['uv', '--version'], 'git': ['git', '--version'], 'make': ['make', '--version'],
+              'ruff': ['.venv/bin/ruff', '--version'], 'pyright': ['.venv/bin/pyright', '--version'],
+              'coverage': ['.venv/bin/coverage', '--version'], 'pytest': ['.venv/bin/pytest', '--version'],
+              'java': [os.environ['SIMRECON_JAVA'], '-XshowSettings:properties', '-version'],
+          }
+          tools = {}
+          for name, command in commands.items():
+              result = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True)
+              selected = Path(shutil.which(command[0]) or command[0]).absolute()
+              tools[name] = {'selected': str(selected), 'resolved': str(selected.resolve()),
+                             **verify.fingerprint(selected), 'command': command, 'output': result.stdout}
+          packages = sorted((d.metadata['Name'], d.version, str(d.locate_file(''))) for d in importlib.metadata.distributions())
+          record = {'platform': platform.platform(), 'python': {'executable': sys.executable,
+                    'resolved': str(Path(sys.executable).resolve()), 'version': sys.version,
+                    **verify.fingerprint(Path(sys.executable))}, 'tools': tools, 'packages': packages,
+                    'environment': {k: os.environ[k] for k in ('SIMRECON_JAVA', 'JAVA_HOME',
+                    'COVERAGE_FILE', 'COVERAGE_PROCESS_START', 'PYTEST_ADDOPTS', 'PYTHONPATH', 'UV_PYTHON') if k in os.environ}}
+          Path('artifacts/ci/environment.json').write_text(json.dumps(record, indent=2) + '\n')
+          # Existing final identity collector checks ignored participating inputs as well.
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          inputs = [Path(sys.executable), *(Path(tool['selected']) for tool in tools.values()),
+                    Path('artifacts/imagej-reader/inputs.json'), Path('artifacts/imagej-reader/bioformats_package.jar'),
+                    Path('artifacts/imagej-reader/ij-1.54p.jar')]
+          if Path('artifacts/ci/durations.json').is_file():
+              inputs.append(Path('artifacts/ci/durations.json'))
+          observation['inputs'].update({str(p): {'before': verify.fingerprint(p), 'after': None} for p in inputs})
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          PYCODE
+      - name: Clean prepare coverage outputs
+        run: |
+          set -euo pipefail
+          make coverage-clean 2>&1 | tee artifacts/ci/coverage-clean.log
+      - name: Observe actual complete serial collection without changing items
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          cat > artifacts/ci/collection_observer.py <<'PYCODE'
+          """Passive public collection observer; retains original Item.nodeid strings."""
+          import json
+          from pathlib import Path
+
+          nodeids = []
+
+          def pytest_itemcollected(item):
+              nodeids.append(item.nodeid)
+
+          def pytest_collection_finish(session):
+              with Path('artifacts/ci/reference-nodeids.json').open('x') as stream:
+                  json.dump(nodeids, stream, indent=2)
+                  stream.write('\n')
+          PYCODE
+          PYTHONPATH="$PWD/artifacts/ci${PYTHONPATH:+:$PYTHONPATH}" \
+            uv run --locked --no-sync python -m pytest -p collection_observer \
+            --collect-only -q -n 0 --report-log artifacts/coverage/pytest-reportlog.jsonl \
+            2>&1 | tee artifacts/ci/collection.log
+      - name: Record final source identity even after phase failure
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        run: |
+          set -euo pipefail
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          verify.collect_final_identity(observation, {name: Path(name) for name in observation['inputs']})
+          if observation['after'] is not None and observation['after']['untracked'] != observation['before']['untracked']:
+              observation['problems'].append('Untracked candidate inputs changed')
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          if observation['problems']:
+              raise SystemExit('\n'.join(observation['problems']))
+          PYCODE
+      - name: Retain original prepare observations
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: verification-${{ matrix.os }}
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ steps.identity.outputs.ci_uuid }}-prepare
           path: |
             .coverage
             .coverage.*
-            artifacts/coverage/
-            artifacts/verification/
+            artifacts/ci/
             artifacts/imagej-reader/inputs.json
+            artifacts/coverage/pytest-reportlog.jsonl
+            artifacts/verification/measurements.json
+            artifacts/verification/imagej-interop/
+            .python-version
+            uv.lock
+            pyproject.toml
+            Makefile
+            scripts/verify.py
+            .github/workflows/verify.yml
+          include-hidden-files: true
+          overwrite: false
+          if-no-files-found: error
+  quality:
+    name: Quality verification
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact event candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Install pinned uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: 0.12.19
+      - name: Install pinned Python
+        run: |
+          uv python install 3.13.12
+      - name: Install pinned development-reader Java
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c
+        with:
+          distribution: temurin
+          java-version: 21.0.7+6.0.LTS
+      - name: Record clean source identity before participating phases
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          import os
+          from pathlib import Path
+          from scripts import verify
+
+          before = verify.identity()
+          if before['commit'] != os.environ['EXPECTED_SHA'] or before['dirty'] or before['untracked']:
+              raise SystemExit('Expected clean exact event candidate')
+          # The existing manifest already fingerprints every tracked configuration/source.
+          with Path('artifacts/ci/source-identity.json').open('x') as stream:
+              json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
+              stream.write('\n')
+          PYCODE
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
+      - name: Synchronize locked dependencies and genuine reader inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          make sync 2>&1 | tee artifacts/ci/sync.log
+      - name: Record actual platform, tools, packages and selected inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          uv run --locked --no-sync python - <<'PYCODE'
+          import importlib.metadata
+          import json
+          import os
+          import platform
+          import shutil
+          import subprocess
+          import sys
+          from pathlib import Path
+          from scripts import verify
+
+          commands = {
+              'uv': ['uv', '--version'], 'git': ['git', '--version'], 'make': ['make', '--version'],
+              'ruff': ['.venv/bin/ruff', '--version'], 'pyright': ['.venv/bin/pyright', '--version'],
+              'coverage': ['.venv/bin/coverage', '--version'], 'pytest': ['.venv/bin/pytest', '--version'],
+              'java': [os.environ['SIMRECON_JAVA'], '-XshowSettings:properties', '-version'],
+          }
+          tools = {}
+          for name, command in commands.items():
+              result = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True)
+              selected = Path(shutil.which(command[0]) or command[0]).absolute()
+              tools[name] = {'selected': str(selected), 'resolved': str(selected.resolve()),
+                             **verify.fingerprint(selected), 'command': command, 'output': result.stdout}
+          packages = sorted((d.metadata['Name'], d.version, str(d.locate_file(''))) for d in importlib.metadata.distributions())
+          record = {'platform': platform.platform(), 'python': {'executable': sys.executable,
+                    'resolved': str(Path(sys.executable).resolve()), 'version': sys.version,
+                    **verify.fingerprint(Path(sys.executable))}, 'tools': tools, 'packages': packages,
+                    'environment': {k: os.environ[k] for k in ('SIMRECON_JAVA', 'JAVA_HOME',
+                    'COVERAGE_FILE', 'COVERAGE_PROCESS_START', 'PYTEST_ADDOPTS', 'PYTHONPATH', 'UV_PYTHON') if k in os.environ}}
+          Path('artifacts/ci/environment.json').write_text(json.dumps(record, indent=2) + '\n')
+          # Existing final identity collector checks ignored participating inputs as well.
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          inputs = [Path(sys.executable), *(Path(tool['selected']) for tool in tools.values()),
+                    Path('artifacts/imagej-reader/inputs.json'), Path('artifacts/imagej-reader/bioformats_package.jar'),
+                    Path('artifacts/imagej-reader/ij-1.54p.jar')]
+          if Path('artifacts/ci/durations.json').is_file():
+              inputs.append(Path('artifacts/ci/durations.json'))
+          observation['inputs'].update({str(p): {'before': verify.fingerprint(p), 'after': None} for p in inputs})
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          PYCODE
+      - name: Lint
+        run: |
+          set -euo pipefail
+          make lint 2>&1 | tee artifacts/ci/lint.log
+      - name: Check formatting
+        run: |
+          set -euo pipefail
+          make format 2>&1 | tee artifacts/ci/format.log
+      - name: Check types
+        run: |
+          set -euo pipefail
+          make types 2>&1 | tee artifacts/ci/types.log
+      - name: Record final source identity even after phase failure
+        if: always()
+        run: |
+          set -euo pipefail
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          verify.collect_final_identity(observation, {name: Path(name) for name in observation['inputs']})
+          if observation['after'] is not None and observation['after']['untracked'] != observation['before']['untracked']:
+              observation['problems'].append('Untracked candidate inputs changed')
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          if observation['problems']:
+              raise SystemExit('\n'.join(observation['problems']))
+          PYCODE
+      - name: Retain original quality observations
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-quality
+          path: |
+            .coverage
+            .coverage.*
+            artifacts/ci/
+            artifacts/imagej-reader/inputs.json
+            artifacts/coverage/pytest-reportlog.jsonl
+            artifacts/verification/measurements.json
+            artifacts/verification/imagej-interop/
+            .python-version
+            uv.lock
+            pyproject.toml
+            Makefile
+            scripts/verify.py
+            .github/workflows/verify.yml
+          include-hidden-files: true
+          overwrite: false
+          if-no-files-found: error
+  tests:
+    name: Test shard ${{ matrix.id }}
+    needs: prepare
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        id:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+    env:
+      SHARD_ID: ${{ matrix.id }}
+    steps:
+      - name: Check out exact event candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Install pinned uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: 0.12.19
+      - name: Install pinned Python
+        run: |
+          uv python install 3.13.12
+      - name: Install pinned development-reader Java
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c
+        with:
+          distribution: temurin
+          java-version: 21.0.7+6.0.LTS
+      - name: Record clean source identity before participating phases
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          import os
+          from pathlib import Path
+          from scripts import verify
+
+          before = verify.identity()
+          if before['commit'] != os.environ['EXPECTED_SHA'] or before['dirty'] or before['untracked']:
+              raise SystemExit('Expected clean exact event candidate')
+          # The existing manifest already fingerprints every tracked configuration/source.
+          with Path('artifacts/ci/source-identity.json').open('x') as stream:
+              json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
+              stream.write('\n')
+          PYCODE
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
+      - name: Synchronize locked dependencies and genuine reader inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          make sync 2>&1 | tee artifacts/ci/sync.log
+      - name: Record actual platform, tools, packages and selected inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          uv run --locked --no-sync python - <<'PYCODE'
+          import importlib.metadata
+          import json
+          import os
+          import platform
+          import shutil
+          import subprocess
+          import sys
+          from pathlib import Path
+          from scripts import verify
+
+          commands = {
+              'uv': ['uv', '--version'], 'git': ['git', '--version'], 'make': ['make', '--version'],
+              'ruff': ['.venv/bin/ruff', '--version'], 'pyright': ['.venv/bin/pyright', '--version'],
+              'coverage': ['.venv/bin/coverage', '--version'], 'pytest': ['.venv/bin/pytest', '--version'],
+              'java': [os.environ['SIMRECON_JAVA'], '-XshowSettings:properties', '-version'],
+          }
+          tools = {}
+          for name, command in commands.items():
+              result = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True)
+              selected = Path(shutil.which(command[0]) or command[0]).absolute()
+              tools[name] = {'selected': str(selected), 'resolved': str(selected.resolve()),
+                             **verify.fingerprint(selected), 'command': command, 'output': result.stdout}
+          packages = sorted((d.metadata['Name'], d.version, str(d.locate_file(''))) for d in importlib.metadata.distributions())
+          record = {'platform': platform.platform(), 'python': {'executable': sys.executable,
+                    'resolved': str(Path(sys.executable).resolve()), 'version': sys.version,
+                    **verify.fingerprint(Path(sys.executable))}, 'tools': tools, 'packages': packages,
+                    'environment': {k: os.environ[k] for k in ('SIMRECON_JAVA', 'JAVA_HOME',
+                    'COVERAGE_FILE', 'COVERAGE_PROCESS_START', 'PYTEST_ADDOPTS', 'PYTHONPATH', 'UV_PYTHON') if k in os.environ}}
+          Path('artifacts/ci/environment.json').write_text(json.dumps(record, indent=2) + '\n')
+          # Existing final identity collector checks ignored participating inputs as well.
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          inputs = [Path(sys.executable), *(Path(tool['selected']) for tool in tools.values()),
+                    Path('artifacts/imagej-reader/inputs.json'), Path('artifacts/imagej-reader/bioformats_package.jar'),
+                    Path('artifacts/imagej-reader/ij-1.54p.jar')]
+          if Path('artifacts/ci/durations.json').is_file():
+              inputs.append(Path('artifacts/ci/durations.json'))
+          observation['inputs'].update({str(p): {'before': verify.fingerprint(p), 'after': None} for p in inputs})
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          PYCODE
+      - name: Download exact original prepare artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-prepare
+          path: ${{ runner.temp }}/standard-ci-prepare
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Install the same immutable timing bytes
+        run: |
+          set -euo pipefail
+          uv run --locked --no-sync python - <<'PYCODE'
+          import json
+          import os
+          from pathlib import Path
+          from scripts import verify
+
+          source = Path(os.environ['RUNNER_TEMP']) / 'standard-ci-prepare/artifacts/ci/durations.json'
+          with Path('artifacts/ci/durations.json').open('xb') as destination:
+              destination.write(source.read_bytes())
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          for item in (source, Path('artifacts/ci/durations.json')):
+              observation['inputs'][str(item)] = {'before': verify.fingerprint(item), 'after': None}
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          PYCODE
+          make coverage-clean 2>&1 | tee artifacts/ci/coverage-clean.log
+      - name: Run actual complementary test group with native coverage and reportlog
+        env:
+          SIMRECON_MEASUREMENTS_PATH: artifacts/verification/measurements.json
+          SIMRECON_MEASUREMENTS_RUN_ID: ${{ needs.prepare.outputs.ci_uuid }}
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          uv run --locked --no-sync coverage run -m pytest \
+            -n 4 --dist=loadgroup --max-worker-restart=0 --durations=25 \
+            --splits 12 --group "$SHARD_ID" --splitting-algorithm least_duration \
+            --durations-path artifacts/ci/durations.json \
+            --report-log artifacts/coverage/pytest-reportlog.jsonl \
+            2>&1 | tee artifacts/ci/tests.log
+      - name: Record final source identity even after test failure
+        if: always()
+        run: |
+          set -euo pipefail
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          verify.collect_final_identity(observation, {name: Path(name) for name in observation['inputs']})
+          if observation['after'] is not None and observation['after']['untracked'] != observation['before']['untracked']:
+              observation['problems'].append('Untracked candidate inputs changed')
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          if observation['problems']:
+              raise SystemExit('\n'.join(observation['problems']))
+          PYCODE
+      - name: Retain original group observations
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-${{ matrix.id }}
+          path: |
+            .coverage
+            .coverage.*
+            artifacts/ci/
+            artifacts/imagej-reader/inputs.json
+            artifacts/coverage/pytest-reportlog.jsonl
+            artifacts/verification/measurements.json
+            artifacts/verification/imagej-interop/
+            .python-version
+            uv.lock
+            pyproject.toml
+            Makefile
+            scripts/verify.py
+            .github/workflows/verify.yml
+          include-hidden-files: true
+          overwrite: false
+          if-no-files-found: error
+  verify:
+    name: Verify (ubuntu-24.04)
+    needs:
+      - prepare
+      - quality
+      - tests
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    env:
+      CI_UUID: ${{ needs.prepare.outputs.ci_uuid }}
+    steps:
+      - name: Require successful prepare, quality and every test matrix job
+        env:
+          PREPARE_RESULT: ${{ needs.prepare.result }}
+          QUALITY_RESULT: ${{ needs.quality.result }}
+          TESTS_RESULT: ${{ needs.tests.result }}
+        run: |
+          set -euo pipefail
+          if [[ "$PREPARE_RESULT" != success || "$QUALITY_RESULT" != success || "$TESTS_RESULT" != success ]]; then
+            echo 'Required prepare, quality or test jobs did not succeed.' >&2
+            exit 1
+          fi
+      - name: Check out exact event candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Install pinned uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: 0.12.19
+      - name: Install pinned Python
+        run: |
+          uv python install 3.13.12
+      - name: Install pinned development-reader Java
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c
+        with:
+          distribution: temurin
+          java-version: 21.0.7+6.0.LTS
+      - name: Record clean source identity before participating phases
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          import os
+          from pathlib import Path
+          from scripts import verify
+
+          before = verify.identity()
+          if before['commit'] != os.environ['EXPECTED_SHA'] or before['dirty'] or before['untracked']:
+              raise SystemExit('Expected clean exact event candidate')
+          # The existing manifest already fingerprints every tracked configuration/source.
+          with Path('artifacts/ci/source-identity.json').open('x') as stream:
+              json.dump({'before': before, 'inputs': {}, 'problems': []}, stream, indent=2)
+              stream.write('\n')
+          PYCODE
+      - name: Bootstrap the pinned Bio-Formats bytes from the official release
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/ci artifacts/imagej-reader
+          reader_tmp="$(mktemp -- artifacts/imagej-reader/.bioformats-bootstrap.XXXXXXXXXX)"
+          trap 'rm -f -- "$reader_tmp"' EXIT
+          reader_url='https://github.com/ome/bioformats/releases/download/v8.5.0/bioformats_package.jar'
+          reader_sha256='c6e60665d53a334b66e4d635340151f403dfe57a64704c573dd4c03b873befb9'
+          reader_size=53843906
+          curl_command=(/usr/bin/curl -q --fail --silent --show-error --location
+            --max-redirs 3 --proto '=https' --proto-redir '=https'
+            --connect-timeout 15 --max-time 180 --max-filesize 70000000 --retry 0
+            --write-out 'http_code=%{http_code}\nnum_redirects=%{num_redirects}\nsize_download=%{size_download}\ntime_total=%{time_total}\nssl_verify_result=%{ssl_verify_result}\n'
+            --output "$reader_tmp" "$reader_url")
+          "$(uv python find 3.13.12)" - "$reader_sha256" "$reader_size" "${curl_command[@]}" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          selected = Path(sys.argv[3]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record = {
+              'acquisition_url': sys.argv[-1], 'expected_sha256': sys.argv[1],
+              'expected_size_bytes': int(sys.argv[2]), 'command': sys.argv[3:],
+              'curl_before': {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                              'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                              'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version},
+          }
+          with Path('artifacts/ci/reader-bootstrap.json').open('x') as stream:
+              json.dump(record, stream, indent=2)
+              stream.write('\n')
+          if tuple(map(int, version.splitlines()[0].split()[1].split('.'))) < (8, 4, 0):
+              raise SystemExit('Reader bootstrap requires stock curl >= 8.4.0')
+          PYCODE
+          set +e
+          "${curl_command[@]}" > artifacts/ci/reader-bootstrap-curl-metrics.txt 2> artifacts/ci/reader-bootstrap-curl-stderr.txt
+          curl_status=$?
+          set -e
+          "$(uv python find 3.13.12)" - "$curl_status" "$reader_tmp" <<'PYCODE'
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          path = Path('artifacts/ci/reader-bootstrap.json')
+          record = json.loads(path.read_text())
+          selected = Path(record['command'][0]).absolute()
+          stat = selected.stat()
+          version = subprocess.run([str(selected), '-q', '--version'], check=True, text=True, capture_output=True).stdout
+          record['curl_after'] = {'selected': str(selected), 'resolved': str(selected.resolve(strict=True)),
+                                  'device': stat.st_dev, 'inode': stat.st_ino, 'size_bytes': stat.st_size,
+                                  'sha256': hashlib.sha256(selected.read_bytes()).hexdigest(), 'version': version}
+          record['curl_status'] = int(sys.argv[1])
+          downloaded = Path(sys.argv[2])
+          record['download'] = {'path': str(downloaded), 'size_bytes': downloaded.stat().st_size,
+                                'sha256': hashlib.sha256(downloaded.read_bytes()).hexdigest()}
+          record['curl_identity_unchanged'] = record['curl_after'] == record['curl_before']
+          path.write_text(json.dumps(record, indent=2) + '\n')
+          if not record['curl_identity_unchanged']:
+              raise SystemExit('Reader bootstrap curl identity changed')
+          PYCODE
+          if (( curl_status != 0 )); then exit "$curl_status"; fi
+          test "$(stat -c %s -- "$reader_tmp")" -eq "$reader_size"
+          printf '%s  %s\n' "$reader_sha256" "$reader_tmp" | sha256sum --check --strict
+          ln -T -- "$reader_tmp" artifacts/imagej-reader/bioformats_package.jar
+      - name: Synchronize locked dependencies and genuine reader inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          make sync 2>&1 | tee artifacts/ci/sync.log
+      - name: Record actual platform, tools, packages and selected inputs
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          uv run --locked --no-sync python - <<'PYCODE'
+          import importlib.metadata
+          import json
+          import os
+          import platform
+          import shutil
+          import subprocess
+          import sys
+          from pathlib import Path
+          from scripts import verify
+
+          commands = {
+              'uv': ['uv', '--version'], 'git': ['git', '--version'], 'make': ['make', '--version'],
+              'ruff': ['.venv/bin/ruff', '--version'], 'pyright': ['.venv/bin/pyright', '--version'],
+              'coverage': ['.venv/bin/coverage', '--version'], 'pytest': ['.venv/bin/pytest', '--version'],
+              'java': [os.environ['SIMRECON_JAVA'], '-XshowSettings:properties', '-version'],
+          }
+          tools = {}
+          for name, command in commands.items():
+              result = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True)
+              selected = Path(shutil.which(command[0]) or command[0]).absolute()
+              tools[name] = {'selected': str(selected), 'resolved': str(selected.resolve()),
+                             **verify.fingerprint(selected), 'command': command, 'output': result.stdout}
+          packages = sorted((d.metadata['Name'], d.version, str(d.locate_file(''))) for d in importlib.metadata.distributions())
+          record = {'platform': platform.platform(), 'python': {'executable': sys.executable,
+                    'resolved': str(Path(sys.executable).resolve()), 'version': sys.version,
+                    **verify.fingerprint(Path(sys.executable))}, 'tools': tools, 'packages': packages,
+                    'environment': {k: os.environ[k] for k in ('SIMRECON_JAVA', 'JAVA_HOME',
+                    'COVERAGE_FILE', 'COVERAGE_PROCESS_START', 'PYTEST_ADDOPTS', 'PYTHONPATH', 'UV_PYTHON') if k in os.environ}}
+          Path('artifacts/ci/environment.json').write_text(json.dumps(record, indent=2) + '\n')
+          # Existing final identity collector checks ignored participating inputs as well.
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          inputs = [Path(sys.executable), *(Path(tool['selected']) for tool in tools.values()),
+                    Path('artifacts/imagej-reader/inputs.json'), Path('artifacts/imagej-reader/bioformats_package.jar'),
+                    Path('artifacts/imagej-reader/ij-1.54p.jar')]
+          if Path('artifacts/ci/durations.json').is_file():
+              inputs.append(Path('artifacts/ci/durations.json'))
+          observation['inputs'].update({str(p): {'before': verify.fingerprint(p), 'after': None} for p in inputs})
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          PYCODE
+      - name: Clean only fresh finalizer outputs
+        run: |
+          set -euo pipefail
+          make coverage-clean 2>&1 | tee artifacts/ci/coverage-clean.log
+      - name: Download exact original prepare artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-prepare
+          path: ${{ runner.temp }}/standard-ci-inputs/prepare
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original quality artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-quality
+          path: ${{ runner.temp }}/standard-ci-inputs/quality
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-1 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-1
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-1
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-2 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-2
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-2
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-3 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-3
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-3
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-4 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-4
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-4
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-5 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-5
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-5
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-6 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-6
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-6
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-7 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-7
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-7
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-8 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-8
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-8
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-9 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-9
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-9
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-10 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-10
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-10
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-11 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-11
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-11
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Download exact original shard-12 artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-shard-12
+          path: ${{ runner.temp }}/standard-ci-inputs/shard-12
+          merge-multiple: false
+          digest-mismatch: error
+      - name: Validate one genuine M25 export before any later reporting/build phases
+        run: |
+          set -euo pipefail
+          uv run --locked --no-sync python - <<'PYCODE'
+          import json
+          import os
+          from pathlib import Path
+          from scripts import verify
+
+          root = Path(os.environ['RUNNER_TEMP']) / 'standard-ci-inputs'
+          reports = [root / f'shard-{i}' / verify.MEASUREMENTS_PATH for i in range(1, 13)]
+          reports = [path for path in reports if path.is_file()]
+          if len(reports) != 1:
+              raise SystemExit(f'Expected one genuine M25 report, observed {len(reports)}')
+          verify.MEASUREMENTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+          with verify.MEASUREMENTS_PATH.open('xb') as destination:
+              destination.write(reports[0].read_bytes())
+          record = verify.measurements(os.environ['CI_UUID'])
+          record['original_path'] = str(reports[0])
+          Path('artifacts/ci/measurement-observation.json').write_text(json.dumps(record, indent=2) + '\n')
+          PYCODE
+      - name: Enumerate all original root native inputs and combine explicit paths with keep
+        run: |
+          set -euo pipefail
+          uv run --locked --no-sync python - <<'PYCODE' > artifacts/ci/native-inputs.paths
+          import json
+          import os
+          import sys
+          from pathlib import Path
+          from scripts import verify
+
+          root = Path(os.environ['RUNNER_TEMP']) / 'standard-ci-inputs'
+          identity_path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(identity_path.read_text())
+          # Every existing original root file, including unsuffixed, official empty,
+          # and equal-byte files at distinct paths. No content-based deduplication.
+          for stage in ['prepare', 'quality', *(f'shard-{i}' for i in range(1, 13))]:
+              directory = root / stage
+              for path in sorted(directory.iterdir()):
+                  if path.is_file() and (path.name == '.coverage' or path.name.startswith('.coverage.')):
+                      observation['inputs'][str(path)] = {'before': verify.fingerprint(path), 'after': None}
+                      sys.stdout.buffer.write(os.fsencode(path) + b'\0')
+          identity_path.write_text(json.dumps(observation, indent=2) + '\n')
+          PYCODE
+          mapfile -d '' -t native_inputs < artifacts/ci/native-inputs.paths
+          if (( ${#native_inputs[@]} == 0 )); then
+            echo 'No current native coverage inputs found.' >&2
+            exit 1
+          fi
+          uv run --locked --no-sync python -W error -m coverage combine --keep "${native_inputs[@]}" \
+            2>&1 | tee artifacts/ci/coverage-combine.log
+      - name: Generate original official coverage JSON
+        run: |
+          set -euo pipefail
+          make coverage-json 2>&1 | tee artifacts/ci/coverage-json.log
+      - name: Generate complete official coverage HTML
+        run: |
+          set -euo pipefail
+          make coverage-html 2>&1 | tee artifacts/ci/coverage-html.log
+      - name: Report official terminal coverage under standing project policy
+        run: |
+          set -euo pipefail
+          make coverage-report 2>&1 | tee artifacts/ci/coverage-report.log
+      - name: Apply unchanged owned-file coverage validator and fail every reported problem
+        run: |
+          set -euo pipefail
+          uv run --locked --no-sync python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          problems = []
+          try:
+              record = verify.metrics(problems)
+          except Exception as error:
+              Path('artifacts/ci/coverage-validator-error.txt').write_text(f'{type(error).__name__}: {error}\n')
+              raise
+          Path('artifacts/ci/coverage-observation.json').write_text(json.dumps({'coverage': record, 'problems': problems}, indent=2) + '\n')
+          if problems:
+              raise SystemExit('\n'.join(problems))
+          PYCODE
+      - name: Build current wheel
+        run: |
+          set -euo pipefail
+          make wheel 2>&1 | tee artifacts/ci/wheel.log
+      - name: Import the current wheel in an isolated environment
+        run: |
+          set -euo pipefail
+          make wheel-import 2>&1 | tee artifacts/ci/wheel-import.log
+      - name: Audit locked dependencies
+        run: |
+          set -euo pipefail
+          make audit 2>&1 | tee artifacts/ci/audit.log
+      - name: Apply unchanged wheel validator
+        run: |
+          set -euo pipefail
+          uv run --locked --no-sync python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          record = verify.artifact()
+          Path('artifacts/ci/wheel-observation.json').write_text(json.dumps(record, indent=2) + '\n')
+          PYCODE
+      - name: Recheck retained M25 digest after later phases
+        if: always()
+        run: |
+          set -euo pipefail
+          uv run --locked --no-sync python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          record = json.loads(Path('artifacts/ci/measurement-observation.json').read_text())
+          if verify.fingerprint(verify.MEASUREMENTS_PATH)['sha256'] != record['sha256']:
+              raise SystemExit('Measurement evidence changed after validation')
+          if verify.fingerprint(Path(record['original_path']))['sha256'] != record['sha256']:
+              raise SystemExit('Original measurement export changed after validation')
+          PYCODE
+      - name: Record selected and resolved Java and both reader JAR byte identities
+        run: |
+          set -euo pipefail
+          export SIMRECON_JAVA="$JAVA_HOME/bin/java"
+          uv run --locked --no-sync python - <<'PYCODE'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+          from scripts import verify
+
+          paths = [Path(os.environ['SIMRECON_JAVA']), Path('artifacts/imagej-reader/bioformats_package.jar'), Path('artifacts/imagej-reader/ij-1.54p.jar')]
+          record = [{'selected': str(path.absolute()), 'resolved': str(path.resolve()), **verify.fingerprint(path)} for path in paths]
+          result = subprocess.run([str(paths[0]), '-XshowSettings:properties', '-version'], text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True)
+          Path('artifacts/ci/java-version.log').write_text(result.stdout)
+          Path('artifacts/ci/reader-byte-observations.json').write_text(json.dumps(record, indent=2) + '\n')
+          PYCODE
+      - name: Record final source identity even after finalizer failure
+        if: always()
+        run: |
+          set -euo pipefail
+          "$(uv python find 3.13.12)" - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from scripts import verify
+
+          path = Path('artifacts/ci/source-identity.json')
+          observation = json.loads(path.read_text())
+          verify.collect_final_identity(observation, {name: Path(name) for name in observation['inputs']})
+          if observation['after'] is not None and observation['after']['untracked'] != observation['before']['untracked']:
+              observation['problems'].append('Untracked candidate inputs changed')
+          path.write_text(json.dumps(observation, indent=2) + '\n')
+          if observation['problems']:
+              raise SystemExit('\n'.join(observation['problems']))
+          PYCODE
+      - name: Retain finalizer Java specimen and canonical reader JARs separately
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ci-tools-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-finalize
+          path: |
+            ${{ env.JAVA_HOME }}/bin/java
+            ${{ github.workspace }}/artifacts/imagej-reader/bioformats_package.jar
+            ${{ github.workspace }}/artifacts/imagej-reader/ij-1.54p.jar
+          include-hidden-files: true
+          overwrite: false
+          if-no-files-found: error
+      - name: Retain finalizer native outputs and validation observations
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ci-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.prepare.outputs.ci_uuid }}-finalize
+          path: |
+            .coverage
+            .coverage.*
+            artifacts/ci/
+            artifacts/imagej-reader/inputs.json
+            artifacts/coverage/pytest-reportlog.jsonl
+            artifacts/verification/measurements.json
+            artifacts/verification/imagej-interop/
+            .python-version
+            uv.lock
+            pyproject.toml
+            Makefile
+            scripts/verify.py
+            .github/workflows/verify.yml
+            artifacts/coverage/
             dist/
           include-hidden-files: true
-          if-no-files-found: warn
+          overwrite: false
+          if-no-files-found: error

@@ -41,7 +41,7 @@ types:
 	$(UV) run --locked pyright
 
 tests:
-	$(UV) run --locked coverage run -m pytest
+	$(UV) run --locked coverage run -m pytest -n 4 --dist=loadgroup --max-worker-restart=0 --durations=25
 
 coverage-combine:
 	$(UV) run --locked python -W error -m coverage combine

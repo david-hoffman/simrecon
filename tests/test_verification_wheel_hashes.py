@@ -13,6 +13,7 @@ from pathlib import Path
 
 import pytest
 
+from fixture_command_launcher import launcher
 from test_verification_receipt import TOOLS, git, invoke
 from test_verification_receipt import repository as repository
 from verification_fixture_tools import PHASES
@@ -74,7 +75,7 @@ def hash_repository(repository):
     shutil.copyfile(TOOLS, bin_dir / "_receipt_commands.py")
     for name in ("make", "uv"):
         executable = bin_dir / name
-        executable.write_text(f"#!{sys.executable}\n" + COMMAND)
+        executable.write_text(launcher(COMMAND, python=sys.executable, kind="hash"))
         executable.chmod(0o755)
     return root, bin_dir
 

@@ -731,4 +731,5 @@ def main() -> int:
     return exitcode
 
 
-sys.exit(main())
+if __name__ == "__main__":
+    sys.exit(main())

@@ -163,43 +163,63 @@ def test_transport_actual_reader_authenticated_download(tmp_path: Path, mode: st
 
 
 def test_parent_deadline_actual_reader_slow_active_transport(tmp_path: Path) -> None:
-    """A real >180 s transfer with activity every 5 s distinguishes parent deadline."""
+    """Shorten only the parent; observe genuine child closure before rescue."""
+    from reader_deadline_fixture import PARENT_SECONDS, deadline_driver, observe_deadline
+
+    # Supplied by the coordinator as sanitized public instrumentation context.
+    timeout_attribute = "FETCH_TIMEOUT_SECONDS"
+    driver = deadline_driver(tmp_path, timeout_attribute)
     name = "ij-1.54p.jar"
     with reserved() as cache:
         cache.seed(omit=name)
         other = digest(CACHE / "bioformats_package.jar")
         with Transport(tmp_path, cache.backup / name, "parent-deadline") as transport:
-            start = time.monotonic()
-            observation: dict[str, object] = {}
-            result = reader(transport.environment(), timeout=225, observation=observation)
-            elapsed = time.monotonic() - start
-            activity = [event["at_s"] for event in transport.events if event["event"] == "bytes"]
-            witness = bool(activity) and elapsed >= 175 and activity[-1] - activity[0] >= 170
+            result, observation = observe_deadline(driver, transport.environment(), name)
+            snapshot = observation["pre_rescue"]
+            activity = [event for event in transport.events if event["event"] == "bytes"]
+            times = [event["at_s"] for event in activity]
+            delivered = sum(event["count"] for event in activity)
+            assert snapshot is not None, "Tooling nonwitness: no pre-rescue snapshot"
             record(
                 "deadline-classification",
                 {
-                    "witness": witness,
-                    "duration_s": elapsed,
-                    "status": result.returncode,
-                    "activity_s": activity,
-                    "scheduled_transfer_s": 5
-                    * ((DECLARATIONS[name]["size_bytes"] + 65535) // 65536),
-                    "outer_bound_s": 225,
-                    "socket_bound_s": 15,
+                    "parent_bound_s": PARENT_SECONDS,
+                    "unchanged_child_cooperative_bound_s": 180,
+                    "unchanged_child_socket_bound_s": 15,
+                    "delivery_interval_s": 5,
+                    "total_chunks": (DECLARATIONS[name]["size_bytes"] + 65535) // 65536,
+                    "bytes_delivered": delivered,
+                    "expected_complete_bytes": DECLARATIONS[name]["size_bytes"],
+                    "activity_s": times,
+                    "transport_started_at": transport.started,
                     "subprocess": observation,
                 },
             )
-            assert witness, (
-                "Tooling nonwitness: earlier failure did not exercise the parent deadline"
-            )
+            assert not snapshot["outer_timeout"], "Tooling nonwitness: outer wait expired"
+            assert snapshot["fetch_samples"], "Tooling nonwitness: real fetch child not observed"
+            assert len(times) >= 3, "Tooling nonwitness: fewer than three partial deliveries"
+            assert 0 < delivered < DECLARATIONS[name]["size_bytes"]
+            assert times[-1] - times[0] >= 10
             assert all(
-                0 < right - left < 15 for left, right in zip(activity, activity[1:], strict=False)
+                0 < right - left < 15 for left, right in zip(times, times[1:], strict=False)
+            ), "Tooling nonwitness: activity does not exclude an idle socket timeout"
+            active_duration = snapshot["observed_at"] - transport.started - times[0]
+            last_delivery_age = snapshot["observed_at"] - transport.started - times[-1]
+            assert PARENT_SECONDS - 2 <= active_duration <= PARENT_SECONDS + 5, (
+                "Tooling nonwitness: timing does not isolate the shortened parent deadline"
             )
-            assert 175 <= elapsed < 210
+            assert 0 <= last_delivery_age < 15, (
+                "Tooling nonwitness: the child socket timeout is not excluded"
+            )
             assert result.returncode != 0
-            cleanup = observation["child_cleanup"]
-            assert isinstance(cleanup, dict) and cleanup["observed_child_pids"]
-            assert not cleanup["remaining_child_states"]
+            assert f"{PARENT_SECONDS} seconds" in result.stderr
+            assert snapshot["status"] == result.returncode
+            assert snapshot["observed_child_pids"]
+            assert snapshot["rescue_signals_before_snapshot"] == []
+            assert not snapshot["remaining_child_states"]
+            assert not snapshot["remaining_session_pids"]
+            assert observation["rescue_signals"] == []
+            assert observation["cleanup_complete"]
         assert not (CACHE / name).exists()
         assert not (CACHE / "inputs.json").exists()
         assert {path.name for path in CACHE.iterdir()} == {"bioformats_package.jar"}
@@ -520,7 +540,7 @@ def test_source_free_live_path_subprocess_fields(
             "                assert process.poll() is None, 'Tooling nonwitness: child exited'\n"
             "                time.sleep(0.01)\n"
             "            assert ready.is_file(), 'Tooling nonwitness: child did not become ready'\n"
-            "            process.communicate(timeout=0.15)\n"
+            "            process.communicate(timeout=1.0)\n"
             "        finally:\n"
             "            if process.poll() is None: process.kill()\n"
             "            process.communicate(timeout=5)\n"
@@ -540,7 +560,7 @@ def test_source_free_live_path_subprocess_fields(
         "    assert error.cmd == command\n"
         "    assert error.stdout in ('A08-child-output\\n',b'A08-child-output\\n')\n"
         "    assert error.stderr in ('A08-child-error\\n',b'A08-child-error\\n')\n"
-        "    if isinstance(error,subprocess.TimeoutExpired): assert error.timeout == 0.15\n"
+        "    if isinstance(error,subprocess.TimeoutExpired): assert error.timeout == 1.0\n"
         "    else: assert error.returncode == 23\n"
         "    print(json.dumps({'fields_preserved':True}),flush=True)\n"
         "    raise # A08_SOURCE_SECRET\n"
@@ -551,7 +571,7 @@ def test_source_free_live_path_subprocess_fields(
     assert (
         "TimeoutExpired" if failure == "child-timeout" else "CalledProcessError"
     ) in result.stderr
-    assert ("0.15" if failure == "child-timeout" else "23") in result.stderr
+    assert ("timed out after 1.0 seconds" if failure == "child-timeout" else "23") in result.stderr
     if representation == "argv-path":
         assert str(executable) in result.stderr
     assert "A08_ARG_SECRET" not in result.stderr

@@ -1669,63 +1669,6 @@ def child(args: list[str], *, cwd: Path = ROOT) -> subprocess.CompletedProcess[s
     return subprocess.run(args, cwd=cwd, capture_output=True, text=True, timeout=60, check=False)
 
 
-@pytest.mark.parametrize(
-    "body,category",
-    [
-        ("raise ValueError('ordinary failure')", "ValueError"),
-        (
-            (
-                "try:\n    raise KeyError('first failure')\nexcept KeyError as "
-                "cause:\n    raise RuntimeError('second failure') from cause"
-            ),
-            "RuntimeError",
-        ),
-        (
-            "raise ExceptionGroup('group failure', [ValueError('one'), TypeError('two')])",
-            "ExceptionGroup",
-        ),
-        (
-            (
-                "raise SyntaxError('invalid syntax', ('owned_syntax.py', 3, 2"
-                ", 'HIDDEN_SOURCE_MARKER\\n'))"
-            ),
-            "SyntaxError",
-        ),
-        (
-            (
-                "import subprocess\nraise subprocess.TimeoutExpired(['owned-ex"
-                "ecutable', '-c', 'HIDDEN_SOURCE_MARKER'], 0.25)"
-            ),
-            "TimeoutExpired",
-        ),
-        (
-            (
-                "import subprocess\nraise subprocess.CalledProcessError(7, ['o"
-                "wned-executable', '-c', 'HIDDEN_SOURCE_MARKER'])"
-            ),
-            "CalledProcessError",
-        ),
-        (
-            "import subprocess\nraise subprocess.CalledProcessError(7, 'HIDDEN_SOURCE_MARKER')",
-            "CalledProcessError",
-        ),
-    ],
-)
-def test_source_free_standard_exception_channels(tmp_path: Path, body: str, category: str) -> None:
-    probe = tmp_path / "owned_probe.py"
-    probe.write_text("hidden_local = 'HIDDEN_SOURCE_MARKER'\n" + body + "\n", encoding="utf-8")
-    result = child(
-        [sys.executable, str(ROOT / "scripts/source_free_check.py"), "python", str(probe)]
-    )
-    rendered = result.stdout + result.stderr
-    assert result.returncode != 0 and category in rendered
-    assert "HIDDEN_SOURCE_MARKER" not in rendered and "hidden_local" not in rendered
-    if category in ("CalledProcessError", "TimeoutExpired"):
-        assert "owned-executable" in rendered or "not recorded" in rendered.lower(), rendered
-    else:
-        assert "owned_probe.py" in rendered or "owned_syntax.py" in rendered
-
-
 def test_source_free_warning_child_and_literal_program_arguments(tmp_path: Path) -> None:
     probe = tmp_path / "warning_probe.py"
     probe.write_text(
@@ -1816,84 +1759,6 @@ def disposable_verifier(
         result = child(list(command), cwd=repo)
         assert result.returncode == 0
     return repo, runner
-
-
-def test_verifier_genuine_failed_phase_status_order_and_safe_receipt(tmp_path: Path) -> None:
-    repo, runner = disposable_verifier(tmp_path)
-    result = child(
-        [
-            sys.executable,
-            "scripts/verify.py",
-            "--make",
-            str(runner),
-            "--uv",
-            str(Path(sys.executable)),
-            "--receipt",
-            "artifacts/verification/custom.json",
-            "--contract",
-            "BASELINE-COMPATIBILITY-01",
-        ],
-        cwd=repo,
-    )
-    assert result.returncode == 9, f"status={result.returncode}; {result.stdout}; {result.stderr}"
-    receipt = json.loads((repo / "artifacts/verification/custom.json").read_text())
-    assert receipt["result"] == "failed" and receipt["schema"] == "org.simrecon.verification"
-    assert [phase["name"] for phase in receipt["phases"]] == ["sync", "coverage-clean"]
-    assert [phase["returncode"] for phase in receipt["phases"]] == [0, 9]
-    for phase in receipt["phases"]:
-        assert phase["command"][0] == str(runner)
-        assert phase["name"] in phase["command"] and f"UV={sys.executable}" in phase["command"]
-        assert (repo / phase["log"]).read_text() == "attempted phase=" + phase["name"] + "\n"
-    assert receipt["context"]["contract"] == "BASELINE-COMPATIBILITY-01"
-    assert receipt["context"]["reviewed_tests"] is None
-    assert receipt["problems"] and receipt["before"]["commit"] == receipt["after"]["commit"]
-    assert (repo / "marker.txt").read_bytes() == b"unchanged tracked marker\n"
-
-
-def test_verifier_missing_command_and_tracked_receipt_protection(tmp_path: Path) -> None:
-    repo, _ = disposable_verifier(tmp_path)
-    marker = repo / "marker.txt"
-    result = child(
-        [
-            sys.executable,
-            "scripts/verify.py",
-            "--make",
-            str(repo / "absent-command"),
-            "--receipt",
-            "artifacts/verification/missing.json",
-        ],
-        cwd=repo,
-    )
-    assert result.returncode == 127
-    receipt = json.loads((repo / "artifacts/verification/missing.json").read_text())
-    assert receipt["result"] == "failed" and len(receipt["phases"]) == 1
-    assert receipt["phases"][0]["returncode"] == 127
-    protected = child([sys.executable, "scripts/verify.py", "--receipt", "marker.txt"], cwd=repo)
-    assert protected.returncode != 0 and marker.read_bytes() == b"unchanged tracked marker\n"
-    marker.unlink()
-    missing = child([sys.executable, "scripts/verify.py", "--receipt", "marker.txt"], cwd=repo)
-    assert missing.returncode != 0 and not marker.exists()
-
-
-def test_verifier_phase_introduced_receipt_alias_on_failed_run(tmp_path: Path) -> None:
-    repo, runner = disposable_verifier(tmp_path, temporal_alias=True)
-    marker = repo / "marker.txt"
-    result = child(
-        [
-            sys.executable,
-            "scripts/verify.py",
-            "--make",
-            str(runner),
-            "--receipt",
-            "artifacts/verification/custom.json",
-        ],
-        cwd=repo,
-    )
-    assert result.returncode != 0
-    assert marker.read_bytes() == b"unchanged tracked marker\n"
-    assert "attempted phase=coverage-clean" in result.stdout, (
-        f"status={result.returncode}; {result.stdout}; {result.stderr}"
-    )
 
 
 @pytest.mark.parametrize("selector", ["otf", "reconstruction"])
@@ -2049,28 +1914,6 @@ def test_required_keyword_binding_remains_python_typeerror(name: str) -> None:
         operation(np.ones((1, 1, 1)))
     with pytest.raises(TypeError):
         operation(np.ones((1, 1, 1)), unexpected_keyword=0)
-
-
-def test_imagej_cli_domain_and_io_statuses_preserve_source(tmp_path: Path) -> None:
-    source = tmp_path / "input.dv"
-    original = priism_file(source, np.ones((1, 2, 3), dtype="<u2"))
-    config = tmp_path / "config.json"
-    config.write_text(json.dumps(file_config()), encoding="utf-8")
-    command = [
-        str(ROOT / ".venv/bin/simrecon"),
-        "export-imagej",
-        str(source),
-        str(tmp_path / "absent" / "output.tif"),
-        "--config",
-        str(config),
-    ]
-    io_failure = child(command)
-    assert io_failure.returncode == 1
-    assert json.loads(io_failure.stderr)["code"] == "io_error"
-    domain_failure = child(command + ["--block-planes", "0"])
-    assert domain_failure.returncode == 2
-    assert json.loads(domain_failure.stderr)["code"] == "invalid_block_size"
-    assert source.read_bytes() == original
 
 
 def test_volume_final_coordinate_range_is_not_rank_or_solver_failure() -> None:

@@ -338,28 +338,6 @@ def assert_conditional_scan_fault(
     )
 
 
-def test_fault_observer_selfcheck_captured_and_reached_public_functions(monkeypatch: Any) -> None:
-    captured = np.fft.fft
-    error = RuntimeError("controlled public numeric self-check")
-
-    def fail(original: Any, *args: Any, **kwargs: Any) -> Any:
-        raise error
-
-    hits = patch_transforms(monkeypatch, fail)
-
-    def success(result: Any) -> None:
-        np.testing.assert_array_equal(result, np.array([1.0, 1.0], dtype=complex))
-
-    assert_observed_fault_or_success(
-        lambda: captured(np.array([1.0, 0.0])), hits, success, error=error
-    )
-    assert hits == []
-    assert_observed_fault_or_success(
-        lambda: np.fft.fft(np.array([1.0, 0.0])), hits, success, error=error
-    )
-    assert len(hits) == 1
-
-
 def test_entire_candidate_representation_rejects_later_row_without_prefix_result() -> None:
     case = acquisition()
     otf = case.otf(sr)

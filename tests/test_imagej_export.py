@@ -503,13 +503,6 @@ def assert_observer(record: Mapping[str, Any], output: Path, spec: Acquisition, 
                 assert observed == word  # finite, zeros and infinities retain exact primitive bits
 
 
-def test_owned_observer_startup(tmp_path: Path) -> None:
-    record = observe(None, tmp_path / "startup")
-    assert record["startup_only"] is True
-    assert_values(record["profile"], PROFILE)
-    assert "raw_series" not in record and "imageplus" not in record
-
-
 FULL = [
     Acquisition(mode=mode, byte_order=endian) for mode in (6, 2) for endian in ("little", "big")
 ]

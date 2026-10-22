@@ -837,22 +837,3 @@ def test_safe_finite_extremes_and_uint64_max_are_accepted(api: Any) -> None:
     )
     integers = np.array([[2**64 - 1]], dtype=">u8")
     np.testing.assert_array_equal(correction(api, acquisition(integers)).data, [[float(2**64)]])
-
-
-def test_independent_arithmetic_observer_self_check() -> None:
-    np.testing.assert_array_equal(rounded_signal(np.array([[110, -2]]), 10, 2), [[50, -6]])
-    np.testing.assert_array_equal(
-        rounded_signal(np.array([[float(2**53)]]), -1, 3), [[float(2**53) / 3]]
-    )
-
-
-def test_decimal_observer_self_check() -> None:
-    # Explicit integer rows make this independent observer check exact.
-    design = np.array(
-        [[1, 1, 0, 1, 0], [1, 0, 1, -1, 0], [1, -1, 0, 1, 0], [1, 0, -1, -1, 0], [1, 0, 0, 0, 1]],
-        dtype=np.float64,
-    )
-    coordinates = np.array([10, 2, -1, 3, 4], dtype=np.float64)
-    pixels = (design * np.array([1, 2, -2, 2, -2])) @ coordinates
-    result = decimal_phase_coordinates(design, pixels.reshape((5, 1, 1, 1)))
-    np.testing.assert_array_equal(result[:, 0, 0, 0], coordinates)

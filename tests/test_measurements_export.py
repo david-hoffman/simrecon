@@ -15,6 +15,7 @@ from uuid import UUID
 
 import pytest
 
+from fixture_command_launcher import launcher
 from measurement_fixture_export import LIMIT_BYTES, MEASUREMENTS_PATH, export_measurement
 from verification_fixture_tools import PHASES
 
@@ -66,6 +67,7 @@ def repository(tmp_path: Path) -> Repository:
     (root / "candidate.txt").write_bytes(b"candidate\n")
     (root / ".gitignore").write_text("artifacts/\ndist/\ncalls.jsonl\nmeasurement-calls.jsonl\n")
     git(root, "init", "-q")
+    git(root, "config", "--local", "maintenance.auto", "false")
     git(root, "config", "user.email", "fixture@example.invalid")
     git(root, "config", "user.name", "Measurements fixture")
     git(root, "add", ".")
@@ -78,7 +80,11 @@ def repository(tmp_path: Path) -> Repository:
     for name in ("make", "uv"):
         target = bin_dir / name
         target.write_text(
-            f"#!{sys.executable}\n" + (FIXTURES / "measurements_fixture_commands.py").read_text()
+            launcher(
+                (FIXTURES / "measurements_fixture_commands.py").read_text(),
+                python=sys.executable,
+                kind="measurement",
+            )
         )
         target.chmod(0o755)
     return root, bin_dir
@@ -275,6 +281,11 @@ def invalid_reports() -> list[Any]:
     for field in ("baseline", "peak", "increment_bytes", "limit_bytes"):
         original = report()["measurements"]["M25"][field]
         for invalid in (True, float(original), str(original), None, -1):
+            # Isolated examples below already cover these representation rules.
+            if (invalid is True and field != "limit_bytes") or (
+                field == "baseline" and invalid == -1
+            ):
+                continue
             value = report()
             value["measurements"]["M25"][field] = invalid
             values.append(value)

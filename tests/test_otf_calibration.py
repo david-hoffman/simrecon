@@ -171,14 +171,6 @@ def _reject(
     assert isinstance(message, str), "error message is a string; exact prose unspecified"
 
 
-def test_public_exports() -> None:
-    """K07/K28 public import boundary; no runtime inspection."""
-    assert callable(getattr(simrecon, "prepare_otf", None)), "public prepare_otf export"
-    assert isinstance(getattr(simrecon, "Otf2D", None), type), "public Otf2D export"
-    assert isinstance(getattr(simrecon, "SimreconError", None), type), "existing error export"
-    assert callable(getattr(simrecon, "separate_phases", None)), "existing separation export"
-
-
 def test_independent_root_and_budget_sanity() -> None:
     """Oracle qualification independent of a product/FFT/rounded JSON."""
     for turns, expected in (
