@@ -5,6 +5,7 @@ from dataclasses import dataclass
 import numpy as np
 import numpy.typing as npt
 
+from ._array_validation import conversion_errors, require_finite
 from ._model import SimreconError
 
 
@@ -70,16 +71,12 @@ def locate_bead_peak(volume: npt.NDArray[np.generic]) -> BeadPeak:
         raise SimreconError("invalid_bead_peak_shape", "volume must have three positive dimensions")
 
     with np.errstate(all="ignore"):
-        if not np.isfinite(volume).all():
-            raise SimreconError("nonfinite_bead_peak_volume", "source samples must be finite")
-        try:
+        require_finite(volume, "nonfinite_bead_peak_volume", "source samples must be finite")
+        with conversion_errors(
+            "nonfinite_bead_peak_volume", "samples cannot be converted to float64"
+        ):
             values = volume.astype(np.float64, order="C", copy=True)
-        except (TypeError, ValueError, OverflowError) as error:
-            raise SimreconError(
-                "nonfinite_bead_peak_volume", "samples cannot be converted to float64"
-            ) from error
-        if not np.isfinite(values).all():
-            raise SimreconError("nonfinite_bead_peak_volume", "converted samples must be finite")
+        require_finite(values, "nonfinite_bead_peak_volume", "converted samples must be finite")
 
     peak = float(np.max(values))
     if peak <= 0:
