@@ -1,13 +1,17 @@
 """Blind public-entry contract tests for VOLUME-PHASE-01 (V01--V10)."""
 
+import importlib
+import subprocess
+import sys
 import warnings
 from decimal import Decimal, localcontext
-from typing import Any
+from pathlib import Path
+from types import SimpleNamespace
+from typing import Any, Literal
 
 import numpy as np
 import pytest
 
-import simrecon
 from volume_phase_fixture import (
     PRECISION,
     UNEQUAL_PHASES,
@@ -18,6 +22,69 @@ from volume_phase_fixture import (
     stored_input_oracle,
     synthesize,
 )
+
+
+class NumericalFaultProvider:
+    """Switchable public dependency faults, installed before product import.
+
+    Healthy calls delegate unchanged. Captured bindings therefore keep both
+    healthy and faulty behavior without prescribing the product's call shape.
+    """
+
+    def __init__(self, failure_kind: str) -> None:
+        self.failure_kind = failure_kind
+        self.active = False
+        self.reached: list[str] = []
+        self.marker = {
+            "linalg": np.linalg.LinAlgError("A05 numerical convergence failure"),
+            "unrelated": RuntimeError("A05 unrelated numerical dependency exception"),
+            "allocation": MemoryError("A05 numerical dependency allocation failure"),
+        }.get(failure_kind)
+
+    def wrap(self, original: Any, name: str) -> Any:
+        def injected(*args: Any, **kwargs: Any) -> Any:
+            if not self.active:
+                return original(*args, **kwargs)
+            self.reached.append(name)
+            warnings.warn("A05 unrelated dependency warning", UserWarning, stacklevel=2)
+            if self.marker is not None:
+                raise self.marker
+            # Preserve the dependency's actual result shapes/container and
+            # scalar metadata; only its numerical arrays become unusable.
+            result = original(*args, **kwargs)
+            value = np.nan if self.failure_kind == "nan" else np.inf
+
+            def unusable(item: Any) -> Any:
+                return np.full_like(item, value) if isinstance(item, np.ndarray) else item
+
+            if isinstance(result, tuple):
+                items = tuple(unusable(item) for item in result)
+                return type(result)(*items) if hasattr(result, "_fields") else items
+            return unusable(result)
+
+        return injected
+
+    def install(self) -> None:
+        # These are dependency APIs, never product exports or private helpers.
+        # Coverage is limited to these public numerical families.
+        scipy_linalg = importlib.import_module("scipy.linalg")
+        for module, names in (
+            (np.linalg, ("svd", "svdvals", "lstsq")),
+            (scipy_linalg, ("svd", "svdvals", "lstsq")),
+        ):
+            for name in names:
+                original = getattr(module, name)
+                setattr(module, name, self.wrap(original, f"{module.__name__}.{name}"))
+
+
+numerical_provider: NumericalFaultProvider | None = None
+if __name__ == "__main__":
+    # This script is launched under the source-free wrapper. Install before
+    # importing any product so ordinary `from ... import ...` bindings work.
+    numerical_provider = NumericalFaultProvider(sys.argv[2])
+    numerical_provider.install()
+
+simrecon = importlib.import_module("simrecon")
 
 
 @pytest.fixture
@@ -733,3 +800,197 @@ def test_returned_outputs_are_snapshots_of_both_inputs(api: Any) -> None:
     images[...] = 0
     phases[...] = 0
     np.testing.assert_array_equal(output_coordinates(result), saved)
+
+
+@pytest.mark.parametrize("mode", ["warn", "raise"])
+@pytest.mark.parametrize("failure_kind", ["linalg", "nan", "inf", "unrelated", "allocation"])
+def test_V08_numerical_dependency_failure_is_whole_call_and_preserves_inputs(
+    mode: Literal["warn", "raise"], failure_kind: str
+) -> None:
+    """Same-input health and witnessed faults in separate fresh processes."""
+    for stage in ("healthy", "fault"):
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "scripts/source_free_check.py",
+                "--timeout",
+                "300",
+                "python",
+                str(Path(__file__).resolve()),
+                mode,
+                failure_kind,
+                stage,
+            ],
+            cwd=Path(__file__).resolve().parents[1],
+            capture_output=True,
+            text=True,
+            timeout=300,
+            check=False,
+            # Inherit source-free diagnostics and native subprocess coverage.
+        )
+        assert completed.returncode == 0, (
+            stage,
+            completed.returncode,
+            completed.stdout,
+            completed.stderr,
+        )
+        expected = (
+            "V08 same-input healthy control passed"
+            if stage == "healthy"
+            else "V08 witnessed fault/restored controls passed; reached="
+        )
+        assert expected in completed.stdout
+
+
+def numerical_failure_inputs() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """V08-only finite views and their entire backing storage."""
+    phase_backing = UNEQUAL_PHASES.copy()
+    phases = phase_backing[::-1]
+    image_backing = synthesize(phases, spatial_coordinates())
+    images = image_backing.transpose(0, 1, 3, 2)
+    phases.flags.writeable = False
+    images.flags.writeable = False
+    return images, phases, image_backing, phase_backing
+
+
+def exercise_numerical_healthy(operation: Any, mode: Literal["warn", "raise"]) -> None:
+    """Same-input oracle/storage control, run outside the fault process."""
+    arrays = numerical_failure_inputs()
+    images, phases = arrays[:2]
+    before = tuple(array_state(array) for array in arrays)
+    with warnings.catch_warnings(record=True) as caught, np.errstate(all=mode):
+        warnings.simplefilter("always")
+        error_mode = np.geterr().copy()
+        warning_filters = list(warnings.filters)
+        result = operation(images, phases_rad=phases)
+        assert np.geterr() == error_mode
+        assert warnings.filters == warning_filters
+    assert not any(issubclass(w.category, RuntimeWarning) for w in caught)
+    assert_stored_fit(result, images, phases)
+    assert tuple(array_state(array) for array in arrays) == before
+    print("V08 same-input healthy control passed")
+
+
+def exercise_numerical_failure(
+    operation: Any, provider: NumericalFaultProvider, mode: Literal["warn", "raise"]
+) -> list[str]:
+    """Assert fault outcomes only when witnessed; otherwise prove a valid fit.
+
+    The durable fault caller separately requires a nonempty witness. A valid
+    cached fit without dependency execution is not numerical failure evidence.
+    """
+    arrays = numerical_failure_inputs()
+    images, phases = arrays[:2]
+    before = tuple(array_state(array) for array in arrays)
+    provider.reached.clear()
+    provider.active = True
+    try:
+        with warnings.catch_warnings(record=True) as caught, np.errstate(all=mode):
+            warnings.simplefilter("always")
+            error_mode = np.geterr().copy()
+            warning_filters = list(warnings.filters)
+            observed: Exception | None = None
+            result = None
+            try:
+                result = operation(images, phases_rad=phases)
+            except Exception as failure:
+                observed = failure
+            witnessed = list(provider.reached)
+            if witnessed:
+                assert result is None, "returned fallback/partial result after witnessed fault"
+                if provider.failure_kind in ("unrelated", "allocation"):
+                    assert provider.marker is not None
+                    assert observed is provider.marker
+                else:
+                    assert isinstance(observed, simrecon.SimreconError)
+                    assert getattr(observed, "code", None) == "volume_phase_solver_failure"
+            else:
+                assert observed is None, "exception without an injected numerical fault"
+            assert np.geterr() == error_mode
+            assert warnings.filters == warning_filters
+        assert not any(issubclass(w.category, RuntimeWarning) for w in caught)
+        injected_warnings = [
+            w
+            for w in caught
+            if w.category is UserWarning and str(w.message) == "A05 unrelated dependency warning"
+        ]
+        if witnessed:
+            assert injected_warnings
+        else:
+            assert not injected_warnings
+            assert_stored_fit(result, images, phases)
+        assert tuple(array_state(array) for array in arrays) == before
+    finally:
+        provider.active = False
+    assert_stored_fit(operation(images, phases_rad=phases), images, phases)
+    assert tuple(array_state(array) for array in arrays) == before
+    if witnessed:
+        print(f"V08 witnessed fault/restored controls passed; reached={sorted(set(witnessed))}")
+    else:
+        print("V08 no injected fault reached; correct active/restored fits passed")
+    return witnessed
+
+
+@pytest.mark.parametrize("mode", ["warn", "raise"])
+@pytest.mark.parametrize("failure_kind", ["linalg", "nan", "inf", "unrelated", "allocation"])
+def test_V08_cached_mathematical_fit_without_dependency_fault_is_legitimate(
+    mode: Literal["warn", "raise"], failure_kind: str
+) -> None:
+    """Harness regression: cached SVD factors do not trigger V08 failures.
+
+    This public mathematical caller proves harness compatibility, not full
+    product conformance. Its fit is checked by the frozen Decimal observer.
+    """
+    provider = NumericalFaultProvider(failure_kind)
+    factorize = provider.wrap(np.linalg.svd, "numpy.linalg.svd")
+    factors: dict[bytes, Any] = {}
+
+    def cached_fit(images: np.ndarray, *, phases_rad: np.ndarray) -> Any:
+        phi = np.array(phases_rad, dtype=np.float64, copy=True)
+        key = phi.tobytes()
+        if key not in factors:
+            factors[key] = factorize(represented_basis(phi), full_matrices=False)
+        u, s, vh = factors[key]
+        assert np.count_nonzero(s > 2**-52 * max(len(phi), 5) * s.max()) == 5
+        b = np.array(images, dtype=np.float64, copy=True).reshape(len(phi), -1)
+        coefficients = (vh.T / s) @ (u.T @ b)
+        shape = images.shape[1:]
+        return SimpleNamespace(
+            dc=np.array(coefficients[0].reshape(shape), copy=True, order="C"),
+            c1=np.array(
+                ((coefficients[1] - 1j * coefficients[2]) / 2).reshape(shape),
+                copy=True,
+                order="C",
+            ),
+            c2=np.array(
+                ((coefficients[3] - 1j * coefficients[4]) / 2).reshape(shape),
+                copy=True,
+                order="C",
+            ),
+        )
+
+    images, phases, *_ = numerical_failure_inputs()
+    # Prime only this independent mathematical caller with different data;
+    # reusing factors must still fit the current observations, not a saved fit.
+    different_images = images.copy() * 1.25
+    different_images[1] += 3.25
+    assert_stored_fit(cached_fit(different_images, phases_rad=phases), different_images, phases)
+    assert exercise_numerical_failure(cached_fit, provider, mode) == []
+
+
+if __name__ == "__main__":
+    assert numerical_provider is not None
+    script_mode = sys.argv[1]
+    assert script_mode == "warn" or script_mode == "raise"
+    stage = sys.argv[3] if len(sys.argv) > 3 else "fault"
+    assert stage in ("healthy", "fault")
+    if stage == "healthy":
+        exercise_numerical_healthy(simrecon.separate_volume_phases, script_mode)
+    else:
+        witnesses = exercise_numerical_failure(
+            simrecon.separate_volume_phases, numerical_provider, script_mode
+        )
+        assert witnesses, (
+            "V08 fault proof incomplete: no injected public numerical family reached; "
+            "a correct no-fault fit is legitimate but supplies no fault evidence"
+        )

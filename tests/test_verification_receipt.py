@@ -199,6 +199,7 @@ def test_v1_real_make_check(repository):
 
 
 def test_v2_command_failure(repository):
+    root, bin_dir = repository
     result, receipt = invoke(repository, "command-failure")
     assert receipt is not None
     failed(result, receipt)
@@ -207,16 +208,16 @@ def test_v2_command_failure(repository):
     assert receipt["phases"][-1]["returncode"] == 23
     assert "controlled failure diagnostic" in result.stdout + result.stderr
     assert receipt["before"] == receipt["after"]
-
-
-def test_v2_missing_executable(repository):
-    root, bin_dir = repository
-    (bin_dir / "make").unlink()
-    result, receipt = invoke(repository)
-    assert receipt is not None
-    failed(result, receipt)
-    assert result.returncode == 127
-    assert git(root, "status", "--porcelain") == ""
+    # Disposable executables record actual argv independently of the receipt.
+    # Version queries do not launch phases and impose no phase-order obligation.
+    calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    phase_calls = [call for call in calls if any(arg in PHASES for arg in call)]
+    assert [[arg for arg in call if arg in PHASES] for call in phase_calls] == [
+        ["sync"],
+        ["coverage-clean"],
+        ["lint"],
+    ]
+    assert all(f"UV={bin_dir / 'uv'}" in call for call in phase_calls)
 
 
 @pytest.mark.parametrize(
@@ -803,6 +804,88 @@ def test_v3_malformed_sole_wheel_metadata_or_archive(repository, mode):
         assert names.count("simrecon/__init__.py") == (2 if mode == "duplicate-member" else 1)
 
 
+def _assert_phase_log_alias_outcome(selected, result, receipt, identity, started, finished, mode):
+    """Check an actual invocation without requiring reuse of an earlier log leaf."""
+    root, bin_dir = selected
+    calls_path = root / "calls.jsonl"
+    calls = (
+        [json.loads(line) for line in calls_path.read_text().splitlines()]
+        if calls_path.exists()
+        else []
+    )
+    phase_calls = [call for call in calls if any(arg in PHASES for arg in call)]
+    names = [next(arg for arg in call if arg in PHASES) for call in phase_calls]
+    assert names == PHASES[: len(names)], "phase reordering, retry or invented command"
+    assert all(f"UV={bin_dir / 'uv'}" in call for call in phase_calls)
+    statuses = [23 if mode == "command-failure" and name == "lint" else 0 for name in names]
+    if 23 in statuses:
+        assert names[-1] == "lint", "phase execution continued after command failure"
+        assert result.returncode == 23
+        assert "controlled failure diagnostic" in result.stdout + result.stderr
+    if result.returncode == 0:
+        assert receipt is not None
+        assert names == PHASES
+        assert statuses == [0] * len(PHASES)
+        assert receipt["result"] == "passed"
+        assert receipt["problems"] == []
+        assert receipt["coverage"] is not None
+        assert receipt["artifact"] is not None
+    else:
+        # Safe early rejection or a log/receipt persistence failure may lack a receipt.
+        assert result.returncode == (23 if 23 in statuses else 1)
+        if receipt is not None:
+            failed(result, receipt)
+    if receipt is None:
+        return
+    assert receipt["schema"] == "org.simrecon.verification"
+    assert receipt["version"] == 1
+    assert receipt["context"] == dict(contract=None, reviewed_tests=None, integration_base=None)
+    assert receipt["inputs"] == {}
+    begin = datetime.fromisoformat(receipt["started_at"])
+    end = datetime.fromisoformat(receipt["finished_at"])
+    for stamp in (begin, end):
+        offset = stamp.utcoffset()
+        assert offset is not None and offset.total_seconds() == 0
+    assert started <= begin <= end <= finished, "receipt is not from the tested invocation"
+    for state in (receipt["before"], receipt["after"]):
+        if state is None:
+            assert result.returncode != 0
+        else:
+            for key, value in identity.items():
+                assert state[key] == value
+    assert [item["name"] for item in receipt["phases"]] == names
+    assert [item["command"] for item in receipt["phases"]] == [
+        [str(bin_dir / "make"), *call] for call in phase_calls
+    ]
+    assert [item["returncode"] for item in receipt["phases"]] == statuses
+    for item in receipt["phases"]:
+        log = Path(item["log"])
+        assert not log.is_absolute()
+        phase_start = datetime.fromisoformat(item["started_at"])
+        phase_end = datetime.fromisoformat(item["finished_at"])
+        for stamp in (phase_start, phase_end):
+            offset = stamp.utcoffset()
+            assert offset is not None and offset.total_seconds() == 0
+        assert begin <= phase_start <= phase_end <= end
+        # A failed persistence attempt may have no usable log. Never treat preserved
+        # protected bytes behind an alias as command output. Successful runs need logs.
+        if result.returncode == 0:
+            assert f"controlled phase {item['name']}" in (root / log).read_text()
+            assert f"controlled phase {item['name']}" in result.stdout + result.stderr
+
+
+def _phase_log_alias_identity(root):
+    return {
+        "commit": git(root, "rev-parse", "HEAD"),
+        "tree": git(root, "rev-parse", "HEAD^{tree}"),
+        "dirty": False,
+        "manifest": {
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in git(root, "ls-files").splitlines()
+        },
+    }
+
+
 @pytest.mark.parametrize("phase", ["sync", "audit"])
 @pytest.mark.parametrize(
     "target_kind", ["tracked", "ordinary-config", "common-config", "private-head"]
@@ -820,7 +903,13 @@ def test_v1_phase_log_symlink_protects_target(repository, linked_repository, pha
     }
     target = targets[target_kind].resolve(strict=True)
     original = target.read_bytes()
+    identity = _phase_log_alias_identity(root)
+    started = datetime.now().astimezone()
     result, receipt = invoke(selected)
+    finished = datetime.now().astimezone()
+    _assert_phase_log_alias_outcome(
+        selected, result, receipt, identity, started, finished, "complete"
+    )
     assert result.returncode == 0, result.stderr
     assert receipt is not None
     leaf = root / next(item["log"] for item in receipt["phases"] if item["name"] == phase)
@@ -831,12 +920,61 @@ def test_v1_phase_log_symlink_protects_target(repository, linked_repository, pha
     assert leaf.read_bytes() == original
     assert git(root, "check-ignore", str(leaf.relative_to(root))) == str(leaf.relative_to(root))
     assert git(root, "status", "--porcelain") == ""
+    # Isolate genuine evidence for this invocation; an old passed receipt is not proof.
+    (root / "calls.jsonl").unlink()
+    (root / "artifacts/verification/receipt.json").unlink()
+    started = datetime.now().astimezone()
     result, receipt = invoke(selected)
+    finished = datetime.now().astimezone()
+    current = target.read_bytes()
+    # A returned reference establishes only the reported destination, not whether an
+    # alias was traversed. Safe replacement and a legitimately unused alias may pass.
+    matches = (
+        [item["name"] for item in receipt["phases"] if root / item["log"] == leaf]
+        if receipt is not None
+        else None
+    )
+    evidence = os.environ.get("A03_LOG_ALIAS_EVIDENCE")
+    if evidence:
+        calls_path = root / "calls.jsonl"
+        with Path(evidence).open("a") as stream:
+            stream.write(
+                json.dumps(
+                    {
+                        "target_kind": target_kind,
+                        "challenged_phase": phase,
+                        "previous_log": str(leaf.relative_to(root)),
+                        "current_receipt_matches": matches,
+                        "alias_still_present": leaf.is_symlink(),
+                        "protected_before_sha256": hashlib.sha256(original).hexdigest(),
+                        "protected_after_sha256": hashlib.sha256(current).hexdigest(),
+                        "status": result.returncode,
+                        "calls": [json.loads(line) for line in calls_path.read_text().splitlines()]
+                        if calls_path.exists()
+                        else [],
+                        "receipt": receipt,
+                    }
+                )
+                + "\n"
+            )
     # Check bytes first: an eventual failed identity check cannot excuse damage.
-    assert target.read_bytes() == original, f"protected {target_kind} overwritten by {phase} log"
-    assert result.returncode != 0
-    if receipt is not None:
-        failed(result, receipt)
+    assert current == original, f"protected {target_kind} overwritten by {phase} log"
+    _assert_phase_log_alias_outcome(
+        selected, result, receipt, identity, started, finished, "complete"
+    )
+
+
+@pytest.mark.parametrize("mode", ["complete", "command-failure"])
+def test_phase_log_alias_outcome_public_controls(repository, mode):
+    """Reach both oracle branches with authentic safe output and original status 23."""
+    root, _ = repository
+    identity = _phase_log_alias_identity(root)
+    started = datetime.now().astimezone()
+    result, receipt = invoke(repository, mode)
+    finished = datetime.now().astimezone()
+    _assert_phase_log_alias_outcome(repository, result, receipt, identity, started, finished, mode)
+    assert result.returncode == (0 if mode == "complete" else 23)
+    assert receipt is not None
 
 
 def assert_tag_wheel_fixture(root, mode):
