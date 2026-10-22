@@ -486,11 +486,16 @@ def test_source_free_live_path_subprocess_fields(
     tmp_path: Path, failure: str, representation: str
 ) -> None:
     """C74: real public Path executable, original fields and argument-free rendering."""
+    ready = tmp_path / "child-ready"
     child = tmp_path / "child.py"
     child.write_text(
-        "import time,sys\nprint('A08-child-output',flush=True)\n"
+        "import pathlib,threading,sys\nprint('A08-child-output',flush=True)\n"
         "print('A08-child-error',file=sys.stderr,flush=True)\n"
-        "time.sleep(3)\nsys.exit(23)\n"
+        + (
+            f"pathlib.Path({str(ready)!r}).touch()\nthreading.Event().wait()\n"
+            if failure == "child-timeout"
+            else "sys.exit(23)\n"
+        )
     )
     if representation == "direct-path":
         executable = tmp_path / "owned-child"
@@ -500,14 +505,34 @@ def test_source_free_live_path_subprocess_fields(
     else:
         executable = Path(sys.executable)
         command = f"[executable, {str(child)!r}, 'A08_ARG_SECRET']"
+    if failure == "child-timeout":
+        # Start the timeout after both streams are flushed, not during interpreter startup.
+        invocation = (
+            "    with subprocess.Popen(command,stdout=subprocess.PIPE,stderr=subprocess.PIPE,\n"
+            "                          text=True) as process:\n"
+            "        try:\n"
+            "            deadline=time.monotonic()+10\n"
+            "            while not ready.is_file() and time.monotonic()<deadline:\n"
+            "                assert process.poll() is None, 'Tooling nonwitness: child exited'\n"
+            "                time.sleep(0.01)\n"
+            "            assert ready.is_file(), 'Tooling nonwitness: child did not become ready'\n"
+            "            process.communicate(timeout=0.15)\n"
+            "        finally:\n"
+            "            if process.poll() is None: process.kill()\n"
+            "            process.communicate(timeout=5)\n"
+        )
+    else:
+        invocation = (
+            "    subprocess.run(command,check=True,capture_output=True,text=True,timeout=6)\n"
+        )
     script = tmp_path / "path-caller.py"
     script.write_text(
-        "import json,pathlib,subprocess\n"
+        "import json,pathlib,subprocess,time\n"
+        f"ready=pathlib.Path({str(ready)!r})\n"
         f"executable=pathlib.Path({str(executable)!r})\ncommand={command}\n"
         "try:\n"
-        "    subprocess.run(command,check=True,capture_output=True,text=True,\n"
-        f"                   timeout={0.15 if failure == 'child-timeout' else 6})\n"
-        "except (subprocess.TimeoutExpired,subprocess.CalledProcessError) as error:\n"
+        + invocation
+        + "except (subprocess.TimeoutExpired,subprocess.CalledProcessError) as error:\n"
         "    assert error.cmd == command\n"
         "    assert error.stdout in ('A08-child-output\\n',b'A08-child-output\\n')\n"
         "    assert error.stderr in ('A08-child-error\\n',b'A08-child-error\\n')\n"
