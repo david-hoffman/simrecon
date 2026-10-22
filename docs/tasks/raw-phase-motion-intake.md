@@ -1,0 +1,28 @@
+# RAW-PHASE-MOTION-INTAKE: comparable raw references and motion meaning
+
+**Version 1.0.** The standing owner instruction continues one dependency-ready roadmap task at a time, with required review/checks, its own stacked pull request and one useful observed successor. The complete incoming coordinator handoff and immutable delivery are retained in the predecessor's `artifacts/roadmap-successor-20261018/`; their exact descriptors and all 116 primary descriptors plus both original native wheel members are checked in this task's `parent-verification01.json`. The prerequisite is verified, open PR45 at `39b42fef8e4493e2e54cf5660ef039d93a4e7318`, tree `e2015a5840578b77ffcbe0c3caed807e26805695`. PR44 and older work remain outside ownership.
+
+## Contract and ownership
+
+This is report-only scientific intake under the [intake skill](../../.agents/skills/intake/SKILL.md), not a numerical implementation route. The coordinator owns this task record, the [scientific report](../reports/raw-phase-motion-intake.md), the [sanitized public dependency packet](../plans/raw-phase-motion-public-dependencies.md), narrow project/roadmap pointers and a new evidence-linked lesson. Scoped nonblind collaborators may independently investigate mathematical implications and selected source/settings regions. A fresh independent report reviewer assesses the exact candidate without author history. No scientific A/B/C/D acceptance is claimed for discovery. Any later numerical behavior requires its own settled contract and fresh native A/B/C/D.
+
+| ID | Observable report obligation | Expectation and independent challenge |
+|---|---|---|
+| R1 | Distinguish specimen, image/camera and focal-plane/scan motion | Existing drift/volume contracts, selected model and primary equations; signs and axial-profile frame |
+| R2 | State sufficient conditions and failure cases for comparable raw references | Phase cancellation, within-cycle motion, unequal actual phases and repeated-frame counterexamples |
+| R3 | Separate legitimate inputs, evaluator-only truth and absent owner provenance | Raw declarations, supplied correction/calibration boundaries, O1–O5 decision register |
+| R4 | Expose gauges, periodic aliases, information loss and intensity ambiguity | Exact algebra and positive alternatives; no invented threshold or physical identification claim |
+| R5 | Give dependencies, recommendation and narrow future packet | Separate evidence readiness from numerical-contract readiness and full-workflow exits |
+| R6 | Preserve source/evidence identity, limits and delivery obligations | Opened locators/digests, independent review, exact gate, live parent referents and completion inventory |
+
+Normal investigation covers all three mechanisms and candidate references. Missing input facts remain unknown; contradictory or insufficient evidence is reported, never filled with a source default. Representation limits include finite periodic grids, integer displacement versus physical micrometres, complex order gauges and nonconstant axial profiles. Tool/source-access failures retain diagnostics and stop dependent claims. Compatibility is documentary only; every public operation keeps its contract.
+
+No runtime, tests, fixtures, workflow, dependency, gate, permission, policy or API change is authorized. No experiment, reference-C build/invocation/execution, ignored-source copy/import/link/shipment, numerical threshold, motion-mechanism selection, merge/release or older-PR edit follows. Source text supplies possibilities, not actual instrument settings or approved Python behavior. The one material first-case motion question may be asked after evidence investigation; it does not block completing the dossier.
+
+Inherit the continuation's selected 100% native Coverage.py executable-line/branch-destination coverage globally, per owned package and per owned file, all owned `src/simrecon` and `scripts`, never-imported files/relevant subprocesses, zero exclusions/skips, separately local/Ubuntu 24.04/macOS 15. Keep the exact-candidate full-local 13-phase `make verify` submission gate and complete native platform/artifact evidence. This report changes no selected metric; runtime obligations are unchanged and no product-red tests are manufactured. Requested collaborator/reviewer configuration is Sol/high under project guidance; actual serving and unavailable meters are unknown. Human numeric limits are not set. Diagnose concrete reasoning limitations before escalation; absent semantics go to intake.
+
+## Current state pointer and delivery
+
+The sole Current state is `artifacts/raw-phase-motion-intake-20261018/current-state.md`; immutable `accountingNN.json` snapshots extend the predecessor's `accounting20.json`, retaining all charges/failures without resets or double counting. Final candidate hashes/results belong outside tracked bytes. The pull request will explain why phase-changing raw exposures need a motion/reference definition and give the report's conditional conclusions, with technical identities/checks/limits in a collapsible appendix. A compact alternatives table supplies the useful comparison; no numerical figure or experimental result is implied.
+
+The coordinator inventories this task's scratch, processes, evidence, links/referents and environment/cache inputs before completion under the [cleanup workflow](../operations/fixture-cleanup.md). Preserve the parent worktree, private root and all original evidence/referents at their live paths. Record removed/preserved/blocked counts and native allocated bytes; no recursive disposal authority or reusable destructive tool is created. Exactly one useful successor waits for this task's verified delivery and must respect unresolved motion meaning.
