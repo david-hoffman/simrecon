@@ -164,6 +164,7 @@ class _Profile:
         self.y = y
         self.n = n
         self.size = size
+        self.dimension = operators.shape[-1]
         self.nfev = 0
         self.njev = 0
         self.require_full_rank = False
@@ -181,11 +182,13 @@ class _Profile:
         derivative = np.einsum(
             "mp,mkj->pkj", (1j * np.arange(-2, 3))[:, None] * powers, self.operators
         )
-        a = np.concatenate((model.real.reshape(-1, self.size), model.imag.reshape(-1, self.size)))
+        a = np.concatenate(
+            (model.real.reshape(-1, self.dimension), model.imag.reshape(-1, self.dimension))
+        )
         _finite(a, derivative)
         left, singular, right = _svd(a)
         rank = _rank(singular, a.shape)
-        if self.require_full_rank and rank != self.size:
+        if self.require_full_rank and rank != self.dimension:
             raise _RankChanged
         plus = (right[:rank].T / singular[:rank]) @ left[:, :rank].T
         specimen = plus @ self.y
@@ -194,7 +197,7 @@ class _Profile:
         # Each exposure phase changes only its own M complex observation rows.
         d_complex = derivative @ specimen
         d = np.zeros((2 * self.n * self.size, self.n))
-        ap_r = np.empty((self.size, self.n))
+        ap_r = np.empty((self.dimension, self.n))
         for p in range(self.n):
             real_rows = slice(p * self.size, (p + 1) * self.size)
             imag_rows = slice((self.n + p) * self.size, (self.n + p + 1) * self.size)
@@ -303,6 +306,8 @@ def _estimate(
     gradient_tolerance: Any,
     step_tolerance: Any,
     source: Any,
+    *,
+    observable: bool = False,
 ) -> VolumePhaseEstimate:
     """Snapshot the public boundary, then execute the selected local procedure."""
     image_code = "invalid_volume_phase_estimation_images"
@@ -351,21 +356,48 @@ def _estimate(
     signed = [f[2][negative].conj(), f[1][negative].conj(), f[0], f[1], f[2]]
     y_complex = _transform(values / b, (1, 2, 3))
     y = np.concatenate((y_complex.real.ravel(), y_complex.imag.ravel()))
-    basis = _transform(np.eye(size).reshape(*shape, size), (0, 1, 2))
+    reduction = None
+    if observable:
+        from ._observable_volume_phase_estimation import _observable_subspace
+
+        reduction = _observable_subspace(signed, (cy, cx), shape)
+        _, q = reduction
+        dimension = q.shape[1]
+        basis = (
+            _transform(q.reshape(*shape, dimension), (0, 1, 2))
+            if dimension
+            else np.empty((*shape, 0), dtype=np.complex128)
+        )
+    else:
+        dimension = size
+        basis = _transform(np.eye(size).reshape(*shape, size), (0, 1, 2))
     operators = np.array(
         [
             row.reshape(size, 1)
-            * np.roll(basis, (m * (cy % ny), m * (cx % nx)), axis=(1, 2)).reshape(size, size)
+            * np.roll(basis, (m * (cy % ny), m * (cx % nx)), axis=(1, 2)).reshape(size, dimension)
             for m, row in zip(range(-2, 3), signed, strict=True)
         ]
     )
     _finite(y, operators)
     profile = _Profile(operators, y, n, size)
-    profile.residual(initial_angles)
-    profile.jacobian(initial_angles)
-    first = profile.point(initial_angles)
+    if dimension:
+        profile.residual(initial_angles)
+        profile.jacobian(initial_angles)
+        first = profile.point(initial_angles)
+    else:
+        first = _Point(
+            np.empty(0),
+            y.copy(),
+            np.zeros((2 * n * size, n)),
+            np.zeros((2 * n * size, n)),
+            np.empty(0),
+            0,
+            np.zeros(n * size),
+        )
     result_angles, point = initial_angles, first
-    if first.rank < size:
+    if not dimension:
+        termination = "no_observable_specimen"
+    elif first.rank < dimension:
         termination = "nuisance_rank_deficient"
     else:
         profile.require_full_rank = True
@@ -416,7 +448,7 @@ def _estimate(
         except _RankChanged:
             result_angles, point = initial_angles, first
             termination = "rank_changed"
-    _, phase_s, _ = _svd(point.information)
+    phase_s = _svd(point.information)[1] if dimension else np.zeros(n)
     c, s = np.cos(result_angles), np.sin(result_angles)
     design = np.column_stack((np.ones(n), c, s, c * c - s * s, (2 * c) * s))
     _, design_s, _ = _svd(design)
@@ -430,11 +462,13 @@ def _estimate(
     deviations = _canonical(result_angles - initial_angles)
     phasors = c + 1j * s
     _finite(relative, rms, imaginary, reality, gradient, phasors, deviations)
-    return VolumePhaseEstimate(
+    specimen = reduction[1] @ point.specimen if reduction is not None else point.specimen
+    _finite(specimen)
+    fields = (
         result_angles.copy(order="C"),
         phasors.copy(order="C"),
         deviations.copy(order="C"),
-        np.array(point.specimen.reshape(shape), dtype=np.float64, order="C", copy=True),
+        np.array(specimen.reshape(shape), dtype=np.float64, order="C", copy=True),
         b,
         t,
         relative,
@@ -454,3 +488,13 @@ def _estimate(
         source,
         "unassessed",
     )
+    if reduction is not None:
+        from ._observable_volume_phase_estimation import ObservableVolumePhaseEstimate
+
+        return ObservableVolumePhaseEstimate(
+            *fields,
+            observable_fourier_mask=reduction[0].copy(order="C"),
+            observable_dimension=dimension,
+            unobservable_dimension=size - dimension,
+        )
+    return VolumePhaseEstimate(*fields)

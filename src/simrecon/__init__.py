@@ -24,6 +24,10 @@ from ._linear_response import LinearResponseCorrection, correct_linear_response
 from ._metadata import harmonize
 from ._model import DataBlock, DatasetInfo, SimreconError, WriteReport
 from ._modern import write
+from ._observable_volume_phase_estimation import (
+    ObservableVolumePhaseEstimate,
+    estimate_observable_volume_phases,
+)
 from ._otf import Otf2D, prepare_otf
 from ._phase import PhaseComponents, separate_phases
 from ._pixels import read
@@ -53,6 +57,7 @@ __all__ = [
     "ImagejSeries",
     "ImagejWriteReport",
     "LinearResponseCorrection",
+    "ObservableVolumePhaseEstimate",
     "Otf2D",
     "Otf3D",
     "PhaseComponents",
@@ -80,6 +85,7 @@ __all__ = [
     "correct_linear_response",
     "declare_acquisition",
     "estimate_illumination",
+    "estimate_observable_volume_phases",
     "estimate_translation",
     "estimate_volume_order_gain",
     "estimate_volume_phases",
