@@ -50,4 +50,6 @@ Root LESSONS holds one new timestamped evidence-linked file per useful lesson; c
 | [Examples](WORKFLOW-EXAMPLES.md) | Risk, corrections, evidence and model choices |
 | [Templates](templates/TASK.md) | Task plus public/candidate/handoff/project starters |
 
+Pull requests use a plain-English scientist/engineer summary, an informative figure when useful, and a collapsible technical appendix that retains material validation evidence and limits. See [presentation policy](DELIVERY-SYSTEM-SPEC.md#41-human-readable-pull-requests) and [PR template](templates/PULL-REQUEST.md).
+
 Four `.agents/skills/` procedures implement role modes; repository AGENTS is the single shared operational home. Preserve product README and source/test structure. [References](REFERENCES.md) are background, not fresh authority. No controller, external repository, tracing service or daemon.
