@@ -1,6 +1,6 @@
 # NS03-C: scalar camera calibration from primary-camera images
 
-Version1.0. The owner requested the full noisy simulation and explicitly selected “Images only” for phase/carrier inference. This authorizes the necessary estimator and concrete synthetic primary-camera acquisitions, without an extra information-source or document approval. No human numerical execution/review budget was set. This task implements only [scalar camera calibration](../contracts/scalar-camera-calibration-v1.md).
+Version1.0. The owner requested the full noisy simulation and explicitly selected “Images only” for phase/carrier inference. This authorizes the necessary estimator and concrete synthetic primary-camera acquisitions, without an extra information-source or document approval. No human numerical execution/review budget was set. This task implements only [scalar camera calibration](../contracts/scalar-camera-calibration-v1.md), with [usage and an executed-example pointer](../usage/scalar-camera-calibration.md).
 
 ## Independent scope and baseline
 

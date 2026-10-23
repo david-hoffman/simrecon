@@ -35,6 +35,7 @@ from ._phase_carrier_selection import VolumePhaseCarrierSelection, select_volume
 from ._pixels import read
 from ._point_bead_calibration import PointBeadCalibration, calibrate_raw_point_bead
 from ._reconstruction import Reconstruction2D, reconstruct
+from ._scalar_camera_calibration import ScalarCameraEstimate, estimate_scalar_camera
 from ._translation import TranslationEstimate, estimate_translation
 from ._volume_carrier_diagnostics import VolumeCarrierCandidate, scan_volume_carriers
 from ._volume_order_otf import VolumeOrderOtf, prepare_volume_order_otfs
@@ -68,6 +69,7 @@ __all__ = [
     "RawAcquisition",
     "Reconstruction2D",
     "Reconstruction3D",
+    "ScalarCameraEstimate",
     "SimreconError",
     "SharedNodeVolumeTransfer",
     "TranslationEstimate",
@@ -91,6 +93,7 @@ __all__ = [
     "declare_acquisition",
     "estimate_illumination",
     "estimate_observable_volume_phases",
+    "estimate_scalar_camera",
     "estimate_translation",
     "estimate_volume_order_gain",
     "estimate_volume_phases",
