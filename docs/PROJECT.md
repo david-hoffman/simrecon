@@ -124,3 +124,7 @@ Above completed PR44, the standing continuation selects [known-reference periodi
 
 
 The owner's full noisy simulation request and explicit images-only choice next select [scalar camera estimation](contracts/scalar-camera-calibration-v1.md), with [task and ownership](tasks/scalar-camera-calibration.md). This independent pure finite-moment operation consumes primary-camera dark/blank/flat images without known camera or illumination values. It supplies a reference-flat-relative count gauge and an optional physical photon-transfer gain statistic; neither certifies a real instrument model. It retains the continuing numerical chain's binding100% native executable-line/branch-destination and full-local/separate-platform gates. Joint raw-bead phase/carrier/kernel inference, continuous nonperiodic inversion and the full noisy workflow remain unfinished.
+
+## PR53 published-head completion route
+
+The owner selected starting from the published PR53 head and finishing the same full noisy images-only task. [The completion contract and ownership](tasks/pr53-completion.md) preserve all existing scientific contracts, native high-risk roles, truth separation, exact-candidate full-local/report/platform gates and historical accounting. The previously owner-selected named advisory-percentage migration applies; no scientific acceptance or gate waiver follows. The actual specimen solver and safe workflow remain dependent work.
