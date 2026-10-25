@@ -1,7 +1,6 @@
 UV ?= uv
 PYTHON ?= python3
 VERIFY_ARGS ?=
-PYTEST_BASETEMP ?=
 
 .PHONY: check verify sync quality coverage-clean lint format types tests coverage-combine coverage-json coverage-html coverage-report wheel wheel-import audit
 .PHONY: preflight
@@ -42,7 +41,7 @@ types:
 	$(UV) run --locked pyright
 
 tests:
-	$(UV) run --locked coverage run -m pytest$(if $(PYTEST_BASETEMP), --basetemp "$(PYTEST_BASETEMP)")
+	$(UV) run --locked coverage run -m pytest
 
 coverage-combine:
 	$(UV) run --locked python -W error -m coverage combine
