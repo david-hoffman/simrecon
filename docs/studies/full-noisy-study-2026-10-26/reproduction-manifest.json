@@ -219,9 +219,9 @@
     "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]"
   },
   "protocol": {
-    "contract": "protocol/full-noisy-study-v1.2.md",
+    "contract": "../../contracts/full-noisy-study-v1.2.md",
     "contract_sha256": "2d2e267a2887eb94a5f46be0783cd359b95e92e550d1a27352216e9772ed209b",
-    "schema_note": "protocol/full-noisy-study-v1.2-schema-clarifications.md",
+    "schema_note": "../../contracts/full-noisy-study-v1.2-schema-clarifications.md",
     "schema_note_sha256": "e7dce49361859259440d7abbc1621686e3c9ccb1e35e93cee48db4ff313fe0c9"
   },
   "rendering_limit": "Separate plotting environment only; no refit/input change. Ordinary crosscheck deltas recorded; no cross-platform bitstream guarantee or new scientific threshold.",
