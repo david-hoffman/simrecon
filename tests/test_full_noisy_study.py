@@ -63,6 +63,7 @@ from full_noisy_study_fixture import (
     save_npy,
     sha,
     snapshot,
+    source_free_environment,
     transferred,
     wrap_reference,
     write_json,
@@ -1019,6 +1020,74 @@ def test_camera_boundaries_honest_records(
     assert snapshot(obs) == before
 
 
+@pytest.mark.parametrize("source_free_parent", [False, True])
+@pytest.mark.parametrize("nested", [False, True])
+def test_cli_child_diagnostics_without_parent_preconditions(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, source_free_parent: bool, nested: bool
+) -> None:
+    """Qualify harness plumbing, without supplying a product decision or result."""
+    site = str(Path(__file__).resolve().parents[1] / "scripts/source_free_sitecustomize")
+    inherited_path = str(tmp_path / "inherited-import-path")
+    monkeypatch.setenv(
+        "PYTHONPATH", site + os.pathsep + inherited_path if source_free_parent else inherited_path
+    )
+    inherited_plugin = "h1_inherited_plugin"
+    monkeypatch.setenv(
+        "PYTEST_PLUGINS",
+        "pytest_plugin," + inherited_plugin if source_free_parent else inherited_plugin,
+    )
+    before = os.environ.copy()
+    env = source_free_environment()
+    assert os.environ == before
+    assert all(
+        env[key] == value
+        for key, value in before.items()
+        if key not in ("PYTHONPATH", "PYTEST_PLUGINS")
+    )
+    assert env["PYTHONPATH"].split(os.pathsep) == [site, inherited_path]
+    assert env["PYTEST_PLUGINS"].split(",") == ["pytest_plugin", inherited_plugin]
+    filename = str(Path(__file__).resolve())
+    failure = (
+        "try:\n raise ValueError('h1 cause')\n"
+        "except ValueError as error:\n raise RuntimeError('h1 outer') from error\n"
+    )
+    code = (
+        "import sys, warnings\n"
+        "assert sys.excepthook.__module__ == 'sitecustomize'\n"
+        "assert warnings.formatwarning.__module__ == 'sitecustomize'\n"
+        f"warnings.warn_explicit('h1 warning', UserWarning, {filename!r}, 1)\n"
+        f"exec(compile({failure!r}, {filename!r}, 'exec'))\n"
+    )
+    if nested:
+        code = (
+            "import subprocess, sys\n"
+            f"result = subprocess.run([sys.executable, '-c', {code!r}], check=False)\n"
+            "raise SystemExit(result.returncode)\n"
+        )
+    argv = [sys.executable, "-c", code]
+    receipt: dict[str, Any] = {
+        "argv": argv,
+        "timeout_s": 30,
+        "diagnostic_qualification": True,
+        "source_free_parent": source_free_parent,
+        "nested": nested,
+    }
+    COMMAND_LEDGER.append(receipt)
+    result = subprocess.run(argv, env=env, capture_output=True, text=True, timeout=30, check=False)
+    receipt.update(
+        status=result.returncode, stdout=result.stdout, stderr=result.stderr, process_closed=True
+    )
+    assert result.returncode == 1 and result.stdout == ""
+    assert f"{filename}:1: UserWarning: h1 warning" in result.stderr
+    assert f'File "{filename}", line 2' in result.stderr
+    assert f'File "{filename}", line 4' in result.stderr
+    assert "ValueError: h1 cause" in result.stderr
+    assert "direct cause of the following exception" in result.stderr
+    assert "RuntimeError: h1 outer" in result.stderr
+    assert "Public CLI proof for full noisy study" not in result.stderr
+    assert "evidence, not product-red" not in result.stderr
+
+
 @pytest.mark.parametrize("command", ["generate", "infer", "evaluate", "root"])
 def test_cli_help(command: str) -> None:
     expect(cli(*([] if command == "root" else [command]), "--help"), 0)
@@ -1613,14 +1682,17 @@ def test_completion_leaf_created_exclusively_at_real_io_boundary(
         "--out",
         str(out),
     ]
-    assert "source_free_sitecustomize" in os.environ.get("PYTHONPATH", "")
+    env = source_free_environment()
     receipt: dict[str, Any] = {
         "argv": argv,
         "timeout_s": 300,
         "fault": "external completion leaf conflict",
+        "PYTHONPATH": env["PYTHONPATH"],
     }
     COMMAND_LEDGER.append(receipt)
-    process = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    process = subprocess.Popen(
+        argv, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+    )
     stopped = False
     try:
         deadline = time.monotonic() + 300

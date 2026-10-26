@@ -616,6 +616,75 @@ failures remain UNAVAILABLE, not product-red or evidence of a completed CLI.
 Prior A/B/root/review/correction charges remain retained; no accepted checkpoint
 or fresh B4 verdict is supplied by this author. Existing scientific/persistence/
 memory/order/private-stat proof limits are unchanged.
+Correction5 H1: child diagnostics under ordinary parent environments
+-----------------------------------------------------------------
+Authorized input: correction5 packet/public-findings/prior-checkpoint/allowlist;
+no raw gate evidence, runtime source or other-role history was read. Root's
+supplied publication fixture hash741e396a2f017a1ce698c04d75bb86019e0b51cda47c9daf
+83475bdc9a76ec49 and unchanged test hashfea6923508e9212c01a6a4cd1f839002b997bdaea
+11d61c2286f755953608419 matched before correction. Existing module-docstring
+redactions remain. Historical B4 acceptance of7aff3198d62f062a254c0dd4ddc0b662731
+e1b5f5ac56c167201ebb06c74a431 is preserved, not applied to these new bytes.
+
+Classification and pre-edit diagnosis: test-harness defect, no product-red.
+The approved actual wrapper installed hooks before pytest import; inside that
+safe process the probe removed PYTHONPATH and PYTEST_PLUGINS, retained the
+already importable diagnostic pytest_plugin via explicit -p, then ran the four
+existing cli_help keepers. Exit1:4failed/382deselected, each at the parent's
+Run-via-source_free_check.py assertion, before CLI launch. Interpreter3.13.12,
+own .venv and initial owned-file identities passed cheap health first.
+
+Requirement/keeper/dependency map, before final verification:
+* H1 requires approved source-free hooks in every real CLI child before startup,
+  including ordinary canonical/CI parents, preserving inherited instrumentation.
+  source_free_environment copies all inherited keys and adds only the existing
+  approved site path and pytest_plugin entries when absent; no global parent
+  mutation, instrumentation override, gate/discovery/coverage change or new hook.
+* Shared cli now uses that environment. Every cli caller (generation/inference/
+  evaluation/help/grammar/protocol/domain/ownership/failure/scientific/F1-F7
+  keepers and module pipeline fixtures) is an affected harness dependent. The
+  separate exclusive completion-leaf Popen path uses the same helper; both
+  regular-file and symlink cases retain all real-I/O fault assertions and process
+  closure. Only the two parent guards are replaced by child setup, not removed
+  without protection. Existing stdout/stderr/status observers remain unchanged.
+* Four new pure harness qualifications cover ordinary/already-source-free parents
+  crossed with direct/nested children. They verify all other inherited keys
+  exactly, retained path/plugin entries, unchanged parent, actual hook identities,
+  warning category/message/file/line, both exception categories/messages/locations,
+  direct cause and nonzero status, with own-file source lines absent. Real CLI
+  help plus all existing shared-cli/exclusive-I/O dependents supply owner-boundary
+  proof. No production seam, scientific threshold or fabricated fitter result.
+* No scientific/schema/numerical/fixture seed/plan/metric/phase/gauge/frozen-byte
+  oracle/helper changed. F1 ndarray, F2 global camera allowance, F3 asymmetric
+  axial composition, F4 record relationships, F5 declared NPY order, F6 safe beam
+  normalization and F7 finite complete-reference arithmetic keepers are retained.
+  Their48 prior independent controls plus all existing386 cases remain; four
+  harness controls extend collection. Fresh B5 decides retained applicability
+  and expanded review, not this author. No full canonical gate or campaign run.
+
+Self-corrections/accounting: one apply_patch attempted a nonexistent cli_help
+context and failed before any edit; the following patch used the actual owned
+context. An8pass diagnostic/help qualification overlapped Ruff formatting;
+it is explicitly uncredited as exact-candidate evidence and will be rerun after
+edits cease. No scientific correction followed. Both facts remain charged.
+All prior A1/corrections1-4/B1-B4/C1/gate/diagnosis costs, failures and immutable
+checkpoints remain retained. Human numeric limits not set;300/1800/7200seconds
+are engineering guards. Requested Sol/high; deployment/metering/cost unknown.
+
+Final-check pointer (prepared before exact-byte verification): actual wrapper,
+PYTHONDONTWRITEBYTECODE=1/UV_NO_CACHE=1, narrow Ruff check --no-cache and format
+--check plus Pyright only on the two owned files. Full owned-suite pytest.main
+runs under both inherited source-free and simulated ordinary parent entries;
+ordinary removes only PYTHONPATH/PYTEST_PLUGINS after hooks load, explicitly
+retaining -p pytest_plugin. Both use own exclusive basetemp, -p no:cacheprovider,
+--assert=plain --tb=line --no-showlocals and all installed gates. No environment
+or runtime source is printed. Final commands/counts/status, diagnostic evidence,
+file hashes/sizes/canonical identity algorithm, new scratch inventories/reference
+pins and owned-process closure are returned outside tracked bytes. The canonical
+identity uses the supplied current_candidate_head/tree as this correction's
+baseline, original contract/schema/lock/source-free pins, and exact owned bytes;
+these Git identities are packet inputs, not independently inspected Git state.
+No cleanup, installs, Git actions, runtime edits, delegation or Superpowers.
 """
 
 from __future__ import annotations
@@ -901,14 +970,24 @@ def snapshot(root: Path) -> dict[str, Any]:
     return result
 
 
+def source_free_environment() -> dict[str, str]:
+    """Establish approved child diagnostics without requiring a special parent."""
+    env = os.environ.copy()
+    site = str(ROOT / "scripts/source_free_sitecustomize")
+    previous = env.get("PYTHONPATH", "")
+    if site not in previous.split(os.pathsep):
+        env["PYTHONPATH"] = site + (os.pathsep + previous if previous else "")
+    plugins = env.get("PYTEST_PLUGINS", "")
+    if "pytest_plugin" not in plugins.split(","):
+        env["PYTEST_PLUGINS"] = "pytest_plugin" + ("," + plugins if plugins else "")
+    return env
+
+
 def cli(
     *args: str, timeout: float = 300, preexec_fn: Any = None
 ) -> subprocess.CompletedProcess[str]:
-    """Real module subprocess inheriting the actual source-free harness."""
-    site = str(ROOT / "scripts/source_free_sitecustomize")
-    env = os.environ.copy()
-    assert site in env.get("PYTHONPATH", "").split(os.pathsep), "Run via source_free_check.py"
-    assert "pytest_plugin" in env.get("PYTEST_PLUGINS", "").split(",")
+    """Real module subprocess with the actual source-free hooks before startup."""
+    env = source_free_environment()
     argv = [sys.executable, "-m", "scripts.full_noisy_study", *args]
     receipt: dict[str, Any] = {
         "argv": argv,
