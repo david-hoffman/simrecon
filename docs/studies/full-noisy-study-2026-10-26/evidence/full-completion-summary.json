@@ -1,0 +1,59 @@
+{
+  "bead_status": "completed_finite_fit",
+  "bead_unprobed_coordinates": [],
+  "completed_root_validation": {
+    "all67_closed_scientific_files_rehashed_unchanged": true,
+    "array_payload_B": 975503360,
+    "at_utc": "2026-10-26T18:42:59.233549+00:00",
+    "fit_message": "Specimen fit complete: iteration_limit.",
+    "json_files": 9,
+    "max_observed_stage_peak_RSS_B": 1904820224,
+    "npy_files": 58,
+    "physical_footprint_B": "unknown",
+    "receipt_sha256": "ca63db42300e35c384335a7169f9c215df410d295e968325184f744090d7f07b",
+    "regular_file_bytes": 978255623,
+    "status": "COMPLETE_FINITE_WORKFLOW_POOR_RECOVERY",
+    "sum_sequential_supervised_stage_elapsed_s": 1033.851879290989,
+    "times_scope": "Sumofsequentialworker stageelapsedonly; nativeclockandsupervisednestednotadded, CPUtimes/peaksnotadded. Coordinatorvalidation/waitnotincluded."
+  },
+  "corrected_mean_prediction_metrics": {
+    "count": 31457280,
+    "error_l2": 750.7573661116008,
+    "error_max_abs": 31.49236627703388,
+    "error_mean": 0.004848790451912654,
+    "error_rms": 0.1338563621850548,
+    "reference_l2": 1130.154246408725,
+    "relative_l2": 0.6642963723733037,
+    "unavailable_fields": []
+  },
+  "evaluation_completion_sha256": "27309b69142844b539ef08780bf5150f2529ec6bd7702e92ce811bfceef2fb5e",
+  "evaluation_sha256": "2e6e5afaed797b4fc8feaa2dc6272488899071834fa88e45c0cc082fd0ac2ceb",
+  "evaluation_status": "evaluated",
+  "inference_freeze_sha256": "919068b950240adb2f122c12a903efe83537bf4b3430691c8bbf6a912d64fdad",
+  "observation_manifest_sha256": "1aeae458173155d0609020d25b299e087e16ffa6e31453f744e8b048584ebd5c",
+  "scientific_limit": "Poor recovery at the fixed finite settings; no convergence, unique identification, resolution-recovery or accuracy threshold claim.",
+  "signal_prediction_metrics": {
+    "count": 31457280,
+    "error_l2": 750.7576880954078,
+    "error_max_abs": 31.492364692475718,
+    "error_mean": 0.004850375010077357,
+    "error_rms": 0.13385641959319095,
+    "reference_l2": 1130.152652337474,
+    "relative_l2": 0.6642975942609429,
+    "unavailable_fields": []
+  },
+  "source_metrics": {
+    "count": 8388608,
+    "error_l2": 65.38987897173227,
+    "error_max_abs": 5.572453213424329,
+    "error_mean": 3.861847695327739e-05,
+    "error_rms": 0.02257696623138648,
+    "reference_l2": 68.60417265941477,
+    "relative_l2": 0.9531472567471975,
+    "unavailable_fields": []
+  },
+  "specimen_stop_reason": "iteration_limit",
+  "status": "COMPLETE_FINITE_WORKFLOW_ALL_METRICS_AVAILABLE",
+  "three_separate_stage_processes_completed": true,
+  "unavailable_comparisons": []
+}

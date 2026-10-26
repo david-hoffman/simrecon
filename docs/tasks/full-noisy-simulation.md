@@ -25,6 +25,12 @@ The owner explicitly selected “Images only.” Infer actual phase/carrier info
 
 On the inspected workstation, memory is 16 GiB. Existing full-volume phase-estimation allocations are not feasible merely by scaling the small example. Measure staged execution; no uncontrolled full-size launch or truth-selected short-cycle/support workaround. Resource staging is implementation discipline, not a new owner-set quota.
 
+## Executed selected study
+
+The selected 256 × 256 × 32 campaign completed generation, image-only inference and independent truth evaluation. Recovery was poor: relative Euclidean norm error was 0.9531473 for the source on the fixed paired axial reference and 0.6642976 for signal predictions. The source solver reached its declared 12-iteration limit. This run establishes execution and assessment of the finite workflow; it does not establish accurate recovery, convergence or a resolution gain.
+
+The [observed report, figures, exact plans/seeds and file digests](../studies/full-noisy-study-2026-10-26/README.md) preserve both the small and full outcomes, the diagnosed small-case measurement repeat and actual resources. The [command/file contract](../contracts/full-noisy-study-v1.2.md) and [schema clarification](../contracts/full-noisy-study-v1.2-schema-clarifications.md) define the three separate stages and their frozen truth boundary. Final candidate and delivery verification identities remain in the sole Current state and PR rather than self-referential tracked report bytes.
+
 ## NS01 contract, route and ownership
 
 High risk: stochastic numerical meaning, statistical oracle and representation/failure rules. Fresh native blind A, fresh native blind B, restricted C and fresh native D. Use gpt-6.1-sol/high provisionally under existing model guidance; record actual attribution/counters or unknown. No source/history/current-task lesson exposure for A/B.
