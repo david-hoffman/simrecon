@@ -1639,13 +1639,21 @@ def test_missing_output_parent_never_created(
 
 def test_partial_io_retained_unsealed_and_retry_cannot_repair(tmp_path: Path) -> None:
     input_path, out = tmp_path / "plan.json", tmp_path / "partial"
-    write_json(input_path, plan())
+    value = plan()
+    # A legal larger source makes the real NPY write exceed the cap, while
+    # leaving room for the installed subprocess instrumentation's native data.
+    # The cap is an I/O example, not a scientific or coverage acceptance limit.
+    value["geometry"]["calibration_shape_zyx"] = [1, 2, 256]
+    file_limit_bytes = 1 << 20
+    source_payload_bytes = math.prod(8 * n for n in [1, 2, 256]) * 8
+    assert source_payload_bytes > file_limit_bytes
+    write_json(input_path, value)
     original = input_path.read_bytes()
 
     def bounded_file_write() -> None:
         # Real OS file-size failure, no runtime replacement or test-only seam.
         signal.signal(signal.SIGXFSZ, signal.SIG_IGN)
-        resource.setrlimit(resource.RLIMIT_FSIZE, (128, 128))
+        resource.setrlimit(resource.RLIMIT_FSIZE, (file_limit_bytes, file_limit_bytes))
 
     expect(
         cli(
@@ -1658,7 +1666,10 @@ def test_partial_io_retained_unsealed_and_retry_cannot_repair(tmp_path: Path) ->
     assert not (out / "observations/complete.json").exists()
     assert not (out / "private_truth/complete.json").exists()
     partial_files = [p for p in out.rglob("*") if p.is_file()]
-    assert partial_files and all(p.stat().st_size <= 128 for p in partial_files)
+    assert partial_files and all(p.stat().st_size <= file_limit_bytes for p in partial_files)
+    partial_source = out / "private_truth/bead_source_e.npy"
+    assert partial_source.is_file() and 0 < partial_source.stat().st_size <= file_limit_bytes
+    assert partial_source.stat().st_size < source_payload_bytes
     before = snapshot(out)
     expect(cli("generate", "--plan", str(input_path), "--out", str(out)), 5)
     assert snapshot(out) == before

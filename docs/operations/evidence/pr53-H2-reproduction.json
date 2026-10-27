@@ -1,0 +1,57 @@
+{
+  "schema": "simrecon.pr53.instrumentation-H2-reproduction.v1",
+  "recorded_utc": "2026-10-27T00:00:06.532415+00:00",
+  "source_commit": "9fe16e5f00591d5f0556a584fc6b9bcc2e73c5f9",
+  "test_checkpoint": "0fe9133db1c79e8879f799b3a2328ece6cd38c28435533075c3c72ee445ff719",
+  "test_file_sha256": "a7437e1b89d98d4b2055ce742f85239eef2c1fb127e9aeee8c9b0dde8c937f49",
+  "fixture_file_sha256": "11d6b47efaa5aad566be075bc1c95287645758288d612fa21f17ca390f6f56c1",
+  "public_case": "tests/test_full_noisy_study.py::test_partial_io_retained_unsealed_and_retry_cannot_repair",
+  "environment": {
+    "python": "3.13.12",
+    "coverage": "7.16.2",
+    "pytest": "9.1.1",
+    "platform": "Darwin arm64",
+    "coverage_patch": [
+      "subprocess"
+    ]
+  },
+  "public_recipe": {
+    "environment": {
+      "COVERAGE_FILE": "<exclusive evidence namespace>/.coverage",
+      "TMPDIR": "<exclusive temporary directory>"
+    },
+    "producer": "uv run --locked --no-sync coverage run -m pytest <public_case> -q -p no:cacheprovider --basetemp <exclusive basetemp>",
+    "combination": "make --no-print-directory coverage-combine UV=<actual uv executable>"
+  },
+  "observed": {
+    "test_exit_code": 0,
+    "pytest_passed": 1,
+    "pytest_reported_seconds": 1.11,
+    "producer_command_elapsed_s": 1.835665,
+    "combine_exit_code": 2,
+    "combine_command_elapsed_s": 0.090154,
+    "child_file_limit_bytes": 128,
+    "native_combine_diagnostic_categories": [
+      "sqlite3.DatabaseError",
+      "coverage.exceptions.DataError",
+      "coverage.exceptions.CoverageWarning"
+    ],
+    "native_combine_message": "database disk image is malformed",
+    "native_inputs_before_combination": [
+      {
+        "size_bytes": 122880,
+        "sha256": "360c294bcee09d5c328fb16b5f4ef50d218fd7a898f3d7cfc88e049414c97d02"
+      },
+      {
+        "size_bytes": 128,
+        "sha256": "7b91983220ea0f295f62f3d04cbb8cbd0513d681659f4ebeab0890bfa3293896"
+      },
+      {
+        "size_bytes": 167936,
+        "sha256": "fc7d41254101c58552ed7ac1f186df76c4980fb9ada1c7f2389a357468076737"
+      }
+    ],
+    "all_probe_inputs_retained_before_combination": true
+  },
+  "limits": "Single existing public test and native-combination integrity. Local absolute locations and host identifiers are omitted from this public projection. Raw receipts and byte-identical original native inputs are retained locally. Full delivery validation is recorded separately in PR53."
+}

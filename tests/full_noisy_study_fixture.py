@@ -685,6 +685,83 @@ identity uses the supplied current_candidate_head/tree as this correction's
 baseline, original contract/schema/lock/source-free pins, and exact owned bytes;
 these Git identities are packet inputs, not independently inspected Git state.
 No cleanup, installs, Git actions, runtime edits, delegation or Superpowers.
+
+Correction6 H2: real partial-I/O with authentic subprocess measurement
+-------------------------------------------------------------------
+Same authorized blind A continuation. Exact activation/allowlist/public H2 proof
+were read first; only explicitly allowed live A/common guidance, original public
+contract, own tests and pinned diagnostics were consulted. No product source,
+coverage maps/DB semantics, raw root gate output or other-role history was read.
+Starting accepted B6 checkpoint0fe9133db1c79e8879f799b3a2328ece6cd38c28435533075
+c3c72ee445ff719 and all prior checkpoints/charges remain historical scoped
+evidence, not acceptance of these revised bytes. New baseline head/tree are the
+supplied9fe16e5f00591d5f0556a584fc6b9bcc2e73c5f9 and
+0136a96c5fafef226f3c4d34a5c959670f857081; no Git access was used.
+
+Diagnosis: H2 is a test-harness resource-limit/instrumentation interaction, not
+scientific product-red. Cheap safe health verified starting test/fixture and
+actual harness/policy hashes, lock/config byte hashes, Python3.13.12/macOS arm64
+and installed coverage7.16.2. The suggested evidence parent already existed:
+one exclusive mkdir attempt failed FileExistsError before writing; its existing
+contents were never inspected. A fresh exclusive author child namespace was
+created instead; this failed check stays charged. In that namespace an actual
+coverage run with branch=True, source=[src/simrecon,scripts], patch=[subprocess]
+and parallel=True ran the unchanged actual worktree partial-I/O test. It passed
+once in1.61s, but authentic native files were122880,128,167936bytes. Native
+combine --keep in a separate -W error process failed1 with CoverageWarning,
+DataError and SQLite DatabaseError malformed-data diagnostics. All input bytes
+were retained unchanged. The producer's already-imported diagnostic-hook warning
+was observed, not globally suppressed or promoted with scientific warnings.
+This independently reproduced the supplied sanitized H2 mechanism, no fake DB.
+
+Pre-final requirement/keeper/dependency/preservation map:
+* Contract v1.2 persistence and exit5: a real OS file-size write failure must
+  retain actual partial output, absent generation/observation/private completion
+  leaves, unchanged input bytes, and an exit5 retry that leaves existing partial
+  bytes and entries unchanged. The same existing keeper
+  test_partial_io_retained_unsealed_and_retry_cannot_repair retains every such
+  assertion, SIGXFSZ ignored and a child preexec real RLIMIT_FSIZE soft/hard cap.
+* Replace only that keeper's public example: calibration grid[1,2,24] becomes
+  [1,2,256], leaving spacings, camera, three contained/nonoverlapping bead rows,
+  specimen and all82 public seeds unchanged. Source refinement(8,8,8) gives a
+  float64 raw source payload8*16*2048*8=2097152bytes before its NPY header. The
+  local file cap1048576bytes therefore forces an incomplete real source write.
+  The larger legal box preserves sphere containment and source membership. Its
+  local scale is an I/O example, not a science/coverage threshold or owner budget.
+  The keeper also checks a nonempty actual bead_source_e.npy whose size is at
+  most the cap and strictly below its required raw payload. It does not accept
+  fake failure, absent partial output or a sealed/repaired retry. It imposes no
+  exact number of successfully written bytes or optional diagnostic prose.
+* No shared helper, observer, numerical reference, seed fixture, schema, CLI
+  environment, tolerance, scientific/API rule or runtime seam changes. All other
+  keepers including F1-F7 and both exclusive completion-leaf cases are retained.
+  This fixture change is explanatory module-docstring accounting only. Expanded
+  review scope is the changed keeper/example, real resource/caller/persistence
+  behavior and native producer/combine integrity; fresh B decides applicability.
+* Coverage subprocess patch remains genuine and enabled for the actual CLI child
+  and retry. Validation uses an artifact-local config with the supplied source
+  scope/branch/patch settings, an exclusive native directory and a separate output
+  directory. No canonical output slot, installed config/gate/exclusion or global
+  warning policy changes. Public native combine --keep with warnings-as-errors
+  only in its process is the validity oracle; opaque size/hash manifests retain
+  inputs/output. No SQLite/header surrogate, coverage report/map/line/arc query,
+  excluded producer or interpretation of implementation measurement is used.
+
+Final-check pointer prepared before exact-byte checks: retain unchanged before
+inputs and perform real instrumented changed-keeper producer/combine, ordinary
+focused H2/sibling I/O keepers and the owned390-case focused suite, all after edits
+stop. Use actual source_free_check.py, own .venv, exclusive namespaces/basetemps,
+PYTHONDONTWRITEBYTECODE=1, UV_NO_CACHE=1, -p no:cacheprovider, --assert=plain,
+--tb=line and --no-showlocals. Only combine gets -W error. Narrow Ruff check and
+format --check use --no-cache; Pyright gets --pythonpath .venv/bin/python. Final
+actual commands/results, sizes/hashes/canonical identity, public evidence and
+scratch/reference/process closure are retained in the new exclusive author
+evidence namespace and returned outside tracked bytes. No final gate/campaign,
+publication, cleanup or review role is run by A. All prior failures/attempts/costs
+remain; no reset or blanket inherited acceptance. Human limits not set;
+engineering guards are not budgets. Requested Sol/high; actual deployment,
+effort/tokens/cost unknown. Root owns final gate5, Current state and cleanup;
+fresh independent B must accept the revised checkpoint.
 """
 
 from __future__ import annotations
