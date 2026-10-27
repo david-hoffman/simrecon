@@ -44,6 +44,21 @@ The source reference uses the paired estimated camera contrast d_hat and true ga
 
 For optical signal mean mu_e, predictions are compared separately with `g*mu_e/d_hat` and `(true_offset+g*(mu_e+true_background)-estimated_blank)/d_hat`, in reference-flat-relative units. The second retains camera-gauge/blank error; it is not a fitted intercept. Signed observed residuals use `prediction-(raw-estimated_blank)/d_hat`. Specimen residuals are training residuals, not held-out validation. Evaluation retains all six bead label permutations and both global illumination gauges; it never alters frozen output to select a truth-aligned result. The [protocol](../../contracts/full-noisy-study-v1.2.md) and [schema note](../../contracts/full-noisy-study-v1.2-schema-clarifications.md) give the exact comparisons and limits.
 
+## Frozen-input re-evaluation after the arithmetic correction
+
+27 October 2026. A public regression exposed loss of tiny, representable absolute errors beside a large common signal. The corrected evaluator was applied to the **existing frozen small and full inputs only**. Generation, inference, all settings, all seeds and all 130 restored input files were unchanged. No reconstruction was refitted. Original evaluations and figure provenance above remain the original trial records.
+
+| Re-evaluated case | Source relative norm error | Signal prediction error | Corrected-mean prediction error |
+| --- | ---: | ---: | ---: |
+| Small | 0.8020570305422662 | 0.4023225658078001 | 0.4022914329406174 |
+| Full | 0.9531472567471974 | 0.664297594260943 | 0.6642963723733037 |
+
+The largest absolute change among these six relative errors is 1.1102230246251565e-16. The conclusion is unchanged: recovery is poor. This records ordinary last-bit differences after safer evaluation arithmetic; it is not a new accuracy threshold, independent noise realization or convergence proof. The displayed images still refer to their original observed rendering and original evaluation provenance.
+
+The actual evaluation-only source is commit `51c1975eab072a29f0a820fd2493eec5663ec9a7`, driver SHA-256 `b610f6c7e8f5b35e8ba126e34c2b760214256fb5cef2b9a0b61220e2ac9ce00f`. Its local source/version inputs and every restored input hash stayed unchanged during both commands. Small/full native evaluation times were 0.95/11.56 seconds and peak resident set sizes were 145,817,600/338,984,960 bytes. These are separate per-process observations, not full-workflow memory or timing guarantees. Native real time is nested within supervisor elapsed.
+
+[Re-evaluation provenance, exact inputs and resources](evidence/post-correction-reevaluation.json), [small current evaluation](evidence/post-correction-small-evaluation.json) and [full current evaluation](evidence/post-correction-full-evaluation.json) keep this correction separate from the original trial source and results. Raw input bytes remain in the verified local archive; temporary restoration copies can be removed after closure and identity verification. Former worktree paths were removed at the owner's request, so original absolute-path reuse is not claimed.
+
 ## Resources and retained attempts
 
 | Case and stage | Wrapper exit | Native real time (s) | Supervisor elapsed (s) | Peak resident set size (bytes) |
@@ -64,7 +79,7 @@ Native real time is nested inside supervisor elapsed; adding them double-counts 
 
 [Reproduction manifest](reproduction-manifest.json) records exact plan/settings/seed-file digests and trial source commit `1c209a4769c0caab0fb173287efbcac952ed01b1`; driver SHA-256 is `8f345cc696415379e54992bbbfd4fed91258853967784f45827df1eb1e032896`. These identify the actual scientific trial source. Python 3.13.12, NumPy 2.5.3, SciPy 1.18.1 and SIMrecon 0.1.0 were recorded on macOS 27.0.1 arm64 with little-endian arrays. Exact runtime metadata and the lock digest are in the manifest. Final delivery candidate hashes and local/D/continuous-integration receipts belong separately outside tracked report bytes; this report does not certify delivery checks.
 
-Run from a checkout with the driver hash above and the recorded locked environment. The report directory was committed after the actual trial source; the following commands assume the checkout contains this report and identical driver bytes. Use fresh absent output roots whose parents already exist. `generate`, `infer` and `evaluate` are separate processes. For example, with this report directory bound to STUDY:
+To reproduce the original recorded trial, use its driver hash above and the recorded locked environment with the published plans/settings. The later corrected evaluator and its evaluation-only provenance are identified separately above. The commands below show the three-process protocol; a fresh run with the corrected delivery driver is a new execution and must retain its own source/runtime identity. Use fresh absent output roots whose parents already exist. `generate`, `infer` and `evaluate` are separate processes. For example, with this report directory bound to STUDY:
 
 ```sh
 STUDY=docs/studies/full-noisy-study-2026-10-26
@@ -86,6 +101,6 @@ The compact identities below bind primary artifacts. The [closed protocol invent
 | Full inference freeze | `919068b950240adb2f122c12a903efe83537bf4b3430691c8bbf6a912d64fdad` |
 | Full evaluation | `2e6e5afaed797b4fc8feaa2dc6272488899071834fa88e45c0cc082fd0ac2ceb` |
 
-The two observed full-data figures above are closed copies of the checked rendering. Captions disclose fixed slice, full-field display scales, camera-gauge units and comparison limits. The original complete scientific files remain local and unchanged; figures are not new noise realizations.
+The two observed full-data figures above are closed copies of the checked rendering. Captions disclose fixed slice, full-field display scales, camera-gauge units and comparison limits. The original complete scientific bytes are retained unchanged in the verified local archive; former worktree paths were removed. Figures are not new noise realizations.
 
 Both completed outcomes are consistent with a finite solver producing poor recovery under the declared model and finite settings. They do not identify the cause or demonstrate a resolution gain. No separate source/pixel/pupil/finite-field convergence study is claimed; the frozen bead quadrature rescores alone do not establish such convergence. Finite source and pixel quadrature, the scalar clear-pupil assumption, paired axial basis mismatch, estimated camera gauge, possible ambiguous parameters and training-residual interpretation remain material limits. Exact local verification, independent review and required-platform continuous-integration records are maintained separately in [PR53](https://github.com/david-hoffman/simrecon/pull/53). This scientific report creates no acceptance threshold or gate exception.

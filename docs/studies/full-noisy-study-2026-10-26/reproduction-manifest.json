@@ -218,6 +218,13 @@
     "numpy": "2.5.1",
     "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]"
   },
+  "post_correction_reevaluation": {
+    "driver_sha256": "b610f6c7e8f5b35e8ba126e34c2b760214256fb5cef2b9a0b61220e2ac9ce00f",
+    "manifest": "evidence/post-correction-reevaluation.json",
+    "scope": "Evaluation only on the original frozen inputs; original scientific trial identity and records above remain unchanged.",
+    "sha256": "518648d2f39467eaf90cae8d2a3b07b8086313f1d6beeef6945e14b2ef22b998",
+    "source_commit": "51c1975eab072a29f0a820fd2493eec5663ec9a7"
+  },
   "protocol": {
     "contract": "../../contracts/full-noisy-study-v1.2.md",
     "contract_sha256": "2d2e267a2887eb94a5f46be0783cd359b95e92e550d1a27352216e9772ed209b",
