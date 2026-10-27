@@ -1,5 +1,0 @@
-# Full simulation reconstruction memory prerequisite
-
-**Version 1.0.** The October 22, 2026 full simulation request authorizes this independent resource prerequisite. [Public contract](../contracts/simulation-reconstruction-memory-v1.md) supplies M01–M06 and preserves the complete known-parameter volume estimator. High-risk A/B/C/D ownership, inherited exact full-local/100% native per-platform gates and no human numeric limits apply. It does not select phase/carrier metrology, a continuous inverse representation or hidden calibration truth.
-
-The coordinator owns intake, evidence, staged resource execution and reference-preserving completion cleanup; C owns only src/simrecon/volume_reconstruction.py. The sole Current state is the parent artifacts/full-noisy-simulation-20261022/Current-state.md. This worktree's artifacts/simulation-memory-20261022/ retains exact packets, role/check reports, resource measurements and cumulative charges. No PR, push, merge, release or external message is authorized.

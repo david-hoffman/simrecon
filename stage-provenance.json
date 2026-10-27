@@ -1,0 +1,184 @@
+{
+  "archive_bytes": 1706228839,
+  "archive_sha256": "4de84ac559e2fcf93a2e038eea571366af54207d368cfb2f0bd50e78129257f0",
+  "archive_untouched": true,
+  "bead_arrays_retained_whole": true,
+  "captions": {
+    "01-noisy-exposures": "All 15 recorded noisy full-case specimen exposures, fixed z index 16 (local z 2.0625 \u00b5m), full 20.48 \u00d7 20.48 \u00b5m field, nearest-neighbor display. Rows identify orientations; columns identify commanded exposures, not estimated true phases. One shared linear detector-count scale across all panels; no clipping or best-exposure selection.",
+    "02-camera-correction": "Left: all eight frame means in each dark/blank/flat group; dots are frame means and short bars group means. Vertical scale is logarithmic detector counts. Right: the same fixed orientation-1/exposure-1/z-16 pixels before and after (counts \u2212 estimated blank mean)/estimated flat-minus-blank contrast. Color scales are corresponding affine transforms, so appearance is intentionally unchanged. This changes units, not spatial resolution or deblurring.",
+    "03-bead-calibration": "Corrected observed held-out bead image and frozen prediction at fixed orientation-1/exposure-1/local z-index-4 (0.5625 \u00b5m); full 2.56 \u00d7 2.56 \u00b5m field, nearest-neighbor display, one shared linear relative-image scale. Signed residual is prediction minus corrected observation on a symmetric scale. Heatmap: root mean square (RMS) residual over each whole held-out 8 \u00d7 32 \u00d7 32 volume, all 15 volumes, in relative image units. No truth-aligned fit or selection is performed; finite calibration does not establish optical-model validity or uniqueness.",
+    "04-specimen-fit-progress": "The initial source and all 12 accepted iteration scores from the recorded attempt trace. The plotted total dimensionless objective uses all M specimen image values and N source coefficients with regularization 0.001. The solver stopped at its declared iteration limit. A decreasing training objective does not establish convergence, accurate reconstruction or resolution gain. Intermediate source/prediction volumes were not serialized and are not illustrated."
+  },
+  "environment": {
+    "backend": "Agg",
+    "font_family": "DejaVu Sans",
+    "matplotlib": "3.11.0",
+    "numpy": "2.5.1",
+    "python": "3.13.12"
+  },
+  "fixed_specimen_slice": 16,
+  "kind": "observed frozen data, presentation only",
+  "limits": [
+    "one fixed synthetic run, no independent statistical repeats",
+    "finite clear-pupil model and finite source/pixel/pupil sampling",
+    "camera contrast is an estimated relative gauge",
+    "bead held-out prediction is distinct from specimen training objective",
+    "no recovery, convergence or resolution-gain certification",
+    "final source and prediction comparison figures remain the original observed renderings"
+  ],
+  "members": {
+    "generation/observations/calibration_heldout.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/calibration_heldout.npy",
+    "generation/observations/complete.json": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/complete.json",
+    "generation/observations/specimen_o0_p0.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o0_p0.npy",
+    "generation/observations/specimen_o0_p1.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o0_p1.npy",
+    "generation/observations/specimen_o0_p2.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o0_p2.npy",
+    "generation/observations/specimen_o0_p3.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o0_p3.npy",
+    "generation/observations/specimen_o0_p4.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o0_p4.npy",
+    "generation/observations/specimen_o1_p0.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o1_p0.npy",
+    "generation/observations/specimen_o1_p1.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o1_p1.npy",
+    "generation/observations/specimen_o1_p2.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o1_p2.npy",
+    "generation/observations/specimen_o1_p3.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o1_p3.npy",
+    "generation/observations/specimen_o1_p4.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o1_p4.npy",
+    "generation/observations/specimen_o2_p0.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o2_p0.npy",
+    "generation/observations/specimen_o2_p1.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o2_p1.npy",
+    "generation/observations/specimen_o2_p2.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o2_p2.npy",
+    "generation/observations/specimen_o2_p3.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o2_p3.npy",
+    "generation/observations/specimen_o2_p4.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1/observations/specimen_o2_p4.npy",
+    "inference/bead_heldout_prediction.npy": "pr53-full-study/artifacts/pr53-full-study/full-noisy-inference1/bead_heldout_prediction.npy",
+    "inference/estimates.json": "pr53-full-study/artifacts/pr53-full-study/full-noisy-inference1/estimates.json",
+    "inference/freeze.json": "pr53-full-study/artifacts/pr53-full-study/full-noisy-inference1/freeze.json"
+  },
+  "no_intermediate_iterate_images_available": true,
+  "no_runtime_import_no_refit": true,
+  "original_images_and_fits_unchanged": true,
+  "outputs": {
+    "01-noisy-exposures.pdf": {
+      "sha256": "8eae5fd9492ee00fd4d560e4cc79b45717221945b4c07a38732bc80ff26b112c",
+      "size_bytes": 116767
+    },
+    "01-noisy-exposures.png": {
+      "sha256": "15aa512aa13b25645e7479f57e92b58d3a1fb7a52cf21e34eb97aec5d94ec2db",
+      "size_bytes": 175691
+    },
+    "02-camera-correction.pdf": {
+      "sha256": "6af3d2e38c679e2e706b436cd3dfe7019fa877b30c599684f3bdfe7b31ef2fe6",
+      "size_bytes": 83373
+    },
+    "02-camera-correction.png": {
+      "sha256": "36463fea0a5c56c57729e9200dedd273c7d9fe6269d793c4c88b1ab6f736d40a",
+      "size_bytes": 120542
+    },
+    "03-bead-calibration.pdf": {
+      "sha256": "d664bf26abdd35e157da5a4b7235ea47f2a1832fafeb1e3bcf2a457bd0f9955e",
+      "size_bytes": 79783
+    },
+    "03-bead-calibration.png": {
+      "sha256": "f9211c4b5d5f483b2ce3cb4471f7b9f99b674909ea363957b83e8ff756fbe7b9",
+      "size_bytes": 169594
+    },
+    "04-specimen-fit-progress.pdf": {
+      "sha256": "8a3b481663210ffcb2ff66709be3488827cdafa5e0b08e104babe4536f7a8008",
+      "size_bytes": 66018
+    },
+    "04-specimen-fit-progress.png": {
+      "sha256": "bef7f8fe758985c2f69069206f4e24a5b5f6a06260be3e369c8b481fe42cb5e8",
+      "size_bytes": 98534
+    },
+    "stage-data.json": {
+      "sha256": "3c52204167ed545f957eeaec7157329594287f380010ff1d33b5956224ac31d9",
+      "size_bytes": 24539
+    }
+  },
+  "preparation_code_used_sha256": "dbf60cae0a3f1422ffa44640c938b855357320006c6563aecb2672ded3cb2655",
+  "previous_PR_description_sha256": "6dbb4eb6ad7f29f5317f45b53ffbea8d6cdd7b8d45283ab09e4c01e99e874eb4",
+  "public_preparation_variant": "Public prepare_inputs.py exposes repo/archive/out path arguments; data selection, archive/member verification and transforms are identical. Initial private preparation used fixed paths; public variant is a reproduction convenience.",
+  "public_reproduction_preparation_code_sha256": "a5b8d581646d5b5afb1d155f47c3b5a3f524ff91a3674c48407fe8d67580fe2f",
+  "relative_image_units": "(counts \u2212 estimated blank mean)/(estimated flat mean \u2212 estimated blank mean)",
+  "render_code_sha256": "610454f8f4b53c9d305617108066ee980b309f292fdaf565938b891b01852cc1",
+  "schema": "simrecon.pr53.stage-figures.v1",
+  "selected_whole_input_files": 20,
+  "source_commit": "1c209a4769c0caab0fb173287efbcac952ed01b1",
+  "source_delivery_commit": "0aa541d6e1483f03d6d800c6d06289fa0073327f",
+  "source_files": {
+    "generation/observations/calibration_heldout.npy": {
+      "sha256": "39dfea4533508e599b3be7892102d1058fe9c023eb51fb9b39ffb1764938dd4e",
+      "size_bytes": 983168
+    },
+    "generation/observations/complete.json": {
+      "sha256": "1aeae458173155d0609020d25b299e087e16ffa6e31453f744e8b048584ebd5c",
+      "size_bytes": 4252
+    },
+    "generation/observations/specimen_o0_p0.npy": {
+      "sha256": "993ded020eb318f73bd35b1e7561ed8ef008017c41254f34eecce7153e6436d0",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o0_p1.npy": {
+      "sha256": "21999f594ce4bef342eaab3b28510800a15e210c803b50afef94676ed933901c",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o0_p2.npy": {
+      "sha256": "fb4199518dc66ede89fa81f42a37da6f8947c8e6473a4b5387f36b8bb792f20c",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o0_p3.npy": {
+      "sha256": "f2cea7ac326d12568b9cec45635b744fbeda958e97c412a6a90081578e9f6eeb",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o0_p4.npy": {
+      "sha256": "2f4eaa9e2a96cd5a28565f08af46cbb315fc5723b815f10bf499bb89dbd55f0d",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o1_p0.npy": {
+      "sha256": "258a82cf861ab0180d3960747d068a78b80da918432a9f85523d355530f17a28",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o1_p1.npy": {
+      "sha256": "180d42052532a31bbd40bb67ab260c15ce9359f87fee386a2f00494415a7d4f9",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o1_p2.npy": {
+      "sha256": "4d9052415dc566bb92cec443d206951e56a2c53c526ade5ea2724556ee10feea",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o1_p3.npy": {
+      "sha256": "4ac440c3febe430b7773511ab950bb0cc66e220b441c75240a6f1fcece8679b2",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o1_p4.npy": {
+      "sha256": "5f783423e24db573715bf4523f41c097dc1923717c071ad9cd485168e76b5d84",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o2_p0.npy": {
+      "sha256": "6e310d2651d3a2fc81ba01fb5a5b2df987928cfdeb34dbc93c0cb8d0fc157f4f",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o2_p1.npy": {
+      "sha256": "c8478b35cb140f048493fb09ba03ad5c7c2804c2405c30af5f886d72c9173941",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o2_p2.npy": {
+      "sha256": "73c2205b832f49f80d78b68cf405e2405d532fddee81b14e562e5715b4573c95",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o2_p3.npy": {
+      "sha256": "cf5ad668e6538c94052658c57b8591b228a082f86131058b7a6da93b15e90df5",
+      "size_bytes": 16777344
+    },
+    "generation/observations/specimen_o2_p4.npy": {
+      "sha256": "43a6ec66bad4f50b61f0c175f972bfdccd11716aa8fa3f41bc2cecdeb488eba4",
+      "size_bytes": 16777344
+    },
+    "inference/bead_heldout_prediction.npy": {
+      "sha256": "568754b2e08b075e42c25c380b50d7515e898671136a8edd87e2639696deeaa3",
+      "size_bytes": 983168
+    },
+    "inference/estimates.json": {
+      "sha256": "8b1c30e9dbdd5a1dd8e46a5b6bc2072a96e8fbffe874be02b87a147daa71f16d",
+      "size_bytes": 2720395
+    },
+    "inference/freeze.json": {
+      "sha256": "919068b950240adb2f122c12a903efe83537bf4b3430691c8bbf6a912d64fdad",
+      "size_bytes": 3367
+    }
+  }
+}
