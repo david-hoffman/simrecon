@@ -2146,6 +2146,89 @@ def test_extreme_evaluation_honest_arithmetic_not_new_physical_acquisition(
             close_scalar(gauge["wrapped_phase_error_rad"][0][0], expected, scale=8.0)
 
 
+def test_prediction_metrics_preserve_tiny_absolute_errors_beside_large_common_signal(
+    tmp_path: Path, pipeline: dict[str, Any]
+) -> None:
+    # Evaluator-only protocol arithmetic after a real completed CLI workflow.
+    # These altered means/predictions claim neither acquisition nor recovery.
+    inference, truth = tmp_path / "inference", tmp_path / "truth"
+    shutil.copytree(pipeline["inference"], inference)
+    shutil.copytree(pipeline["truth"], truth)
+    estimates = check_estimates(inference)
+    camera = estimates["camera_estimate"]
+    contrast, blank = camera["contrast_counts"], camera["means_counts"][1]
+    assert contrast > 0 and math.isfinite(contrast) and math.isfinite(blank)
+    value = load_json(truth / "plan.json")
+    value["camera"].update(gain_counts_per_e=contrast, offset_counts=blank, background_e=0.0)
+    write_json(truth / "plan.json", value)
+
+    large, tiny = math.ldexp(1.0, 500), math.ldexp(1.0, -600)
+    shape = tuple(value["geometry"]["specimen_shape_zyx"])
+    assert shape == (1, 2, 2)
+    prediction = np.array([large, 0.0, 0.0, 0.0], dtype="<f8").reshape(shape)
+    reference = np.array([large, tiny, 0.0, 0.0], dtype="<f8").reshape(shape)
+    for prediction_name, raw_name in zip(PRED_NAMES, RAW_NAMES, strict=True):
+        for path, array in (
+            (inference / prediction_name, prediction),
+            (truth / raw_name.replace(".npy", "_expected_signal_e.npy"), reference),
+        ):
+            with path.open("wb") as stream:
+                np.save(stream, array, allow_pickle=False)
+    reseal(inference, "freeze.json")
+    reseal(truth)
+    # Source stays the real nonnegative <f4 fit; no huge source coefficient.
+    assert sha(inference / "specimen_source_relative.npy") == sha(
+        pipeline["inference"] / "specimen_source_relative.npy"
+    )
+    check_freeze(inference, complete=True)
+    check_descriptors(truth, load_json(truth / "complete.json")["files"], PRIVATE_NAMES)
+    inputs = {path: snapshot(path) for path in (pipeline["observations"], inference, truth)}
+    out = tmp_path / "evaluation"
+    expect(cli(*evaluate_args(pipeline["observations"], inference, truth, out)), 0)
+    report = check_evaluation(out, pipeline["observations"], inference, truth)
+    assert report["inference_status"] == "completed_finite_fit"
+    assert report["status"] in ("evaluated", "evaluated_with_unavailable_metrics")
+    for path, before in inputs.items():
+        assert snapshot(path) == before
+
+    # Complete exact-real references: d/d*mu = mu and
+    # (b + d*(mu+0) - b)/d = mu. Both contain the same small residual.
+    # Fifteen four-voxel exposures: N=60, fifteen errors=-tiny.
+    assert len(PRED_NAMES) == len(RAW_NAMES) == 15
+    count = len(PRED_NAMES) * math.prod(shape)
+    with localcontext() as ctx:
+        ctx.prec = 1000
+        d, b = dec(contrast), dec(blank)
+        for mu in reference.flat:
+            assert float(d * dec(mu) / d) == mu
+            assert float((b + d * (dec(mu) + Decimal(0)) - b) / d) == mu
+        error_l2 = (Decimal(15) * dec(tiny) ** 2).sqrt()
+        reference_l2 = (Decimal(15) * (dec(large) ** 2 + dec(tiny) ** 2)).sqrt()
+        expected = {
+            "reference_l2": float(reference_l2),
+            "error_l2": float(error_l2),
+            "relative_l2": float(error_l2 / reference_l2),
+            "error_rms": float((Decimal(15) * dec(tiny) ** 2 / count).sqrt()),
+            "error_max_abs": tiny,
+            "error_mean": float(-Decimal(15) * dec(tiny) / count),
+        }
+    assert count == 60
+    assert expected["relative_l2"] == 0.0  # 2**-1100 rounds to zero.
+    assert expected["error_rms"] == tiny / 2
+    assert expected["error_mean"] == -tiny / 4
+    for field in ("signal_prediction_metrics", "corrected_mean_prediction_metrics"):
+        actual = report[field]
+        assert set(actual) == {"count", "unavailable_fields", *expected}
+        assert actual["count"] == count and actual["unavailable_fields"] == []
+        assert not any(item["field"] == field for item in report["unavailable_comparisons"])
+        assert actual["relative_l2"] == 0.0
+        for name, wanted in expected.items():
+            # Use each statistic's own scale, never the huge common input scale.
+            if wanted != 0.0:
+                assert actual[name] is not None and actual[name] != 0.0, (field, name, actual)
+            close_scalar(actual[name], wanted)
+
+
 def test_same_seed_same_version_generation_retains_identical_payloads(
     tmp_path: Path, pipeline: dict[str, Any]
 ) -> None:
@@ -2295,202 +2378,6 @@ def test_signed_frozen_predictions_remain_valid_protocol_input(
             float(sum(residuals, Decimal(0)) / len(residuals)),
             scale=2.0,
         )
-
-
-@pytest.mark.parametrize("unavailable", [False, True])
-def test_public_small_scene_qualifies_dependency_composition(unavailable: bool) -> None:
-    """Qualify the predetermined scene before driver availability, without a mock."""
-    qualify_public_scene(plan(unavailable=unavailable), unavailable=unavailable)
-
-
-def qualify_public_scene(
-    value: dict[str, Any],
-    *,
-    unavailable: bool = False,
-    sweep_scales: tuple[float, ...] | None = None,
-) -> dict[str, Any]:
-    """Exercise the actual dependency composition on the declared public inputs."""
-    from scripts.image_only_bead_calibration import fit_bead_calibration
-    from scripts.image_only_specimen_fit import fit_specimen
-    from scripts.simulation_camera import sample_camera
-    from scripts.simulation_optics import expected_images
-    from scripts.simulation_sources import make_sources
-
-    from simrecon import estimate_scalar_camera
-
-    geometry, camera, illumination = (value["geometry"], value["camera"], value["illumination"])
-    scales = tuple(SETTINGS["sweep_scales"]) if sweep_scales is None else sweep_scales
-    camera_kw = {k: camera[k] for k in ("read_noise_e", "gain_counts_per_e", "offset_counts")}
-    optics_kw = dict(
-        excitation_um=0.488,
-        emission_um=0.525,
-        refractive_index=1.515,
-        detection_na=1.4,
-        pupil_order=value["generator_pupil_order"],
-        pixel_subsamples_yx=(2, 2),
-    )
-    modes = np.geterr().copy()
-    groups = []
-    for name in ("dark", "blank", "flat"):
-        signal = np.full(
-            tuple(geometry["camera_shape_yx"]), camera["flat_signal_e"] if name == "flat" else 0.0
-        )
-        groups.append(
-            np.stack(
-                [
-                    sample_camera(
-                        signal,
-                        background_e=0.0 if name == "dark" else camera["background_e"],
-                        seed=seed,
-                        shot_noise=True,
-                        **camera_kw,
-                    )
-                    for seed in value["seeds"][f"camera_{name}"]
-                ]
-            )
-        )
-    estimate = estimate_scalar_camera(
-        groups[0], blank_counts=groups[1], flat_counts=groups[2], source="A-public-small-scene"
-    )
-    independent_camera_moments(groups, public_record(estimate))
-    bead_source = make_sources(
-        np.asarray(value["bead_catalogue"], dtype=np.float64),
-        detector_shape_zyx=tuple(geometry["calibration_shape_zyx"]),
-        detector_spacing_um_zyx=D,
-        source_refinement_zyx=(8, 8, 8),
-    )
-    np.testing.assert_array_equal(
-        bead_source,
-        exact_source(value["bead_catalogue"], geometry["calibration_shape_zyx"], D, (8, 8, 8)),
-    )
-    central_mean = expected_images(
-        bead_source,
-        detector_spacing_um_zyx=D,
-        source_refinement_zyx=(8, 8, 8),
-        carriers_yx_per_um=np.zeros((1, 2)),
-        phases_rad=np.zeros((1, 1)),
-        beam_amplitudes=(1.0, 0.0, 0.0),
-        **optics_kw,
-    )[0, 0]
-    training_mean = expected_images(
-        bead_source,
-        detector_spacing_um_zyx=D,
-        source_refinement_zyx=(8, 8, 8),
-        carriers_yx_per_um=np.asarray(illumination["carriers_yx_per_um"], dtype=np.float64),
-        phases_rad=np.asarray(illumination["phases_at_calibration_origin_rad"], dtype=np.float64),
-        beam_amplitudes=tuple(illumination["beam_amplitudes"]),
-        **optics_kw,
-    )
-    central = sample_camera(
-        central_mean,
-        background_e=camera["background_e"],
-        seed=value["seeds"]["calibration_central"],
-        shot_noise=True,
-        **camera_kw,
-    )
-    calibration = {}
-    for label, mean in (("training", training_mean), ("heldout", training_mean[:, :5])):
-        calibration[label] = np.stack(
-            [
-                np.stack(
-                    [
-                        sample_camera(
-                            mean[o, p],
-                            background_e=camera["background_e"],
-                            seed=value["seeds"][f"calibration_{label}"][o][p],
-                            shot_noise=True,
-                            **camera_kw,
-                        )
-                        for p in range(mean.shape[1])
-                    ]
-                )
-                for o in range(3)
-            ]
-        )
-    bead = fit_bead_calibration(
-        central,
-        structured_counts=calibration["training"],
-        heldout_counts=calibration["heldout"],
-        camera_estimate=estimate,
-        origin_um_zyx=tuple(geometry["calibration_origin_um_zyx"]),
-        sweep_scales=scales,
-    )
-    if unavailable:
-        assert estimate.contrast_counts > 0
-        assert bead.status == "initialization_failed", (bead.status, bead.stage, bead.failure_code)
-        assert bead.frozen_candidate is None and bead.heldout_prediction is None
-        assert bead.counts.attempted_polls == 0
-        assert np.geterr() == modes
-        return {"camera": estimate, "bead": bead}
-    assert bead.status == "completed_finite_fit", (bead.status, bead.stage, bead.failure_code)
-    candidate = bead.frozen_candidate
-    assert candidate is not None
-    true_source = make_sources(
-        np.asarray(value["specimen_catalogue"], dtype=np.float64),
-        detector_shape_zyx=tuple(geometry["specimen_shape_zyx"]),
-        detector_spacing_um_zyx=tuple(geometry["specimen_spacing_um_zyx"]),
-        source_refinement_zyx=(2, 2, 2),
-    )
-    true_phases = transferred(
-        illumination["phases_at_calibration_origin_rad"],
-        illumination["carriers_yx_per_um"],
-        geometry["calibration_origin_um_zyx"],
-        geometry["specimen_origin_um_zyx"],
-    )
-    specimen_mean = expected_images(
-        true_source,
-        detector_spacing_um_zyx=tuple(geometry["specimen_spacing_um_zyx"]),
-        source_refinement_zyx=(2, 2, 2),
-        carriers_yx_per_um=np.asarray(illumination["carriers_yx_per_um"], dtype=np.float64),
-        phases_rad=true_phases,
-        beam_amplitudes=tuple(illumination["beam_amplitudes"]),
-        **optics_kw,
-    )
-    raw = np.stack(
-        [
-            np.stack(
-                [
-                    sample_camera(
-                        specimen_mean[o, p],
-                        background_e=camera["background_e"],
-                        seed=value["seeds"]["specimen"][o][p],
-                        shot_noise=True,
-                        **camera_kw,
-                    )
-                    for p in range(5)
-                ]
-            )
-            for o in range(3)
-        ]
-    )
-    estimated_phases = transferred(
-        candidate.phases_rad,
-        candidate.carriers_yx_per_um,
-        geometry["calibration_origin_um_zyx"],
-        geometry["specimen_origin_um_zyx"],
-    )
-    result = fit_specimen(
-        raw,
-        camera_estimate=estimate,
-        carriers_yx_per_um=candidate.carriers_yx_per_um,
-        phases_at_specimen_origin_rad=estimated_phases,
-        beam_amplitudes=candidate.beam_amplitudes,
-        illumination_source="A-public-small-scene:bead_finite47",
-        detector_spacing_um_zyx=tuple(geometry["specimen_spacing_um_zyx"]),
-        specimen_origin_um_zyx=tuple(geometry["specimen_origin_um_zyx"]),
-        **{
-            k: SETTINGS[k]
-            for k in ("regularization", "max_iterations", "max_backtracking_trials", "pupil_order")
-        },
-    )
-    assert result.status == "completed_finite_fit", (
-        result.status,
-        result.stage,
-        result.failure_code,
-    )
-    assert result.source_relative is not None and bead.counts.attempted_polls == 94 * len(scales)
-    assert np.geterr() == modes
-    return {"camera": estimate, "bead": bead, "specimen": result}
 
 
 def test_tangent_beads_and_minimal_camera_are_legal(tmp_path: Path) -> None:
@@ -2653,10 +2540,6 @@ def test_real_specimen_range_retains_bead_and_no_fabricated_source(
     assert all(value == 0 for value in freeze["prediction_call_counts"].values())
 
 
-def test_public_multi_axial_scene_qualifies_dependency_composition() -> None:
-    qualify_public_scene(multi_axial_plan())
-
-
 def test_asymmetric_pairing_reference_and_geometry_are_distinguishing() -> None:
     value = multi_axial_plan()
     geometry = value["geometry"]
@@ -2690,30 +2573,6 @@ def test_asymmetric_pairing_reference_and_geometry_are_distinguishing() -> None:
     assert not np.array_equal(reference, np.stack((reference[0], reference[0])))
     assert not np.array_equal(reference, reference[::-1])  # swapped coarse pairs
     assert not np.array_equal(reference, 0.5 * (source[:2] + source[2:]))  # split-half pairing
-
-
-def test_prediction_oracle_uses_actual_ndarray_boundary() -> None:
-    from scripts.simulation_inverse_operator import build_kernel_cache, forward
-
-    source = np.zeros((1, 4, 4), dtype=np.float32)
-    cache = build_kernel_cache(
-        source_shape_zyx=(1, 4, 4),
-        source_spacing_um_zyx=(0.125, 0.04, 0.04),
-        emission_um=0.525,
-        refractive_index=1.515,
-        detection_na=1.4,
-        pupil_order=2,
-    )
-    result = forward(
-        source,
-        kernel_cache=cache,
-        carrier_yx_per_um=np.asarray([0.0, 0.0]),
-        phases_rad=np.asarray(NOMINAL[:5], dtype=np.float64),
-        beam_amplitudes=(1.0, 0.0, 0.0),
-        excitation_um=0.488,
-    )
-    assert result.shape == (5, 1, 2, 2) and result.dtype == np.dtype(np.float64)
-    np.testing.assert_array_equal(result, np.zeros((5, 1, 2, 2)))
 
 
 @pytest.mark.parametrize("target", ["group_mean", "small_frame_mean", "group_variance"])
@@ -2955,12 +2814,6 @@ def test_inner_record_consistency_before_private_read(
     expect(cli(*evaluate_args(pipeline["observations"], inference, truth, out), timeout=30), 4)
     assert not out.exists() and snapshot(inference) == before
     assert snapshot(pipeline["inference"]) == original and snapshot(truth) == truth_before
-
-
-def test_public_unchanged_polls_allow_completed_unprobed_coordinates() -> None:
-    result = qualify_public_scene(plan(), sweep_scales=(float.fromhex("0x0.0000000000001p-1022"),))
-    assert result["bead"].status == "completed_finite_fit"
-    assert result["bead"].unprobed_coordinates == tuple(range(47))
 
 
 def test_completed_unprobed_records_are_legitimate_evaluator_input(

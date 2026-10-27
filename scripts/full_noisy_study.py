@@ -1997,27 +1997,42 @@ def _decimal_parts(value: Decimal) -> tuple[float, int]:
     return float(scaled), exponent
 
 
-def _linear(terms: list[tuple[Any, Decimal]], constant: Decimal = Decimal(0)) -> tuple[Any, int]:
-    """Represent a finite array times a shared power of two without overflow.
+def _linear(
+    terms: list[tuple[Any, Decimal]], constant: Decimal = Decimal(0)
+) -> tuple[list[tuple[Any, Decimal]], Decimal]:
+    """Retain the complete expression until both reference and error are formed."""
+    return terms, constant
 
-    Each coefficient multiplies its complete represented array before the
-    shared scaling. This avoids overflowing g*mu or an unweighted axial sum.
+
+def _scaled_linear(terms: list[tuple[Any, Decimal]], constant: Decimal) -> tuple[Any, Any]:
+    """Evaluate a chunk with a separate binary exponent for every element.
+
+    Add larger terms first and renormalize after each addition. Cancellation
+    can then expose a tiny remaining term without a volume-wide underflow.
     """
     prepared = []
     for values, coefficient in terms:
-        data = np.asarray(values, dtype=np.float64)
-        maximum = float(np.max(np.abs(data), initial=0))
-        exponent = math.frexp(maximum)[1] if maximum else 0
-        mantissa, power = _decimal_parts(coefficient * (Decimal(2) ** exponent))
-        prepared.append((data, exponent, mantissa, power))
+        mantissa, power = np.frexp(np.asarray(values, dtype=np.float64))
+        cm, ce = _decimal_parts(coefficient)
+        mantissa, shift = np.frexp(mantissa * cm)
+        prepared.append((mantissa, power + ce + shift))
     cm, ce = _decimal_parts(constant)
-    power = max([e for _, _, m, e in prepared if m] + ([ce] if cm else []) or [0])
-    # No array multiplication involves an unrepresentable coefficient.
+    if cm:
+        prepared.append((np.full(prepared[0][0].shape, cm), np.full(prepared[0][0].shape, ce)))
+    mantissas = np.stack([m for m, _ in prepared])
+    zero_power = np.iinfo(np.int32).min // 2
+    powers = np.stack([np.where(m != 0, p, zero_power) for m, p in prepared])
+    order = np.argsort(powers, axis=0)[::-1]
+    mantissas = np.take_along_axis(mantissas, order, axis=0)
+    powers = np.take_along_axis(powers, order, axis=0)
+    result, power = mantissas[0], powers[0]
     with np.errstate(under="ignore"):
-        result = np.full(prepared[0][0].shape, math.ldexp(cm, ce - power) if cm else 0.0)
-        for data, e, m, p in prepared:
-            if m:
-                result += np.ldexp(data, -e) * math.ldexp(m, p - power)
+        for mantissa, exponent in zip(mantissas[1:], powers[1:], strict=True):
+            common = np.maximum(power, exponent)
+            result = np.ldexp(result, power - common) + np.ldexp(mantissa, exponent - common)
+            result, shift = np.frexp(result)
+            power = np.where(result != 0, common + shift, zero_power)
+    power = np.where(result != 0, power, 0)
     return result, power
 
 
@@ -2037,53 +2052,71 @@ def _merge_squares(old: float, old_power: int, new: float, new_power: int) -> tu
 
 
 class _Metrics:
-    """Stream scaled statistics with separate reference and error norm scales."""
+    """Stream independently scaled norms and an exact represented signed sum."""
 
     def __init__(self) -> None:
         self.count = 0
         self.ref_power = self.error_power = 0
-        self.ref_square = self.error_square = self.error_sum = self.error_max = 0.0
+        self.ref_square = self.error_square = self.error_max = 0.0
+        self.error_sum = self.sum_power = 0
 
-    def add(self, estimated: Any, reference: tuple[Any, int]) -> None:
+    def add(self, estimated: Any, reference: tuple[list[tuple[Any, Decimal]], Decimal]) -> None:
         """Accumulate every element of one paired payload."""
-        ref, ref_power = reference
-        est = np.asarray(estimated, dtype=np.float64)
-        _require(est.shape == ref.shape, "comparison shape")
-        ref_max = float(np.max(np.abs(ref), initial=0))
-        if ref_max:
-            shift = math.frexp(ref_max)[1]
+        terms, constant = reference
+        est = np.asarray(estimated)
+        arrays = [(np.asarray(data), coefficient) for data, coefficient in terms]
+        _require(all(est.shape == data.shape for data, _ in arrays), "comparison shape")
+        for start in range(0, est.size, 65536):
+            end = start + 65536
+            chunk = [(data.flat[start:end], coefficient) for data, coefficient in arrays]
+            ref, ref_powers = _scaled_linear(chunk, constant)
+            error, powers = _scaled_linear(
+                [(est.flat[start:end], Decimal(1)), *((data, -c) for data, c in chunk)],
+                -constant,
+            )
+            self.count += int(error.size)
+            ref_power = int(np.max(ref_powers[ref != 0])) if np.any(ref) else 0
+            power = int(np.max(powers[error != 0])) if np.any(error) else 0
+            # Only nonnegative norm reductions share a scale. Underflow here
+            # cannot conceal a signed contribution that later cancels.
             with np.errstate(under="ignore"):
-                ref = np.ldexp(ref, -shift)
-            ref_power += shift
-            square = _squares(ref)
+                scaled_ref = np.ldexp(ref, ref_powers - ref_power)
+                scaled_error = np.ldexp(error, powers - power)
             self.ref_square, self.ref_power = _merge_squares(
-                self.ref_square, self.ref_power, square, ref_power
+                self.ref_square, self.ref_power, _squares(scaled_ref), ref_power
             )
-        est_max = float(np.max(np.abs(est), initial=0))
-        est_power = math.frexp(est_max)[1] if est_max else ref_power
-        power = max(ref_power if ref_max else est_power, est_power)
-        with np.errstate(under="ignore"):
-            error = np.ldexp(est, -power) - np.ldexp(ref, ref_power - power)
-        maximum = float(np.max(np.abs(error), initial=0))
-        self.count += int(est.size)
-        if maximum:
-            shift = math.frexp(maximum)[1]
-            with np.errstate(under="ignore"):
-                error = np.ldexp(error, -shift)
-            power += shift
-            square = _squares(error)
-            total = math.fsum(float(np.sum(block, dtype=np.float64)) for block in _chunks(error))
-            previous_power = self.error_power
-            had_error = bool(self.error_square)
-            self.error_square, self.error_power = _merge_squares(
-                self.error_square, self.error_power, square, power
-            )
-            old_scale = math.ldexp(1.0, previous_power - self.error_power) if had_error else 0.0
-            new_scale = math.ldexp(1.0, power - self.error_power)
-            self.error_sum = math.fsum((self.error_sum * old_scale, total * new_scale))
-            self.error_max = max(
-                self.error_max * old_scale, math.ldexp(maximum, -shift) * new_scale
-            )
+            square = _squares(scaled_error)
+            if square:
+                previous_power = self.error_power
+                had_error = bool(self.error_square)
+                self.error_square, self.error_power = _merge_squares(
+                    self.error_square, self.error_power, square, power
+                )
+                old_scale = math.ldexp(1.0, previous_power - self.error_power) if had_error else 0.0
+                new_scale = math.ldexp(1.0, power - self.error_power)
+                self.error_max = max(
+                    self.error_max * old_scale,
+                    float(np.max(np.abs(scaled_error), initial=0)) * new_scale,
+                )
+            # A normalized binary64 mantissa has an exact 53-bit integer
+            # significand. Split it so each <=65536-element int64 sum fits.
+            significands = np.ldexp(error, 53).astype(np.int64)
+            high = significands >> 26
+            low = significands - (high << 26)
+            exponents, groups = np.unique(powers, return_inverse=True)
+            high_sums = np.zeros(exponents.size, dtype=np.int64)
+            low_sums = np.zeros(exponents.size, dtype=np.int64)
+            np.add.at(high_sums, groups, high)
+            np.add.at(low_sums, groups, low)
+            for exponent, upper, lower in zip(exponents, high_sums, low_sums, strict=True):
+                total = (int(upper) << 26) + int(lower)
+                if not total:
+                    continue
+                sum_power = int(exponent) - 53
+                common = min(self.sum_power, sum_power) if self.error_sum else sum_power
+                previous = self.error_sum << (self.sum_power - common) if self.error_sum else 0
+                self.error_sum = previous + (total << (sum_power - common))
+                self.sum_power = common
 
     def finish(self) -> dict[str, Any]:
         """Return each independently representable descriptive statistic."""
@@ -2097,7 +2130,7 @@ class _Metrics:
             relative_l2=None if self.ref_square == 0 else enorm / rnorm,
             error_rms=(_dec(self.error_square) / n).sqrt() * error_scale,
             error_max_abs=_dec(self.error_max) * error_scale,
-            error_mean=_dec(self.error_sum) / n * error_scale,
+            error_mean=Decimal(self.error_sum) * (Decimal(2) ** self.sum_power) / n,
         )
         result: dict[str, Any] = dict(count=self.count)
         result.update({k: None if v is None else _float_or_none(v) for k, v in targets.items()})
