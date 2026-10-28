@@ -1,0 +1,119 @@
+{
+  "all130_working_input_hashes_unchanged": true,
+  "all_tracked_source_and_version_inputs_unchanged_during_execution": true,
+  "authoritative_local_archive_sha256": "4de84ac559e2fcf93a2e038eea571366af54207d368cfb2f0bd50e78129257f0",
+  "cases": {
+    "full": {
+      "all_requested_comparisons_available": true,
+      "current_evaluation_file": "post-correction-full-evaluation.json",
+      "current_evaluation_sha256": "87189b592869e586c12c9a21d99683c5a0cf8bd04777c10407af77ab8f1f0e39",
+      "current_relative_l2": {
+        "corrected_mean_prediction_metrics": 0.6642963723733037,
+        "signal_prediction_metrics": 0.664297594260943,
+        "source_metrics": 0.9531472567471974
+      },
+      "evaluation_process": {
+        "measurement": "/usr/bin/time -lp on macOS; native real is nested within supervised elapsed, per-process RSS is not an end-to-end memory guarantee.",
+        "native_peak_RSS_B": 338984960,
+        "native_real_s": 11.56,
+        "resource_and_stderr_sha256": "de289ef8cdf7671fa61d1c792c6a09edb5e5e5963139b4757980c25335067952",
+        "stdout_empty": true,
+        "supervised_elapsed_s": 11.600478667,
+        "timed_out": false,
+        "wrapper_exit": 0
+      },
+      "original_evaluation_file": "full-evaluation.json",
+      "original_evaluation_sha256": "2e6e5afaed797b4fc8feaa2dc6272488899071834fa88e45c0cc082fd0ac2ceb",
+      "original_input_seals": {
+        "inference_freeze_sha256": "919068b950240adb2f122c12a903efe83537bf4b3430691c8bbf6a912d64fdad",
+        "observation_manifest_sha256": "1aeae458173155d0609020d25b299e087e16ffa6e31453f744e8b048584ebd5c",
+        "private_truth_manifest_sha256": "82bd89bf32a47d3b7dd5cfea6d33b5ed2cc1fccecf783c553a81e894c5ee497a"
+      },
+      "original_relative_l2": {
+        "corrected_mean_prediction_metrics": 0.6642963723733037,
+        "signal_prediction_metrics": 0.6642975942609429,
+        "source_metrics": 0.9531472567471975
+      },
+      "prediction_count": 31457280,
+      "relative_l2_difference_current_minus_original": {
+        "corrected_mean_prediction_metrics": 0.0,
+        "signal_prediction_metrics": 1.1102230246251565e-16,
+        "source_metrics": -1.1102230246251565e-16
+      },
+      "restored_regular_file_bytes": 978247436,
+      "restored_regular_files": 65,
+      "source_count": 8388608,
+      "status": "evaluated"
+    },
+    "small": {
+      "all_requested_comparisons_available": true,
+      "current_evaluation_file": "post-correction-small-evaluation.json",
+      "current_evaluation_sha256": "1f3dc2b121d24b347fb578e1c9eb1e26c4210c2ec0b33706f25cc5d0d2a99e18",
+      "current_relative_l2": {
+        "corrected_mean_prediction_metrics": 0.4022914329406174,
+        "signal_prediction_metrics": 0.4023225658078001,
+        "source_metrics": 0.8020570305422662
+      },
+      "evaluation_process": {
+        "measurement": "/usr/bin/time -lp on macOS; native real is nested within supervised elapsed, per-process RSS is not an end-to-end memory guarantee.",
+        "native_peak_RSS_B": 145817600,
+        "native_real_s": 0.95,
+        "resource_and_stderr_sha256": "f653217d2bb664055dd78931d4cc412650ffbd212c2699fcf283419d0e04dd9d",
+        "stdout_empty": true,
+        "supervised_elapsed_s": 0.981192042,
+        "timed_out": false,
+        "wrapper_exit": 0
+      },
+      "original_evaluation_file": "small-evaluation.json",
+      "original_evaluation_sha256": "5512410bb7c40a302656d23c4908fbd23777c53c27572b3de24e925f3fdc3e16",
+      "original_input_seals": {
+        "inference_freeze_sha256": "1a5fc5afd32c39d56e3a2a41d1ae64754e7ea8dc3e3370b62dfc510cc78328c5",
+        "observation_manifest_sha256": "3caf82e25df323dedb101349440a206a1587eab32f4ee5366f425539e64b9a5e",
+        "private_truth_manifest_sha256": "c33f2e15ebd22b12e9296153d3bd9bfbe80fef8dcaa25e6db1481decfb934a43"
+      },
+      "original_relative_l2": {
+        "corrected_mean_prediction_metrics": 0.4022914329406175,
+        "signal_prediction_metrics": 0.4023225658078001,
+        "source_metrics": 0.8020570305422662
+      },
+      "prediction_count": 122880,
+      "relative_l2_difference_current_minus_original": {
+        "corrected_mean_prediction_metrics": -5.551115123125783e-17,
+        "signal_prediction_metrics": 0.0,
+        "source_metrics": 0.0
+      },
+      "restored_regular_file_bytes": 46682398,
+      "restored_regular_files": 65,
+      "source_count": 32768,
+      "status": "evaluated"
+    }
+  },
+  "driver_sha256": "b610f6c7e8f5b35e8ba126e34c2b760214256fb5cef2b9a0b61220e2ac9ce00f",
+  "execution_record_sha256": "0288f319676727a475d76c3dbe5db2eb3f95332afef58de98c1d42ab494071ee",
+  "input_identity": "130 exact regular archived members/1024929834 bytes restored; every whole-file hash verified before and after both evaluations; original seals remain unchanged. Authoritative original archive retained.",
+  "interpretation": "The source/prediction recovery remains poor. Last-bit numerical differences are reported, not treated as a new recovery threshold. Original evaluation records and original figure provenance remain unchanged. These two re-evaluations are not independent noise trials or a convergence study.",
+  "maximum_absolute_change_in_six_relative_L2_values": 1.1102230246251565e-16,
+  "original_trial_driver_sha256": "8f345cc696415379e54992bbbfd4fed91258853967784f45827df1eb1e032896",
+  "original_trial_source_commit": "1c209a4769c0caab0fb173287efbcac952ed01b1",
+  "private_path_limit": "Actual local source/input/output paths and raw execution logs remain local; no private paths are published here.",
+  "reproduction_command_form": [
+    "python",
+    "-m",
+    "scripts.full_noisy_study",
+    "evaluate",
+    "--observations",
+    "ORIGINAL_OBSERVATIONS",
+    "--inference",
+    "ORIGINAL_FROZEN_INFERENCE",
+    "--private-truth",
+    "ORIGINAL_PRIVATE_TRUTH",
+    "--out",
+    "NEW_ABSENT_OUTPUT"
+  ],
+  "schema": "simrecon.full-noisy-study-post-correction-evaluation.v1",
+  "scope": "Re-evaluation of the two original frozen observation/inference/truth bundles only; no generation, inference, refit, resampling, geometry/settings/seed/input change, alignment or fitted scale.",
+  "source_commit": "51c1975eab072a29f0a820fd2493eec5663ec9a7",
+  "source_identity_limit": "This is the actual evaluation-only code checkpoint, not a final delivery candidate/gate/review/CI identity. Later documentation commits can retain identical driver bytes without establishing whole-build equivalence.",
+  "source_tree": "c48edc62f960e71ecab8b56001379325fb22d0bb",
+  "working_inputs": "Disposable byte-identical restoration copies, not new original scientific data; no original file overwritten."
+}
