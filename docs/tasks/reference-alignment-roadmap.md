@@ -2,7 +2,7 @@
 
 **Version 1.0. 28 October 2026.**
 
-## Contract
+## Historical planning contract
 
 The owner requested a new task to develop a roadmap aligning Python SIM reconstruction with the reference C implementation, with each roadmap step one ASD task and one PR. The delivered [roadmap](../plans/reference-alignment-roadmap.md) compares actual reference source, the full public Python pipeline and the full noisy study. This task is report-only intake documentation. It activates no scientific API, tolerance, delivery policy or future implementation task.
 
@@ -24,7 +24,7 @@ The owner requested a new task to develop a roadmap aligning Python SIM reconstr
 | R5 | Prioritize noiseless known inputs; preserve full sparse scene and required XY/XZ projections/slices; finish with explicit owner-data dependency | owner request and preserved study evidence |
 | R6 | Preserve branch separation, reference restrictions, existing gates, historical observations and accounting | AGENTS, PROJECT, migration roadmap and delegation |
 
-## Current state
+## Historical completed planning state
 
 - Status: complete local planning deliverable; fresh read-only technical review found no material issues; documentation checks recorded in the conversation. The sole task state is this section. Final candidate identity/results belong in the conversation, outside tracked bytes.
 - Scope: three new documentation files (roadmap, task record and one unique evidence-linked lesson). Numerical behavior, tests, fixtures, workflows, dependencies, policy and PR54 remain unchanged.
@@ -35,6 +35,10 @@ The owner requested a new task to develop a roadmap aligning Python SIM reconstr
 - Checks: local Markdown links/anchors, cited existing test filenames, all 15 task/PR packet fields and matching dependency-table rows validated; final diff check/candidate identity are recorded in the conversation. No product test or `make verify` was run for this local report-only deliverable; no PR was opened. Full gate remains required before any future submission.
 - Next: owner can select the first proposed task for execution and supply reference datasets/settings when ready. PR opening, future implementations and merge are outside this planning request.
 
-## PR presentation plan
+## Historical PR presentation plan
 
 If the owner later asks to publish this documentation: lead with the concrete model/estimator mismatch and the ordered task/PR roadmap. Use the compact dependency table rather than a decorative figure. Put exact identities, source/check/accounting details in the technical appendix. Renew full exact-candidate verification first. No PR or merge is performed by this task.
+
+## Execution supersession, 28 October 2026
+
+The owner later authorized the complete RA01–RA15 successor chain and mandatory figures in source chat `01a1835c-493e-7303-a581-3ac6cda9e8a7`. The updated [roadmap](../plans/reference-alignment-roadmap.md) records the exact instruction, merged PR54 execution baseline, stacked ready-for-review launch rule and figures for every PR. Earlier planning-only/publication/optional-figure statements above describe the completed planning request and do not limit this later authorization. Historical observations and charges remain intact. The sole live RA01 Current state is in [RA01](RA01.md#current-state).
