@@ -51,25 +51,20 @@ def call(args: dict[str, Any]) -> NDArray[np.float64]:
 
 def test_nonseparable_sources_preserve_defocus_across_three_focus_planes() -> None:
     """Require every source in a bright Q2 volume with unequal beam amplitudes."""
-    actual = call(arguments())
+    args = arguments()
+    actual = call(args)
     target = reference()
     assert actual.shape == target.shape == (2, 3, 3, 2, 3)
     compare_reference(tuple(exact(float(value)) for value in actual.flat), target)
-
-
-def test_returned_image_survives_later_different_source_call() -> None:
-    """Reducing temporary storage must not reuse a caller's earlier output."""
-    args = arguments()
-    first = call(args)
-    before = first.tobytes()
+    before = actual.tobytes()
     # Integrated weights scale the finite equation linearly. Distinct calls
     # still own their outputs independently, even at identical output shape.
     args["source_e"] = 2 * args["source_e"]
     second = call(args)
-    assert first.tobytes() == before
-    assert not np.shares_memory(first, second)
+    assert actual.tobytes() == before
+    assert not np.shares_memory(actual, second)
     second.fill(0)
-    assert first.tobytes() == before
+    assert actual.tobytes() == before
 
 
 def test_larger_axial_catalogue_satisfies_complete_source_necessary_bound() -> None:
