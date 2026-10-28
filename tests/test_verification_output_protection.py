@@ -574,18 +574,18 @@ def test_p07_original_command_failure_or_missing_command_keeps_status_and_safe_e
     repository: Repository, missing: bool
 ) -> None:
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
+    root = repository.root
+    expected_state = {
+        "commit": git(root, "rev-parse", "HEAD"),
+        "tree": git(root, "rev-parse", "HEAD^{tree}"),
+        "dirty": False,
+        "untracked": [],
+        "manifest": {
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in git(root, "ls-files").splitlines()
+        },
+    }
     if missing:
-        root = repository.root
-        expected_state = {
-            "commit": git(root, "rev-parse", "HEAD"),
-            "tree": git(root, "rev-parse", "HEAD^{tree}"),
-            "dirty": False,
-            "untracked": [],
-            "manifest": {
-                name: hashlib.sha256((root / name).read_bytes()).hexdigest()
-                for name in git(root, "ls-files").splitlines()
-            },
-        }
         assert git(root, "status", "--porcelain") == ""
         (repository.bin_dir / "make").unlink()
         assert not (repository.bin_dir / "make").exists()
