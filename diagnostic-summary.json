@@ -1,0 +1,121 @@
+{
+  "actual_served_model_effort_usage_cost": "unknown",
+  "calibration": {
+    "carrier_error_yx_cycles_per_um": [
+      [
+        -0.032446075873436335,
+        0.009767614081681142
+      ],
+      [
+        0.022304198268308983,
+        -0.010302798821872017
+      ],
+      [
+        -0.004148829762815609,
+        0.04724139015124873
+      ]
+    ],
+    "formula": "wrap(estimated_phase_cal-true_phase_cal +2*pi*(estimated_q-true_q) dot (specimen_local_center+specimen_origin-calibration_origin)_yx)",
+    "gauge": "as stored; matches true side-carrier convention; all27unweighted catalogue centers,5exposures,3orientations; not intensity-weighted image error",
+    "lateral_phase_error_corner_to_corner_variation_over20_48um_rad": [
+      5.4320422192707305,
+      4.195856486979027,
+      6.61287474578999
+    ],
+    "phase_error_excludes_axial_carrier_frequency_term": true,
+    "wrapped_fundamental_phase_RMS_at_all27_catalogue_centers_and5_phases_rad": [
+      1.4323361380594613,
+      0.834151955354876,
+      2.003735711433
+    ]
+  },
+  "camera": {
+    "blank_error_relative_image_units": -1.5845581647030923e-06,
+    "contrast_relative_error": 1.5114505154221714e-05,
+    "estimated_physical_gain_used_by_specimen_fit": false
+  },
+  "confidence": {
+    "calibration_error_growth": "high for actual phase mismatch; unknown fraction of reconstruction error",
+    "generator_inverse_basis_mismatch": "real known discrepancy; magnitude unmeasured",
+    "sparse_metric_sensitivity": "high descriptive support/blur evidence; not proof of irreducible floor or exact nullspace",
+    "unfinished_solver": "high, directly demonstrated finite trajectory and coefficient bound"
+  },
+  "literature": [
+    {
+      "relevance": "Parameter order strengths depend on noise and sample density; dense specimens/adverse noise can lower their estimates. Frequency-dependent noise/regularization and source morphology matter; this does not diagnose the present optimizer.",
+      "title": "Structured illumination microscopy with noise-controlled image reconstructions",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7611169/",
+      "year": 2021
+    },
+    {
+      "relevance": "Controlled 2D simulations isolate parameter estimation error using noise-free reconstruction inputs; supports known-versus-estimated calibration ablations, not directly applicable 3D tolerances.",
+      "title": "Structured illumination microscopy based on principal component analysis",
+      "url": "https://link.springer.com/article/10.1186/s43593-022-00035-x",
+      "year": 2023
+    },
+    {
+      "relevance": "Explains calibration sensitivity, spatially varying experimental parameters and information/noise tradeoffs in small subregions. Synthetic illumination here is globally prescribed, so this is not evidence of real aberrations or a reason to blindly tile.",
+      "title": "Principal component analysis for three-dimensional structured illumination microscopy (PCA-3DSIM)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12402504/",
+      "year": 2025
+    },
+    {
+      "online_year": 2021,
+      "relevance": "Abstract verified: sparsity and continuity are useful priors for fluorescence reconstruction, including SIM. Different algorithm/priors from this fit; sparsity is not intrinsically fatal.",
+      "title": "Sparse deconvolution improves the resolution of live-cell super-resolution fluorescence microscopy",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34782739/",
+      "year": 2022
+    }
+  ],
+  "no_new_inference_or_settings_change": true,
+  "official_full_source_relative_error": 0.9531472567471974,
+  "official_signal_prediction_relative_error": 0.664297594260943,
+  "recommendation_in_order": [
+    "Keep this same sparse scene for diagnosis. Evaluate the paired reference through the inverse forward model at true illumination and compare with frozen noiseless means to measure the representation/model floor.",
+    "Compare convergence on the same observations with known versus estimated illumination, tracking original source and prediction errors and projected-gradient diagnostics. Truth-supplied runs are evaluator-only controls, never replacements for image-only results.",
+    "Improve calibration extent/estimation if needed; then add prespecified resolution-matched/object-level metrics and a controlled density comparison. Do not change density simply to lower the error score."
+  ],
+  "requested_advisor": "gpt-6-astra/ultra",
+  "schema": "simrecon.pr53.report-only-error-diagnostics.v1",
+  "scope": "Descriptive post-freeze evaluation and trace analysis; no new fit, altered official metrics, changed source/test or proven causal allocation",
+  "source_commit": "0aa541d6e1483f03d6d800c6d06289fa0073327f",
+  "source_descriptive": {
+    "cosine_similarity": 0.41479464224150103,
+    "count": 8388608,
+    "dot_estimate_reference": 255.7272084802465,
+    "error_norm": 65.38987897173229,
+    "estimate_energy_in_true_support_fraction": 0.21742978271041505,
+    "estimate_max": 0.2189895659685135,
+    "estimate_norm": 8.98655565917749,
+    "estimate_sum": 2713.9191415967425,
+    "hypothetical_truth_chosen_scalar_only_diagnostic": {
+      "changes_frozen_fit_or_official_metric": false,
+      "remaining_relative_error": 0.9099150535999199,
+      "scale": 3.166579536563028
+    },
+    "reference_max": 5.714199346990232,
+    "reference_norm": 68.60417265941477,
+    "reference_sum": 2389.9638768786645,
+    "relative_error": 0.9531472567471976,
+    "squared_error_in_true_support_fraction": 0.9852195115766958,
+    "truth_nonzero_voxels": 1623,
+    "truth_support_fraction": 0.00019347667694091797
+  },
+  "trace": {
+    "accepted_steps": 12,
+    "all_steps_same": true,
+    "approx_coefficient_cap_ignoring_tiny_rounding": 0.2190447691846691,
+    "conservative_cap_with_outward_float64_and_float32_nextafter": 0.21904487907886505,
+    "first_objective": 0.02032736047514664,
+    "last_objective": 0.008985370756061319,
+    "last_recorded_gradient_candidate_id": 11,
+    "last_recorded_gradient_max_over_initial": 0.7321939092660176,
+    "last_step_relative_objective_decrease": 0.027919419245304528,
+    "minimum_positive_reference_coefficient": 0.49179584543768384,
+    "relative_error_lower_bound_from_conservative_coefficient_cap": 0.8911144175720254,
+    "score_points": 13,
+    "source_penalty_over_data_objective": 5.35711379848845e-07,
+    "source_trace": "Original frozen inference estimates.json SHA8b1c30e9dbdd5a1dd8e46a5b6bc2072a96e8fbffe874be02b87a147daa71f16d",
+    "step": 897.5978806560718
+  }
+}
