@@ -481,6 +481,8 @@ def test_verifier_missing_make_preserves_127(tmp_path: Path) -> None:
     result, document = fixture.run(make=str(fixture.root / "missing-make"))
     assert result.returncode == 127
     assert document is not None and document["result"] == "failed"
+    assert len(document["phases"]) == 1
+    assert document["phases"][0]["returncode"] == 127
     assert "A08_LOCAL_SECRET" not in result.stderr
 
 

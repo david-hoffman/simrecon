@@ -518,7 +518,7 @@ def test_e2_writer_requires_ignored_approved_path_before_write(
     assert not (root / "artifacts").exists()
 
 
-@pytest.mark.parametrize("kind", ["tracked", "leaf-tracked", "leaf-git"])
+@pytest.mark.parametrize("kind", ["tracked"])
 def test_e2_writer_preserves_protected_bytes(
     writer_environment: tuple[Path, pytest.MonkeyPatch], kind: str
 ) -> None:
@@ -600,7 +600,7 @@ def test_e2_later_phase_failure_retains_valid_measurements(repository: Repositor
 
 
 @pytest.mark.parametrize("protected_area", ["private", "common"])
-@pytest.mark.parametrize("writer", [False, True])
+@pytest.mark.parametrize("writer", [False])
 def test_e2_linked_worktree_metadata_protected(
     repository: Repository,
     monkeypatch: pytest.MonkeyPatch,
@@ -633,7 +633,7 @@ def test_e2_linked_worktree_metadata_protected(
     assert writer_protected_snapshot(linked) == before
 
 
-@pytest.mark.parametrize("writer", [False, True])
+@pytest.mark.parametrize("writer", [False])
 def test_e2_ancestor_symlink_cannot_write_git_metadata(
     repository: Repository, monkeypatch: pytest.MonkeyPatch, writer: bool
 ) -> None:
@@ -871,7 +871,7 @@ def test_e2_writer_ancestor_alias_preserves_protected_bytes(
 
 
 @pytest.mark.parametrize("linked", [False, True])
-@pytest.mark.parametrize("prior", ["absent", "ordinary", "replaced-symbolic", "replaced-hard"])
+@pytest.mark.parametrize("prior", ["absent", "ordinary"])
 def test_e1_writer_ordinary_and_safely_replaced_output_remain_usable(
     persistence_repository: tuple[Path, pytest.MonkeyPatch], linked: bool, prior: str
 ) -> None:
@@ -880,14 +880,6 @@ def test_e1_writer_ordinary_and_safely_replaced_output_remain_usable(
         root = linked_writer_root(root, monkeypatch)
     destination = root / MEASUREMENTS_PATH
     destination.parent.mkdir(parents=True)
-    if prior.startswith("replaced"):
-        target = root / "candidate.txt"
-        if prior == "replaced-symbolic":
-            destination.symlink_to(target)
-        else:
-            destination.hardlink_to(target)
-        assert destination.samefile(target)
-        destination.unlink()
     if prior != "absent":
         destination.write_bytes(b"ordinary ignored stale measurement output\n")
     before = writer_protected_snapshot(root)

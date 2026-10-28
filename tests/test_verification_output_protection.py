@@ -575,7 +575,20 @@ def test_p07_original_command_failure_or_missing_command_keeps_status_and_safe_e
 ) -> None:
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
     if missing:
+        root = repository.root
+        expected_state = {
+            "commit": git(root, "rev-parse", "HEAD"),
+            "tree": git(root, "rev-parse", "HEAD^{tree}"),
+            "dirty": False,
+            "untracked": [],
+            "manifest": {
+                name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+                for name in git(root, "ls-files").splitlines()
+            },
+        }
+        assert git(root, "status", "--porcelain") == ""
         (repository.bin_dir / "make").unlink()
+        assert not (repository.bin_dir / "make").exists()
         result = invoke(repository)
     else:
         result = invoke(
@@ -602,3 +615,20 @@ def test_p07_original_command_failure_or_missing_command_keeps_status_and_safe_e
     assert receipt["before"] == receipt["after"]
     assert tracked_markers(repository) == before_markers
     assert metadata(repository) == before_metadata
+
+    if missing:
+        phase_log = Path(receipt["phases"][0]["log"])
+        assert not phase_log.is_absolute()
+        diagnostic = log.read_text()
+        assert diagnostic.strip() and "unavailable" in diagnostic.casefold()
+        assert (result.stdout + result.stderr).count(diagnostic) == 1
+        assert list(log.parent.glob("*.log")) == [log]
+        assert receipt["before"] == expected_state
+        assert receipt["after"] == expected_state
+        assert git(root, "status", "--porcelain") == ""
+        assert git(root, "rev-parse", "HEAD") == expected_state["commit"]
+        assert git(root, "rev-parse", "HEAD^{tree}") == expected_state["tree"]
+        assert {
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in expected_state["manifest"]
+        } == expected_state["manifest"]
