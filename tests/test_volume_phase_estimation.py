@@ -10,6 +10,7 @@ import inspect
 import warnings
 from fractions import Fraction
 from itertools import product
+from types import MappingProxyType
 from typing import Any
 
 import numpy as np
@@ -426,11 +427,54 @@ def test_periodic_carrier_aliasing_keeps_declared_integers(api: Any, carrier: An
     check_observer(first, e)
 
 
-@pytest.mark.parametrize("container", [tuple, list], ids=["tuple", "list"])
-@pytest.mark.parametrize(
-    "shape",
-    [(2, 3, 4), (3, 4, 3), (1, 1, 1), (1, 2, 3), (2, 3, 1), (3, 1, 2), (2, 2, 2), (3, 3, 3)],
+@pytest.fixture(
+    scope="module",
+    params=[(2, 3, 4), (3, 4, 3), (1, 1, 1), (1, 2, 3), (2, 3, 1), (3, 1, 2), (2, 2, 2), (3, 3, 3)],
+    ids=str,
 )
+def integer_carrier_fourier(request: pytest.FixtureRequest) -> Any:
+    """Share only immutable, shape-dependent independent Fourier construction."""
+    shape = request.param
+    coords = tuple(np.ndindex(shape))
+    bins = tuple(product(*(range(-(length // 2), (length + 1) // 2) for length in shape)))
+    size = len(coords)
+
+    def root(turns: Fraction) -> complex:
+        turns %= 1
+        quarter = 4 * turns
+        if quarter.denominator == 1:
+            return (1, 1j, -1, -1j)[int(quarter)]
+        return complex(np.exp(2j * np.pi * float(turns)))
+
+    def row(mode: tuple[int, ...]) -> Any:
+        return np.array(
+            [
+                root(
+                    -sum(
+                        (
+                            Fraction(k * j, length)
+                            for k, j, length in zip(mode, position, shape, strict=True)
+                        ),
+                        Fraction(),
+                    )
+                )
+                for position in coords
+            ]
+        ) / np.sqrt(size)
+
+    built = np.array([row(mode) for mode in bins])
+    # A bytes-backed view cannot be made writable by a later example.
+    transform = np.frombuffer(built.tobytes(), dtype=built.dtype).reshape(built.shape)
+    index = MappingProxyType(
+        {
+            tuple(k % length for k, length in zip(mode, shape, strict=True)): i
+            for i, mode in enumerate(bins)
+        }
+    )
+    return shape, bins, transform, index, row
+
+
+@pytest.mark.parametrize("container", [tuple, list], ids=["tuple", "list"])
 @pytest.mark.parametrize(
     "carrier",
     [
@@ -463,45 +507,16 @@ def test_periodic_carrier_aliasing_keeps_declared_integers(api: Any, carrier: An
     ],
 )
 def test_integer_carrier_oracles_against_exact_finite_matrices(
-    shape: tuple[int, int, int], carrier: Any, container: Any
+    integer_carrier_fourier: Any, carrier: Any, container: Any
 ) -> None:
     # Supplemental shared-oracle proof. Expected indices use Python integers;
     # exact rational turns independently define the finite Fourier matrices.
-    coords = list(np.ndindex(shape))
-    bins = list(product(*(range(-(length // 2), (length + 1) // 2) for length in shape)))
-    size, n = len(coords), 7
+    shape, bins, transform, index, row = integer_carrier_fourier
+    size, n = len(bins), 7
     original = (int(carrier[0]), int(carrier[1]))
     declared = container(carrier)
     reduced = (original[0] % shape[1], original[1] % shape[2])
 
-    def root(turns: Fraction) -> complex:
-        turns %= 1
-        quarter = 4 * turns
-        if quarter.denominator == 1:
-            return (1, 1j, -1, -1j)[int(quarter)]
-        return complex(np.exp(2j * np.pi * float(turns)))
-
-    def row(mode: tuple[int, ...]) -> Any:
-        return np.array(
-            [
-                root(
-                    -sum(
-                        (
-                            Fraction(k * j, length)
-                            for k, j, length in zip(mode, position, shape, strict=True)
-                        ),
-                        Fraction(),
-                    )
-                )
-                for position in coords
-            ]
-        ) / np.sqrt(size)
-
-    transform = np.array([row(mode) for mode in bins])
-    index = {
-        tuple(k % length for k, length in zip(mode, shape, strict=True)): i
-        for i, mode in enumerate(bins)
-    }
     h = np.zeros(shape)
     h.flat[0] = 0.9
     h.flat[-1] += 0.1
@@ -1138,7 +1153,7 @@ def test_genuine_optimizer_nonfinite_return_rejected(
     request: pytest.FixtureRequest, max_nfev: int, field: str, invalid: float
 ) -> None:
     # Supplemental returned-result fault proof, separate from finite-fit accuracy.
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("max_nfev",)):
         return
     api = phase_api()
     e = example(1)
@@ -1182,7 +1197,7 @@ def test_genuine_optimizer_nonfinite_return_rejected(
 def test_nonfinite_return_observer_executes_genuine_scipy(
     request: pytest.FixtureRequest, binding: str, call_form: str, field: str, invalid: float
 ) -> None:
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("binding",)):
         return
     import scipy.optimize
 
@@ -1577,7 +1592,7 @@ def test_public_dependency_bootstrap_admits_binding_and_backend_alternatives(
 ) -> None:
     # This validates the observer, not scientific product behavior. It remains
     # executable on the missing-API baseline and uses real dependency results.
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("binding",)):
         return
     import scipy.linalg
     import scipy.linalg.interpolative
@@ -1663,7 +1678,7 @@ def test_nuisance_fault_reaches_past_design_and_decoy_decompositions(
 ) -> None:
     # Genuine public dependency executions establish the targeting mechanism;
     # this harness proof is independent of the absent new product API.
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("binding",)):
         return
     import scipy.linalg
 
@@ -1787,7 +1802,7 @@ def test_scipy_observer_preserves_genuine_call_form_and_controls(
 ) -> None:
     # Supplemental postimplementation test-correction regression. The genuine
     # public dependency, not a fabricated solver result, supplies every result.
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("binding",)):
         return
     import scipy.optimize
 
