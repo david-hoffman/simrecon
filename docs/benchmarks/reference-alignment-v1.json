@@ -1,0 +1,1833 @@
+{
+  "baseline": {
+    "commit": "8f6b35ceda362944f00de44acbf7098989f157e4",
+    "historical_roadmap_sha256": "7275c5516205f4596353932ff89153debe2ce7b8be80c2ac019acf1e5d59a2d6",
+    "pr": 54,
+    "roadmap_import_commit": "a582e79da62591ef341fc7c74df9425e8d9ac302",
+    "tree": "0c806071b04528b67044d90e6131ff1b1dccc9b7"
+  },
+  "claims": {
+    "algorithm_alignment": "not established; match estimator premises",
+    "numerical_stored_input_agreement": "not established for paired C data",
+    "owner_output_compatibility": "pending paired owner bundle and acceptance criteria",
+    "physical_recovery": "poor PR53 recovery retained; resolution improvement unproven"
+  },
+  "comparison": {
+    "arithmetic_tolerance": "derive precision/conditioning/scale/reference/reduction bounds before candidate acceptance; independent blind review",
+    "crop_support": "full original volumes primary; predeclared common physical support for new controls; no fitted alignment/brightness/crop",
+    "discretization_tolerance": "independent source/pixel/pupil/boundary refinement, not fitted discrepancy",
+    "metrics": [
+      "signed difference",
+      "absolute L2",
+      "reference L2",
+      "relative L2 if nonzero reference",
+      "max absolute error",
+      "element count",
+      "per-exposure and one full15 aggregate",
+      "objective/normal residual and observable subspace for matched inverse"
+    ],
+    "owner_compatibility_threshold": null,
+    "physical_recovery_threshold": null,
+    "source_observations_are_requirements": false,
+    "statistical_tolerance": "predeclare noise, uncertainty, repeats, held-out data and multiplicity",
+    "unresolved_dependencies": [
+      "RA14 informative physical acceptance controls",
+      "RA15 paired inputs/modes and justified tolerance"
+    ]
+  },
+  "conventions": {
+    "array_axes": "Z,Y,X; bundle O,P,Z,Y,X",
+    "axial": "periodic focus-minus-source and finite source-minus-focus require a derived asymmetric-beam mapping",
+    "carrier_axes": "Y,X",
+    "fourier": "volume reconstruction normalized forward/unnormalized inverse; transfer/cache separately explicit",
+    "length": "um; nm/1000",
+    "negative_order": "conjugate after all-axis frequency reflection",
+    "origin": "periodic index zero versus finite half-cell; phase-origin transfer once",
+    "phase": "dc + 2 Re(c1 exp(i phi)+c2 exp(2i phi)); c=(B-iC)/2",
+    "pixel": "detector area once; empirical response may include it",
+    "signed_orders": [
+      0,
+      1,
+      -1,
+      2,
+      -2
+    ],
+    "source": "integrated mass; no extra voxel-volume/focus factor",
+    "spatial_frequency": "cycles/um; radians/um = 2*pi*cycles/um"
+  },
+  "date": "2026-10-28",
+  "declared_model_settings": {
+    "calibration_source_refinement_zyx": [
+      8,
+      8,
+      8
+    ],
+    "detection_na": 1.4,
+    "emission_um": 0.525,
+    "excitation_um": 0.488,
+    "pixel_midpoint_samples_yx": [
+      2,
+      2
+    ],
+    "pupil_order": 256,
+    "refractive_index": 1.515,
+    "source": "docs/contracts/full-noisy-study-v1.2.md and bound reproduction manifest; not all are serialized plan fields",
+    "specimen_source_refinement_zyx": [
+      2,
+      2,
+      2
+    ]
+  },
+  "figures": {
+    "archive_sha256": "4de84ac559e2fcf93a2e038eea571366af54207d368cfb2f0bd50e78129257f0",
+    "display": "XY max over z, XZ max over y; difference of projections, not max signed error; equal physical aspect; common quantitative pairs and symmetric differences; only labeled profiles separately peak-normalized",
+    "limitations": [
+      "maximum projections conceal axial/lateral location and do not establish resolution; paired center sections accompany them",
+      "XZ physical aspect preserved; nearest-neighbor display",
+      "main panels retain common absolute relative-unit scales, never independently peak-normalized",
+      "only labeled profile plots divide each line by its own maximum; shape comparison only, no metric/fit change",
+      "first catalogue bead chosen before inspecting estimates/errors; selected planes are nearest stored centers, not interpolated exact geometric centers",
+      "one fixed noisy synthetic run with finite scalar optics and source/pixel/pupil discretization",
+      "paired axial reference remains the declared mass-aggregation basis, not a continuum or prediction-equivalent truth source",
+      "no inference, changed settings, alignment, new seed or refit"
+    ],
+    "numerical_inputs": {
+      "generation/observations/calibration_heldout.npy": {
+        "sha256": "39dfea4533508e599b3be7892102d1058fe9c023eb51fb9b39ffb1764938dd4e",
+        "size_bytes": 983168
+      },
+      "generation/observations/complete.json": {
+        "sha256": "1aeae458173155d0609020d25b299e087e16ffa6e31453f744e8b048584ebd5c",
+        "size_bytes": 4252
+      },
+      "generation/observations/specimen_o0_p0.npy": {
+        "sha256": "993ded020eb318f73bd35b1e7561ed8ef008017c41254f34eecce7153e6436d0",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o0_p1.npy": {
+        "sha256": "21999f594ce4bef342eaab3b28510800a15e210c803b50afef94676ed933901c",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o0_p2.npy": {
+        "sha256": "fb4199518dc66ede89fa81f42a37da6f8947c8e6473a4b5387f36b8bb792f20c",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o0_p3.npy": {
+        "sha256": "f2cea7ac326d12568b9cec45635b744fbeda958e97c412a6a90081578e9f6eeb",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o0_p4.npy": {
+        "sha256": "2f4eaa9e2a96cd5a28565f08af46cbb315fc5723b815f10bf499bb89dbd55f0d",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o1_p0.npy": {
+        "sha256": "258a82cf861ab0180d3960747d068a78b80da918432a9f85523d355530f17a28",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o1_p1.npy": {
+        "sha256": "180d42052532a31bbd40bb67ab260c15ce9359f87fee386a2f00494415a7d4f9",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o1_p2.npy": {
+        "sha256": "4d9052415dc566bb92cec443d206951e56a2c53c526ade5ea2724556ee10feea",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o1_p3.npy": {
+        "sha256": "4ac440c3febe430b7773511ab950bb0cc66e220b441c75240a6f1fcece8679b2",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o1_p4.npy": {
+        "sha256": "5f783423e24db573715bf4523f41c097dc1923717c071ad9cd485168e76b5d84",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o2_p0.npy": {
+        "sha256": "6e310d2651d3a2fc81ba01fb5a5b2df987928cfdeb34dbc93c0cb8d0fc157f4f",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o2_p1.npy": {
+        "sha256": "c8478b35cb140f048493fb09ba03ad5c7c2804c2405c30af5f886d72c9173941",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o2_p2.npy": {
+        "sha256": "73c2205b832f49f80d78b68cf405e2405d532fddee81b14e562e5715b4573c95",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o2_p3.npy": {
+        "sha256": "cf5ad668e6538c94052658c57b8591b228a082f86131058b7a6da93b15e90df5",
+        "size_bytes": 16777344
+      },
+      "generation/observations/specimen_o2_p4.npy": {
+        "sha256": "43a6ec66bad4f50b61f0c175f972bfdccd11716aa8fa3f41bc2cecdeb488eba4",
+        "size_bytes": 16777344
+      },
+      "generation/private_truth/specimen_o0_p0_expected_signal_e.npy": {
+        "sha256": "0f4ecfb92a62ac7b80ae65123c1d6c8a97078f9c2fc8f42d427d1961e05410bc",
+        "size_bytes": 16777344
+      },
+      "generation/private_truth/specimen_source_e.npy": {
+        "sha256": "875140c3ade832645bc9156e1812adee02afdd51ec383da103dcb86cda1777e4",
+        "size_bytes": 134217856
+      },
+      "inference/bead_heldout_prediction.npy": {
+        "sha256": "568754b2e08b075e42c25c380b50d7515e898671136a8edd87e2639696deeaa3",
+        "size_bytes": 983168
+      },
+      "inference/freeze.json": {
+        "sha256": "919068b950240adb2f122c12a903efe83537bf4b3430691c8bbf6a912d64fdad",
+        "size_bytes": 3367
+      },
+      "inference/prediction_o0_p0.npy": {
+        "sha256": "f17b4451ba70b46c4000c8397be7e5297a5fb3fc85791e2c531c8a95bbc000b6",
+        "size_bytes": 16777344
+      },
+      "inference/specimen_source_relative.npy": {
+        "sha256": "a12cc505f87acf4f62814b8a21702a67e386eb064e5547d7718551dd0ef904c6",
+        "size_bytes": 33554560
+      }
+    },
+    "outputs": {
+      "05-source-orthogonal-mips.png": {
+        "sha256": "97d414ada56a71d228b25972eb3aeceb58bfc2ed9aa9c546feff2299115efe86",
+        "size_bytes": 155791
+      },
+      "05b-source-bead-sections.png": {
+        "sha256": "abef6b4b834fb8709917228dcefef7edb8a43aa00fcb90895031963296d43592",
+        "size_bytes": 283557
+      },
+      "06-prediction-orthogonal-mips.png": {
+        "sha256": "37ccdabe81f5d442c1d42878e9b5441a2f837ef1e524aa9088510e89a92234b1",
+        "size_bytes": 195633
+      },
+      "06b-prediction-bead-sections.png": {
+        "sha256": "89c047572b328f83aafab87be834f408c61a4cba06ea8f5013f12f8368bb8b10",
+        "size_bytes": 284413
+      }
+    },
+    "plane_choices": {
+      "bead_observed": {
+        "actual_plane_centers_local_um_zyx": [
+          0.3125,
+          0.6,
+          0.68
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        "indices_zyx": [
+          2,
+          7,
+          8
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.3125,
+          0.6,
+          0.7
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          8,
+          32,
+          32
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          0.0,
+          2.56,
+          0.0,
+          2.56
+        ],
+        "xz_slice_extent_um": [
+          0.0,
+          2.56,
+          0.0,
+          1.0
+        ]
+      },
+      "bead_prediction": {
+        "actual_plane_centers_local_um_zyx": [
+          0.3125,
+          0.6,
+          0.68
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            32
+          ]
+        ],
+        "indices_zyx": [
+          2,
+          7,
+          8
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.3125,
+          0.6,
+          0.7
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          8,
+          32,
+          32
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          0.0,
+          2.56,
+          0.0,
+          2.56
+        ],
+        "xz_slice_extent_um": [
+          0.0,
+          2.56,
+          0.0,
+          1.0
+        ]
+      },
+      "corrected": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "prediction": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "source_estimate": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.0600000000000005,
+          3.86
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            76,
+            127
+          ],
+          [
+            71,
+            122
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          101,
+          96
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          512,
+          512
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.04,
+          0.04
+        ],
+        "xy_slice_extent_um": [
+          2.84,
+          4.88,
+          3.04,
+          5.08
+        ],
+        "xz_slice_extent_um": [
+          2.84,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "source_reference": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.0600000000000005,
+          3.86
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            76,
+            127
+          ],
+          [
+            71,
+            122
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          101,
+          96
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          512,
+          512
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.04,
+          0.04
+        ],
+        "xy_slice_extent_um": [
+          2.84,
+          4.88,
+          3.04,
+          5.08
+        ],
+        "xz_slice_extent_um": [
+          2.84,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o0_p0": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o0_p1": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o0_p2": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o0_p3": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o0_p4": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o1_p0": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o1_p1": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o1_p2": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o1_p3": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o1_p4": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o2_p0": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o2_p1": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o2_p2": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o2_p3": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      },
+      "specimen_o2_p4": {
+        "actual_plane_centers_local_um_zyx": [
+          0.6875,
+          4.04,
+          3.88
+        ],
+        "crop_index_bounds_zyx_exclusive": [
+          [
+            0,
+            11
+          ],
+          [
+            38,
+            64
+          ],
+          [
+            35,
+            61
+          ]
+        ],
+        "indices_zyx": [
+          5,
+          50,
+          48
+        ],
+        "nominal_bead_center_local_um_zyx": [
+          0.65,
+          4.05,
+          3.85
+        ],
+        "selection": "first catalogue row; nearest voxel center, first index on an exact tie; no fitted-peak recentering",
+        "shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "xy_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          3.04,
+          5.12
+        ],
+        "xz_slice_extent_um": [
+          2.8000000000000003,
+          4.88,
+          0.0,
+          1.375
+        ]
+      }
+    },
+    "presentation_commit": "666b73ff97180998406dc66ac79be14d67687c64",
+    "provenance_sha256": "31934e42e53710d7fa496a43706f54561852838e222132890d37057ae777b601",
+    "selection": "first catalogue bead; nearest stored center, first index on exact tie; no interpolation/alignment/fitted-peak recentering",
+    "status": "original PR53 baseline reused unchanged, not RA01 output"
+  },
+  "immutable_public_files": [
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/full-plan.json",
+      "sha256": "59334032a39cf2d6ecadf0413791c2baa8b63951d9405999c40df0c3671440a9",
+      "size_bytes": 6163
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/small-plan.json",
+      "sha256": "5a1f31d34577c21994d1a266f03deb8c75941969b660e314415b90800a9936b3",
+      "size_bytes": 2451
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/full-seeds.json",
+      "sha256": "2ad9efd52b7928af304c79bf3e9ed31efc680b181a452aae347d72fb85db0c1b",
+      "size_bytes": 1465
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/small-seeds.json",
+      "sha256": "5c8b09b1f3421e07f8d967c18ca2876042adc3dd4ef88e2d6dd32ca2cf454566",
+      "size_bytes": 1465
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/inference-settings.json",
+      "sha256": "94c56ef84edd8bac033d8b8029314d3a0b5857304b97f14a524172d86ba2757c",
+      "size_bytes": 184
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/reproduction-manifest.json",
+      "sha256": "6724661f1e3eef8e8056ec03446b74d13089378dfa4d7e579e48d0e0c0110a55",
+      "size_bytes": 10320
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/evidence/closed-protocol-file-inventory.json",
+      "sha256": "7dc7dfe5408052ac5cd85248894bda03d7364af18a93b290db4b4995de476cdf",
+      "size_bytes": 26150
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/evidence/generated-bundle-digests.json",
+      "sha256": "67402134008685b11a69107347aef5a7a64d313e677dff7bd0d76ec01cad6ac8",
+      "size_bytes": 16708
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/evidence/post-correction-reevaluation.json",
+      "sha256": "518648d2f39467eaf90cae8d2a3b07b8086313f1d6beeef6945e14b2ef22b998",
+      "size_bytes": 6622
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/evidence/post-correction-small-evaluation.json",
+      "sha256": "1f3dc2b121d24b347fb578e1c9eb1e26c4210c2ec0b33706f25cc5d0d2a99e18",
+      "size_bytes": 7691
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/evidence/post-correction-full-evaluation.json",
+      "sha256": "87189b592869e586c12c9a21d99683c5a0cf8bd04777c10407af77ab8f1f0e39",
+      "size_bytes": 7689
+    },
+    {
+      "path": "docs/studies/full-noisy-study-2026-10-26/evidence/full-parameter-estimates.json",
+      "sha256": "2ec388cbe0ebe6e5b5d9ed7abb9b83d2b1f2f98f2764f10ee052d334c39ba239",
+      "size_bytes": 10953
+    }
+  ],
+  "inference_settings": {
+    "file": {
+      "path": "docs/studies/full-noisy-study-2026-10-26/inference-settings.json",
+      "sha256": "94c56ef84edd8bac033d8b8029314d3a0b5857304b97f14a524172d86ba2757c",
+      "size_bytes": 184
+    },
+    "interpretation": "actual retained settings, not C Wiener defaults",
+    "values": {
+      "max_backtracking_trials": 8,
+      "max_iterations": 12,
+      "pupil_order": 256,
+      "regularization": 0.001,
+      "sweep_scales": [
+        1.0,
+        0.5,
+        0.25,
+        0.125,
+        0.0625,
+        0.03125,
+        0.015625,
+        0.0078125,
+        0.00390625,
+        0.001953125
+      ]
+    }
+  },
+  "kind": "non-executable intake manifest",
+  "mode": {
+    "linear_fluorescence": true,
+    "noise": "Poisson signal plus background; additive Gaussian read noise",
+    "objectives": 1,
+    "optics": "finite scalar clear pupil, matched index",
+    "orientations": 3,
+    "owner_instrument_mode": "not supplied",
+    "periodic_controls": "separate known-parameter model, not identical to finite study",
+    "specimen_exposures_per_orientation": 5,
+    "stationary": true,
+    "status": "selected labeled synthetic assumption"
+  },
+  "original_archive": {
+    "full_plan_serialization": {
+      "note": "byte-distinct serialization; preserve both identities",
+      "original_archived_sha256": "612a5397a6b4964afda2928a3b5ceafef5ed363f65d116b857c888c846ca483d",
+      "original_archived_size_bytes": 3201,
+      "parsed_json_equals_published": true
+    },
+    "local_alias": "primary-checkout/artifacts/pr53-retained/study-and-evidence.tar.gz",
+    "member_catalog_sha256": "a93324989a46e8801c543a48ad8ac106a3a1237bf9030644705e2cb08b982b1f",
+    "member_evidence": "retained member catalog and selection checked; individual array members not freshly rehashed in RA01",
+    "selected_original_input_bytes": 1024929834,
+    "selected_original_inputs": 130,
+    "selection_sha256": "3a4ce74ccfa46599d8fd008ac4e6ae8a4d63a52e5e6d9ac928fa16aa62825354",
+    "sha256": "4de84ac559e2fcf93a2e038eea571366af54207d368cfb2f0bd50e78129257f0",
+    "size_bytes": 1706228839,
+    "status": "observed regular non-symlink; fresh whole archive hash; no extraction"
+  },
+  "original_cases": {
+    "full": {
+      "archive_generation_root": "pr53-full-study/artifacts/pr53-full-study/full-noisy-trial1",
+      "archive_inference_root": "pr53-full-study/artifacts/pr53-full-study/full-noisy-inference1",
+      "closed_regular_files": 67,
+      "complete_inventory": {
+        "path": "docs/studies/full-noisy-study-2026-10-26/evidence/closed-protocol-file-inventory.json",
+        "sha256": "7dc7dfe5408052ac5cd85248894bda03d7364af18a93b290db4b4995de476cdf",
+        "size_bytes": 26150
+      },
+      "corrected_evaluation_sha256": "87189b592869e586c12c9a21d99683c5a0cf8bd04777c10407af77ab8f1f0e39",
+      "corrected_relative_l2": {
+        "corrected_mean_prediction_metrics": 0.6642963723733037,
+        "signal_prediction_metrics": 0.664297594260943,
+        "source_metrics": 0.9531472567471974
+      },
+      "input_groups": [
+        "camera_dark/blank/flat.npy",
+        "calibration_central/training/heldout.npy",
+        "specimen_o0..2_p0..4.npy",
+        "private bead/specimen sources",
+        "private calibration/specimen noiseless means",
+        "private original plan/manifest",
+        "frozen estimates/source/predictions"
+      ],
+      "original_input_seals": {
+        "inference_freeze_sha256": "919068b950240adb2f122c12a903efe83537bf4b3430691c8bbf6a912d64fdad",
+        "observation_manifest_sha256": "1aeae458173155d0609020d25b299e087e16ffa6e31453f744e8b048584ebd5c",
+        "private_truth_manifest_sha256": "82bd89bf32a47d3b7dd5cfea6d33b5ed2cc1fccecf783c553a81e894c5ee497a"
+      },
+      "original_per_file_hash_lookup": "cases.full.files in complete_inventory; stage-prefixed original paths and sizes",
+      "status": "existing original archive members and retained hash catalog",
+      "truth_access": "private source/mean/plan only after freeze; never inference"
+    },
+    "small": {
+      "archive_generation_root": "pr53-full-study/artifacts/pr53-full-study/small-noisy-trial2",
+      "archive_inference_root": "pr53-full-study/artifacts/pr53-full-study/small-noisy-inference2",
+      "closed_regular_files": 67,
+      "complete_inventory": {
+        "path": "docs/studies/full-noisy-study-2026-10-26/evidence/closed-protocol-file-inventory.json",
+        "sha256": "7dc7dfe5408052ac5cd85248894bda03d7364af18a93b290db4b4995de476cdf",
+        "size_bytes": 26150
+      },
+      "corrected_evaluation_sha256": "1f3dc2b121d24b347fb578e1c9eb1e26c4210c2ec0b33706f25cc5d0d2a99e18",
+      "corrected_relative_l2": {
+        "corrected_mean_prediction_metrics": 0.4022914329406174,
+        "signal_prediction_metrics": 0.4023225658078001,
+        "source_metrics": 0.8020570305422662
+      },
+      "input_groups": [
+        "camera_dark/blank/flat.npy",
+        "calibration_central/training/heldout.npy",
+        "specimen_o0..2_p0..4.npy",
+        "private bead/specimen sources",
+        "private calibration/specimen noiseless means",
+        "private original plan/manifest",
+        "frozen estimates/source/predictions"
+      ],
+      "original_input_seals": {
+        "inference_freeze_sha256": "1a5fc5afd32c39d56e3a2a41d1ae64754e7ea8dc3e3370b62dfc510cc78328c5",
+        "observation_manifest_sha256": "3caf82e25df323dedb101349440a206a1587eab32f4ee5366f425539e64b9a5e",
+        "private_truth_manifest_sha256": "c33f2e15ebd22b12e9296153d3bd9bfbe80fef8dcaa25e6db1481decfb934a43"
+      },
+      "original_per_file_hash_lookup": "cases.small.files in complete_inventory; stage-prefixed original paths and sizes",
+      "status": "existing original archive members and retained hash catalog",
+      "truth_access": "private source/mean/plan only after freeze; never inference"
+    }
+  },
+  "plans": {
+    "full": {
+      "all_catalogue_rows": "preserve exact bound plan, no scene selection",
+      "calibration_beads": 3,
+      "camera": {
+        "background_e": 6.0,
+        "flat_signal_e": 1000.0,
+        "gain_counts_per_e": 1.7,
+        "offset_counts": 10.0,
+        "read_noise_e": 2.5
+      },
+      "file": {
+        "path": "docs/studies/full-noisy-study-2026-10-26/full-plan.json",
+        "sha256": "59334032a39cf2d6ecadf0413791c2baa8b63951d9405999c40df0c3671440a9",
+        "size_bytes": 6163
+      },
+      "geometry": {
+        "calibration_origin_um_zyx": [
+          0.125,
+          -0.375,
+          0.23
+        ],
+        "calibration_shape_zyx": [
+          8,
+          32,
+          32
+        ],
+        "calibration_spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "camera_shape_yx": [
+          256,
+          256
+        ],
+        "specimen_origin_um_zyx": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "specimen_shape_zyx": [
+          32,
+          256,
+          256
+        ],
+        "specimen_spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ]
+      },
+      "illumination": {
+        "beam_amplitudes": [
+          0.65,
+          0.57,
+          0.5
+        ],
+        "carriers_yx_per_um": [
+          [
+            0.03717893362224275,
+            2.478409677359592
+          ],
+          [
+            2.0919289030417825,
+            1.2642197719454362
+          ],
+          [
+            2.1086615592257942,
+            -1.2887695050457169
+          ]
+        ],
+        "phases_at_calibration_origin_rad": [
+          [
+            0.11,
+            1.3166370614359173,
+            2.6332741228718346,
+            3.8349111843077517,
+            5.116548245743669,
+            0.7333185307179586,
+            1.929955592153876,
+            4.49822971502571,
+            5.724866776461628
+          ],
+          [
+            -0.020000000000000004,
+            1.1866370614359172,
+            2.5032741228718347,
+            3.704911184307752,
+            4.986548245743669,
+            0.6033185307179586,
+            1.799955592153876,
+            4.36822971502571,
+            5.594866776461628
+          ],
+          [
+            0.14,
+            1.3466370614359173,
+            2.6632741228718344,
+            3.8649111843077515,
+            5.146548245743669,
+            0.7633185307179586,
+            1.959955592153876,
+            4.52822971502571,
+            5.754866776461628
+          ]
+        ]
+      },
+      "seed_extract": {
+        "path": "docs/studies/full-noisy-study-2026-10-26/full-seeds.json",
+        "sha256": "2ad9efd52b7928af304c79bf3e9ed31efc680b181a452aae347d72fb85db0c1b",
+        "size_bytes": 1465
+      },
+      "seed_values_count": 82,
+      "seed_values_distinct": 82,
+      "specimen_objects": 27
+    },
+    "small": {
+      "all_catalogue_rows": "preserve exact bound plan, no scene selection",
+      "calibration_beads": 3,
+      "camera": {
+        "background_e": 6.0,
+        "flat_signal_e": 1000.0,
+        "gain_counts_per_e": 1.7,
+        "offset_counts": 10.0,
+        "read_noise_e": 2.5
+      },
+      "file": {
+        "path": "docs/studies/full-noisy-study-2026-10-26/small-plan.json",
+        "sha256": "5a1f31d34577c21994d1a266f03deb8c75941969b660e314415b90800a9936b3",
+        "size_bytes": 2451
+      },
+      "geometry": {
+        "calibration_origin_um_zyx": [
+          0.125,
+          -0.375,
+          0.23
+        ],
+        "calibration_shape_zyx": [
+          8,
+          32,
+          32
+        ],
+        "calibration_spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ],
+        "camera_shape_yx": [
+          32,
+          32
+        ],
+        "specimen_origin_um_zyx": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "specimen_shape_zyx": [
+          8,
+          32,
+          32
+        ],
+        "specimen_spacing_um_zyx": [
+          0.125,
+          0.08,
+          0.08
+        ]
+      },
+      "illumination": {
+        "beam_amplitudes": [
+          0.65,
+          0.57,
+          0.5
+        ],
+        "carriers_yx_per_um": [
+          [
+            0.03717893362224275,
+            2.478409677359592
+          ],
+          [
+            2.0919289030417825,
+            1.2642197719454362
+          ],
+          [
+            2.1086615592257942,
+            -1.2887695050457169
+          ]
+        ],
+        "phases_at_calibration_origin_rad": [
+          [
+            0.11,
+            1.3166370614359173,
+            2.6332741228718346,
+            3.8349111843077517,
+            5.116548245743669,
+            0.7333185307179586,
+            1.929955592153876,
+            4.49822971502571,
+            5.724866776461628
+          ],
+          [
+            -0.020000000000000004,
+            1.1866370614359172,
+            2.5032741228718347,
+            3.704911184307752,
+            4.986548245743669,
+            0.6033185307179586,
+            1.799955592153876,
+            4.36822971502571,
+            5.594866776461628
+          ],
+          [
+            0.14,
+            1.3466370614359173,
+            2.6632741228718344,
+            3.8649111843077515,
+            5.146548245743669,
+            0.7633185307179586,
+            1.959955592153876,
+            4.52822971502571,
+            5.754866776461628
+          ]
+        ]
+      },
+      "seed_extract": {
+        "path": "docs/studies/full-noisy-study-2026-10-26/small-seeds.json",
+        "sha256": "5c8b09b1f3421e07f8d967c18ca2876042adc3dd4ef88e2d6dd32ca2cf454566",
+        "size_bytes": 1465
+      },
+      "seed_values_count": 82,
+      "seed_values_distinct": 82,
+      "specimen_objects": 8
+    }
+  },
+  "pr54_observation": {
+    "interpretation": "not full15, additive shares, lower bound or parity",
+    "record": {
+      "path": "docs/reports/evidence/pr53-recovery-forward-diagnostic.json",
+      "sha256": "c498f6d4f64c5ff9029a8596dde65669fbb8a674116504fe8ea7aaa0fed2dbbc",
+      "size_bytes": 10576
+    },
+    "report": {
+      "path": "docs/reports/pr53-recovery-investigation.md",
+      "sha256": "f23bf4b4692a0ad26cee09b516b76163c89a33863052da2c57731499d3a2bcc5",
+      "size_bytes": 12983
+    },
+    "scope": "orientation 0 phase 0; known paired source; no refit"
+  },
+  "public_expectation_seed": "docs/contracts/reference-alignment-ra02-expectations-v1.md",
+  "reference_c": {
+    "affected_dependencies": [
+      "RA04 owner intensity",
+      "RA05 owner calibration",
+      "RA06 owner noise/Wiener",
+      "RA07-RA08 owner boundary",
+      "RA09-RA12 owner estimation/applicability",
+      "RA15 paired compatibility"
+    ],
+    "build_platform": "unknown",
+    "independent_controls_can_proceed": true,
+    "metadata": "not supplied",
+    "options": {
+      "bead_profile": "unknown; not inferred from source defaults",
+      "camera_background_response": "unknown; not inferred from source defaults",
+      "damping_suppression": "unknown; not inferred from source defaults",
+      "drift": "unknown; not inferred from source defaults",
+      "input_taper": "unknown; not inferred from source defaults",
+      "intensity_sum_equalization": "unknown; not inferred from source defaults",
+      "noise_factors": "unknown; not inferred from source defaults",
+      "otf_symmetry_support": "unknown; not inferred from source defaults",
+      "output_zoom_crop": "unknown; not inferred from source defaults",
+      "padding": "unknown; not inferred from source defaults",
+      "phase_mode": "unknown; not inferred from source defaults",
+      "radial_calibration": "unknown; not inferred from source defaults",
+      "wiener_value_or_auto": "unknown; not inferred from source defaults"
+    },
+    "paired_outputs": "not supplied in scoped evidence",
+    "raw_calibration": "not supplied in scoped evidence",
+    "raw_specimen": "not supplied in scoped evidence",
+    "restrictions": [
+      "do not copy, ship, import or link legacy code",
+      "do not compile, build, invoke or execute C programs or bundled executables",
+      "consume owner-provided outputs and provenance only",
+      "C is a comparator, not sole oracle"
+    ],
+    "sirecon_c_sha256": "3f15d3dfddf4db21c8f166de63820870c9775e22a954b6df1ba8be625622c567",
+    "source_snapshot": "read-only ignored local SVN revision 307; no reference execution"
+  },
+  "report": "docs/reports/reference-alignment-benchmark.md",
+  "schema": "simrecon.reference-alignment-benchmark.v1",
+  "source_identities": {
+    "corrected_evaluator_commit": "51c1975eab072a29f0a820fd2493eec5663ec9a7",
+    "corrected_evaluator_driver_sha256": "b610f6c7e8f5b35e8ba126e34c2b760214256fb5cef2b9a0b61220e2ac9ce00f",
+    "figure_source_commit": "0aa541d6e1483f03d6d800c6d06289fa0073327f",
+    "generation_inference_commit": "1c209a4769c0caab0fb173287efbcac952ed01b1",
+    "generation_inference_driver_sha256": "8f345cc696415379e54992bbbfd4fed91258853967784f45827df1eb1e032896",
+    "new_ra01_fit_or_study_run": false
+  },
+  "task": "RA01",
+  "version": "1.0"
+}

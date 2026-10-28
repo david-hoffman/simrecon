@@ -1,14 +1,22 @@
 # Reference-alignment roadmap: one task and one PR per step
 
-**Version 1.0. 28 October 2026. Proposed execution plan.**
+**Version 1.0. 28 October 2026. Authorized execution sequence.**
 
 Start with matched, noiseless, known-parameter problems. Establish which differences are changes of coordinates and which change the estimator. Then add calibrated optics, noise, fractional carriers and finite boundaries before estimating nuisance parameters and running the full scene. Finish with the owner's corresponding C outputs. A successful program run, a lower training residual or smaller output voxels does not establish resolution improvement.
 
-This roadmap plans work; it does not authorize execution of its proposed scientific steps, change existing contracts or replace the [migration roadmap](../MIGRATION-ROADMAP.md). Each numbered row below is exactly **one Agentic Software Delivery (ASD) task and one pull request (PR)**. Its detailed packet gives one coherent outcome. Intake will turn that packet into its exact authorized public contract before implementation. The [task record](../tasks/reference-alignment-roadmap.md) owns this documentation task's state.
+The owner authorized execution of RA01–RA15 on 28 October 2026 in source chat `01a1835c-493e-7303-a581-3ac6cda9e8a7`:
+
+> ok let's kick this off, start a new task to do the first step, it has my approval, once that PR is ready for review, that task should start the second step, also with my review, and so on and so forth until the roadmap is completed with 15 PRs, each PR should be stacked on the previous one (note I just merged PR54). Keep in mind, ALL PRS MUST HAVE FIGURES SHOWING HOW THE ALGORITHM IS WORKING AT THAT POINT. SEE PR53 FOR REF
+
+Each numbered row is exactly **one Agentic Software Delivery (ASD) task, one new chat and one pull request (PR)**. RA01 includes the previously local roadmap; there is no separate roadmap/admin PR. Intake records each exact public contract before scientific implementation. This authorization changes no delivery policy or existing scientific contract and does not authorize merge/release, owner approval, unrelated messages, or invented evidence. The [historical planning record](../tasks/reference-alignment-roadmap.md) preserves prior charges; [RA01](../tasks/RA01.md) owns the current step.
+
+**Task-specific execution requirements, superseding earlier planning/optional-figure wording.** Start RA01 from merged PR54. Once a predecessor has required internal acceptance, exact-candidate full local verification, required evidence and complete figure-bearing presentation, create the next project chat before ending the current task. Do not wait for merge or another approval of this already-authorized sequence. A mere opened/draft PR is insufficient. The successor establishes its own managed worktree at that exact reviewed head, with its PR targeting the predecessor branch. If merged, verify integrated/squash contents and revise base/evidence transparently. Preserve the exact quote and source-chat pointer in each successor packet, together with head/tree/PR, checks, dependencies, missing inputs and cumulative charges. Read the actual next packet; do not infer scope from its title. Stop at RA15, with no duplicate PR or RA16.
+
+**Every PR has figures near the scientific summary, before the technical appendix.** RA01 reuses provenance-bound PR53 numerical output and labels it as the historical poor-recovery baseline; RA11's stationary/report branch also needs informative evidence. Later stages show actual current input/intermediate/output/comparison evidence. For 3D volumes retain XY/XZ maximum-intensity projections and XY/XZ slices through the predeclared catalogue bead center, physical axes/aspect/units, shared quantitative image scales, signed differences and explicitly labeled separately shape-normalized profiles. Use nearest stored sample-center planes, first index on ties; no fitted-peak recentering, alignment, scale fitting or scene/seed/slice selection. State source hashes and claim limits. No future-stage or fabricated intermediate output. A conceptual diagram can supplement numerical evidence and must be labeled conceptual. See [PR53 presentation](https://github.com/david-hoffman/simrecon/pull/53) and [immutable assets/provenance](https://github.com/david-hoffman/simrecon/blob/666b73ff97180998406dc66ac79be14d67687c64/README.md). These task requirements supersede every conditional figure phrase below without amending shared templates.
 
 ## Baseline and evidence
 
-- Execution baseline inspected: merged PR53, commit `3b4fe0239823febe9a878d3e838b416319f104bd`, tree `73c1ffb702c04dc68cb4d53f01b3a937d0860ec1`. The roadmap branch starts there. It does not stack on or modify PR54.
+- Historical planning baseline: merged PR53, commit `3b4fe0239823febe9a878d3e838b416319f104bd`, tree `73c1ffb702c04dc68cb4d53f01b3a937d0860ec1`. RA01 execution refresh verified merged PR54, main commit `8f6b35ceda362944f00de44acbf7098989f157e4`, tree `0c806071b04528b67044d90e6131ff1b1dccc9b7`. The original three planning files came from local commit `a582e79da62591ef341fc7c74df9425e8d9ac302`; historical lesson bytes are preserved.
 - Investigation read at `1211f453360ff1143feed6998225039482b55ef5`: [report](https://github.com/david-hoffman/simrecon/blob/1211f453360ff1143feed6998225039482b55ef5/docs/reports/pr53-recovery-investigation.md) and [frozen diagnostic](https://github.com/david-hoffman/simrecon/blob/1211f453360ff1143feed6998225039482b55ef5/docs/reports/evidence/pr53-recovery-forward-diagnostic.json). These are observations, not a repaired algorithm or demonstrated C/Python parity.
 - Full scene: [report](../studies/full-noisy-study-2026-10-26/README.md), [full plan](../studies/full-noisy-study-2026-10-26/full-plan.json), [parameter estimates](../studies/full-noisy-study-2026-10-26/evidence/full-parameter-estimates.json). Preserve the 27-object sparse specimen, calibration data and seeds for diagnostic comparisons. Density changes are a later, separate experiment.
 - Reference: ignored `SIMrecon_svn/`, local Subversion revision 307; [adoption record](../setup/BASELINE.md). Rechecked `sirecon.c` SHA-256: `3f15d3dfddf4db21c8f166de63820870c9775e22a954b6df1ba8be625622c567`. Source locations below refer to this file identity and the corresponding local snapshot, not a newly executed C result.
@@ -71,11 +79,11 @@ Exterior-zero boundaries, cropped observations, fractional-carrier finite-window
 
 ## Dependency and order table
 
-Each ID is one task/one PR. Dependencies mean **completed, reviewed and present in the execution baseline**; a planned or draft PR is not a prerequisite. The linear order is a safe launch order; independent branches may run in separate worktrees once their listed dependencies pass.
+Each ID is one task/one PR. Dependencies mean **completed, reviewed, verified and present in the exact stacked execution baseline**; a planned or merely opened/draft PR is not a prerequisite. Follow the owner's linear one-chat/one-PR successor chain, RA01 through RA15. Merge is not a launch prerequisite.
 
 | Order/task | Single scientific outcome | Dependencies | One proposed PR title |
 |---|---|---|---|
-| RA01 | Freeze modes, comparison inputs and acceptance derivation | merged baseline; PR54 observations as external evidence | Define the reference alignment benchmark and comparison manifest |
+| RA01 | Freeze modes, comparison inputs and acceptance derivation | merged PR54 baseline and observations | Define the reference alignment benchmark and comparison manifest |
 | RA02 | Prove matched known-parameter periodic conventions and inverse equivalence | RA01 | Verify five-order conventions and matched spectral inverse controls |
 | RA03 | Measure physical forward/basis discrepancies on every exposure | RA02 | Isolate source sampling and illumination errors across all study exposures |
 | RA04 | Compose declared camera/intensity handling in one gauge | RA01–RA03 | Preserve camera and intensity units through the alignment path |
@@ -119,7 +127,7 @@ Every numerical step delivers exact inputs/outputs, versions/hashes, native coun
 
 **Acceptance.** Every stage has an observed/proposed/unresolved status, units, phase/origin conventions and an independent expectation source. Comparison metrics, deterministic conversions, support/crop and tolerance derivation are specified before runs. Every missing input has an affected dependency. Preserve original PR53 errors without reclassification as a fixed result.
 
-**Checks/deliverables/limits.** `git diff --check`; validate manifest references/hashes and frozen-plan geometry with read-only commands; exact-candidate full gate before a PR. Deliver mode matrix, convention dictionary, input manifest and decision register. No numerical figures needed. Unprovided real instrument settings and data remain external dependencies, not assumed defaults.
+**Checks/deliverables/limits.** `git diff --check`; validate manifest references/hashes and frozen-plan geometry with read-only commands; exact-candidate full gate before a PR. Deliver mode matrix, convention dictionary, input manifest and decision register. Required figures reuse the immutable PR53 XY/XZ projections and predetermined bead-center sections, with original provenance and poor-recovery limits; no new reconstruction is run. Unprovided real instrument settings and data remain external dependencies, not assumed defaults.
 
 ### RA02 — Match periodic known-parameter conventions and linear inverses
 
@@ -133,7 +141,7 @@ Every numerical step delivers exact inputs/outputs, versions/hashes, native coun
 
 **Acceptance.** Re-synthesis reproduces the declared observations; axis, first/second harmonic, phase gauge, conjugate reflection, DC/point amplitude and forward/adjoint identities hold under justified arithmetic budgets. Compare objectives, normal residuals and observable subspaces, not just output pixels. Include active/nonactive positivity and rank-deficient examples to demonstrate the boundary of equivalence, with explicit unsupported-mode meaning.
 
-**Checks/deliverables/limits.** `uv run --locked pytest tests/test_phase_separation.py tests/test_volume_phases.py tests/test_reconstruction.py tests/test_volume_reconstruction.py`, new checkpoint tests and full gate. Deliver equations, conversion table, independently reproducible comparison and a frequency-placement figure if useful. This establishes only the matched periodic problem.
+**Checks/deliverables/limits.** `uv run --locked pytest tests/test_phase_separation.py tests/test_volume_phases.py tests/test_reconstruction.py tests/test_volume_reconstruction.py`, new checkpoint tests and full gate. Deliver equations, conversion table, independently reproducible comparison and a required actual frequency-placement/comparison figure. This establishes only the matched periodic problem.
 
 ### RA03 — Isolate full-field forward and representation errors
 
@@ -161,7 +169,7 @@ Every numerical step delivers exact inputs/outputs, versions/hashes, native coun
 
 **Acceptance.** Constant/point intensity and common signal scale survive correction and reconstruction; signed corrected samples remain valid. Blank shot noise is retained in uncertainty, and unknown absolute gain does not masquerade as photons. Scalar/map shape, bad response, nonfinite/range and metadata contradictions have explicit outcomes. If exposure equalization is unsupported or scientifically invalid for the chosen inputs, report that mode as unavailable.
 
-**Checks/deliverables/limits.** `uv run --locked pytest tests/test_linear_response_correction.py tests/test_scalar_camera_calibration.py tests/test_image_only_specimen_fit.py`, adapter tests and full gate. Deliver unit-chain table and known/estimated gauge comparison; figures only if they explain a measured effect. No real instrument calibration is established by synthetic moments.
+**Checks/deliverables/limits.** `uv run --locked pytest tests/test_linear_response_correction.py tests/test_scalar_camera_calibration.py tests/test_image_only_specimen_fit.py`, adapter tests and full gate. Deliver unit-chain table and known/estimated gauge comparison; required figures illustrating the current correction and its measured limits. No real instrument calibration is established by synthetic moments.
 
 ### RA05 — Calibrate and consume matched order transfers
 
@@ -259,7 +267,7 @@ Every numerical step delivers exact inputs/outputs, versions/hashes, native coun
 
 **Acceptance.** No-motion inputs receive no physical correction; known motion aligns the declared specimen and correctly changes illumination phase, without confusing moving specimen and moving camera. Low-information or changing-intensity references return ambiguity/unavailability. Raw unlike-phase cross-correlation alone is insufficient. Unsupported required owner motion blocks that owner mode.
 
-**Checks/deliverables/limits.** `uv run --locked pytest tests/test_translation.py tests/test_volume_translation_estimation.py tests/test_integer_drift.py`, applicable new motion tests and full gate; stationary report uses reference/diff checks plus gate. Deliver applicability matrix and motion/phase comparison when numerical. No fractional/axial motion is implied by an integer lateral result.
+**Checks/deliverables/limits.** `uv run --locked pytest tests/test_translation.py tests/test_volume_translation_estimation.py tests/test_integer_drift.py`, applicable new motion tests and full gate; stationary report uses reference/diff checks plus gate and required retained stationary evidence figures. Deliver applicability matrix and motion/phase comparison when numerical. No fractional/axial motion is implied by an integer lateral result.
 
 ### RA12 — Establish the images-only calibration handoff
 
@@ -287,7 +295,7 @@ Every numerical step delivers exact inputs/outputs, versions/hashes, native coun
 
 **Acceptance.** Public-entry output matches accepted component composition, phase and gain corrections occur once, no stage receives hidden truth, and unavailable/ambiguous inputs propagate explicitly. Complete known-parameter noiseless and observation-only noisy small controls must pass before the full run. Malformed metadata, incompatible grids, calibration coverage and operation failures have documented behavior.
 
-**Checks/deliverables/limits.** `uv run --locked pytest tests/test_full_noisy_study.py` plus new public-workflow checkpoint tests and full gate. Deliver executed usage, exact small-case outputs and stage diagnostics; retain fixed-center figures when informative. Component acceptance does not itself prove the integrated workflow or improve physical resolution.
+**Checks/deliverables/limits.** `uv run --locked pytest tests/test_full_noisy_study.py` plus new public-workflow checkpoint tests and full gate. Deliver executed usage, exact small-case outputs and stage diagnostics; retain required fixed-center figures. Component acceptance does not itself prove the integrated workflow or improve physical resolution.
 
 ### RA14 — Demonstrate full-scene method alignment
 
