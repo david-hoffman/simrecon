@@ -15,6 +15,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from importlib.metadata import version
@@ -1282,8 +1283,7 @@ def observed_success(evidence_repository: Repository) -> Observation:
     return observed
 
 
-@pytest.mark.parametrize("alternative", ["unused-example", "safe-replacement"])
-def test_local_observer_allows_safe_layout_alternatives(
+def _local_observer_allows_safe_layout_alternatives(
     observed_success: Observation, alternative: str
 ) -> None:
     observed = copy.deepcopy(observed_success)
@@ -1301,27 +1301,7 @@ def test_local_observer_allows_safe_layout_alternatives(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize(
-    "defect",
-    [
-        "measurement-schema",
-        "measurement-digest",
-        "coverage-json",
-        "coverage-html",
-        "wheel-digest",
-        "log-replaced",
-        "stale-output",
-        "retry",
-        "argv",
-        "phase-status",
-        "incomplete-success",
-        "identity",
-        "receipt-non-utc",
-        "phase-non-utc",
-        "phase-time-outside-receipt",
-    ],
-)
-def test_local_observer_rejects_false_evidence(observed_success: Observation, defect: str) -> None:
+def _local_observer_rejects_false_evidence(observed_success: Observation, defect: str) -> None:
     observed = copy.deepcopy(observed_success)
     assert observed.receipt is not None
     receipt = observed.receipt
@@ -1367,11 +1347,10 @@ def test_local_observer_rejects_false_evidence(observed_success: Observation, de
         assert_outcome(observed)
 
 
-@pytest.mark.parametrize("defect", ["swallowed-status", "continued-after-failure"])
-def test_local_failure_observer_rejects_false_status_or_continuation(
-    evidence_repository: Repository, defect: str
+def _local_failure_observer_rejects_false_status_or_continuation(
+    observed_tests_failure: Observation, defect: str
 ) -> None:
-    observed = invoke(evidence_repository, mode="tests-failure")
+    observed = copy.deepcopy(observed_tests_failure)
     assert observed.status == 37
     assert_outcome(observed)
     if defect == "swallowed-status":
@@ -1495,8 +1474,7 @@ def native_success(evidence_repository: Repository) -> Observation:
     return observed
 
 
-@pytest.mark.parametrize("alternative", ["unused-stale", "safe-replacement", "unused-log-layout"])
-def test_local_native_observer_allows_legitimate_alternatives(
+def _local_native_observer_allows_legitimate_alternatives(
     native_success: Observation, alternative: str
 ) -> None:
     observed = copy.deepcopy(native_success)
@@ -1519,24 +1497,7 @@ def test_local_native_observer_allows_legitimate_alternatives(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize(
-    "defect",
-    [
-        "database-replaced",
-        "database-self-consistent-wrong-arcs",
-        "database-missing",
-        "database-stale-generation",
-        "html-member-replaced",
-        "html-member-missing",
-        "html-self-consistent-substitution",
-        "html-membership-shrink",
-        "html-stale-generation",
-        "native-operation",
-        "native-status",
-        "consumed-shard-current",
-    ],
-)
-def test_local_native_observer_rejects_forged_stale_or_incomplete_evidence(
+def _local_native_observer_rejects_forged_stale_or_incomplete_evidence(
     native_success: Observation, defect: str
 ) -> None:
     observed = copy.deepcopy(native_success)
@@ -1598,11 +1559,10 @@ def test_local_native_observer_rejects_forged_stale_or_incomplete_evidence(
         assert_outcome(observed)
 
 
-@pytest.mark.parametrize("defect", ["database-replaced", "html-member-replaced"])
-def test_local_native_failure_observer_rejects_replaced_current_evidence(
-    evidence_repository: Repository, defect: str
+def _local_native_failure_observer_rejects_replaced_current_evidence(
+    observed_native_failure: Observation, defect: str
 ) -> None:
-    observed = invoke(evidence_repository, native=True, audit_failure=True)
+    observed = copy.deepcopy(observed_native_failure)
     assert observed.status == 37
     assert_outcome(observed)
     html = observed.native_emissions[-1]
@@ -1709,8 +1669,7 @@ def test_p10_finite_cyclic_receipt_alias_rejects_honestly(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("order", ["stdout-first", "stderr-first"])
-def test_local_log_observer_allows_both_stream_orders(
+def _local_log_observer_allows_both_stream_orders(
     observed_success: Observation, order: str
 ) -> None:
     observed = copy.deepcopy(observed_success)
@@ -1726,8 +1685,7 @@ def test_local_log_observer_allows_both_stream_orders(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("defect", ["version-missing", "version-invented", "unemitted-version"])
-def test_local_metadata_observer_rejects_untruthful_versions(
+def _local_metadata_observer_rejects_untruthful_versions(
     observed_success: Observation, defect: str
 ) -> None:
     observed = copy.deepcopy(observed_success)
@@ -1746,8 +1704,7 @@ def test_local_metadata_observer_rejects_untruthful_versions(
         assert_outcome(observed)
 
 
-@pytest.mark.parametrize("form", ["display", "distribution"])
-def test_local_metadata_observer_allows_truth_without_query_records(
+def _local_metadata_observer_allows_truth_without_query_records(
     observed_success: Observation, form: str
 ) -> None:
     observed = copy.deepcopy(observed_success)
@@ -1776,8 +1733,7 @@ def observed_late_failure(evidence_repository: Repository) -> Observation:
     return observed
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-def test_local_failed_measurement_observer_allows_current_diagnostics(
+def _local_failed_measurement_observer_allows_current_diagnostics(
     observed_tests_failure: Observation, receipt_available: bool
 ) -> None:
     observed = copy.deepcopy(observed_tests_failure)
@@ -1787,9 +1743,7 @@ def test_local_failed_measurement_observer_allows_current_diagnostics(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted", "suppressed-anchor"])
-@pytest.mark.parametrize("receipt_available", [False, True])
-def test_local_failed_measurement_observer_rejects_lost_valid_evidence(
+def _local_failed_measurement_observer_rejects_lost_valid_evidence(
     observed_tests_failure: Observation, defect: str, receipt_available: bool
 ) -> None:
     observed = copy.deepcopy(observed_tests_failure)
@@ -1812,29 +1766,18 @@ def test_local_failed_measurement_observer_rejects_lost_valid_evidence(
         assert_outcome(observed)
 
 
-@pytest.mark.parametrize("alternative", ["ordinary", "no-receipt", "failed-log-persistence"])
-def test_local_late_failure_observer_allows_preserved_evidence(
+def _local_late_failure_observer_allows_preserved_evidence(
     observed_late_failure: Observation,
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
     alternative: str,
 ) -> None:
     observed = copy.deepcopy(observed_late_failure)
     if alternative == "no-receipt":
         observed.receipt = None
         observed.files.pop(DEFAULT_RECEIPT)
-    elif alternative == "failed-log-persistence":
-        # A separate owned public invocation creates a real directory blocker
-        # before persistence. The example may be unused by another valid layout.
-        repository = prepare_evidence_repository(tmp_path / "blocked", monkeypatch)
-        observed = invoke(repository, audit_failure=True, block_log=LOG_EXAMPLES[-1])
-        assert observed.status == 37
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("target", [COVERAGE_JSON, COVERAGE_HTML, WHEEL])
-@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted", "no-receipt"])
-def test_local_late_failure_observer_rejects_lost_valid_reports(
+def _local_late_failure_observer_rejects_lost_valid_reports(
     observed_late_failure: Observation, target: str, defect: str
 ) -> None:
     observed = copy.deepcopy(observed_late_failure)
@@ -1861,12 +1804,10 @@ def test_p07_valid_phase_emission_survives_its_genuine_failure(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-@pytest.mark.parametrize("target", ["database", "html-member"])
-def test_local_native_failure_observer_rejects_loss_without_receipt_dependency(
-    evidence_repository: Repository, receipt_available: bool, target: str
+def _local_native_failure_observer_rejects_loss_without_receipt_dependency(
+    observed_native_failure: Observation, receipt_available: bool, target: str
 ) -> None:
-    observed = invoke(evidence_repository, native=True, audit_failure=True)
+    observed = copy.deepcopy(observed_native_failure)
     assert observed.status == 37
     assert_outcome(observed)
     if not receipt_available:
@@ -1948,9 +1889,7 @@ def current_log_failure(
     return observed
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-@pytest.mark.parametrize("order", ["stdout-first", "stderr-first"])
-def test_local_failed_log_observer_allows_current_output_and_layouts(
+def _local_failed_log_observer_allows_current_output_and_layouts(
     current_log_failure: Observation, receipt_available: bool, order: str
 ) -> None:
     observed = copy.deepcopy(current_log_failure)
@@ -1975,9 +1914,7 @@ def test_local_failed_log_observer_allows_current_output_and_layouts(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-@pytest.mark.parametrize("defect", ["deleted", "replaced"])
-def test_local_failed_log_observer_rejects_loss_of_earlier_retention(
+def _local_failed_log_observer_rejects_loss_of_earlier_retention(
     current_log_failure: Observation, receipt_available: bool, defect: str
 ) -> None:
     observed = copy.deepcopy(current_log_failure)
@@ -1994,17 +1931,18 @@ def test_local_failed_log_observer_rejects_loss_of_earlier_retention(
         assert_outcome(observed)
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
 def test_local_failed_log_observer_allows_genuine_unavailable_persistence(
-    evidence_repository: Repository, receipt_available: bool
+    evidence_repository: Repository,
 ) -> None:
     observed = invoke(evidence_repository, audit_failure=True, block_log=LOG_EXAMPLES[-1])
     assert observed.status == 37
     assert observed.blocked_logs == (LOG_EXAMPLES[-1],)
     assert_outcome(observed)
-    if not receipt_available:
-        observed.receipt = None
-    assert_outcome(observed)
+    for receipt_available in (False, True):
+        example = copy.deepcopy(observed)
+        if not receipt_available:
+            example.receipt = None
+        assert_outcome(example)
 
 
 PARTIAL_PROFILES = ["partial-coverage", "partial-statements", "partial-combined", "zero-coverage"]
@@ -2017,14 +1955,14 @@ def current_partial_failure(
     phase = None if request.param == "partial-json-failure" else "coverage-json"
     observed = invoke(evidence_repository, receipt_mode=request.param, failure_phase=phase)
     assert observed.status == (29 if phase is None else 37)
+    assert phase_calls(observed)[-1]["phase"] == "coverage-json"
     assert COVERAGE_JSON in valid_emitted_reports(observed)
     assert COVERAGE_HTML not in generated_bytes(observed)
     assert_outcome(observed)
     return observed
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-def test_local_partial_coverage_observer_allows_current_failed_diagnostics(
+def _local_partial_coverage_observer_allows_current_failed_diagnostics(
     current_partial_failure: Observation, receipt_available: bool
 ) -> None:
     observed = copy.deepcopy(current_partial_failure)
@@ -2033,9 +1971,7 @@ def test_local_partial_coverage_observer_allows_current_failed_diagnostics(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted"])
-def test_local_partial_coverage_observer_rejects_lost_current_diagnostics(
+def _local_partial_coverage_observer_rejects_lost_current_diagnostics(
     current_partial_failure: Observation, receipt_available: bool, defect: str
 ) -> None:
     observed = copy.deepcopy(current_partial_failure)
@@ -2061,21 +1997,6 @@ def test_p07_advisory_profiles_preserve_exact_current_counts(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-def test_p07_partial_json_status29_retains_current_report_without_html(
-    evidence_repository: Repository, receipt_available: bool
-) -> None:
-    observed = invoke(evidence_repository, receipt_mode="partial-json-failure")
-    assert observed.status == 29
-    assert phase_calls(observed)[-1]["phase"] == "coverage-json"
-    assert COVERAGE_JSON in valid_emitted_reports(observed)
-    assert COVERAGE_HTML not in generated_bytes(observed)
-    assert_outcome(observed)
-    if not receipt_available:
-        observed.receipt = None
-    assert_outcome(observed)
-
-
 @pytest.fixture(params=["wheel", "audit"])
 def current_stronger_wheel_failure(
     evidence_repository: Repository, request: pytest.FixtureRequest
@@ -2093,8 +2014,7 @@ def current_stronger_wheel_failure(
     return observed
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-def test_local_stronger_wheel_observer_allows_failed_current_diagnostics(
+def _local_stronger_wheel_observer_allows_failed_current_diagnostics(
     current_stronger_wheel_failure: Observation, receipt_available: bool
 ) -> None:
     observed = copy.deepcopy(current_stronger_wheel_failure)
@@ -2108,9 +2028,7 @@ def test_local_stronger_wheel_observer_allows_failed_current_diagnostics(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("receipt_available", [False, True])
-@pytest.mark.parametrize("defect", ["deleted", "replaced", "omitted"])
-def test_local_stronger_wheel_observer_rejects_lost_valid_current_evidence(
+def _local_stronger_wheel_observer_rejects_lost_valid_current_evidence(
     current_stronger_wheel_failure: Observation, receipt_available: bool, defect: str
 ) -> None:
     observed = copy.deepcopy(current_stronger_wheel_failure)
@@ -2194,10 +2112,7 @@ def record_fixture_wheel(payload: bytes, algorithm: str, defect: str = "") -> by
     return result.getvalue()
 
 
-@pytest.mark.parametrize(
-    "algorithm", ["sha256", "sha384", "sha512", "sha3_256", "sha3_512", "blake2b", "blake2s"]
-)
-def test_local_wheel_observer_accepts_secure_record_algorithms(
+def _local_wheel_observer_accepts_secure_record_algorithms(
     observed_success: Observation, algorithm: str
 ) -> None:
     payload = record_fixture_wheel(generated_bytes(observed_success)[WHEEL], algorithm)
@@ -2209,27 +2124,7 @@ def test_local_wheel_observer_accepts_secure_record_algorithms(
         assert {row[1].split("=")[0] for row in rows if row[1]} == {algorithm}
 
 
-@pytest.mark.parametrize(
-    "defect",
-    [
-        "digest",
-        "size",
-        "weak-sha1",
-        "weak-md5",
-        "below-sha256",
-        "unknown-algorithm",
-        "malformed-hash",
-        "missing-member",
-        "duplicate-record",
-        "hashed-self",
-        "duplicate-member",
-        "missing-metadata",
-        "multiple-metadata",
-        "invalid-wheel-format",
-        "mismatched-tag",
-    ],
-)
-def test_local_wheel_observer_rejects_invalid_record_and_archive_evidence(
+def _local_wheel_observer_rejects_invalid_record_and_archive_evidence(
     observed_success: Observation, defect: str
 ) -> None:
     algorithm = {"weak-sha1": "sha1", "weak-md5": "md5", "below-sha256": "sha224"}.get(
@@ -2274,3 +2169,243 @@ def test_p07_invalid_wheel_profiles_keep_honest_unavailable_diagnostics(
     assert_outcome(observed)
     observed.receipt = None
     assert_outcome(observed)
+
+
+@pytest.fixture
+def observed_native_failure(evidence_repository: Repository) -> Observation:
+    observed = invoke(evidence_repository, native=True, audit_failure=True)
+    assert observed.status == 37
+    assert_outcome(observed)
+    return observed
+
+
+def check_observer_example(
+    check: Callable[..., None], observed: Observation, *example: object
+) -> None:
+    """Keep the logical example visible in source-free grouped diagnostics."""
+    try:
+        check(observed, *example)
+    except (Exception, pytest.fail.Exception) as error:
+        error.add_note(f"Observer example {check.__name__}: {example!r}")
+        raise
+
+
+def test_local_observer_rejects_false_evidence(observed_success: Observation) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for alternative in ["unused-example", "safe-replacement"]:
+        check_observer_example(
+            _local_observer_allows_safe_layout_alternatives, observed_success, alternative
+        )
+    for defect in [
+        "measurement-schema",
+        "measurement-digest",
+        "coverage-json",
+        "coverage-html",
+        "wheel-digest",
+        "log-replaced",
+        "stale-output",
+        "retry",
+        "argv",
+        "phase-status",
+        "incomplete-success",
+        "identity",
+        "receipt-non-utc",
+        "phase-non-utc",
+        "phase-time-outside-receipt",
+    ]:
+        check_observer_example(_local_observer_rejects_false_evidence, observed_success, defect)
+    for order in ["stdout-first", "stderr-first"]:
+        check_observer_example(
+            _local_log_observer_allows_both_stream_orders, observed_success, order
+        )
+    for defect in ["version-missing", "version-invented", "unemitted-version"]:
+        check_observer_example(
+            _local_metadata_observer_rejects_untruthful_versions, observed_success, defect
+        )
+    for form in ["display", "distribution"]:
+        check_observer_example(
+            _local_metadata_observer_allows_truth_without_query_records, observed_success, form
+        )
+    for algorithm in ["sha256", "sha384", "sha512", "sha3_256", "sha3_512", "blake2b", "blake2s"]:
+        check_observer_example(
+            _local_wheel_observer_accepts_secure_record_algorithms, observed_success, algorithm
+        )
+    for defect in [
+        "digest",
+        "size",
+        "weak-sha1",
+        "weak-md5",
+        "below-sha256",
+        "unknown-algorithm",
+        "malformed-hash",
+        "missing-member",
+        "duplicate-record",
+        "hashed-self",
+        "duplicate-member",
+        "missing-metadata",
+        "multiple-metadata",
+        "invalid-wheel-format",
+        "mismatched-tag",
+    ]:
+        check_observer_example(
+            _local_wheel_observer_rejects_invalid_record_and_archive_evidence,
+            observed_success,
+            defect,
+        )
+
+
+def test_local_native_observer_rejects_forged_stale_or_incomplete_evidence(
+    native_success: Observation,
+) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for alternative in ["unused-stale", "safe-replacement", "unused-log-layout"]:
+        check_observer_example(
+            _local_native_observer_allows_legitimate_alternatives, native_success, alternative
+        )
+    for defect in [
+        "database-replaced",
+        "database-self-consistent-wrong-arcs",
+        "database-missing",
+        "database-stale-generation",
+        "html-member-replaced",
+        "html-member-missing",
+        "html-self-consistent-substitution",
+        "html-membership-shrink",
+        "html-stale-generation",
+        "native-operation",
+        "native-status",
+        "consumed-shard-current",
+    ]:
+        check_observer_example(
+            _local_native_observer_rejects_forged_stale_or_incomplete_evidence,
+            native_success,
+            defect,
+        )
+
+
+def test_local_failed_measurement_observer_rejects_lost_valid_evidence(
+    observed_tests_failure: Observation,
+) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for defect in ["swallowed-status", "continued-after-failure"]:
+        check_observer_example(
+            _local_failure_observer_rejects_false_status_or_continuation,
+            observed_tests_failure,
+            defect,
+        )
+    for receipt_available in [False, True]:
+        check_observer_example(
+            _local_failed_measurement_observer_allows_current_diagnostics,
+            observed_tests_failure,
+            receipt_available,
+        )
+    for defect in ["deleted", "replaced", "omitted", "suppressed-anchor"]:
+        for receipt_available in [False, True]:
+            check_observer_example(
+                _local_failed_measurement_observer_rejects_lost_valid_evidence,
+                observed_tests_failure,
+                defect,
+                receipt_available,
+            )
+
+
+def test_local_late_failure_observer_rejects_lost_valid_reports(
+    observed_late_failure: Observation,
+) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for alternative in ["ordinary", "no-receipt"]:
+        check_observer_example(
+            _local_late_failure_observer_allows_preserved_evidence,
+            observed_late_failure,
+            alternative,
+        )
+    for target in [COVERAGE_JSON, COVERAGE_HTML, WHEEL]:
+        for defect in ["deleted", "replaced", "omitted", "no-receipt"]:
+            check_observer_example(
+                _local_late_failure_observer_rejects_lost_valid_reports,
+                observed_late_failure,
+                target,
+                defect,
+            )
+
+
+def test_local_native_failure_observer_rejects_loss_without_receipt_dependency(
+    observed_native_failure: Observation,
+) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for defect in ["database-replaced", "html-member-replaced"]:
+        check_observer_example(
+            _local_native_failure_observer_rejects_replaced_current_evidence,
+            observed_native_failure,
+            defect,
+        )
+    for receipt_available in [False, True]:
+        for target in ["database", "html-member"]:
+            check_observer_example(
+                _local_native_failure_observer_rejects_loss_without_receipt_dependency,
+                observed_native_failure,
+                receipt_available,
+                target,
+            )
+
+
+def test_local_failed_log_observer_rejects_loss_of_earlier_retention(
+    current_log_failure: Observation,
+) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for receipt_available in [False, True]:
+        for order in ["stdout-first", "stderr-first"]:
+            check_observer_example(
+                _local_failed_log_observer_allows_current_output_and_layouts,
+                current_log_failure,
+                receipt_available,
+                order,
+            )
+    for receipt_available in [False, True]:
+        for defect in ["deleted", "replaced"]:
+            check_observer_example(
+                _local_failed_log_observer_rejects_loss_of_earlier_retention,
+                current_log_failure,
+                receipt_available,
+                defect,
+            )
+
+
+def test_local_partial_coverage_observer_rejects_lost_current_diagnostics(
+    current_partial_failure: Observation,
+) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for receipt_available in [False, True]:
+        check_observer_example(
+            _local_partial_coverage_observer_allows_current_failed_diagnostics,
+            current_partial_failure,
+            receipt_available,
+        )
+    for receipt_available in [False, True]:
+        for defect in ["deleted", "replaced", "omitted"]:
+            check_observer_example(
+                _local_partial_coverage_observer_rejects_lost_current_diagnostics,
+                current_partial_failure,
+                receipt_available,
+                defect,
+            )
+
+
+def test_local_stronger_wheel_observer_rejects_lost_valid_current_evidence(
+    current_stronger_wheel_failure: Observation,
+) -> None:
+    # One genuine validated invocation; mutable examples deep-copy the observation.
+    for receipt_available in [False, True]:
+        check_observer_example(
+            _local_stronger_wheel_observer_allows_failed_current_diagnostics,
+            current_stronger_wheel_failure,
+            receipt_available,
+        )
+    for receipt_available in [False, True]:
+        for defect in ["deleted", "replaced", "omitted"]:
+            check_observer_example(
+                _local_stronger_wheel_observer_rejects_lost_valid_current_evidence,
+                current_stronger_wheel_failure,
+                receipt_available,
+                defect,
+            )

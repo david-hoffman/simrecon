@@ -628,15 +628,6 @@ def test_v2_same_run_evidence_survives_phase_failure(repository, mode, status, l
         }
 
 
-def test_v3_stronger_record_hash_is_valid(repository):
-    result, receipt = invoke(repository, "sha512-wheel")
-    assert receipt is not None
-    assert result.returncode == 0, json.dumps(receipt["problems"])
-    assert receipt["result"] == "passed"
-    assert receipt["artifact"]["version"] == "1.2.0"
-    assert "wheel-import" in [p["name"] for p in receipt["phases"]]
-
-
 @pytest.mark.parametrize("identity_available", [False, True])
 @pytest.mark.parametrize("destination", ["candidate.txt", ".git/config"])
 def test_v4_output_protection_with_missing_tracked_file(

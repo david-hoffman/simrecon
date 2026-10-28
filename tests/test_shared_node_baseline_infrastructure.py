@@ -544,11 +544,15 @@ def test_authentic_cached_reader_with_real_selected_java(
     layout = tmp_path / "owned-reader-café"
     layout.mkdir()
     cache, jars = reader_layout(layout)
+    before = {key: digest(value) for key, value in jars.items()}
+    (cache / "inputs.json").write_text('{"stale_identity": true}')
     env = java_environment(path_selection=path_selection)
     result = python([str(layout / "scripts/prepare_imagej_reader.py")], cwd=layout, env=env)
     assert result.returncode == 0, "real selected JDK/cache preparation failed"
     manifest = cache / "inputs.json"
     data = json.loads(manifest.read_text())
+    assert "stale_identity" not in data
+    assert {key: digest(value) for key, value in jars.items()} == before
     selected = os.environ["SIMRECON_JAVA"]
     _assert_cached_reader_values(data, selected, jars)
     # Observer-only stdlib round trips: legitimate JSON escaping must not alter
