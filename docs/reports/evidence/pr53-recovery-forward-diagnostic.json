@@ -1,0 +1,279 @@
+{
+  "arms": {
+    "paired_reference_frozen_estimated_illumination": {
+      "beam_amplitudes": [
+        0.649833346867085,
+        0.5727864305458815,
+        0.49963219099856915
+      ],
+      "carrier_yx_per_um": [
+        0.004732857748806412,
+        2.488177291441273
+      ],
+      "phases_rad": [
+        2.917643127214665
+      ]
+    },
+    "paired_reference_true_illumination": {
+      "beam_amplitudes": [
+        0.65,
+        0.57,
+        0.5
+      ],
+      "carrier_yx_per_um": [
+        0.03717893362224275,
+        2.478409677359592
+      ],
+      "phases_rad": [
+        2.8991554336413192
+      ]
+    }
+  },
+  "baseline_head": "3b4fe0239823febe9a878d3e838b416319f104bd",
+  "baseline_tree": "73c1ffb702c04dc68cb4d53f01b3a937d0860ec1",
+  "cache": {
+    "build_seconds": 38.1972727090033,
+    "dtype": "float32",
+    "nbytes": 67239936,
+    "payload_sha256": "7959cc2617984aa9b89e92990cb70acdfaf9b286d6185cbea1b396d9d8b2c9e3",
+    "reused_for_both_arms": true,
+    "shape": [
+      32,
+      1024,
+      513
+    ]
+  },
+  "cache_unchanged": true,
+  "camera_gauge": {
+    "additional_scale_applied": false,
+    "estimated_contrast_counts": 1700.0256946587622,
+    "signal_formula_from_preparation": "true_gain*expected_signal_e/estimated_contrast",
+    "source_formula_from_preparation": "(true_gain/estimated_contrast)*(source_e[2*k]+source_e[2*k+1])",
+    "true_gain_counts_per_e": 1.7
+  },
+  "comparison_formula": "relative_l2 = norm(prediction - frozen_o0p0_noiseless_signal_reference) / norm(frozen_o0p0_noiseless_signal_reference)",
+  "comparisons": {
+    "original_frozen_estimated_source_prediction": {
+      "count": 2097152,
+      "error_l2": 195.154960318578,
+      "error_max_abs": 24.47575566285436,
+      "error_mean": 0.004474221965688019,
+      "error_rms": 0.1347611287338458,
+      "prediction_max": 2.9655005753345143,
+      "prediction_min": 4.3594127026533094e-05,
+      "reference_l2": 294.3166805367936,
+      "relative_l2": 0.6630781509313093
+    },
+    "paired_reference_frozen_estimated_illumination": {
+      "count": 2097152,
+      "error_l2": 134.31640190194594,
+      "error_max_abs": 20.662033649142828,
+      "error_mean": -0.00015257267689579936,
+      "error_rms": 0.09275003770453481,
+      "forward_seconds": 5.071424583002226,
+      "prediction_max": 31.212820573318112,
+      "prediction_min": 2.6522256703846576e-05,
+      "reference_l2": 294.3166805367936,
+      "relative_l2": 0.4563669366512665
+    },
+    "paired_reference_true_illumination": {
+      "count": 2097152,
+      "error_l2": 4.999934820377355,
+      "error_max_abs": 0.65136278446227,
+      "error_mean": 1.5153574097401602e-06,
+      "error_rms": 0.0034526248212691114,
+      "forward_seconds": 5.412375540996436,
+      "prediction_max": 26.802147196672912,
+      "prediction_min": 2.7172131786987834e-05,
+      "reference_l2": 294.3166805367936,
+      "relative_l2": 0.016988282183864514
+    }
+  },
+  "completed_utc": "2026-10-28T14:30:36.236759+00:00",
+  "elapsed_seconds": 49.23794683300366,
+  "execution_status": {
+    "direct_child_exit_code": "not independently observed",
+    "elapsed_seconds_source": "Python monotonic clock; not external wrapper success",
+    "numerical_outputs": "complete; sealed result and retained hashes independently checked",
+    "outer_time_wrapper_exit": 1,
+    "peak_memory": "Python getrusage self ru_maxrss: 1050148864 native macOS bytes; outer wrapper peak unavailable",
+    "wrapper_failure": "sysctl kern.clockrate denied by sandbox after calculation completed"
+  },
+  "fixed_optics": {
+    "detection_na": 1.4,
+    "emission_um": 0.525,
+    "excitation_um": 0.488,
+    "pupil_order": 256,
+    "refractive_index": 1.515
+  },
+  "float32_operand_unchanged": true,
+  "float32_source_rounding": {
+    "changed_coefficients": 1623,
+    "count": 8388608,
+    "error_l2": 2.0415215624407175e-06,
+    "error_max_abs": 1.9600903566896477e-07,
+    "error_mean": -3.452580874259534e-13,
+    "error_rms": 7.04869990595892e-10,
+    "no_nonzero_coefficient_underflowed_to_zero": true,
+    "prediction_max": 5.714199542999268,
+    "prediction_min": 0.0,
+    "reference_l2": 68.60417265941476,
+    "relative_l2": 2.975797948290764e-08,
+    "sum_error": -2.8962349460925907e-06
+  },
+  "geometry": {
+    "calibration_origin_um_zyx": [
+      0.125,
+      -0.375,
+      0.23
+    ],
+    "calibration_shape_zyx": [
+      8,
+      32,
+      32
+    ],
+    "calibration_spacing_um_zyx": [
+      0.125,
+      0.08,
+      0.08
+    ],
+    "camera_shape_yx": [
+      256,
+      256
+    ],
+    "specimen_origin_um_zyx": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "specimen_shape_zyx": [
+      32,
+      256,
+      256
+    ],
+    "specimen_spacing_um_zyx": [
+      0.125,
+      0.08,
+      0.08
+    ]
+  },
+  "inputs": {
+    "compact_estimates": {
+      "bytes": 10953,
+      "path": "docs/studies/full-noisy-study-2026-10-26/evidence/full-parameter-estimates.json",
+      "sha256": "2ec388cbe0ebe6e5b5d9ed7abb9b83d2b1f2f98f2764f10ee052d334c39ba239"
+    },
+    "estimates": {
+      "bytes": 2720395,
+      "path": "artifacts/pr53-stage-figures-20261027/inputs/estimates.json",
+      "sha256": "8b1c30e9dbdd5a1dd8e46a5b6bc2072a96e8fbffe874be02b87a147daa71f16d"
+    },
+    "freeze": {
+      "bytes": 3367,
+      "path": "artifacts/pr53-orthogonal-figures-20261027/inputs/freeze.json",
+      "sha256": "919068b950240adb2f122c12a903efe83537bf4b3430691c8bbf6a912d64fdad"
+    },
+    "frozen_prediction": {
+      "bytes": 16777344,
+      "path": "artifacts/pr53-orthogonal-figures-20261027/inputs/example_prediction.npy",
+      "sha256": "f17b4451ba70b46c4000c8397be7e5297a5fb3fc85791e2c531c8a95bbc000b6"
+    },
+    "inverse_contract": {
+      "bytes": 21471,
+      "path": "docs/contracts/simulation-inverse-operator-v1.md",
+      "sha256": "4a74e9d5c55a459916952fa52b2d42af5ba28adaed63e01ea99464b9462fde92"
+    },
+    "observations_manifest": {
+      "bytes": 4252,
+      "path": "artifacts/pr53-orthogonal-figures-20261027/inputs/complete.json",
+      "sha256": "1aeae458173155d0609020d25b299e087e16ffa6e31453f744e8b048584ebd5c"
+    },
+    "plan": {
+      "bytes": 6163,
+      "path": "docs/studies/full-noisy-study-2026-10-26/full-plan.json",
+      "sha256": "59334032a39cf2d6ecadf0413791c2baa8b63951d9405999c40df0c3671440a9"
+    },
+    "preparation_script": {
+      "bytes": 9681,
+      "path": "artifacts/pr53-orthogonal-figures-20261027/prepare_orthogonal.py",
+      "sha256": "d46f2ed667c20e79b5f0971434a6ff30f552c9f7e48f7e5ac293d4c1191681a8"
+    },
+    "provenance": {
+      "bytes": 31238,
+      "path": "artifacts/pr53-orthogonal-figures-20261027/inputs/orthogonal-input-provenance.json",
+      "sha256": "d7129aadf5d59721bbc27e9ffbd656437d0567a6e7a9e32391790b1a21eb0131"
+    },
+    "signal_reference": {
+      "bytes": 16777344,
+      "path": "artifacts/pr53-orthogonal-figures-20261027/inputs/example_expected_signal_relative.npy",
+      "sha256": "607b404ef2140c474a308db2c540f169c44b5910d1d0d33162f0cbafd3300ee3"
+    },
+    "source_reference": {
+      "bytes": 67108992,
+      "path": "artifacts/pr53-orthogonal-figures-20261027/inputs/source_reference.npy",
+      "sha256": "0efdbd372d27a2f5c876c938e266173cba14f9d8df774daa24388fad693c0f5e"
+    },
+    "study_contract": {
+      "bytes": 43485,
+      "path": "docs/contracts/full-noisy-study-v1.2.md",
+      "sha256": "2d2e267a2887eb94a5f46be0783cd359b95e92e550d1a27352216e9772ed209b"
+    }
+  },
+  "inputs_unchanged": true,
+  "limitations": [
+    "One predeclared frame o0p0 only; not the 15-exposure aggregate.",
+    "A measured discrepancy at this paired source is not an infimum or an irreducible error floor.",
+    "No causal fraction is inferred from differences between arms.",
+    "True-illumination arm still combines axial mass-pairing/model mismatch, finite quadrature, kernel representation and numerical application effects.",
+    "The float64 paired source is explicitly rounded to float32 as required by the public operator; source rounding is measured separately.",
+    "Derived source/signal inputs are hash-identified and their retained preparation formulas inspected, but are not regenerated from the archived fine source/mean in this diagnostic.",
+    "No source fit, phase/carrier refit, registration, clipping, intercept, post-hoc scale, or recovery threshold is introduced."
+  ],
+  "orchestration_script_sha256": "3d30f81c06707865ee35db71274781777db21d92403e69c2ca14e3eea1599396",
+  "original_local_result_sha256": "8f60d3b01e395918b5bb55abaef77aafd09b544d84b8a7558bd755fd8115ebac",
+  "outputs": {
+    "paired_reference_frozen_estimated_illumination_o0p0.npy": {
+      "bytes": 16777344,
+      "sha256": "ff7097b53b78a36d49e6b68c62966e0b5912bd9ac1c223fcb7b8d97e73d87ca2"
+    },
+    "paired_reference_true_illumination_o0p0.npy": {
+      "bytes": 16777344,
+      "sha256": "653e3c23e05fa0d12e77ca23db5acdbe0b7656829a73dbb32a124cec81fd6432"
+    },
+    "paired_source_float32.npy": {
+      "bytes": 33554560,
+      "sha256": "37c55ea3d40cbad56adae2cca67f65b725b88b1dd573fd8d504b4f3e785153b1"
+    }
+  },
+  "runtime": {
+    "exact_executable_and_local_logs": "retained locally; private paths omitted",
+    "numpy": "2.5.3",
+    "platform": "macOS arm64",
+    "python": "3.13.12",
+    "scipy": "1.18.1"
+  },
+  "runtime_source_sha256": {
+    "pyproject.toml": "23fb80deae34bd52aba4836714c97ce3b3e59cadf7e159a3df0e2cbf1b74aa07",
+    "scripts/full_noisy_study.py": "b610f6c7e8f5b35e8ba126e34c2b760214256fb5cef2b9a0b61220e2ac9ce00f",
+    "scripts/image_only_bead_calibration.py": "d876354adff45ee907b5a3ac1e5ad146d2af4830f6892de0c109e97780a49467",
+    "scripts/image_only_calibration_pilot.py": "03b26695bee4bcf1c75c6f6f76981cd3928ea777d7da51e95a18823acca8d83f",
+    "scripts/image_only_specimen_fit.py": "4dacbc5278e374a4df08eb5a99d1365fd318d8fe9b596648b6533bb261ee857f",
+    "scripts/simulation_camera.py": "2fcb365010e3118605186f8b37e4d9e6d0ee6ae008bb5f0c1d920a806618e7cd",
+    "scripts/simulation_inverse_operator.py": "21297e170074eaafb43815e2a07c2f46b8f598250bca048f600ba2ff4a0641ea",
+    "scripts/simulation_optics.py": "db7c1d0e6d79c3e066f841c9b071433966f61c20f19d150cea6cb5740eeb7081",
+    "scripts/simulation_sources.py": "d93e2c5eeb04dd16affe180e4e4123245060cbd4db270edb8a3d4cb279b6842d",
+    "uv.lock": "4ae29414846f24b09548ea163b0ab054b78600e4ea4d5a4eec424dccd39b0e4f"
+  },
+  "schema": "simrecon.pr53.recovery-forward-diagnostic.v1",
+  "scope": "Evaluator-only; one existing exposure, orientation 0 phase 0; no fit or original result change",
+  "source_shape_zyx": [
+    32,
+    512,
+    512
+  ],
+  "source_spacing_um_zyx": [
+    0.125,
+    0.04,
+    0.04
+  ]
+}
