@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import pytest
 from numpy.typing import NDArray
 
 Real = NDArray[np.float64]
@@ -27,6 +28,7 @@ Complex = NDArray[np.complex128]
 # A genuine public callable bound before the child installs fault observers.
 # Fingerprint arithmetic must not be mistaken for product dependency work.
 _FINGERPRINT_SVD = np.linalg.svd
+_DEPENDENCY_GROUP_RESULTS = pytest.StashKey[set[tuple[str, ...]]]()
 
 
 def canonical(phases: Any) -> Real:
@@ -617,17 +619,33 @@ class NuisanceSvdFailure:
         return original(*args, **kwargs)
 
 
-def run_dependency_child(request: Any) -> bool:
-    """Run one node after preimport setup in the committed fixture.
+def run_dependency_child(request: Any, *, group_by: tuple[str, ...] = ()) -> bool:
+    """Run selected nodes after preimport setup in the committed fixture.
 
     The existing source-free wrapper owns child diagnostics and true status.
     No ignored author artifact is imported or executed by this test harness.
+    Grouping shares startup only: pytest still invokes each case separately.
+    A whole group has the original single-child deadline, never a longer one.
     """
     if os.environ.get(_CHILD_FLAG) == "1":
         assert _PUBLIC_OBSERVATION is not None
         return False
-    import pytest
-
+    nodes = (request.node.nodeid,)
+    if group_by:
+        nodes = tuple(
+            item.nodeid
+            for item in request.session.items
+            if item.parent is request.node.parent
+            and item.originalname == request.node.originalname
+            and all(
+                item.callspec.params[name] == request.node.callspec.params[name]
+                for name in group_by
+            )
+        )
+        assert request.node.nodeid in nodes
+    completed = request.session.stash.setdefault(_DEPENDENCY_GROUP_RESULTS, set())
+    if nodes in completed:
+        return True
     root = Path(__file__).resolve().parents[1]
     env = os.environ.copy()
     env[_CHILD_FLAG] = "1"
@@ -649,15 +667,16 @@ def run_dependency_child(request: Any) -> bool:
         "--tb=line",
         "-q",
         "-x",
-        request.node.nodeid,
+        *nodes,
     ]
     child = subprocess.run(command, cwd=root, env=env, capture_output=True, text=True, timeout=90)
     if child.returncode:
         pytest.fail(
-            f"source-free dependency child status={child.returncode}\n"
+            f"source-free dependency child nodes={nodes!r} status={child.returncode}\n"
             f"{child.stdout}\n{child.stderr}",
             pytrace=False,
         )
+    completed.add(nodes)
     return True
 
 

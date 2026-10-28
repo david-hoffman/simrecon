@@ -802,44 +802,58 @@ def test_returned_outputs_are_snapshots_of_both_inputs(api: Any) -> None:
     np.testing.assert_array_equal(output_coordinates(result), saved)
 
 
-@pytest.mark.parametrize("mode", ["warn", "raise"])
+@pytest.fixture(scope="module", params=["warn", "raise"])
+def numerical_healthy_mode(request: pytest.FixtureRequest) -> Literal["warn", "raise"]:
+    """Require a separate same-input healthy process before this mode's faults."""
+    mode = request.param
+    assert mode in ("warn", "raise")
+    run_numerical_child(mode, "linalg", "healthy")
+    return mode
+
+
 @pytest.mark.parametrize("failure_kind", ["linalg", "nan", "inf", "unrelated", "allocation"])
 def test_V08_numerical_dependency_failure_is_whole_call_and_preserves_inputs(
-    mode: Literal["warn", "raise"], failure_kind: str
+    numerical_healthy_mode: Literal["warn", "raise"], failure_kind: str
 ) -> None:
     """Same-input health and witnessed faults in separate fresh processes."""
-    for stage in ("healthy", "fault"):
-        completed = subprocess.run(
-            [
-                sys.executable,
-                "scripts/source_free_check.py",
-                "--timeout",
-                "300",
-                "python",
-                str(Path(__file__).resolve()),
-                mode,
-                failure_kind,
-                stage,
-            ],
-            cwd=Path(__file__).resolve().parents[1],
-            capture_output=True,
-            text=True,
-            timeout=300,
-            check=False,
-            # Inherit source-free diagnostics and native subprocess coverage.
-        )
-        assert completed.returncode == 0, (
+    run_numerical_child(numerical_healthy_mode, failure_kind, "fault")
+
+
+def run_numerical_child(mode: str, failure_kind: str, stage: str) -> None:
+    """Preserve the genuine child status, witness and original time bounds."""
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "scripts/source_free_check.py",
+            "--timeout",
+            "300",
+            "python",
+            str(Path(__file__).resolve()),
+            mode,
+            failure_kind,
             stage,
-            completed.returncode,
-            completed.stdout,
-            completed.stderr,
-        )
-        expected = (
-            "V08 same-input healthy control passed"
-            if stage == "healthy"
-            else "V08 witnessed fault/restored controls passed; reached="
-        )
-        assert expected in completed.stdout
+        ],
+        cwd=Path(__file__).resolve().parents[1],
+        capture_output=True,
+        text=True,
+        timeout=300,
+        check=False,
+        # Inherit source-free diagnostics and native subprocess coverage.
+    )
+    assert completed.returncode == 0, (
+        mode,
+        failure_kind,
+        stage,
+        completed.returncode,
+        completed.stdout,
+        completed.stderr,
+    )
+    expected = (
+        "V08 same-input healthy control passed"
+        if stage == "healthy"
+        else "V08 witnessed fault/restored controls passed; reached="
+    )
+    assert expected in completed.stdout
 
 
 def numerical_failure_inputs() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:

@@ -4,7 +4,7 @@ import warnings
 from dataclasses import fields, is_dataclass
 from decimal import Decimal as D
 from decimal import localcontext
-from itertools import combinations
+from itertools import combinations, product
 from types import SimpleNamespace
 from typing import Any, Literal, cast
 
@@ -1325,26 +1325,57 @@ def test_integer_subclass_conversion_translation_or_legitimate_bypass(
                 assert a.strides == strides and a.flags.writeable == writable
 
 
-@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
-@pytest.mark.parametrize("copy_mode", ["original", "shallow", "deepcopy", "snapshot"])
-@pytest.mark.parametrize("field", ["output_shape_yx", "origin_zyx"])
 @pytest.mark.parametrize(
-    "outcome",
+    "kind,outcome,copy_mode,field,axis,container",
     [
-        "bypass",
-        "translated",
-        "raw",
-        "swallowed",
-        "wrong_code",
-        "uninvoked",
-        "replaced",
-        "bad_bypass",
+        (*row, 0, tuple)
+        for row in product(
+            [TypeError, ValueError, OverflowError, RuntimeError, MemoryError],
+            [
+                "bypass",
+                "translated",
+                "raw",
+                "swallowed",
+                "wrong_code",
+                "uninvoked",
+                "replaced",
+                "bad_bypass",
+            ],
+            ["original", "shallow", "deepcopy", "snapshot"],
+            ["output_shape_yx", "origin_zyx"],
+        )
+    ]
+    + [
+        (
+            kind,
+            "swallowed"
+            if swallowed
+            else "translated"
+            if kind in (TypeError, ValueError, OverflowError)
+            else "raw",
+            "snapshot",
+            field,
+            axis,
+            container,
+        )
+        for (field, axis), container, kind, swallowed in product(
+            [
+                ("output_shape_yx", 0),
+                ("output_shape_yx", 1),
+                *(("origin_zyx", i) for i in range(3)),
+            ],
+            [tuple, list],
+            [TypeError, ValueError, OverflowError, RuntimeError, MemoryError],
+            [False, True],
+        )
+        # These 20 snapshot/tuple/axis-zero rows already appear above.
+        if container is not tuple or axis != 0
     ],
 )
 def test_oracle_integer_conversion_observer_alternatives(
-    kind: Any, outcome: str, copy_mode: str, field: str
+    kind: Any, outcome: str, copy_mode: str, field: str, axis: int, container: Any
 ) -> None:
-    assert_controlled_integer_conversion_observer(kind, outcome, copy_mode, field, 0, tuple)
+    assert_controlled_integer_conversion_observer(kind, outcome, copy_mode, field, axis, container)
 
 
 def assert_controlled_integer_conversion_observer(
@@ -1428,26 +1459,6 @@ def assert_controlled_integer_conversion_observer(
     else:
         with pytest.raises(AssertionError):
             assert_integer_conversion_outcome(observed, case, code, expected, budgets)
-
-
-@pytest.mark.parametrize(
-    "field,axis",
-    [("output_shape_yx", 0), ("output_shape_yx", 1), *(("origin_zyx", i) for i in range(3))],
-)
-@pytest.mark.parametrize("container", [tuple, list])
-@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
-@pytest.mark.parametrize("swallowed", [False, True])
-def test_oracle_integer_conversion_snapshot_positions(
-    field: str, axis: int, container: Any, kind: Any, swallowed: bool
-) -> None:
-    outcome = (
-        "swallowed"
-        if swallowed
-        else "translated"
-        if kind in (TypeError, ValueError, OverflowError)
-        else "raw"
-    )
-    assert_controlled_integer_conversion_observer(kind, outcome, "snapshot", field, axis, container)
 
 
 @pytest.mark.parametrize("key", ["output_shape_yx", "order_otfs"])
