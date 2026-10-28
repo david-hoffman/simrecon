@@ -976,48 +976,67 @@ def test_owned_frozen_records_snapshot_inputs_and_every_candidate(invoke: Any) -
 
 
 @pytest.mark.parametrize(
-    "style", ["endian", "strided", "fortran", "readonly", "integer", "unsigned", "float32", "wide"]
+    "styles",
+    [
+        pytest.param(("endian", "strided", "fortran", "readonly"), id="equivalent-native-values"),
+        pytest.param(("integer",), id="integer"),
+        pytest.param(("unsigned",), id="unsigned"),
+        pytest.param(("float32",), id="float32"),
+        pytest.param(("wide",), id="wide"),
+    ],
 )
-def test_legitimate_array_storage_and_conversion(invoke: Any, style: str) -> None:
-    original = observations()
-    converted = []
-    for a in original:
-        if style == "endian":
-            value = a.astype(">f8")
-        elif style == "strided":
-            storage = np.empty((*a.shape[:-1], 2 * a.shape[-1]))
-            storage[..., ::2] = a
-            value = storage[..., ::2]
-        elif style == "fortran":
-            value = np.asfortranarray(a)
-        elif style == "readonly":
-            value = a.copy()
-            value.flags.writeable = False
-        elif style == "integer":
-            value = a.astype(np.int16)
-        elif style == "unsigned":
-            value = a.astype(np.uint16)
-        elif style == "float32":
-            value = a.astype(np.float32)
+def test_legitimate_array_storage_and_conversion(invoke: Any, styles: tuple[str, ...]) -> None:
+    reference = None
+    reference_inputs = []
+    for style in styles:
+        original = observations()
+        converted = []
+        for a in original:
+            if style == "endian":
+                value = a.astype(">f8")
+            elif style == "strided":
+                storage = np.empty((*a.shape[:-1], 2 * a.shape[-1]))
+                storage[..., ::2] = a
+                value = storage[..., ::2]
+            elif style == "fortran":
+                value = np.asfortranarray(a)
+            elif style == "readonly":
+                value = a.copy()
+                value.flags.writeable = False
+            elif style == "integer":
+                value = a.astype(np.int16)
+            elif style == "unsigned":
+                value = a.astype(np.uint16)
+            elif style == "float32":
+                value = a.astype(np.float32)
+            else:
+                value = a.astype(np.longdouble)
+                value += np.longdouble(2) ** -60
+            converted.append(value)
+        normalized = [np.array(a, dtype=np.float64) for a in converted]
+        if reference is None:
+            reference_inputs = [a.copy() for a in normalized]
+            for a in reference_inputs:
+                a.flags.writeable = False
+            reference = invoke(
+                central_counts=normalized[0],
+                structured_counts=normalized[1],
+                heldout_counts=normalized[2],
+            )
         else:
-            value = a.astype(np.longdouble)
-            value += np.longdouble(2) ** -60
-        converted.append(value)
-    normalized = [np.array(a, dtype=np.float64) for a in converted]
-    reference = invoke(
-        central_counts=normalized[0], structured_counts=normalized[1], heldout_counts=normalized[2]
-    )
-    snapshots = [a.copy() for a in converted]
-    flags = [(a.strides, a.flags.writeable) for a in converted]
-    actual = invoke(
-        central_counts=converted[0], structured_counts=converted[1], heldout_counts=converted[2]
-    )
-    assert actual.status == reference.status
-    same_candidate(actual.frozen_candidate, reference.frozen_candidate)
-    np.testing.assert_array_equal(actual.heldout_prediction, reference.heldout_prediction)
-    for a, saved, flag in zip(converted, snapshots, flags, strict=True):
-        np.testing.assert_array_equal(a, saved)
-        assert (a.strides, a.flags.writeable) == flag
+            for a, saved in zip(normalized, reference_inputs, strict=True):
+                np.testing.assert_array_equal(a, saved)
+        snapshots = [a.copy() for a in converted]
+        flags = [(a.strides, a.flags.writeable) for a in converted]
+        actual = invoke(
+            central_counts=converted[0], structured_counts=converted[1], heldout_counts=converted[2]
+        )
+        assert actual.status == reference.status
+        same_candidate(actual.frozen_candidate, reference.frozen_candidate)
+        np.testing.assert_array_equal(actual.heldout_prediction, reference.heldout_prediction)
+        for a, saved, flag in zip(converted, snapshots, flags, strict=True):
+            np.testing.assert_array_equal(a, saved)
+            assert (a.strides, a.flags.writeable) == flag
 
 
 class ArraySubclass(np.ndarray):

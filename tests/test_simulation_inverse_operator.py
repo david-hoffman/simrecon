@@ -364,49 +364,56 @@ def test_signed_direct_payload_forward_and_real_adjoint_values(shape: Any) -> No
     assert abs(lhs - rhs) <= (1e-4 + 5e-13) * bound
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
 @pytest.mark.parametrize("shape", [(2, 2, 2), (3, 2, 4)])
-def test_nonzero_finite_map_accepts_coordinated_unused_lateral_padding(
-    operation: str, shape: Any
-) -> None:
+def test_nonzero_finite_map_accepts_coordinated_unused_lateral_padding(shape: Any) -> None:
     # Each addition is exact float32 here. The added inverse is supported only
     # on y=Ny OR x=Nx. The original signed finite map and its G scales survive.
     base = operator.InverseKernelCache(**cache_fields(shape))
     payload = base.lateral_spectra + padding_only_spectra(shape, 256.0)
     cache = operator.InverseKernelCache(**(cache_fields(shape) | {"lateral_spectra": payload}))
-    options, data = settings(), operand(operation, shape)
+    options = settings()
     matrix, f_norm, j_norm = reference(base, options)
     padded_matrix, padded_f, padded_j = reference(cache, options)
     np.testing.assert_array_equal(padded_matrix, matrix)
     assert (padded_f, padded_j) == (f_norm, j_norm)
     assert np.max(np.abs(payload - base.lateral_spectra)) == 256
-    with unchanged_policy_and_random(data, payload):
-        result = getattr(operator, operation)(data, kernel_cache=cache, **options)
-    expected_shape = (
-        (3, shape[0], shape[1] // 2, shape[2] // 2) if operation == "forward" else shape
-    )
-    assert_storage(result, expected_shape, np.float64)
-    assert_fidelity(
-        result,
-        apply_reference(matrix, data, transpose=operation == "adjoint"),
-        (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
-    )
+    matrix.flags.writeable = False
+    for operation in ("forward", "adjoint"):
+        call_payload = payload.copy()
+        call_cache = operator.InverseKernelCache(
+            **(cache_fields(shape) | {"lateral_spectra": call_payload})
+        )
+        options, data = settings(), operand(operation, shape)
+        with unchanged_policy_and_random(data, call_payload):
+            result = getattr(operator, operation)(data, kernel_cache=call_cache, **options)
+        expected_shape = (
+            (3, shape[0], shape[1] // 2, shape[2] // 2) if operation == "forward" else shape
+        )
+        assert_storage(result, expected_shape, np.float64)
+        assert_fidelity(
+            result,
+            apply_reference(matrix, data, transpose=operation == "adjoint"),
+            (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
+        )
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
-def test_all_source_detector_edges_corners_and_interior_basis_columns(operation: str) -> None:
+def test_all_source_detector_edges_corners_and_interior_basis_columns() -> None:
     # A dense basis sweep asserts every finite interaction, including opposite corners.
     shape = (2, 2, 4)
     cache = operator.InverseKernelCache(**cache_fields(shape))
     options = settings(phases_rad=np.array([-0.4, 0.9]))
     matrix, f_norm, j_norm = reference(cache, options)
-    data_shape = shape if operation == "forward" else (2, 2, 1, 2)
-    for index in range(math.prod(data_shape)):
-        data = np.zeros(data_shape, dtype=np.float32)
-        data.flat[index] = -1 if index % 2 else 1
-        result = getattr(operator, operation)(data, kernel_cache=cache, **options)
-        expected = apply_reference(matrix, data, transpose=operation == "adjoint")
-        assert_fidelity(result, expected, f_norm if operation == "forward" else j_norm)
+    matrix.flags.writeable = False
+    for operation in ("forward", "adjoint"):
+        cache = operator.InverseKernelCache(**cache_fields(shape))
+        options = settings(phases_rad=np.array([-0.4, 0.9]))
+        data_shape = shape if operation == "forward" else (2, 2, 1, 2)
+        for index in range(math.prod(data_shape)):
+            data = np.zeros(data_shape, dtype=np.float32)
+            data.flat[index] = -1 if index % 2 else 1
+            result = getattr(operator, operation)(data, kernel_cache=cache, **options)
+            expected = apply_reference(matrix, data, transpose=operation == "adjoint")
+            assert_fidelity(result, expected, f_norm if operation == "forward" else j_norm)
 
 
 @pytest.mark.parametrize(
@@ -1808,22 +1815,13 @@ def supplemental_axial_delta_reference(
     return forward_values, adjoint_values, 4 * area * axial_norm, area * axial_norm
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
-def test_supplemental_moderate_nonsquare_signed_axial_delta_composition(operation: str) -> None:
+def test_supplemental_moderate_nonsquare_signed_axial_delta_composition() -> None:
     shape, spacing = (3, 32, 64), (0.19, 0.08, 0.11)
     weights = np.array([0.75, -0.5, 0.125], dtype=np.float32)
     payload = np.empty((3, 64, 65), dtype=np.float32)
     for lag in range(3):
         payload[lag] = weights[lag]
-    cache = operator.InverseKernelCache(
-        **(
-            cache_fields(shape)
-            | {
-                "lateral_spectra": payload,
-                "source_spacing_um_zyx": spacing,
-            }
-        )
-    )
+    fields = cache_fields(shape) | {"source_spacing_um_zyx": spacing}
     z, y, x = np.indices(shape)
     source = ((7 * z + 3 * y - 5 * x) % 29 - 14).astype(np.float32) / np.float32(8)
     source[0, 0, 0], source[-1, -1, -1], source[1, 16, 31] = 1.75, -2.5, 3.125
@@ -1840,26 +1838,35 @@ def test_supplemental_moderate_nonsquare_signed_axial_delta_composition(operatio
         options["phases_rad"],
         options["beam_amplitudes"],
         options["excitation_um"],
-        cache.refractive_index,
+        fields["refractive_index"],
     )
-    data = source if operation == "forward" else residual
-    expected = expected_forward if operation == "forward" else expected_adjoint
-    scale = light_bound(options["beam_amplitudes"]) * (cr if operation == "forward" else 3 * cc)
-    scale *= float(np.max(np.abs(data)))
-    old_policy = np.seterr(all="raise")
-    try:
-        with observe_arithmetic_ownership() as caught:
-            warnings.simplefilter("always")
-            with unchanged_policy_and_random(
-                source, residual, payload, options["carrier_yx_per_um"], options["phases_rad"]
-            ):
-                result = getattr(operator, operation)(data, kernel_cache=cache, **options)
-        assert_arithmetic_ownership_resolved(caught)
-    finally:
-        np.seterr(**old_policy)
-    assert_storage(result, expected.shape, np.float64)
-    assert not np.shares_memory(result, data) and not np.shares_memory(result, payload)
-    assert_fidelity(result, expected, scale)
+    expected_forward.flags.writeable = expected_adjoint.flags.writeable = False
+    for operation in ("forward", "adjoint"):
+        call_source, call_residual, call_payload = source.copy(), residual.copy(), payload.copy()
+        cache = operator.InverseKernelCache(**(fields | {"lateral_spectra": call_payload}))
+        options = settings()
+        data = call_source if operation == "forward" else call_residual
+        expected = expected_forward if operation == "forward" else expected_adjoint
+        scale = light_bound(options["beam_amplitudes"]) * (cr if operation == "forward" else 3 * cc)
+        scale *= float(np.max(np.abs(data)))
+        old_policy = np.seterr(all="raise")
+        try:
+            with observe_arithmetic_ownership() as caught:
+                warnings.simplefilter("always")
+                with unchanged_policy_and_random(
+                    call_source,
+                    call_residual,
+                    call_payload,
+                    options["carrier_yx_per_um"],
+                    options["phases_rad"],
+                ):
+                    result = getattr(operator, operation)(data, kernel_cache=cache, **options)
+            assert_arithmetic_ownership_resolved(caught)
+        finally:
+            np.seterr(**old_policy)
+        assert_storage(result, expected.shape, np.float64)
+        assert not np.shares_memory(result, data) and not np.shares_memory(result, call_payload)
+        assert_fidelity(result, expected, scale)
 
 
 def test_supplemental_physical_cache_feasible_near_float32_quantization_limit() -> None:

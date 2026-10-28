@@ -862,13 +862,9 @@ def test_origin_and_heldout_only_change_allowed_metadata_summaries(
     assert_independent(changed, baseline)
 
 
-def test_deterministic_repeated_fixed_dependency_execution(subnormal_result: Any) -> None:
-    repeated = fit(**arguments())
-    assert_same(repeated, subnormal_result)
-    assert_independent(repeated, subnormal_result)
-
-
-def test_records_frozen_public_types_and_independent_writable_snapshots(moving_result: Any) -> None:
+def test_records_frozen_public_types_and_independent_writable_snapshots(
+    moving_result: Any, subnormal_result: Any
+) -> None:
     result = moving_result
     assert_ledger(result, bead, pilot.PilotCandidate)
     assert_independent(result)
@@ -893,7 +889,8 @@ def test_records_frozen_public_types_and_independent_writable_snapshots(moving_r
     for array, saved in zip(arrays[1:], copies[1:], strict=True):
         np.testing.assert_array_equal(array, saved)
     again = fit(**arguments())
-    assert_same(again, fit(**arguments()))
+    assert_same(again, subnormal_result)
+    assert_independent(again, subnormal_result, fresh)
 
 
 def test_initial_range_keeps_constructed_candidate_but_no_success_or_polls() -> None:
