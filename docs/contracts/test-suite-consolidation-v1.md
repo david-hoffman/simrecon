@@ -1,6 +1,6 @@
 # TSC01: consolidate tests while preserving their observable guarantees
 
-Version 1.4. The owner requested maximal useful test consolidation/deletion before RA02, then explicitly selected implementation in a separate preparatory PR. This does not authorize a merge/release or restart RA02.
+Version 1.5. The owner requested maximal useful test consolidation/deletion before RA02, then explicitly selected implementation in a separate preparatory PR. This does not authorize a merge/release or restart RA02.
 
 The prerequisite is RA01, commit 6e150c594d814000ab9a70701b1ebe757650a4c2. Existing public scientific, binary, storage, error, compatibility and delivery contracts remain authoritative. This task changes test execution structure and removes proven duplicate/inactive checks. It introduces no algorithm or tolerance change.
 
@@ -62,6 +62,9 @@ The 600 s target is an observed local full-check objective, not a portable perfo
 ## Diagnosed infrastructure correction
 
 An exploratory real-Make pilot exposed an existing failure when the selected UV executable path contains spaces. The public verification-receipt contract accepts a selected executable without a whitespace restriction. The original Makefile is unchanged from RA01; passing direct/fake-Make or ordinary-path controls does not supersede this failure. A separate bounded worker owns only quoting the UV executable in Makefile recipes. Phase names, order, arguments, synchronization, coverage, wheel and audit behavior stay unchanged. Existing real-Make public-entry tests qualify the correction with a spaced/non-ASCII executable path. Fresh independent bounded review follows exact integrated full verification. This named conventional infrastructure correction is the sole exception to the frozen Makefile; the scientific A/B owners and restricted C receive no added edit authority. All failed probes and prior charges remain.
+
+The coordinator's bounded worker additionally owns launcher plumbing in tests/test_delivery_preflight.py (controlled_uv and _preflight) to correct the diagnosed two-part-UV fixture mismatch. Supply one actual executable path, including a spaced/non-ASCII path, while preserving the original controlled command body, all 11 success/failure cases, actual qualified interpreter and isolated environment, exact argv/order/stop behavior, diagnostics and repository-state assertions. The public selected-executable contract is unchanged; this does not add command-string parsing or alter Makefile recipes again. Focused ordinary-host-PATH checks and fresh independent bounded review apply before final exact-candidate verification/review.
+
 
 ## Third reduction pass
 

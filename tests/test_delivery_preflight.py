@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import shlex
 import subprocess
 import sys
 import textwrap
@@ -91,7 +92,13 @@ def controlled_uv(tmp_path: Path) -> tuple[Path, Path, Path]:
         ),
         encoding="utf-8",
     )
-    return wrapper, tmp_path / "calls.jsonl", isolated_python
+    launcher = tmp_path / "controlled uv café"
+    launcher.write_text(
+        f'#!/bin/sh\nexec {shlex.quote(sys.executable)} {shlex.quote(str(wrapper))} "$@"\n',
+        encoding="utf-8",
+    )
+    launcher.chmod(0o755)
+    return launcher, tmp_path / "calls.jsonl", isolated_python
 
 
 def _git_state() -> tuple[str, str]:
@@ -108,7 +115,7 @@ def _preflight(
     wrapper, calls, isolated_python = controlled_uv
     before = _git_state()
     result = subprocess.run(
-        ["make", "--no-print-directory", "preflight", f"UV={sys.executable} {wrapper}"],
+        ["make", "--no-print-directory", "preflight", f"UV={wrapper}"],
         cwd=ROOT,
         env={
             **os.environ,
