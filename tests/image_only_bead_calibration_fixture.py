@@ -1592,7 +1592,8 @@ def finite_predictions(
     return central, structured, bound
 
 
-def assert_finite_score(score: Any, inputs: dict[str, Any]) -> None:
+def assert_finite_score(score: Any, inputs: dict[str, Any]) -> tuple[F64, F64, Any]:
+    """Check full loss and return its independent reference for local reuse."""
     import image_only_calibration_pilot_fixture as reference
 
     central, structured, bound = finite_predictions(
@@ -1604,6 +1605,7 @@ def assert_finite_score(score: Any, inputs: dict[str, Any]) -> None:
     expected = reference.objective(y, training, central, structured)
     allowance = reference.loss_allowance(y, training, central, structured, bound)
     reference.assert_scalar_close(score.objective, expected, allowance)
+    return central, structured, bound
 
 
 def assert_initial_brightness(candidate: Any, maxima: F64, shape: tuple[int, int, int]) -> None:

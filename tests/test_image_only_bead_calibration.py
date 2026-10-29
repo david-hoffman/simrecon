@@ -34,7 +34,6 @@ from image_only_bead_calibration_fixture import (
     assert_ledger,
     assert_same,
     camera,
-    finite_predictions,
     improving_pair_arguments,
     improving_pair_qualification,
     inward_upper,
@@ -832,9 +831,12 @@ def test_finite_equation_exact_frozen_rescores_and_first_five_prediction(
     import image_only_calibration_pilot_fixture as reference
 
     result = moving_result
-    for score in result.objective_trace[-2:]:
-        assert_finite_score(score, arguments(shape=AXIAL_SHAPE))
-    _, structured, bound = finite_predictions(result.frozen_candidate, AXIAL_SHAPE, 512)
+    q256, q512 = result.objective_trace[-2:]
+    assert (q256.pupil_order, q512.pupil_order) == (256, 512)
+    for score in (q256, q512):
+        assert_same(score.candidate, result.frozen_candidate)
+    assert_finite_score(q256, arguments(shape=AXIAL_SHAPE))
+    _, structured, bound = assert_finite_score(q512, arguments(shape=AXIAL_SHAPE))
     reference.assert_prediction_close(result.heldout_prediction, structured[:, :5], bound)
 
 

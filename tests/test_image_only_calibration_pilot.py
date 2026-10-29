@@ -13,7 +13,7 @@ import inspect
 import itertools
 import math
 import warnings
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 from fractions import Fraction
 from typing import Any
 
@@ -164,8 +164,9 @@ class ScriptedPowell:
 
 
 @pytest.fixture
-def invoke(monkeypatch: pytest.MonkeyPatch) -> Callable[..., Any]:
+def invoke(monkeypatch: pytest.MonkeyPatch) -> Iterator[Callable[..., Any]]:
     """Patch public dependencies before loading their pilot caller, preserving import styles."""
+    original_namespace = PILOT.__dict__.copy()
 
     def run(*, solver: Any = None, **changes: Any) -> Any:
         central, structured, heldout = observations()
@@ -184,7 +185,13 @@ def invoke(monkeypatch: pytest.MonkeyPatch) -> Callable[..., Any]:
             module = importlib.reload(PILOT)
             return module.fit_small_pilot(values.pop("central_counts"), **values)
 
-    return run
+    try:
+        yield run
+    finally:
+        # Reload replaces exported class identities in this shared module.
+        # Restore the collection-time namespace for other public callers.
+        PILOT.__dict__.clear()
+        PILOT.__dict__.update(original_namespace)
 
 
 def assert_frozen(record: Any, names: set[str]) -> None:
@@ -657,8 +664,13 @@ def test_complete_signed_finite_equation_scores_and_initialization(invoke: Any) 
     # actual attempts retain full grammar, requested-score and paired checks.
     numerical = [scores[0], [v for v in scores if v.stage == "optimizer"][1]]
     numerical.extend(v for v in scores if v.pupil_order in (256, 512))
+    frozen_reference = predictions(result.frozen_candidate, SHAPE, 512)
     for score in numerical:
-        cp, sp, delta = predictions(score.candidate, SHAPE, score.pupil_order)
+        if score.pupil_order == 512:
+            same_candidate(score.candidate, result.frozen_candidate)
+            cp, sp, delta = frozen_reference
+        else:
+            cp, sp, delta = predictions(score.candidate, SHAPE, score.pupil_order)
         target = objective(y, s, cp, sp)
         assert_scalar_close(score.objective, target, loss_allowance(y, s, cp, sp, delta))
     # The deliberately asymmetric public-coordinate trial distinguishes sign, bin rounding,
@@ -691,7 +703,7 @@ def test_complete_signed_finite_equation_scores_and_initialization(invoke: Any) 
         score = next(v for v in scores if v.pupil_order == q)
         assert score.stage == "refinement" and score.objective == value
         same_candidate(score.candidate, result.frozen_candidate)
-    cp, sp, delta = predictions(result.frozen_candidate, SHAPE, 512)
+    cp, sp, delta = frozen_reference
     assert_prediction_close(result.heldout_prediction, sp[:, :5], delta)
     residual = (heldout - 5) / 2 - sp[:, :5]
     for o, p in itertools.product(range(3), range(5)):
