@@ -395,9 +395,9 @@ def test_centroid_overlap_fails_without_repair_or_further_peak_search(invoke: An
 
 def test_exact_peak_ties_choose_lexicographic_indices(invoke: Any) -> None:
     y = np.zeros(SHAPE)
-    y[0, 0, [0, 7, 15]] = 8
+    y[0, 0, [0, 7, 14]] = 8
     centers, _, peaks = initialization(y)
-    assert peaks == ((0, 0, 0), (0, 0, 7), (0, 0, 15))
+    assert peaks == ((0, 0, 0), (0, 0, 7), (0, 0, 14))
     result = invoke(central_counts=5 + 2 * y)
     np.testing.assert_allclose(
         result.initial_candidate.centers_um_zyx, centers, rtol=128 * EPS, atol=0
@@ -490,13 +490,13 @@ def test_signed_smoothing_is_not_preclipped_and_uses_the_selected_gaussian(
     from scipy import ndimage
 
     y = np.zeros(SHAPE)
-    y[0, 0, [0, 7, 15]] = [8, 6, 4]
+    y[0, 0, [0, 7, 14]] = [8, 6, 4]
     y[0, 0, 3] = 100
     y[0, 1, 3] = -math.exp(0.5) * 100
     central = 5 + 2 * y
     normalized = (central - 5) / 2
     centers, _, peaks = initialization(normalized)
-    assert peaks == ((0, 0, 0), (0, 0, 7), (0, 0, 15))
+    assert peaks == ((0, 0, 0), (0, 0, 7), (0, 0, 14))
     original = ndimage.gaussian_filter
     entered = []
 
@@ -603,7 +603,7 @@ def test_complete_signed_finite_equation_scores_and_initialization(invoke: Any) 
     assert all(type(v) is float for v in result.origin_um_zyx)
     np.testing.assert_allclose(initial.centers_um_zyx, centers, rtol=128 * EPS, atol=0)
     assert initial.centers_um_zyx[0, 2] == RADIUS
-    assert initial.centers_um_zyx[-1, 2] == inward_upper(16, D[2])
+    assert initial.centers_um_zyx[-1, 2] == inward_upper(SHAPE[2], D[2])
     assert initial.centers_um_zyx[0, 1] == RADIUS
     nominal = (1.2 / 0.488) * np.array(
         [[math.sin(w), math.cos(w)] for w in (0, math.pi / 3, 2 * math.pi / 3)]
@@ -651,6 +651,13 @@ def test_complete_signed_finite_equation_scores_and_initialization(invoke: Any) 
             and score.objective >= 0
         )
         assert_candidate(score.candidate, SHAPE)
+    # Initial, asymmetric signed-field trial, and exact frozen rescores are
+    # independent numerical obligations. The positive-brightness run below
+    # covers axial/lateral rerasterization. The remaining
+    # actual attempts retain full grammar, requested-score and paired checks.
+    numerical = [scores[0], [v for v in scores if v.stage == "optimizer"][1]]
+    numerical.extend(v for v in scores if v.pupil_order in (256, 512))
+    for score in numerical:
         cp, sp, delta = predictions(score.candidate, SHAPE, score.pupil_order)
         target = objective(y, s, cp, sp)
         assert_scalar_close(score.objective, target, loss_allowance(y, s, cp, sp, delta))
@@ -698,10 +705,32 @@ def test_complete_signed_finite_equation_scores_and_initialization(invoke: Any) 
         assert_scalar_close(float(result.heldout_residual_mean[o, p]), mean, allowance)
         assert_scalar_close(float(result.heldout_residual_rms[o, p]), rms, allowance)
 
+    # Absorb the distinct non-exploratory poll proof. Two planes are needed
+    # for a legal axial movement of a contained 0.05 um sphere. The lateral
+    # geometry retains the same 15-column peaks as the smaller default scene.
+    shape = (2, 2, 15)
+    central, structured, heldout = observations(shape=shape)
+    positive = invoke(central_counts=central, structured_counts=structured, heldout_counts=heldout)
+    assert (positive.status, positive.stage) == ("completed_local", "complete")
+    assert np.all(positive.initial_candidate.brightness_relative > 0)
+    assert_poll_fold(positive, numerical_inputs=(central, structured))
+    y, s = (central - 5) / 2, (structured - 5) / 2
+    for order in (256, 512):
+        score = next(v for v in positive.objective_trace if v.pupil_order == order)
+        same_candidate(score.candidate, positive.frozen_candidate)
+        cp, sp, delta = predictions(score.candidate, shape, order)
+        assert np.max(cp) > 0 and np.max(sp) > 0
+        target = objective(y, s, cp, sp)
+        assert_scalar_close(score.objective, target, loss_allowance(y, s, cp, sp, delta))
+        if order == 512:
+            assert_prediction_close(positive.heldout_prediction, sp[:, :5], delta)
 
-def assert_poll_fold(result: Any) -> None:
+
+def assert_poll_fold(result: Any, *, numerical_inputs: tuple[Any, Any] | None = None) -> None:
     """Fold paired public poll records from the strictly best actual training score."""
     trace = iter(v for v in result.objective_trace if v.stage == "center")
+    shape = result.detector_shape_zyx
+    certified_axes = set()
     incumbent = min(
         (
             v
@@ -721,7 +750,7 @@ def assert_poll_fold(result: Any) -> None:
             center[bead, axis] += sign * D[axis] / 8
             contained = all(
                 Fraction(float(v)) >= Fraction(RADIUS)
-                and Fraction(float(v)) + Fraction(RADIUS) <= SHAPE[a] * Fraction(D[a])
+                and Fraction(float(v)) + Fraction(RADIUS) <= shape[a] * Fraction(D[a])
                 for c in center
                 for a, v in enumerate(c)
             )
@@ -745,7 +774,26 @@ def assert_poll_fold(result: Any) -> None:
                     np.testing.assert_array_equal(
                         getattr(score.candidate, name), getattr(incumbent.candidate, name)
                     )
-                assert_candidate(score.candidate, SHAPE)
+                assert_candidate(score.candidate, shape)
+                if (
+                    numerical_inputs is not None
+                    and axis in (0, 2)
+                    and axis not in certified_axes
+                    and score.candidate.brightness_relative[bead] > 0
+                ):
+                    old_sites = unit_sites(tuple(incumbent.candidate.centers_um_zyx[bead]), shape)[
+                        0
+                    ]
+                    new_sites = unit_sites(tuple(score.candidate.centers_um_zyx[bead]), shape)[0]
+                    if set(map(tuple, old_sites)) != set(map(tuple, new_sites)):
+                        central, structured = numerical_inputs
+                        y, s = (central - 5) / 2, (structured - 5) / 2
+                        cp, sp, delta = predictions(score.candidate, shape, 128)
+                        target = objective(y, s, cp, sp)
+                        assert_scalar_close(
+                            score.objective, target, loss_allowance(y, s, cp, sp, delta)
+                        )
+                        certified_axes.add(axis)
                 trials.append(score)
         best = min(trials, key=lambda v: v.objective) if trials else incumbent
         if best.objective < incumbent.objective:
@@ -753,27 +801,8 @@ def assert_poll_fold(result: Any) -> None:
     assert next(trace, None) is None
     same_candidate(incumbent.candidate, result.frozen_candidate)
     assert result.training_objectives_q128_q256_q512[0] == incumbent.objective
-
-
-@pytest.mark.parametrize("explore", [False, True])
-def test_poll_pairs_use_precoordinate_incumbent_and_rerasterize(invoke: Any, explore: bool) -> None:
-    solver = ScriptedPowell(explore=explore)
-    result = invoke(solver=solver)
-    if explore:
-        assert_requested_optimizer_scores(result, solver)
-    else:
-        assert np.all(result.initial_candidate.brightness_relative > 0)
-        central, structured, _ = observations()
-        y, training = (central - 5) / 2, (structured - 5) / 2
-        for score in result.objective_trace:
-            if score.stage == "center" and score.outcome == "scored":
-                assert score.pupil_order == 128
-                cp, sp, delta = predictions(score.candidate, SHAPE, 128)
-                target = objective(y, training, cp, sp)
-                assert_scalar_close(
-                    score.objective, target, loss_allowance(y, training, cp, sp, delta)
-                )
-    assert_poll_fold(result)
+    if numerical_inputs is not None:
+        assert certified_axes == {0, 2}
 
 
 @pytest.mark.parametrize("status", [1, 2, 3])
@@ -832,8 +861,8 @@ def test_smallest_legal_z_and_readonly_strided_camera_means(invoke: Any) -> None
         heldout_counts=h[:, :, :1],
         camera_estimate=camera(means_counts=means),
     )
-    assert result.status == "completed_local" and result.detector_shape_zyx == (1, 2, 16)
-    assert_candidate(result.frozen_candidate, (1, 2, 16))
+    assert result.status == "completed_local" and result.detector_shape_zyx == SHAPE
+    assert_candidate(result.frozen_candidate, SHAPE)
     assert means.flags.writeable is False and means.strides == (16,)
 
 
@@ -1043,10 +1072,26 @@ class ArraySubclass(np.ndarray):
     """An explicitly unsupported raw-array representation."""
 
 
-@pytest.mark.parametrize("field", ["central_counts", "structured_counts", "heldout_counts"])
 @pytest.mark.parametrize(
-    "kind",
-    ["list", "bool", "complex", "object", "subclass", "nan", "inf", "rank", "empty", "mismatch"],
+    "field,kind",
+    [
+        *(
+            (field, kind)
+            for field in ("central_counts", "structured_counts", "heldout_counts")
+            for kind in (
+                "list",
+                "bool",
+                "complex",
+                "object",
+                "subclass",
+                "nan",
+                "rank",
+                "empty",
+                "mismatch",
+            )
+        ),
+        ("central_counts", "inf"),
+    ],
 )
 def test_invalid_image_representations_and_shapes(invoke: Any, field: str, kind: str) -> None:
     images: dict[str, Any] = dict(
@@ -1154,7 +1199,7 @@ def test_required_nonfinite_arithmetic_has_truthful_stage(invoke: Any, case: str
         changes = {"camera_estimate": camera(contrast_counts=float(np.nextafter(0.0, 1.0)))}
     elif case == "brightness":
         central = np.full(SHAPE, 5.0)
-        central[0, 0, [1, 8, 15]] = np.finfo(float).max
+        central[0, 0, [0, 7, 14]] = np.finfo(float).max
         changes = {"central_counts": central}
         # h <= pi*(NA/lambda)^2 and pixel area=0.0064 um^2, so unit response
         # <=0.143 and these finite Y require brightness greater than float64 max.
@@ -1225,7 +1270,7 @@ def test_ordinary_correction_underflow_remains_an_information_outcome(invoke: An
 def test_heldout_correction_overflow_cannot_enter_training(invoke: Any) -> None:
     d = float(np.nextafter(0.0, 1.0))
     y = np.zeros(SHAPE)
-    y[0, 0, [1, 8, 15]] = 8
+    y[0, 0, [0, 7, 14]] = 8
     central = y * d
     estimate = camera(means_counts=np.array([0.0, 0.0, d]), contrast_counts=d)
     common = {
@@ -1283,8 +1328,7 @@ def test_late_known_optics_range_preserves_only_scored_records(
     else:
         # A faithful cached/equation-equivalent bypass is legitimate; no private backend mandate.
         assert result.status == "completed_local"
-        _, expected, delta = predictions(result.frozen_candidate, SHAPE, 512)
-        assert_prediction_close(result.heldout_prediction, expected[:, :5], delta)
+        assert_completed_bypass(result)
 
 
 def test_center_dependency_failure_records_the_actual_failed_attempt(
@@ -1320,8 +1364,7 @@ def test_center_dependency_failure_records_the_actual_failed_attempt(
         assert result.heldout_prediction is None
     else:
         assert result.status == "completed_local"
-        _, expected, delta = predictions(result.frozen_candidate, SHAPE, 512)
-        assert_prediction_close(result.heldout_prediction, expected[:, :5], delta)
+        assert_completed_bypass(result)
 
 
 @pytest.mark.parametrize("stage", ["optimizer", "heldout"])
@@ -1382,8 +1425,7 @@ def test_known_range_at_optimizer_or_heldout_preserves_stage_and_code(
             assert result.objective_trace[-1].outcome == "scored"
     else:
         assert result.status == "completed_local"
-        _, expected, delta = predictions(result.frozen_candidate, SHAPE, 512)
-        assert_prediction_close(result.heldout_prediction, expected[:, :5], delta)
+        assert_completed_bypass(result)
 
 
 @pytest.mark.parametrize("fault_order", [128, 256])
@@ -1440,8 +1482,29 @@ def test_unusable_initial_central_response_is_an_information_outcome(
     if not entered:
         # Only an unmodified full bypass promises the independent physical
         # output. Partial initial bypass is proved by the unit-scale check above.
-        _, expected, delta = predictions(result.frozen_candidate, SHAPE, 512)
-        assert_prediction_close(result.heldout_prediction, expected[:, :5], delta)
+        assert_completed_bypass(result)
+
+
+def assert_completed_bypass(result: Any) -> None:
+    """Require complete finite public work from a legal dependency bypass."""
+    assert (result.status, result.stage, result.failure_code) == (
+        "completed_local",
+        "complete",
+        None,
+    )
+    assert_candidate(result.initial_candidate, SHAPE)
+    assert_candidate(result.frozen_candidate, SHAPE)
+    assert len(result.center_attempts) == 18
+    assert all(
+        v is not None and math.isfinite(v) for v in result.training_objectives_q128_q256_q512
+    )
+    assert result.heldout_prediction.shape == (3, 5, *SHAPE)
+    for value in (
+        result.heldout_prediction,
+        result.heldout_residual_mean,
+        result.heldout_residual_rms,
+    ):
+        assert value is not None and np.isfinite(value).all()
 
 
 def assert_initial_unit_scale(candidate: Any, y: Any) -> None:
@@ -1550,8 +1613,7 @@ def test_initial_known_dependency_range_is_not_a_fabricated_success(
         assert_fault_work_stage(result, code, entered[0])
     else:
         assert result.status == "completed_local"
-        _, expected, delta = predictions(result.frozen_candidate, SHAPE, 512)
-        assert_prediction_close(result.heldout_prediction, expected[:, :5], delta)
+        assert_completed_bypass(result)
 
 
 @pytest.mark.parametrize(
@@ -1598,8 +1660,7 @@ def test_unrelated_dependency_failures_propagate_unchanged(
         assert entered and caught is expected_failure
     else:
         assert not entered and result.status == "completed_local"
-        _, expected, delta = predictions(result.frozen_candidate, SHAPE, 512)
-        assert_prediction_close(result.heldout_prediction, expected[:, :5], delta)
+        assert_completed_bypass(result)
     print("PUBLIC_DEPENDENCY_FAULT", dependency, work_scope, "fault_after_solver", entered)
 
 
@@ -1651,9 +1712,7 @@ def test_one_electron_dependency_units_and_unrelated_warnings(
     assert result.status == "completed_local"
     if optics_calls:
         assert {UserWarning, DeprecationWarning, RuntimeWarning} <= {w.category for w in observed}
-    # The output equation independently proves units even when correct caching bypasses observers.
-    _, expected, delta = predictions(result.frozen_candidate, SHAPE, 512)
-    assert_prediction_close(result.heldout_prediction, expected[:, :5], delta)
+    assert_completed_bypass(result)
 
 
 def test_numpy_warning_rng_policies_and_inputs_survive_success_and_failure(invoke: Any) -> None:

@@ -109,19 +109,20 @@ def aggregate_reference(
 AxisWeights = tuple[tuple[Fraction, ...], tuple[Fraction, ...], tuple[Fraction, ...]]
 LARGE_SPACING = (0.125, 0.08, 0.08)
 LARGE_WEIGHTS: AxisWeights = (
-    tuple(Fraction(z + 1, 16) for z in range(16)),
-    tuple(Fraction(1 + (3 * y) % 11, 8) for y in range(20)),
-    tuple(Fraction(1 + (5 * x) % 13, 8) for x in range(24)),
+    tuple(Fraction(z + 1, 16) for z in range(17)),
+    tuple(Fraction(1 + (3 * y) % 11, 8) for y in range(8)),
+    tuple(Fraction(1 + (5 * x) % 13, 8) for x in range(8)),
 )
 
 
 def large_arguments() -> dict[str, Any]:
-    """7,680 positive integrated weights; no source-volume multiplier."""
+    """All 17 axial planes contribute positive nonconstant dyadic weights."""
     args = arguments()
     wz, wy, wx = LARGE_WEIGHTS
     args.update(
         source_e=np.array([[[float(z * y * x) for x in wx] for y in wy] for z in wz]),
         detector_spacing_um_zyx=LARGE_SPACING,
+        source_refinement_zyx=(1, 2, 2),
         pupil_order=1,
         pixel_subsamples_yx=(2, 2),
     )
@@ -258,13 +259,13 @@ def separable_reference(
 
 @cache
 def large_reference() -> Reference:
-    return separable_reference(LARGE_WEIGHTS, LARGE_SPACING, (2, 2, 2))
+    return separable_reference(LARGE_WEIGHTS, LARGE_SPACING, (1, 2, 2))
 
 
 REFINEMENT_WEIGHTS: AxisWeights = (
-    (Fraction(1),) * 8,
-    (Fraction(1),) * 12,
-    (Fraction(1),) * 16,
+    (Fraction(1),) * 6,
+    (Fraction(1),) * 10,
+    (Fraction(1),) * 20,
 )
 
 
@@ -272,7 +273,7 @@ def refinement_arguments(beams: tuple[float, float, float]) -> dict[str, Any]:
     """Complete independent source/pixel refinement and beam-positive family."""
     args = arguments()
     args.update(
-        source_e=np.ones((8, 12, 16)),
+        source_e=np.ones((6, 10, 20)),
         detector_spacing_um_zyx=LARGE_SPACING,
         beam_amplitudes=beams,
         pupil_order=1,

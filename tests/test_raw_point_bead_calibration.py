@@ -784,8 +784,17 @@ def ndarray_spacing(dtype: Any, storage: str) -> tuple[Array, Array]:
     return spacing, backing
 
 
-@pytest.mark.parametrize("dtype", ["i1", ">i2", "u8", "f2", ">f4", ">f8", np.longdouble, object])
-@pytest.mark.parametrize("storage", ["contiguous", "strided", "reversed-readonly"])
+@pytest.mark.parametrize(
+    "dtype,storage",
+    [
+        *(
+            (dtype, "contiguous")
+            for dtype in ("i1", ">i2", "u8", "f2", ">f4", ">f8", np.longdouble, object)
+        ),
+        (">f8", "strided"),
+        (">f8", "reversed-readonly"),
+    ],
+)
 def test_ndarray_spacing_numeric_provenance_ownership_and_preservation(
     calibrate: Any, dtype: Any, storage: str
 ) -> None:

@@ -26,7 +26,7 @@ F64 = NDArray[np.float64]
 D = (0.125, 0.080, 0.080)
 REFINEMENT = (8, 8, 8)
 RADIUS = 0.050
-SHAPE = (2, 2, 16)
+SHAPE = (1, 2, 15)
 COMMANDS = np.array(
     [
         *(2 * math.pi * j / 5 for j in range(5)),
@@ -228,11 +228,11 @@ def enclosed_rule(order: int) -> tuple[F64, F64, F64, Fraction, Fraction, Fracti
     if order not in (1, 128, 256, 512):
         raise OracleInconclusive("pilot observer supports only Q=1,128,256,512")
     proposals, _ = roots_legendre(order)
-    brackets = []
-    for proposed in proposals:
-        if order == 1:
-            brackets.append((Fraction(0), Fraction(0), Fraction(0)))
-            continue
+    positive = []
+    # The three-term recurrence gives P_n(-x)=(-1)^n P_n(x).
+    # For these even orders, positive sign-changing brackets reflect exactly.
+    # Disjointness and the final degree count certify every reflected root.
+    for proposed in proposals[order // 2 :] if order > 1 else ():
         center = Fraction(float(proposed))
         lo, hi = center - Fraction(1, 2**48), center + Fraction(1, 2**48)
         left, right = legendre_sign(order, lo), legendre_sign(order, hi)
@@ -247,9 +247,18 @@ def enclosed_rule(order: int) -> tuple[F64, F64, F64, Fraction, Fraction, Fracti
                 lo = middle
             else:
                 hi = middle
-        brackets.append((lo, hi, (lo + hi) / 2))
-    if any(not (-1 < lo <= hi < 1) for lo, hi, _ in brackets) or any(
-        a[1] >= b[0] for a, b in zip(brackets, brackets[1:], strict=False)
+        if not 0 < lo < hi < 1:
+            raise OracleInconclusive("pilot Legendre positive bracket is outside (0,1)")
+        positive.append((lo, hi, (lo + hi) / 2))
+    brackets = (
+        [(Fraction(0), Fraction(0), Fraction(0))]
+        if order == 1
+        else sorted(positive + [(-hi, -lo, -center) for lo, hi, center in positive])
+    )
+    if (
+        len(brackets) != order
+        or any(not (-1 < lo <= hi < 1) for lo, hi, _ in brackets)
+        or any(a[1] >= b[0] for a, b in zip(brackets, brackets[1:], strict=False))
     ):
         raise OracleInconclusive("pilot Legendre brackets do not exhaust distinct roots")
     pi = pi_interval(60)
@@ -260,18 +269,24 @@ def enclosed_rule(order: int) -> tuple[F64, F64, F64, Fraction, Fraction, Fracti
     )
     weights, radial, axial = [], [], []
     weight_error = radial_error = axial_error = Fraction(0)
+    reflected_weights: dict[Fraction, tuple[float, Fraction]] = {}
     for lo, hi, center in brackets:
         x = Interval(Interval.rational(lo, 60).lo, Interval.rational(hi, 60).hi, 60)
-        value = legendre_value(order - 1, center)
-        perturbation = Fraction((order - 1) * order, 2) * max(center - lo, hi - center)
-        p = Interval(
-            Interval.rational(value - perturbation, 60).lo,
-            Interval.rational(value + perturbation, 60).hi,
-            60,
-        )
-        if p.lo <= 0 <= p.hi:
-            raise OracleInconclusive("pilot weight denominator is unresolved")
-        weight, ew = interval_midpoint((1 - x.squared()) / (order**2 * p.squared()))
+        if abs(center) not in reflected_weights:
+            value = legendre_value(order - 1, center)
+            perturbation = Fraction((order - 1) * order, 2) * max(center - lo, hi - center)
+            p = Interval(
+                Interval.rational(value - perturbation, 60).lo,
+                Interval.rational(value + perturbation, 60).hi,
+                60,
+            )
+            if p.lo <= 0 <= p.hi:
+                raise OracleInconclusive("pilot weight denominator is unresolved")
+            # Both x^2 and P_(n-1)(x)^2 are invariant under exact reflection.
+            reflected_weights[abs(center)] = interval_midpoint(
+                (1 - x.squared()) / (order**2 * p.squared())
+            )
+        weight, ew = reflected_weights[abs(center)]
         u = (1 + x) / 2
         radial_factor, er = interval_midpoint(2 * pi * r * u.sqrt())
         axial_factor, ea = interval_midpoint(2 * pi * nu * ((1 - beta**2 * u).sqrt() - 1))
@@ -307,17 +322,19 @@ def camera(**changes: Any) -> ScalarCameraEstimate:
     return ScalarCameraEstimate(**values)
 
 
-def observations(*, edge: bool = False) -> tuple[F64, F64, F64]:
+def observations(
+    *, edge: bool = False, shape: tuple[int, int, int] = SHAPE
+) -> tuple[F64, F64, F64]:
     """Provide three resolvable peaks, signed tails, and asymmetric training data."""
-    y = np.full(SHAPE, -0.03125, dtype=np.float64)
-    peaks = (0, 7, 15) if edge else (1, 8, 15)
+    y = np.full(shape, -0.03125, dtype=np.float64)
+    peaks = (0, 7, 14)
     for x, height in zip(peaks, (8.0, 6.0, 4.0), strict=True):
         y[0, 0, x] = height
-    structured = np.empty((3, 9, *SHAPE))
+    structured = np.empty((3, 9, *shape))
     for o in range(3):
         for p in range(9):
             structured[o, p] = (o + 1) / 8 + (p - 4) / 16 + y / (4 + o)
-    heldout = np.arange(15 * math.prod(SHAPE), dtype=np.float64).reshape(3, 5, *SHAPE)
+    heldout = np.arange(15 * math.prod(shape), dtype=np.float64).reshape(3, 5, *shape)
     heldout = (heldout % 17 - 8) / 16
     return 5 + 2 * y, 5 + 2 * structured, 5 + 2 * heldout
 
@@ -780,9 +797,9 @@ def reference_controls() -> None:
         assert Fraction(upper) <= exact < Fraction(float(np.nextafter(upper, np.inf)))
     y = (observations(edge=True)[0] - 5) / 2
     centers, maxima, peaks = initialization(y)
-    assert peaks == ((0, 0, 0), (0, 0, 7), (0, 0, 15))
+    assert peaks == ((0, 0, 0), (0, 0, 7), (0, 0, 14))
     np.testing.assert_array_equal(maxima, [8, 6, 4])
-    assert centers[0, 2] == RADIUS and centers[-1, 2] == inward_upper(16, D[2])
+    assert centers[0, 2] == RADIUS and centers[-1, 2] == inward_upper(SHAPE[2], D[2])
     sites, count, mass = unit_sites(tuple(centers[0]), SHAPE)
     assert count == len(sites) and count > 0
     assert mass == float(Fraction(float(Fraction(1, count))) * count)

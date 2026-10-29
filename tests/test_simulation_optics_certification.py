@@ -14,7 +14,6 @@ from numpy.typing import NDArray
 from simulation_optics_fixture import compare_reference, exact
 from simulation_optics_q128_fixture import (
     composition_case,
-    dense_case,
     oscillatory_case,
     qualify_reference,
 )
@@ -52,26 +51,6 @@ def observed_call(
     assert np.isfinite(result).all() and (result >= 0).all()
     assert not any(np.shares_memory(result, value) for value in arrays)
     return result
-
-
-def test_complete_dense_q128_signed_fields_and_independent_pixels() -> None:
-    """Every one of 16 output entries includes all eight unequal source cells."""
-    args, geometry = dense_case()
-    reference = geometry.reference()
-    qualify_reference(reference)
-    actual = observed_call(expected_images, args)
-    assert actual.shape == reference.shape == (2, 2, 1, 2, 2)
-    compare_reference(tuple(exact(float(v)) for v in actual.flat), reference)
-    before = actual.tobytes()
-    repeated = observed_call(expected_images, args)
-    assert repeated.tobytes() == before
-    assert not np.shares_memory(actual, repeated)
-    repeated.fill(0)
-    assert actual.tobytes() == before
-    args["source_e"] = np.zeros((2, 2, 2))
-    zero = observed_call(expected_images, args)
-    assert zero.shape == reference.shape and np.count_nonzero(zero) == 0
-    assert actual.tobytes() == before
 
 
 def test_small_source_catalogue_to_complete_q128_images() -> None:

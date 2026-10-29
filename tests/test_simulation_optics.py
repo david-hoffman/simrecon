@@ -142,7 +142,14 @@ def test_zero_and_on_axis_peak_have_electron_area_units(dz: float, order: int) -
 
 @pytest.mark.parametrize(
     "beams",
-    [(4.0, 2.0, 1.0), (0.0, 2.0, 1.0), (0.0, 0.0, 3.0), (0.0, 3.0, 0.0), (0.0, 1.0, 1.0)],
+    [
+        (4.0, 2.0, 1.0),
+        (0.0, 2.0, 1.0),
+        (0.0, 0.0, 3.0),
+        (0.0, 3.0, 0.0),
+        (0.0, 1.0, 1.0),
+        (4.0, 2.0, 2.0),
+    ],
 )
 def test_direct_squared_field_phases_and_amplitude_normalization(
     beams: tuple[float, float, float],
