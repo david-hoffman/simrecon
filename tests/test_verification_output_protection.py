@@ -7,14 +7,13 @@ import json
 import os
 import shutil
 import subprocess
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import pytest
 
-from verification_fixture_tools import PHASES, prepare_phase_inputs
+from verification_fixture_tools import PHASES, install_phase_commands, prepare_phase_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = Path("artifacts/verification/receipt.json")
@@ -71,17 +70,7 @@ def create_repository(directory: Path, linked: bool = False) -> Repository:
     private_git = Path(git(root, "rev-parse", "--absolute-git-dir"))
     bin_dir = directory / "bin"
     bin_dir.mkdir()
-    shutil.copyfile(
-        ROOT / "tests/verification_fixture_tools.py", bin_dir / "verification_fixture_tools.py"
-    )
-    for name in ("make", "uv"):
-        command = bin_dir / name
-        command.write_text(
-            f"#!{sys.executable}\n"
-            + Path(__file__).with_name("verification_output_fixture.py").read_text(),
-            encoding="utf-8",
-        )
-        command.chmod(0o755)
+    install_phase_commands(bin_dir, "verification_output_fixture")
     return Repository(root, bin_dir, common_git, private_git)
 
 

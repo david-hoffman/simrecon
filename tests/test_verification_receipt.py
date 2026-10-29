@@ -14,7 +14,12 @@ from pathlib import Path
 
 import pytest
 
-from verification_fixture_tools import PHASES, TAG_WHEELS, prepare_phase_inputs
+from verification_fixture_tools import (
+    PHASES,
+    TAG_WHEELS,
+    install_phase_commands,
+    prepare_phase_inputs,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = Path(__file__).with_name("verification_fixture_tools.py")
@@ -50,14 +55,7 @@ def repository(tmp_path):
     git(root, "commit", "-qm", "fixture candidate")
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
-    shutil.copyfile(TOOLS, bin_dir / "verification_fixture_tools.py")
-    for name in ("make", "uv"):
-        target = bin_dir / name
-        target.write_text(
-            f"#!{sys.executable}\nimport sys\n"
-            "from verification_fixture_tools import main\nsys.exit(main())\n"
-        )
-        target.chmod(0o755)
+    install_phase_commands(bin_dir)
     return root, bin_dir
 
 

@@ -394,6 +394,20 @@ def copy_fixture_file(source: Path, destination: Path) -> None:
     destination.write_bytes(source.read_bytes())
 
 
+def install_phase_commands(bin_dir: Path, module: str = "verification_fixture_tools") -> None:
+    """Install tiny external commands using this candidate's fixture sources."""
+    fixture_dir = str(Path(__file__).resolve().parent)
+    launcher = (
+        f"#!{sys.executable}\nimport sys\n"
+        f"sys.path.insert(0, {fixture_dir!r})\n"
+        f"from {module} import main\nsys.exit(main())\n"
+    )
+    for name in ("make", "uv"):
+        target = bin_dir / name
+        target.write_text(launcher, encoding="utf-8")
+        target.chmod(0o755)
+
+
 def prepare_phase_inputs(bin_dir: Path, mode: str) -> Path:
     """Prebuild immutable external I/O templates, outside the candidate repo."""
     inputs = bin_dir / ("phase-inputs-" + mode)
