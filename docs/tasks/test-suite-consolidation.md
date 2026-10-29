@@ -4,6 +4,8 @@ The owner authorized one preparatory PR before RA02 to cut full local verificati
 
 The fifth pass covers redundant assertion-helper examples, smaller independently certified numerical references, consolidated study execution contexts, factored verification examples and independently qualified reader-timeout keepers. Exact ownership and the retained proof are defined in the task contract and public role packets.
 
+The reader keepers distinguish the configured 180 s parent deadline, a genuine adapted 6 s parent timeout and an unscaled 15 s socket timeout. The former long-running example is retired. Configuration and simulated deadline-boundary checks remain, but a premature abort occurring only after the shorter probe can escape; no long-duration survival claim remains. The independent review records the other retired interaction examples and their retained obligations.
+
 The sole live Current state and cumulative role/check/measurement/cleanup evidence are local artifacts/test-consolidation/current-state.json in the integration worktree. The prior read-only audit remains in its own retained worktree; its costs and failures are not reset. Final commit/tree, checkpoints, exact native results and PR/CI identities are recorded outside the verified tracked bytes.
 
 The coordinator owns presentation: measured before/after test-cost figures plus unchanged numerical-stage evidence and its limits, near the plain-English summary before the technical appendix. No reconstruction improvement or numerical parity is claimed by test consolidation.
