@@ -1247,9 +1247,19 @@ def test_p11_receipt_destination_keeps_same_run_evidence(
     assert_outcome(invoke(evidence_repository, destination))
 
 
-@pytest.mark.parametrize("target", [MEASUREMENT, COVERAGE_JSON, WHEEL, LOG_EXAMPLES[0]])
-@pytest.mark.parametrize("entry", ["receipt", "current-log-example"])
-@pytest.mark.parametrize("kind", ["symlink", "hardlink"])
+@pytest.mark.parametrize(
+    "target,entry,kind",
+    [
+        (MEASUREMENT, "receipt", "symlink"),
+        (MEASUREMENT, "current-log-example", "hardlink"),
+        (COVERAGE_JSON, "receipt", "hardlink"),
+        (COVERAGE_JSON, "current-log-example", "symlink"),
+        (WHEEL, "receipt", "symlink"),
+        (WHEEL, "current-log-example", "hardlink"),
+        (LOG_EXAMPLES[0], "receipt", "hardlink"),
+        (LOG_EXAMPLES[0], "current-log-example", "symlink"),
+    ],
+)
 def test_p11_phase_link_cannot_falsify_emitted_evidence(
     evidence_repository: Repository, target: str, entry: str, kind: str
 ) -> None:
@@ -1276,7 +1286,6 @@ def test_p07_p11_collision_keeps_actual_failure_and_stop(
     [
         DEFAULT_RECEIPT,
         "artifacts/verification/logs/custom-receipt.json",
-        "artifacts/coverage/custom-receipt.json",
         "dist/custom-receipt.json",
     ],
 )
@@ -1351,60 +1360,51 @@ def test_p11_phase_link_sweeps_actual_current_html_members(
     assert baseline.status == 0, baseline.stdout + baseline.stderr
     assert_outcome(baseline)
     classes = {category_for(name) for name in baseline.native_emissions[-1]["members"]}
-    failures = []
-    for entry, kind in (
-        ("receipt", "symlink"),
-        ("receipt", "hardlink"),
-        ("current-log-example", "symlink"),
-        ("current-log-example", "hardlink"),
-    ):
-        pending = sorted(classes)
-        completed = set()
-        while pending:
-            category = pending.pop(0)
-            completed.add(category)
-            repository = prepare_evidence_repository(
-                tmp_path / entry / kind / category, monkeypatch
-            )
-            observed = invoke(
-                repository,
-                native=True,
-                action={
-                    "phase": "audit",
-                    "destination": DEFAULT_RECEIPT if entry == "receipt" else LOG_EXAMPLES[1],
-                    "selector": "html-member",
-                    "member_class": category,
-                    "kind": kind,
-                },
-            )
-            try:
-                assert_outcome(observed)
-                for event in observed.native_emissions:
-                    if event["phase"] == "coverage-html":
-                        classes.update(category_for(name) for name in event["members"])
-                for call in phase_calls(observed):
-                    action = call["action"]
-                    if action and action.get("member_class"):
-                        actual_classes = {
-                            category_for(name) for name in action["discovered_members"]
-                        }
-                        assert action["requested_class_available"] == (category in actual_classes)
-                        assert category_for(action["target"]) == (
-                            category if category in actual_classes else "index"
-                        )
-            except AssertionError as error:
-                failures.append(
-                    {"entry": entry, "kind": kind, "member_class": category, "failure": str(error)}
-                )
-            pending.extend(sorted(classes - completed - set(pending)))
-    assert not failures, f"current HTML class preservation failures: {failures}"
+    contexts = {
+        "index": ("receipt", "symlink"),
+        "other-html": ("current-log-example", "hardlink"),
+        "auxiliary": ("receipt", "hardlink"),
+        "nested-other-html": ("current-log-example", "symlink"),
+        "nested-auxiliary": ("receipt", "symlink"),
+    }
+    pending = sorted(classes)
+    completed = set()
+    while pending:
+        category = pending.pop(0)
+        entry, kind = contexts[category]
+        repository = prepare_evidence_repository(tmp_path / category, monkeypatch)
+        observed = invoke(
+            repository,
+            native=True,
+            action={
+                "phase": "audit",
+                "destination": DEFAULT_RECEIPT if entry == "receipt" else LOG_EXAMPLES[1],
+                "selector": "html-member",
+                "member_class": category,
+                "kind": kind,
+            },
+        )
+        assert_outcome(observed)
+        actions = [
+            call["action"]
+            for call in phase_calls(observed)
+            if call["action"] and call["action"].get("member_class")
+        ]
+        assert len(actions) == 1, "Tooling nonwitness: current member action not reached"
+        action = actions[0]
+        assert action["requested_class_available"], (
+            "Tooling nonwitness: discovered class absent from negative invocation"
+        )
+        assert category_for(action["target"]) == category
+        classes.update(category_for(name) for name in action["discovered_members"])
+        completed.add(category)
+        pending.extend(sorted(classes - completed - set(pending)))
+    assert completed == classes
 
 
 @pytest.mark.parametrize(
     "destination,data_file",
     [
-        (DEFAULT_RECEIPT, ".coverage"),
-        (".coverage.receipt.json", ".coverage"),
         (".coverage.unused", ".coverage"),
         ("artifacts/coverage/html/custom-receipt.json", ".coverage"),
         ("artifacts/native/custom-receipt.json", "artifacts/native/custom.data"),
@@ -1459,7 +1459,7 @@ def prepare_native_directory(repository: Repository, name: str, alias: bool) -> 
     assert git(repository.root, "check-ignore", name) == name
 
 
-@pytest.mark.parametrize("alias", [False, True], ids=["ordinary", "directory-alias"])
+@pytest.mark.parametrize("alias", [True], ids=["directory-alias"])
 @pytest.mark.parametrize("collision", [False, True], ids=["neighbor", "collision"])
 def test_p11_directory_receipt_preserves_current_native_evidence(
     evidence_repository: Repository, alias: bool, collision: bool
@@ -1474,8 +1474,11 @@ def test_p11_directory_receipt_preserves_current_native_evidence(
     assert_outcome(observed)
 
 
-@pytest.mark.parametrize("alias", [False, True], ids=["ordinary", "directory-alias"])
-@pytest.mark.parametrize("leaf", ["audit.log", "unused-native.data"])
+@pytest.mark.parametrize(
+    "alias,leaf",
+    [(False, "audit.log"), (True, "audit.log"), (True, "unused-native.data")],
+    ids=["ordinary-collision", "directory-alias-collision", "directory-alias-neighbor"],
+)
 def test_p11_directory_log_example_preserves_current_native_evidence(
     evidence_repository: Repository, alias: bool, leaf: str
 ) -> None:

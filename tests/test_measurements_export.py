@@ -162,18 +162,14 @@ def test_e1_e3_same_run_exact_report(
     metadata = [c for c in calls if c not in phases]
     assert metadata
     assert all(c["path"] is None and c["run_id"] is None for c in metadata)
-
-
-def test_e1_fresh_id_per_invocation(repository: Repository) -> None:
-    root, _ = repository
-    first, first_receipt = invoke(repository)
-    assert first.returncode == 0, first.stderr
-    assert first_receipt is not None
-    second, second_receipt = invoke(repository)
-    assert second.returncode == 0, second.stderr
-    assert second_receipt is not None
-    assert first_receipt["measurements"]["run_id"] != second_receipt["measurements"]["run_id"]
-    assert_measurements(second_receipt, root, report())
+    if (units, baseline, peak) == ("KiB", 100, 107):
+        # Assert the first live report above before the unchanged-input rerun.
+        second, second_receipt = invoke(repository, value=expected)
+        assert second.returncode == 0, second.stdout + second.stderr
+        assert second_receipt is not None
+        assert second_receipt["result"] == "passed" and second_receipt["problems"] == []
+        assert second_receipt["measurements"]["run_id"] != run_id
+        assert_measurements(second_receipt, root, expected)
 
 
 def test_e1_legacy_collector_disabled(repository: Repository) -> None:
