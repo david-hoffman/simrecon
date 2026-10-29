@@ -1,0 +1,309 @@
+{
+  "description": "Actual finite-periodic RA02 input, independent expectation and public output arrays; all intensity values are arbitrary input intensity units, distances micrometres, frequencies cycles/micrometre. No physical recovery or C parity claim.",
+  "runtime_baseline": "e407084753f8888864ccce8b9a49a5f91e788ae7",
+  "measurements": {
+    "asymmetric_volume_pre_call_budget": {
+      "N": 6,
+      "M": 30,
+      "P": 162,
+      "B": 2.222599445787886,
+      "condition": 2.0506711178907264,
+      "denominator_margin": 0.5,
+      "spectrum_bound": 1.1643508339819367e-08,
+      "spatial_bound": 1.8993472979330342e-06,
+      "observer_spectrum": 5.1298255643996316e-11,
+      "observer_spatial": 8.310317414327403e-09
+    },
+    "matched_independent_systems": {
+      "2d": {
+        "native_shape": [
+          1,
+          7
+        ],
+        "output_shape": [
+          2,
+          14
+        ],
+        "phase_condition": 1.5612783539813468,
+        "normal_condition": 2.7980597819327566,
+        "source_coordinates": 3,
+        "input_scale": 2.690481223699751,
+        "tolerance": 5.490760054250515e-08,
+        "source_penalty_diagonal": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "independent_solution": [
+          0.8819809070202216,
+          -0.33395777596373777,
+          0.24947267737120216
+        ]
+      },
+      "volume": {
+        "native_shape": [
+          3,
+          1,
+          7
+        ],
+        "output_shape": [
+          3,
+          1,
+          11
+        ],
+        "phase_condition": 1.8394745162552584,
+        "normal_condition": 2.000000000000001,
+        "source_coordinates": 9,
+        "input_scale": 7.244034806450572,
+        "tolerance": 1.5885168921983148e-06,
+        "source_penalty_diagonal": [
+          1.0,
+          0.5000000000000001,
+          0.5,
+          0.5000000000000001,
+          0.5,
+          0.5,
+          0.4999999999999999,
+          0.5000000000000001,
+          0.4999999999999999
+        ],
+        "independent_solution": [
+          0.9273531887397362,
+          -0.3710524579213614,
+          0.2785306752165758,
+          0.18509081643795722,
+          -0.23136352054744647,
+          0.13883842604367244,
+          0.0925589506957816,
+          -0.18519856900227666,
+          0.32409749575398406
+        ]
+      }
+    },
+    "retained_figure_measurements": {
+      "max_spectrum_error": 8.283304597789254e-17,
+      "max_volume_error": 7.7981103139771e-16,
+      "expected_spectrum_imaginary_scale": 0.09220910432980693,
+      "expected_volume_minimum_real": -0.21115326592844438,
+      "array_names": [
+        "images",
+        "phases_rad",
+        "carriers_yx_bins",
+        "gains",
+        "transfers",
+        "mask",
+        "regularization",
+        "input_spacing_um",
+        "transfer_origin_zyx",
+        "expected_spectrum",
+        "actual_spectrum",
+        "expected_volume",
+        "actual_volume",
+        "signed_spectrum_difference",
+        "signed_volume_difference",
+        "fz_per_um",
+        "fy_per_um",
+        "fx_per_um",
+        "centered_dc_index",
+        "spatial_origin_index"
+      ]
+    }
+  },
+  "source_and_array_sha256": {
+    "tests/test_reference_alignment_ra02.py": "1b09183b3113448c3fef960e1ab98baff5a2cc8255a3eb227a124370375a7cc0",
+    "tests/reference_alignment_ra02_fixture.py": "b26dd26518b70f04d3ad3f50fec5d04c7671ecbe01fd22b170a65363d4f59b20",
+    "src/simrecon/_phase.py": "c5bd012e554d781b11a4f439b84099f3e598e080dbf121aed8103d29cfa9e025",
+    "src/simrecon/_volume_phase.py": "b0d462a06d364145b566a95a3e31f52a34290d858eab400335c1bb2a30533006",
+    "src/simrecon/_reconstruction.py": "c47d3bc67e51c1a885d80f08b20d8a0977b6cfb5f8aa47743ab39e3060ed8adb",
+    "src/simrecon/volume_reconstruction.py": "66f9663410c490ffdf64d6f395befc84f385927e664881180cb8da67d660b65f",
+    "uv.lock": "35b409ba276e93de95ad5af61a399aedb4500af4106d4d774eab80d40d1544f9",
+    "docs/reports/evidence/ra02/arrays.npz": "962e553a31e90d0fc31a570f21c562ccccfbd186fcfb5354fa9c4d837366d438",
+    "docs/reports/evidence/ra02/plot_comparison.py": "f3265f682578faa1562a45fd4415e7a82e8f6830bd27ac23bed31404d56bfea1"
+  },
+  "figure_slice_policy": {
+    "target": "input transfer origin, declared before output observations",
+    "target_zyx_um": [
+      0.7,
+      0.4,
+      0.5
+    ],
+    "nearest_sample": "first stored index on an equal-distance tie",
+    "scope": "algebraic control has no bead catalogue; no fitted peak/recenter/rescaling",
+    "frequency_plane_qz_per_um": 0,
+    "input": "orientation1, phase1, fixed before rendering"
+  },
+  "rendering": {
+    "matplotlib": "3.10.7",
+    "numpy": "2.5.3",
+    "environment": "isolated uv --no-project plotting environment; project dependency lock unchanged",
+    "display": "signed real intensity shared linear symmetric scale; signed actual-minus-expected uses separately labeled arithmetic scale; spectrum real/imag share scale; physical aspect preserved",
+    "resolved_distributions_same_render_process": [
+      [
+        "PyYAML",
+        "6.0.3"
+      ],
+      [
+        "Pygments",
+        "2.21.0"
+      ],
+      [
+        "cfgv",
+        "3.5.0"
+      ],
+      [
+        "contourpy",
+        "1.4.0"
+      ],
+      [
+        "coverage",
+        "7.16.2"
+      ],
+      [
+        "cycler",
+        "0.12.1"
+      ],
+      [
+        "distlib",
+        "0.4.3"
+      ],
+      [
+        "execnet",
+        "2.1.2"
+      ],
+      [
+        "filelock",
+        "4.2.1"
+      ],
+      [
+        "fonttools",
+        "4.68.0"
+      ],
+      [
+        "h5py",
+        "3.16.0"
+      ],
+      [
+        "identify",
+        "2.6.20"
+      ],
+      [
+        "iniconfig",
+        "2.3.0"
+      ],
+      [
+        "kiwisolver",
+        "1.5.1"
+      ],
+      [
+        "matplotlib",
+        "3.10.7"
+      ],
+      [
+        "mrcfile",
+        "1.5.4"
+      ],
+      [
+        "nodeenv",
+        "1.11.0"
+      ],
+      [
+        "nodejs-wheel-binaries",
+        "24.19.0"
+      ],
+      [
+        "numpy",
+        "2.5.3"
+      ],
+      [
+        "numpy",
+        "2.5.3"
+      ],
+      [
+        "packaging",
+        "26.3"
+      ],
+      [
+        "packaging",
+        "26.3"
+      ],
+      [
+        "pillow",
+        "13.0.0"
+      ],
+      [
+        "platformdirs",
+        "4.12.2"
+      ],
+      [
+        "pluggy",
+        "1.6.0"
+      ],
+      [
+        "pre_commit",
+        "4.6.2"
+      ],
+      [
+        "pyparsing",
+        "3.3.3"
+      ],
+      [
+        "pyright",
+        "1.1.414"
+      ],
+      [
+        "pytest",
+        "9.1.1"
+      ],
+      [
+        "pytest-xdist",
+        "3.8.0"
+      ],
+      [
+        "python-dateutil",
+        "3.0.0"
+      ],
+      [
+        "python-discovery",
+        "1.6.1"
+      ],
+      [
+        "ruff",
+        "0.16.9"
+      ],
+      [
+        "scipy",
+        "1.18.1"
+      ],
+      [
+        "simrecon",
+        "0.1.0"
+      ],
+      [
+        "six",
+        "1.17.0"
+      ],
+      [
+        "tifffile",
+        "2026.9.20"
+      ],
+      [
+        "typing_extensions",
+        "4.16.0"
+      ],
+      [
+        "tzdata",
+        "2026.6"
+      ],
+      [
+        "virtualenv",
+        "21.14.13"
+      ]
+    ],
+    "python_version": "3.13.12",
+    "environment_custody": "uv temporary prefix normally removed after command; no retained-prefix custody claim"
+  },
+  "figure_sha256": {
+    "volume-comparison.png": "47966828c936044e0c6dfb05c2a42b0167e5285aa24c1c87654a5ebdd150422c",
+    "frequency-placement.png": "cb4f7ce47fd97867aebb3f0d35f01dde2fe5ace0ee0678695c36808b1ce4843f"
+  }
+}

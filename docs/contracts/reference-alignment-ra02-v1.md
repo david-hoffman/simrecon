@@ -1,0 +1,47 @@
+# RA02 exact public control contract
+
+Version 1.0. 29 October 2026. Authorized numerical verification, not new estimator behavior.
+
+RA02 verifies known-parameter finite-periodic phase separation and spectral fusion through public operations. Existing contracts remain normative. No reference C execution/copying, fractional 3D, new noise/optical estimator, full-study optimization or physical recovery guarantee is authorized.
+
+## Conventions and scenarios
+
+Arrays use z/y/x, carriers y/x detector bins, spacing µm, frequencies cycles/µm and phase radians. Spatial index zero is the origin. Forward Fourier-series coefficients divide the negative-exponent finite sum by the number of spatial samples; positive-exponent synthesis has no further divisor. Keep signed complex values and explicit canonical windows. Converted samples and represented phase-basis entries define the arithmetic problem.
+
+| ID | Distinct approved observable claim and controls |
+| --- | --- |
+| S01 | 2D first-harmonic separation/re-synthesis with known signed coefficients, unequal full-rank phases, off-model least-squares projection; DC is not forced to the mean. |
+| S02 | Volume DC/c1/c2 separation/re-synthesis with first/second harmonic signs/factors, unequal full-rank phases, represented phasor-squared basis and joint phase/data permutation. |
+| S03 | Normalization and amplitude: constant and displaced point controls; zero side orders and zero/signed carriers; unequal gains once; finite direct Fourier sums. |
+| S04 | Five-order full complex fusion under its own declared formula: asymmetric order transfers, unequal axes/spacings, odd/even axes, nonzero axial coordinates, origin phase once, complete all-axis negative reflection and nonwrapping q=j-m*c. |
+| S05 | Output ridge and separate amplitude mask, zero denominator/nullspace convention; no hidden real projection, rescale, positivity or support threshold. |
+| S06 | Even Nyquist and expanded selected complex lift: keep a single canonical endpoint; demonstrate its legitimate complex output and distinguish it from a real interpolation convention. |
+| S07 | Matched 2D integer-carrier real-coordinate inverse: independently assembled forward matrix/adjoint, source basis, raw metric, source penalty, Fourier scale and multiplicities. State premises and compare objective, normal residual and recovered coordinates. |
+| S08 | Matched five-order volume inverse under an exact represented-phase metric, alias-free conjugate-closed source support, unmasked output and matching source penalty. Compare forward/adjoint, raw/transformed objective, normal residual and observable modes with independently solved real normal equations. |
+| S09 | Equivalence boundaries: unequal phases under unweighted raw metric need not yield diagonal separated objective; arbitrary accepted complex transfer records need not define real raw maps; alias collisions and selected complex Nyquist lifts need not equal unmatched real inverses. Demonstrate these limits without rejecting valid fusion inputs. |
+| S10 | Rank-deficient observation map (full-rank phase design retained): explicit zero unsupported Fourier modes at lambda=0, ridge behavior and observable/null subspaces. No claim that absent information is physically recovered. |
+| S11 | Positivity boundary using an independent tiny mathematical constrained comparison: inactive positivity may agree with unique unconstrained solution; active positivity can differ. Public fusion gains no positivity functionality. |
+| S12 | Public boundary controls relevant to these compositions: deficient phase rejection and insufficient volume output-window rejection, including zero sides/mask. Existing full validation/operation-failure suites remain inherited; do not duplicate the entire public input matrix. |
+| S13 | 2D public fusion own-estimator comparison with valid Hermitian complex OTF, integer shifts and extended output window, independently generated real source and known phases. Keep its doubled-grid and endpoint semantics distinct from volume fusion. |
+
+Examples within decisions include constant, displaced point, signed Fourier modes, zero/opposite carriers, unequal positive gains and anisotropic nonsquare grids. No numeric scenario, review, runtime or token cap is imposed. Keep controls tiny and assertions distinct and valuable. Existing reviewed prerequisite validation/transform-failure proof is inherited; new tests focus on cross-operation mathematical conventions and equivalence limits.
+
+## Independent expectations and matched inverse
+
+Exact finite DFT sums, independently assembled real-coordinate observation equations and sufficient-precision solves are allowed. Do not read/reuse production helpers, existing fixture oracles, implementation source or legacy code. Use returned fields as observations only. A formula transcribed from runtime is no oracle. Provide at least one independently assembled normal-system inverse beyond a second spectral formula.
+
+For returned-coordinate phase matrix K=[1,2c,-2s,2c2,-2s2] (omit last pair in 2D), z=[dc,Re c1,Im c1,Re c2,Im c2], the signed-band spatial norm has G=diag(1,2,2,2,2). For exactly five represented full-rank phases an exact matched raw metric is W=K^{-T} G K^{-1}. Then (Kz)^T W(Kz)=z^T Gz. This is a declared comparison metric, not an estimate of experimental noise. Ideal orthogonal equally spaced phases would give W=I/N. Stored float64 phases are not exactly orthogonal; any white-noise comparison must bound the represented-Gram perturbation rather than assert exact identity. For overdetermined phases use an explicitly derived equivalent metric/projection or keep them in separation/own-formula controls only.
+
+A real source basis must pair conjugate Fourier modes and handle DC/self-conjugate modes once. Choose transfers/support/carriers so each active detector/order coordinate has a unique signed object lift and every fitted source mode is matched by the declared observations; no detector modulo alias contributes a different unknown. For example native odd (3,3,7), carrier (0,1), output (3,3,11), source support qx=-1,0,1 with full odd z/y modes permits j=q+m*c for m up to2; restrict each transfer to those matched shifted bins, with E0 Hermitian and negative bands reflected on all axes. A may choose a smaller or equally clear equivalent control and must prove the matching conditions. Zero-carrier full native-support controls can separately protect the displaced point and odd/even conventions.
+
+With M detector samples, P output samples and source x on the declared Fourier subspace, compare raw objective sum_r sum_spatial residual_phase^T W_r residual_phase/M + lambda*||x||²/P against sum_signed_bands |T*S-D|² + lambda*sum_q|S(q)|². Gains multiply transfers once. Synthesis columns and their Gram matrix determine coordinate penalty; do not silently use lambda*I for unnormalized cosine coordinates. Matched adjoint is derived from that actual real map/metric. Apodization follows the inverse and is excluded from equivalence unless separately derived. Arbitrary asymmetric mask remains a valid own-formula control.
+
+## Arithmetic policy, derived before observations
+
+Use existing public informative success/accuracy budgets for stored-input product comparisons, evaluated in adequate precision. Record epsilon=2^-52, smallest subnormal=2^-1074, dimensions, input scale, phase condition and denominator margin before public calls. Retain their derivations and exact normative bounds. Use direct sums/high-precision observer arithmetic (standard-library decimal/complex finite sums or analytic roots) and account for observer error separately. A derives any tighter sign/placement discriminator and independent normal-solve/objective tolerance before acceptance observations from operation counts, scale, conditioning, representation and reference precision. B independently audits the derivation. Do not calibrate thresholds from candidate residuals, use blanket allclose defaults, call stored-phase rounding physics error, or promise physical accuracy. A zero/overflowed bound proves nothing.
+
+## Scope, ownership and inherited proof
+
+High risk scientific/custom-oracle route. Fresh blind native A owns only tests/test_reference_alignment_ra02.py and tests/reference_alignment_ra02_fixture.py and its ignored artifacts/ra02/A report/evidence. Fresh blind B is report-only and reviews exact A bytes, mapping and sanitized evidence. Restricted fresh native C is needed only for a diagnosed in-contract runtime correction and owns only src/simrecon/_phase.py, _volume_phase.py, _reconstruction.py and volume_reconstruction.py. No runtime correction may alter reviewed tests, fixtures, workflows, dependencies, discovery, gates or policy. Fresh native D reviews the exact full-passing candidate and concrete missed risks; advisor replaces no role.
+
+Coordinator owns this contract, task pointer, comparison report/figure generator/evidence, Current state and role launches. No runtime/test oracle authoring by coordinator. Existing APIs and all inherited checks remain. Coverage policy: behavior/risk review; no selected percentage target; complete native JSON/HTML global/package/file measurements with never-imported/relevant-subprocess scope independently per required platform. Percentages advisory; report integrity binding. Full exact committed-candidate make verify and fresh D before PR; configured Ubuntu24.04/macOS15 CI remains required. No merge/release authority.
