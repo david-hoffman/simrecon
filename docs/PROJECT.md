@@ -54,6 +54,20 @@ make verify UV=/Users/davidhoffman/.local/bin/uv
 
 Coverage.py measures executable source lines (reported here as native statements) and possible line-to-line branch destinations; it supplies no distinct language-level statement instrumentation or separate line target. Report exact covered/total integers and unsupported measurements. Make, YAML, native dependency internals and model behavior have no owned-Python coverage claim. Their command paths require actual exercised evidence.
 
+### Proposed fixed two-worker maintenance — activation and qualification pending
+
+The owner selected parallel tests **after** accepted test consolidation. This paragraph records proposed future command/dependency ownership; it does not claim that xdist is installed, qualified or used by an executed gate. The TSC01 v1.9 candidate and exact whole-file map require fresh independent policy review, accepted consolidation and post-consolidation source/resource reconciliation before the maintenance worker starts.
+
+The sole dependency candidates are development pins `pytest-xdist==3.8.0` and `execnet==2.1.2`, preserving the locked Python3.13.12/pytest9.1.1/Coverage.py7.16.2 stack and unrelated resolutions. Proposed canonical `make verify` remains the full13-phase command. Only its top-level Makefile tests recipe would use:
+
+```sh
+uv run --locked coverage run -m pytest -n 2 --dist=loadgroup --max-worker-restart=0
+```
+
+The exact18allowlisted scientific files would each form one internally serial whole-file group; every other/newfile would be `serial-rest`. The existing measured `simrecon._pytest_policy` module owns deterministic grouping so delivery logic remains inside the58-file source policy. Shared pytest/addopts/environment and nested fixture commands gain no parallel flags. The omission guard remains unless actual qualified worker/controller failure establishes a necessary scoped correction; strict config/marks, skips/xfail/xpass/empty/error rejection and all cases remain.
+
+Local focused qualification would use one serial outer invocation to exercise explicit disposable serial/two-worker children, nested selector/preimport behavior, native worker/child/subprocess coverage, completed-shard survival through real fixture erase/combine paths and unchanged native formats/never-imported scope. No blanket coverage-environment stripping, new absolute common COVERAGE_FILE, pytest-cov alternative or speculative policy rewrite is proposed. Keep fast permanent regressions and explicitly bound one-time installation/worker-mechanism artifacts; do not multiply every unchanged serial policy case into a new permanent matrix. Every distinct omission/error outcome still needs proof and fresh bounded review. Exact dependency/platform/resource/safety evidence is pending. M25’s32MiB limit, current native reports/integers, wheel/import/audit, Ubuntu24.04/macOS15 and full-local submission rules remain unchanged. Local focused qualification then canonical local full verification and independent review precede PR. Existing CI repeats configured Ubuntu24.04/macOS15 verification after submission; no workflow edit or unavailable pre-PR remote CI is required. Combined exact C/D/final preservation sweep and all platform obligations remain; no 600 s success is implied.
+
 ## Coverage policy and adoption provenance
 
 The [coverage-policy adoption task](tasks/asd-coverage-policy.md) ports the focused coverage change from [dstack PR #7](https://github.com/david-hoffman/dstack/pull/7), head `94f8b856ae708d062fc6054adff9a9ce02af0614`, merged as `f55af3b18eff1d43d4d0e89ea21ca688ffce1f5c`. This is a local amendment to the existing Version 1.0 package, not a wholesale upstream replacement or new release. Local no-default-caps, direct-request authorization, role separation, blindness and full-local submission rules remain.
