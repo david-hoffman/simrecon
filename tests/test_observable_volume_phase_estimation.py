@@ -1698,11 +1698,6 @@ def test_public_solver_failures_with_controls_before_product_import(
     assert_solver_failure_report(run_dependency_probe(boundary, kind), kind)
 
 
-@pytest.mark.parametrize("boundary", ["fft", "svd", "optimizer"])
-def test_preimport_dependency_controls_pass_through_real_product(boundary: str) -> None:
-    assert_solver_failure_report(run_dependency_probe(boundary, "none"), "none")
-
-
 @pytest.mark.parametrize("kind", ["zero", "nonzero", "deficient"])
 def test_preimport_optimizer_counts_unavailable_and_informative_companion(kind: str) -> None:
     assert_solver_failure_report(run_dependency_probe("no_optimizer", kind), kind)

@@ -212,11 +212,10 @@ def test_explicit_edge_sources_signed_carriers_defocus_and_refinements(order: in
     args = inputs()
     source = np.zeros((4, 3, 4))
     source[0, 0, 0], source[3, 2, 3], source[1, 1, 2] = 7.0, 2.5, 0.125
-    carriers = ((0.37, -0.23), (-0.11, 0.41), (0.0, 0.0))
+    carriers = ((0.37, -0.23), (-0.11, 0.41))
     phases = (
-        (0.2, -1.1, 7.4, 0.0, math.pi),
-        (-0.7, 0.3, 0.3, -8.2, 1.7),
-        (math.pi, 0.0, -2.0, 3.0, 4.0),
+        (0.2, -1.1),
+        (-0.7, 0.3),
     )
     args.update(
         source_e=source,

@@ -1026,7 +1026,7 @@ def test_component_scales_extreme_finite_values_and_canonical_angles(api: Any, w
 def test_genuine_fft_failure_and_unrelated_exception_propagation(
     request: pytest.FixtureRequest, error_type: Any, code: str | None
 ) -> None:
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("code",)):
         return
     api = phase_api()
     e = example(1)
@@ -1070,7 +1070,7 @@ def test_genuine_fft_failure_and_unrelated_exception_propagation(
 def test_genuine_optimizer_failure_and_unrelated_propagation(
     request: pytest.FixtureRequest, error_type: Any, code: str | None
 ) -> None:
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("code",)):
         return
     api = phase_api()
     marker = error_type("public solver failure")
@@ -1551,7 +1551,7 @@ def test_genuine_initial_nuisance_svd_failure_before_optimizer(
     error_type: Any,
     code: str | None,
 ) -> None:
-    if run_dependency_child(request):
+    if run_dependency_child(request, group_by=("code",)):
         return
     api = phase_api()
     e = example(1)

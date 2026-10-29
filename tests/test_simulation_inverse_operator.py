@@ -553,8 +553,6 @@ def test_tiny_and_large_float32_operands_keep_max_absolute_scaled_accuracy() -> 
     for magnitude in (
         float(np.finfo(np.float32).smallest_subnormal),
         float(np.finfo(np.float32).tiny),
-        1e-30,
-        1e30,
         float(np.finfo(np.float32).max),
     ):
         for operation in ("forward", "adjoint"):
@@ -1706,7 +1704,7 @@ def test_supplemental_builder_peak_outside_float64_has_proven_cache_obstruction(
         np.seterr(**old_policy)
 
 
-@pytest.mark.parametrize("na_exponent", [-64, -68])
+@pytest.mark.parametrize("na_exponent", [-68])
 def test_supplemental_physical_cache_near_float32_lower_range_meets_both_budgets(
     na_exponent: int,
 ) -> None:

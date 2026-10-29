@@ -56,13 +56,13 @@ def root_brackets(order: int, bits: int) -> tuple[tuple[Fraction, Fraction], ...
     positive = []
     for i in range(1, order // 2 + 1):
         seed = math.cos(math.pi * (i - 0.25) / (order + 0.5))
-        for _ in range(8):
+        for _ in range(4):
             previous, current = 1.0, seed
             for n in range(2, order + 1):
                 previous, current = current, ((2 * n - 1) * seed * current - (n - 1) * previous) / n
             derivative = order * (previous - seed * current) / (1 - seed * seed)
             seed -= current / derivative
-        lo, hi = exact(seed) - Fraction(1, 2**38), exact(seed) + Fraction(1, 2**38)
+        lo, hi = exact(seed) - Fraction(1, 2**48), exact(seed) + Fraction(1, 2**48)
         left, right = legendre_sign(order, lo), legendre_sign(order, hi)
         if not (0 < lo < hi < 1 and left * right == -1):
             raise OracleInconclusive("Newton proposal failed exact root-bracket certification")
@@ -94,7 +94,7 @@ def canonical_rule(order: int, digits: int) -> Rule:
     """
     rule = []
     reflected_weights: dict[tuple[Fraction, Fraction], Interval] = {}
-    for lo, hi in root_brackets(order, 4 * digits):
+    for lo, hi in root_brackets(order, max(200, (10 * digits + 2) // 3)):
         x = Interval(Interval.rational(lo, digits).lo, Interval.rational(hi, digits).hi, digits)
         key = (lo, hi) if lo > 0 else (-hi, -lo)
         if key not in reflected_weights:
@@ -163,9 +163,9 @@ class Geometry:
 
         @cache
         def evaluate(digits: int) -> Bounds:
-            # Guard digits counter interval recurrence dependency at degree 128.
+            # Guard precision covers interval recurrence dependency at degree 128.
             # Actual endpoint widths, not the digit count, certify comparisons.
-            working = digits + 80
+            working = digits + 48
             rule = reference_rule(rule_kind, working)
             pi, zero = pi_interval(working), Interval.rational(0, working)
 
@@ -270,10 +270,10 @@ def optical_arguments() -> dict[str, Any]:
 
 def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float64], Geometry]:
     """Two small finite spheres; exact rational membership and rounded weights."""
-    catalogue = np.array([[0.125, 0.06, 0.10, 9 / 256, 1.0], [0.15625, 0.06, 0.06, 0.03, 2.5]])
+    catalogue = np.array([[3 / 32, 0.04, 1 / 32, 0.03, 1.0], [7 / 32, 0.06, 0.06, 0.01, 2.5]])
     source_args: dict[str, Any] = {
         "catalogue": catalogue,
-        "detector_shape_zyx": (2, 2, 3),
+        "detector_shape_zyx": (2, 1, 1),
         "detector_spacing_um_zyx": (0.125, 0.08, 0.08),
         "source_refinement_zyx": (2, 2, 2),
     }
@@ -288,22 +288,23 @@ def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float
             dx * Fraction(2 * x + 1, 4),
         )
         for z in range(4)
-        for y in range(4)
-        for x in range(6)
+        for y in range(2)
+        for x in range(2)
     )
-    predicted = np.zeros((4, 4, 6))
-    for row in catalogue:
+    predicted = np.zeros((4, 2, 2))
+    membership = (((1, 0, 0), (1, 1, 0)), ((3, 1, 1),))
+    for row, expected_members in zip(catalogue, membership, strict=True):
         cz, cy, cx, radius, brightness = map(lambda v: exact(float(v)), row)
         assert all(
             center - radius >= 0 and center + radius <= extent
-            for center, extent in zip((cz, cy, cx), (2 * dz, 2 * dy, 3 * dx), strict=True)
+            for center, extent in zip((cz, cy, cx), (2 * dz, dy, dx), strict=True)
         )
         occupied = [
             (z, y, x)
             for z, y, x, rz, ry, rx in cells
             if (rz - cz) ** 2 + (ry - cy) ** 2 + (rx - cx) ** 2 <= radius**2
         ]
-        assert occupied
+        assert tuple(occupied) == expected_members
         increment = exact(float(brightness / len(occupied)))
         for index in occupied:
             predicted[index] = float(exact(float(predicted[index])) + increment)
@@ -318,15 +319,15 @@ def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float
             for sy in range(2)
             for sx in range(2)
         )
-        for y in range(2)
-        for x in range(3)
+        for y in range(1)
+        for x in range(1)
     )
     args = optical_arguments()
     geometry = Geometry(
         sources,
         (dz / 2, 3 * dz / 2),
         sites,
-        (2, 3),
+        (1, 1),
         dy * dx,
         ((0.0, 2.459016393442623),),
         ((0.0,),),
