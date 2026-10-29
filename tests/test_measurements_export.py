@@ -54,10 +54,11 @@ def report(units: str = "KiB", baseline: int = 100, peak: int = 107) -> dict[str
     }
 
 
-@pytest.fixture
-def repository(tmp_path: Path) -> Repository:
+def writer_root(tmp_path: Path, *, with_git: bool = True) -> Path:
     root = tmp_path / "repo"
     root.mkdir()
+    if not with_git:
+        return root
     for name in ("src/simrecon/sample.py", "scripts/sample.py"):
         path = root / name
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -70,6 +71,12 @@ def repository(tmp_path: Path) -> Repository:
     git(root, "config", "user.name", "Measurements fixture")
     git(root, "add", ".")
     git(root, "commit", "-qm", "public synthetic candidate")
+    return root
+
+
+@pytest.fixture
+def repository(tmp_path: Path) -> Repository:
+    root = writer_root(tmp_path)
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
     install_phase_commands(bin_dir, "measurements_fixture_commands", hybrid=True)
@@ -393,9 +400,9 @@ def test_e2_helper_protects_destination_before_phases(
 
 @pytest.fixture
 def writer_environment(
-    repository: Repository, monkeypatch: pytest.MonkeyPatch
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> tuple[Path, pytest.MonkeyPatch]:
-    root, _ = repository
+    root = writer_root(tmp_path)
     monkeypatch.chdir(root)
     for key in ENV_KEYS:
         monkeypatch.delenv(key, raising=False)
@@ -413,10 +420,11 @@ def native_record() -> dict[str, Any]:
     return {k: v for k, v in report()["measurements"]["M25"].items() if k != "limit_bytes"}
 
 
-def test_e1_writer_standalone_no_report(
-    writer_environment: tuple[Path, pytest.MonkeyPatch],
-) -> None:
-    root, _ = writer_environment
+def test_e1_writer_standalone_no_report(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    root = writer_root(tmp_path, with_git=False)
+    monkeypatch.chdir(root)
+    for key in ENV_KEYS:
+        monkeypatch.delenv(key, raising=False)
     export_measurement(native_record())
     assert not (root / "artifacts").exists()
 
@@ -424,33 +432,26 @@ def test_e1_writer_standalone_no_report(
 @pytest.mark.parametrize("key", ENV_KEYS)
 @pytest.mark.parametrize("value", ["present", ""])
 def test_e2_writer_partial_pair_rejected(
-    writer_environment: tuple[Path, pytest.MonkeyPatch], key: str, value: str
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, key: str, value: str
 ) -> None:
-    root, monkeypatch = writer_environment
+    root = writer_root(tmp_path, with_git=False)
+    monkeypatch.chdir(root)
+    for env_key in ENV_KEYS:
+        monkeypatch.delenv(env_key, raising=False)
     monkeypatch.setenv(key, value)
     with pytest.raises(ValueError, match="both path and run ID"):
         export_measurement(native_record())
     assert not (root / "artifacts").exists()
 
 
-def test_e1_writer_exact_same_call_record(
-    writer_environment: tuple[Path, pytest.MonkeyPatch],
-) -> None:
-    root, monkeypatch = writer_environment
-    enable_writer(monkeypatch)
-    supplied = native_record()
-    before = copy.deepcopy(supplied)
-    export_measurement(supplied)
-    assert supplied == before
-    assert json.loads((root / MEASUREMENTS_PATH).read_text()) == {**report(), "run_id": STALE_ID}
-    assert git(root, "status", "--porcelain") == ""
-
-
 @pytest.mark.parametrize("ignored", [False, True])
 def test_e2_writer_requires_ignored_approved_path_before_write(
-    writer_environment: tuple[Path, pytest.MonkeyPatch], ignored: bool
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, ignored: bool
 ) -> None:
-    root, monkeypatch = writer_environment
+    root = writer_root(tmp_path, with_git=not ignored)
+    monkeypatch.chdir(root)
+    for key in ENV_KEYS:
+        monkeypatch.delenv(key, raising=False)
     if ignored:
         enable_writer(monkeypatch, "artifacts/verification/other.json")
         expected = "approved artifact path"
@@ -843,6 +844,10 @@ def test_e1_e3_writer_preserves_legitimate_native_record_values(
     persistence_repository: tuple[Path, pytest.MonkeyPatch], units: str, baseline: int, peak: int
 ) -> None:
     root, monkeypatch = persistence_repository
+    clean_git_case = (units, baseline, peak) == ("KiB", 100, 107)
+    if clean_git_case:
+        assert not (root / "artifacts").exists()
+        monkeypatch.delenv("GIT_OPTIONAL_LOCKS", raising=False)
     supplied = {
         k: v
         for k, v in report(units, baseline, peak)["measurements"]["M25"].items()
@@ -856,6 +861,8 @@ def test_e1_e3_writer_preserves_legitimate_native_record_values(
     assert supplied == original_record
     assert {path: path.read_bytes() for path in before} == before
     assert writer_protected_snapshot(root) == before
+    if clean_git_case:
+        assert git(root, "status", "--porcelain") == ""
 
 
 @pytest.mark.parametrize("failure_kind", ["leaf-directory", "parent-file", "unavailable-git"])

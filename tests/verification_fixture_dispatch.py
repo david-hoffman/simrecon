@@ -114,7 +114,11 @@ done
             '    case "$phase" in coverage-json|wheel) ' + fallback + ";; esac\nfi\n"
         )
         if profile == "measurement":
-            shell += f'case "$phase" in tests|audit) {fallback};; esac\n'
+            shell += (
+                'case "$phase:${EXPORT_FIXTURE_MODE:-valid}" in\n'
+                "tests:*|audit:changed-id|audit:unavailable|audit:reformatted-report-same-id|"
+                "audit:late-report) " + fallback + ";; esac\n"
+            )
             shell += (
                 'if [ "$phase" = types ] && '
                 '[ "${EXPORT_FIXTURE_MODE:-}" = redirect-before-tests ]; then\n'
