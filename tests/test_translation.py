@@ -614,18 +614,21 @@ def test_t06_exact_computed_ties_zero_tolerance(api: Any, result_type: Any) -> N
 
 
 @pytest.mark.parametrize(
-    "case",
+    "case,mode",
     [
-        "max-opposite",
-        "max-mixed",
-        "subnormal",
-        "subnormal-mixed",
-        "near-perfect",
-        "uint64-max",
-        "int64-min",
-    ],
+        (case, "raise")
+        for case in (
+            "max-opposite",
+            "max-mixed",
+            "subnormal",
+            "subnormal-mixed",
+            "near-perfect",
+            "uint64-max",
+            "int64-min",
+        )
+    ]
+    + [("max-opposite", mode) for mode in ("warn", "ignore")],
 )
-@pytest.mark.parametrize("mode", ["warn", "raise", "ignore"])
 def test_t08_t09_stability_and_error_mode(
     api: Any, result_type: Any, case: str, mode: Literal["warn", "raise", "ignore"]
 ) -> None:

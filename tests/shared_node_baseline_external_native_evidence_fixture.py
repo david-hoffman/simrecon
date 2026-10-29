@@ -51,8 +51,8 @@ if "--version" in sys.argv:
     print("A13 disposable phase driver 1")
     raise SystemExit(0)
 phase = next(arg for arg in sys.argv[1:] if not arg.startswith("-"))
-with (observations / "trace.jsonl").open("a") as trace:
-    trace.write(json.dumps({"nonce": nonce, "phase": phase, "argv": sys.argv[1:]}) + "\n")
+from verification_fixture_dispatch import append_record
+append_record(observations / "trace.argv", [phase, *sys.argv[1:]])
 output = f"{nonce}:{phase}\n"
 output_stream = sys.stderr if os.environ["A15_OUTPUT_STREAM"] == "stderr" else sys.stdout
 
@@ -259,8 +259,24 @@ def prepare(
         env["A14_CONFIG_LOSS"] = configuration_loss
         env["A14_CONFIG_LOSS_PHASE"] = loss_phase
     driver = root / "phase-driver"
-    driver.write_text("#!" + sys.executable + "\n" + DRIVER)
-    driver.chmod(0o755)
+    from verification_fixture_dispatch import install_native_dispatch
+
+    dynamic = {
+        "coverage-clean",
+        "tests",
+        "coverage-json",
+        "coverage-html",
+        "coverage-report",
+        "wheel",
+        "audit",
+    }
+    if configuration_loss:
+        dynamic.add(loss_phase)
+    native_driver = root / "native-driver.py"
+    native_driver.write_text(f"import sys\nsys.path.insert(0, {str(BASE / 'tests')!r})\n" + DRIVER)
+    install_native_dispatch(
+        driver, native_driver, dynamic_phases=tuple(sorted(dynamic)), external=True
+    )
     env.update(
         PYTHONDONTWRITEBYTECODE="1",
         A16_CONFIG_LOSS_TIMING=loss_timing,
@@ -300,6 +316,10 @@ def prepare(
         "database": str(database),
         "receipt": str(receipt),
         "driver_sha256": hashlib.sha256(driver.read_bytes()).hexdigest(),
+        "native_driver_sha256": hashlib.sha256(native_driver.read_bytes()).hexdigest(),
+        "dispatcher_sha256": hashlib.sha256(
+            (BASE / "tests/verification_fixture_dispatch.py").read_bytes()
+        ).hexdigest(),
         "input_sha256": {
             str(path.relative_to(repo)): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in repo.rglob("*")
@@ -345,6 +365,16 @@ def invoke(case: dict) -> subprocess.CompletedProcess[str]:
         text=True,
         timeout=100,
     )
+    from verification_fixture_dispatch import read_records
+
+    trace = [
+        {"nonce": case["nonce"], "phase": fields[0], "argv": fields[1:]}
+        for fields in read_records(case["observations"] / "trace.argv")
+    ]
+    if trace:
+        (case["observations"] / "trace.jsonl").write_text(
+            "".join(json.dumps(item) + "\n" for item in trace)
+        )
     for stream in ("stdout", "stderr"):
         (case["observations"] / (stream + ".txt")).write_text(getattr(result, stream))
     (case["observations"] / "status.json").write_text(json.dumps({"returncode": result.returncode}))

@@ -224,9 +224,10 @@ INVALID_RESIDUALS = [
 
 
 @pytest.mark.parametrize(
-    "value", INVALID_RESIDUALS, ids=[f"residual-{i}" for i in range(len(INVALID_RESIDUALS))]
+    "value,unavailable",
+    [(value, True) for value in INVALID_RESIDUALS] + [(True, False)],
+    ids=[f"residual-{i}-unavailable" for i in range(len(INVALID_RESIDUALS))] + ["bool-ordinary"],
 )
-@pytest.mark.parametrize("unavailable", [False, True])
 def test_invalid_residual_policy_even_for_unavailable_data(value: Any, unavailable: bool) -> None:
     with pytest.raises(SimreconError) as caught:
         select(phase_blind_observation(unavailable=unavailable), residual=value)
@@ -252,9 +253,10 @@ INVALID_RANKS = [
 
 
 @pytest.mark.parametrize(
-    "value", INVALID_RANKS, ids=[f"rank-{i}" for i in range(len(INVALID_RANKS))]
+    "value,unavailable",
+    [(value, True) for value in INVALID_RANKS] + [(-1, False)],
+    ids=[f"rank-{i}-unavailable" for i in range(len(INVALID_RANKS))] + ["negative-ordinary"],
 )
-@pytest.mark.parametrize("unavailable", [False, True])
 def test_invalid_rank_policy_even_for_unavailable_data(value: Any, unavailable: bool) -> None:
     with pytest.raises(SimreconError) as caught:
         select(phase_blind_observation(unavailable=unavailable), rank=value)

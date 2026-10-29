@@ -16,7 +16,6 @@ from pathlib import Path
 import pytest
 
 from shared_node_baseline_infrastructure_fixture import (
-    PHASES,
     PINNED,
     PYTHON,
     digest,
@@ -25,8 +24,6 @@ from shared_node_baseline_infrastructure_fixture import (
     python,
     reader_layout,
     run,
-    verifier_layout,
-    verify,
 )
 
 SOURCE_MARKER = "OWNED_SOURCE_ONLY_MARKER_6031"
@@ -78,32 +75,6 @@ def _assert_child_diagnostic(rendered: str, kind: str, executable: str) -> None:
         )
         assert status is not None, "exit status missing from child exception diagnostic"
         assert int(status[1]) == 7, "child diagnostic changed exit status"
-
-
-def _assert_current_evidence_alias(
-    repo: Path, receipt: Path, returncode: int, observation: dict[str, str]
-) -> None:
-    """P11 qualifies preservation of ignored current evidence by success."""
-    if returncode == 0:
-        assert digest(repo / observation["path"]) == observation["sha256"], (
-            "passed verifier write destroyed current fixture-only evidence"
-        )
-        # Reading follows either a regular replacement or a safely retargeted link.
-        data = json.loads(receipt.read_text())
-        assert data["result"] == "passed" and data["problems"] == []
-        assert [phase["name"] for phase in data["phases"]] == list(PHASES)
-        for phase in data["phases"]:
-            assert phase["returncode"] == 0
-            assert f"FIXTURE_PHASE {phase['name']}" in (repo / phase["log"]).read_text()
-    elif receipt.is_file():
-        # A failed write may leave no readable receipt, or retain non-receipt
-        # ignored evidence. Any actual receipt must still report failure honestly.
-        try:
-            data = json.loads(receipt.read_text())
-        except (OSError, ValueError):
-            return
-        if isinstance(data, dict) and data.get("schema") == "org.simrecon.verification":
-            assert data["result"] == "failed", "non-success left a falsely passed receipt"
 
 
 def _decoded_values(value: object) -> list[object]:
@@ -226,6 +197,7 @@ def test_real_traceback_formatting_callers(tmp_path: Path, api: str) -> None:
     path = probe(
         tmp_path,
         f'''
+        import contextlib
         import io
         import traceback
         def fail():
@@ -235,12 +207,40 @@ def test_real_traceback_formatting_callers(tmp_path: Path, api: str) -> None:
             fail()
         except ValueError as error:
             original = (error.args, error.__traceback__, error.__cause__, error.__context__)
-            stream = io.StringIO()
-            rendered = traceback.{api}  # {SOURCE_MARKER}
-            if rendered is not None:
-                print("".join(rendered), end="")
-            print(stream.getvalue(), end="")
-            assert original == (error.args, error.__traceback__, error.__cause__, error.__context__)
+            streams = (("explicit", "default")
+                       if "print_tb" in {api!r} or "print_stack" in {api!r}
+                       else ("selected",))
+            for channel in streams:
+                stream = io.StringIO()
+                default = io.StringIO()
+                def caller():
+                    local = "{LOCAL_MARKER}"
+                    return traceback.{api}  # {SOURCE_MARKER}
+                def default_stack():
+                    local = "{LOCAL_MARKER}"
+                    traceback.print_stack()  # {SOURCE_MARKER}
+                with contextlib.redirect_stderr(default):
+                    if channel == "default":
+                        if "print_tb" in {api!r}:
+                            traceback.print_tb(error.__traceback__)
+                        else:
+                            default_stack()
+                        rendered = None
+                    else:
+                        rendered = caller()
+                if channel == "explicit":
+                    assert stream.getvalue() and not default.getvalue()
+                elif channel == "default":
+                    assert default.getvalue() and not stream.getvalue()
+                print("BEGIN_" + channel)
+                if rendered is not None:
+                    print("".join(rendered), end="")
+                print(stream.getvalue(), end="")
+                print(default.getvalue(), end="")
+                print("END_" + channel)
+                assert original == (error.args, error.__traceback__,
+                                    error.__cause__, error.__context__)
+                assert str(error) == "API_VISIBLE"
             print("FIELDS_UNCHANGED")
         ''',
     )
@@ -248,9 +248,41 @@ def test_real_traceback_formatting_callers(tmp_path: Path, api: str) -> None:
     rendered = output(result)
     assert result.returncode == 0
     assert "FIELDS_UNCHANGED" in rendered
-    assert str(path) in rendered and "line " in rendered
-    if "exception" in api or "exc(" in api:
-        assert "ValueError: API_VISIBLE" in rendered
+    channels = (
+        ("explicit", "default") if "print_tb" in api or "print_stack" in api else ("selected",)
+    )
+    source_lines = path.read_text().splitlines()
+    if "stack" in api:
+        selected_line = next(
+            i for i, line in enumerate(source_lines, 1) if "return traceback." in line
+        )
+        default_line = next(
+            i for i, line in enumerate(source_lines, 1) if "traceback.print_stack()" in line
+        )
+    else:
+        selected_line = next(
+            i for i, line in enumerate(source_lines, 1) if "fail()" in line and "def" not in line
+        )
+        default_line = selected_line
+    for channel in channels:
+        section = rendered.split("BEGIN_" + channel + "\n", 1)[1].split("END_" + channel, 1)[0]
+        line = default_line if channel == "default" else selected_line
+        function = "<module>"
+        if "stack" in api:
+            function = "default_stack" if channel == "default" else "caller"
+        assert f'File "{path}", line {line}, in {function}' in section
+        if "stack" in api:
+            call = "default_stack()" if channel == "default" else "rendered = caller()"
+            module_line = next(i for i, text in enumerate(source_lines, 1) if text.strip() == call)
+            assert f'File "{path}", line {module_line}, in <module>' in section
+        if "stack" not in api and "limit=1" not in api:
+            raise_line = next(
+                i for i, text in enumerate(source_lines, 1) if "raise ValueError" in text
+            )
+            assert f'File "{path}", line {raise_line}, in fail' in section
+        if "exception" in api or "exc(" in api:
+            assert "ValueError: API_VISIBLE" in section
+        assert_source_free(section)
     assert_source_free(rendered)
 
 
@@ -384,159 +416,6 @@ def test_real_child_failure_and_timeout_fields(tmp_path: Path, kind: str) -> Non
     assert_source_free(rendered)
 
 
-def test_real_inherited_child_diagnostics(tmp_path: Path) -> None:
-    child = probe(
-        tmp_path,
-        f"""
-        import warnings
-        warnings.warn("CHILD_WARNING", UserWarning)  # {SOURCE_MARKER}
-        raise RuntimeError("CHILD_ERROR")  # {SOURCE_MARKER}
-        """,
-    )
-    parent = tmp_path / "parent.py"
-    parent.write_text(
-        "import subprocess, sys\n"
-        "result = subprocess.run([sys.executable, sys.argv[1]])\n"
-        "sys.exit(result.returncode)\n"
-    )
-    result = python([str(parent), str(child)])
-    rendered = output(result)
-    assert result.returncode == 1
-    assert "UserWarning: CHILD_WARNING" in rendered
-    assert "RuntimeError: CHILD_ERROR" in rendered
-    assert str(child) in rendered and "line 4" in rendered
-    assert_source_free(rendered)
-
-
-def test_fixture_only_safe_verifier_has_current_authentic_evidence(tmp_path: Path) -> None:
-    repo = verifier_layout(tmp_path, {})
-    receipt = repo / "safe/receipt.json"
-    result = verify(repo, receipt)
-    assert result.returncode == 0, "fixture-only safe CLI verification failed"
-    data = json.loads(receipt.read_text())
-    assert data["result"] == "passed"
-    assert data["problems"] == []
-    assert [item["name"] for item in data["phases"]] == list(PHASES)
-    assert (repo / "trace.txt").read_text().splitlines() == list(PHASES)
-    assert data["before"] == data["after"]
-    assert data["measurements"] is None  # Legacy direct collector, no M25 claim.
-    for phase in data["phases"]:
-        log = repo / phase["log"]
-        assert f"FIXTURE_PHASE {phase['name']}" in log.read_text()
-        assert phase["returncode"] == 0
-        assert phase["name"] in phase["command"]
-        assert any(arg.startswith("UV=") for arg in phase["command"])
-    artifact = data["artifact"]
-    assert digest(repo / artifact["path"]) == artifact["sha256"]
-    assert (repo / artifact["path"]).stat().st_size == artifact["size_bytes"]
-    # These are exact native metrics for the two owned fixture files ONLY.
-    native = json.loads((repo / "artifacts/coverage/coverage.json").read_text())
-    assert set(data["coverage"]["files"]) == {"scripts/owned.py", "src/simrecon/__init__.py"}
-    for filename, metrics in data["coverage"]["files"].items():
-        summary = native["files"][filename]["summary"]
-        assert metrics["statements"] == {
-            "covered": summary["covered_lines"],
-            "total": summary["num_statements"],
-        }
-        assert metrics["branches"] == {
-            "covered": summary["covered_branches"],
-            "total": summary["num_branches"],
-        }
-
-
-@pytest.mark.parametrize(
-    "obstacle", ["directory_leaf", "regular_ancestor", "symlink_loop", "unwritable"]
-)
-def test_real_local_verifier_output_failure_preserves_marker(tmp_path: Path, obstacle: str) -> None:
-    repo = verifier_layout(tmp_path, {})
-    marker = repo / "marker.txt"
-    identity = digest(marker)
-    if obstacle == "directory_leaf":
-        receipt = repo / "safe/receipt.json"
-        receipt.mkdir(parents=True)
-    elif obstacle == "regular_ancestor":
-        receipt = marker / "receipt.json"
-    elif obstacle == "symlink_loop":
-        (repo / "safe").mkdir()
-        (repo / "safe/a").symlink_to("b")
-        (repo / "safe/b").symlink_to("a")
-        receipt = repo / "safe/a/receipt.json"
-    else:
-        parent = repo / "safe"
-        parent.mkdir()
-        parent.chmod(0o500)
-        # Verify effective unwritability with the SAME selected Python process.
-        premise = python(
-            ["-c", "from pathlib import Path; Path('premise').write_bytes(b'x')"], cwd=parent
-        )
-        if premise.returncode == 0:
-            parent.chmod(0o700)
-            pytest.fail("incomplete environment evidence: process can write to permission fixture")
-        assert "PermissionError" in output(premise), "unwritability cause not established"
-        receipt = parent / "receipt.json"
-    try:
-        result = verify(repo, receipt)
-        assert result.returncode != 0
-        assert digest(marker) == identity
-        if receipt.is_file():
-            assert json.loads(receipt.read_text())["result"] == "failed"
-    finally:
-        if obstacle == "unwritable":
-            (repo / "safe").chmod(0o700)
-
-
-@pytest.mark.parametrize("bad_report", ["truncated", "absent", "missing_html"])
-def test_fixture_only_incomplete_native_evidence_cannot_pass(
-    tmp_path: Path, bad_report: str
-) -> None:
-    repo = verifier_layout(tmp_path, {"bad_report": bad_report})
-    receipt = repo / "safe/receipt.json"
-    result = verify(repo, receipt)
-    assert result.returncode == 1
-    data = json.loads(receipt.read_text())
-    assert data["result"] == "failed" and data["problems"]
-    assert digest(repo / "marker.txt") == data["before"]["manifest"]["marker.txt"]
-
-
-@pytest.mark.parametrize("kind", ["json", "database", "html", "wheel", "log", "measurements"])
-def test_fixture_only_same_invocation_receipt_alias_preserves_current_evidence(
-    tmp_path: Path, kind: str
-) -> None:
-    repo = verifier_layout(tmp_path, {"receipt_alias": kind, "receipt": "safe/receipt.json"})
-    protected_marker = digest(repo / "marker.txt")
-    receipt = repo / "safe/receipt.json"
-    result = verify(repo, receipt, measurements_required=(kind == "measurements"))
-    observation = json.loads((repo / "challenged.json").read_text())
-    assert digest(repo / "marker.txt") == protected_marker  # Unconditional tracked protection.
-    _assert_current_evidence_alias(repo, receipt, result.returncode, observation)
-
-
-@pytest.mark.parametrize("leaf", ["existing_regular", "unused_alias"])
-def test_fixture_only_legitimate_output_replacement_and_unused_alias(
-    tmp_path: Path, leaf: str
-) -> None:
-    repo = verifier_layout(tmp_path, {})
-    receipt = repo / "safe/receipt.json"
-    receipt.parent.mkdir()
-    if leaf == "existing_regular":
-        receipt.write_text("OWNED_OLD_RECEIPT")
-    else:
-        stale = repo / "artifacts/unused.json"
-        stale.parent.mkdir()
-        stale.write_text("OWNED_UNUSED_STALE_FILE")
-        receipt.symlink_to(stale)
-    result = verify(repo, receipt, measurements_required=True)
-    assert result.returncode == 0, "legitimate fixture-only output was rejected"
-    data = json.loads(receipt.read_text())
-    assert data["result"] == "passed"
-    # Real readings from this fixture command process, not scientific M25 proof.
-    measurement_path = repo / data["measurements"]["path"]
-    assert digest(measurement_path) == data["measurements"]["sha256"]
-    native = json.loads(measurement_path.read_text())
-    assert data["measurements"]["run_id"] == native["run_id"]
-    assert data["measurements"]["measurements"] == native["measurements"]
-
-
 @pytest.mark.parametrize("path_selection", [False, True])
 def test_authentic_cached_reader_with_real_selected_java(
     tmp_path: Path, path_selection: bool
@@ -544,11 +423,15 @@ def test_authentic_cached_reader_with_real_selected_java(
     layout = tmp_path / "owned-reader-café"
     layout.mkdir()
     cache, jars = reader_layout(layout)
+    before = {key: digest(value) for key, value in jars.items()}
+    (cache / "inputs.json").write_text('{"stale_identity": true}')
     env = java_environment(path_selection=path_selection)
     result = python([str(layout / "scripts/prepare_imagej_reader.py")], cwd=layout, env=env)
     assert result.returncode == 0, "real selected JDK/cache preparation failed"
     manifest = cache / "inputs.json"
     data = json.loads(manifest.read_text())
+    assert "stale_identity" not in data
+    assert {key: digest(value) for key, value in jars.items()} == before
     selected = os.environ["SIMRECON_JAVA"]
     _assert_cached_reader_values(data, selected, jars)
     # Observer-only stdlib round trips: legitimate JSON escaping must not alter

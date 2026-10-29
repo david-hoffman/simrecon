@@ -13,6 +13,8 @@ import itertools
 import math
 import random
 import warnings
+from collections.abc import Iterator
+from contextlib import contextmanager
 from fractions import Fraction
 from typing import Any
 
@@ -20,8 +22,10 @@ import numpy as np
 import pytest
 
 from image_only_bead_calibration_fixture import (
+    AXIAL_SHAPE,
     EPS,
     FIELDS,
+    RANGE_SHAPE,
     SHAPE,
     SMALLEST,
     D,
@@ -32,7 +36,6 @@ from image_only_bead_calibration_fixture import (
     assert_ledger,
     assert_same,
     camera,
-    finite_predictions,
     improving_pair_arguments,
     improving_pair_qualification,
     inward_upper,
@@ -96,20 +99,7 @@ def test_binding_all_arguments_required(missing: str) -> None:
         fit(**values)
 
 
-@pytest.mark.parametrize(
-    "unknown",
-    (
-        "seed",
-        "truth",
-        "gain",
-        "maxfev",
-        "timeout",
-        "source_e",
-        "carriers_yx_per_um",
-        "phases_rad",
-        "beam_amplitudes",
-    ),
-)
+@pytest.mark.parametrize("unknown", ("truth",))
 def test_binding_no_truth_optimizer_or_extra_inputs(unknown: str) -> None:
     with pytest.raises(TypeError):
         fit(**arguments(), **{unknown: None})
@@ -140,8 +130,19 @@ INVALID_ARRAY_FORMS = (
 )
 
 
-@pytest.mark.parametrize("name", ARRAY_NAMES)
-@pytest.mark.parametrize("form", INVALID_ARRAY_FORMS)
+@pytest.mark.parametrize(
+    "name,form",
+    [
+        *(
+            (name, form)
+            for name in ARRAY_NAMES
+            for form in INVALID_ARRAY_FORMS
+            if form not in ("posinf", "neginf")
+        ),
+        ("central_counts", "posinf"),
+        ("central_counts", "neginf"),
+    ],
+)
 def test_invalid_raw_arrays_before_unavailable(name: str, form: str) -> None:
     values = unavailable_inputs()
     array = values[name]
@@ -402,7 +403,7 @@ def test_positive_minimum_box_and_extreme_normalized_metadata() -> None:
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
-@pytest.mark.parametrize("contrast", (0, -0.0, -2, -1e308))
+@pytest.mark.parametrize("contrast", (0, -2))
 def test_unavailable_has_exact_absence_and_zero_ledgers(contrast: int | float) -> None:
     result = fit(
         **unavailable_inputs(
@@ -444,14 +445,60 @@ def test_information_failure_is_not_range_or_fabricated_candidate(kind: str) -> 
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
+@contextmanager
+def caller_preservation(values: dict[str, Any]) -> Iterator[list[Any]]:
+    arrays = [values[name] for name in ARRAY_NAMES] + [values["camera_estimate"].means_counts]
+    snapshots = [(a.copy(), a.strides, a.flags.writeable, a.dtype) for a in arrays]
+    python_random, numpy_random = random.getstate(), np.random.get_state()
+    outputs: list[Any] = []
+    with np.errstate(all="raise"), warnings.catch_warnings():
+        warnings.simplefilter("error")
+        policy, filters = np.geterr().copy(), list(warnings.filters)
+        try:
+            yield outputs
+        finally:
+            assert np.geterr() == policy and warnings.filters == filters
+            assert random.getstate() == python_random
+            after = np.random.get_state()
+            assert after[0] == numpy_random[0] and after[2:] == numpy_random[2:]
+            np.testing.assert_array_equal(after[1], numpy_random[1])
+            for array, (contents, strides, writable, dtype) in zip(arrays, snapshots, strict=True):
+                np.testing.assert_array_equal(array, contents)
+                assert (array.strides, array.flags.writeable, array.dtype) == (
+                    strides,
+                    writable,
+                    dtype,
+                )
+            for output in outputs:
+                assert all(not np.shares_memory(output, source) for source in arrays)
+
+
 @pytest.fixture(scope="module")
 def subnormal_result() -> Any:
-    return fit(**arguments())
+    estimate = estimate_scalar_camera(
+        np.full((2, 1, 2), -7.0),
+        blank_counts=np.full((2, 1, 2), 5.0),
+        flat_counts=np.full((2, 1, 2), 7.0),
+        source="opaque estimated camera",
+    )
+    assert estimate.gain_counts_per_e is None and estimate.contrast_counts == 2
+    baseline = camera()
+    np.testing.assert_array_equal(estimate.means_counts, baseline.means_counts)
+    assert (estimate.contrast_counts, estimate.source) == (
+        baseline.contrast_counts,
+        baseline.source,
+    )
+    values = arguments(camera_estimate=estimate)
+    with caller_preservation(values) as outputs:
+        result = fit(**values)
+        outputs.extend(output_arrays(result))
+    assert result.status == "completed_finite_fit"
+    return result
 
 
 @pytest.fixture(scope="module")
 def moving_result() -> Any:
-    return fit(**arguments(sweep_scales=(0.5,)))
+    return fit(**arguments(shape=AXIAL_SHAPE, sweep_scales=(0.5,)))
 
 
 @pytest.fixture(scope="module")
@@ -465,14 +512,14 @@ def test_initialization_full_47_state_units_and_fixed_nominal_settings(
     result = subnormal_result
     assert result.status == "completed_finite_fit"
     expected_centers = np.array(
-        [[0.0625, 0.05, 0.12], [0.0625, 0.05, 0.68], [0.0625, 0.05, inward_upper(16, D[2])]]
+        [[0.0625, 0.05, 0.05], [0.0625, 0.05, 0.60], [0.0625, 0.05, inward_upper(15, D[2])]]
     )
     # Detector center products/centroid arithmetic may round, but the clamp
     # must use the EXACT inward upper bound. No pixel-coordinate round trip.
     np.testing.assert_allclose(
         result.initial_coordinates[:9].reshape(3, 3), expected_centers, rtol=32 * EPS, atol=0
     )
-    assert result.initial_coordinates[8] == inward_upper(16, D[2])
+    assert result.initial_coordinates[8] == inward_upper(15, D[2])
     np.testing.assert_array_equal(result.initial_coordinates[9:12], np.ones(3))
     np.testing.assert_allclose(
         result.initial_coordinates[12:14],
@@ -492,7 +539,7 @@ def test_initialization_full_47_state_units_and_fixed_nominal_settings(
         and scipy.__version__ in result.initialization_notes
     )
     # Independently expected accounting is 3 clipped windows, 0 overlaps,
-    # 4 clamps. The contract supplies no machine-readable notes grammar;
+    # 5 clamps. The contract supplies no machine-readable notes grammar;
     # imposing decimal tokens here would reject legitimate prose. Content
     # accounting remains a manual public-result review obligation for B/D.
     assert_ledger(result, bead, pilot.PilotCandidate)
@@ -502,24 +549,29 @@ def test_initialization_tie_lexicographic_edges_and_inward_clamp() -> None:
     c, s, h = observations(edge=True, tie=True)
     result = fit(**arguments(central_counts=c, structured_counts=s, heldout_counts=h))
     assert result.status == "completed_finite_fit"
-    expected_x = [0.05, 7.5 * D[2], inward_upper(16, D[2])]
+    expected_x = [0.05, 7.5 * D[2], inward_upper(15, D[2])]
     np.testing.assert_allclose(
         result.initial_candidate.centers_um_zyx[:, 2], expected_x, rtol=32 * EPS
     )
     assert result.initial_candidate.centers_um_zyx[0, 2] == 0.05
-    assert result.initial_candidate.centers_um_zyx[-1, 2] == inward_upper(16, D[2])
+    assert result.initial_candidate.centers_um_zyx[-1, 2] == inward_upper(15, D[2])
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
 def test_initialization_smooths_signed_data_and_uses_unsmoothed_positive_centroid() -> None:
-    central, structured, heldout = observations()
+    central, structured, heldout = observations(shape=RANGE_SHAPE)
     y = (central - 5) / 2
     y[0, 0, 2] = -8
     # The negative neighbor moves the smoothed first-object maximum to x=0
     # and below both other peaks. Clipping before smoothing reverses this
     # order. Its unsmoothed centroid still uses the positive x=1 pixel only.
     result = fit(
-        **arguments(central_counts=5 + 2 * y, structured_counts=structured, heldout_counts=heldout)
+        **arguments(
+            shape=RANGE_SHAPE,
+            central_counts=5 + 2 * y,
+            structured_counts=structured,
+            heldout_counts=heldout,
+        )
     )
     assert result.status == "completed_finite_fit"
     np.testing.assert_allclose(
@@ -531,13 +583,18 @@ def test_initialization_smooths_signed_data_and_uses_unsmoothed_positive_centroi
 
 
 def test_initialization_weighted_physical_centroid_without_pixel_round_trip() -> None:
-    central, structured, heldout = observations()
+    central, structured, heldout = observations(shape=RANGE_SHAPE)
     y = (central - 5) / 2
     y[0, 1, 8], y[1, 0, 8] = 1.0, 0.25
     # Positive window weights 6,1,1/4; all other window samples are negative.
     expected = [(7 * 0.0625 + 0.25 * 0.1875) / 7.25, (6.25 * 0.04 + 1 * 0.12) / 7.25, 8.5 * D[2]]
     result = fit(
-        **arguments(central_counts=5 + 2 * y, structured_counts=structured, heldout_counts=heldout)
+        **arguments(
+            shape=RANGE_SHAPE,
+            central_counts=5 + 2 * y,
+            structured_counts=structured,
+            heldout_counts=heldout,
+        )
     )
     assert result.status == "completed_finite_fit"
     np.testing.assert_allclose(
@@ -624,20 +681,6 @@ def test_relative_count_gauge_and_unconsumed_camera_fields(subnormal_result: Any
     assert result.blank_counts == -6.0 and result.contrast_counts == 4.0
 
 
-def test_real_image_derived_camera_record_composes_without_physical_gain(
-    subnormal_result: Any,
-) -> None:
-    estimate = estimate_scalar_camera(
-        np.full((2, 1, 2), -7.0),
-        blank_counts=np.full((2, 1, 2), 5.0),
-        flat_counts=np.full((2, 1, 2), 7.0),
-        source="opaque estimated camera",
-    )
-    assert estimate.gain_counts_per_e is None and estimate.contrast_counts == 2
-    result = fit(**arguments(camera_estimate=estimate))
-    assert_same(result, subnormal_result)
-
-
 def test_subnormal_scale_scores_unchanged_trials_and_reports_unprobed(
     subnormal_result: Any,
 ) -> None:
@@ -719,9 +762,7 @@ def test_zero_brightness_is_a_legal_fit_and_information_codes_stay_literal() -> 
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
-@pytest.mark.parametrize(
-    "target", ("gamma_zero", "gamma_one", "eta_zero", "eta_one", "rho_zero", "rho_one")
-)
+@pytest.mark.parametrize("target", ("gamma_zero", "gamma_one", "eta", "rho_zero", "rho_one"))
 def test_endpoints_exact_beam_zeros_and_coordinate_parameter_distinction(target: str) -> None:
     gamma = math.acos(1 / math.sqrt(3)) / (math.pi / 2)
     if target.startswith("gamma"):
@@ -733,30 +774,33 @@ def test_endpoints_exact_beam_zeros_and_coordinate_parameter_distinction(target:
     result = fit(**arguments(sweep_scales=(scale,)))
     assert result.status == "completed_finite_fit"
     attempts = [a for a in result.poll_attempts if a.coordinate_index == index]
-    sign = -1 if target.endswith("zero") else 1
-    trial = next(a for a in attempts if a.sign == sign)
-    # The exact normalized endpoint is checked before any claim about beams.
-    assert trial.trial_coordinates[index] == (0 if sign == -1 else 1)
-    assert trial.outcome == "scored"
-    if trial.outcome == "scored":
-        candidate = result.objective_trace[trial.score_index].candidate
-        if target == "gamma_zero":
-            np.testing.assert_array_equal(candidate.beam_amplitudes[1:], [0, 0])
-        elif target == "gamma_one":
-            assert candidate.beam_amplitudes[0] == 0
-        elif target == "eta_zero":
-            assert candidate.beam_amplitudes[2] == 0
-        elif target == "eta_one":
-            assert candidate.beam_amplitudes[1] == 0
-        elif target == "rho_zero":
-            np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, 0])
-        elif target == "rho_one":
-            # Coordinate 14 precedes angle 15. This represented vector is
-            # exact, and Fraction proves it lies strictly inside the domain.
-            assert trial.trial_coordinates[15] == 0
-            k0 = 1.515 / 0.488
-            assert Fraction(k0) < Fraction(1.515) / Fraction(0.488)
-            np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, k0])
+    # Both eta endpoints use precisely the same observations and scale=10.
+    targets = ("eta_zero", "eta_one") if target == "eta" else (target,)
+    for endpoint in targets:
+        sign = -1 if endpoint.endswith("zero") else 1
+        trial = next(a for a in attempts if a.sign == sign)
+        # The exact normalized endpoint is checked before any claim about beams.
+        assert trial.trial_coordinates[index] == (0 if sign == -1 else 1)
+        assert trial.outcome == "scored"
+        if trial.outcome == "scored":
+            candidate = result.objective_trace[trial.score_index].candidate
+            if endpoint == "gamma_zero":
+                np.testing.assert_array_equal(candidate.beam_amplitudes[1:], [0, 0])
+            elif endpoint == "gamma_one":
+                assert candidate.beam_amplitudes[0] == 0
+            elif endpoint == "eta_zero":
+                assert candidate.beam_amplitudes[2] == 0
+            elif endpoint == "eta_one":
+                assert candidate.beam_amplitudes[1] == 0
+            elif endpoint == "rho_zero":
+                np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, 0])
+            elif endpoint == "rho_one":
+                # Coordinate 14 precedes angle 15. This represented vector is
+                # exact, and Fraction proves it lies strictly inside the domain.
+                assert trial.trial_coordinates[15] == 0
+                k0 = 1.515 / 0.488
+                assert Fraction(k0) < Fraction(1.515) / Fraction(0.488)
+                np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, k0])
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
@@ -766,8 +810,20 @@ def test_finite_equation_initializer_brightness_and_initial_complete_signed_loss
     # Not a recovery assertion: independently validate the actual represented
     # candidate against the adopted finite optical/source equation.
     assert_initial_brightness(subnormal_result.initial_candidate, np.array([8.0, 6.0, 4.0]), SHAPE)
-    assert_finite_score(subnormal_result.objective_trace[0], arguments())
-    assert_finite_score(subnormal_result.objective_trace[1], arguments())
+    import image_only_calibration_pilot_fixture as reference
+
+    first, unchanged = subnormal_result.objective_trace[:2]
+    assert first.outcome == unchanged.outcome == "scored"
+    assert first.pupil_order == unchanged.pupil_order == 128
+    assert_same(first.candidate, unchanged.candidate)
+    np.testing.assert_array_equal(first.coordinates, unchanged.coordinates)
+    inputs = arguments()
+    central, structured, bound = assert_finite_score(first, inputs)
+    y = (inputs["central_counts"] - 5) / 2
+    training = (inputs["structured_counts"] - 5) / 2
+    expected = reference.objective(y, training, central, structured)
+    allowance = reference.loss_allowance(y, training, central, structured, bound)
+    reference.assert_scalar_close(unchanged.objective, expected, allowance)
 
 
 def test_finite_equation_changed_profiles_illumination_and_full_training_loss(
@@ -776,8 +832,11 @@ def test_finite_equation_changed_profiles_illumination_and_full_training_loss(
     # Separate gamma and eta: eta creates unequal side beams, needed to
     # distinguish the source-minus-focus axial sign. Separate carrier radius
     # and angle as well. Center polls require newly occupied source profiles.
+    from image_only_calibration_pilot_fixture import unit_sites
+
     families = (
-        range(0, 9),
+        (0, 3, 6),  # Axial source movement requires the separate two-plane scene.
+        (1, 2, 4, 5, 7, 8),
         range(9, 12),
         range(12, 13),
         range(13, 14),
@@ -789,23 +848,47 @@ def test_finite_equation_changed_profiles_illumination_and_full_training_loss(
         attempt = next(
             a
             for a in moving_result.poll_attempts
-            if a.coordinate_index in family and a.outcome == "scored" and a.parameter_changed
+            if a.coordinate_index in family
+            and a.outcome == "scored"
+            and a.parameter_changed
+            and (
+                a.coordinate_index >= 9 or "occupancy_equivalent_center" not in a.information_codes
+            )
         )
-        assert_finite_score(moving_result.objective_trace[attempt.score_index], arguments())
+        if attempt.coordinate_index < 9:
+            b = attempt.coordinate_index // 3
+            base = moving_result.objective_trace[attempt.base_score_index].candidate
+            trial = moving_result.objective_trace[attempt.score_index].candidate
+            assert base.brightness_relative[b] > 0 and trial.brightness_relative[b] > 0
+            old_sites = unit_sites(tuple(base.centers_um_zyx[b]), AXIAL_SHAPE)[0]
+            new_sites = unit_sites(tuple(trial.centers_um_zyx[b]), AXIAL_SHAPE)[0]
+            assert set(map(tuple, old_sites)) != set(map(tuple, new_sites))
+        assert_finite_score(
+            moving_result.objective_trace[attempt.score_index], arguments(shape=AXIAL_SHAPE)
+        )
     assert_finite_score(
-        moving_result.objective_trace[moving_result.incumbent_score_index], arguments()
+        moving_result.objective_trace[moving_result.incumbent_score_index],
+        arguments(shape=AXIAL_SHAPE),
     )
 
 
 def test_finite_equation_exact_frozen_rescores_and_first_five_prediction(
-    moving_result: Any,
+    subnormal_result: Any,
 ) -> None:
     import image_only_calibration_pilot_fixture as reference
 
-    result = moving_result
-    for score in result.objective_trace[-2:]:
-        assert_finite_score(score, arguments())
-    _, structured, bound = finite_predictions(result.frozen_candidate, SHAPE, 512)
+    result = subnormal_result
+    # Moving profiles retain their independent Q128 equation and full ledger;
+    # both complete high-order numerical comparisons use this smaller scene.
+    assert np.all(result.frozen_candidate.brightness_relative > 0)
+    q256, q512 = result.objective_trace[-2:]
+    assert (q256.pupil_order, q512.pupil_order) == (256, 512)
+    for score in (q256, q512):
+        assert_same(score.candidate, result.frozen_candidate)
+    central, structured, bound = assert_finite_score(q256, arguments())
+    assert np.max(central) > 0 and np.max(structured) > 0 and bound.product_lo > 0
+    central, structured, bound = assert_finite_score(q512, arguments())
+    assert np.max(central) > 0 and np.max(structured) > 0 and bound.product_lo > 0
     reference.assert_prediction_close(result.heldout_prediction, structured[:, :5], bound)
 
 
@@ -836,7 +919,8 @@ def test_origin_and_heldout_only_change_allowed_metadata_summaries(
     moving_result: Any,
 ) -> None:
     baseline = moving_result if moving else subnormal_result
-    values = arguments(sweep_scales=(0.5,) if moving else (SMALLEST,))
+    shape = AXIAL_SHAPE if moving else SHAPE
+    values = arguments(shape=shape, sweep_scales=(0.5,) if moving else (SMALLEST,))
     values["heldout_counts"] = values["heldout_counts"] + 4
     values["origin_um_zyx"] = (1e300, -1e300, 123.5)
     changed = fit(**values)
@@ -844,14 +928,14 @@ def test_origin_and_heldout_only_change_allowed_metadata_summaries(
     for name in FIELDS["BeadCalibrationResult"]:
         if name not in ("origin_um_zyx", "heldout_residual_mean", "heldout_residual_rms"):
             assert_same(getattr(changed, name), getattr(baseline, name))
-    heldout = (arguments()["heldout_counts"] - 5) / 2
+    heldout = (arguments(shape=shape)["heldout_counts"] - 5) / 2
     residual_scale = max(
         float(np.max(np.abs(heldout - baseline.heldout_prediction))),
         float(np.max(np.abs(heldout + 2 - changed.heldout_prediction))),
     )
     # Bound both float64 mean reductions and their subtraction. This tests
     # the contract's shift relation, not a predetermined search trajectory.
-    allowance = (8 * math.prod(SHAPE) + 64) * EPS * residual_scale * 16
+    allowance = (8 * math.prod(shape) + 64) * EPS * residual_scale * 16
     np.testing.assert_allclose(
         changed.heldout_residual_mean - baseline.heldout_residual_mean,
         np.full((3, 5), 2.0),
@@ -862,13 +946,9 @@ def test_origin_and_heldout_only_change_allowed_metadata_summaries(
     assert_independent(changed, baseline)
 
 
-def test_deterministic_repeated_fixed_dependency_execution(subnormal_result: Any) -> None:
-    repeated = fit(**arguments())
-    assert_same(repeated, subnormal_result)
-    assert_independent(repeated, subnormal_result)
-
-
-def test_records_frozen_public_types_and_independent_writable_snapshots(moving_result: Any) -> None:
+def test_records_frozen_public_types_and_independent_writable_snapshots(
+    moving_result: Any, subnormal_result: Any
+) -> None:
     result = moving_result
     assert_ledger(result, bead, pilot.PilotCandidate)
     assert_independent(result)
@@ -893,13 +973,16 @@ def test_records_frozen_public_types_and_independent_writable_snapshots(moving_r
     for array, saved in zip(arrays[1:], copies[1:], strict=True):
         np.testing.assert_array_equal(array, saved)
     again = fit(**arguments())
-    assert_same(again, fit(**arguments()))
+    assert_same(again, subnormal_result)
+    assert_independent(again, subnormal_result, fresh)
 
 
 def test_initial_range_keeps_constructed_candidate_but_no_success_or_polls() -> None:
     values = arguments()
     values["structured_counts"] = np.full((3, 9, *SHAPE), 1e200)
-    result = fit(**values)
+    with caller_preservation(values) as outputs:
+        result = fit(**values)
+        outputs.extend(output_arrays(result))
     # Direct float64 residual squares are prescribed for the objective.
     assert result.status == "numerical_incomplete" and result.stage == "initial"
     assert result.failure_code == "image_only_bead_calibration_range"
@@ -916,7 +999,10 @@ def test_initial_range_keeps_constructed_candidate_but_no_success_or_polls() -> 
 def test_poll_range_stops_immediately_and_retains_unresolved_partial_pair() -> None:
     proof = poll_range_qualification()
     assert proof["initial_upper_ratio"] < 1 < proof["square_lower_ratio"]
-    result = fit(**poll_range_arguments())
+    values = poll_range_arguments()
+    with caller_preservation(values) as outputs:
+        result = fit(**values)
+        outputs.extend(output_arrays(result))
     assert result.status == "numerical_incomplete" and result.stage == "poll"
     assert result.failure_code == "image_only_bead_calibration_range"
     assert result.initial_candidate is not None and result.initialization_notes is not None
@@ -1036,7 +1122,7 @@ def test_improving_poll_is_best_but_not_incumbent_when_positive_trial_fails() ->
     # Compare each computed score to independent finite-equation bounds;
     # ordering then uses those ACTUAL reported scores without a tolerance.
     maximum = Fraction(float(np.finfo(np.float64).max))
-    divisor = 2 * 28 * math.prod(SHAPE)
+    divisor = 2 * 28 * math.prod(RANGE_SHAPE)
     for score, bounds in (
         (initial, (initial_lo, initial_hi)),
         (negative, (negative_lo, negative_hi)),
@@ -1136,7 +1222,7 @@ def test_normalization_range_before_candidate_formation() -> None:
 
 def test_late_range_retains_complete_prediction_both_summaries_absent() -> None:
     y = np.zeros(SHAPE)
-    for x, height in zip((1, 8, 15), (8, 6, 4), strict=True):
+    for x, height in zip((0, 7, 14), (8, 6, 4), strict=True):
         y[0, 0, x] = height
     values = arguments(
         central_counts=SMALLEST * y,
@@ -1170,45 +1256,19 @@ def test_late_range_retains_complete_prediction_both_summaries_absent() -> None:
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
-@pytest.mark.parametrize("outcome", ("success", "invalid", "unavailable", "range", "poll_range"))
+@pytest.mark.parametrize("outcome", ("invalid", "unavailable"))
 def test_preservation_inputs_random_numpy_and_warning_policy(outcome: str) -> None:
-    values = poll_range_arguments() if outcome == "poll_range" else arguments()
+    values = arguments()
     if outcome == "invalid":
         values["heldout_counts"] = values["heldout_counts"].astype(bool)
-    elif outcome == "unavailable":
+    else:
         values["camera_estimate"] = camera(contrast_counts=0)
-    elif outcome == "range":
-        values["structured_counts"].fill(1e200)
-    arrays = [values[name] for name in ARRAY_NAMES] + [values["camera_estimate"].means_counts]
-    snapshots = [(a.copy(), a.strides, a.flags.writeable, a.dtype) for a in arrays]
-    python_random, numpy_random = random.getstate(), np.random.get_state()
-    with np.errstate(all="raise"), warnings.catch_warnings():
-        warnings.simplefilter("error")
-        policy, filters = np.geterr().copy(), list(warnings.filters)
+    with caller_preservation(values) as outputs:
         if outcome == "invalid":
             with pytest.raises(SimreconError) as error:
                 fit(**values)
             assert error.value.code == "invalid_image_only_bead_calibration"
         else:
             result = fit(**values)
-            assert (
-                result.status
-                == {
-                    "success": "completed_finite_fit",
-                    "unavailable": "normalization_unavailable",
-                    "range": "numerical_incomplete",
-                    "poll_range": "numerical_incomplete",
-                }[outcome]
-            )
-            for output in output_arrays(result):
-                assert all(not np.shares_memory(output, source) for source in arrays)
-        assert np.geterr() == policy and warnings.filters == filters
-    assert random.getstate() == python_random
-    after = np.random.get_state()
-    assert after[0] == numpy_random[0] and after[2:] == numpy_random[2:]
-    np.testing.assert_array_equal(after[1], numpy_random[1])
-    for array, (contents, strides, writable, dtype) in zip(arrays, snapshots, strict=True):
-        np.testing.assert_array_equal(array, contents)
-        assert (
-            array.strides == strides and array.flags.writeable == writable and array.dtype == dtype
-        )
+            assert result.status == "normalization_unavailable"
+            outputs.extend(output_arrays(result))

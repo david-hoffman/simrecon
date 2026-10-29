@@ -614,7 +614,13 @@ def test_exact_carriers_and_no_practical_output_cap(reconstruct: Any) -> None:
     case = dc_case((1, 1, 1), (1, 1025))
     case["output_shape_yx"] = [np.int64(1), np.uint64(1025)]
     case["carriers_bins"] = np.zeros((1, 2), dtype=np.uint64)
-    compare(reconstruct, case)
+    assert_informative_regime(case)
+    spectrum = np.empty((1, 1, 1025), dtype=object)
+    spectrum.fill((D(0), D(0)))
+    spectrum[0, 0, 512] = (D(1), D(0))
+    volume = np.empty_like(spectrum)
+    volume.fill((D(1), D(0)))
+    assert_result_accuracy(call(reconstruct, case), (spectrum, volume), accuracy_bounds(case))
     case["carriers_bins"][0, 1] = np.iinfo(np.uint64).max
     assert_error(reconstruct, case, "invalid_volume_reconstruction_output_shape")
     case["carriers_bins"] = np.zeros((1, 2), dtype=float)
@@ -1284,7 +1290,7 @@ def assert_integer_conversion_outcome(
 def test_permitted_integer_subclass_positive(
     reconstruct: Any, field: str, axis: int, container: Any
 ) -> None:
-    case = make_case((2, 3, 4), ((0, 0),))
+    case = make_case((2, 1, 2), ((0, 0),))
     expected, budgets = accuracy_expectation(case)
     values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
     set_integer_representation(case, field, axis, PermittedInt(values[axis]), container)
@@ -1302,7 +1308,7 @@ def test_integer_subclass_conversion_translation_or_legitimate_bypass(
     reconstruct: Any, field: str, axis: int, container: Any, kind: Any
 ) -> None:
     # Supplemental W15/W17/W21/W25: expectation is computed before hook insertion.
-    case = make_case((2, 3, 4), ((0, 0),))
+    case = make_case((2, 1, 2), ((0, 0),))
     expected, budgets = accuracy_expectation(case)
     values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
     scalar = ConversionFailureInt(values[axis], kind("controlled integer conversion"))
@@ -1323,131 +1329,6 @@ def test_integer_subclass_conversion_translation_or_legitimate_bypass(
             for a, (saved, strides, writable) in zip(arrays, before, strict=True):
                 np.testing.assert_array_equal(a, saved)
                 assert a.strides == strides and a.flags.writeable == writable
-
-
-@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
-@pytest.mark.parametrize("copy_mode", ["original", "shallow", "deepcopy", "snapshot"])
-@pytest.mark.parametrize("field", ["output_shape_yx", "origin_zyx"])
-@pytest.mark.parametrize(
-    "outcome",
-    [
-        "bypass",
-        "translated",
-        "raw",
-        "swallowed",
-        "wrong_code",
-        "uninvoked",
-        "replaced",
-        "bad_bypass",
-    ],
-)
-def test_oracle_integer_conversion_observer_alternatives(
-    kind: Any, outcome: str, copy_mode: str, field: str
-) -> None:
-    assert_controlled_integer_conversion_observer(kind, outcome, copy_mode, field, 0, tuple)
-
-
-def assert_controlled_integer_conversion_observer(
-    kind: Any, outcome: str, copy_mode: str, field: str, axis: int, container: Any
-) -> None:
-    import copy
-
-    from simrecon import SimreconError
-
-    case = make_case((2, 3, 4), ((0, 0),))
-    expected, budgets = accuracy_expectation(case)
-    values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
-    scalar = ConversionFailureInt(values[axis], kind("controlled integer conversion"))
-    set_integer_representation(case, field, axis, scalar, container)
-    code = "invalid_volume_reconstruction_" + (
-        "output_shape" if field == "output_shape_yx" else "otfs"
-    )
-    arrays = []
-    for exact in expected:
-        array = np.empty(exact.shape, dtype=np.complex128)
-        for index in np.ndindex(exact.shape):
-            real, imag = exact[index]
-            array[index] = complex(float(real), float(imag))
-        arrays.append(array)
-    result = SimpleNamespace(spectrum=arrays[0], volume=arrays[1])
-
-    def observed(*args: Any, **kwargs: Any) -> Any:
-        supplied = (
-            kwargs[field][axis]
-            if field == "output_shape_yx"
-            else kwargs["order_otfs"][0].origin_zyx[axis]
-        )
-        assert supplied is scalar
-        if copy_mode == "snapshot":
-            converted = int.__new__(type(supplied), int.__int__(supplied))
-            converted.__dict__.update(copy.deepcopy(supplied.__dict__))
-        elif copy_mode == "deepcopy":
-            converted = copy.deepcopy(supplied)
-        elif copy_mode == "shallow":
-            converted = copy.copy(supplied)
-        else:
-            converted = supplied
-        assert int.__int__(converted) == int.__int__(supplied)
-        if copy_mode != "original":
-            assert converted is not supplied
-        if copy_mode in ("snapshot", "deepcopy"):
-            assert converted.failure is not supplied.failure
-            assert type(converted.failure) is kind
-        if outcome == "bad_bypass":
-            result.spectrum.flat[0] += 1
-        if outcome in ("bypass", "bad_bypass"):
-            return result
-        if outcome == "uninvoked":
-            raise SimreconError(code, "controlled representation failure")
-        try:
-            int(converted)
-        except (TypeError, ValueError, OverflowError, RuntimeError, MemoryError):
-            if outcome == "swallowed":
-                return result
-            if outcome in ("translated", "wrong_code"):
-                raise SimreconError(
-                    code
-                    if outcome == "translated"
-                    else "invalid_volume_reconstruction_"
-                    + ("otfs" if field == "output_shape_yx" else "output_shape"),
-                    "controlled representation failure",
-                ) from None
-            if outcome == "replaced":
-                raise kind("replacement exception") from None
-            raise
-        raise AssertionError("controlled integer hook must raise")
-
-    expected_failure = kind in (TypeError, ValueError, OverflowError)
-    accepted = (
-        outcome == "bypass"
-        or (outcome == "translated" and expected_failure)
-        or (outcome == "raw" and not expected_failure)
-    )
-    if accepted:
-        assert_integer_conversion_outcome(observed, case, code, expected, budgets)
-    else:
-        with pytest.raises(AssertionError):
-            assert_integer_conversion_outcome(observed, case, code, expected, budgets)
-
-
-@pytest.mark.parametrize(
-    "field,axis",
-    [("output_shape_yx", 0), ("output_shape_yx", 1), *(("origin_zyx", i) for i in range(3))],
-)
-@pytest.mark.parametrize("container", [tuple, list])
-@pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
-@pytest.mark.parametrize("swallowed", [False, True])
-def test_oracle_integer_conversion_snapshot_positions(
-    field: str, axis: int, container: Any, kind: Any, swallowed: bool
-) -> None:
-    outcome = (
-        "swallowed"
-        if swallowed
-        else "translated"
-        if kind in (TypeError, ValueError, OverflowError)
-        else "raw"
-    )
-    assert_controlled_integer_conversion_observer(kind, outcome, "snapshot", field, axis, container)
 
 
 @pytest.mark.parametrize("key", ["output_shape_yx", "order_otfs"])

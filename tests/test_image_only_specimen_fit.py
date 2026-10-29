@@ -579,17 +579,18 @@ VALIDATION_ORDER = (
 )
 
 
-@pytest.mark.parametrize(
-    ("earlier", "later"),
-    [(a, b) for i, a in enumerate(VALIDATION_ORDER) for b in VALIDATION_ORDER[i + 1 :]],
-)
-def test_validation_group_order(fit_module: Any, earlier: str, later: str) -> None:
+@pytest.mark.parametrize("winner", VALIDATION_ORDER)
+def test_validation_group_order(fit_module: Any, winner: str) -> None:
     from simrecon import SimreconError
 
+    # Each expected winner comes directly from the contract's fixed order.
+    # inputs() supplies a valid prefix; every group in the suffix rejects None.
+    suffix = VALIDATION_ORDER[VALIDATION_ORDER.index(winner) :]
+    values = inputs(**dict.fromkeys(suffix))
     with pytest.raises(SimreconError) as caught:
-        invoke(fit_module, inputs(**{earlier: None, later: None}))
+        invoke(fit_module, values)
     assert caught.value.code == "invalid_image_only_specimen_fit"
-    assert earlier in str(caught.value)
+    assert winner in str(caught.value)
 
 
 @pytest.mark.parametrize("field", VALIDATION_ORDER)
@@ -1053,6 +1054,7 @@ def test_caller_arrays_and_global_policies_survive_success_or_invalid_input(
     random_before = np.random.get_state()
     if failure:
         values["regularization"] = -1
+    result: Any = None
     with warnings.catch_warnings():
         warnings.simplefilter("error")
         filters_before = list(warnings.filters)
@@ -1062,7 +1064,8 @@ def test_caller_arrays_and_global_policies_survive_success_or_invalid_input(
                 with pytest.raises(SimreconError):
                     invoke(fit_module, values)
             else:
-                assert invoke(fit_module, values).status == "completed_finite_fit"
+                result = invoke(fit_module, values)
+                assert result.status == "completed_finite_fit"
             assert np.geterr() == policy
         assert warnings.filters == filters_before
     random_after = np.random.get_state()
@@ -1071,21 +1074,18 @@ def test_caller_arrays_and_global_policies_survive_success_or_invalid_input(
     for array, (copy, strides, writable) in zip(arrays, before, strict=True):
         np.testing.assert_array_equal(array, copy)
         assert array.strides == strides and array.flags.writeable == writable
-
-
-def test_reached_record_bindings_are_frozen(fit_module: Any) -> None:
-    result = invoke(fit_module, inputs(raw_counts=np.ones((3, 5, 1, 1, 1)), max_iterations=1))
-    for record, field in (
-        (result, "status"),
-        (result.counts, "best_updates"),
-        (result.initial_score, "candidate_id"),
-        (result.last_complete_gradient, "max_abs"),
-        (result.attempt_trace[0], "outcome"),
-        (result.call_trace[0], "purpose"),
-    ):
-        value = getattr(record, field)
-        with pytest.raises((AttributeError, TypeError)):
-            setattr(record, field, value)
+    if not failure:
+        for record, field in (
+            (result, "status"),
+            (result.counts, "best_updates"),
+            (result.initial_score, "candidate_id"),
+            (result.last_complete_gradient, "max_abs"),
+            (result.attempt_trace[0], "outcome"),
+            (result.call_trace[0], "purpose"),
+        ):
+            value = getattr(record, field)
+            with pytest.raises((AttributeError, TypeError)):
+                setattr(record, field, value)
 
 
 def assert_observed_protocol_math(result: Any, observer: Any, values: dict[str, Any]) -> None:

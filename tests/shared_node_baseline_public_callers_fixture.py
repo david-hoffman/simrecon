@@ -17,7 +17,7 @@ import sys
 import threading
 import time
 import uuid
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
@@ -25,7 +25,8 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "artifacts/baseline-compatibility-20261013/A09"
 RUN_ID = os.environ.get("SIMRECON_A09_RUN_ID") or "standalone-" + uuid.uuid4().hex
-RUN = EVIDENCE / "authored-runs" / RUN_ID
+# Evidence placement must not change the shared reader-cache reservation lock.
+RUN = Path(os.environ.get("SIMRECON_PROTOCOLS_EVIDENCE", str(EVIDENCE))) / "authored-runs" / RUN_ID
 HARNESS = ROOT / "scripts/source_free_check.py"
 READER = ROOT / "scripts/prepare_imagej_reader.py"
 VERIFY = ROOT / "scripts/verify.py"
@@ -72,6 +73,7 @@ def invoke(
     timeout: float = 60,
     kind: str = "command",
     observation: dict[str, Any] | None = None,
+    before_rescue_observer: Callable[[], dict[str, Any]] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     """Bound waits; retain source-free output and exact actual public argv."""
     command = [str(item) for item in argv]
@@ -122,6 +124,7 @@ def invoke(
     stdout = stderr = ""
     failure: BaseException | None = None
     cleanup_events: list[dict[str, Any]] = []
+    before_rescue = None
 
     def owned_processes() -> dict[int, tuple[int, str]]:
         owned = {}
@@ -172,6 +175,17 @@ def invoke(
         if monitor is not None:
             monitor.start()
         stdout, stderr = process.communicate(timeout=timeout)
+        if observation is not None:
+            # Read-only observation before the existing unconditional safety cleanup.
+            before_rescue = {
+                "at_s": time.monotonic() - started,
+                "owned_process_states": {
+                    str(pid): list(state) for pid, state in owned_processes().items()
+                },
+                "limitation": "Session snapshot; zombies present; no PID birth-time identity",
+            }
+            if before_rescue_observer is not None:
+                before_rescue["state"] = before_rescue_observer()
     except subprocess.TimeoutExpired:
         timed_out = True
         stdout, stderr = stop_owned_session()
@@ -239,6 +253,7 @@ def invoke(
             {
                 "duration_s": elapsed,
                 "child_cleanup": cleanup,
+                "before_rescue": before_rescue,
                 "outer_timeout": timed_out,
                 "status": process.returncode,
             }
@@ -255,6 +270,7 @@ def invoke(
             "stdout": stdout,
             "stderr": stderr,
             "child_cleanup": cleanup,
+            "before_rescue": before_rescue,
             "measurement_namespace": {
                 key: (env or os.environ).get(key)
                 for key in (
@@ -280,6 +296,7 @@ def python(
     timeout: float = 60,
     kind: str = "python",
     observation: dict[str, Any] | None = None,
+    before_rescue_observer: Callable[[], dict[str, Any]] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     return invoke(
         [sys.executable, HARNESS, "--timeout", str(timeout - 5), "python", script, *args],
@@ -288,6 +305,7 @@ def python(
         timeout=timeout,
         kind=kind,
         observation=observation,
+        before_rescue_observer=before_rescue_observer,
     )
 
 
@@ -454,9 +472,15 @@ def reader(
     driver: Path | None = None,
     timeout: float = 60,
     observation: dict[str, Any] | None = None,
+    before_rescue_observer: Callable[[], dict[str, Any]] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     return python(
-        driver or READER, env=env, timeout=timeout, kind="actual-reader", observation=observation
+        driver or READER,
+        env=env,
+        timeout=timeout,
+        kind="actual-reader",
+        observation=observation,
+        before_rescue_observer=before_rescue_observer,
     )
 
 
@@ -660,7 +684,24 @@ class Transport:
                         b"HTTP/1.1 200 OK\r\n" + length + b"Connection: close\r\n\r\n"
                     )
                     if owner.mode == "socket-timeout":
-                        owner.stop.wait(25)
+                        # Authentic incomplete progress, then no EOF before client failure.
+                        connection.sendall(payload[:262144])
+                        owner.events.append(
+                            {
+                                "event": "socket-stall-start",
+                                "count": min(262144, len(payload)),
+                                "scheduled_s": 60,
+                                "at_s": time.monotonic() - owner.started,
+                            }
+                        )
+                        cancelled = owner.stop.wait(60)
+                        owner.events.append(
+                            {
+                                "event": "socket-stall-ended",
+                                "cancelled": cancelled,
+                                "at_s": time.monotonic() - owner.started,
+                            }
+                        )
                         return
                     try:
                         for offset in range(0, len(payload), 65536):
@@ -675,6 +716,8 @@ class Transport:
                                 }
                             )
                             if owner.mode == "parent-deadline" and owner.stop.wait(5.0):
+                                break
+                            if owner.mode == "adapted-parent" and owner.stop.wait(0.5):
                                 break
                     except (BrokenPipeError, ConnectionResetError, ssl.SSLError) as error:
                         owner.events.append(
@@ -759,19 +802,16 @@ class VerificationFixture:
         (self.root / "control-marker.txt").write_bytes(b"A08-INDEPENDENT-PROTECTED-MARKER\n")
         (self.root / ".gitignore").write_text(
             "artifacts/\ndist/\n.coverage*\npublic-bin/\nphase-driver.py\n"
-            "fixture-make\ncontrols.json\nphase-trace.jsonl\nobserver.json\n"
+            "fixture-make\ncontrols.json\nphase-trace.jsonl\nphase-trace.argv\nobserver.json\n"
         )
         self.controls = self.root / "controls.json"
         self.controls.write_text("{}\n")
         driver = self.root / "phase-driver.py"
-        driver.write_text(PHASE_DRIVER)
-        self.make = self.root / "fixture-make"
-        self.make.write_text(
-            f"#!{sys.executable}\nimport os,sys\n"
-            "if '--version' in sys.argv: print('A08 fixture make 1'); sys.exit(0)\n"
-            f"os.execv({sys.executable!r},[{sys.executable!r},{str(driver)!r},*sys.argv[1:]])\n"
+        driver.write_text(
+            f"import sys\nsys.path.insert(0, {str(ROOT / 'tests')!r})\n" + PHASE_DRIVER
         )
-        self.make.chmod(0o700)
+        self.make = self.root / "fixture-make"
+        self.configure({})
         for args in (
             ["init", "-q"],
             ["config", "--local", "maintenance.auto", "false"],
@@ -790,7 +830,22 @@ class VerificationFixture:
             assert result.returncode == 0
 
     def configure(self, controls: dict[str, Any]) -> None:
+        from verification_fixture_dispatch import install_native_dispatch
+
         self.controls.write_text(json.dumps(controls) + "\n")
+        dynamic = {
+            "coverage-clean",
+            "tests",
+            "coverage-json",
+            "coverage-html",
+            "coverage-report",
+            "wheel",
+            "wheel-import",
+        }
+        dynamic.update(controls[key] for key in ("fail_phase", "redirect_phase") if key in controls)
+        install_native_dispatch(
+            self.make, self.root / "phase-driver.py", dynamic_phases=tuple(sorted(dynamic))
+        )
 
     def run(
         self,
@@ -815,7 +870,7 @@ class VerificationFixture:
             entry.write_text(
                 "import json,os,pathlib,runpy,sys\n"
                 f"argv={argv!r}\nroot=pathlib.Path({str(self.root)!r})\n"
-                f"selected=root / {receipt!r}\nmode={observer!r}\nload={load!r}\n"
+                f"selected=root / {receipt!r}\nmode={observer!r}\n"
                 "busy=False\nfired=False\nevents=[]\n"
                 "def hook(event,args):\n"
                 "    global busy,fired\n"
@@ -846,11 +901,6 @@ class VerificationFixture:
                 "        busy=False\n"
                 "sys.addaudithook(hook)\n"
                 "try:\n"
-                "    if load:\n"
-                "        sys.argv=argv\n"
-                "        try: runpy.run_path(argv[0],run_name='A08_operational_preflight')\n"
-                "        except SystemExit as error:\n"
-                "            if error.code not in (0,None): raise\n"
                 "    sys.argv=argv\n"
                 "    runpy.run_path(argv[0],run_name='__main__')\n"
                 "finally:\n"
@@ -863,6 +913,16 @@ class VerificationFixture:
         marker = self.root / "control-marker.txt"
         before = digest(marker) if marker.is_file() else None
         result = python(entry, cwd=self.root, args=args, timeout=90, kind="actual-verifier")
+        from verification_fixture_dispatch import read_records
+
+        trace = [
+            {"phase": fields[0], "argv": fields[1:]}
+            for fields in read_records(self.root / "phase-trace.argv")
+        ]
+        if trace:
+            (self.root / "phase-trace.jsonl").write_text(
+                "".join(json.dumps(item) + "\n" for item in trace)
+            )
         observer_path = self.root / "observer.json"
         observation = json.loads(observer_path.read_text()) if observer_path.exists() else None
         target = self.root / receipt
@@ -881,7 +941,7 @@ class VerificationFixture:
             "marker_after": digest(marker) if marker.is_file() else None,
             "fixture_root": str(self.root),
             "public_cli_argv": argv,
-            "public_execution": "standard-loading-then-CLI" if observer or load else "CLI",
+            "public_execution": "standard-loading-CLI" if observer or load else "CLI",
             "controls": json.loads(self.controls.read_text()),
             "opaque_verifier_sha256": digest(self.verifier),
             "phase_trace": (
@@ -922,8 +982,8 @@ import base64,csv,hashlib,io,json,pathlib,runpy,shutil,sys,zipfile
 root=pathlib.Path.cwd()
 phase=next(arg for arg in sys.argv[1:] if not arg.startswith('-') and '=' not in arg)
 controls=json.loads((root/'controls.json').read_text())
-with (root/'phase-trace.jsonl').open('a') as stream:
-    stream.write(json.dumps({'phase':phase,'argv':sys.argv[1:]})+'\n')
+from verification_fixture_dispatch import append_record
+append_record(root/'phase-trace.argv', [phase, *sys.argv[1:]])
 print('A08 actual disposable phase '+phase,flush=True)
 if phase==controls.get('fail_phase'): sys.exit(controls.get('status',19))
 if phase==controls.get('redirect_phase'):

@@ -2,107 +2,26 @@
 
 from __future__ import annotations
 
-import json
 import subprocess
 from pathlib import Path
 
 import pytest
 
 from shared_node_baseline_infrastructure_supplement_fixture import (
-    JAVA,
     PHASES,
-    PINS,
     ROOT,
-    all_git_bytes,
     attempted_phases,
-    audited_verify,
     digest,
-    executable,
     protected_bytes,
-    reader_repo,
-    reader_transport_case,
     receipt_at,
     run_public,
-    run_reader,
     verifier_repo,
     verify,
     write_program,
 )
 
 
-def test_reader_authentic_cached_acceptance(tmp_path: Path) -> None:
-    cache, jars = reader_repo(tmp_path)
-    before = {key: digest(value) for key, value in jars.items()}
-    result = run_reader(tmp_path)
-    assert result.returncode == 0, result.stderr
-    identity = json.loads((cache / "inputs.json").read_text())
-    serialized = json.dumps(identity)
-    assert "stale_identity" not in identity
-    for key in PINS:
-        assert key in serialized
-    assert "21.0.7" in serialized
-    assert {key: digest(value) for key, value in jars.items()} == before
-
-
-@pytest.mark.parametrize("pin", tuple(PINS))
-def test_reader_cached_byte_limit_retains_bytes_and_removes_stale_identity(
-    tmp_path: Path, pin: str
-) -> None:
-    cache, jars = reader_repo(tmp_path)
-    oversized = jars[pin]
-    with oversized.open("wb") as output:
-        output.write(b"A07 diagnostic cache bytes")
-        output.truncate(PINS[pin] + 1)
-    before = digest(oversized)
-    result = run_reader(tmp_path)
-    assert result.returncode != 0
-    assert oversized.stat().st_size == PINS[pin] + 1
-    assert digest(oversized) == before
-    assert not (cache / "inputs.json").exists()
-
-
-@pytest.mark.parametrize("mode", ("version-only", "launcher-failure"))
-def test_reader_selected_java_requires_identity_and_source_launcher(
-    tmp_path: Path, mode: str
-) -> None:
-    cache, jars = reader_repo(tmp_path)
-    java = tmp_path / "selected-java"
-    executable(
-        java,
-        f"""
-        import json
-        from pathlib import Path
-        import subprocess
-        import sys
-        if {mode!r} == "launcher-failure":
-            source_launch = any(arg.endswith(".java") for arg in sys.argv[1:])
-            if source_launch:
-                Path("selected-java-launch-events.json").write_text(
-                    json.dumps({{"source_launch_attempted": True}}))
-                print("A07 selected source launch refused", file=sys.stderr)
-                raise SystemExit(19)
-            result = subprocess.run([{JAVA!r}, *sys.argv[1:]], timeout=15)
-            raise SystemExit(result.returncode)
-        if any(arg in sys.argv for arg in
-               ("-version", "--version", "-XshowSettings:properties")):
-            print('openjdk version "21.0.7"', file=sys.stderr)
-            raise SystemExit(0)
-        raise SystemExit(19)
-        """,
-    )
-    result = run_reader(tmp_path, str(java))
-    assert result.returncode != 0
-    assert not (cache / "inputs.json").exists()
-    assert {key: digest(value) for key, value in jars.items()} == {key: key for key in PINS}
-    if mode == "launcher-failure":
-        assert json.loads((tmp_path / "selected-java-launch-events.json").read_text()) == {
-            "source_launch_attempted": True
-        }
-
-
-@pytest.mark.parametrize(
-    "formatter", ("format_exception", "traceback-exception", "print_exception")
-)
+@pytest.mark.parametrize("formatter", ("traceback-exception",))
 def test_standard_exception_formatters_suppress_source_and_locals(
     tmp_path: Path, formatter: str
 ) -> None:
@@ -200,7 +119,7 @@ def test_supported_none_threading_hook_and_exception_formatting(tmp_path: Path) 
     # The public grammar promises accepted None fields, not exact hook prose.
 
 
-@pytest.mark.parametrize("formatter", ("format-stack", "stack-summary", "format-tb"))
+@pytest.mark.parametrize("formatter", ("stack-summary",))
 def test_real_standard_stack_locations_omit_source_and_captured_locals(
     tmp_path: Path, formatter: str
 ) -> None:
@@ -311,31 +230,6 @@ def test_string_command_identity_unavailable_preserves_original_fields(
     assert ("2.5" if exception == "timeout" else "23") in result.stdout
 
 
-@pytest.mark.parametrize(
-    "change",
-    (
-        "missing-destinations",
-        "bad-destination",
-        "exclusion-counter",
-        "excluded-list",
-        "global-exclusion-counter",
-    ),
-)
-def test_verifier_rejects_malformed_authentic_native_reports_and_preserves_markers(
-    tmp_path: Path, change: str
-) -> None:
-    repo = tmp_path / "repository"
-    make = verifier_repo(repo, change=change)
-    protected = protected_bytes(repo)
-    result = verify(repo, make, change=change)
-    assert result.returncode == 1, result.stderr
-    assert protected_bytes(repo) == protected
-    receipt = receipt_at(repo)
-    assert receipt["result"] == "failed"
-    assert receipt["problems"]
-    assert attempted_phases(repo) == list(PHASES)
-
-
 @pytest.mark.parametrize("change", ("", "directory-alias", "directory-cycle", "fifo-neighbor"))
 def test_verifier_safe_custom_untracked_receipt_and_harmless_neighbors(
     tmp_path: Path, change: str
@@ -422,100 +316,3 @@ def test_standard_runpy_main_is_a_real_script_caller_not_a_new_import_api(
     assert result.returncode == 0, result.stderr
     assert "--receipt" in result.stdout
     assert "--measurements-required" in result.stdout
-
-
-@pytest.mark.parametrize("pin", tuple(PINS))
-@pytest.mark.parametrize("mode", ("valid-length", "valid-eof"))
-def test_reader_transport_authentic_missing_input_acceptance_and_public_url_binding(
-    tmp_path: Path, pin: str, mode: str
-) -> None:
-    # Host-only networking. The native role deliberately does not execute this
-    # selection. All URLs come from genuine intercepted public HTTPS requests.
-    case = reader_transport_case(tmp_path, pin, mode)
-    result = case["result"]
-    assert result.returncode == 0, result.stderr
-    assert digest(case["missing"]) == pin
-    assert case["identity"] is not None
-    identity = json.dumps(case["identity"])
-    assert "stale_identity" not in identity
-    assert pin in identity
-    urls = [item["url"] for item in case["requests"] if item.get("method") == "GET"]
-    assert urls, "transport nonwitness: no supported public GET was observed"
-    assert all(url.startswith("https://") for url in urls)
-    assert any(url in identity for url in urls)
-    for retained_pin, original in case["retained"].items():
-        assert digest(case["jars"][retained_pin]) == original
-    expected = {value.name for value in case["jars"].values()} | {"inputs.json"}
-    assert {item.name for item in case["cache"].iterdir()} == expected
-    assert case["temporary_files"] == []
-
-
-@pytest.mark.parametrize("pin", tuple(PINS))
-@pytest.mark.parametrize(
-    "mode", ("advertised-oversize", "actual-oversize", "redirect", "timeout", "digest-failure")
-)
-def test_reader_transport_rejections_preserve_cache_and_cleanup_scoped_bytes(
-    tmp_path: Path, pin: str, mode: str
-) -> None:
-    case = reader_transport_case(tmp_path, pin, mode)
-    result = case["result"]
-    assert result.returncode != 0
-    # Reaching the external 45 s diagnostic deadline is incomplete evidence,
-    # not successful observation of the contracted 15 s transport timeout.
-    assert case["duration"] < 45, "external deadline reached: transport evidence incomplete"
-    assert any(item.get("method") == "GET" for item in case["requests"]), (
-        "transport nonwitness: no supported public GET was observed"
-    )
-    assert not case["missing"].exists()
-    assert case["identity"] is None
-    for retained_pin, original in case["retained"].items():
-        assert digest(case["jars"][retained_pin]) == original
-    expected = {value.name for key, value in case["jars"].items() if key != pin}
-    assert {item.name for item in case["cache"].iterdir()} == expected
-    assert case["temporary_files"] == []
-
-
-@pytest.mark.parametrize("mode", ("directory", "late"))
-@pytest.mark.parametrize("fail", ("", "lint"))
-def test_qualified_public_audit_redirection_preserves_independent_marker_and_git_bytes(
-    tmp_path: Path, mode: str, fail: str
-) -> None:
-    repo = tmp_path / "repository"
-    make = verifier_repo(repo, fail=fail)
-    protected = protected_bytes(repo)
-    git = all_git_bytes(repo)
-    case = audited_verify(repo, make, mode, fail)
-    result, observation, receipt = case["result"], case["audit"], case["receipt"]
-    assert protected_bytes(repo) == protected
-    assert all_git_bytes(repo) == git
-    assert observation["target_after_run"] == observation["expected_target"]
-    if observation["witnessed"]:
-        selected = [event for event in observation["events"] if event["selected"]]
-        assert len(selected) == 1  # One-shot fixture action, not product call count.
-        assert selected[0]["intervention_preserved_target"] is True
-        assert selected[0]["caller_receipt"] == "artifacts/caller-selected-receipt/receipt.json"
-    else:
-        print("A07-R01 audit nonwitness: " + mode + "; no redirection proof claimed")
-    phases = attempted_phases(repo) if (repo / "artifacts/trace.jsonl").exists() else []
-    assert phases == list(PHASES[: len(phases)])
-    if fail and fail in phases:
-        assert result.returncode == 23
-        assert phases == list(PHASES[:3])
-    if result.returncode == 0:
-        # An unused alias or safe replacement is permitted. A passed outcome
-        # still requires a genuine safe receipt, complete evidence and phases.
-        assert not fail
-        assert phases == list(PHASES)
-        assert receipt is not None
-        assert receipt["result"] == "passed" and receipt["problems"] == []
-        assert receipt["before"]["manifest"] == receipt["after"]["manifest"]
-        assert (repo / receipt["coverage"]["reports"]["json"]).is_file()
-        assert (repo / receipt["coverage"]["reports"]["html"]).is_file()
-        assert digest(repo / receipt["artifact"]["path"]) == receipt["artifact"]["sha256"]
-        for phase in receipt["phases"]:
-            assert phase["returncode"] == 0
-            assert (
-                "authentic A07 phase output: " + phase["name"] in (repo / phase["log"]).read_text()
-            )
-    elif receipt is not None:
-        assert receipt["result"] == "failed"

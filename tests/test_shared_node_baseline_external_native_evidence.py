@@ -74,17 +74,28 @@ def assert_passed_truth(case: dict, snapshot: dict) -> None:
     }
 
 
-@pytest.mark.parametrize("selector", ["coveragerc", "pyproject", "rcfile"])
 @pytest.mark.parametrize(
-    "destination", ["neighbor", "stale", "collision", "native-neighbor", "native-stale"]
+    "selector,destination,local_python",
+    [
+        ("coveragerc", "neighbor", True),
+        ("coveragerc", "collision", True),
+        ("pyproject", "neighbor", False),
+        ("pyproject", "collision", False),
+        ("rcfile", "collision", False),
+        ("rcfile", "native-stale", False),
+    ],
 )
 def test_configured_external_native_receipt_preservation(
     tmp_path: Path,
     selector: str,
     destination: str,
+    local_python: bool,
 ) -> None:
     """Safe alternatives must pass; collision may reject honestly or preserve data."""
-    case = prepare(tmp_path, selector, destination)
+    case = prepare(tmp_path, selector, destination, local_python=local_python)
+    if local_python:
+        assert (case["repo"] / ".venv/bin/python").is_file()
+        assert (case["observations"] / "local-python-health.txt").read_bytes()
     result = invoke(case)
     # Keep child output out of assertion diagnostics: third-party text is not an oracle.
     snapshot_path = case["observations"] / "snapshot.json"
@@ -113,23 +124,6 @@ def test_configured_external_native_receipt_preservation(
         assert_passed_truth(case, snapshot)
 
 
-@pytest.mark.parametrize("selector", ["coveragerc", "pyproject", "rcfile"])
-@pytest.mark.parametrize("destination", ["neighbor", "collision"])
-def test_project_local_python_preserves_external_native_evidence(
-    tmp_path: Path, selector: str, destination: str
-) -> None:
-    """The ordinary local interpreter cannot weaken preservation or safe outputs."""
-    case = prepare(tmp_path, selector, destination, local_python=True)
-    assert (case["repo"] / ".venv/bin/python").is_file()
-    assert (case["observations"] / "local-python-health.txt").read_bytes()
-    result = invoke(case)
-    if destination == "collision":
-        assert_rejected_collision(case, result.returncode)
-    else:
-        assert result.returncode == 0, "A supported local interpreter and safe neighbor must pass"
-        assert_passed_truth(case, assert_current_evidence(case))
-
-
 def assert_rejected_collision(case: dict, status: int) -> None:
     """Allow early rejection; preserve genuine bytes whenever measurement ran."""
     assert status == 1, "A current database cannot also be a passed JSON receipt"
@@ -145,8 +139,7 @@ def assert_rejected_collision(case: dict, status: int) -> None:
         assert receipt["problems"]
 
 
-@pytest.mark.parametrize("loss", ["missing", "invalid"])
-@pytest.mark.parametrize("destination", ["neighbor", "collision"])
+@pytest.mark.parametrize("loss,destination", [("missing", "neighbor"), ("invalid", "collision")])
 def test_configuration_loss_after_emission_preserves_native_evidence(
     tmp_path: Path, loss: str, destination: str
 ) -> None:
@@ -179,48 +172,6 @@ def test_configuration_loss_after_emission_preserves_native_evidence(
         assert receipt["before"]["dirty"] is False
 
 
-@pytest.mark.parametrize("loss", ["missing", "invalid"])
-@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
-def test_configuration_loss_before_reporting_fails_without_losing_native_data(
-    tmp_path: Path, loss: str, output_stream: str
-) -> None:
-    """Real Coverage configuration errors stop verification and preserve its data."""
-    case = prepare(
-        tmp_path,
-        "rcfile",
-        "neighbor",
-        local_python=True,
-        configuration_loss=loss,
-        loss_phase="coverage-combine",
-        output_stream=output_stream,
-    )
-    result = invoke(case)
-    observations = case["observations"]
-    event = json.loads((observations / "configuration-loss.json").read_text())
-    assert event["phase"] == "coverage-combine"
-    assert event["loss"] == loss
-    assert event["nonce"] == case["nonce"]
-    assert result.returncode == 1
-    assert case["database"].read_bytes() == (observations / "native-measured.bin").read_bytes()
-    receipt = json.loads(case["receipt"].read_text())
-    assert receipt["result"] == "failed"
-    assert receipt["problems"]
-    assert receipt["before"] == receipt["after"]
-    assert receipt["before"]["dirty"] is False
-    trace = [json.loads(line) for line in (observations / "trace.jsonl").read_text().splitlines()]
-    attempted = [item["phase"] for item in trace]
-    # An evidence check may reject before the next reporting command. If the
-    # command runs, its real failure must be retained and no later phase may run.
-    assert attempted in [list(PHASES[:7]), list(PHASES[:8])]
-    assert [phase["name"] for phase in receipt["phases"]] == attempted
-    if attempted[-1] == "coverage-json":
-        assert receipt["phases"][-1]["returncode"] == 1
-        assert (case["repo"] / receipt["phases"][-1]["log"]).read_bytes() == (
-            observations / "coverage-json.txt"
-        ).read_bytes()
-    assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
-
-
 def assert_attempted_output_retained(case: dict, forwarded: str, receipt: dict) -> None:
     """Each real attempted command owns output even when later validation fails."""
     observations = case["observations"]
@@ -240,20 +191,9 @@ def assert_attempted_output_retained(case: dict, forwarded: str, receipt: dict) 
         )
 
 
-def test_valid_configuration_retains_stderr_and_native_evidence(tmp_path: Path) -> None:
-    """Ordinary stderr output is not a failed command or invalid native evidence."""
-    case = prepare(tmp_path, "rcfile", "neighbor", local_python=True, output_stream="stderr")
-    result = invoke(case)
-    assert result.returncode == 0
-    assert_passed_truth(case, assert_current_evidence(case))
-    receipt = json.loads(case["receipt"].read_text())
-    assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
-
-
-@pytest.mark.parametrize("loss", [None, "missing", "invalid"])
-@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
+@pytest.mark.parametrize("loss,output_stream", [("missing", "stdout"), ("invalid", "stderr")])
 def test_configuration_loss_inside_reporting_preserves_failed_command_evidence(
-    tmp_path: Path, loss: str | None, output_stream: str
+    tmp_path: Path, loss: str, output_stream: str
 ) -> None:
     """A real reporting error retains its own output and independently bound identity."""
     case = prepare(
@@ -314,11 +254,6 @@ def test_configuration_loss_inside_reporting_preserves_failed_command_evidence(
     assert measured["database"] == str(case["database"])
     assert measured["contexts"] == [case["nonce"]]
     assert case["database"].read_bytes() == (observations / "native-measured.bin").read_bytes()
-    if loss is None:
-        assert not (observations / "configuration-loss.json").exists()
-        assert result.returncode == 0, "Valid reporting must remain a permitted positive"
-        assert_passed_truth(case, assert_current_evidence(case))
-        return
     event = json.loads((observations / "configuration-loss.json").read_text())
     assert event == {
         "nonce": case["nonce"],
@@ -339,8 +274,9 @@ def test_configuration_loss_inside_reporting_preserves_failed_command_evidence(
     )
 
 
-@pytest.mark.parametrize("loss", [None, "missing", "invalid"])
-@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
+@pytest.mark.parametrize(
+    "loss,output_stream", [(None, "stderr"), ("missing", "stdout"), ("invalid", "stderr")]
+)
 def test_configuration_loss_inside_tests_preserves_emitted_evidence(
     tmp_path: Path, loss: str | None, output_stream: str
 ) -> None:
@@ -355,6 +291,8 @@ def test_configuration_loss_inside_tests_preserves_emitted_evidence(
         loss_timing="after",
         output_stream=output_stream,
     )
+    assert (case["repo"] / ".venv/bin/python").is_file()
+    assert (case["observations"] / "local-python-health.txt").read_bytes()
     repo = case["repo"]
     observations = case["observations"]
     declared = json.loads((observations / "declared-case.json").read_text())

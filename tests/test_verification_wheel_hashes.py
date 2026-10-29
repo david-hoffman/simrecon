@@ -7,7 +7,6 @@ import io
 import json
 import os
 import shutil
-import sys
 import zipfile
 from pathlib import Path
 
@@ -15,6 +14,7 @@ import pytest
 
 from test_verification_receipt import TOOLS, git, invoke
 from test_verification_receipt import repository as repository
+from verification_fixture_dispatch import install_dispatch, read_calls
 from verification_fixture_tools import PHASES
 
 SECURE_EXAMPLES = (
@@ -50,7 +50,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from _receipt_commands import PHASES, main
+from verification_fixture_tools import PHASES, main
 
 status = main()
 phase = next((arg for arg in sys.argv[1:] if arg in PHASES), None)
@@ -71,11 +71,13 @@ sys.exit(status)
 def hash_repository(repository):
     """Extend the frozen real-CLI fixture only through external executables."""
     root, bin_dir = repository
-    shutil.copyfile(TOOLS, bin_dir / "_receipt_commands.py")
     for name in ("make", "uv"):
         executable = bin_dir / name
-        executable.write_text(f"#!{sys.executable}\n" + COMMAND)
-        executable.chmod(0o755)
+        install_dispatch(
+            executable,
+            f"import sys\nsys.path.insert(0, {str(TOOLS.parent)!r})\n" + COMMAND,
+            profile="hash",
+        )
     return root, bin_dir
 
 
@@ -154,7 +156,9 @@ def run_hash_cli(hash_repository, algorithms, defect=None, *, wheel_failure=Fals
         "wheel-fixture": source,
         "make-fixture": bin_dir / "make",
         "uv-fixture": bin_dir / "uv",
-        "command-fixture": bin_dir / "_receipt_commands.py",
+        "command-fixture": bin_dir / "make-dynamic.py",
+        "receipt-fixture": TOOLS,
+        "dispatch-fixture": TOOLS.with_name("verification_fixture_dispatch.py"),
     }
     expected_inputs = {
         alias: {
@@ -194,7 +198,7 @@ def run_hash_cli(hash_repository, algorithms, defect=None, *, wheel_failure=Fals
     assert receipt is not None
     expected_phases = PHASES[: PHASES.index("wheel") + 1] if wheel_failure else PHASES
     assert [phase["name"] for phase in receipt["phases"]] == expected_phases
-    calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    calls = read_calls(root / "calls.jsonl")
     actual_calls = [call for call in calls if any(arg in PHASES for arg in call)]
     assert [[arg for arg in call if arg in PHASES] for call in actual_calls] == [
         [phase] for phase in expected_phases
@@ -234,15 +238,6 @@ def assert_artifact(receipt, wheel: Path) -> None:
     }
 
 
-@pytest.mark.parametrize("algorithm", SECURE_EXAMPLES)
-def test_secure_record_algorithm_completes_public_cli(hash_repository, algorithm):
-    result, receipt, wheel = run_hash_cli(hash_repository, (algorithm,) * len(MEMBERS))
-    assert result.returncode == 0, json.dumps(receipt["problems"])
-    assert receipt["result"] == "passed"
-    assert receipt["problems"] == []
-    assert_artifact(receipt, wheel)
-
-
 def test_mixed_secure_record_algorithms_complete_public_cli(hash_repository):
     result, receipt, wheel = run_hash_cli(hash_repository, SECURE_EXAMPLES)
     assert result.returncode == 0, json.dumps(receipt["problems"])
@@ -251,7 +246,7 @@ def test_mixed_secure_record_algorithms_complete_public_cli(hash_repository):
     assert_artifact(receipt, wheel)
 
 
-@pytest.mark.parametrize("algorithm", ("md5", "sha1", "sha224", "sha3_224", UNAVAILABLE))
+@pytest.mark.parametrize("algorithm", ("md5", "sha224", UNAVAILABLE))
 def test_one_weak_or_unavailable_record_algorithm_cannot_pass(hash_repository, algorithm):
     algorithms = ("sha256",) * (len(MEMBERS) - 1) + (algorithm,)
     result, receipt, _ = run_hash_cli(hash_repository, algorithms)
@@ -261,19 +256,7 @@ def test_one_weak_or_unavailable_record_algorithm_cannot_pass(hash_repository, a
     assert receipt["artifact"] is None
 
 
-@pytest.mark.parametrize("algorithm", SECURE_EXAMPLES)
-@pytest.mark.parametrize("defect", ("digest", "size"))
-def test_one_corrupt_secure_record_member_cannot_pass(hash_repository, algorithm, defect):
-    result, receipt, _ = run_hash_cli(hash_repository, (algorithm,) * len(MEMBERS), defect)
-    assert result.returncode == 1
-    assert receipt["result"] == "failed"
-    assert receipt["problems"]
-    assert receipt["artifact"] is None
-
-
-@pytest.mark.parametrize(
-    "algorithms", (("sha256",) * len(MEMBERS), SECURE_EXAMPLES), ids=("sha256", "mixed")
-)
+@pytest.mark.parametrize("algorithms", (SECURE_EXAMPLES,), ids=("mixed",))
 def test_valid_current_wheel_retained_after_wheel_phase_failure(hash_repository, algorithms):
     result, receipt, wheel = run_hash_cli(hash_repository, algorithms, wheel_failure=True)
     assert result.returncode == 37

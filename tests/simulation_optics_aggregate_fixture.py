@@ -12,10 +12,8 @@ from simulation_optics_fixture import (
     Bounds,
     Interval,
     Reference,
-    Source,
     bessel_from_square,
     exact,
-    finite_images,
     pi_interval,
     sin_cos,
 )
@@ -57,71 +55,23 @@ def arguments(*, reverse_sides: bool = False) -> dict[str, Any]:
     }
 
 
-@cache
-def aggregate_reference(
-    *, beams: tuple[float, float, float] = BEAMS, pixels: tuple[int, int] = PIXELS
-) -> Reference:
-    """Exact rational geometry and the accepted outward-enclosed finite sum.
-
-    The optional choices support oracle-only wrong-sign/center-sampling controls.
-    Product expectations always use the defaults. Density caching in finite_images
-    shares repeated squared lateral distances and signed defocus separations.
-    """
-    dz, dy, dx = map(exact, SPACING)
-    sources = tuple(
-        Source(
-            dz * Fraction(2 * z + 1, 4),
-            dy * Fraction(2 * y + 1, 4),
-            dx * Fraction(2 * x + 1, 4),
-            weight(z, y, x),
-        )
-        for z in range(4)
-        for y in range(4)
-        for x in range(6)
-    )
-    py, px = pixels
-    sites = tuple(
-        tuple(
-            (dy * (y + Fraction(2 * sy + 1, 2 * py)), dx * (x + Fraction(2 * sx + 1, 2 * px)))
-            for sy in range(py)
-            for sx in range(px)
-        )
-        for y in range(2)
-        for x in range(3)
-    )
-    return finite_images(
-        sources,
-        (dz / 2, 3 * dz / 2),
-        sites,
-        (2, 3),
-        dy * dx,
-        CARRIERS,
-        PHASES,
-        beams=beams,
-        excitation=0.5,
-        emission=0.625,
-        index=1.25,
-        aperture=0.75,
-        order=2,
-    )
-
-
 AxisWeights = tuple[tuple[Fraction, ...], tuple[Fraction, ...], tuple[Fraction, ...]]
 LARGE_SPACING = (0.125, 0.08, 0.08)
 LARGE_WEIGHTS: AxisWeights = (
-    tuple(Fraction(z + 1, 16) for z in range(16)),
-    tuple(Fraction(1 + (3 * y) % 11, 8) for y in range(20)),
-    tuple(Fraction(1 + (5 * x) % 13, 8) for x in range(24)),
+    tuple(Fraction(z + 1, 16) for z in range(17)),
+    tuple(Fraction(1 + (3 * y) % 11, 8) for y in range(2)),
+    tuple(Fraction(1 + (5 * x) % 13, 8) for x in range(2)),
 )
 
 
 def large_arguments() -> dict[str, Any]:
-    """7,680 positive integrated weights; no source-volume multiplier."""
+    """All 17 axial planes contribute positive nonconstant dyadic weights."""
     args = arguments()
     wz, wy, wx = LARGE_WEIGHTS
     args.update(
         source_e=np.array([[[float(z * y * x) for x in wx] for y in wy] for z in wz]),
         detector_spacing_um_zyx=LARGE_SPACING,
+        source_refinement_zyx=(1, 2, 2),
         pupil_order=1,
         pixel_subsamples_yx=(2, 2),
     )
@@ -258,22 +208,23 @@ def separable_reference(
 
 @cache
 def large_reference() -> Reference:
-    return separable_reference(LARGE_WEIGHTS, LARGE_SPACING, (2, 2, 2))
+    return separable_reference(LARGE_WEIGHTS, LARGE_SPACING, (1, 2, 2))
 
 
 REFINEMENT_WEIGHTS: AxisWeights = (
-    (Fraction(1),) * 8,
-    (Fraction(1),) * 12,
-    (Fraction(1),) * 16,
+    tuple(Fraction(z, 8) for z in (1, 2, 3, 5)),
+    tuple(Fraction(y, 4) for y in (1, 3, 2, 5)),
+    tuple(Fraction(x, 4) for x in (2, 1, 5, 3)),
 )
 
 
 def refinement_arguments(beams: tuple[float, float, float]) -> dict[str, Any]:
     """Complete independent source/pixel refinement and beam-positive family."""
     args = arguments()
+    wz, wy, wx = REFINEMENT_WEIGHTS
     args.update(
-        source_e=np.ones((8, 12, 16)),
-        detector_spacing_um_zyx=LARGE_SPACING,
+        source_e=np.array([[[float(z * y * x) for x in wx] for y in wy] for z in wz]),
+        detector_spacing_um_zyx=SPACING,
         beam_amplitudes=beams,
         pupil_order=1,
         pixel_subsamples_yx=(2, 3),
@@ -283,6 +234,4 @@ def refinement_arguments(beams: tuple[float, float, float]) -> dict[str, Any]:
 
 @cache
 def refinement_reference(beams: tuple[float, float, float]) -> Reference:
-    return separable_reference(
-        REFINEMENT_WEIGHTS, LARGE_SPACING, (2, 2, 2), beams=beams, pixels=(2, 3)
-    )
+    return separable_reference(REFINEMENT_WEIGHTS, SPACING, (2, 2, 2), beams=beams, pixels=(2, 3))
