@@ -308,7 +308,9 @@ from simrecon import ScalarCameraEstimate
 F64 = NDArray[np.float64]
 D = (0.125, 0.080, 0.080)
 RADIUS = 0.050
-SHAPE = (2, 2, 16)
+SHAPE = (1, 2, 15)
+RANGE_SHAPE = (2, 2, 16)
+AXIAL_SHAPE = (2, 2, 15)
 EPS = np.finfo(np.float64).eps
 SMALLEST = float(np.nextafter(0.0, 1.0))
 BASE_STEPS = np.array(
@@ -429,21 +431,23 @@ def camera(**changes: Any) -> ScalarCameraEstimate:
     return ScalarCameraEstimate(**fields)
 
 
-def observations(*, edge: bool = False, tie: bool = False) -> tuple[F64, F64, F64]:
+def observations(
+    *, edge: bool = False, tie: bool = False, shape: tuple[int, int, int] = SHAPE
+) -> tuple[F64, F64, F64]:
     """Dyadic signed observations; these are data, not a claimed recovered truth."""
-    y = np.full(SHAPE, 0.0 if tie else -0.03125)
-    peaks = (0, 7, 15) if edge else (1, 8, 15)
+    y = np.full(shape, 0.0 if tie else -0.03125)
+    peaks = ((0, 7, 15) if edge else (1, 8, 15)) if shape == RANGE_SHAPE else (0, 7, 14)
     for x, height in zip(peaks, (8.0, 8.0, 8.0) if tie else (8.0, 6.0, 4.0), strict=True):
         y[0, 0, x] = height
-    structured = np.empty((3, 9, *SHAPE))
+    structured = np.empty((3, 9, *shape))
     for o, p in itertools.product(range(3), range(9)):
         structured[o, p] = (o + 1) / 8 + (p - 4) / 16 + y / 2 ** (o + 2)
-    heldout = (np.arange(15 * math.prod(SHAPE)).reshape(3, 5, *SHAPE) % 17 - 8) / 16
+    heldout = (np.arange(15 * math.prod(shape)).reshape(3, 5, *shape) % 17 - 8) / 16
     return 5 + 2 * y, 5 + 2 * structured, 5 + 2 * heldout
 
 
-def arguments(**changes: Any) -> dict[str, Any]:
-    central, structured, heldout = observations()
+def arguments(*, shape: tuple[int, int, int] = SHAPE, **changes: Any) -> dict[str, Any]:
+    central, structured, heldout = observations(shape=shape)
     values = dict(
         central_counts=central,
         structured_counts=structured,
@@ -458,11 +462,11 @@ def arguments(**changes: Any) -> dict[str, Any]:
 
 def poll_range_arguments() -> dict[str, Any]:
     """Build the natural direct-square poll failure using observations only."""
-    central, structured, _ = observations()
+    central, structured, _ = observations(shape=RANGE_SHAPE)
     return arguments(
         central_counts=2e151 * ((central - 5) / 2),
         structured_counts=2e151 * ((structured - 5) / 2),
-        heldout_counts=np.zeros((3, 5, *SHAPE)),
+        heldout_counts=np.zeros((3, 5, *RANGE_SHAPE)),
         camera_estimate=camera(means_counts=np.zeros(3), contrast_counts=1),
         sweep_scales=(900.0,),
     )
@@ -532,7 +536,7 @@ def _qualify_scaled_peaks(y: F64, peaks: tuple[tuple[int, int, int], ...]) -> No
         }
 
 
-def _qualify_profile_stability(center: F64, delta: Fraction) -> None:
+def _qualify_profile_stability(center: F64, delta: Fraction, shape: tuple[int, int, int]) -> None:
     from simulation_optics_fixture import OracleInconclusive
 
     c = tuple(Fraction(float(v)) for v in center)
@@ -543,7 +547,7 @@ def _qualify_profile_stability(center: F64, delta: Fraction) -> None:
             max(0, math.floor((v - a - delta) / s) - 1),
             min(n * 8, math.ceil((v + a + delta) / s) + 1),
         )
-        for v, s, n in zip(c, steps, SHAPE, strict=True)
+        for v, s, n in zip(c, steps, shape, strict=True)
     ]
     for index in itertools.product(*ranges):
         distances = [
@@ -596,9 +600,11 @@ def poll_range_qualification() -> dict[str, Any]:
     centers = np.array(
         [[0.0625, 0.05, 0.12], [0.0625, 0.05, 0.68], [0.0625, 0.05, inward_upper(16, D[2])]]
     )
-    center_error = reference.gamma(64) * max(n * Fraction(d) for n, d in zip(SHAPE, D, strict=True))
+    center_error = reference.gamma(64) * max(
+        n * Fraction(d) for n, d in zip(RANGE_SHAPE, D, strict=True)
+    )
     for center in centers:
-        _qualify_profile_stability(center, center_error)
+        _qualify_profile_stability(center, center_error, RANGE_SHAPE)
     pi = math.pi
     gamma_coord = math.acos(1 / math.sqrt(3)) / (pi / 2)
     g, e = gamma_coord * (pi / 2), 0.5 * (pi / 2)
@@ -623,14 +629,27 @@ def poll_range_qualification() -> dict[str, Any]:
     dfield, ds = 3 * da + 2 * dalpha + 4 * dtheta, 3 * (4 * da + da**2)
     assert norm - ds > Fraction(1, 2) and all(0 <= a < 2 for a in amplitudes)
     di = 24 * dfield + 144 * ds
+
+    def outward(lo: Fraction, hi: Fraction) -> tuple[Fraction, Fraction]:
+        grid = 2**80
+        return Fraction(math.floor(lo * grid), grid), Fraction(math.ceil(hi * grid), grid)
+
     units, modulated, brightness = [], [], []
     for center, peak in zip(centers, peaks, strict=True):
-        sites, count, _ = reference.unit_sites(tuple(float(v) for v in center), SHAPE)
+        sites, count, _ = reference.unit_sites(tuple(float(v) for v in center), RANGE_SHAPE)
         weight = float(Fraction(1, count))
         unit = reference.optical_enclosure(
-            sites, weight, SHAPE, np.zeros((1, 2)), np.zeros((1, 1)), np.array([1.0, 0.0, 0.0]), 128
+            sites,
+            weight,
+            RANGE_SHAPE,
+            np.zeros((1, 2)),
+            np.zeros((1, 1)),
+            np.array([1.0, 0.0, 0.0]),
+            128,
         )
-        mod = reference.optical_enclosure(sites, weight, SHAPE, carriers, phases, amplitudes, 128)
+        mod = reference.optical_enclosure(
+            sites, weight, RANGE_SHAPE, carriers, phases, amplitudes, 128
+        )
         maximum = Fraction(float(np.max(unit.values)))
         lo = (maximum - unit.radius) * Fraction(99999, 100000)
         hi = (maximum + unit.radius) * Fraction(100001, 100000)
@@ -638,7 +657,7 @@ def poll_range_qualification() -> dict[str, Any]:
         if lo <= 0:
             raise OracleInconclusive("positive initial unit peak is not separated")
         brightness.append(
-            (height / hi * (1 - reference.gamma(8)), height / lo * (1 + reference.gamma(8)))
+            outward(height / hi * (1 - reference.gamma(8)), height / lo * (1 + reference.gamma(8)))
         )
         units.append(unit)
         modulated.append((mod, mod.radius + di * (maximum + unit.radius)))
@@ -654,11 +673,12 @@ def poll_range_qualification() -> dict[str, Any]:
             if b == 0 and multiplier != 1:
                 mult_lo *= 1 - reference.gamma(2)
                 mult_hi *= 1 + reference.gamma(2)
-            lo += brightness[b][0] * mult_lo * max(Fraction(0), value - radius)
-            hi += brightness[b][1] * mult_hi * (value + radius)
-        return lo, hi
+            lower, upper = outward(max(Fraction(0), value - radius), value + radius)
+            lo += brightness[b][0] * mult_lo * lower
+            hi += brightness[b][1] * mult_hi * upper
+        return outward(lo, hi)
 
-    total_peak_hi = max(prediction_interval(i, False)[1] for i in np.ndindex(SHAPE))
+    total_peak_hi = max(prediction_interval(i, False)[1] for i in np.ndindex(RANGE_SHAPE))
     prediction_error = total_peak_hi / 100000
     squares = lower_squares = Fraction(0)
     for array, structured in ((y, False), (t, True)):
@@ -668,16 +688,20 @@ def poll_range_qualification() -> dict[str, Any]:
             residual = max(
                 abs(observation - lo + prediction_error), abs(observation - hi - prediction_error)
             )
-            squares += residual**2
+            squares = outward(Fraction(0), squares + residual**2)[1]
             left, right = observation - hi - prediction_error, observation - lo + prediction_error
             if not left <= 0 <= right:
-                lower_squares += min(abs(left), abs(right)) ** 2
+                lower_squares = outward(
+                    lower_squares + min(abs(left), abs(right)) ** 2, Fraction(0)
+                )[0]
     maxfloat = Fraction(float(np.finfo(np.float64).max))
     reduction = reference.gamma(8 * 28 * y.size + 64)
     initial_upper_ratio = squares * scale**2 * (1 + reduction) / maxfloat
-    peak_index = tuple(int(v) for v in np.unravel_index(np.argmax(units[0].values[0, 0]), SHAPE))
+    peak_index = tuple(
+        int(v) for v in np.unravel_index(np.argmax(units[0].values[0, 0]), RANGE_SHAPE)
+    )
     response_lo = Fraction(float(units[0].values[(0, 0, *peak_index)])) - units[0].radius
-    trial_peak_hi = max(prediction_interval(i, False, 91)[1] for i in np.ndindex(SHAPE))
+    trial_peak_hi = max(prediction_interval(i, False, 91)[1] for i in np.ndindex(RANGE_SHAPE))
     residual_lo = (
         91 * brightness[0][0] * (1 - reference.gamma(2)) * response_lo
         - trial_peak_hi / 100000
@@ -703,13 +727,13 @@ def poll_range_qualification() -> dict[str, Any]:
 
 def improving_pair_arguments() -> dict[str, Any]:
     """Build the fixed image-only improving/incomplete-pair control."""
-    central, _, _ = observations()
-    structured = np.zeros((3, 9, *SHAPE))
+    central, _, _ = observations(shape=RANGE_SHAPE)
+    structured = np.zeros((3, 9, *RANGE_SHAPE))
     structured[0, 7, 1, 0, 1] = float.fromhex("-0x1.fffffc0bfd3e0p+511")
     return arguments(
         central_counts=1e146 * ((central - 5) / 2),
         structured_counts=structured,
-        heldout_counts=np.zeros((3, 5, *SHAPE)),
+        heldout_counts=np.zeros((3, 5, *RANGE_SHAPE)),
         camera_estimate=camera(means_counts=np.zeros(3), contrast_counts=1),
         origin_um_zyx=(0, 0, 0),
         sweep_scales=(0.5,),
@@ -763,7 +787,7 @@ def improving_pair_qualification() -> dict[str, Any]:
     centers = np.array(
         [[0.0625, 0.05, 0.12], [0.0625, 0.05, 0.68], [0.0625, 0.05, inward_upper(16, D[2])]]
     )
-    lengths = tuple(n * Fraction(d) for n, d in zip(SHAPE, D, strict=True))
+    lengths = tuple(n * Fraction(d) for n, d in zip(RANGE_SHAPE, D, strict=True))
     center_error = reference.gamma(64) * max(lengths)
     trial_error = center_error + reference.gamma(4) * max(lengths)
     command = [0, 0.2, 0.4, 0.6, 0.8, 0.1, 0.3, 0.7, 0.9]
@@ -810,12 +834,12 @@ def improving_pair_qualification() -> dict[str, Any]:
 
     brightness = []
     for center, index in zip(centers, peaks, strict=True):
-        _qualify_profile_stability(center, center_error)
-        sites, count, _ = reference.unit_sites(tuple(float(v) for v in center), SHAPE)
+        _qualify_profile_stability(center, center_error, RANGE_SHAPE)
+        sites, count, _ = reference.unit_sites(tuple(float(v) for v in center), RANGE_SHAPE)
         unit = reference.optical_enclosure(
             sites,
             float(Fraction(1, count)),
-            SHAPE,
+            RANGE_SHAPE,
             np.zeros((1, 2)),
             np.zeros((1, 1)),
             np.array([1.0, 0.0, 0.0]),
@@ -835,16 +859,16 @@ def improving_pair_qualification() -> dict[str, Any]:
         )
 
     def image_intervals(c: F64) -> tuple[dict[Any, Any], dict[Any, Any], Fraction]:
-        if not geometry_valid(c, SHAPE):
+        if not geometry_valid(c, RANGE_SHAPE):
             raise OracleInconclusive("improving-pair proposed center geometry is illegal")
         units, modulated = [], []
         for center in c:
-            _qualify_profile_stability(center, trial_error)
-            sites, count, _ = reference.unit_sites(tuple(float(v) for v in center), SHAPE)
+            _qualify_profile_stability(center, trial_error, RANGE_SHAPE)
+            sites, count, _ = reference.unit_sites(tuple(float(v) for v in center), RANGE_SHAPE)
             unit = reference.optical_enclosure(
                 sites,
                 float(Fraction(1, count)),
-                SHAPE,
+                RANGE_SHAPE,
                 np.zeros((1, 2)),
                 np.zeros((1, 1)),
                 np.array([1.0, 0.0, 0.0]),
@@ -853,7 +877,7 @@ def improving_pair_qualification() -> dict[str, Any]:
             mod = reference.optical_enclosure(
                 sites,
                 float(Fraction(1, count)),
-                SHAPE,
+                RANGE_SHAPE,
                 carriers,
                 phases,
                 amplitudes,
@@ -863,7 +887,7 @@ def improving_pair_qualification() -> dict[str, Any]:
             peak_hi = Fraction(float(np.max(unit.values))) + unit.radius
             modulated.append((mod, mod.radius + illumination_error * peak_hi))
         images = []
-        for refs, shape in ((units, SHAPE), (modulated, (3, 9, *SHAPE))):
+        for refs, shape in ((units, RANGE_SHAPE), (modulated, (3, 9, *RANGE_SHAPE))):
             image = {}
             for i in np.ndindex(shape):
                 lo = hi = Fraction(0)

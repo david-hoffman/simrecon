@@ -10,13 +10,10 @@ from typing import Any, cast
 import numpy as np
 from numpy.typing import NDArray
 
+from simulation_optics_aggregate_fixture import large_arguments, large_reference
 from simulation_optics_fixture import compare_reference, exact
 from simulation_optics_memory_fixture import (
-    LARGER_FOCUS_INDICES,
-    LARGER_PIXELS,
     arguments,
-    larger_arguments,
-    larger_necessary_reference,
     reference,
 )
 
@@ -68,19 +65,12 @@ def test_nonseparable_sources_preserve_defocus_across_three_focus_planes() -> No
 
 
 def test_larger_axial_catalogue_satisfies_complete_source_necessary_bound() -> None:
-    """Sample fixed entries with every source and a proved global T upper bound.
-
-    Supplemental after implementation: this is a necessary accuracy condition,
-    not certification of the sharper 1e-5*T bound over the full output image.
-    """
-    target = larger_necessary_reference()
-    actual = call(larger_arguments())
-    assert actual.shape == (2, 3, 25, 32, 32)
-    observations = tuple(
-        exact(float(actual[o, p, k, y, x]))
-        for o in range(2)
-        for p in range(3)
-        for k in LARGER_FOCUS_INDICES
-        for y, x in LARGER_PIXELS
-    )
-    compare_reference(observations, target)
+    """Every output includes all 17 source planes and the exact global T."""
+    target = large_reference()
+    args = large_arguments()
+    source = args["source_e"]
+    assert source.shape == (17, 8, 8) and np.all(source > 0)
+    assert np.unique(source[-1]).size > 1
+    actual = call(args)
+    assert actual.shape == target.shape == (2, 3, 17, 4, 4)
+    compare_reference(tuple(exact(float(value)) for value in actual.flat), target)

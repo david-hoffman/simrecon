@@ -48,11 +48,11 @@ from full_noisy_study_fixture import (
     exact_source,
     expect,
     finite_mean_prediction_references,
+    in_process_cli,
     infer_args,
     keys,
     load_json,
     metric_reference,
-    multi_axial_plan,
     observation_bundle,
     paired_axial_reference,
     physical_pi,
@@ -311,19 +311,6 @@ def pipeline(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
     return run_public_pipeline(root, plan())
 
 
-@pytest.fixture(scope="module")
-def geometry_pipeline(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
-    """Keep an independent real workflow with two asymmetric axial cell pairs."""
-    root = tmp_path_factory.mktemp("full-noisy-A-public-multi-axial")
-    return run_public_pipeline(root, multi_axial_plan())
-
-
-@pytest.fixture(scope="module", params=["pipeline", "geometry_pipeline"])
-def scientific_workflow(request: pytest.FixtureRequest) -> dict[str, Any]:
-    """Apply the strongest scientific keepers to both declared public scenes."""
-    return request.getfixturevalue(request.param)
-
-
 def run_public_pipeline(root: Path, value: dict[str, Any]) -> dict[str, Any]:
     """Obtain every successful workflow artifact from the real separate-process CLI."""
     plan_path = root / "public-plan.json"
@@ -333,7 +320,20 @@ def run_public_pipeline(root: Path, value: dict[str, Any]) -> dict[str, Any]:
     expect(cli("generate", "--plan", str(plan_path), "--out", str(run)), 0)
     observations, truth = run / "observations", run / "private_truth"
     generated = snapshot(run)
-    expect(cli(*infer_args(observations, inference)), 0)
+    inferred = cli(*infer_args(observations, inference))
+    if inferred.returncode != 0:
+        state = load_json(inference / "estimates.json")
+        bead = state["bead_calibration"]
+        raise AssertionError(
+            {
+                "returncode": inferred.returncode,
+                "stage": state["fit_stage"],
+                "contrast": state["camera_estimate"]["contrast_counts"],
+                "bead_status": None if bead is None else bead["status"],
+                "bead_stage": None if bead is None else bead["stage"],
+            }
+        )
+    expect(inferred, 0)
     frozen = snapshot(inference)
     expect(cli(*evaluate_args(observations, inference, truth, evaluation)), 0)
     assert snapshot(run) == generated and snapshot(inference) == frozen
@@ -351,9 +351,8 @@ def run_public_pipeline(root: Path, value: dict[str, Any]) -> dict[str, Any]:
 
 
 def test_generation_protocol_and_independent_source_reference(
-    scientific_workflow: dict[str, Any],
+    pipeline: dict[str, Any],
 ) -> None:
-    pipeline = scientific_workflow
     run, obs, truth, value = (pipeline[k] for k in ("run", "observations", "truth", "plan"))
     manifest = load_json(obs / "complete.json", canonical=True)
     keys(manifest, "format_version geometry acquisition_model nominal_phase_commands_rad files")
@@ -434,11 +433,9 @@ def test_generation_protocol_and_independent_source_reference(
     )
 
 
-def test_generation_real_scientific_call_composition(scientific_workflow: dict[str, Any]) -> None:
+def test_generation_real_scientific_call_composition(pipeline: dict[str, Any]) -> None:
     from scripts.simulation_camera import sample_camera
     from scripts.simulation_optics import expected_images
-
-    pipeline = scientific_workflow
 
     value, truth, obs = (pipeline[k] for k in ("plan", "truth", "observations"))
     geometry, camera, illumination = (value[k] for k in ("geometry", "camera", "illumination"))
@@ -628,15 +625,13 @@ def independent_camera_moments(groups: list[Any], camera: dict[str, Any]) -> dic
 
 
 def test_pipeline_complete47_paired_gauge_actual_specimen_and_freeze(
-    scientific_workflow: dict[str, Any],
+    pipeline: dict[str, Any],
 ) -> None:
     from scripts.image_only_bead_calibration import fit_bead_calibration
     from scripts.image_only_specimen_fit import fit_specimen
     from scripts.simulation_inverse_operator import build_kernel_cache, forward
 
     from simrecon import estimate_scalar_camera
-
-    pipeline = scientific_workflow
 
     obs, inference, value = (pipeline[k] for k in ("observations", "inference", "plan"))
     geometry = value["geometry"]
@@ -763,9 +758,8 @@ def test_pipeline_complete47_paired_gauge_actual_specimen_and_freeze(
 
 
 def test_metrics_independent_full_arrays_permutations_and_global_gauges(
-    scientific_workflow: dict[str, Any],
+    pipeline: dict[str, Any],
 ) -> None:
-    pipeline = scientific_workflow
     obs, inference, truth, value = (
         pipeline[k] for k in ("observations", "inference", "truth", "plan")
     )
@@ -1114,7 +1108,7 @@ def test_cli_help(command: str) -> None:
     ],
 )
 def test_cli_grammar(args: tuple[str, ...]) -> None:
-    expect(cli(*args), 2)
+    expect(in_process_cli(*args), 2)
 
 
 def set_at(value: Any, path: tuple[Any, ...], replacement: Any) -> None:
@@ -1179,7 +1173,7 @@ def test_plan_rejections_before_claim(
     input_path, out = tmp_path / "bad.json", tmp_path / "out"
     write_json(input_path, value)
     before = snapshot(tmp_path)
-    expect(cli("generate", "--plan", str(input_path), "--out", str(out)), 2)
+    expect(in_process_cli("generate", "--plan", str(input_path), "--out", str(out)), 2)
     assert snapshot(tmp_path) == before and not out.exists()
 
 
@@ -1203,7 +1197,7 @@ def test_plan_exact_keys_at_every_object(
         raw = raw.replace(token, token + b"null," + token, 1)
     input_path, out = tmp_path / "bad.json", tmp_path / "out"
     input_path.write_bytes(raw)
-    expect(cli("generate", "--plan", str(input_path), "--out", str(out)), 2)
+    expect(in_process_cli("generate", "--plan", str(input_path), "--out", str(out)), 2)
     assert input_path.read_bytes() == raw and not out.exists()
 
 
@@ -1224,7 +1218,7 @@ def test_plan_exact_keys_at_every_object(
 def test_strict_plan_json(tmp_path: Path, raw: bytes) -> None:
     input_path, out = tmp_path / "bad.json", tmp_path / "out"
     input_path.write_bytes(raw)
-    expect(cli("generate", "--plan", str(input_path), "--out", str(out)), 2)
+    expect(in_process_cli("generate", "--plan", str(input_path), "--out", str(out)), 2)
     assert input_path.read_bytes() == raw and not out.exists()
 
 
@@ -1256,7 +1250,7 @@ def test_algorithm_settings_syntax(tmp_path: Path, flag: str, text: str) -> None
     # Invalid settings must be diagnosed without needing a scientific input.
     args = infer_args(tmp_path / "not-present", tmp_path / "out")
     args[args.index(flag) + 1] = text
-    expect(cli(*args), 2)
+    expect(in_process_cli(*args), 2)
     assert not (tmp_path / "out").exists()
 
 
@@ -1268,10 +1262,10 @@ def test_each_required_flag_duplicate_unknown_and_positionals(tmp_path: Path, co
         else evaluate_args(tmp_path / "obs", tmp_path / "inf", tmp_path / "truth", tmp_path / "out")
     )
     for index in range(1, len(args), 2):
-        expect(cli(*(args[:index] + args[index + 2 :])), 2)
-        expect(cli(*(args + args[index : index + 2])), 2)
+        expect(in_process_cli(*(args[:index] + args[index + 2 :])), 2)
+        expect(in_process_cli(*(args + args[index : index + 2])), 2)
     for extra in (["extra"], ["--unknown", "1"], ["--overwrite"], ["--plan", "secret"]):
-        expect(cli(*(args + extra)), 2)
+        expect(in_process_cli(*(args + extra)), 2)
     assert not (tmp_path / "out").exists()
 
 
@@ -1519,7 +1513,7 @@ def test_observation_protocol_rejections(tmp_path: Path, defect: str) -> None:
         marker.write_bytes(raw)
     before = snapshot(obs)
     out = tmp_path / "out"
-    expect(cli(*infer_args(obs, out)), 4)
+    expect(in_process_cli(*infer_args(obs, out)), 4)
     assert snapshot(obs) == before and not out.exists()
 
 
@@ -1541,6 +1535,7 @@ def test_observation_protocol_rejections(tmp_path: Path, defect: str) -> None:
 )
 def test_binary_protocol_payload_validation(tmp_path: Path, defect: str) -> None:
     obs = observation_bundle(tmp_path / "obs")
+    shape = tuple(load_json(obs / "complete.json")["geometry"]["specimen_shape_zyx"])
     path = obs / RAW_NAMES[-1]
     old = path.read_bytes()
     if defect in ("trailing", "truncated", "header_only"):
@@ -1552,14 +1547,14 @@ def test_binary_protocol_payload_validation(tmp_path: Path, defect: str) -> None
         write_json(obs / "complete.json", manifest)
     elif defect == "signed_counts":
         # Raw signed counts are legal: this example must NOT reject.
-        values = np.full((1, 2, 2), -20.0, dtype="<f8")
+        values = np.full(shape, -20.0, dtype="<f8")
         path.rename(obs / "original-public-payload.npy")
         save_npy(path, values)
         reseal(obs)
     elif defect == "object_header":
         with path.open("wb") as stream:
             np.lib.format.write_array_header_1_0(
-                stream, {"descr": "|O", "fortran_order": False, "shape": (1, 2, 2)}
+                stream, {"descr": "|O", "fortran_order": False, "shape": shape}
             )
             stream.write(b"\x00" * 32)  # no pickle or executable object payload
         manifest = load_json(obs / "complete.json")
@@ -1567,7 +1562,7 @@ def test_binary_protocol_payload_validation(tmp_path: Path, defect: str) -> None
         write_json(obs / "complete.json", manifest)
     else:
         values = np.zeros(
-            (1, 2, 2),
+            shape,
             dtype=">f8" if defect == "big_endian" else "<f4" if defect == "float32" else "<f8",
         )
         if defect == "fortran":
@@ -1577,13 +1572,16 @@ def test_binary_protocol_payload_validation(tmp_path: Path, defect: str) -> None
         elif defect == "infinity":
             values.flat[0] = np.inf
         elif defect == "wrong_shape":
-            values = np.zeros((1, 1, 4), dtype="<f8")
+            values = np.zeros((1, 2, 1), dtype="<f8")
         path.rename(obs / "original-public-payload.npy")
-        save_npy(path, values)
+        if defect == "fortran":
+            save_declared_order_npy(path, values, (1, 0), fortran=True)
+        else:
+            save_npy(path, values)
         reseal(obs)
     before = snapshot(obs)
     out = tmp_path / "out"
-    expect(cli(*infer_args(obs, out)), 3 if defect == "signed_counts" else 4)
+    expect(in_process_cli(*infer_args(obs, out)), 3 if defect == "signed_counts" else 4)
     assert snapshot(obs) == before
     if defect != "signed_counts":
         assert not out.exists()
@@ -2007,7 +2005,10 @@ def test_evaluation_private_protocol_rejections(
         write_json(marker, value)
     before = snapshot(truth)
     out = tmp_path / "evaluation"
-    expect(cli(*evaluate_args(pipeline["observations"], pipeline["inference"], truth, out)), 4)
+    expect(
+        in_process_cli(*evaluate_args(pipeline["observations"], pipeline["inference"], truth, out)),
+        4,
+    )
     assert snapshot(truth) == before and not out.exists()
 
 
@@ -2017,7 +2018,6 @@ def test_evaluation_private_protocol_rejections(
         "zero_reference",
         "large_paired_source",
         "huge_phases_and_beams",
-        "maximum_finite_beams",
         "finite_mean_product_overflow",
     ],
 )
@@ -2031,11 +2031,11 @@ def test_extreme_evaluation_honest_arithmetic_not_new_physical_acquisition(
     shutil.copytree(pipeline["truth"], truth)
     value = load_json(truth / "plan.json")
     summary = load_json(truth / "generation_summary.json")
-    if case in ("huge_phases_and_beams", "maximum_finite_beams"):
-        value["illumination"]["phases_at_calibration_origin_rad"] = [[1e300] * 9 for _ in range(3)]
-        component = (
-            1e308 if case == "huge_phases_and_beams" else float.fromhex("0x1.fffffffffffffp+1023")
-        )
+    if case == "huge_phases_and_beams":
+        value["illumination"]["phases_at_calibration_origin_rad"] = [
+            [(-1 if (o + p) % 2 else 1) * 1e300 for p in range(9)] for o in range(3)
+        ]
+        component = float.fromhex("0x1.fffffffffffffp+1023")
         value["illumination"]["beam_amplitudes"] = [component] * 3
     elif case == "finite_mean_product_overflow":
         # Evaluator protocol arithmetic only: these private means are deliberately
@@ -2087,7 +2087,10 @@ def test_extreme_evaluation_honest_arithmetic_not_new_physical_acquisition(
     reseal(truth)
     frozen = snapshot(pipeline["inference"])
     out = tmp_path / "evaluation"
-    expect(cli(*evaluate_args(pipeline["observations"], pipeline["inference"], truth, out)), 0)
+    expect(
+        in_process_cli(*evaluate_args(pipeline["observations"], pipeline["inference"], truth, out)),
+        0,
+    )
     report = check_evaluation(out, pipeline["observations"], pipeline["inference"], truth)
     assert snapshot(pipeline["inference"]) == frozen
     if case == "finite_mean_product_overflow":
@@ -2110,7 +2113,7 @@ def test_extreme_evaluation_honest_arithmetic_not_new_physical_acquisition(
             check_available_metric(report[field], predictions, reference)
             assert report[field]["count"] == predictions.size
             assert not any(item["field"] == field for item in report["unavailable_comparisons"])
-    elif case not in ("huge_phases_and_beams", "maximum_finite_beams"):
+    elif case != "huge_phases_and_beams":
         estimated = np.load(
             pipeline["inference"] / "specimen_source_relative.npy", allow_pickle=False
         )
@@ -2136,14 +2139,17 @@ def test_extreme_evaluation_honest_arithmetic_not_new_physical_acquisition(
                 value["illumination"]["beam_amplitudes"],
                 side_exchange=sign == -1,
             )
-            with localcontext() as ctx:
-                ctx.prec = 440
-                difference = sign * dec(candidate["phases_rad"][0][0]) - dec(1e300)
-                turns = ((difference + physical_pi()) / (2 * physical_pi())).to_integral_value(
-                    rounding="ROUND_FLOOR"
-                )
-                expected = float(difference - turns * 2 * physical_pi())
-            close_scalar(gauge["wrapped_phase_error_rad"][0][0], expected, scale=8.0)
+            for o, p in itertools.product(range(3), range(9)):
+                with localcontext() as ctx:
+                    ctx.prec = 440
+                    difference = sign * dec(candidate["phases_rad"][o][p]) - dec(
+                        value["illumination"]["phases_at_calibration_origin_rad"][o][p]
+                    )
+                    turns = ((difference + physical_pi()) / (2 * physical_pi())).to_integral_value(
+                        rounding="ROUND_FLOOR"
+                    )
+                    expected = float(difference - turns * 2 * physical_pi())
+                close_scalar(gauge["wrapped_phase_error_rad"][o][p], expected, scale=8.0)
 
 
 def test_prediction_metrics_preserve_tiny_absolute_errors_beside_large_common_signal(
@@ -2164,7 +2170,7 @@ def test_prediction_metrics_preserve_tiny_absolute_errors_beside_large_common_si
 
     large, tiny = math.ldexp(1.0, 500), math.ldexp(1.0, -600)
     shape = tuple(value["geometry"]["specimen_shape_zyx"])
-    assert shape == (1, 2, 2)
+    assert shape == (2, 1, 2)
     prediction = np.array([large, 0.0, 0.0, 0.0], dtype="<f8").reshape(shape)
     reference = np.array([large, tiny, 0.0, 0.0], dtype="<f8").reshape(shape)
     for prediction_name, raw_name in zip(PRED_NAMES, RAW_NAMES, strict=True):
@@ -2345,7 +2351,10 @@ def test_recursive_public_record_schema_rejection(
     write_json(inference / "estimates.json", estimates)
     reseal(inference, "freeze.json")
     out = tmp_path / "evaluation"
-    expect(cli(*evaluate_args(pipeline["observations"], inference, pipeline["truth"], out)), 4)
+    expect(
+        in_process_cli(*evaluate_args(pipeline["observations"], inference, pipeline["truth"], out)),
+        4,
+    )
     assert not out.exists()
 
 
@@ -2451,7 +2460,10 @@ def test_frozen_payload_domains_and_references(
             np.save(stream, array, allow_pickle=False)
     reseal(inference, "freeze.json")
     out = tmp_path / "evaluation"
-    expect(cli(*evaluate_args(pipeline["observations"], inference, pipeline["truth"], out)), 4)
+    expect(
+        in_process_cli(*evaluate_args(pipeline["observations"], inference, pipeline["truth"], out)),
+        4,
+    )
     assert not out.exists()
 
 
@@ -2461,9 +2473,14 @@ def test_real_bead_range_retains_actual_incomplete_record(tmp_path: Path) -> Non
     from simrecon import estimate_scalar_camera
 
     obs = observation_bundle(tmp_path / "obs", camera_case="gain_missing")
-    central = np.zeros((1, 2, 24), dtype="<f8")
-    central[0, 0, [2, 11, 20]] = 100.0
-    training = np.full((3, 9, 1, 2, 24), 1e308, dtype="<f8")
+    central = np.zeros((1, 2, 15), dtype="<f8")
+    central[0, 0, [0, 7, 14]] = 100.0
+    training = np.full((3, 9, 1, 2, 15), 1e308, dtype="<f8")
+    manifest = load_json(obs / "complete.json")
+    manifest["geometry"]["calibration_shape_zyx"] = [1, 2, 15]
+    write_json(obs / "complete.json", manifest)
+    with (obs / "calibration_heldout.npy").open("wb") as stream:
+        np.save(stream, np.zeros((3, 5, 1, 2, 15), dtype="<f8"), allow_pickle=False)
     for name, array in (
         ("calibration_central.npy", central),
         ("calibration_training.npy", training),
@@ -2507,7 +2524,7 @@ def test_real_specimen_range_retains_bead_and_no_fabricated_source(
     obs = tmp_path / "observations"
     shutil.copytree(pipeline["observations"], obs)
     path = obs / RAW_NAMES[-1]
-    array = np.full((1, 2, 2), 1e308, dtype="<f8")
+    array = np.full((2, 1, 2), 1e308, dtype="<f8")
     with path.open("wb") as stream:
         np.save(stream, array, allow_pickle=False)
     reseal(obs)
@@ -2541,9 +2558,19 @@ def test_real_specimen_range_retains_bead_and_no_fabricated_source(
 
 
 def test_asymmetric_pairing_reference_and_geometry_are_distinguishing() -> None:
-    value = multi_axial_plan()
+    value = plan()
     geometry = value["geometry"]
-    assert value["seeds"] == plan()["seeds"]  # original streams remain predeclared
+    seeds = value["seeds"]
+    streams = [
+        *seeds["camera_dark"],
+        *seeds["camera_blank"],
+        *seeds["camera_flat"],
+        seeds["calibration_central"],
+        *(seed for row in seeds["calibration_training"] for seed in row),
+        *(seed for row in seeds["calibration_heldout"] for seed in row),
+        *(seed for row in seeds["specimen"] for seed in row),
+    ]
+    assert streams == list(range(10000, 10082))  # Original fixed streams; no seed search.
     assert geometry["calibration_spacing_um_zyx"] == list(D)
     assert geometry["specimen_spacing_um_zyx"] == [0.25, 0.1, 0.12] != list(D)
     source = exact_source(
@@ -2552,15 +2579,15 @@ def test_asymmetric_pairing_reference_and_geometry_are_distinguishing() -> None:
         geometry["specimen_spacing_um_zyx"],
         (2, 2, 2),
     )
-    assert source.shape == (4, 4, 4)
-    # Closed rational membership on the declared sites gives 8+4 and 4+8
-    # occupied sites. Each object's RN64(B/12) weight is set before accumulation.
-    assert [np.count_nonzero(plane) for plane in source] == [8, 4, 4, 8]
-    first_weight, second_weight = float(Decimal(700) / 12), float(Decimal(1300) / 12)
+    assert source.shape == (4, 2, 4)
+    # Exact squared distances admit four sites in plane 0 and four in
+    # plane 2. The intervening planes are outside both closed spheres.
+    assert [np.count_nonzero(plane) for plane in source] == [4, 0, 4, 0]
+    first_weight, second_weight = 700.0 / 4, 1300.0 / 4
     np.testing.assert_array_equal(np.unique(source[0][source[0] > 0]), [first_weight])
     np.testing.assert_array_equal(np.unique(source[2][source[2] > 0]), [second_weight])
     reference = paired_axial_reference(source, 2.0, 4.0)
-    assert reference.shape == (2, 4, 4)
+    assert reference.shape == (2, 2, 4)
     for k, y, x in np.ndindex(reference.shape):
         # gain/contrast=1/2; this dyadic scale permits an exact rational target.
         from fractions import Fraction

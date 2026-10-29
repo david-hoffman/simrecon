@@ -93,12 +93,18 @@ def canonical_rule(order: int, digits: int) -> Rule:
     2/((1-x*x)*P'_n**2) on [-1,1], then the half-interval transform.
     """
     rule = []
+    reflected_weights: dict[tuple[Fraction, Fraction], Interval] = {}
     for lo, hi in root_brackets(order, 4 * digits):
         x = Interval(Interval.rational(lo, digits).lo, Interval.rational(hi, digits).hi, digits)
-        previous, current = Interval.rational(1, digits), x
-        for n in range(2, order):
-            previous, current = current, ((2 * n - 1) * x * current - (n - 1) * previous) / n
-        weight = (1 - x.squared()) / (order * order * current.squared())
+        key = (lo, hi) if lo > 0 else (-hi, -lo)
+        if key not in reflected_weights:
+            previous, current = Interval.rational(1, digits), x
+            for n in range(2, order):
+                previous, current = current, ((2 * n - 1) * x * current - (n - 1) * previous) / n
+            # Recurrence parity makes the canonical squared denominator even;
+            # the reflected bracket therefore has this same weight enclosure.
+            reflected_weights[key] = (1 - x.squared()) / (order * order * current.squared())
+        weight = reflected_weights[key]
         node = (1 + x) / 2
         assert 0 < node.lo <= node.hi < 1 and weight.lo > 0
         rule.append((node, weight))
@@ -260,56 +266,6 @@ def optical_arguments() -> dict[str, Any]:
         "pupil_order": 128,
         "pixel_subsamples_yx": (2, 2),
     }
-
-
-def dense_case() -> tuple[dict[str, Any], Geometry]:
-    """Eight distinct cells, four detector sites and four signed exposures."""
-    weights = (1, 7, 2, 5, 3, 8, 6, 4)
-    args = optical_arguments()
-    carriers = ((0.83, -0.61), (-0.47, 0.89))
-    phases = ((0.23, -0.87), (-0.53, 1.31))
-    args.update(
-        source_e=np.array(weights, dtype=np.float64).reshape(2, 2, 2) / 8,
-        detector_spacing_um_zyx=(0.625, 0.25, 0.1875),
-        source_refinement_zyx=(2, 1, 1),
-        pixel_subsamples_yx=(1, 2),
-        carriers_yx_per_um=np.array(carriers),
-        phases_rad=np.array(phases),
-    )
-    dz, dy, dx = map(exact, (0.625, 0.25, 0.1875))
-    sources = tuple(
-        Source(
-            dz * Fraction(2 * z + 1, 4),
-            dy * Fraction(2 * y + 1, 2),
-            dx * Fraction(2 * x + 1, 2),
-            Fraction(weights[4 * z + 2 * y + x], 8),
-        )
-        for z in range(2)
-        for y in range(2)
-        for x in range(2)
-    )
-    sites = tuple(
-        (
-            (dy * Fraction(2 * y + 1, 2), dx * (x + Fraction(1, 4))),
-            (dy * Fraction(2 * y + 1, 2), dx * (x + Fraction(3, 4))),
-        )
-        for y in range(2)
-        for x in range(2)
-    )
-    return args, Geometry(
-        sources,
-        (dz / 2,),
-        sites,
-        (2, 2),
-        dy * dx,
-        carriers,
-        phases,
-        args["beam_amplitudes"],
-        0.488,
-        0.525,
-        1.515,
-        1.4,
-    )
 
 
 def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float64], Geometry]:
