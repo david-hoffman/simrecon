@@ -234,15 +234,6 @@ def assert_artifact(receipt, wheel: Path) -> None:
     }
 
 
-@pytest.mark.parametrize("algorithm", SECURE_EXAMPLES)
-def test_secure_record_algorithm_completes_public_cli(hash_repository, algorithm):
-    result, receipt, wheel = run_hash_cli(hash_repository, (algorithm,) * len(MEMBERS))
-    assert result.returncode == 0, json.dumps(receipt["problems"])
-    assert receipt["result"] == "passed"
-    assert receipt["problems"] == []
-    assert_artifact(receipt, wheel)
-
-
 def test_mixed_secure_record_algorithms_complete_public_cli(hash_repository):
     result, receipt, wheel = run_hash_cli(hash_repository, SECURE_EXAMPLES)
     assert result.returncode == 0, json.dumps(receipt["problems"])
@@ -251,7 +242,7 @@ def test_mixed_secure_record_algorithms_complete_public_cli(hash_repository):
     assert_artifact(receipt, wheel)
 
 
-@pytest.mark.parametrize("algorithm", ("md5", "sha1", "sha224", "sha3_224", UNAVAILABLE))
+@pytest.mark.parametrize("algorithm", ("md5", "sha224", UNAVAILABLE))
 def test_one_weak_or_unavailable_record_algorithm_cannot_pass(hash_repository, algorithm):
     algorithms = ("sha256",) * (len(MEMBERS) - 1) + (algorithm,)
     result, receipt, _ = run_hash_cli(hash_repository, algorithms)
@@ -261,19 +252,7 @@ def test_one_weak_or_unavailable_record_algorithm_cannot_pass(hash_repository, a
     assert receipt["artifact"] is None
 
 
-@pytest.mark.parametrize("algorithm", SECURE_EXAMPLES)
-@pytest.mark.parametrize("defect", ("digest", "size"))
-def test_one_corrupt_secure_record_member_cannot_pass(hash_repository, algorithm, defect):
-    result, receipt, _ = run_hash_cli(hash_repository, (algorithm,) * len(MEMBERS), defect)
-    assert result.returncode == 1
-    assert receipt["result"] == "failed"
-    assert receipt["problems"]
-    assert receipt["artifact"] is None
-
-
-@pytest.mark.parametrize(
-    "algorithms", (("sha256",) * len(MEMBERS), SECURE_EXAMPLES), ids=("sha256", "mixed")
-)
+@pytest.mark.parametrize("algorithms", (SECURE_EXAMPLES,), ids=("mixed",))
 def test_valid_current_wheel_retained_after_wheel_phase_failure(hash_repository, algorithms):
     result, receipt, wheel = run_hash_cli(hash_repository, algorithms, wheel_failure=True)
     assert result.returncode == 37

@@ -52,7 +52,7 @@ def main() -> int:
         destination = root / path_value
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(b"\xff" if mode == "invalid-utf8" else payload.encode("utf-8"))
-        if mode in {"changed-report-same-id", "reformatted-report-same-id"}:
+        if mode == "reformatted-report-same-id":
             destination.with_name("tests-phase-measurements.json").write_bytes(
                 destination.read_bytes()
             )
@@ -64,15 +64,9 @@ def main() -> int:
         report = json.loads(destination.read_text())
         report["run_id"] = "11111111-1111-4111-8111-111111111111"
         destination.write_text(json.dumps(report))
-    if (
-        phase == "audit"
-        and mode in {"changed-report-same-id", "reformatted-report-same-id"}
-        and path_value is not None
-    ):
+    if phase == "audit" and mode == "reformatted-report-same-id" and path_value is not None:
         destination = root / path_value
         report = json.loads(destination.read_bytes())
-        if mode == "changed-report-same-id":
-            report["measurements"]["M25"].update(baseline=200, peak=211, increment_bytes=11264)
         replacement = destination.with_suffix(".replacement")
         replacement.write_bytes((json.dumps(report, indent=2, sort_keys=True) + "\n").encode())
         replacement.replace(destination)

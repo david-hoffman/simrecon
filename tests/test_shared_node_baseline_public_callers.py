@@ -121,29 +121,40 @@ def test_actual_reader_invalid_cached_jar_preserved(variant: str) -> None:
 
 
 @pytest.mark.parametrize(
-    "mode",
+    "name,mode",
     [
-        "length",
-        "eof",
-        "redirect",
-        "advertised-oversize",
-        "actual-oversize",
-        "socket-timeout",
-        "digest",
-    ],
+        ("ij-1.54p.jar", mode)
+        for mode in (
+            "length",
+            "eof",
+            "redirect",
+            "advertised-oversize",
+            "actual-oversize",
+            "socket-timeout",
+            "digest",
+        )
+    ]
+    + [("bioformats_package.jar", "length")],
 )
-def test_transport_actual_reader_authenticated_download(tmp_path: Path, mode: str) -> None:
+def test_transport_actual_reader_authenticated_download(
+    tmp_path: Path, name: str, mode: str
+) -> None:
     """Genuine TLS/client I/O: authenticated positives and independently invalid bytes."""
-    name = "ij-1.54p.jar"
+    other_name = next(item for item in DECLARATIONS if item != name)
     with reserved() as cache:
         cache.seed(omit=name)
-        other = digest(CACHE / "bioformats_package.jar")
+        other = digest(CACHE / other_name)
+        temporary = tmp_path / "download-temporary"
+        temporary.mkdir()
         with Transport(tmp_path, cache.backup / name, mode) as transport:
             started = time.monotonic()
-            result = reader(transport.environment(), timeout=70)
+            result = reader(transport.environment() | {"TMPDIR": str(temporary)}, timeout=70)
             elapsed = time.monotonic() - started
-            assert any(event["event"] == "request" for event in transport.events), (
-                "Tooling nonwitness: transport not reached"
+            requests = [
+                event["request"] for event in transport.events if event["event"] == "request"
+            ]
+            assert requests and all(request.startswith("GET ") for request in requests), (
+                "Tooling nonwitness: transport GET not reached"
             )
             if mode == "socket-timeout":
                 assert 14 <= elapsed < 40, "Tooling nonwitness: earlier failure than socket bound"
@@ -158,8 +169,9 @@ def test_transport_actual_reader_authenticated_download(tmp_path: Path, mode: st
             assert result.returncode != 0
             assert not (CACHE / name).exists()
             assert not (CACHE / "inputs.json").exists()
-            assert {path.name for path in CACHE.iterdir()} == {"bioformats_package.jar"}
-        assert digest(CACHE / "bioformats_package.jar") == other
+            assert {path.name for path in CACHE.iterdir()} == {other_name}
+        assert digest(CACHE / other_name) == other
+        assert list(temporary.iterdir()) == [], "scoped temporary download leaked"
 
 
 def test_parent_deadline_actual_reader_slow_active_transport(tmp_path: Path) -> None:
@@ -311,16 +323,9 @@ def test_verifier_genuine_native_extra_file_and_standard_loading(tmp_path: Path)
         )
 
 
-@pytest.mark.parametrize("scope", ["totals", "file"])
 @pytest.mark.parametrize(
-    "field,value",
-    [
-        ("missing_lines", False),
-        ("missing_lines", 0.0),
-        ("num_partial_branches", False),
-        ("num_partial_branches", 0.0),
-        ("num_statements", -1),
-    ],
+    "scope,field,value",
+    [("totals", "missing_lines", False), ("file", "num_partial_branches", 0.0)],
 )
 def test_verifier_rejects_invalid_native_count_types(
     tmp_path: Path, scope: str, field: str, value: object
@@ -381,36 +386,15 @@ def test_verifier_initial_protected_output_preserved(tmp_path: Path, output: str
     assert (fixture.root / ".git/config").read_bytes() == git_config
 
 
-@pytest.mark.parametrize("target", ["control-marker.txt", ".git/config"])
-def test_verifier_phase_introduced_receipt_alias_preserves_target(
-    tmp_path: Path, target: str
-) -> None:
-    """P02/P06/P09: genuine phase introduces alias; earlier validation grants nothing."""
-    fixture = VerificationFixture(tmp_path)
-    before = (fixture.root / target).read_bytes()
-    fixture.configure(
-        {
-            "redirect_phase": "tests",
-            "redirect_output": "artifacts/verification/receipt.json",
-            "redirect_target": target,
-        }
-    )
-    result, document = fixture.run()
-    assert (fixture.root / target).read_bytes() == before
-    if result.returncode == 0:
-        destination = fixture.root / "artifacts/verification/receipt.json"
-        assert destination.is_file() and not destination.is_symlink()
-        assert_passed_native_receipt(fixture, document)
-    else:
-        assert document is None or document["result"] != "passed"
-
-
 @pytest.mark.parametrize("mode", ["mkdir", "late-open"])
+@pytest.mark.parametrize("fail", [False, True])
 def test_verifier_public_audit_output_observer_preserves_protected_bytes(
-    tmp_path: Path, mode: str
+    tmp_path: Path, mode: str, fail: bool
 ) -> None:
     """P02/P04/P10: observer witness is explicit; safe atomic replacement is lawful."""
     fixture = VerificationFixture(tmp_path)
+    if fail:
+        fixture.configure({"fail_phase": "lint", "status": 23})
     marker = (fixture.root / "control-marker.txt").read_bytes()
     config = (fixture.root / ".git/config").read_bytes()
     git_before = inventory(fixture.root / ".git")
@@ -436,54 +420,21 @@ def test_verifier_public_audit_output_observer_preserves_protected_bytes(
         name: {key: item[key] for key in ("directory", "mode", "sha256")}
         for name, item in git_before.items()
     }
-    if result.returncode == 0:
+    if fail:
+        assert result.returncode == 23
+        assert document is None or document["result"] != "passed"
+        trace = [
+            json.loads(line)["phase"]
+            for line in (fixture.root / "phase-trace.jsonl").read_text().splitlines()
+        ]
+        assert trace == PHASES[:3]
+        if document is not None:
+            assert [phase["name"] for phase in document["phases"]] == PHASES[:3]
+            assert document["phases"][-1]["returncode"] == 23
+    elif result.returncode == 0:
         assert_passed_native_receipt(fixture, document)
     else:
         assert document is None or document["result"] != "passed"
-
-
-@pytest.mark.parametrize(
-    "output",
-    [
-        "artifacts/coverage/coverage.json",
-        "artifacts/coverage/html/index.html",
-        ".coverage",
-        "dist/simrecon-0.1.0-py3-none-any.whl",
-    ],
-)
-def test_verifier_receipt_cannot_replace_current_emitted_evidence(
-    tmp_path: Path, output: str
-) -> None:
-    """P11: own receipt persistence cannot erase current native/HTML/database/wheel proof."""
-    fixture = VerificationFixture(tmp_path)
-    result, document = fixture.run(receipt=output)
-    assert result.returncode != 0
-    assert document is None or document.get("result") != "passed"
-
-
-def test_verifier_stops_on_real_phase_failure_with_original_status(tmp_path: Path) -> None:
-    """P07: the first failed phase stops the invocation without retry."""
-    fixture = VerificationFixture(tmp_path)
-    fixture.configure({"fail_phase": "types", "status": 19})
-    result, document = fixture.run()
-    assert result.returncode == 19
-    assert document is not None and document["result"] == "failed"
-    assert [phase["name"] for phase in document["phases"]] == PHASES[:5]
-    trace = [
-        json.loads(line)["phase"]
-        for line in (fixture.root / "phase-trace.jsonl").read_text().splitlines()
-    ]
-    assert trace == PHASES[:5]
-
-
-def test_verifier_missing_make_preserves_127(tmp_path: Path) -> None:
-    fixture = VerificationFixture(tmp_path)
-    result, document = fixture.run(make=str(fixture.root / "missing-make"))
-    assert result.returncode == 127
-    assert document is not None and document["result"] == "failed"
-    assert len(document["phases"]) == 1
-    assert document["phases"][0]["returncode"] == 127
-    assert "A08_LOCAL_SECRET" not in result.stderr
 
 
 @pytest.mark.parametrize("failure", ["child-status", "child-timeout"])

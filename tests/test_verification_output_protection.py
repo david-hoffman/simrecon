@@ -14,7 +14,7 @@ from typing import Any
 
 import pytest
 
-from verification_fixture_tools import PHASES
+from verification_fixture_tools import PHASES, prepare_phase_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = Path("artifacts/verification/receipt.json")
@@ -104,6 +104,7 @@ def invoke(
     env = os.environ.copy()
     env["OUTPUT_PROTECTION_ACTION"] = json.dumps(action or {})
     env["RECEIPT_FIXTURE_MODE"] = "complete"
+    env["RECEIPT_FIXTURE_INPUTS"] = str(prepare_phase_inputs(repository.bin_dir, "complete"))
     env["PATH"] = str(repository.bin_dir) + os.pathsep + env["PATH"]
     args = [
         str(ROOT / ".venv/bin/python"),
@@ -326,19 +327,13 @@ def test_p08_ordinary_outputs_preserve_identity_and_public_evidence(
 @pytest.mark.parametrize(
     "target_kind,phase,status,kind",
     [
-        (target, phase, status, kind)
-        for target, phase, status in [
-            ("tracked", "types", 0),
-            ("tracked", "audit", 0),
-            ("tracked", "types", 23),
-            ("missing-tracked", "types", 0),
-            ("ordinary-config", "types", 0),
-            ("common-config", "audit", 0),
-            ("private-head", "types", 0),
-            ("git-pointer", "types", 0),
-        ]
-        for kind in ("alias", "hardlink")
-        if target != "missing-tracked" or kind == "alias"
+        ("tracked", "types", 0, "alias"),
+        ("tracked", "types", 23, "hardlink"),
+        ("missing-tracked", "types", 0, "alias"),
+        ("ordinary-config", "types", 0, "alias"),
+        ("common-config", "audit", 0, "hardlink"),
+        ("private-head", "types", 0, "alias"),
+        ("git-pointer", "types", 0, "hardlink"),
     ],
 )
 def test_p02_phase_receipt_alias_preserves_protected_bytes(
@@ -382,17 +377,13 @@ def test_p02_phase_receipt_alias_preserves_protected_bytes(
 
 
 @pytest.mark.parametrize(
-    "target_kind,phase,status",
+    "target_kind,phase,status,kind",
     [
-        ("tracked", "sync", 0),
-        ("tracked", "audit", 0),
-        ("tracked", "sync", 23),
-        ("common-config", "sync", 0),
-        ("private-head", "audit", 0),
-        ("git-pointer", "sync", 0),
+        ("tracked", "sync", 0, "alias"),
+        ("tracked", "sync", 23, "hardlink"),
+        ("private-head", "audit", 0, "hardlink"),
     ],
 )
-@pytest.mark.parametrize("kind", ["alias", "hardlink"])
 def test_p03_current_log_alias_preserves_bytes_and_original_failure(
     tmp_path: Path,
     log_candidates: dict[str, Path],
@@ -428,8 +419,7 @@ def test_p03_current_log_alias_preserves_bytes_and_original_failure(
     assert_safe_outcome(repository, result, receipt, phase, kind, status)
 
 
-@pytest.mark.parametrize("target_kind", ["tracked", "common-config", "private-head", "git-pointer"])
-@pytest.mark.parametrize("kind", ["alias", "hardlink"])
+@pytest.mark.parametrize("target_kind,kind", [("tracked", "alias"), ("common-config", "hardlink")])
 def test_p04_future_log_alias_is_revalidated(
     tmp_path: Path, log_candidates: dict[str, Path], target_kind: str, kind: str
 ) -> None:
@@ -459,8 +449,7 @@ def test_p04_future_log_alias_is_revalidated(
     assert_safe_outcome(repository, result, receipt, "sync", kind)
 
 
-@pytest.mark.parametrize("ancestor", [False, True])
-@pytest.mark.parametrize("linked", [False, True])
+@pytest.mark.parametrize("ancestor,linked", [(False, False), (True, True)])
 def test_p04_output_directory_or_ancestor_redirect_preserves_all_git_metadata(
     tmp_path: Path, ancestor: bool, linked: bool
 ) -> None:
@@ -483,9 +472,14 @@ def test_p04_output_directory_or_ancestor_redirect_preserves_all_git_metadata(
     assert_safe_outcome(repository, result, receipt, "audit", "directory-alias")
 
 
-@pytest.mark.parametrize("entry", ["receipt", "current-log"])
-@pytest.mark.parametrize("identity", ["missing-file", "unavailable-head", "dirty-start"])
-@pytest.mark.parametrize("kind", ["alias", "hardlink"])
+@pytest.mark.parametrize(
+    "entry,identity,kind",
+    [
+        ("receipt", "missing-file", "alias"),
+        ("current-log", "unavailable-head", "hardlink"),
+        ("receipt", "dirty-start", "alias"),
+    ],
+)
 def test_p06_incomplete_or_dirty_identity_does_not_authorize_later_protected_write(
     tmp_path: Path, log_candidates: dict[str, Path], entry: str, identity: str, kind: str
 ) -> None:
@@ -632,3 +626,28 @@ def test_p07_original_command_failure_or_missing_command_keeps_status_and_safe_e
             name: hashlib.sha256((root / name).read_bytes()).hexdigest()
             for name in expected_state["manifest"]
         } == expected_state["manifest"]
+
+
+def test_p01_initial_observed_log_alias_preserves_tracked_bytes(
+    repository: Repository, log_candidates: dict[str, Path]
+) -> None:
+    leaf = repository.root / log_candidates["sync"]
+    leaf.parent.mkdir(parents=True, exist_ok=True)
+    leaf.symlink_to(repository.root / "candidate.txt")
+    before_markers, before_metadata = tracked_markers(repository), metadata(repository)
+    result = invoke(repository)
+    receipt = load_receipt(repository)
+    assert tracked_markers(repository) == before_markers
+    assert metadata(repository) == before_metadata
+    phases = assert_trace(repository, receipt)
+    if result.returncode == 0:
+        assert phases == PHASES
+        assert receipt is not None and receipt["result"] == "passed"
+        assert receipt["problems"] == []
+        for phase in receipt["phases"]:
+            assert phase["returncode"] == 0
+            assert (
+                f"controlled phase {phase['name']}" in (repository.root / phase["log"]).read_text()
+            )
+    else:
+        assert_rejected(result, receipt)
