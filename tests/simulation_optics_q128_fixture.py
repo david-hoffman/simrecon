@@ -165,7 +165,7 @@ class Geometry:
         def evaluate(digits: int) -> Bounds:
             # Guard precision covers interval recurrence dependency at degree 128.
             # Actual endpoint widths, not the digit count, certify comparisons.
-            working = digits + 48
+            working = digits + 32
             rule = reference_rule(rule_kind, working)
             pi, zero = pi_interval(working), Interval.rational(0, working)
 
