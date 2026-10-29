@@ -394,7 +394,9 @@ def copy_fixture_file(source: Path, destination: Path) -> None:
     destination.write_bytes(source.read_bytes())
 
 
-def install_phase_commands(bin_dir: Path, module: str = "verification_fixture_tools") -> None:
+def install_phase_commands(
+    bin_dir: Path, module: str = "verification_fixture_tools", *, hybrid: bool = False
+) -> None:
     """Install tiny external commands using this candidate's fixture sources."""
     fixture_dir = str(Path(__file__).resolve().parent)
     launcher = (
@@ -404,8 +406,18 @@ def install_phase_commands(bin_dir: Path, module: str = "verification_fixture_to
     )
     for name in ("make", "uv"):
         target = bin_dir / name
-        target.write_text(launcher, encoding="utf-8")
-        target.chmod(0o755)
+        if hybrid:
+            from verification_fixture_dispatch import install_dispatch
+
+            profile = {
+                "verification_fixture_tools": "receipt",
+                "measurements_fixture_commands": "measurement",
+                "verification_output_fixture": "output",
+            }[module]
+            install_dispatch(target, launcher.split("\n", 1)[1], profile=profile)
+        else:
+            target.write_text(launcher, encoding="utf-8")
+            target.chmod(0o755)
 
 
 def prepare_phase_inputs(bin_dir: Path, mode: str) -> Path:
@@ -427,8 +439,13 @@ def main():
         return 0
     root = Path.cwd()
     args = sys.argv[1:]
-    with (root / "calls.jsonl").open("a") as stream:
-        stream.write(json.dumps(args) + "\n")
+    if os.environ.get("RECEIPT_TRACE_FORMAT") == "nul":
+        from verification_fixture_dispatch import append_record
+
+        append_record(root / "calls.jsonl", args)
+    else:
+        with (root / "calls.jsonl").open("a") as stream:
+            stream.write(json.dumps(args) + "\n")
     if Path(sys.argv[0]).name == "uv":
         # These executables emulate external tools; this is their declared
         # fixture version, never a claim about an installed real check tool.
@@ -463,7 +480,8 @@ def main():
             subprocess.run(["git", "commit", "-qm", "controlled change"], check=True)
         if mode == "input-change":
             Path(os.environ["RECEIPT_PRIVATE_INPUT"]).write_bytes(b"changed input")
-    if phase == "coverage-json" and mode != "missing-json":
+    native_replaces_reports = os.environ.get("EVIDENCE_NATIVE") == "1"
+    if phase == "coverage-json" and mode != "missing-json" and not native_replaces_reports:
         if inputs:
             copy_fixture_file(
                 inputs / "artifacts/coverage/coverage.json",
@@ -475,7 +493,7 @@ def main():
         if status:
             print("controlled partial JSON failure", file=sys.stderr)
             return status
-    if phase == "coverage-html" and mode != "missing-html":
+    if phase == "coverage-html" and mode != "missing-html" and not native_replaces_reports:
         path = root / "artifacts/coverage/html/index.html"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text("<html>controlled coverage</html>")

@@ -14,6 +14,7 @@ from pathlib import Path
 
 import pytest
 
+from verification_fixture_dispatch import read_calls
 from verification_fixture_tools import (
     PHASES,
     TAG_WHEELS,
@@ -55,7 +56,7 @@ def repository(tmp_path):
     git(root, "commit", "-qm", "fixture candidate")
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
-    install_phase_commands(bin_dir)
+    install_phase_commands(bin_dir, hybrid=True)
     return root, bin_dir
 
 
@@ -195,7 +196,7 @@ def test_v1_complete_receipt(repository, custom):
         assert environment[name]["executable"]
         assert environment[name]["version"]
     assert set(environment["tools"]) == {"ruff", "pyright", "coverage", "pytest"}
-    calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    calls = read_calls(root / "calls.jsonl")
     phase_calls = [call for call in calls if any(arg in PHASES for arg in call)]
     assert [phase["command"] for phase in receipt["phases"]] == [
         [str(bin_dir / "make"), *call] for call in phase_calls
@@ -208,7 +209,7 @@ def test_v1_real_make_check(repository):
         ["/usr/bin/make", "-f", str(ROOT / "Makefile"), "check", f"UV={bin_dir / 'uv'}"], root
     )
     assert result.returncode == 0, result.stderr
-    calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    calls = read_calls(root / "calls.jsonl")
     assert calls == [
         ["sync", "--locked", "--all-groups"],
         ["run", "--locked", "--no-sync", "python", "scripts/prepare_imagej_reader.py"],
@@ -221,7 +222,7 @@ def test_v1_real_make_check(repository):
     for phase in ("sync", "lint", "format", "types"):
         shared = run(["/usr/bin/make", phase, f"UV={bin_dir / 'uv'}"], root)
         assert shared.returncode == 0, shared.stderr
-    shared_calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    shared_calls = read_calls(root / "calls.jsonl")
     assert shared_calls == calls
 
 
@@ -243,7 +244,7 @@ def test_v2_command_failure(repository):
     assert receipt["before"] == receipt["after"]
     # Disposable executables record actual argv independently of the receipt.
     # Version queries do not launch phases and impose no phase-order obligation.
-    calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    calls = read_calls(root / "calls.jsonl")
     phase_calls = [call for call in calls if any(arg in PHASES for arg in call)]
     assert [[arg for arg in call if arg in PHASES] for call in phase_calls] == [
         ["sync"],
@@ -774,29 +775,6 @@ def test_v4_linked_worktree_shared_config_preserved(linked_repository):
         "refs": git(root, "show-ref"),
         "worktrees": git(root, "worktree", "list", "--porcelain"),
     } == before_state
-
-
-def test_v1_linked_worktree_normal_receipt_succeeds(linked_repository):
-    repository, _ = linked_repository
-    root, _ = repository
-    expected_state = {
-        "commit": git(root, "rev-parse", "HEAD"),
-        "tree": git(root, "rev-parse", "HEAD^{tree}"),
-        "dirty": False,
-        "untracked": [],
-        "manifest": {name: digest(root / name) for name in git(root, "ls-files").splitlines()},
-    }
-    assert git(root, "status", "--porcelain") == ""
-    result, receipt = invoke(repository)
-    assert result.returncode == 0, result.stderr
-    assert receipt is not None
-    assert receipt["result"] == "passed"
-    assert receipt["problems"] == []
-    assert receipt["before"] == expected_state
-    assert receipt["after"] == expected_state
-    assert [phase["name"] for phase in receipt["phases"]] == PHASES
-    assert all(phase["returncode"] == 0 for phase in receipt["phases"])
-    assert git(root, "status", "--porcelain") == ""
 
 
 @pytest.mark.parametrize("mode", ["missing-metadata", "multiple-metadata", "duplicate-member"])

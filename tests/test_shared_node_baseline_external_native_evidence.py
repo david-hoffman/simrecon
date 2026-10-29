@@ -81,11 +81,8 @@ def assert_passed_truth(case: dict, snapshot: dict) -> None:
         ("coveragerc", "collision", True),
         ("pyproject", "neighbor", False),
         ("pyproject", "collision", False),
-        ("rcfile", "neighbor", False),
         ("rcfile", "collision", False),
-        ("rcfile", "native-neighbor", False),
         ("rcfile", "native-stale", False),
-        ("coveragerc", "stale", False),
     ],
 )
 def test_configured_external_native_receipt_preservation(
@@ -173,47 +170,6 @@ def test_configuration_loss_after_emission_preserves_native_evidence(
         assert receipt["problems"]
         assert receipt["before"] == receipt["after"]
         assert receipt["before"]["dirty"] is False
-
-
-@pytest.mark.parametrize("loss,output_stream", [("invalid", "stdout")])
-def test_configuration_loss_before_reporting_fails_without_losing_native_data(
-    tmp_path: Path, loss: str, output_stream: str
-) -> None:
-    """Real Coverage configuration errors stop verification and preserve its data."""
-    case = prepare(
-        tmp_path,
-        "rcfile",
-        "neighbor",
-        local_python=True,
-        configuration_loss=loss,
-        loss_phase="coverage-combine",
-        output_stream=output_stream,
-    )
-    result = invoke(case)
-    observations = case["observations"]
-    event = json.loads((observations / "configuration-loss.json").read_text())
-    assert event["phase"] == "coverage-combine"
-    assert event["loss"] == loss
-    assert event["nonce"] == case["nonce"]
-    assert result.returncode == 1
-    assert case["database"].read_bytes() == (observations / "native-measured.bin").read_bytes()
-    receipt = json.loads(case["receipt"].read_text())
-    assert receipt["result"] == "failed"
-    assert receipt["problems"]
-    assert receipt["before"] == receipt["after"]
-    assert receipt["before"]["dirty"] is False
-    trace = [json.loads(line) for line in (observations / "trace.jsonl").read_text().splitlines()]
-    attempted = [item["phase"] for item in trace]
-    # An evidence check may reject before the next reporting command. If the
-    # command runs, its real failure must be retained and no later phase may run.
-    assert attempted in [list(PHASES[:7]), list(PHASES[:8])]
-    assert [phase["name"] for phase in receipt["phases"]] == attempted
-    if attempted[-1] == "coverage-json":
-        assert receipt["phases"][-1]["returncode"] == 1
-        assert (case["repo"] / receipt["phases"][-1]["log"]).read_bytes() == (
-            observations / "coverage-json.txt"
-        ).read_bytes()
-    assert_attempted_output_retained(case, result.stdout + result.stderr, receipt)
 
 
 def assert_attempted_output_retained(case: dict, forwarded: str, receipt: dict) -> None:

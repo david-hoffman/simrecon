@@ -760,19 +760,16 @@ class VerificationFixture:
         (self.root / "control-marker.txt").write_bytes(b"A08-INDEPENDENT-PROTECTED-MARKER\n")
         (self.root / ".gitignore").write_text(
             "artifacts/\ndist/\n.coverage*\npublic-bin/\nphase-driver.py\n"
-            "fixture-make\ncontrols.json\nphase-trace.jsonl\nobserver.json\n"
+            "fixture-make\ncontrols.json\nphase-trace.jsonl\nphase-trace.argv\nobserver.json\n"
         )
         self.controls = self.root / "controls.json"
         self.controls.write_text("{}\n")
         driver = self.root / "phase-driver.py"
-        driver.write_text(PHASE_DRIVER)
-        self.make = self.root / "fixture-make"
-        self.make.write_text(
-            f"#!{sys.executable}\nimport os,sys\n"
-            "if '--version' in sys.argv: print('A08 fixture make 1'); sys.exit(0)\n"
-            f"os.execv({sys.executable!r},[{sys.executable!r},{str(driver)!r},*sys.argv[1:]])\n"
+        driver.write_text(
+            f"import sys\nsys.path.insert(0, {str(ROOT / 'tests')!r})\n" + PHASE_DRIVER
         )
-        self.make.chmod(0o700)
+        self.make = self.root / "fixture-make"
+        self.configure({})
         for args in (
             ["init", "-q"],
             ["config", "--local", "maintenance.auto", "false"],
@@ -791,7 +788,22 @@ class VerificationFixture:
             assert result.returncode == 0
 
     def configure(self, controls: dict[str, Any]) -> None:
+        from verification_fixture_dispatch import install_native_dispatch
+
         self.controls.write_text(json.dumps(controls) + "\n")
+        dynamic = {
+            "coverage-clean",
+            "tests",
+            "coverage-json",
+            "coverage-html",
+            "coverage-report",
+            "wheel",
+            "wheel-import",
+        }
+        dynamic.update(controls[key] for key in ("fail_phase", "redirect_phase") if key in controls)
+        install_native_dispatch(
+            self.make, self.root / "phase-driver.py", dynamic_phases=tuple(sorted(dynamic))
+        )
 
     def run(
         self,
@@ -864,6 +876,16 @@ class VerificationFixture:
         marker = self.root / "control-marker.txt"
         before = digest(marker) if marker.is_file() else None
         result = python(entry, cwd=self.root, args=args, timeout=90, kind="actual-verifier")
+        from verification_fixture_dispatch import read_records
+
+        trace = [
+            {"phase": fields[0], "argv": fields[1:]}
+            for fields in read_records(self.root / "phase-trace.argv")
+        ]
+        if trace:
+            (self.root / "phase-trace.jsonl").write_text(
+                "".join(json.dumps(item) + "\n" for item in trace)
+            )
         observer_path = self.root / "observer.json"
         observation = json.loads(observer_path.read_text()) if observer_path.exists() else None
         target = self.root / receipt
@@ -923,8 +945,8 @@ import base64,csv,hashlib,io,json,pathlib,runpy,shutil,sys,zipfile
 root=pathlib.Path.cwd()
 phase=next(arg for arg in sys.argv[1:] if not arg.startswith('-') and '=' not in arg)
 controls=json.loads((root/'controls.json').read_text())
-with (root/'phase-trace.jsonl').open('a') as stream:
-    stream.write(json.dumps({'phase':phase,'argv':sys.argv[1:]})+'\n')
+from verification_fixture_dispatch import append_record
+append_record(root/'phase-trace.argv', [phase, *sys.argv[1:]])
 print('A08 actual disposable phase '+phase,flush=True)
 if phase==controls.get('fail_phase'): sys.exit(controls.get('status',19))
 if phase==controls.get('redirect_phase'):
