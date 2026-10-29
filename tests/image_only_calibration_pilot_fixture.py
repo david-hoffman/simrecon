@@ -435,6 +435,43 @@ def unit_sites(
     return np.array(sites), count, mass
 
 
+@lru_cache(maxsize=16)
+def detector_reference(
+    site_shape: tuple[int, ...],
+    site_bytes: bytes,
+    shape: tuple[int, int, int],
+    order: int,
+) -> bytes:
+    """Immutable detector sums keyed by exact sites, shape and finite pupil order.
+
+    D, 2x2 pixel samples and the optical constants in enclosed_rule are fixed
+    reference inputs. Illumination, source weight and brightness do not enter
+    this detector-only equation. Bytes preserve represented sites exactly and
+    prevent callers from exposing writable cached state.
+    """
+    sites = np.frombuffer(site_bytes, dtype=np.float64).reshape(site_shape)
+    w, radial_factor, axial_factor, _, _, _ = enclosed_rule(order)
+    scale, _ = interval_midpoint(pi_interval(60) * (Fraction(1.4) / Fraction(0.525)) ** 2)
+    detector = np.empty((*shape, len(sites)))
+    with np.errstate(under="ignore"):
+        for z in range(shape[0]):
+            displacement = sites[:, 0] - (z + 0.5) * D[0]
+            axial = bounded_cis(displacement[:, None] * axial_factor)
+            for y, x in itertools.product(range(shape[1]), range(shape[2])):
+                h = np.zeros(len(sites))
+                for py, px in itertools.product(range(2), repeat=2):
+                    ry = (y + (py + 0.5) / 2) * D[1] - sites[:, 1]
+                    rx = (x + (px + 0.5) / 2) * D[2] - sites[:, 2]
+                    radial = np.sqrt(ry * ry + rx * rx)
+                    a = np.sum(
+                        w * bounded_j0(radial[:, None] * radial_factor) * axial,
+                        axis=1,
+                    )
+                    h += scale * (a.real * a.real + a.imag * a.imag)
+                detector[z, y, x] = h
+    return detector.tobytes()
+
+
 def optical_enclosure(
     sites: F64,
     weight: float,
@@ -470,7 +507,7 @@ def optical_enclosure(
     norm_exact = sum((Fraction(float(a)) ** 2 for a in amplitudes), Fraction(0))
     if not 0 < mass <= 2 or not Fraction(1, 4) <= norm_exact <= 32 or np.any(amplitudes < 0):
         raise OracleInconclusive("pilot optical observer mass/amplitude domain exceeded")
-    w, radial_factor, axial_factor, ew, er, ea = enclosed_rule(order)
+    _, radial_factor, axial_factor, ew, er, ea = enclosed_rule(order)
     pi = pi_interval(60)
     pi_hi = Fraction(pi.hi)
     k0 = Fraction(1.515) / Fraction(0.488)
@@ -491,6 +528,9 @@ def optical_enclosure(
     # bounds. Domain/overflow errors, dependency warnings and MemoryError are
     # not caught or translated. The caller's arithmetic policy is restored.
     with np.errstate(under="ignore"):
+        detector = np.frombuffer(
+            detector_reference(sites.shape, sites.tobytes(), shape, order), dtype=np.float64
+        ).reshape((*shape, len(sites)))
         theta = 2 * math.pi * (carriers @ sites[:, 1:].T)[:, None, :] + phases[:, :, None]
         side_phase = bounded_cis(theta)
         side = amplitudes[1] * side_phase + amplitudes[2] * side_phase.conjugate()
@@ -498,7 +538,6 @@ def optical_enclosure(
         single_beam = np.count_nonzero(amplitudes) == 1
         for z in range(shape[0]):
             displacement = sites[:, 0] - (z + 0.5) * D[0]
-            axial = bounded_cis(displacement[:, None] * axial_factor)
             field = (
                 amplitudes[0] * bounded_cis(2 * math.pi * kappa_array[:, None] * displacement)
             )[:, None, :] + side
@@ -508,16 +547,7 @@ def optical_enclosure(
                 else (field.real * field.real + field.imag * field.imag) / float(norm_exact)
             )
             for y, x in itertools.product(range(shape[1]), range(shape[2])):
-                h = np.zeros(len(sites))
-                for py, px in itertools.product(range(2), repeat=2):
-                    ry = (y + (py + 0.5) / 2) * D[1] - sites[:, 1]
-                    rx = (x + (px + 0.5) / 2) * D[2] - sites[:, 2]
-                    radial = np.sqrt(ry * ry + rx * rx)
-                    a = np.sum(
-                        w * bounded_j0(radial[:, None] * radial_factor) * axial,
-                        axis=1,
-                    )
-                    h += scale * (a.real * a.real + a.imag * a.imag)
+                h = detector[z, y, x]
                 out[:, :, z, y, x] = D[1] * D[2] / 4 * weight * np.sum(illumination * h, axis=-1)
 
     # Bounds below use rational arithmetic. All norms are absolute majorants;
