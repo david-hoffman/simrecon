@@ -464,21 +464,16 @@ def test_e2_writer_requires_ignored_approved_path_before_write(
     assert not (root / "artifacts").exists()
 
 
-@pytest.mark.parametrize("kind", ["tracked"])
 def test_e2_writer_preserves_protected_bytes(
-    writer_environment: tuple[Path, pytest.MonkeyPatch], kind: str
+    writer_environment: tuple[Path, pytest.MonkeyPatch],
 ) -> None:
     root, monkeypatch = writer_environment
     monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
-    protected, original = protected_setup(root, kind)
+    protected, original = protected_setup(root, "tracked")
     before = writer_protected_snapshot(root)
     enable_writer(monkeypatch)
-    if kind == "tracked":
-        # A directly tracked destination must still reject, not replace its bytes.
-        with pytest.raises(ValueError, match="ignored|tracked|Git metadata"):
-            export_measurement(native_record())
-    else:
-        assert_writer_safe_alias_outcome(root, native_record())
+    with pytest.raises(ValueError, match="ignored|tracked|Git metadata"):
+        export_measurement(native_record())
     assert protected.read_bytes() == original
     assert {path: path.read_bytes() for path in before} == before
     assert writer_protected_snapshot(root) == before
@@ -536,12 +531,10 @@ def test_e2_failed_tests_discard_current_invalid_measurements(repository: Reposi
 
 
 @pytest.mark.parametrize("protected_area", ["private", "common"])
-@pytest.mark.parametrize("writer", [False])
 def test_e2_linked_worktree_metadata_protected(
     repository: Repository,
     monkeypatch: pytest.MonkeyPatch,
     protected_area: str,
-    writer: bool,
 ) -> None:
     root, bin_dir = repository
     monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
@@ -554,24 +547,18 @@ def test_e2_linked_worktree_metadata_protected(
     destination.parent.mkdir(parents=True)
     destination.symlink_to(protected)
     before = writer_protected_snapshot(linked)
-    if writer:
-        monkeypatch.chdir(linked)
-        enable_writer(monkeypatch)
-        assert_writer_safe_alias_outcome(linked, native_record())
-    else:
-        result, _ = invoke((linked, bin_dir))
-        assert result.returncode == 1, result.stdout + result.stderr
-        calls_path = linked / "measurement-calls.jsonl"
-        calls = observations(linked) if calls_path.exists() else []
-        assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
+    result, _ = invoke((linked, bin_dir))
+    assert result.returncode == 1, result.stdout + result.stderr
+    calls_path = linked / "measurement-calls.jsonl"
+    calls = observations(linked) if calls_path.exists() else []
+    assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
     assert protected.read_bytes() == original
     assert {path: path.read_bytes() for path in before} == before
     assert writer_protected_snapshot(linked) == before
 
 
-@pytest.mark.parametrize("writer", [False])
 def test_e2_ancestor_symlink_cannot_write_git_metadata(
-    repository: Repository, monkeypatch: pytest.MonkeyPatch, writer: bool
+    repository: Repository, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     root, _ = repository
     monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
@@ -583,15 +570,10 @@ def test_e2_ancestor_symlink_cannot_write_git_metadata(
     (root / "artifacts").mkdir()
     (root / "artifacts/verification").symlink_to(root / ".git", target_is_directory=True)
     before = writer_protected_snapshot(root)
-    if writer:
-        monkeypatch.chdir(root)
-        enable_writer(monkeypatch)
-        assert_writer_safe_alias_outcome(root, native_record())
-    else:
-        result, _ = invoke(repository)
-        assert result.returncode == 1, result.stdout + result.stderr
-        calls = observations(root) if (root / "measurement-calls.jsonl").exists() else []
-        assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
+    result, _ = invoke(repository)
+    assert result.returncode == 1, result.stdout + result.stderr
+    calls = observations(root) if (root / "measurement-calls.jsonl").exists() else []
+    assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
     assert {path: path.read_bytes() for path in before} == before
     after = {
         p.relative_to(root / ".git"): p.read_bytes()
@@ -694,18 +676,6 @@ def assert_writer_report(root: Path, supplied: dict[str, Any]) -> None:
         "run_id": STALE_ID,
         "measurements": {"M25": {**supplied, "limit_bytes": 33554432}},
     }
-
-
-def assert_writer_safe_alias_outcome(root: Path, supplied: dict[str, Any]) -> None:
-    """Allow honest rejection or exact output; callers independently prove preservation."""
-    original = copy.deepcopy(supplied)
-    try:
-        export_measurement(supplied)
-    except (ValueError, OSError):
-        pass
-    else:
-        assert_writer_report(root, original)
-    assert supplied == original
 
 
 @pytest.mark.parametrize(

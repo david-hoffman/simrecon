@@ -329,7 +329,7 @@ def test_nonfinite_source_rejections(api: Any, value: float, which: str) -> None
 GOOD_DTYPES = [
     np.dtype(name).newbyteorder(order)
     for name in ("i1", "i2", "i4", "i8", "u1", "u2", "u4", "u8", "f2", "f4", "f8", "longdouble")
-    for order in ("=", ">", "<")
+    for order in (("=",) if np.dtype(name).itemsize == 1 else ("=", ">", "<"))
 ]
 
 

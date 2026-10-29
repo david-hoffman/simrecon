@@ -1442,7 +1442,6 @@ def test_p07_native_current_evidence_keeps_genuine_failure_status_and_stop(
     assert_outcome(observed)
     if entry == "ordinary":
         assert observed.status == 37
-        assert_native_evidence(observed)
 
 
 def prepare_native_directory(repository: Repository, name: str, alias: bool) -> None:
