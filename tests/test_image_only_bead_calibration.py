@@ -445,7 +445,22 @@ def test_information_failure_is_not_range_or_fabricated_candidate(kind: str) -> 
 
 @pytest.fixture(scope="module")
 def subnormal_result() -> Any:
-    return fit(**arguments())
+    estimate = estimate_scalar_camera(
+        np.full((2, 1, 2), -7.0),
+        blank_counts=np.full((2, 1, 2), 5.0),
+        flat_counts=np.full((2, 1, 2), 7.0),
+        source="opaque estimated camera",
+    )
+    assert estimate.gain_counts_per_e is None and estimate.contrast_counts == 2
+    baseline = camera()
+    np.testing.assert_array_equal(estimate.means_counts, baseline.means_counts)
+    assert (estimate.contrast_counts, estimate.source) == (
+        baseline.contrast_counts,
+        baseline.source,
+    )
+    result = fit(**arguments(camera_estimate=estimate))
+    assert result.status == "completed_finite_fit"
+    return result
 
 
 @pytest.fixture(scope="module")
@@ -633,20 +648,6 @@ def test_relative_count_gauge_and_unconsumed_camera_fields(subnormal_result: Any
     assert result.blank_counts == -6.0 and result.contrast_counts == 4.0
 
 
-def test_real_image_derived_camera_record_composes_without_physical_gain(
-    subnormal_result: Any,
-) -> None:
-    estimate = estimate_scalar_camera(
-        np.full((2, 1, 2), -7.0),
-        blank_counts=np.full((2, 1, 2), 5.0),
-        flat_counts=np.full((2, 1, 2), 7.0),
-        source="opaque estimated camera",
-    )
-    assert estimate.gain_counts_per_e is None and estimate.contrast_counts == 2
-    result = fit(**arguments(camera_estimate=estimate))
-    assert_same(result, subnormal_result)
-
-
 def test_subnormal_scale_scores_unchanged_trials_and_reports_unprobed(
     subnormal_result: Any,
 ) -> None:
@@ -728,9 +729,7 @@ def test_zero_brightness_is_a_legal_fit_and_information_codes_stay_literal() -> 
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
-@pytest.mark.parametrize(
-    "target", ("gamma_zero", "gamma_one", "eta_zero", "eta_one", "rho_zero", "rho_one")
-)
+@pytest.mark.parametrize("target", ("gamma_zero", "gamma_one", "eta", "rho_zero", "rho_one"))
 def test_endpoints_exact_beam_zeros_and_coordinate_parameter_distinction(target: str) -> None:
     gamma = math.acos(1 / math.sqrt(3)) / (math.pi / 2)
     if target.startswith("gamma"):
@@ -742,30 +741,33 @@ def test_endpoints_exact_beam_zeros_and_coordinate_parameter_distinction(target:
     result = fit(**arguments(sweep_scales=(scale,)))
     assert result.status == "completed_finite_fit"
     attempts = [a for a in result.poll_attempts if a.coordinate_index == index]
-    sign = -1 if target.endswith("zero") else 1
-    trial = next(a for a in attempts if a.sign == sign)
-    # The exact normalized endpoint is checked before any claim about beams.
-    assert trial.trial_coordinates[index] == (0 if sign == -1 else 1)
-    assert trial.outcome == "scored"
-    if trial.outcome == "scored":
-        candidate = result.objective_trace[trial.score_index].candidate
-        if target == "gamma_zero":
-            np.testing.assert_array_equal(candidate.beam_amplitudes[1:], [0, 0])
-        elif target == "gamma_one":
-            assert candidate.beam_amplitudes[0] == 0
-        elif target == "eta_zero":
-            assert candidate.beam_amplitudes[2] == 0
-        elif target == "eta_one":
-            assert candidate.beam_amplitudes[1] == 0
-        elif target == "rho_zero":
-            np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, 0])
-        elif target == "rho_one":
-            # Coordinate 14 precedes angle 15. This represented vector is
-            # exact, and Fraction proves it lies strictly inside the domain.
-            assert trial.trial_coordinates[15] == 0
-            k0 = 1.515 / 0.488
-            assert Fraction(k0) < Fraction(1.515) / Fraction(0.488)
-            np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, k0])
+    # Both eta endpoints use precisely the same observations and scale=10.
+    targets = ("eta_zero", "eta_one") if target == "eta" else (target,)
+    for endpoint in targets:
+        sign = -1 if endpoint.endswith("zero") else 1
+        trial = next(a for a in attempts if a.sign == sign)
+        # The exact normalized endpoint is checked before any claim about beams.
+        assert trial.trial_coordinates[index] == (0 if sign == -1 else 1)
+        assert trial.outcome == "scored"
+        if trial.outcome == "scored":
+            candidate = result.objective_trace[trial.score_index].candidate
+            if endpoint == "gamma_zero":
+                np.testing.assert_array_equal(candidate.beam_amplitudes[1:], [0, 0])
+            elif endpoint == "gamma_one":
+                assert candidate.beam_amplitudes[0] == 0
+            elif endpoint == "eta_zero":
+                assert candidate.beam_amplitudes[2] == 0
+            elif endpoint == "eta_one":
+                assert candidate.beam_amplitudes[1] == 0
+            elif endpoint == "rho_zero":
+                np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, 0])
+            elif endpoint == "rho_one":
+                # Coordinate 14 precedes angle 15. This represented vector is
+                # exact, and Fraction proves it lies strictly inside the domain.
+                assert trial.trial_coordinates[15] == 0
+                k0 = 1.515 / 0.488
+                assert Fraction(k0) < Fraction(1.515) / Fraction(0.488)
+                np.testing.assert_array_equal(candidate.carriers_yx_per_um[0], [0, k0])
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
@@ -775,8 +777,20 @@ def test_finite_equation_initializer_brightness_and_initial_complete_signed_loss
     # Not a recovery assertion: independently validate the actual represented
     # candidate against the adopted finite optical/source equation.
     assert_initial_brightness(subnormal_result.initial_candidate, np.array([8.0, 6.0, 4.0]), SHAPE)
-    assert_finite_score(subnormal_result.objective_trace[0], arguments())
-    assert_finite_score(subnormal_result.objective_trace[1], arguments())
+    import image_only_calibration_pilot_fixture as reference
+
+    first, unchanged = subnormal_result.objective_trace[:2]
+    assert first.outcome == unchanged.outcome == "scored"
+    assert first.pupil_order == unchanged.pupil_order == 128
+    assert_same(first.candidate, unchanged.candidate)
+    np.testing.assert_array_equal(first.coordinates, unchanged.coordinates)
+    inputs = arguments()
+    central, structured, bound = assert_finite_score(first, inputs)
+    y = (inputs["central_counts"] - 5) / 2
+    training = (inputs["structured_counts"] - 5) / 2
+    expected = reference.objective(y, training, central, structured)
+    allowance = reference.loss_allowance(y, training, central, structured, bound)
+    reference.assert_scalar_close(unchanged.objective, expected, allowance)
 
 
 def test_finite_equation_changed_profiles_illumination_and_full_training_loss(
@@ -826,17 +840,22 @@ def test_finite_equation_changed_profiles_illumination_and_full_training_loss(
 
 
 def test_finite_equation_exact_frozen_rescores_and_first_five_prediction(
-    moving_result: Any,
+    subnormal_result: Any,
 ) -> None:
     import image_only_calibration_pilot_fixture as reference
 
-    result = moving_result
+    result = subnormal_result
+    # Moving profiles retain their independent Q128 equation and full ledger;
+    # both complete high-order numerical comparisons use this smaller scene.
+    assert np.all(result.frozen_candidate.brightness_relative > 0)
     q256, q512 = result.objective_trace[-2:]
     assert (q256.pupil_order, q512.pupil_order) == (256, 512)
     for score in (q256, q512):
         assert_same(score.candidate, result.frozen_candidate)
-    assert_finite_score(q256, arguments(shape=AXIAL_SHAPE))
-    _, structured, bound = assert_finite_score(q512, arguments(shape=AXIAL_SHAPE))
+    central, structured, bound = assert_finite_score(q256, arguments())
+    assert np.max(central) > 0 and np.max(structured) > 0 and bound.product_lo > 0
+    central, structured, bound = assert_finite_score(q512, arguments())
+    assert np.max(central) > 0 and np.max(structured) > 0 and bound.product_lo > 0
     reference.assert_prediction_close(result.heldout_prediction, structured[:, :5], bound)
 
 

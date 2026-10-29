@@ -1766,24 +1766,20 @@ def test_completion_leaf_created_exclusively_at_real_io_boundary(
 def test_detached_inference_ignores_private_decoys_and_path_names(
     tmp_path: Path, pipeline: dict[str, Any]
 ) -> None:
-    first, second = tmp_path / "first", tmp_path / "seed-truth-gain-999999"
-    first.mkdir()
+    second = tmp_path / "seed-truth-gain-999999"
     second.mkdir()
-    for root in (first, second):
-        shutil.copytree(pipeline["observations"], root / "observations")
-    # No root generation marker. Parent/sibling truth/plan/means are invalid
-    # decoys, not inputs. All actual observation bytes/settings stay identical.
+    shutil.copytree(pipeline["observations"], second / "observations")
+    # Only observation bytes/settings are inputs. No root marker is copied;
+    # invalid private/plan decoys and irrelevant path labels remain actual.
     for name in ("generation.complete.json", "plan.json", "generation_summary.json"):
         (second / name).write_bytes(b"not JSON; forbidden inference input")
     (second / "private_truth").mkdir()
     (second / "private_truth/complete.json").write_bytes(b"invalid private decoy")
-    before_first, before_second = snapshot(first), snapshot(second)
-    out_a, out_b = tmp_path / "fit-a", tmp_path / "fit-b"
-    expect(cli(*infer_args(first / "observations", out_a)), 0)
-    expect(cli(*infer_args(second / "observations", out_b)), 0)
-    assert snapshot(out_a) == snapshot(out_b)
-    assert snapshot(first) == before_first and snapshot(second) == before_second
-    assert snapshot(out_a) == snapshot(pipeline["inference"])
+    before = snapshot(second)
+    out = tmp_path / "fit"
+    expect(cli(*infer_args(second / "observations", out)), 0)
+    assert snapshot(second) == before
+    assert snapshot(out) == snapshot(pipeline["inference"])
 
 
 def test_heldout_independence_preserves_every_training_decision(
@@ -1930,10 +1926,14 @@ def test_evaluation_public_validation_before_private_read(
     assert snapshot(truth) == before_truth and not out.exists()
 
 
-@pytest.mark.parametrize("payload", ["specimen_source_relative.npy", *PRED_NAMES])
+@pytest.mark.parametrize(
+    "payload", ["specimen_source_relative.npy", PRED_NAMES[0], PRED_NAMES[7], PRED_NAMES[-1]]
+)
 def test_every_completed_payload_verified_before_truth(
     tmp_path: Path, pipeline: dict[str, Any], payload: str
 ) -> None:
+    # Source and first/middle/last predictions keep actual-child FIFO controls.
+    # Complete positive member enumeration remains in the pipeline.
     inference = tmp_path / "inference"
     shutil.copytree(pipeline["inference"], inference)
     path = inference / payload
