@@ -17,7 +17,7 @@ import sys
 import threading
 import time
 import uuid
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
@@ -73,6 +73,7 @@ def invoke(
     timeout: float = 60,
     kind: str = "command",
     observation: dict[str, Any] | None = None,
+    before_rescue_observer: Callable[[], dict[str, Any]] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     """Bound waits; retain source-free output and exact actual public argv."""
     command = [str(item) for item in argv]
@@ -123,6 +124,7 @@ def invoke(
     stdout = stderr = ""
     failure: BaseException | None = None
     cleanup_events: list[dict[str, Any]] = []
+    before_rescue = None
 
     def owned_processes() -> dict[int, tuple[int, str]]:
         owned = {}
@@ -173,6 +175,17 @@ def invoke(
         if monitor is not None:
             monitor.start()
         stdout, stderr = process.communicate(timeout=timeout)
+        if observation is not None:
+            # Read-only observation before the existing unconditional safety cleanup.
+            before_rescue = {
+                "at_s": time.monotonic() - started,
+                "owned_process_states": {
+                    str(pid): list(state) for pid, state in owned_processes().items()
+                },
+                "limitation": "Session snapshot; zombies present; no PID birth-time identity",
+            }
+            if before_rescue_observer is not None:
+                before_rescue["state"] = before_rescue_observer()
     except subprocess.TimeoutExpired:
         timed_out = True
         stdout, stderr = stop_owned_session()
@@ -240,6 +253,7 @@ def invoke(
             {
                 "duration_s": elapsed,
                 "child_cleanup": cleanup,
+                "before_rescue": before_rescue,
                 "outer_timeout": timed_out,
                 "status": process.returncode,
             }
@@ -256,6 +270,7 @@ def invoke(
             "stdout": stdout,
             "stderr": stderr,
             "child_cleanup": cleanup,
+            "before_rescue": before_rescue,
             "measurement_namespace": {
                 key: (env or os.environ).get(key)
                 for key in (
@@ -281,6 +296,7 @@ def python(
     timeout: float = 60,
     kind: str = "python",
     observation: dict[str, Any] | None = None,
+    before_rescue_observer: Callable[[], dict[str, Any]] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     return invoke(
         [sys.executable, HARNESS, "--timeout", str(timeout - 5), "python", script, *args],
@@ -289,6 +305,7 @@ def python(
         timeout=timeout,
         kind=kind,
         observation=observation,
+        before_rescue_observer=before_rescue_observer,
     )
 
 
@@ -455,9 +472,15 @@ def reader(
     driver: Path | None = None,
     timeout: float = 60,
     observation: dict[str, Any] | None = None,
+    before_rescue_observer: Callable[[], dict[str, Any]] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     return python(
-        driver or READER, env=env, timeout=timeout, kind="actual-reader", observation=observation
+        driver or READER,
+        env=env,
+        timeout=timeout,
+        kind="actual-reader",
+        observation=observation,
+        before_rescue_observer=before_rescue_observer,
     )
 
 
@@ -661,7 +684,24 @@ class Transport:
                         b"HTTP/1.1 200 OK\r\n" + length + b"Connection: close\r\n\r\n"
                     )
                     if owner.mode == "socket-timeout":
-                        owner.stop.wait(25)
+                        # Authentic incomplete progress, then no EOF before client failure.
+                        connection.sendall(payload[:262144])
+                        owner.events.append(
+                            {
+                                "event": "socket-stall-start",
+                                "count": min(262144, len(payload)),
+                                "scheduled_s": 60,
+                                "at_s": time.monotonic() - owner.started,
+                            }
+                        )
+                        cancelled = owner.stop.wait(60)
+                        owner.events.append(
+                            {
+                                "event": "socket-stall-ended",
+                                "cancelled": cancelled,
+                                "at_s": time.monotonic() - owner.started,
+                            }
+                        )
                         return
                     try:
                         for offset in range(0, len(payload), 65536):
@@ -676,6 +716,8 @@ class Transport:
                                 }
                             )
                             if owner.mode == "parent-deadline" and owner.stop.wait(5.0):
+                                break
+                            if owner.mode == "adapted-parent" and owner.stop.wait(0.5):
                                 break
                     except (BrokenPipeError, ConnectionResetError, ssl.SSLError) as error:
                         owner.events.append(

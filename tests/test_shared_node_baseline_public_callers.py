@@ -7,7 +7,6 @@ import json
 import os
 import subprocess
 import sys
-import tempfile
 import time
 from collections.abc import Iterator
 from pathlib import Path
@@ -19,7 +18,6 @@ import shared_node_baseline_public_callers_fixture as callers_fixture
 from shared_node_baseline_public_callers_fixture import (
     CACHE,
     DECLARATIONS,
-    GENERATOR,
     HARNESS,
     PHASES,
     READER,
@@ -74,30 +72,34 @@ def test_actual_reader_path_selected_java(tmp_path: Path) -> None:
         assert_identity("java", tmp_path, env)
 
 
-@pytest.mark.parametrize(
-    "variant",
-    [
-        "absent",
-        "failure",
-        "wrong-version",
-        "missing-vendor",
-        "missing-platform",
-        "launcher-failure",
-    ],
-)
-def test_actual_reader_selected_java_rejection(tmp_path: Path, variant: str) -> None:
-    """C72: identity omissions and launcher failures cannot produce current evidence."""
-    env = dict(os.environ)
-    env["SIMRECON_JAVA"] = str(
-        tmp_path / "missing-java" if variant == "absent" else java_wrapper(tmp_path, variant)
-    )
+def test_actual_reader_selected_java_rejection(tmp_path: Path) -> None:
+    """C72: each real failure removes fresh stale identity and preserves authentic bytes."""
     with reserved() as cache:
         cache.seed()
         hashes = {name: digest(CACHE / name) for name in DECLARATIONS}
-        result = reader(env)
-        assert result.returncode != 0
-        assert not (CACHE / "inputs.json").exists()
-        assert {name: digest(CACHE / name) for name in DECLARATIONS} == hashes
+        assert hashes == {name: item["sha256"] for name, item in DECLARATIONS.items()}
+        for variant in (
+            "absent",
+            "failure",
+            "wrong-version",
+            "missing-vendor",
+            "missing-platform",
+            "launcher-failure",
+        ):
+            case = tmp_path / variant
+            case.mkdir()
+            env = dict(os.environ)
+            env["SIMRECON_JAVA"] = str(
+                case / "missing-java" if variant == "absent" else java_wrapper(case, variant)
+            )
+            (CACHE / "inputs.json").write_text('{"stale_A08_identity":true}\n')
+            assert {path.name for path in CACHE.iterdir()} == {"inputs.json", *DECLARATIONS}
+            assert {name: digest(CACHE / name) for name in DECLARATIONS} == hashes
+            result = reader(env)
+            assert result.returncode != 0, variant
+            assert not (CACHE / "inputs.json").exists(), variant
+            assert {path.name for path in CACHE.iterdir()} == set(DECLARATIONS), variant
+            assert {name: digest(CACHE / name) for name in DECLARATIONS} == hashes, variant
 
 
 @pytest.mark.parametrize("variant", ["corrupt", "oversized"])
@@ -147,8 +149,49 @@ def test_transport_actual_reader_authenticated_download(
         temporary = tmp_path / "download-temporary"
         temporary.mkdir()
         with Transport(tmp_path, cache.backup / name, mode) as transport:
+            import threading
+
+            partial = []
+            stop = threading.Event()
+
+            def observe_partial() -> None:
+                while not stop.is_set():
+                    for directory in (CACHE, temporary):
+                        for path in directory.iterdir():
+                            if path.name in {*DECLARATIONS, "inputs.json"}:
+                                continue
+                            try:
+                                if path.is_file() and path.stat().st_size > 0:
+                                    partial.append(
+                                        {
+                                            "path": str(path),
+                                            "bytes": path.stat().st_size,
+                                            "at_s": time.monotonic() - transport.started,
+                                        }
+                                    )
+                            except FileNotFoundError:
+                                pass
+                    stop.wait(0.02)
+
+            observer = (
+                threading.Thread(target=observe_partial) if mode == "socket-timeout" else None
+            )
+            observation: dict[str, object] = {}
             started = time.monotonic()
-            result = reader(transport.environment() | {"TMPDIR": str(temporary)}, timeout=70)
+            try:
+                if observer is not None:
+                    observer.start()
+                result = reader(
+                    transport.environment() | {"TMPDIR": str(temporary)},
+                    timeout=70,
+                    observation=observation,
+                )
+                client_done = time.monotonic() - transport.started
+            finally:
+                stop.set()
+                if observer is not None and observer.ident is not None:
+                    observer.join(timeout=5)
+                    assert not observer.is_alive(), "Tooling blocker: partial observer did not stop"
             elapsed = time.monotonic() - started
             requests = [
                 event["request"] for event in transport.events if event["event"] == "request"
@@ -158,6 +201,37 @@ def test_transport_actual_reader_authenticated_download(
             )
             if mode == "socket-timeout":
                 assert 14 <= elapsed < 40, "Tooling nonwitness: earlier failure than socket bound"
+                stalls = [
+                    event for event in transport.events if event["event"] == "socket-stall-start"
+                ]
+                assert len(stalls) == 1 and stalls[0]["count"] > 0
+                stall = stalls[0]
+                causal_s = client_done - stall["at_s"]
+                assert 14 <= causal_s < 40
+                # At least one full socket bound remains before scheduled fixture release.
+                assert stall["at_s"] + stall["scheduled_s"] - client_done > 15
+                assert not any(event["event"] == "socket-stall-ended" for event in transport.events)
+                assert not transport.stop.is_set()
+                assert partial and all(item["at_s"] < client_done for item in partial)
+                assert result.returncode != 0 and "timed out" in result.stderr.lower()
+                assert "deadline" not in result.stderr.lower()
+                before = observation["before_rescue"]
+                assert isinstance(before, dict) and not before["owned_process_states"]
+                record(
+                    "socket-timeout-cause",
+                    {
+                        "client_done_s": client_done,
+                        "causal_s": causal_s,
+                        "partial": partial,
+                        "stall": stall,
+                        "subprocess": observation,
+                        "diagnostic_family": "CLI timed out; no inferred Python exception type",
+                    },
+                )
+        if mode == "socket-timeout":
+            ended = [event for event in transport.events if event["event"] == "socket-stall-ended"]
+            assert len(ended) == 1 and ended[0]["cancelled"]
+            assert ended[0]["at_s"] > client_done
         if mode in {"length", "eof"}:
             assert result.returncode == 0
             assert_identity(
@@ -174,48 +248,230 @@ def test_transport_actual_reader_authenticated_download(
         assert list(temporary.iterdir()) == [], "scoped temporary download leaked"
 
 
+def test_reader_parent_timeout_adapter_selectivity_and_passthrough(tmp_path: Path) -> None:
+    """Select only an unambiguous current owned output, independent of timeout."""
+    from reader_timeout_fixture import destination
+
+    # Selector controls: scoped operation identity, never timeout or call ordinal.
+    selector_root = tmp_path / "selector"
+    selector_root.mkdir()
+    scoped = selector_root / ".owned.download"
+    scoped.write_bytes(b"")
+    unrelated = selector_root / "ordinary.txt"
+    unrelated.write_bytes(b"caller input")
+    assert destination([sys.executable, str(scoped)], selector_root, set()) == scoped
+    assert destination([str(scoped), sys.executable], selector_root, set()) == scoped
+    assert destination([sys.executable, "180", str(unrelated)], selector_root, set()) is None
+    assert destination(str(scoped), selector_root, set()) is None
+    assert destination([sys.executable, str(scoped)], selector_root, {scoped.name}) is None
+    assert destination([sys.executable, str(scoped)], tmp_path, set()) is None
+    second = selector_root / ".second.download"
+    second.write_bytes(b"")
+    assert destination([str(scoped), str(second)], selector_root, set()) is None
+    link = selector_root / ".link.download"
+    link.symlink_to(scoped)
+    assert destination([str(link)], selector_root, set()) is None
+
+
+def test_reader_timeout_observer_requires_pre_rescue_state(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Real live/zombie/reaped controls; neither a zombie nor reused PID is absent."""
+    import reader_timeout_fixture as timeout_fixture
+
+    events = tmp_path / "events.jsonl"
+    stop = tmp_path / "finish"
+    other = tmp_path / "other.jar"
+    other.write_bytes(b"independent preserved bytes")
+    (tmp_path / "target.jar").write_bytes(b"partial")
+    (tmp_path / "inputs.json").write_bytes(b"stale")
+    child = subprocess.Popen(
+        [
+            sys.executable,
+            "-c",
+            "import pathlib,sys,time\n"
+            "end=time.monotonic()+10\n"
+            "while not pathlib.Path(sys.argv[1]).exists() and time.monotonic()<end:\n"
+            "    time.sleep(0.02)\n",
+            str(stop),
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    snapshots = []
+    try:
+        initial = timeout_fixture.process_table()[child.pid]
+        assert initial["parent"] == os.getpid() and "Z" not in initial["state"]
+        assert timeout_fixture.qualified_live_child(initial, initial)
+        assert not timeout_fixture.qualified_live_child(initial, {**initial, "state": "Z"})
+        assert not timeout_fixture.qualified_live_child(
+            initial, {**initial, "state": "S", "executable": "(python3.13)"}
+        )
+        with pytest.raises(AssertionError, match="PID identity changed"):
+            timeout_fixture.qualified_live_child(initial, {**initial, "start": "different birth"})
+        events.write_text(json.dumps({"event": "live-child", **initial}) + "\n")
+        live = timeout_fixture.before_rescue(events, tmp_path, "target.jar", "other.jar")
+        assert child.pid in live["remaining_known_children"]
+        assert live["target_exists"] and live["manifest_exists"]
+        assert live["other_sha256"] == digest(other)
+        snapshots.append(live)
+        stop.write_text("exit naturally")
+        deadline = time.monotonic() + 5
+        state = None
+        while time.monotonic() < deadline:
+            state = timeout_fixture.process_table().get(child.pid)
+            if state is not None and "Z" in state["state"]:
+                break
+            time.sleep(0.02)
+        assert state is not None and "Z" in state["state"], "zombie control not reached"
+        assert (state["pid"], state["start"], state["parent"]) == (
+            initial["pid"],
+            initial["start"],
+            initial["parent"],
+        )
+        zombie = timeout_fixture.before_rescue(events, tmp_path, "target.jar", "other.jar")
+        assert child.pid in zombie["remaining_known_children"]
+        snapshots.append(zombie)
+        assert child.wait(timeout=5) == 0
+        absent = timeout_fixture.before_rescue(events, tmp_path, "target.jar", "other.jar")
+        assert not absent["remaining_known_children"]
+        snapshots.append(absent)
+        # An independently supplied reused identity still blocks strict absence.
+        with monkeypatch.context() as patch:
+            patch.setattr(
+                timeout_fixture,
+                "process_table",
+                lambda: {child.pid: {**initial, "start": "different birth"}},
+            )
+            reused = timeout_fixture.before_rescue(events, tmp_path, "target.jar", "other.jar")
+            assert child.pid in reused["remaining_known_children"]
+            snapshots.append(reused)
+        record("timeout-observer-controls", {"snapshots": snapshots})
+    finally:
+        if child.poll() is None:
+            child.terminate()
+        child.wait(timeout=5)
+
+
 def test_parent_deadline_actual_reader_slow_active_transport(tmp_path: Path) -> None:
-    """A real >180 s transfer with activity every 5 s distinguishes parent deadline."""
-    name = "ij-1.54p.jar"
-    with reserved() as cache:
-        cache.seed(omit=name)
-        other = digest(CACHE / "bioformats_package.jar")
-        with Transport(tmp_path, cache.backup / name, "parent-deadline") as transport:
-            start = time.monotonic()
-            observation: dict[str, object] = {}
-            result = reader(transport.environment(), timeout=225, observation=observation)
-            elapsed = time.monotonic() - start
-            activity = [event["at_s"] for event in transport.events if event["event"] == "bytes"]
-            witness = bool(activity) and elapsed >= 175 and activity[-1] - activity[0] >= 170
-            record(
-                "deadline-classification",
-                {
-                    "witness": witness,
-                    "duration_s": elapsed,
-                    "status": result.returncode,
-                    "activity_s": activity,
-                    "scheduled_transfer_s": 5
-                    * ((DECLARATIONS[name]["size_bytes"] + 65535) // 65536),
-                    "outer_bound_s": 225,
-                    "socket_bound_s": 15,
-                    "subprocess": observation,
-                },
+    """Configured180s plus a genuine short dependency expiration; no long survival claim."""
+    from functools import partial
+
+    from reader_timeout_fixture import before_rescue, driver
+
+    name, other_name = "ij-1.54p.jar", "bioformats_package.jar"
+
+    for effective, mode in ((None, "length"), (6.0, "adapted-parent")):
+        case = tmp_path / mode
+        case.mkdir()
+        with reserved() as cache:
+            cache.seed(omit=name)
+            other = digest(CACHE / other_name)
+            program = case / "reader-caller.py"
+            events = driver(
+                program,
+                READER,
+                CACHE,
+                cache.backup / name,
+                {*DECLARATIONS, "inputs.json"},
+                effective,
             )
-            assert witness, (
-                "Tooling nonwitness: earlier failure did not exercise the parent deadline"
-            )
-            assert all(
-                0 < right - left < 15 for left, right in zip(activity, activity[1:], strict=False)
-            )
-            assert 175 <= elapsed < 210
-            assert result.returncode != 0
-            cleanup = observation["child_cleanup"]
-            assert isinstance(cleanup, dict) and cleanup["observed_child_pids"]
-            assert not cleanup["remaining_child_states"]
-        assert not (CACHE / name).exists()
-        assert not (CACHE / "inputs.json").exists()
-        assert {path.name for path in CACHE.iterdir()} == {"bioformats_package.jar"}
-        assert digest(CACHE / "bioformats_package.jar") == other
+            with Transport(case, cache.backup / name, mode) as transport:
+                observation: dict[str, object] = {}
+                result = reader(
+                    transport.environment(),
+                    driver=program,
+                    timeout=60,
+                    observation=observation,
+                    before_rescue_observer=partial(before_rescue, events, CACHE, name, other_name),
+                )
+                before = observation["before_rescue"]
+                assert isinstance(before, dict) and not before["owned_process_states"]
+                state = before["state"]
+                observed = state["events"]
+                selected = [row for row in observed if row["event"] == "call" and row["selected"]]
+                assert len(selected) == 1, "Tooling nonwitness: selected operation absent/ambiguous"
+                assert selected[0]["configured_timeout"] == 180
+                assert selected[0]["effective_timeout"] == (180 if effective is None else effective)
+                assert all(
+                    row["other_kwargs_same_objects"] for row in observed if row["event"] == "call"
+                )
+                assert observed[-1]["event"] == "application-finished"
+                assert not observation["outer_timeout"]
+                requests = [event for event in transport.events if event["event"] == "request"]
+                assert requests and all(event["request"].startswith("GET ") for event in requests)
+                if effective is None:
+                    assert result.returncode == 0
+                    returned = [row for row in observed if row["event"] == "returned"]
+                    assert any(row["selected"] and row["status"] == 0 for row in returned)
+                    assert any(not row["selected"] and row["status"] == 0 for row in returned)
+                    assert not any(row["event"] == "native-timeout" for row in observed)
+                    assert_identity(
+                        selected_java(), case, observed_urls={name: transport.observed_url()}
+                    )
+                    assert digest(CACHE / name) == DECLARATIONS[name]["sha256"]
+                else:
+                    expirations = [row for row in observed if row["event"] == "native-timeout"]
+                    assert len(expirations) == 1
+                    expired = expirations[0]
+                    assert expired["category"] == "TimeoutExpired"
+                    assert expired["exception_timeout"] == effective
+                    assert expired["elapsed_s"] >= effective
+                    assert sum(row["event"] == "same-exception-reraised" for row in observed) == 1
+                    finished = [row for row in observed if row["event"] == "observer-finished"]
+                    assert (
+                        len(finished) == 1 and finished[0]["stopped"] and not finished[0]["errors"]
+                    )
+                    received = [row for row in observed if row["event"] == "received"]
+                    assert len(received) >= 3, (
+                        "Tooling nonwitness: repeated received progress absent"
+                    )
+                    assert all(
+                        a["bytes"] < b["bytes"]
+                        for a, b in zip(received, received[1:], strict=False)
+                    )
+                    live = [row for row in observed if row["event"] == "live-child"]
+                    assert len(live) >= 2 and all("Z" not in row["state"] for row in live)
+                    assert len({(row["pid"], row["start"], row["executable"]) for row in live}) == 1
+                    assert all(
+                        row["child"] and row["child"]["pid"] == live[0]["pid"] for row in received
+                    )
+                    assert (
+                        selected[0]["at"] < transport.started + requests[0]["at_s"] < expired["at"]
+                    )
+                    assert (
+                        selected[0]["at"] < received[0]["at"] < received[-1]["at"] < expired["at"]
+                    )
+                    assert state["known_children"] and not state["remaining_known_children"]
+                    assert not state["target_exists"] and not state["manifest_exists"]
+                    assert state["entries"] == [other_name]
+                    assert state["other_sha256"] == other
+                    assert result.returncode != 0
+                    assert (
+                        len([event for event in transport.events if event["event"] == "bytes"]) >= 3
+                    )
+                    assert (
+                        sum(
+                            event["count"]
+                            for event in transport.events
+                            if event["event"] == "bytes"
+                        )
+                        < DECLARATIONS[name]["size_bytes"]
+                    )
+                record(
+                    "parent-timeout-qualification",
+                    {
+                        "effective": effective,
+                        "status": result.returncode,
+                        "subprocess": observation,
+                        "transport": transport.events,
+                        "retired": (
+                            "actual180s elapsed/170s activity/175s survival; "
+                            "late premature abort remains possible"
+                        ),
+                    },
+                )
+            assert digest(CACHE / other_name) == other
 
 
 @pytest.mark.parametrize("relationship", ["cause", "context", "shared-group"])
@@ -529,107 +785,6 @@ def test_source_free_standard_loading_then_real_command(tmp_path: Path) -> None:
     assert "ValueError: A08-loaded-command" in result.stderr
     assert str(child) in result.stderr
     assert "A08_SOURCE_SECRET" not in result.stderr
-
-
-@pytest.mark.parametrize("selector", ["otf", "reconstruction"])
-def test_actual_generator_bounded_loading_and_caller_lifecycle(
-    tmp_path: Path, selector: str
-) -> None:
-    """C83/C86: operational loading observation plus real selector/file consumption.
-
-    No complete scientific fields, historical digests, quiet import or library API
-    expectation follows. Non-main rejection is lawful when the real CLI succeeds.
-    """
-    with tempfile.TemporaryDirectory(prefix="A09-generator-", dir=tmp_path) as name:
-        directory = Path(name)
-        loader = directory / "loader.py"
-        loading_observation = directory / "loading.json"
-        loader.write_text(
-            "import json,pathlib,runpy,sys\n"
-            f"sys.argv=[{str(GENERATOR)!r},{selector!r}]\n"
-            "observation={'operation':'non-main runpy loading','completed':False}\n"
-            "try:\n"
-            f"    runpy.run_path({str(GENERATOR)!r},run_name='A09_operational_observation')\n"
-            "    observation['completed']=True\n"
-            "except BaseException as error:\n"
-            "    observation['category']=type(error).__name__\n"
-            "    observation['message']=str(error)\n"
-            "    if isinstance(error,SystemExit): observation['status']=error.code\n"
-            "finally:\n"
-            f"    pathlib.Path({str(loading_observation)!r}).write_text(json.dumps(observation))\n"
-        )
-        try:
-            loading = python(
-                loader, cwd=directory, timeout=90, kind="generator-non-main-observation"
-            )
-            loading_status = loading.returncode
-        except AssertionError as error:
-            if str(error) != "Tooling nonwitness: supported outer wait expired":
-                raise
-            loading_status = None
-        # Loading is observational. Even a bounded timeout is not a product-red CLI claim.
-        observation = (
-            json.loads(loading_observation.read_text())
-            if loading_observation.exists()
-            else {"operation": "non-main runpy loading", "bounded_completion": False}
-        )
-        output = directory / "caller-output.json"
-        caller = directory / "documented-caller.py"
-        caller.write_text(
-            "import json,pathlib,subprocess,sys\n"
-            f"output=pathlib.Path({str(output)!r})\n"
-            "with output.open('w') as stream:\n"
-            f"    result=subprocess.run([{sys.executable!r},{str(HARNESS)!r},'--timeout','90',"
-            f"'python',{str(GENERATOR)!r},{selector!r}],stdout=stream,stderr=subprocess.PIPE,"
-            "text=True,timeout=95)\n"
-            "sys.stderr.write(result.stderr)\n"
-            "if result.returncode: sys.exit(result.returncode)\n"
-            # json.load consumes exactly one document and rejects trailing non-whitespace.
-            "with output.open() as stream: document=json.load(stream)\n"
-            "print(json.dumps({'consumed':True,'exists_during_context':output.is_file()}))\n"
-        )
-        output.write_text("")  # The caller owns this destination before CLI execution.
-        entries_before_cli = inventory(directory)
-        cli = python(caller, cwd=directory, timeout=105, kind="actual-generator-documented-caller")
-        record(
-            "generator-loading-classification",
-            {
-                "selector": selector,
-                "loading": observation,
-                "loading_status": loading_status,
-                "cli_status": cli.returncode,
-                "classification": (
-                    "CLI-success; loading observation only"
-                    if cli.returncode == 0
-                    else "CLI-failure; dependency/environment or product diagnosis required"
-                ),
-            },
-        )
-        assert cli.returncode == 0
-        assert json.loads(cli.stdout) == {"consumed": True, "exists_during_context": True}
-        # A caller-side parse independently consumes the whole returned document too.
-        json.loads(output.read_text())
-        entries_after_cli = inventory(directory)
-        record(
-            "generator-caller-lifecycle",
-            {
-                "selector": selector,
-                "output_sha256": digest(output),
-                "generator_sha256": digest(GENERATOR),
-                "consumed_inside_context": True,
-                "owned_entries": sorted(path.name for path in directory.iterdir()),
-                "before_cli": entries_before_cli,
-                "after_cli": entries_after_cli,
-                "limit": "Owned location inventory only; no global or transient-write guarantee",
-            },
-        )
-        assert set(entries_after_cli) == set(entries_before_cli)
-        for entry in entries_before_cli:
-            if entry != "caller-output.json":
-                for field in ("directory", "mode", "sha256"):
-                    assert entries_after_cli[entry][field] == entries_before_cli[entry][field]
-    assert not directory.exists()
-    record("generator-context-cleanup", {"selector": selector, "removed": not directory.exists()})
 
 
 def test_owned_invoke_exception_cleanup_before_cache_restore(

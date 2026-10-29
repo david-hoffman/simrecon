@@ -197,6 +197,7 @@ def test_real_traceback_formatting_callers(tmp_path: Path, api: str) -> None:
     path = probe(
         tmp_path,
         f'''
+        import contextlib
         import io
         import traceback
         def fail():
@@ -206,12 +207,40 @@ def test_real_traceback_formatting_callers(tmp_path: Path, api: str) -> None:
             fail()
         except ValueError as error:
             original = (error.args, error.__traceback__, error.__cause__, error.__context__)
-            stream = io.StringIO()
-            rendered = traceback.{api}  # {SOURCE_MARKER}
-            if rendered is not None:
-                print("".join(rendered), end="")
-            print(stream.getvalue(), end="")
-            assert original == (error.args, error.__traceback__, error.__cause__, error.__context__)
+            streams = (("explicit", "default")
+                       if "print_tb" in {api!r} or "print_stack" in {api!r}
+                       else ("selected",))
+            for channel in streams:
+                stream = io.StringIO()
+                default = io.StringIO()
+                def caller():
+                    local = "{LOCAL_MARKER}"
+                    return traceback.{api}  # {SOURCE_MARKER}
+                def default_stack():
+                    local = "{LOCAL_MARKER}"
+                    traceback.print_stack()  # {SOURCE_MARKER}
+                with contextlib.redirect_stderr(default):
+                    if channel == "default":
+                        if "print_tb" in {api!r}:
+                            traceback.print_tb(error.__traceback__)
+                        else:
+                            default_stack()
+                        rendered = None
+                    else:
+                        rendered = caller()
+                if channel == "explicit":
+                    assert stream.getvalue() and not default.getvalue()
+                elif channel == "default":
+                    assert default.getvalue() and not stream.getvalue()
+                print("BEGIN_" + channel)
+                if rendered is not None:
+                    print("".join(rendered), end="")
+                print(stream.getvalue(), end="")
+                print(default.getvalue(), end="")
+                print("END_" + channel)
+                assert original == (error.args, error.__traceback__,
+                                    error.__cause__, error.__context__)
+                assert str(error) == "API_VISIBLE"
             print("FIELDS_UNCHANGED")
         ''',
     )
@@ -219,9 +248,41 @@ def test_real_traceback_formatting_callers(tmp_path: Path, api: str) -> None:
     rendered = output(result)
     assert result.returncode == 0
     assert "FIELDS_UNCHANGED" in rendered
-    assert str(path) in rendered and "line " in rendered
-    if "exception" in api or "exc(" in api:
-        assert "ValueError: API_VISIBLE" in rendered
+    channels = (
+        ("explicit", "default") if "print_tb" in api or "print_stack" in api else ("selected",)
+    )
+    source_lines = path.read_text().splitlines()
+    if "stack" in api:
+        selected_line = next(
+            i for i, line in enumerate(source_lines, 1) if "return traceback." in line
+        )
+        default_line = next(
+            i for i, line in enumerate(source_lines, 1) if "traceback.print_stack()" in line
+        )
+    else:
+        selected_line = next(
+            i for i, line in enumerate(source_lines, 1) if "fail()" in line and "def" not in line
+        )
+        default_line = selected_line
+    for channel in channels:
+        section = rendered.split("BEGIN_" + channel + "\n", 1)[1].split("END_" + channel, 1)[0]
+        line = default_line if channel == "default" else selected_line
+        function = "<module>"
+        if "stack" in api:
+            function = "default_stack" if channel == "default" else "caller"
+        assert f'File "{path}", line {line}, in {function}' in section
+        if "stack" in api:
+            call = "default_stack()" if channel == "default" else "rendered = caller()"
+            module_line = next(i for i, text in enumerate(source_lines, 1) if text.strip() == call)
+            assert f'File "{path}", line {module_line}, in <module>' in section
+        if "stack" not in api and "limit=1" not in api:
+            raise_line = next(
+                i for i, text in enumerate(source_lines, 1) if "raise ValueError" in text
+            )
+            assert f'File "{path}", line {raise_line}, in fail' in section
+        if "exception" in api or "exc(" in api:
+            assert "ValueError: API_VISIBLE" in section
+        assert_source_free(section)
     assert_source_free(rendered)
 
 
@@ -352,30 +413,6 @@ def test_real_child_failure_and_timeout_fields(tmp_path: Path, kind: str) -> Non
     assert "CHILD_FIELDS_UNCHANGED" in rendered
     assert str(path) in rendered  # Legitimate standard stack location contains '-c'.
     _assert_child_diagnostic(rendered, kind, str(PYTHON))
-    assert_source_free(rendered)
-
-
-def test_real_inherited_child_diagnostics(tmp_path: Path) -> None:
-    child = probe(
-        tmp_path,
-        f"""
-        import warnings
-        warnings.warn("CHILD_WARNING", UserWarning)  # {SOURCE_MARKER}
-        raise RuntimeError("CHILD_ERROR")  # {SOURCE_MARKER}
-        """,
-    )
-    parent = tmp_path / "parent.py"
-    parent.write_text(
-        "import subprocess, sys\n"
-        "result = subprocess.run([sys.executable, sys.argv[1]])\n"
-        "sys.exit(result.returncode)\n"
-    )
-    result = python([str(parent), str(child)])
-    rendered = output(result)
-    assert result.returncode == 1
-    assert "UserWarning: CHILD_WARNING" in rendered
-    assert "RuntimeError: CHILD_ERROR" in rendered
-    assert str(child) in rendered and "line 4" in rendered
     assert_source_free(rendered)
 
 

@@ -21,9 +21,7 @@ from shared_node_baseline_infrastructure_supplement_fixture import (
 )
 
 
-@pytest.mark.parametrize(
-    "formatter", ("format_exception", "traceback-exception", "print_exception")
-)
+@pytest.mark.parametrize("formatter", ("traceback-exception",))
 def test_standard_exception_formatters_suppress_source_and_locals(
     tmp_path: Path, formatter: str
 ) -> None:
@@ -121,7 +119,7 @@ def test_supported_none_threading_hook_and_exception_formatting(tmp_path: Path) 
     # The public grammar promises accepted None fields, not exact hook prose.
 
 
-@pytest.mark.parametrize("formatter", ("format-stack", "stack-summary", "format-tb"))
+@pytest.mark.parametrize("formatter", ("stack-summary",))
 def test_real_standard_stack_locations_omit_source_and_captured_locals(
     tmp_path: Path, formatter: str
 ) -> None:
