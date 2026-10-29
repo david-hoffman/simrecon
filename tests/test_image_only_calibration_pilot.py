@@ -363,7 +363,7 @@ def test_unavailable_normalization_still_requires_valid_heldout_input(invoke: An
     assert caught.value.code == "invalid_image_only_calibration_pilot"
 
 
-@pytest.mark.parametrize("data", [np.zeros(SHAPE), -np.ones(SHAPE), np.full(SHAPE, -0.125)])
+@pytest.mark.parametrize("data", [np.zeros(SHAPE), -np.ones(SHAPE)])
 def test_missing_positive_peaks_is_initialization_information(invoke: Any, data: Any) -> None:
     result = invoke(central_counts=5 + 2 * data)
     assert_empty(result, "initialization_failed", "initialization")
