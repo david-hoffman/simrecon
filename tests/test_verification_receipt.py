@@ -38,14 +38,20 @@ def git(root, *args):
 
 
 @pytest.fixture
-def repository(tmp_path):
+def repository(tmp_path, request):
     root = tmp_path / "repo"
     root.mkdir()
+    setup = getattr(request, "param", "complete")
+    bin_dir = tmp_path / "bin"
+    if setup == "minimal":
+        return root, bin_dir
     for name in ("src/simrecon/sample.py", "scripts/sample.py"):
         path = root / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(b"if flag:\n    value = 1\n")
     (root / "scripts/branchless.py").write_bytes(b"value = 1\n")
+    if setup == "sources":
+        return root, bin_dir
     (root / "candidate.txt").write_bytes(b"candidate\n")
     shutil.copyfile(ROOT / "Makefile", root / "Makefile")
     (root / ".gitignore").write_text("artifacts/\ndist/\ncalls.jsonl\n")
@@ -54,7 +60,6 @@ def repository(tmp_path):
     git(root, "config", "user.name", "Receipt fixture")
     git(root, "add", ".")
     git(root, "commit", "-qm", "fixture candidate")
-    bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
     install_phase_commands(bin_dir, hybrid=True)
     return root, bin_dir
@@ -64,7 +69,8 @@ def invoke(repository, mode="complete", extra=(), interpreter=None, receipt_path
     root, bin_dir = repository
     env = os.environ.copy()
     env["RECEIPT_FIXTURE_MODE"] = mode
-    env["RECEIPT_FIXTURE_INPUTS"] = str(prepare_phase_inputs(bin_dir, mode))
+    if bin_dir.is_dir():
+        env["RECEIPT_FIXTURE_INPUTS"] = str(prepare_phase_inputs(bin_dir, mode))
     env["PATH"] = str(bin_dir) + os.pathsep + env["PATH"]
     result = run(
         [
@@ -448,6 +454,7 @@ def test_unmeasured_native_endpoint_remains_permitted(repository):
 
 
 @pytest.mark.parametrize("execute_statements", [False, True])
+@pytest.mark.parametrize("repository", ["sources"], indirect=True)
 def test_project_coverage_commands_allow_advisory_percentages(repository, execute_statements):
     root, _ = repository
     empty = root / "scripts/empty.py"
@@ -549,7 +556,17 @@ def test_v5_context_and_private_input(repository, tmp_path):
     assert "private bytes" not in json.dumps(receipt)
 
 
-@pytest.mark.parametrize("kind", ["duplicate", "unnamed", "directory", "missing", "changed"])
+@pytest.mark.parametrize(
+    "kind,repository",
+    [
+        ("duplicate", "minimal"),
+        ("unnamed", "minimal"),
+        ("directory", "complete"),
+        ("missing", "complete"),
+        ("changed", "complete"),
+    ],
+    indirect=["repository"],
+)
 def test_v5_invalid_inputs(repository, tmp_path, monkeypatch, kind):
     private = tmp_path / "private-input.bin"
     private.write_bytes(b"original input")
@@ -564,6 +581,10 @@ def test_v5_invalid_inputs(repository, tmp_path, monkeypatch, kind):
         private.unlink()
     monkeypatch.setenv("RECEIPT_PRIVATE_INPUT", str(private))
     result, receipt = invoke(repository, "input-change" if kind == "changed" else "complete", extra)
+    if kind in {"duplicate", "unnamed"}:
+        assert result.returncode == 2
+        assert receipt is None
+        assert not (repository[0] / "artifacts").exists()
     assert result.returncode in (1, 2)
     assert "can't open file" not in result.stderr
     if receipt is None:
@@ -608,11 +629,13 @@ def test_v4_forbidden_tracked_receipt(repository):
     assert git(root, "status", "--porcelain") == ""
 
 
+@pytest.mark.parametrize("repository", ["minimal"], indirect=True)
 def test_v5_malformed_input_syntax(repository):
     result, receipt = invoke(repository, extra=("--input", "missing-equals"))
     assert result.returncode == 2
     assert "error:" in result.stderr
     assert "can't open file" not in result.stderr
+    assert not (repository[0] / "artifacts").exists()
     if receipt is not None:
         assert receipt is not None
         failed(result, receipt)

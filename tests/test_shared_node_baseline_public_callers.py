@@ -568,6 +568,13 @@ def test_verifier_genuine_native_extra_file_and_standard_loading(tmp_path: Path)
     phases = document["phases"]
     assert isinstance(phases, list)
     assert [phase["name"] for phase in phases] == PHASES
+    trace = [
+        json.loads(line) for line in (fixture.root / "phase-trace.jsonl").read_text().splitlines()
+    ]
+    assert [call["phase"] for call in trace] == PHASES
+    assert [phase["command"] for phase in phases] == [
+        [str(fixture.make), *call["argv"]] for call in trace
+    ]
     for phase in phases:
         assert phase["returncode"] == 0
         assert phase["command"][0] == str(fixture.make)

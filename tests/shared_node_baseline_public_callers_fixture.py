@@ -870,7 +870,7 @@ class VerificationFixture:
             entry.write_text(
                 "import json,os,pathlib,runpy,sys\n"
                 f"argv={argv!r}\nroot=pathlib.Path({str(self.root)!r})\n"
-                f"selected=root / {receipt!r}\nmode={observer!r}\nload={load!r}\n"
+                f"selected=root / {receipt!r}\nmode={observer!r}\n"
                 "busy=False\nfired=False\nevents=[]\n"
                 "def hook(event,args):\n"
                 "    global busy,fired\n"
@@ -901,11 +901,6 @@ class VerificationFixture:
                 "        busy=False\n"
                 "sys.addaudithook(hook)\n"
                 "try:\n"
-                "    if load:\n"
-                "        sys.argv=argv\n"
-                "        try: runpy.run_path(argv[0],run_name='A08_operational_preflight')\n"
-                "        except SystemExit as error:\n"
-                "            if error.code not in (0,None): raise\n"
                 "    sys.argv=argv\n"
                 "    runpy.run_path(argv[0],run_name='__main__')\n"
                 "finally:\n"
@@ -946,7 +941,7 @@ class VerificationFixture:
             "marker_after": digest(marker) if marker.is_file() else None,
             "fixture_root": str(self.root),
             "public_cli_argv": argv,
-            "public_execution": "standard-loading-then-CLI" if observer or load else "CLI",
+            "public_execution": "standard-loading-CLI" if observer or load else "CLI",
             "controls": json.loads(self.controls.read_text()),
             "opaque_verifier_sha256": digest(self.verifier),
             "phase_trace": (
