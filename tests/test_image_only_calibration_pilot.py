@@ -472,10 +472,24 @@ def test_initialization_exact_bounds_suppression_and_windows(invoke: Any, contro
         np.testing.assert_allclose(centers[0], first, rtol=64 * EPS, atol=0)
     result = invoke(
         central_counts=central,
-        structured_counts=np.full((3, 9, *y.shape), 5.0),
+        structured_counts=np.full((3, 9, *y.shape), 1e200),
         heldout_counts=np.full((3, 5, *y.shape), 5.0),
     )
-    assert result.status == "completed_local"
+    # The complete initial prediction precedes a genuine direct-square overflow.
+    assert (result.status, result.stage, result.failure_code) == (
+        "numerical_incomplete",
+        "initial",
+        "image_only_calibration_pilot_range",
+    )
+    assert len(result.objective_trace) == 1 and result.center_attempts == ()
+    failed = result.objective_trace[0]
+    assert (failed.stage, failed.pupil_order, failed.outcome) == (
+        "initial",
+        128,
+        "numerical_incomplete",
+    )
+    assert failed.candidate is failed.objective is None
+    assert result.optimizer_status is None and result.heldout_prediction is None
     np.testing.assert_allclose(
         result.initial_candidate.centers_um_zyx, centers, rtol=128 * EPS, atol=0
     )
@@ -727,15 +741,66 @@ def test_complete_signed_finite_equation_scores_and_initialization(invoke: Any) 
     assert np.all(positive.initial_candidate.brightness_relative > 0)
     assert_poll_fold(positive, numerical_inputs=(central, structured))
     y, s = (central - 5) / 2, (structured - 5) / 2
+
+    # One minimum-z success owns the real camera, layout/gauge controls and
+    # complete high-order equations. The moved-profile Q128 proof stays above.
+    from simrecon import estimate_scalar_camera
+
+    central, structured, heldout = observations()
+    estimated = estimate_scalar_camera(
+        np.zeros((2, 1, 2)),
+        blank_counts=np.full((2, 1, 2), 5.0),
+        flat_counts=np.full((2, 1, 2), 7.0),
+        source="actual images",
+    )
+    assert estimated.gain_counts_per_e is None
+    means = np.array([0.0, 999.0, 5.0, 999.0, 7.0, 999.0])[::2]
+    np.testing.assert_array_equal(means, estimated.means_counts)
+    means.flags.writeable = False
+    estimated = dataclasses.replace(estimated, means_counts=means)
+    small = invoke(
+        central_counts=central[:1],
+        structured_counts=structured[:, :, :1],
+        heldout_counts=heldout[:, :, :1],
+        camera_estimate=estimated,
+    )
+    assert (small.status, small.stage) == ("completed_local", "complete")
+    assert small.detector_shape_zyx == SHAPE
+    assert_candidate(small.frozen_candidate, SHAPE)
+    assert means.flags.writeable is False and means.strides == (16,)
+    unused = camera(
+        gain_counts_per_e=float("nan"),
+        variances_counts2=None,
+        frame_means_counts=None,
+        frame_variances_counts2=None,
+        empirical_mean_se_counts=None,
+        information_codes=None,
+        source="actual images",
+    )
+    other = invoke(camera_estimate=unused)
+    same_candidate(small.frozen_candidate, other.frozen_candidate)
+    assert small.training_objectives_q128_q256_q512 == other.training_objectives_q128_q256_q512
+    np.testing.assert_array_equal(small.heldout_prediction, other.heldout_prediction)
+    affine = invoke(
+        central_counts=4 * central - 13,
+        structured_counts=4 * structured - 13,
+        heldout_counts=4 * heldout - 13,
+        camera_estimate=camera(means_counts=np.array([-41.0, 7.0, 15.0]), contrast_counts=8),
+    )
+    same_candidate(other.frozen_candidate, affine.frozen_candidate)
+    np.testing.assert_array_equal(other.heldout_prediction, affine.heldout_prediction)
+    assert np.all(small.initial_candidate.brightness_relative > 0)
+    assert np.all(small.frozen_candidate.brightness_relative > 0)
+    y, s = (central - 5) / 2, (structured - 5) / 2
     for order in (256, 512):
-        score = next(v for v in positive.objective_trace if v.pupil_order == order)
-        same_candidate(score.candidate, positive.frozen_candidate)
-        cp, sp, delta = predictions(score.candidate, shape, order)
+        score = next(v for v in small.objective_trace if v.pupil_order == order)
+        same_candidate(score.candidate, small.frozen_candidate)
+        cp, sp, delta = predictions(score.candidate, SHAPE, order)
         assert np.max(cp) > 0 and np.max(sp) > 0
         target = objective(y, s, cp, sp)
         assert_scalar_close(score.objective, target, loss_allowance(y, s, cp, sp, delta))
         if order == 512:
-            assert_prediction_close(positive.heldout_prediction, sp[:, :5], delta)
+            assert_prediction_close(small.heldout_prediction, sp[:, :5], delta)
 
 
 def assert_poll_fold(result: Any, *, numerical_inputs: tuple[Any, Any] | None = None) -> None:
@@ -863,21 +928,6 @@ def test_installed_powell_is_called_with_finite_budget(invoke: Any) -> None:
     assert result.status in ("completed_local", "completed_budget_limited")
 
 
-def test_smallest_legal_z_and_readonly_strided_camera_means(invoke: Any) -> None:
-    c, s, h = observations()
-    means = np.array([-7.0, 999.0, 5.0, 999.0, 7.0, 999.0])[::2]
-    means.flags.writeable = False
-    result = invoke(
-        central_counts=c[:1],
-        structured_counts=s[:, :, :1],
-        heldout_counts=h[:, :, :1],
-        camera_estimate=camera(means_counts=means),
-    )
-    assert result.status == "completed_local" and result.detector_shape_zyx == SHAPE
-    assert_candidate(result.frozen_candidate, SHAPE)
-    assert means.flags.writeable is False and means.strides == (16,)
-
-
 @pytest.mark.parametrize(
     "field,shape",
     [
@@ -933,41 +983,25 @@ def test_heldout_is_deferred_until_freeze_and_origin_is_only_metadata(invoke: An
         atol=0,
     )
 
-
-def test_actual_estimated_camera_gauge_and_unused_fields(invoke: Any) -> None:
-    # The public estimator supplies this record from images, with unavailable physical gain.
-    from simrecon import estimate_scalar_camera
-
-    dark = np.zeros((2, 1, 2))
-    blank = np.full((2, 1, 2), 5.0)
-    flat = np.full((2, 1, 2), 7.0)
-    estimated = estimate_scalar_camera(
-        dark, blank_counts=blank, flat_counts=flat, source="actual images"
-    )
-    assert estimated.gain_counts_per_e is None
-    a = invoke(camera_estimate=estimated)
-    unused = camera(
-        gain_counts_per_e=float("nan"),
-        variances_counts2=None,
-        frame_means_counts=None,
-        frame_variances_counts2=None,
-        empirical_mean_se_counts=None,
-        information_codes=None,
-        source="actual images",
-    )
-    b = invoke(camera_estimate=unused)
-    same_candidate(a.frozen_candidate, b.frozen_candidate)
-    assert a.training_objectives_q128_q256_q512 == b.training_objectives_q128_q256_q512
-    np.testing.assert_array_equal(a.heldout_prediction, b.heldout_prediction)
-    central, structured, heldout = observations()
-    affine = invoke(
-        central_counts=4 * central - 13,
-        structured_counts=4 * structured - 13,
-        heldout_counts=4 * heldout - 13,
-        camera_estimate=camera(means_counts=np.array([-41.0, 7.0, 15.0]), contrast_counts=8),
-    )
-    same_candidate(b.frozen_candidate, affine.frozen_candidate)
-    np.testing.assert_array_equal(b.heldout_prediction, affine.heldout_prediction)
+    result = invoke(heldout_counts=np.full((3, 5, *SHAPE), 1e200))
+    same_candidate(baseline.frozen_candidate, result.frozen_candidate)
+    assert baseline.training_objectives_q128_q256_q512 == result.training_objectives_q128_q256_q512
+    if result.status == "numerical_incomplete":
+        assert (
+            result.stage == "heldout"
+            and result.failure_code == "image_only_calibration_pilot_range"
+        )
+        assert result.heldout_residual_mean is result.heldout_residual_rms is None
+    else:
+        # Squaring 5e199 overflows, but its RMS is representable. A scaled
+        # float64 reduction is a legitimate alternative to that overflow.
+        assert result.status == "completed_local" and result.failure_code is None
+        np.testing.assert_allclose(
+            result.heldout_residual_mean, 5e199, rtol=128 * math.prod(SHAPE) * EPS, atol=0
+        )
+        np.testing.assert_allclose(
+            result.heldout_residual_rms, 5e199, rtol=128 * math.prod(SHAPE) * EPS, atol=0
+        )
 
 
 def test_owned_frozen_records_snapshot_inputs_and_every_candidate(invoke: Any) -> None:
@@ -1019,11 +1053,11 @@ def test_owned_frozen_records_snapshot_inputs_and_every_candidate(invoke: Any) -
 @pytest.mark.parametrize(
     "styles",
     [
-        pytest.param(("endian", "strided", "fortran", "readonly"), id="equivalent-native-values"),
-        pytest.param(("integer",), id="integer"),
-        pytest.param(("unsigned",), id="unsigned"),
+        pytest.param(
+            ("endian", "strided", "fortran", "readonly", "wide"), id="equivalent-native-values"
+        ),
+        pytest.param(("integer", "unsigned"), id="integer-unsigned"),
         pytest.param(("float32",), id="float32"),
-        pytest.param(("wide",), id="wide"),
     ],
 )
 def test_legitimate_array_storage_and_conversion(invoke: Any, styles: tuple[str, ...]) -> None:
@@ -1242,31 +1276,6 @@ def test_required_nonfinite_arithmetic_has_truthful_stage(invoke: Any, case: str
         )
         assert failed.objective is failed.candidate is None
         assert result.optimizer_status is None and result.center_attempts == ()
-
-
-def test_large_finite_heldout_rms_allows_stable_evaluation_or_truthful_late_range(
-    invoke: Any,
-) -> None:
-    baseline = invoke()
-    result = invoke(heldout_counts=np.full((3, 5, *SHAPE), 1e200))
-    same_candidate(baseline.frozen_candidate, result.frozen_candidate)
-    assert baseline.training_objectives_q128_q256_q512 == result.training_objectives_q128_q256_q512
-    if result.status == "numerical_incomplete":
-        assert (
-            result.stage == "heldout"
-            and result.failure_code == "image_only_calibration_pilot_range"
-        )
-        assert result.heldout_residual_mean is result.heldout_residual_rms is None
-    else:
-        # Squaring 5e199 overflows, but its RMS is representable. A scaled
-        # float64 reduction is a legitimate alternative to that overflow.
-        assert result.status == "completed_local" and result.failure_code is None
-        np.testing.assert_allclose(
-            result.heldout_residual_mean, 5e199, rtol=128 * math.prod(SHAPE) * EPS, atol=0
-        )
-        np.testing.assert_allclose(
-            result.heldout_residual_rms, 5e199, rtol=128 * math.prod(SHAPE) * EPS, atol=0
-        )
 
 
 def test_ordinary_correction_underflow_remains_an_information_outcome(invoke: Any) -> None:
