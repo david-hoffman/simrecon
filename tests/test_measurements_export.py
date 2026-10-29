@@ -6,7 +6,6 @@ import copy
 import hashlib
 import json
 import os
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -16,7 +15,7 @@ from uuid import UUID
 import pytest
 
 from measurement_fixture_export import LIMIT_BYTES, MEASUREMENTS_PATH, export_measurement
-from verification_fixture_tools import PHASES, prepare_phase_inputs
+from verification_fixture_tools import PHASES, install_phase_commands, prepare_phase_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = Path(__file__).parent
@@ -72,15 +71,7 @@ def repository(tmp_path: Path) -> Repository:
     git(root, "commit", "-qm", "public synthetic candidate")
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
-    shutil.copyfile(
-        FIXTURES / "verification_fixture_tools.py", bin_dir / "verification_fixture_tools.py"
-    )
-    for name in ("make", "uv"):
-        target = bin_dir / name
-        target.write_text(
-            f"#!{sys.executable}\n" + (FIXTURES / "measurements_fixture_commands.py").read_text()
-        )
-        target.chmod(0o755)
+    install_phase_commands(bin_dir, "measurements_fixture_commands")
     return root, bin_dir
 
 

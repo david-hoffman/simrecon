@@ -285,11 +285,13 @@ def prepare_evidence_repository(tmp_path: Path, monkeypatch: pytest.MonkeyPatch)
     )
     git(root, "add", ".gitignore")
     git(root, "commit", "-qm", "ignore disposable observation ledgers")
-    for name in ("verification_fixture_tools.py", "measurements_fixture_commands.py"):
-        shutil.copyfile(ROOT / "tests" / name, bin_dir / name)
     for name in ("make", "uv"):
         executable = bin_dir / name
-        executable.write_text(f"#!{sys.executable}\n" + COMMAND_FIXTURE)
+        executable.write_text(
+            f"#!{sys.executable}\nimport sys\n"
+            f"sys.path.insert(0, {str(ROOT / 'tests')!r})\n" + COMMAND_FIXTURE,
+            encoding="utf-8",
+        )
         executable.chmod(0o755)
     return repository
 
