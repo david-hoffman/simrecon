@@ -979,8 +979,6 @@ def test_real_noisy_sealed_unavailable_is_not_completed(tmp_path: Path) -> None:
 @pytest.mark.parametrize(
     "case,stage,code,camera_present,bead_present",
     [
-        ("zero", "camera_normalization", None, True, False),
-        ("negative", "camera_normalization", None, True, False),
         ("gain_missing", "bead", None, True, True),
         ("range", "camera", "scalar_camera_calibration_range", False, False),
     ],
@@ -1373,9 +1371,19 @@ def test_positive_unoccupied_source_is_range_not_domain_or_fake_success(
 def sealed(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Path]:
     root = tmp_path_factory.mktemp("full-noisy-A-public-sealed")
     obs = observation_bundle(root / "observations")
+    before = snapshot(obs)
     inference = root / "inference"
-    expect(cli(*infer_args(obs, inference)), 3)
-    check_freeze(inference, complete=False)
+    settings = {**SETTINGS, "sweep_scales": [2.0, 0.25, 2.0]}
+    expect(cli(*infer_args(obs, inference, settings)), 3)
+    estimates, freeze = check_estimates(inference), check_freeze(inference, complete=False)
+    assert estimates["fit_stage"] == freeze["stage"] == "camera_normalization"
+    assert estimates["failure_code"] == freeze["failure_code"] is None
+    assert estimates["camera_estimate"] is not None
+    assert estimates["camera_estimate"]["contrast_counts"] == 0.0
+    assert estimates["bead_calibration"] is None and estimates["specimen_fit"] is None
+    assert estimates["algorithm_settings"] == settings
+    assert all(count == 0 for count in freeze["prediction_call_counts"].values())
+    assert snapshot(obs) == before
     return {"root": root, "observations": obs, "inference": inference}
 
 
@@ -1389,8 +1397,17 @@ def test_binary_protocol_ordinary_versions_and_noncanonical_json(
     (obs / "not-an-input.json").write_bytes(b"invalid and unrelated")
     before = snapshot(obs)
     out = tmp_path / "out"
-    expect(cli(*infer_args(obs, out)), 3)
-    assert check_estimates(out)["camera_estimate"]["contrast_counts"] == -1.0
+    settings = {**SETTINGS, "sweep_scales": [2.0, 0.25, 2.0]} if version == (1, 0) else SETTINGS
+    expect(cli(*infer_args(obs, out, settings)), 3)
+    estimates = check_estimates(out)
+    assert estimates["camera_estimate"]["contrast_counts"] == -1.0
+    if version == (1, 0):
+        freeze = check_freeze(out, complete=False)
+        assert estimates["fit_stage"] == freeze["stage"] == "camera_normalization"
+        assert estimates["failure_code"] == freeze["failure_code"] is None
+        assert estimates["bead_calibration"] is None and estimates["specimen_fit"] is None
+        assert estimates["algorithm_settings"] == settings
+        assert all(count == 0 for count in freeze["prediction_call_counts"].values())
     assert snapshot(obs) == before
 
 
@@ -2900,11 +2917,7 @@ def test_extreme_beam_observer_rejects_each_finite_wrong_component(
         check_normalized_beam_errors(wrong, fitted, true, side_exchange=side_exchange)
 
 
-@pytest.mark.parametrize("reference_kind", ["signal", "corrected_mean"])
-@pytest.mark.parametrize("outcome", ["available", "null", "unrepresentable", "finite_zero"])
-def test_finite_mean_metric_reference_and_observer_qualification(
-    reference_kind: str, outcome: str
-) -> None:
+def test_finite_mean_metric_reference_and_observer_qualification() -> None:
     # Pure arithmetic/observer qualification. These arrays are not a fitted
     # source, camera estimate or fabricated successful scientific CLI result.
     means, prediction = np.full(60, 1e308, dtype=np.float64), np.zeros(60, dtype=np.float64)
@@ -2917,41 +2930,46 @@ def test_finite_mean_metric_reference_and_observer_qualification(
         estimated_blank=-6.5,
         estimated_contrast=1024.0,
     )
-    reference = signal if reference_kind == "signal" else corrected
     # Exact dyadic division is an independent finite expression; the bounded
     # affine terms are far below a float64 ulp here and do not change rounding.
     scalar = 1e308 / 512.0
-    np.testing.assert_array_equal(reference, np.full(60, scalar, dtype=np.float64))
+    target = np.full(60, scalar, dtype=np.float64)
+    np.testing.assert_array_equal(signal, target)
+    np.testing.assert_array_equal(corrected, target)
+    np.testing.assert_array_equal(signal, corrected)
     norm = scalar * math.sqrt(60.0)
     assert math.isfinite(norm)
-    summary: Any = dict(
-        count=60,
-        reference_l2=norm,
-        error_l2=norm,
-        relative_l2=1.0,
-        error_rms=scalar,
-        error_max_abs=scalar,
-        error_mean=-scalar,
-        unavailable_fields=[],
-    )
-    if outcome == "null":
-        summary = None
-    elif outcome == "unrepresentable":
-        summary["reference_l2"] = None
-        summary["unavailable_fields"] = [{"field": "reference_l2", "reason": "unrepresentable"}]
-    elif outcome == "finite_zero":
-        for name in (
-            "reference_l2",
-            "error_l2",
-            "relative_l2",
-            "error_rms",
-            "error_max_abs",
-            "error_mean",
-        ):
-            summary[name] = 0.0
-        assert all(math.isfinite(summary[name]) for name in summary if name != "unavailable_fields")
-    if outcome == "available":
-        check_available_metric(summary, prediction, reference)
-    else:
-        with pytest.raises(AssertionError):
-            check_available_metric(summary, prediction, reference)
+    for outcome in ("available", "null", "unrepresentable", "finite_zero"):
+        summary: Any = dict(
+            count=60,
+            reference_l2=norm,
+            error_l2=norm,
+            relative_l2=1.0,
+            error_rms=scalar,
+            error_max_abs=scalar,
+            error_mean=-scalar,
+            unavailable_fields=[],
+        )
+        if outcome == "null":
+            summary = None
+        elif outcome == "unrepresentable":
+            summary["reference_l2"] = None
+            summary["unavailable_fields"] = [{"field": "reference_l2", "reason": "unrepresentable"}]
+        elif outcome == "finite_zero":
+            for name in (
+                "reference_l2",
+                "error_l2",
+                "relative_l2",
+                "error_rms",
+                "error_max_abs",
+                "error_mean",
+            ):
+                summary[name] = 0.0
+            assert all(
+                math.isfinite(summary[name]) for name in summary if name != "unavailable_fields"
+            )
+        if outcome == "available":
+            check_available_metric(summary, prediction, signal)
+        else:
+            with pytest.raises(AssertionError):
+                check_available_metric(summary, prediction, signal)
