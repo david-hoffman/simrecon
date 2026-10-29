@@ -23,13 +23,10 @@ from typing import Any
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = Path(
-    os.environ.get(
-        "SIMRECON_PROTOCOLS_EVIDENCE", str(ROOT / "artifacts/baseline-compatibility-20261013/A09")
-    )
-)
+EVIDENCE = ROOT / "artifacts/baseline-compatibility-20261013/A09"
 RUN_ID = os.environ.get("SIMRECON_A09_RUN_ID") or "standalone-" + uuid.uuid4().hex
-RUN = EVIDENCE / "authored-runs" / RUN_ID
+# Evidence placement must not change the shared reader-cache reservation lock.
+RUN = Path(os.environ.get("SIMRECON_PROTOCOLS_EVIDENCE", str(EVIDENCE))) / "authored-runs" / RUN_ID
 HARNESS = ROOT / "scripts/source_free_check.py"
 READER = ROOT / "scripts/prepare_imagej_reader.py"
 VERIFY = ROOT / "scripts/verify.py"
