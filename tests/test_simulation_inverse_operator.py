@@ -1821,7 +1821,7 @@ def test_supplemental_moderate_nonsquare_signed_axial_delta_composition() -> Non
     payload = np.empty((3, 64, 65), dtype=np.float32)
     for lag in range(3):
         payload[lag] = weights[lag]
-    fields = cache_fields(shape) | {"source_spacing_um_zyx": spacing}
+    fields: dict[str, Any] = cache_fields(shape) | {"source_spacing_um_zyx": spacing}
     z, y, x = np.indices(shape)
     source = ((7 * z + 3 * y - 5 * x) % 29 - 14).astype(np.float32) / np.float32(8)
     source[0, 0, 0], source[-1, -1, -1], source[1, 16, 31] = 1.75, -2.5, 3.125
