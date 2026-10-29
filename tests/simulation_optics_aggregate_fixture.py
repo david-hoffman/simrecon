@@ -263,18 +263,19 @@ def large_reference() -> Reference:
 
 
 REFINEMENT_WEIGHTS: AxisWeights = (
-    (Fraction(1),) * 6,
-    (Fraction(1),) * 10,
-    (Fraction(1),) * 20,
+    tuple(Fraction(z, 8) for z in (1, 2, 3, 5)),
+    tuple(Fraction(y, 4) for y in (1, 3, 2, 5)),
+    tuple(Fraction(x, 4) for x in (2, 1, 5, 3)),
 )
 
 
 def refinement_arguments(beams: tuple[float, float, float]) -> dict[str, Any]:
     """Complete independent source/pixel refinement and beam-positive family."""
     args = arguments()
+    wz, wy, wx = REFINEMENT_WEIGHTS
     args.update(
-        source_e=np.ones((6, 10, 20)),
-        detector_spacing_um_zyx=LARGE_SPACING,
+        source_e=np.array([[[float(z * y * x) for x in wx] for y in wy] for z in wz]),
+        detector_spacing_um_zyx=SPACING,
         beam_amplitudes=beams,
         pupil_order=1,
         pixel_subsamples_yx=(2, 3),
@@ -284,6 +285,4 @@ def refinement_arguments(beams: tuple[float, float, float]) -> dict[str, Any]:
 
 @cache
 def refinement_reference(beams: tuple[float, float, float]) -> Reference:
-    return separable_reference(
-        REFINEMENT_WEIGHTS, LARGE_SPACING, (2, 2, 2), beams=beams, pixels=(2, 3)
-    )
+    return separable_reference(REFINEMENT_WEIGHTS, SPACING, (2, 2, 2), beams=beams, pixels=(2, 3))
