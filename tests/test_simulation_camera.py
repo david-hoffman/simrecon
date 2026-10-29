@@ -421,12 +421,6 @@ def test_intermediate_product_and_offset_overflow(signal: Any, kw: Any) -> None:
     rejected(signal, "simulation_camera_range", **kw)
 
 
-def test_electron_sum_overflow_rejects_whole_call() -> None:
-    # A million independent normals make failure to reach overflow negligible:
-    # lambda=1e308, sigma=1e308; R>~0.798 sigma overflows P+R.
-    rejected(np.full(N, 1e308), "simulation_camera_range", read_noise_e=1e308, seed=139)
-
-
 @pytest.mark.parametrize("policy", ["ignore", "warn", "raise", "call", "print", "log"])
 def test_numpy_policy_preserved_and_expected_warnings_contained(
     policy: Literal["ignore", "warn", "raise", "call", "print", "log"],

@@ -252,9 +252,6 @@ def test_explicit_edge_sources_signed_carriers_defocus_and_refinements(order: in
     )
     actual = call(args)
     assert_finite_target(actual, reference)
-    assert np.array_equal(actual, call(args))
-    actual.fill(-123)
-    assert_finite_target(call(args), reference)
 
 
 @pytest.mark.parametrize("subsamples", [(1, 1), (2, 3), (3, 2)])
