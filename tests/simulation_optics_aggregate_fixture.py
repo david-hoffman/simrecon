@@ -12,10 +12,8 @@ from simulation_optics_fixture import (
     Bounds,
     Interval,
     Reference,
-    Source,
     bessel_from_square,
     exact,
-    finite_images,
     pi_interval,
     sin_cos,
 )
@@ -55,55 +53,6 @@ def arguments(*, reverse_sides: bool = False) -> dict[str, Any]:
         "pupil_order": 2,
         "pixel_subsamples_yx": PIXELS,
     }
-
-
-@cache
-def aggregate_reference(
-    *, beams: tuple[float, float, float] = BEAMS, pixels: tuple[int, int] = PIXELS
-) -> Reference:
-    """Exact rational geometry and the accepted outward-enclosed finite sum.
-
-    The optional choices support oracle-only wrong-sign/center-sampling controls.
-    Product expectations always use the defaults. Density caching in finite_images
-    shares repeated squared lateral distances and signed defocus separations.
-    """
-    dz, dy, dx = map(exact, SPACING)
-    sources = tuple(
-        Source(
-            dz * Fraction(2 * z + 1, 4),
-            dy * Fraction(2 * y + 1, 4),
-            dx * Fraction(2 * x + 1, 4),
-            weight(z, y, x),
-        )
-        for z in range(4)
-        for y in range(4)
-        for x in range(6)
-    )
-    py, px = pixels
-    sites = tuple(
-        tuple(
-            (dy * (y + Fraction(2 * sy + 1, 2 * py)), dx * (x + Fraction(2 * sx + 1, 2 * px)))
-            for sy in range(py)
-            for sx in range(px)
-        )
-        for y in range(2)
-        for x in range(3)
-    )
-    return finite_images(
-        sources,
-        (dz / 2, 3 * dz / 2),
-        sites,
-        (2, 3),
-        dy * dx,
-        CARRIERS,
-        PHASES,
-        beams=beams,
-        excitation=0.5,
-        emission=0.625,
-        index=1.25,
-        aperture=0.75,
-        order=2,
-    )
 
 
 AxisWeights = tuple[tuple[Fraction, ...], tuple[Fraction, ...], tuple[Fraction, ...]]

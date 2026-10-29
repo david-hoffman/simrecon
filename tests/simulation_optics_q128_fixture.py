@@ -270,7 +270,7 @@ def optical_arguments() -> dict[str, Any]:
 
 def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float64], Geometry]:
     """Two small finite spheres; exact rational membership and rounded weights."""
-    catalogue = np.array([[0.125, 0.08, 0.12, 0.05, 1.0], [0.15625, 0.06, 0.06, 0.03, 2.5]])
+    catalogue = np.array([[0.125, 0.06, 0.10, 9 / 256, 1.0], [0.15625, 0.06, 0.06, 0.03, 2.5]])
     source_args: dict[str, Any] = {
         "catalogue": catalogue,
         "detector_shape_zyx": (2, 2, 3),
@@ -294,6 +294,10 @@ def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float
     predicted = np.zeros((4, 4, 6))
     for row in catalogue:
         cz, cy, cx, radius, brightness = map(lambda v: exact(float(v)), row)
+        assert all(
+            center - radius >= 0 and center + radius <= extent
+            for center, extent in zip((cz, cy, cx), (2 * dz, 2 * dy, 3 * dx), strict=True)
+        )
         occupied = [
             (z, y, x)
             for z, y, x, rz, ry, rx in cells

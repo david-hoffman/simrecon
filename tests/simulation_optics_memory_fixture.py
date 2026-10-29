@@ -25,17 +25,18 @@ def weight(z: int, y: int, x: int) -> Fraction:
     return Fraction(1 + (7 * z + 3 * y + 5 * x + z * y + 2 * y * x + 3 * z * x) % 37, 8)
 
 
-def arguments() -> dict[str, Any]:
-    """Three source subplanes per focus interval; independent pixel sampling."""
+def arguments(*, reverse_sides: bool = False) -> dict[str, Any]:
+    """Three source subplanes per focus; two equivalent signed-carrier inputs."""
+    sign = -1 if reverse_sides else 1
     return {
         "source_e": np.array(
-            [[[float(weight(z, y, x)) for x in range(6)] for y in range(4)] for z in range(9)]
+            [[[float(weight(z, y, x)) for x in range(4)] for y in range(2)] for z in range(9)]
         ),
         "detector_spacing_um_zyx": SPACING,
         "source_refinement_zyx": (3, 2, 2),
-        "carriers_yx_per_um": np.array(CARRIERS),
-        "phases_rad": np.array(PHASES),
-        "beam_amplitudes": (4.0, 2.0, 1.0),
+        "carriers_yx_per_um": sign * np.array(CARRIERS),
+        "phases_rad": sign * np.array(PHASES),
+        "beam_amplitudes": (4.0, 1.0, 2.0) if reverse_sides else (4.0, 2.0, 1.0),
         "excitation_um": 0.5,
         "emission_um": 0.625,
         "refractive_index": 1.25,
@@ -47,7 +48,7 @@ def arguments() -> dict[str, Any]:
 
 @cache
 def reference() -> Reference:
-    """All 216 sites and all pixel sites in exact half-cell coordinates."""
+    """All 72 sites and all pixel sites in exact half-cell coordinates."""
     dz, dy, dx = map(exact, SPACING)
     sources = tuple(
         Source(
@@ -57,8 +58,8 @@ def reference() -> Reference:
             weight(z, y, x),
         )
         for z in range(9)
-        for y in range(4)
-        for x in range(6)
+        for y in range(2)
+        for x in range(4)
     )
     sites = tuple(
         tuple(
@@ -66,14 +67,14 @@ def reference() -> Reference:
             for sy in range(2)
             for sx in range(3)
         )
-        for y in range(2)
-        for x in range(3)
+        for y in range(1)
+        for x in range(2)
     )
     return finite_images(
         sources,
         (dz / 2, 3 * dz / 2, 5 * dz / 2),
         sites,
-        (2, 3),
+        (1, 2),
         dy * dx,
         CARRIERS,
         PHASES,

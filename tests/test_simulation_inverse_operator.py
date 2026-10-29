@@ -496,13 +496,8 @@ def test_zero_scale_is_exact_zero_after_validation(operation: str, zero_kind: st
     np.testing.assert_array_equal(result, np.zeros_like(result))
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
-@pytest.mark.parametrize("layout", ["big_endian", "strided", "fortran", "read_only"])
-def test_float32_operand_and_cache_layouts_are_semantic_not_rejection_rules(
-    operation: str,
-    layout: str,
-) -> None:
-    def variant(array: Any) -> Any:
+def test_float32_operand_and_cache_layouts_are_semantic_not_rejection_rules() -> None:
+    def variant(array: Any, layout: str) -> Any:
         if layout == "big_endian":
             return array.astype(">f4")
         if layout == "fortran":
@@ -515,19 +510,22 @@ def test_float32_operand_and_cache_layouts_are_semantic_not_rejection_rules(
         storage[..., 0] = array
         return storage[..., 0]
 
-    original = make_cache()
-    cache = make_cache(lateral_spectra=variant(original.lateral_spectra))
-    data = variant(operand(operation))
-    matrix, f_norm, j_norm = reference(cache, settings())
-    with unchanged_policy_and_random(data, cache.lateral_spectra):
-        result = run(operation, data, cache)
-    expected_shape = (3, 3, 1, 2) if operation == "forward" else SHAPE
-    assert_storage(result, expected_shape, np.float64)
-    assert_fidelity(
-        result,
-        apply_reference(matrix, data, transpose=operation == "adjoint"),
-        (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
-    )
+    # These layouts represent identical values. Only independent truth is shared;
+    # every public call receives fresh operand and mutable cache storage.
+    matrix, f_norm, j_norm = reference(make_cache(), settings())
+    for layout in ("big_endian", "strided", "fortran", "read_only"):
+        for operation in ("forward", "adjoint"):
+            cache = make_cache(lateral_spectra=variant(make_cache().lateral_spectra, layout))
+            data = variant(operand(operation), layout)
+            with unchanged_policy_and_random(data, cache.lateral_spectra):
+                result = run(operation, data, cache)
+            expected_shape = (3, 3, 1, 2) if operation == "forward" else SHAPE
+            assert_storage(result, expected_shape, np.float64)
+            assert_fidelity(
+                result,
+                apply_reference(matrix, data, transpose=operation == "adjoint"),
+                (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
+            )
 
 
 @pytest.mark.parametrize("operation", ["forward", "adjoint"])
@@ -550,68 +548,60 @@ def test_outputs_own_storage_and_do_not_alias_inputs_cache_or_other_calls(operat
     np.testing.assert_array_equal(second, saved)
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
-@pytest.mark.parametrize(
-    "magnitude",
-    [
+def test_tiny_and_large_float32_operands_keep_max_absolute_scaled_accuracy() -> None:
+    matrix, f_norm, j_norm = reference(make_cache(), settings())
+    for magnitude in (
         float(np.finfo(np.float32).smallest_subnormal),
         float(np.finfo(np.float32).tiny),
         1e-30,
         1e30,
         float(np.finfo(np.float32).max),
-    ],
-)
-def test_tiny_and_large_float32_operands_keep_max_absolute_scaled_accuracy(
-    operation: str,
-    magnitude: float,
-) -> None:
-    cache = make_cache()
-    data = np.sign(operand(operation)).astype(np.float32) * np.float32(magnitude)
-    matrix, f_norm, j_norm = reference(cache, settings())
-    old_policy = np.seterr(all="raise")
-    try:
-        with observe_arithmetic_ownership() as caught:
-            warnings.simplefilter("always")
-            with unchanged_policy_and_random(data, cache.lateral_spectra):
-                result = run(operation, data, cache)
-        assert_arithmetic_ownership_resolved(caught)
-    finally:
-        np.seterr(**old_policy)
-    assert_fidelity(
-        result,
-        apply_reference(matrix, data, transpose=operation == "adjoint"),
-        (f_norm if operation == "forward" else j_norm) * magnitude,
-    )
+    ):
+        for operation in ("forward", "adjoint"):
+            cache = make_cache()
+            data = np.sign(operand(operation)).astype(np.float32) * np.float32(magnitude)
+            old_policy = np.seterr(all="raise")
+            try:
+                with observe_arithmetic_ownership() as caught:
+                    warnings.simplefilter("always")
+                    with unchanged_policy_and_random(data, cache.lateral_spectra):
+                        result = run(operation, data, cache)
+                assert_arithmetic_ownership_resolved(caught)
+            finally:
+                np.seterr(**old_policy)
+            assert_fidelity(
+                result,
+                apply_reference(matrix, data, transpose=operation == "adjoint"),
+                (f_norm if operation == "forward" else j_norm) * magnitude,
+            )
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
 @pytest.mark.parametrize(
     "kernel_magnitude",
     [float(np.finfo(np.float32).smallest_subnormal), float(np.finfo(np.float32).max)],
 )
 def test_extreme_represented_cache_is_not_a_hidden_conditioning_gate(
-    operation: str,
     kernel_magnitude: float,
 ) -> None:
     # A constant spectrum represents a lateral delta. No ill-conditioned inference occurs.
     cache = make_cache(lateral_spectra=np.full((3, 4, 5), kernel_magnitude, dtype=np.float32))
-    data = operand(operation)
     matrix, f_norm, j_norm = reference(cache, settings())
-    result = run(operation, data, cache)
-    assert_fidelity(
-        result,
-        apply_reference(matrix, data, transpose=operation == "adjoint"),
-        (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
-    )
+    for operation in ("forward", "adjoint"):
+        cache = make_cache(lateral_spectra=np.full((3, 4, 5), kernel_magnitude, dtype=np.float32))
+        data = operand(operation)
+        result = run(operation, data, cache)
+        assert_fidelity(
+            result,
+            apply_reference(matrix, data, transpose=operation == "adjoint"),
+            (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
+        )
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
 @pytest.mark.parametrize(
     "extreme",
     ["amplitudes_large", "amplitudes_tiny", "phase", "turns", "axial_phase", "carrier_norm"],
 )
 def test_huge_reducible_or_safely_normalized_settings_remain_valid(
-    operation: str,
     extreme: str,
 ) -> None:
     changes: dict[str, Any] = {}
@@ -634,21 +624,29 @@ def test_huge_reducible_or_safely_normalized_settings_remain_valid(
         options["carrier_yx_per_um"] = np.array([-1e200, 1e200])
     cache = make_cache(**changes)
     matrix, f_norm, j_norm = reference(cache, options)
-    data = operand(operation)
-    old_policy = np.seterr(all="raise")
-    try:
-        with observe_arithmetic_ownership() as caught:
-            warnings.simplefilter("always")
-            with unchanged_policy_and_random(data, cache.lateral_spectra):
-                result = getattr(operator, operation)(data, kernel_cache=cache, **options)
-        assert_arithmetic_ownership_resolved(caught)
-    finally:
-        np.seterr(**old_policy)
-    assert_fidelity(
-        result,
-        apply_reference(matrix, data, transpose=operation == "adjoint"),
-        (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
-    )
+    for operation in ("forward", "adjoint"):
+        cache = make_cache(**changes)
+        call_options = settings(
+            **{
+                key: value.copy() if isinstance(value, np.ndarray) else value
+                for key, value in options.items()
+            }
+        )
+        data = operand(operation)
+        old_policy = np.seterr(all="raise")
+        try:
+            with observe_arithmetic_ownership() as caught:
+                warnings.simplefilter("always")
+                with unchanged_policy_and_random(data, cache.lateral_spectra):
+                    result = getattr(operator, operation)(data, kernel_cache=cache, **call_options)
+            assert_arithmetic_ownership_resolved(caught)
+        finally:
+            np.seterr(**old_policy)
+        assert_fidelity(
+            result,
+            apply_reference(matrix, data, transpose=operation == "adjoint"),
+            (f_norm if operation == "forward" else j_norm) * float(np.max(np.abs(data))),
+        )
 
 
 @pytest.mark.parametrize("value", [1e-300, 1e308])
