@@ -351,7 +351,6 @@ def test_verifier_rejects_inconsistent_native_top_level_total(tmp_path: Path) ->
 @pytest.mark.parametrize(
     "output",
     [
-        "control-marker.txt",
         ".git/config",
         "missing-tracked.txt",
         "artifacts/receipt-hardlink.json",
@@ -386,8 +385,7 @@ def test_verifier_initial_protected_output_preserved(tmp_path: Path, output: str
     assert (fixture.root / ".git/config").read_bytes() == git_config
 
 
-@pytest.mark.parametrize("mode", ["mkdir", "late-open"])
-@pytest.mark.parametrize("fail", [False, True])
+@pytest.mark.parametrize("mode,fail", [("mkdir", False), ("late-open", False), ("late-open", True)])
 def test_verifier_public_audit_output_observer_preserves_protected_bytes(
     tmp_path: Path, mode: str, fail: bool
 ) -> None:

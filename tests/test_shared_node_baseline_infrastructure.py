@@ -24,8 +24,6 @@ from shared_node_baseline_infrastructure_fixture import (
     python,
     reader_layout,
     run,
-    verifier_layout,
-    verify,
 )
 
 SOURCE_MARKER = "OWNED_SOURCE_ONLY_MARKER_6031"
@@ -379,47 +377,6 @@ def test_real_inherited_child_diagnostics(tmp_path: Path) -> None:
     assert "RuntimeError: CHILD_ERROR" in rendered
     assert str(child) in rendered and "line 4" in rendered
     assert_source_free(rendered)
-
-
-@pytest.mark.parametrize(
-    "obstacle", ["directory_leaf", "regular_ancestor", "symlink_loop", "unwritable"]
-)
-def test_real_local_verifier_output_failure_preserves_marker(tmp_path: Path, obstacle: str) -> None:
-    repo = verifier_layout(tmp_path, {})
-    marker = repo / "marker.txt"
-    identity = digest(marker)
-    if obstacle == "directory_leaf":
-        receipt = repo / "safe/receipt.json"
-        receipt.mkdir(parents=True)
-    elif obstacle == "regular_ancestor":
-        receipt = marker / "receipt.json"
-    elif obstacle == "symlink_loop":
-        (repo / "safe").mkdir()
-        (repo / "safe/a").symlink_to("b")
-        (repo / "safe/b").symlink_to("a")
-        receipt = repo / "safe/a/receipt.json"
-    else:
-        parent = repo / "safe"
-        parent.mkdir()
-        parent.chmod(0o500)
-        # Verify effective unwritability with the SAME selected Python process.
-        premise = python(
-            ["-c", "from pathlib import Path; Path('premise').write_bytes(b'x')"], cwd=parent
-        )
-        if premise.returncode == 0:
-            parent.chmod(0o700)
-            pytest.fail("incomplete environment evidence: process can write to permission fixture")
-        assert "PermissionError" in output(premise), "unwritability cause not established"
-        receipt = parent / "receipt.json"
-    try:
-        result = verify(repo, receipt)
-        assert result.returncode != 0
-        assert digest(marker) == identity
-        if receipt.is_file():
-            assert json.loads(receipt.read_text())["result"] == "failed"
-    finally:
-        if obstacle == "unwritable":
-            (repo / "safe").chmod(0o700)
 
 
 @pytest.mark.parametrize("path_selection", [False, True])

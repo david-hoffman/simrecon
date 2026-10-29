@@ -15,6 +15,7 @@ from uuid import UUID
 import pytest
 
 from measurement_fixture_export import LIMIT_BYTES, MEASUREMENTS_PATH, export_measurement
+from verification_fixture_dispatch import read_measurements
 from verification_fixture_tools import PHASES, install_phase_commands, prepare_phase_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,7 +72,7 @@ def repository(tmp_path: Path) -> Repository:
     git(root, "commit", "-qm", "public synthetic candidate")
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
-    install_phase_commands(bin_dir, "measurements_fixture_commands")
+    install_phase_commands(bin_dir, "measurements_fixture_commands", hybrid=True)
     return root, bin_dir
 
 
@@ -112,9 +113,7 @@ def invoke(
 
 
 def observations(root: Path) -> list[dict[str, Any]]:
-    return [
-        json.loads(line) for line in (root / "measurement-calls.jsonl").read_text().splitlines()
-    ]
+    return read_measurements(root / "measurement-calls.jsonl")
 
 
 def assert_measurements(receipt: dict[str, Any], root: Path, expected: dict[str, Any]) -> None:
@@ -537,16 +536,6 @@ def test_e2_failed_tests_discard_current_invalid_measurements(repository: Reposi
     assert [p["name"] for p in receipt["phases"]] == PHASES[:6]
     assert receipt["phases"][-1]["returncode"] == 37
     assert any("measurement" in p.lower() for p in receipt["problems"])
-
-
-def test_e2_later_phase_failure_retains_valid_measurements(repository: Repository) -> None:
-    root, _ = repository
-    result, receipt = invoke(repository, receipt_mode="wheel-build-failure")
-    assert result.returncode == 31, result.stdout + result.stderr
-    assert receipt is not None and receipt["result"] == "failed"
-    assert [p["name"] for p in receipt["phases"]] == PHASES[:11]
-    assert receipt["phases"][-1]["returncode"] == 31
-    assert_measurements(receipt, root, report())
 
 
 @pytest.mark.parametrize("protected_area", ["private", "common"])

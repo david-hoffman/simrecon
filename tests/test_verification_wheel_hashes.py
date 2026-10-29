@@ -7,7 +7,6 @@ import io
 import json
 import os
 import shutil
-import sys
 import zipfile
 from pathlib import Path
 
@@ -15,6 +14,7 @@ import pytest
 
 from test_verification_receipt import TOOLS, git, invoke
 from test_verification_receipt import repository as repository
+from verification_fixture_dispatch import install_dispatch, read_calls
 from verification_fixture_tools import PHASES
 
 SECURE_EXAMPLES = (
@@ -50,7 +50,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from _receipt_commands import PHASES, main
+from verification_fixture_tools import PHASES, main
 
 status = main()
 phase = next((arg for arg in sys.argv[1:] if arg in PHASES), None)
@@ -71,11 +71,13 @@ sys.exit(status)
 def hash_repository(repository):
     """Extend the frozen real-CLI fixture only through external executables."""
     root, bin_dir = repository
-    shutil.copyfile(TOOLS, bin_dir / "_receipt_commands.py")
     for name in ("make", "uv"):
         executable = bin_dir / name
-        executable.write_text(f"#!{sys.executable}\n" + COMMAND)
-        executable.chmod(0o755)
+        install_dispatch(
+            executable,
+            f"import sys\nsys.path.insert(0, {str(TOOLS.parent)!r})\n" + COMMAND,
+            profile="hash",
+        )
     return root, bin_dir
 
 
@@ -154,7 +156,9 @@ def run_hash_cli(hash_repository, algorithms, defect=None, *, wheel_failure=Fals
         "wheel-fixture": source,
         "make-fixture": bin_dir / "make",
         "uv-fixture": bin_dir / "uv",
-        "command-fixture": bin_dir / "_receipt_commands.py",
+        "command-fixture": bin_dir / "make-dynamic.py",
+        "receipt-fixture": TOOLS,
+        "dispatch-fixture": TOOLS.with_name("verification_fixture_dispatch.py"),
     }
     expected_inputs = {
         alias: {
@@ -194,7 +198,7 @@ def run_hash_cli(hash_repository, algorithms, defect=None, *, wheel_failure=Fals
     assert receipt is not None
     expected_phases = PHASES[: PHASES.index("wheel") + 1] if wheel_failure else PHASES
     assert [phase["name"] for phase in receipt["phases"]] == expected_phases
-    calls = [json.loads(line) for line in (root / "calls.jsonl").read_text().splitlines()]
+    calls = read_calls(root / "calls.jsonl")
     actual_calls = [call for call in calls if any(arg in PHASES for arg in call)]
     assert [[arg for arg in call if arg in PHASES] for call in actual_calls] == [
         [phase] for phase in expected_phases

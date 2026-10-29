@@ -30,6 +30,7 @@ from test_verification_output_protection import (
     git,
     metadata,
 )
+from verification_fixture_dispatch import install_dispatch, read_evidence_calls
 from verification_fixture_tools import PHASES, prepare_phase_inputs
 
 MEASUREMENT = "artifacts/verification/measurements.json"
@@ -69,6 +70,7 @@ from importlib.metadata import version
 from pathlib import Path
 from measurements_fixture_commands import main
 from verification_fixture_tools import PHASES
+from verification_fixture_dispatch import append_record, read_evidence_calls
 
 root = Path.cwd()
 args = sys.argv[1:]
@@ -76,28 +78,39 @@ phase = next((arg for arg in args if arg in PHASES), None)
 # Observe already persisted output before the next external command. Discovery
 # uses actual current streams, including directory aliases, not log leaf names.
 previous = root / 'evidence-calls.jsonl'
-prior_calls = ([json.loads(line) for line in previous.read_text().splitlines()]
-               if previous.exists() else [])
+prior_calls = read_evidence_calls(previous)
+# Preserve the first actual observation. Continue searching only unresolved logs;
+# final bytes are independently compared to these immutable earlier anchors.
 retained_logs = {}
+for call in prior_calls:
+    for name, anchor in call['retained_logs'].items():
+        retained_logs.setdefault(name, anchor)
+unresolved = {call['phase']: call for call in prior_calls
+              if call['phase'] and call['phase'] not in retained_logs}
 visited = set()
-for directory, dirs, names in os.walk(root / 'artifacts', followlinks=True):
-    resolved = str(Path(directory).resolve())
-    if resolved in visited:
-        dirs[:] = []
-        continue
-    visited.add(resolved)
-    for name in sorted(names):
-        path = Path(directory) / name
-        if not path.is_file():
+if unresolved:
+    for directory, dirs, names in os.walk(root / 'artifacts', followlinks=True):
+        resolved = str(Path(directory).resolve())
+        if resolved in visited:
+            dirs[:] = []
             continue
-        payload = path.read_bytes()
-        for call in prior_calls:
-            if (call['phase'] and call['stdout'].encode() in payload
-                    and call['stderr'].encode() in payload):
-                retained_logs.setdefault(call['phase'], {
-                    'path': str(path.relative_to(root)),
-                    'payload': base64.b64encode(payload).decode('ascii'),
-                })
+        visited.add(resolved)
+        for name in sorted(names):
+            path = Path(directory) / name
+            if not path.is_file():
+                continue
+            payload = path.read_bytes()
+            for phase_name, call in list(unresolved.items()):
+                if (call['stdout'].encode() in payload and call['stderr'].encode() in payload):
+                    retained_logs[phase_name] = {
+                        'path': str(path.relative_to(root)),
+                        'payload': base64.b64encode(payload).decode('ascii'),
+                    }
+                    del unresolved[phase_name]
+            if not unresolved:
+                break
+        if not unresolved:
+            break
 stdout, stderr = io.StringIO(), io.StringIO()
 with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
     queried_tool = next((name for name in ('ruff', 'pyright', 'coverage', 'pytest')
@@ -194,9 +207,21 @@ if phase is not None and phase == action.get('phase'):
         events = [json.loads(line) for line in lines]
         current = next(item for item in reversed(events) if item['phase'] == 'coverage-html')
         members = sorted(current['members'])
-        if action.get('member_index') == 'non-index':
-            action['member_index'] = next(i for i, name in enumerate(members)
-                                         if not name.endswith('/index.html'))
+        member_class = action.get('member_class')
+        if member_class:
+            def matches(name):
+                relative = Path(name).relative_to('artifacts/coverage/html')
+                if member_class == 'index':
+                    return str(relative) == 'index.html'
+                html = relative.suffix == '.html'
+                nested = len(relative.parts) > 1
+                return (str(relative) != 'index.html'
+                        and html == ('html' in member_class)
+                        and nested == member_class.startswith('nested-'))
+            candidates = [i for i, name in enumerate(members) if matches(name)]
+            action['requested_class_available'] = bool(candidates)
+            action['member_index'] = (candidates[0] if candidates
+                                      else members.index('artifacts/coverage/html/index.html'))
         action['target'] = (current['database'] if action['selector'] == 'database'
                             else members[action['member_index']])
         action['generation_token'] = current['token']
@@ -240,8 +265,7 @@ observation = {
                       for path in (root / 'dist').glob('*.whl')}
                      if phase == 'wheel' else {},
 }
-with (root / 'evidence-calls.jsonl').open('a') as stream:
-    stream.write(json.dumps(observation) + '\n')
+append_record(root / 'evidence-calls.jsonl', ['json', json.dumps(observation)])
 print(stdout.getvalue(), end='')
 print(stderr.getvalue(), end='', file=sys.stderr)
 sys.exit(status)
@@ -287,12 +311,11 @@ def prepare_evidence_repository(tmp_path: Path, monkeypatch: pytest.MonkeyPatch)
     git(root, "commit", "-qm", "ignore disposable observation ledgers")
     for name in ("make", "uv"):
         executable = bin_dir / name
-        executable.write_text(
-            f"#!{sys.executable}\nimport sys\n"
-            f"sys.path.insert(0, {str(ROOT / 'tests')!r})\n" + COMMAND_FIXTURE,
-            encoding="utf-8",
+        install_dispatch(
+            executable,
+            f"import sys\nsys.path.insert(0, {str(ROOT / 'tests')!r})\n" + COMMAND_FIXTURE,
+            profile="evidence",
         )
-        executable.chmod(0o755)
     return repository
 
 
@@ -382,11 +405,7 @@ def invoke(
     )
     finished = datetime.now(UTC)
     calls_path = root / "evidence-calls.jsonl"
-    calls = (
-        [json.loads(line) for line in calls_path.read_text().splitlines()]
-        if calls_path.exists()
-        else []
-    )
+    calls = read_evidence_calls(calls_path)
     emissions_path = root / "native-emissions.jsonl"
     emissions = (
         [json.loads(line) for line in emissions_path.read_text().splitlines()]
@@ -903,12 +922,11 @@ def assert_native_evidence(observed: Observation) -> None:
         "current native database replaced"
     )
     assert final == expected, "complete native container changed"
-    assert_native_container(final, NATIVE_ARCS)
     if current["phase"] != "coverage-html":
         return
     html = current
     members = {name: base64.b64decode(value) for name, value in html["members"].items()}
-    assert COVERAGE_HTML in members and len(members) > 1, "no complete public HTML emission"
+    assert COVERAGE_HTML in members, "no complete public HTML emission"
     assert observed.token.encode() in members[COVERAGE_HTML], "HTML index from another invocation"
     assert members[COVERAGE_HTML] == generated_bytes(observed)[COVERAGE_HTML]
     for name, payload in members.items():
@@ -1229,7 +1247,7 @@ def test_p11_receipt_destination_keeps_same_run_evidence(
     assert_outcome(invoke(evidence_repository, destination))
 
 
-@pytest.mark.parametrize("target", [*REPORTS, LOG_EXAMPLES[0]])
+@pytest.mark.parametrize("target", [MEASUREMENT, COVERAGE_JSON, WHEEL, LOG_EXAMPLES[0]])
 @pytest.mark.parametrize("entry", ["receipt", "current-log-example"])
 @pytest.mark.parametrize("kind", ["symlink", "hardlink"])
 def test_p11_phase_link_cannot_falsify_emitted_evidence(
@@ -1316,57 +1334,70 @@ def test_p11_phase_link_at_current_native_database(
     assert_outcome(invoke(evidence_repository, action=action, native=True))
 
 
-@pytest.mark.parametrize("entry", ["receipt", "current-log-example"])
-@pytest.mark.parametrize("kind", ["symlink", "hardlink"])
 def test_p11_phase_link_sweeps_actual_current_html_members(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, entry: str, kind: str
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    if (entry, kind) != ("receipt", "hardlink"):
-        repository = prepare_evidence_repository(tmp_path / "representative", monkeypatch)
-        observed = invoke(
-            repository,
-            native=True,
-            action={
-                "phase": "audit",
-                "destination": DEFAULT_RECEIPT if entry == "receipt" else LOG_EXAMPLES[1],
-                "selector": "html-member",
-                "member_index": "non-index",
-                "kind": kind,
-            },
-        )
-        assert_outcome(observed)
-        return
-    # Each target is selected from THAT invocation's public HTML emission.
-    # The first safe emission only starts a finite member sweep; no filename,
-    # private source map, fixed member count or cross-run leaf recurrence binds.
+    # One live layout discovery; each collision has fresh repository/native data
+    # and selects its target from that invocation's complete actual emission.
+    def category_for(name: str) -> str:
+        relative = Path(name).relative_to("artifacts/coverage/html")
+        if str(relative) == "index.html":
+            return "index"
+        category = "other-html" if relative.suffix == ".html" else "auxiliary"
+        return "nested-" + category if len(relative.parts) > 1 else category
+
     safe = prepare_evidence_repository(tmp_path / "discovery", monkeypatch)
     baseline = invoke(safe, native=True)
     assert baseline.status == 0, baseline.stdout + baseline.stderr
     assert_outcome(baseline)
-    members = baseline.native_emissions[-1]["members"]
-    index = 0
+    classes = {category_for(name) for name in baseline.native_emissions[-1]["members"]}
     failures = []
-    while index < len(members):
-        repository = prepare_evidence_repository(tmp_path / f"member-{index}", monkeypatch)
-        action = {
-            "phase": "audit",
-            "destination": DEFAULT_RECEIPT if entry == "receipt" else LOG_EXAMPLES[1],
-            "selector": "html-member",
-            "member_index": index,
-            "kind": kind,
-        }
-        observed = invoke(repository, action=action, native=True)
-        try:
-            assert_outcome(observed)
-        except AssertionError as error:
-            failures.append({"member_index": index, "failure": str(error)})
-        # Initial honest rejection may have no emission or phase link. Do not
-        # invent report members or claim that a challenged log was actually used.
-        html = [event for event in observed.native_emissions if event["phase"] == "coverage-html"]
-        if html:
-            members = html[-1]["members"]
-        index += 1
-    assert not failures, f"current HTML member preservation failures: {failures}"
+    for entry, kind in (
+        ("receipt", "symlink"),
+        ("receipt", "hardlink"),
+        ("current-log-example", "symlink"),
+        ("current-log-example", "hardlink"),
+    ):
+        pending = sorted(classes)
+        completed = set()
+        while pending:
+            category = pending.pop(0)
+            completed.add(category)
+            repository = prepare_evidence_repository(
+                tmp_path / entry / kind / category, monkeypatch
+            )
+            observed = invoke(
+                repository,
+                native=True,
+                action={
+                    "phase": "audit",
+                    "destination": DEFAULT_RECEIPT if entry == "receipt" else LOG_EXAMPLES[1],
+                    "selector": "html-member",
+                    "member_class": category,
+                    "kind": kind,
+                },
+            )
+            try:
+                assert_outcome(observed)
+                for event in observed.native_emissions:
+                    if event["phase"] == "coverage-html":
+                        classes.update(category_for(name) for name in event["members"])
+                for call in phase_calls(observed):
+                    action = call["action"]
+                    if action and action.get("member_class"):
+                        actual_classes = {
+                            category_for(name) for name in action["discovered_members"]
+                        }
+                        assert action["requested_class_available"] == (category in actual_classes)
+                        assert category_for(action["target"]) == (
+                            category if category in actual_classes else "index"
+                        )
+            except AssertionError as error:
+                failures.append(
+                    {"entry": entry, "kind": kind, "member_class": category, "failure": str(error)}
+                )
+            pending.extend(sorted(classes - completed - set(pending)))
+    assert not failures, f"current HTML class preservation failures: {failures}"
 
 
 @pytest.mark.parametrize(

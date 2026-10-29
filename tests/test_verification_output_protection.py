@@ -13,6 +13,7 @@ from typing import Any
 
 import pytest
 
+from verification_fixture_dispatch import read_calls
 from verification_fixture_tools import PHASES, install_phase_commands, prepare_phase_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,7 +71,7 @@ def create_repository(directory: Path, linked: bool = False) -> Repository:
     private_git = Path(git(root, "rev-parse", "--absolute-git-dir"))
     bin_dir = directory / "bin"
     bin_dir.mkdir()
-    install_phase_commands(bin_dir, "verification_output_fixture")
+    install_phase_commands(bin_dir, "verification_output_fixture", hybrid=True)
     return Repository(root, bin_dir, common_git, private_git)
 
 
@@ -92,6 +93,7 @@ def invoke(
 ) -> subprocess.CompletedProcess[str]:
     env = os.environ.copy()
     env["OUTPUT_PROTECTION_ACTION"] = json.dumps(action or {})
+    env["OUTPUT_PROTECTION_PHASE"] = (action or {}).get("phase", "")
     env["RECEIPT_FIXTURE_MODE"] = "complete"
     env["RECEIPT_FIXTURE_INPUTS"] = str(prepare_phase_inputs(repository.bin_dir, "complete"))
     env["PATH"] = str(repository.bin_dir) + os.pathsep + env["PATH"]
@@ -162,8 +164,7 @@ def load_receipt(repository: Repository, path: Path = RECEIPT) -> dict[str, Any]
 
 
 def calls(repository: Repository) -> list[list[str]]:
-    path = repository.root / "calls.jsonl"
-    return [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
+    return read_calls(repository.root / "calls.jsonl")
 
 
 def metadata(repository: Repository) -> dict[Path, bytes]:
@@ -280,6 +281,16 @@ def test_p08_ordinary_outputs_preserve_identity_and_public_evidence(
     before_markers = tracked_markers(repository)
     commit = git(repository.root, "rev-parse", "HEAD")
     tree = git(repository.root, "rev-parse", "HEAD^{tree}")
+    expected_state = {
+        "commit": commit,
+        "tree": tree,
+        "dirty": False,
+        "untracked": [],
+        "manifest": {
+            name: hashlib.sha256((repository.root / name).read_bytes()).hexdigest()
+            for name in git(repository.root, "ls-files").splitlines()
+        },
+    }
     approved = tmp_path / "approved-input.bin"
     approved.write_bytes(b"private fixture input\x00")
     path = Path("artifacts/custom/evidence.json") if custom else RECEIPT
@@ -289,7 +300,7 @@ def test_p08_ordinary_outputs_preserve_identity_and_public_evidence(
     assert receipt is not None
     assert receipt["schema"] == "org.simrecon.verification" and receipt["version"] == 1
     assert receipt["result"] == "passed" and receipt["problems"] == []
-    assert receipt["before"] == receipt["after"]
+    assert receipt["before"] == receipt["after"] == expected_state
     assert receipt["before"]["commit"] == commit and receipt["before"]["tree"] == tree
     assert receipt["before"]["dirty"] is False
     assert receipt["before"]["manifest"]["candidate.txt"] == hashlib.sha256(MARKER).hexdigest()
@@ -640,3 +651,63 @@ def test_p01_initial_observed_log_alias_preserves_tracked_bytes(
             )
     else:
         assert_rejected(result, receipt)
+
+
+@pytest.mark.parametrize("obstacle", ["regular-ancestor", "unwritable-parent"])
+def test_p10_initial_filesystem_failure_preserves_protected_bytes(
+    repository: Repository, obstacle: str
+) -> None:
+    """Retain real local failures with a successful same-interpreter control."""
+    before_markers, before_metadata = tracked_markers(repository), metadata(repository)
+    positive = invoke(repository)
+    assert positive.returncode == 0, positive.stdout + positive.stderr
+    positive_receipt = load_receipt(repository)
+    assert positive_receipt is not None and positive_receipt["result"] == "passed"
+    assert assert_trace(repository, positive_receipt) == PHASES
+    parent = repository.root / "artifacts/effective-permission-control"
+    try:
+        if obstacle == "regular-ancestor":
+            destination = Path("candidate.txt/receipt.json")
+        else:
+            parent.mkdir()
+            parent.chmod(0o500)
+            command = [
+                str(ROOT / ".venv/bin/python"),
+                str(ROOT / "scripts/source_free_check.py"),
+                "--timeout",
+                "30",
+                "python",
+                "-c",
+                "from pathlib import Path; Path('premise').write_bytes(b'x')",
+            ]
+            premise = run(command, parent)
+            evidence = os.environ.get("OUTPUT_PROTECTION_EVIDENCE")
+            if evidence:
+                with Path(evidence).with_suffix(".premise.jsonl").open("a") as stream:
+                    stream.write(
+                        json.dumps(
+                            {
+                                "command": command,
+                                "cwd": str(parent),
+                                "status": premise.returncode,
+                                "stdout": premise.stdout,
+                                "stderr": premise.stderr,
+                            }
+                        )
+                        + "\n"
+                    )
+            assert premise.returncode != 0, (
+                "incomplete environment evidence: selected interpreter can write"
+            )
+            assert "PermissionError" in premise.stdout + premise.stderr
+            destination = parent.relative_to(repository.root) / "receipt.json"
+        result = invoke(repository, receipt_path=destination)
+        assert result.returncode != 0
+        assert tracked_markers(repository) == before_markers
+        assert metadata(repository) == before_metadata
+        receipt = load_receipt(repository, destination)
+        assert_rejected(result, receipt)
+    finally:
+        if obstacle == "unwritable-parent" and parent.exists():
+            parent.chmod(0o700)
+            assert parent.stat().st_mode & 0o777 == 0o700
