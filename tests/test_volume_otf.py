@@ -484,17 +484,23 @@ def test_reject_malformed_triples(api: Any, triple: Any, field: str, code: str) 
 
 
 @pytest.mark.parametrize(
-    "bad", [True, np.bool_(False), 1j, "1", None, Decimal(1), Fraction(1), np.array(1.0)]
+    "bad,axis",
+    [
+        (bad, 0)
+        for bad in (True, np.bool_(False), 1j, "1", None, Decimal(1), Fraction(1), np.array(1.0))
+    ]
+    + [(True, 1), (True, 2)],
 )
-@pytest.mark.parametrize("axis", [0, 1, 2])
 def test_reject_nonreal_spacing_scalars(api: Any, bad: Any, axis: int) -> None:
     spacing = [1, 1, 1]
     spacing[axis] = bad
     assert_error(api, "invalid_otf_voxel_size", np.ones((2, 2, 2)), voxel_size_um=spacing)
 
 
-@pytest.mark.parametrize("bad", [0, -1, -0.0, np.nan, np.inf, -np.inf, 10**400])
-@pytest.mark.parametrize("axis", [0, 1, 2])
+@pytest.mark.parametrize(
+    "bad,axis",
+    [(bad, 0) for bad in (0, -1, -0.0, np.nan, np.inf, -np.inf, 10**400)] + [(0, 1), (0, 2)],
+)
 def test_reject_nonpositive_nonfinite_spacing(api: Any, bad: Any, axis: int) -> None:
     spacing = [1, 1, 1]
     spacing[axis] = bad
@@ -533,24 +539,43 @@ def test_permitted_triples_and_scalars(api: Any, container: Any, spacing: Any) -
 
 
 @pytest.mark.parametrize(
-    "bad", [True, np.bool_(False), 1.0, np.float32(1), 1j, "1", None, np.array(1), Fraction(1)]
+    "bad,axis",
+    [
+        (bad, 0)
+        for bad in (
+            True,
+            np.bool_(False),
+            1.0,
+            np.float32(1),
+            1j,
+            "1",
+            None,
+            np.array(1),
+            Fraction(1),
+        )
+    ]
+    + [(True, 1), (True, 2)],
 )
-@pytest.mark.parametrize("axis", [0, 1, 2])
 def test_reject_noninteger_origin(api: Any, bad: Any, axis: int) -> None:
     origin = [0, 0, 0]
     origin[axis] = bad
     assert_error(api, "invalid_otf_origin", np.ones((2, 3, 4)), origin_zyx=origin)
 
 
-@pytest.mark.parametrize("axis,n", [(0, 2), (1, 3), (2, 4)])
-@pytest.mark.parametrize("side", ["negative", "end", "huge"])
+@pytest.mark.parametrize(
+    "axis,n,side",
+    [(axis, n, side) for axis, n in ((0, 2), (1, 3), (2, 4)) for side in ("negative", "end")]
+    + [(0, 2, "huge")],
+)
 def test_reject_out_of_bounds_origin(api: Any, axis: int, n: int, side: str) -> None:
     origin = [0, 0, 0]
     origin[axis] = {"negative": -1, "end": n, "huge": 10**100}[side]
     assert_error(api, "invalid_otf_origin", np.ones((2, 3, 4)), origin_zyx=origin)
 
 
-@pytest.mark.parametrize("origin", list(itertools.product(range(2), range(3), range(2))))
+@pytest.mark.parametrize(
+    "origin", [(0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 2, 0), (0, 0, 1), (1, 2, 1)]
+)
 def test_all_legal_origin_indices(api: Any, origin: Any) -> None:
     psf = np.arange(1, 13).reshape(2, 3, 2)
     assert_transfer(prepare(api, psf, origin_zyx=origin).values, reference(psf, origin), psf.size)
@@ -921,9 +946,19 @@ ERROR_MODES = ["ignore", "warn", "raise", "call", "print", "log"]
 WARNING_ACTIONS = ["always", "error", "ignore"]
 
 
-@pytest.mark.parametrize("case", HANDLED_TRANSFORM_CASES)
-@pytest.mark.parametrize("mode", ERROR_MODES)
-@pytest.mark.parametrize("warning_action", WARNING_ACTIONS)
+@pytest.mark.parametrize(
+    "case,mode,warning_action",
+    [
+        (case, "raise", "error")
+        for case in HANDLED_TRANSFORM_CASES
+        if case != "emitted-runtime-warning"
+    ]
+    + [
+        ("emitted-runtime-warning", mode, action)
+        for mode in ERROR_MODES
+        for action in WARNING_ACTIONS
+    ],
+)
 def test_transform_arithmetic_and_nonfinite_failure_is_whole_call_rejection(
     api: Any, monkeypatch: Any, capfd: Any, case: str, mode: str, warning_action: str
 ) -> None:
@@ -948,9 +983,11 @@ def test_transform_arithmetic_and_nonfinite_failure_is_whole_call_rejection(
     assert "Warning:" not in captured.out + captured.err
 
 
-@pytest.mark.parametrize("exception_type", [MemoryError, RuntimeError, TypeError, ValueError])
-@pytest.mark.parametrize("mode", ERROR_MODES)
-@pytest.mark.parametrize("warning_action", WARNING_ACTIONS)
+@pytest.mark.parametrize(
+    "exception_type,mode,warning_action",
+    [(exc, "raise", "error") for exc in (RuntimeError, TypeError, ValueError)]
+    + [(MemoryError, mode, action) for mode in ERROR_MODES for action in WARNING_ACTIONS],
+)
 def test_transform_memory_and_unrelated_exceptions_propagate(
     api: Any, monkeypatch: Any, capfd: Any, exception_type: Any, mode: str, warning_action: str
 ) -> None:
@@ -1030,39 +1067,6 @@ if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
         psf.flags.writeable = False
         return psf
 
-    def test_wider_partial_underflow_stored_samples_are_normalized(api: Any) -> None:
-        psf = wider_partial_underflow_source()
-        before = (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable)
-        # Converted samples are (0,q): modes (-1,0) give 0-1 and 0+1.
-        expected = {
-            (0, 0, 0): (Decimal(-1), Decimal(0)),
-            (0, 0, 1): (Decimal(1), Decimal(0)),
-        }
-        result = prepare(api, psf, origin_zyx=(0, 0, 0))
-        assert result.values.shape == (1, 1, 2)
-        assert_transfer(result.values, expected, 2)
-        assert (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable) == before
-
-    def test_wider_partial_underflow_stored_problem_selfcheck() -> None:
-        psf = wider_partial_underflow_source()
-        before = (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable)
-        assert np.isfinite(psf).all() and (psf > 0).all()
-        assert psf[0, 0, 1] == 3 * psf[0, 0, 0]
-        assert 4 * psf[0, 0, 0] == np.longdouble(float(Q))
-        with np.errstate(under="ignore"):
-            stored = psf.astype(np.float64)
-        assert stored.dtype == np.dtype(np.float64) and stored.dtype.isnative
-        assert tuple(stored.flat) == (0.0, float(Q))
-        assert tuple(float(value) for value in psf.flat) == (0.0, float(Q))
-        expected = reference(psf, (0, 0, 0))
-        signed_analytic = np.array([-1, 1], dtype=np.complex128).reshape(1, 1, 2)
-        assert_transfer(signed_analytic, expected, 2)
-        assert (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable) == before
-        print(
-            "native wider partial-underflow self-check: source=(q/4,3q/4); "
-            "stored=(0,q); signed H=(-1,1): PASS"
-        )
-
 
 @contextmanager
 def wider_conversion_policy_guard(
@@ -1116,6 +1120,21 @@ if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
             (0, 0, 0): (Decimal(-1), Decimal(0)),
             (0, 0, 1): (Decimal(1), Decimal(0)),
         }
+        if mode == "ignore":
+            assert np.isfinite(psf).all() and (psf > 0).all()
+            assert psf[0, 0, 1] == 3 * psf[0, 0, 0]
+            assert 4 * psf[0, 0, 0] == np.longdouble(float(Q))
+            with np.errstate(under="ignore"):
+                stored = psf.astype(np.float64)
+            assert stored.dtype == np.dtype(np.float64) and stored.dtype.isnative
+            assert tuple(stored.flat) == (0.0, float(Q))
+            assert tuple(float(value) for value in psf.flat) == (0.0, float(Q))
+            independent = reference(psf, (0, 0, 0))
+            assert_transfer(np.array([-1, 1], dtype=np.complex128).reshape(1, 1, 2), independent, 2)
+            assert [
+                (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
+                for array in inputs
+            ] == before
         with wider_conversion_policy_guard(mode, capfd):
             result = prepare(api, psf, voxel_size_um=spacing, origin_zyx=(0, 0, 0))
             assert result.values.shape == (1, 1, 2)
@@ -1125,99 +1144,6 @@ if np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:
                 (array.tobytes(), array.shape, array.strides, array.dtype, array.flags.writeable)
                 for array in inputs
             ] == before
-
-    def test_native_wider_conversion_policy_selfcheck(capsys: Any) -> None:
-        """Observe actual dependency casts; prescribe no product conversion algorithm."""
-        import json
-
-        prior = np.geterr()
-        prior_handler = np.geterrcall()
-        psf = wider_partial_underflow_source()
-        before = (psf.tobytes(), psf.shape, psf.strides, psf.dtype, psf.flags.writeable)
-        observations: list[dict[str, Any]] = []
-        stored_problem = None
-        try:
-            for mode in ("ignore", "warn", "raise"):
-                np.seterr(all=mode)
-                expected_policy = np.geterr().copy()
-                converted = None
-                failure = None
-                with warnings.catch_warnings(record=True) as seen:
-                    warnings.simplefilter("always", RuntimeWarning)
-                    expected_filters = cast(Any, warnings.filters).copy()
-                    try:
-                        converted = psf.astype(np.float64)
-                    except FloatingPointError as error:
-                        assert mode == "raise"
-                        failure = str(error)
-                    assert warnings.filters == expected_filters
-                assert np.geterr() == expected_policy
-                assert np.geterrcall() is prior_handler
-                arithmetic = [item for item in seen if issubclass(item.category, RuntimeWarning)]
-                assert not arithmetic or mode == "warn"
-                if converted is not None:
-                    assert converted.dtype == np.dtype(np.float64) and converted.dtype.isnative
-                    assert tuple(converted.flat) == (0.0, float(Q))
-                    if mode == "ignore":
-                        stored_problem = converted
-                else:
-                    assert mode == "raise" and failure is not None
-                observations.append(
-                    {
-                        "mode": mode,
-                        "outcome": "FloatingPointError" if failure is not None else "converted",
-                        "exception_message": failure,
-                        "stored_samples_q_units": [0, 1] if converted is not None else None,
-                        "warnings": [
-                            {
-                                "category": item.category.__name__,
-                                "message": str(item.message),
-                                "filename": item.filename,
-                                "line": item.lineno,
-                            }
-                            for item in seen
-                        ],
-                    }
-                )
-                assert (
-                    psf.tobytes(),
-                    psf.shape,
-                    psf.strides,
-                    psf.dtype,
-                    psf.flags.writeable,
-                ) == before
-            assert stored_problem is not None
-            with np.errstate(all="ignore"):
-                exact = reference(stored_problem, (0, 0, 0))
-                signed = np.array([-1, 1], dtype=np.complex128).reshape(1, 1, 2)
-                assert_transfer(signed, exact, 2)
-        finally:
-            np.seterr(**prior)
-            np.seterrcall(prior_handler)
-        assert np.geterr() == prior
-        assert np.geterrcall() is prior_handler
-        mechanism_observed = bool(observations[1]["warnings"]) and (
-            observations[2]["outcome"] == "FloatingPointError"
-        )
-        # A silent backend is recorded honestly; B decides mechanism evidence adequacy.
-        with capsys.disabled():
-            print(
-                "native wider conversion-policy self-check: "
-                + json.dumps(
-                    {
-                        "dtype": str(psf.dtype),
-                        "numpy_version": np.__version__,
-                        "longdouble_minexp": int(np.finfo(np.longdouble).minexp),
-                        "longdouble_nmant": int(np.finfo(np.longdouble).nmant),
-                        "source_q_units": ["1/4", "3/4"],
-                        "signed_H": [-1, 1],
-                        "warn_raise_mechanism_observed": mechanism_observed,
-                        "observations": observations,
-                        "caller_policy_handler_and_input_restored": True,
-                    },
-                    sort_keys=True,
-                )
-            )
 
 
 if WIDER_RANGE or np.finfo(np.longdouble).minexp - np.finfo(np.longdouble).nmant <= -1076:

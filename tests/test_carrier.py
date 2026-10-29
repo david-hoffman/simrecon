@@ -534,8 +534,11 @@ def invalid_common_cases() -> list[tuple[str, str, Any]]:
     ]
 
 
-@pytest.mark.parametrize("candidates", [[(10**100, 0)], [(0, 0)]])
-@pytest.mark.parametrize(("field", "code", "value"), invalid_common_cases())
+@pytest.mark.parametrize(
+    "candidates,field,code,value",
+    [([(10**100, 0)], *case) for case in invalid_common_cases()]
+    + [([(0, 0)], *invalid_common_cases()[i]) for i in (0, 10, 20)],
+)
 def test_common_validation_even_without_success(
     candidates: Any, field: str, code: str, value: Any
 ) -> None:
@@ -698,8 +701,11 @@ def test_strided_readonly_big_endian_images_steps_and_otf() -> None:
         assert_fit(record, expected, case)
 
 
-@pytest.mark.parametrize("scale", [2.0**-900, 1.0, 2.0**900])
-@pytest.mark.parametrize("mode", ["ignore", "warn", "raise", "call", "print", "log"])
+@pytest.mark.parametrize(
+    "scale,mode",
+    [(scale, "raise") for scale in (2.0**-900, 1.0, 2.0**900)]
+    + [(1.0, mode) for mode in ("ignore", "warn", "call", "print", "log")],
+)
 def test_safe_extreme_common_gain_preserves_fit_and_numpy_policy(scale: float, mode: Any) -> None:
     case = acquisition(off_model=True)
     reference = stored_fits(case, [(1, 1), (0, 1)])

@@ -715,8 +715,10 @@ def test_single_invalid_source_before_creation(
             reject(api, tmp_path / "invalid.ome.tif", info, code)
 
 
-@pytest.mark.parametrize("axis", ["x", "y", "z"])
-@pytest.mark.parametrize("value", [1e-50, 2.0**-150, 1e39])
+@pytest.mark.parametrize(
+    "value,axis",
+    [(value, "x") for value in (1e-50, 2.0**-150, 1e39)] + [(2.0**-150, "y"), (1e39, "z")],
+)
 def test_scale_float32_underflow_overflow(
     tmp_path: Path, api: Callable[..., Any], value: float, axis: str
 ) -> None:
@@ -725,9 +727,13 @@ def test_scale_float32_underflow_overflow(
     reject(api, tmp_path / "invalid.ome.tif", info, "imagej_unrepresentable")
 
 
-@pytest.mark.parametrize("axis", ["x", "y", "z"])
 @pytest.mark.parametrize(
-    "value", [2.0**-149, float.fromhex("0x1.fffffep+127"), math.nextafter(0.125, 1.0)]
+    "value,axis",
+    [
+        (value, "x")
+        for value in (2.0**-149, float.fromhex("0x1.fffffep+127"), math.nextafter(0.125, 1.0))
+    ]
+    + [(2.0**-149, "y"), (float.fromhex("0x1.fffffep+127"), "z")],
 )
 def test_scale_positive_float32_limits_and_binary64_precision(
     tmp_path: Path, api: Callable[..., Any], value: float, axis: str

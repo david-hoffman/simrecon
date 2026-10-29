@@ -614,7 +614,13 @@ def test_exact_carriers_and_no_practical_output_cap(reconstruct: Any) -> None:
     case = dc_case((1, 1, 1), (1, 1025))
     case["output_shape_yx"] = [np.int64(1), np.uint64(1025)]
     case["carriers_bins"] = np.zeros((1, 2), dtype=np.uint64)
-    compare(reconstruct, case)
+    assert_informative_regime(case)
+    spectrum = np.empty((1, 1, 1025), dtype=object)
+    spectrum.fill((D(0), D(0)))
+    spectrum[0, 0, 512] = (D(1), D(0))
+    volume = np.empty_like(spectrum)
+    volume.fill((D(1), D(0)))
+    assert_result_accuracy(call(reconstruct, case), (spectrum, volume), accuracy_bounds(case))
     case["carriers_bins"][0, 1] = np.iinfo(np.uint64).max
     assert_error(reconstruct, case, "invalid_volume_reconstruction_output_shape")
     case["carriers_bins"] = np.zeros((1, 2), dtype=float)
