@@ -67,6 +67,7 @@ def test_complete_independent_refinements_and_beam_positives(
 ) -> None:
     """The same full finite geometry must retain each remaining beam harmonic."""
     args = refinement_arguments(beams)
+    assert args["source_e"].shape == (4, 4, 4) and np.all(args["source_e"] > 0)
     arrays = [value for value in args.values() if isinstance(value, np.ndarray)]
     before = [(a.tobytes(), a.dtype, a.shape, a.strides, a.flags.writeable) for a in arrays]
     with warnings.catch_warnings(record=True) as emitted, np.errstate(all="raise"):
@@ -86,5 +87,5 @@ def test_complete_independent_refinements_and_beam_positives(
     assert np.isfinite(actual).all() and (actual >= 0).all()
     assert not any(np.shares_memory(actual, a) for a in arrays)
     reference = refinement_reference(beams)
-    assert actual.shape == reference.shape == (2, 3, 3, 5, 10)
+    assert actual.shape == reference.shape == (2, 3, 2, 2, 2)
     compare_reference(tuple(exact(float(value)) for value in actual.flat), reference)
