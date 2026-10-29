@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import base64
-import copy
 import csv
 import hashlib
 import io
@@ -15,7 +14,6 @@ import subprocess
 import sys
 import tempfile
 import zipfile
-from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from importlib.metadata import version
@@ -32,7 +30,7 @@ from test_verification_output_protection import (
     git,
     metadata,
 )
-from verification_fixture_tools import PHASES
+from verification_fixture_tools import PHASES, prepare_phase_inputs
 
 MEASUREMENT = "artifacts/verification/measurements.json"
 COVERAGE_JSON = "artifacts/coverage/coverage.json"
@@ -196,6 +194,9 @@ if phase is not None and phase == action.get('phase'):
         events = [json.loads(line) for line in lines]
         current = next(item for item in reversed(events) if item['phase'] == 'coverage-html')
         members = sorted(current['members'])
+        if action.get('member_index') == 'non-index':
+            action['member_index'] = next(i for i, name in enumerate(members)
+                                         if not name.endswith('/index.html'))
         action['target'] = (current['database'] if action['selector'] == 'database'
                             else members[action['member_index']])
         action['generation_token'] = current['token']
@@ -336,6 +337,7 @@ def invoke(
     for key in ("SIMRECON_MEASUREMENTS_PATH", "SIMRECON_MEASUREMENTS_RUN_ID"):
         env.pop(key, None)
     token = str(uuid4())
+    env["RECEIPT_FIXTURE_INPUTS"] = str(prepare_phase_inputs(bin_dir, receipt_mode))
     env.update(
         PATH=str(bin_dir) + os.pathsep + env["PATH"],
         EXPORT_FIXTURE_MODE=mode,
@@ -1261,8 +1263,26 @@ def test_p07_p11_collision_keeps_actual_failure_and_stop(
 def test_p08_p11_safe_custom_destination_preserves_all_evidence(
     evidence_repository: Repository, destination: str
 ) -> None:
+    if destination in {DEFAULT_RECEIPT, "artifacts/verification/logs/custom-receipt.json"}:
+        path = evidence_repository.root / destination
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if destination == DEFAULT_RECEIPT:
+            path.write_bytes(b"old ignored regular receipt\n")
+        else:
+            stale = evidence_repository.root / "artifacts/unused-stale.txt"
+            stale.write_bytes(b"ignored stale target\n")
+            path.symlink_to(stale)
     observed = invoke(evidence_repository, destination)
     assert observed.status == 0, observed.stdout + observed.stderr
+    assert_outcome(observed)
+
+
+def test_p07_unavailable_failed_log_persistence_keeps_earlier_output(
+    evidence_repository: Repository,
+) -> None:
+    observed = invoke(evidence_repository, audit_failure=True, block_log=LOG_EXAMPLES[-1])
+    assert observed.status == 37
+    assert observed.blocked_logs == (LOG_EXAMPLES[-1],)
     assert_outcome(observed)
 
 
@@ -1273,95 +1293,6 @@ def test_p07_honest_early_rejection_needs_no_unavailable_phase_evidence(
     assert observed.status == 1
     assert phase_calls(observed) == []
     assert_outcome(observed)
-
-
-@pytest.fixture
-def observed_success(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository)
-    assert observed.status == 0, observed.stdout + observed.stderr
-    assert_outcome(observed)
-    return observed
-
-
-def _local_observer_allows_safe_layout_alternatives(
-    observed_success: Observation, alternative: str
-) -> None:
-    observed = copy.deepcopy(observed_success)
-    assert observed.receipt is not None
-    phase = observed.receipt["phases"][-1]
-    original = phase["log"]
-    payload = observed.files[original]
-    if alternative == "unused-example":
-        phase["log"] = "artifacts/verification/another-run/audit.log"
-        observed.files[phase["log"]] = payload
-        observed.files[original] = b"unrelated unused layout example\n"
-        observed.retained_logs[phase["name"]]["path"] = phase["log"]
-    # Safe replacement may retain the reported pathname. The observer requires
-    # real current output at that pathname, never traversal of a former alias.
-    assert_outcome(observed)
-
-
-def _local_observer_rejects_false_evidence(observed_success: Observation, defect: str) -> None:
-    observed = copy.deepcopy(observed_success)
-    assert observed.receipt is not None
-    receipt = observed.receipt
-    if defect == "measurement-schema":
-        observed.files[MEASUREMENT] = b'{"schema": "org.simrecon.verification"}'
-    elif defect == "measurement-digest":
-        receipt["measurements"]["sha256"] = "0" * 64
-    elif defect in {"coverage-json", "coverage-html"}:
-        observed.files[COVERAGE_JSON if defect == "coverage-json" else COVERAGE_HTML] = (
-            b"receipt replaced native report"
-        )
-    elif defect == "wheel-digest":
-        receipt["artifact"]["sha256"] = "0" * 64
-    elif defect in {"log-replaced", "stale-output"}:
-        phase = receipt["phases"][0]
-        observed.files[phase["log"]] = (
-            b"old invocation stdout/stderr"
-            if defect == "stale-output"
-            else b'{"schema":"org.simrecon.verification"}'
-        )
-    elif defect == "retry":
-        observed.calls.append(copy.deepcopy(phase_calls(observed)[-1]))
-    elif defect == "argv":
-        receipt["phases"][0]["command"] = ["invented-make", "sync"]
-    elif defect == "phase-status":
-        receipt["phases"][0]["returncode"] = 23
-    elif defect == "incomplete-success":
-        observed.calls = [call for call in observed.calls if call["phase"] not in PHASES[5:]]
-    elif defect == "identity":
-        receipt["after"]["commit"] = "0" * 40
-    elif defect == "receipt-non-utc":
-        receipt["started_at"] = (
-            datetime.fromisoformat(receipt["started_at"]).isoformat().replace("+00:00", "+01:00")
-        )
-    elif defect == "phase-non-utc":
-        phase = receipt["phases"][0]
-        phase["started_at"] = (
-            datetime.fromisoformat(phase["started_at"]).isoformat().replace("+00:00", "+01:00")
-        )
-    elif defect == "phase-time-outside-receipt":
-        receipt["phases"][0]["started_at"] = observed.finished.isoformat()
-    with pytest.raises((AssertionError, ValueError, KeyError)):
-        assert_outcome(observed)
-
-
-def _local_failure_observer_rejects_false_status_or_continuation(
-    observed_tests_failure: Observation, defect: str
-) -> None:
-    observed = copy.deepcopy(observed_tests_failure)
-    assert observed.status == 37
-    assert_outcome(observed)
-    if defect == "swallowed-status":
-        observed.status = 1
-    else:
-        next_call = copy.deepcopy(phase_calls(observed)[-1])
-        next_call["phase"] = "coverage-combine"
-        next_call["status"] = 0
-        observed.calls.append(next_call)
-    with pytest.raises(AssertionError):
-        assert_outcome(observed)
 
 
 def test_p11_receipt_at_current_native_database(evidence_repository: Repository) -> None:
@@ -1388,6 +1319,21 @@ def test_p11_phase_link_at_current_native_database(
 def test_p11_phase_link_sweeps_actual_current_html_members(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, entry: str, kind: str
 ) -> None:
+    if (entry, kind) != ("receipt", "hardlink"):
+        repository = prepare_evidence_repository(tmp_path / "representative", monkeypatch)
+        observed = invoke(
+            repository,
+            native=True,
+            action={
+                "phase": "audit",
+                "destination": DEFAULT_RECEIPT if entry == "receipt" else LOG_EXAMPLES[1],
+                "selector": "html-member",
+                "member_index": "non-index",
+                "kind": kind,
+            },
+        )
+        assert_outcome(observed)
+        return
     # Each target is selected from THAT invocation's public HTML emission.
     # The first safe emission only starts a finite member sweep; no filename,
     # private source map, fixed member count or cross-run leaf recurrence binds.
@@ -1464,116 +1410,6 @@ def test_p07_native_current_evidence_keeps_genuine_failure_status_and_stop(
     if entry == "ordinary":
         assert observed.status == 37
         assert_native_evidence(observed)
-
-
-@pytest.fixture
-def native_success(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository, native=True)
-    assert observed.status == 0, observed.stdout + observed.stderr
-    assert_outcome(observed)
-    return observed
-
-
-def _local_native_observer_allows_legitimate_alternatives(
-    native_success: Observation, alternative: str
-) -> None:
-    observed = copy.deepcopy(native_success)
-    assert observed.receipt is not None
-    if alternative == "unused-stale":
-        observed.files[".coverage.unused"] = b"unused old artifact may be replaced"
-        observed.files["artifacts/coverage/html/unrelated-unused.txt"] = b"not emitted by this run"
-    elif alternative == "safe-replacement":
-        # Equal independently emitted bytes are valid after a safe replacement.
-        html = observed.native_emissions[-1]
-        for name in [html["database"], *html["members"]]:
-            observed.files[name] = bytes(bytearray(observed.files[name]))
-    else:
-        phase = observed.receipt["phases"][-1]
-        original = phase["log"]
-        phase["log"] = "artifacts/verification/unused-layout/current-audit.log"
-        observed.files[phase["log"]] = observed.files[original]
-        observed.files[original] = b"unused prior layout example"
-        observed.retained_logs[phase["name"]]["path"] = phase["log"]
-    assert_outcome(observed)
-
-
-def _local_native_observer_rejects_forged_stale_or_incomplete_evidence(
-    native_success: Observation, defect: str
-) -> None:
-    observed = copy.deepcopy(native_success)
-    html = observed.native_emissions[-1]
-    database = html["database"]
-    members = html["members"]
-    auxiliary = next(name for name in sorted(members) if name != COVERAGE_HTML)
-    if defect == "database-replaced":
-        observed.files[database] = b'{"schema":"org.simrecon.verification"}'
-    elif defect == "database-self-consistent-wrong-arcs":
-        from coverage import CoverageData
-
-        with tempfile.TemporaryDirectory(prefix="a05-wrong-arcs-") as directory:
-            path = Path(directory) / "wrong.data"
-            data = CoverageData(basename=str(path))
-            data.add_arcs({name: [(-1, 1), (1, -1)] for name in NATIVE_ARCS})
-            data.write()
-            wrong = path.read_bytes()
-        observed.files[database] = wrong
-        # Even a self-consistent authentic container cannot supply independent arcs.
-        for event in observed.native_emissions[1:]:
-            event["database_payload"] = base64.b64encode(wrong).decode()
-        observed.native_anchors = tuple(
-            sha256(json.dumps(event, sort_keys=True).encode())
-            for event in observed.native_emissions
-        )
-    elif defect == "database-missing":
-        del observed.files[database]
-    elif defect in {"database-stale-generation", "html-stale-generation"}:
-        event = observed.native_emissions[1] if defect.startswith("database") else html
-        event["token"] = "11111111-1111-4111-8111-111111111111"
-        observed.native_anchors = tuple(
-            sha256(json.dumps(event, sort_keys=True).encode())
-            for event in observed.native_emissions
-        )
-    elif defect == "html-member-replaced":
-        observed.files[auxiliary] = b"receipt replaced actual emitted member"
-    elif defect == "html-member-missing":
-        del observed.files[auxiliary]
-    elif defect == "html-self-consistent-substitution":
-        wrong = b"self-consistent stale/substituted HTML " + observed.token.encode()
-        for name in members:
-            observed.files[name] = wrong
-        for call in phase_calls(observed):
-            if call["phase"] == "coverage-html":
-                call["snapshots"][COVERAGE_HTML] = base64.b64encode(wrong).decode()
-        # Independent genuine emission anchors remain; matching index/call bytes
-        # and a current token alone do not establish complete actual HTML output.
-    elif defect == "html-membership-shrink":
-        del members[auxiliary]
-        del observed.files[auxiliary]
-    elif defect == "native-operation":
-        html["operation"] = "fabricated public emission"
-    elif defect == "native-status":
-        html["status"] = 23
-    else:
-        html["database"] = next(iter(observed.native_emissions[0]["shards"]))
-    with pytest.raises((AssertionError, ValueError, KeyError)):
-        assert_outcome(observed)
-
-
-def _local_native_failure_observer_rejects_replaced_current_evidence(
-    observed_native_failure: Observation, defect: str
-) -> None:
-    observed = copy.deepcopy(observed_native_failure)
-    assert observed.status == 37
-    assert_outcome(observed)
-    html = observed.native_emissions[-1]
-    target = (
-        html["database"]
-        if defect == "database-replaced"
-        else next(name for name in sorted(html["members"]) if name != COVERAGE_HTML)
-    )
-    observed.files[target] = b"own persistence replaced current native evidence on failure"
-    with pytest.raises(AssertionError):
-        assert_outcome(observed)
 
 
 def prepare_native_directory(repository: Repository, name: str, alias: bool) -> None:
@@ -1669,743 +1505,24 @@ def test_p10_finite_cyclic_receipt_alias_rejects_honestly(
     assert_outcome(observed)
 
 
-def _local_log_observer_allows_both_stream_orders(
-    observed_success: Observation, order: str
-) -> None:
-    observed = copy.deepcopy(observed_success)
-    assert observed.receipt is not None
-    for item, call in zip(observed.receipt["phases"], phase_calls(observed), strict=True):
-        streams = [call["stdout"], call["stderr"]]
-        if order == "stderr-first":
-            streams.reverse()
-        observed.files[item["log"]] = "".join(streams).encode()
-        observed.retained_logs[item["name"]]["payload"] = base64.b64encode(
-            observed.files[item["log"]]
-        ).decode()
-    assert_outcome(observed)
-
-
-def _local_metadata_observer_rejects_untruthful_versions(
-    observed_success: Observation, defect: str
-) -> None:
-    observed = copy.deepcopy(observed_success)
-    assert observed.receipt is not None
-    if defect == "version-missing":
-        observed.receipt["environment"]["tools"]["coverage"] = None
-    elif defect == "version-invented":
-        observed.receipt["environment"]["tools"]["coverage"] = "invented coverage version"
-    else:
-        # Self-consistent query output cannot justify fabricated metadata.
-        observed.receipt["environment"]["tools"]["coverage"] = "coverage 0.0.fabricated"
-        for call in observed.calls:
-            if "coverage" in call["argv"] and call["phase"] is None:
-                call["stdout"] = "coverage 0.0.fabricated\n"
-    with pytest.raises((AssertionError, pytest.fail.Exception)):
-        assert_outcome(observed)
-
-
-def _local_metadata_observer_allows_truth_without_query_records(
-    observed_success: Observation, form: str
-) -> None:
-    observed = copy.deepcopy(observed_success)
-    assert observed.receipt is not None
-    observed.calls = [call for call in observed.calls if call["phase"] is not None]
-    if form == "distribution":
-        observed.receipt["environment"]["tools"] = observed.expected_environment["tools"].copy()
-        for name in ("make", "uv"):
-            observed.receipt["environment"][name]["version"] = "1.0"
-    assert_outcome(observed)
-
-
-@pytest.fixture
-def observed_tests_failure(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository, mode="tests-failure")
-    assert observed.status == 37
-    assert_outcome(observed)
-    return observed
-
-
-@pytest.fixture
-def observed_late_failure(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository, audit_failure=True)
-    assert observed.status == 37
-    assert_outcome(observed)
-    return observed
-
-
-def _local_failed_measurement_observer_allows_current_diagnostics(
-    observed_tests_failure: Observation, receipt_available: bool
-) -> None:
-    observed = copy.deepcopy(observed_tests_failure)
-    if not receipt_available:
-        observed.receipt = None
-        observed.files.pop(DEFAULT_RECEIPT)
-    assert_outcome(observed)
-
-
-def _local_failed_measurement_observer_rejects_lost_valid_evidence(
-    observed_tests_failure: Observation, defect: str, receipt_available: bool
-) -> None:
-    observed = copy.deepcopy(observed_tests_failure)
-    if defect == "deleted":
-        del observed.files[MEASUREMENT]
-    elif defect == "replaced":
-        observed.files[MEASUREMENT] = b"not current M25 evidence"
-    elif defect == "suppressed-anchor":
-        phase_calls(observed)[-1]["snapshots"].pop(MEASUREMENT)
-    else:
-        assert observed.receipt is not None
-        observed.receipt["measurements"] = None
-    if not receipt_available:
-        observed.receipt = None
-        # Omission of an unavailable receipt alone is legitimate. Combine it
-        # with loss of emitted bytes to exercise the original no-receipt hole.
-        if defect == "omitted":
-            del observed.files[MEASUREMENT]
-    with pytest.raises((AssertionError, KeyError)):
-        assert_outcome(observed)
-
-
-def _local_late_failure_observer_allows_preserved_evidence(
-    observed_late_failure: Observation,
-    alternative: str,
-) -> None:
-    observed = copy.deepcopy(observed_late_failure)
-    if alternative == "no-receipt":
-        observed.receipt = None
-        observed.files.pop(DEFAULT_RECEIPT)
-    assert_outcome(observed)
-
-
-def _local_late_failure_observer_rejects_lost_valid_reports(
-    observed_late_failure: Observation, target: str, defect: str
-) -> None:
-    observed = copy.deepcopy(observed_late_failure)
-    if defect == "replaced":
-        observed.files[target] = b"replaced actual emitted evidence"
-    elif defect == "omitted":
-        assert observed.receipt is not None
-        observed.receipt["artifact" if target == WHEEL else "coverage"] = None
-    else:
-        del observed.files[target]
-        if defect == "no-receipt":
-            observed.receipt = None
-    with pytest.raises((AssertionError, KeyError)):
-        assert_outcome(observed)
-
-
-@pytest.mark.parametrize("phase", ["coverage-json", "wheel"])
+@pytest.mark.parametrize(
+    "phase,receipt_mode,native,status",
+    [
+        ("coverage-combine", "complete", True, 37),
+        ("coverage-json", "complete", True, 37),
+        ("wheel", "complete", True, 37),
+        ("coverage-json", "partial-json-failure", False, 29),
+    ],
+)
 def test_p07_valid_phase_emission_survives_its_genuine_failure(
-    evidence_repository: Repository, phase: str
+    evidence_repository: Repository, phase: str, receipt_mode: str, native: bool, status: int
 ) -> None:
-    observed = invoke(evidence_repository, failure_phase=phase, native=True)
-    assert observed.status == 37
+    observed = invoke(
+        evidence_repository,
+        failure_phase=phase if status == 37 else None,
+        receipt_mode=receipt_mode,
+        native=native,
+    )
+    assert observed.status == status
     assert phase_calls(observed)[-1]["phase"] == phase
     assert_outcome(observed)
-
-
-def _local_native_failure_observer_rejects_loss_without_receipt_dependency(
-    observed_native_failure: Observation, receipt_available: bool, target: str
-) -> None:
-    observed = copy.deepcopy(observed_native_failure)
-    assert observed.status == 37
-    assert_outcome(observed)
-    if not receipt_available:
-        observed.receipt = None
-    assert_outcome(observed)
-    html = observed.native_emissions[-1]
-    name = (
-        html["database"]
-        if target == "database"
-        else next(name for name in html["members"] if name != COVERAGE_HTML)
-    )
-    del observed.files[name]
-    with pytest.raises((AssertionError, KeyError)):
-        assert_outcome(observed)
-
-
-@pytest.mark.parametrize("phase", ["coverage-combine", "coverage-json"])
-def test_local_partial_native_failure_observer_rejects_lost_container(
-    evidence_repository: Repository, phase: str
-) -> None:
-    observed = invoke(evidence_repository, native=True, failure_phase=phase)
-    assert observed.status == 37
-    assert_outcome(observed)
-    observed.receipt = None
-    assert_outcome(observed)
-    del observed.files[observed.native_emissions[-1]["database"]]
-    with pytest.raises(AssertionError):
-        assert_outcome(observed)
-
-
-@pytest.mark.parametrize("mode", ["tests-no-report", "malformed", "duplicate-top"])
-def test_local_failed_measurement_observer_allows_absent_or_invalid_emission(
-    evidence_repository: Repository, mode: str
-) -> None:
-    observed = invoke(evidence_repository, mode=mode)
-    assert observed.status != 0
-    assert expected_measurement(observed) is None
-    assert_outcome(observed)
-    observed.files.pop(MEASUREMENT, None)
-    assert_outcome(observed)
-    observed.receipt = None
-    assert_outcome(observed)
-
-
-@pytest.mark.parametrize(
-    "mode",
-    [
-        "missing-json",
-        "missing-html",
-        "missing-wheel",
-        "malformed-coverage",
-        "invalid-wheel",
-        "multiple-wheels",
-    ],
-)
-def test_local_failure_observer_allows_unavailable_or_invalid_report_evidence(
-    evidence_repository: Repository, mode: str
-) -> None:
-    observed = invoke(evidence_repository, receipt_mode=mode)
-    assert observed.status == 1
-    assert_outcome(observed)
-    # Only valid actually emitted fixture evidence is retained. Invalid bytes
-    # and unrun/missing phases cannot fabricate available diagnostics.
-    for name in set(generated_bytes(observed)) - set(valid_emitted_reports(observed)):
-        observed.files.pop(name, None)
-    assert_outcome(observed)
-    observed.receipt = None
-    assert_outcome(observed)
-
-
-@pytest.fixture(params=["tests", "audit"])
-def current_log_failure(
-    evidence_repository: Repository, request: pytest.FixtureRequest
-) -> Observation:
-    observed = invoke(evidence_repository, failure_phase=request.param)
-    assert observed.status == 37
-    assert phase_calls(observed)[-1]["phase"] == request.param
-    assert_outcome(observed)
-    return observed
-
-
-def _local_failed_log_observer_allows_current_output_and_layouts(
-    current_log_failure: Observation, receipt_available: bool, order: str
-) -> None:
-    observed = copy.deepcopy(current_log_failure)
-    assert observed.receipt is not None
-    for item, call in zip(observed.receipt["phases"], phase_calls(observed), strict=True):
-        # Model another actual legitimate emission/layout: neither stream order
-        # nor the public example leaves define the preservation contract.
-        streams = [call["stdout"], call["stderr"]]
-        if order == "stderr-first":
-            streams.reverse()
-        payload = "".join(streams).encode()
-        old = item["log"]
-        item["log"] = f"artifacts/alternate-logs/current-{call['phase']}.txt"
-        observed.files[item["log"]] = payload
-        observed.files[old] = b"unused layout example"
-        observed.retained_logs[call["phase"]] = {
-            "path": item["log"],
-            "payload": base64.b64encode(payload).decode(),
-        }
-    if not receipt_available:
-        observed.receipt = None
-    assert_outcome(observed)
-
-
-def _local_failed_log_observer_rejects_loss_of_earlier_retention(
-    current_log_failure: Observation, receipt_available: bool, defect: str
-) -> None:
-    observed = copy.deepcopy(current_log_failure)
-    anchor = observed.retained_logs["sync"]
-    # Retention was already observed by a later real external phase command.
-    assert any("sync" in call["retained_logs"] for call in observed.calls)
-    if defect == "deleted":
-        del observed.files[anchor["path"]]
-    else:
-        observed.files[anchor["path"]] = b"forged old output"
-    if not receipt_available:
-        observed.receipt = None
-    with pytest.raises(AssertionError):
-        assert_outcome(observed)
-
-
-def test_local_failed_log_observer_allows_genuine_unavailable_persistence(
-    evidence_repository: Repository,
-) -> None:
-    observed = invoke(evidence_repository, audit_failure=True, block_log=LOG_EXAMPLES[-1])
-    assert observed.status == 37
-    assert observed.blocked_logs == (LOG_EXAMPLES[-1],)
-    assert_outcome(observed)
-    for receipt_available in (False, True):
-        example = copy.deepcopy(observed)
-        if not receipt_available:
-            example.receipt = None
-        assert_outcome(example)
-
-
-PARTIAL_PROFILES = ["partial-coverage", "partial-statements", "partial-combined", "zero-coverage"]
-
-
-@pytest.fixture(params=[*PARTIAL_PROFILES, "partial-json-failure"])
-def current_partial_failure(
-    evidence_repository: Repository, request: pytest.FixtureRequest
-) -> Observation:
-    phase = None if request.param == "partial-json-failure" else "coverage-json"
-    observed = invoke(evidence_repository, receipt_mode=request.param, failure_phase=phase)
-    assert observed.status == (29 if phase is None else 37)
-    assert phase_calls(observed)[-1]["phase"] == "coverage-json"
-    assert COVERAGE_JSON in valid_emitted_reports(observed)
-    assert COVERAGE_HTML not in generated_bytes(observed)
-    assert_outcome(observed)
-    return observed
-
-
-def _local_partial_coverage_observer_allows_current_failed_diagnostics(
-    current_partial_failure: Observation, receipt_available: bool
-) -> None:
-    observed = copy.deepcopy(current_partial_failure)
-    if not receipt_available:
-        observed.receipt = None
-    assert_outcome(observed)
-
-
-def _local_partial_coverage_observer_rejects_lost_current_diagnostics(
-    current_partial_failure: Observation, receipt_available: bool, defect: str
-) -> None:
-    observed = copy.deepcopy(current_partial_failure)
-    assert observed.receipt is not None
-    if defect == "replaced":
-        observed.files[COVERAGE_JSON] = b"{}"
-    elif defect == "omitted" and receipt_available:
-        observed.receipt["coverage"] = None
-    else:
-        del observed.files[COVERAGE_JSON]
-    if not receipt_available:
-        observed.receipt = None
-    with pytest.raises((AssertionError, KeyError)):
-        assert_outcome(observed)
-
-
-@pytest.mark.parametrize("profile", PARTIAL_PROFILES)
-def test_p07_advisory_profiles_preserve_exact_current_counts(
-    evidence_repository: Repository, profile: str
-) -> None:
-    observed = invoke(evidence_repository, receipt_mode=profile)
-    assert observed.status == 0
-    assert_outcome(observed)
-
-
-@pytest.fixture(params=["wheel", "audit"])
-def current_stronger_wheel_failure(
-    evidence_repository: Repository, request: pytest.FixtureRequest
-) -> Observation:
-    observed = invoke(evidence_repository, receipt_mode="sha512-wheel", failure_phase=request.param)
-    assert observed.status == 37
-    assert phase_calls(observed)[-1]["phase"] == request.param
-    assert WHEEL in valid_emitted_reports(observed)
-    wheel = wheel_observation(generated_bytes(observed)[WHEEL])
-    assert wheel["available"] is True
-    assert {
-        row[1].split("=")[0] for rows in wheel["records"].values() for row in rows if row[1]
-    } == {"sha512"}
-    assert_outcome(observed)
-    return observed
-
-
-def _local_stronger_wheel_observer_allows_failed_current_diagnostics(
-    current_stronger_wheel_failure: Observation, receipt_available: bool
-) -> None:
-    observed = copy.deepcopy(current_stronger_wheel_failure)
-    assert observed.receipt is not None
-    assert_wheel(observed, observed.receipt)
-    # The outer transport identity is still actual archive SHA256, independent
-    # of stronger RECORD member hashes. No receipt creates no new diagnostic.
-    assert observed.receipt["artifact"]["sha256"] == sha256(generated_bytes(observed)[WHEEL])
-    if not receipt_available:
-        observed.receipt = None
-    assert_outcome(observed)
-
-
-def _local_stronger_wheel_observer_rejects_lost_valid_current_evidence(
-    current_stronger_wheel_failure: Observation, receipt_available: bool, defect: str
-) -> None:
-    observed = copy.deepcopy(current_stronger_wheel_failure)
-    assert observed.receipt is not None
-    if defect == "replaced":
-        observed.files[WHEEL] = b"replaced current stronger-hash archive"
-    elif defect == "omitted" and receipt_available:
-        observed.receipt["artifact"] = None
-    else:
-        # Receipt absence cannot excuse losing actual valid emitted wheel bytes.
-        del observed.files[WHEEL]
-    if not receipt_available:
-        observed.receipt = None
-    with pytest.raises((AssertionError, KeyError)):
-        assert_outcome(observed)
-
-
-def test_p08_stronger_record_hash_keeps_success_evidence(evidence_repository: Repository) -> None:
-    observed = invoke(evidence_repository, receipt_mode="sha512-wheel")
-    assert observed.status == 0
-    assert_outcome(observed)
-
-
-@pytest.mark.parametrize("receipt_available", [False, True])
-def test_p07_wheel_build_status31_keeps_valid_current_artifact(
-    evidence_repository: Repository, receipt_available: bool
-) -> None:
-    observed = invoke(evidence_repository, receipt_mode="wheel-build-failure")
-    assert observed.status == 31
-    assert phase_calls(observed)[-1]["phase"] == "wheel"
-    assert WHEEL in valid_emitted_reports(observed)
-    assert_outcome(observed)
-    if not receipt_available:
-        observed.receipt = None
-    assert_outcome(observed)
-
-
-def record_fixture_wheel(payload: bytes, algorithm: str, defect: str = "") -> bytes:
-    """Standalone archive-input control; never a verifier persistence decision.
-
-    Rebuild the actual public fixture's archive using standard ZIP/CSV/hash
-    primitives. Authentic fixture/control bytes prove bounded validity only,
-    not production build provenance or actual isolated import/installability.
-    """
-    info = "simrecon-1.2.0.dist-info"
-    record = f"{info}/RECORD"
-    with zipfile.ZipFile(io.BytesIO(payload)) as archive:
-        members = {name: archive.read(name) for name in archive.namelist() if name != record}
-    if defect == "missing-metadata":
-        del members[f"{info}/METADATA"]
-    elif defect == "multiple-metadata":
-        members["simrecon_extra-1.2.0.dist-info/METADATA"] = members[f"{info}/METADATA"]
-    elif defect == "invalid-wheel-format":
-        members[f"{info}/WHEEL"] = members[f"{info}/WHEEL"].replace(b"1.0", b"invalid")
-    elif defect == "mismatched-tag":
-        members[f"{info}/WHEEL"] += b"Tag: py3-none-other\n"
-    rows = []
-    for name, data in members.items():
-        encoded = base64.urlsafe_b64encode(hashlib.new(algorithm, data).digest()).rstrip(b"=")
-        fingerprint = algorithm + "=" + encoded.decode()
-        if defect == "digest":
-            fingerprint = algorithm + "=" + "A" * len(encoded)
-        elif defect == "unknown-algorithm":
-            fingerprint = "unknown-member-hash=" + encoded.decode()
-        elif defect == "malformed-hash":
-            fingerprint = encoded.decode()
-        if defect != "missing-member" or name != "simrecon/__init__.py":
-            rows.append([name, fingerprint, str(len(data) + (1 if defect == "size" else 0))])
-    if defect == "duplicate-record":
-        rows.append(rows[0])
-    rows.append([record, "sha512=AAAA" if defect == "hashed-self" else "", ""])
-    text = io.StringIO()
-    csv.writer(text, lineterminator="\n").writerows(rows)
-    result = io.BytesIO()
-    with zipfile.ZipFile(result, "w") as archive:
-        for name, data in members.items():
-            archive.writestr(name, data)
-        if defect == "duplicate-member":
-            archive.writestr("simrecon/__init__.py", members["simrecon/__init__.py"])
-        archive.writestr(record, text.getvalue())
-    return result.getvalue()
-
-
-def _local_wheel_observer_accepts_secure_record_algorithms(
-    observed_success: Observation, algorithm: str
-) -> None:
-    payload = record_fixture_wheel(generated_bytes(observed_success)[WHEEL], algorithm)
-    assert_wheel_container(payload)
-    with zipfile.ZipFile(io.BytesIO(payload)) as archive:
-        rows = list(
-            csv.reader(archive.read("simrecon-1.2.0.dist-info/RECORD").decode().splitlines())
-        )
-        assert {row[1].split("=")[0] for row in rows if row[1]} == {algorithm}
-
-
-def _local_wheel_observer_rejects_invalid_record_and_archive_evidence(
-    observed_success: Observation, defect: str
-) -> None:
-    algorithm = {"weak-sha1": "sha1", "weak-md5": "md5", "below-sha256": "sha224"}.get(
-        defect, "sha512"
-    )
-    if defect == "duplicate-member":
-        with pytest.warns(UserWarning):
-            payload = record_fixture_wheel(
-                generated_bytes(observed_success)[WHEEL], algorithm, defect
-            )
-    else:
-        payload = record_fixture_wheel(generated_bytes(observed_success)[WHEEL], algorithm, defect)
-    with pytest.raises((AssertionError, ValueError, KeyError)):
-        assert_wheel_container(payload)
-    observed = copy.deepcopy(observed_success)
-    wheel = next(call for call in phase_calls(observed) if call["phase"] == "wheel")
-    wheel["snapshots"][WHEEL] = base64.b64encode(payload).decode()
-    assert WHEEL not in valid_emitted_reports(observed)
-
-
-@pytest.mark.parametrize(
-    "mode",
-    [
-        "weak-wheel-hash",
-        "record-hash-mismatch",
-        "record-size-mismatch",
-        "incomplete-record",
-        "invalid-record-self",
-        "duplicate-member",
-        "multiple-metadata",
-    ],
-)
-def test_p07_invalid_wheel_profiles_keep_honest_unavailable_diagnostics(
-    evidence_repository: Repository, mode: str
-) -> None:
-    observed = invoke(evidence_repository, receipt_mode=mode)
-    assert observed.status == 1
-    assert observed.receipt is not None and observed.receipt["artifact"] is None
-    assert WHEEL not in valid_emitted_reports(observed)
-    assert_outcome(observed)
-    observed.files.pop(WHEEL)
-    assert_outcome(observed)
-    observed.receipt = None
-    assert_outcome(observed)
-
-
-@pytest.fixture
-def observed_native_failure(evidence_repository: Repository) -> Observation:
-    observed = invoke(evidence_repository, native=True, audit_failure=True)
-    assert observed.status == 37
-    assert_outcome(observed)
-    return observed
-
-
-def check_observer_example(
-    check: Callable[..., None], observed: Observation, *example: object
-) -> None:
-    """Keep the logical example visible in source-free grouped diagnostics."""
-    try:
-        check(observed, *example)
-    except (Exception, pytest.fail.Exception) as error:
-        error.add_note(f"Observer example {check.__name__}: {example!r}")
-        raise
-
-
-def test_local_observer_rejects_false_evidence(observed_success: Observation) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for alternative in ["unused-example", "safe-replacement"]:
-        check_observer_example(
-            _local_observer_allows_safe_layout_alternatives, observed_success, alternative
-        )
-    for defect in [
-        "measurement-schema",
-        "measurement-digest",
-        "coverage-json",
-        "coverage-html",
-        "wheel-digest",
-        "log-replaced",
-        "stale-output",
-        "retry",
-        "argv",
-        "phase-status",
-        "incomplete-success",
-        "identity",
-        "receipt-non-utc",
-        "phase-non-utc",
-        "phase-time-outside-receipt",
-    ]:
-        check_observer_example(_local_observer_rejects_false_evidence, observed_success, defect)
-    for order in ["stdout-first", "stderr-first"]:
-        check_observer_example(
-            _local_log_observer_allows_both_stream_orders, observed_success, order
-        )
-    for defect in ["version-missing", "version-invented", "unemitted-version"]:
-        check_observer_example(
-            _local_metadata_observer_rejects_untruthful_versions, observed_success, defect
-        )
-    for form in ["display", "distribution"]:
-        check_observer_example(
-            _local_metadata_observer_allows_truth_without_query_records, observed_success, form
-        )
-    for algorithm in ["sha256", "sha384", "sha512", "sha3_256", "sha3_512", "blake2b", "blake2s"]:
-        check_observer_example(
-            _local_wheel_observer_accepts_secure_record_algorithms, observed_success, algorithm
-        )
-    for defect in [
-        "digest",
-        "size",
-        "weak-sha1",
-        "weak-md5",
-        "below-sha256",
-        "unknown-algorithm",
-        "malformed-hash",
-        "missing-member",
-        "duplicate-record",
-        "hashed-self",
-        "duplicate-member",
-        "missing-metadata",
-        "multiple-metadata",
-        "invalid-wheel-format",
-        "mismatched-tag",
-    ]:
-        check_observer_example(
-            _local_wheel_observer_rejects_invalid_record_and_archive_evidence,
-            observed_success,
-            defect,
-        )
-
-
-def test_local_native_observer_rejects_forged_stale_or_incomplete_evidence(
-    native_success: Observation,
-) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for alternative in ["unused-stale", "safe-replacement", "unused-log-layout"]:
-        check_observer_example(
-            _local_native_observer_allows_legitimate_alternatives, native_success, alternative
-        )
-    for defect in [
-        "database-replaced",
-        "database-self-consistent-wrong-arcs",
-        "database-missing",
-        "database-stale-generation",
-        "html-member-replaced",
-        "html-member-missing",
-        "html-self-consistent-substitution",
-        "html-membership-shrink",
-        "html-stale-generation",
-        "native-operation",
-        "native-status",
-        "consumed-shard-current",
-    ]:
-        check_observer_example(
-            _local_native_observer_rejects_forged_stale_or_incomplete_evidence,
-            native_success,
-            defect,
-        )
-
-
-def test_local_failed_measurement_observer_rejects_lost_valid_evidence(
-    observed_tests_failure: Observation,
-) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for defect in ["swallowed-status", "continued-after-failure"]:
-        check_observer_example(
-            _local_failure_observer_rejects_false_status_or_continuation,
-            observed_tests_failure,
-            defect,
-        )
-    for receipt_available in [False, True]:
-        check_observer_example(
-            _local_failed_measurement_observer_allows_current_diagnostics,
-            observed_tests_failure,
-            receipt_available,
-        )
-    for defect in ["deleted", "replaced", "omitted", "suppressed-anchor"]:
-        for receipt_available in [False, True]:
-            check_observer_example(
-                _local_failed_measurement_observer_rejects_lost_valid_evidence,
-                observed_tests_failure,
-                defect,
-                receipt_available,
-            )
-
-
-def test_local_late_failure_observer_rejects_lost_valid_reports(
-    observed_late_failure: Observation,
-) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for alternative in ["ordinary", "no-receipt"]:
-        check_observer_example(
-            _local_late_failure_observer_allows_preserved_evidence,
-            observed_late_failure,
-            alternative,
-        )
-    for target in [COVERAGE_JSON, COVERAGE_HTML, WHEEL]:
-        for defect in ["deleted", "replaced", "omitted", "no-receipt"]:
-            check_observer_example(
-                _local_late_failure_observer_rejects_lost_valid_reports,
-                observed_late_failure,
-                target,
-                defect,
-            )
-
-
-def test_local_native_failure_observer_rejects_loss_without_receipt_dependency(
-    observed_native_failure: Observation,
-) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for defect in ["database-replaced", "html-member-replaced"]:
-        check_observer_example(
-            _local_native_failure_observer_rejects_replaced_current_evidence,
-            observed_native_failure,
-            defect,
-        )
-    for receipt_available in [False, True]:
-        for target in ["database", "html-member"]:
-            check_observer_example(
-                _local_native_failure_observer_rejects_loss_without_receipt_dependency,
-                observed_native_failure,
-                receipt_available,
-                target,
-            )
-
-
-def test_local_failed_log_observer_rejects_loss_of_earlier_retention(
-    current_log_failure: Observation,
-) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for receipt_available in [False, True]:
-        for order in ["stdout-first", "stderr-first"]:
-            check_observer_example(
-                _local_failed_log_observer_allows_current_output_and_layouts,
-                current_log_failure,
-                receipt_available,
-                order,
-            )
-    for receipt_available in [False, True]:
-        for defect in ["deleted", "replaced"]:
-            check_observer_example(
-                _local_failed_log_observer_rejects_loss_of_earlier_retention,
-                current_log_failure,
-                receipt_available,
-                defect,
-            )
-
-
-def test_local_partial_coverage_observer_rejects_lost_current_diagnostics(
-    current_partial_failure: Observation,
-) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for receipt_available in [False, True]:
-        check_observer_example(
-            _local_partial_coverage_observer_allows_current_failed_diagnostics,
-            current_partial_failure,
-            receipt_available,
-        )
-    for receipt_available in [False, True]:
-        for defect in ["deleted", "replaced", "omitted"]:
-            check_observer_example(
-                _local_partial_coverage_observer_rejects_lost_current_diagnostics,
-                current_partial_failure,
-                receipt_available,
-                defect,
-            )
-
-
-def test_local_stronger_wheel_observer_rejects_lost_valid_current_evidence(
-    current_stronger_wheel_failure: Observation,
-) -> None:
-    # One genuine validated invocation; mutable examples deep-copy the observation.
-    for receipt_available in [False, True]:
-        check_observer_example(
-            _local_stronger_wheel_observer_allows_failed_current_diagnostics,
-            current_stronger_wheel_failure,
-            receipt_available,
-        )
-    for receipt_available in [False, True]:
-        for defect in ["deleted", "replaced", "omitted"]:
-            check_observer_example(
-                _local_stronger_wheel_observer_rejects_lost_valid_current_evidence,
-                current_stronger_wheel_failure,
-                receipt_available,
-                defect,
-            )

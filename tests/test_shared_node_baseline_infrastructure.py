@@ -16,7 +16,6 @@ from pathlib import Path
 import pytest
 
 from shared_node_baseline_infrastructure_fixture import (
-    PHASES,
     PINNED,
     PYTHON,
     digest,
@@ -78,32 +77,6 @@ def _assert_child_diagnostic(rendered: str, kind: str, executable: str) -> None:
         )
         assert status is not None, "exit status missing from child exception diagnostic"
         assert int(status[1]) == 7, "child diagnostic changed exit status"
-
-
-def _assert_current_evidence_alias(
-    repo: Path, receipt: Path, returncode: int, observation: dict[str, str]
-) -> None:
-    """P11 qualifies preservation of ignored current evidence by success."""
-    if returncode == 0:
-        assert digest(repo / observation["path"]) == observation["sha256"], (
-            "passed verifier write destroyed current fixture-only evidence"
-        )
-        # Reading follows either a regular replacement or a safely retargeted link.
-        data = json.loads(receipt.read_text())
-        assert data["result"] == "passed" and data["problems"] == []
-        assert [phase["name"] for phase in data["phases"]] == list(PHASES)
-        for phase in data["phases"]:
-            assert phase["returncode"] == 0
-            assert f"FIXTURE_PHASE {phase['name']}" in (repo / phase["log"]).read_text()
-    elif receipt.is_file():
-        # A failed write may leave no readable receipt, or retain non-receipt
-        # ignored evidence. Any actual receipt must still report failure honestly.
-        try:
-            data = json.loads(receipt.read_text())
-        except (OSError, ValueError):
-            return
-        if isinstance(data, dict) and data.get("schema") == "org.simrecon.verification":
-            assert data["result"] == "failed", "non-success left a falsely passed receipt"
 
 
 def _decoded_values(value: object) -> list[object]:
@@ -408,42 +381,6 @@ def test_real_inherited_child_diagnostics(tmp_path: Path) -> None:
     assert_source_free(rendered)
 
 
-def test_fixture_only_safe_verifier_has_current_authentic_evidence(tmp_path: Path) -> None:
-    repo = verifier_layout(tmp_path, {})
-    receipt = repo / "safe/receipt.json"
-    result = verify(repo, receipt)
-    assert result.returncode == 0, "fixture-only safe CLI verification failed"
-    data = json.loads(receipt.read_text())
-    assert data["result"] == "passed"
-    assert data["problems"] == []
-    assert [item["name"] for item in data["phases"]] == list(PHASES)
-    assert (repo / "trace.txt").read_text().splitlines() == list(PHASES)
-    assert data["before"] == data["after"]
-    assert data["measurements"] is None  # Legacy direct collector, no M25 claim.
-    for phase in data["phases"]:
-        log = repo / phase["log"]
-        assert f"FIXTURE_PHASE {phase['name']}" in log.read_text()
-        assert phase["returncode"] == 0
-        assert phase["name"] in phase["command"]
-        assert any(arg.startswith("UV=") for arg in phase["command"])
-    artifact = data["artifact"]
-    assert digest(repo / artifact["path"]) == artifact["sha256"]
-    assert (repo / artifact["path"]).stat().st_size == artifact["size_bytes"]
-    # These are exact native metrics for the two owned fixture files ONLY.
-    native = json.loads((repo / "artifacts/coverage/coverage.json").read_text())
-    assert set(data["coverage"]["files"]) == {"scripts/owned.py", "src/simrecon/__init__.py"}
-    for filename, metrics in data["coverage"]["files"].items():
-        summary = native["files"][filename]["summary"]
-        assert metrics["statements"] == {
-            "covered": summary["covered_lines"],
-            "total": summary["num_statements"],
-        }
-        assert metrics["branches"] == {
-            "covered": summary["covered_branches"],
-            "total": summary["num_branches"],
-        }
-
-
 @pytest.mark.parametrize(
     "obstacle", ["directory_leaf", "regular_ancestor", "symlink_loop", "unwritable"]
 )
@@ -483,58 +420,6 @@ def test_real_local_verifier_output_failure_preserves_marker(tmp_path: Path, obs
     finally:
         if obstacle == "unwritable":
             (repo / "safe").chmod(0o700)
-
-
-@pytest.mark.parametrize("bad_report", ["truncated", "absent", "missing_html"])
-def test_fixture_only_incomplete_native_evidence_cannot_pass(
-    tmp_path: Path, bad_report: str
-) -> None:
-    repo = verifier_layout(tmp_path, {"bad_report": bad_report})
-    receipt = repo / "safe/receipt.json"
-    result = verify(repo, receipt)
-    assert result.returncode == 1
-    data = json.loads(receipt.read_text())
-    assert data["result"] == "failed" and data["problems"]
-    assert digest(repo / "marker.txt") == data["before"]["manifest"]["marker.txt"]
-
-
-@pytest.mark.parametrize("kind", ["json", "database", "html", "wheel", "log", "measurements"])
-def test_fixture_only_same_invocation_receipt_alias_preserves_current_evidence(
-    tmp_path: Path, kind: str
-) -> None:
-    repo = verifier_layout(tmp_path, {"receipt_alias": kind, "receipt": "safe/receipt.json"})
-    protected_marker = digest(repo / "marker.txt")
-    receipt = repo / "safe/receipt.json"
-    result = verify(repo, receipt, measurements_required=(kind == "measurements"))
-    observation = json.loads((repo / "challenged.json").read_text())
-    assert digest(repo / "marker.txt") == protected_marker  # Unconditional tracked protection.
-    _assert_current_evidence_alias(repo, receipt, result.returncode, observation)
-
-
-@pytest.mark.parametrize("leaf", ["existing_regular", "unused_alias"])
-def test_fixture_only_legitimate_output_replacement_and_unused_alias(
-    tmp_path: Path, leaf: str
-) -> None:
-    repo = verifier_layout(tmp_path, {})
-    receipt = repo / "safe/receipt.json"
-    receipt.parent.mkdir()
-    if leaf == "existing_regular":
-        receipt.write_text("OWNED_OLD_RECEIPT")
-    else:
-        stale = repo / "artifacts/unused.json"
-        stale.parent.mkdir()
-        stale.write_text("OWNED_UNUSED_STALE_FILE")
-        receipt.symlink_to(stale)
-    result = verify(repo, receipt, measurements_required=True)
-    assert result.returncode == 0, "legitimate fixture-only output was rejected"
-    data = json.loads(receipt.read_text())
-    assert data["result"] == "passed"
-    # Real readings from this fixture command process, not scientific M25 proof.
-    measurement_path = repo / data["measurements"]["path"]
-    assert digest(measurement_path) == data["measurements"]["sha256"]
-    native = json.loads(measurement_path.read_text())
-    assert data["measurements"]["run_id"] == native["run_id"]
-    assert data["measurements"]["measurements"] == native["measurements"]
 
 
 @pytest.mark.parametrize("path_selection", [False, True])

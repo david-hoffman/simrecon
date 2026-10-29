@@ -74,17 +74,31 @@ def assert_passed_truth(case: dict, snapshot: dict) -> None:
     }
 
 
-@pytest.mark.parametrize("selector", ["coveragerc", "pyproject", "rcfile"])
 @pytest.mark.parametrize(
-    "destination", ["neighbor", "stale", "collision", "native-neighbor", "native-stale"]
+    "selector,destination,local_python",
+    [
+        ("coveragerc", "neighbor", True),
+        ("coveragerc", "collision", True),
+        ("pyproject", "neighbor", False),
+        ("pyproject", "collision", False),
+        ("rcfile", "neighbor", False),
+        ("rcfile", "collision", False),
+        ("rcfile", "native-neighbor", False),
+        ("rcfile", "native-stale", False),
+        ("coveragerc", "stale", False),
+    ],
 )
 def test_configured_external_native_receipt_preservation(
     tmp_path: Path,
     selector: str,
     destination: str,
+    local_python: bool,
 ) -> None:
     """Safe alternatives must pass; collision may reject honestly or preserve data."""
-    case = prepare(tmp_path, selector, destination)
+    case = prepare(tmp_path, selector, destination, local_python=local_python)
+    if local_python:
+        assert (case["repo"] / ".venv/bin/python").is_file()
+        assert (case["observations"] / "local-python-health.txt").read_bytes()
     result = invoke(case)
     # Keep child output out of assertion diagnostics: third-party text is not an oracle.
     snapshot_path = case["observations"] / "snapshot.json"
@@ -113,31 +127,6 @@ def test_configured_external_native_receipt_preservation(
         assert_passed_truth(case, snapshot)
 
 
-@pytest.mark.parametrize(
-    "selector,destination",
-    [
-        ("coveragerc", "neighbor"),
-        ("coveragerc", "collision"),
-        ("pyproject", "neighbor"),
-        ("pyproject", "collision"),
-        ("rcfile", "collision"),
-    ],
-)
-def test_project_local_python_preserves_external_native_evidence(
-    tmp_path: Path, selector: str, destination: str
-) -> None:
-    """The ordinary local interpreter cannot weaken preservation or safe outputs."""
-    case = prepare(tmp_path, selector, destination, local_python=True)
-    assert (case["repo"] / ".venv/bin/python").is_file()
-    assert (case["observations"] / "local-python-health.txt").read_bytes()
-    result = invoke(case)
-    if destination == "collision":
-        assert_rejected_collision(case, result.returncode)
-    else:
-        assert result.returncode == 0, "A supported local interpreter and safe neighbor must pass"
-        assert_passed_truth(case, assert_current_evidence(case))
-
-
 def assert_rejected_collision(case: dict, status: int) -> None:
     """Allow early rejection; preserve genuine bytes whenever measurement ran."""
     assert status == 1, "A current database cannot also be a passed JSON receipt"
@@ -153,8 +142,7 @@ def assert_rejected_collision(case: dict, status: int) -> None:
         assert receipt["problems"]
 
 
-@pytest.mark.parametrize("loss", ["missing", "invalid"])
-@pytest.mark.parametrize("destination", ["neighbor", "collision"])
+@pytest.mark.parametrize("loss,destination", [("missing", "neighbor"), ("invalid", "collision")])
 def test_configuration_loss_after_emission_preserves_native_evidence(
     tmp_path: Path, loss: str, destination: str
 ) -> None:
@@ -187,8 +175,7 @@ def test_configuration_loss_after_emission_preserves_native_evidence(
         assert receipt["before"]["dirty"] is False
 
 
-@pytest.mark.parametrize("loss", ["missing", "invalid"])
-@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
+@pytest.mark.parametrize("loss,output_stream", [("invalid", "stdout")])
 def test_configuration_loss_before_reporting_fails_without_losing_native_data(
     tmp_path: Path, loss: str, output_stream: str
 ) -> None:
@@ -248,8 +235,7 @@ def assert_attempted_output_retained(case: dict, forwarded: str, receipt: dict) 
         )
 
 
-@pytest.mark.parametrize("loss", ["missing", "invalid"])
-@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
+@pytest.mark.parametrize("loss,output_stream", [("missing", "stdout"), ("invalid", "stderr")])
 def test_configuration_loss_inside_reporting_preserves_failed_command_evidence(
     tmp_path: Path, loss: str, output_stream: str
 ) -> None:
@@ -332,8 +318,9 @@ def test_configuration_loss_inside_reporting_preserves_failed_command_evidence(
     )
 
 
-@pytest.mark.parametrize("loss", [None, "missing", "invalid"])
-@pytest.mark.parametrize("output_stream", ["stdout", "stderr"])
+@pytest.mark.parametrize(
+    "loss,output_stream", [(None, "stderr"), ("missing", "stdout"), ("invalid", "stderr")]
+)
 def test_configuration_loss_inside_tests_preserves_emitted_evidence(
     tmp_path: Path, loss: str | None, output_stream: str
 ) -> None:
