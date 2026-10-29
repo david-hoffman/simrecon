@@ -13,6 +13,8 @@ import itertools
 import math
 import random
 import warnings
+from collections.abc import Iterator
+from contextlib import contextmanager
 from fractions import Fraction
 from typing import Any
 
@@ -443,6 +445,34 @@ def test_information_failure_is_not_range_or_fabricated_candidate(kind: str) -> 
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
+@contextmanager
+def caller_preservation(values: dict[str, Any]) -> Iterator[list[Any]]:
+    arrays = [values[name] for name in ARRAY_NAMES] + [values["camera_estimate"].means_counts]
+    snapshots = [(a.copy(), a.strides, a.flags.writeable, a.dtype) for a in arrays]
+    python_random, numpy_random = random.getstate(), np.random.get_state()
+    outputs: list[Any] = []
+    with np.errstate(all="raise"), warnings.catch_warnings():
+        warnings.simplefilter("error")
+        policy, filters = np.geterr().copy(), list(warnings.filters)
+        try:
+            yield outputs
+        finally:
+            assert np.geterr() == policy and warnings.filters == filters
+            assert random.getstate() == python_random
+            after = np.random.get_state()
+            assert after[0] == numpy_random[0] and after[2:] == numpy_random[2:]
+            np.testing.assert_array_equal(after[1], numpy_random[1])
+            for array, (contents, strides, writable, dtype) in zip(arrays, snapshots, strict=True):
+                np.testing.assert_array_equal(array, contents)
+                assert (array.strides, array.flags.writeable, array.dtype) == (
+                    strides,
+                    writable,
+                    dtype,
+                )
+            for output in outputs:
+                assert all(not np.shares_memory(output, source) for source in arrays)
+
+
 @pytest.fixture(scope="module")
 def subnormal_result() -> Any:
     estimate = estimate_scalar_camera(
@@ -458,7 +488,10 @@ def subnormal_result() -> Any:
         baseline.contrast_counts,
         baseline.source,
     )
-    result = fit(**arguments(camera_estimate=estimate))
+    values = arguments(camera_estimate=estimate)
+    with caller_preservation(values) as outputs:
+        result = fit(**values)
+        outputs.extend(output_arrays(result))
     assert result.status == "completed_finite_fit"
     return result
 
@@ -947,7 +980,9 @@ def test_records_frozen_public_types_and_independent_writable_snapshots(
 def test_initial_range_keeps_constructed_candidate_but_no_success_or_polls() -> None:
     values = arguments()
     values["structured_counts"] = np.full((3, 9, *SHAPE), 1e200)
-    result = fit(**values)
+    with caller_preservation(values) as outputs:
+        result = fit(**values)
+        outputs.extend(output_arrays(result))
     # Direct float64 residual squares are prescribed for the objective.
     assert result.status == "numerical_incomplete" and result.stage == "initial"
     assert result.failure_code == "image_only_bead_calibration_range"
@@ -964,7 +999,10 @@ def test_initial_range_keeps_constructed_candidate_but_no_success_or_polls() -> 
 def test_poll_range_stops_immediately_and_retains_unresolved_partial_pair() -> None:
     proof = poll_range_qualification()
     assert proof["initial_upper_ratio"] < 1 < proof["square_lower_ratio"]
-    result = fit(**poll_range_arguments())
+    values = poll_range_arguments()
+    with caller_preservation(values) as outputs:
+        result = fit(**values)
+        outputs.extend(output_arrays(result))
     assert result.status == "numerical_incomplete" and result.stage == "poll"
     assert result.failure_code == "image_only_bead_calibration_range"
     assert result.initial_candidate is not None and result.initialization_notes is not None
@@ -1218,45 +1256,19 @@ def test_late_range_retains_complete_prediction_both_summaries_absent() -> None:
     assert_ledger(result, bead, pilot.PilotCandidate)
 
 
-@pytest.mark.parametrize("outcome", ("success", "invalid", "unavailable", "range", "poll_range"))
+@pytest.mark.parametrize("outcome", ("invalid", "unavailable"))
 def test_preservation_inputs_random_numpy_and_warning_policy(outcome: str) -> None:
-    values = poll_range_arguments() if outcome == "poll_range" else arguments()
+    values = arguments()
     if outcome == "invalid":
         values["heldout_counts"] = values["heldout_counts"].astype(bool)
-    elif outcome == "unavailable":
+    else:
         values["camera_estimate"] = camera(contrast_counts=0)
-    elif outcome == "range":
-        values["structured_counts"].fill(1e200)
-    arrays = [values[name] for name in ARRAY_NAMES] + [values["camera_estimate"].means_counts]
-    snapshots = [(a.copy(), a.strides, a.flags.writeable, a.dtype) for a in arrays]
-    python_random, numpy_random = random.getstate(), np.random.get_state()
-    with np.errstate(all="raise"), warnings.catch_warnings():
-        warnings.simplefilter("error")
-        policy, filters = np.geterr().copy(), list(warnings.filters)
+    with caller_preservation(values) as outputs:
         if outcome == "invalid":
             with pytest.raises(SimreconError) as error:
                 fit(**values)
             assert error.value.code == "invalid_image_only_bead_calibration"
         else:
             result = fit(**values)
-            assert (
-                result.status
-                == {
-                    "success": "completed_finite_fit",
-                    "unavailable": "normalization_unavailable",
-                    "range": "numerical_incomplete",
-                    "poll_range": "numerical_incomplete",
-                }[outcome]
-            )
-            for output in output_arrays(result):
-                assert all(not np.shares_memory(output, source) for source in arrays)
-        assert np.geterr() == policy and warnings.filters == filters
-    assert random.getstate() == python_random
-    after = np.random.get_state()
-    assert after[0] == numpy_random[0] and after[2:] == numpy_random[2:]
-    np.testing.assert_array_equal(after[1], numpy_random[1])
-    for array, (contents, strides, writable, dtype) in zip(arrays, snapshots, strict=True):
-        np.testing.assert_array_equal(array, contents)
-        assert (
-            array.strides == strides and array.flags.writeable == writable and array.dtype == dtype
-        )
+            assert result.status == "normalization_unavailable"
+            outputs.extend(output_arrays(result))

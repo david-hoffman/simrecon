@@ -472,7 +472,7 @@ def detector_reference(
     return detector.tobytes()
 
 
-def optical_enclosure(
+def uncached_optical_enclosure(
     sites: F64,
     weight: float,
     shape: tuple[int, int, int],
@@ -604,6 +604,56 @@ def optical_enclosure(
     if not np.isfinite(out).all():
         raise OracleInconclusive("pilot observer arithmetic did not produce finite values")
     return OpticalEnclosure(out, error)
+
+
+def enclosure_array_key(array: F64) -> tuple[tuple[int, ...], str, bytes]:
+    return array.shape, array.dtype.str, array.tobytes(order="C")
+
+
+@lru_cache(maxsize=128)
+def immutable_enclosure(
+    sites: tuple[tuple[int, ...], str, bytes],
+    weight_hex: str,
+    shape: tuple[int, int, int],
+    carriers: tuple[tuple[int, ...], str, bytes],
+    phases: tuple[tuple[int, ...], str, bytes],
+    amplitudes: tuple[tuple[int, ...], str, bytes],
+    order: int,
+    spacing: tuple[float, float, float],
+) -> tuple[tuple[int, ...], str, bytes, Fraction]:
+    assert spacing == D
+    arrays = [
+        np.frombuffer(raw, dtype=np.dtype(dtype)).reshape(dimensions).copy()
+        for dimensions, dtype, raw in (sites, carriers, phases, amplitudes)
+    ]
+    result = uncached_optical_enclosure(
+        arrays[0], float.fromhex(weight_hex), shape, arrays[1], arrays[2], arrays[3], order
+    )
+    return result.values.shape, result.values.dtype.str, result.values.tobytes(), result.radius
+
+
+def optical_enclosure(
+    sites: F64,
+    weight: float,
+    shape: tuple[int, int, int],
+    carriers: F64,
+    phases: F64,
+    amplitudes: F64,
+    order: int,
+) -> OpticalEnclosure:
+    dimensions, dtype, raw, radius = immutable_enclosure(
+        enclosure_array_key(sites),
+        float(weight).hex(),
+        shape,
+        enclosure_array_key(carriers),
+        enclosure_array_key(phases),
+        enclosure_array_key(amplitudes),
+        order,
+        D,
+    )
+    return OpticalEnclosure(
+        np.frombuffer(raw, dtype=np.dtype(dtype)).reshape(dimensions).copy(), radius
+    )
 
 
 def optical_sum(

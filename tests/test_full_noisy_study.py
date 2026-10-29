@@ -68,6 +68,9 @@ from full_noisy_study_fixture import (
     wrap_reference,
     write_json,
 )
+from full_noisy_study_fixture import (
+    validation_cli as validation_cli,
+)
 
 # Public record field names copied from adopted contracts, never runtime source.
 FIELDS = {
@@ -1842,7 +1845,7 @@ def test_heldout_independence_preserves_every_training_decision(
     ],
 )
 def test_evaluation_public_validation_before_private_read(
-    tmp_path: Path, sealed: dict[str, Path], defect: str
+    tmp_path: Path, sealed: dict[str, Path], defect: str, validation_cli: Any
 ) -> None:
     inference = tmp_path / "inference"
     shutil.copytree(sealed["inference"], inference)
@@ -1921,7 +1924,9 @@ def test_evaluation_public_validation_before_private_read(
         snapshot(truth),
     )
     out = tmp_path / "evaluation"
-    expect(cli(*evaluate_args(sealed["observations"], inference, truth, out), timeout=30), 4)
+    expect(
+        validation_cli(*evaluate_args(sealed["observations"], inference, truth, out), timeout=30), 4
+    )
     assert snapshot(inference) == before_inf and snapshot(sealed["observations"]) == before_obs
     assert snapshot(truth) == before_truth and not out.exists()
 
@@ -2828,7 +2833,12 @@ def object_keys(value: Any, path: tuple[Any, ...] = ()) -> dict[tuple[Any, ...],
     ],
 )
 def test_inner_record_consistency_before_private_read(
-    tmp_path: Path, pipeline: dict[str, Any], document: str, path: tuple[Any, ...], change: Any
+    tmp_path: Path,
+    pipeline: dict[str, Any],
+    document: str,
+    path: tuple[Any, ...],
+    change: Any,
+    validation_cli: Any,
 ) -> None:
     original = snapshot(pipeline["inference"])
     inference = tmp_path / "inference"
@@ -2855,7 +2865,10 @@ def test_inner_record_consistency_before_private_read(
     os.mkfifo(truth / "complete.json")
     truth_before = snapshot(truth)
     out = tmp_path / "evaluation"
-    expect(cli(*evaluate_args(pipeline["observations"], inference, truth, out), timeout=30), 4)
+    expect(
+        validation_cli(*evaluate_args(pipeline["observations"], inference, truth, out), timeout=30),
+        4,
+    )
     assert not out.exists() and snapshot(inference) == before
     assert snapshot(pipeline["inference"]) == original and snapshot(truth) == truth_before
 
