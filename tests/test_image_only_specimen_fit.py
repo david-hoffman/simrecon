@@ -579,17 +579,18 @@ VALIDATION_ORDER = (
 )
 
 
-@pytest.mark.parametrize(
-    ("earlier", "later"),
-    [(a, b) for i, a in enumerate(VALIDATION_ORDER) for b in VALIDATION_ORDER[i + 1 :]],
-)
-def test_validation_group_order(fit_module: Any, earlier: str, later: str) -> None:
+@pytest.mark.parametrize("winner", VALIDATION_ORDER)
+def test_validation_group_order(fit_module: Any, winner: str) -> None:
     from simrecon import SimreconError
 
+    # Each expected winner comes directly from the contract's fixed order.
+    # inputs() supplies a valid prefix; every group in the suffix rejects None.
+    suffix = VALIDATION_ORDER[VALIDATION_ORDER.index(winner) :]
+    values = inputs(**dict.fromkeys(suffix))
     with pytest.raises(SimreconError) as caught:
-        invoke(fit_module, inputs(**{earlier: None, later: None}))
+        invoke(fit_module, values)
     assert caught.value.code == "invalid_image_only_specimen_fit"
-    assert earlier in str(caught.value)
+    assert winner in str(caught.value)
 
 
 @pytest.mark.parametrize("field", VALIDATION_ORDER)
