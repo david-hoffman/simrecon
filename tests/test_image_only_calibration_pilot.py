@@ -777,18 +777,17 @@ def test_complete_signed_finite_equation_scores_and_initialization(invoke: Any) 
         information_codes=None,
         source="actual images",
     )
-    other = invoke(camera_estimate=unused)
-    same_candidate(small.frozen_candidate, other.frozen_candidate)
-    assert small.training_objectives_q128_q256_q512 == other.training_objectives_q128_q256_q512
-    np.testing.assert_array_equal(small.heldout_prediction, other.heldout_prediction)
     affine = invoke(
         central_counts=4 * central - 13,
         structured_counts=4 * structured - 13,
         heldout_counts=4 * heldout - 13,
-        camera_estimate=camera(means_counts=np.array([-41.0, 7.0, 15.0]), contrast_counts=8),
+        camera_estimate=dataclasses.replace(
+            unused, means_counts=np.array([-41.0, 7.0, 15.0]), contrast_counts=8
+        ),
     )
-    same_candidate(other.frozen_candidate, affine.frozen_candidate)
-    np.testing.assert_array_equal(other.heldout_prediction, affine.heldout_prediction)
+    same_candidate(small.frozen_candidate, affine.frozen_candidate)
+    assert small.training_objectives_q128_q256_q512 == affine.training_objectives_q128_q256_q512
+    np.testing.assert_array_equal(small.heldout_prediction, affine.heldout_prediction)
     assert np.all(small.initial_candidate.brightness_relative > 0)
     assert np.all(small.frozen_candidate.brightness_relative > 0)
     y, s = (central - 5) / 2, (structured - 5) / 2
