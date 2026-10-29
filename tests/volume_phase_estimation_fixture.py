@@ -630,10 +630,16 @@ def run_dependency_child(request: Any, *, group_by: tuple[str, ...] = ()) -> boo
     if os.environ.get(_CHILD_FLAG) == "1":
         assert _PUBLIC_OBSERVATION is not None
         return False
-    nodes = (request.node.nodeid,)
+    runner_suffix = (
+        "@science-test_volume_phase_estimation"
+        if hasattr(request.config, "workerinput")
+        and request.config.getoption("loadgroup", default=False)
+        else ""
+    )
+    nodes = (request.node.nodeid.removesuffix(runner_suffix),)
     if group_by:
         nodes = tuple(
-            item.nodeid
+            item.nodeid.removesuffix(runner_suffix)
             for item in request.session.items
             if item.parent is request.node.parent
             and item.originalname == request.node.originalname
@@ -642,7 +648,7 @@ def run_dependency_child(request: Any, *, group_by: tuple[str, ...] = ()) -> boo
                 for name in group_by
             )
         )
-        assert request.node.nodeid in nodes
+        assert request.node.nodeid.removesuffix(runner_suffix) in nodes
     completed = request.session.stash.setdefault(_DEPENDENCY_GROUP_RESULTS, set())
     if nodes in completed:
         return True

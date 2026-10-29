@@ -20,6 +20,8 @@ delivery = "simrecon._delivery:main"
 
 [dependency-groups]
 dev = [
+  "execnet==2.1.2",
+  "pytest-xdist==3.8.0",
   "mrcfile==1.5.4",
   "coverage>=7.13,<8",
   "pre-commit>=4.3,<5",
