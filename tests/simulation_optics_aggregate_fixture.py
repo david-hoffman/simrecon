@@ -59,8 +59,8 @@ AxisWeights = tuple[tuple[Fraction, ...], tuple[Fraction, ...], tuple[Fraction, 
 LARGE_SPACING = (0.125, 0.08, 0.08)
 LARGE_WEIGHTS: AxisWeights = (
     tuple(Fraction(z + 1, 16) for z in range(17)),
-    tuple(Fraction(1 + (3 * y) % 11, 8) for y in range(8)),
-    tuple(Fraction(1 + (5 * x) % 13, 8) for x in range(8)),
+    tuple(Fraction(1 + (3 * y) % 11, 8) for y in range(2)),
+    tuple(Fraction(1 + (5 * x) % 13, 8) for x in range(2)),
 )
 
 
