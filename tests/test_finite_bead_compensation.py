@@ -22,6 +22,7 @@ from finite_bead_compensation_fixture import (
     Q0,
     Case,
     Index,
+    Truth,
     Z,
     algebra_case,
     angle_phasor,
@@ -97,7 +98,7 @@ def caller_state(value: Any) -> Any:
     return type(value), repr(value)
 
 
-def check_truth(result: Any, case: Case, minimum: float = 0.1) -> None:
+def check_truth(result: Any, case: Case, minimum: float = 0.1) -> Truth:
     """Compare all complex bins and localization against independent raw truth."""
     truth = expected(case, minimum)
     shape = case.profile.shape
@@ -151,6 +152,14 @@ def check_truth(result: Any, case: Case, minimum: float = 0.1) -> None:
         for k, value in zip(range(-(size // 2), (size + 1) // 2), vector, strict=True):
             exact = Decimal(k) / (size * d(spacing))
             assert abs(d(value) - exact) <= 8 * EPS * abs(exact) + Q0
+
+    return truth
+
+
+def assert_positive_margin(truth: Truth) -> None:
+    """Retain the positive cohort's independent profile and inverse-budget facts."""
+    assert truth.spatial_budget > 0
+    assert min(value.magnitude() for value in truth.profile) > Decimal("0.1")
 
 
 def test_independent_roots_transforms_and_inverse() -> None:
@@ -241,26 +250,6 @@ def test_independent_exact_mass_normalization_and_certificate() -> None:
     assert rounded_weight(Fraction(3, 2**1075)) == 2 * float(Q0)
 
 
-def test_independent_closed_model_changes_blurred_peak(case: Case) -> None:
-    """Prove the raw case distinguishes compensation before localization."""
-    with localcontext() as context:
-        context.prec = PRECISION
-        truth = expected(case)
-        raw_peak = max(range(case.profile.size), key=lambda index: truth.components[0][index].re)
-        assert indices(case.profile.shape)[raw_peak] != truth.origin
-        assert truth.origin == case.anchor
-        assert min(value.magnitude() for value in truth.profile) > Decimal("0.1")
-        assert np.linalg.cond(represented_basis(case.phases)) < 10
-        # Independent exact finite model, distinct from the rounded raw fit.
-        for n, actual in zip(indices(case.profile.shape), truth.localization, strict=True):
-            offset = tuple(
-                (na - ba) % size
-                for na, ba, size in zip(n, case.anchor, case.profile.shape, strict=True)
-            )
-            assert abs(actual - d(case.kernel[offset])) <= truth.spatial_budget
-        assert exact_mass(case.kernel) == 1
-
-
 def test_public_exports_binding_and_frozen_records(case: Case) -> None:
     type_name, api_name = "FiniteBeadCalibration", "calibrate_raw_finite_bead"
     result_type = getattr(simrecon, type_name)
@@ -322,7 +311,28 @@ def test_public_exports_binding_and_frozen_records(case: Case) -> None:
 )
 def test_raw_finite_model_all_bins_geometry(shape: Index, anchor: Index) -> None:
     generated = model_case(shape, anchor)
-    check_truth(run(generated), generated)
+    truth = check_truth(run(generated), generated)
+    assert_positive_margin(truth)
+    if shape == (2, 3, 4) and anchor == (1, 2, 1):
+        with localcontext() as context:
+            context.prec = PRECISION
+            raw_peak = max(
+                range(generated.profile.size), key=lambda index: truth.components[0][index].re
+            )
+            assert indices(generated.profile.shape)[raw_peak] != truth.origin
+            assert truth.origin == generated.anchor
+            assert min(value.magnitude() for value in truth.profile) > Decimal("0.1")
+            assert np.linalg.cond(represented_basis(generated.phases)) < 10
+            # Independent exact finite model, distinct from the rounded raw fit.
+            for n, actual in zip(indices(generated.profile.shape), truth.localization, strict=True):
+                offset = tuple(
+                    (na - ba) % size
+                    for na, ba, size in zip(
+                        n, generated.anchor, generated.profile.shape, strict=True
+                    )
+                )
+                assert abs(actual - d(generated.kernel[offset])) <= truth.spatial_budget
+            assert exact_mass(generated.kernel) == 1
 
 
 @pytest.mark.parametrize(
@@ -351,7 +361,8 @@ def test_profile_anchor_and_three_shifted_divisors(case: Case, profile_kind: str
     # An arbitrary valid stored acquisition remains an estimator input even when
     # its declared profile is not the generating specimen. Truth uses that input.
     result = run(generated)
-    check_truth(result, generated)
+    truth = check_truth(result, generated)
+    assert_positive_margin(truth)
     if profile_kind == "origin_point":
         assert np.array_equal(
             result.provenance["profile_transfer"],
@@ -412,7 +423,9 @@ def test_profile_supported_storage(case: Case, storage: str) -> None:
     before = generated.profile.tobytes()
     strides, writable = generated.profile.strides, generated.profile.flags.writeable
     result = run(generated)
-    check_truth(result, generated)
+    truth = check_truth(result, generated)
+    if storage == "reversed":
+        assert_positive_margin(truth)
     assert generated.profile.tobytes() == before
     assert generated.profile.strides == strides and generated.profile.flags.writeable == writable
     supplied = result.provenance["bead_profile"]["supplied"]
@@ -962,7 +975,7 @@ def test_original_nonpositive_mass(values: list[float]) -> None:
 def test_original_raw_tie_allowed_after_compensation() -> None:
     generated = algebra_case(np.array([5.0, 5.0, 1.0, 1.0]).reshape(1, 1, 4))
     generated.profile = np.array([5.0, 2.0, 0.0, 1.0]).reshape(1, 1, 4)
-    check_truth(run(generated), generated)
+    assert_positive_margin(check_truth(run(generated), generated))
 
 
 def test_compensated_exact_positive_tie_rejected() -> None:
@@ -1410,12 +1423,11 @@ def mass_witness() -> tuple[Case, float]:
     return generated, 2**-30
 
 
-def test_independent_original_mass_witness() -> None:
-    """Show why normalizing the rounded inverse array changes the response."""
+def test_original_mass_not_rounded_compensated_array_sum() -> None:
     generated, minimum = mass_witness()
+    truth = check_truth(run(generated, min_profile_transfer=minimum), generated, minimum)
     with localcontext() as context:
         context.prec = PRECISION
-        truth = expected(generated, minimum)
         rounded = np.array([float(value) for value in truth.localization])
         rounded_mass = rational(exact_mass(rounded))
         assert rounded_mass > 0 and rounded_mass != 1
@@ -1426,11 +1438,6 @@ def test_independent_original_mass_witness() -> None:
             value.magnitude() * abs(1 / rounded_mass - 1) for row in truth.spectra for value in row
         )
         assert discrepancy > 0
-
-
-def test_original_mass_not_rounded_compensated_array_sum() -> None:
-    generated, minimum = mass_witness()
-    check_truth(run(generated, min_profile_transfer=minimum), generated, minimum)
 
 
 def reconstruction_case(
@@ -1501,27 +1508,6 @@ def test_independent_estimator_signed_singleton() -> None:
         assert volume == spectrum
 
 
-@pytest.mark.parametrize("variant", ["base", "moved", "rolled", "phase"])
-def test_independent_reconstruction_cohort(case: Case, variant: str) -> None:
-    """Establish the informative regime without any returned calibration."""
-    case, offset, delta = calibration_variant(case, variant)
-    images, phases, shape, _, spectrum, volume, _, transfers, errors = reconstruction_case(
-        case, offset, delta
-    )
-    with localcontext() as context:
-        context.prec = PRECISION
-        assert np.linalg.cond(represented_basis(phases)) <= 10
-        assert all(
-            max(abs(value.re), abs(value.im)) + budget <= 1
-            for row, budgets in zip(transfers, errors, strict=True)
-            for value, budget in zip(row, budgets, strict=True)
-        )
-        assert 65536 * 5 * (len(phases) + case.profile.size + prod(shape)) * EPS <= d(2**-10)
-        assert 64 * 5 * prod(shape) * max(d(value) for value in images.flat) < FMAX
-        assert any(abs(value.im) > Decimal("1e-6") for value in spectrum)
-        assert any(abs(value.im) > Decimal("1e-6") for value in volume)
-
-
 def calibration_variant(case: Case, variant: str) -> tuple[Case, tuple[int, int], float]:
     """Declare common-reference controls using public coordinate meanings."""
     if variant == "moved":
@@ -1548,9 +1534,21 @@ def test_raw_finite_calibration_adapter_and_known_parameter_reconstruction(
         phase_reference_shift_rad=delta,
         source="declared common finite grid, instrument and phase reference",
     )
-    images, phases, shape, mask, spectrum, volume, calibration_errors, _, _ = reconstruction_case(
-        case, offset, delta
+    images, phases, shape, mask, spectrum, volume, calibration_errors, transfers, errors = (
+        reconstruction_case(case, offset, delta)
     )
+    with localcontext() as context:
+        context.prec = PRECISION
+        assert np.linalg.cond(represented_basis(phases)) <= 10
+        assert all(
+            max(abs(value.re), abs(value.im)) + budget <= 1
+            for row, budgets in zip(transfers, errors, strict=True)
+            for value, budget in zip(row, budgets, strict=True)
+        )
+        assert 65536 * 5 * (len(phases) + case.profile.size + prod(shape)) * EPS <= d(2**-10)
+        assert 64 * 5 * prod(shape) * max(d(value) for value in images.flat) < FMAX
+        assert any(abs(value.im) > Decimal("1e-6") for value in spectrum)
+        assert any(abs(value.im) > Decimal("1e-6") for value in volume)
     reconstructed = simrecon.reconstruct_volume(
         images[None],
         order_otfs=[adapted],
@@ -1592,7 +1590,7 @@ def test_raw_conversion_and_actual_phase_storage(case: Case, dtype: str) -> None
     acquisition.data.flags.writeable = False
     before = acquisition.data.tobytes(), generated.phases.tobytes()
     result = calibrate(acquisition, **arguments(generated))
-    check_truth(result, generated)
+    assert_positive_margin(check_truth(result, generated))
     assert before == (acquisition.data.tobytes(), generated.phases.tobytes())
     assert not acquisition.data.flags.writeable and not generated.phases.flags.writeable
 
@@ -1773,52 +1771,11 @@ def test_existing_consumer_pipeline_from_independent_public_record(case: Case) -
             assert_close(value, target, budget)
 
 
-def test_independent_positive_cohort_validity(case: Case) -> None:
-    """Validate oracle margins for legitimate inputs before the API exists."""
-    cohort = [
-        model_case(shape, anchor)
-        for shape, anchor in [
-            ((2, 3, 4), (1, 2, 1)),
-            ((3, 4, 3), (2, 3, 2)),
-            ((1, 3, 4), (0, 1, 3)),
-            ((2, 1, 3), (1, 0, 2)),
-            ((1, 1, 1), (0, 0, 0)),
-        ]
-    ]
-    for dtype in ("<f8", ">f8", "f4", "i8", "u8"):
-        converted = copy.deepcopy(case)
-        converted.images = np.asarray(case.images * 16, dtype=dtype)
-        cohort.append(converted)
-    tied = algebra_case(np.array([5.0, 5.0, 1.0, 1.0]).reshape(1, 1, 4))
-    tied.profile = np.array([5.0, 2.0, 0.0, 1.0]).reshape(1, 1, 4)
-    cohort.append(tied)
-    for kind in ("empty_anchor", "tied_peak", "origin", "translated", "wrapped", "reversed"):
-        generated = copy.deepcopy(case)
-        if kind == "empty_anchor":
-            generated.profile.flat[0] = 0
-        elif kind == "tied_peak":
-            generated.profile.fill(0)
-            generated.profile[0, 0, :3] = (3, 3, 1)
-        elif kind in ("origin", "translated"):
-            generated.profile.fill(0)
-            generated.profile.flat[0 if kind == "origin" else -1] = 1
-        elif kind == "wrapped":
-            generated = model_case(profile_shift=(1, 2, 3))
-        else:
-            generated.profile = generated.profile[:, :, ::-1]
-        cohort.append(generated)
-    for generated in cohort:
-        truth = expected(generated)
-        assert truth.spatial_budget > 0
-        assert min(value.magnitude() for value in truth.profile) > Decimal("0.1")
-
-
-def test_independent_extreme_component_regime() -> None:
-    """Prove a finite raw case needs component scaling rather than |complex|."""
+def test_finite_components_with_overflowing_complex_magnitude() -> None:
     generated = extreme_components_case()
+    truth = check_truth(run(generated), generated)
     with localcontext() as context:
         context.prec = PRECISION
-        truth = expected(generated)
         assert np.linalg.cond(represented_basis(generated.phases)) <= 10
         first = truth.components[1][0]
         assert first.magnitude() > FMAX
@@ -1835,11 +1792,6 @@ def test_independent_extreme_component_regime() -> None:
             )
             < FMAX
         )
-
-
-def test_finite_components_with_overflowing_complex_magnitude() -> None:
-    generated = extreme_components_case()
-    check_truth(run(generated), generated)
 
 
 @pytest.mark.parametrize(

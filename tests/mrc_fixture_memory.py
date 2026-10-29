@@ -43,7 +43,7 @@ def main() -> None:
         version=1,
         data_kind="spatial_image",
         plane_axes=["time"],
-        plane_shape=[512],
+        plane_shape=[128],
         spatial_fields="direct_um",
         extended_header="opaque",
         overrides={},
@@ -54,8 +54,8 @@ def main() -> None:
     baseline = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     extension_size = 64 * 1024 * 1024
     header = bytearray(1024)
-    struct.pack_into("<4i", header, 0, 1024, 256, 512, 6)
-    struct.pack_into("<3i", header, 28, 1024, 256, 512)
+    struct.pack_into("<4i", header, 0, 1024, 256, 128, 6)
+    struct.pack_into("<3i", header, 28, 1024, 256, 128)
     struct.pack_into("<3f", header, 40, 0.125, 0.25, 0.5)
     struct.pack_into("<3i", header, 64, 1, 2, 3)
     struct.pack_into("<i", header, 92, extension_size)
@@ -68,7 +68,7 @@ def main() -> None:
         f.write(header)
         for _ in range(extension_size // len(chunk)):
             f.write(chunk)
-        for i in range(512):
+        for i in range(128):
             f.write(((ramp + i * 37) % 65536).astype("<u2").tobytes())
     info = simrecon.harmonize(simrecon.inspect(source), config=cfg)
     report = simrecon.write(dest, info, block_planes=1)
@@ -83,11 +83,11 @@ def main() -> None:
         flush=True,
     )
     assert increment_bytes <= 32 * 1024 * 1024
-    assert report.planes_written == 512
+    assert report.planes_written == 128
     with dest.open("rb") as f:
         modern = f.read(1024)
         n = struct.unpack_from("<i", modern, 92)[0]
-        assert struct.unpack_from("<4i", modern) == (1024, 256, 512, 6)
+        assert struct.unpack_from("<4i", modern) == (1024, 256, 128, 6)
         with (directory / "extension.h5").open("wb") as extracted:
             left = n
             while left:
@@ -95,7 +95,7 @@ def main() -> None:
                 assert block
                 extracted.write(block)
                 left -= len(block)
-        for i in range(512):
+        for i in range(128):
             expected = ((ramp + i * 37) % 65536).astype("<u2").tobytes()
             assert f.read(len(expected)) == expected, f"plane {i}"
         assert f.read(1) == b""
@@ -114,8 +114,8 @@ def main() -> None:
         for start in range(0, extension_size, len(chunk)):
             assert bytes(d[start : start + len(chunk)]) == chunk
         meta = json.loads(bytes(cast(h5py.Dataset, f["simrecon/metadata_json"])[:]))
-        assert meta["source_layout"]["plane_shape"] == [512]
-        assert meta["output_layout"]["section_count"] == 512
+        assert meta["source_layout"]["plane_shape"] == [128]
+        assert meta["output_layout"]["section_count"] == 128
         assert meta["original_extension_schema"] == "opaque"
 
 

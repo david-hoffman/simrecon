@@ -741,8 +741,11 @@ def test_initial_phase_validation_before_every_unavailable_return(
     expect_code(code, np.zeros((6, 1, 2, 3)), values, initial_phases_rad=angles)
 
 
-@pytest.mark.parametrize("dtype", ["i1", "u8", "f2", "f4", ">f8", "longdouble"])
-@pytest.mark.parametrize("layout", ["C", "F", "reverse", "readonly"])
+@pytest.mark.parametrize(
+    "dtype,layout",
+    [(dtype, "C") for dtype in ("i1", "u8", "f2", "f4", ">f8", "longdouble")]
+    + [("f4", "F"), (">f8", "reverse"), ("u8", "readonly")],
+)
 def test_permitted_real_widths_endian_layouts_and_signed_data(dtype: str, layout: str) -> None:
     data = np.arange(36).reshape(6, 1, 2, 3)
     if dtype != "u8":

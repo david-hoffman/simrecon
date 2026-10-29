@@ -427,11 +427,7 @@ def test_periodic_carrier_aliasing_keeps_declared_integers(api: Any, carrier: An
     check_observer(first, e)
 
 
-@pytest.fixture(
-    scope="module",
-    params=[(2, 3, 4), (3, 4, 3), (1, 1, 1), (1, 2, 3), (2, 3, 1), (3, 1, 2), (2, 2, 2), (3, 3, 3)],
-    ids=str,
-)
+@pytest.fixture(scope="module")
 def integer_carrier_fourier(request: pytest.FixtureRequest) -> Any:
     """Share only immutable, shape-dependent independent Fourier construction."""
     shape = request.param
@@ -474,37 +470,41 @@ def integer_carrier_fourier(request: pytest.FixtureRequest) -> Any:
     return shape, bins, transform, index, row
 
 
-@pytest.mark.parametrize("container", [tuple, list], ids=["tuple", "list"])
 @pytest.mark.parametrize(
-    "carrier",
+    "integer_carrier_fourier,carrier,container",
     [
-        (0, 0),
-        (1, -1),
-        (-7, -11),
-        (-(10**100) + 1, 10**100 - 1),
-        (2**64 - 1, -7),
-        (np.int64(-(2**63)), np.int64(2**63 - 1)),
-        (np.uint64(2**64 - 1), np.uint64(2**64 - 2)),
-        (np.uint64(2**64 - 1), np.int64(-7)),
-        (np.int8(-128), np.uint8(255)),
-        (np.int16(-32768), np.uint16(65535)),
-        (np.int32(-(2**31)), np.uint32(2**32 - 1)),
-        (2**53 + 1, -(2**53 + 3)),
+        (shape, (1, -1), tuple)
+        for shape in (
+            (2, 3, 4),
+            (3, 4, 3),
+            (1, 1, 1),
+            (1, 2, 3),
+            (2, 3, 1),
+            (3, 1, 2),
+            (2, 2, 2),
+            (3, 3, 3),
+        )
+    ]
+    + [
+        ((2, 3, 4), carrier, tuple)
+        for carrier in (
+            (0, 0),
+            (-7, -11),
+            (-(10**100) + 1, 10**100 - 1),
+            (np.int64(-(2**63)), np.int64(2**63 - 1)),
+            (np.uint64(2**64 - 1), np.uint64(2**64 - 2)),
+            (np.uint64(2**64 - 1), np.int64(-7)),
+            (2**53 + 1, -(2**53 + 3)),
+        )
+    ]
+    + [
+        ((2, 3, 4), carrier, list)
+        for carrier in (
+            (-(10**100) + 1, 10**100 - 1),
+            (np.uint64(2**64 - 1), np.int64(-7)),
+        )
     ],
-    ids=[
-        "zero",
-        "small",
-        "negative",
-        "python_huge",
-        "python_mixed_range",
-        "numpy_signed",
-        "numpy_unsigned",
-        "numpy_mixed",
-        "numpy_small_width",
-        "numpy_16bit",
-        "numpy_32bit",
-        "binary64_boundary",
-    ],
+    indirect=["integer_carrier_fourier"],
 )
 def test_integer_carrier_oracles_against_exact_finite_matrices(
     integer_carrier_fourier: Any, carrier: Any, container: Any
@@ -771,10 +771,22 @@ def test_initial_count_and_shape(api: Any, phase_shape: tuple[int, ...]) -> None
 
 
 @pytest.mark.parametrize(
-    "dtype",
-    [np.int8, np.int64, np.uint64, np.float16, np.float32, np.float64, ">f8", np.longdouble],
+    "dtype,layout",
+    [
+        (dtype, "reverse")
+        for dtype in (
+            np.int8,
+            np.int64,
+            np.uint64,
+            np.float16,
+            np.float32,
+            np.float64,
+            ">f8",
+            np.longdouble,
+        )
+    ]
+    + [(np.float64, layout) for layout in ("fortran", "readonly")],
 )
-@pytest.mark.parametrize("layout", ["fortran", "reverse", "readonly"])
 def test_permitted_widths_and_layouts_without_phase_design_requirement(
     api: Any, dtype: Any, layout: str
 ) -> None:

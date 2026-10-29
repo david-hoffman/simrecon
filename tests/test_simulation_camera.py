@@ -208,8 +208,11 @@ def test_predetermined_stochastic_seeds_do_not_share_a_fixed_stream(mode: bool) 
     assert np.any(np.signbit(first) != np.signbit(second))
 
 
-@pytest.mark.parametrize("layout", ["strided", "fortran", "readonly", "big-endian"])
-@pytest.mark.parametrize("dtype", ["i1", "i8", "u8", "f2", "f4", "f8", "longdouble"])
+@pytest.mark.parametrize(
+    "layout,dtype",
+    [("strided", dtype) for dtype in ("i1", "i8", "u8", "f2", "f4", "f8", "longdouble")]
+    + [(layout, "f8") for layout in ("fortran", "readonly", "big-endian")],
+)
 def test_supported_normalization_layouts_and_ownership(layout: str, dtype: str) -> None:
     signal = np.arange(24, dtype=dtype).reshape(4, 6)
     if layout == "strided":

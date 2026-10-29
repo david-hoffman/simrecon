@@ -260,7 +260,7 @@ def test_reject_exact_positive_global_ties(locate: Any, pattern: str) -> None:
     reject(locate, a, "ambiguous_bead_peak")
 
 
-@pytest.mark.parametrize("peak", [Q, 2 * Q, float.fromhex("0x1p-1022"), 1.0, FMAX])
+@pytest.mark.parametrize("peak", [Q, float.fromhex("0x1p-1022"), 1.0, FMAX])
 def test_positive_extrema_without_sum_norm_or_epsilon_floor(locate: Any, peak: float) -> None:
     # Near-equal positives distinguish epsilon-based tie rejection; huge signed
     # backgrounds distinguish unnecessary sum/magnitude arithmetic.

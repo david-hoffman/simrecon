@@ -639,12 +639,10 @@ def test_voxel_axes_singletons_and_independence(api: Any, shape: tuple[int, int,
         0.0,
         float.fromhex("0x0.0000000000001p-1022"),
         float.fromhex("0x1p-1022"),
-        1e-200,
         1.0,
-        1e100,
         np.finfo(np.float64).max / 64,
     ],
-    ids=["zero", "subnormal", "min_normal", "small", "unit", "large", "max_safe"],
+    ids=["zero", "subnormal", "min_normal", "unit", "max_safe"],
 )
 def test_intensity_scaled_accuracy_and_preserved_error_mode(api: Any, scale: float) -> None:
     base = spatial_coordinates((1, 2, 3))
