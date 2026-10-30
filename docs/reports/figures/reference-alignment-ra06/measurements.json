@@ -1,0 +1,159 @@
+{
+  "alpha": 0.4,
+  "unweighted_beta": 0.009685714285714287,
+  "independent_normal_condition": 61.793075987179826,
+  "precall_absolute_budget": 2.2100230242450357e-06,
+  "fixed_image_bound": 16.0,
+  "matrix_only_solution_bound": 187.2567646895027,
+  "maximum_inverse_difference": 2.042810365310288e-14,
+  "normal_residual_linf": 1.4210854715202004e-13,
+  "estimator_comparison_pass": true,
+  "taper_invariance_pass": true,
+  "taper_untapered_difference_linf": 0.0,
+  "separated_difference_linf": 1.3322676295501878e-15,
+  "covariance_difference_linf": 4.336808689942018e-18,
+  "data_objective": 9.979270506602889,
+  "independent_data_objective": 9.979270506602893,
+  "penalty_objective": 1.6713920808021208,
+  "independent_penalty_objective": 1.6713920808021212,
+  "information_rank": 27,
+  "unknown_count": 27,
+  "conditional_expected_mse_intensity_squared": 0.02471422028199024,
+  "observed_mse_intensity_squared": 0.03552540284511882,
+  "monte_carlo_mean_mse_intensity_squared": 0.02428279649874296,
+  "risk_acceptance": "None: sampling outcomes are descriptive, never deterministic accuracy thresholds",
+  "input_arrays_sha256": "1aff36ff0595cbeb49e7ef96eeff207d57746236d6410b6b884f3855471893ff",
+  "arrays_sha256": "ab30fd4b43c9364e3d7463d76eb502c978dc7f655fe73ebb88074fb8a192b465",
+  "per_call_arrays": {
+    "call-noisy.npz": "5d308547fefdab528d8ec74904d4e0bde338c5c19e387d0629807bc3c216e17d",
+    "call-clean.npz": "7fe7a4e58e0ed6e10a01c9700c1e38d38863161db41c178d1cd4e76204b63878",
+    "call-tapered.npz": "69c2c3ab725cacb59a6fe0a38c41c95cb87d96d4e11e3c46bd113ccad1e7bac8"
+  },
+  "lock_sha256": "35b409ba276e93de95ad5af61a399aedb4500af4106d4d774eab80d40d1544f9",
+  "source_hashes": {
+    "src/simrecon/__init__.py": "4bdee2d829a83bdbc595a9248d610e5d3d5928aac2577e51dd901b5ca0a9b83a",
+    "src/simrecon/_acquisition.py": "01d254d528a6083136f9e8ba8356e4ac990e9bb7c3a90c6def8ddc2e539d72a6",
+    "src/simrecon/_alignment_bead.py": "9700c490c1a6131507d00c56554705c5890575607d84bd7801859b83bae58769",
+    "src/simrecon/_alignment_camera.py": "81b4e0d3ded2b5167f38274fad0f55bd74e987e7c5ea6bd70fb071978f166394",
+    "src/simrecon/_array_validation.py": "0ae798aa541dce3ed21ed46f489b0eef22819de43305370ef31d1fd9476d3288",
+    "src/simrecon/_bead_peak.py": "0b5b8a9648d9b571a7899304d4d9e92e69a7ef67725509824df77af11932464a",
+    "src/simrecon/_carrier.py": "788226469af52043d0a29ebb0a0edd135160cdb2c8ae4bdf4c842e694e70ad5e",
+    "src/simrecon/_carrier_selection.py": "3d48ead76208074bdc6fd44abf022227ffa14438177905b2f0097bec83e501df",
+    "src/simrecon/_cli.py": "5867daafd2d2674fd4c522a30f6fff45d3d2e500ef84de155ce8beb05af9c468",
+    "src/simrecon/_delivery.py": "3299a24f718f85aac1fb5162d18cb34a99bb7763003ea6513e121c8f8d212545",
+    "src/simrecon/_drift.py": "7c8ddf8cd9f1fb1d23fe2df16131d0593de7c3505f184b02e2ea69b948045400",
+    "src/simrecon/_empirical_frequency.py": "fef50bed13ae0e0f53e974770b44e1f43385dba372eecca26c9119b3e419f0e8",
+    "src/simrecon/_empirical_response.py": "21f9d2f1b45ae3ce28bfe13d7bcee5559fd63f5ddedf715cee4ceea702b9a907",
+    "src/simrecon/_empirical_shared_nodes.py": "f548f471f832cf91746b5cff97246e86369771e124c4b8ad2abbc011ef4f6935",
+    "src/simrecon/_empirical_transfer.py": "172bd7e326c0379d7ae1eeba0796900ec04981eb8c5cf987b076d9e7dd937e70",
+    "src/simrecon/_empirical_trilinear.py": "1909fbec7b866d1d65bd70a710f58723d62efe4986804eb52f0b356b181d9030",
+    "src/simrecon/_finite_bead_calibration.py": "51b9e8618b0f8c12e2b5fc71e2972f24a214fdbebd524adc677d68581872cbbd",
+    "src/simrecon/_fourier_block_phase.py": "d5203fb9759bf12d0093199f96cb91fbfa155ad2eb742f75ce2e96fb031521c8",
+    "src/simrecon/_illumination.py": "0efc1901848abda9d8656cfa22ee18e00b10bec44e431b6764846672f09d8ce5",
+    "src/simrecon/_imagej.py": "78b0d08d08f80216e8402f68947c4172ff2180727620cbe45bec3b2b28685245",
+    "src/simrecon/_imagej_metadata.py": "251d0aa17fbc2a5f71640b49a15ae26c9aeb386fddc1439b0e527e0bb980df57",
+    "src/simrecon/_legacy.py": "7119fd85ded5472b626ef9320a74ba4856e9493b06e6a1147fba9f852bf6d5a9",
+    "src/simrecon/_linear_response.py": "a3dadbeb59b51765d4fe1b5131e7302af130a4987dd79c774f95df37f52d1ee5",
+    "src/simrecon/_metadata.py": "860e4581685e3fa961b7f3be3eb3f8fa7646e0692345fa6cef29be2e0d052ea6",
+    "src/simrecon/_model.py": "821fea440306640e015013ae8afcdb40d5e968275887257fb3461970ddaf4c59",
+    "src/simrecon/_modern.py": "78b5513739f047d4e035599124019aea9a5b6b54fe5847645c7f893bfa3636f9",
+    "src/simrecon/_observable_volume_phase_estimation.py": "554705df8993d235ca7f249a6310e5443581abfb27c456989ec48b48fbec65e7",
+    "src/simrecon/_otf.py": "206f5a902a0af920cd39e71508f65636e8aefc90666cdc6454d219dc8147ae9f",
+    "src/simrecon/_phase.py": "c5bd012e554d781b11a4f439b84099f3e598e080dbf121aed8103d29cfa9e025",
+    "src/simrecon/_phase_carrier_scan.py": "a040757ee3a5a02aefb220bcece3f2748b8114b2762b1ef3710b206bd240dfa2",
+    "src/simrecon/_phase_carrier_selection.py": "b135ab7eab8343b6b503de7128478ae5799b0ebc0083a6f5a842248c61948ead",
+    "src/simrecon/_pixels.py": "4f4444f88893bfde004da2f683756e6f4d6aaa59cf60a5f75fb0325f235e5bf7",
+    "src/simrecon/_point_bead_calibration.py": "42d598876b463d21ab471d58ec22d81f70894de4f178ee88af3239bf89f57356",
+    "src/simrecon/_pytest_policy.py": "2f34d31383afb64af98e1bcd89398566e944f8a129a79d954d7c8f6aec098828",
+    "src/simrecon/_reconstruction.py": "c47d3bc67e51c1a885d80f08b20d8a0977b6cfb5f8aa47743ab39e3060ed8adb",
+    "src/simrecon/_scalar_camera_calibration.py": "5b924d3a4714682eb6cc7588fda31197c6a4e8e50436083c5bcabd8fe5380a0c",
+    "src/simrecon/_translation.py": "103764eb5f152cb1d0966c70ff5323abacfbb65d7a554863971bcdc2351e12ca",
+    "src/simrecon/_volume_carrier_diagnostics.py": "6e0c8b00c3e5a99b493aa0a874fb31c33b49af897c400fbad96e96e81226f3c0",
+    "src/simrecon/_volume_order_otf.py": "9cfcd035c8f2556399c23ea973af42f532c76a560edd7a281e12bcb00933eb3d",
+    "src/simrecon/_volume_otf.py": "1d071633321ffbb64e9c446edc0810fc09fd0d79986dabc0e1e840f7c98a1785",
+    "src/simrecon/_volume_phase.py": "b0d462a06d364145b566a95a3e31f52a34290d858eab400335c1bb2a30533006",
+    "src/simrecon/_volume_phase_estimation.py": "7b1b69f3093c0c7ee84d7e54066be437bc00cc46ea1c819169e1ae72ac293186",
+    "src/simrecon/_volume_translation_estimation.py": "5a7a238b6c9e2470ddd4fda1f51c0ec05e72653fc8b5fcf2cade72eba6858c7b",
+    "src/simrecon/volume_carrier_selection.py": "72740c1f69d78a34e957f35014011930cbb4a7bd591900373609ed411cddf585",
+    "src/simrecon/volume_order_gain.py": "a8e398b51a9e19fb5493002b94dd34959739d7a31f54126ebe45358b9f1178af",
+    "src/simrecon/volume_reconstruction.py": "66f9663410c490ffdf64d6f395befc84f385927e664881180cb8da67d660b65f",
+    "src/simrecon/weighted_volume_reconstruction.py": "7d717c836b8d9f17300274c01f30b86b8f0aca9762820b2684eef591ed1d21d9"
+  },
+  "limits": [
+    "Finite periodic model only",
+    "Single observed reconstruction error is not expected risk",
+    "Monte Carlo is descriptive; no observed realization sets an acceptance threshold",
+    "Expected risk analytic conditional on exact supplied forward map/covariance and fixed alpha",
+    "No legacy code/convention or automatic Wiener heuristic",
+    "No calibration/noise-estimation uncertainty or real-instrument optimality claim"
+  ],
+  "model": "fixed finite periodic real-map demonstration",
+  "settings": "docs/reports/reference-alignment-ra06-design.json",
+  "observations": "local artifacts/ra06/figure-observation-1 originals",
+  "runtime_environment": {
+    "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+    "numpy": "2.5.3",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O"
+  },
+  "render_environment": {
+    "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+    "matplotlib": "3.11.0",
+    "numpy": "2.5.1"
+  },
+  "spectral_display": {
+    "kz_per_um": 0,
+    "averaged_axes": [
+      "orientation",
+      "exposure",
+      "ky"
+    ],
+    "kx_per_um": [
+      -3.0769230769230766,
+      -1.5384615384615383,
+      0.0,
+      1.5384615384615383,
+      3.0769230769230766
+    ],
+    "noise_power": [
+      0.00150476430139498,
+      0.001524635990037239,
+      0.0012779454231693125,
+      0.001524635990037239,
+      0.0015047643013949804
+    ],
+    "residual_power": [
+      0.0011459408709259672,
+      0.0013745511777840842,
+      0.001123428683783299,
+      0.0013745511777840842,
+      0.0011459408709259672
+    ],
+    "power_unit": "intensity_squared",
+    "scale": "linear"
+  },
+  "covariance_display": {
+    "scale": "linear, symmetric about zero",
+    "limits": [
+      -0.004552269261358524,
+      0.004552269261358524
+    ]
+  },
+  "figures": [
+    {
+      "original": "artifacts/ra06/figure-render-2/weighted-inverse.png",
+      "tracked_copy": "docs/reports/figures/reference-alignment-ra06/weighted-inverse.png",
+      "sha256": "ca58f2721c7d1e743dec6a88653dcf341c4901e86cd6fcb80103ff1eb05cfaa2"
+    },
+    {
+      "original": "artifacts/ra06/figure-render-2/weighted-inverse.svg",
+      "tracked_copy": "docs/reports/figures/reference-alignment-ra06/weighted-inverse.svg",
+      "sha256": "f4cb8305f503c77196cd96ac8cb714796273bf7936522ce91d583207eb9f098d",
+      "original_sha256": "eaee993db8ec990a5fc5f0349a859c6ced0a7b08ffd7bc16f804095045f029fb",
+      "transformation": "Trailing ASCII whitespace stripped in published copy only; normalized SVG XML/path tokens equal"
+    }
+  ],
+  "driver_original_observation_sha256": "7fcefe3e64173e3fca0d0b2ed989c155fedc03825287ee095e1be6fccc2b051a",
+  "driver_final_render_sha256": "7cdc6e2238e1bd97f049e6d479a12739d4156c2b82504582e11d213e6fc090b8",
+  "driver_admission": "Local artifacts/ra06/figure-driver-admission-v5.json (render-only) and v6.json (style/docstrings, computationalAST unchanged); original arrays/records/renders preserved",
+  "driver_published_sha256": "332a294d0ca8c6fc797a60b633d847bcdc9649d45b2a72d52b588ad17f96e028"
+}

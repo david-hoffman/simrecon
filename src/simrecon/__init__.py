@@ -52,6 +52,7 @@ from ._volume_translation_estimation import VolumeTranslationEstimate, estimate_
 from .volume_carrier_selection import VolumeCarrierSelection, select_volume_carrier
 from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
+from .weighted_volume_reconstruction import WeightedReconstruction3D, reconstruct_volume_weighted
 
 __all__ = [
     "AlignmentBeadCalibration",
@@ -91,6 +92,7 @@ __all__ = [
     "VolumePhaseComponents",
     "VolumePhaseEstimate",
     "VolumeTranslationEstimate",
+    "WeightedReconstruction3D",
     "WriteReport",
     "adapt_empirical_volume_response",
     "adapt_empirical_volume_response_shared_nodes",
@@ -120,6 +122,7 @@ __all__ = [
     "read",
     "reconstruct",
     "reconstruct_volume",
+    "reconstruct_volume_weighted",
     "sample_empirical_volume_transfer",
     "sample_alignment_order_transfer",
     "scan_carriers",
