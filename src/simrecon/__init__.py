@@ -1,6 +1,11 @@
 """Spatial image conversion through explicit, value-oriented interfaces."""
 
 from ._acquisition import RawAcquisition, declare_acquisition
+from ._alignment_bead import (
+    AlignmentBeadCalibration,
+    calibrate_alignment_bead,
+    sample_alignment_order_transfer,
+)
 from ._alignment_camera import AlignmentCameraFrames, AlignmentCameraPair, correct_alignment_pair
 from ._bead_peak import BeadPeak, locate_bead_peak
 from ._carrier import CarrierCandidate, scan_carriers
@@ -49,6 +54,7 @@ from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_ga
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
 
 __all__ = [
+    "AlignmentBeadCalibration",
     "AlignmentCameraFrames",
     "AlignmentCameraPair",
     "BeadPeak",
@@ -89,6 +95,7 @@ __all__ = [
     "adapt_empirical_volume_response",
     "adapt_empirical_volume_response_shared_nodes",
     "adapt_empirical_volume_response_trilinear",
+    "calibrate_alignment_bead",
     "calibrate_raw_point_bead",
     "calibrate_raw_finite_bead",
     "correct_alignment_pair",
@@ -114,6 +121,7 @@ __all__ = [
     "reconstruct",
     "reconstruct_volume",
     "sample_empirical_volume_transfer",
+    "sample_alignment_order_transfer",
     "scan_carriers",
     "scan_volume_carriers",
     "scan_volume_phase_carriers",
