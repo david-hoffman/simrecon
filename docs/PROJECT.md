@@ -142,3 +142,7 @@ The owner's full noisy simulation request and explicit images-only choice next s
 ## PR53 published-head completion route
 
 The owner selected starting from the published PR53 head and finishing the same full noisy images-only task. [The completion contract and ownership](tasks/pr53-completion.md) preserve all existing scientific contracts, native high-risk roles, truth separation, exact-candidate full-local/report/platform gates and historical accounting. The previously owner-selected named advisory-percentage migration applies; no scientific acceptance or gate waiver follows. The actual specimen solver and safe workflow remain dependent work.
+
+## Reference-alignment RA04 camera composition
+
+The owner's 15-step reference-alignment continuation selects [RA04 paired camera and intensity correction](contracts/reference-alignment-ra04-v1.md) above completed RA03. The [task pointer](tasks/reference-alignment-ra04.md) retains ownership, evidence and exact-candidate/publication status. This additive composition preserves explicit effective baselines, common output gauge and exposure factors, retains estimated camera uncertainty ingredients and reports unsupported exposure/sum-equalization modes as unavailable. It adds no new estimator, fitted reconstruction behavior or real-instrument calibration claim. The settled advisory-percentage behavior/risk policy and complete full-local/both-platform report gates apply.
