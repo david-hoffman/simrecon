@@ -1,0 +1,41 @@
+{
+  "record_type": "restricted C implementation handoff, not final-candidate review",
+  "scientific_baseline": "6329259ca2e58db41579e9a235ac8a436e0236c6",
+  "ownership": [
+    "src/simrecon/_alignment_camera.py",
+    "src/simrecon/__init__.py"
+  ],
+  "source_sha256": {
+    "src/simrecon/_alignment_camera.py": "81b4e0d3ded2b5167f38274fad0f55bd74e987e7c5ea6bd70fb071978f166394",
+    "src/simrecon/__init__.py": "fc977b9d7dcd98bde61979e9bb07c514c4fec70c955fe43905de78d51741866f"
+  },
+  "frozen_checkpoint": "test-checkpoint.json",
+  "frozen_test_sha256": "cabb7bc5d2f9edbf563151f1f947a147d64d279cf9f541fe1b1f7b833797be02",
+  "frozen_fixture_sha256": "fd3edcf64910fd214e3526c0b2aea7fe9830a217a17f96ae5e393413f3ead819",
+  "focused_test_command": ".venv/bin/python -m pytest -q -s -p no:cacheprovider tests/test_reference_alignment_ra04.py tests/test_linear_response_correction.py tests/test_scalar_camera_calibration.py tests/test_image_only_specimen_fit.py",
+  "focused_native_status": 0,
+  "focused_tests_passed": 946,
+  "pytest_seconds": 2.47,
+  "ruff_lint_format_pyright": "final native0",
+  "initial_product_batches": 1,
+  "C_correction_batches": 1,
+  "initial_static_check_failures": 3,
+  "diagnosed_causes": [
+    "four overlong lines/formatting",
+    "three mode/optional type-narrowing errors"
+  ],
+  "additional_inspection_lookup_failure": "_errors.py absent; existing primitive imports identify _model.SimreconError",
+  "primitive_test_gate_policy_edits": 0,
+  "native_report_sha256": "d1b410f5c5ae801b20c3f92bd2070570fa9096ab4cff35bd7ffff9a1cf89ff72",
+  "native_usage": {
+    "input_tokens": 1147226,
+    "cached_input_tokens": 1067776,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 14176,
+    "reasoning_output_tokens": 3747
+  },
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "high",
+  "actual_served_attribution_cost": "unknown",
+  "limits": "Focused proof only; final exact-candidate make verify, independent D, hosted platforms and cleanup are separately recorded outside tracked candidate bytes."
+}

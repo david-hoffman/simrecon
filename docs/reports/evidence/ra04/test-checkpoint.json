@@ -1,0 +1,105 @@
+{
+  "record_type": "immutable preimplementation test checkpoint",
+  "scientific_baseline_head": "6329259ca2e58db41579e9a235ac8a436e0236c6",
+  "contract_revision": 2,
+  "scenarios": "R01\u2013R23",
+  "test_functions": 53,
+  "test_cases": 292,
+  "source_sha256": {
+    "docs/contracts/reference-alignment-ra04-v1.md": "10750dbdd65be0d2112a926ab2a796147f27456b66cc0ea43f5985692cd23937",
+    "tests/test_reference_alignment_ra04.py": "cabb7bc5d2f9edbf563151f1f947a147d64d279cf9f541fe1b1f7b833797be02",
+    "tests/reference_alignment_ra04_fixture.py": "fd3edcf64910fd214e3526c0b2aea7fe9830a217a17f96ae5e393413f3ead819"
+  },
+  "fresh_review": "B2 ACCEPT complete revised checkpoint",
+  "native_review_sha256": "070220e57eef5c7742f41765a8b4409f9490665e74c495fe65219c2899b580cb",
+  "public_review": "B2-review.md",
+  "initially_passing_controls": 16,
+  "expected_feature_absence_failures": 276,
+  "test_author_launches": 3,
+  "independent_full_B_reviews": 2,
+  "resolved_blocking_test_defects": 1,
+  "coordinator_metadata_contract_corrections": 1,
+  "fixture_sampling_corrections": 1,
+  "reported_source_free_invocations_through_B2": 63,
+  "reported_focused_runs_through_B2": 12,
+  "repeated_missing_export_failure_events": 3109,
+  "failure_event_limit": "Repeated events represent one absent additive API, not independent product defects.",
+  "roles": {
+    "A": {
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "native_completed_turns": 1,
+      "native_usage": {
+        "input_tokens": 2683670,
+        "cached_input_tokens": 2628224,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 57881,
+        "reasoning_output_tokens": 18415
+      },
+      "actual_served_attribution": "unknown",
+      "monetary_cost": "unknown"
+    },
+    "A2": {
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "native_completed_turns": 1,
+      "native_usage": {
+        "input_tokens": 1270504,
+        "cached_input_tokens": 1209984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15852,
+        "reasoning_output_tokens": 2755
+      },
+      "actual_served_attribution": "unknown",
+      "monetary_cost": "unknown"
+    },
+    "B": {
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "native_completed_turns": 1,
+      "native_usage": {
+        "input_tokens": 1292737,
+        "cached_input_tokens": 1209216,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14203,
+        "reasoning_output_tokens": 9174
+      },
+      "actual_served_attribution": "unknown",
+      "monetary_cost": "unknown"
+    },
+    "A3": {
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "native_completed_turns": 1,
+      "native_usage": {
+        "input_tokens": 1321145,
+        "cached_input_tokens": 1240704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 17186,
+        "reasoning_output_tokens": 3648
+      },
+      "actual_served_attribution": "unknown",
+      "monetary_cost": "unknown"
+    },
+    "B2": {
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "native_completed_turns": 1,
+      "native_usage": {
+        "input_tokens": 1215574,
+        "cached_input_tokens": 1113472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8219,
+        "reasoning_output_tokens": 2577
+      },
+      "actual_served_attribution": "unknown",
+      "monetary_cost": "unknown"
+    }
+  },
+  "usage_limit": "Cached input is already included in input; reasoning output is a component of output. No overlapping/cumulative counter is summed. Ancestors remain in their own preserved ledgers.",
+  "coverage_policy": "approved behavior coverage and independent risk review; percentages advisory; native report integrity and both required platforms binding",
+  "review_limit": "Actual MemoryError and unrelated in-call warnings/exceptions not induced; adapter and full-candidate gates occur after this checkpoint.",
+  "procedural_deviation": "B2 read full procedural test-audit skill; no implementation/oracle/history exposure, links followed or authority expansion.",
+  "human_numeric_limits": "not set",
+  "whole_elapsed_owner_wait_and_unavailable_metering": "unknown"
+}

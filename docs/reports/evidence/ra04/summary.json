@@ -1,0 +1,294 @@
+{
+  "schema": "RA04-numerical-controls-v1",
+  "inputs_sha256": {
+    "docs/contracts/reference-alignment-ra04-v1.md": "10750dbdd65be0d2112a926ab2a796147f27456b66cc0ea43f5985692cd23937",
+    "tests/test_reference_alignment_ra04.py": "cabb7bc5d2f9edbf563151f1f947a147d64d279cf9f541fe1b1f7b833797be02",
+    "tests/reference_alignment_ra04_fixture.py": "fd3edcf64910fd214e3526c0b2aea7fe9830a217a17f96ae5e393413f3ead819",
+    "src/simrecon/_alignment_camera.py": "81b4e0d3ded2b5167f38274fad0f55bd74e987e7c5ea6bd70fb071978f166394",
+    "src/simrecon/__init__.py": "fc977b9d7dcd98bde61979e9bb07c514c4fec70c955fe43905de78d51741866f",
+    "src/simrecon/_linear_response.py": "a3dadbeb59b51765d4fe1b5131e7302af130a4987dd79c774f95df37f52d1ee5",
+    "src/simrecon/_scalar_camera_calibration.py": "5b924d3a4714682eb6cc7588fda31197c6a4e8e50436083c5bcabd8fe5380a0c",
+    "src/simrecon/_acquisition.py": "01d254d528a6083136f9e8ba8356e4ac990e9bb7c3a90c6def8ddc2e539d72a6",
+    "uv.lock": "35b409ba276e93de95ad5af61a399aedb4500af4106d4d774eab80d40d1544f9",
+    "docs/reports/render_reference_alignment_ra04.py": "119ea27d1843d1c71e5a79ca904dedbc7b481dcdda3dafb2cd250b6913572f89"
+  },
+  "declared": {
+    "specimen_shape": [
+      2,
+      3,
+      2,
+      3
+    ],
+    "bead_shape": [
+      1,
+      4,
+      1,
+      2
+    ],
+    "specimen_max_absolute_error": 0.0,
+    "bead_max_absolute_error": 0.0,
+    "negative_output_samples": 18,
+    "operation_order": [
+      "subtract_offset",
+      "divide_response",
+      "divide_exposure"
+    ],
+    "units": "synthetic common signal unit",
+    "limits": "Exact dyadic finite controls; labels declare rather than authenticate physical calibration."
+  },
+  "estimated": {
+    "cases": [
+      {
+        "flat_group_mean_counts": 20,
+        "observed_blank_counts": 12.0,
+        "observed_contrast_counts": 8.0,
+        "declared_reference_contrast_counts": 8,
+        "known_output": [
+          -1.0,
+          0.0,
+          0.5,
+          2.0
+        ],
+        "independent_declared_signal": [
+          -1.0,
+          0.0,
+          0.5,
+          2.0
+        ],
+        "known_max_error_to_independent_signal": 0.0,
+        "estimated_output": [
+          -1.0,
+          0.0,
+          0.5,
+          2.0
+        ],
+        "independent_finite_gauge_output": [
+          -1.0,
+          0.0,
+          0.5,
+          2.0
+        ],
+        "max_absolute_error_to_finite_gauge": 0.0,
+        "max_absolute_difference_from_declared_gauge": 0.0,
+        "camera_variances_counts2": [
+          1.6666666666666665,
+          6.666666666666666,
+          26.666666666666664
+        ],
+        "retained_variances_counts2": [
+          1.6666666666666665,
+          6.666666666666666,
+          26.666666666666664
+        ],
+        "empirical_frame_mean_se_counts": [
+          1.1547005383792515,
+          1.1547005383792515,
+          1.1547005383792515
+        ],
+        "optional_gain_counts_per_e": 2.5,
+        "limits": "Deterministic finite moments, not random sampling or real-instrument calibration."
+      },
+      {
+        "flat_group_mean_counts": 21,
+        "observed_blank_counts": 12.0,
+        "observed_contrast_counts": 9.0,
+        "declared_reference_contrast_counts": 8,
+        "known_output": [
+          -1.0,
+          0.0,
+          0.5,
+          2.0
+        ],
+        "independent_declared_signal": [
+          -1.0,
+          0.0,
+          0.5,
+          2.0
+        ],
+        "known_max_error_to_independent_signal": 0.0,
+        "estimated_output": [
+          -0.8888888888888888,
+          0.0,
+          0.4444444444444444,
+          1.7777777777777777
+        ],
+        "independent_finite_gauge_output": [
+          -0.8888888888888888,
+          0.0,
+          0.4444444444444444,
+          1.7777777777777777
+        ],
+        "max_absolute_error_to_finite_gauge": 0.0,
+        "max_absolute_difference_from_declared_gauge": 0.22222222222222232,
+        "camera_variances_counts2": [
+          1.6666666666666665,
+          6.666666666666666,
+          26.666666666666664
+        ],
+        "retained_variances_counts2": [
+          1.6666666666666665,
+          6.666666666666666,
+          26.666666666666664
+        ],
+        "empirical_frame_mean_se_counts": [
+          1.1547005383792515,
+          1.1547005383792515,
+          1.1547005383792515
+        ],
+        "optional_gain_counts_per_e": 2.2222222222222223,
+        "limits": "Deterministic finite moments, not random sampling or real-instrument calibration."
+      }
+    ],
+    "units": "Each estimated curve uses its explicitly different observed reference-flat gauge."
+  },
+  "reconstruction": {
+    "cases": [
+      {
+        "control": "signed constant",
+        "source_scale": 1.0,
+        "DC_real": -1.8,
+        "expected_DC_real": -1.8,
+        "max_spectrum_absolute_error": 0.0,
+        "max_image_absolute_error": 0.0,
+        "max_imaginary_image": 0.0,
+        "fixed_ridge": 0.125,
+        "expected_amplitude_shrinkage": 0.9
+      },
+      {
+        "control": "signed constant",
+        "source_scale": 2.0,
+        "DC_real": -3.6,
+        "expected_DC_real": -3.6,
+        "max_spectrum_absolute_error": 0.0,
+        "max_image_absolute_error": 0.0,
+        "max_imaginary_image": 0.0,
+        "fixed_ridge": 0.125,
+        "expected_amplitude_shrinkage": 0.9
+      },
+      {
+        "control": "point selected coefficients",
+        "source_scale": 1.0,
+        "DC_real": 0.12,
+        "expected_DC_real": 0.12,
+        "max_spectrum_absolute_error": 2.7755575615628914e-17,
+        "max_image_absolute_error": 5.551115123125783e-17,
+        "max_imaginary_image": 0.0,
+        "fixed_ridge": 0.125,
+        "expected_amplitude_shrinkage": 0.9
+      },
+      {
+        "control": "point selected coefficients",
+        "source_scale": 2.0,
+        "DC_real": 0.24,
+        "expected_DC_real": 0.24,
+        "max_spectrum_absolute_error": 5.551115123125783e-17,
+        "max_image_absolute_error": 1.1102230246251565e-16,
+        "max_imaginary_image": 0.0,
+        "fixed_ridge": 0.125,
+        "expected_amplitude_shrinkage": 0.9
+      }
+    ],
+    "point_phase_sums": [
+      1.1909830056250525,
+      1.4122147477075266,
+      2.8090169943749475,
+      2.5877852522924734
+    ],
+    "reference_sum_equalization": "disabled; requested per_frame_sum is unavailable",
+    "limits": "Fixed finite periodic grid/transfer/mask/ridge. The plotted curve is the defined estimator, not a recovered point shape or a resolution claim."
+  },
+  "original_frozen_observations": {
+    "observation_manifest_sha256": "1aeae458173155d0609020d25b299e087e16ffa6e31453f744e8b048584ebd5c",
+    "original_arrays_sha256": {
+      "camera_dark.npy": "fea336a5db8d50bbdc061aa9e4e5953210b3cecee18e25de0ffea73a2438de2c",
+      "camera_blank.npy": "cd0707a3ce813d8776d0135d228c02448e2294941ef11dd1796d488db28dd82f",
+      "camera_flat.npy": "b7795205af31bf6d2242c604c68fc3499e9f6cfe8a5fc75dbd969ce88d446bd6",
+      "calibration_central.npy": "7fbe053b5ea1e1f0da9f7433b8e5244faef69219528766285165550aaf1ef26c",
+      "calibration_training.npy": "d0f507a39c8f42542b2b79494673ac4102f95d086d9c16e336c8d2601332d1ec",
+      "calibration_heldout.npy": "39dfea4533508e599b3be7892102d1058fe9c023eb51fb9b39ffb1764938dd4e",
+      "specimen_o0_p0.npy": "993ded020eb318f73bd35b1e7561ed8ef008017c41254f34eecce7153e6436d0",
+      "specimen_o0_p1.npy": "21999f594ce4bef342eaab3b28510800a15e210c803b50afef94676ed933901c",
+      "specimen_o0_p2.npy": "fb4199518dc66ede89fa81f42a37da6f8947c8e6473a4b5387f36b8bb792f20c",
+      "specimen_o0_p3.npy": "f2cea7ac326d12568b9cec45635b744fbeda958e97c412a6a90081578e9f6eeb",
+      "specimen_o0_p4.npy": "2f4eaa9e2a96cd5a28565f08af46cbb315fc5723b815f10bf499bb89dbd55f0d",
+      "specimen_o1_p0.npy": "258a82cf861ab0180d3960747d068a78b80da918432a9f85523d355530f17a28",
+      "specimen_o1_p1.npy": "180d42052532a31bbd40bb67ab260c15ce9359f87fee386a2f00494415a7d4f9",
+      "specimen_o1_p2.npy": "4d9052415dc566bb92cec443d206951e56a2c53c526ade5ea2724556ee10feea",
+      "specimen_o1_p3.npy": "4ac440c3febe430b7773511ab950bb0cc66e220b441c75240a6f1fcece8679b2",
+      "specimen_o1_p4.npy": "5f783423e24db573715bf4523f41c097dc1923717c071ad9cd485168e76b5d84",
+      "specimen_o2_p0.npy": "6e310d2651d3a2fc81ba01fb5a5b2df987928cfdeb34dbc93c0cb8d0fc157f4f",
+      "specimen_o2_p1.npy": "c8478b35cb140f048493fb09ba03ad5c7c2804c2405c30af5f886d72c9173941",
+      "specimen_o2_p2.npy": "73c2205b832f49f80d78b68cf405e2405d532fddee81b14e562e5715b4573c95",
+      "specimen_o2_p3.npy": "cf5ad668e6538c94052658c57b8591b228a082f86131058b7a6da93b15e90df5",
+      "specimen_o2_p4.npy": "43a6ec66bad4f50b61f0c175f972bfdccd11716aa8fa3f41bc2cecdeb488eba4"
+    },
+    "members": [
+      {
+        "member": "Specimen",
+        "shape": [
+          3,
+          5,
+          32,
+          256,
+          256
+        ],
+        "exposures": 15,
+        "max_absolute_difference_from_explicit_affine_composition": 0.0,
+        "negative_corrected_samples": 5693052,
+        "corrected_minimum": -0.016346177757470225,
+        "corrected_maximum": 34.500804358866375,
+        "retained_output_sha256": "a1306bf930d54e70d8c769a2336133e2e3c2c4a3ece3fb17ff86f1d3875aee4b",
+        "retained_output_bytes": 251658368,
+        "declared_source_calibration_id": "original specimen provenance"
+      },
+      {
+        "member": "Held-out bead",
+        "shape": [
+          3,
+          5,
+          8,
+          32,
+          32
+        ],
+        "exposures": 15,
+        "max_absolute_difference_from_explicit_affine_composition": 0.0,
+        "negative_corrected_samples": 1951,
+        "corrected_minimum": -0.010613843560555277,
+        "corrected_maximum": 47.736054463739436,
+        "retained_output_sha256": "6dfa04da4a883b8208ff0af80d95f39b8b694f7741ddf16bd2bf33f09f62a0aa",
+        "retained_output_bytes": 983168,
+        "declared_source_calibration_id": "original held-out bead provenance"
+      }
+    ],
+    "camera_blank_counts": 20.197306210405323,
+    "camera_contrast_counts": 1700.0256946587622,
+    "retained_camera_variances_counts2": [
+      18.09790361280762,
+      35.34228184492309,
+      2916.443545391731
+    ],
+    "retained_camera_empirical_mean_se_counts": [
+      0.004685188198483921,
+      0.013735562876207027,
+      0.06548698831270354
+    ],
+    "optional_gain_counts_per_e": 1.6947398339912252,
+    "camera_information_codes": [],
+    "projection": "XY=max over z; XZ=max over y; physical aspect retained; coordinates local to each recorded volume",
+    "shared_affine_display_raw_count_limits": [
+      -4.641876965865885,
+      46662.34093351172
+    ],
+    "shared_affine_display_relative_limits": [
+      -0.014611063382343203,
+      27.436140391197767
+    ],
+    "limits": "Original frozen bytes; no new simulation/fit/settings/seeds. Gauge equivalence only, not recovered source, resolution, noise removal or instrument calibration. MIPs conceal depth and negative samples; numerical counters cover full arrays."
+  },
+  "versions": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.10.7"
+  }
+}
