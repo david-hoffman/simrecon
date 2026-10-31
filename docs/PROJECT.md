@@ -168,3 +168,20 @@ The owner's reference-alignment chain next selects [RA05 corrected-bead calibrat
 ## Reference-alignment RA06 covariance-weighted inverse
 
 The authorized chain next selects [RA06 covariance-weighted known-parameter volume inversion](contracts/reference-alignment-ra06-v1.md) above accepted RA05. The additive real-coordinate estimator propagates declared exposure covariance through generalized least-squares separation, retains dependent negative bands and defines regularization in the raw whitened objective. Its [task pointer](tasks/reference-alignment-ra06.md) owns exact role/check/figure/cleanup evidence. Output taper follows the inverse. The original public estimator is preserved; no automatic noise/penalty estimation or undeclared-noise optimality claim is selected. Approved behavior/risk review, advisory percentages and complete full-local/both-platform report gates remain binding.
+
+## Reference-alignment RA08 finite-field objective
+
+The standing RA07–RA15 authorization next selects the [RA08 finite-field
+contract](contracts/reference-alignment-ra08-v1.md) above completed RA07. Its
+additive development module consumes a supplied sampled kernel and illumination,
+with explicit zero exterior, fixed source box, detector crop and convolution
+padding. It solves the declared residual-weighted ridge objective with optional
+nonnegativity and records mathematical stationarity separately from iteration
+or stagnation stops. Input residual weighting precedes the inverse; output
+taper and nonperiodic display zoom follow it. The periodic spectral estimator
+and historical finite-procedure fitter remain separate modes. The [task
+pointer](tasks/reference-alignment-ra08.md) owns exact role/check/figure/cleanup
+evidence. No real-exterior inference, automatic scene growth, physical parameter
+fit, flux normalization or continuum-resolution claim is selected. Approved
+behavior/risk review, advisory percentages and complete full-local/both-platform
+report gates remain binding.
