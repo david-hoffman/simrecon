@@ -147,6 +147,19 @@ The owner selected starting from the published PR53 head and finishing the same 
 
 The owner's 15-step reference-alignment continuation selects [RA04 paired camera and intensity correction](contracts/reference-alignment-ra04-v1.md) above completed RA03. The [task pointer](tasks/reference-alignment-ra04.md) retains ownership, evidence and exact-candidate/publication status. This additive composition preserves explicit effective baselines, common output gauge and exposure factors, retains estimated camera uncertainty ingredients and reports unsupported exposure/sum-equalization modes as unavailable. It adds no new estimator, fitted reconstruction behavior or real-instrument calibration claim. The settled advisory-percentage behavior/risk policy and complete full-local/both-platform report gates apply.
 
+## Reference-alignment RA07 fractional relocation
+
+The authorized RA01–RA15 continuation selects [RA07 fractional finite-window
+relocation](contracts/reference-alignment-ra07-v1.md) above completed RA06.
+The [task pointer](tasks/reference-alignment-ra07.md) owns exact review/check and
+publication evidence. The additive operation uses supplied physical lateral
+carriers, native filtering and output-grid phase ramps. Its declared periodic
+window, signed transfer interpolants and complex Nyquist convention recover
+the accepted integer operation at exact integer geometry. It estimates no
+unknown parameter and promises no continuum resolution or finite exterior.
+The approved behavior/risk policy, advisory percentages and complete exact
+local/both-platform report gates remain unchanged.
+
 
 ## Reference-alignment RA05 matched order calibration
 
