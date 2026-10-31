@@ -201,3 +201,17 @@ is not an exact arbitrary continuous-optics likelihood. The
 figure, check and cleanup evidence. Known exposure phases and fixed responses
 remain supplied. Approved behavior/risk review, advisory percentages and complete
 full-local/both-platform reports remain binding.
+
+## Reference-alignment RA10 exposure phases
+
+The standing continuation selects [RA10 fixed-gauge exposure phase inference](contracts/reference-alignment-ra10-v1.md)
+above completed RA09. One shared real source and explicitly supplied finite
+complex order kernels define the raw nonwrapping fractional-carrier model.
+Known phases, common offsets and independent deviations preserve the fixed
+index-zero calibration gauge. Covariance weighting, local nuisance-projected
+information and masked-pixel predictions expose conditional recovery limits;
+local rank never establishes global uniqueness. The [task pointer](tasks/reference-alignment-ra10.md)
+owns exact candidate, review, check, figures, accounting and cleanup evidence.
+No automatic conversion from sampled transfers, joint calibration, motion or
+real-data performance is selected. Approved behavior/risk review, advisory
+percentages and complete exact full-local/both-platform gates apply.

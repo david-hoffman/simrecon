@@ -49,6 +49,7 @@ from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
 from ._volume_phase_estimation import VolumePhaseEstimate, estimate_volume_phases
 from ._volume_translation_estimation import VolumeTranslationEstimate, estimate_volume_translation
+from .exposure_phase import ExposurePhaseCandidate, ExposurePhaseFit, fit_exposure_phases
 from .fractional_volume_reconstruction import reconstruct_volume_fractional
 from .volume_carrier_selection import VolumeCarrierSelection, select_volume_carrier
 from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
@@ -68,6 +69,8 @@ __all__ = [
     "DriftCorrection",
     "EmpiricalFrequencySamples",
     "EmpiricalVolumeResponse",
+    "ExposurePhaseCandidate",
+    "ExposurePhaseFit",
     "FiniteBeadCalibration",
     "IlluminationEstimate",
     "ImagejSeries",
@@ -116,6 +119,7 @@ __all__ = [
     "estimate_volume_phases",
     "estimate_volume_translation",
     "export_imagej",
+    "fit_exposure_phases",
     "fit_volume_overlap",
     "harmonize",
     "inspect",

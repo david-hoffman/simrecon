@@ -1,0 +1,34 @@
+{
+  "all_phase_ranks_match": true,
+  "all_source_ranks_match": true,
+  "archive_checks_passed": true,
+  "call_count": 10,
+  "candidate_count": 11,
+  "earlier_arrays_unchanged": true,
+  "heldout_pixels": 12,
+  "heldout_values": 84,
+  "identity_checks_passed": true,
+  "limits": "Not a fit rerun, product test or acceptance verdict. No search-point audit, statistical uncertainty, physical identification, platform qualification or preservation cleanup claim. Hash verification is evidence linkage, not an engineered immutability guarantee.",
+  "max_absolute_differences": {
+    "forward_max_absolute_difference": 4.440892098500626e-16,
+    "objective_absolute_difference": 1.4210854715202004e-14,
+    "phase_singular_values_max_absolute_difference": 3.552713678800501e-14,
+    "source_lstsq_max_absolute_difference": 7.884803920887862e-13
+  },
+  "method": "real cosine/sine harmonics; symmetric eigen covariance whitening; np.linalg.lstsq at frozen phases; independent cutoff tangent projection",
+  "metric_differences": {
+    "full_evaluation_absolute_difference": 0.0,
+    "heldout_evaluation_absolute_difference": 0.0,
+    "phase_evaluation_absolute_difference": 0.0
+  },
+  "numpy": "2.5.3",
+  "observation_freeze_sha256": "a39a2a34727b0eff7b6ca880082a3638b5ccffaad9fb67310e26fa3aec64a4a9",
+  "original_probe_sha256": "5c7dfff2fc8371bce1b54d228bf41dca792d0c56d51ed0ef5c98e46708f27a71",
+  "original_results_sha256": "2a86eb2bb334304d57a0a645e363af8d56d6b5278eb212fdb4c3f5ecafa50811",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "python_version": "3.13.12",
+  "roundoff_note": "Reported values are observed differences between independent arithmetic routes. No new product acceptance threshold was selected; exact full checks/review remain separate.",
+  "schema": "ra10-independent-recomputation-summary-v1",
+  "training_pixels": 48,
+  "training_values": 336
+}
