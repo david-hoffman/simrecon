@@ -1,0 +1,96 @@
+{
+  "schema": "org.simrecon.ra07-comparison",
+  "version": 1,
+  "units": {
+    "spacing": "micrometres",
+    "carrier": "cycles per micrometre",
+    "spectrum_volume": "input intensity",
+    "transfer": "dimensionless"
+  },
+  "input_shape": [
+    1,
+    7,
+    1,
+    5,
+    6
+  ],
+  "output_shape": [
+    1,
+    11,
+    12
+  ],
+  "detector_voxel_size_um": [
+    0.5,
+    0.25,
+    0.25
+  ],
+  "carriers_per_um": [
+    [
+      0.5,
+      -0.5
+    ]
+  ],
+  "carrier_bins": [
+    [
+      0.625,
+      -0.75
+    ]
+  ],
+  "gains": [
+    1.2
+  ],
+  "regularization": 0.05,
+  "penalty_units": "squared transfer",
+  "phases_rad": [
+    0,
+    0.7,
+    1.6,
+    2.5,
+    3.4,
+    4.7,
+    5.9
+  ],
+  "observations": {
+    "spectrum_complex_max_error": 8.339763171065059e-16,
+    "volume_complex_max_error": 4.902106326503527e-15,
+    "spectrum_bound": 4.0099699430310646e-06,
+    "volume_bound": 0.0005293160324801005,
+    "spectrum_amplitude_max_error": 7.563394355258879e-16,
+    "different_after_shift_max_difference": 0.7495746746425085,
+    "voxel_size_um": [
+      0.5,
+      0.11363636363636363,
+      0.125
+    ],
+    "input_sha256": "03fc918b8d9cd3b84fbe5a80a2df6116f24f4261deaba5efa2e655df7a4ef187",
+    "expectation_sha256": "fad4e03bc10a3d5985dd833eda437f15a424212079fd93b64f124622b0977efa",
+    "observed_sha256": "ad17536b7c02aac368c17a556df9abe75a12757bb47d44af9fd892f14b81033d",
+    "passed": true
+  },
+  "prior_spectrum_bound": 4.0099699430310646e-06,
+  "prior_volume_bound": 0.0005293160324801005,
+  "phase_condition": 1.8494555775321955,
+  "minimum_denominator": 0.24620000000000003,
+  "independent_preproduct_crosscheck": {
+    "status": 0,
+    "prior_crossobserver_bound": 1e-10,
+    "spectrum_difference": 7.953532149690967e-16,
+    "volume_difference": 5.3386859421193355e-15,
+    "purpose": "Independent Decimal/fsum/rational fixture observer crosschecks matrix direct-sum figure expectations BEFORE product implementation or observation",
+    "product_imported_or_called": false,
+    "inputs_sha256": "03fc918b8d9cd3b84fbe5a80a2df6116f24f4261deaba5efa2e655df7a4ef187",
+    "expectations_sha256": "fad4e03bc10a3d5985dd833eda437f15a424212079fd93b64f124622b0977efa",
+    "fixture_sha256": "554983ab0145494bf19a0c175f13d34b5d5121fe3f14484949640b8c19c5e48a",
+    "original_inputs_expectations_unchanged": true
+  },
+  "published_png_sha256": "16ee0ce2c29a34ea2478170302d9514309ee5220052121c6851b49f165781b47",
+  "reference_and_observation_AST": "unchanged through render-only extent/legend corrections",
+  "product_observations": 1,
+  "rendering": "Matplotlib3.11.0 Agg, NumPy2.5.1 separate environment; original PNG/SVG from both renders retained locally",
+  "limits": [
+    "Finite periodic stored-input estimator only",
+    "Transfer interpolation differs from observation relocation",
+    "Bottom-right reference component includes native window leakage and relocation",
+    "No continuum resolution, finite exterior or instrument calibration claim"
+  ]
+}
