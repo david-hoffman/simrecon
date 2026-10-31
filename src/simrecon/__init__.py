@@ -52,6 +52,7 @@ from ._volume_translation_estimation import VolumeTranslationEstimate, estimate_
 from .fractional_volume_reconstruction import reconstruct_volume_fractional
 from .volume_carrier_selection import VolumeCarrierSelection, select_volume_carrier
 from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
+from .volume_overlap import VolumeOverlapCandidate, VolumeOverlapFit, fit_volume_overlap
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
 from .weighted_volume_reconstruction import WeightedReconstruction3D, reconstruct_volume_weighted
 
@@ -89,6 +90,8 @@ __all__ = [
     "VolumeCarrierSelection",
     "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
+    "VolumeOverlapCandidate",
+    "VolumeOverlapFit",
     "VolumePhaseCarrierSelection",
     "VolumePhaseComponents",
     "VolumePhaseEstimate",
@@ -113,6 +116,7 @@ __all__ = [
     "estimate_volume_phases",
     "estimate_volume_translation",
     "export_imagej",
+    "fit_volume_overlap",
     "harmonize",
     "inspect",
     "locate_bead_peak",
