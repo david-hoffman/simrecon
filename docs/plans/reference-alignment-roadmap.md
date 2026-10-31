@@ -257,6 +257,19 @@ Every numerical step delivers exact inputs/outputs, versions/hashes, native coun
 
 ### RA11 — Validate the applicable motion boundary
 
+The standing owner message `01a19075-aaba-7901-bfe1-3787bd172fad` in source chat
+`01a18fa8-c1c5-7173-a179-66b9e6bd9b11` states:
+
+> From now on you have my approval for all RA07-RA15 you don't need to ask
+
+The original source proof remains local at
+`artifacts/ra07/owner-standing-approval-source-proof-2.json` in the original
+RA07 worktree, SHA256 `1795af30aaa2642a801b0ffbce45fed86428d34900c408e8ceaf94cb99aa4501`.
+The [RA11 contract](../contracts/reference-alignment-ra11-v1.md),
+[report](../reports/reference-alignment-ra11-motion-applicability.md) and
+[task pointer](../tasks/reference-alignment-ra11.md) select the stationary
+report-only applicability route on the supplied inputs.
+
 **PR:** Validate comparable-reference drift and illumination phase correction.
 
 **Outcome/public contract.** For stationary synthetic inputs, document and demonstrate the no-motion branch. For a supplied owner mode that requires drift, one concrete motion mechanism and comparable reference construction determine displacement and the corresponding illumination/axial correction. A later different motion mechanism is outside this task.
