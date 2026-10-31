@@ -49,6 +49,7 @@ from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
 from ._volume_phase_estimation import VolumePhaseEstimate, estimate_volume_phases
 from ._volume_translation_estimation import VolumeTranslationEstimate, estimate_volume_translation
+from .fractional_volume_reconstruction import reconstruct_volume_fractional
 from .volume_carrier_selection import VolumeCarrierSelection, select_volume_carrier
 from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
@@ -122,6 +123,7 @@ __all__ = [
     "read",
     "reconstruct",
     "reconstruct_volume",
+    "reconstruct_volume_fractional",
     "reconstruct_volume_weighted",
     "sample_empirical_volume_transfer",
     "sample_alignment_order_transfer",
