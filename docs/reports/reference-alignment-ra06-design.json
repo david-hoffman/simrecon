@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "created_utc": "2026-10-30T22:21:15.491592+00:00",
+  "detector_shape": [
+    1,
+    3,
+    5
+  ],
+  "output_shape": [
+    1,
+    3,
+    9
+  ],
+  "voxel_size_um": [
+    0.2,
+    0.11,
+    0.13
+  ],
+  "phases_rad": [
+    [
+      -0.2,
+      0.43,
+      1.21,
+      2.04,
+      2.9,
+      3.63,
+      5.38
+    ],
+    [
+      0.11,
+      0.8,
+      1.67,
+      2.12,
+      3.2,
+      4.45,
+      5.7
+    ]
+  ],
+  "carriers_bins": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      -1
+    ]
+  ],
+  "gains": [
+    1.0,
+    0.85
+  ],
+  "noise_std_by_exposure": [
+    [
+      0.11,
+      0.17,
+      0.08,
+      0.24,
+      0.13,
+      0.19,
+      0.09
+    ],
+    [
+      0.14,
+      0.1,
+      0.22,
+      0.12,
+      0.2,
+      0.09,
+      0.18
+    ]
+  ],
+  "correlation_common_fraction": 0.15,
+  "noise_seed": 17062026,
+  "risk_seed": 60062026,
+  "risk_replicates": 256,
+  "alpha": 0.4,
+  "alpha_selection": "Fixed declared demonstration penalty, chosen before noisy observations or product output; no tuning/selection from truth or residual",
+  "unweighted_baseline_beta": "alpha * mean(diag(declared exposure covariance)); fixed raw-isotropic comparison only, not the old public estimator or an optimality baseline",
+  "taper": "one for the main inverse/normal-equation comparison; separate fixed asymmetric taper control",
+  "claim_limits": [
+    "Finite periodic model only",
+    "Single observed reconstruction error is not expected risk",
+    "Monte Carlo is descriptive; no observed realization sets an acceptance threshold",
+    "Expected risk analytic conditional on exact supplied forward map/covariance and fixed alpha",
+    "No legacy code/convention or automatic Wiener heuristic",
+    "No calibration/noise-estimation uncertainty or real-instrument optimality claim"
+  ],
+  "source_design": "Fixed real output-grid Fourier-mode source, finite direct-sum effective kernel transfers; independent real spatial matrix assembly; full arrays/parameters saved before product comparisons"
+}
