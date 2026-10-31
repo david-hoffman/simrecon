@@ -185,3 +185,19 @@ evidence. No real-exterior inference, automatic scene growth, physical parameter
 fit, flux normalization or continuum-resolution claim is selected. Approved
 behavior/risk review, advisory percentages and complete full-local/both-platform
 report gates remain binding.
+
+## Reference-alignment RA09 continuous specimen overlap
+
+The standing RA07–RA15 instruction next selects the
+[RA09 overlap contract](contracts/reference-alignment-ra09-v1.md) above completed
+RA08. One additive operation fits continuous physical specimen carriers and
+relative complex positive-order gains using the same normalized finite-window
+overlap objective. Fixed all-box nonwrapping support, all caller starts,
+unavailable-order diagnostics and explicit unresolved global ambiguity prevent
+a local search result from implying physical uniqueness. Finite observation
+evaluation and complex transfer interpolation remain distinct; this comparison
+is not an exact arbitrary continuous-optics likelihood. The
+[task pointer](tasks/reference-alignment-ra09.md) owns exact candidate, role,
+figure, check and cleanup evidence. Known exposure phases and fixed responses
+remain supplied. Approved behavior/risk review, advisory percentages and complete
+full-local/both-platform reports remain binding.
