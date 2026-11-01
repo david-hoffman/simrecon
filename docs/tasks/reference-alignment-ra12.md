@@ -25,7 +25,9 @@ paths. No predecessor cleanup operation is inherited or reused.
 Start from completed RA11 commit
 `e5f918bc54d1622f92009bce143cffd4ac4a7477`, tree
 `b4ae241aaa3975fbf31dd7c303fbe3d4543eb4ce`, with a clean tracked baseline.
-This task has one managed worktree and one planned stacked pull request targeting
+This task has one main managed worktree, the narrowly named auxiliary
+[verification checkout](../contracts/reference-alignment-ra12-cleanup-verification-supplement-v1.md),
+and one planned stacked pull request targeting
 `codex/reference-alignment-ra11-motion` ([RA11 PR66](https://github.com/david-hoffman/simrecon/pull/66)).
 The [actual RA12 roadmap section](../plans/reference-alignment-roadmap.md#ra12--establish-the-images-only-calibration-handoff)
 supplies the intended scientific scope.
