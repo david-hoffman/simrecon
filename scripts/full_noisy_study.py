@@ -20,8 +20,7 @@ import sys
 from collections.abc import Iterator
 from contextlib import contextmanager
 from dataclasses import fields, is_dataclass
-from decimal import ROUND_FLOOR, Decimal, localcontext
-from functools import lru_cache
+from decimal import Decimal, localcontext
 from pathlib import Path
 from typing import Any, NoReturn
 
@@ -29,6 +28,8 @@ import numpy as np
 import scipy
 from scripts.image_only_bead_calibration import fit_bead_calibration
 from scripts.image_only_specimen_fit import fit_specimen
+from scripts.physical_phase import _dec, _transfer, _wrap
+from scripts.physical_phase import _physical_pi as _physical_pi
 from scripts.simulation_camera import sample_camera
 from scripts.simulation_inverse_operator import build_kernel_cache, forward
 from scripts.simulation_optics import expected_images
@@ -410,55 +411,6 @@ def _runtime() -> dict[str, Any]:
         byteorder=sys.byteorder,
         driver_sha256=_digest(Path(__file__)),
     )
-
-
-def _dec(value: Any) -> Decimal:
-    return Decimal.from_float(float(value))
-
-
-@lru_cache(maxsize=1)
-def _physical_pi() -> Decimal:
-    # Chudnovsky, evaluated past the precision needed for all finite binary64
-    # phases and origin products. Decimal avoids the rounded-2*pi period.
-    with localcontext() as ctx:
-        ctx.prec = 820
-        m, series_term, x, k = 1, 13591409, 1, 6
-        total = Decimal(series_term)
-        for n in range(1, 60):
-            m = m * (k**3 - 16 * k) // n**3
-            series_term += 545140134
-            x *= -262537412640768000
-            total += Decimal(m * series_term) / Decimal(x)
-            k += 12
-        return +(426880 * Decimal(10005).sqrt() / total)
-
-
-def _wrap(value: Decimal) -> float:
-    pi = _physical_pi()
-    reduced = value - ((value + pi) / (2 * pi)).to_integral_value(rounding=ROUND_FLOOR) * (2 * pi)
-    result = float(reduced)
-    return -math.pi if result >= math.pi else result
-
-
-def _transfer(phases: Any, q: Any, origin: Any, destination: Any) -> Any:
-    with localcontext() as ctx:
-        ctx.prec = 800
-        shift = [_dec(destination[i]) - _dec(origin[i]) for i in (1, 2)]
-        return np.array(
-            [
-                [
-                    _wrap(
-                        _dec(phases[o][p])
-                        + 2
-                        * _physical_pi()
-                        * sum((_dec(q[o][i]) * shift[i] for i in range(2)), Decimal(0))
-                    )
-                    for p in range(5)
-                ]
-                for o in range(3)
-            ],
-            dtype=np.float64,
-        )
 
 
 def _float_or_none(value: Decimal) -> float | None:

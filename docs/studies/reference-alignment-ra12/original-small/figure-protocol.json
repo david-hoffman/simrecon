@@ -1,0 +1,138 @@
+{
+  "derivative_provenance": {
+    "aliases_are_not_download_locations": true,
+    "relationship": "JSON values identical to the source protocol except retained local paths replaced by PUBLIC aliases; wrapper records this derivative identity.",
+    "source": {
+      "alias": "PUBLIC:retained-metadata/figure-protocol-2.json",
+      "sha256": "d4df9ac21cffdf5b37b7ab24f999a9e8a6fc059d1a30968280cf4a7c6a44b377",
+      "size_bytes": 8275
+    }
+  },
+  "protocol": {
+    "allowed_later_reads": [
+      "this protocol, render-4.py and figure-correction-notes-1.md",
+      "the three pinned preparation files",
+      "PUBLIC:producer-output/run.json",
+      "PUBLIC:freeze/freeze.complete.json and its listed frozen payloads for identity verification",
+      "complete-result.json fields needed for status, camera correction, refinement, audit and held-out summaries",
+      "only referenced frozen camera and held-out-summary arrays",
+      "only referenced observer held-out RMS and prediction arrays, with producer receipt identity checks",
+      "the exact pinned original calibration_heldout.npy, only after a frozen camera and observer prediction are available",
+      "Matplotlib runtime/font files required for rendering and their identities"
+    ],
+    "execution": {
+      "controls": "unchanged; render only retained results and declared presentation reductions",
+      "exclusive_output_directory": "PUBLIC:figure-output",
+      "input_run_directory": "PUBLIC:producer-output",
+      "overwrite_retry_cleanup": "none; retain all partial output and write failure provenance where possible",
+      "product_imports_or_calls": "none",
+      "required_argument": "--execute-once"
+    },
+    "figure_1": {
+      "audit_pairing": "pair result/observer audit rows only at identical ordinal with identical case_id; retain every unpaired observer row separately",
+      "claims": "descriptive finite-procedure record; no convergence, recovery, global-identification or confidence claim",
+      "filename_stem": "procedure-audit-heldout",
+      "missing_values": "literal unavailable/nonfinite/outcome labels; never substitute zero or infer a missing outcome",
+      "objective_definition": "Q128 half mean-squared training residual: (central squared residual sum + all 27 structured squared residual sums)/(2*M), M=28*Nz*Ny*Nx",
+      "objective_scale": "linear; include every finite reported objective and zero; no logarithms, clipping, smoothing or fitted trend",
+      "objective_units": "(reference-flat-relative units)^2",
+      "panels": [
+        "all serialized refinement trace entries: every finite reported objective as a marker, with missing/nonfinite outcomes retained in the outcome strip",
+        "incumbent minimum over finite initial summary objective plus finite trace objectives in original serialized order; no interpolated or extrapolated evaluations",
+        "one outcome-strip marker per trace entry, including infeasible, incomplete, missing and other literal outcome strings",
+        "all 3 by 5 held-out RMS entries for each of returned handoff and selected-candidate replay, without value-dependent source selection",
+        "every audit record in original order, including reported outcome, calibration/operator max-absolute deltas, equivalence/material flags, reason and failure code",
+        "every observer audit comparison, including status, max/l2/rms/count, discrepancy and material flag, or its literal unavailable/incomplete reason"
+      ],
+      "refinement_x_axis": "serialized trace ordinal; major ticks use deterministic stride ceil(trace_count/12), include first and last, and label ordinal plus reported evaluation_index on both trace rows; thinning is explicitly labeled and affects ticks only; every objective/outcome remains plotted and every record remains in scope JSON; initial summary is a distinct anchor, not a new evaluation",
+      "rms_display": "all 15 cells for both sources; six significant digits in figure and unchanged full stored numbers in scope JSON; no averaging across exposures",
+      "rms_units": "reference-flat-relative units"
+    },
+    "figure_2": {
+      "all_zero_scale": "only when the corresponding maximum absolute value equals zero, display +/-1 reference-flat-relative unit and label the artificial display extent explicitly",
+      "aspect_interpolation": "equal physical aspect, origin lower, nearest, no crop or resampling",
+      "columns": [
+        "corrected observed held-out repeat",
+        "post-freeze selected-candidate Q128 replay",
+        "signed displayed-prediction minus displayed-observation"
+      ],
+      "coordinates": "global micrometres; calibration origin is lower detector corner; sample centers origin+(index+1/2)*spacing; pixel-edge extents use origin through origin+N*spacing",
+      "filename_stem": "heldout-frame-observed-replay-residual",
+      "original_observation": {
+        "access": "post-freeze presentation only; verify hash before load and full identity after read; inspect/use only frame [0,0]",
+        "correction": "(raw held-out frame - frozen camera.means_counts[1])/frozen camera.contrast_counts, exactly once; no camera refit",
+        "relative_path": "PUBLIC:observations/calibration_heldout.npy",
+        "sha256": "65cc0af0d80f6d0fa6cbb4a1f0c2d63573ce6c4b1a85b58dc4cece2666d0f558"
+      },
+      "prediction": "run.json bead_replay.predictions.heldout array at [0,0], already evaluated from the frozen selected candidate; no optical calls or fitting",
+      "projection_residual_rule": "difference of the displayed prediction and observation maximum projections; never maximum projection of the voxelwise residual",
+      "residual": "prediction minus corrected observation",
+      "residual_scale": "one separate linear symmetric reference-flat-relative scale for all four displayed residual panels: +/- maximum absolute displayed residual value",
+      "rows": [
+        "full XY maximum projection over z",
+        "full XZ maximum projection over y",
+        "XY section at z=floor((Nz-1)/2)=3",
+        "XZ section at y=floor((Ny-1)/2)=15"
+      ],
+      "section_indices_zyx": [
+        3,
+        15,
+        15
+      ],
+      "selection": {
+        "exposure": 0,
+        "group": "heldout",
+        "orientation": 0
+      },
+      "signal_scale": "one linear symmetric signed reference-flat-relative scale for all eight displayed signal panels: +/- maximum absolute displayed signal value; no clipping or normalization",
+      "spacing_um_zyx": [
+        0.125,
+        0.08,
+        0.08
+      ],
+      "status_label": "always show actual handoff/run/replay status; an unavailable handoff with a retained selected candidate is labeled selected-candidate replay after unavailable handoff",
+      "unavailable": "if required frozen camera, replay prediction or pinned observation is absent, emit a text-only figure stating the exact gap; never invent signal panels"
+    },
+    "future_runtime": {
+      "backend": "Agg",
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.0",
+      "numpy": "2.5.3",
+      "png_dpi": 180,
+      "svg_fonttype": "path"
+    },
+    "input_pins": {
+      "manifest-2.json": "ed299e963b490247a42571f76d3362c049a7de01cfc2668cb7fa6d9af73eb2c6",
+      "preparation-notes-2.md": "ada8835760b174fe80ba1a667d0ef870ec2031904e22a8e263c46b8c17dd4de6",
+      "run-2.py": "9b28a9d93bdf110b9121a876509e8ef2567a1f2b76aa97a14912689c858ab643"
+    },
+    "provenance": {
+      "limits": [
+        "No original data values are read during preparation.",
+        "No truth, seeds, plans, other original observations or product implementation are read by the renderer.",
+        "Display reductions and the declared affine camera correction are presentation only; no new inference or data fitting.",
+        "A successful rendering is not scientific success or a product verification verdict.",
+        "Replay shares finite optical physics and is not an independent physical reference.",
+        "No convergence, recovery, global-identification, confidence or empirical-optics claim."
+      ],
+      "record": [
+        "exact command, UTC times, interpreter/platform and actual package versions",
+        "SHA256 and byte size of all read scientific/preparation inputs, renderer/protocol/notes and used font files",
+        "producer run and freeze status, frozen candidate presence, all plotted statuses/outcomes and unchanged full numerical scope",
+        "fixed selection, units, coordinate extents, section coordinates, signed scales and projection residual rule",
+        "all input identities before/after, script/protocol identity before/after, and PNG/SVG/scope hashes",
+        "all gaps, failures, unsupported claims and arithmetic/shared-physics limits"
+      ],
+      "retained_files": [
+        "both PNGs",
+        "both SVGs",
+        "scope.json",
+        "render.json",
+        "private Matplotlib config/cache if created"
+      ]
+    },
+    "schema": "ra12_original_small_figure_protocol_v1",
+    "status": "coordinator-authorized display-only correction after render 3 legibility inspection; one render 4 execution"
+  },
+  "schema": "ra12_original_small_public_figure_protocol_derivative_v1"
+}

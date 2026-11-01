@@ -1,0 +1,171 @@
+{
+  "schema": "org.simrecon.ra12.known-input-ambiguity-control",
+  "version": 1,
+  "created_utc": "2026-11-01T00:58:54.204781+00:00",
+  "status": "predeclared before numerical execution",
+  "claim": "known-input finite-sphere ambiguity demonstration only; no calibration inference, identified handoff, noisy acquisition, original27-object run or reconstruction is claimed",
+  "spacing_um_zyx": [
+    0.125,
+    0.08,
+    0.08
+  ],
+  "calibration": {
+    "detector_shape_zyx": [
+      1,
+      32,
+      32
+    ],
+    "source_refinement_zyx": [
+      8,
+      8,
+      8
+    ],
+    "origin_um_zyx": [
+      0.125,
+      -0.375,
+      0.23
+    ],
+    "catalogue_um_e": [
+      [
+        0.0625,
+        0.56,
+        0.72,
+        0.05,
+        1000.0
+      ],
+      [
+        0.0625,
+        1.6,
+        0.64,
+        0.05,
+        800.0
+      ],
+      [
+        0.0625,
+        1.12,
+        1.76,
+        0.05,
+        1200.0
+      ]
+    ]
+  },
+  "specimen": {
+    "detector_shape_zyx": [
+      8,
+      32,
+      32
+    ],
+    "source_refinement_zyx": [
+      2,
+      2,
+      2
+    ],
+    "origin_um_zyx": [
+      0.0,
+      0.08,
+      -0.12
+    ],
+    "catalogue_um_e": [
+      [
+        0.45,
+        0.85,
+        0.93,
+        0.05,
+        1000.0
+      ],
+      [
+        0.72,
+        1.7,
+        1.6,
+        0.05,
+        700.0
+      ],
+      [
+        0.2,
+        1.3,
+        1.85,
+        0.05,
+        1100.0
+      ]
+    ]
+  },
+  "optics": {
+    "excitation_um": 0.488,
+    "emission_um": 0.525,
+    "refractive_index": 1.515,
+    "detection_na": 1.4,
+    "pupil_order": 128,
+    "pixel_subsamples_yx": [
+      2,
+      2
+    ]
+  },
+  "carriers_yx_per_um": [
+    [
+      0.0,
+      1.8
+    ],
+    [
+      1.4,
+      0.8
+    ],
+    [
+      1.2,
+      -1.1
+    ]
+  ],
+  "beam_original": [
+    4.0,
+    2.0,
+    1.0
+  ],
+  "beam_side_swapped": [
+    4.0,
+    1.0,
+    2.0
+  ],
+  "phase_rule": "nine public nominal commands plus fixed errors; no fit or data-dependent selection",
+  "phase_error_base_rad": [
+    0.0,
+    0.03,
+    -0.025,
+    0.04,
+    -0.02,
+    0.015,
+    -0.035,
+    0.025,
+    -0.01
+  ],
+  "orientation_phase_offsets_rad": [
+    0.0,
+    0.11,
+    -0.07
+  ],
+  "orientation_error_multipliers": [
+    1.0,
+    1.25,
+    1.5
+  ],
+  "specimen_phase_rule": "first five actual phases plus2pi*q dot origin difference exactly once; moderate represented inputs only",
+  "figure_selection": {
+    "catalogue": "specimen",
+    "row": 0,
+    "center_local_um_zyx": [
+      0.45,
+      0.85,
+      0.93
+    ],
+    "slice_rule": "nearest stored detector sample-center plane; first index on ties; no recovered-peak selection",
+    "orientation": 0,
+    "phase": 0,
+    "panels": [
+      "XY maximum-intensity projection",
+      "XZ maximum-intensity projection",
+      "XY section through fixed catalogue center",
+      "XZ section through fixed catalogue center"
+    ],
+    "scales": "common quantitative expected-signal electron scales; symmetric signed original-minus-swapped differences; separately labeled shape-only profiles"
+  },
+  "expectation_source": "docs/contracts/reference-alignment-ra12-expectations-v1.md finite-sphere one-focus symmetry; independent analytic expectation not product-produced array oracle",
+  "inference_truth_boundary": "all optical/source values are explicitly known-input diagnostic settings; no inference operation is called"
+}
