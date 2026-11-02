@@ -172,10 +172,26 @@ def _phase_matrices(
             if slots == phases:
                 rows[d] = np.linalg.inv(design)
             else:
-                gram = design.T @ design
-                _finite(gram, "phase matrix factorization")
-                rows[d] = np.linalg.solve(gram, design.T)
+                # A = U R gives the same unweighted left inverse R^-1 U.T
+                # without squaring the conditioning by forming A.T @ A.
+                orthogonal, triangular = np.linalg.qr(design, mode="reduced")
+                rows[d] = np.linalg.solve(triangular, orthogonal.T)
             _finite(rows[d], "phase matrix inverse")
+            # Check achieved resolution, not phase spacing or numerical rank.
+            # gamma_(2P) bounds the roundoff of P products and additions in
+            # each observer dot product, using binary64 unit roundoff. Use
+            # the normwise scale since factorization couples matrix entries.
+            unit_roundoff = np.finfo(np.float64).eps / 2
+            gamma = 2 * phases * unit_roundoff / (1 - 2 * phases * unit_roundoff)
+            residual = np.abs(rows[d] @ design - np.eye(slots))
+            envelope = gamma * (np.abs(rows[d]) @ np.abs(design))
+            _finite(residual, "phase inverse residual")
+            _finite(envelope, "phase inverse roundoff envelope")
+            residual_norm = np.linalg.norm(residual, ord=np.inf)
+            # ||I-LA|| < 1 is the Neumann-series inverse-resolution boundary,
+            # not a condition-number admission rule or an accuracy guarantee.
+            if residual_norm >= 1 or residual_norm > np.linalg.norm(envelope, ord=np.inf):
+                raise np.linalg.LinAlgError("Phase inverse failed numerical left-inverse check")
             squares = rows[d] ** 2
             noise[d, 0] = squares[0].sum() / phases
             for m in range(1, orders):
