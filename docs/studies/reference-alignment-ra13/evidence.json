@@ -1,0 +1,92 @@
+{
+  "schema": "ra13-small-observed-results-v1",
+  "cases": [
+    {
+      "case": "noiseless",
+      "status": "completed_finite_fit",
+      "stage": "complete",
+      "reason_code": null,
+      "training_rms": 0.029255142519039483,
+      "audit_records": 106,
+      "elapsed_seconds": 1.3394599579987698,
+      "fit_stop_reason": "iteration_limit",
+      "initial_objective": 0.0037651083889045697,
+      "best_objective": 0.0013266994659641726,
+      "best_data_objective": 0.0013258630207861517,
+      "public_replay_data_objective": 0.0013258630504681809,
+      "public_replay_rms": 0.05149491335011995,
+      "source_relative_l2_error": 0.9677035643684857,
+      "payload": "noiseless-evaluation.npz",
+      "payload_sha256": "5ebcb4955dfaafbb1561a91c1d491f7a2fcf41b12887ca4804ff16103b533c8f"
+    },
+    {
+      "case": "noisy-diagnostic",
+      "status": "unavailable",
+      "stage": "handoff",
+      "reason_code": "training_misfit",
+      "training_rms": 0.030465812532777612,
+      "audit_records": 0,
+      "elapsed_seconds": 0.7757945830016979
+    }
+  ],
+  "run_manifest_sha256": "73dcec6c9fc02a79d371e93f0adeb2ccf006409d20b13780e45705cb48e2c5ef",
+  "evaluator_sha256": "9443fcbcb7d45d9d64c43ca295f8ebc43045f055639bace79dde61fa1a1e225a",
+  "original_outputs_unchanged": true,
+  "producer_workflow_source_sha256": "8943180d2123056e49e0b369fd1787e63bcad91ccfa636f496889fad3bb0de04",
+  "input_files": {
+    "docs/studies/reference-alignment-ra13/README.md": "780dacb1c58de3e175ec30cc2e5a4c2585e3f5d40aef59038f3d17b0537aa7c3",
+    "docs/studies/reference-alignment-ra13/evaluation-reference.npz": "4e7e62a52cda125c450903fe581cc7c02e134e81b3dc5f7669bf2331a7268366",
+    "docs/studies/reference-alignment-ra13/noiseless/observations.npz": "9707446d2bb179b68046d1e886768c0baabfc86b05062680e8c761b831fe3f88",
+    "docs/studies/reference-alignment-ra13/noiseless/parameters.json": "cbe9c5d420ef6a7696a085e1ccc5335ea64a7d5eddd9419aa94b9bd2d366b5b2",
+    "docs/studies/reference-alignment-ra13/noiseless-evaluation.npz": "5ebcb4955dfaafbb1561a91c1d491f7a2fcf41b12887ca4804ff16103b533c8f",
+    "docs/studies/reference-alignment-ra13/noisy-diagnostic/observations.npz": "74880cc6bba1778b4c34e53b9567aa9c0fa35af90a296ecf74e54e06a208a79f",
+    "docs/studies/reference-alignment-ra13/noisy-diagnostic/parameters.json": "7ffac2ae3c272a3b107555d194a371c344603d2a33150453b1a9a6f6697530a2"
+  },
+  "limits": [
+    "Central-only deliberately degenerate noiseless procedure control; permissive training/operator settings are not identification/accuracy criteria.",
+    "Public optical replay shares accepted optical physics and is not an independent optical implementation.",
+    "Source and residual errors are descriptive; no recovery/resolution/convergence guarantee.",
+    "Original RA12 small noisy outcome is separate and unchanged.",
+    "Noisy outputs are diagnostic only."
+  ],
+  "figures": {
+    "figures/specimen-predictions.png": "14f6eb980d7d76266a003b2839e3228493c6ef1701ebf831ba5cd72b3fcd9038",
+    "figures/source-comparison.png": "c86866199a01f5b7d9cc39814d07235825572f453da7d59494087750ca063e1f",
+    "figures/fixed-center-profiles.png": "ad790813ec1e5cfc6c04e2a18300261d478e4deb2397a65c1dd30a278bef4e38",
+    "figures/workflow-stages.png": "95ec11ff8249bb73deaadf3bd8473228aae41905e0562471b33050d4a6b71da0"
+  },
+  "render": {
+    "matplotlib": "3.10.7",
+    "numpy": "2.5.3",
+    "producer_sha256": "1fad6bf1afe6de849e3a63c6b5f1b3b3d4364605e63eefce4ba2c8cf8fdfd4da",
+    "fixed_center_global_zyx_um": [
+      0.22499999999999998,
+      -0.1475,
+      0.5675
+    ],
+    "signal_scales": "Common per complete reference/estimate pair; differences symmetric; no registration or brightness fit."
+  },
+  "figure_scales": {
+    "specimen-predictions": {
+      "signal_relative_image": [
+        0,
+        0.2072515844041669
+      ],
+      "signed_difference_relative_image": [
+        -0.11581436812206408,
+        0.11581436812206408
+      ]
+    },
+    "source-comparison": {
+      "integrated_relative_weight": [
+        0,
+        0.6
+      ],
+      "signed_difference_integrated_relative_weight": [
+        -0.5764706138521433,
+        0.5764706138521433
+      ]
+    },
+    "fixed-center-profiles": "Quantitative weights unscaled; each shape-only line divided by own absolute peak. Global first declared source-cell coordinates fixed before inference."
+  }
+}
