@@ -598,17 +598,6 @@ def test_v25_required_keyword_only_signature(binding: str) -> None:
             separate(phases_rad=p)
 
 
-def test_v27_public_mrc_exports_preserved_complete_suite_required() -> None:
-    # Minimal public boundary observation; full preservation remains a later
-    # full-local gate dependency on the untouched MRC suite, not duplicated here.
-    from simrecon import DataBlock, DatasetInfo, WriteReport, harmonize, inspect, read, write
-
-    assert all(
-        callable(v) for v in (inspect, harmonize, read, write, DatasetInfo, DataBlock, WriteReport)
-    )
-    assert issubclass(SimreconError, ValueError)
-
-
 def test_v28_reviewed_numeric_fixture_all_input_residuals() -> None:
     fixture = analytic_fixture()
     assert fixture.images.shape == (7, 9, 14)

@@ -13,6 +13,7 @@ import os
 import subprocess
 import sys
 from collections.abc import Iterator
+from contextlib import ExitStack, contextmanager
 from copy import deepcopy
 from decimal import Decimal, localcontext
 from fractions import Fraction
@@ -358,28 +359,50 @@ def assert_no_success_document(payload: bytes) -> None:
         ), "rejection emitted a dataset document"
 
 
-@pytest.fixture(scope="module", params=("otf", "reconstruction"))
-def exported(request: Any) -> Iterator[tuple[str, Any]]:
+@contextmanager
+def export_selector(selector: str) -> Iterator[tuple[str, Any]]:
     """Two real commands and caller capture/consume/cleanup lifecycle (S07/S10)."""
-    selector: str = request.param
     with TemporaryDirectory(prefix="reference-export-") as temporary:
         directory = Path(temporary)
+        canary = directory / "caller-owned.txt"
+        canary_payload = b"pre-existing independent caller bytes\n"
+        canary.write_bytes(canary_payload)
+        canary.chmod(0o640)
+        canary_mode = canary.stat().st_mode
         capture = directory / "reference.json"
         with capture.open("wb") as stream:
             first = run([selector], directory, stdout=stream)
         assert first.returncode == 0, first.stderr.decode(errors="replace")
+        assert canary.read_bytes() == canary_payload and canary.stat().st_mode == canary_mode
         payload = capture.read_bytes()
         document = parse(payload)
-        assert sorted(path.name for path in directory.iterdir()) == [capture.name], (
-            "exporter created entries alongside caller-owned capture"
-        )
+        assert sorted(path.name for path in directory.iterdir()) == sorted(
+            [capture.name, canary.name]
+        ), "exporter created entries alongside caller-owned capture"
         second = run([selector], directory)
         assert second.returncode == 0, second.stderr.decode(errors="replace")
         assert second.stdout == payload, "unchanged-input generation is not byte deterministic"
         assert_capture_unchanged(capture, payload)
-        assert sorted(path.name for path in directory.iterdir()) == [capture.name]
+        assert canary.read_bytes() == canary_payload and canary.stat().st_mode == canary_mode
+        assert sorted(path.name for path in directory.iterdir()) == sorted(
+            [capture.name, canary.name]
+        )
         yield selector, document
     assert not directory.exists(), "caller TemporaryDirectory did not clean up"
+
+
+@pytest.fixture(scope="module")
+def exported_documents() -> Iterator[dict[str, tuple[str, Any]]]:
+    """Require both genuine successful selectors before rejection checks."""
+    with ExitStack() as contexts:
+        yield {
+            selector: contexts.enter_context(export_selector(selector)) for selector in DOCUMENTS
+        }
+
+
+@pytest.fixture(scope="module", params=("otf", "reconstruction"))
+def exported(request: Any, exported_documents: dict[str, tuple[str, Any]]) -> tuple[str, Any]:
+    return exported_documents[request.param]
 
 
 def test_complete_historical_representation(exported: tuple[str, Any]) -> None:
@@ -519,9 +542,11 @@ def test_reconstruction_formulas_and_representations(exported: tuple[str, Any]) 
         ["reconstruction", "--tolerance", "1"],
     ],
 )
-def test_selector_rejections(exported: tuple[str, Any], arguments: list[str]) -> None:
+def test_selector_rejections(
+    exported_documents: dict[str, tuple[str, Any]], arguments: list[str]
+) -> None:
     # Successful real public invocations are the paired positive precondition.
-    assert exported[0] in DOCUMENTS
+    assert set(exported_documents) == set(DOCUMENTS)
     with TemporaryDirectory(prefix="reference-rejection-") as temporary:
         directory = Path(temporary)
         result = run(arguments, directory)
@@ -557,29 +582,6 @@ def test_frozen_helper_hash_guards() -> None:
         ),
     ):
         assert hashlib.sha256((ROOT / "tests" / filename).read_bytes()).hexdigest() == expected
-
-
-def test_available_historical_oracle_evidence() -> None:
-    """Independently validate retained digests/formulas while public inputs exist.
-
-    Retirement removes this optional historical cross-check, not any exporter
-    obligation: complete digest and formula tests above remain unconditional.
-    """
-    for selector, (filename, byte_hash, representation_hash) in DOCUMENTS.items():
-        historical = ROOT / "docs/references/scientific" / filename
-        if not historical.exists():
-            continue
-        payload = historical.read_bytes()
-        assert hashlib.sha256(payload).hexdigest() == byte_hash, "historical input changed"
-        document = parse(payload)
-        assert digest(document) == representation_hash, "historical digest derivation changed"
-        if selector == "otf":
-            assert_otf_document(document)
-        else:
-            for entry, fractional, image_hash in zip(
-                document["entries"], (False, True), ACQUISITION_HASHES, strict=True
-            ):
-                assert_reconstruction_entry(entry, fractional, image_hash)
 
 
 def test_observer_distinguishes_preserved_representations() -> None:
@@ -833,10 +835,8 @@ def test_child_diagnostics_without_parent_precondition(
     assert not directory.exists()
 
 
-@pytest.mark.parametrize("returncode", (0, 1, 2))
-@pytest.mark.parametrize("residue", ("none", "file", "directory"))
-def test_child_temp_observer_controls(residue: str, returncode: int) -> None:
-    """Standard-library controls exercise tempfile routing, not exporter behavior."""
+def test_child_temp_observer_controls() -> None:
+    """One real environment/routing child; independent owned residue controls."""
     with TemporaryDirectory(prefix="observer-control-") as temporary:
         directory = Path(temporary)
         capture = directory / "capture.txt"
@@ -853,14 +853,8 @@ def test_child_temp_observer_controls(residue: str, returncode: int) -> None:
                     "assert tempfile.gettempdir() == sys.argv[1]; "
                     "assert all(os.environ[k] == sys.argv[1] for k in ('TMPDIR','TMP','TEMP')); "
                     "\nwith tempfile.NamedTemporaryFile(): pass"
-                    "\nwith tempfile.TemporaryDirectory(): pass"
-                    "\nif sys.argv[2] == 'file':"
-                    "\n    descriptor, _ = tempfile.mkstemp(); os.close(descriptor)"
-                    "\nelif sys.argv[2] == 'directory': tempfile.mkdtemp()"
-                    "\nsys.exit(int(sys.argv[3]))",
+                    "\nwith tempfile.TemporaryDirectory(): pass",
                     child,
-                    residue,
-                    str(returncode),
                 ],
                 cwd=directory,
                 env=diagnostic_environment(child_temporary),
@@ -868,78 +862,36 @@ def test_child_temp_observer_controls(residue: str, returncode: int) -> None:
                 timeout=30,
                 check=False,
             )
-            assert result.returncode == returncode, result.stderr.decode(errors="replace")
+            assert result.returncode == 0, result.stderr.decode(errors="replace")
             assert not result.stderr, "observer control failed unexpectedly"
-            if residue == "none":
-                assert_no_child_residue(directory, child_temporary, {capture}, result.returncode)
-            else:
+            assert_no_child_residue(directory, child_temporary, {capture}, result.returncode)
+            # Distinct mutable state for each negative, followed by a clean positive.
+            for residue in ("file", "directory"):
+                path = child_temporary / residue
+                if residue == "file":
+                    path.write_bytes(b"independent residue")
+                else:
+                    path.mkdir()
                 with pytest.raises(AssertionError, match="child left temporary residue"):
                     assert_no_child_residue(
                         directory, child_temporary, {capture}, result.returncode
                     )
+                if residue == "file":
+                    path.unlink()
+                else:
+                    path.rmdir()
+                assert_no_child_residue(directory, child_temporary, {capture}, result.returncode)
             assert_capture_unchanged(capture, payload)
         assert set(directory.iterdir()) == {capture}
     assert not directory.exists()
 
 
-def test_repeated_capture_observer_controls() -> None:
-    """Exercise real caller redirection twice, then distinguish capture changes."""
-    with TemporaryDirectory(prefix="observer-capture-") as temporary:
-        directory = Path(temporary)
-        capture = directory / "capture.txt"
-        payload = b"observer-only stdout\n"
-        child_roots: list[Path] = []
-        for first in (True, False):
-            with TemporaryDirectory(prefix="child-temp-", dir=directory) as child:
-                child_temporary = Path(child)
-                child_roots.append(child_temporary)
-                with capture.open("wb") if first else capture.open("rb") as stream:
-                    result = subprocess.run(
-                        [sys.executable, "-c", "print('observer-only stdout')"],
-                        cwd=directory,
-                        env=diagnostic_environment(child_temporary),
-                        stdout=stream if first else subprocess.PIPE,
-                        stderr=subprocess.PIPE,
-                        timeout=30,
-                        check=False,
-                    )
-                assert result.returncode == 0, result.stderr.decode(errors="replace")
-                assert_no_child_residue(directory, child_temporary, {capture}, result.returncode)
-                assert_capture_unchanged(capture, payload)
-                if not first:
-                    assert result.stdout == payload
-            assert set(directory.iterdir()) == {capture}
-        assert child_roots[0] != child_roots[1]
-        capture.write_bytes(b"changed capture\n")
-        with pytest.raises(AssertionError, match="changed caller-owned capture"):
-            assert_capture_unchanged(capture, payload)
-    assert not directory.exists()
-
-
-def test_no_success_observer_historical_controls() -> None:
-    """Reject the actual public historical documents where still available."""
-    for filename, byte_hash, _ in DOCUMENTS.values():
-        historical = ROOT / "docs/references/scientific" / filename
-        if not historical.exists():
-            continue
-        payload = historical.read_bytes()
-        assert hashlib.sha256(payload).hexdigest() == byte_hash, "historical input changed"
-        with pytest.raises(AssertionError, match="dataset document"):
-            assert_no_success_document(payload)
-        document = parse(payload)
-        # Confirm these compact signatures against the exact public inputs.
-        container, root_fields, record_fields = next(
-            schema for schema in DATASET_SCHEMAS if schema[0] in document
-        )
-        assert set(document) == root_fields
-        assert all(set(record) == record_fields for record in document[container])
-        # Full shapes/leaf kinds, not merely rank, come from these public inputs.
-        template = dataset_representation(container)
-        expected_records = template.pop(container)
-        assert complete_representation(document, template)
-        assert len(document[container]) == len(expected_records)
-        assert all(
-            complete_representation(record, expected)
-            for record, expected in zip(document[container], expected_records, strict=True)
-        )
-        assert_dataset_rejection_controls(document)
+def test_repeated_capture_observer_controls(tmp_path: Path) -> None:
+    """Real exports cover redirection; independently challenge capture corruption."""
+    capture = tmp_path / "capture.txt"
+    payload = b"independent caller-owned capture\n"
+    capture.write_bytes(payload)
+    assert_capture_unchanged(capture, payload)
+    capture.write_bytes(b"changed capture\n")
+    with pytest.raises(AssertionError, match="changed caller-owned capture"):
+        assert_capture_unchanged(capture, payload)

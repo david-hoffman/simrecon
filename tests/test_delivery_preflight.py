@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import shlex
 import subprocess
 import sys
 import textwrap
@@ -17,23 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @pytest.fixture
 def controlled_uv(tmp_path: Path) -> tuple[Path, Path, Path]:
-    isolated = tmp_path / "isolated"
-    venv.EnvBuilder(with_pip=False, symlinks=True).create(isolated)
-    isolated_python = isolated / "bin/python"
-    site = Path(
-        subprocess.check_output(
-            [str(isolated_python), "-c", "import sysconfig; print(sysconfig.get_path('purelib'))"],
-            text=True,
-            timeout=30,
-        ).strip()
-    )
-    (site / "hatchling").mkdir()
-    (site / "hatchling/__init__.py").write_text("", encoding="utf-8")
-    metadata = site / "hatchling-1.32.4.dist-info"
-    metadata.mkdir()
-    (metadata / "METADATA").write_text(
-        "Metadata-Version: 2.1\nName: hatchling\nVersion: 1.32.4\n", encoding="utf-8"
-    )
+    isolated_python = tmp_path / "isolated/bin/python"
     wrapper = tmp_path / "controlled_uv.py"
     wrapper.write_text(
         textwrap.dedent(
@@ -91,7 +76,13 @@ def controlled_uv(tmp_path: Path) -> tuple[Path, Path, Path]:
         ),
         encoding="utf-8",
     )
-    return wrapper, tmp_path / "calls.jsonl", isolated_python
+    launcher = tmp_path / "controlled uv café"
+    launcher.write_text(
+        f'#!/bin/sh\nexec {shlex.quote(sys.executable)} {shlex.quote(str(wrapper))} "$@"\n',
+        encoding="utf-8",
+    )
+    launcher.chmod(0o755)
+    return launcher, tmp_path / "calls.jsonl", isolated_python
 
 
 def _git_state() -> tuple[str, str]:
@@ -106,9 +97,30 @@ def _preflight(
     controlled_uv: tuple[Path, Path, Path], failure: str
 ) -> tuple[subprocess.CompletedProcess[str], list[list[str]]]:
     wrapper, calls, isolated_python = controlled_uv
+    if failure in {"", "hatchling-import", "hatchling-version", "not-isolated"}:
+        isolated = isolated_python.parent.parent
+        venv.EnvBuilder(with_pip=False, symlinks=True).create(isolated)
+        site = Path(
+            subprocess.check_output(
+                [
+                    str(isolated_python),
+                    "-c",
+                    "import sysconfig; print(sysconfig.get_path('purelib'))",
+                ],
+                text=True,
+                timeout=30,
+            ).strip()
+        )
+        (site / "hatchling").mkdir()
+        (site / "hatchling/__init__.py").write_text("", encoding="utf-8")
+        metadata = site / "hatchling-1.32.4.dist-info"
+        metadata.mkdir()
+        (metadata / "METADATA").write_text(
+            "Metadata-Version: 2.1\nName: hatchling\nVersion: 1.32.4\n", encoding="utf-8"
+        )
     before = _git_state()
     result = subprocess.run(
-        ["make", "--no-print-directory", "preflight", f"UV={sys.executable} {wrapper}"],
+        ["make", "--no-print-directory", "preflight", f"UV={wrapper}"],
         cwd=ROOT,
         env={
             **os.environ,

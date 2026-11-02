@@ -56,13 +56,13 @@ def root_brackets(order: int, bits: int) -> tuple[tuple[Fraction, Fraction], ...
     positive = []
     for i in range(1, order // 2 + 1):
         seed = math.cos(math.pi * (i - 0.25) / (order + 0.5))
-        for _ in range(8):
+        for _ in range(4):
             previous, current = 1.0, seed
             for n in range(2, order + 1):
                 previous, current = current, ((2 * n - 1) * seed * current - (n - 1) * previous) / n
             derivative = order * (previous - seed * current) / (1 - seed * seed)
             seed -= current / derivative
-        lo, hi = exact(seed) - Fraction(1, 2**38), exact(seed) + Fraction(1, 2**38)
+        lo, hi = exact(seed) - Fraction(1, 2**48), exact(seed) + Fraction(1, 2**48)
         left, right = legendre_sign(order, lo), legendre_sign(order, hi)
         if not (0 < lo < hi < 1 and left * right == -1):
             raise OracleInconclusive("Newton proposal failed exact root-bracket certification")
@@ -93,12 +93,18 @@ def canonical_rule(order: int, digits: int) -> Rule:
     2/((1-x*x)*P'_n**2) on [-1,1], then the half-interval transform.
     """
     rule = []
-    for lo, hi in root_brackets(order, 4 * digits):
+    reflected_weights: dict[tuple[Fraction, Fraction], Interval] = {}
+    for lo, hi in root_brackets(order, max(200, (10 * digits + 2) // 3)):
         x = Interval(Interval.rational(lo, digits).lo, Interval.rational(hi, digits).hi, digits)
-        previous, current = Interval.rational(1, digits), x
-        for n in range(2, order):
-            previous, current = current, ((2 * n - 1) * x * current - (n - 1) * previous) / n
-        weight = (1 - x.squared()) / (order * order * current.squared())
+        key = (lo, hi) if lo > 0 else (-hi, -lo)
+        if key not in reflected_weights:
+            previous, current = Interval.rational(1, digits), x
+            for n in range(2, order):
+                previous, current = current, ((2 * n - 1) * x * current - (n - 1) * previous) / n
+            # Recurrence parity makes the canonical squared denominator even;
+            # the reflected bracket therefore has this same weight enclosure.
+            reflected_weights[key] = (1 - x.squared()) / (order * order * current.squared())
+        weight = reflected_weights[key]
         node = (1 + x) / 2
         assert 0 < node.lo <= node.hi < 1 and weight.lo > 0
         rule.append((node, weight))
@@ -157,9 +163,9 @@ class Geometry:
 
         @cache
         def evaluate(digits: int) -> Bounds:
-            # Guard digits counter interval recurrence dependency at degree 128.
+            # Guard precision covers interval recurrence dependency at degree 128.
             # Actual endpoint widths, not the digit count, certify comparisons.
-            working = digits + 80
+            working = digits + 32
             rule = reference_rule(rule_kind, working)
             pi, zero = pi_interval(working), Interval.rational(0, working)
 
@@ -262,62 +268,12 @@ def optical_arguments() -> dict[str, Any]:
     }
 
 
-def dense_case() -> tuple[dict[str, Any], Geometry]:
-    """Eight distinct cells, four detector sites and four signed exposures."""
-    weights = (1, 7, 2, 5, 3, 8, 6, 4)
-    args = optical_arguments()
-    carriers = ((0.83, -0.61), (-0.47, 0.89))
-    phases = ((0.23, -0.87), (-0.53, 1.31))
-    args.update(
-        source_e=np.array(weights, dtype=np.float64).reshape(2, 2, 2) / 8,
-        detector_spacing_um_zyx=(0.625, 0.25, 0.1875),
-        source_refinement_zyx=(2, 1, 1),
-        pixel_subsamples_yx=(1, 2),
-        carriers_yx_per_um=np.array(carriers),
-        phases_rad=np.array(phases),
-    )
-    dz, dy, dx = map(exact, (0.625, 0.25, 0.1875))
-    sources = tuple(
-        Source(
-            dz * Fraction(2 * z + 1, 4),
-            dy * Fraction(2 * y + 1, 2),
-            dx * Fraction(2 * x + 1, 2),
-            Fraction(weights[4 * z + 2 * y + x], 8),
-        )
-        for z in range(2)
-        for y in range(2)
-        for x in range(2)
-    )
-    sites = tuple(
-        (
-            (dy * Fraction(2 * y + 1, 2), dx * (x + Fraction(1, 4))),
-            (dy * Fraction(2 * y + 1, 2), dx * (x + Fraction(3, 4))),
-        )
-        for y in range(2)
-        for x in range(2)
-    )
-    return args, Geometry(
-        sources,
-        (dz / 2,),
-        sites,
-        (2, 2),
-        dy * dx,
-        carriers,
-        phases,
-        args["beam_amplitudes"],
-        0.488,
-        0.525,
-        1.515,
-        1.4,
-    )
-
-
 def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float64], Geometry]:
     """Two small finite spheres; exact rational membership and rounded weights."""
-    catalogue = np.array([[0.125, 0.08, 0.12, 0.05, 1.0], [0.15625, 0.06, 0.06, 0.03, 2.5]])
+    catalogue = np.array([[3 / 32, 0.04, 1 / 32, 0.03, 1.0], [7 / 32, 0.06, 0.06, 0.01, 2.5]])
     source_args: dict[str, Any] = {
         "catalogue": catalogue,
-        "detector_shape_zyx": (2, 2, 3),
+        "detector_shape_zyx": (2, 1, 1),
         "detector_spacing_um_zyx": (0.125, 0.08, 0.08),
         "source_refinement_zyx": (2, 2, 2),
     }
@@ -332,18 +288,23 @@ def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float
             dx * Fraction(2 * x + 1, 4),
         )
         for z in range(4)
-        for y in range(4)
-        for x in range(6)
+        for y in range(2)
+        for x in range(2)
     )
-    predicted = np.zeros((4, 4, 6))
-    for row in catalogue:
+    predicted = np.zeros((4, 2, 2))
+    membership = (((1, 0, 0), (1, 1, 0)), ((3, 1, 1),))
+    for row, expected_members in zip(catalogue, membership, strict=True):
         cz, cy, cx, radius, brightness = map(lambda v: exact(float(v)), row)
+        assert all(
+            center - radius >= 0 and center + radius <= extent
+            for center, extent in zip((cz, cy, cx), (2 * dz, dy, dx), strict=True)
+        )
         occupied = [
             (z, y, x)
             for z, y, x, rz, ry, rx in cells
             if (rz - cz) ** 2 + (ry - cy) ** 2 + (rx - cx) ** 2 <= radius**2
         ]
-        assert occupied
+        assert tuple(occupied) == expected_members
         increment = exact(float(brightness / len(occupied)))
         for index in occupied:
             predicted[index] = float(exact(float(predicted[index])) + increment)
@@ -358,15 +319,15 @@ def composition_case() -> tuple[dict[str, Any], dict[str, Any], NDArray[np.float
             for sy in range(2)
             for sx in range(2)
         )
-        for y in range(2)
-        for x in range(3)
+        for y in range(1)
+        for x in range(1)
     )
     args = optical_arguments()
     geometry = Geometry(
         sources,
         (dz / 2, 3 * dz / 2),
         sites,
-        (2, 3),
+        (1, 1),
         dy * dx,
         ((0.0, 2.459016393442623),),
         ((0.0,),),

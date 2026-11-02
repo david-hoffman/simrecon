@@ -1,0 +1,2631 @@
+{
+  "calibration_figure": {
+    "camera_correction": {
+      "blank_counts": 20.14992902041145,
+      "contrast_counts": 1699.240218986715,
+      "formula": "(raw held-out frame - frozen camera.means_counts[1])/frozen camera.contrast_counts, exactly once; no camera refit"
+    },
+    "displayed_panel_maxima": [
+      [
+        13.252575308019619,
+        12.880146574715832,
+        1.0280150707984745
+      ],
+      [
+        13.252575308019619,
+        12.880146574715832,
+        0.7039953728648527
+      ],
+      [
+        9.165336190740819,
+        8.71692935848361,
+        0.457775572463639
+      ],
+      [
+        10.942636202406392,
+        11.231573683565879,
+        1.0280150707984745
+      ]
+    ],
+    "displayed_panel_minima": [
+      [
+        0.005974668192474481,
+        0.00393646830302101,
+        -0.9734404677599526
+      ],
+      [
+        0.015598519480599976,
+        0.015850012508046366,
+        -0.7837415768404847
+      ],
+      [
+        -0.008143849953487468,
+        0.0006934728400983566,
+        -0.7233451901421342
+      ],
+      [
+        -0.0024222877077469717,
+        0.005134050876564618,
+        -0.24070279059911615
+      ]
+    ],
+    "gaps": [],
+    "residual_all_zero_artificial_extent": false,
+    "residual_scale": [
+      -1.0280150707984745,
+      1.0280150707984745
+    ],
+    "section_coordinates_um": {
+      "y": 0.865,
+      "z": 0.5625
+    },
+    "selection": {
+      "exposure": 0,
+      "group": "heldout",
+      "orientation": 0
+    },
+    "selection_indices_zyx": [
+      3,
+      15,
+      15
+    ],
+    "signal_all_zero_artificial_extent": false,
+    "signal_scale": [
+      -13.252575308019619,
+      13.252575308019619
+    ],
+    "status": "rendered",
+    "xy_extent_um": [
+      0.23,
+      2.79,
+      -0.375,
+      2.185
+    ],
+    "xz_extent_um": [
+      0.23,
+      2.79,
+      0.125,
+      1.125
+    ]
+  },
+  "call_counts": {
+    "camera_estimation_entered": 1,
+    "handoff_inference_entered": 1,
+    "observer_expected_images_entered": 9,
+    "observer_field_evaluations_entered": 1,
+    "observer_make_sources_entered": 3
+  },
+  "claim": "Observed original small inference was unavailable at the fixed training check; later frozen-candidate replay is diagnostic evidence, not an accepted handoff.",
+  "field_observer": {
+    "audit_operator_checks": [],
+    "descriptor_comparison": {
+      "reason": "Handoff has no successful specimen descriptor",
+      "status": "unavailable"
+    },
+    "reference_field_statistics": {
+      "count": 921600,
+      "l2_norm": 1246.9257967764481,
+      "max_abs": 2.96672509646795,
+      "rms": 1.2988810383088
+    },
+    "roundoff_limit": "Decimal90 geometry/physical-period reduction followed by float64 complex elementary functions; raw discrepancies are descriptive, not a global enclosure.",
+    "status": "evaluated"
+  },
+  "figures": [
+    {
+      "path": "procedure-audit-heldout.png",
+      "sha256": "c852247950f5872f0ff0d87cb9e96daccb5adfc1160bf370fa4e0eb4da534495",
+      "size_bytes": 307628
+    },
+    {
+      "path": "procedure-audit-heldout.svg",
+      "sha256": "0e3791a2d92253f16606013d712da6635e353e025b1c425448d6aba043af2a7b",
+      "size_bytes": 275670
+    },
+    {
+      "path": "heldout-frame-observed-replay-residual.png",
+      "sha256": "8d939cc231477bc7698024729c734a2165852ce6db7da9e6f7a6b0c0989127d0",
+      "size_bytes": 368416
+    },
+    {
+      "path": "heldout-frame-observed-replay-residual.svg",
+      "sha256": "ffd3e1efdddd2876efd251869087c1992cf5d78117c7f602a11a378587815dad",
+      "size_bytes": 246382
+    }
+  ],
+  "heldout_rms": {
+    "returned handoff": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "selected-candidate replay": [
+      [
+        0.06641213417304481,
+        0.1286995462707247,
+        0.137285350267661,
+        0.08243613662233998,
+        0.06426827565638735
+      ],
+      [
+        0.10455522257213487,
+        0.05693309621273728,
+        0.06993702362395368,
+        0.06923870945214576,
+        0.1689050737799347
+      ],
+      [
+        0.05056770835705934,
+        0.12815223598269512,
+        0.09082123233002398,
+        0.11917725334343471,
+        0.11146927191202016
+      ]
+    ]
+  },
+  "integrity": {
+    "freeze_marker_unchanged": true,
+    "frozen_payloads_unchanged": true,
+    "inputs_unchanged": true,
+    "observer_execution_complete": true,
+    "previously_imported_module_inputs_unchanged": true,
+    "script_unchanged": true
+  },
+  "limits": [
+    "No speculative cause for the training misfit is assigned; model inadequacy, a noise floor or a product bug has not been established by this report.",
+    "No accepted original calibration-to-specimen transfer exists: no specimen descriptor, no handoff held-out payload and no completed ambiguity audit were returned.",
+    "All 15 candidate replay RMS values are diagnostic observations after the unavailable handoff; absent handoff values remain null, not zero.",
+    "The complex field observer evaluated 921600 reference values but had no descriptor or audit alternatives to validate.",
+    "Public source/optics replay checks composition and uses shared finite optical physics; it is not an independent numerical reference for that physics.",
+    "No continuum accuracy, reconstruction recovery, global identification, confidence or empirical-instrument guarantee is claimed.",
+    "The scientific export supplies no final exact-candidate verification, review, platform or delivery-readiness verdict.",
+    "No arrays, transcripts, private native events or full environment prefixes are exported; no data fit, physics call or new rendering was performed for this export."
+  ],
+  "objective": {
+    "M": 229376,
+    "definition": "F=(central residual squared sum + all 27 structured residual squared sums)/(2*M)",
+    "detector_shape_zyx": [
+      8,
+      32,
+      32
+    ],
+    "objective_units": "reference_flat_relative_squared",
+    "residual": "prediction minus corrected observation",
+    "rms_units": "reference_flat_relative",
+    "sanity_check_sqrt_2F": 0.10346815963311173,
+    "training_image_count": 28
+  },
+  "observation_inputs": {
+    "count": 22,
+    "files": [
+      {
+        "alias": "PUBLIC:observations/calibration_central.npy",
+        "sha256": "684be01a71e3b9925425568f6c54cf516bccd151f5af00fc01cb758c3b3e3b5d",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/calibration_heldout.npy",
+        "sha256": "65cc0af0d80f6d0fa6cbb4a1f0c2d63573ce6c4b1a85b58dc4cece2666d0f558",
+        "size_bytes": 983168
+      },
+      {
+        "alias": "PUBLIC:observations/calibration_training.npy",
+        "sha256": "4cc69f2d890b45ced5cde61ab2a3b3183c9c7478100a30a5f6de87f9beccb78a",
+        "size_bytes": 1769600
+      },
+      {
+        "alias": "PUBLIC:observations/camera_blank.npy",
+        "sha256": "7737a3c964d69798f34ec28e6579182c7c20192ddd12ccfd98cb24e3e693da99",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/camera_dark.npy",
+        "sha256": "09a1ec7b4bd631f351343f3cb7a940c777ee9e40c8ef0c8b6b2204d11b5c6272",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/camera_flat.npy",
+        "sha256": "38a8c5f48eb98389691a70b17a3acdbe5086c0aa72ccd9945689946e0b5cf816",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/complete.json",
+        "sha256": "3caf82e25df323dedb101349440a206a1587eab32f4ee5366f425539e64b9a5e",
+        "size_bytes": 4145
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o0_p0.npy",
+        "sha256": "2cbdcfff66d26892c924aac512ae56388e85a36b145e1f92673c8afffba62cf7",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o0_p1.npy",
+        "sha256": "4dcf0745e387c9e8a8dc703a3bce2a073e45ba2aa5627cfb6eecdae55f16d61e",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o0_p2.npy",
+        "sha256": "840c7ecf4c0faeff4ebb9fe4536c5106459cfd11b30c9215b06952a3fb4d478e",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o0_p3.npy",
+        "sha256": "ea832168785e0449747b900ecef64945f2aa810ce89422848b59c5795ec46dad",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o0_p4.npy",
+        "sha256": "6b9167f27a33523b9de6417e8e9d81336800a9c2942a0cc1d20e16e2d2ff0ec1",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o1_p0.npy",
+        "sha256": "8d5424bee4157d3a038d6656db426603942f75eebd6f4a8917fe508d98b4cef5",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o1_p1.npy",
+        "sha256": "dacaada254a64c9bcd36686bb25742cfb53eaf9a2b08e1a8adfd75091fb5eef0",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o1_p2.npy",
+        "sha256": "72e261c1b1ab871d19631ddde93e3e2e1c76cec89d675018f930790e31590694",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o1_p3.npy",
+        "sha256": "5c1a6b70f033f96186797e7dda6500194dd2a5ebcdf2668d4208de5150749dfa",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o1_p4.npy",
+        "sha256": "0c72bf7752c3e192abb8f88376d24da191bd959c502aaebdbd4dc48c7ac41a97",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o2_p0.npy",
+        "sha256": "e7d34415de358e985492b401025eeaecac3e993d6d32718056b715e21a6eb547",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o2_p1.npy",
+        "sha256": "e6293c5e9644ea5c3e3a946b8d2aea5d2e7e847ed5231b88a86e0c3b3fc95828",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o2_p2.npy",
+        "sha256": "5dc7692de10594486408ed0d19a435cacf123711b2b282d0c97b784c3e33e0be",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o2_p3.npy",
+        "sha256": "8869db156c423a6d8372ef0068f796bb44c572b1d3dbd07b9c29736fed9386c3",
+        "size_bytes": 65664
+      },
+      {
+        "alias": "PUBLIC:observations/specimen_o2_p4.npy",
+        "sha256": "abf866601bc1702effcfd0ac477b3dfaf50cd59c2c07efebf7090ae1371667c4",
+        "size_bytes": 65664
+      }
+    ],
+    "input_archive": {
+      "alias": "PUBLIC:original-PR53-archive",
+      "identity_preserved_during_extraction": true,
+      "sha256": "4de84ac559e2fcf93a2e038eea571366af54207d368cfb2f0bd50e78129257f0",
+      "size_bytes": 1706228839
+    },
+    "regular_file_bytes": 4004529
+  },
+  "post_freeze_candidate_replay": {
+    "allowance": {
+      "meaning": "Finite optical arithmetic compatibility, not a recovery/noise/continuum tolerance",
+      "nonnegative_brightness": [
+        149.23794101052124,
+        99.47793979345514,
+        79.39076544202436
+      ],
+      "observed_unit_unilluminated_peaks": [
+        0.11505503419119724,
+        0.12027191944074814,
+        0.12472329030455219
+      ],
+      "observer_assembly_allowance": 4.1606587134430957e-13,
+      "observer_six_operation_subnormal_allowance": 3.5e-323,
+      "prediction_comparison_allowance": 0.0007807449409111837,
+      "two_optical_call_allowances": 0.0007807449404951179,
+      "unilluminated_peak_upper_bound": 39.03724702475589,
+      "units": "reference_flat_relative"
+    },
+    "heldout_prediction_comparison": "unavailable: no complete returned prediction",
+    "heldout_residual_mean_difference": null,
+    "heldout_residual_rms_difference": null,
+    "prediction_entry_counts": {
+      "central": 8192,
+      "heldout": 122880,
+      "training": 221184
+    },
+    "reported_training_rms": 0.10346815963311173,
+    "status": "replayed",
+    "summary_roundoff_limit": "Objective/RMS differences are descriptive; the entrywise bound concerns predictions, not an exact rounded reduction oracle.",
+    "training_objective": 0.005352830028931548,
+    "training_rms": 0.10346815963311176,
+    "training_rms_absolute_difference": 2.7755575615628914e-17
+  },
+  "predeclared_manifest": {
+    "calibration_inputs": [
+      "calibration_central.npy",
+      "calibration_training.npy",
+      "calibration_heldout.npy"
+    ],
+    "calibration_origin_um_zyx": [
+      0.125,
+      -0.375,
+      0.23
+    ],
+    "calibration_shape_zyx": [
+      8,
+      32,
+      32
+    ],
+    "camera_inputs": [
+      "camera_dark.npy",
+      "camera_blank.npy",
+      "camera_flat.npy"
+    ],
+    "contract": {
+      "path": "docs/contracts/reference-alignment-ra12-v1.md",
+      "sha256": "cd768503409a3c05feb1e7b4c311132280264508a1d16ab1309869a1818219f6",
+      "version": "1.1"
+    },
+    "control_meaning": "finite procedure settings selected before inspecting new inference outputs; RMS0.05 and calibration1e-8 are absolute reference-flat-relative image units, operator1e-6 is dimensionless; no sampling interpretation or adaptive rerun based on outcome",
+    "controls": {
+      "calibration_atol": 1e-08,
+      "max_refinement_evaluations": 40,
+      "operator_atol": 1e-06,
+      "sweep_scales": [
+        1.0
+      ],
+      "training_rms_limit": 0.05
+    },
+    "declared_utc": "2026-11-01T03:49:07.610983+00:00",
+    "evaluation_order": [
+      "verify current input/script/commit/environment identities",
+      "estimate camera from its three observed groups",
+      "run observation-only inference once with these controls",
+      "retain exact frozen candidate/results/trace/audit and outcome before supplemental observers",
+      "independently replay complete Q128 central/training/held-out prediction from public finite-source/optics interfaces, with one-electron unit responses multiplied outside the electron label",
+      "independently compare complete specimen finite field using calibration-origin complex beam algebra against the transferred descriptor at every specified site/lag",
+      "report every unavailable/incomplete result and all observed errors/counts/times without new recovery/confidence claims"
+    ],
+    "field_replay_independence": "direct complex sum of three beams with independently computed physical carrier/axial frequency and calibration-origin phases; do not import production phase-transfer or audit helpers",
+    "field_replay_scope": "3 orientations*5 phases*15 axial source-focus lags*64*64 half-cell lateral sites=921600 values; ordinary bounded geometry; report max and full-array norms and phase-transfer agreement",
+    "inference_exclusions": [
+      "true source/positions/carrier/phases/beams/camera coefficients",
+      "generator plans/seeds",
+      "noiseless/evaluator arrays",
+      "specimen observations",
+      "held-out values as parameter/search/stopping inputs"
+    ],
+    "limits": [
+      "not an independent numerical reference for the shared finite optical physics",
+      "not specimen reconstruction/truth recovery",
+      "no full27-object benchmark or empirical-optics claim",
+      "controls do not create a human spending/time cap",
+      "if unavailable, retain the result and state which later comparisons cannot be run"
+    ],
+    "predictive_replay_tolerance_basis": "public optics1e-5*T per prediction; use nonnegative one-electron unilluminated responses and positive brightness weights to bound comparison, accounting for observed T uncertainty and finite summation; no output-tuned tolerance",
+    "purpose": "one retained original small calibration run and independent replay of its frozen held-out prediction and full finite specimen illumination field; descriptive evidence, no recovery/global-identification/confidence claim",
+    "residual_definition": "prediction minus corrected observation, reduced over all detector sites per exposure",
+    "schema": "ra12_original_small_predictive_evaluation_v1",
+    "specimen_detector_shape_zyx": [
+      8,
+      32,
+      32
+    ],
+    "specimen_detector_spacing_um_zyx": [
+      0.125,
+      0.08,
+      0.08
+    ],
+    "specimen_origin_um_zyx": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "producer": {
+    "byteorder": "little",
+    "command_alias": "PUBLIC:producer-interpreter PUBLIC:preparation/run-2.py --execute-once",
+    "elapsed_seconds": 663.4888418330083,
+    "exit_status": 0,
+    "head_commit_recorded_during_run": "e5f918bc54d1622f92009bce143cffd4ac4a7477",
+    "head_tree_recorded_during_run": "b4ae241aaa3975fbf31dd7c303fbe3d4543eb4ce",
+    "lock": {
+      "alias": "PUBLIC:repository/uv.lock",
+      "sha256": "35b409ba276e93de95ad5af61a399aedb4500af4106d4d774eab80d40d1544f9",
+      "size_bytes": 45208
+    },
+    "numpy_version": "2.5.3",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "python_version": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+    "scipy_version": "1.18.1",
+    "source_identity_limit": "Producer ran with new RA12 source bytes while HEAD still named the RA11 baseline. These source hashes, not a later documentation/final-candidate commit, identify the observed code inputs.",
+    "source_modules": [
+      {
+        "repository_path": "scripts/image_only_bead_calibration.py",
+        "sha256": "d876354adff45ee907b5a3ac1e5ad146d2af4830f6892de0c109e97780a49467",
+        "size_bytes": 35757
+      },
+      {
+        "repository_path": "scripts/image_only_calibration_handoff.py",
+        "sha256": "0f07f4b4f4c8d7c3bf046daf7d02fd173411de27b17726e354962688d29cdb18",
+        "size_bytes": 38274
+      },
+      {
+        "repository_path": "scripts/image_only_calibration_pilot.py",
+        "sha256": "03b26695bee4bcf1c75c6f6f76981cd3928ea777d7da51e95a18823acca8d83f",
+        "size_bytes": 32748
+      },
+      {
+        "repository_path": "scripts/physical_phase.py",
+        "sha256": "bac28a0f6a46cfb099a0638d84516493727d49008493144cc224c989f4d1db89",
+        "size_bytes": 1864
+      },
+      {
+        "repository_path": "scripts/simulation_optics.py",
+        "sha256": "db7c1d0e6d79c3e066f841c9b071433966f61c20f19d150cea6cb5740eeb7081",
+        "size_bytes": 357464
+      },
+      {
+        "repository_path": "scripts/simulation_sources.py",
+        "sha256": "d93e2c5eeb04dd16affe180e4e4123245060cbd4db270edb8a3d4cb279b6842d",
+        "size_bytes": 7957
+      },
+      {
+        "repository_path": "scripts/source_free_sitecustomize/sitecustomize.py",
+        "sha256": "a773c34a22137a154e9d4354557d18454199ed057939604746a97653b1070c54",
+        "size_bytes": 8182
+      },
+      {
+        "repository_path": "src/simrecon/__init__.py",
+        "sha256": "815cf0ecd23957fafa3b7ec05f29f57011092db093d5245bb7448886dc05ec31",
+        "size_bytes": 5714
+      },
+      {
+        "repository_path": "src/simrecon/_acquisition.py",
+        "sha256": "01d254d528a6083136f9e8ba8356e4ac990e9bb7c3a90c6def8ddc2e539d72a6",
+        "size_bytes": 14119
+      },
+      {
+        "repository_path": "src/simrecon/_alignment_bead.py",
+        "sha256": "9700c490c1a6131507d00c56554705c5890575607d84bd7801859b83bae58769",
+        "size_bytes": 10996
+      },
+      {
+        "repository_path": "src/simrecon/_alignment_camera.py",
+        "sha256": "81b4e0d3ded2b5167f38274fad0f55bd74e987e7c5ea6bd70fb071978f166394",
+        "size_bytes": 12135
+      },
+      {
+        "repository_path": "src/simrecon/_array_validation.py",
+        "sha256": "0ae798aa541dce3ed21ed46f489b0eef22819de43305370ef31d1fd9476d3288",
+        "size_bytes": 762
+      },
+      {
+        "repository_path": "src/simrecon/_bead_peak.py",
+        "sha256": "0b5b8a9648d9b571a7899304d4d9e92e69a7ef67725509824df77af11932464a",
+        "size_bytes": 3612
+      },
+      {
+        "repository_path": "src/simrecon/_carrier.py",
+        "sha256": "788226469af52043d0a29ebb0a0edd135160cdb2c8ae4bdf4c842e694e70ad5e",
+        "size_bytes": 4114
+      },
+      {
+        "repository_path": "src/simrecon/_carrier_selection.py",
+        "sha256": "3d48ead76208074bdc6fd44abf022227ffa14438177905b2f0097bec83e501df",
+        "size_bytes": 5831
+      },
+      {
+        "repository_path": "src/simrecon/_drift.py",
+        "sha256": "7c8ddf8cd9f1fb1d23fe2df16131d0593de7c3505f184b02e2ea69b948045400",
+        "size_bytes": 6479
+      },
+      {
+        "repository_path": "src/simrecon/_empirical_frequency.py",
+        "sha256": "fef50bed13ae0e0f53e974770b44e1f43385dba372eecca26c9119b3e419f0e8",
+        "size_bytes": 9609
+      },
+      {
+        "repository_path": "src/simrecon/_empirical_response.py",
+        "sha256": "21f9d2f1b45ae3ce28bfe13d7bcee5559fd63f5ddedf715cee4ceea702b9a907",
+        "size_bytes": 8019
+      },
+      {
+        "repository_path": "src/simrecon/_empirical_shared_nodes.py",
+        "sha256": "f548f471f832cf91746b5cff97246e86369771e124c4b8ad2abbc011ef4f6935",
+        "size_bytes": 10489
+      },
+      {
+        "repository_path": "src/simrecon/_empirical_transfer.py",
+        "sha256": "172bd7e326c0379d7ae1eeba0796900ec04981eb8c5cf987b076d9e7dd937e70",
+        "size_bytes": 8753
+      },
+      {
+        "repository_path": "src/simrecon/_empirical_trilinear.py",
+        "sha256": "1909fbec7b866d1d65bd70a710f58723d62efe4986804eb52f0b356b181d9030",
+        "size_bytes": 12484
+      },
+      {
+        "repository_path": "src/simrecon/_finite_bead_calibration.py",
+        "sha256": "51b9e8618b0f8c12e2b5fc71e2972f24a214fdbebd524adc677d68581872cbbd",
+        "size_bytes": 15854
+      },
+      {
+        "repository_path": "src/simrecon/_illumination.py",
+        "sha256": "0efc1901848abda9d8656cfa22ee18e00b10bec44e431b6764846672f09d8ce5",
+        "size_bytes": 9375
+      },
+      {
+        "repository_path": "src/simrecon/_imagej.py",
+        "sha256": "78b0d08d08f80216e8402f68947c4172ff2180727620cbe45bec3b2b28685245",
+        "size_bytes": 6252
+      },
+      {
+        "repository_path": "src/simrecon/_imagej_metadata.py",
+        "sha256": "251d0aa17fbc2a5f71640b49a15ae26c9aeb386fddc1439b0e527e0bb980df57",
+        "size_bytes": 7688
+      },
+      {
+        "repository_path": "src/simrecon/_legacy.py",
+        "sha256": "7119fd85ded5472b626ef9320a74ba4856e9493b06e6a1147fba9f852bf6d5a9",
+        "size_bytes": 3747
+      },
+      {
+        "repository_path": "src/simrecon/_linear_response.py",
+        "sha256": "a3dadbeb59b51765d4fe1b5131e7302af130a4987dd79c774f95df37f52d1ee5",
+        "size_bytes": 6683
+      },
+      {
+        "repository_path": "src/simrecon/_metadata.py",
+        "sha256": "860e4581685e3fa961b7f3be3eb3f8fa7646e0692345fa6cef29be2e0d052ea6",
+        "size_bytes": 7143
+      },
+      {
+        "repository_path": "src/simrecon/_model.py",
+        "sha256": "821fea440306640e015013ae8afcdb40d5e968275887257fb3461970ddaf4c59",
+        "size_bytes": 1396
+      },
+      {
+        "repository_path": "src/simrecon/_modern.py",
+        "sha256": "78b5513739f047d4e035599124019aea9a5b6b54fe5847645c7f893bfa3636f9",
+        "size_bytes": 5834
+      },
+      {
+        "repository_path": "src/simrecon/_observable_volume_phase_estimation.py",
+        "sha256": "554705df8993d235ca7f249a6310e5443581abfb27c456989ec48b48fbec65e7",
+        "size_bytes": 3519
+      },
+      {
+        "repository_path": "src/simrecon/_otf.py",
+        "sha256": "206f5a902a0af920cd39e71508f65636e8aefc90666cdc6454d219dc8147ae9f",
+        "size_bytes": 8033
+      },
+      {
+        "repository_path": "src/simrecon/_phase.py",
+        "sha256": "c5bd012e554d781b11a4f439b84099f3e598e080dbf121aed8103d29cfa9e025",
+        "size_bytes": 6037
+      },
+      {
+        "repository_path": "src/simrecon/_phase_carrier_scan.py",
+        "sha256": "a040757ee3a5a02aefb220bcece3f2748b8114b2762b1ef3710b206bd240dfa2",
+        "size_bytes": 6092
+      },
+      {
+        "repository_path": "src/simrecon/_phase_carrier_selection.py",
+        "sha256": "b135ab7eab8343b6b503de7128478ae5799b0ebc0083a6f5a842248c61948ead",
+        "size_bytes": 6376
+      },
+      {
+        "repository_path": "src/simrecon/_pixels.py",
+        "sha256": "4f4444f88893bfde004da2f683756e6f4d6aaa59cf60a5f75fb0325f235e5bf7",
+        "size_bytes": 1794
+      },
+      {
+        "repository_path": "src/simrecon/_point_bead_calibration.py",
+        "sha256": "42d598876b463d21ab471d58ec22d81f70894de4f178ee88af3239bf89f57356",
+        "size_bytes": 6554
+      },
+      {
+        "repository_path": "src/simrecon/_reconstruction.py",
+        "sha256": "c47d3bc67e51c1a885d80f08b20d8a0977b6cfb5f8aa47743ab39e3060ed8adb",
+        "size_bytes": 17442
+      },
+      {
+        "repository_path": "src/simrecon/_scalar_camera_calibration.py",
+        "sha256": "5b924d3a4714682eb6cc7588fda31197c6a4e8e50436083c5bcabd8fe5380a0c",
+        "size_bytes": 8564
+      },
+      {
+        "repository_path": "src/simrecon/_translation.py",
+        "sha256": "103764eb5f152cb1d0966c70ff5323abacfbb65d7a554863971bcdc2351e12ca",
+        "size_bytes": 7521
+      },
+      {
+        "repository_path": "src/simrecon/_volume_carrier_diagnostics.py",
+        "sha256": "6e0c8b00c3e5a99b493aa0a874fb31c33b49af897c400fbad96e96e81226f3c0",
+        "size_bytes": 15448
+      },
+      {
+        "repository_path": "src/simrecon/_volume_order_otf.py",
+        "sha256": "9cfcd035c8f2556399c23ea973af42f532c76a560edd7a281e12bcb00933eb3d",
+        "size_bytes": 6341
+      },
+      {
+        "repository_path": "src/simrecon/_volume_otf.py",
+        "sha256": "1d071633321ffbb64e9c446edc0810fc09fd0d79986dabc0e1e840f7c98a1785",
+        "size_bytes": 8669
+      },
+      {
+        "repository_path": "src/simrecon/_volume_phase.py",
+        "sha256": "b0d462a06d364145b566a95a3e31f52a34290d858eab400335c1bb2a30533006",
+        "size_bytes": 7292
+      },
+      {
+        "repository_path": "src/simrecon/_volume_phase_estimation.py",
+        "sha256": "7b1b69f3093c0c7ee84d7e54066be437bc00cc46ea1c819169e1ae72ac293186",
+        "size_bytes": 18700
+      },
+      {
+        "repository_path": "src/simrecon/_volume_translation_estimation.py",
+        "sha256": "5a7a238b6c9e2470ddd4fda1f51c0ec05e72653fc8b5fcf2cade72eba6858c7b",
+        "size_bytes": 6328
+      },
+      {
+        "repository_path": "src/simrecon/exposure_phase.py",
+        "sha256": "a5a1894e12b81e8759ca4bf2392e938afa2fb0eff38e3aea68929087acfab4be",
+        "size_bytes": 21490
+      },
+      {
+        "repository_path": "src/simrecon/fractional_volume_reconstruction.py",
+        "sha256": "f29e54ce6a5f93a0545fb45cf1c745f64f12ebaf9b0eef42f350b23abb9146a6",
+        "size_bytes": 12456
+      },
+      {
+        "repository_path": "src/simrecon/volume_carrier_selection.py",
+        "sha256": "72740c1f69d78a34e957f35014011930cbb4a7bd591900373609ed411cddf585",
+        "size_bytes": 7686
+      },
+      {
+        "repository_path": "src/simrecon/volume_order_gain.py",
+        "sha256": "a8e398b51a9e19fb5493002b94dd34959739d7a31f54126ebe45358b9f1178af",
+        "size_bytes": 11056
+      },
+      {
+        "repository_path": "src/simrecon/volume_overlap.py",
+        "sha256": "976a2fa2063ddf6fe961dec705d527d6062adba0fe8939add50007a7d4c249f1",
+        "size_bytes": 25018
+      },
+      {
+        "repository_path": "src/simrecon/volume_reconstruction.py",
+        "sha256": "66f9663410c490ffdf64d6f395befc84f385927e664881180cb8da67d660b65f",
+        "size_bytes": 17759
+      },
+      {
+        "repository_path": "src/simrecon/weighted_volume_reconstruction.py",
+        "sha256": "7d717c836b8d9f17300274c01f30b86b8f0aca9762820b2684eef591ed1d21d9",
+        "size_bytes": 18302
+      }
+    ],
+    "status": "completed_supplemental_report",
+    "supervisor_elapsed_seconds": 663.6967454170001,
+    "timing_limit": "Native/caller timing is nested within supervisor elapsed; do not add them.",
+    "tracked_status_recorded_during_run": "M scripts/full_noisy_study.py"
+  },
+  "refinement": {
+    "best_evaluation_index": 206,
+    "best_objective": 0.005352830028931546,
+    "displayed_outcome_labels": [
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored",
+      "scored"
+    ],
+    "finite_trace_objective_count": 235,
+    "incumbent_minimum_by_trace_ordinal": [
+      0.01828377294048673,
+      0.01828377294048673,
+      0.018283772916921393,
+      0.018283772916921393,
+      0.018283772916921393,
+      0.018283772916921393,
+      0.018283772916921393,
+      0.018283772916921393,
+      0.018283772916921393,
+      0.018283769001133664,
+      0.018283769001133664,
+      0.018283769001133664,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.018283729784153373,
+      0.005783563145005251,
+      0.005783562953218848,
+      0.005783562953218848,
+      0.005783562953218848,
+      0.005783562953218848,
+      0.005783562953218848,
+      0.005783562953218848,
+      0.005783562672995098,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005783562610251998,
+      0.005356312057912013,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.0053563120447198,
+      0.005356312040673215,
+      0.005352835737838216,
+      0.005352835737770828,
+      0.005352835737770828,
+      0.005352835737770828,
+      0.005352835737770828,
+      0.00535283573774444,
+      0.00535283573774444,
+      0.00535283573774444,
+      0.005352835736976725,
+      0.005352835736976725,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352835735154199,
+      0.005352830043978325,
+      0.005352830043978325,
+      0.005352830043978197,
+      0.005352830043973508,
+      0.005352830043973508,
+      0.005352830043973508,
+      0.005352830043973508,
+      0.005352830043973508,
+      0.0053528300439455116,
+      0.0053528300439455116,
+      0.0053528300439455116,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830043591694,
+      0.005352830028940572,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.0053528300289404345,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546,
+      0.005352830028931546
+    ],
+    "infeasible_evaluations": 0,
+    "initial_objective": 0.01828377294048673,
+    "message": "`ftol` termination condition is satisfied.",
+    "nfev": 6,
+    "njev": 6,
+    "objective_evaluations": 235,
+    "retained_trace_record_count": 235,
+    "status": 2,
+    "successful_evaluations": 235,
+    "tick_display": {
+      "major_reported_evaluation_indices": [
+        0,
+        20,
+        40,
+        60,
+        80,
+        100,
+        120,
+        140,
+        160,
+        180,
+        200,
+        220,
+        234
+      ],
+      "major_trace_ordinals": [
+        1,
+        21,
+        41,
+        61,
+        81,
+        101,
+        121,
+        141,
+        161,
+        181,
+        201,
+        221,
+        235
+      ],
+      "rows": "both trace rows share the same major positions and ordinal/index labels",
+      "rule": "ceil(trace_count/12) stride, include first and last; labels only, no data thinning",
+      "stride": 20
+    },
+    "trace": [
+      {
+        "evaluation_index": 0,
+        "objective": 0.01828377294048673,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 1,
+        "objective": 0.01828377294048673,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 2,
+        "objective": 0.018283772916921393,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 3,
+        "objective": 0.018283773012120186,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 4,
+        "objective": 0.018283772976965797,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 5,
+        "objective": 0.018283773356824313,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 6,
+        "objective": 0.01828377293574201,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 7,
+        "objective": 0.018283779252134286,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 8,
+        "objective": 0.018283780703578865,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 9,
+        "objective": 0.018283769001133664,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 10,
+        "objective": 0.01828378428970703,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 11,
+        "objective": 0.01828377086842022,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 12,
+        "objective": 0.018283729784153373,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 13,
+        "objective": 0.018283773463846676,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 14,
+        "objective": 0.018283772935523055,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 15,
+        "objective": 0.018283773641736535,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 16,
+        "objective": 0.01828377325682391,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 17,
+        "objective": 0.018283772758275425,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 18,
+        "objective": 0.01828377347729484,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 19,
+        "objective": 0.018283772616854523,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 20,
+        "objective": 0.018283772937802766,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 21,
+        "objective": 0.01828377272300995,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 22,
+        "objective": 0.01828377287743251,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 23,
+        "objective": 0.018283772919837547,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 24,
+        "objective": 0.018283772988585228,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 25,
+        "objective": 0.018283773115999383,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 26,
+        "objective": 0.018283772613468786,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 27,
+        "objective": 0.018283772788388414,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 28,
+        "objective": 0.018283772906310326,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 29,
+        "objective": 0.018283772658526383,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 30,
+        "objective": 0.018283773187503193,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 31,
+        "objective": 0.01828377291496886,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 32,
+        "objective": 0.018283772912437265,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 33,
+        "objective": 0.018283772825268586,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 34,
+        "objective": 0.01828377318541898,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 35,
+        "objective": 0.018283773728678752,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 36,
+        "objective": 0.01828377296563005,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 37,
+        "objective": 0.018283773371436697,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 38,
+        "objective": 0.01828377300412631,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 39,
+        "objective": 0.018283773309984385,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 40,
+        "objective": 0.005783563145005251,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 41,
+        "objective": 0.005783562953218848,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 42,
+        "objective": 0.00578356311958777,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 43,
+        "objective": 0.005783563107824364,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 44,
+        "objective": 0.005783562962517524,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 45,
+        "objective": 0.005783563107072597,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 46,
+        "objective": 0.005783563052830626,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 47,
+        "objective": 0.005783562672995098,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 48,
+        "objective": 0.005783562610251998,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 49,
+        "objective": 0.005783563801104631,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 50,
+        "objective": 0.005783562613760089,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 51,
+        "objective": 0.005783566089444872,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 52,
+        "objective": 0.005783563189193301,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 53,
+        "objective": 0.005783563134875125,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 54,
+        "objective": 0.005783563131207837,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 55,
+        "objective": 0.005783563156598814,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 56,
+        "objective": 0.005783563147843495,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 57,
+        "objective": 0.0057835631445003295,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 58,
+        "objective": 0.00578356316792628,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 59,
+        "objective": 0.005783563136083118,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 60,
+        "objective": 0.005783563125839515,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 61,
+        "objective": 0.0057835631636826675,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 62,
+        "objective": 0.005783563134159827,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 63,
+        "objective": 0.005783563151598091,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 64,
+        "objective": 0.005783563147137467,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 65,
+        "objective": 0.005783563130465527,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 66,
+        "objective": 0.005783563123150902,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 67,
+        "objective": 0.005783563142498384,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 68,
+        "objective": 0.0057835631374751895,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 69,
+        "objective": 0.00578356316869139,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 70,
+        "objective": 0.00578356311354432,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 71,
+        "objective": 0.005783563138930729,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 72,
+        "objective": 0.005783563133434839,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 73,
+        "objective": 0.005783562942089456,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 74,
+        "objective": 0.005783563140424076,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 75,
+        "objective": 0.005783563189689241,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 76,
+        "objective": 0.005783563125772733,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 77,
+        "objective": 0.005783563183188339,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 78,
+        "objective": 0.005783563032653516,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 79,
+        "objective": 0.005356312057912013,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 80,
+        "objective": 0.0053563120447198,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 81,
+        "objective": 0.005356312053384264,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 82,
+        "objective": 0.005356312054053439,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 83,
+        "objective": 0.005356312044737604,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 84,
+        "objective": 0.005356312055747741,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 85,
+        "objective": 0.005356312088124462,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 86,
+        "objective": 0.005356312099066008,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 87,
+        "objective": 0.005356312045287212,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 88,
+        "objective": 0.005356312069255509,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 89,
+        "objective": 0.0053563120467294886,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 90,
+        "objective": 0.00535631223704138,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 91,
+        "objective": 0.005356312057784953,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 92,
+        "objective": 0.005356312057546005,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 93,
+        "objective": 0.005356312060209212,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 94,
+        "objective": 0.005356312056997037,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 95,
+        "objective": 0.005356312059894228,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 96,
+        "objective": 0.005356312055018802,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 97,
+        "objective": 0.005356312061403939,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 98,
+        "objective": 0.005356312058037123,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 99,
+        "objective": 0.005356312059588819,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 100,
+        "objective": 0.005356312052799203,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 101,
+        "objective": 0.0053563120575690635,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 102,
+        "objective": 0.005356312057494984,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 103,
+        "objective": 0.005356312057692827,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 104,
+        "objective": 0.00535631205364336,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 105,
+        "objective": 0.005356312058896424,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 106,
+        "objective": 0.005356312056350776,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 107,
+        "objective": 0.005356312055394947,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 108,
+        "objective": 0.005356312059242191,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 109,
+        "objective": 0.005356312057416454,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 110,
+        "objective": 0.005356312060990305,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 111,
+        "objective": 0.005356312055556305,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 112,
+        "objective": 0.005356312054685665,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 113,
+        "objective": 0.005356312056638232,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 114,
+        "objective": 0.005356312051388188,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 115,
+        "objective": 0.005356312058176397,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 116,
+        "objective": 0.005356312053594374,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 117,
+        "objective": 0.005356312040673215,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 118,
+        "objective": 0.005352835737838216,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 119,
+        "objective": 0.005352835737770828,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 120,
+        "objective": 0.005352835737830197,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 121,
+        "objective": 0.0053528357377899665,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 122,
+        "objective": 0.005352835737777486,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 123,
+        "objective": 0.00535283573774444,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 124,
+        "objective": 0.005352835739159415,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 125,
+        "objective": 0.005352835739554302,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 126,
+        "objective": 0.005352835736976725,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 127,
+        "objective": 0.005352835738385233,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 128,
+        "objective": 0.005352835735154199,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 129,
+        "objective": 0.005352835749136655,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 130,
+        "objective": 0.005352835737837047,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 131,
+        "objective": 0.005352835737973771,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 132,
+        "objective": 0.005352835737841699,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 133,
+        "objective": 0.0053528357378547445,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 134,
+        "objective": 0.005352835737830657,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 135,
+        "objective": 0.00535283573784878,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 136,
+        "objective": 0.00535283573787679,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 137,
+        "objective": 0.0053528357379038615,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 138,
+        "objective": 0.005352835737813569,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 139,
+        "objective": 0.005352835737803034,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 140,
+        "objective": 0.005352835737844548,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 141,
+        "objective": 0.005352835737703821,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 142,
+        "objective": 0.005352835737808476,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 143,
+        "objective": 0.00535283573781526,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 144,
+        "objective": 0.005352835737855959,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 145,
+        "objective": 0.005352835737863879,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 146,
+        "objective": 0.005352835737788006,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 147,
+        "objective": 0.00535283573796407,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 148,
+        "objective": 0.0053528357378051375,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 149,
+        "objective": 0.005352835737601039,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 150,
+        "objective": 0.005352835737906317,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 151,
+        "objective": 0.0053528357380459215,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 152,
+        "objective": 0.005352835737921622,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 153,
+        "objective": 0.0053528357376733,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 154,
+        "objective": 0.005352835737898757,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 155,
+        "objective": 0.005352835737231803,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 156,
+        "objective": 0.005352835736936789,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 157,
+        "objective": 0.005352830043978325,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 158,
+        "objective": 0.005352830043983014,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 159,
+        "objective": 0.005352830043978197,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 160,
+        "objective": 0.005352830043973508,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 161,
+        "objective": 0.005352830043974162,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 162,
+        "objective": 0.005352830043977616,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 163,
+        "objective": 0.005352830044175173,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 164,
+        "objective": 0.005352830044320913,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 165,
+        "objective": 0.0053528300439455116,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 166,
+        "objective": 0.005352830044135957,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 167,
+        "objective": 0.005352830044102688,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 168,
+        "objective": 0.005352830043591694,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 169,
+        "objective": 0.0053528300439793074,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 170,
+        "objective": 0.0053528300439962,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 171,
+        "objective": 0.005352830043979235,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 172,
+        "objective": 0.00535283004397994,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 173,
+        "objective": 0.005352830043978902,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 174,
+        "objective": 0.0053528300439814646,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 175,
+        "objective": 0.005352830043979359,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 176,
+        "objective": 0.005352830043983846,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 177,
+        "objective": 0.00535283004397878,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 178,
+        "objective": 0.005352830043978492,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 179,
+        "objective": 0.005352830043978339,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 180,
+        "objective": 0.005352830043969264,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 181,
+        "objective": 0.005352830043978956,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 182,
+        "objective": 0.005352830043977938,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 183,
+        "objective": 0.005352830043978443,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 184,
+        "objective": 0.00535283004397965,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 185,
+        "objective": 0.005352830043979733,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 186,
+        "objective": 0.005352830043973298,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 187,
+        "objective": 0.0053528300439760895,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 188,
+        "objective": 0.005352830043991952,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 189,
+        "objective": 0.005352830043978436,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 190,
+        "objective": 0.00535283004397546,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 191,
+        "objective": 0.005352830043979055,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 192,
+        "objective": 0.005352830043977514,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 193,
+        "objective": 0.005352830043979093,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 194,
+        "objective": 0.005352830044003694,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 195,
+        "objective": 0.005352830043963587,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 196,
+        "objective": 0.005352830028940572,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 197,
+        "objective": 0.0053528300289404345,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 198,
+        "objective": 0.005352830028940824,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 199,
+        "objective": 0.005352830028940629,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 200,
+        "objective": 0.005352830028940992,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 201,
+        "objective": 0.005352830028940522,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 202,
+        "objective": 0.005352830028977363,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 203,
+        "objective": 0.005352830029065946,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 204,
+        "objective": 0.005352830028978467,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 205,
+        "objective": 0.005352830028983157,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 206,
+        "objective": 0.005352830028931546,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 207,
+        "objective": 0.005352830029263476,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 208,
+        "objective": 0.005352830028940715,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 209,
+        "objective": 0.005352830028942432,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 210,
+        "objective": 0.005352830028940689,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 211,
+        "objective": 0.0053528300289407554,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 212,
+        "objective": 0.005352830028940534,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 213,
+        "objective": 0.005352830028940882,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 214,
+        "objective": 0.0053528300289402845,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 215,
+        "objective": 0.0053528300289409905,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 216,
+        "objective": 0.005352830028940594,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 217,
+        "objective": 0.00535283002894094,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 218,
+        "objective": 0.0053528300289406435,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 219,
+        "objective": 0.005352830028939995,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 220,
+        "objective": 0.005352830028940619,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 221,
+        "objective": 0.0053528300289408,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 222,
+        "objective": 0.005352830028940726,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 223,
+        "objective": 0.00535283002894072,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 224,
+        "objective": 0.0053528300289406834,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 225,
+        "objective": 0.005352830028941247,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 226,
+        "objective": 0.0053528300289405065,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 227,
+        "objective": 0.005352830028939627,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 228,
+        "objective": 0.005352830028940959,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 229,
+        "objective": 0.005352830028941421,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 230,
+        "objective": 0.0053528300289414025,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 231,
+        "objective": 0.005352830028940164,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 232,
+        "objective": 0.0053528300289411015,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 233,
+        "objective": 0.005352830028936326,
+        "outcome": "scored"
+      },
+      {
+        "evaluation_index": 234,
+        "objective": 0.005352830028940493,
+        "outcome": "scored"
+      }
+    ]
+  },
+  "render": {
+    "automatic_retries": 0,
+    "command_alias": "PUBLIC:render-interpreter PUBLIC:preparation/render-4.py --execute-once",
+    "coordinator_visual_inspection": "Accepted after render 4: legibility, physical axes, status labels and scales; all 235 points retained, tick stride20 only, fixed frame clear.",
+    "elapsed_seconds": 10.557542082999134,
+    "exit_status": 0,
+    "fonts": [
+      {
+        "alias": "PUBLIC:font/DejaVuSans.ttf",
+        "sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+        "size_bytes": 756072
+      }
+    ],
+    "gaps": [
+      "returned handoff: all 15 held-out RMS entries unavailable"
+    ],
+    "originals_unchanged": true,
+    "package_metadata": [
+      {
+        "alias": "PUBLIC:package-metadata/numpy-2.5.3.dist-info/METADATA",
+        "sha256": "451a9b8028000588e66b0b415587b6aef0bbc51a96d8e8a0cba0dc23acf64f99",
+        "size_bytes": 6635
+      },
+      {
+        "alias": "PUBLIC:package-metadata/matplotlib-3.11.0.dist-info/METADATA",
+        "sha256": "776f562976d418b94697f9f84649f80d06167042eb810ed9cd9d72260bb2abb4",
+        "size_bytes": 80264
+      }
+    ],
+    "prepared_inputs_unchanged": true,
+    "producer_final_frozen_check": true,
+    "producer_status": "completed_supplemental_report",
+    "renderer_launches": 1,
+    "runtime": {
+      "byteorder": "little",
+      "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+      "versions": {
+        "matplotlib": "3.11.0",
+        "numpy": "2.5.3"
+      }
+    },
+    "scientific_scope_unchanged": true,
+    "settings": {
+      "backend": "Agg",
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.0",
+      "numpy": "2.5.3",
+      "png_dpi": 180,
+      "svg_fonttype": "path"
+    },
+    "status": "rendered_with_reported_gaps",
+    "supervisor_elapsed_seconds": 10.691972625,
+    "tick_display": {
+      "major_reported_evaluation_indices": [
+        0,
+        20,
+        40,
+        60,
+        80,
+        100,
+        120,
+        140,
+        160,
+        180,
+        200,
+        220,
+        234
+      ],
+      "major_trace_ordinals": [
+        1,
+        21,
+        41,
+        61,
+        81,
+        101,
+        121,
+        141,
+        161,
+        181,
+        201,
+        221,
+        235
+      ],
+      "rows": "both trace rows share the same major positions and ordinal/index labels",
+      "rule": "ceil(trace_count/12) stride, include first and last; labels only, no data thinning",
+      "stride": 20
+    },
+    "wrapper_status_at_recording": "rendered_once_visual_inspection_pending",
+    "wrapper_status_limit": "Original execution receipt was sealed before the later coordinator visual inspection; it is retained unchanged."
+  },
+  "reproduction_boundary": {
+    "aliases_are_identity_labels_not_download_locations": true,
+    "original_data_or_truth_released_here": false,
+    "reason": "Original observation arrays, complete frozen payloads and full producer receipts are retained locally; this public bundle contains figures and selected numerical/provenance metadata only.",
+    "status": "observed_results_not_fully_publicly_reproducible"
+  },
+  "retained_source_metadata": [
+    {
+      "alias": "PUBLIC:preparation/manifest-2.json",
+      "sha256": "ed299e963b490247a42571f76d3362c049a7de01cfc2668cb7fa6d9af73eb2c6",
+      "size_bytes": 4438
+    },
+    {
+      "alias": "PUBLIC:freeze/freeze.complete.json",
+      "sha256": "981257717f6fb3633fb6588d2b799d8d2e156e306e0bf594af907e89c6a3fdb2",
+      "size_bytes": 226599
+    },
+    {
+      "alias": "PUBLIC:freeze/complete-result.json",
+      "sha256": "8d51e68773f6441153c196d7396b3cb8bf64e88b5867e73e4ab5b68c9e2c1f61",
+      "size_bytes": 431330
+    },
+    {
+      "alias": "PUBLIC:producer-output/run.json",
+      "sha256": "7ae0a569f5b02d8d15110d2e3f67d939f0a7b195a2afa13db01b392bebc6af4a",
+      "size_bytes": 287106
+    },
+    {
+      "alias": "PUBLIC:figure-output/scope.json",
+      "sha256": "812fbc45dbe3ac435fbb37488b3c353573fd870b0909aad2e91652b3b359a3a3",
+      "size_bytes": 51514
+    },
+    {
+      "alias": "PUBLIC:figure-output/render.json",
+      "sha256": "a80bc29910fbc0ed559d96536e001b48b55ffeb84bbde760f640310db7407650",
+      "size_bytes": 647145
+    },
+    {
+      "alias": "PUBLIC:retained-metadata/render-execution-4.json",
+      "sha256": "1bb64fa60536a965f636e08c827b9659d5fd58c8ef1dabf1724a547df64c53e3",
+      "size_bytes": 133435
+    },
+    {
+      "alias": "PUBLIC:retained-metadata/execution-2.json",
+      "sha256": "ebd2180544da6124bab89fafc0de9bd694c8da3e070eb93b794fd3635231dbc3",
+      "size_bytes": 985
+    },
+    {
+      "alias": "PUBLIC:retained-metadata/extraction-1.json",
+      "sha256": "4d0738bbf4a9ddb9b4124d6e328f500f09ee35137d30f0370f17d57ead7d2f42",
+      "size_bytes": 20350
+    },
+    {
+      "alias": "PUBLIC:preparation/run-2.py",
+      "sha256": "9b28a9d93bdf110b9121a876509e8ef2567a1f2b76aa97a14912689c858ab643",
+      "size_bytes": 41448
+    },
+    {
+      "alias": "PUBLIC:preparation/render-4.py",
+      "sha256": "526ef9c86d79896d99c487a630aac9db41cdc013fdf38cc337344e6b8f12d8aa",
+      "size_bytes": 32187
+    },
+    {
+      "alias": "PUBLIC:preparation/figure-protocol-2.json",
+      "sha256": "d4df9ac21cffdf5b37b7ab24f999a9e8a6fc059d1a30968280cf4a7c6a44b377",
+      "size_bytes": 8275
+    },
+    {
+      "alias": "PUBLIC:preparation/preparation-notes-2.md",
+      "sha256": "ada8835760b174fe80ba1a667d0ef870ec2031904e22a8e263c46b8c17dd4de6",
+      "size_bytes": 4053
+    },
+    {
+      "alias": "PUBLIC:preparation/figure-correction-notes-1.md",
+      "sha256": "0905312ddd3e5a1cd6b67f0ae47736ac7fa72244bb812f6462eb66de61d9654e",
+      "size_bytes": 4018
+    }
+  ],
+  "schema": "ra12_original_small_observed_public_export_v1",
+  "scientific_result": {
+    "audit": [],
+    "audit_complete": false,
+    "audit_record_count": 0,
+    "candidate_present": true,
+    "failure_code": null,
+    "global_operator_identification": "unestablished",
+    "handoff_heldout_prediction_present": false,
+    "handoff_heldout_residual_summaries_present": false,
+    "input_kind": "observations_only",
+    "message": "selected Q128 training RMS exceeds the declared limit",
+    "reason_code": "training_misfit",
+    "specimen_payload_present": false,
+    "stage": "training_fit",
+    "status": "unavailable",
+    "training_rms": 0.10346815963311173
+  }
+}

@@ -1,6 +1,12 @@
 """Spatial image conversion through explicit, value-oriented interfaces."""
 
 from ._acquisition import RawAcquisition, declare_acquisition
+from ._alignment_bead import (
+    AlignmentBeadCalibration,
+    calibrate_alignment_bead,
+    sample_alignment_order_transfer,
+)
+from ._alignment_camera import AlignmentCameraFrames, AlignmentCameraPair, correct_alignment_pair
 from ._bead_peak import BeadPeak, locate_bead_peak
 from ._carrier import CarrierCandidate, scan_carriers
 from ._carrier_selection import CarrierSelection, select_carrier
@@ -43,11 +49,18 @@ from ._volume_otf import Otf3D, prepare_volume_otf
 from ._volume_phase import VolumePhaseComponents, separate_volume_phases
 from ._volume_phase_estimation import VolumePhaseEstimate, estimate_volume_phases
 from ._volume_translation_estimation import VolumeTranslationEstimate, estimate_volume_translation
+from .exposure_phase import ExposurePhaseCandidate, ExposurePhaseFit, fit_exposure_phases
+from .fractional_volume_reconstruction import reconstruct_volume_fractional
 from .volume_carrier_selection import VolumeCarrierSelection, select_volume_carrier
 from .volume_order_gain import VolumeOrderGainEstimate, estimate_volume_order_gain
+from .volume_overlap import VolumeOverlapCandidate, VolumeOverlapFit, fit_volume_overlap
 from .volume_reconstruction import Reconstruction3D, reconstruct_volume
+from .weighted_volume_reconstruction import WeightedReconstruction3D, reconstruct_volume_weighted
 
 __all__ = [
+    "AlignmentBeadCalibration",
+    "AlignmentCameraFrames",
+    "AlignmentCameraPair",
     "BeadPeak",
     "CarrierCandidate",
     "CarrierSelection",
@@ -56,6 +69,8 @@ __all__ = [
     "DriftCorrection",
     "EmpiricalFrequencySamples",
     "EmpiricalVolumeResponse",
+    "ExposurePhaseCandidate",
+    "ExposurePhaseFit",
     "FiniteBeadCalibration",
     "IlluminationEstimate",
     "ImagejSeries",
@@ -78,16 +93,21 @@ __all__ = [
     "VolumeCarrierSelection",
     "VolumeOrderGainEstimate",
     "VolumeOrderOtf",
+    "VolumeOverlapCandidate",
+    "VolumeOverlapFit",
     "VolumePhaseCarrierSelection",
     "VolumePhaseComponents",
     "VolumePhaseEstimate",
     "VolumeTranslationEstimate",
+    "WeightedReconstruction3D",
     "WriteReport",
     "adapt_empirical_volume_response",
     "adapt_empirical_volume_response_shared_nodes",
     "adapt_empirical_volume_response_trilinear",
+    "calibrate_alignment_bead",
     "calibrate_raw_point_bead",
     "calibrate_raw_finite_bead",
+    "correct_alignment_pair",
     "correct_integer_drift",
     "correct_linear_response",
     "declare_acquisition",
@@ -99,6 +119,8 @@ __all__ = [
     "estimate_volume_phases",
     "estimate_volume_translation",
     "export_imagej",
+    "fit_exposure_phases",
+    "fit_volume_overlap",
     "harmonize",
     "inspect",
     "locate_bead_peak",
@@ -109,7 +131,10 @@ __all__ = [
     "read",
     "reconstruct",
     "reconstruct_volume",
+    "reconstruct_volume_fractional",
+    "reconstruct_volume_weighted",
     "sample_empirical_volume_transfer",
+    "sample_alignment_order_transfer",
     "scan_carriers",
     "scan_volume_carriers",
     "scan_volume_phase_carriers",

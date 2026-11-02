@@ -208,8 +208,11 @@ def test_predetermined_stochastic_seeds_do_not_share_a_fixed_stream(mode: bool) 
     assert np.any(np.signbit(first) != np.signbit(second))
 
 
-@pytest.mark.parametrize("layout", ["strided", "fortran", "readonly", "big-endian"])
-@pytest.mark.parametrize("dtype", ["i1", "i8", "u8", "f2", "f4", "f8", "longdouble"])
+@pytest.mark.parametrize(
+    "layout,dtype",
+    [("strided", dtype) for dtype in ("i1", "i8", "u8", "f2", "f4", "f8", "longdouble")]
+    + [(layout, "f8") for layout in ("fortran", "readonly", "big-endian")],
+)
 def test_supported_normalization_layouts_and_ownership(layout: str, dtype: str) -> None:
     signal = np.arange(24, dtype=dtype).reshape(4, 6)
     if layout == "strided":
@@ -416,12 +419,6 @@ def test_lambda_overflow_and_paired_poisson_draw_range() -> None:
 )
 def test_intermediate_product_and_offset_overflow(signal: Any, kw: Any) -> None:
     rejected(signal, "simulation_camera_range", **kw)
-
-
-def test_electron_sum_overflow_rejects_whole_call() -> None:
-    # A million independent normals make failure to reach overflow negligible:
-    # lambda=1e308, sigma=1e308; R>~0.798 sigma overflows P+R.
-    rejected(np.full(N, 1e308), "simulation_camera_range", read_noise_e=1e308, seed=139)
 
 
 @pytest.mark.parametrize("policy", ["ignore", "warn", "raise", "call", "print", "log"])

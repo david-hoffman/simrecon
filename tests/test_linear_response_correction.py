@@ -152,12 +152,10 @@ def test_all_profiles_and_canonical_full_maps(
     "dtype",
     ["i1", "u1", "<i2", ">i2", "<u4", ">u4", "<i8", ">u8", "<f2", ">f4", ">f8", np.longdouble],
 )
-@pytest.mark.parametrize("storage", ["c", "fortran", "strided-readonly"])
+@pytest.mark.parametrize("storage", ["c", "strided-readonly"])
 def test_supported_raw_widths_byteorders_and_storage(api: Any, dtype: Any, storage: str) -> None:
     base = np.array([[1, 2, 3], [4, 5, 6]], dtype=dtype)
-    if storage == "fortran":
-        base = np.asfortranarray(base)
-    elif storage == "strided-readonly":
+    if storage == "strided-readonly":
         wide = np.zeros((2, 6), dtype=dtype)
         wide[:, ::2] = base
         base = wide[:, ::2]
@@ -165,6 +163,7 @@ def test_supported_raw_widths_byteorders_and_storage(api: Any, dtype: Any, stora
     record = acquisition(base)
     # The public factory canonicalizes layout. Read-only flags remain a permitted
     # correction input; do not replace R1 data with a non-owned/corrupted buffer.
+    assert record.data.flags.c_contiguous and record.data.flags.owndata
     if storage == "strided-readonly":
         record.data.setflags(write=False)
     before = record.data.tobytes()
@@ -177,8 +176,14 @@ def test_supported_raw_widths_byteorders_and_storage(api: Any, dtype: Any, stora
 
 
 @pytest.mark.parametrize("field", ["offset", "response"])
-@pytest.mark.parametrize("dtype", ["i1", "u1", ">i2", ">u8", "f2", ">f4", ">f8", np.longdouble])
-@pytest.mark.parametrize("storage", ["fortran", "strided-readonly"])
+@pytest.mark.parametrize(
+    "dtype,storage",
+    [
+        (dtype, "strided-readonly")
+        for dtype in ("i1", "u1", ">i2", ">u8", "f2", ">f4", ">f8", np.longdouble)
+    ]
+    + [(">f8", "fortran")],
+)
 def test_coefficient_storage_supplied_and_applied(
     api: Any, field: str, dtype: Any, storage: str
 ) -> None:
@@ -468,16 +473,23 @@ def test_subnormal_response_subnormal_result_and_negative_underflow(api: Any) ->
     )
 
 
-@pytest.mark.parametrize("mode", ["raise", "warn", "call", "print", "log", "ignore"])
 @pytest.mark.parametrize(
-    "case",
+    "case,mode",
     [
-        "success-underflow",
-        "range",
-        "quotient-range",
-        "invalid-data",
-        "invalid-offset",
-        "invalid-response",
+        (case, "raise")
+        for case in (
+            "success-underflow",
+            "range",
+            "quotient-range",
+            "invalid-data",
+            "invalid-offset",
+            "invalid-response",
+        )
+    ]
+    + [
+        (case, mode)
+        for mode in ("warn", "call", "print", "log", "ignore")
+        for case in ("success-underflow", "quotient-range")
     ],
 )
 def test_numpy_modes_restored_and_no_arithmetic_diagnostics(

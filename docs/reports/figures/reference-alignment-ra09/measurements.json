@@ -1,0 +1,1742 @@
+{
+  "calibration": {
+    "evaluation": {
+      "diagnostics": {
+        "budget_exhausted": false,
+        "carrier_per_um": [
+          0.05040999363431961,
+          0.06465906111350614
+        ],
+        "coherence": [
+          0.9993938206915416,
+          0.9943194719219632
+        ],
+        "diagnostic_evaluations": 4,
+        "diagnostics_continuous": true,
+        "gains": [
+          {
+            "imag": 0.11264261292688674,
+            "real": 0.4877758745129829
+          },
+          {
+            "imag": -0.0768459413595062,
+            "real": 0.23903775088231363
+          }
+        ],
+        "global_ambiguity": "unresolved",
+        "information_rank": 2,
+        "information_singular_values": [
+          5.365508233112026,
+          5.020624653184871
+        ],
+        "initial_carrier_per_um": [
+          0.03636363636363637,
+          0.07692307692307693
+        ],
+        "objective": 0.012540778920390367,
+        "order_status": [
+          "fitted",
+          "fitted"
+        ],
+        "predictor_log2_norm": [
+          -2.950443750516544,
+          -3.694103997256758
+        ],
+        "projected_gradient": 0.0,
+        "relative_residual": [
+          0.034813663460814014,
+          0.10643677821518062
+        ],
+        "response_log2_norm": [
+          -3.9478004688227664,
+          -5.679629972428782
+        ],
+        "search_evaluations": 124,
+        "stationary": true,
+        "status": "finite_difference_stationary"
+      },
+      "independent_at_retained_point": {
+        "objective": 0.012540778920390369,
+        "orders": [
+          {
+            "coherence": 0.9993938206915418,
+            "gain": {
+              "imag": 0.11264261292688675,
+              "real": 0.487775874512983
+            },
+            "objective": 0.0012119911635628164,
+            "predictor_norm": 0.1293683176810099,
+            "relative_residual": 0.03481366346081401,
+            "response_norm": 0.06480278070841368
+          },
+          {
+            "coherence": 0.9943194719219637,
+            "gain": {
+              "imag": -0.07684594135950629,
+              "real": 0.23903775088231374
+            },
+            "objective": 0.011328787756827552,
+            "predictor_norm": 0.07726163417060312,
+            "relative_residual": 0.10643677821518063,
+            "response_norm": 0.019510168222468337
+          }
+        ]
+      },
+      "limits": "This is one fixed noisy extended-bead control. No ordering of calibration versus specimen accuracy is promised. A low short-field residual or local rank does not establish full-field phase accuracy, a noise likelihood, global uniqueness, historical fitter behavior or legacy C parity.",
+      "objective_absolute_difference": 1.734723475976807e-18,
+      "objective_within_predeclared_allowance": true,
+      "overlap_equal": true
+    },
+    "evaluation_freeze_sha256": "1498eab9cb9d16399ab928f9ae10a4d53503e98d45db98ab58bf294de4fc7b0e",
+    "full_field": {
+      "comparison": "One new short-calibration control versus the already frozen full-specimen flat_noise candidate. Same public operation, fixed calibration gauge and coordinator-qualified C identity. No specimen refit or candidate selection.",
+      "coordinate_frames": {
+        "display": "(n+0.5)*spacing",
+        "display_minus_phase_um_zyx": [
+          0.125,
+          0.25,
+          0.25
+        ],
+        "phase": "n*spacing, index-zero origin; no half-cell phase correction"
+      },
+      "fixed_specimen_section_indices_zyx": [
+        2,
+        8,
+        7
+      ],
+      "full_specimen_shape_zyx": [
+        5,
+        11,
+        13
+      ],
+      "limits": "This is one fixed noisy extended-bead control. No ordering of calibration versus specimen accuracy is promised. A low short-field residual or local rank does not establish full-field phase accuracy, a noise likelihood, global uniqueness, historical fitter behavior or legacy C parity.",
+      "metrics": {
+        "calibration": {
+          "carrier_error_in_full_specimen_bins_yx": [
+            -0.0027450350112421494,
+            0.0002838972377898971
+          ],
+          "carrier_per_um_yx": [
+            0.05040999363431961,
+            0.06465906111350614
+          ],
+          "gain_amplitude_ratio_by_order": [
+            1.0012265717686515,
+            1.0043453195016439
+          ],
+          "gain_only_phase_error_rad_by_order": [
+            0.006952515117710313,
+            -0.0010452156888652532
+          ],
+          "global_ambiguity": "unresolved",
+          "local_fit_information_rank": 2,
+          "local_fit_objective": 0.012540778920390367,
+          "local_fit_status": "finite_difference_stationary",
+          "max_carrier_only_phase_error_rad_by_order": [
+            0.015679603318482022,
+            0.031359206636964045
+          ],
+          "relative_full_field_heldout_l2": 0.034233865502828954
+        },
+        "specimen": {
+          "carrier_error_in_full_specimen_bins_yx": [
+            0.0003260426250045953,
+            0.003994054446930975
+          ],
+          "carrier_per_um_yx": [
+            0.050968371386364474,
+            0.06522985453029707
+          ],
+          "gain_amplitude_ratio_by_order": [
+            1.0027047090766867,
+            1.0032095475082299
+          ],
+          "gain_only_phase_error_rad_by_order": [
+            -0.011420881803973586,
+            -0.03915415679492393
+          ],
+          "global_ambiguity": "unresolved",
+          "local_fit_information_rank": 2,
+          "local_fit_objective": 0.04767578296482642,
+          "local_fit_status": "finite_difference_stationary",
+          "max_carrier_only_phase_error_rad_by_order": [
+            0.025027321165530286,
+            0.05005464233106057
+          ],
+          "relative_full_field_heldout_l2": 0.034586975261619156
+        }
+      },
+      "no_post_fit_alignment": true,
+      "spacing_um_zyx": [
+        0.25,
+        0.5,
+        0.5
+      ],
+      "winner_selection": null
+    },
+    "shared_implementation_envelope_sha256": "964881b33c347845cafa5ef6b72f1f60394962239944254e89a743dabd9591ac"
+  },
+  "contract": {
+    "path": "docs/contracts/reference-alignment-ra09-v1.md",
+    "sha256": "c34706edf73de1067ffc31a4a41781ccb05f847a7c95e0edc6fb6372d3e84cee"
+  },
+  "coordinate_frames": {
+    "display": "(n+0.5)*spacing",
+    "display_minus_phase_um_zyx": [
+      0.125,
+      0.25,
+      0.25
+    ],
+    "phase": "n*spacing, index-zero origin",
+    "section_centers_um_zyx": [
+      0.625,
+      4.25,
+      3.75
+    ],
+    "section_indices_zyx": [
+      2,
+      8,
+      7
+    ]
+  },
+  "drivers": {
+    "scripts/reference_alignment_ra09_calibration_carrier_comparison.py": "ac0a400cb1af3804a06eeb0dbc7f92544616e64fba04ea026f8187c5726a6212",
+    "scripts/reference_alignment_ra09_comparison.py": "0800b33771e983853b7c95b97d6247289b5fd9387fd6370fa0512a8b3324ba52",
+    "scripts/reference_alignment_ra09_report_figures.py": "074097fbc51cc75eca698602894c554811d3f6de696561a1b688d23f1b719d76"
+  },
+  "figures": {
+    "calibration-objective-support-residual.png": {
+      "original_local_path": "artifacts/ra09/calibration-carrier-figure1/calibration-objective-support-residual.png",
+      "presentation_copy": false,
+      "selected_local_path": "artifacts/ra09/calibration-carrier-figure1/calibration-objective-support-residual.png",
+      "sha256": "7f8a3e41b573718f3dc48db8843563c7452b192568984aa3dbefc0a785cd92b9"
+    },
+    "calibration-q-full-field.png": {
+      "original_local_path": "artifacts/ra09/calibration-carrier-figure1/calibration-q-full-field.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "calibration_heldout_prediction": {
+            "c_order_data_sha256": "401efb9803c2ceedce718bf409c6167fd3b12327901e4941bc4b74201306e398",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "heldout_reference": {
+            "c_order_data_sha256": "7382555276e0a6b1417cacd6e11fd9626bebf04212d18719cea78b65ebde96db",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/calibration-carrier-figure1/calibration-q-full-field.png",
+        "original_figure_sha256": "068d9ca4c2f0467416a13c86e670c69c2f676d009a79390b69c1b00e4b24d6cd",
+        "output": "calibration-q-full-field.png",
+        "output_sha256": "843d80f28b75a1c1d439ddf1f4ddda392a4efcfe4148ac37cb5eb28f70cd0dea",
+        "preserved_difference_limits": [
+          -0.006590502662211617,
+          0.006590502662211617
+        ],
+        "preserved_intensity_limits": [
+          -0.0013683215906802803,
+          0.46594022707842775
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "shared_scaling_predictions": [
+          "calibration-q-full-field.png",
+          "specimen-q-full-field.png"
+        ],
+        "source_files": {
+          "artifacts/ra09/calibration-carrier-figure1/full-field-evaluation-arrays.npz": "9991f0a59f6df85bc82a3b5e0341bb13d123c5ef37cb97277e05f891c50b0253"
+        },
+        "transformations": "Wrapped row/column titles only; every pixel datum, plane, projection, image scale, aspect, colormap and coordinate unchanged. Differences remain differences of projections, not maxima of differences."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/calibration-q-full-field.png",
+      "sha256": "843d80f28b75a1c1d439ddf1f4ddda392a4efcfe4148ac37cb5eb28f70cd0dea"
+    },
+    "calibration-vs-specimen-phase-maps.png": {
+      "original_local_path": "artifacts/ra09/calibration-carrier-figure1/calibration-vs-specimen-phase-maps.png",
+      "presentation_copy": false,
+      "selected_local_path": "artifacts/ra09/calibration-carrier-figure1/calibration-vs-specimen-phase-maps.png",
+      "sha256": "f0e0c1847dd56bff2745be91537d989a0d2f47a8f2344989de3448f5bdacf212"
+    },
+    "finite-mismatch-heldout-field.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/finite_mismatch/heldout-field.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "prediction": {
+            "c_order_data_sha256": "4b6b853fb86c0cf64d3b1fa1500d299d5958235248e5e3c3726d0e8a56c63a6b",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "reference": {
+            "c_order_data_sha256": "9c9e281f7e0e270b202dea6c95bb5ac0ff43c17d380d3c2c32119f5b2fcae585",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/figure-preparation/finite_mismatch/heldout-field.png",
+        "original_figure_sha256": "f60216e77048e4ca73bc28907eeb119a65d40f454fa6bb87fabad8983151f132",
+        "output": "finite_mismatch-heldout-field.png",
+        "output_sha256": "2e5a0d3d81d6d23d67d60e488c3940c0d30c172998e6c2ec9d389462202e3012",
+        "preserved_difference_limits": [
+          -0.006087410761824008,
+          0.006087410761824008
+        ],
+        "preserved_intensity_limits": [
+          0.0015960228176091513,
+          0.21832166333350328
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "shared_scaling_predictions": [
+          "finite_mismatch-heldout-field.png"
+        ],
+        "source_files": {
+          "artifacts/ra09/figure-preparation/finite_mismatch/evaluation-arrays.npz": "5d671e5cb7b471adb466e5211c90b08c56064c887ddc0e2f0592336496b9e6fd"
+        },
+        "transformations": "Wrapped row/column titles only; every pixel datum, plane, projection, image scale, aspect, colormap and coordinate unchanged. Differences remain differences of projections, not maxima of differences."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/finite_mismatch-heldout-field.png",
+      "sha256": "2e5a0d3d81d6d23d67d60e488c3940c0d30c172998e6c2ec9d389462202e3012"
+    },
+    "finite-mismatch-objective.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/finite_mismatch/objective-order-pairs.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "carrier_x_per_um": {
+            "c_order_data_sha256": "9ed3d0a34e53512f1d07b39ea12762d0c09207057adff43b7e44e41ae116707b",
+            "dtype": "float64",
+            "shape": [
+              9
+            ]
+          },
+          "carrier_y_per_um": {
+            "c_order_data_sha256": "109cc217f56522dd24a555db650a6d15ff6055b9c23ab7e966344052a19625db",
+            "dtype": "float64",
+            "shape": [
+              9
+            ]
+          },
+          "joint_objective": {
+            "c_order_data_sha256": "1381104098eb9f1a2c365e616a4d029bd6048a8176baa9075c01e87ff0d57095",
+            "dtype": "float64",
+            "shape": [
+              9,
+              9
+            ]
+          },
+          "order2_objective": {
+            "c_order_data_sha256": "7d50d599d50a0dfa59206d8e9fb3581d9ffb9123b231b428135e424098835049",
+            "dtype": "float64",
+            "shape": [
+              9,
+              9
+            ]
+          }
+        },
+        "axis_endpoints_equal_search_bounds": true,
+        "display_box_per_um_yx": [
+          [
+            0.018181818181818184,
+            0.03076923076923077
+          ],
+          [
+            0.09090909090909091,
+            0.1
+          ]
+        ],
+        "original_figure": "artifacts/ra09/figure-preparation/finite_mismatch/objective-order-pairs.png",
+        "original_figure_sha256": "e93f05e6a7b4c3d40daefc450ecc1af07cf81b7130a03971a56bd836f997a208",
+        "output": "finite_mismatch-objective-order-pairs.png",
+        "output_sha256": "93692477ade8e834f1304f93b9dacada7392029133e8049d710f6719f37ad9f0",
+        "preserved_objective_limits": [
+          0,
+          0.7374692815084094
+        ],
+        "source_files": {
+          "objective-landscape.npz": "b64976cf5bdfae21b8618d9754acfbddf0cb64214e1e05e5b20f01446bf052a0",
+          "observed.json": "141824860ae2a91af221c2fcb104a40d7b6fa8ad8651d1cf6f0cd15191d8427a",
+          "search.json": "44ff4d3fb7db7c63aac489e386ab97c14ecae5d4fff92b2d495ab1aba95ee9ac"
+        },
+        "transformations": "Wrapped/shortened comparator title; axes limited to saved extreme sampled carrier nodes. Data, objective scales, markers and carrier search unchanged."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/finite_mismatch-objective-order-pairs.png",
+      "sha256": "93692477ade8e834f1304f93b9dacada7392029133e8049d710f6719f37ad9f0"
+    },
+    "finite-mismatch-phase-support.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/finite_mismatch/phase-and-support.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "carrier_phase_error_rad_order1": {
+            "c_order_data_sha256": "19d4b6a9a838015fe055e46481a0ee69c2b9a0406d9b7d5f04dd11ba0555d796",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "nominal_carrier_phase_error_rad_order1": {
+            "c_order_data_sha256": "1b0c3b959fc38c31a281e7abcd619ff738aa382f3205283810bbd1c9e45a0d94",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "phase_error_rad": {
+            "c_order_data_sha256": "d5feb328cd9d37b6e43ea9a9220762915465b00e3013d094e30dc474bc2bd498",
+            "dtype": "float64",
+            "shape": [
+              2,
+              5,
+              11,
+              13
+            ]
+          },
+          "q1": {
+            "c_order_data_sha256": "1264142d4966fc72e63d87c4c6f311fc30a96e94c1f5af43685f8aa98428a438",
+            "dtype": "int64",
+            "shape": [
+              600,
+              3
+            ]
+          },
+          "q2": {
+            "c_order_data_sha256": "d255060eddf83075ce5a9b54a03763ba776d936cca535d90ad7a96d2dc7f1113",
+            "dtype": "int64",
+            "shape": [
+              495,
+              3
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/figure-preparation/finite_mismatch/phase-and-support.png",
+        "original_figure_sha256": "94a9ca321fcc40ae7870fbe5e3d1d6d9c656937dd21dca10e6f7c3f064bf1707",
+        "output": "finite_mismatch-phase-and-support.png",
+        "output_sha256": "f0b34c80c04d2fe8d7859250fb34e2f8384d16be7cf927ef3c492436af5ca182",
+        "preserved_phase_limits_rad": [
+          -0.9279781376757545,
+          0.9279781376757545
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "source_files": {
+          "evaluation-arrays.npz": "5d671e5cb7b471adb466e5211c90b08c56064c887ddc0e2f0592336496b9e6fd",
+          "expected-arrays.npz": "6959ac6ed9ea42c153c5d3e04a196a7c2cdf52c139792fbdc68cff4df6819d4f",
+          "search.json": "44ff4d3fb7db7c63aac489e386ab97c14ecae5d4fff92b2d495ab1aba95ee9ac"
+        },
+        "transformations": "Wrapped/shortened titles only; data, scales, aspect and sample coordinates unchanged."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/finite_mismatch-phase-and-support.png",
+      "sha256": "f0b34c80c04d2fe8d7859250fb34e2f8384d16be7cf927ef3c492436af5ca182"
+    },
+    "finite-mismatch-profiles.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/finite_mismatch/profiles-and-overlap.png",
+      "presentation_copy": false,
+      "selected_local_path": "artifacts/ra09/figure-preparation/finite_mismatch/profiles-and-overlap.png",
+      "sha256": "41cdafbf853ff0e77490d7a18f9cb662b596c2c79383380b7f82e1b6a36d440e"
+    },
+    "flat-noise-heldout-field.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noise/heldout-field.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "prediction": {
+            "c_order_data_sha256": "08a92dbb26bc40d96565447ce0c55fa87071249e0aec4a5d0733f58a3cce4930",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "reference": {
+            "c_order_data_sha256": "7382555276e0a6b1417cacd6e11fd9626bebf04212d18719cea78b65ebde96db",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/figure-preparation/flat_noise/heldout-field.png",
+        "original_figure_sha256": "3edcad42b170bfe40e7cf96edbcecbc33455f0fbe83325310d243897cfcf6d2e",
+        "output": "flat_noise-heldout-field.png",
+        "output_sha256": "cdc9208781304e0ab15e08878d8f229e9dd1d7ac47172c4b16aac416fd12e4fa",
+        "preserved_difference_limits": [
+          -0.006590502662211617,
+          0.006590502662211617
+        ],
+        "preserved_intensity_limits": [
+          -0.0013683215906802803,
+          0.46594022707842775
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "shared_scaling_predictions": [
+          "flat_noise-heldout-field.png"
+        ],
+        "source_files": {
+          "artifacts/ra09/figure-preparation/flat_noise/evaluation-arrays.npz": "9bd3d454f884ca74787cde91b5b4fd77452bd7442c98c092315c8ee74cd8014e"
+        },
+        "transformations": "Wrapped row/column titles only; every pixel datum, plane, projection, image scale, aspect, colormap and coordinate unchanged. Differences remain differences of projections, not maxima of differences."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/flat_noise-heldout-field.png",
+      "sha256": "cdc9208781304e0ab15e08878d8f229e9dd1d7ac47172c4b16aac416fd12e4fa"
+    },
+    "flat-noise-objective.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noise/objective-order-pairs.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "carrier_x_per_um": {
+            "c_order_data_sha256": "9ed3d0a34e53512f1d07b39ea12762d0c09207057adff43b7e44e41ae116707b",
+            "dtype": "float64",
+            "shape": [
+              9
+            ]
+          },
+          "carrier_y_per_um": {
+            "c_order_data_sha256": "109cc217f56522dd24a555db650a6d15ff6055b9c23ab7e966344052a19625db",
+            "dtype": "float64",
+            "shape": [
+              9
+            ]
+          },
+          "joint_objective": {
+            "c_order_data_sha256": "d11b79fbd58f4d585f5ed2619c20930b13abb4c0fccba6a32620904ea748bda9",
+            "dtype": "float64",
+            "shape": [
+              9,
+              9
+            ]
+          },
+          "order2_objective": {
+            "c_order_data_sha256": "896843cb0bed599a4e69162dea9c7251c20ae11ed0d87c4c3af33ab0d48c6a6c",
+            "dtype": "float64",
+            "shape": [
+              9,
+              9
+            ]
+          }
+        },
+        "axis_endpoints_equal_search_bounds": true,
+        "display_box_per_um_yx": [
+          [
+            0.018181818181818184,
+            0.03076923076923077
+          ],
+          [
+            0.09090909090909091,
+            0.1
+          ]
+        ],
+        "original_figure": "artifacts/ra09/figure-preparation/flat_noise/objective-order-pairs.png",
+        "original_figure_sha256": "7d7faffd617eb6236eaa4f5c1b219b98d6598c8c3c6f3a29aabc86c7eb5bd8c1",
+        "output": "flat_noise-objective-order-pairs.png",
+        "output_sha256": "ed4e9d222cf049d245c00a998a0f5c64a0b1646f449b957776adce9caa4bf690",
+        "preserved_objective_limits": [
+          0,
+          0.8607549626719504
+        ],
+        "source_files": {
+          "objective-landscape.npz": "5f98c13f99f269a055b19391ac0fd01a55fa1eeaf8e2d7c3b3c73a853e0fc617",
+          "observed.json": "7f6317ce9f100d1811da2e8fa83ac782eec4953b2f5126a8f8acc4b1e9b47c87",
+          "search.json": "e7b7bb914073946366d9a6c5a2d50de539c12b4d3e2835edfd8ed60deee72d88"
+        },
+        "transformations": "Wrapped/shortened comparator title; axes limited to saved extreme sampled carrier nodes. Data, objective scales, markers and carrier search unchanged."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/flat_noise-objective-order-pairs.png",
+      "sha256": "ed4e9d222cf049d245c00a998a0f5c64a0b1646f449b957776adce9caa4bf690"
+    },
+    "flat-noise-phase-support.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noise/phase-and-support.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "carrier_phase_error_rad_order1": {
+            "c_order_data_sha256": "7819df6a4fad06c419ffb558206b77cec23329dcd9aaa19422fa9c6338cb8f63",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "nominal_carrier_phase_error_rad_order1": {
+            "c_order_data_sha256": "1b0c3b959fc38c31a281e7abcd619ff738aa382f3205283810bbd1c9e45a0d94",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "phase_error_rad": {
+            "c_order_data_sha256": "27c14f315e996052b0581094f2476478e3549f5de1348d17101129edc4a3ae65",
+            "dtype": "float64",
+            "shape": [
+              2,
+              5,
+              11,
+              13
+            ]
+          },
+          "q1": {
+            "c_order_data_sha256": "1264142d4966fc72e63d87c4c6f311fc30a96e94c1f5af43685f8aa98428a438",
+            "dtype": "int64",
+            "shape": [
+              600,
+              3
+            ]
+          },
+          "q2": {
+            "c_order_data_sha256": "d255060eddf83075ce5a9b54a03763ba776d936cca535d90ad7a96d2dc7f1113",
+            "dtype": "int64",
+            "shape": [
+              495,
+              3
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/figure-preparation/flat_noise/phase-and-support.png",
+        "original_figure_sha256": "ea7cde239fd6f22752c8f156296979b6f702aeb21e98af8a20cbeca092cee3a5",
+        "output": "flat_noise-phase-and-support.png",
+        "output_sha256": "b7668af3f4e4d5a203731f67221dedb305f8e8ba339b3be3ccc6c9e52388f9bc",
+        "preserved_phase_limits_rad": [
+          -0.9279781376757545,
+          0.9279781376757545
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "source_files": {
+          "evaluation-arrays.npz": "9bd3d454f884ca74787cde91b5b4fd77452bd7442c98c092315c8ee74cd8014e",
+          "expected-arrays.npz": "2e51fd909805f30a7219e7e55fd283f7b535b24ed407bfd655297dbb52ac08a1",
+          "search.json": "e7b7bb914073946366d9a6c5a2d50de539c12b4d3e2835edfd8ed60deee72d88"
+        },
+        "transformations": "Wrapped/shortened titles only; data, scales, aspect and sample coordinates unchanged."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/flat_noise-phase-and-support.png",
+      "sha256": "b7668af3f4e4d5a203731f67221dedb305f8e8ba339b3be3ccc6c9e52388f9bc"
+    },
+    "flat-noise-profiles.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noise/profiles-and-overlap.png",
+      "presentation_copy": false,
+      "selected_local_path": "artifacts/ra09/figure-preparation/flat_noise/profiles-and-overlap.png",
+      "sha256": "5f17283e0ed0dff939abbf26262e3ea9689324b98e1eca329a352960f4015bab"
+    },
+    "flat-noiseless-heldout-field.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noiseless/heldout-field.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "prediction": {
+            "c_order_data_sha256": "92396dc8ebc4bcf3ea42dfbde19736c92295ab78664b2ee59147def0de17a5de",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "reference": {
+            "c_order_data_sha256": "d08668ad5a13f7288a913215d693460d2490baaecb618dd030d772cebda9a727",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/figure-preparation/flat_noiseless/heldout-field.png",
+        "original_figure_sha256": "30df3b92abc673834d46eeb2df8cc94487b9973944d5673b758afbffb55e0e49",
+        "output": "flat_noiseless-heldout-field.png",
+        "output_sha256": "3d12aa7842763ea6f122f793871ecdc0c5ce316c89f4b7c34855fb094518cb70",
+        "preserved_difference_limits": [
+          -1.4883128063303275e-10,
+          1.4883128063303275e-10
+        ],
+        "preserved_intensity_limits": [
+          0.003573559197444705,
+          0.4612938683172621
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "shared_scaling_predictions": [
+          "flat_noiseless-heldout-field.png"
+        ],
+        "source_files": {
+          "artifacts/ra09/figure-preparation/flat_noiseless/evaluation-arrays.npz": "bf47eb28f107e5faea66dde7810ab079e936afe56b10594c4f3dc85d7e9af970"
+        },
+        "transformations": "Wrapped row/column titles only; every pixel datum, plane, projection, image scale, aspect, colormap and coordinate unchanged. Differences remain differences of projections, not maxima of differences."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/flat_noiseless-heldout-field.png",
+      "sha256": "3d12aa7842763ea6f122f793871ecdc0c5ce316c89f4b7c34855fb094518cb70"
+    },
+    "flat-noiseless-objective.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noiseless/objective-order-pairs.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "carrier_x_per_um": {
+            "c_order_data_sha256": "9ed3d0a34e53512f1d07b39ea12762d0c09207057adff43b7e44e41ae116707b",
+            "dtype": "float64",
+            "shape": [
+              9
+            ]
+          },
+          "carrier_y_per_um": {
+            "c_order_data_sha256": "109cc217f56522dd24a555db650a6d15ff6055b9c23ab7e966344052a19625db",
+            "dtype": "float64",
+            "shape": [
+              9
+            ]
+          },
+          "joint_objective": {
+            "c_order_data_sha256": "a22422ff8d78b86cc3aab1480569aca89352bf358826b8931d43de7ba365cfde",
+            "dtype": "float64",
+            "shape": [
+              9,
+              9
+            ]
+          },
+          "order2_objective": {
+            "c_order_data_sha256": "a3489f1dc0369f37ea306e99e3c99169a840979f2949152522e61a2651ad40a2",
+            "dtype": "float64",
+            "shape": [
+              9,
+              9
+            ]
+          }
+        },
+        "axis_endpoints_equal_search_bounds": true,
+        "display_box_per_um_yx": [
+          [
+            0.018181818181818184,
+            0.03076923076923077
+          ],
+          [
+            0.09090909090909091,
+            0.1
+          ]
+        ],
+        "original_figure": "artifacts/ra09/figure-preparation/flat_noiseless/objective-order-pairs.png",
+        "original_figure_sha256": "7317d445a309051fa9ce77fdcf869fb2699e6b91f9bae4a70bcb19c6e6c80a2a",
+        "output": "flat_noiseless-objective-order-pairs.png",
+        "output_sha256": "12b0fd1d48211fab7495dac6ea6dcf68e3140d2b0844573b110f82d8a86a67de",
+        "preserved_objective_limits": [
+          0,
+          0.8413134549460581
+        ],
+        "source_files": {
+          "objective-landscape.npz": "fd4dadf6b2855988ec31b229c6dd4c4d674918cbc08b299360377438248d2ab3",
+          "observed.json": "ea5706c719dcb1e988a4fca73b98410b7ff94b55e6f1f2fb0db498a916a1897d",
+          "search.json": "32428e457409c0200fe601b1f7dff2899ad7eff80a7146baddb47de0bfb7c603"
+        },
+        "transformations": "Wrapped/shortened comparator title; axes limited to saved extreme sampled carrier nodes. Data, objective scales, markers and carrier search unchanged."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/flat_noiseless-objective-order-pairs.png",
+      "sha256": "12b0fd1d48211fab7495dac6ea6dcf68e3140d2b0844573b110f82d8a86a67de"
+    },
+    "flat-noiseless-phase-support.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noiseless/phase-and-support.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "carrier_phase_error_rad_order1": {
+            "c_order_data_sha256": "724f9d21c5a258e2df1e6e736c9e28be7be353b804fe2246a5a7761b4ac5e3d2",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "nominal_carrier_phase_error_rad_order1": {
+            "c_order_data_sha256": "1b0c3b959fc38c31a281e7abcd619ff738aa382f3205283810bbd1c9e45a0d94",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "phase_error_rad": {
+            "c_order_data_sha256": "006ebc5695827ddfffa9a031bf3e4fd5bb2b24e804e6fbbdaf3e8154d2476a0b",
+            "dtype": "float64",
+            "shape": [
+              2,
+              5,
+              11,
+              13
+            ]
+          },
+          "q1": {
+            "c_order_data_sha256": "1264142d4966fc72e63d87c4c6f311fc30a96e94c1f5af43685f8aa98428a438",
+            "dtype": "int64",
+            "shape": [
+              600,
+              3
+            ]
+          },
+          "q2": {
+            "c_order_data_sha256": "d255060eddf83075ce5a9b54a03763ba776d936cca535d90ad7a96d2dc7f1113",
+            "dtype": "int64",
+            "shape": [
+              495,
+              3
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/figure-preparation/flat_noiseless/phase-and-support.png",
+        "original_figure_sha256": "b6b4280cf2e597b5d44abfb483863ede258c42af7a21a35437d438594a1b7a8c",
+        "output": "flat_noiseless-phase-and-support.png",
+        "output_sha256": "e7428ad84762a9239b16a1135c0d19b319a46eedf253c69111a26b9844dbf640",
+        "preserved_phase_limits_rad": [
+          -0.9279781376757545,
+          0.9279781376757545
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "source_files": {
+          "evaluation-arrays.npz": "bf47eb28f107e5faea66dde7810ab079e936afe56b10594c4f3dc85d7e9af970",
+          "expected-arrays.npz": "b873c2307550db9f4239b7f183d12ab715a2cc66e38c691bc3dde3028e890ed6",
+          "search.json": "32428e457409c0200fe601b1f7dff2899ad7eff80a7146baddb47de0bfb7c603"
+        },
+        "transformations": "Wrapped/shortened titles only; data, scales, aspect and sample coordinates unchanged."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/flat_noiseless-phase-and-support.png",
+      "sha256": "e7428ad84762a9239b16a1135c0d19b319a46eedf253c69111a26b9844dbf640"
+    },
+    "flat-noiseless-profiles.png": {
+      "original_local_path": "artifacts/ra09/figure-preparation/flat_noiseless/profiles-and-overlap.png",
+      "presentation_copy": false,
+      "selected_local_path": "artifacts/ra09/figure-preparation/flat_noiseless/profiles-and-overlap.png",
+      "sha256": "3910a799b77f4374cfba2c8e1249d4018e5adfa84e796c4080e3f847ccf896bb"
+    },
+    "phase-profiles-and-gain-phase.png": {
+      "original_local_path": "artifacts/ra09/calibration-carrier-figure1/phase-profiles-and-gain-phase.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "calibration_carrier_phase_error_order1_rad": {
+            "c_order_data_sha256": "1a1ae000517ac0300e22f086f92e2843893b111d691b7c4179ea15f810d51abe",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "specimen_carrier_phase_error_order1_rad": {
+            "c_order_data_sha256": "7819df6a4fad06c419ffb558206b77cec23329dcd9aaa19422fa9c6338cb8f63",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/calibration-carrier-figure1/phase-profiles-and-gain-phase.png",
+        "original_figure_sha256": "8943c25e95e65f9e6d25c8e38d0840eec4506223529c6f53a86426ebc054f064",
+        "output": "calibration-phase-profiles-and-gain-phase.png",
+        "output_sha256": "85b764f6d2acf1a290f1bc1003541bef2dc82f33ebe30aa9802a459fb67584aa",
+        "preserved_gain_phase_errors_rad": {
+          "calibration": [
+            0.006952515117710313,
+            -0.0010452156888652532
+          ],
+          "specimen": [
+            -0.011420881803973586,
+            -0.03915415679492393
+          ]
+        },
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "source_files": {
+          "full-field-evaluation-arrays.npz": "9991f0a59f6df85bc82a3b5e0341bb13d123c5ef37cb97277e05f891c50b0253",
+          "full-field-evaluation.json": "91213b970ae42b692c8df816abb54242cd3ca286a33cde7cc94afb63425acb62"
+        },
+        "transformations": "Wrapped/shortened titles only; all six phase lines, gain points, scales and coordinates unchanged."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/calibration-phase-profiles-and-gain-phase.png",
+      "sha256": "85b764f6d2acf1a290f1bc1003541bef2dc82f33ebe30aa9802a459fb67584aa"
+    },
+    "specimen-q-full-field.png": {
+      "original_local_path": "artifacts/ra09/calibration-carrier-figure1/specimen-q-full-field.png",
+      "presentation_copy": true,
+      "saved_array_binding": {
+        "array_binding": {
+          "heldout_reference": {
+            "c_order_data_sha256": "7382555276e0a6b1417cacd6e11fd9626bebf04212d18719cea78b65ebde96db",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          },
+          "specimen_heldout_prediction": {
+            "c_order_data_sha256": "08a92dbb26bc40d96565447ce0c55fa87071249e0aec4a5d0733f58a3cce4930",
+            "dtype": "float64",
+            "shape": [
+              5,
+              11,
+              13
+            ]
+          }
+        },
+        "original_figure": "artifacts/ra09/calibration-carrier-figure1/specimen-q-full-field.png",
+        "original_figure_sha256": "9e2b0a41e2d47aa3c783bcb060c7163297d73bfa71fdb8b2119b19becd5187be",
+        "output": "specimen-q-full-field.png",
+        "output_sha256": "b4b0c10425564e533c983ce5b3dc8e43f18ced7e7cbd498ef184f2af9601a97f",
+        "preserved_difference_limits": [
+          -0.006590502662211617,
+          0.006590502662211617
+        ],
+        "preserved_intensity_limits": [
+          -0.0013683215906802803,
+          0.46594022707842775
+        ],
+        "preserved_section_indices_zyx": [
+          2,
+          8,
+          7
+        ],
+        "shared_scaling_predictions": [
+          "calibration-q-full-field.png",
+          "specimen-q-full-field.png"
+        ],
+        "source_files": {
+          "artifacts/ra09/calibration-carrier-figure1/full-field-evaluation-arrays.npz": "9991f0a59f6df85bc82a3b5e0341bb13d123c5ef37cb97277e05f891c50b0253"
+        },
+        "transformations": "Wrapped row/column titles only; every pixel datum, plane, projection, image scale, aspect, colormap and coordinate unchanged. Differences remain differences of projections, not maxima of differences."
+      },
+      "selected_local_path": "artifacts/ra09/report-layout-1/specimen-q-full-field.png",
+      "sha256": "b4b0c10425564e533c983ce5b3dc8e43f18ced7e7cbd498ef184f2af9601a97f"
+    }
+  },
+  "integer_profile_comparator": {
+    "carrier_per_um_yx": [
+      0.0,
+      0.0
+    ],
+    "inside_metadata_box": false,
+    "scope": "diagnostic baseline, not an allowed optimization candidate",
+    "uses_same_fixed_Q": true
+  },
+  "main_controls": {
+    "finite_mismatch": {
+      "evaluation": {
+        "carrier_error_detector_bins_yx": [
+          -0.0003955402548116091,
+          0.0013435342340778547
+        ],
+        "carrier_only_max_order2_phase_error_rad": 0.015584629955539856,
+        "conditional_noiseless_phase_goal_met": null,
+        "gain_absolute_differences": [
+          2.2591401799415137e-16,
+          2.063081476116683e-16
+        ],
+        "gain_amplitude_ratio_by_order": [
+          1.0259408183086631,
+          1.0233591675932765
+        ],
+        "gain_and_carrier_max_phase_error_rad_by_order": [
+          0.0052543769700844215,
+          0.0104957697700554
+        ],
+        "gain_only_phase_error_rad_by_order": [
+          -0.0025379380076855067,
+          -0.005977128465636543
+        ],
+        "gains_within_predeclared_arithmetic_allowance": true,
+        "independent_at_observed": {
+          "objective": 0.00017205018508463984,
+          "orders": [
+            {
+              "coherence": 0.9999632425385433,
+              "gain": {
+                "imag": 0.11067447157983647,
+                "real": 0.5008890116667424
+              },
+              "objective": 7.351357180130258e-05,
+              "predictor_norm": 0.04139912335149848,
+              "relative_residual": 0.008574005586731477,
+              "response_norm": 0.0212373058737009
+            },
+            {
+              "coherence": 0.9999507304796154,
+              "gain": {
+                "imag": -0.07950103165976036,
+                "real": 0.2431739810991483
+              },
+              "objective": 9.853661328333726e-05,
+              "predictor_norm": 0.02372555153848767,
+              "relative_residual": 0.009926560999829562,
+              "response_norm": 0.006070239246055801
+            }
+          ]
+        },
+        "integer_relative_heldout_l2": 0.2699534665146901,
+        "limits": "No full raw estimation, specimen reconstruction, continuum recovery, global uniqueness or legacy C execution. Nonconstant transfer uses zero-exterior convolution/crop and is deliberately outside the exact phase-ramped flat-transfer identity.",
+        "nominal_carrier_only_max_order2_phase_error_rad": 0.9279781376757545,
+        "objective_absolute_difference": 2.6291902682773483e-18,
+        "objective_within_predeclared_arithmetic_allowance": true,
+        "overlap_equal": true,
+        "relative_heldout_l2": 0.022009438684335723
+      },
+      "observed": {
+        "budget_exhausted": false,
+        "carrier_per_um": [
+          0.050837174499125164,
+          0.06482208218985813
+        ],
+        "coherence": [
+          0.999963242538544,
+          0.9999507304796157
+        ],
+        "diagnostic_evaluations": 4,
+        "diagnostics_continuous": true,
+        "gains": [
+          {
+            "imag": 0.11067447157983651,
+            "real": 0.5008890116667426
+          },
+          {
+            "imag": -0.07950103165976043,
+            "real": 0.2431739810991485
+          }
+        ],
+        "global_ambiguity": "unresolved",
+        "information_rank": 2,
+        "information_singular_values": [
+          19.08272116416576,
+          9.898614580363935
+        ],
+        "initial_carrier_per_um": [
+          0.03636363636363637,
+          0.07692307692307693
+        ],
+        "objective": 0.00017205018508464247,
+        "order_status": [
+          "fitted",
+          "fitted"
+        ],
+        "predictor_log2_norm": [
+          -4.59425597156308,
+          -5.397414564379035
+        ],
+        "projected_gradient": 0.0,
+        "relative_residual": [
+          0.008574005586731543,
+          0.009926560999829637
+        ],
+        "response_log2_norm": [
+          -5.557255429714447,
+          -7.364030906188329
+        ],
+        "search_evaluations": 125,
+        "stationary": true,
+        "status": "finite_difference_stationary"
+      },
+      "original_files_sha256": {
+        "evaluation-arrays.npz": "5d671e5cb7b471adb466e5211c90b08c56064c887ddc0e2f0592336496b9e6fd",
+        "evaluation-truth.npz": "bde4bf1d02ebdb9e4f5d2ea39c6911104a3d2aefbd3622d6bfef3b02db76dbc3",
+        "evaluation.json": "c187bcde2b57b2d1d7e8c240928f40484025780d8127e19b1b8355233a3d8c93",
+        "expected-arrays.npz": "6959ac6ed9ea42c153c5d3e04a196a7c2cdf52c139792fbdc68cff4df6819d4f",
+        "expected.json": "ee0085b10e074a7a704c074b72e2e1cc31e321cb1c02ceeea0654ecdb566d641",
+        "objective-landscape.npz": "b64976cf5bdfae21b8618d9754acfbddf0cb64214e1e05e5b20f01446bf052a0",
+        "observations.npz": "b6f431a623e8205b285e1e4cf8820842b84936c2202fa9a2c78ff060efe5798f",
+        "observed-arrays.npz": "77f5e3abcc8bead7626ace7c09154fc844737a97e6441fcdbe177bd75ae0e8d1",
+        "observed.json": "141824860ae2a91af221c2fcb104a40d7b6fa8ad8651d1cf6f0cd15191d8427a",
+        "search.json": "44ff4d3fb7db7c63aac489e386ab97c14ecae5d4fff92b2d495ab1aba95ee9ac"
+      },
+      "search": {
+        "carrier_bounds_per_um": [
+          [
+            0.018181818181818184,
+            0.03076923076923077
+          ],
+          [
+            0.09090909090909091,
+            0.1
+          ]
+        ],
+        "case": "finite_mismatch",
+        "difference_step_per_um": [
+          1.8181818181818182e-05,
+          1.5384615384615384e-05
+        ],
+        "gradient_tolerance": 1e-08,
+        "heldout_phase_rad": 0.41,
+        "initial_carriers_per_um": [
+          [
+            0.03636363636363637,
+            0.07692307692307693
+          ]
+        ],
+        "initialization": "nominal acquisition bins (0.20,0.50), independently declared before fitting",
+        "max_evaluations": 256,
+        "noise": null,
+        "origin_zyx": [
+          0,
+          0,
+          0
+        ],
+        "rank_rtol": 1e-06,
+        "shape_zyx": [
+          5,
+          11,
+          13
+        ],
+        "source": "RA09 declared finite synthetic calibration; no measured instrument claim",
+        "spacing_um_zyx": [
+          0.25,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "finite_objective": {
+      "evaluation": {
+        "carrier_error_detector_bins_yx": [
+          0.11249999999999999,
+          -0.1625
+        ],
+        "carrier_only_max_order2_phase_error_rad": 1.6336281798666925,
+        "conditional_noiseless_phase_goal_met": null,
+        "gain_absolute_differences": [
+          1.5700924586837752e-16,
+          8.886119947416683e-17
+        ],
+        "gain_amplitude_ratio_by_order": [
+          1.1409717657553868,
+          1.1844296594670445
+        ],
+        "gain_and_carrier_max_phase_error_rad_by_order": [
+          0.7853561946642151,
+          1.56217549912116
+        ],
+        "gain_only_phase_error_rad_by_order": [
+          0.2198695170180524,
+          0.43120214382883454
+        ],
+        "gains_within_predeclared_arithmetic_allowance": true,
+        "independent_at_observed": {
+          "objective": 0.05538565500890566,
+          "orders": [
+            {
+              "coherence": 0.9937820524717147,
+              "gain": {
+                "imag": 0.24292510117537863,
+                "real": 0.5161797533627924
+              },
+              "objective": 0.012397232185105557,
+              "predictor_norm": 0.06681673207310354,
+              "relative_residual": 0.11134285870726311,
+              "response_norm": 0.03835650109892851
+            },
+            {
+              "coherence": 0.978269685299611,
+              "gain": {
+                "imag": 0.035801050366454826,
+                "real": 0.29393517300883676
+              },
+              "objective": 0.0429884228238001,
+              "predictor_norm": 0.03285383979189195,
+              "relative_residual": 0.2073364966034685,
+              "response_norm": 0.009944359633554849
+            }
+          ]
+        },
+        "integer_relative_heldout_l2": 0.061020453426351144,
+        "limits": "No full raw estimation, specimen reconstruction, continuum recovery, global uniqueness or legacy C execution. Nonconstant transfer uses zero-exterior convolution/crop and is deliberately outside the exact phase-ramped flat-transfer identity.",
+        "nominal_carrier_only_max_order2_phase_error_rad": 1.6336281798666925,
+        "objective_absolute_difference": 1.1102230246251565e-16,
+        "objective_within_predeclared_arithmetic_allowance": true,
+        "overlap_equal": true,
+        "relative_heldout_l2": 0.05878741973662945
+      },
+      "observed": {
+        "budget_exhausted": false,
+        "carrier_per_um": [
+          0.125,
+          -0.125
+        ],
+        "coherence": [
+          0.9937820524717149,
+          0.978269685299611
+        ],
+        "diagnostic_evaluations": 0,
+        "diagnostics_continuous": true,
+        "gains": [
+          {
+            "imag": 0.24292510117537874,
+            "real": 0.5161797533627925
+          },
+          {
+            "imag": 0.035801050366454895,
+            "real": 0.2939351730088367
+          }
+        ],
+        "global_ambiguity": "unresolved",
+        "information_rank": 0,
+        "information_singular_values": [
+          0.0,
+          0.0
+        ],
+        "initial_carrier_per_um": [
+          0.125,
+          -0.125
+        ],
+        "objective": 0.05538565500890555,
+        "order_status": [
+          "fitted",
+          "fitted"
+        ],
+        "predictor_log2_norm": [
+          -3.9036467658749467,
+          -4.927794194417841
+        ],
+        "projected_gradient": 0.0,
+        "relative_residual": [
+          0.11134285870726289,
+          0.20733649660346834
+        ],
+        "response_log2_norm": [
+          -4.704385066849627,
+          -6.651905812873041
+        ],
+        "search_evaluations": 1,
+        "stationary": true,
+        "status": "finite_difference_stationary"
+      },
+      "original_files_sha256": {
+        "evaluation-arrays.npz": "9d48afa84dd3ab99cceb234b361d66e7b3db34ce6b6d2d24c74cb4ee79bc17ee",
+        "evaluation-truth.npz": "00ed97c207e773dcd0162d068aed3a0bdf2063b836e4d8103aa21a774f80b2a3",
+        "evaluation.json": "30fcd507aa3fbd36b05e2b01454e0c29055f4c225d9bac2781882f7720911684",
+        "expected-arrays.npz": "3f6b8d51cedd9c4a2af2b18f0b66f50a55d4d19e1e4388cf505010243df51a5f",
+        "expected.json": "0f1e02bfdcab4a9c3f4aa36bc1910d0619c6e27d188299a01f1bf937ddd81484",
+        "observations.npz": "7f5e73e207a534232f82c4ffa212137f64d4fa84ba3851bb0b4640a49a0b5df7",
+        "observed-arrays.npz": "8bd3714a0d1b1f19cfba922cf08ce9c2ef9ac8f594c8252e98e98198526dbbf6",
+        "observed.json": "61e3f830ade51a28e6eda8f1f22154f361f4d89e5ffb46fc352678e06664d10f",
+        "search.json": "9b330e1f08898409331f66072d68cdeef579119390a31c4a01f8dd458260c3f7"
+      },
+      "search": {
+        "carrier_bounds_per_um": [
+          [
+            0.125,
+            -0.125
+          ],
+          [
+            0.125,
+            -0.125
+          ]
+        ],
+        "case": "finite_objective",
+        "difference_step_per_um": [
+          4e-05,
+          4e-05
+        ],
+        "gradient_tolerance": 1e-08,
+        "heldout_phase_rad": 0.41,
+        "initial_carriers_per_um": [
+          [
+            0.125,
+            -0.125
+          ]
+        ],
+        "initialization": "fixed arithmetic-control comparison point; not a recovery start",
+        "max_evaluations": 256,
+        "noise": null,
+        "origin_zyx": [
+          0,
+          0,
+          0
+        ],
+        "rank_rtol": 1e-06,
+        "shape_zyx": [
+          3,
+          5,
+          5
+        ],
+        "source": "RA09 declared finite synthetic calibration; no measured instrument claim",
+        "spacing_um_zyx": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "flat_noise": {
+      "evaluation": {
+        "carrier_error_detector_bins_yx": [
+          0.0003260426250045953,
+          0.003994054446930975
+        ],
+        "carrier_only_max_order2_phase_error_rad": 0.05005464233106057,
+        "conditional_noiseless_phase_goal_met": null,
+        "gain_absolute_differences": [
+          1.6711069443220838e-16,
+          1.9478403400799703e-16
+        ],
+        "gain_amplitude_ratio_by_order": [
+          1.0027047090766867,
+          1.0032095475082299
+        ],
+        "gain_and_carrier_max_phase_error_rad_by_order": [
+          0.0136064393615567,
+          0.03915415679492393
+        ],
+        "gain_only_phase_error_rad_by_order": [
+          -0.011420881803973586,
+          -0.03915415679492393
+        ],
+        "gains_within_predeclared_arithmetic_allowance": true,
+        "independent_at_observed": {
+          "objective": 0.04767578296482642,
+          "orders": [
+            {
+              "coherence": 0.9974072031839707,
+              "gain": {
+                "imag": 0.10381504386255823,
+                "real": 0.49048610588777725
+              },
+              "objective": 0.005178871036729323,
+              "predictor_norm": 0.07296948769328877,
+              "relative_residual": 0.07196437338523363,
+              "response_norm": 0.036678524425834955
+            },
+            {
+              "coherence": 0.9785208674688053,
+              "gain": {
+                "imag": -0.08580027977157509,
+                "real": 0.23566957642926412
+              },
+              "objective": 0.0424969119280971,
+              "predictor_norm": 0.04349037012001002,
+              "relative_residual": 0.2061477914703359,
+              "response_norm": 0.011146914690210128
+            }
+          ]
+        },
+        "integer_relative_heldout_l2": 0.28972056266360346,
+        "limits": "No full raw estimation, specimen reconstruction, continuum recovery, global uniqueness or legacy C execution. Nonconstant transfer uses zero-exterior convolution/crop and is deliberately outside the exact phase-ramped flat-transfer identity.",
+        "nominal_carrier_only_max_order2_phase_error_rad": 0.9279781376757545,
+        "objective_absolute_difference": 0.0,
+        "objective_within_predeclared_arithmetic_allowance": true,
+        "overlap_equal": true,
+        "relative_heldout_l2": 0.034586975261619156
+      },
+      "observed": {
+        "budget_exhausted": false,
+        "carrier_per_um": [
+          0.050968371386364474,
+          0.06522985453029707
+        ],
+        "coherence": [
+          0.9974072031839708,
+          0.978520867468805
+        ],
+        "diagnostic_evaluations": 4,
+        "diagnostics_continuous": true,
+        "gains": [
+          {
+            "imag": 0.1038150438625581,
+            "real": 0.49048610588777736
+          },
+          {
+            "imag": -0.0858002797715751,
+            "real": 0.23566957642926392
+          }
+        ],
+        "global_ambiguity": "unresolved",
+        "information_rank": 2,
+        "information_singular_values": [
+          22.763828653597507,
+          11.255991402675846
+        ],
+        "initial_carrier_per_um": [
+          0.03636363636363637,
+          0.07692307692307693
+        ],
+        "objective": 0.04767578296482642,
+        "order_status": [
+          "fitted",
+          "fitted"
+        ],
+        "predictor_log2_norm": [
+          -3.7765628649026506,
+          -4.52316020302308
+        ],
+        "projected_gradient": 0.0,
+        "relative_residual": [
+          0.07196437338523372,
+          0.20614779147033588
+        ],
+        "response_log2_norm": [
+          -4.768920589182831,
+          -6.487211742148081
+        ],
+        "search_evaluations": 125,
+        "stationary": true,
+        "status": "finite_difference_stationary"
+      },
+      "original_files_sha256": {
+        "evaluation-arrays.npz": "9bd3d454f884ca74787cde91b5b4fd77452bd7442c98c092315c8ee74cd8014e",
+        "evaluation-truth.npz": "65ffd75c50333cf76b0af5754f0fda78a279e40c5f19dae7c0c183812532427f",
+        "evaluation.json": "9ec05812639a786c1ecdeca32eedb01a0bde85d3c6070f54ce6d54e84256ec1f",
+        "expected-arrays.npz": "2e51fd909805f30a7219e7e55fd283f7b535b24ed407bfd655297dbb52ac08a1",
+        "expected.json": "72ed36bf42e12422d78536a7ae51885bac5324047f07bd557bfb7c6c65b0980c",
+        "objective-landscape.npz": "5f98c13f99f269a055b19391ac0fd01a55fa1eeaf8e2d7c3b3c73a853e0fc617",
+        "observations.npz": "489aed14fde17d6751e630352fef04c2b4d4871e5d6656076578b6a49e0c0ec7",
+        "observed-arrays.npz": "77f5e3abcc8bead7626ace7c09154fc844737a97e6441fcdbe177bd75ae0e8d1",
+        "observed.json": "7f6317ce9f100d1811da2e8fa83ac782eec4953b2f5126a8f8acc4b1e9b47c87",
+        "search.json": "e7b7bb914073946366d9a6c5a2d50de539c12b4d3e2835edfd8ed60deee72d88"
+      },
+      "search": {
+        "carrier_bounds_per_um": [
+          [
+            0.018181818181818184,
+            0.03076923076923077
+          ],
+          [
+            0.09090909090909091,
+            0.1
+          ]
+        ],
+        "case": "flat_noise",
+        "difference_step_per_um": [
+          1.8181818181818182e-05,
+          1.5384615384615384e-05
+        ],
+        "gradient_tolerance": 1e-08,
+        "heldout_phase_rad": 0.41,
+        "initial_carriers_per_um": [
+          [
+            0.03636363636363637,
+            0.07692307692307693
+          ]
+        ],
+        "initialization": "nominal acquisition bins (0.20,0.50), independently declared before fitting",
+        "max_evaluations": 256,
+        "noise": {
+          "band_seed": 2026103108,
+          "heldout_seed": 2026103109,
+          "model": "independent additive Gaussian real/imaginary separated-band components; dc real only",
+          "sd_relative": 0.002
+        },
+        "origin_zyx": [
+          0,
+          0,
+          0
+        ],
+        "rank_rtol": 1e-06,
+        "shape_zyx": [
+          5,
+          11,
+          13
+        ],
+        "source": "RA09 declared finite synthetic calibration; no measured instrument claim",
+        "spacing_um_zyx": [
+          0.25,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "flat_noiseless": {
+      "evaluation": {
+        "carrier_error_detector_bins_yx": [
+          -1.2879237953900002e-10,
+          3.1107859344015054e-11
+        ],
+        "carrier_only_max_order2_phase_error_rad": 1.4713207032657122e-09,
+        "conditional_noiseless_phase_goal_met": true,
+        "gain_absolute_differences": [
+          2.2591401799415137e-16,
+          1.3947004136484323e-16
+        ],
+        "gain_amplitude_ratio_by_order": [
+          0.9999999999999595,
+          0.9999999999995756
+        ],
+        "gain_and_carrier_max_phase_error_rad_by_order": [
+          5.218260114121758e-10,
+          1.043966625916158e-09
+        ],
+        "gain_only_phase_error_rad_by_order": [
+          3.414046777800608e-10,
+          6.831239586519279e-10
+        ],
+        "gains_within_predeclared_arithmetic_allowance": true,
+        "independent_at_observed": {
+          "objective": 1.1254844956489976e-19,
+          "orders": [
+            {
+              "coherence": 0.9999999999999999,
+              "gain": {
+                "imag": 0.10911481170701817,
+                "real": 0.48794872462803046
+              },
+              "objective": 2.253777049624886e-20,
+              "predictor_norm": 0.07306878976833195,
+              "relative_residual": 1.5012584886104343e-10,
+              "response_norm": 0.03653439488416448
+            },
+            {
+              "coherence": 1.0000000000000002,
+              "gain": {
+                "imag": -0.07626465894818804,
+                "real": 0.2380833925234257
+              },
+              "objective": 9.00106790686509e-20,
+              "predictor_norm": 0.04355167179054436,
+              "relative_residual": 3.0001779791980825e-10,
+              "response_norm": 0.010887917947631472
+            }
+          ]
+        },
+        "integer_relative_heldout_l2": 0.288249242898532,
+        "limits": "No full raw estimation, specimen reconstruction, continuum recovery, global uniqueness or legacy C execution. Nonconstant transfer uses zero-exterior convolution/crop and is deliberately outside the exact phase-ramped flat-transfer identity.",
+        "nominal_carrier_only_max_order2_phase_error_rad": 0.9279781376757545,
+        "objective_absolute_difference": 3.469261627518552e-27,
+        "objective_within_predeclared_arithmetic_allowance": true,
+        "overlap_equal": true,
+        "relative_heldout_l2": 2.0115923144711189e-10
+      },
+      "observed": {
+        "budget_exhausted": false,
+        "carrier_per_um": [
+          0.050909090885674115,
+          0.06461538462017044
+        ],
+        "coherence": [
+          0.9999999999999999,
+          1.0
+        ],
+        "diagnostic_evaluations": 4,
+        "diagnostics_continuous": true,
+        "gains": [
+          {
+            "imag": 0.10911481170701821,
+            "real": 0.4879487246280307
+          },
+          {
+            "imag": -0.07626465894818805,
+            "real": 0.23808339252342556
+          }
+        ],
+        "global_ambiguity": "unresolved",
+        "information_rank": 2,
+        "information_singular_values": [
+          20.65001759351237,
+          10.458760831846917
+        ],
+        "initial_carrier_per_um": [
+          0.03636363636363637,
+          0.07692307692307693
+        ],
+        "objective": 1.1254845303416139e-19,
+        "order_status": [
+          "fitted",
+          "fitted"
+        ],
+        "predictor_log2_norm": [
+          -3.7746008774595685,
+          -4.521128090063433
+        ],
+        "projected_gradient": 0.0,
+        "relative_residual": [
+          1.501258908684203e-10,
+          3.000177826815013e-10
+        ],
+        "response_log2_norm": [
+          -4.774600877459626,
+          -6.521128090064045
+        ],
+        "search_evaluations": 126,
+        "stationary": true,
+        "status": "finite_difference_stationary"
+      },
+      "original_files_sha256": {
+        "evaluation-arrays.npz": "bf47eb28f107e5faea66dde7810ab079e936afe56b10594c4f3dc85d7e9af970",
+        "evaluation-truth.npz": "21006f633d9d9d03337ecd99e336f5ab2135b1ccb578bfc061d68cf0baaaf210",
+        "evaluation.json": "a2c7eec1fb1af21eebf59928f56493dad2aae447df413a947bf8a6f3eb4c02d3",
+        "expected-arrays.npz": "b873c2307550db9f4239b7f183d12ab715a2cc66e38c691bc3dde3028e890ed6",
+        "expected.json": "58f302c682e80916577c38bda35c1f968a4ae00c34ae13acdcc3c2fbff9bdd3e",
+        "objective-landscape.npz": "fd4dadf6b2855988ec31b229c6dd4c4d674918cbc08b299360377438248d2ab3",
+        "observations.npz": "7f9943d1dce9e91788ee71eaa5824450b4ebf9cf28d59b7bd14f66a9be8d3418",
+        "observed-arrays.npz": "77f5e3abcc8bead7626ace7c09154fc844737a97e6441fcdbe177bd75ae0e8d1",
+        "observed.json": "ea5706c719dcb1e988a4fca73b98410b7ff94b55e6f1f2fb0db498a916a1897d",
+        "search.json": "32428e457409c0200fe601b1f7dff2899ad7eff80a7146baddb47de0bfb7c603"
+      },
+      "search": {
+        "carrier_bounds_per_um": [
+          [
+            0.018181818181818184,
+            0.03076923076923077
+          ],
+          [
+            0.09090909090909091,
+            0.1
+          ]
+        ],
+        "case": "flat_noiseless",
+        "difference_step_per_um": [
+          1.8181818181818182e-05,
+          1.5384615384615384e-05
+        ],
+        "gradient_tolerance": 1e-08,
+        "heldout_phase_rad": 0.41,
+        "initial_carriers_per_um": [
+          [
+            0.03636363636363637,
+            0.07692307692307693
+          ]
+        ],
+        "initialization": "nominal acquisition bins (0.20,0.50), independently declared before fitting",
+        "max_evaluations": 256,
+        "noise": null,
+        "origin_zyx": [
+          0,
+          0,
+          0
+        ],
+        "rank_rtol": 1e-06,
+        "shape_zyx": [
+          5,
+          11,
+          13
+        ],
+        "source": "RA09 declared finite synthetic calibration; no measured instrument claim",
+        "spacing_um_zyx": [
+          0.25,
+          0.5,
+          0.5
+        ]
+      }
+    }
+  },
+  "observation_environment": {
+    "numpy": "2.5.3",
+    "platform": "macOS27.0.1 arm64",
+    "python": "3.13.12",
+    "scipy": "1.18.1"
+  },
+  "original_prepared_inputs": {
+    "calibration": {
+      "design.json": "44b7e9016423c8882656aaf631da0328915f6b81bbeae670be6651d6767a2025",
+      "evaluation-truth.npz": "7f9ad39268e7c40a93bc22f8bb1fb65162dd361992722fee79c1fbb63108f9f7",
+      "expected-arrays.npz": "b549070b04a2d98a4861d53b614f355652559237b521a62e7a8e93753851fd5f",
+      "expected.json": "97550940f1dab8e7193c6e889a705b3ddff2b7ff127d4574afccf0fcbe2f8aa9",
+      "objective-landscape.npz": "7892785d19ff4235a67db031d4e9f9d3e75e67ed54dd0d409cc4737ae0e358e8",
+      "observations.npz": "35b4008b91c030bab3ae1884de265ed40a2e80234eb4dc99c04b88eef30511d4",
+      "search.json": "d4488876cb439f8f5702bfdc434256f3c9f3e38525eba51d1d4fcf96769132e4"
+    },
+    "main": {
+      "catalogue.json": "ca91fceab57bdf9f683af51b23d4152b145541e2e698c2396a699b74a5a5f594",
+      "finite_mismatch/evaluation-truth.npz": "bde4bf1d02ebdb9e4f5d2ea39c6911104a3d2aefbd3622d6bfef3b02db76dbc3",
+      "finite_mismatch/expected-arrays.npz": "6959ac6ed9ea42c153c5d3e04a196a7c2cdf52c139792fbdc68cff4df6819d4f",
+      "finite_mismatch/expected.json": "ee0085b10e074a7a704c074b72e2e1cc31e321cb1c02ceeea0654ecdb566d641",
+      "finite_mismatch/objective-landscape.npz": "b64976cf5bdfae21b8618d9754acfbddf0cb64214e1e05e5b20f01446bf052a0",
+      "finite_mismatch/observations.npz": "b6f431a623e8205b285e1e4cf8820842b84936c2202fa9a2c78ff060efe5798f",
+      "finite_mismatch/search.json": "44ff4d3fb7db7c63aac489e386ab97c14ecae5d4fff92b2d495ab1aba95ee9ac",
+      "finite_objective/evaluation-truth.npz": "00ed97c207e773dcd0162d068aed3a0bdf2063b836e4d8103aa21a774f80b2a3",
+      "finite_objective/expected-arrays.npz": "3f6b8d51cedd9c4a2af2b18f0b66f50a55d4d19e1e4388cf505010243df51a5f",
+      "finite_objective/expected.json": "0f1e02bfdcab4a9c3f4aa36bc1910d0619c6e27d188299a01f1bf937ddd81484",
+      "finite_objective/observations.npz": "7f5e73e207a534232f82c4ffa212137f64d4fa84ba3851bb0b4640a49a0b5df7",
+      "finite_objective/search.json": "9b330e1f08898409331f66072d68cdeef579119390a31c4a01f8dd458260c3f7",
+      "flat_noise/evaluation-truth.npz": "65ffd75c50333cf76b0af5754f0fda78a279e40c5f19dae7c0c183812532427f",
+      "flat_noise/expected-arrays.npz": "2e51fd909805f30a7219e7e55fd283f7b535b24ed407bfd655297dbb52ac08a1",
+      "flat_noise/expected.json": "72ed36bf42e12422d78536a7ae51885bac5324047f07bd557bfb7c6c65b0980c",
+      "flat_noise/objective-landscape.npz": "5f98c13f99f269a055b19391ac0fd01a55fa1eeaf8e2d7c3b3c73a853e0fc617",
+      "flat_noise/observations.npz": "489aed14fde17d6751e630352fef04c2b4d4871e5d6656076578b6a49e0c0ec7",
+      "flat_noise/search.json": "e7b7bb914073946366d9a6c5a2d50de539c12b4d3e2835edfd8ed60deee72d88",
+      "flat_noiseless/evaluation-truth.npz": "21006f633d9d9d03337ecd99e336f5ab2135b1ccb578bfc061d68cf0baaaf210",
+      "flat_noiseless/expected-arrays.npz": "b873c2307550db9f4239b7f183d12ab715a2cc66e38c691bc3dde3028e890ed6",
+      "flat_noiseless/expected.json": "58f302c682e80916577c38bda35c1f968a4ae00c34ae13acdcc3c2fbff9bdd3e",
+      "flat_noiseless/objective-landscape.npz": "fd4dadf6b2855988ec31b229c6dd4c4d674918cbc08b299360377438248d2ab3",
+      "flat_noiseless/observations.npz": "7f9943d1dce9e91788ee71eaa5824450b4ebf9cf28d59b7bd14f66a9be8d3418",
+      "flat_noiseless/search.json": "32428e457409c0200fe601b1f7dff2899ad7eff80a7146baddb47de0bfb7c603"
+    }
+  },
+  "presentation": {
+    "corrected_copies": 12,
+    "new_layout_manifest_sha256": "11586fb6e05a45f2fdac026768294f6f2e7d0c453cbb97d8cf6ac133ac277905",
+    "new_layout_qa_sha256": "347d5095612e39193439edcdaf337a3e5b989d40716d981bac9bdff07a770486",
+    "original_artifacts_preserved": 86,
+    "original_driver_count": 2,
+    "original_rendered_calibration_sha256": "e82ea5c19018c65609af6cbfdfe680d1f67611d81864886620d4d1cdb8b4ddda",
+    "original_rendered_main_sha256": "1905056a5bd5db0a2b300e4d8a50cd73c0e2fddd954cb9a5fdd5c8f9ddb4fc37",
+    "product_calls_during_render": 0,
+    "unchanged_original_figures": 5
+  },
+  "render_environment": {
+    "backend": "Agg",
+    "matplotlib": "3.11.0",
+    "numpy": "2.5.1",
+    "python": "3.13.12"
+  },
+  "schema": "simrecon.ra09.report-measurements.v1",
+  "scope": "Declared finite synthetic controls; no specimen reconstruction, physical/global uniqueness or legacy execution claim",
+  "sealed_originals": {
+    "calibration/observed-freeze.json": "f7a77e4b704f668f71d6cfcec312c75721ebe2c2f2fb0d3d00f897ef9a4dd1f6",
+    "calibration/prepared.json": "ac6b842529ded624ec9799d3df872992e1963b85635b958e874de869481cbaff",
+    "main/observed-freeze.json": "af4e0e2010979ee9c02b33a9b725c1b0514e30881ea71114a64fec666ece913a",
+    "main/prepared.json": "90bdd27941a251217a3f94d39346ae254618892825a04edf8892141431dbe9fe"
+  },
+  "source_products": {
+    "src/simrecon/__init__.py": "dd836bf58c6a6a72961ef38eb92f90de9833bf65e7aebeea426436c6e379094c",
+    "src/simrecon/volume_overlap.py": "976a2fa2063ddf6fe961dec705d527d6062adba0fe8939add50007a7d4c249f1"
+  }
+}

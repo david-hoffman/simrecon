@@ -767,12 +767,17 @@ fresh independent B must accept the revised checkpoint.
 from __future__ import annotations
 
 import ast
+import contextlib
 import hashlib
+import importlib
+import io
 import json
 import math
 import os
+import random
 import subprocess
 import sys
+import warnings
 from decimal import Decimal, localcontext
 from fractions import Fraction
 from functools import lru_cache
@@ -780,6 +785,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 COMMAND_LEDGER: list[dict[str, Any]] = []
@@ -852,12 +858,12 @@ def plan(*, unavailable: bool = False, empty: bool = False) -> dict[str, Any]:
     return {
         "format_version": "full_noisy_study_plan_v1",
         "geometry": {
-            "camera_shape_yx": [8, 8],
-            "calibration_shape_zyx": [1, 2, 24],
+            "camera_shape_yx": [1, 2],
+            "calibration_shape_zyx": [1, 2, 20],
             "calibration_spacing_um_zyx": list(D),
             "calibration_origin_um_zyx": [0.0, 0.125, -0.25],
-            "specimen_shape_zyx": [1, 2, 2],
-            "specimen_spacing_um_zyx": list(D),
+            "specimen_shape_zyx": [2, 1, 2],
+            "specimen_spacing_um_zyx": [0.25, 0.10, 0.12],
             "specimen_origin_um_zyx": [0.5, 1.25, -1.125],
         },
         "camera": {
@@ -876,9 +882,14 @@ def plan(*, unavailable: bool = False, empty: bool = False) -> dict[str, Any]:
         },
         "bead_catalogue": [
             [0.0625, 0.08, x, 0.050, 0.0 if unavailable else b]
-            for x, b in zip((0.16, 0.88, 1.6), (12000.0, 9000.0, 15000.0), strict=True)
+            for x, b in zip((0.08, 0.80, 1.52), (12000.0, 9000.0, 15000.0), strict=True)
         ],
-        "specimen_catalogue": [] if empty or unavailable else [[0.0625, 0.08, 0.08, 0.05, 1000.0]],
+        "specimen_catalogue": []
+        if empty or unavailable
+        else [
+            [0.09, 0.05, 0.12, 0.05, 700.0],
+            [0.34, 0.05, 0.12, 0.05, 1300.0],
+        ],
         "generator_pupil_order": 2,
         "seeds": {
             **{
@@ -891,18 +902,6 @@ def plan(*, unavailable: bool = False, empty: bool = False) -> dict[str, Any]:
             "specimen": [[next(seeds) for _ in range(5)] for _ in range(3)],
         },
     }
-
-
-def multi_axial_plan() -> dict[str, Any]:
-    """Declare asymmetric fine pairs and a specimen spacing distinct from beads."""
-    value = plan()
-    value["geometry"]["specimen_shape_zyx"] = [2, 2, 2]
-    value["geometry"]["specimen_spacing_um_zyx"] = [0.25, 0.1, 0.12]
-    value["specimen_catalogue"] = [
-        [0.115, 0.1, 0.12, 0.1, 700.0],
-        [0.38, 0.1, 0.12, 0.1, 1300.0],
-    ]
-    return value
 
 
 def encoded(value: Any) -> bytes:
@@ -1115,8 +1114,237 @@ def cli(
     return result
 
 
+class ValidationWorker:
+    """Own one bounded public-CLI worker and truthful per-request evidence."""
+
+    def __init__(self, root: Path) -> None:
+        import selectors
+
+        root.mkdir()
+        self.root = root
+        self.sequence = 0
+        self.receipts: list[dict[str, Any]] = []
+        self.response_bytes = bytearray()
+        self.wire = (root / "worker.stdout").open("wb")
+        self.errors = (root / "worker.stderr").open("wb")
+        self.process = subprocess.Popen(
+            [
+                sys.executable,
+                "-c",
+                "import runpy; runpy.run_path("
+                + repr(str(ROOT / "tests/full_noisy_validation_worker.py"))
+                + ", run_name='__main__')",
+            ],
+            cwd=ROOT,
+            env=source_free_environment(),
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=self.errors,
+            start_new_session=True,
+        )
+        self.selector = selectors.DefaultSelector()
+        assert self.process.stdout is not None
+        self.selector.register(self.process.stdout, selectors.EVENT_READ)
+        try:
+            ready = self.response(30)
+            assert ready == {"ready": True, "pid": self.process.pid}
+        except BaseException:
+            self.close()
+            raise
+
+    def response(self, timeout: float) -> dict[str, Any]:
+        import time
+
+        deadline = time.monotonic() + timeout
+        while b"\n" not in self.response_bytes:
+            remaining = deadline - time.monotonic()
+            if remaining <= 0 or not self.selector.select(remaining):
+                raise subprocess.TimeoutExpired(self.process.args, timeout)
+            assert self.process.stdout is not None
+            data = os.read(self.process.stdout.fileno(), 65536)
+            self.wire.write(data)
+            self.wire.flush()
+            if not data:
+                raise AssertionError(
+                    ("validation worker died; incomplete request", self.process.poll())
+                )
+            self.response_bytes.extend(data)
+        line, _, tail = self.response_bytes.partition(b"\n")
+        self.response_bytes = bytearray(tail)
+        return json.loads(line)
+
+    def __call__(
+        self,
+        *args: str,
+        timeout: float = 30,
+        fifo_witness: Path | None = None,
+    ) -> subprocess.CompletedProcess[str]:
+        import time
+
+        assert args[0] == "evaluate" and self.process.poll() is None
+        self.sequence += 1
+        case = self.root / f"case-{self.sequence:03d}"
+        case.mkdir()
+        request: dict[str, Any] = {
+            "request": self.sequence,
+            "argv": list(args),
+            "stdout": str(case / "stdout"),
+            "stderr": str(case / "stderr"),
+            "deadline_s": timeout,
+        }
+        if fifo_witness is not None:
+            request.update(
+                fifo_witness=str(fifo_witness),
+                witness_receipt=str(case / "fifo-reached"),
+            )
+        receipt: dict[str, Any] = {
+            **request,
+            "boundary": "runpy.run_module(public CLI, run_name=__main__, alter_sys=True)",
+            "worker_pid": self.process.pid,
+            "cwd": str(ROOT),
+            "environment": {
+                name: source_free_environment().get(name)
+                for name in (
+                    "PATH",
+                    "PYTHONPATH",
+                    "PYTEST_PLUGINS",
+                    "TMPDIR",
+                    "COVERAGE_PROCESS_START",
+                    "COVERAGE_FILE",
+                )
+            },
+            "status": "entered",
+        }
+        receipt["input_snapshots"] = {
+            str(Path(args[index + 1])): snapshot(Path(args[index + 1]))
+            for index, flag in enumerate(args[:-1])
+            if flag in ("--observations", "--inference", "--private-truth")
+        }
+        write_json(case / "receipt.json", receipt)
+        self.receipts.append(receipt)
+        COMMAND_LEDGER.append(receipt)
+        entered = time.monotonic()
+        try:
+            assert self.process.stdin is not None
+            self.process.stdin.write(encoded(request))
+            self.process.stdin.flush()
+            reply = self.response(timeout)
+            assert reply["request"] == self.sequence and reply["pid"] == self.process.pid
+            assert type(reply["status"]) is int
+        except BaseException:
+            receipt.update(status="incomplete", elapsed_s=time.monotonic() - entered)
+            write_json(case / "receipt.json", receipt)
+            if self.process.poll() is None:
+                self.process.kill()
+            self.close()
+            raise
+        receipt.update(status=reply["status"], elapsed_s=time.monotonic() - entered)
+        receipt["output_snapshot"] = snapshot(Path(args[args.index("--out") + 1]))
+        write_json(case / "receipt.json", receipt)
+        return subprocess.CompletedProcess(
+            [sys.executable, "-m", "scripts.full_noisy_study", *args],
+            reply["status"],
+            (case / "stdout").read_text(),
+            (case / "stderr").read_text(),
+        )
+
+    def close(self) -> None:
+        if self.process.stdin is not None and not self.process.stdin.closed:
+            self.process.stdin.close()
+        try:
+            status = self.process.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            self.process.kill()
+            status = self.process.wait(timeout=5)
+        self.selector.close()
+        if self.process.stdout is not None and not self.process.stdout.closed:
+            self.wire.write(self.process.stdout.read())
+            self.process.stdout.close()
+        self.wire.close()
+        self.errors.close()
+        write_json(
+            self.root / "closure.json",
+            {
+                "pid": self.process.pid,
+                "returncode": status,
+                "process_closed": True,
+                "requests": self.sequence,
+            },
+        )
+
+    def __enter__(self) -> ValidationWorker:
+        """Return the live worker."""
+        return self
+
+    def __exit__(self, *exc: Any) -> None:
+        """Reap the worker and require clean normal closure."""
+        self.close()
+        if exc[0] is None:
+            assert self.process.returncode == 0
+
+
+@pytest.fixture(scope="module")
+def validation_cli(tmp_path_factory: Any) -> Any:
+    import tempfile
+
+    evidence = os.environ.get("TSC_VALIDATION_EVIDENCE")
+    if evidence:
+        parent = Path(evidence)
+        parent.mkdir(parents=True, exist_ok=True)
+        root = Path(tempfile.mkdtemp(prefix="validation-", dir=parent)) / "worker"
+    else:
+        root = tmp_path_factory.mktemp("full-noisy-validation") / "worker"
+    with ValidationWorker(root) as worker:
+        yield worker
+
+
 def expect(result: subprocess.CompletedProcess[str], code: int) -> None:
     assert result.returncode == code, (result.returncode, result.stdout, result.stderr)
+
+
+def in_process_cli(*args: str) -> subprocess.CompletedProcess[str]:
+    """Call unchanged main(argv) for synchronous protocol controls only.
+
+    Real separate-process successes/statuses, FIFO truth ordering, exclusive
+    creation, signals and write failures continue to use cli(). This helper
+    supplies no assertion of process separation or independent import state.
+    """
+    stdout, stderr = io.StringIO(), io.StringIO()
+    environment, error_policy = dict(os.environ), np.geterr().copy()
+    python_random, numpy_random = random.getstate(), np.random.get_state()
+    with (
+        contextlib.redirect_stdout(stdout),
+        contextlib.redirect_stderr(stderr),
+        warnings.catch_warnings(),
+    ):
+        filters = list(warnings.filters)
+        try:
+            main = importlib.import_module("scripts.full_noisy_study").main
+            try:
+                code = main(list(args))
+            except SystemExit as stopped:
+                assert stopped.code is None or type(stopped.code) is int
+                code = stopped.code
+        finally:
+            assert os.environ == environment and np.geterr() == error_policy
+            assert warnings.filters == filters and random.getstate() == python_random
+            after = np.random.get_state()
+            assert after[0] == numpy_random[0] and after[2:] == numpy_random[2:]
+            np.testing.assert_array_equal(after[1], numpy_random[1])
+    result = subprocess.CompletedProcess(
+        list(args), 0 if code is None else code, stdout.getvalue(), stderr.getvalue()
+    )
+    COMMAND_LEDGER.append(
+        {
+            "argv": list(args),
+            "boundary": "main(argv)",
+            "status": result.returncode,
+            "stdout": result.stdout,
+            "stderr": result.stderr,
+            "process_created": False,
+        }
+    )
+    return result
 
 
 def infer_args(observations: Path, out: Path, settings: dict[str, Any] | None = None) -> list[str]:
@@ -1181,9 +1409,12 @@ def observation_bundle(
     """
     root.mkdir()
     geometry = plan()["geometry"]
+    geometry.update(
+        camera_shape_yx=[1, 2], calibration_shape_zyx=[1, 2, 2], specimen_shape_zyx=[1, 1, 2]
+    )
     for name in OBS_NAMES:
         if name.startswith("camera_"):
-            values = np.zeros((8, 8, 8), dtype="<f8")
+            values = np.zeros((8, 1, 2), dtype="<f8")
             if camera_case == "negative" and name == "camera_flat.npy":
                 values.fill(-1)
             if camera_case == "gain_missing" and name == "camera_flat.npy":

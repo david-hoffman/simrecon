@@ -1,0 +1,103 @@
+{
+  "schema": "org.simrecon.ra11.stationary-evidence",
+  "version": 1,
+  "route": "report-only retained stationary applicability; no new numerical experiment or motion implementation",
+  "baseline_commit": "4ab725014088404d313da4c6ca47d82f985f7edd",
+  "baseline_tree": "9c1017a0a80aa771b176ae6dd353bf4923e492b4",
+  "tracked_files": {
+    "scripts/reference_alignment_ra10_comparison.py": {
+      "sha256": "67dcf8f84edefdd0a3147b21f6e9d347e225cd52c63609942491b6ca1c10dfb9",
+      "size_bytes": 27616
+    },
+    "src/simrecon/exposure_phase.py": {
+      "sha256": "a5a1894e12b81e8759ca4bf2392e938afa2fb0eff38e3aea68929087acfab4be",
+      "size_bytes": 21490
+    },
+    "scripts/full_noisy_study.py": {
+      "sha256": "b610f6c7e8f5b35e8ba126e34c2b760214256fb5cef2b9a0b61220e2ac9ce00f",
+      "size_bytes": 101352
+    },
+    "docs/studies/full-noisy-study-2026-10-26/full-plan.json": {
+      "sha256": "59334032a39cf2d6ecadf0413791c2baa8b63951d9405999c40df0c3671440a9",
+      "size_bytes": 6163
+    },
+    "docs/benchmarks/reference-alignment-v1.json": {
+      "sha256": "d92000b12aa60b7f6416442677c92a8c557838dfe6fe32bfb0909eb0751eaad0",
+      "size_bytes": 49502
+    },
+    "docs/reports/figures/reference-alignment-ra10/known-field.png": {
+      "sha256": "5ce8b57c9f741adf06e58cb13d0f246fe15f12c0f18f197ef5a7f72c59ee1cf8",
+      "size_bytes": 200096
+    },
+    "docs/reports/figures/reference-alignment-ra10/independent-noise-field.png": {
+      "sha256": "acc9e59a8b2c274001c5dd44ea7b16e2fcd3b394396becb403cbb06bbc439506",
+      "size_bytes": 201353
+    },
+    "docs/reports/figures/reference-alignment-ra10/profiles-and-heldout-residuals.png": {
+      "sha256": "dea6220252c7d7b8a5c311a0a066bb69fb7a309960dec1fd573b4b2dfaefd79d",
+      "size_bytes": 188812
+    },
+    "docs/reports/figures/reference-alignment-ra10/phase-and-information.png": {
+      "sha256": "f38584ac5415dead9a695925cceb821fb176696e53a3b97d9034ea8c01b8d5a4",
+      "size_bytes": 265606
+    },
+    "docs/reports/figures/reference-alignment-ra10/measurements.json": {
+      "sha256": "29a560be6d264f1ef727e69507ae0a91367a104ab75a7e94e69323c8564bc468",
+      "size_bytes": 9291
+    }
+  },
+  "original_retained_ra10_files": {
+    "preparation.json": "47b60b06bf4d83bd47426aa205aeddabaa9a0d6e7dda07a076117ecb5e79cd7a",
+    "inputs.npz": "b03dfdee349f68a1384a012081a7382c48dc8f1ecc45b7f2cd8b35e8540e7e9b",
+    "evaluation-only.npz": "1e907ae7121e8463f0db35b73da091fb109abfd6075018f7c91cf761aed2a384",
+    "observed-freeze.json": "a39a2a34727b0eff7b6ca880082a3638b5ccffaad9fb67310e26fa3aec64a4a9",
+    "observed-arrays.npz": "eb9f4734bf9bf347fdab10665fff43e0b23e657da4f187417be65df9c4e66b0c",
+    "observed-scalars.json": "d7d69feac6d0e22212f4ee446609561daa7bcf8e53e9c903b64c824f0753b69e",
+    "evaluation.json": "14025d88304f917a09c8aa8bbd7b7f77e0784fde0c4983227d0f336e038e5ffc",
+    "driver-preparation.py": "f78c8cf56a6fe9523d229ae95ce735a235a87fda868df0c66a26778110d30fa2"
+  },
+  "original_location": "Original RA10 worktree; exact private local pointer in artifacts/ra11/current-state.json and reference-check evidence",
+  "associations": "preparation inputs/evaluator/driver, freeze preparation/inputs/outputs/evaluator and tracked measurements freeze/evaluator rechecked; no refit or rerender",
+  "stationary_source_inspection": {
+    "generator": "one source and finite displacement-kernel array; same source sites, carrier, origin, spacing and detector crop across seven phases",
+    "observation": "sealed input arrays directly to fit_exposure_phases; no translation estimation, registration, resampling or drift correction",
+    "physical_limit": "fixed finite operator/detector coordinates; no separately validated camera/focus model",
+    "full_study": "one specimen, same camera coefficients/optics/declared focus-plane grid across exposures; prescribed focus stack, no exposure-dependent drift"
+  },
+  "figures": {
+    "origin": "retained RA10 observations, unchanged",
+    "catalogue_center_um_zyx": [
+      0.375,
+      1.15,
+      1.55
+    ],
+    "section_zyx": [
+      1,
+      2,
+      3
+    ],
+    "stored_section_center_um_zyx": [
+      0.375,
+      1.25,
+      1.75
+    ],
+    "quantitative": "shared signal scale across all five RA10 comparisons; signed prediction minus data on shared symmetric difference scale",
+    "maxima": "differences of maxima, not maxima of signed differences",
+    "profiles": "quantitative relative signal and separately maximum-absolute-normalized shape",
+    "display": "physical aspect; micrometre axes; nearest stored centers, first on ties; no fitted alignment/rescaling"
+  },
+  "inherited_observations": {
+    "known_heldout_relative_image_error": 2.6141424565506283e-15,
+    "noisy_independent_heldout_relative_image_error": 0.016524895389686177,
+    "new_motion_metrics": null
+  },
+  "obligation_mapping": {
+    "S01": "generator/observe source inspection and inherited known/noisy fields",
+    "S02": "phase-varying fixed geometry; prior raw-reference analysis",
+    "S03": "report applicability matrix and existing raw motion model distinctions",
+    "S04": "matrix/reference prerequisites and unchanged public operation contracts",
+    "S05": "tracked/original identities and figure conventions",
+    "S06": "separate unchanged full plan/benchmark and explicit later-stage limits"
+  },
+  "limits": "declared stationary synthetic control; no motion detection/estimation/physical accuracy/real acquisition/27-object completion claim; inherited observation producer HEAD plus dirty inputs is retained in original freeze, not recast as a clean RA10-head run"
+}

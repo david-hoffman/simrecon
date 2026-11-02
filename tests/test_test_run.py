@@ -1,5 +1,6 @@
 """Contract checks for the configured pytest run policy."""
 
+import json
 import os
 import re
 import subprocess
@@ -11,7 +12,9 @@ import pytest
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
-def _run_suite(tmp_path: Path, test_source: str | None) -> subprocess.CompletedProcess[str]:
+def _run_suite(
+    tmp_path: Path, test_source: str | None, *, workers: bool = False
+) -> subprocess.CompletedProcess[str]:
     suite = tmp_path / "suite"
     suite.mkdir()
     if test_source is not None:
@@ -19,11 +22,14 @@ def _run_suite(tmp_path: Path, test_source: str | None) -> subprocess.CompletedP
 
     env = os.environ.copy()
     env["PYTEST_ADDOPTS"] = "--tb=line --show-capture=no"
-    return subprocess.run(
+    result = subprocess.run(
         [
             sys.executable,
-            "-m",
+            str(PROJECT_ROOT / "scripts/source_free_check.py"),
+            "--timeout",
+            "40",
             "pytest",
+            *(("-n", "2", "--dist=loadgroup", "--max-worker-restart=0") if workers else ()),
             "-c",
             str(PROJECT_ROOT / "pyproject.toml"),
             str(suite),
@@ -35,7 +41,15 @@ def _run_suite(tmp_path: Path, test_source: str | None) -> subprocess.CompletedP
         capture_output=True,
         text=True,
         check=False,
+        timeout=50,
     )
+    (tmp_path / "stdout.txt").write_text(result.stdout, encoding="utf-8")
+    (tmp_path / "stderr.txt").write_text(result.stderr, encoding="utf-8")
+    (tmp_path / "invocation.json").write_text(
+        json.dumps({"argv": result.args, "cwd": str(PROJECT_ROOT), "status": result.returncode}),
+        encoding="utf-8",
+    )
+    return result
 
 
 def _check_result(

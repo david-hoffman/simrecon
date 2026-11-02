@@ -54,6 +54,20 @@ make verify UV=/Users/davidhoffman/.local/bin/uv
 
 Coverage.py measures executable source lines (reported here as native statements) and possible line-to-line branch destinations; it supplies no distinct language-level statement instrumentation or separate line target. Report exact covered/total integers and unsupported measurements. Make, YAML, native dependency internals and model behavior have no owned-Python coverage claim. Their command paths require actual exercised evidence.
 
+### Proposed fixed two-worker maintenance — activation and qualification pending
+
+The owner selected parallel tests **after** accepted test consolidation. This paragraph records proposed future command/dependency ownership; it does not claim that xdist is installed, qualified or used by an executed gate. The TSC01 v1.9 candidate and exact whole-file map require fresh independent policy review, accepted consolidation and post-consolidation source/resource reconciliation before the maintenance worker starts.
+
+The sole dependency candidates are development pins `pytest-xdist==3.8.0` and `execnet==2.1.2`, preserving the locked Python3.13.12/pytest9.1.1/Coverage.py7.16.2 stack and unrelated resolutions. Proposed canonical `make verify` remains the full13-phase command. Only its top-level Makefile tests recipe would use:
+
+```sh
+uv run --locked coverage run -m pytest -n 2 --dist=loadgroup --max-worker-restart=0
+```
+
+The exact18allowlisted scientific files would each form one internally serial whole-file group; every other/newfile would be `serial-rest`. The existing measured `simrecon._pytest_policy` module owns deterministic grouping so delivery logic remains inside the58-file source policy. Shared pytest/addopts/environment and nested fixture commands gain no parallel flags. The omission guard remains unless actual qualified worker/controller failure establishes a necessary scoped correction; strict config/marks, skips/xfail/xpass/empty/error rejection and all cases remain.
+
+Local focused qualification would use one serial outer invocation to exercise explicit disposable serial/two-worker children, nested selector/preimport behavior, native worker/child/subprocess coverage, completed-shard survival through real fixture erase/combine paths and unchanged native formats/never-imported scope. No blanket coverage-environment stripping, new absolute common COVERAGE_FILE, pytest-cov alternative or speculative policy rewrite is proposed. Keep fast permanent regressions and explicitly bound one-time installation/worker-mechanism artifacts; do not multiply every unchanged serial policy case into a new permanent matrix. Every distinct omission/error outcome still needs proof and fresh bounded review. Exact dependency/platform/resource/safety evidence is pending. M25’s32MiB limit, current native reports/integers, wheel/import/audit, Ubuntu24.04/macOS15 and full-local submission rules remain unchanged. Local focused qualification then canonical local full verification and independent review precede PR. Existing CI repeats configured Ubuntu24.04/macOS15 verification after submission; no workflow edit or unavailable pre-PR remote CI is required. Combined exact C/D/final preservation sweep and all platform obligations remain; no 600 s success is implied.
+
 ## Coverage policy and adoption provenance
 
 The [coverage-policy adoption task](tasks/asd-coverage-policy.md) ports the focused coverage change from [dstack PR #7](https://github.com/david-hoffman/dstack/pull/7), head `94f8b856ae708d062fc6054adff9a9ce02af0614`, merged as `f55af3b18eff1d43d4d0e89ea21ca688ffce1f5c`. This is a local amendment to the existing Version 1.0 package, not a wholesale upstream replacement or new release. Local no-default-caps, direct-request authorization, role separation, blindness and full-local submission rules remain.
@@ -128,3 +142,76 @@ The owner's full noisy simulation request and explicit images-only choice next s
 ## PR53 published-head completion route
 
 The owner selected starting from the published PR53 head and finishing the same full noisy images-only task. [The completion contract and ownership](tasks/pr53-completion.md) preserve all existing scientific contracts, native high-risk roles, truth separation, exact-candidate full-local/report/platform gates and historical accounting. The previously owner-selected named advisory-percentage migration applies; no scientific acceptance or gate waiver follows. The actual specimen solver and safe workflow remain dependent work.
+
+## Reference-alignment RA04 camera composition
+
+The owner's 15-step reference-alignment continuation selects [RA04 paired camera and intensity correction](contracts/reference-alignment-ra04-v1.md) above completed RA03. The [task pointer](tasks/reference-alignment-ra04.md) retains ownership, evidence and exact-candidate/publication status. This additive composition preserves explicit effective baselines, common output gauge and exposure factors, retains estimated camera uncertainty ingredients and reports unsupported exposure/sum-equalization modes as unavailable. It adds no new estimator, fitted reconstruction behavior or real-instrument calibration claim. The settled advisory-percentage behavior/risk policy and complete full-local/both-platform report gates apply.
+
+## Reference-alignment RA07 fractional relocation
+
+The authorized RA01–RA15 continuation selects [RA07 fractional finite-window
+relocation](contracts/reference-alignment-ra07-v1.md) above completed RA06.
+The [task pointer](tasks/reference-alignment-ra07.md) owns exact review/check and
+publication evidence. The additive operation uses supplied physical lateral
+carriers, native filtering and output-grid phase ramps. Its declared periodic
+window, signed transfer interpolants and complex Nyquist convention recover
+the accepted integer operation at exact integer geometry. It estimates no
+unknown parameter and promises no continuum resolution or finite exterior.
+The approved behavior/risk policy, advisory percentages and complete exact
+local/both-platform report gates remain unchanged.
+
+
+## Reference-alignment RA05 matched order calibration
+
+The owner's reference-alignment chain next selects [RA05 corrected-bead calibration and physical-frequency consumption](contracts/reference-alignment-ra05-v1.md) above accepted RA04. Its [task pointer](tasks/reference-alignment-ra05.md) retains exact candidate, role, check, figure and cleanup evidence outside tracked bytes. Known phases/carrier and point or declared discrete per-site profiles are explicit finite-model premises. Calibration consumes the paired camera adapter's corrected bead directly, retains original harmonics/exact common dc mass, and samples signed complex transfers through the existing physical-frequency primitive. It infers no continuous-sphere interpretation, instrument compatibility, unknown phases or new reconstruction estimator. The approved advisory-percentage behavior/risk policy and full-local/both-platform gates apply.
+
+## Reference-alignment RA06 covariance-weighted inverse
+
+The authorized chain next selects [RA06 covariance-weighted known-parameter volume inversion](contracts/reference-alignment-ra06-v1.md) above accepted RA05. The additive real-coordinate estimator propagates declared exposure covariance through generalized least-squares separation, retains dependent negative bands and defines regularization in the raw whitened objective. Its [task pointer](tasks/reference-alignment-ra06.md) owns exact role/check/figure/cleanup evidence. Output taper follows the inverse. The original public estimator is preserved; no automatic noise/penalty estimation or undeclared-noise optimality claim is selected. Approved behavior/risk review, advisory percentages and complete full-local/both-platform report gates remain binding.
+
+## Reference-alignment RA08 finite-field objective
+
+The standing RA07–RA15 authorization next selects the [RA08 finite-field
+contract](contracts/reference-alignment-ra08-v1.md) above completed RA07. Its
+additive development module consumes a supplied sampled kernel and illumination,
+with explicit zero exterior, fixed source box, detector crop and convolution
+padding. It solves the declared residual-weighted ridge objective with optional
+nonnegativity and records mathematical stationarity separately from iteration
+or stagnation stops. Input residual weighting precedes the inverse; output
+taper and nonperiodic display zoom follow it. The periodic spectral estimator
+and historical finite-procedure fitter remain separate modes. The [task
+pointer](tasks/reference-alignment-ra08.md) owns exact role/check/figure/cleanup
+evidence. No real-exterior inference, automatic scene growth, physical parameter
+fit, flux normalization or continuum-resolution claim is selected. Approved
+behavior/risk review, advisory percentages and complete full-local/both-platform
+report gates remain binding.
+
+## Reference-alignment RA09 continuous specimen overlap
+
+The standing RA07–RA15 instruction next selects the
+[RA09 overlap contract](contracts/reference-alignment-ra09-v1.md) above completed
+RA08. One additive operation fits continuous physical specimen carriers and
+relative complex positive-order gains using the same normalized finite-window
+overlap objective. Fixed all-box nonwrapping support, all caller starts,
+unavailable-order diagnostics and explicit unresolved global ambiguity prevent
+a local search result from implying physical uniqueness. Finite observation
+evaluation and complex transfer interpolation remain distinct; this comparison
+is not an exact arbitrary continuous-optics likelihood. The
+[task pointer](tasks/reference-alignment-ra09.md) owns exact candidate, role,
+figure, check and cleanup evidence. Known exposure phases and fixed responses
+remain supplied. Approved behavior/risk review, advisory percentages and complete
+full-local/both-platform reports remain binding.
+
+## Reference-alignment RA10 exposure phases
+
+The standing continuation selects [RA10 fixed-gauge exposure phase inference](contracts/reference-alignment-ra10-v1.md)
+above completed RA09. One shared real source and explicitly supplied finite
+complex order kernels define the raw nonwrapping fractional-carrier model.
+Known phases, common offsets and independent deviations preserve the fixed
+index-zero calibration gauge. Covariance weighting, local nuisance-projected
+information and masked-pixel predictions expose conditional recovery limits;
+local rank never establishes global uniqueness. The [task pointer](tasks/reference-alignment-ra10.md)
+owns exact candidate, review, check, figures, accounting and cleanup evidence.
+No automatic conversion from sampled transfers, joint calibration, motion or
+real-data performance is selected. Approved behavior/risk review, advisory
+percentages and complete exact full-local/both-platform gates apply.
