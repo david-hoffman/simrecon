@@ -30,7 +30,7 @@ Inherit the predecessor chain's binding100% Coverage.py native executable-line/b
 
 Before any own push/PR, pass clean exact-candidate `make verify UV=/Users/davidhoffman/.local/bin/uv` in a separate gate checkout with a per-worktree environment and external TMPDIR. Cheap preflight precedes expensive checks. Fresh documentary/evidence review and separate Ubuntu24.04/macOS15 original qualification remain required for publication readiness. Preserve exact source/base/lock/check/environment/artifact identities and actual native count/report limits. No changed candidate inherits predecessor passing results. Previous PR-specific push approval supplies no new publication approval.
 
-Coordinator completion housekeeping inventories positively identified task-created scratch after owned processes close; preserve original evidence, links/referents/ancestors, active work, cache/environment/Python/Java/Git pins. Use [the cleanup workflow](../operations/fixture-cleanup.md) with the owner's correction that ordinary stale-fixture housekeeping is not ASD work. No destructive reusable tool or inherited cleanup pipeline is requested. Record retained/removed/blocked scope honestly; never erase prior exceptions, failures or spending.
+Coordinator completion housekeeping follows [the cleanup workflow](../operations/fixture-cleanup.md). Ordinary stale-fixture housekeeping is not ASD development work. Preserve durable evidence and known retained dependencies; report removed, kept and errors in the sole Current state without erasing prior exceptions, failures or spending.
 
 ## Current state
 
