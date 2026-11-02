@@ -1,0 +1,34 @@
+{
+  "arm": "estimated-noiseless",
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "/private/tmp/simrecon-ra14/.venv/bin/python",
+    "/private/tmp/simrecon-ra14/artifacts/ra14/study/run_observation_only.py",
+    "/private/tmp/simrecon-ra14/artifacts/ra14/prepared/noiseless",
+    "/private/tmp/simrecon-ra14/artifacts/ra14/runs/estimated-noiseless"
+  ],
+  "started_utc": "2026-11-02T05:37:19.435011+00:00",
+  "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+  "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+  "host_before": {
+    "/usr/sbin/sysctl -n hw.memsize": {
+      "returncode": 0,
+      "stdout": "17179869184\n",
+      "stderr": ""
+    },
+    "/usr/sbin/sysctl vm.swapusage": {
+      "returncode": 0,
+      "stdout": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)\n",
+      "stderr": ""
+    },
+    "/usr/bin/vm_stat": {
+      "returncode": 0,
+      "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     5169.\nPages active:                                 273396.\nPages inactive:                               288047.\nPages speculative:                               112.\nPages throttled:                                   0.\nPages wired down:                             106124.\nPages purgeable:                                  66.\n\"Translation faults\":                      172665930.\nPages copy-on-write:                        10761602.\nPages zero filled:                          94386509.\nPages reactivated:                           7081245.\nPages purged:                                 722125.\nFile-backed pages:                            369078.\nAnonymous pages:                              192477.\nPages stored in compressor:                   685334.\nPages occupied by compressor:                 337023.\nDecompressions:                              3242736.\nCompressions:                                4761029.\nPageins:                                    21633544.\nPageouts:                                      19202.\nSwapins:                                           0.\nSwapouts:                                          0.\n",
+      "stderr": ""
+    },
+    "disk_free_bytes": 23374065664
+  },
+  "operational_timeout_seconds": 7200,
+  "human_numeric_limits": "not set"
+}

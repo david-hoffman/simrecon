@@ -1,0 +1,101 @@
+{
+  "format_version": "RA14_internal_observation_recipe_v1",
+  "status": "complete_raw_inputs",
+  "arm": "noisy",
+  "files": {
+    "specimen_o1_p4.npy": {
+      "sha256": "5f783423e24db573715bf4523f41c097dc1923717c071ad9cd485168e76b5d84",
+      "size_bytes": 16777344
+    },
+    "controls.json": {
+      "sha256": "bf75ca8ca094c1b3f918b6c7148f5b3a792d66b69d43f4be8d3472fb372097f0",
+      "size_bytes": 658
+    },
+    "specimen_o1_p0.npy": {
+      "sha256": "258a82cf861ab0180d3960747d068a78b80da918432a9f85523d355530f17a28",
+      "size_bytes": 16777344
+    },
+    "specimen_o1_p1.npy": {
+      "sha256": "180d42052532a31bbd40bb67ab260c15ce9359f87fee386a2f00494415a7d4f9",
+      "size_bytes": 16777344
+    },
+    "specimen_o1_p3.npy": {
+      "sha256": "4ac440c3febe430b7773511ab950bb0cc66e220b441c75240a6f1fcece8679b2",
+      "size_bytes": 16777344
+    },
+    "specimen_o1_p2.npy": {
+      "sha256": "4d9052415dc566bb92cec443d206951e56a2c53c526ade5ea2724556ee10feea",
+      "size_bytes": 16777344
+    },
+    "camera_flat.npy": {
+      "sha256": "b7795205af31bf6d2242c604c68fc3499e9f6cfe8a5fc75dbd969ce88d446bd6",
+      "size_bytes": 4194432
+    },
+    "camera_dark.npy": {
+      "sha256": "fea336a5db8d50bbdc061aa9e4e5953210b3cecee18e25de0ffea73a2438de2c",
+      "size_bytes": 4194432
+    },
+    "calibration_heldout.npy": {
+      "sha256": "39dfea4533508e599b3be7892102d1058fe9c023eb51fb9b39ffb1764938dd4e",
+      "size_bytes": 983168
+    },
+    "specimen_o0_p4.npy": {
+      "sha256": "2f4eaa9e2a96cd5a28565f08af46cbb315fc5723b815f10bf499bb89dbd55f0d",
+      "size_bytes": 16777344
+    },
+    "specimen_o2_p1.npy": {
+      "sha256": "c8478b35cb140f048493fb09ba03ad5c7c2804c2405c30af5f886d72c9173941",
+      "size_bytes": 16777344
+    },
+    "specimen_o2_p0.npy": {
+      "sha256": "6e310d2651d3a2fc81ba01fb5a5b2df987928cfdeb34dbc93c0cb8d0fc157f4f",
+      "size_bytes": 16777344
+    },
+    "specimen_o2_p2.npy": {
+      "sha256": "73c2205b832f49f80d78b68cf405e2405d532fddee81b14e562e5715b4573c95",
+      "size_bytes": 16777344
+    },
+    "specimen_o2_p3.npy": {
+      "sha256": "cf5ad668e6538c94052658c57b8591b228a082f86131058b7a6da93b15e90df5",
+      "size_bytes": 16777344
+    },
+    "calibration_training.npy": {
+      "sha256": "d0f507a39c8f42542b2b79494673ac4102f95d086d9c16e336c8d2601332d1ec",
+      "size_bytes": 1769600
+    },
+    "specimen_o0_p2.npy": {
+      "sha256": "fb4199518dc66ede89fa81f42a37da6f8947c8e6473a4b5387f36b8bb792f20c",
+      "size_bytes": 16777344
+    },
+    "camera_blank.npy": {
+      "sha256": "cd0707a3ce813d8776d0135d228c02448e2294941ef11dd1796d488db28dd82f",
+      "size_bytes": 4194432
+    },
+    "specimen_o0_p3.npy": {
+      "sha256": "f2cea7ac326d12568b9cec45635b744fbeda958e97c412a6a90081578e9f6eeb",
+      "size_bytes": 16777344
+    },
+    "specimen_o0_p1.npy": {
+      "sha256": "21999f594ce4bef342eaab3b28510800a15e210c803b50afef94676ed933901c",
+      "size_bytes": 16777344
+    },
+    "calibration_central.npy": {
+      "sha256": "7fbe053b5ea1e1f0da9f7433b8e5244faef69219528766285165550aaf1ef26c",
+      "size_bytes": 65664
+    },
+    "specimen_o2_p4.npy": {
+      "sha256": "43a6ec66bad4f50b61f0c175f972bfdccd11716aa8fa3f41bc2cecdeb488eba4",
+      "size_bytes": 16777344
+    },
+    "specimen_o0_p0.npy": {
+      "sha256": "993ded020eb318f73bd35b1e7561ed8ef008017c41254f34eecce7153e6436d0",
+      "size_bytes": 16777344
+    },
+    "specimen-counts.npy": {
+      "sha256": "e8062c8e5b1cca988901f621bfaf8c117c0084916c01f0b0015ab4426aacc9d8",
+      "size_bytes": 251658368
+    }
+  },
+  "preparation_source_sha256": "ef26e3958bc8fb8792825acae984f8a7adac384bc9e63337cae201afc4337ee3",
+  "limits": "Only raw arrays/declared controls; no source/illumination/true-camera/reference/seed payload. Copy and stack preserve original counts; not a product file format or authenticity certificate."
+}

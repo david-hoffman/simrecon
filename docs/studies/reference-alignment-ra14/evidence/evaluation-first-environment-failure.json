@@ -1,0 +1,14 @@
+{
+  "classification": "environment/tooling, not evaluator numerical failure or inference defect",
+  "first_command_returncode": 1,
+  "observed_error": "time: sysctl kern.clockrate: Operation not permitted",
+  "python_evidence": "complete result JSON, complete seal, final stdout printed; independent Python exit code not separately captured by /usr/bin/time, so remains not independently measured",
+  "retained_original_output": "artifacts/ra14/evaluation-1",
+  "retained_original_source": "artifacts/ra14/study/evaluate.py",
+  "source_sha256": "f8b49eeb5fb0d18c2ad6230bc5dcc7678425d32d73d011dce4c56d096e8088cd",
+  "correction": "Run same postfreeze numerical recipe under escalated environment, exclusive evaluation-2 output path only; preserve original script and outputs at original paths; no inference or settings rerun",
+  "second_source": "artifacts/ra14/study/evaluate_second.py",
+  "second_source_sha256": "243975fd3ff3ab48702805df529661644bddf3718ecb4c9964ead4913743ac06",
+  "source_change": "one literal output directory evaluation-1 -> evaluation-2; equations/inputs/settings unchanged",
+  "utc": "2026-11-02T05:41:30.017074+00:00"
+}
