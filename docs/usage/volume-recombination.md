@@ -1,5 +1,7 @@
 # Known five-order volume recombination
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `reconstruct_volume` combines known phase orders on an explicit signed output window. It returns complex volume samples and a centered complex spectrum. All keywords are required. The [contract](../contracts/volume-recombination-v1.md) defines validation, numerical range and errors; the [measured comparison](../reports/volume-recombination-comparison.md) separates agreement with the stored-data estimator from agreement with a specimen.
 
 This standalone example prepares effective optical transfer functions (OTFs), creates finite circular measurements, separates their phases and reconstructs them. The uniform detection point spread function (PSF) passes only DC in the ideal model. Its second axial illumination row makes object mode `(1,0,4)` observable through detector mode `(1,0,0)` with lateral carrier `(0,-2)`. The chosen ridge biases the coefficient.

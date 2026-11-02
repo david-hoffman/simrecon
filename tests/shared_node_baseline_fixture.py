@@ -1,80 +1,12 @@
-"""Independent public-contract observers; no product-derived expectations."""
+"""Independent neutral file inputs and real ImageJ write-failure observer."""
 
 from __future__ import annotations
 
-import cmath
-import itertools
-import math
 import struct
-from decimal import Decimal, localcontext
-from fractions import Fraction
 from pathlib import Path
 
 import numpy as np
 from numpy.typing import NDArray
-
-
-def signed_modes(length: int) -> range:
-    return range(-(length // 2), (length + 1) // 2)
-
-
-def frequencies(length: int, spacing: float) -> NDArray[np.float64]:
-    return np.array([float(Fraction(k, length) / Fraction(spacing)) for k in signed_modes(length)])
-
-
-def finite_dft(
-    data: NDArray[np.generic], origin: tuple[int, int, int] = (0, 0, 0)
-) -> NDArray[np.complex128]:
-    """Small finite negative-exponent sum, independent of FFT libraries."""
-    result = np.empty(data.shape, dtype=np.complex128)
-    modes = itertools.product(*(signed_modes(n) for n in data.shape))
-    for index, mode in zip(np.ndindex(data.shape), modes, strict=True):
-        terms = []
-        for position in np.ndindex(data.shape):
-            cycles = sum(
-                Fraction(k * (r - o), n)
-                for k, r, o, n in zip(mode, position, origin, data.shape, strict=True)
-            )
-            terms.append(complex(data[position]) * cmath.exp(-2j * math.pi * float(cycles)))
-        result[index] = complex(math.fsum(t.real for t in terms), math.fsum(t.imag for t in terms))
-    return result
-
-
-def represented_matrix(phases: NDArray[np.generic]) -> NDArray[np.float64]:
-    angles = np.asarray(phases, dtype=np.float64)
-    c, s = np.cos(angles), np.sin(angles)
-    return np.column_stack((np.ones(len(c)), c, s, c * c - s * s, (2 * c) * s))
-
-
-def decimal_fit(
-    matrix: NDArray[np.float64], observations: NDArray[np.float64]
-) -> NDArray[np.float64]:
-    """85-digit exact-stored-input least squares for well-conditioned cases.
-
-    Decimal Gram elimination is an independent observer, never the product solver.
-    """
-    with localcontext() as context:
-        context.prec = 85
-        rows = [[Decimal(float(v)) for v in row] for row in matrix]
-        values = [Decimal(float(v)) for v in observations]
-        width = matrix.shape[1]
-        augmented = [
-            [sum((row[i] * row[j] for row in rows), Decimal(0)) for j in range(width)]
-            + [sum((row[i] * b for row, b in zip(rows, values, strict=True)), Decimal(0))]
-            for i in range(width)
-        ]
-        for column in range(width):
-            pivot = max(range(column, width), key=lambda i: abs(augmented[i][column]))
-            augmented[column], augmented[pivot] = augmented[pivot], augmented[column]
-            scale = augmented[column][column]
-            augmented[column] = [v / scale for v in augmented[column]]
-            for i in range(width):
-                if i != column:
-                    factor = augmented[i][column]
-                    augmented[i] = [
-                        a - factor * b for a, b in zip(augmented[i], augmented[column], strict=True)
-                    ]
-        return np.array([row[-1] for row in augmented], dtype=np.float64)
 
 
 def priism_file(path: Path, pixels: NDArray[np.generic], *, extension: bytes = b"") -> bytes:

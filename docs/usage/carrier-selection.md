@@ -1,5 +1,7 @@
 # Explicit finite-carrier selection
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `select_carrier` returns the unique row passing your explicit acceptance policy.
 It keeps the complete scan, including failed rows and duplicates. See the
 [contract](../contracts/carrier-selection-v1.md) and

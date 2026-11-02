@@ -1,0 +1,681 @@
+{
+  "baseline": "8f6b35ceda362944f00de44acbf7098989f157e4",
+  "status": "CE01 reconciled explicit pre-retirement inventory after ASD carry-forward; scientific execution awaits fresh A/B accepted checkpoint",
+  "groups": {
+    "remove_runtime": [
+      {
+        "path": "src/simrecon/_array_validation.py",
+        "sha256": "0ae798aa541dce3ed21ed46f489b0eef22819de43305370ef31d1fd9476d3288"
+      },
+      {
+        "path": "src/simrecon/_bead_peak.py",
+        "sha256": "0b5b8a9648d9b571a7899304d4d9e92e69a7ef67725509824df77af11932464a"
+      },
+      {
+        "path": "src/simrecon/_carrier.py",
+        "sha256": "788226469af52043d0a29ebb0a0edd135160cdb2c8ae4bdf4c842e694e70ad5e"
+      },
+      {
+        "path": "src/simrecon/_carrier_selection.py",
+        "sha256": "3d48ead76208074bdc6fd44abf022227ffa14438177905b2f0097bec83e501df"
+      },
+      {
+        "path": "src/simrecon/_drift.py",
+        "sha256": "7c8ddf8cd9f1fb1d23fe2df16131d0593de7c3505f184b02e2ea69b948045400"
+      },
+      {
+        "path": "src/simrecon/_empirical_frequency.py",
+        "sha256": "fef50bed13ae0e0f53e974770b44e1f43385dba372eecca26c9119b3e419f0e8"
+      },
+      {
+        "path": "src/simrecon/_empirical_response.py",
+        "sha256": "21f9d2f1b45ae3ce28bfe13d7bcee5559fd63f5ddedf715cee4ceea702b9a907"
+      },
+      {
+        "path": "src/simrecon/_empirical_shared_nodes.py",
+        "sha256": "f548f471f832cf91746b5cff97246e86369771e124c4b8ad2abbc011ef4f6935"
+      },
+      {
+        "path": "src/simrecon/_empirical_transfer.py",
+        "sha256": "172bd7e326c0379d7ae1eeba0796900ec04981eb8c5cf987b076d9e7dd937e70"
+      },
+      {
+        "path": "src/simrecon/_empirical_trilinear.py",
+        "sha256": "1909fbec7b866d1d65bd70a710f58723d62efe4986804eb52f0b356b181d9030"
+      },
+      {
+        "path": "src/simrecon/_finite_bead_calibration.py",
+        "sha256": "51b9e8618b0f8c12e2b5fc71e2972f24a214fdbebd524adc677d68581872cbbd"
+      },
+      {
+        "path": "src/simrecon/_fourier_block_phase.py",
+        "sha256": "d5203fb9759bf12d0093199f96cb91fbfa155ad2eb742f75ce2e96fb031521c8"
+      },
+      {
+        "path": "src/simrecon/_illumination.py",
+        "sha256": "0efc1901848abda9d8656cfa22ee18e00b10bec44e431b6764846672f09d8ce5"
+      },
+      {
+        "path": "src/simrecon/_linear_response.py",
+        "sha256": "a3dadbeb59b51765d4fe1b5131e7302af130a4987dd79c774f95df37f52d1ee5"
+      },
+      {
+        "path": "src/simrecon/_observable_volume_phase_estimation.py",
+        "sha256": "554705df8993d235ca7f249a6310e5443581abfb27c456989ec48b48fbec65e7"
+      },
+      {
+        "path": "src/simrecon/_otf.py",
+        "sha256": "206f5a902a0af920cd39e71508f65636e8aefc90666cdc6454d219dc8147ae9f"
+      },
+      {
+        "path": "src/simrecon/_phase.py",
+        "sha256": "c5bd012e554d781b11a4f439b84099f3e598e080dbf121aed8103d29cfa9e025"
+      },
+      {
+        "path": "src/simrecon/_phase_carrier_scan.py",
+        "sha256": "a040757ee3a5a02aefb220bcece3f2748b8114b2762b1ef3710b206bd240dfa2"
+      },
+      {
+        "path": "src/simrecon/_phase_carrier_selection.py",
+        "sha256": "b135ab7eab8343b6b503de7128478ae5799b0ebc0083a6f5a842248c61948ead"
+      },
+      {
+        "path": "src/simrecon/_point_bead_calibration.py",
+        "sha256": "42d598876b463d21ab471d58ec22d81f70894de4f178ee88af3239bf89f57356"
+      },
+      {
+        "path": "src/simrecon/_reconstruction.py",
+        "sha256": "c47d3bc67e51c1a885d80f08b20d8a0977b6cfb5f8aa47743ab39e3060ed8adb"
+      },
+      {
+        "path": "src/simrecon/_scalar_camera_calibration.py",
+        "sha256": "5b924d3a4714682eb6cc7588fda31197c6a4e8e50436083c5bcabd8fe5380a0c"
+      },
+      {
+        "path": "src/simrecon/_translation.py",
+        "sha256": "103764eb5f152cb1d0966c70ff5323abacfbb65d7a554863971bcdc2351e12ca"
+      },
+      {
+        "path": "src/simrecon/_volume_carrier_diagnostics.py",
+        "sha256": "6e0c8b00c3e5a99b493aa0a874fb31c33b49af897c400fbad96e96e81226f3c0"
+      },
+      {
+        "path": "src/simrecon/_volume_order_otf.py",
+        "sha256": "9cfcd035c8f2556399c23ea973af42f532c76a560edd7a281e12bcb00933eb3d"
+      },
+      {
+        "path": "src/simrecon/_volume_otf.py",
+        "sha256": "1d071633321ffbb64e9c446edc0810fc09fd0d79986dabc0e1e840f7c98a1785"
+      },
+      {
+        "path": "src/simrecon/_volume_phase.py",
+        "sha256": "b0d462a06d364145b566a95a3e31f52a34290d858eab400335c1bb2a30533006"
+      },
+      {
+        "path": "src/simrecon/_volume_phase_estimation.py",
+        "sha256": "7b1b69f3093c0c7ee84d7e54066be437bc00cc46ea1c819169e1ae72ac293186"
+      },
+      {
+        "path": "src/simrecon/_volume_translation_estimation.py",
+        "sha256": "5a7a238b6c9e2470ddd4fda1f51c0ec05e72653fc8b5fcf2cade72eba6858c7b"
+      },
+      {
+        "path": "src/simrecon/volume_carrier_selection.py",
+        "sha256": "72740c1f69d78a34e957f35014011930cbb4a7bd591900373609ed411cddf585"
+      },
+      {
+        "path": "src/simrecon/volume_order_gain.py",
+        "sha256": "a8e398b51a9e19fb5493002b94dd34959739d7a31f54126ebe45358b9f1178af"
+      },
+      {
+        "path": "src/simrecon/volume_reconstruction.py",
+        "sha256": "66f9663410c490ffdf64d6f395befc84f385927e664881180cb8da67d660b65f"
+      }
+    ],
+    "remove_scripts": [
+      {
+        "path": "scripts/full_noisy_study.py",
+        "sha256": "b610f6c7e8f5b35e8ba126e34c2b760214256fb5cef2b9a0b61220e2ac9ce00f"
+      },
+      {
+        "path": "scripts/generate_reference_fixtures.py",
+        "sha256": "5bbd8d1db52ec3b4fb99491cdbae973061dbe4ce5ec83f0d284d3fc55c4d0dfd"
+      },
+      {
+        "path": "scripts/image_only_bead_calibration.py",
+        "sha256": "d876354adff45ee907b5a3ac1e5ad146d2af4830f6892de0c109e97780a49467"
+      },
+      {
+        "path": "scripts/image_only_calibration_pilot.py",
+        "sha256": "03b26695bee4bcf1c75c6f6f76981cd3928ea777d7da51e95a18823acca8d83f"
+      },
+      {
+        "path": "scripts/image_only_specimen_fit.py",
+        "sha256": "4dacbc5278e374a4df08eb5a99d1365fd318d8fe9b596648b6533bb261ee857f"
+      },
+      {
+        "path": "scripts/simulation_camera.py",
+        "sha256": "2fcb365010e3118605186f8b37e4d9e6d0ee6ae008bb5f0c1d920a806618e7cd"
+      },
+      {
+        "path": "scripts/simulation_inverse_operator.py",
+        "sha256": "21297e170074eaafb43815e2a07c2f46b8f598250bca048f600ba2ff4a0641ea"
+      },
+      {
+        "path": "scripts/simulation_optics.py",
+        "sha256": "db7c1d0e6d79c3e066f841c9b071433966f61c20f19d150cea6cb5740eeb7081"
+      },
+      {
+        "path": "scripts/simulation_sources.py",
+        "sha256": "d93e2c5eeb04dd16affe180e4e4123245060cbd4db270edb8a3d4cb279b6842d"
+      }
+    ],
+    "remove_tests": [
+      {
+        "path": "tests/test_bead_peak_localization.py",
+        "sha256": "26be462c1ca191d6333c4e9677adb9709f0bb5dae194ffffa123924dca21345a"
+      },
+      {
+        "path": "tests/test_carrier.py",
+        "sha256": "a1d0b4c9549154251286cfde8b7ca9ada741501e1fba2ad220c078feb14bb008"
+      },
+      {
+        "path": "tests/test_carrier_selection.py",
+        "sha256": "f1a09f12a2a04043e02d0d018135ba13ff2ad519a97370fed70c3175c697fddb"
+      },
+      {
+        "path": "tests/test_empirical_frequency_sampling.py",
+        "sha256": "b953b71c182a771d5cb80e2c35820ad995e4fad00f3f3f728c07023ee1eb5a4c"
+      },
+      {
+        "path": "tests/test_empirical_shared_nodes.py",
+        "sha256": "0d9e32551b68c2f25c562824c0deaeca9993808727ece830b9dd31af9d992648"
+      },
+      {
+        "path": "tests/test_empirical_transfer_adapter.py",
+        "sha256": "6cde1a69d711a5839a8ffe926246b7a7e20db1bbc559e6ea5c037d07fa1d104f"
+      },
+      {
+        "path": "tests/test_empirical_trilinear_transfer.py",
+        "sha256": "e54f420ccc09cabb9345751fb17f8aa13c7ef819cdda399f7c4bbfd9b55aeff3"
+      },
+      {
+        "path": "tests/test_empirical_volume_response.py",
+        "sha256": "142514ee82dea1550b97c01e951d1fdbcb82f4d4d2ddc985c23453ba30bd41a3"
+      },
+      {
+        "path": "tests/test_finite_bead_compensation.py",
+        "sha256": "85748d3e79bf6fffe01a0e1490b7e7df415ca428907b4456157907ed5723a519"
+      },
+      {
+        "path": "tests/test_fourier_block_phase_estimation.py",
+        "sha256": "df09916931575f5345c47058e2131e21e265da8838e4d05a20d848cb9bc4dc06"
+      },
+      {
+        "path": "tests/test_full_noisy_study.py",
+        "sha256": "8ba6fc063608431358e15def288fce5583f02bde509007817f5a9ac6adf1089d"
+      },
+      {
+        "path": "tests/test_illumination.py",
+        "sha256": "43a64dd7d3dfb7a3ef104c6b2bb36092812a858c83958ccfcccbead25bb7e707"
+      },
+      {
+        "path": "tests/test_image_only_bead_calibration.py",
+        "sha256": "bdabacde7d56ad66fce5b786c106cd800d41fb8812d33bcb8bd84fcada821db6"
+      },
+      {
+        "path": "tests/test_image_only_calibration_pilot.py",
+        "sha256": "a279c4ad3babde1dee2c85d4592669b822073f92d214add38a90e080bfe55d84"
+      },
+      {
+        "path": "tests/test_image_only_specimen_fit.py",
+        "sha256": "95a9286f29bdcb16ca7e53facdc8b2f8be49ff87fc2dc6a4a486d3969863f262"
+      },
+      {
+        "path": "tests/test_integer_drift.py",
+        "sha256": "5864e09facf677ae418be4419fa155c5d9d57d8588820bb1461dd5f708e5bbff"
+      },
+      {
+        "path": "tests/test_linear_response_correction.py",
+        "sha256": "4ef6c4f20869d3d23997dfe91bf092c42ae45bdab8a5c773e4147feb533e1bb8"
+      },
+      {
+        "path": "tests/test_observable_volume_phase_estimation.py",
+        "sha256": "10310515e15a20c0fb7ce386ffcbb80341d3837becab99ae8fc531348760c6a7"
+      },
+      {
+        "path": "tests/test_otf_calibration.py",
+        "sha256": "704a9bfb56c0a3f715751f734a0b92d656fffd9d6d94b3522d13ad81d3b287a5"
+      },
+      {
+        "path": "tests/test_phase_carrier_scan.py",
+        "sha256": "012d2076dc49b0b786d0accb4e13223a6bccfa117685133bb40e6784a424bfa3"
+      },
+      {
+        "path": "tests/test_phase_carrier_selection.py",
+        "sha256": "b5bf1253e4eb516d0eeed9ddc7ecda6733ebf70e642d0ee465ce917ce1202c41"
+      },
+      {
+        "path": "tests/test_phase_separation.py",
+        "sha256": "becb7c1d737e1fb4ea69dc9a2db11e606c78b178c74f5692543f4d04a4a09f99"
+      },
+      {
+        "path": "tests/test_raw_point_bead_calibration.py",
+        "sha256": "d97d4bdc28fe64bd48313bbcb61a11a36574d8aeaedabcf96e39f044fda4583a"
+      },
+      {
+        "path": "tests/test_reconstruction.py",
+        "sha256": "442f8a0f867370f06b9255178fec5568aa672779614bce5b374457666138d69b"
+      },
+      {
+        "path": "tests/test_reference_fixture_export.py",
+        "sha256": "007023b35cc527720114d94a11eba3714f2288667869866061ebc5154603ece0"
+      },
+      {
+        "path": "tests/test_scalar_camera_calibration.py",
+        "sha256": "3f3d8f6417e5b56b243072bd1d6407ebd36083e9f4b07e0fec1a084f71ff83a8"
+      },
+      {
+        "path": "tests/test_simulation_camera.py",
+        "sha256": "da7159fa85cccce4bdd4a316599dd388397de38cdb88ac5e4305eece0554f98e"
+      },
+      {
+        "path": "tests/test_simulation_inverse_operator.py",
+        "sha256": "4ffff896c0a4b876587ac5de09f64756fe6551dcffc6f915f06c0bca90fda28e"
+      },
+      {
+        "path": "tests/test_simulation_inverse_operator_range_correction.py",
+        "sha256": "b7b6ca2f72f759e87c6b1b4cd5157dd421852ab0087bdc5195fd9ad67b9eaef5"
+      },
+      {
+        "path": "tests/test_simulation_optics.py",
+        "sha256": "7e73b4b6d10fba4c988a67b4528bb331e9a0086733d0b770f7129878b738517d"
+      },
+      {
+        "path": "tests/test_simulation_optics_aggregates.py",
+        "sha256": "f1020e4ef8cec64aa59413903182c5d4f180b5f0ac7214077c13aa968835758f"
+      },
+      {
+        "path": "tests/test_simulation_optics_certification.py",
+        "sha256": "9c46d51c8eee424d3a06e9c7950a4420c3a0dbe509b3eb840bda83321e582eaa"
+      },
+      {
+        "path": "tests/test_simulation_optics_coordinates.py",
+        "sha256": "2b8a56ceb3b6d8c2fcf4791b32cab4d2ccd577b28ccb8586a284a38c4f566210"
+      },
+      {
+        "path": "tests/test_simulation_optics_memory.py",
+        "sha256": "e4dd596a0647f6c9982d7020312c891a9944c7f85f9e4146966564ae960570a0"
+      },
+      {
+        "path": "tests/test_simulation_optics_operational.py",
+        "sha256": "455bf44cae2eccd6121b04dcaf4db230e7dfffc1455edfcd70ef025abc18ba6d"
+      },
+      {
+        "path": "tests/test_simulation_optics_precision.py",
+        "sha256": "95df936e4a0b10a0f3bb7e1aeccb09c51ba1034500cf62efccfc5365fc57755c"
+      },
+      {
+        "path": "tests/test_simulation_reconstruction_resources.py",
+        "sha256": "871e4986152e919569a13e6f65ec04f1aea4a6f7f055f42c054da5caac478820"
+      },
+      {
+        "path": "tests/test_simulation_sources.py",
+        "sha256": "1c83567b9391618ef27b682aeb06600c21b16ae7950598a691dfe9f57bd6b5e5"
+      },
+      {
+        "path": "tests/test_simulation_sources_cross_sections.py",
+        "sha256": "ddf2aa5eac318ca132024a8c910c7843b9e7804f6e3160f72dffe6ccc91c522d"
+      },
+      {
+        "path": "tests/test_translation.py",
+        "sha256": "55fdc8c4f90b0c6a4528ba29d03db966f5d63972f6cf4735ce7b430172299bfb"
+      },
+      {
+        "path": "tests/test_volume_carrier_diagnostics.py",
+        "sha256": "8770f247504add6ad9e008b07011815a34b404343774a8492936ed5a03635397"
+      },
+      {
+        "path": "tests/test_volume_carrier_selection.py",
+        "sha256": "d6274442f3d5ece700e9566ef0ea3d0b37c2704511dc2ba7b730f78da15c5334"
+      },
+      {
+        "path": "tests/test_volume_order_gain.py",
+        "sha256": "8371cb0b7f0f91fdce7c3c39b5cb325351b3d74e8852347dc0826941525ef784"
+      },
+      {
+        "path": "tests/test_volume_order_otf.py",
+        "sha256": "b9174233be5cd9e3d8e424067ab289b6ee080d4f46f3445544e3beff50c681d5"
+      },
+      {
+        "path": "tests/test_volume_otf.py",
+        "sha256": "727a1f219376dc643791232a8ae6e4af21b84b95d2edbf75bab207e9ab43b120"
+      },
+      {
+        "path": "tests/test_volume_phase_estimation.py",
+        "sha256": "7517a4736783fba248093ab0e9791b9301cf948bf98c809d5de6edb81953cd5e"
+      },
+      {
+        "path": "tests/test_volume_phases.py",
+        "sha256": "11e7a11ecfbb03229e714ec86854561a8cf3bffd9a869a31f88dba7c627c5d2d"
+      },
+      {
+        "path": "tests/test_volume_reconstruction.py",
+        "sha256": "5c02889b7060415d000efb0e25d5bcffb5cb842786448ff9050bdff636e74119"
+      },
+      {
+        "path": "tests/test_volume_translation_estimation.py",
+        "sha256": "a86150564b6f3b7088dcc79cebcc0ea58da6d6f24a49c46066bc30e22be8bb0d"
+      }
+    ],
+    "remove_helpers": [
+      {
+        "path": "tests/bead_peak_fixture.py",
+        "sha256": "3a37c9c35d6b257c51d489147b4079b94f7cab61fd4141b820a8a3694064c1bc"
+      },
+      {
+        "path": "tests/carrier_fixture.py",
+        "sha256": "9a007187d4f53f9c414f6b52e981c7203fd66c90b9204dc264dd45111511bd4e"
+      },
+      {
+        "path": "tests/carrier_selection_fixture.py",
+        "sha256": "e422c78d3fa81b9386ef4d734e09b49d44327b9424048d849b490b67557fd1ba"
+      },
+      {
+        "path": "tests/empirical_frequency_fixture.py",
+        "sha256": "86be9de94477ad6a3167054dbf70fcd8f6fba963870ff1186593f8a90c27d4f8"
+      },
+      {
+        "path": "tests/empirical_response_fixture.py",
+        "sha256": "f5c09048472ef58942bd2c96fc5375b213523c1401115e40256392108ec3f91b"
+      },
+      {
+        "path": "tests/empirical_shared_node_fixture.py",
+        "sha256": "053093f3edc73e0814ce32ea91added7212756ca74af452070b192f64809eafc"
+      },
+      {
+        "path": "tests/empirical_transfer_fixture.py",
+        "sha256": "70d7c0afe1d6ac1227c84e74297567f7c695b0d66d06f0ae125c726b67419a5d"
+      },
+      {
+        "path": "tests/empirical_trilinear_fixture.py",
+        "sha256": "b676bce792e51f6f4360a2e5dd383ebf2089703022ae642db731a4aad0fd4661"
+      },
+      {
+        "path": "tests/finite_bead_compensation_fixture.py",
+        "sha256": "dbf2297f6e4e938c93a7289aa19ef6bb5cd052c9a43560e327494134541a320c"
+      },
+      {
+        "path": "tests/fourier_block_phase_estimation_fixture.py",
+        "sha256": "5a7a1b50e704e89be71e15c1336417e321d741795c8e6fd6e71d528f56c1aa59"
+      },
+      {
+        "path": "tests/full_noisy_study_fixture.py",
+        "sha256": "a98190ef692de1240d03d19707c491b44a44b66e29e72e9bbf3c4de9d51c0424"
+      },
+      {
+        "path": "tests/illumination_fixture.py",
+        "sha256": "93e5ed362c320e2469da323aad354592630e2d69d2abbaeebcb73771be6864f7"
+      },
+      {
+        "path": "tests/image_only_bead_calibration_fixture.py",
+        "sha256": "5062f33e0ba51d87fe763a89a7722eb062e455d267d2ed320551bbf758b10e76"
+      },
+      {
+        "path": "tests/image_only_calibration_pilot_fixture.py",
+        "sha256": "d13a93a67a98036a4fab7ebaaccb87abab3ce3cf5ead1a86a86e1035d13e829f"
+      },
+      {
+        "path": "tests/image_only_specimen_fit_fixture.py",
+        "sha256": "a9b14eedd03408975236216b5644f27d8c255b930550a377ed5a5ef1a8c51097"
+      },
+      {
+        "path": "tests/integer_drift_fixture.py",
+        "sha256": "1f0642051492dff8aef8e342acecff2ff82749c9d180d9eddd34ffcae1b56a8f"
+      },
+      {
+        "path": "tests/linear_response_fixture.py",
+        "sha256": "df33d9314e24408655f3f97706429c6875e95f567f86fda3e8d595361b1ca462"
+      },
+      {
+        "path": "tests/observable_volume_phase_estimation_fixture.py",
+        "sha256": "cc9e3f74472000da3feaf13bcda38aeaba43575dde6ee42f6f8a03ef615bef29"
+      },
+      {
+        "path": "tests/otf_calibration_fixture.py",
+        "sha256": "ec4edf3874ed2ebf91afae4e6f8ea2d0469381fc35382725150c10ceda010f27"
+      },
+      {
+        "path": "tests/phase_carrier_scan_fixture.py",
+        "sha256": "e514daa818429b93705174804cd8041d458726e33deaf916f6aaccd90b3598d9"
+      },
+      {
+        "path": "tests/phase_carrier_selection_fixture.py",
+        "sha256": "808c1d71d0e9543efa361713e65952109ae2cea77dcfe81b8300d36682f1679d"
+      },
+      {
+        "path": "tests/phase_separation_fixture.py",
+        "sha256": "519a41115bb05ba17f369ebe77466b567c08a9417db70be17043e9128b25485b"
+      },
+      {
+        "path": "tests/raw_point_bead_fixture.py",
+        "sha256": "f6bb142bf78196267410720358d438921c3ab987e54bd3530abcdf8681c15f64"
+      },
+      {
+        "path": "tests/reconstruction_failure_controls.py",
+        "sha256": "3f2d0ff833e4e96a2b27ddfd29db816a8f18818f735e6fb3a0ee997daffbbe93"
+      },
+      {
+        "path": "tests/reconstruction_fixture.py",
+        "sha256": "12af3e75c815e38edbd2e1d8de0c3ddf64911117a074e0bd783ac518e02a01cd"
+      },
+      {
+        "path": "tests/reference_fixture_export_oracle.py",
+        "sha256": "8be1da5fb7f55e5558ab68face07eac2420dd652b9f380b59fadc2de9b7e855a"
+      },
+      {
+        "path": "tests/scalar_camera_calibration_fixture.py",
+        "sha256": "4f0f2d6542a2410558bb76d91a80d7276740e9265b41b6a404c2a7e594834663"
+      },
+      {
+        "path": "tests/simulation_inverse_operator_fixture.py",
+        "sha256": "013c9ec644dc49104d973b131654459a89559f05ad516f1baf9d059c1f1ac23a"
+      },
+      {
+        "path": "tests/simulation_optics_aggregate_fixture.py",
+        "sha256": "3cfcd44306fdb5723ee9b170ea514800bd354be13e9106f7ef497a40ee44c309"
+      },
+      {
+        "path": "tests/simulation_optics_coordinate_fixture.py",
+        "sha256": "df31dfd88231429116ad08c7bae5a6118f4c023d58be8fa0483db7c80a37d1ab"
+      },
+      {
+        "path": "tests/simulation_optics_fixture.py",
+        "sha256": "a1a6056dd9c44a8c011973b75df3beea7ace53955c7beb9342d5e27a30780355"
+      },
+      {
+        "path": "tests/simulation_optics_memory_fixture.py",
+        "sha256": "e7d411c8d49566e67bf58dfecbdaf8d4867295ab4d8a6429e8f700f81886eb16"
+      },
+      {
+        "path": "tests/simulation_optics_operational_fixture.py",
+        "sha256": "a84f0a0562a5b146be4469579266804b61631a63c13fd1272fcc58bb54a7e063"
+      },
+      {
+        "path": "tests/simulation_optics_precision_fixture.py",
+        "sha256": "09b6d05fafaeeda99218e919796db8b9633a91c071300dd8567089b673e08a5c"
+      },
+      {
+        "path": "tests/simulation_optics_q128_fixture.py",
+        "sha256": "e8b62fb530c9b302e05b43bb165019eef3f60333a31a053c466c8a5529356203"
+      },
+      {
+        "path": "tests/simulation_reconstruction_resource.py",
+        "sha256": "c692c6e825147bd8d98884162764067f73b195f9d4c9736e59a1508efea321d1"
+      },
+      {
+        "path": "tests/simulation_sources_fixture.py",
+        "sha256": "8eb8caed7313b0e5d9ec380604eaf588463f7ac479c0307a7aa18f09fbd01a46"
+      },
+      {
+        "path": "tests/translation_fixture.py",
+        "sha256": "2466e242090c55c370d28046de5fc4335bffa6321fb44f33e98a92a7725013df"
+      },
+      {
+        "path": "tests/volume_carrier_diagnostics_fixture.py",
+        "sha256": "573be3ef66cf501270fc83f5d8dc3d28174b84daf03a61d80962451cbf7d9362"
+      },
+      {
+        "path": "tests/volume_carrier_selection_fixture.py",
+        "sha256": "25f497f9feb2072c67726023b69bd31ec0397d6a5f0023ab91276e1ac7edd27f"
+      },
+      {
+        "path": "tests/volume_order_fixture.py",
+        "sha256": "83623a7f55ea644622db3292798ece939187ad6add12fe41272131edb9242e0c"
+      },
+      {
+        "path": "tests/volume_order_gain_fixture.py",
+        "sha256": "06c8e9a36056512c7cef5e51bf47c1ffb63c7ee2bd9849ea606843cb483d4abb"
+      },
+      {
+        "path": "tests/volume_phase_estimation_fixture.py",
+        "sha256": "ba39c0a1dbb239cd882063baaefad0579e847ac0aec573aaff03770c80621157"
+      },
+      {
+        "path": "tests/volume_phase_fixture.py",
+        "sha256": "40b1545d7991360d24471ef2b9d6c07d9bb53330681881d418a1ee5b4cdc6f42"
+      },
+      {
+        "path": "tests/volume_reconstruction_fixture.py",
+        "sha256": "c230ece93d158712f5ee5bd9859c82048db09f03d7f20ffb1703880e712c1083"
+      },
+      {
+        "path": "tests/volume_translation_estimation_fixture.py",
+        "sha256": "c6a28f3c43b98bcfe1e88096790ee2cb18625383e45f95628a968ea890d2e257"
+      }
+    ],
+    "mixed_preserve_neutral": [
+      "tests/shared_node_baseline_fixture.py",
+      "tests/shared_node_baseline_public_callers_fixture.py",
+      "tests/shared_node_baseline_public_failures_fixture.py",
+      "tests/test_shared_node_baseline_compatibility.py",
+      "tests/test_shared_node_baseline_public_callers.py",
+      "tests/test_shared_node_baseline_public_failures.py"
+    ],
+    "retain_runtime": [
+      "src/simrecon/__init__.py",
+      "src/simrecon/_acquisition.py",
+      "src/simrecon/_cli.py",
+      "src/simrecon/_delivery.py",
+      "src/simrecon/_imagej.py",
+      "src/simrecon/_imagej_metadata.py",
+      "src/simrecon/_legacy.py",
+      "src/simrecon/_metadata.py",
+      "src/simrecon/_model.py",
+      "src/simrecon/_modern.py",
+      "src/simrecon/_pixels.py",
+      "src/simrecon/_pytest_policy.py"
+    ],
+    "retain_test_files": [
+      "tests/imagej_export_fixture.py",
+      "tests/measurement_fixture_export.py",
+      "tests/measurements_fixture_commands.py",
+      "tests/mrc_fixture_conversion.py",
+      "tests/mrc_fixture_events.py",
+      "tests/mrc_fixture_memory.py",
+      "tests/shared_node_baseline_diagnostic_metadata_fixture.py",
+      "tests/shared_node_baseline_external_native_evidence_fixture.py",
+      "tests/shared_node_baseline_infrastructure_fixture.py",
+      "tests/shared_node_baseline_infrastructure_supplement_fixture.py",
+      "tests/test_coverage_combine_integrity.py",
+      "tests/test_delivery.py",
+      "tests/test_delivery_preflight.py",
+      "tests/test_imagej_export.py",
+      "tests/test_imagej_reader_setup.py",
+      "tests/test_measurements_export.py",
+      "tests/test_mrc_conversion.py",
+      "tests/test_mrc_conversion_coverage.py",
+      "tests/test_mrc_conversion_keys.py",
+      "tests/test_raw_acquisition_declarations.py",
+      "tests/test_shared_node_baseline_diagnostic_metadata.py",
+      "tests/test_shared_node_baseline_external_native_evidence.py",
+      "tests/test_shared_node_baseline_infrastructure.py",
+      "tests/test_shared_node_baseline_infrastructure_supplement.py",
+      "tests/test_source_free_check.py",
+      "tests/test_test_run.py",
+      "tests/test_verification_evidence_outputs.py",
+      "tests/test_verification_output_protection.py",
+      "tests/test_verification_receipt.py",
+      "tests/test_verification_wheel_hashes.py",
+      "tests/verification_fixture_tools.py",
+      "tests/verification_output_fixture.py",
+      "tests/reader_timeout_fixture.py",
+      "tests/verification_fixture_dispatch.py",
+      "tests/parallel_runner_fixture.py",
+      "tests/test_parallel_runner.py"
+    ],
+    "additional_A_consolidation": [
+      "tests/test_imagej_export.py",
+      "tests/test_raw_acquisition_declarations.py"
+    ]
+  },
+  "asd_source": "0939754aaaf560ca554139d50084f9f0ccc296d8",
+  "reconciliation": {
+    "preserved_consolidated_deletion": "tests/test_delivery_bounded.py",
+    "new_neutral_files": [
+      "tests/reader_timeout_fixture.py",
+      "tests/verification_fixture_dispatch.py",
+      "tests/parallel_runner_fixture.py",
+      "tests/test_parallel_runner.py"
+    ],
+    "ownership": "A owns test/helper retirement, six mixed edits and two accepted test-only consolidations; restricted C owns only runtime/scripts and __init__; separately bounded ASD owns named27 files+consolidated deletion",
+    "no_scientific_import_from_later_source": true,
+    "remove_input_hashes_still_exact": true,
+    "mixed_input_sha256": {
+      "tests/shared_node_baseline_fixture.py": "c30efd4544abedafc2cdc003b0a50cfc6e0dff3f1f993e7e9dab1170b1e99cd9",
+      "tests/shared_node_baseline_public_callers_fixture.py": "e61420a64ac040551b9bb855a8106a18970d80a51d6a302549290077ff3075e3",
+      "tests/shared_node_baseline_public_failures_fixture.py": "379ae46b13569c7e1eb102262b0036702e1b817e565fc160fb179fda359886a9",
+      "tests/test_shared_node_baseline_compatibility.py": "af791fe5400955c6049c49802c6d8f242025ba064d61dc729bebb57bfd8b12dc",
+      "tests/test_shared_node_baseline_public_callers.py": "98c4447e2f5871df3d15cf249508091a6c585e218a6c87abbe701f35e33ad22d",
+      "tests/test_shared_node_baseline_public_failures.py": "9bce322733c5fdf2413dccdd4e22c362e72b588dc664d89754d8841e11e95c43"
+    },
+    "retained_test_sha256_before_A": {
+      "tests/imagej_export_fixture.py": "51a2074e21dadc8adb841fd44752190dbd7999579c56386eaa5e15aba7fc6265",
+      "tests/measurement_fixture_export.py": "18547015e468c39499326618ee0894b9b55d70e4cc60535b85cbf7bc07e8b3a6",
+      "tests/measurements_fixture_commands.py": "1f38df0b110e7a99c907849da7e8f5561263c60331e9c174b84c8153b828516e",
+      "tests/mrc_fixture_conversion.py": "e2b4b09045a0a432eff49f38b587f68c6b208fcd2d51341fdb73a5a1dcae9016",
+      "tests/mrc_fixture_events.py": "43ab79ec802f4d6c1e4eb514ce72ff6a0d9dfd6d45e7fa67356bb879d24c9ff8",
+      "tests/mrc_fixture_memory.py": "2d55d93fae629506ee2c944bf438e6902c99e6b62902bf5f44ab739c948c2f97",
+      "tests/shared_node_baseline_diagnostic_metadata_fixture.py": "bea8081ef3da3e134f790a7e8e10501508c6ee86e80693f0928f8532c0a4cc7e",
+      "tests/shared_node_baseline_external_native_evidence_fixture.py": "5bf00f747180c22822cfa01359ee48a87abc23cc4f89b87c7412d481311c727b",
+      "tests/shared_node_baseline_infrastructure_fixture.py": "99174c80331bb5965da9b0b945e07c5e1c951752a4ebf0bfeec8196acb1a317e",
+      "tests/shared_node_baseline_infrastructure_supplement_fixture.py": "96b5aec3056eda1570646db1cb411d62cad9811217a805c64c207635fcf28fa5",
+      "tests/test_coverage_combine_integrity.py": "1714f6f3b85f0abf2836d659f56770c71a9bd4bcc2c224bef34ecd09b60010a8",
+      "tests/test_delivery.py": "35c974b7245ea27431d6c4671203bee17c70216b7c302c915cbfc3db4f3058fd",
+      "tests/test_delivery_preflight.py": "a9576fb3ae96c435970ddc853ebe249568104593da88368f6049ec664637224c",
+      "tests/test_imagej_export.py": "b67c062aa215dd0efeb2e7871d1d8eaebb268f5d493e454928d97ac774cb69e5",
+      "tests/test_imagej_reader_setup.py": "a6063e11ab2ba6a9c5828e464f3c94d904e74fa35af4c3961d659d02ff034bd5",
+      "tests/test_measurements_export.py": "57cc64f2df5cbcf542523510171e325043e41aed43812271926d292e90195ba8",
+      "tests/test_mrc_conversion.py": "f264ead0b76edee41e74dea28dd9637238df1d417a55f5639d6e090f6d4684d5",
+      "tests/test_mrc_conversion_coverage.py": "a3a84e598591a38167ed3ae276305cde8a3aca4772c5e94886817461ef3efea9",
+      "tests/test_mrc_conversion_keys.py": "45f9eca61f602833b610a716e58d19cadb847f92b7d0774b56867159953721dd",
+      "tests/test_raw_acquisition_declarations.py": "f13ff0ff0cd8f0b54de32853fda6a208df8918fc034bbb56adab8eceb2bf8253",
+      "tests/test_shared_node_baseline_diagnostic_metadata.py": "daeed9c597d1c9e67a082457f11eba993759cb5c630e90c293ece685336aed66",
+      "tests/test_shared_node_baseline_external_native_evidence.py": "0580495b1810c4dd8f03813c3c7f2f2571eb2f2e8e5d0618fa261eb39030c043",
+      "tests/test_shared_node_baseline_infrastructure.py": "9e5713aa64605d0f1022bf61562ccce3225a40b611e33a28622e3f6e764b55b3",
+      "tests/test_shared_node_baseline_infrastructure_supplement.py": "6aa5bf34ca5c7ad0b1e78b2487ec583510fce2ab03c70fb48b20b2ca56da1b60",
+      "tests/test_source_free_check.py": "e9811cf040ccb92c6b056f3d0a8acd9389fd053bd20df6fa5e1e0774a59a5311",
+      "tests/test_test_run.py": "e79d56acd613c8e055c40ff9ece858eebba8308277aa0c99ae7501e0a83a8d38",
+      "tests/test_verification_evidence_outputs.py": "cab0c6c86794bbdd975da60aeb25ea6560149a0288aace2ea78dc4b24658e4ef",
+      "tests/test_verification_output_protection.py": "4530c2d0076e05d3f9eec0a2b56c702e9c5d7db62e2a759ea6338d2d950a379a",
+      "tests/test_verification_receipt.py": "0014673de682a15fe4359ac1e35564b66c25f4c99037b3649f61996aaf168895",
+      "tests/test_verification_wheel_hashes.py": "3d68a18baee2b58cca75efbc8263ab21b25d00488167fca8a4c60f81d71c88a3",
+      "tests/verification_fixture_tools.py": "1fac1cfcb1d16715740665aea5924b83c774d6f4aa3ee2d68d9fc70e80561fbb",
+      "tests/verification_output_fixture.py": "80757ce280984600daa08fe160bfbde78e71412df3bbe9e55aebc925c31c711b",
+      "tests/reader_timeout_fixture.py": "79ff2570a94e5c238622dc8c5e8564233b979313703fd70253310069d4ff0b79",
+      "tests/verification_fixture_dispatch.py": "d2308bb1bc7d88d580214539dd9e28d89b80b3dfc13159d635e3f22dd9301bab",
+      "tests/parallel_runner_fixture.py": "4256b05bf0334043c0ea0895e258ca7cdffbd9f9b6fcad5b5d0343aca8ee27a8",
+      "tests/test_parallel_runner.py": "0acdb02f64a0a80b5b2a66fc3038fe504e92bfeeb8fea255eb334a7c04334ac9"
+    }
+  }
+}

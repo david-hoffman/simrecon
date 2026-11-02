@@ -1,5 +1,7 @@
 # Unknown-phase integer-carrier scanning
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `scan_volume_phase_carriers` returns an independent local phase fit for every
 caller-listed integer carrier. Each row uses the same observations, fixed complex
 calibration and nominal starting commands. It preserves order, duplicates, huge

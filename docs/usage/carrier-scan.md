@@ -1,5 +1,7 @@
 # Finite integer-carrier diagnostics
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `scan_carriers` fits phase offset and modulation for each supplied signed integer
 carrier. It returns a complete tuple in caller order. It preserves duplicates and
 does not select or rank a carrier. See the [contract](../contracts/carrier-scan-v1.md)

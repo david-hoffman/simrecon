@@ -6,78 +6,11 @@ import os
 import struct
 import sys
 import time
-from fractions import Fraction
 from pathlib import Path
-from typing import cast
 
 import numpy as np
 
-from simrecon import Otf2D, SimreconError, export_imagej
-
-
-def illumination_case(source):
-    """Build unit transfer and a constant specimen with z=(1+0.5j)/4."""
-    steps = np.arange(4, dtype=np.float64) * (np.pi / 2)
-    values = 4 + 2 * np.cos(steps) - np.sin(steps)
-    images = np.broadcast_to(values[:, None, None], (4, 1, 3)).copy()
-    otf = Otf2D(
-        values=np.ones((1, 3), dtype=np.complex128),
-        fy_per_um=np.array([0.0]),
-        fx_per_um=np.array([-1 / 3, 0.0, 1 / 3]),
-        pixel_size_um=(1.0, 1.0),
-        origin_yx=(0, 0),
-        source=source,
-    )
-    return images, steps, otf
-
-
-def illumination_expected_gain(images, steps):
-    """Solve the tiny exact represented problem using rational elimination."""
-    rows = [
-        [Fraction(1), Fraction(float(np.cos(step))), Fraction(float(np.sin(step)))]
-        for step in steps
-    ]
-    observations = [Fraction(float(value)) for value in images[:, 0, 0]]
-    augmented = cast(
-        list[list[Fraction]],
-        [
-            [sum(row[i] * row[j] for row in rows) for j in range(3)]
-            + [sum(row[i] * value for row, value in zip(rows, observations, strict=True))]
-            for i in range(3)
-        ],
-    )
-    for column in range(3):
-        pivot = augmented[column][column]
-        augmented[column] = [value / pivot for value in augmented[column]]
-        for row in range(3):
-            if row != column:
-                factor = augmented[row][column]
-                augmented[row] = [
-                    value - factor * pivot_value
-                    for value, pivot_value in zip(augmented[row], augmented[column], strict=True)
-                ]
-    dc, cosine, sine = (row[-1] for row in augmented)
-    return complex(float(cosine / (2 * dc)), float(-sine / (2 * dc)))
-
-
-def translation_scores(moving, reference):
-    """Small finite sum from the public periodic objective; no product oracle."""
-    ny, nx = reference.shape
-    scale = max(float(np.max(np.abs(moving))), float(np.max(np.abs(reference))))
-    scores = []
-    for dy in range(-(ny // 2), (ny + 1) // 2):
-        for dx in range(-(nx // 2), (nx + 1) // 2):
-            total = sum(
-                (
-                    float(moving[(y + dy) % ny, (x + dx) % nx]) / scale
-                    - float(reference[y, x]) / scale
-                )
-                ** 2
-                for y in range(ny)
-                for x in range(nx)
-            )
-            scores.append((total / (ny * nx)) ** 0.5)
-    return np.array(scores).reshape(ny, nx)
+from simrecon import SimreconError, export_imagej
 
 
 def write_priism(path: Path, *, extension_bytes: int = 4096):

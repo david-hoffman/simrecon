@@ -1,3 +1,79 @@
+# Library design: active neutral boundary
+
+**Version 1.0. CE01 product status.** [PROJECT.md](../PROJECT.md) is the canonical
+project record; public contracts define exact behavior.
+
+**Scientific APIs, including reconstruction, are temporarily unavailable.** The
+[C-equivalence roadmap](../plans/c-equivalence-roadmap.md) replaces the earlier
+numerical design. The approved functional architecture and neutral adapters
+remain; they authorize no additional scientific feature. The historical proposal
+below retains its original pending-approval language and old candidate claims.
+
+## Retained operations
+
+| Function | Responsibility | Public contract |
+|---|---|---|
+| `inspect` | Describe a supported Priism source without loading pixels. | [MRC conversion](../contracts/mrc-conversion-v1.md) |
+| `read` | Decode an explicitly selected image block with scoped file resources. | [MRC conversion](../contracts/mrc-conversion-v1.md) |
+| `harmonize` | Resolve declared metadata, layout and overrides without scientific correction. | [MRC conversion](../contracts/mrc-conversion-v1.md) |
+| `write` | Stream a described source to modern MRC with pixel and metadata preservation. | [MRC conversion](../contracts/mrc-conversion-v1.md) |
+| `declare_acquisition` | Own a bit-preserving caller array and explicit acquisition declarations. | [Acquisition declarations](../contracts/raw-acquisition-declarations-v1.md) |
+| `export_imagej` | Produce a supported Priism acquisition's OME-BigTIFF viewing copy. | [ImageJ export](../contracts/imagej-export-v1.md) |
+
+The thin command-line interface (CLI) offers `simrecon inspect`, `simrecon convert`
+and `simrecon export-imagej` through the same public boundaries. `delivery doctor`
+and verification tools remain delivery infrastructure. No neutral entry point
+implicitly calls correction, calibration, phase separation, estimation, simulation
+or reconstruction. Retired scientific records/functions/modules are unavailable;
+there is no alternate or lazy numerical entry point during CE01.
+
+## Values, metadata and file resources
+
+`DatasetInfo` describes a source, named axes, shape, dtype, sampling, original
+metadata, provenance and unresolved fields. `DataBlock` pairs selected pixels
+with matching metadata and indices. `RawAcquisition` holds owned array storage
+and explicit declarations. The write and ImageJ report records describe completed
+neutral operations. These records carry no long-lived open handle or changing
+processing session. Metadata is treated as values; NumPy storage remains mutable.
+
+Acquisition counts are data rather than fixed scientific constants. Resolve
+plane ordering and units through explicit contract-supported configuration.
+Inspection may report unknown fields. Overrides cannot validate truncated payloads
+or impossible dimensions. Preserve original values and opaque metadata without
+assigning invented scientific meaning. Nominal phase labels are declarations,
+not measured phases or an implicit instruction to run a separator.
+
+The MRC writer preserves pixels, original metadata and override provenance in a
+versioned HDF5 extension. Modern MRC input decoding remains outside the supported
+intake boundary. The ImageJ adapter instead writes one X/Y/Z/channel/time series
+per orientation/phase pair. Its viewing copy preserves opaque-extension identity
+and digest rather than all opaque bytes; keep the original source. Its
+[current guide](../usage/imagej-export.md) and
+[interoperability evidence](../reports/imagej-export-interop.md) define supported
+formats, pinned-reader behavior and preservation limits.
+
+Selected-block file reads and streamed writes bound pixel memory by the selected
+block. Metadata can grow with acquisition size. `declare_acquisition` owns a full
+array copy and promises no whole-volume memory bound. Chunked I/O establishes no
+future numerical-transform memory guarantee. The retained M25 conversion check
+and its 33,554,432-byte increment limit are defined in [PROJECT](../PROJECT.md).
+
+## Replacement science and historical design
+
+The [common C-equivalence contract](../contracts/c-equivalence-common-v1.md) governs
+future numerical inputs, units, transforms, support, signs, scales and finite
+decisions. A proposed primitive supplies no active workflow until its approved
+public composition and independent acceptance are complete. NumPy/SciPy remain
+locked dependencies; their presence supplies no scientific API. No alternative
+estimator, hidden normalization or unsupported C branch is adopted here.
+
+The original design is preserved verbatim below from
+`8f6b35ceda362944f00de44acbf7098989f157e4:docs/architecture/library-design.md`.
+Its proposed scientific pipeline and old examples are historical context.
+
+<details>
+<summary>Historical architecture proposal and earlier candidate status</summary>
+
 # Proposed pristine library design
 
 **Version 1.0** Git versions revisions. Approval pending. [PROJECT.md](../PROJECT.md) is the canonical project decision record; this document supplies its design detail.
@@ -32,3 +108,5 @@ The scale example is `2048 × 2048 × 40 × 3 × 5 × 5 × 100`, provisionally i
 Design inspection and conversion for selected reads and bounded block writes from the first slice. Use plane/range access with deterministic scoped file lifetimes; no whole-file materialization or full acquisition copy is required. The owner's fallback 3D processing unit is one channel/time point's complete Z acquisition across required phases/orientations. Future scientific contracts determine in-memory working sets, scratch staging, Fourier transform scope, and any valid subvolume subdivision. Chunked input/output alone does not make a whole-volume numerical transform bounded-memory. Use explicit memory/worker choices and assess selected-block peak memory; do not promise throughput without benchmarks. [NumPy memory access](https://numpy.org/doc/stable/reference/generated/numpy.memmap.html), [SciPy transform controls](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.fftn.html).
 
 This proposal selects responsibilities and representations for approval. Exact signatures, supported legacy variants/byte orders/modes, numerical conventions, output metadata schema, memory/error contracts, and independent fixtures must enter approved slices before executable tests or implementation. Keeping small function boundaries leaves room for a later xarray bridge, chunked store, GPU backend, or profiled native kernel; none is part of this first delivery or a promise of drop-in compatibility.
+
+</details>

@@ -1,107 +1,64 @@
 # SIMrecon
 
-**A Python library for structured illumination microscopy (SIM) reconstruction.**
+**A Python library for structured illumination microscopy (SIM) data intake and conversion.**
 
-SIMrecon is being built to turn microscope images acquired at different
-illumination orientations and phases into a reconstructed 2D image or 3D volume.
-It uses NumPy arrays and explicit acquisition parameters, with independently
-written numerical code and documented, testable interfaces.
-
-The goal is one complete workflow. The diagram below shows the **planned
-raw-input pipeline**, with specimen and bead data kept as distinct acquisitions:
-
-```mermaid
-flowchart TD
-    Specimen["Raw specimen images"] --> Intake["Raw intake<br/>metadata / corrections"]
-    Beads["Raw SIM bead images"] --> Intake
-    Settings["Acquisition metadata<br/>and explicit settings"] --> Intake
-    Intake -->|bead acquisition| Calibration["Bead-based calibration<br/>and grid mapping"]
-    Intake -->|specimen acquisition| Estimation["Illumination / motion<br/>estimation and corrections"]
-    Calibration --> Estimation
-    Intake -->|specimen acquisition| Reconstruction["Reconstruction"]
-    Calibration --> Reconstruction
-    Estimation --> Reconstruction
-    Reconstruction --> Output["Result and settings<br/>diagnostics / provenance"]
-```
-
-**Status: the component library works; the complete raw-input workflow is still
-under development.** The first component stack is merged. Today, reconstruction
-examples require supplied calibration and known parameters. There is no single
-command that takes an experimental acquisition through the entire diagram above.
+**Reconstruction and the former scientific APIs are temporarily unavailable.**
+CE01 retires the earlier numerical stack while it is rebuilt to perform the same
+mathematical algorithm as the retained C reference. This includes phase separation,
+optical transfer function (OTF) preparation, calibration, estimation, simulation
+and reconstruction. The [C-equivalence roadmap](docs/plans/c-equivalence-roadmap.md)
+defines the replacement sequence. No C-equivalent reconstruction is claimed yet.
 
 ## What you can use today
 
-| Capability | Available now | Main limitation |
+| Capability | Public entry points | Limits |
 |---|---|---|
-| Acquisition files | Inspect supported Priism-style MRC acquisitions, read selected blocks, resolve acquisition layout and convert to modern MRC while preserving pixels and metadata. | Layout and interpretation need explicit configuration. Conversion performs no reconstruction or modern-MRC input decoding. |
-| Fiji viewing | Export a supported Priism acquisition as an OME-BigTIFF copy with every orientation/phase setting retained. OME means Open Microscopy Environment. | A viewing copy of the acquisition; reconstruction-array export is separate work. Keep the original for opaque metadata recovery. |
-| Phase separation | Separate known-phase 2D images and five-order 3D volumes. | Phases must be supplied; this does not estimate an acquisition's unknown phases. |
-| Optical calibration components | Prepare an optical transfer function (OTF) from a supplied 2D or 3D intensity point spread function (PSF); prepare volume order transfers from supplied axial profiles. | A prepared PSF/profile is required. Empirical calibration from raw phase-resolved SIM bead images remains unfinished. |
-| Parameter and drift components | Fit 2D phase/modulation for known integer carriers, scan a finite caller-supplied carrier list, select a sole passing candidate, estimate periodic integer translation from comparable reference images, and correct known integer specimen drift. Fit relative complex volume-order gains for a known carrier. | These are narrow operations with explicit inputs and assumptions, rather than complete automatic 3D parameter or motion estimation. |
-| Reconstruction | Reconstruct known-parameter 2D images and recombine five-order 3D data using full complex transfers. | Finite periodic models. 2D fractional shifts use approximate spectral interpolation; 3D placement currently requires integer lateral carriers and matching calibration grids. |
+| Inspect and read acquisition files | `inspect`, `read` | Supported Priism-style MRC sources and selected blocks; explicit layout configuration. |
+| Resolve metadata and convert files | `harmonize`, `write`; `simrecon inspect`, `simrecon convert` | Preserve pixels and declared metadata in modern MRC output. No scientific correction, reconstruction or modern-MRC input decoding. |
+| Declare an acquisition array | `declare_acquisition` | Own a bit-preserving array and explicit acquisition metadata. Declaration estimates no scientific parameters. |
+| View all illumination settings in Fiji | `export_imagej`; `simrecon export-imagej` | A supported Priism acquisition becomes an OME-BigTIFF viewing copy. OME means Open Microscopy Environment. Keep the original for opaque metadata recovery. |
+| Develop and verify the package | `delivery doctor`, Make commands below | Delivery tools and their verification gates remain installed. |
 
-These components have executed examples and independent comparison reports.
-Their contracts describe numerical accuracy and rejection rules. Component
-agreement with a finite model does not establish accuracy on an experimental
-specimen or parity with the legacy reconstruction program.
-Some detailed guides retain historical stack status; use this README and the
-[migration roadmap](docs/MIGRATION-ROADMAP.md) for current integration status.
+The retained library functions are `inspect`, `read`, `harmonize`, `write`,
+`declare_acquisition` and `export_imagej`, with their required records and errors.
+Historical scientific guides and comparison reports remain evidence of their
+original models and observed failures. Their old commands do not run in the
+current package; a historical passing result is not proof of C equivalence.
 
-## Software architecture
+## Software boundaries
 
-SIMrecon is a functional library: callers pass arrays, calibration and explicit
-parameters to functions, then receive result arrays and small records. File
-access is a separate boundary. There is no long-lived reconstruction session or
-image object that accumulates changing processing settings.
-
-The diagram shows the **current software boundaries**. Arrows labeled `calls`
-show entry points; the other arrows show data entering or leaving those functions.
+This is a **conceptual CE01 boundary diagram**, not a numerical result:
 
 ```mermaid
 flowchart TD
-    Python["Python callers"] -->|calls| Files
-    Python -->|calls| Metadata
-    Python -->|calls| Numerics
-    CLI["Command-line interface<br/>file commands"] -->|calls| Files
-    CLI -->|calls| Metadata
-
-    subgraph Library["Public library: src/simrecon"]
-        Files["File adapters<br/>inspect / read<br/>write / export_imagej"]
-        Metadata["Pure metadata resolution<br/>harmonize"]
-        Numerics["Numerical functions<br/>NumPy arrays"]
-    end
-
-    Priism["Supported Priism files"] -->|source data| Files
-    Files -->|converted or viewing copy| Exports["Modern MRC / OME-BigTIFF"]
-    Files -->|selected reads| Blocks["DataBlock<br/>selected pixels / metadata"]
-    Metadata -->|resolved description| Info["DatasetInfo<br/>axes / sampling / provenance"]
-    Arrays["Arrays, calibration<br/>and explicit parameters"] --> Numerics
-    Numerics --> Results["Result arrays<br/>and records"]
+    Python["Python caller"] --> Files["inspect / read / write / export_imagej"]
+    Python --> Metadata["harmonize / declare_acquisition"]
+    CLI["Neutral file CLI"] --> Files
+    CLI --> Metadata
+    Source["Supported Priism acquisition"] --> Files
+    Arrays["Caller arrays and explicit declarations"] --> Metadata
+    Files --> Output["Selected pixels / modern MRC / OME-BigTIFF"]
+    Metadata --> Records["Metadata and acquisition records"]
+    Future["Scientific functions: retired<br/>C-equivalence rebuild pending"]
 ```
 
-`inspect` describes a source without loading its pixels; `read` loads selected
-blocks. `harmonize` resolves metadata and layout from explicit configuration,
-without reading pixels or applying scientific corrections. The file writers
-stream a described source into a conversion or viewing copy. Conversion and
-Fiji export do not invoke reconstruction.
+`inspect` describes a source without loading its pixels. `read` loads selected
+blocks. `harmonize` resolves metadata and layout from explicit configuration.
+`declare_acquisition` copies and labels caller arrays. The file writers stream a
+described source into a conversion or viewing copy. These operations perform no
+scientific image correction or reconstruction. Records hold values rather than
+open file handles; NumPy buffers are not deeply immutable.
 
-The numerical functions operate on NumPy arrays and perform no file access.
-The caller connects selected pixel data to those functions and supplies the
-required calibration and parameters. Reconstruction returns arrays; a
-reconstruction-file adapter and complete workflow orchestration remain planned.
-Metadata records carry values rather than open file handles. NumPy buffers are
-not deeply immutable.
-
-Library code lives in `src/simrecon/`; independent fixtures and public-entry
-tests live in `tests/`; verification and reader-setup tools live in `scripts/`.
-The [project record](docs/PROJECT.md) defines approved boundaries, and the
-[public contracts](docs/contracts/mrc-conversion-v1.md) define concrete behavior.
+The [project record](docs/PROJECT.md), [library design](docs/architecture/library-design.md)
+and [data flow](docs/architecture/data-flow.md) describe the active boundaries.
+Concrete behavior comes from the public contracts, beginning with
+[MRC conversion](docs/contracts/mrc-conversion-v1.md).
 
 ## Get started
 
-The project targets **Python 3.13**. Its reproducible development environment
-uses **Python 3.13.12** and **uv 0.12.19**, with dependencies pinned by `uv.lock`.
-With Git and uv installed:
+The project targets **Python 3.13**. Its development environment uses
+**Python 3.13.12** and **uv 0.12.19**, with dependencies pinned by `uv.lock` and
+one isolated `.venv` per worktree.
 
 ```sh
 git clone https://github.com/david-hoffman/simrecon.git
@@ -110,79 +67,27 @@ uv sync --locked --all-groups
 uv run --locked simrecon --help
 ```
 
-The Python array interface is the entry point for numerical reconstruction.
-The command-line interface currently provides file inspection, conversion and
-Fiji export. The [environment guide](docs/operations/environment.md) covers
-development setup and prerequisite checks.
+Use the [conversion contract and configuration examples](docs/contracts/mrc-conversion-v1.md),
+[acquisition declaration guide](docs/usage/raw-acquisition-declarations.md) and
+[Fiji export guide](docs/usage/imagej-export.md). Do not infer phase, orientation
+or Z ordering from a flattened stack. The [environment guide](docs/operations/environment.md)
+covers development setup and prerequisite checks.
 
-### Try phase separation without a dataset
+## Rebuild sequence
 
-Save this as `example.py`, then run `uv run --locked python example.py`:
+The [replacement roadmap](docs/plans/c-equivalence-roadmap.md) supersedes the old
+RA scientific execution plan. CE01 removes incompatible scientific components
+and their stale tests while retaining neutral I/O, historical evidence and all
+accepted Agentic Software Delivery (ASD) improvements. CE02 begins the rebuild:
+preprocessing and separation, then transfer preparation, known-parameter
+reconstruction, finite parameter fitting, remaining defined modes, public workflow
+composition and independent acceptance.
 
-```python
-import numpy as np
-from simrecon import separate_phases
-
-# Seven known illumination phases, in radians; one pixel per image.
-phases = np.array([-0.43, 0.21, 1.34, 2.57, 3.18, 4.73, 5.81])
-images = (10 + 4 * np.cos(phases) + 2 * np.sin(phases))[:, None, None]
-components = separate_phases(images, phases_rad=phases)
-
-print(np.round(components.dc, 6))  # [[10.]]
-print(np.round(components.c1, 6))  # [[2.-1.j]]
-```
-
-Here `dc` is the constant component and `c1` is the complex first harmonic.
-This small demonstration separates supplied phases; it is not a reconstructed
-microscopy image. The [phase-separation guide](docs/usage/phase-separation.md)
-explains the model and array conventions.
-
-### Choose a next example
-
-- **Use an existing acquisition:** read the
-  [conversion contract and configuration examples](docs/contracts/mrc-conversion-v1.md),
-  then the [Fiji export guide](docs/usage/imagej-export.md). Do not infer phase,
-  orientation or Z ordering from a flattened stack.
-- **Explore 2D reconstruction:** start with
-  [PSF-to-OTF preparation](docs/usage/otf-calibration.md) and
-  [known-parameter reconstruction](docs/usage/reconstruction.md).
-- **Explore 3D reconstruction:** use the standalone
-  [volume recombination example](docs/usage/volume-recombination.md), then
-  [relative order-gain fitting](docs/usage/volume-order-gain.md).
-
-Spatial array axes are `(y, x)` for images and `(z, y, x)` for volumes.
-Acquisition arrays add phase and orientation axes as specified by each API.
-The examples state sampling in micrometres (µm) and phases in radians.
-
-## Roadmap: what remains before a complete workflow
-
-**We have the numerical foundations, but substantial calibration, estimation
-and integration work remains.** The merged components above are prerequisites,
-not completion of the following phases. A completion percentage would be
-misleading: the unresolved scientific decisions and experimental validation
-have no measured effort estimate yet.
-
-| Phase | Unfinished work | Completion evidence |
-|---|---|---|
-| **1 — Next** | Reconcile the merged baseline, identify the target acquisition and reference settings, and prepare concrete execution contracts. | Recorded input/settings requirements, decisions and dependency packets. |
-| 2 | Define raw specimen and bead intake, axes, units, camera/background corrections and provenance. | Both acquisitions are interpreted consistently, with explicit correction ownership. |
-| 3 | Calibrate effective 3D SIM order transfers from raw phase-resolved bead exposures. | Independently validated empirical calibration, rather than supplied PSFs or axial profiles. |
-| 4 | Support independently sampled calibration grids and complex OTF interpolation. | Calibration can be consumed on the specimen's grid under a documented interpolation contract. |
-| 5 | Complete specimen illumination-parameter estimation, drift handling and required corrections. | The selected acquisition mode no longer needs hidden true parameters supplied by the caller. |
-| 6 | Complete reference-compatible 3D reconstruction, sampling, normalization and output representation. | Supported mode and output conventions have independent numerical evidence. |
-| 7 | Compose one public workflow from both raw acquisitions, and demonstrate small complete cases. | Raw arrays enter the same calibration/estimation/reconstruction route, with diagnostics and provenance. |
-| **8 — Penultimate** | Run an independent full 3D simulation, approximately **512 × 512 × 64 voxels (x/y/z)**, producing both raw specimen and raw bead acquisitions. | The public workflow processes both acquisitions without precomputed OTFs or hidden simulator truth; scientific error, runtime and peak memory are reported. |
-| **9 — Final** | Run owner-supplied experimental acquisitions and compare with corresponding owner-provided legacy outputs. | Agreed cases satisfy an evidence-driven comparison contract under matching recorded settings. |
-
-Phases 2–9 remain pending. Phase 1 starts after this roadmap amendment is complete.
-Later dependent work waits for its completed prerequisites.
-Comparison tolerances, intensity scaling, registration, optical defaults and
-supported legacy modes will be resolved from evidence; this README sets none.
-
-The [full migration roadmap](docs/MIGRATION-ROADMAP.md) gives dependencies,
-deliverables and exit criteria. It distinguishes supplied-parameter components
-from empirical calibration and a complete acquisition workflow. It also explains
-why the full simulation precedes the final experimental comparison.
+Mathematical equivalence permits declared invertible representation and unit
+conversions. It does not permit a different estimator or data-dependent fitted
+normalization to conceal disagreement. Bitwise agreement is not required.
+The [common contract](docs/contracts/c-equivalence-common-v1.md) governs each stage.
+No replacement stage is available merely because it appears in the roadmap.
 
 ## Development and verification
 
@@ -194,29 +99,31 @@ make check      # Locked setup, lint, formatting and type checks
 make verify     # Full tests, coverage reports, wheel/import checks and audit
 ```
 
-The full check includes Fiji reader interoperability tests. They require a
-Java Development Kit (JDK) **21.0.7** with source-file launching;
-`SIMRECON_JAVA` can select the Java executable. Setup authenticates and caches
-pinned ImageJ/Bio-Formats jars. See the
-[reader environment guide](docs/operations/imagej-reader-environment.md).
-The numerical library and Fiji export itself do not require Java.
+`make verify` remains the full local exact-candidate gate. It runs pytest with
+exactly two workers using pinned pytest-xdist 3.8.0 and execnet 2.1.2, deterministic
+whole-file grouping and no automatic worker restart. Nested fixture tests retain
+their serial commands. Every required phase, test omission guard, report, wheel,
+import and vulnerability audit remains required. The retained MRC conversion
+measurement M25 must export same-run evidence and satisfy its unchanged
+**33,554,432-byte (32 MiB)** memory-increment limit.
 
-Continuous integration repeats the full verification on Ubuntu 24.04 and
-macOS 15. Native statement and branch coverage are measured for the library and
-verification tools; percentages are advisory under the current project policy.
-See the [verification guide](docs/operations/verification.md) for receipts,
-reports and exact-candidate checks, and [AGENTS.md](AGENTS.md) for contributor
-instructions.
+Full checks include Fiji reader interoperability tests. They require a Java
+Development Kit (JDK) **21.0.7** with source-file launching; `SIMRECON_JAVA` selects
+the executable. Setup authenticates and caches pinned ImageJ/Bio-Formats jars.
+See the [reader environment guide](docs/operations/imagej-reader-environment.md).
+The library's file conversion and Fiji export do not require Java.
 
-## Project context
+Continuous integration repeats full verification independently on Ubuntu 24.04
+and macOS 15. Native statement and branch coverage are measured globally and per
+owned package; percentages are advisory. Complete current reports and exact
+native integers remain required. See the [project policy](docs/PROJECT.md),
+[verification guide](docs/operations/verification.md) and [AGENTS.md](AGENTS.md).
 
-- [Project architecture and public boundaries](docs/PROJECT.md)
-- [Scientific context and references](docs/SCIENTIFIC-CONTEXT.md)
-- [Library design](docs/architecture/library-design.md) and
-  [data flow](docs/architecture/data-flow.md)
-- [Detailed migration roadmap](docs/MIGRATION-ROADMAP.md)
+## Historical context
 
-The Python implementation is written independently. Local legacy source under
-`SIMrecon_svn/` is ignored study material and is not included in the package.
-The roadmap permits source study and comparison with owner-provided outputs;
-it prohibits building or running the reference programs or bundled executables.
+The [migration history](docs/MIGRATION-ROADMAP.md) and
+[scientific context](docs/SCIENTIFIC-CONTEXT.md) preserve earlier claims and limits.
+The Python implementation is independently written. Local legacy source under
+`SIMrecon_svn/` is ignored, unshipped study material. Source study and comparison
+with owner-provided outputs are permitted; building, running, linking or importing
+the C reference or bundled executables remains prohibited.

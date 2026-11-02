@@ -1,5 +1,7 @@
 # Diagnose known-phase volume carriers
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `scan_volume_carriers` reports a free complex gain, direct normalized residual
 and amplitude correlation for each caller-listed integer carrier. It preserves
 caller order and duplicates. It does not select a physical carrier.

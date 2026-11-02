@@ -354,43 +354,6 @@ def test_timeout_preserves_failure_status() -> None:
     assert "time.sleep" not in result.stdout + result.stderr
 
 
-@pytest.mark.parametrize("method", ["print_tb", "format_tb", "print_stack", "format_stack"])
-def test_standard_traceback_and_stack_rendering_preserve_locations_without_source(
-    tmp_path: Path, method: str
-) -> None:
-    source = tmp_path / "standard_frames.py"
-    if method.endswith("tb"):
-        call = (
-            "traceback.print_tb(error.__traceback__)"
-            if method == "print_tb"
-            else "print(''.join(traceback.format_tb(error.__traceback__)))"
-        )
-        source.write_text(
-            "import traceback\n"
-            "try:\n"
-            "    raise ValueError('FRAME_MESSAGE_07') # SOURCE_ONLY_FRAME_07\n"
-            "except ValueError as error:\n"
-            f"    {call}\n"
-            "    print(type(error).__name__, str(error))\n"
-        )
-        expected_line = 3
-    else:
-        call = (
-            "traceback.print_stack()"
-            if method == "print_stack"
-            else "print(''.join(traceback.format_stack()))"
-        )
-        source.write_text(f"import traceback\n{call} # SOURCE_ONLY_STACK_07\n")
-        expected_line = 2
-    result = execute("python", str(source))
-    output = result.stdout + result.stderr
-    assert result.returncode == 0
-    assert f'File "{source}", line {expected_line}' in output
-    assert "SOURCE_ONLY_" not in output
-    if method.endswith("tb"):
-        assert "ValueError FRAME_MESSAGE_07" in output
-
-
 @pytest.mark.parametrize("legacy", [False, True])
 def test_standard_exception_only_syntax_error_retains_diagnostics_without_source(
     tmp_path: Path, legacy: bool

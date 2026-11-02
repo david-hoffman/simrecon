@@ -1,5 +1,7 @@
 # Known axial-profile volume transfers
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `prepare_volume_order_otfs` returns orders 0, +1 and +2 on the full centered z/y/x frequency grid. Detection mass is normalized once. Side-order gain, phase and zero DC remain. The leading array axis identifies phase order.
 
 This standalone example was executed in the locked local environment:
