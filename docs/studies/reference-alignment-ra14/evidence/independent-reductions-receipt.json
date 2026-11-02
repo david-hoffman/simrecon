@@ -1,0 +1,50 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-p",
+    "/private/tmp/simrecon-ra14/.venv/bin/python",
+    "/private/tmp/simrecon-ra14/artifacts/ra14/advice/independent_reductions.py",
+    "--run",
+    "--evaluation",
+    "evaluation-2",
+    "--output",
+    "independent-reductions-1.json"
+  ],
+  "exit_code_observed": 0,
+  "execution_attempts": 1,
+  "native_real_seconds": 2.48,
+  "native_user_seconds": 1.73,
+  "native_system_seconds": 0.68,
+  "limits": [
+    "No retry",
+    "No fitter/optics/FFT/production metric import",
+    "No formal verdict",
+    "Native time excludes no profiling overhead; overlapping durations not additive"
+  ],
+  "files": {
+    "independent_reductions.py": {
+      "size_bytes": 24738,
+      "sha256": "36be6ac440e22b974bc01c130e0e7f946629b29054bedf89d5bf97b51692e83a"
+    },
+    "independent-reductions-plan.md": {
+      "size_bytes": 2028,
+      "sha256": "8730517f14738ba9f7f5fb0988b5cc5d579597a0b922ded4023c16e4dabd8d52"
+    },
+    "independent-reductions-1.json": {
+      "size_bytes": 502693,
+      "sha256": "a13c56bfcc295b497d0cf38300e7185d37bb1e60a080c7b2441e8fe8808f35fa"
+    },
+    "independent-reductions-run-1.stdout.log": {
+      "size_bytes": 134,
+      "sha256": "560a15c21b395411a1fccb962a5a698866b95d98b49252cc7ffe1763f6258358"
+    },
+    "independent-reductions-run-1.stderr.log": {
+      "size_bytes": 29,
+      "sha256": "45024bf25cab6a9dcb921bfcbc0326b5db2258c8af6769a536c8c2140e7fa652"
+    },
+    "independent-reductions-summary-1.md": {
+      "size_bytes": 4426,
+      "sha256": "adbff0910b859043a1e4b84f16e0eb729b010b6aa8a9cc7029fab13d2c71d3f1"
+    }
+  }
+}

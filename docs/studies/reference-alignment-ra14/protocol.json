@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "frozen_utc": "2026-11-02T04:04:34.283707+00:00",
+  "scope": "RA14 fixed original full scene: 27objects, known/noiseless + estimated/noiseless + originalestimated/noisy; no retuning",
+  "baseline": "65dab9038878530a66cfd891b523cbbbda7a8ca6",
+  "contract_sha256": "25a1e6b035f0bf4b62c75aafbe58ebb50f8832023bb7901dd305ad37fa18d811",
+  "generator_source": {
+    "path": "artifacts/ra14/study/generate_matched.py",
+    "sha256": "8f343cc60ca45e25f124c733dc3f0e1ff7f4ebee0f3be6f051171539f3b429af"
+  },
+  "original_restore_sha256": "aa4b5499ec20640cb455f9f06676bbebe3dc3d45a664cc4ba79a50c291aa4ffd",
+  "original_plan_sha256": "612a5397a6b4964afda2928a3b5ceafef5ed363f65d116b857c888c846ca483d",
+  "original_generation_seal_sha256": "f70c6f9997d78d910a09d00c060b79f21e1495757dfb09211c4157f53fa20c74",
+  "full_public_plan_sha256": "59334032a39cf2d6ecadf0413791c2baa8b63951d9405999c40df0c3671440a9",
+  "inference_controls": {
+    "sweep_scales": [
+      1.0
+    ],
+    "max_refinement_evaluations": 40,
+    "training_rms_limit": 0.05,
+    "calibration_atol": 1e-08,
+    "operator_atol": 1e-06,
+    "pupil_order": 128,
+    "regularization": 0.001,
+    "max_iterations": 12,
+    "max_backtracking_trials": 8
+  },
+  "noiseless_generation": {
+    "pupil_order": 128,
+    "camera_shot_noise": false,
+    "camera_read_noise_e": 0.0,
+    "calibration_refinement": [
+      8,
+      8,
+      8
+    ],
+    "specimen_refinement": [
+      1,
+      2,
+      2
+    ],
+    "pixel_midpoints": [
+      2,
+      2
+    ],
+    "source_rule": "pair adjacent axial electron masses; x32=RN32((g/d_hat)*paired); s_matched=RN64((d_hat/g)*float64(x32)); retain/evaluate conversion roundoff separately",
+    "true_specimen_phases": "original already-transferred frozen generation_summary, no secondtransfer",
+    "seeds": "originalfullplan/seeds labels, deterministicnoise disabled"
+  },
+  "criteria": {
+    "experiment_delivery": "complete reproducible real outcomes for all3arms or classified incompleteness; cannot call timeout/unexecuted unavailable",
+    "named_finite_control": "independentA/Btiny optical/replay/metric expectations, no manufactured recovery tolerance",
+    "full_scene_numerics": "descriptive agreement, no independently qualified full-grid bound",
+    "alignment_recovery_resolution": "not established unless independently justified scientific criteria actually met; RA01 deferred these; no matched conventional/resolvabilitycriterion adopted",
+    "noise": "diagnostic only; matchedQ128paired vsoriginalQ256fine difference includesmodelmismatch"
+  },
+  "evaluation_rules": {
+    "difference": "estimate-reference, no fitted registration/scale",
+    "source_reference_noiseless": "float64 of single rounded x32",
+    "source_reference_noisy": "originalfineaxialmasspair*g/d_actualnoisycamera; float64 descriptivebasis reference",
+    "signal_reference": "g/d_actual * opticalelectronmeans",
+    "corrected_mean_reference": "(offset+g*(mu_e+background)-b_actual)/d_actual",
+    "rounding_diagnostics": [
+      "pre-roundrelative vsx32",
+      "(g/d_hat)*s_matched vsfloat64(x32)",
+      "sequentialcountcreation/correction vs(g/d_hat)*mu_e",
+      "signedsource masschange and lostnonzeros"
+    ],
+    "spectra": "full-frame untapered prediction and signed-residual Fourier power, declaredfrequencyaxes/normalization; no OTF/resolution/observable-modeclaim"
+  },
+  "boundaries": [
+    "separate known-input control from observation-only scripts/processes",
+    "close/hash inferenceoutputs beforetruth evaluation",
+    "no componentrepairs or silentfallback",
+    "no merge/release/reference executable",
+    "stopbeforeRA15discussion"
+  ]
+}

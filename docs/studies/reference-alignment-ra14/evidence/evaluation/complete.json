@@ -1,0 +1,38 @@
+{
+  "status": "closed_postfreeze_evaluation",
+  "files": {
+    "declared-cache-selected-lags.npy": {
+      "size_bytes": 6303872,
+      "sha256": "ba43b54f0584d229a81b5cb49a9ce0564415da10a3164ae33820da02fff48612"
+    },
+    "known-noiseless-profiles.json": {
+      "size_bytes": 1474377,
+      "sha256": "178f92c27b6d4516bf5eed4d25b88d03bec864e46b0bfacee1b115dd5c4f7250"
+    },
+    "known-noiseless-source-spectra.json": {
+      "size_bytes": 157052,
+      "sha256": "e8ef26173a01bfe77cf0821e4df08f790f8dd695b7eddd5e8a151590191f66a9"
+    },
+    "known-source-forward-relative.npy": {
+      "size_bytes": 251658368,
+      "sha256": "0dd8b5d6152fc5711edb6ceba3736a29ce87d5818f396a8a1255b71269ab03fc"
+    },
+    "evaluation.json": {
+      "size_bytes": 79008,
+      "sha256": "5056a088eba1a6d4c5c03db32b56f5dd9839041dcfa2cad1a3b30ba0ef6ce352"
+    },
+    "declared-cache-representation.json": {
+      "size_bytes": 27614,
+      "sha256": "7439dc58f78935c4b7e8473c0aacde0cdd670edf3e537f6649584e7e9d7383dc"
+    },
+    "known-noiseless-image-spectra.json": {
+      "size_bytes": 2181151,
+      "sha256": "133c25be45d3ed31e02a8a311e7ac383b4fac3aac2ec6a67f4f474454090dc4e"
+    }
+  },
+  "inference_seal_sha256": {
+    "known-noiseless": "bc078ddb7c4f898b0437b9e8db71e3135484e28d8ce24a9a24c1f56a4a62c8fe",
+    "estimated-noiseless": "b81fed81c94fdf547be6619916d89055ebf7b62a87c304aa8f32c67d19147a94",
+    "estimated-noisy": "110a20369ab99fa42c24598e63b4aaf8c06fd066bf6dfbbf4a9f34d9829a9fbb"
+  }
+}

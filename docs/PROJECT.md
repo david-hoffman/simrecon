@@ -245,7 +245,11 @@ estimated/noisy arms. The small comparison module supplies existing-operator
 prediction replay and stable descriptive array metrics; it changes no estimator.
 Matched Q128 paired-source noiseless controls and original fine-source Q256 noisy
 observations remain distinct, so their difference is not a noise-only penalty.
-[RA14's task](tasks/reference-alignment-ra14.md) owns exact experiment, review/gate
+[The actual full-scene report](reports/reference-alignment-ra14.md) records 94.58%
+source error in the supplied-illumination noiseless fit and genuine `training_misfit`
+in both raw-only estimated arms. [Executed usage](usage/reference-alignment-ra14.md)
+and [frozen study records](studies/reference-alignment-ra14/README.md) preserve those
+outcomes without retuning. [RA14's task](tasks/reference-alignment-ra14.md) owns exact experiment, review/gate
 and stacked-PR evidence. RA01 adopted no full-scene recovery percentage or universal
 resolution criterion: experiment readiness does not establish scientific alignment,
 source recovery or resolution improvement. Only named independently checked noiseless

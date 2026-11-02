@@ -1,0 +1,275 @@
+{
+  "status": "closed_experimental_records_and_visuals",
+  "files": {
+    "figure-plan.json": {
+      "size_bytes": 1703,
+      "sha256": "8da883e40d5f98a170560acc599dc5155f46f716855d2c442f97363815987857"
+    },
+    "README.md": {
+      "size_bytes": 5542,
+      "sha256": "973c39f28ebc3c32c793a0dbeddb089e2f71b281fe816da6b677150e72e72b7b"
+    },
+    "protocol.json": {
+      "size_bytes": 3649,
+      "sha256": "801ef34cc180b60e8c808cf18a0fdb1a5655dbeddd2dcf86a355700d6f39585b"
+    },
+    "reproduction.md": {
+      "size_bytes": 111556,
+      "sha256": "db05d9ca213e0f00b2fe124396d6111a693ae1e2dd6b89b186599c2678f304c6"
+    },
+    "evidence/evaluation-first-environment-failure.json": {
+      "size_bytes": 1145,
+      "sha256": "a1b81adc00c95a1af9d07c27977a6db3d8dc3d02f82765d857e4d570437dedad"
+    },
+    "evidence/render-manifest.json": {
+      "size_bytes": 6517,
+      "sha256": "bfcc91f61ec8c0021d86a6e489a0ddc69d313c927fe9a9e6608260c94c9ea4a0"
+    },
+    "evidence/usage.json": {
+      "size_bytes": 1243,
+      "sha256": "d36da3dfefa1e487383b69b99a889a05e67965657106c4eadd155c92987f2374"
+    },
+    "evidence/independent-reductions.json": {
+      "size_bytes": 502693,
+      "sha256": "a13c56bfcc295b497d0cf38300e7185d37bb1e60a080c7b2441e8fe8808f35fa"
+    },
+    "evidence/resource-pilot.json": {
+      "size_bytes": 7337,
+      "sha256": "6840919976a19e4440ad1381474ffc98860e7716475c7d8a0b488eb59361481e"
+    },
+    "evidence/evaluation-repeat-comparison.json": {
+      "size_bytes": 772,
+      "sha256": "b7813332aecb3451499a57161e00affdefdb36bee3a66542b23d4dc82d1d5587"
+    },
+    "evidence/independent-reductions-summary.md": {
+      "size_bytes": 4426,
+      "sha256": "adbff0910b859043a1e4b84f16e0eb729b010b6aa8a9cc7029fab13d2c71d3f1"
+    },
+    "evidence/independent-reductions-receipt.json": {
+      "size_bytes": 1609,
+      "sha256": "4a1caadcf3c673bb5ef2c2e2ffcdf363c7b714b7390c6d174bc7cdd6c62d228d"
+    },
+    "evidence/matched-generation-seal.json": {
+      "size_bytes": 15357,
+      "sha256": "34dbca81eb0646dadfdec7e035666db035b336dd1a4405369b53ed13ce637617"
+    },
+    "evidence/calibration-diagnosis.md": {
+      "size_bytes": 3677,
+      "sha256": "ee3f1b334be124ef23b011a3b4d1e885f8f4ddf4f106b852f9e1406f96a494d5"
+    },
+    "evidence/prepared-observations.json": {
+      "size_bytes": 9853,
+      "sha256": "ea2fb70c476b933d45bbd77003e369e08acc5e19efb7dab3cf787ed367656982"
+    },
+    "evidence/visual-qa.json": {
+      "size_bytes": 3262,
+      "sha256": "b0ee1c54a86b73ad9ff88257636a62deb22b720c67777eefa5072d91b1520006"
+    },
+    "evidence/prepared/noisy/complete.json": {
+      "size_bytes": 3831,
+      "sha256": "70f95876a3c9ccb036915975329f4d00f367206ca9832b500563a3516a9cfd86"
+    },
+    "evidence/prepared/noiseless/complete.json": {
+      "size_bytes": 3835,
+      "sha256": "e426a863179a2e46e60ae772e71200a5874fd1a3b8ac32832098edd6fb7ff3fd"
+    },
+    "evidence/native/evaluation-run-1/stderr-native-time.log": {
+      "size_bytes": 106,
+      "sha256": "a35e10a9d309e81d6fe45cc51eeb63eb6f73e74e36a62ea57aef9c5162f648df"
+    },
+    "evidence/native/evaluation-run-1/completion.json": {
+      "size_bytes": 233,
+      "sha256": "e6217acf7bc9e34af3d0a402260ee18cad215e398b82373ceb3e771e8c02e606"
+    },
+    "evidence/native/generation-1/stderr-native-time.log": {
+      "size_bytes": 777,
+      "sha256": "0710cb0f812a89100495cc4f113e260b00d4cd43e721f118e15e581bf14663a5"
+    },
+    "evidence/native/generation-1/completion.json": {
+      "size_bytes": 1167,
+      "sha256": "2dcf723e66cbec844c9f84c5bd84fa9a5e14e48084c6f740e21f83a086de6713"
+    },
+    "evidence/native/render-run-1/stderr-native-time.log": {
+      "size_bytes": 840,
+      "sha256": "9981b2ccb5083636fe848f9bc116d36a41fd3bfd50154d5593202f8f2f138adc"
+    },
+    "evidence/native/render-run-1/completion.json": {
+      "size_bytes": 383,
+      "sha256": "5df7c4650af22524b6b2a12a9d5a94076d851fe3dc580bd2066e1db02f75d1f8"
+    },
+    "evidence/native/estimated-noiseless/stderr-native-time.log": {
+      "size_bytes": 777,
+      "sha256": "23a655148ecf2c7bbba886fd4f034d518328ec9dfee7ce391d19ae4ab00be142"
+    },
+    "evidence/native/estimated-noiseless/launch.json": {
+      "size_bytes": 2320,
+      "sha256": "820362f6c4975aec307d9727f9d1be3a5037d80196c51de269b9273da50d7f48"
+    },
+    "evidence/native/estimated-noiseless/completion.json": {
+      "size_bytes": 4724,
+      "sha256": "7df9f9faabed90927b00410e42084b7a55c4fd5fd3bff1c63343b3e4cef20327"
+    },
+    "evidence/native/estimated-noisy/stderr-native-time.log": {
+      "size_bytes": 777,
+      "sha256": "4dad472d54d1a5460d7232aca8caef9b0cbec472ebb6fdb93161094d6e0a6524"
+    },
+    "evidence/native/estimated-noisy/launch.json": {
+      "size_bytes": 2308,
+      "sha256": "6c5a0c094312f284dfc44dd33a32334f6390f7016a6c16626fabe7284d29ad0b"
+    },
+    "evidence/native/estimated-noisy/completion.json": {
+      "size_bytes": 4725,
+      "sha256": "f24b61371bec5e35b2b05c06731e7ed2a4795c758a2c53e648ce0e61c9043b64"
+    },
+    "evidence/native/evaluation-run-2/stderr-native-time.log": {
+      "size_bytes": 777,
+      "sha256": "34ce35fe2ec0b54e0d750253d1cda78f34e773d57ffa10954c77eadcf24748ea"
+    },
+    "evidence/native/evaluation-run-2/completion.json": {
+      "size_bytes": 384,
+      "sha256": "7ca13996abb665de71393b2a85146de1ee9352dbf517b09987f1c6b83ddcf0e1"
+    },
+    "evidence/native/known-noiseless/stderr-native-time.log": {
+      "size_bytes": 777,
+      "sha256": "e2b98fe7e6f228b9c3e42fa3e3a7e1b28a69c8f483bbb62898cccae035399b4e"
+    },
+    "evidence/native/known-noiseless/launch.json": {
+      "size_bytes": 2396,
+      "sha256": "1bfa03b41ae4cea2697096b29f2dcc9eefc0ade8c10331f9757d9e057cd667fe"
+    },
+    "evidence/native/known-noiseless/completion.json": {
+      "size_bytes": 5982,
+      "sha256": "8228e34a2eb94350c6ccc507e21d5e0e34b8711307c574543b71561f01847c99"
+    },
+    "evidence/inference/inputs-after.json": {
+      "size_bytes": 40913,
+      "sha256": "a1afc5355ab593712dceca83f9c8e5f5a8d21ad47243668e0bf4179db36bd1a0"
+    },
+    "evidence/inference/inputs-before.json": {
+      "size_bytes": 40913,
+      "sha256": "a1afc5355ab593712dceca83f9c8e5f5a8d21ad47243668e0bf4179db36bd1a0"
+    },
+    "evidence/inference/complete.json": {
+      "size_bytes": 17252,
+      "sha256": "c1d7521cb8fecac6c1600743f15f2efd1545e2cde1ba57c7344d51d125d5d6f6"
+    },
+    "evidence/inference/environment.json": {
+      "size_bytes": 658,
+      "sha256": "9f09450767e797627bb6b6b81e8d190e1f83c9579637cd35b2f905a223b6433b"
+    },
+    "evidence/evaluation/known-noiseless-profiles.json": {
+      "size_bytes": 1474377,
+      "sha256": "178f92c27b6d4516bf5eed4d25b88d03bec864e46b0bfacee1b115dd5c4f7250"
+    },
+    "evidence/evaluation/known-noiseless-source-spectra.json": {
+      "size_bytes": 157052,
+      "sha256": "e8ef26173a01bfe77cf0821e4df08f790f8dd695b7eddd5e8a151590191f66a9"
+    },
+    "evidence/evaluation/complete.json": {
+      "size_bytes": 1486,
+      "sha256": "cc61c1d635474a5e6c3b05eade5abbbe9613bccfcb9974eae5bb483571529d7f"
+    },
+    "evidence/evaluation/evaluation.json": {
+      "size_bytes": 79008,
+      "sha256": "5056a088eba1a6d4c5c03db32b56f5dd9839041dcfa2cad1a3b30ba0ef6ce352"
+    },
+    "evidence/evaluation/declared-cache-representation.json": {
+      "size_bytes": 27614,
+      "sha256": "7439dc58f78935c4b7e8473c0aacde0cdd670edf3e537f6649584e7e9d7383dc"
+    },
+    "evidence/evaluation/known-noiseless-image-spectra.json": {
+      "size_bytes": 2181151,
+      "sha256": "133c25be45d3ed31e02a8a311e7ac383b4fac3aac2ec6a67f4f474454090dc4e"
+    },
+    "evidence/runs/estimated-noiseless/summary.json": {
+      "size_bytes": 2460,
+      "sha256": "04065a543dd3e14d5bc74baeedfe94a0d1d114f9a4e670c3c1a2a6456ff17b3e"
+    },
+    "evidence/runs/estimated-noiseless/result.json": {
+      "size_bytes": 382051,
+      "sha256": "1c6c91eae7e905c4457ef65d8d34b88f36f5a9d1352b4198e05ee470d7d91735"
+    },
+    "evidence/runs/estimated-noiseless/complete.json": {
+      "size_bytes": 122586,
+      "sha256": "b81fed81c94fdf547be6619916d89055ebf7b62a87c304aa8f32c67d19147a94"
+    },
+    "evidence/runs/estimated-noisy/summary.json": {
+      "size_bytes": 2459,
+      "sha256": "c9407e7f70813f665adfeb8e349410ab24bb2ca4ff5085436cf2b731e7bf3516"
+    },
+    "evidence/runs/estimated-noisy/result.json": {
+      "size_bytes": 382077,
+      "sha256": "6425f0b03456edae68a39c1ff7c906fb19355c6fe157d0eca96fd79af70e0c1c"
+    },
+    "evidence/runs/estimated-noisy/complete.json": {
+      "size_bytes": 122585,
+      "sha256": "110a20369ab99fa42c24598e63b4aaf8c06fd066bf6dfbbf4a9f34d9829a9fbb"
+    },
+    "evidence/runs/known-noiseless/summary.json": {
+      "size_bytes": 3666,
+      "sha256": "d10ff20c6f952ed4d73450f8ae3749f10f3bfc2ad97cb580073ea9d120725083"
+    },
+    "evidence/runs/known-noiseless/result.json": {
+      "size_bytes": 59068,
+      "sha256": "41d2b0f30a841b7eb4cc36d18b66b01321d30d8532249fe734631888788bf708"
+    },
+    "evidence/runs/known-noiseless/complete.json": {
+      "size_bytes": 6698,
+      "sha256": "bc078ddb7c4f898b0437b9e8db71e3135484e28d8ce24a9a24c1f56a4a62c8fe"
+    },
+    "figures/known-noiseless-image-spectra.png": {
+      "size_bytes": 172889,
+      "sha256": "ebba69cfd6bcad78f7792ff8b876509753097623b3cc34242c285f1f9de7d5c1"
+    },
+    "figures/known-noiseless-source-comparison.png": {
+      "size_bytes": 140608,
+      "sha256": "c06db7bb1d7d28121598294014fb17cacb2f97fdd9d56eacc4e9ae6178604ea9"
+    },
+    "figures/known-noiseless-finite-trial-history.png": {
+      "size_bytes": 129447,
+      "sha256": "f3583ce0c563c94b827dec20f0ab38aafc85d84f52cafe698a6b246a4b6bdd18"
+    },
+    "figures/known-noiseless-source-spectra.png": {
+      "size_bytes": 146868,
+      "sha256": "4890e10e6b5769b4d4a6e0d3a88afb0001bdd244c4289625a40d599a5485c702"
+    },
+    "figures/known-noiseless-all15-residuals.png": {
+      "size_bytes": 55742,
+      "sha256": "e4328383c00f9a51d5be173fc90114a876c00cfc8ac597582b7693f191606405"
+    },
+    "figures/workflow-outcomes.png": {
+      "size_bytes": 42622,
+      "sha256": "ece2676b0682ab43da4bdb1d951d4dd1abc1dc0bfba999c6e753288431321012"
+    },
+    "figures/known-noiseless-fixed-profiles.png": {
+      "size_bytes": 273494,
+      "sha256": "33375df8c2e07890a72b8c38a7593d9e2ebbb1e94051643a69cc6daaeaeb4d7d"
+    },
+    "figures/known-noiseless-prediction-comparison.png": {
+      "size_bytes": 186383,
+      "sha256": "122419f11da040ada603da88c811d8226b94c71fb6699f63680cff53b4bf0e08"
+    },
+    "figures/declared-cache-representation.png": {
+      "size_bytes": 76587,
+      "sha256": "6eed9ae6f96749122043697c1835fb20d10c61416d3d4901cef36dd3b691cd84"
+    }
+  },
+  "local_native_array_roots": [
+    "artifacts/ra14/original/generation",
+    "artifacts/ra14/matched",
+    "artifacts/ra14/prepared",
+    "artifacts/ra14/runs",
+    "artifacts/ra14/evaluation-1",
+    "artifacts/ra14/evaluation-2"
+  ],
+  "original_archive": {
+    "size_bytes": 1706228839,
+    "sha256": "4de84ac559e2fcf93a2e038eea571366af54207d368cfb2f0bd50e78129257f0",
+    "restored_generation_files": 46
+  },
+  "input_boundaries": "Raw-only prepared namespaces for estimated arms; supplied-known control separate; truth-based evaluation after all three output seals",
+  "public_payload_limit": "Large raw/source/prediction/cache arrays are locally retained at the declared original paths. Public records include their exact hashes/dtypes/shapes but do not supply a complete downloadable raw-data bundle. Some original record paths name that producer checkout; they are provenance, not portable public links.",
+  "scientific_alignment": "not established",
+  "resolution_improvement": "not established",
+  "final_readiness": "separately recorded outside candidate bytes after exact local gate, fresh D and required CI"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "identical numerical outputs after diagnosed timing-environment correction",
+  "byte_identical_payloads": {
+    "declared-cache-selected-lags.npy": true,
+    "known-noiseless-profiles.json": true,
+    "known-noiseless-source-spectra.json": true,
+    "known-source-forward-relative.npy": true,
+    "declared-cache-representation.json": true,
+    "known-noiseless-image-spectra.json": true
+  },
+  "evaluation_json_numerical_fields_identical": true,
+  "excluded_metadata_fields": [
+    "producer_sha256",
+    "elapsed_seconds",
+    "memory"
+  ],
+  "input_and_inference_reruns": 0,
+  "limitations": "Original evaluation1 wrapperexit1 retained; secondnativecommandexit0 independentlymeasured. This is outputqualification, not new scientific accuracy evidence."
+}

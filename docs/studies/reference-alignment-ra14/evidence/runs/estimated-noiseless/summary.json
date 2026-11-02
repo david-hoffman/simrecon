@@ -1,0 +1,62 @@
+{
+  "status": "unavailable",
+  "stage": "handoff",
+  "fit_status": null,
+  "fit_stop_reason": null,
+  "has_source": false,
+  "candidate_id": null,
+  "call_elapsed_seconds": 62.658100500004366,
+  "total_elapsed_seconds": 63.87563933400088,
+  "peak_memory": {
+    "native_ru_maxrss": 1532002304,
+    "units": "bytes",
+    "scope": "whole process high-water, not isolated stage allocation"
+  },
+  "before": {
+    "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+    "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+    "tracked_status": "",
+    "describe": "a261bfd"
+  },
+  "after": {
+    "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+    "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+    "tracked_status": "",
+    "describe": "a261bfd"
+  },
+  "input_seal_sha256": "e426a863179a2e46e60ae772e71200a5874fd1a3b8ac32832098edd6fb7ff3fd",
+  "stage_observations": [
+    {
+      "stage": "camera_estimation",
+      "elapsed_seconds": 0.006281041998590808,
+      "entry_process_high_water": {
+        "native_ru_maxrss": 379830272,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_process_high_water": {
+        "native_ru_maxrss": 393510912,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_return_type": "ScalarCameraEstimate",
+      "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+    },
+    {
+      "stage": "predictive_handoff",
+      "elapsed_seconds": 62.53295362499921,
+      "entry_process_high_water": {
+        "native_ru_maxrss": 393510912,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_process_high_water": {
+        "native_ru_maxrss": 1532002304,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_return_type": "CalibrationHandoff",
+      "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "/private/tmp/simrecon-ra14/.venv/bin/python",
+    "/private/tmp/simrecon-ra14/artifacts/ra14/study/generate_matched.py"
+  ],
+  "started_utc": "2026-11-02T04:05:01.420340+00:00",
+  "elapsed_seconds": 165.263971833,
+  "all_declared_inputs_unchanged": true,
+  "pinned_files": 57,
+  "environment": {
+    "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+    "executable": "/private/tmp/simrecon-ra14/.venv/bin/python",
+    "numpy": [
+      "2.5.3",
+      "/private/tmp/simrecon-ra14/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+    ],
+    "scipy": [
+      "1.18.1",
+      "/private/tmp/simrecon-ra14/.venv/lib/python3.13/site-packages/scipy/__init__.py"
+    ],
+    "optics": "/private/tmp/simrecon-ra14/scripts/simulation_optics.py",
+    "camera": "/private/tmp/simrecon-ra14/scripts/simulation_camera.py"
+  },
+  "limitations": "Pinned source/lock/recorded imported locations/version evidence, not whole external dependency or OS binary exports; A-owned test edits are recorded dirty state and not generation inputs."
+}

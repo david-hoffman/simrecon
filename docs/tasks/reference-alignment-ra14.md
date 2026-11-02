@@ -12,6 +12,12 @@ All predecessor limitations and cumulative attempts remain; this slice resets no
 
 The [contract](../contracts/reference-alignment-ra14-v1.md) executes the approved
 [RA14 experiment](../plans/reference-alignment-roadmap.md#ra14--demonstrate-full-scene-method-alignment).
+The [actual report](../reports/reference-alignment-ra14.md),
+[executed usage](../usage/reference-alignment-ra14.md) and
+[closed study records](../studies/reference-alignment-ra14/README.md) retain all three
+fixed outcomes. The supplied-illumination noiseless fit has 94.58% relative source
+error after 12 updates; both estimated arms return `unavailable/training_misfit`.
+No settings or inference outcomes were changed to obtain a successful result.
 RA01 intentionally adopted no full-scene recovery percentage or universal resolution
 criterion. Therefore a reproducible experiment PR can become ready while the roadmap's
 scientific alignment/recovery/resolution success remains unestablished. Never substitute
