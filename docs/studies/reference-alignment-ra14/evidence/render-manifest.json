@@ -1,0 +1,66 @@
+{
+  "status": "rendered_closed_evidence",
+  "producer_sha256": "20b9fe2245859d80b823971b4edaabd7de30c3b129f0f11d833a8e77f872af08",
+  "evaluation_seal_sha256": "cc61c1d635474a5e6c3b05eade5abbbe9613bccfcb9974eae5bb483571529d7f",
+  "figure_plan_sha256": "8da883e40d5f98a170560acc599dc5155f46f716855d2c442f97363815987857",
+  "numpy": "2.5.3",
+  "matplotlib": "3.10.7",
+  "elapsed_seconds": 1.7459179580037016,
+  "figures": {
+    "workflow-outcomes": {
+      "path": "artifacts/ra14/render-1/workflow-outcomes.png",
+      "sha256": "ece2676b0682ab43da4bdb1d951d4dd1abc1dc0bfba999c6e753288431321012",
+      "size_bytes": 42622,
+      "caption": "Actual closed result labels. Known/noiseless supplies true illumination to the existing fitter; estimated arms call RA13 using only raw arrays/declared controls. Unavailable has no source/predictions. No convergence, recovery or resolution verdict follows from a finite stop."
+    },
+    "known-noiseless-source-comparison": {
+      "path": "artifacts/ra14/render-1/known-noiseless-source-comparison.png",
+      "sha256": "c06db7bb1d7d28121598294014fb17cacb2f97fdd9d56eacc4e9ae6178604ea9",
+      "size_bytes": 140608,
+      "caption": "Observed finite source estimate versus the declared paired-basis reference. Axial mass pairing shifts original fine sites by \u00b10.03125 \u00b5m; this is not the original continuous scene or an electron-density image. First catalogue centre requested z/y/x=[0.65, 4.05, 3.85] \u00b5m. Actual fixed source/detector sections z=0.6875, y=4.0600 \u00b5m; nearest native grid, no interpolation/registration. Shared linear amplitude scale0..5.7142859; signed differences \u00b15.5510544. Projected differences subtract displayed projections. Equal physical aspect."
+    },
+    "known-noiseless-prediction-comparison": {
+      "path": "artifacts/ra14/render-1/known-noiseless-prediction-comparison.png",
+      "sha256": "122419f11da040ada603da88c811d8226b94c71fb6699f63680cff53b4bf0e08",
+      "size_bytes": 186383,
+      "caption": "Fixed exposure0/0, selected before inference. Prediction versus noiseless signal in the actual camera gauge; this is not an observed-noise residual. All15 observed/expected residual metrics and spectra are retained separately. First catalogue centre requested z/y/x=[0.65, 4.05, 3.85] \u00b5m. Actual fixed source/detector sections z=0.6875, y=4.0400 \u00b5m; nearest native grid, no interpolation/registration. Shared linear amplitude scale0..26.802553; signed differences \u00b123.847543. Projected differences subtract displayed projections. Equal physical aspect."
+    },
+    "known-noiseless-finite-trial-history": {
+      "path": "artifacts/ra14/render-1/known-noiseless-finite-trial-history.png",
+      "sha256": "f3583ce0c563c94b827dec20f0ab38aafc85d84f52cafe698a6b246a4b6bdd18",
+      "size_bytes": 129447,
+      "caption": "All completely scored candidates retain actual data/penalty/total values, including rejected trials. Rings mark the initial and accepted scores. Gradient points belong only to their own completed candidate; missing terminal gradients are not filled. Zero values are omitted only on log axes. Original trial/step/call/partial/stopping records remain in the native freeze. A hard stop or decreasing objective is not convergence or source recovery."
+    },
+    "known-noiseless-fixed-profiles": {
+      "path": "artifacts/ra14/render-1/known-noiseless-fixed-profiles.png",
+      "sha256": "33375df8c2e07890a72b8c38a7593d9e2ebbb1e94051643a69cc6daaeaeb4d7d",
+      "size_bytes": 273494,
+      "caption": "Predeclared catalogue indices0 and10. Quantitative top rows retain full native lines and actual integrated weights. Shape rows divide each complete line by its own absolute peak, with a fixed \u00b10.6 \u00b5m display window; zero lines have no normalized curve. Nearest fixed grid planes, no fitted peak, interpolation or registration. All27 native profile triples and exact selected plane coordinates are retained in the closed JSON."
+    },
+    "known-noiseless-all15-residuals": {
+      "path": "artifacts/ra14/render-1/known-noiseless-all15-residuals.png",
+      "sha256": "e4328383c00f9a51d5be173fc90114a876c00cfc8ac597582b7693f191606405",
+      "size_bytes": 55742,
+      "caption": "Each cell uses all32\u00d7256\u00d7256 voxels of its exposure, prediction minus signed camera-normalized observed counts. These are training residuals, not held-out validation or a source-recovery criterion."
+    },
+    "known-noiseless-image-spectra": {
+      "path": "artifacts/ra14/render-1/known-noiseless-image-spectra.png",
+      "sha256": "ebba69cfd6bcad78f7792ff8b876509753097623b3cc34242c285f1f9de7d5c1",
+      "size_bytes": 172889,
+      "caption": "Untapered full3D DFT with norm=ortho, summed over the other two frequency axes and all15 exposures. Power retains relative-image squared units. Zero power is not drawn on the log axis. No fitted scaling, source-spectrum division, optical transfer or observable-mode inference."
+    },
+    "known-noiseless-source-spectra": {
+      "path": "artifacts/ra14/render-1/known-noiseless-source-spectra.png",
+      "sha256": "4890e10e6b5769b4d4a6e0d3a88afb0001bdd244c4289625a40d599a5485c702",
+      "size_bytes": 146868,
+      "caption": "Untapered unitary full3D source-coefficient DFT, other-axis power sums. Integrated-relative-weight squared units, native paired basis. Difference power is the DFT of the signed coefficient difference. Zero power is not drawn on the log axis. These are not optical transfer, observable-subspace recovery, resolvability or a physical-resolution criterion."
+    },
+    "declared-cache-representation": {
+      "path": "artifacts/ra14/render-1/declared-cache-representation.png",
+      "sha256": "6eed9ae6f96749122043697c1835fb20d10c61416d3d4901cef36dd3b691cd84",
+      "size_bytes": 76587,
+      "caption": "Actual signed native cache half-spectrum, not a continuous/global3D optical transfer function, recovered bandwidth or information analysis. Unused embedding values may affect this representation without changing retained finite interactions. um^-2; unnormalized lateral DFT of finite computational embedding, no pixel-area factor. Fixed absolute lag indices0,16,31 and native ky=0. These computational-embedding coefficients are not measured/recovered bandwidth or a scalar global3D OTF."
+    }
+  },
+  "limits": "Rendering only; no inference/evaluation output mutation or recovery/resolution certification. All per-arm arrays remain native grids; no image registration or brightness fit."
+}

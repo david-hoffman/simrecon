@@ -1,0 +1,118 @@
+{
+  "arm": "known-noiseless",
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 747.079982959,
+  "host_after": {
+    "/usr/sbin/sysctl -n hw.memsize": {
+      "returncode": 0,
+      "stdout": "17179869184\n",
+      "stderr": ""
+    },
+    "/usr/sbin/sysctl vm.swapusage": {
+      "returncode": 0,
+      "stdout": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)\n",
+      "stderr": ""
+    },
+    "/usr/bin/vm_stat": {
+      "returncode": 0,
+      "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     5193.\nPages active:                                 273359.\nPages inactive:                               288047.\nPages speculative:                               112.\nPages throttled:                                   0.\nPages wired down:                             106124.\nPages purgeable:                                  66.\n\"Translation faults\":                      172664449.\nPages copy-on-write:                        10761175.\nPages zero filled:                          94386321.\nPages reactivated:                           7081245.\nPages purged:                                 722125.\nFile-backed pages:                            369077.\nAnonymous pages:                              192441.\nPages stored in compressor:                   685364.\nPages occupied by compressor:                 337036.\nDecompressions:                              3242699.\nCompressions:                                4761029.\nPageins:                                    21633541.\nPageouts:                                      19202.\nSwapins:                                           0.\nSwapouts:                                          0.\n",
+      "stderr": ""
+    },
+    "disk_free_bytes": 23374082048
+  },
+  "all_material_inputs_unchanged": true,
+  "process_group_closed_by_native_completion_or_timeout_handling": true,
+  "result_seal_present": true,
+  "result_seal_sha256": "bc078ddb7c4f898b0437b9e8db71e3135484e28d8ce24a9a24c1f56a4a62c8fe",
+  "classification": "real_frozen_return",
+  "actual_result_summary": {
+    "status": "completed_finite_fit",
+    "stage": "complete",
+    "fit_status": "completed_finite_fit",
+    "fit_stop_reason": "iteration_limit",
+    "has_source": true,
+    "candidate_id": 12,
+    "call_elapsed_seconds": 708.3252976669974,
+    "total_elapsed_seconds": 744.7876782079984,
+    "peak_memory": {
+      "native_ru_maxrss": 1841135616,
+      "units": "bytes",
+      "scope": "whole process high-water, not isolated stage allocation"
+    },
+    "before": {
+      "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+      "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+      "tracked_status": "",
+      "describe": "a261bfd"
+    },
+    "after": {
+      "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+      "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+      "tracked_status": "",
+      "describe": "a261bfd"
+    },
+    "input_seal_sha256": "e426a863179a2e46e60ae772e71200a5874fd1a3b8ac32832098edd6fb7ff3fd",
+    "replay_seconds": 35.85959245800041,
+    "prediction_shape": [
+      3,
+      5,
+      32,
+      256,
+      256
+    ],
+    "source_sha256": "7cda53257b649ce43f59d9a13e2d86e79da650e3529a2d828cf4603baf17bd11",
+    "prediction_sha256": "4c0069850b647e9807eb028ea2b81c6604d01b9c81510303ae5a8261b9a374fb",
+    "replay_limit": "production-operator replay; no independent optical reference; original fit status preserved",
+    "stage_observations": [
+      {
+        "stage": "camera_estimation",
+        "elapsed_seconds": 0.006484875004389323,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 123715584,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 137428992,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "ScalarCameraEstimate",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      },
+      {
+        "stage": "specimen_fit",
+        "elapsed_seconds": 708.3239353340032,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 389103616,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 1839611904,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "SpecimenFitResult",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      },
+      {
+        "stage": "prediction_replay",
+        "elapsed_seconds": 35.51924087500083,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 1839611904,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 1841135616,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "ndarray",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      }
+    ]
+  }
+}

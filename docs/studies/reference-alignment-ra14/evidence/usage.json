@@ -1,0 +1,59 @@
+{
+  "prediction_shape": [
+    3,
+    5,
+    1,
+    1,
+    1
+  ],
+  "prediction_dtype": "<f8",
+  "prediction_values": [
+    [
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208
+    ],
+    [
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208
+    ],
+    [
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208,
+      0.1279016193298208
+    ]
+  ],
+  "metrics": {
+    "count": 4,
+    "reference_l2": 5.0,
+    "error_l2": 5.477225575051661,
+    "relative_l2": 1.0954451150103321,
+    "error_rms": 2.7386127875258306,
+    "error_max_abs": 4.0,
+    "error_mean": -0.5,
+    "unavailable_fields": []
+  },
+  "zero_reference": {
+    "count": 1,
+    "reference_l2": 0.0,
+    "error_l2": 0.0,
+    "relative_l2": null,
+    "error_rms": 0.0,
+    "error_max_abs": 0.0,
+    "error_mean": 0.0,
+    "unavailable_fields": [
+      {
+        "field": "relative_l2",
+        "reason": "zero_reference"
+      }
+    ]
+  },
+  "limits": "Known-source replay and descriptive arithmetic only; no camera/illumination estimation, source recovery or resolution claim."
+}

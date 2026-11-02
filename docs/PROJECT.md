@@ -236,3 +236,24 @@ the separate periodic/frequency-domain solvers or add a new estimator. Its
 [task pointer](tasks/reference-alignment-ra13.md) owns exact candidate/test/review/
 local/CI evidence. Full-scene evaluation follows in RA14; the owner requested a
 stop before RA15 for discussion. No merge/reference execution is authorized.
+
+## Reference-alignment full-scene evaluation
+
+The owner-selected [RA14 contract](contracts/reference-alignment-ra14-v1.md) evaluates
+the original 27-object scene with known/noiseless, estimated/noiseless and original
+estimated/noisy arms. The small comparison module supplies existing-operator
+prediction replay and stable descriptive array metrics; it changes no estimator.
+Matched Q128 paired-source noiseless controls and original fine-source Q256 noisy
+observations remain distinct, so their difference is not a noise-only penalty.
+[The actual full-scene report](reports/reference-alignment-ra14.md) records 94.58%
+source error in the supplied-illumination noiseless fit and genuine `training_misfit`
+in both raw-only estimated arms. [Executed usage](usage/reference-alignment-ra14.md)
+and [frozen study records](studies/reference-alignment-ra14/README.md) preserve those
+outcomes without retuning. [RA14's task](tasks/reference-alignment-ra14.md) owns exact experiment, review/gate
+and stacked-PR evidence. RA01 adopted no full-scene recovery percentage or universal
+resolution criterion: experiment readiness does not establish scientific alignment,
+source recovery or resolution improvement. Only named independently checked noiseless
+finite controls receive limited validation; noisy results remain diagnostic. The
+approved behavior/risk policy, advisory percentages and complete exact local/both-
+platform gates remain binding. Stop before RA15 for owner discussion; no merge or
+reference executable use is authorized.

@@ -1,0 +1,12 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 14.40606225,
+  "all_material_inputs_unchanged": true,
+  "pinned_files": 1903,
+  "render_manifest_present": true,
+  "head_before": "a261bfd85d357e359d628fbb5097679898c9cba0",
+  "head_after": "a261bfd85d357e359d628fbb5097679898c9cba0",
+  "tracked_status_after": "",
+  "finished_utc": "2026-11-02T05:44:39.473907+00:00"
+}

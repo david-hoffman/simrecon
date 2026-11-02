@@ -1,0 +1,91 @@
+{
+  "arm": "estimated-noisy",
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 65.56958770799997,
+  "host_after": {
+    "/usr/sbin/sysctl -n hw.memsize": {
+      "returncode": 0,
+      "stdout": "17179869184\n",
+      "stderr": ""
+    },
+    "/usr/sbin/sysctl vm.swapusage": {
+      "returncode": 0,
+      "stdout": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)\n",
+      "stderr": ""
+    },
+    "/usr/bin/vm_stat": {
+      "returncode": 0,
+      "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     5834.\nPages active:                                 239119.\nPages inactive:                               326512.\nPages speculative:                               791.\nPages throttled:                                   0.\nPages wired down:                             105139.\nPages purgeable:                                1748.\n\"Translation faults\":                      173317743.\nPages copy-on-write:                        10778312.\nPages zero filled:                          94861924.\nPages reactivated:                           7118243.\nPages purged:                                 722901.\nFile-backed pages:                            341144.\nAnonymous pages:                              225278.\nPages stored in compressor:                   678213.\nPages occupied by compressor:                 332476.\nDecompressions:                              3261275.\nCompressions:                                4783073.\nPageins:                                    21792958.\nPageouts:                                      19217.\nSwapins:                                           0.\nSwapouts:                                          0.\n",
+      "stderr": ""
+    },
+    "disk_free_bytes": 23384268800
+  },
+  "all_material_inputs_unchanged": true,
+  "process_group_closed_by_native_completion_or_timeout_handling": true,
+  "result_seal_present": true,
+  "result_seal_sha256": "110a20369ab99fa42c24598e63b4aaf8c06fd066bf6dfbbf4a9f34d9829a9fbb",
+  "classification": "real_frozen_return",
+  "actual_result_summary": {
+    "status": "unavailable",
+    "stage": "handoff",
+    "fit_status": null,
+    "fit_stop_reason": null,
+    "has_source": false,
+    "candidate_id": null,
+    "call_elapsed_seconds": 62.19228799999837,
+    "total_elapsed_seconds": 63.43244929200591,
+    "peak_memory": {
+      "native_ru_maxrss": 1688715264,
+      "units": "bytes",
+      "scope": "whole process high-water, not isolated stage allocation"
+    },
+    "before": {
+      "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+      "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+      "tracked_status": "",
+      "describe": "a261bfd"
+    },
+    "after": {
+      "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+      "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+      "tracked_status": "",
+      "describe": "a261bfd"
+    },
+    "input_seal_sha256": "70f95876a3c9ccb036915975329f4d00f367206ca9832b500563a3516a9cfd86",
+    "stage_observations": [
+      {
+        "stage": "camera_estimation",
+        "elapsed_seconds": 0.005658874993969221,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 379420672,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 393117696,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "ScalarCameraEstimate",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      },
+      {
+        "stage": "predictive_handoff",
+        "elapsed_seconds": 62.08757054199668,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 393117696,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 1688715264,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "CalibrationHandoff",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      }
+    ]
+  }
+}

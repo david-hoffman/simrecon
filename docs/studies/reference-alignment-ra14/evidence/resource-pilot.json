@@ -1,0 +1,161 @@
+{
+  "status": "complete_resource_pilot",
+  "before": {
+    "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     5500.\nPages active:                                 285124.\nPages inactive:                               284318.\nPages speculative:                               219.\nPages throttled:                                   0.\nPages wired down:                             105439.\nPages purgeable:                                1945.\n\"Translation faults\":                      150111160.\nPages copy-on-write:                        10411042.\nPages zero filled:                          78930795.\nPages reactivated:                           5881471.\nPages purged:                                 616193.\nFile-backed pages:                            362836.\nAnonymous pages:                              206825.\nPages stored in compressor:                   663762.\nPages occupied by compressor:                 329271.\nDecompressions:                              2625207.\nCompressions:                                4000991.\nPageins:                                    19134489.\nPageouts:                                      18413.\nSwapins:                                           0.\nSwapouts:                                          0.\n",
+    "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)\n",
+    "disk_free_bytes": 25817034752
+  },
+  "after": {
+    "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                    21195.\nPages active:                                 278533.\nPages inactive:                               277667.\nPages speculative:                                25.\nPages throttled:                                   0.\nPages wired down:                             105116.\nPages purgeable:                                1983.\n\"Translation faults\":                      150334782.\nPages copy-on-write:                        10411532.\nPages zero filled:                          79144223.\nPages reactivated:                           5881553.\nPages purged:                                 616375.\nFile-backed pages:                            290122.\nAnonymous pages:                              266103.\nPages stored in compressor:                   659994.\nPages occupied by compressor:                 327335.\nDecompressions:                              2628716.\nCompressions:                                4000991.\nPageins:                                    19135060.\nPageouts:                                      18413.\nSwapins:                                           0.\nSwapouts:                                          0.\n",
+    "swap": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)\n",
+    "disk_free_bytes": 25745420288
+  },
+  "elapsed_seconds": 29.94018862500525,
+  "peak": {
+    "ru_maxrss": 1252589568,
+    "units": "bytes",
+    "scope": "whole process high-water, not isolated allocation"
+  },
+  "grids": [
+    {
+      "label": "moderate",
+      "source_shape": [
+        4,
+        32,
+        32
+      ],
+      "source_sha256": "b36e110da8a1d897a8b605b6770556593b8c3450b109014da0a0df9ddb472410",
+      "residual_sha256": "4dcd81b130ffd861cc9995758fdb164ab5ba68d8ddad2556790095c740d9ce52",
+      "calls": [
+        {
+          "operation": "build_cache",
+          "seconds": 0.0690655419966788,
+          "payload_bytes": 33792,
+          "memory": {
+            "ru_maxrss": 93323264,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        },
+        {
+          "operation": "public_central_H_pixel_application",
+          "seconds": 0.0022741659995517693,
+          "output_shape": [
+            1,
+            4,
+            16,
+            16
+          ],
+          "output_maxabs": 0.12804578627970753,
+          "memory": {
+            "ru_maxrss": 94224384,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        },
+        {
+          "operation": "one_orientation_forward",
+          "seconds": 0.003581416000088211,
+          "output_shape": [
+            5,
+            4,
+            16,
+            16
+          ],
+          "output_maxabs": 0.32169848223082176,
+          "memory": {
+            "ru_maxrss": 94224384,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        },
+        {
+          "operation": "one_orientation_adjoint",
+          "seconds": 0.003393832994333934,
+          "output_shape": [
+            4,
+            32,
+            32
+          ],
+          "output_maxabs": 0.13924146405224921,
+          "memory": {
+            "ru_maxrss": 94273536,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        }
+      ]
+    },
+    {
+      "label": "full",
+      "source_shape": [
+        32,
+        512,
+        512
+      ],
+      "source_sha256": "7d1bb910e90181d2d0adc93fb99eae08bb6f4ff2adc040cf9767fdb4515b3d6d",
+      "residual_sha256": "6146d8ecc7de8aab369f511c9106fbc56d8a8d8f73504070e20b8127586ff645",
+      "calls": [
+        {
+          "operation": "build_cache",
+          "seconds": 18.66516266700637,
+          "payload_bytes": 67239936,
+          "memory": {
+            "ru_maxrss": 554958848,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        },
+        {
+          "operation": "public_central_H_pixel_application",
+          "seconds": 1.2616637500032084,
+          "output_shape": [
+            1,
+            32,
+            256,
+            256
+          ],
+          "output_maxabs": 0.12800095590512034,
+          "memory": {
+            "ru_maxrss": 925188096,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        },
+        {
+          "operation": "one_orientation_forward",
+          "seconds": 4.898454000001948,
+          "output_shape": [
+            5,
+            32,
+            256,
+            256
+          ],
+          "output_maxabs": 0.3382986146082004,
+          "memory": {
+            "ru_maxrss": 1109671936,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        },
+        {
+          "operation": "one_orientation_adjoint",
+          "seconds": 4.916253749994212,
+          "output_shape": [
+            32,
+            512,
+            512
+          ],
+          "output_maxabs": 0.13927988575023267,
+          "memory": {
+            "ru_maxrss": 1252589568,
+            "units": "bytes",
+            "scope": "whole process high-water, not isolated allocation"
+          }
+        }
+      ]
+    }
+  ],
+  "producer_sha256": "fb2cdc11cca13858416c7a464f62379765f75121695d516d08528e1aef275530",
+  "limits": "Resource/finite-output observation only; no independent full-grid accuracy, recovery or memory guarantee. Tiny independent numerical component controls are inherited from exact RA13 full gate; new comparison controls remain independently authored in RA14. No competing heavy phase."
+}

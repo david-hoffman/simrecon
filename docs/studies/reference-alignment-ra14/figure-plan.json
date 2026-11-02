@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "frozen_before_inference": true,
+  "original_catalogue_indices": [
+    0,
+    10
+  ],
+  "representative_exposure": [
+    0,
+    0
+  ],
+  "all27_catalogue_profiles": "retain every original centre, eachaxis nearest gridplanes, no fit/interpolation/registration",
+  "source_views": "XY/XZ maxprojections and fixed firstcentresections; sharedlinearreference/estimate units, signedprojecteddifferences = differenceofprojections",
+  "profiles": "quantitativeactualweights plus separately labeledownpeakshape, actualsampleplane coordinates",
+  "prediction_views": "fixedo0p0, nativephysicalaxes; all15means/RMS and full-frame spectra retained",
+  "spectra": "untapered norm=ortho full3DDFT power; physicalfftfreq axes cycles/um, axiswise power sums; no opticaltransfer or observable/resolution claim",
+  "declared_cache_transfer": "if rendered, label actualfinite lateral half-spectrum at fixedlags0,16,31; no continuous/global OTF or recoveredinformationclaim",
+  "colour_rule": "sharedreference/estimate linear scale, signed symmetricdifference scale, no fitted intensity or hidden clipping",
+  "scientific_limits": "No matchedconventional/photonbudget/resolvability criterion adopted. These figures do not establish resolution.",
+  "profile_shape_display_window_half_width_um": 0.6,
+  "quantitative_profiles": "retain and display complete native line; own-full-line-peak shape normalized separately only",
+  "shared_amplitude_colour_limits": "include all represented reference and estimate values, including negative predictions; no clipping",
+  "preinference_revision": "Detail fixed-window and full-range display choices before any fit; input/algorithm/scientificcriteria unchanged"
+}

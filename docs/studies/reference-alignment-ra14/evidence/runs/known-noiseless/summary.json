@@ -1,0 +1,89 @@
+{
+  "status": "completed_finite_fit",
+  "stage": "complete",
+  "fit_status": "completed_finite_fit",
+  "fit_stop_reason": "iteration_limit",
+  "has_source": true,
+  "candidate_id": 12,
+  "call_elapsed_seconds": 708.3252976669974,
+  "total_elapsed_seconds": 744.7876782079984,
+  "peak_memory": {
+    "native_ru_maxrss": 1841135616,
+    "units": "bytes",
+    "scope": "whole process high-water, not isolated stage allocation"
+  },
+  "before": {
+    "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+    "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+    "tracked_status": "",
+    "describe": "a261bfd"
+  },
+  "after": {
+    "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+    "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+    "tracked_status": "",
+    "describe": "a261bfd"
+  },
+  "input_seal_sha256": "e426a863179a2e46e60ae772e71200a5874fd1a3b8ac32832098edd6fb7ff3fd",
+  "replay_seconds": 35.85959245800041,
+  "prediction_shape": [
+    3,
+    5,
+    32,
+    256,
+    256
+  ],
+  "source_sha256": "7cda53257b649ce43f59d9a13e2d86e79da650e3529a2d828cf4603baf17bd11",
+  "prediction_sha256": "4c0069850b647e9807eb028ea2b81c6604d01b9c81510303ae5a8261b9a374fb",
+  "replay_limit": "production-operator replay; no independent optical reference; original fit status preserved",
+  "stage_observations": [
+    {
+      "stage": "camera_estimation",
+      "elapsed_seconds": 0.006484875004389323,
+      "entry_process_high_water": {
+        "native_ru_maxrss": 123715584,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_process_high_water": {
+        "native_ru_maxrss": 137428992,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_return_type": "ScalarCameraEstimate",
+      "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+    },
+    {
+      "stage": "specimen_fit",
+      "elapsed_seconds": 708.3239353340032,
+      "entry_process_high_water": {
+        "native_ru_maxrss": 389103616,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_process_high_water": {
+        "native_ru_maxrss": 1839611904,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_return_type": "SpecimenFitResult",
+      "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+    },
+    {
+      "stage": "prediction_replay",
+      "elapsed_seconds": 35.51924087500083,
+      "entry_process_high_water": {
+        "native_ru_maxrss": 1839611904,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_process_high_water": {
+        "native_ru_maxrss": 1841135616,
+        "units": "bytes",
+        "scope": "whole process high-water, not isolated stage allocation"
+      },
+      "exit_return_type": "ndarray",
+      "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+    }
+  ]
+}

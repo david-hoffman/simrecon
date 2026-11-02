@@ -1,0 +1,167 @@
+{
+  "status": "frozen_real_result",
+  "summary": {
+    "status": "completed_finite_fit",
+    "stage": "complete",
+    "fit_status": "completed_finite_fit",
+    "fit_stop_reason": "iteration_limit",
+    "has_source": true,
+    "candidate_id": 12,
+    "call_elapsed_seconds": 708.3252976669974,
+    "total_elapsed_seconds": 744.7876782079984,
+    "peak_memory": {
+      "native_ru_maxrss": 1841135616,
+      "units": "bytes",
+      "scope": "whole process high-water, not isolated stage allocation"
+    },
+    "before": {
+      "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+      "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+      "tracked_status": "",
+      "describe": "a261bfd"
+    },
+    "after": {
+      "head": "a261bfd85d357e359d628fbb5097679898c9cba0",
+      "tree": "40f136502f5f33ed5231cd66c40bed59783a589c",
+      "tracked_status": "",
+      "describe": "a261bfd"
+    },
+    "input_seal_sha256": "e426a863179a2e46e60ae772e71200a5874fd1a3b8ac32832098edd6fb7ff3fd",
+    "replay_seconds": 35.85959245800041,
+    "prediction_shape": [
+      3,
+      5,
+      32,
+      256,
+      256
+    ],
+    "source_sha256": "7cda53257b649ce43f59d9a13e2d86e79da650e3529a2d828cf4603baf17bd11",
+    "prediction_sha256": "4c0069850b647e9807eb028ea2b81c6604d01b9c81510303ae5a8261b9a374fb",
+    "replay_limit": "production-operator replay; no independent optical reference; original fit status preserved",
+    "stage_observations": [
+      {
+        "stage": "camera_estimation",
+        "elapsed_seconds": 0.006484875004389323,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 123715584,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 137428992,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "ScalarCameraEstimate",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      },
+      {
+        "stage": "specimen_fit",
+        "elapsed_seconds": 708.3239353340032,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 389103616,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 1839611904,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "SpecimenFitResult",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      },
+      {
+        "stage": "prediction_replay",
+        "elapsed_seconds": 35.51924087500083,
+        "entry_process_high_water": {
+          "native_ru_maxrss": 1839611904,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_process_high_water": {
+          "native_ru_maxrss": 1841135616,
+          "units": "bytes",
+          "scope": "whole process high-water, not isolated stage allocation"
+        },
+        "exit_return_type": "ndarray",
+        "limits": "Public call/return observation only; None return event can reflect an exception. Native returned outcome remains authoritative. Process high-water readings overlap earlier history, not isolated stage allocations or additive peaks; profiler overhead included."
+      }
+    ]
+  },
+  "files": {
+    "summary.json": {
+      "size_bytes": 3666,
+      "sha256": "d10ff20c6f952ed4d73450f8ae3749f10f3bfc2ad97cb580073ea9d120725083"
+    },
+    "predictions_relative.npy": {
+      "size_bytes": 251658368,
+      "sha256": "4c0069850b647e9807eb028ea2b81c6604d01b9c81510303ae5a8261b9a374fb"
+    },
+    "result.json": {
+      "size_bytes": 59068,
+      "sha256": "41d2b0f30a841b7eb4cc36d18b66b01321d30d8532249fe734631888788bf708"
+    },
+    "source_relative.npy": {
+      "size_bytes": 33554560,
+      "sha256": "7cda53257b649ce43f59d9a13e2d86e79da650e3529a2d828cf4603baf17bd11"
+    },
+    "result-arrays/0008.npy": {
+      "size_bytes": 152,
+      "sha256": "0237082f316c456f6dfc5bfd9f16db975dd4a0020cf5ba83f3d4d7820f60efe8"
+    },
+    "result-arrays/0009.npy": {
+      "size_bytes": 152,
+      "sha256": "6197ef89325191451856e112ecff162435b23a24315571cbc6b12ef09d8b4294"
+    },
+    "result-arrays/0013.npy": {
+      "size_bytes": 33554560,
+      "sha256": "7cda53257b649ce43f59d9a13e2d86e79da650e3529a2d828cf4603baf17bd11"
+    },
+    "result-arrays/0007.npy": {
+      "size_bytes": 192,
+      "sha256": "73379d1814b5c32537aba531a73cd69415e1d09e0c0a35eda7c8cb0527b62333"
+    },
+    "result-arrays/0006.npy": {
+      "size_bytes": 192,
+      "sha256": "73379d1814b5c32537aba531a73cd69415e1d09e0c0a35eda7c8cb0527b62333"
+    },
+    "result-arrays/0012.npy": {
+      "size_bytes": 152,
+      "sha256": "6fa609216cb94daeb17af75c9f305a5da5ce02e378c13dae885ddae8eefe319e"
+    },
+    "result-arrays/0004.npy": {
+      "size_bytes": 192,
+      "sha256": "a3b38ce9dfb0b8a1cee89e03c279957bc2f0366fa28cf481aa3f80acf625ec5f"
+    },
+    "result-arrays/0010.npy": {
+      "size_bytes": 176,
+      "sha256": "b9130def03b012d4465353b1982c3fba81027d0c4ea2200957f0695d84785e6a"
+    },
+    "result-arrays/0011.npy": {
+      "size_bytes": 248,
+      "sha256": "398bd0cb36964e98f1fb040e5089dbd6c4de181fc9809aac95d1668da9a8c74e"
+    },
+    "result-arrays/0005.npy": {
+      "size_bytes": 192,
+      "sha256": "73379d1814b5c32537aba531a73cd69415e1d09e0c0a35eda7c8cb0527b62333"
+    },
+    "result-arrays/0001.npy": {
+      "size_bytes": 152,
+      "sha256": "0237082f316c456f6dfc5bfd9f16db975dd4a0020cf5ba83f3d4d7820f60efe8"
+    },
+    "result-arrays/0000.npy": {
+      "size_bytes": 152,
+      "sha256": "6197ef89325191451856e112ecff162435b23a24315571cbc6b12ef09d8b4294"
+    },
+    "result-arrays/0002.npy": {
+      "size_bytes": 192,
+      "sha256": "ffe57fd2ad80e259c5ed12382574a93e2488ad26bfa329d60316ebec01e1339c"
+    },
+    "result-arrays/0003.npy": {
+      "size_bytes": 192,
+      "sha256": "be435695637fd0c05c05afa6a0f177e52988427f6e47951c71d9853c6dc31fa6"
+    }
+  },
+  "limits": "No truth evaluation in this process; unavailable/partial component status preserved; timeout/exceptions cannot produce this seal."
+}

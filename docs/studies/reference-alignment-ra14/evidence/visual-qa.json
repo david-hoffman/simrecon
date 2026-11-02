@@ -1,0 +1,45 @@
+{
+  "status": "all9actualPNGs visually inspected",
+  "utc": "2026-11-02T05:45:38.239260+00:00",
+  "figures": {
+    "workflow-outcomes": {
+      "sha256": "ece2676b0682ab43da4bdb1d951d4dd1abc1dc0bfba999c6e753288431321012",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "known-noiseless-source-comparison": {
+      "sha256": "c06db7bb1d7d28121598294014fb17cacb2f97fdd9d56eacc4e9ae6178604ea9",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "known-noiseless-prediction-comparison": {
+      "sha256": "122419f11da040ada603da88c811d8226b94c71fb6699f63680cff53b4bf0e08",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "known-noiseless-finite-trial-history": {
+      "sha256": "f3583ce0c563c94b827dec20f0ab38aafc85d84f52cafe698a6b246a4b6bdd18",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "known-noiseless-fixed-profiles": {
+      "sha256": "33375df8c2e07890a72b8c38a7593d9e2ebbb1e94051643a69cc6daaeaeb4d7d",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "known-noiseless-all15-residuals": {
+      "sha256": "e4328383c00f9a51d5be173fc90114a876c00cfc8ac597582b7693f191606405",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "known-noiseless-image-spectra": {
+      "sha256": "ebba69cfd6bcad78f7792ff8b876509753097623b3cc34242c285f1f9de7d5c1",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "known-noiseless-source-spectra": {
+      "sha256": "4890e10e6b5769b4d4a6e0d3a88afb0001bdd244c4289625a40d599a5485c702",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    },
+    "declared-cache-representation": {
+      "sha256": "6eed9ae6f96749122043697c1835fb20d10c61416d3d4901cef36dd3b691cd84",
+      "inspection": "labels/units/legends readable, no observed clipping; shared quantitative scales and signed differences; complete native-grid physical axes; honest failure/finite-stop labels"
+    }
+  },
+  "render_attempts": 1,
+  "layout_corrections": 0,
+  "limits": "Visual inspection plus independently verified profile/spectrum arrays; no fullgrid optical accuracy/recovery/resolution certification."
+}

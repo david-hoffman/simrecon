@@ -1,0 +1,2235 @@
+{
+  "arm": "known/noiseless supplied-illumination control",
+  "camera_estimate": {
+    "means_counts": {
+      "array_file": "result-arrays/0000.npy",
+      "shape": [
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "6197ef89325191451856e112ecff162435b23a24315571cbc6b12ef09d8b4294",
+      "size_bytes": 152
+    },
+    "variances_counts2": {
+      "array_file": "result-arrays/0001.npy",
+      "shape": [
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "0237082f316c456f6dfc5bfd9f16db975dd4a0020cf5ba83f3d4d7820f60efe8",
+      "size_bytes": 152
+    },
+    "frame_means_counts": [
+      {
+        "array_file": "result-arrays/0002.npy",
+        "shape": [
+          8
+        ],
+        "dtype": "<f8",
+        "sha256": "ffe57fd2ad80e259c5ed12382574a93e2488ad26bfa329d60316ebec01e1339c",
+        "size_bytes": 192
+      },
+      {
+        "array_file": "result-arrays/0003.npy",
+        "shape": [
+          8
+        ],
+        "dtype": "<f8",
+        "sha256": "be435695637fd0c05c05afa6a0f177e52988427f6e47951c71d9853c6dc31fa6",
+        "size_bytes": 192
+      },
+      {
+        "array_file": "result-arrays/0004.npy",
+        "shape": [
+          8
+        ],
+        "dtype": "<f8",
+        "sha256": "a3b38ce9dfb0b8a1cee89e03c279957bc2f0366fa28cf481aa3f80acf625ec5f",
+        "size_bytes": 192
+      }
+    ],
+    "frame_variances_counts2": [
+      {
+        "array_file": "result-arrays/0005.npy",
+        "shape": [
+          8
+        ],
+        "dtype": "<f8",
+        "sha256": "73379d1814b5c32537aba531a73cd69415e1d09e0c0a35eda7c8cb0527b62333",
+        "size_bytes": 192
+      },
+      {
+        "array_file": "result-arrays/0006.npy",
+        "shape": [
+          8
+        ],
+        "dtype": "<f8",
+        "sha256": "73379d1814b5c32537aba531a73cd69415e1d09e0c0a35eda7c8cb0527b62333",
+        "size_bytes": 192
+      },
+      {
+        "array_file": "result-arrays/0007.npy",
+        "shape": [
+          8
+        ],
+        "dtype": "<f8",
+        "sha256": "73379d1814b5c32537aba531a73cd69415e1d09e0c0a35eda7c8cb0527b62333",
+        "size_bytes": 192
+      }
+    ],
+    "empirical_mean_se_counts": {
+      "array_file": "result-arrays/0008.npy",
+      "shape": [
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "0237082f316c456f6dfc5bfd9f16db975dd4a0020cf5ba83f3d4d7820f60efe8",
+      "size_bytes": 152
+    },
+    "contrast_counts": 1700.0,
+    "gain_counts_per_e": null,
+    "information_codes": [
+      "nonpositive_variance_contrast"
+    ],
+    "source": "RA14 known-illumination control camera from deterministic raw groups"
+  },
+  "specimen_fit": {
+    "status": "completed_finite_fit",
+    "stage": "complete",
+    "stop_reason": "iteration_limit",
+    "message": "Specimen fit complete: iteration_limit.",
+    "failure_code": null,
+    "failure_component": null,
+    "detector_shape_zyx": [
+      32,
+      256,
+      256
+    ],
+    "source_shape_zyx": [
+      32,
+      512,
+      512
+    ],
+    "detector_spacing_um_zyx": [
+      0.125,
+      0.08,
+      0.08
+    ],
+    "source_spacing_um_zyx": [
+      0.125,
+      0.04,
+      0.04
+    ],
+    "specimen_origin_um_zyx": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "excitation_um": 0.488,
+    "emission_um": 0.525,
+    "refractive_index": 1.515,
+    "detection_na": 1.4,
+    "pixel_samples_yx": [
+      2,
+      2
+    ],
+    "pupil_order": 128,
+    "regularization": 0.001,
+    "max_iterations": 12,
+    "max_backtracking_trials": 8,
+    "camera_means_counts": {
+      "array_file": "result-arrays/0009.npy",
+      "shape": [
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "6197ef89325191451856e112ecff162435b23a24315571cbc6b12ef09d8b4294",
+      "size_bytes": 152
+    },
+    "blank_counts": 20.2,
+    "contrast_counts": 1700.0,
+    "camera_source": "RA14 known-illumination control camera from deterministic raw groups",
+    "carriers_yx_per_um": {
+      "array_file": "result-arrays/0010.npy",
+      "shape": [
+        3,
+        2
+      ],
+      "dtype": "<f8",
+      "sha256": "b9130def03b012d4465353b1982c3fba81027d0c4ea2200957f0695d84785e6a",
+      "size_bytes": 176
+    },
+    "phases_at_specimen_origin_rad": {
+      "array_file": "result-arrays/0011.npy",
+      "shape": [
+        3,
+        5
+      ],
+      "dtype": "<f8",
+      "sha256": "398bd0cb36964e98f1fb040e5089dbd6c4de181fc9809aac95d1668da9a8c74e",
+      "size_bytes": 248
+    },
+    "beam_amplitudes": {
+      "array_file": "result-arrays/0012.npy",
+      "shape": [
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "6fa609216cb94daeb17af75c9f305a5da5ce02e378c13dae885ddae8eefe319e",
+      "size_bytes": 152
+    },
+    "illumination_source": "RA14 explicitly supplied original true illumination; known-input control only",
+    "source_relative": {
+      "array_file": "result-arrays/0013.npy",
+      "shape": [
+        32,
+        512,
+        512
+      ],
+      "dtype": "<f4",
+      "sha256": "7cda53257b649ce43f59d9a13e2d86e79da650e3529a2d828cf4603baf17bd11",
+      "size_bytes": 33554560
+    },
+    "initial_score": {
+      "candidate_id": 0,
+      "data_objective": 0.02009091002058331,
+      "penalty_objective": 0.0,
+      "total_objective": 0.02009091002058331,
+      "residual_mean": [
+        [
+          -0.03652999355826306,
+          -0.03586664689383583,
+          -0.03617493707811122,
+          -0.03649516963998862,
+          -0.035657646040344715
+        ],
+        [
+          -0.03691467381953499,
+          -0.03647697674337123,
+          -0.03553849382828033,
+          -0.036996329069577144,
+          -0.0348932195574025
+        ],
+        [
+          -0.03603088771375244,
+          -0.035704288335685834,
+          -0.03679345109822015,
+          -0.03549931193663616,
+          -0.03655074505769173
+        ]
+      ],
+      "residual_rms": [
+        [
+          0.20222406944887,
+          0.19236216177022128,
+          0.1961620981504264,
+          0.20179787324579543,
+          0.20438085880125428
+        ],
+        [
+          0.2170826861933716,
+          0.20962802222808122,
+          0.18535875998440027,
+          0.19662872141559493,
+          0.19862773250158675
+        ],
+        [
+          0.19681715965388064,
+          0.20419074727699194,
+          0.2064536542585502,
+          0.18970455159916164,
+          0.20315450995038958
+        ]
+      ]
+    },
+    "best_score": {
+      "candidate_id": 12,
+      "data_objective": 0.008450775273186911,
+      "penalty_objective": 5.012699509269444e-09,
+      "total_objective": 0.00845078028588642,
+      "residual_mean": [
+        [
+          0.0045539620766684745,
+          0.005027756976424465,
+          0.004810799171751384,
+          0.004568533655984035,
+          0.005194133844965178
+        ],
+        [
+          0.0042537362081060655,
+          0.004586815141499715,
+          0.005264928757643185,
+          0.004194893625481371,
+          0.005781827673158898
+        ],
+        [
+          0.004925181243013166,
+          0.00519281168919508,
+          0.004290665419617435,
+          0.005373222282900043,
+          0.004487812457929926
+        ]
+      ],
+      "residual_rms": [
+        [
+          0.1311986423983297,
+          0.11984677636231028,
+          0.12402534583823774,
+          0.13154805804864655,
+          0.13660293118187028
+        ],
+        [
+          0.14805599688701473,
+          0.14194850368641443,
+          0.11127747176474789,
+          0.1226046756862238,
+          0.12984595150302206
+        ],
+        [
+          0.12498949408139338,
+          0.13632848934248556,
+          0.13643042211091816,
+          0.11806457170838454,
+          0.1322669375371785
+        ]
+      ]
+    },
+    "last_complete_gradient": {
+      "candidate_id": 11,
+      "max_abs": 1.8341376729667376e-05
+    },
+    "seed_step": 900.9414311419729,
+    "attempt_trace": [
+      {
+        "candidate_id": 0,
+        "iteration": 0,
+        "trial": 0,
+        "from_candidate_id": null,
+        "gradient_candidate_id": null,
+        "step": null,
+        "projected_gradient_max_abs": null,
+        "outcome": "initial_scored",
+        "score": {
+          "candidate_id": 0,
+          "data_objective": 0.02009091002058331,
+          "penalty_objective": 0.0,
+          "total_objective": 0.02009091002058331,
+          "residual_mean": [
+            [
+              -0.03652999355826306,
+              -0.03586664689383583,
+              -0.03617493707811122,
+              -0.03649516963998862,
+              -0.035657646040344715
+            ],
+            [
+              -0.03691467381953499,
+              -0.03647697674337123,
+              -0.03553849382828033,
+              -0.036996329069577144,
+              -0.0348932195574025
+            ],
+            [
+              -0.03603088771375244,
+              -0.035704288335685834,
+              -0.03679345109822015,
+              -0.03549931193663616,
+              -0.03655074505769173
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.20222406944887,
+              0.19236216177022128,
+              0.1961620981504264,
+              0.20179787324579543,
+              0.20438085880125428
+            ],
+            [
+              0.2170826861933716,
+              0.20962802222808122,
+              0.18535875998440027,
+              0.19662872141559493,
+              0.19862773250158675
+            ],
+            [
+              0.19681715965388064,
+              0.20419074727699194,
+              0.2064536542585502,
+              0.18970455159916164,
+              0.20315450995038958
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 0,
+          "max_abs": 2.487749709271626e-05
+        }
+      },
+      {
+        "candidate_id": 1,
+        "iteration": 1,
+        "trial": 1,
+        "from_candidate_id": 0,
+        "gradient_candidate_id": 0,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 2.487749709271626e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 1,
+          "data_objective": 0.015526172155103693,
+          "penalty_objective": 4.902554803910726e-10,
+          "total_objective": 0.015526172645359174,
+          "residual_mean": [
+            [
+              0.025055201385706678,
+              0.025558330928627023,
+              0.02527605501612209,
+              0.025084716671034585,
+              0.025682112654496398
+            ],
+            [
+              0.02469249719308348,
+              0.024981805916942948,
+              0.02588388801747601,
+              0.024601776532944823,
+              0.02640575838965234
+            ],
+            [
+              0.02553054944349016,
+              0.02571396621970619,
+              0.024687247793731302,
+              0.026034774724031096,
+              0.024828887226270094
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.17774584619144687,
+              0.1674819902025129,
+              0.17117063633958518,
+              0.17759292817407143,
+              0.18108916466950387
+            ],
+            [
+              0.1935379024386737,
+              0.1864745392523722,
+              0.15971914945651386,
+              0.17105954827142672,
+              0.17534295431486052
+            ],
+            [
+              0.17231373980492537,
+              0.18098577266472576,
+              0.18199024570615635,
+              0.16534018691655655,
+              0.17848624232590626
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 1,
+          "max_abs": 2.2693813696851578e-05
+        }
+      },
+      {
+        "candidate_id": 2,
+        "iteration": 2,
+        "trial": 1,
+        "from_candidate_id": 1,
+        "gradient_candidate_id": 1,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 2.2693813696851578e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 2,
+          "data_objective": 0.01357637312889738,
+          "penalty_objective": 6.545871541179425e-10,
+          "total_objective": 0.013576373783484533,
+          "residual_mean": [
+            [
+              -0.0034013247375207717,
+              -0.002844176729523441,
+              -0.0031247775447288953,
+              -0.003371152428317807,
+              -0.0026818514612747426
+            ],
+            [
+              -0.0037557245489978413,
+              -0.0034096168061088544,
+              -0.0025311392025537858,
+              -0.0038435470097045532,
+              -0.0019720304397077074
+            ],
+            [
+              -0.00293574739177603,
+              -0.0026895911135720162,
+              -0.003704396552848322,
+              -0.0024370853701826786,
+              -0.003519964909716119
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1663505100925927,
+              0.15553412800649385,
+              0.15946793129511946,
+              0.1662368226272658,
+              0.17000944101181473
+            ],
+            [
+              0.18279890841870874,
+              0.17563121320241865,
+              0.1473234660612886,
+              0.159207954274445,
+              0.16386803435042774
+            ],
+            [
+              0.16057721490522245,
+              0.16984804589397806,
+              0.17090410664476943,
+              0.15326951312290615,
+              0.1672151110756679
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 2,
+          "max_abs": 2.239401663958831e-05
+        }
+      },
+      {
+        "candidate_id": 3,
+        "iteration": 3,
+        "trial": 1,
+        "from_candidate_id": 2,
+        "gradient_candidate_id": 2,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 2.239401663958831e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 3,
+          "data_objective": 0.012507916212877715,
+          "penalty_objective": 1.103801288135055e-09,
+          "total_objective": 0.012507917316679003,
+          "residual_mean": [
+            [
+              0.004062299521930707,
+              0.004585869611055821,
+              0.004316487215768404,
+              0.00409163726440318,
+              0.004735430422141357
+            ],
+            [
+              0.003720212940979263,
+              0.004046540577810868,
+              0.004887186797523368,
+              0.003635659395482381,
+              0.0054165964892973865
+            ],
+            [
+              0.004509233219460577,
+              0.00473693383936718,
+              0.003756394244296864,
+              0.004993763916941634,
+              0.003926977164429748
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1596448648594559,
+              0.14873720418048067,
+              0.1526629608469643,
+              0.15962403239938375,
+              0.16370419320430937
+            ],
+            [
+              0.176265906560872,
+              0.16928672065510925,
+              0.14037777246203967,
+              0.15212959293100387,
+              0.1575317346758106
+            ],
+            [
+              0.15384131301466475,
+              0.16353830457009502,
+              0.16426372626237795,
+              0.1466127822370618,
+              0.16050023047021283
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 3,
+          "max_abs": 2.1543212688076817e-05
+        }
+      },
+      {
+        "candidate_id": 4,
+        "iteration": 4,
+        "trial": 1,
+        "from_candidate_id": 3,
+        "gradient_candidate_id": 3,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 2.1543212688076817e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 4,
+          "data_objective": 0.011745684509074119,
+          "penalty_objective": 1.4935595658400162e-09,
+          "total_objective": 0.011745686002633685,
+          "residual_mean": [
+            [
+              0.004014611478267859,
+              0.004529944583853687,
+              0.004269070222958807,
+              0.004042053463492429,
+              0.004682301790039478
+            ],
+            [
+              0.003680584647972506,
+              0.004007092917553659,
+              0.004821172722121745,
+              0.003599741945268608,
+              0.0053461138466489476
+            ],
+            [
+              0.004450235064095491,
+              0.004681379015612944,
+              0.0037181709473307176,
+              0.004926948981191917,
+              0.0038900596993489906
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1547039612447164,
+              0.14369770469259152,
+              0.1476599171189649,
+              0.15473930628589147,
+              0.15901372120973162
+            ],
+            [
+              0.17144063779080398,
+              0.16457687170462823,
+              0.13524092405873417,
+              0.1469558228933129,
+              0.1527573788712845
+            ],
+            [
+              0.14883373250252507,
+              0.1588294269634032,
+              0.159417338645237,
+              0.14162203378483262,
+              0.15558852600541817
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 4,
+          "max_abs": 2.1018357768484032e-05
+        }
+      },
+      {
+        "candidate_id": 5,
+        "iteration": 5,
+        "trial": 1,
+        "from_candidate_id": 4,
+        "gradient_candidate_id": 4,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 2.1018357768484032e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 5,
+          "data_objective": 0.011121448322840986,
+          "penalty_objective": 1.90076292411821e-09,
+          "total_objective": 0.01112145022360391,
+          "residual_mean": [
+            [
+              0.004243364021050355,
+              0.004749838143248079,
+              0.004497136344081559,
+              0.0042686674063917174,
+              0.004904004373043055
+            ],
+            [
+              0.003914602532121101,
+              0.004244531536688632,
+              0.00502990431362532,
+              0.0038402414784207716,
+              0.0055524208134550895
+            ],
+            [
+              0.004666713437939346,
+              0.0049025232925037155,
+              0.003954279067441361,
+              0.0051366444141206745,
+              0.004128801868122873
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1505373398302486,
+              0.13945053246851413,
+              0.1434473894240389,
+              0.15062231784501334,
+              0.15505272231357142
+            ],
+            [
+              0.16734825027132763,
+              0.160589719224268,
+              0.13093232019257656,
+              0.14259876196893814,
+              0.14872048679227076
+            ],
+            [
+              0.14460881888468707,
+              0.15485319283733523,
+              0.1553327965805612,
+              0.1374220674760802,
+              0.15144518352389164
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 5,
+          "max_abs": 2.0528043993764195e-05
+        }
+      },
+      {
+        "candidate_id": 6,
+        "iteration": 6,
+        "trial": 1,
+        "from_candidate_id": 5,
+        "gradient_candidate_id": 5,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 2.0528043993764195e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 6,
+          "data_objective": 0.010591097087960844,
+          "penalty_objective": 2.320621655833675e-09,
+          "total_objective": 0.0105910994085825,
+          "residual_mean": [
+            [
+              0.0043471401432722875,
+              0.004847250420112473,
+              0.004601385285471539,
+              0.004370567987096701,
+              0.0050036918587144244
+            ],
+            [
+              0.004023143957825903,
+              0.0043569599601513825,
+              0.005116665243197952,
+              0.003954677288389534,
+              0.005639019023471225
+            ],
+            [
+              0.004760361403222212,
+              0.005001578235688673,
+              0.0040643799568584995,
+              0.005224976353538751,
+              0.004242362996968016
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.14690378486857011,
+              0.13575081599578467,
+              0.1397806947682315,
+              0.14703361646297491,
+              0.15159464248204357
+            ],
+            [
+              0.1637622611743089,
+              0.1571043040610205,
+              0.1271920593991804,
+              0.13881011214123118,
+              0.14519085895045172
+            ],
+            [
+              0.14092273699407581,
+              0.15138113677262008,
+              0.151774539579458,
+              0.13376509291304178,
+              0.14783461492202765
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 6,
+          "max_abs": 2.0087237092111226e-05
+        }
+      },
+      {
+        "candidate_id": 7,
+        "iteration": 7,
+        "trial": 1,
+        "from_candidate_id": 6,
+        "gradient_candidate_id": 6,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 2.0087237092111226e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 7,
+          "data_objective": 0.01013011276330342,
+          "penalty_objective": 2.7515004045207153e-09,
+          "total_objective": 0.010130115514803825,
+          "residual_mean": [
+            [
+              0.004423851566360892,
+              0.004917378888423786,
+              0.004679887312012467,
+              0.004444200703743804,
+              0.005077705655540701
+            ],
+            [
+              0.004103650211694606,
+              0.0044406793807837295,
+              0.005179415009933349,
+              0.0040391871567142775,
+              0.005701988177361306
+            ],
+            [
+              0.004826302469274724,
+              0.00507542679495419,
+              0.00414610113980982,
+              0.005287049547113444,
+              0.004329550628098215
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1436694557754013,
+              0.13246258795533356,
+              0.1365235768830305,
+              0.1438405529500576,
+              0.14851436366002524
+            ],
+            [
+              0.16055605197296927,
+              0.15399536289523327,
+              0.12387925472858051,
+              0.13544772323049317,
+              0.14204312407497166
+            ],
+            [
+              0.1376405543556772,
+              0.1482876729560649,
+              0.1486101572166952,
+              0.130515878026837,
+              0.14462390411781445
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 7,
+          "max_abs": 1.9683445870624314e-05
+        }
+      },
+      {
+        "candidate_id": 8,
+        "iteration": 8,
+        "trial": 1,
+        "from_candidate_id": 7,
+        "gradient_candidate_id": 7,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 1.9683445870624314e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 8,
+          "data_objective": 0.009722494931285052,
+          "penalty_objective": 3.191376334186711e-09,
+          "total_objective": 0.009722498122661386,
+          "residual_mean": [
+            [
+              0.004472552332186054,
+              0.00495984132859843,
+              0.004730083364717114,
+              0.004489933170551904,
+              0.005123633499866334
+            ],
+            [
+              0.00415670588149866,
+              0.004493590627473209,
+              0.005217035827593361,
+              0.004093748158086993,
+              0.005738180652391145
+            ],
+            [
+              0.004866224470516613,
+              0.005120506558053524,
+              0.004199293099393856,
+              0.005322979845626545,
+              0.004386597134838359
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1407466088765319,
+              0.12949584540597034,
+              0.13358537859261968,
+              0.14095650502390084,
+              0.14572795005902833
+            ],
+            [
+              0.15764679808091017,
+              0.15117983863992987,
+              0.12089971050153966,
+              0.13241869370748446,
+              0.13919238697412914
+            ],
+            [
+              0.13467423998932335,
+              0.1454890066733472,
+              0.1457526365610271,
+              0.12758536133161844,
+              0.14172422474521248
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 8,
+          "max_abs": 1.931102783031464e-05
+        }
+      },
+      {
+        "candidate_id": 9,
+        "iteration": 9,
+        "trial": 1,
+        "from_candidate_id": 8,
+        "gradient_candidate_id": 8,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 1.931102783031464e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 9,
+          "data_objective": 0.009357382408178381,
+          "penalty_objective": 3.6387179537481417e-09,
+          "total_objective": 0.009357386046896335,
+          "residual_mean": [
+            [
+              0.00449994337729432,
+              0.004982065805994366,
+              0.00475804307775041,
+              0.0045153576953684185,
+              0.005147887063337529
+            ],
+            [
+              0.004188344942076005,
+              0.0045237726447964815,
+              0.005235054079586898,
+              0.004125863622590147,
+              0.005754571161149274
+            ],
+            [
+              0.00488695024618554,
+              0.005144269217944741,
+              0.004230051109698692,
+              0.005340279092230958,
+              0.004419830702173608
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1380748264317745,
+              0.12678863632074186,
+              0.13090397751152105,
+              0.1383216932539476,
+              0.1431782512107299
+            ],
+            [
+              0.1549772817148306,
+              0.1486015053714017,
+              0.11818925584832102,
+              0.12965896973433116,
+              0.13658184371777632
+            ],
+            [
+              0.1319632029897319,
+              0.14292830394477357,
+              0.1431424317345264,
+              0.12491236157477575,
+              0.1390753310951115
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 9,
+          "max_abs": 1.8965875011994782e-05
+        }
+      },
+      {
+        "candidate_id": 10,
+        "iteration": 10,
+        "trial": 1,
+        "from_candidate_id": 9,
+        "gradient_candidate_id": 9,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 1.8965875011994782e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 10,
+          "data_objective": 0.009027239359988507,
+          "penalty_objective": 4.092207377616053e-09,
+          "total_objective": 0.009027243452195884,
+          "residual_mean": [
+            [
+              0.0045184451790304435,
+              0.004996215272003384,
+              0.004775944628872784,
+              0.004532911121365939,
+              0.00516253325497767
+            ],
+            [
+              0.004210624871341171,
+              0.004544802371790187,
+              0.005244168171927793,
+              0.004149202971066006,
+              0.005762507461525221
+            ],
+            [
+              0.004900414088575262,
+              0.005158841047120962,
+              0.004251137438556328,
+              0.005350570546520615,
+              0.004441950480251583
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.13561248172566998,
+              0.12429811885339578,
+              0.12843666243991403,
+              0.13589487187785065,
+              0.14082568886825378
+            ],
+            [
+              0.15250766610775643,
+              0.14622172818072415,
+              0.11570308084642952,
+              0.127124305654025,
+              0.13417230348732326
+            ],
+            [
+              0.12946544941612453,
+              0.14056627295565896,
+              0.14073807881582054,
+              0.12245465167057981,
+              0.13663541587301486
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 10,
+          "max_abs": 1.864376502841747e-05
+        }
+      },
+      {
+        "candidate_id": 11,
+        "iteration": 11,
+        "trial": 1,
+        "from_candidate_id": 10,
+        "gradient_candidate_id": 10,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 1.864376502841747e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 11,
+          "data_objective": 0.008726467684071948,
+          "penalty_objective": 4.5505820470167215e-09,
+          "total_objective": 0.008726472234653995,
+          "residual_mean": [
+            [
+              0.004535284232980719,
+              0.00501046967715194,
+              0.0047919001410305076,
+              0.004549853624372468,
+              0.005176428199653486
+            ],
+            [
+              0.004231674825118858,
+              0.004564204308453107,
+              0.005253058059325674,
+              0.004171196296320141,
+              0.00576998311236133
+            ],
+            [
+              0.004912522465019308,
+              0.005173529916068873,
+              0.004270070962392514,
+              0.005360791714236809,
+              0.004462752079160851
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1333283884908137,
+              0.12199234747091241,
+              0.12615178072639033,
+              0.1336449734412887,
+              0.13864123515372967
+            ],
+            [
+              0.1502083337671882,
+              0.14401160579274014,
+              0.11340777184313612,
+              0.12478157739281681,
+              0.13193449343789274
+            ],
+            [
+              0.1271491350123012,
+              0.1383737201184118,
+              0.13850864132699825,
+              0.12018029618370063,
+              0.13437372503167863
+            ]
+          ]
+        },
+        "gradient_state": "complete",
+        "gradient": {
+          "candidate_id": 11,
+          "max_abs": 1.8341376729667376e-05
+        }
+      },
+      {
+        "candidate_id": 12,
+        "iteration": 12,
+        "trial": 1,
+        "from_candidate_id": 11,
+        "gradient_candidate_id": 11,
+        "step": 900.9414311419729,
+        "projected_gradient_max_abs": 1.8341376729667376e-05,
+        "outcome": "accepted",
+        "score": {
+          "candidate_id": 12,
+          "data_objective": 0.008450775273186911,
+          "penalty_objective": 5.012699509269444e-09,
+          "total_objective": 0.00845078028588642,
+          "residual_mean": [
+            [
+              0.0045539620766684745,
+              0.005027756976424465,
+              0.004810799171751384,
+              0.004568533655984035,
+              0.005194133844965178
+            ],
+            [
+              0.0042537362081060655,
+              0.004586815141499715,
+              0.005264928757643185,
+              0.004194893625481371,
+              0.005781827673158898
+            ],
+            [
+              0.004925181243013166,
+              0.00519281168919508,
+              0.004290665419617435,
+              0.005373222282900043,
+              0.004487812457929926
+            ]
+          ],
+          "residual_rms": [
+            [
+              0.1311986423983297,
+              0.11984677636231028,
+              0.12402534583823774,
+              0.13154805804864655,
+              0.13660293118187028
+            ],
+            [
+              0.14805599688701473,
+              0.14194850368641443,
+              0.11127747176474789,
+              0.1226046756862238,
+              0.12984595150302206
+            ],
+            [
+              0.12498949408139338,
+              0.13632848934248556,
+              0.13643042211091816,
+              0.11806457170838454,
+              0.1322669375371785
+            ]
+          ]
+        },
+        "gradient_state": "not_needed",
+        "gradient": null
+      }
+    ],
+    "call_trace": [
+      {
+        "call_index": 1,
+        "operation": "build_kernel_cache",
+        "purpose": "cache",
+        "candidate_id": null,
+        "orientation": null,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 2,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 0,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 3,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 0,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 4,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 0,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 5,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 0,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 6,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 0,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 7,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 0,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 8,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 0,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 9,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 0,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 10,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 0,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 11,
+        "operation": "forward",
+        "purpose": "curvature_seed",
+        "candidate_id": 0,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 12,
+        "operation": "forward",
+        "purpose": "curvature_seed",
+        "candidate_id": 0,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 13,
+        "operation": "forward",
+        "purpose": "curvature_seed",
+        "candidate_id": 0,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 14,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 1,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 15,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 1,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 16,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 1,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 17,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 1,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 18,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 1,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 19,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 1,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 20,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 1,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 21,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 1,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 22,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 1,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 23,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 2,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 24,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 2,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 25,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 2,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 26,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 2,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 27,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 2,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 28,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 2,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 29,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 2,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 30,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 2,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 31,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 2,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 32,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 3,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 33,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 3,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 34,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 3,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 35,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 3,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 36,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 3,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 37,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 3,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 38,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 3,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 39,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 3,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 40,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 3,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 41,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 4,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 42,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 4,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 43,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 4,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 44,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 4,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 45,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 4,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 46,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 4,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 47,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 4,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 48,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 4,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 49,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 4,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 50,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 5,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 51,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 5,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 52,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 5,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 53,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 5,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 54,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 5,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 55,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 5,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 56,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 5,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 57,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 5,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 58,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 5,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 59,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 6,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 60,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 6,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 61,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 6,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 62,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 6,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 63,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 6,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 64,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 6,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 65,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 6,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 66,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 6,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 67,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 6,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 68,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 7,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 69,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 7,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 70,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 7,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 71,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 7,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 72,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 7,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 73,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 7,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 74,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 7,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 75,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 7,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 76,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 7,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 77,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 8,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 78,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 8,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 79,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 8,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 80,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 8,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 81,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 8,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 82,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 8,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 83,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 8,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 84,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 8,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 85,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 8,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 86,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 9,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 87,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 9,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 88,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 9,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 89,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 9,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 90,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 9,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 91,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 9,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 92,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 9,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 93,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 9,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 94,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 9,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 95,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 10,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 96,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 10,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 97,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 10,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 98,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 10,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 99,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 10,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 100,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 10,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 101,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 10,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 102,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 10,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 103,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 10,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 104,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 11,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 105,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 11,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 106,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 11,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 107,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 11,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 108,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 11,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 109,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 11,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 110,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 11,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 111,
+        "operation": "forward",
+        "purpose": "gradient",
+        "candidate_id": 11,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 112,
+        "operation": "adjoint",
+        "purpose": "gradient",
+        "candidate_id": 11,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 113,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 12,
+        "orientation": 0,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 114,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 12,
+        "orientation": 1,
+        "outcome": "completed",
+        "failure_code": null
+      },
+      {
+        "call_index": 115,
+        "operation": "forward",
+        "purpose": "score",
+        "candidate_id": 12,
+        "orientation": 2,
+        "outcome": "completed",
+        "failure_code": null
+      }
+    ],
+    "counts": {
+      "cache_attempted": 1,
+      "cache_completed": 1,
+      "cache_failed": 0,
+      "forward_attempted": 78,
+      "forward_completed": 78,
+      "forward_failed": 0,
+      "adjoint_attempted": 36,
+      "adjoint_completed": 36,
+      "adjoint_failed": 0,
+      "score_attempts": 13,
+      "scores_completed": 13,
+      "gradient_attempts": 12,
+      "gradients_completed": 12,
+      "seed_attempts": 1,
+      "seeds_completed": 1,
+      "iterations_started": 12,
+      "trials_attempted": 12,
+      "trials_accepted": 12,
+      "trials_rejected": 0,
+      "trials_unrepresentable": 0,
+      "trials_stagnated": 0,
+      "best_updates": 13
+    }
+  },
+  "known_controls_sha256": "c1972f84159d977d900593d003e82578c5de86e0c9f4fdc36bd97d0d6e9e2a4d"
+}
