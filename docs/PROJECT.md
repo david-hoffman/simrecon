@@ -215,3 +215,24 @@ owns exact candidate, review, check, figures, accounting and cleanup evidence.
 No automatic conversion from sampled transfers, joint calibration, motion or
 real-data performance is selected. Approved behavior/risk review, advisory
 percentages and complete exact full-local/both-platform gates apply.
+
+## Reference-alignment raw-array composition
+
+The owner-selected [RA12 predictive handoff](contracts/reference-alignment-ra12-v1.md)
+composes image-estimated camera calibration with the declared finite clear-pupil
+three-beam model and finite ambiguity audit. Global operator identification stays
+unestablished. Its original noisy small run remains unavailable; the accepted
+procedure and separate noiseless finite controls do not turn that run into a
+validated specimen handoff. [RA12's task](tasks/reference-alignment-ra12.md) retains
+its exact readiness and deleted-historical-evidence limitations.
+
+The continuing owner request next selects the [RA13 raw-array workflow](contracts/reference-alignment-ra13-v1.md):
+`reconstruct_raw_sim` composes camera estimation, RA12 handoff and the selected
+physical `fit_specimen`, with complete validation, explicit unavailable/partial
+outcomes and input/control/unit provenance. [Usage](usage/reference-alignment-ra13.md)
+and the [small finite study](reports/reference-alignment-ra13.md) distinguish
+noiseless procedure validation from noisy diagnostics. This does not substitute
+the separate periodic/frequency-domain solvers or add a new estimator. Its
+[task pointer](tasks/reference-alignment-ra13.md) owns exact candidate/test/review/
+local/CI evidence. Full-scene evaluation follows in RA14; the owner requested a
+stop before RA15 for discussion. No merge/reference execution is authorized.
