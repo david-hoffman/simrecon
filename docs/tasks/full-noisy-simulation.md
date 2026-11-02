@@ -51,7 +51,7 @@ NS01 enumerates input domain, deterministic/noisy modes, independent noise sourc
 
 One sole live state is artifacts/full-noisy-simulation-20261022/Current-state.md. It links cumulative predecessor cleanup/accounting, actual role launches/checkpoints, command/status/environment inputs, classified failures, review/correction rounds and outstanding scientific decisions. Final candidate hashes/results belong outside tracked bytes. Missing tokens/cost/elapsed measurements are unknown, never zero.
 
-Completion cleanup is coordinator-owned under AGENTS and the completion workflow: inventory only this task's positively identified fixture/scratch units, close its writers, retain original evidence, raw-array digests/seeds, actual required raw/evaluation artifacts and all still referenced files/links/ancestors/environment/Python/Java pins. Verify regular hashes and link text/resolution/dependencies before/after, trim safe disjoint siblings and report blocked exceptions. Actual destructive behavior retains its applicable route/review; no age/name-only deletion, daemon or new reusable cleanup helper.
+Coordinator completion cleanup follows [the cleanup workflow](../operations/fixture-cleanup.md). Keep original evidence, raw-array digests/seeds and required raw/evaluation artifacts durable and outside disposable scratch. Preserve known retained dependencies; report removed, kept and errors in the sole Current state.
 
 ## Presentation
 
