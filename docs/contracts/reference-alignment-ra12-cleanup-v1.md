@@ -1,73 +1,19 @@
-# RA12 own-task one-shot cleanup
+# RA12 housekeeping — superseded one-shot contract
 
-**Version 1.0.** This task contract implements the standing-authorized RA12 completion duty. It is not a policy amendment, implementation, test checkpoint or review verdict. Final inventory and required review precede execution. Authority comes from the standing task request and [delivery specification §9.1](../agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md#91-automatic-cleanup-at-task-completion), using [the completion workflow](../operations/fixture-cleanup.md). No broader removal scope follows.
+**Version 1.1.** The owner explicitly replaced the former cleanup software
+contract with the simplified policy in [PR #68](https://github.com/david-hoffman/simrecon/pull/68)
+and requested its application to this continuation. The former one-shot helper,
+cleanup tests, manifests and cleanup review pipeline are retired. Their historical
+attempts and costs remain recorded; they are not outstanding completion gates.
+Git retains the previous contract for historical interpretation.
 
-## 1. Scope, route and ownership
+The coordinator follows [routine housekeeping](../operations/fixture-cleanup.md):
+identify exact task-created disposable paths, close owned processes, check
+worktrees, remove clear targets with existing commands, and briefly report the
+result in the existing Current state. Preserve durable evidence, active work,
+shared environments/caches and known required inputs. Keep uncertain targets
+and report why. No cleanup tools, cleanup tests or cleanup reviews are authorized.
 
-The operation is only `artifacts/ra12/cleanup/ra12-once-1.py`. It is a local, finite RA12 operation: no installation, reusable cleanup utility, predecessor-operation reuse, service, scheduler, age rule or automatic repair/retry. Data-loss behavior remains **high risk**, with fresh native blind A, fresh native blind B, restricted cleanup C and fresh native D. These are cleanup roles, separate from restricted scientific roles. The coordinator owns inventory, process closure, actual application and the completion record.
-
-A owns `artifacts/ra12/cleanup/A1/test_ra12_cleanup_once.py`, `artifacts/ra12/cleanup/A1/cleanup_fixture.py`, `artifacts/ra12/cleanup/proof-unit-manifest-1.json` and working proof units under `artifacts/ra12/cleanup/proof-units-1`. Its own report/check evidence stays under A1. The coordinator assembles `artifacts/ra12/cleanup/manifest-1.json` from that unchanged proof manifest and the final actual-unit inventory before B accepts the complete checkpoint. A/B receive no implementation-bearing inventory or role history; actual-unit records contain filesystem/creation/reference facts only. B reviews that exact checkpoint without implementation exposure. C owns only the operation file and cannot edit tests, fixture definitions, manifest, proof units by hand, gates or scientific files. Running a reviewed proof's intended operation is permitted; manually repairing/recreating its working inputs is not. D reviews without author/implementation conversation and performs no repair. No role launches another role.
-
-## 2. Fixed interface and exact inputs
-
-The only invocation forms are:
-
-```text
-python artifacts/ra12/cleanup/ra12-once-1.py check-only UNIT_ID
-python artifacts/ra12/cleanup/ra12-once-1.py apply UNIT_ID
-```
-
-`UNIT_ID` must be an exact literal in the operation's compiled table. Reject unknown units, extra/missing arguments and every arbitrary path/root/glob/manifest argument before mutation. The operation locates only the fixed manifest above from its pinned workspace location, independently of caller working directory. C compiles the final unit table and expected per-unit manifest hashes; it cannot extend or reinterpret A's accepted manifest. Record the complete manifest and operation hashes. Missing, changed or unpinned inputs stop the selected unit. No provisional manifest is sufficient for actual application.
-
-Actual unit IDs are `c1-pytest-1`, `full-verify-tmp-1` and `empty-baseline-root-1`. Their exact roots, entry membership, identities and removal/preservation partitions come from positive current-task creation and reference evidence. `full-verify-tmp-1` is rooted at `artifacts/ra12/full-verify-tmp-1`. The other roots must be supplied by the inventory; do not guess them. A unit may trim declared disjoint siblings while preserving its root, referents and required ancestors. A unit ID never authorizes removing its whole root by default.
-
-A fixes the finite proof-unit IDs in the manifest before B accepts the checkpoint. All proof roots are within `proof-units-1`; no runtime remapping, test-root option, alternate backend or test-only safety bypass is permitted. Proof and actual units use identical planning, guards and removal primitives. The compiled table contains no other removal targets.
-
-## 3. Inventory, preservation and types
-
-The manifest binds each unit to exact task/run creation evidence, root and entry paths, `lstat` types/identities, expected membership, regular-file sizes/hashes, original symlink texts, planned action and protected dependencies. Include the bounded activity/reference inspections, their times, known consumers and limits. Keep receipts, original evidence/inputs, immutable fixture definitions, manifests and required archives outside removal units. Preserve tracked material, other/active work, caches/backups, retained artifacts, environments and Python pins. Preserve original incoming-link referents and necessary ancestors at their original paths; moving bytes or rewriting original evidence is insufficient.
-
-Reference proof is bounded inspection of retained evidence and known retained consumers, with explicit limits; no impossible assertion that no consumer exists anywhere is required. Unknown ownership, dependencies, types or activity protect/defer the affected scope. Prove safe disjoint siblings separately. Naming, age, ignored status and aggregate counts establish no disposability.
-
-Supported removal kinds are regular files, symlink objects, positively owned inactive FIFO named pipes and filesystem socket objects, and empty directories. Classify every entry with `lstat`; never read/hash nonregular contents or block on a type-change race. Device and unclassified kinds are unsupported: preserve/defer them or refuse the affected unit. An explicitly protected special entry need not block a proven disjoint sibling. The current discovery classified 67 FIFO entries and 52 internal/dangling symlinks; this does not establish inactivity or disposability. Never traverse a symlink target for removal.
-
-## 4. Preflight and application behavior
-
-`check-only` performs the same complete selected-unit preflight as `apply`, emits its receipt to standard output and makes no filesystem mutation. Preflight validates the pinned inputs, exact path/type/identity and membership, preservation partition, regular hashes, link texts/resolutions/dependencies, required ancestor paths and current owned-process/open-handle evidence. Reject path escape, unexpected entries, protected-path overlap, changed identities and incomplete required inspection. Do not repair mismatches or enlarge scope.
-
-All producers for a removal scope must be closed before its application. Use real supported process/open-handle inspection and retain command statuses and limitations. Failed/unsupported host visibility is an environment gap and leaves the unit deferred; absence of visible results is not proof of inactivity. The operation stops no process. An active original-data producer blocks its affected actual scope.
-
-Failed preflight means **zero mutation**. After successful preflight, recheck relevant identities/dependencies/activity immediately before mutation and identities at each action. Unlink only the declared regular-file/symlink/FIFO/socket objects and remove only declared empty directories in dependency-safe order. No recursive symlink-target traversal or removal of newly discovered entries. Stop on the first operation failure; do not retry, continue other units automatically, invent rollback or claim atomicity. Retain exact completed actions, failed action and remaining scope. A genuine operating-system failure may be detected before mutation or after partial progress; both are valid safe outcomes when reported truthfully.
-
-Receipts distinguish check-only success, complete application, preflight refusal/deferment and partial application failure. Report operation/manifest/unit identities, commands/status/times, activity checks, exact attempted/completed/remaining actions, preservation results and limitations. Failures have nonzero process status; no partial/deferred result is success. Preserve native allocation failures, interruption and external timeout as incomplete evidence. Receipts contain no invented completion after an interrupted process.
-
-## 5. One-use independent proof
-
-A creates **all finite working proof units once**, records exact creation/initial fingerprints and manifest expectations, and does this before the missing-entrypoint baseline test. Deliberate stale-identity/unexpected-entry/other negative states may then be prepared and recorded; their expected snapshots remain unchanged and the negative states may remain negative. Classify the missing-entrypoint baseline honestly as unimplemented, not a fabricated product defect.
-
-Tests must exercise the real entrypoint and operating-system boundaries. Cover an exact positive removal; safe sibling trimming around an in-place retained referent/ancestor; original retained incoming, relative/chained and dangling-link states; a disposable link pointing outside the unit without removing its target; identity/membership/namespace/preservation refusals; FIFO and socket classification/removal after real inactivity checks, without content reads; real activity visibility; and genuine filesystem failure with truthful zero/partial progress. Independently inspect before/after content, link text/resolution and removed/preserved paths; an exit code or operation-written receipt alone is not the oracle.
-
-For the active-holder case, a controlled child may open a manifest-pinned existing regular leaf with `O_WRONLY|O_APPEND`, write nothing, and close on EOF. It must not change pinned metadata/content. Activity detection must actually observe the holder; no mocked successful `ps`/`lsof` output or injected production seam. If native sandbox visibility fails, C reports the environment gap. The coordinator may run the **exact reviewed tests** with authorized host visibility, retaining that environment identity and the original gap.
-
-Positive apply proofs execute **once** through the same production operation. Tests must not auto-recreate consumed units, silently reset snapshots or treat their later absence as another passing application. Reuse retained valid evidence for unchanged inputs. A diagnosed correction requiring another positive run needs explicitly created new A-owned proof units/manifest revision and fresh required B review before C proceeds. There is no arbitrary attempt cap; preserve cumulative accounting. B independently reviews oracle validity, legitimate outcomes and complete preservation coverage.
-
-## 6. Freeze, reviews, execution and completion
-
-1. Finish the required product verification and close all owned producers before final actual-inventory freeze; include newly created full-verification scratch. Preserve every material source/test/dependency/version/report/pin input supporting that evidence.
-2. Complete/freeze A's proof manifest, fixture definitions, initial fingerprints and prepared negative states, then the coordinator's complete actual/proof manifest. Obtain B's acceptance of the exact checkpoint. Any provisional earlier review must be renewed for materially changed inputs. Freeze the final actual partition before C compiles its pins and before the one-use positive apply proofs; do not consume positive proofs and later silently replace the operation/manifest.
-3. C supplies the smallest operation, reviewed proof results, applicable static checks and actual-unit check-only evidence. The cleanup operation's own tests/checks are separate from the scientific product gate. Retain exact candidate/input/environment identities and any gaps.
-4. Fresh D reviews the exact passing operation, frozen manifest and complete removal/preservation partition **before actual apply**. Immediately before application the coordinator renews time-sensitive identity/activity/dependency checks; changed or missing proof stops affected scope. The coordinator then performs one reviewed application per frozen actual-unit revision, with no automatic retry or resume. A further application after failure requires a diagnosed cause, renewed exact inventory/pins and route-required fresh correction acceptance; it is not continuation under stale proof.
-5. Verify exact absence/preservation, retained regular hashes, original link texts/resolutions/dependencies, protected cache/environment/Python pins, relevant tracked state and material verification inputs. D continues the unchanged scoped review through the post-application outcome. Repairs or material operation/manifest changes receive diagnosed routing and fresh required correction verdicts.
-6. Link one retained local receipt from the sole Current state. Record exact removed/trimmed/preserved/deferred scopes/reasons, defined counts, native allocated-byte measurements and their units/conversions, planned versus observed removal, reviews, actual limits or not set and missing measurements as unknown. Free-space deltas are not task-attributed reclamation. Blocked/unchecked scope prevents an unqualified cleanup-complete claim.
-
-The full product gate remains applicable. Its existing evidence is reusable only while all material inputs remain preserved and no new failure challenges it; renew affected proof if cleanup changes them. Do not invent a full product rerun merely for this document, or waive required cleanup tests, reviews, measurement or gate obligations. No missing external authority is presumed: unresolved inventory, producer closure, activity visibility or preservation proof are execution blockers within the standing-authorized duty.
-
-## 7. Manifest and receipt representation
-
-The fixed manifest is UTF-8 JSON, schema `ra12_cleanup_once_v1`, with `workspace`, `contract_sha256` and a `units` object keyed by literal unit ID. Each unit has `root` (absolute), `creation_evidence`, `entries`, `protected`, `reference_review` and `known_producer_pids`. `entries` is the complete root-inclusive inventory, using `.` for the root and slash-separated relative paths without `..`, empty components or absolute paths. Each entry records `kind` (`regular`, `directory`, `symlink`, `fifo`, `socket`), `dev`, `ino`, `mode`, `nlink`, `size`, `mtime_ns`, `ctime_ns`, `st_blocks`, and `action` (`remove` or `preserve`). Regular entries also have `sha256`; symlinks have `link_text` and recorded resolution. No nonregular content hash is expected. Protected dependencies are absolute-path entry fingerprints plus original link/resolution evidence. Preserve the necessary ancestors, even if no leaf is removable.
-
-Creation/reference evidence records source fingerprints, known consumers, inspection boundaries and unresolved dependencies; it is not a trusted assertion that permits bypassing runtime guards. Use arrays or objects for detailed evidence as needed, without weakening the required facts. A's proof manifest uses the same per-unit representation and adds immutable preparation evidence outside removal units. The coordinator copies its `units` unchanged into the final manifest. C pins the exact final file SHA-256 and literal unit/root table in the operation; no runtime alternate manifest or repinning is supported.
-
-A receipt is a single JSON object on standard output, schema `ra12_cleanup_once_receipt_v1`. Required fields are `mode`, `unit_id`, `status`, `reason_code`, `operation_sha256`, `manifest_sha256`, `activity`, `completed_actions`, `remaining_actions`, `counts`, `preservation`, `limitations`, and start/finish times. Status is `checked`, `applied`, `refused` or `partial_failure`. The first two have process status 0; refusals/failures are nonzero. Counts distinguish each entry kind and native `st_blocks` in 512-byte units; include roots consistently and state whether path-entry or distinct-inode allocation is measured. Do not call either free-space reclamation. A check/refusal completes no removal actions. The coordinator retains standard output/error exclusively outside removal units; check-only itself writes no files.
-
-Whole-unit preflight compares the original inventory. During successful application, directory metadata may change only through the operation's recorded child removals; verify directory identity/type and expected remaining membership rather than demanding its original timestamps after those actions. Recheck each still-existing leaf's original identity/content/link facts before unlinking. Every required protected original path must retain its original identity/content/link state. An already-consumed positive proof or applied actual unit is not another successful application: refuse absent/changed inputs without recreating them. Retained negative proof units and immutable definitions remain required review evidence; do not silently dispose of or recreate them under the actual-unit allowlist.
+The scientific verification and independent review requirements are unchanged.
+Owner-directed disposal of old artifacts remains an explicit evidence limitation;
+it cannot turn historical or missing evidence into a fresh passing result.

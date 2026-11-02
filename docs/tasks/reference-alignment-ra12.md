@@ -19,16 +19,22 @@ owner message `01a19075-aaba-7901-bfe1-3787bd172fad`:
 
 The original local proof pointer and SHA-256, original RA11 readiness anchor,
 accepted predecessor preservation summary and all inherited accounting remain
-in the sole ignored Current state below. Original evidence stays at its required
-paths. No predecessor cleanup operation is inherited or reused.
+in the sole ignored Current state below. Historical evidence and accounting stay attributed to their original runs.
+Some original paths were discarded under explicit owner direction; the current
+state records this limitation. No predecessor cleanup operation is reused.
 
-Start from completed RA11 commit
+The original scientific work started from completed RA11 commit
 `e5f918bc54d1622f92009bce143cffd4ac4a7477`, tree
 `b4ae241aaa3975fbf31dd7c303fbe3d4543eb4ce`, with a clean tracked baseline.
-This task has one main managed worktree, the narrowly named auxiliary
-[verification checkout](../contracts/reference-alignment-ra12-cleanup-verification-supplement-v1.md),
-and one planned stacked pull request targeting
+The original PR targeted
 `codex/reference-alignment-ra11-motion` ([RA11 PR66](https://github.com/david-hoffman/simrecon/pull/66)).
+The owner subsequently authorized continuation through RA15 and rebasing RA12
+onto [PR #68](https://github.com/david-hoffman/simrecon/pull/68), preferring its
+cleanup policy while preserving scientific changes. The resumed RA12 candidate
+contains the full scientific predecessor stack above that policy head.
+[PR #67](https://github.com/david-hoffman/simrecon/pull/67) remains the single RA12 PR.
+The current managed worktree runs its own exact-candidate verification with
+[outside-Git fixture scratch](../contracts/reference-alignment-ra12-cleanup-verification-supplement-v1.md).
 The [actual RA12 roadmap section](../plans/reference-alignment-roadmap.md#ra12--establish-the-images-only-calibration-handoff)
 supplies the intended scientific scope.
 
@@ -102,13 +108,13 @@ predeclared catalogue-center XY/XZ projections and sections, physical axes,
 aspect and units, common quantitative scales, signed differences and separate
 shape profiles. No future-stage or full 27-object result is fabricated.
 
-The coordinator inventories this task's positively identified disposable scratch
-after owned writers close. Preserve original evidence, tracked fixtures, active
-work, environment/Python/cache pins and incoming original links/referents and
-required ancestors. Any actual cleanup keeps its own risk route and required
-review under the separate [one-shot cleanup contract](../contracts/reference-alignment-ra12-cleanup-v1.md);
-no reusable destructive helper is authorized. Record exact removed,
-preserved and blocked scope, native allocated-byte units and proof limits.
+The owner selected routine coordinator [housekeeping](../operations/fixture-cleanup.md)
+for this continuation. Identify exact disposable task scratch, close owned writers,
+check worktrees, use existing commands and briefly record removed/kept paths and
+errors. Preserve durable evidence, active work, shared caches/environments and
+known required inputs. The former cleanup software, tests and review pipeline
+are superseded; no such work is required or authorized. Kept uncertain scratch
+does not prevent completion of the scientific task.
 
 Human numeric limits are **not set**. Missing usage and monetary cost remain
 **unknown**. All prior attempts, failures, diagnoses, corrections, exposures and
@@ -116,7 +122,7 @@ spending remain charged. Use no Superpowers unless the owner explicitly invokes
 it. Do not build, compile, invoke or execute reference C or bundled executables.
 No merge, release, unrelated external message or RA16 is authorized.
 
-Only after RA12 is fully ready, create exactly one RA13 successor at its exact
+Only after RA12 is fully ready, continue exactly one RA13 successor at its exact
 reviewed head, stacked on the RA12 branch, without waiting for merge. Stop the
 standing chain at RA15.
 

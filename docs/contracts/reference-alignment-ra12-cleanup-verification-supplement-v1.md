@@ -1,15 +1,26 @@
-# RA12 verification isolation and one-shot cleanup supplement
+# RA12 verification isolation and housekeeping
 
-**Version 1.0.** This is a finite RA12 task execution supplement under the existing standing request and [one-shot cleanup contract](reference-alignment-ra12-cleanup-v1.md). It changes no scientific behavior, test, gate, dependency, percentage or global delivery policy.
+**Version 1.1.** This supplement preserves the scientific verification isolation
+requirement and applies the owner-selected [simplified housekeeping policy](../operations/fixture-cleanup.md).
+The superseded one-shot cleanup protocol, helper, tests and cleanup reviews are
+not requirements of this continuation.
 
-The first verification attempt placed generated test repositories below the main working tree. Its diagnostic evidence shows that deliberately unavailable fixture Git identities could discover the real parent repository. Retained cyclic-link test inputs also prevented complete evidence retention. Preserve this failed attempt and the diagnosed receipt-loss incident explicitly; no original missing receipt or test output may be reconstructed as observed evidence.
+The first historical verification attempt placed generated test repositories
+below a real working tree. Deliberately unavailable fixture Git identities could
+then discover the parent repository. The first receipt and test output were
+subsequently lost; they remain unavailable, never reconstructed as passing proof.
 
-Use a separate detached verification checkout of the exact committed candidate, outside the main working tree. It is an auxiliary check environment for the same task, with no feature implementation or second task. Give it its own locked environment and verify interpreter, platform, lock, installation/import and selected Java before dependent work. Run the complete unchanged canonical gate there. Its temporary fixture root must be positively created outside every Git working tree. Record source commit/tree, environment and external input identities; matching tree alone is insufficient. The main submission candidate must remain exactly that verified commit. No failed or partial run supplies passing evidence.
+Run the complete unchanged canonical gate on the exact committed candidate.
+Create its temporary fixture root outside every Git working tree. Give the
+verification worktree its own locked environment and check interpreter, platform,
+lock, installation/import and selected Java before dependent work. Record the
+actual commit/tree, environment and required input identities. A failed or partial
+run supplies no passing evidence; tree equality alone is not commit identity.
 
-The local creation receipt supplies the exact additional root for the literal cleanup unit ID `external-verification-tmp-1`. This supplements the original three actual unit IDs; it grants no arbitrary path, root, glob, later unit or generic cleanup interface. The coordinator includes this positively created scope in the final manifest before fresh B acceptance. C compiles the exact final manifest hash and literal unit/root table. All original guards, supported types, public entrypoint forms, counts, preservation, process closure and fresh review requirements remain unchanged.
-
-The original A proof contract, definitions, preparation records and 19 proof units retain their original identities. This supplement adds an equivalent actual filesystem scope, not a new deletion behavior or proof-only interface. The final manifest binds both the original contract SHA-256 and this supplement SHA-256, and copies A's proof-unit records unchanged. Fresh B independently decides retained proof applicability across the complete augmented checkpoint. No already prepared or consumed proof is silently recreated.
-
-Preserve the verification checkout, its source, environment, native coverage, complete reports, same-run measurements, wheel/reader records and required original paths as material evidence. The small failed/control fixtures required to establish the environment diagnosis also remain at their original paths with explicit preservation reasons; trim proven safe disjoint siblings. Original failed native/log evidence remains retained and never becomes the accepted replacement run. Keep the missing first receipt and unavailable first test output as explicit limits.
-
-Only closed producers permit a final actual inventory freeze. Actual application still requires the exact passing one-shot proofs/static checks, fresh D pre-application review, renewed immediate identity/activity/dependency checks and independent post-application assessment. Full scientific verification and its fresh independent review precede submission; separate configured CI and complete cleanup precede final task readiness. This supplement grants no merge/release, reference executable invocation, reusable destructive tool or predecessor-operation reuse.
+The previous auxiliary verification checkout and some original inputs were
+removed under explicit owner direction. Historical results and review records
+remain historical; do not claim that every former referent survives. The current
+continuation renews exact-candidate verification and required independent review.
+Retain its new material evidence and required inputs. Use existing commands for
+confirmed disposable scratch after owned processes close, and record any kept
+paths or errors in the sole Current state. No additional cleanup pipeline follows.
