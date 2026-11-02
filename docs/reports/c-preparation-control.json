@@ -1,10 +1,10 @@
 {
   "description": "Preregistered displaced-voxel E1 native quadrature control",
   "scope": "supplemental public preparation; no reconstruction/binary parity claim",
-  "runtime_commit_at_observation": "747d1c8f8426891db6ae37ab269a01fdd0d23983",
+  "runtime_commit_at_observation": "5317337fe130cd9761dde4ce8813f285b7185e9a",
   "tracked_dirty_at_observation": false,
   "runtime_sha256": {
-    "src/simrecon/_preparation.py": "d6c4312f38145c0f9a4842c5efe85210bc764fe5b08afc7bae8fcf715c7905f5",
+    "src/simrecon/_preparation.py": "dcdb5a4fdf050138cb3e6d157ca1d0aeb8d0b47cc9b19102eedb5b125c3ce715",
     "src/simrecon/__init__.py": "2b49bd7aa34ef9fe9ebc08b0caaaa18622b87ee54bd588d28e7155d89f575f49"
   },
   "versions": {

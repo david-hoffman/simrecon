@@ -42,7 +42,10 @@ native preparation grid unchanged.
 Uniform phases use unnormalized specimen separation. A supplied `(D,P)` phase
 array selects the inverse or unweighted left inverse of the declared forward
 matrix. It must have full column rank. Supplied repeated phases can be valid
-in an overdetermined design. Noise values are variance factors, not their
+in an overdetermined design. A full-rank clustered design can still be
+unresolved in finite precision; numerical-operation failures raise
+`SimreconError` without regularization or a lower-rank fallback.
+Noise values are variance factors, not their
 printed square roots and not a full covariance model.
 
 Quadrature slots are `0,E1,O1,E2,O2,...`. Each slot is a complex array with
