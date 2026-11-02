@@ -8,7 +8,7 @@ High-risk scientific/interface route uses fresh native Sol/high A/B/C/D and sepa
 
 The inherited task-selected 100% native executable-line/branch-destination targets bind globally/per package/per owned file, all src/simrecon+scripts including never-imported/relevant subprocesses, zero exclusions, separately local/Ubuntu24.04/macOS15 with no union. Full-local exact clean canonical make verify/all13phases and original native platform archive qualification remain required. No pending-CI shortcut or coverage-policy migration applies.
 
-Current state and final candidate/results stay outside tracked bytes at artifacts/phase-carrier-selection-20261018/CURRENT.md with immutable accounting and evidence snapshots. Predecessor proof stays at its original worktree by pinned pointer; it is historical admission, not new-environment reexecution. Historical missing-owner-fixture/custody, original producer chronology, supplemental evidence and unknown metering remain limits.
+Current state and final candidate/results stay outside tracked bytes at artifacts/phase-carrier-selection-20261018/CURRENT.md with immutable accounting and evidence snapshots. Predecessor proof is retained by pinned pointer under [the cleanup workflow](../operations/fixture-cleanup.md); it is historical admission, not new-environment reexecution. Historical missing-owner-fixture/custody, original producer chronology, supplemental evidence and unknown metering remain limits.
 
 ## PR presentation
 
