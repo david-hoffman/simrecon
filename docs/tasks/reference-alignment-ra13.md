@@ -7,7 +7,7 @@ Superpowers was not invoked. Human numeric limits are not set.
 
 RA12 PR67 is ready for review at `68e291b690f35379225437df07ee46aab8de4771`,
 tree `d8ebc4cfbbd4b08790979fa6170eaa860cada011`, after full local verification,
-fresh scientific D2 acceptance and both platforms in CI run41373567144.
+fresh scientific D2 acceptance and both platforms in CI run 41373567144.
 Its original noisy calibration remains unavailable. The original missing/deleted
 evidence limitations and cumulative charges are preserved; new RA13 work does not
 reset them. RA13 starts in one isolated worktree at this exact accepted baseline.
