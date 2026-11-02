@@ -1,5 +1,7 @@
 # Sample empirical transfer at physical frequencies
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `sample_empirical_volume_transfer` evaluates one signed order of a calibrated
 complex response at caller-supplied z/y/x frequency triples, in cycles per
 micrometre (cycles/µm). Use it when you already know which physical transfer

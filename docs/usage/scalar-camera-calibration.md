@@ -1,5 +1,7 @@
 # Estimate a scalar camera response from images
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 The [camera calibration contract](../contracts/scalar-camera-calibration-v1.md) estimates finite image statistics from three repeated primary-camera acquisitions:
 
 - Dark: zero-light exposures.

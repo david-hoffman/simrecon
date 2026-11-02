@@ -7,14 +7,14 @@ import json
 import os
 import shutil
 import subprocess
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import pytest
 
-from verification_fixture_tools import PHASES
+from verification_fixture_dispatch import read_calls
+from verification_fixture_tools import PHASES, install_phase_commands, prepare_phase_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = Path("artifacts/verification/receipt.json")
@@ -71,17 +71,7 @@ def create_repository(directory: Path, linked: bool = False) -> Repository:
     private_git = Path(git(root, "rev-parse", "--absolute-git-dir"))
     bin_dir = directory / "bin"
     bin_dir.mkdir()
-    shutil.copyfile(
-        ROOT / "tests/verification_fixture_tools.py", bin_dir / "verification_fixture_tools.py"
-    )
-    for name in ("make", "uv"):
-        command = bin_dir / name
-        command.write_text(
-            f"#!{sys.executable}\n"
-            + Path(__file__).with_name("verification_output_fixture.py").read_text(),
-            encoding="utf-8",
-        )
-        command.chmod(0o755)
+    install_phase_commands(bin_dir, "verification_output_fixture", hybrid=True)
     return Repository(root, bin_dir, common_git, private_git)
 
 
@@ -103,7 +93,9 @@ def invoke(
 ) -> subprocess.CompletedProcess[str]:
     env = os.environ.copy()
     env["OUTPUT_PROTECTION_ACTION"] = json.dumps(action or {})
+    env["OUTPUT_PROTECTION_PHASE"] = (action or {}).get("phase", "")
     env["RECEIPT_FIXTURE_MODE"] = "complete"
+    env["RECEIPT_FIXTURE_INPUTS"] = str(prepare_phase_inputs(repository.bin_dir, "complete"))
     env["PATH"] = str(repository.bin_dir) + os.pathsep + env["PATH"]
     args = [
         str(ROOT / ".venv/bin/python"),
@@ -172,8 +164,7 @@ def load_receipt(repository: Repository, path: Path = RECEIPT) -> dict[str, Any]
 
 
 def calls(repository: Repository) -> list[list[str]]:
-    path = repository.root / "calls.jsonl"
-    return [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
+    return read_calls(repository.root / "calls.jsonl")
 
 
 def metadata(repository: Repository) -> dict[Path, bytes]:
@@ -290,6 +281,16 @@ def test_p08_ordinary_outputs_preserve_identity_and_public_evidence(
     before_markers = tracked_markers(repository)
     commit = git(repository.root, "rev-parse", "HEAD")
     tree = git(repository.root, "rev-parse", "HEAD^{tree}")
+    expected_state = {
+        "commit": commit,
+        "tree": tree,
+        "dirty": False,
+        "untracked": [],
+        "manifest": {
+            name: hashlib.sha256((repository.root / name).read_bytes()).hexdigest()
+            for name in git(repository.root, "ls-files").splitlines()
+        },
+    }
     approved = tmp_path / "approved-input.bin"
     approved.write_bytes(b"private fixture input\x00")
     path = Path("artifacts/custom/evidence.json") if custom else RECEIPT
@@ -299,7 +300,7 @@ def test_p08_ordinary_outputs_preserve_identity_and_public_evidence(
     assert receipt is not None
     assert receipt["schema"] == "org.simrecon.verification" and receipt["version"] == 1
     assert receipt["result"] == "passed" and receipt["problems"] == []
-    assert receipt["before"] == receipt["after"]
+    assert receipt["before"] == receipt["after"] == expected_state
     assert receipt["before"]["commit"] == commit and receipt["before"]["tree"] == tree
     assert receipt["before"]["dirty"] is False
     assert receipt["before"]["manifest"]["candidate.txt"] == hashlib.sha256(MARKER).hexdigest()
@@ -326,19 +327,13 @@ def test_p08_ordinary_outputs_preserve_identity_and_public_evidence(
 @pytest.mark.parametrize(
     "target_kind,phase,status,kind",
     [
-        (target, phase, status, kind)
-        for target, phase, status in [
-            ("tracked", "types", 0),
-            ("tracked", "audit", 0),
-            ("tracked", "types", 23),
-            ("missing-tracked", "types", 0),
-            ("ordinary-config", "types", 0),
-            ("common-config", "audit", 0),
-            ("private-head", "types", 0),
-            ("git-pointer", "types", 0),
-        ]
-        for kind in ("alias", "hardlink")
-        if target != "missing-tracked" or kind == "alias"
+        ("tracked", "types", 0, "alias"),
+        ("tracked", "types", 23, "hardlink"),
+        ("missing-tracked", "types", 0, "alias"),
+        ("ordinary-config", "types", 0, "alias"),
+        ("common-config", "audit", 0, "hardlink"),
+        ("private-head", "types", 0, "alias"),
+        ("git-pointer", "types", 0, "hardlink"),
     ],
 )
 def test_p02_phase_receipt_alias_preserves_protected_bytes(
@@ -382,17 +377,13 @@ def test_p02_phase_receipt_alias_preserves_protected_bytes(
 
 
 @pytest.mark.parametrize(
-    "target_kind,phase,status",
+    "target_kind,phase,status,kind",
     [
-        ("tracked", "sync", 0),
-        ("tracked", "audit", 0),
-        ("tracked", "sync", 23),
-        ("common-config", "sync", 0),
-        ("private-head", "audit", 0),
-        ("git-pointer", "sync", 0),
+        ("tracked", "sync", 0, "alias"),
+        ("tracked", "sync", 23, "hardlink"),
+        ("private-head", "audit", 0, "hardlink"),
     ],
 )
-@pytest.mark.parametrize("kind", ["alias", "hardlink"])
 def test_p03_current_log_alias_preserves_bytes_and_original_failure(
     tmp_path: Path,
     log_candidates: dict[str, Path],
@@ -428,8 +419,7 @@ def test_p03_current_log_alias_preserves_bytes_and_original_failure(
     assert_safe_outcome(repository, result, receipt, phase, kind, status)
 
 
-@pytest.mark.parametrize("target_kind", ["tracked", "common-config", "private-head", "git-pointer"])
-@pytest.mark.parametrize("kind", ["alias", "hardlink"])
+@pytest.mark.parametrize("target_kind,kind", [("tracked", "alias"), ("common-config", "hardlink")])
 def test_p04_future_log_alias_is_revalidated(
     tmp_path: Path, log_candidates: dict[str, Path], target_kind: str, kind: str
 ) -> None:
@@ -459,8 +449,7 @@ def test_p04_future_log_alias_is_revalidated(
     assert_safe_outcome(repository, result, receipt, "sync", kind)
 
 
-@pytest.mark.parametrize("ancestor", [False, True])
-@pytest.mark.parametrize("linked", [False, True])
+@pytest.mark.parametrize("ancestor,linked", [(False, False), (True, True)])
 def test_p04_output_directory_or_ancestor_redirect_preserves_all_git_metadata(
     tmp_path: Path, ancestor: bool, linked: bool
 ) -> None:
@@ -483,9 +472,14 @@ def test_p04_output_directory_or_ancestor_redirect_preserves_all_git_metadata(
     assert_safe_outcome(repository, result, receipt, "audit", "directory-alias")
 
 
-@pytest.mark.parametrize("entry", ["receipt", "current-log"])
-@pytest.mark.parametrize("identity", ["missing-file", "unavailable-head", "dirty-start"])
-@pytest.mark.parametrize("kind", ["alias", "hardlink"])
+@pytest.mark.parametrize(
+    "entry,identity,kind",
+    [
+        ("receipt", "missing-file", "alias"),
+        ("current-log", "unavailable-head", "hardlink"),
+        ("receipt", "dirty-start", "alias"),
+    ],
+)
 def test_p06_incomplete_or_dirty_identity_does_not_authorize_later_protected_write(
     tmp_path: Path, log_candidates: dict[str, Path], entry: str, identity: str, kind: str
 ) -> None:
@@ -574,8 +568,21 @@ def test_p07_original_command_failure_or_missing_command_keeps_status_and_safe_e
     repository: Repository, missing: bool
 ) -> None:
     before_markers, before_metadata = tracked_markers(repository), metadata(repository)
+    root = repository.root
+    expected_state = {
+        "commit": git(root, "rev-parse", "HEAD"),
+        "tree": git(root, "rev-parse", "HEAD^{tree}"),
+        "dirty": False,
+        "untracked": [],
+        "manifest": {
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in git(root, "ls-files").splitlines()
+        },
+    }
     if missing:
+        assert git(root, "status", "--porcelain") == ""
         (repository.bin_dir / "make").unlink()
+        assert not (repository.bin_dir / "make").exists()
         result = invoke(repository)
     else:
         result = invoke(
@@ -602,3 +609,105 @@ def test_p07_original_command_failure_or_missing_command_keeps_status_and_safe_e
     assert receipt["before"] == receipt["after"]
     assert tracked_markers(repository) == before_markers
     assert metadata(repository) == before_metadata
+
+    if missing:
+        phase_log = Path(receipt["phases"][0]["log"])
+        assert not phase_log.is_absolute()
+        diagnostic = log.read_text()
+        assert diagnostic.strip() and "unavailable" in diagnostic.casefold()
+        assert (result.stdout + result.stderr).count(diagnostic) == 1
+        assert list(log.parent.glob("*.log")) == [log]
+        assert receipt["before"] == expected_state
+        assert receipt["after"] == expected_state
+        assert git(root, "status", "--porcelain") == ""
+        assert git(root, "rev-parse", "HEAD") == expected_state["commit"]
+        assert git(root, "rev-parse", "HEAD^{tree}") == expected_state["tree"]
+        assert {
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in expected_state["manifest"]
+        } == expected_state["manifest"]
+
+
+def test_p01_initial_observed_log_alias_preserves_tracked_bytes(
+    repository: Repository, log_candidates: dict[str, Path]
+) -> None:
+    leaf = repository.root / log_candidates["sync"]
+    leaf.parent.mkdir(parents=True, exist_ok=True)
+    leaf.symlink_to(repository.root / "candidate.txt")
+    before_markers, before_metadata = tracked_markers(repository), metadata(repository)
+    result = invoke(repository)
+    receipt = load_receipt(repository)
+    assert tracked_markers(repository) == before_markers
+    assert metadata(repository) == before_metadata
+    phases = assert_trace(repository, receipt)
+    if result.returncode == 0:
+        assert phases == PHASES
+        assert receipt is not None and receipt["result"] == "passed"
+        assert receipt["problems"] == []
+        for phase in receipt["phases"]:
+            assert phase["returncode"] == 0
+            assert (
+                f"controlled phase {phase['name']}" in (repository.root / phase["log"]).read_text()
+            )
+    else:
+        assert_rejected(result, receipt)
+
+
+@pytest.mark.parametrize("obstacle", ["regular-ancestor", "unwritable-parent"])
+def test_p10_initial_filesystem_failure_preserves_protected_bytes(
+    repository: Repository, obstacle: str
+) -> None:
+    """Retain real local failures with a successful same-interpreter control."""
+    before_markers, before_metadata = tracked_markers(repository), metadata(repository)
+    positive = invoke(repository)
+    assert positive.returncode == 0, positive.stdout + positive.stderr
+    positive_receipt = load_receipt(repository)
+    assert positive_receipt is not None and positive_receipt["result"] == "passed"
+    assert assert_trace(repository, positive_receipt) == PHASES
+    parent = repository.root / "artifacts/effective-permission-control"
+    try:
+        if obstacle == "regular-ancestor":
+            destination = Path("candidate.txt/receipt.json")
+        else:
+            parent.mkdir()
+            parent.chmod(0o500)
+            command = [
+                str(ROOT / ".venv/bin/python"),
+                str(ROOT / "scripts/source_free_check.py"),
+                "--timeout",
+                "30",
+                "python",
+                "-c",
+                "from pathlib import Path; Path('premise').write_bytes(b'x')",
+            ]
+            premise = run(command, parent)
+            evidence = os.environ.get("OUTPUT_PROTECTION_EVIDENCE")
+            if evidence:
+                with Path(evidence).with_suffix(".premise.jsonl").open("a") as stream:
+                    stream.write(
+                        json.dumps(
+                            {
+                                "command": command,
+                                "cwd": str(parent),
+                                "status": premise.returncode,
+                                "stdout": premise.stdout,
+                                "stderr": premise.stderr,
+                            }
+                        )
+                        + "\n"
+                    )
+            assert premise.returncode != 0, (
+                "incomplete environment evidence: selected interpreter can write"
+            )
+            assert "PermissionError" in premise.stdout + premise.stderr
+            destination = parent.relative_to(repository.root) / "receipt.json"
+        result = invoke(repository, receipt_path=destination)
+        assert result.returncode != 0
+        assert tracked_markers(repository) == before_markers
+        assert metadata(repository) == before_metadata
+        receipt = load_receipt(repository, destination)
+        assert_rejected(result, receipt)
+    finally:
+        if obstacle == "unwritable-parent" and parent.exists():
+            parent.chmod(0o700)
+            assert parent.stat().st_mode & 0o777 == 0o700

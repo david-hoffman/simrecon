@@ -1,5 +1,7 @@
 # Reconstruct at known parameters
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `reconstruct` composes known-phase separation and a full complex optical transfer
 function (OTF) into a first-harmonic two-dimensional estimator. This is a stacked
 implementation candidate above the verified, unmerged calibration prerequisite.

@@ -1,3 +1,75 @@
+# Data flow: retained neutral operations
+
+**Version 1.0. CE01 product status.** [PROJECT](../PROJECT.md) and the
+[public conversion contract](../contracts/mrc-conversion-v1.md) define the active
+boundary. The following diagrams are conceptual.
+
+**Reconstruction and the former scientific APIs are temporarily unavailable.**
+The [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) supersedes
+the old numerical route. Neutral file and declaration operations remain available.
+
+## File inspection, conversion and viewing copies
+
+```mermaid
+sequenceDiagram
+    actor Caller as Python caller or neutral CLI
+    participant Input as inspect / read
+    participant Metadata as harmonize
+    participant Output as write / export_imagej
+
+    Caller->>Input: Inspect supported Priism source
+    Input-->>Caller: DatasetInfo and unresolved metadata
+    Caller->>Metadata: Explicit configuration and overrides
+    Metadata-->>Caller: Resolved metadata or validation error
+    Caller->>Output: New destination and resolved source
+    loop Selected pixel blocks
+        Output->>Input: Read selected source planes
+        Input-->>Output: DataBlock with decoded pixels and metadata
+        Output->>Output: Encode modern MRC or OME-BigTIFF copy
+    end
+    Output-->>Caller: Completed write report or explicit error
+```
+
+The CLI exposes `inspect`, `convert` and `export-imagej` through these boundaries.
+`harmonize` resolves metadata/layout without image correction. Conversion and
+export perform no calibration, estimation, phase separation or reconstruction.
+Modern MRC is an output, not a newly supported input decoder. ImageJ export
+accepts the sources and layouts in its
+[contract](../contracts/imagej-export-v1.md), rather than arbitrary arrays or
+reconstruction results. Original sources remain necessary for opaque-byte recovery.
+
+Resources stay scoped to each call. Selected reads and streamed writes avoid a
+whole-acquisition pixel load; metadata growth and caller-requested full reads
+still consume memory. Failure and partial-output behavior come from the public
+contract, not from this diagram. See [library design](library-design.md).
+
+## Explicit caller-array declaration
+
+```mermaid
+flowchart LR
+    Pixels["Caller NumPy array"] --> Declaration["declare_acquisition"]
+    Config["Explicit axes / kind / metadata"] --> Declaration
+    Declaration --> Raw["RawAcquisition<br/>owned sample copy and declaration snapshots"]
+```
+
+Declaration preserves samples and orders declared axes. It infers no optical
+truth and calls no scientific kernel or automatic file adapter. A caller may
+explicitly compose an MRC read with declaration as shown in the
+[current guide](../usage/raw-acquisition-declarations.md). The full owned copy
+has no whole-volume memory bound.
+
+## Historical numerical routes
+
+The original diagrams below are retained verbatim from
+`8f6b35ceda362944f00de44acbf7098989f157e4:docs/architecture/data-flow.md`.
+Their numerical participants, return types, candidate status and “future” paths
+are historical descriptions. They are not available public routes during CE01.
+Replacement numerical stages require their own source-derived contract and
+independent C-equivalence evidence before joining a public workflow.
+
+<details>
+<summary>Historical proposed conversion and reconstruction flow</summary>
+
 # Proposed UML data flow
 
 **Version 1.0** Git versions revisions. Architecture approval is pending. These Unified Modeling Language (UML) diagrams explain the [proposed design](library-design.md); they do not approve function signatures, format contracts, or scientific algorithms.
@@ -163,3 +235,5 @@ sequenceDiagram
 The 3D processing unit contains all required phase/orientation exposures for one channel/time point. It is not one arbitrary input/output block. Future scientific contracts settle transform working sets, scratch staging, and valid subdivisions. Reconstruction, OTF generation/estimation, and scientific defaults remain outside the first file-intake slice.
 
 Modern MRC preserves full logical-axis metadata in a documented extended header. The initial ImageJ path uses the reader support actually established by its contract; it may expose a flattened stack. Preservation is not a promise that ImageJ interprets X/Y/Z/channel/time automatically. A later adapter or reader integration addresses that goal; see the [compatibility evidence](library-design.md).
+
+</details>

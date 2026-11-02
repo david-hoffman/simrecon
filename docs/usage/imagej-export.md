@@ -1,5 +1,7 @@
 # Open all illumination settings in Fiji
 
+> **Current neutral API.** This guide remains applicable during CE01. Reconstruction and the former scientific APIs are temporarily unavailable; see the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md). This operation performs no scientific correction, calibration, estimation or reconstruction.
+
 `export_imagej` makes one uncompressed, little-endian OME-BigTIFF viewing copy. OME means Open Microscopy Environment. Every orientation/phase pair becomes a separate series. Each series retains the actual time, channel, Z, Y and X dimensions. Settings never become acquired Z planes or time points.
 
 Use a regular, uncompressed Priism spatial-image source with uint16 mode 6 or float32 mode 2, either byte order, and identity spatial mapping. Supply an explicit acquisition configuration through the existing `inspect` and `harmonize` interfaces. Modern MRC files, arrays, reconstruction results, irregular mappings, complex and RGB data are outside this adapter. Export performs no scientific processing and requires no Java or Fiji runtime.

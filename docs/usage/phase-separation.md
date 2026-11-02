@@ -1,5 +1,7 @@
 # Separate images at known phases
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `separate_phases(images, *, phases_rad)` fits the unweighted first-harmonic
 model to `N >= 3` images with explicitly supplied phases in radians. Unequal
 spacing is accepted. Supply plain NumPy arrays with shapes `(N, y, x)` and

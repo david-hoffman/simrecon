@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 import sys
@@ -13,6 +12,8 @@ from verification_fixture_tools import main as receipt_main
 
 
 def fingerprint(path: Path) -> str | None:
+    import hashlib
+
     return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
 
 

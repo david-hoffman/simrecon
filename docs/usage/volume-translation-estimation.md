@@ -1,5 +1,7 @@
 # Estimate periodic volume translation against a reference
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 Supply comparable, equal-intensity volumes in z/y/x order. The operation
 compares every integer periodic shift using every voxel. It returns content
 motion in voxels; alignment uses the negative displacement. Physical voxel
