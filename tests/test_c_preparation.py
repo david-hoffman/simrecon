@@ -922,3 +922,44 @@ def test_unrepresentable_noise_factor_rejects_even_for_zero_data(prepare: Any) -
         prepare(images, **options(norders=2, phases_rad=phases))
     np.testing.assert_array_equal(images, original_images)
     np.testing.assert_array_equal(phases, original_phases)
+
+
+def test_supplemental_clustered_overdetermined_design_resolves_or_explicitly_fails(
+    prepare: Any,
+) -> None:
+    """Post-implementation supplement; the accepted positive controls still bind."""
+    raw = np.broadcast_to(
+        np.array([0, 1, 0, 1], dtype=np.float32)[None, None, :, None, None, None],
+        (1, 1, 4, 2, 1, 2),
+    )
+    a = 1e-4
+    phases = np.array([[a, 0, -a, 0]])
+    original_raw = raw.copy()
+    original_phases = phases.copy()
+    e = 1 / math.sin(a / 2) ** 2
+    quadratures = np.zeros((1, 1, 3, 2, 1, 2), dtype=np.complex128)
+    quadratures[0, 0, :, 0, 0, 0] = [4 - 2 * e, e, 0]
+    scale = float(np.max(np.abs(quadratures)))
+    normalized_error_budget = 1e-3  # Predeclared conditioning/rounding budget.
+    try:
+        result = prepare(
+            raw,
+            **options(dxy_um=0.1, dz_um=0.25, norders=2, phases_rad=phases),
+        )
+    except simrecon.SimreconError as error:
+        # D must verify the numerical cause; free-text diagnostics cannot establish it.
+        assert str(error).strip()
+    else:
+        assert result.quadratures.shape == quadratures.shape
+        assert np.isfinite(result.quadratures).all()
+        assert np.isfinite(result.separation_matrices).all()
+        assert np.isfinite(result.noise_variance_factors).all()
+        np.testing.assert_allclose(
+            result.quadratures / scale,
+            quadratures / scale,
+            rtol=0,
+            atol=normalized_error_budget,
+        )
+    finally:
+        np.testing.assert_array_equal(raw, original_raw)
+        np.testing.assert_array_equal(phases, original_phases)
