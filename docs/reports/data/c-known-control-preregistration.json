@@ -1,0 +1,186 @@
+{
+  "schema": "simrecon-ce04-portable-preregistration-v1",
+  "status": "frozen-independent-inputs-product-observation-pending",
+  "original_freeze_utc": "2026-11-03T03:23:47.028939+00:00",
+  "portable_record_prepared_utc": "2026-11-03T05:26:09.190259+00:00",
+  "product_observed": false,
+  "original_contract_sha256": "cc7edba16823b7535e96033620935ab4e4c3e1ebc06d61c1a87669f2c848ba92",
+  "reaffirmed_contract_sha256": "384eebdb7a1cb6c6e3ca63b84a4fafdfeaf2699db3601ed0e74a000a647269cd",
+  "original_contract_scope": "Accepted presentation-tool baseline before the ideal-arithmetic/binary64 clarification",
+  "contract_lineage_note": "The first input-freeze manifest predates the accepted cc7 contract. The same frozen inputs were reaffirmed for cc7 and then 384e without changing mathematics, budgets, or scales.",
+  "first_input_freeze_contract_sha256": "87194e029a1c017b1aaa3bcc98e8f699c94fc0d3e6df75ce07407c1a6b163e10",
+  "reaffirmation_utc": "2026-11-03T05:12:49.257381+00:00",
+  "reaffirmation_record": {
+    "logical_name": "applicability-reaffirmation-384eebdb-20261103T051249Z.md",
+    "sha256": "b49292ac44657fac4ae7ff34bfe50404235687d6e719cd0b436cc4615bf0d8aa",
+    "availability": "original source record retained separately; no private pathname is published"
+  },
+  "publication_artifacts": {
+    "docs/reports/data/c-known-control-expected.json": {
+      "sha256": "095709a4c4dd2dad39147216837fdd1d70233094ab987fca9ccd5756267c825a",
+      "source_record_logical_name": "independent_expectation.json",
+      "source_record_sha256": "095709a4c4dd2dad39147216837fdd1d70233094ab987fca9ccd5756267c825a",
+      "byte_identical_to_source": true
+    },
+    "docs/reports/data/c-known-control-specification.md": {
+      "sha256": "eea711b51578fed0a0e4e2a8b9d0ada7b52e04b19302e6a56efa06b2736500d0",
+      "source_record_logical_name": "preregistration.md",
+      "source_record_sha256": "eea711b51578fed0a0e4e2a8b9d0ada7b52e04b19302e6a56efa06b2736500d0",
+      "byte_identical_to_source": true
+    }
+  },
+  "original_source_records": {
+    "freeze_manifest.json": {
+      "sha256": "ed94664219ee94476585d375b7a80897a9b5cb2426d80a9e1e35bbc08977b8bb",
+      "availability": "not copied; portable registration carries only logical identities"
+    },
+    "independent_arithmetic.py": {
+      "sha256": "ca49f5c51c29de4c556bd6eb7c59aac062c534419185ed7c05545981593ca2c8",
+      "availability": "original independent arithmetic source retained separately; no helper is added to this preview"
+    },
+    "independent_metrics.json": {
+      "sha256": "54a9d28d5eac1bee14a582935d0a4c47f274e7b563abb3b46a818b5c6455d31f",
+      "availability": "metrics are also present in the byte-identical expected JSON"
+    }
+  },
+  "source_identity_note": "The expected JSON and specification are renamed byte-identical copies. This registration is a newly authored portable record, not a byte-identical copy of the original path-bearing freeze manifest. Source-record hashes identify originals, not alternative publication files or a final product candidate.",
+  "control": {
+    "raw_shape_T_D_P_Z_Y_X": [
+      1,
+      1,
+      5,
+      4,
+      8,
+      8
+    ],
+    "norders": 2,
+    "output_shape_T_Z_Y_X": [
+      1,
+      4,
+      16,
+      16
+    ],
+    "dxy_um": 0.5,
+    "dz_um": 0.75,
+    "lateral_zoom": 2,
+    "axial_zoom": 1,
+    "input_scale": 0.0009765625,
+    "background_counts": 128,
+    "carrier_cyc_um": [
+      0.19,
+      0.11
+    ],
+    "side_modulation_real_imag": [
+      0.75,
+      0.25
+    ],
+    "wavelength_nm": 500,
+    "numerical_aperture": 0.8,
+    "immersion_index": 1.4,
+    "wiener": 0.5,
+    "suppress_singularities": false,
+    "suppression_radius_bins": 10.0,
+    "dampen_order0": false,
+    "omit_order0": false,
+    "omit_kz0": false,
+    "output_taper": "none",
+    "edge_pixels": 0,
+    "equalize": false,
+    "equalize_z": false,
+    "equalize_time": false,
+    "phase_policy": "uniform",
+    "transfer_shape_order_radius_axial": [
+      2,
+      10,
+      4
+    ],
+    "dkr_cyc_um": 0.25,
+    "dkz_cyc_um": 0.3333333333333333,
+    "display_plane_h": 1,
+    "display_plane_z_um": -0.75
+  },
+  "absolute_tolerances_detector_counts": {
+    "prepared_quadratures": 2e-10,
+    "filtered_quadratures": 5e-09,
+    "image": 4e-06,
+    "normalized_h1_complex_spectrum": 4e-06
+  },
+  "relative_tolerance": 0,
+  "fixed_linear_plot_scales_detector_counts": {
+    "signed_images": [
+      -12,
+      12
+    ],
+    "native_minus_comparison_image": [
+      -8,
+      8
+    ],
+    "spectrum_magnitudes": [
+      0,
+      4
+    ],
+    "native_minus_comparison_spectrum_magnitude": [
+      -2,
+      2
+    ],
+    "product_minus_expected_image": [
+      -4e-06,
+      4e-06
+    ],
+    "product_minus_expected_spectrum_magnitude": [
+      -4e-06,
+      4e-06
+    ]
+  },
+  "spectrum_convention": {
+    "display_spectrum": "full h=1 2D negative-exponential finite sum divided by 16*16",
+    "normalization_divisor": 256,
+    "intensity_units": "detector counts",
+    "frequency_units": "cycles/um",
+    "image_shift": "none",
+    "spectrum_axis_display_reordering_only": true,
+    "full_3D_export": "diagnostic; no separate tolerance is invented"
+  },
+  "precision_budget": {
+    "binary64_unit_roundoff": 1.1102230246251565e-16,
+    "finite_transform_real_operations_allowance_per_coefficient": 16384,
+    "bounded_elementary_phase_absolute_envelope_in_unit_roundoffs": 32,
+    "prepared_real_quadrature_coefficient_bound_counts": 36.25,
+    "complete_filtered_band_coefficient_error_budget_counts": 2e-09,
+    "maximum_native_coefficients_per_band": 256,
+    "assembly_weighted_contribution_bound": 768,
+    "coefficient_error_propagation_bound_counts": 1.536e-06,
+    "additional_assembly_operations_allowance": 32768,
+    "loose_absolute_signal_bound_counts": 230,
+    "assumptions": "same preregistered stable binary64/libm fixed-branch model; no universal backend or historical binary guarantee"
+  },
+  "illustration_usefulness_minimums_detector_counts": {
+    "h1_peak_image_difference_strictly_greater_than": 0.05,
+    "h1_peak_spectrum_magnitude_difference_strictly_greater_than": 0.01
+  },
+  "independent_comparison_metrics_not_product_errors": {
+    "full_image_max_abs_difference_counts": 6.927524313286466,
+    "full_image_rms_difference_counts": 1.7456581879854303,
+    "h1_image_max_abs_difference_counts": 3.9637526521650206,
+    "h1_image_rms_difference_counts": 1.4149758996830295,
+    "h1_normalized_complex_spectrum_max_abs_difference_counts": 0.5533646924723518,
+    "h1_normalized_spectrum_magnitude_max_abs_difference_counts": 0.17101213972193396
+  },
+  "comparison_limit": "Bilinear relocation of unfiltered bands before quotient changes relocation interpolation as well as quotient order. It does not isolate quotient noncommutation.",
+  "pending_artifacts": {
+    "observation_json": "docs/reports/data/c-known-control-observed.json",
+    "rendering_json": "docs/reports/data/c-known-control-rendering.json",
+    "figure_png": "docs/figures/c-known-control.png",
+    "status": "not present in this preview; coordinator supplies only after an authorized actual observation"
+  },
+  "pending_product_accuracy_metrics": null,
+  "visual_quality_review": "pending actual figure",
+  "claim_limits": [
+    "selected known-parameter mathematical control only",
+    "no fitted gain or registration",
+    "actual binary64 prepared residuals must be consumed without rounding or removal",
+    "no recovery, resolution, or historical executable agreement claim"
+  ],
+  "human_numeric_limits": "not set",
+  "metering": "unknown"
+}

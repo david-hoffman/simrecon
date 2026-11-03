@@ -84,3 +84,8 @@ Historical C executable agreement, physical image recovery and resolution remain
 separate, unqualified outcomes. The old `reconstruct`, `reconstruct_volume`,
 `prepare_otf` and retired modules remain unavailable. The new transfer APIs are
 `prepare_bead_otf`, `declare_otf` and `sample_otf`.
+
+The [fixed numerical control](../reports/c-known-control.md) provides registered
+inputs, independent finite-sum expectations, observed signed images and normalized
+spectra on fixed scales. It distinguishes mathematical agreement from recovery
+and historical executable agreement.
