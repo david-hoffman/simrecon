@@ -4,7 +4,9 @@ CE03 adds empirical bead preparation and complex optical transfer function
 (OTF) sampling. A point spread function (PSF) is the spatial response. This
 entry follows the selected retained-C bead procedure; passing an arbitrary
 normalized PSF through a Fourier transform does not supply that procedure.
-Reconstruction remains unavailable until the later rebuild stages.
+[Known-parameter filtering and assembly](c-known-reconstruction.md) consumes these
+actual transfer records with accepted specimen bands and supplied parameters.
+Carrier fitting, file workflow composition and recovery acceptance remain later stages.
 
 Use decoded arrays and explicit acquisition settings. This stage opens no
 files and estimates no physical bead parameters through the retired optimizer.
@@ -13,8 +15,8 @@ all units, branches and failures. The [task pointer](../tasks/c-equivalence-opti
 links the sole live acceptance/evidence record; documentation alone is no verdict.
 
 A raw bead array has axes `(phase,z,y,x)`. The selected ordinary 3D profile
-requires odd phase count1,3,5,7 or9, at least two axial planes, and square even
-lateral dimensions of at least10 pixels. Compensation requires more than one
+requires an odd phase count of 1, 3, 5, 7 or 9, at least two axial planes, and square even
+lateral dimensions of at least 10 pixels. Compensation requires more than one
 phase. Raw samples must be finite and exactly representable as float32.
 Arithmetic uses binary64. Spacings, bead diameter and line spacing use
 micrometres (um); wavelength is required acquisition metadata in nanometres
@@ -52,7 +54,7 @@ pre-combination quadratures, scaling factors, combination angles and resolved
 settings retain the preparation provenance. Returned records are frozen and
 arrays are owned/read-only. Caller arrays are unchanged.
 
-The caller applies its fixed10-pixel sequential edge operation, even when
+The caller applies its fixed 10-pixel sequential edge operation, even when
 opposite strips overlap. It chooses backgrounds before that operation and
 locates the bead center before background subtraction. Exposure backgrounds
 have precedence over paired camera maps; maps have precedence over a declared
@@ -72,7 +74,7 @@ final conjugation follow the contract's exact ordering.
 
 Complete supplied transfer samples can instead be declared directly. Radial
 layout is `(order,radius,axial)`; full layout is `(order,axial,y,x_half)`.
-The origins lie at index0, and full x stores the nonnegative half. Samples
+The origins lie at index 0, and full x stores the nonnegative half. Samples
 must be finite and exactly representable as complex64. Declaration copies the
 values into owned complex128 storage; it applies no normalization or symmetry
 repair. All orders must be supplied explicitly.
@@ -107,8 +109,9 @@ can be sensitive; no universal forward-error guarantee is made.
 
 Non-square empirical modes, odd-x packing, 2D empirical preparation, I2M/
 two-objective paths and file adapters remain outside this selected profile.
-Complete declared layouts and their safe sampling do not restore a 2D or 3D
-reconstruction workflow. Historical effective external FFT headers/libraries
+Complete declared layouts compose with the
+[known-parameter 3D array stage](c-known-reconstruction.md). They do not enable
+deferred 2D modes or a complete file workflow. Historical effective external FFT headers/libraries
 remain unqualified. This work proves the declared source mathematics; it makes
 no bitwise C-output, image recovery or resolution claim. The
 [small sampling control](../reports/c-otf-control.md) explains the independent

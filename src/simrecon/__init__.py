@@ -1,7 +1,8 @@
-"""Spatial image conversion and native phase-quadrature preparation."""
+"""Spatial image conversion, native preparation and known-parameter reconstruction."""
 
 from ._acquisition import RawAcquisition, declare_acquisition
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
+from ._known_reconstruction import KnownReconstruction, ReconstructionError, reconstruct_known
 from ._legacy import inspect
 from ._metadata import harmonize
 from ._model import DataBlock, DatasetInfo, SimreconError, WriteReport
@@ -22,11 +23,13 @@ __all__ = [
     "DatasetInfo",
     "ImagejSeries",
     "ImagejWriteReport",
+    "KnownReconstruction",
     "OpticalTransfer",
     "OtfError",
     "PreparedBands",
     "PreparedOtf",
     "RawAcquisition",
+    "ReconstructionError",
     "SimreconError",
     "WriteReport",
     "declare_acquisition",
@@ -37,6 +40,7 @@ __all__ = [
     "prepare_bands",
     "prepare_bead_otf",
     "read",
+    "reconstruct_known",
     "sample_otf",
     "write",
 ]

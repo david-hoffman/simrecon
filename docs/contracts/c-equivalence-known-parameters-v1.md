@@ -360,9 +360,12 @@ visited origin evaluates it before the later omit-kz0 override, even if final
 assembly omits order zero. Y=1 has no filter/recombination visits and remains
 permitted when all other fields/operations are valid, including c[0]==0 with
 dampening requested. For T=D=1,P=3,O=2,Z=X=2,Y=1,L=A=1, unit raw images,
-background0, edges0 and equalization off, alpha=1/4 and the exact uniform
-order-zero coefficient is3. With zero carrier and modulation, the unchanged
-bands assemble to constant3; no damping or transfer stencil is evaluated.
+background0, edges0 and equalization off, alpha=1/4 and the ideal-arithmetic
+order-zero coefficient is3. With zero carrier and modulation, ideal bands
+assemble to constant3; no damping or transfer stencil is evaluated. Actual
+binary64 CE02 side residuals remain part of the supplied quadratures and are
+consumed by the declared finite assembly. No rounding or residual removal is
+authorized to force the ideal constant.
 
 A small numerical presentation will use independent fixed expectations, common
 image/spectrum units and preregistered scales. It will show signed image and

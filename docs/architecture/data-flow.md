@@ -1,10 +1,11 @@
-# Data flow: retained neutral operations
+# Data flow: explicit file and array operations
 
-**Version 1.0. CE01 product status.** [PROJECT](../PROJECT.md) and the
-[public conversion contract](../contracts/mrc-conversion-v1.md) define the active
-boundary. The following diagrams are conceptual.
+**Version 1.0. CE02–CE04 product boundary.** [PROJECT](../PROJECT.md) records
+the active boundaries; the linked public contracts define exact behavior.
+The following diagrams are conceptual.
 
-**Reconstruction and the former scientific APIs are temporarily unavailable.**
+Known-parameter reconstruction is an explicit array route through accepted
+preparation and transfer records. The former scientific APIs remain retired.
 The [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) supersedes
 the old numerical route. Neutral file and declaration operations remain available.
 
@@ -58,12 +59,33 @@ explicitly compose an MRC read with declaration as shown in the
 [current guide](../usage/raw-acquisition-declarations.md). The full owned copy
 has no whole-volume memory bound.
 
+## Known-parameter array route
+
+```mermaid
+flowchart LR
+    Exposures["Declared specimen arrays"] --> Bands["prepare_bands: PreparedBands"]
+    Beads["Declared bead arrays"] --> Transfer["prepare_bead_otf.transfer / declare_otf: OpticalTransfer"]
+    Tables["Complete transfer tables"] --> Transfer
+    Bands --> Known["reconstruct_known"]
+    Transfer --> Known
+    Params["Supplied carriers, complex modulation, optics and filtering"] --> Known
+    Known --> Image["Signed real image, coordinates and filtered quadratures"]
+```
+
+This conceptual route uses the accepted complex transfer sampling operation.
+Filtering occurs at native frequencies before centered real-space carrier
+relocation. The array result has no implicit file writer or CLI command.
+[Exact equations and boundaries](../contracts/c-equivalence-known-parameters-v1.md)
+and [usage](../usage/c-known-reconstruction.md) distinguish mathematical agreement
+from historical executable agreement and physical recovery. Fitting, remaining
+modes, complete file composition and recovery acceptance remain CE05–CE08.
+
 ## Historical numerical routes
 
 The original diagrams below are retained verbatim from
 `8f6b35ceda362944f00de44acbf7098989f157e4:docs/architecture/data-flow.md`.
 Their numerical participants, return types, candidate status and “future” paths
-are historical descriptions. They are not available public routes during CE01.
+are historical descriptions. Their old entry points remain retired.
 Replacement numerical stages require their own source-derived contract and
 independent C-equivalence evidence before joining a public workflow.
 

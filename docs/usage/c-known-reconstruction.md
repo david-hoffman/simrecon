@@ -27,7 +27,7 @@ result = reconstruct_known(
     wiener=0.5, suppress_singularities=False, output_taper="none",
 )
 print(result.image.shape)  # (1, 4, 16, 16)
-print(result.x_um[:3])     # [-2.0, -1.875, -1.75] micrometres
+print(result.x_um[:3])     # [-1.0, -0.875, -0.75] micrometres
 ```
 
 This is a deliberately artificial unit-transfer example, not an optical

@@ -144,14 +144,19 @@ def test_odd_y_omitted_row_keeps_values_except_reflected_partial_zeros(ny: int, 
 
 def test_y1_empty_traversal_permits_requested_zero_cutoff_damping() -> None:
     b = bands_from(np.ones((1, 1, 3, 2, 1, 2), np.float32))
+    before = b.quadratures.copy()
+    # Consume actual finite CE02 operands, including any phase-row residuals.
+    finite_image, _ = assemble(before, b, np.zeros((1, 2)))
+    assert_allclose(finite_image, 3, rtol=2e-12, atol=2e-12)
     # This valid all-zero table has no safe radial query at all. No query occurs.
     transfer = public("declare_otf")(
         np.zeros((2, 1, 1), np.complex64), layout="radial", dkr_cyc_um=1, dkz_cyc_um=1
     )
     result = known(b, transfer, modulation=np.zeros((1, 1)), dampen_order0=True)
     assert_array_equal(result.axial_cutoffs_bins, [0, 0])
-    assert_array_equal(result.filtered_quadratures, b.quadratures)
-    assert_array_equal(result.image, 3)
+    assert_array_equal(result.filtered_quadratures, before)
+    assert_array_equal(b.quadratures, before)
+    assert_allclose(result.image, finite_image, rtol=2e-12, atol=2e-12)
 
 
 def test_all_axis_reflection_and_positive_nyquist_embedding_have_closed_modes() -> None:
