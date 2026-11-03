@@ -2,11 +2,12 @@
 
 **A Python library for structured illumination microscopy (SIM) data intake and conversion.**
 
-**Reconstruction and the former scientific APIs are temporarily unavailable.**
-CE01 retires the earlier numerical stack while it is rebuilt to perform the same
-mathematical algorithm as the retained C reference. This includes phase separation,
-optical transfer function (OTF) preparation, calibration, estimation, simulation
-and reconstruction. The [C-equivalence roadmap](docs/plans/c-equivalence-roadmap.md)
+**Reconstruction and the former scientific APIs remain unavailable.**
+The current array stages rebuild selected retained-C operations: specimen
+preparation and phase separation, empirical bead optical transfer function (OTF)
+preparation, and complex transfer sampling. The earlier numerical stack remains
+retired; its calibration, estimation, simulation and reconstruction APIs do not
+return through aliases. The [C-equivalence roadmap](docs/plans/c-equivalence-roadmap.md)
 defines the replacement sequence. No C-equivalent reconstruction is claimed yet.
 
 ## What you can use today
@@ -17,17 +18,23 @@ defines the replacement sequence. No C-equivalent reconstruction is claimed yet.
 | Resolve metadata and convert files | `harmonize`, `write`; `simrecon inspect`, `simrecon convert` | Preserve pixels and declared metadata in modern MRC output. No scientific correction, reconstruction or modern-MRC input decoding. |
 | Declare an acquisition array | `declare_acquisition` | Own a bit-preserving array and explicit acquisition metadata. Declaration estimates no scientific parameters. |
 | View all illumination settings in Fiji | `export_imagej`; `simrecon export-imagej` | A supported Priism acquisition becomes an OME-BigTIFF viewing copy. OME means Open Microscopy Environment. Keep the original for opaque metadata recovery. |
+| Prepare specimen phase bands | `prepare_bands` | Explicit camera/phase settings and the selected C preprocessing map. Pure arrays; no reconstruction. |
+| Prepare empirical bead transfers | `prepare_bead_otf` | Explicit bead/acquisition settings, ordinary square 3D arrays and the selected C preparation path. |
+| Declare and sample complex transfers | `declare_otf`, `sample_otf` | Complete radial/full tables, explicit frequency sampling and actual safe interpolation stencils. |
 | Develop and verify the package | `delivery doctor`, Make commands below | Delivery tools and their verification gates remain installed. |
 
 The retained library functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records and errors.
+The new scientific entries are described in the [specimen preparation guide](docs/usage/c-preparation.md)
+and [empirical transfer guide](docs/usage/c-optical-transfer.md). The retired
+`prepare_otf` name and old private module remain unavailable.
 Historical scientific guides and comparison reports remain evidence of their
 original models and observed failures. Their old commands do not run in the
 current package; a historical passing result is not proof of C equivalence.
 
 ## Software boundaries
 
-This is a **conceptual CE01 boundary diagram**, not a numerical result:
+This is a **conceptual CE03 boundary diagram**, not a numerical result:
 
 ```mermaid
 flowchart TD
@@ -39,14 +46,20 @@ flowchart TD
     Arrays["Caller arrays and explicit declarations"] --> Metadata
     Files --> Output["Selected pixels / modern MRC / OME-BigTIFF"]
     Metadata --> Records["Metadata and acquisition records"]
-    Future["Scientific functions: retired<br/>C-equivalence rebuild pending"]
+    Arrays --> Bands["prepare_bands: native phase quadratures"]
+    Arrays --> Bead["prepare_bead_otf: empirical transfer records"]
+    Tables["Complete caller transfer arrays"] --> Declared["declare_otf: transfer records"]
+    Bead --> Sampling["sample_otf: complex frequency samples"]
+    Declared --> Sampling
+    Future["Reconstruction unavailable<br/>CE04–CE08 pending"]
 ```
 
 `inspect` describes a source without loading its pixels. `read` loads selected
 blocks. `harmonize` resolves metadata and layout from explicit configuration.
 `declare_acquisition` copies and labels caller arrays. The file writers stream a
-described source into a conversion or viewing copy. These operations perform no
-scientific image correction or reconstruction. Records hold values rather than
+described source into a conversion or viewing copy. These file and metadata operations perform no
+scientific image correction or reconstruction. The separate scientific array
+stages follow their own explicit contracts. Records hold values rather than
 open file handles; NumPy buffers are not deeply immutable.
 
 The [project record](docs/PROJECT.md), [library design](docs/architecture/library-design.md)
@@ -78,10 +91,10 @@ covers development setup and prerequisite checks.
 The [replacement roadmap](docs/plans/c-equivalence-roadmap.md) supersedes the old
 RA scientific execution plan. CE01 removes incompatible scientific components
 and their stale tests while retaining neutral I/O, historical evidence and all
-accepted Agentic Software Delivery (ASD) improvements. CE02 begins the rebuild:
-preprocessing and separation, then transfer preparation, known-parameter
-reconstruction, finite parameter fitting, remaining defined modes, public workflow
-composition and independent acceptance.
+accepted Agentic Software Delivery (ASD) improvements. CE02 supplies specimen
+preprocessing/separation; CE03 supplies empirical transfer preparation/sampling.
+Known-parameter reconstruction, finite parameter fitting, remaining defined modes,
+public workflow composition and independent acceptance follow in CE04–CE08.
 
 Mathematical equivalence permits declared invertible representation and unit
 conversions. It does not permit a different estimator or data-dependent fitted

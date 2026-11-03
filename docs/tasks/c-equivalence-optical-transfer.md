@@ -18,7 +18,7 @@ This is high-risk scientific work. The coordinator owns contract/source maps,
 this pointer, PROJECT/usage, independent control figure and reports, role launches,
 Current state/accounting and housekeeping. A owns only `tests/test_c_otf.py` and
 `tests/test_c_otf_validation.py`; B independently reviews public oracles and their
-complete checkpoint. Restricted C owns only `src/simrecon/_otf.py` and
+complete checkpoint. Restricted C owns only `src/simrecon/_optical_transfer.py` and
 `src/simrecon/__init__.py`; D independently reviews the exact passing candidate
 and original proof. C may not edit tests/fixtures/workflows/gates/dependencies/
 policy or unrelated interfaces. No existing tests/fixtures are retired.

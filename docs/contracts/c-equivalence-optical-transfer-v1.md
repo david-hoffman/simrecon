@@ -38,14 +38,29 @@ uses integer nanometres (nm); multiply by 0.001 for um. Frequencies and table
 increments use cycles/um. Angles use radians. Array indices are zero based.
 Equations use mathematical pi; the source PI literal and source floating-point
 rounding contribute to representation/decision sensitivity, not a bitwise claim.
-Source integer limits are signed 32-bit; byte/index/shape products and all
-actually calculated intermediate addresses must fit. Positive even Nyquist
+Source signed integer calculations use signed32. Each dimension/count and
+every actually evaluated signed-int product/sum/address must fit, including
+the per-phase padded real count `(N+2)*N*Z` and `Z*P` background count.
+Transfer per-order counts `R*K` (radial) or `K*X*Y` (full), and the sampler's
+`X*Y` plus every address intermediate, must fit signed32. The source allocates
+phase bands and transfer orders separately: neither total phase-volume nor
+total order-volume has an additional signed32 product restriction.
+Multiplication by `sizeof` in malloc/calloc/memcpy uses unsigned size_t, not
+signed32 bytes. Required Ubuntu/macOS Python platforms use 64-bit native
+addressing. For every owned float64/complex128 array, its dimensions and target
+dtype shape/stride/allocation representation must fit NumPy intp. With native
+M=INTP_MAX and item size s, require nonnegative dimensions <=M and
+`s*product(max(d,1) for d in shape)<=M`, including empty query outputs: nominal
+nbytes=0 does not alone prove that target shape is representable. Check this
+with nonoverflowing arithmetic before copying/allocating the target. There is no arbitrary 2^31-byte cap. Actual allocation
+failures remain OtfError operations with cause retained; large arrays are not
+promised to fit available physical memory. Positive even Nyquist
 indices are retained: q(i,N)=i for i<=floor(N/2), otherwise i-N.
 
 ## Public entries and value records
 
 ```python
-prepare_otf(raw, *, dxy_um, dz_um, linespacing_um, wavelength_nm,
+prepare_bead_otf(raw, *, dxy_um, dz_um, linespacing_um, wavelength_nm,
             bead_diameter_um=0.12, carrier_angle_rad=0.0,
             background_counts=None, background_map=None, slope_map=None,
             exposure_background_counts=None,
@@ -62,7 +77,8 @@ sample_otf(transfer, kx_cyc_um, ky_cyc_um, kz_index, *,
 ```
 
 These functions and `OpticalTransfer`, `PreparedOtf`, `OtfError` are public from
-`simrecon`. `OtfError` subclasses ValueError. Every rejected input/unsupported
+`simrecon`. The new empirical `prepare_bead_otf` entry preserves retirement of
+the old `prepare_otf` API and `simrecon._otf` module; neither is restored or aliased. `OtfError` subclasses ValueError. Every rejected input/unsupported
 operation or unresolved numerical operation raises it with nonempty informative
 text. Unsupported capabilities name the branch. Allocation/backend failures
 are translated with cause retained. No fallback, regularizer or zero fill hides
@@ -324,6 +340,7 @@ CE07 must compose declared calibration arrays through this preparation path.
 | O38 | Invalid/forged transfer records and unsafe source int arithmetic reject |
 | O39 | Existing public compatibility and reconstruction-unavailable boundary remain |
 | O40 | Documentation/usage distinguishes empirical bead preparation from arbitrary PSF transform, mathematical vs binary proof |
+| O41 | Native owned dtype shape/stride/byte representation, including zero-data queries whose complex128 output shape is unrepresentable |
 
 A must map these obligations and distinct error subcases to tests and derive
 oracle tolerances before observing product discrepancies, with credible wrong

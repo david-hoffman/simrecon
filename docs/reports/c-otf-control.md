@@ -43,8 +43,11 @@ is allowed after observing product output.
 
 The figure will show real and imaginary expectation/result and signed
 result-minus-expectation on common coordinate scales. Expected and observed
-values share a fixed scale for each component; residuals use the same symmetric
+values share the fixed real scale [-1,7] and imaginary scale [-3,3] transfer
+units for each expectation/result pair. Residuals use the same symmetric
 fixed scale of +/-5e-12 transfer units. Pixel density is only display sampling.
+The dotted x=0 marker identifies the source reflection branch; the table's
+intentional jump there is not a physical optical claim.
 All input/query/expected values, the pre-observation specification hash,
 observation, maximum error and renderer provenance live in the task evidence.
 Final values are recorded outside tracked bytes unless a separate observed
