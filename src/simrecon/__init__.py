@@ -6,6 +6,14 @@ from ._legacy import inspect
 from ._metadata import harmonize
 from ._model import DataBlock, DatasetInfo, SimreconError, WriteReport
 from ._modern import write
+from ._optical_transfer import (
+    OpticalTransfer,
+    OtfError,
+    PreparedOtf,
+    declare_otf,
+    prepare_bead_otf,
+    sample_otf,
+)
 from ._pixels import read
 from ._preparation import PreparedBands, prepare_bands
 
@@ -14,15 +22,21 @@ __all__ = [
     "DatasetInfo",
     "ImagejSeries",
     "ImagejWriteReport",
+    "OpticalTransfer",
+    "OtfError",
     "PreparedBands",
+    "PreparedOtf",
     "RawAcquisition",
     "SimreconError",
     "WriteReport",
     "declare_acquisition",
+    "declare_otf",
     "export_imagej",
     "harmonize",
     "inspect",
     "prepare_bands",
+    "prepare_bead_otf",
     "read",
+    "sample_otf",
     "write",
 ]

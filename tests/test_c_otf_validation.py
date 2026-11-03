@@ -360,13 +360,23 @@ def test_invalid_table_declarations(name: str, bad: Any) -> None:
 
 
 @pytest.mark.parametrize(
-    "layout,shape", [("radial", (1, 1, 1)), ("radial", (1, 3, 1)), ("full", (1, 1, 2, 1))]
+    "layout,shape,scalar_safe",
+    [
+        ("radial", (1, 1, 1), False),
+        ("radial", (1, 3, 1), True),
+        ("full", (1, 1, 2, 1), False),
+        ("full", (1, 1, 3, 1), True),
+    ],
 )
-def test_permitted_length_one_axes_and_empty_queries(layout: str, shape: tuple[int, ...]) -> None:
+def test_permitted_length_one_axes_and_empty_queries(
+    layout: str, shape: tuple[int, ...], scalar_safe: bool
+) -> None:
     transfer = api("declare_otf")(np.ones(shape), layout=layout, dkr_cyc_um=1, dkz_cyc_um=1)
     empty = api("sample_otf")(transfer, np.array([]), 0, 0, dkz_cyc_um=1)
     assert empty.shape == (0,)
-    if shape != (1, 1, 1):
+    # Full K1/X1 reads [0,1,1,2,0,1,1,2]: Y2 is unsafe, Y3 is safe.
+    # Declarations and empty queries remain valid for both complete tables.
+    if scalar_safe:
         np.testing.assert_array_equal(api("sample_otf")(transfer, 0, 0, 0, dkz_cyc_um=1), 1)
     else:
         with pytest.raises(api("OtfError"), match=".+"):

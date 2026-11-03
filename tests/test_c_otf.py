@@ -108,8 +108,11 @@ def finite_observer(raw: F64, options: dict[str, Any]) -> dict[str, Any]:
         border = (indices < 20) | (indices > n - 20)
         backgrounds = corrected[:, :, border, :][:, :, :, border].mean(axis=(-2, -1)).T
         policy = "auto"
-    e = edge_matrix(n)
-    treated = np.einsum("ay,pzyx,bx->pzab", e, corrected, e)
+    # E=I+D and D annihilates constants. Form endpoint-relative differences
+    # before dense multiplication so exact constant-region ties stay exact.
+    d = edge_matrix(n) - np.eye(n)
+    treated = corrected + np.einsum("ay,pzyx->pzax", d, corrected - corrected[:, :, :1, :])
+    treated = treated + np.einsum("bx,pzyx->pzyb", d, treated - treated[:, :, :, :1])
     center = centered_peak(treated.mean(axis=0))
     treated -= backgrounds.T[:, :, None, None]
     phases = 2 * pi * np.arange(p) / p
@@ -308,6 +311,10 @@ def test_background_precedence_all_supplied_values_validated(policy: str) -> Non
     np.testing.assert_array_equal(actual.background_counts, expected["backgrounds"])
     np.testing.assert_array_equal(background, np.full((24, 24), 0.25))
     np.testing.assert_array_equal(slope, np.full((24, 24), -0.5))
+    if policy == "maps":
+        # Camera correction leaves boundary/first-maximum neighbours at .125;
+        # both edge differences and all three parabolic offsets are exactly0.
+        np.testing.assert_array_equal(actual.center_pixels_xyz, [0, 0, 0])
     if policy == "scalar":
         q0 = expected["quadratures"][0]
         assert float(np.max(np.abs(q0))) > 1.1 * abs(q0[0, 0])
@@ -355,7 +362,9 @@ def test_center_finite_decisions_and_periodic_neighbors(kind: str) -> None:
         raw[0, 1, 11, 11] = 2
         center = [11, 11, -0.1]
     actual, _ = assert_prepared(raw, settings(background_counts=3))
-    if center is not None:
+    if kind == "zero_curvature":
+        np.testing.assert_array_equal(actual.center_pixels_xyz, [0, 0, 0])
+    elif center is not None:
         np.testing.assert_allclose(actual.center_pixels_xyz, center, rtol=0, atol=EPS * 4096)
 
 
