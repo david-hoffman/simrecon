@@ -853,7 +853,8 @@ No clipping/refitting to force a known reconstruction is authorized.
 
 prepare_bead_otf retains its existing signature, OtfError, PreparedOtf and
 OpticalTransfer records, defaults and CE03 operation order. Its raw axes
-broaden from (P,Z,N,N) to (P,Z,Y,X), X even, X,Y>=10, Z>=1;
+broaden from (P,Z,N,N) to (P,Z,Y,X), X even, X>=8, Y>=10,
+Y<=X+2, Z>=1;
 P remains odd in {1,3,5,7,9}. Maps broaden to (Y,X), exposure backgrounds to
 (Z,P). All original dtype/finite/optics/sphere/phase/rank/normalization safety
 rules persist. P1 still requires bead compensation off. No supplied bead phase
@@ -873,8 +874,15 @@ Every CE03 preparation equation applies with these explicit substitutions:
   Keep the source padded real allocation (Z,Y,X+2), initialized0, and every
   sequential write. Padding writes are not detector samples or new Fourier
   inputs. Any actual negative/out-of-allocation address rejects even when
-  diff=0. All in-allocation writes are retained. With X,Y>=10 the simple
-  last-row bound requires Y<=X+2; no square-only restriction remains.
+  diff=0. All in-allocation writes are retained. The tight uniform fixed10
+  address envelope is Y>=10 (vertical and negative horizontal rows/offsets),
+  X+2>=10 (horizontal additions through padded column9), and Y<=X+2
+  (last-row horizontal subtraction). Thus even X>=8, Y>=10, Y<=X+2
+  is source-safe for this operation. In particular X8/Y10 uses both initialized
+  padding columns and is a defined family for general permitted data/settings,
+  not an impulse-only exception. The specimen/prepass helper subtracts X-1-k
+  instead and still requires X>=10; its bound must not replace the bead bound.
+  Remaining centering/diagnostic/repair/normalization/stencil conditions bind.
 - Both lateral increments for bead compensation are dkr=1/(Y*dxy),
   even though the x transform used X. dkz=1/(Z*dz).
   Shifted continuum-sphere rho uses
@@ -892,6 +900,20 @@ Every CE03 preparation equation applies with these explicit substitutions:
   than X//2 is the defined no-op. Do not mask this by duplicating K1 cells.
   The unused center/background diagnostic still rejects yc=20 or unsafe
   floor(zc) reads, even if its numerical value is discarded.
+
+A finite boundary control uses P3,Z1,Y10,X8, with phase p containing only
+counts p+1 at (z0,y5,x4). Select scalar background0, compensation off, both
+repairs off (fix_axial_axis=False, fix_radial_from=0), cleanup/origin fitting
+off, forced_pi_shift=False and rescale_each=False; positive dxy=dz=linespacing=1um,
+wavelength500nm, NA=immersion1. All 100 padded floats are initialized; actual
+edge offsets span0..99, both edge differences are0, center is(4,5,0), and the
+unused background denominator is-360. Radial counts are(1,5,7,9,17), all positive.
+Common normalization is1/2. Under the declared mathematical-pi convention,
+H0[r,0]=1 and H1[r,0]=sqrt(3)/6 for r0..4. These source-derived finite values
+supply a positive discriminator, not observed C outputs or the sole oracle.
+X8/Y8 still violates the vertical bound; X6/Y10 violates the addition bound;
+X8/Y11 violates the last-row subtraction bound. A safe preparation does not
+waive the downstream next-lateral-vertex check on its R5/K1 transfer.
 
 PreparedOtf.quadratures is (P,R,Z), background_counts (Z,P), centers xyz and
 all other diagnostics remain CE03. The returned transfer is radial (O,R,Z),
@@ -1259,7 +1281,7 @@ reachability, omissions, oracles and rejected positives.
 | A12 | Products precede floors/phase replacement; raw direct diagnostics distinguished; zero factors permitted versus selected zero-floor/base-phase failure |
 | A13 | 2D omit-kz0 removes all overlap samples, failure at actual search/known operation; known zero vector and weak unequal positive energies remain permitted |
 | A14 | Per-time reuse fits fresh modulation from actual time data, no time0 amplitude replay; 3D no cumulative product |
-| A15 | Safe rectangular empirical phase/FFT/center/compensation/radial normalization composition; square controls retained General raw-bead->actual PreparedOtf.transfer->sample/estimate/filter composition consumes complex128 values directly, without redeclaration, quantization or metadata rebinding; preserve CE03 declared-table domain. |
+| A15 | Safe rectangular empirical phase/FFT/center/compensation/radial normalization composition; square controls retained General raw-bead->actual PreparedOtf.transfer->sample/estimate/filter composition consumes complex128 values directly, without redeclaration, quantization or metadata rebinding; preserve CE03 declared-table domain.; tight initialized-padding envelope includes evenX8/Y10 family, with squareX8/Y8 and X6/Y10 or X8/Y11 rejected for their actual distinct address failures |
 | A16 | Literal Y-based horizontal bead edge, including in-allocation padding writes, versus out-of-allocation writes; no “corrected” X substitution |
 | A17 | 2D empirical K1 preparation with safe settings; active radial repair final-row failure versus zero/large-start no-op Direct consumption retains original positive prepared dkz for positive/zero specimen dz; no fixed-dkz1 value-record requirement. |
 | A18 | Common empirical scale versus optional per-slot; continuum sphere, uniform bead phase/P and no specimen alpha remain distinct Computed non-complex64-exact coefficients are preserved in actual prepared transfers; raw declared samples still require exact complex64 representability. |
@@ -1296,7 +1318,7 @@ reachability, omissions, oracles and rejected positives.
 | A49 | Missing phase metadata/null diagnostic and fitted-drift null-clock errors; unselected flags add no work, unfitted 2D with adjust_phases=False needs no clock; fake timestamps do not qualify linked phase |
 | A50 | Fast no-drift same canonical values; fast D>1 drift unsafe, D1 BETWEEN-ONLY initialized-zero bypass; fast within-3D D1 unsafe, fast within-2D D1 separately qualified by active estimator/fit/phase path |
 | A51 | Read-only/strided input ownership/immutability and valid caller-mutated bands; no hidden raw replay; all trace schemas and time slices complete Actual complex128 prepared transfer consumption has no quantization seam; estimator result uses exact CE05 six-file provenance, with input ten-file acquisition tuple retained losslessly in the exact two-key ordered settings suffix. |
-| A52 | All shape/type/finite/scalar/flag/record/source/alpha failures paired with endpoint/negative/zero positives actually allowed Distinguish invalid ten-file input provenance from the successful six-file result; preserve prepared complex128 versus declared exact-complex64 domains and exact resolved_settings keys/value kinds/order. |
+| A52 | All shape/type/finite/scalar/flag/record/source/alpha failures paired with endpoint/negative/zero positives actually allowed Distinguish invalid ten-file input provenance from the successful six-file result; preserve prepared complex128 versus declared exact-complex64 domains and exact resolved_settings keys/value kinds/order.; bead geometry uses X>=8,Y>=10,Y<=X+2 while specimen/prepass fixed10 keeps X>=10 |
 | A53 | Source signed/unsigned/intp representation and actual stencil/address checks, including zero weights and diagnostic extents; allocation/backend operation failure with no partial result |
 | A54 | Docs distinguish math/unsafe subdomains/outside-support modes (including otherwise-defined O1 no-search Bessel/two-objective), alternative tools, literal header regrouping/file limits, binary agreement and physical recovery Freeze six-file estimator result versus ten-file input/settings provenance and unchanged original CE05 metadata; require direct empirical-transfer consumption without quantization/rebinding. |
 
