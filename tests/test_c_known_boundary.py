@@ -610,3 +610,103 @@ def test_missing_required_keyword_and_retired_public_names_and_modules() -> None
     for name in ("simrecon._reconstruction", "simrecon._otf"):
         with pytest.raises(ModuleNotFoundError):
             importlib.import_module(name)
+
+
+@pytest.mark.parametrize(
+    "field,scalar_type",
+    [
+        (field, scalar_type)
+        for field in (
+            "numerical_aperture",
+            "immersion_index",
+            "wiener",
+            "suppression_radius_bins",
+            "dxy_um",
+            "dz_um",
+            "input_scale",
+        )
+        for scalar_type in (float, np.float16, np.float32, np.float64)
+    ]
+    + [
+        (field, scalar_type)
+        for field in (
+            "numerical_aperture",
+            "immersion_index",
+            "wiener",
+            "suppression_radius_bins",
+            "dxy_um",
+            "dz_um",
+        )
+        for scalar_type in (int, np.int64, np.uint64)
+    ],
+)
+def test_permitted_real_scalar_kinds_have_closed_dc_and_metadata(
+    field: str, scalar_type: Any
+) -> None:
+    b = blank(shape=(1, 1, 3, 2, 2, 2), dxy_um=0.5, dz_um=0.5)
+    b.quadratures[:] = 0
+    b.quadratures[0, 0, 0, 0, 0, 0] = 1
+    b.noise_variance_factors[:] = 1
+    options: dict[str, Any] = dict(
+        wavelength_nm=500,
+        numerical_aperture=0.5,
+        immersion_index=1.5,
+        wiener=0.5,
+        suppress_singularities=field == "suppression_radius_bins",
+        suppression_radius_bins=2.0,
+        dampen_order0=False,
+        omit_order0=False,
+        omit_kz0=False,
+        output_taper="none",
+    )
+    inherited = dict(dxy_um=0.5, dz_um=0.5, lateral_zoom=1, axial_zoom=1, input_scale=0.125)
+    value = options[field] if field in options else inherited[field]
+    if scalar_type in (int, np.int64, np.uint64):
+        value = 2 if field == "suppression_radius_bins" else 1
+    supplied = scalar_type(value)
+    if field in options:
+        options[field] = supplied
+    else:
+        b = changed(b, **{field: supplied})
+        inherited[field] = float(supplied)
+
+    # Independent sole-DC expectation, registered before public execution.
+    # g=1 normally; at the suppressed origin g=1/5001.
+    # Therefore g/(g+w^2) is 4/5, 1/2 for integer w, or 4/5005.
+    expected = (
+        4 / 5005 if options["suppress_singularities"] else 1 / (1 + float(options["wiener"]) ** 2)
+    )
+    filtered = np.zeros(b.quadratures.shape, np.complex128)
+    filtered[0, 0, 0, 0, 0, 0] = expected
+    expected_settings = options | inherited
+    expected_settings[field] = float(supplied)
+    expected_radius = min(
+        2000 * float(options["numerical_aperture"]) / 500, 1 / (2 * inherited["dxy_um"])
+    )
+    transfer = table(constant=True)
+    carriers = np.zeros((1, 2))
+    modulation = np.zeros((1, 1))
+    originals = [
+        (array, array.copy())
+        for array in (
+            b.quadratures,
+            b.noise_variance_factors,
+            transfer.samples,
+            carriers,
+            modulation,
+        )
+    ]
+    result = known(b, transfer, carriers_cyc_um=carriers, modulation=modulation, **options)
+    np.testing.assert_allclose(result.filtered_quadratures, filtered, rtol=2e-12, atol=2e-12)
+    np.testing.assert_allclose(result.image, expected, rtol=2e-12, atol=2e-12)
+    assert result.image.shape == (1, 2, 2, 2)
+    assert result.image.dtype == np.float64
+    assert result.filtered_quadratures.dtype == np.complex128
+    assert result.resolved_settings == tuple(expected_settings.items())
+    assert result.radial_cutoff_cyc_um == expected_radius
+    assert_array_equal(result.axial_cutoffs_bins, [0, 0])
+    assert_array_equal(result.x_um, [-inherited["dxy_um"], 0])
+    assert_array_equal(result.y_um, [-inherited["dxy_um"], 0])
+    assert_array_equal(result.z_um, [-inherited["dz_um"], 0])
+    for array, original in originals:
+        assert_array_equal(array, original)
