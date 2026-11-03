@@ -1,0 +1,23 @@
+{
+  "matplotlib": "3.11.2",
+  "numpy": "2.5.3",
+  "renderer_sha256": "53b82e91273db4d7a6a4f1e1e845a194f29a24638127ca4e7fa54d01edd93899",
+  "expected_sha256": "a8d6b6be7b9c7bb02a293c17d6dace643a72ca77ab06138967b0dd232e65fabb",
+  "fixed_component_scales": {
+    "real": [
+      -1,
+      7
+    ],
+    "imaginary": [
+      -3,
+      3
+    ],
+    "both_signed_differences": [
+      -5e-12,
+      5e-12
+    ]
+  },
+  "queries": 1681,
+  "observed_source_sha256": "2350d33872a2f2e9ee9b0f575ef0e52fcaa66f5790ed204cb9bfd7605fb05fef",
+  "public_sanitized_observed_sha256": "c4ffd2456ff8d5c9ab44713488b6dcadad507d159664f9a272114a2db3ac7746"
+}
