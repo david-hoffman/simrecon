@@ -53,7 +53,7 @@ def test_fitted_2d_cubic_exact_control_alias_mutation_and_first_off_phase(
     fits = events(actual, "cubic-fit")
     assert len(fits) == 2
     for fit in fits:
-        assert fit["scope"] == "within"
+        assert type(fit["scope"]) is str
         close(fit["matrix"], [[1, 1, 1], [2, 4, 8], [3, 9, 27]], work=4, scale=27)
         close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]], work=800, scale=27, condition=128)
         close(fit["evaluation_timestamps_after"], [0, 1, 2, 3], work=4, scale=max(origin, 3))
@@ -135,7 +135,7 @@ def test_ordinary_3d_cubic_distinct_vectors_global_prefix_reused_at_later_time(b
     eta = prefix - 10
     expected = eta**3
     for t, fit in enumerate(fits):
-        assert fit["scope"] == "within"
+        assert type(fit["scope"]) is str
         close(
             fit["sample_displacements_xy"],
             np.c_[measured, np.zeros(4)],

@@ -10,6 +10,7 @@ from c_acquisition_fixture import (
     api,
     close,
     edge,
+    gamma,
     known_options,
     lift,
     optics,
@@ -131,7 +132,19 @@ def bead_expected(raw: Any, settings: dict[str, Any]) -> dict[str, Any]:
     )
 
 
-@pytest.mark.parametrize("y,x,z", [(24, 24, 1), (22, 24, 3), (26, 24, 1), (32, 32, 1)])
+@pytest.mark.parametrize(
+    "y,x,z",
+    [
+        (24, 24, 1),
+        (22, 24, 3),
+        (26, 24, 1),
+        (32, 32, 1),
+        (10, 8, 1),
+        (10, 10, 2),
+        (11, 10, 1),
+        (12, 10, 1),
+    ],
+)
 @pytest.mark.parametrize("compensate,rescale", [(False, False), (True, False), (False, True)])
 def test_rectangular_z1_phase_fft_center_sphere_radial_scale(
     y: int, x: int, z: int, compensate: bool, rescale: bool
@@ -265,3 +278,151 @@ def test_migrated_original_rectangular_geometry_is_now_positive() -> None:
     )
     close(actual.transfer.samples[0], 1, work=5 * 24 * 22, scale=1, condition=16)
     assert actual.transfer.samples.shape == (3, 12, 5)
+
+
+@pytest.mark.parametrize(
+    "y,x,reason",
+    [(8, 8, "vertical"), (10, 6, "addition"), (11, 8, "subtraction")],
+    ids=["vertical-y8", "padding-add-x6", "last-row-subtract-y11"],
+)
+def test_adjacent_bead_address_failures_with_zero_edge_differences(
+    y: int, x: int, reason: str
+) -> None:
+    # Each geometry violates a different part of the approved address envelope.
+    # A zero difference cannot make an invalid source write safe.
+    raw = np.zeros((3, 1, y, x))
+    raw[:, 0, y // 2, x // 2] = [1, 2, 3]
+    assert reason in {"vertical", "addition", "subtraction"}
+    with pytest.raises(api("OtfError"), match=".+"):
+        api("prepare_bead_otf")(raw, **bead_options())
+
+
+def closed_bead_error() -> float:
+    """Propagate the explicitly conditional backend model in A2/expectations.md."""
+    u = 2.0**-53
+    separation_error = 2 * gamma(12) + 64 * u
+    fourier_error = 80 * separation_error + gamma(8 * (8 + 10)) * 2
+    ramp_error = gamma(8) * 32 + 4 * u
+    centered_error = fourier_error + (2 + fourier_error) * ramp_error + gamma(8) * 2
+    radial_error = centered_error + gamma(17) * (2 + centered_error)
+    scale_error = radial_error / (2 * (2 - radial_error)) + u / (2 - radial_error)
+    normalized_error = radial_error / 2 + (2 + radial_error) * scale_error + u * (1 + radial_error)
+    c, s = 0.25, sqrt(3) / 12
+    sum_error = 5 * normalized_error + gamma(5) * 5 * (c + normalized_error)
+    ratio_error = (sum_error * (5 * c + 5 * s)) / (5 * c * (5 * c - sum_error))
+    ratio_error += gamma(2) * (5 * s + sum_error) / (5 * c - sum_error)
+    # atan <=4u, pi representation <=2u, final subtraction <=4u.
+    angle_error = ratio_error + 10 * u
+    return (
+        2 * normalized_error
+        + (c + s + 2 * normalized_error) * (angle_error + 4 * u)
+        + gamma(8) * (c + s)
+    )
+
+
+def closed_composition_errors(table_error: float) -> tuple[float, float, float]:
+    """Bound the small DC control using product, quotient and reduction errors."""
+    u = 2.0**-53
+    cells = 8
+    a = sqrt(3) / 6
+    eh = table_error + gamma(8) * (1 + table_error)
+    eb = gamma(8 * (4 + 2)) * 6 + cells * (gamma(12) * 0.75 + 32 * u * 0.75)
+
+    def product(av: float, ae: float, bv: float, be: float) -> float:
+        return av * be + bv * ae + ae * be + gamma(8) * (av + ae) * (bv + be)
+
+    def quotient(nv: float, ne: float, dv: float, de: float) -> float:
+        assert dv > de  # observer conditioning, never a scientific input gate
+        return (ne + nv / dv * de) / (dv - de) + gamma(2) * (nv + ne) / (dv - de)
+
+    def inverse(value: float, error: float) -> float:
+        return cells * error + gamma(8 * (4 + 2)) * (value + cells * error)
+
+    d = sqrt(1 + a * a)
+    ed2 = product(1, eh, 1, eh) + product(a, eh, a, eh) + u * d * d
+    ed = ed2 / (d + sqrt(d * d - ed2)) + u * (d + ed2 / d)
+    lower, upper = 6 * a / d, 3 / d
+    el = inverse(lower, quotient(6 * a, product(6, eb, a, eh), d, ed))
+    eu = inverse(upper, quotient(3, product(3, eb, 1, eh), d, ed))
+    sx = cells * lower * lower
+    esx = cells * product(lower, el, lower, el) + gamma(cells) * cells * (lower + el) ** 2
+    cross = cells * lower * upper
+    ecross = cells * product(lower, el, upper, eu)
+    ecross += gamma(cells) * cells * (lower + el) * (upper + eu)
+    estimate_error = quotient(cross, ecross, sx, esx)
+    ecden = product(1, eh, 1, eh) + u * 1.25
+    center_error = quotient(6, product(6, eb, 1, eh), 1.25, ecden)
+    known_error = inverse(4.8, center_error)
+    numerator_error = product(3, eb, a, eh)
+    numerator_error = product(3 * a, numerator_error, sqrt(3), estimate_error)
+    side_power_error = product(a, eh, a, eh)
+    mod_power_error = product(sqrt(3), estimate_error, sqrt(3), estimate_error)
+    denominator_error = product(a * a, side_power_error, 3, mod_power_error) + u * 0.5
+    side_error = quotient(1.5, numerator_error, 0.5, denominator_error)
+    image_error = known_error + 2 * inverse(3, side_error) + gamma(4) * 10.8
+    return estimate_error, known_error, image_error
+
+
+@pytest.mark.parametrize("dz", [0.0, 0.4], ids=["specimen-dz0", "specimen-positive-dz"])
+def test_x8_y10_closed_transfer_actual_estimates_and_image(dz: float) -> None:
+    # Algebra and allowances are fixed before the first public call.
+    a = sqrt(3) / 6
+    table_error = closed_bead_error()
+    estimate_error, known_error, image_error = closed_composition_errors(table_error)
+    assert table_error < abs(a - float(np.float32(a))) / 10
+    raw = np.zeros((3, 1, 10, 8))
+    raw[:, 0, 5, 4] = [1, 2, 3]
+    raw.flags.writeable = False
+    prepared = api("prepare_bead_otf")(
+        raw,
+        **bead_options(
+            dxy_um=1.0,
+            dz_um=0.5,
+            linespacing_um=1.0,
+            wavelength_nm=500,
+            numerical_aperture=1.0,
+            immersion_index=1.0,
+        ),
+    )
+    table = prepared.transfer
+    np.testing.assert_array_equal(prepared.center_pixels_xyz, [4, 5, 0])
+    np.testing.assert_allclose(
+        table.samples,
+        np.broadcast_to(np.array([1, a])[:, None, None], (2, 5, 1)),
+        rtol=0,
+        atol=table_error,
+    )
+    assert table.dkr_cyc_um == 0.1 and table.dkz_cyc_um == 2.0
+    for order, value in enumerate([1, a]):
+        observed = api("sample_otf")(table, 0.15, 0, 0, dkz_cyc_um=2.0, order=order)
+        np.testing.assert_allclose(observed, value, rtol=0, atol=table_error + gamma(8))
+    with pytest.raises(api("OtfError"), match="(?i)represent|complex64|exact|float32"):
+        api("declare_otf")(
+            table.samples, layout="radial", dkr_cyc_um=table.dkr_cyc_um, dkz_cyc_um=table.dkz_cyc_um
+        )
+    with pytest.raises(api("OtfError"), match="(?i)stencil|vertex|alloc|bound|index"):
+        api("sample_otf")(table, 0.4, 0, 0, dkz_cyc_um=2.0)
+    specimen = np.broadcast_to(
+        np.array([1, 1, 4])[None, None, :, None, None, None], (1, 1, 3, 1, 2, 4)
+    )
+    bands = api("prepare_acquisition_bands")(specimen, **options(dxy_um=4.0, dz_um=dz))
+    carriers = np.zeros((1, 2))
+    settings = known_options(filter_overlaps=False)
+    control = api("reconstruct_known")(
+        bands, table, carriers_cyc_um=carriers, modulation=np.zeros((1, 1)), **settings
+    )
+    np.testing.assert_allclose(control.image, 24 / 5, rtol=0, atol=known_error)
+    estimated = api("estimate_parameters")(
+        bands, table, initial_carriers_cyc_um=carriers, search_carriers=False, **optics()
+    )
+    np.testing.assert_allclose(
+        estimated.modulation, -sqrt(3) / 2 - 1.5j, rtol=0, atol=estimate_error
+    )
+    result = api("reconstruct_known")(
+        bands,
+        table,
+        carriers_cyc_um=estimated.carriers_cyc_um[0],
+        modulation=estimated.modulation[0],
+        **settings,
+    )
+    np.testing.assert_allclose(result.image, 54 / 5, rtol=0, atol=image_error)
