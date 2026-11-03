@@ -1,0 +1,226 @@
+{
+  "rendered_utc": "2026-11-03T06:05:34.216683+00:00",
+  "candidate_commit": "416ec3859724a8ea067090e8f2182d97496be558",
+  "candidate_tree": "9c16773e51d409ba44f8e96d739ad77836d51fc0",
+  "observed_sha256": "5e6831a0d9c54a11050fcc34322598d3141ff6299a2650882b9ab0f93a40f68c",
+  "observed_started_utc": "2026-11-03T06:04:50.324483+00:00",
+  "observed_completed_utc": "2026-11-03T06:04:50.647268+00:00",
+  "renderer_sha256": "6d8dd4ce4898a7be43be19bf3a7f08d509e52d634b891cefb949faa957cad88d",
+  "support_sha256": "2fe82234db2003890aff8dfab6a52d424addb0061ee1836fd050051d679bfd0f",
+  "frozen_artifacts_sha256": {
+    "preregistration.md": "eea711b51578fed0a0e4e2a8b9d0ada7b52e04b19302e6a56efa06b2736500d0",
+    "independent_arithmetic.py": "ca49f5c51c29de4c556bd6eb7c59aac062c534419185ed7c05545981593ca2c8",
+    "independent_expectation.json": "095709a4c4dd2dad39147216837fdd1d70233094ab987fca9ccd5756267c825a",
+    "independent_metrics.json": "54a9d28d5eac1bee14a582935d0a4c47f274e7b563abb3b46a818b5c6455d31f",
+    "applicability-reaffirmation-20261103T032715Z.md": "a3cac250f163e544b8646a48609c9cca5bcf1f05cc6c1f07858ef7aa63767616"
+  },
+  "scales": {
+    "image": [
+      -12,
+      12
+    ],
+    "comparison_image_difference": [
+      -8,
+      8
+    ],
+    "spectrum_magnitude": [
+      0,
+      4
+    ],
+    "comparison_spectrum_difference": [
+      -2,
+      2
+    ],
+    "accuracy_residual": [
+      -4e-06,
+      4e-06
+    ]
+  },
+  "all_checks_passed": true,
+  "checks": {
+    "prepared_quadratures": {
+      "passed": true,
+      "max_absolute_error": 7.989074937500148e-16,
+      "rms_error": 7.257948627645829e-17,
+      "absolute_tolerance": 2e-10,
+      "relative_tolerance": 0
+    },
+    "filtered_quadratures": {
+      "passed": true,
+      "max_absolute_error": 3.818283603795215e-16,
+      "rms_error": 3.161199165844443e-17,
+      "absolute_tolerance": 5e-09,
+      "relative_tolerance": 0
+    },
+    "image": {
+      "passed": true,
+      "max_absolute_error": 7.105427357601002e-15,
+      "rms_error": 1.6915881290306159e-15,
+      "absolute_tolerance": 4e-06,
+      "relative_tolerance": 0
+    },
+    "normalized_h1_spectrum": {
+      "passed": true,
+      "max_absolute_error": 6.736447455048117e-16,
+      "rms_error": 1.1383144405664417e-16,
+      "absolute_tolerance": 4e-06,
+      "relative_tolerance": 0
+    },
+    "public_metadata_and_ownership": {
+      "passed": true,
+      "exact_resolved_settings": true,
+      "exact_coordinates": true,
+      "owned_read_only_outputs": true,
+      "input_immutability": true,
+      "prepared_band_immutability": true,
+      "exact_source_identity": true,
+      "exact_diagnostics": true
+    }
+  },
+  "exceedances": [
+    {
+      "row": 0,
+      "column": 0,
+      "below": 0,
+      "above": 0,
+      "minimum": -7.385155438854493,
+      "maximum": 5.677899539568042,
+      "limits": [
+        -12,
+        12
+      ]
+    },
+    {
+      "row": 0,
+      "column": 1,
+      "below": 0,
+      "above": 0,
+      "minimum": -7.385155438854492,
+      "maximum": 5.67789953956804,
+      "limits": [
+        -12,
+        12
+      ]
+    },
+    {
+      "row": 0,
+      "column": 2,
+      "below": 0,
+      "above": 0,
+      "minimum": -6.560638621368896,
+      "maximum": 4.856761419631511,
+      "limits": [
+        -12,
+        12
+      ]
+    },
+    {
+      "row": 0,
+      "column": 3,
+      "below": 0,
+      "above": 0,
+      "minimum": -3.217260041029154,
+      "maximum": 3.9637526521650206,
+      "limits": [
+        -8,
+        8
+      ]
+    },
+    {
+      "row": 0,
+      "column": 4,
+      "below": 0,
+      "above": 0,
+      "minimum": -4.440892098500626e-15,
+      "maximum": 3.552713678800501e-15,
+      "limits": [
+        -4e-06,
+        4e-06
+      ]
+    },
+    {
+      "row": 1,
+      "column": 0,
+      "below": 0,
+      "above": 0,
+      "minimum": 0.0004982082280441548,
+      "maximum": 2.489741456286118,
+      "limits": [
+        0,
+        4
+      ]
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "below": 0,
+      "above": 0,
+      "minimum": 0.0004982082280441784,
+      "maximum": 2.489741456286118,
+      "limits": [
+        0,
+        4
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "below": 0,
+      "above": 0,
+      "minimum": 6.254634441385502e-18,
+      "maximum": 2.3485734441127537,
+      "limits": [
+        0,
+        4
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "below": 0,
+      "above": 0,
+      "minimum": -0.06667699549760941,
+      "maximum": 0.17101213972193396,
+      "limits": [
+        -2,
+        2
+      ]
+    },
+    {
+      "row": 1,
+      "column": 4,
+      "below": 0,
+      "above": 0,
+      "minimum": -3.3306690738754696e-16,
+      "maximum": 6.38378239159465e-16,
+      "limits": [
+        -4e-06,
+        4e-06
+      ]
+    }
+  ],
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "claim_limit": "Comparison changes interpolation representation and quotient order; no recovery/resolution/binary claim",
+  "schema": "simrecon-ce04-portable-rendering-v1",
+  "source_rendering_record_logical_name": "ce04-control-20261103T060450Z.provenance.json",
+  "source_rendering_record_sha256": "1cb02987be7ed65ac55e00fda3aa0cbf70e10c693eed49a1292e174ada61bf15",
+  "portable_observation_sha256": "1c709b1c79ce56bac5ef8f08652e548b66f8d5b4d302e27e1e99872b3c5ddfb8",
+  "outputs_sha256": {
+    "png": "1ce00fe51f4739b3314dd0c1088e49bf4cfa7401e86cf7a32bb93eabc9b2b2f4",
+    "pdf": "38275b654a6e05307278e514c3a0d35503d3a7093c3b27bc594c41456567e6fb"
+  },
+  "visual_review": {
+    "status": "PASS",
+    "reviewed_utc": "2026-11-03T06:05:59.725433+00:00",
+    "format": "PNG",
+    "checks": [
+      "range annotations separated from spectrum titles",
+      "rightmost colorbar ticks and labels fully inside canvas",
+      "image/spectrum axes, units, titles and footnotes legible",
+      "fixed numerical scales unchanged; no range exceedances"
+    ],
+    "prior_render": "First layout failed and correction1 passed; both retained. The corrected renderer was reused for this renewed observation after scalar validation repair."
+  },
+  "provenance_note": "Local executable and artifact paths remain in the original private provenance. Output hashes identify byte-identical PNG/PDF exports. Display layout changed after the first visual check; numerical inputs, values, scales and tolerances did not change."
+}

@@ -1,7 +1,7 @@
 # SIMrecon project
 
-**Version 1.0.** Git versions revisions. Active product status: CE02 preparation and CE03 optical transfers;
-reconstruction remains unavailable.
+**Version 1.0.** Git versions revisions. Active product status: CE02 preparation,
+CE03 optical transfers and CE04 known-parameter filtering/assembly.
 
 ## Approved architecture and current public boundary
 
@@ -11,8 +11,8 @@ contract on October 1, 2026, then two bounded amendments.
 [Architecture approval and historical accounting](tasks/architecture-intake.md#current-state)
 remain evidence; architecture alone authorizes no additional scientific behavior.
 
-**Reconstruction and the former scientific APIs are temporarily unavailable during
-the mathematical C-equivalence rebuild.** The new
+**The former scientific APIs remain retired during the mathematical C-equivalence
+rebuild.** The new
 [CE02 preparation contract](contracts/c-equivalence-preprocessing-v1.md) defines
 `prepare_bands` / `PreparedBands` for the selected C camera, edge, equalization,
 transform and phase-separation mapping. [Usage](usage/c-preparation.md) describes
@@ -24,8 +24,16 @@ defines `prepare_bead_otf`, `declare_otf`, `sample_otf`, `PreparedOtf`,
 radial/full transfer sampling. [Usage](usage/c-optical-transfer.md) describes
 explicit units, selected modes and safe stencil boundaries; its
 [task pointer](tasks/c-equivalence-optical-transfer.md) owns current CE03 evidence.
-These stages do not restore retired APIs or claim completed reconstruction
-equivalence. The old `prepare_otf` API and `simrecon._otf` remain unavailable. The [retirement contract](contracts/c-equivalence-retirement-v1.md)
+The [CE04 known-parameter contract](contracts/c-equivalence-known-parameters-v1.md)
+defines `reconstruct_known`, `KnownReconstruction` and `ReconstructionError`: native
+bandwise filtering followed by signed Fourier assembly with supplied carriers and
+complex modulation. [Usage](usage/c-known-reconstruction.md) specifies units,
+coordinates and limits; its [task pointer](tasks/c-equivalence-known-parameters.md)
+locates execution and acceptance evidence. This is the selected known-parameter
+array stage. Parameter fitting, remaining modes, file composition and physical
+recovery acceptance remain later stages. Historical C executable agreement is
+unqualified. The old `prepare_otf`, `reconstruct`, `reconstruct_volume` and retired
+modules remain unavailable. The [retirement contract](contracts/c-equivalence-retirement-v1.md)
 removes the old scientific stack, including phase/OTF preparation, correction,
 calibration, estimation, simulation and reconstruction. The
 [replacement roadmap](plans/c-equivalence-roadmap.md) supersedes the RA execution
@@ -38,8 +46,8 @@ no readiness or acceptance verdict.
 
 The neutral public functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records/errors.
-The scientific entries are `prepare_bands`, `prepare_bead_otf`, `declare_otf` and
-`sample_otf`, with their declared records/errors. All remain pure array/value
+The scientific entries are `prepare_bands`, `prepare_bead_otf`, `declare_otf`,
+`sample_otf` and `reconstruct_known`, with their declared records/errors. They remain pure array/value
 boundaries until later file composition.
 The neutral CLI and delivery commands remain installed.
 
@@ -63,11 +71,11 @@ The neutral CLI and delivery commands remain installed.
   outside this export adapter.
 
 [Library boundaries](architecture/library-design.md) and [data flow](architecture/data-flow.md)
-describe the active neutral routes. [Scientific context](SCIENTIFIC-CONTEXT.md),
-[old migration history](MIGRATION-ROADMAP.md), scientific contracts, task records,
-reports and usage examples are retained as historical evidence. Their scientific
-claims, failed studies and cumulative accounting retain their original limits;
-retired commands are not current-package reproduction instructions. PR #7 is a
+describe the active file and array routes. [Scientific context](SCIENTIFIC-CONTEXT.md)
+and [old migration history](MIGRATION-ROADMAP.md) preserve earlier scientific
+designs and results. Historical scientific contracts, task records, reports
+and usage examples retain their original claims, failed studies and cumulative
+accounting. Retired commands are not current-package reproduction instructions. PR #7 is a
 historical boundary, not a certified C-equivalent implementation. All old phase
 and OTF APIs are also retired. No hidden alias or alternate development entry
 point supplies retired science.

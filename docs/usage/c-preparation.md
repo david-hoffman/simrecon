@@ -4,7 +4,9 @@ CE02 adds `prepare_bands` for declared three-dimensional specimen exposures.
 It corrects camera counts, applies the selected lateral edge operation and
 sum equalization, then performs lateral transforms, phase separation and an
 axial transform. It returns native Fourier quadratures and scalar order-noise
-variance factors. Reconstruction and transfer preparation remain unavailable.
+variance factors. The [transfer stage](c-optical-transfer.md) supplies accepted
+optical responses, and [known-parameter reconstruction](c-known-reconstruction.md)
+consumes these actual bands with supplied carriers and complex modulation.
 
 The [public contract](../contracts/c-equivalence-preprocessing-v1.md) fixes
 shapes, source identity, normalization, supported modes and errors. Inputs have
@@ -69,7 +71,7 @@ negative nonzero sums are valid. Disable equalization explicitly for zero-sum
 inputs. There is no epsilon replacement or automatic fallback.
 
 CE02 proves raw-to-band mathematical behavior on the declared domain. It claims
-no binary C-output agreement, final image recovery or resolution. Odd y lengths
-are defined for this preparation stage; later filtering has additional source
-index behavior that must be separately contracted. Padding, drift, off-exposures,
+no binary C-output agreement, final image recovery or resolution. Odd y lengths are defined in preparation.
+[Known-parameter filtering](c-known-reconstruction.md) preserves the separately
+contracted source index behavior, including the omitted-row quirk. Padding, drift, off-exposures,
 2D, multichannel file binding and other deferred modes are not supported here.
