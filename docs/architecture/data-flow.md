@@ -1,11 +1,11 @@
 # Data flow: explicit file and array operations
 
-**Version 1.0. CE02–CE04 product boundary.** [PROJECT](../PROJECT.md) records
+**Version 1.0. CE02–CE05 product boundary.** [PROJECT](../PROJECT.md) records
 the active boundaries; the linked public contracts define exact behavior.
 The following diagrams are conceptual.
 
-Known-parameter reconstruction is an explicit array route through accepted
-preparation and transfer records. The former scientific APIs remain retired.
+Estimation and known-parameter reconstruction are explicit array routes through
+accepted preparation and transfer records. The former scientific APIs remain retired.
 The [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) supersedes
 the old numerical route. Neutral file and declaration operations remain available.
 
@@ -59,7 +59,7 @@ explicitly compose an MRC read with declaration as shown in the
 [current guide](../usage/raw-acquisition-declarations.md). The full owned copy
 has no whole-volume memory bound.
 
-## Known-parameter array route
+## Estimated or supplied parameters in the array route
 
 ```mermaid
 flowchart LR
@@ -68,6 +68,11 @@ flowchart LR
     Tables["Complete transfer tables"] --> Transfer
     Bands --> Known["reconstruct_known"]
     Transfer --> Known
+    Bands --> Estimate["estimate_parameters"]
+    Transfer --> Estimate
+    Initial["Initial fundamental vectors and explicit optics"] --> Estimate
+    Estimate --> Selected["Caller selects one time's carriers and modulation"]
+    Selected --> Known
     Params["Supplied carriers, complex modulation, optics and filtering"] --> Known
     Known --> Image["Signed real image, coordinates and filtered quadratures"]
 ```
@@ -77,8 +82,13 @@ Filtering occurs at native frequencies before centered real-space carrier
 relocation. The array result has no implicit file writer or CLI command.
 [Exact equations and boundaries](../contracts/c-equivalence-known-parameters-v1.md)
 and [usage](../usage/c-known-reconstruction.md) distinguish mathematical agreement
-from historical executable agreement and physical recovery. Fitting, remaining
-modes, complete file composition and recovery acceptance remain CE05–CE08.
+from historical executable agreement and physical recovery.
+`estimate_parameters` returns per-time values; callers construct a one-time
+`PreparedBands` and pass that time's carriers/modulation to `reconstruct_known`.
+The [estimation guide](../usage/c-parameter-estimation.md) gives the public
+record construction and keeps the upstream scale unchanged. Estimation success
+does not guarantee acceptance by the filter's separate domain. Remaining modes,
+complete file composition and recovery acceptance remain CE06–CE08.
 
 ## Historical numerical routes
 

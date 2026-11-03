@@ -1,0 +1,542 @@
+{
+  "brackets": [
+    {
+      "amp1": 0.0,
+      "amp2": 0.00390625,
+      "amp3": 0.003906201808818211,
+      "branch": "initial",
+      "stage": "angle",
+      "strict_improvement": false,
+      "x1": 0.0,
+      "x2": 0.0,
+      "x3": 0.001
+    },
+    {
+      "amp1": 0.0,
+      "amp2": 0.003906201808818211,
+      "amp3": 0.00390625,
+      "branch": "negative-swap",
+      "stage": "angle",
+      "strict_improvement": true,
+      "x1": 0.0,
+      "x2": 0.001,
+      "x3": 0.0
+    },
+    {
+      "amp1": 0.003906201808818211,
+      "amp2": 0.00390625,
+      "amp3": 0.003906201808818211,
+      "branch": "shift",
+      "stage": "angle",
+      "strict_improvement": false,
+      "x1": 0.001,
+      "x2": 0.0,
+      "x3": -0.001
+    },
+    {
+      "amp1": 0.003906201808818211,
+      "amp2": 0.00390625,
+      "amp3": 0.003906201808818211,
+      "branch": "stop",
+      "stage": "angle",
+      "strict_improvement": false,
+      "x1": 0.001,
+      "x2": 0.0,
+      "x3": -0.001
+    },
+    {
+      "amp1": 0.003906201808818211,
+      "amp2": 0.00390625,
+      "amp3": 0.00390625,
+      "branch": "initial",
+      "stage": "magnitude",
+      "strict_improvement": false,
+      "x1": 0.001,
+      "x2": 1.25,
+      "x3": 1.375
+    },
+    {
+      "amp1": 0.003906201808818211,
+      "amp2": 0.00390625,
+      "amp3": 0.00390625,
+      "branch": "negative-swap",
+      "stage": "magnitude",
+      "strict_improvement": false,
+      "x1": 0.001,
+      "x2": 1.375,
+      "x3": 1.25
+    },
+    {
+      "amp1": 0.003906201808818211,
+      "amp2": 0.00390625,
+      "amp3": 0.00390625,
+      "branch": "stop",
+      "stage": "magnitude",
+      "strict_improvement": false,
+      "x1": 0.001,
+      "x2": 1.375,
+      "x3": 1.25
+    }
+  ],
+  "evaluations": [
+    {
+      "SX": 15.999999999999996,
+      "SY": 0.12499999999999997,
+      "angle_rad": 0.0,
+      "carrier_cyc_um": {
+        "__ndarray__": true,
+        "data": [
+          1.25,
+          0.0
+        ],
+        "dtype": "float64",
+        "shape": [
+          2
+        ]
+      },
+      "combined": {
+        "__complex__": [
+          0.06274413689982337,
+          0.0
+        ]
+      },
+      "correlation": 0.7071067811865476,
+      "cross": {
+        "__complex__": [
+          0.9999999999999998,
+          0.0
+        ]
+      },
+      "forward": {
+        "__complex__": [
+          0.0625,
+          0.0
+        ]
+      },
+      "magnitude_cyc_um": 1.25,
+      "objective": 0.00390625,
+      "orders": {
+        "__tuple__": [
+          0,
+          2
+        ]
+      },
+      "overlap_index": 1,
+      "remake_overlaps": true,
+      "reverse": {
+        "__complex__": [
+          8.0,
+          -0.0
+        ]
+      },
+      "stage": "angle"
+    },
+    {
+      "SX": 15.999999999999996,
+      "SY": 0.12499999999999997,
+      "angle_rad": 0.001,
+      "carrier_cyc_um": {
+        "__ndarray__": true,
+        "data": [
+          1.2499993750000522,
+          0.001249999791666677
+        ],
+        "dtype": "float64",
+        "shape": [
+          2
+        ]
+      },
+      "combined": {
+        "__complex__": [
+          0.0627436754916774,
+          -9.855759962604574e-05
+        ]
+      },
+      "correlation": 0.7071024194052309,
+      "cross": {
+        "__complex__": [
+          0.9999925978174306,
+          -0.0015707857295955304
+        ]
+      },
+      "forward": {
+        "__complex__": [
+          0.06249953736358942,
+          -9.817410809972067e-05
+        ]
+      },
+      "magnitude_cyc_um": 1.25,
+      "objective": 0.003906201808818211,
+      "orders": {
+        "__tuple__": [
+          0,
+          2
+        ]
+      },
+      "overlap_index": 1,
+      "remake_overlaps": false,
+      "reverse": {
+        "__complex__": [
+          7.999940782539446,
+          0.012566285836764246
+        ]
+      },
+      "stage": "angle"
+    },
+    {
+      "SX": 15.999999999999996,
+      "SY": 0.12499999999999997,
+      "angle_rad": -0.001,
+      "carrier_cyc_um": {
+        "__ndarray__": true,
+        "data": [
+          1.2499993750000522,
+          -0.001249999791666677
+        ],
+        "dtype": "float64",
+        "shape": [
+          2
+        ]
+      },
+      "combined": {
+        "__complex__": [
+          0.0627436754916774,
+          9.855759962604574e-05
+        ]
+      },
+      "correlation": 0.7071024194052309,
+      "cross": {
+        "__complex__": [
+          0.9999925978174306,
+          0.0015707857295955304
+        ]
+      },
+      "forward": {
+        "__complex__": [
+          0.06249953736358942,
+          9.817410809972067e-05
+        ]
+      },
+      "magnitude_cyc_um": 1.25,
+      "objective": 0.003906201808818211,
+      "orders": {
+        "__tuple__": [
+          0,
+          2
+        ]
+      },
+      "overlap_index": 1,
+      "remake_overlaps": false,
+      "reverse": {
+        "__complex__": [
+          7.999940782539446,
+          -0.012566285836764246
+        ]
+      },
+      "stage": "angle"
+    },
+    {
+      "SX": 15.999999999999996,
+      "SY": 0.12499999999999997,
+      "angle_rad": 0.0,
+      "carrier_cyc_um": {
+        "__ndarray__": true,
+        "data": [
+          1.25,
+          0.0
+        ],
+        "dtype": "float64",
+        "shape": [
+          2
+        ]
+      },
+      "combined": {
+        "__complex__": [
+          0.06274413689982337,
+          0.0
+        ]
+      },
+      "correlation": 0.7071067811865476,
+      "cross": {
+        "__complex__": [
+          0.9999999999999998,
+          0.0
+        ]
+      },
+      "forward": {
+        "__complex__": [
+          0.0625,
+          0.0
+        ]
+      },
+      "magnitude_cyc_um": 1.25,
+      "objective": 0.00390625,
+      "orders": {
+        "__tuple__": [
+          0,
+          2
+        ]
+      },
+      "overlap_index": 1,
+      "remake_overlaps": false,
+      "reverse": {
+        "__complex__": [
+          8.0,
+          -0.0
+        ]
+      },
+      "stage": "magnitude"
+    },
+    {
+      "SX": 15.999999999999996,
+      "SY": 0.12499999999999997,
+      "angle_rad": 0.0,
+      "carrier_cyc_um": {
+        "__ndarray__": true,
+        "data": [
+          1.375,
+          0.0
+        ],
+        "dtype": "float64",
+        "shape": [
+          2
+        ]
+      },
+      "combined": {
+        "__complex__": [
+          0.06274413689982337,
+          0.0
+        ]
+      },
+      "correlation": 0.7071067811865476,
+      "cross": {
+        "__complex__": [
+          0.9999999999999998,
+          0.0
+        ]
+      },
+      "forward": {
+        "__complex__": [
+          0.0625,
+          0.0
+        ]
+      },
+      "magnitude_cyc_um": 1.375,
+      "objective": 0.00390625,
+      "orders": {
+        "__tuple__": [
+          0,
+          2
+        ]
+      },
+      "overlap_index": 1,
+      "remake_overlaps": false,
+      "reverse": {
+        "__complex__": [
+          8.0,
+          -0.0
+        ]
+      },
+      "stage": "magnitude"
+    },
+    {
+      "SX": 15.999999999999996,
+      "SY": 0.125,
+      "angle_rad": 0.0,
+      "carrier_cyc_um": {
+        "__ndarray__": true,
+        "data": [
+          1.3125,
+          0.0
+        ],
+        "dtype": "float64",
+        "shape": [
+          2
+        ]
+      },
+      "combined": {
+        "__complex__": [
+          0.06274413689982337,
+          0.0
+        ]
+      },
+      "correlation": 0.7071067811865475,
+      "cross": {
+        "__complex__": [
+          0.9999999999999998,
+          0.0
+        ]
+      },
+      "forward": {
+        "__complex__": [
+          0.0625,
+          0.0
+        ]
+      },
+      "magnitude_cyc_um": 1.3125,
+      "objective": 0.00390625,
+      "orders": {
+        "__tuple__": [
+          0,
+          2
+        ]
+      },
+      "overlap_index": 1,
+      "remake_overlaps": false,
+      "reverse": {
+        "__complex__": [
+          7.999999999999998,
+          -0.0
+        ]
+      },
+      "stage": "final"
+    },
+    {
+      "SX": 15.999999999999996,
+      "SY": 0.4999999999999999,
+      "angle_rad": 0.0,
+      "carrier_cyc_um": {
+        "__ndarray__": true,
+        "data": [
+          1.3125,
+          0.0
+        ],
+        "dtype": "float64",
+        "shape": [
+          2
+        ]
+      },
+      "combined": {
+        "__complex__": [
+          0.12695264839553044,
+          0.0
+        ]
+      },
+      "correlation": 0.7071067811865476,
+      "cross": {
+        "__complex__": [
+          1.9999999999999996,
+          0.0
+        ]
+      },
+      "forward": {
+        "__complex__": [
+          0.125,
+          0.0
+        ]
+      },
+      "magnitude_cyc_um": 1.3125,
+      "objective": 0.015625,
+      "orders": {
+        "__tuple__": [
+          0,
+          1
+        ]
+      },
+      "overlap_index": 2,
+      "remake_overlaps": true,
+      "reverse": {
+        "__complex__": [
+          4.0,
+          -0.0
+        ]
+      },
+      "stage": "later-order"
+    }
+  ],
+  "expected_carriers": {
+    "__ndarray__": true,
+    "data": [
+      [
+        [
+          1.3125,
+          0.0
+        ]
+      ]
+    ],
+    "dtype": "float64",
+    "shape": [
+      1,
+      1,
+      2
+    ]
+  },
+  "expected_modulation": {
+    "__ndarray__": true,
+    "data": {
+      "imag": [
+        [
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "real": [
+        [
+          [
+            0.125,
+            0.0625
+          ]
+        ]
+      ]
+    },
+    "dtype": "complex128",
+    "shape": [
+      1,
+      1,
+      2
+    ]
+  },
+  "expected_raw_modulation": {
+    "__ndarray__": true,
+    "data": {
+      "imag": [
+        [
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "real": [
+        [
+          [
+            0.125,
+            0.0625
+          ]
+        ]
+      ]
+    },
+    "dtype": "complex128",
+    "shape": [
+      1,
+      1,
+      2
+    ]
+  },
+  "parabolas": [
+    {
+      "result": 0.0,
+      "stage": "angle",
+      "status": "fitted",
+      "x1": 0.001,
+      "x2": 0.0,
+      "x3": -0.001,
+      "y1": 0.003906201808818211,
+      "y2": 0.00390625,
+      "y3": 0.003906201808818211
+    },
+    {
+      "result": 1.3125,
+      "stage": "magnitude",
+      "status": "fitted",
+      "x1": 0.001,
+      "x2": 1.375,
+      "x3": 1.25,
+      "y1": 0.003906201808818211,
+      "y2": 0.00390625,
+      "y3": 0.00390625
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "B_verdict": "ACCEPT",
+  "B_verdict_sha256": "034247efca6aa3a85ae38a269cb6e4584df6b8b91bd0ce4f3c3c9f11024557e8",
+  "claims": "Finite procedure on fixed separated-band control only; full gate/platform/D evidence is separate",
+  "current_consumer_tools_sha256": "a492536b988baeb5d98d0743d58766654aa4f6974a51744ded2b71d867a907ef",
+  "format": "Publication copy of existing pre-implementation CE05 registration v1",
+  "frozen_numeric_inputs_expectations_trace_grids_axes_unchanged": true,
+  "observation_repeat_reason": "Metadata-only renderer wording correction; both successful public outputs are exactly equal",
+  "original_freeze_manifest_sha256": "ec34d4616d6e004ede5e08e54fcc6d89b75628f9deb0753036468f50973a1ba7",
+  "original_frozen_utc": "2026-11-03T18:22:00.578128+00:00",
+  "producer_tools_sha256": "c56a9f8aea7823791d5324e00d9ba46b3e90569847db70188abb00fed7e1e4d6",
+  "product_module_absent_at_original_freeze": true,
+  "publication_utc": "2026-11-03T18:55:50.787965+00:00",
+  "published_payload_sha256": {
+    "c-estimation-control-expected-trace.json": "b1ae4ba97aaf78df02bca6b4a8c8745f273052257577668bd2baebb8e3c4f3df",
+    "c-estimation-control-expected.json": "592f00e286e09f43fc3753e83d5aa2ba9cce73c6680dfde259bade64a8e584f5",
+    "c-estimation-control-inputs.json": "4a0665f7cd99aa7d48c8d66717979df7f5dd674ee678d9c8f2c214fe9582254b",
+    "c-estimation-control-plot-spec.json": "8236058b1a4a7d6a346d4a5e30409f26dce8e7b67a237ef5370407edd8dacfff"
+  },
+  "repeated_observation_payload_exactly_equal": true,
+  "source_contract_sha256": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c",
+  "test_checkpoint_sha256": "8afcd00664dc9ad117c1ce5b7f32afec98c5f48a8daf5e82f0e908f19f15d63e",
+  "transport_repair": "The first observer supplied a non-owning decoded transfer view and was rejected before fitting. Consumer now restores owned read-only complex128 arrays; all53array values/dtypes/shapes are unchanged. No product/test/oracle/axis change.",
+  "transport_validation_sha256": "5d47db0284b856eba56aa982cf07ea9bb763a92d14b59fd021d3f6fb97204b15"
+}

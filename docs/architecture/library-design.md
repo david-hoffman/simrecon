@@ -1,11 +1,11 @@
 # Library design: explicit file and array operations
 
-**Version 1.0. CE02–CE04 product boundary.** [PROJECT.md](../PROJECT.md) is the canonical
+**Version 1.0. CE02–CE05 product boundary.** [PROJECT.md](../PROJECT.md) is the canonical
 project record; public contracts define exact behavior.
 
-The array boundary supports specimen preparation, empirical transfers and
-known-parameter native filtering/assembly under their source-derived contracts.
-Carrier/modulation fitting and complete file composition remain later stages.
+The array boundary supports specimen preparation, empirical transfers, finite
+carrier/modulation estimation and known-parameter native filtering/assembly under
+their source-derived contracts. Complete file composition remains a later stage.
 The [C-equivalence roadmap](../plans/c-equivalence-roadmap.md) replaces the earlier
 numerical design. The approved functional architecture and neutral adapters
 remain; they authorize no additional scientific feature. The historical proposal
@@ -23,6 +23,7 @@ below retains its original pending-approval language and old candidate claims.
 | `export_imagej` | Produce a supported Priism acquisition's OME-BigTIFF viewing copy. | [ImageJ export](../contracts/imagej-export-v1.md) |
 | `prepare_bands` | Produce native quadratures and scalar noise factors from declared exposures. | [CE02 preparation](../contracts/c-equivalence-preprocessing-v1.md) |
 | `prepare_bead_otf`, `declare_otf`, `sample_otf` | Prepare, declare and sample complete complex transfer records. | [CE03 transfers](../contracts/c-equivalence-optical-transfer-v1.md) |
+| `estimate_parameters` | Estimate per-time carriers/modulation with the finite source procedure and immutable overlap/trace diagnostics. | [CE05 estimation](../contracts/c-equivalence-carrier-modulation-v1.md) |
 | `reconstruct_known` | Filter native bands and assemble a signed real image with supplied parameters. | [CE04 filtering/assembly](../contracts/c-equivalence-known-parameters-v1.md) |
 
 The thin command-line interface (CLI) offers `simrecon inspect`, `simrecon convert`
