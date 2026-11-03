@@ -1,6 +1,6 @@
 # SIMrecon project
 
-**Version 1.0.** Git versions revisions. Active product status: CE02 preparation;
+**Version 1.0.** Git versions revisions. Active product status: CE02 preparation and CE03 optical transfers;
 reconstruction remains unavailable.
 
 ## Approved architecture and current public boundary
@@ -18,8 +18,14 @@ the mathematical C-equivalence rebuild.** The new
 transform and phase-separation mapping. [Usage](usage/c-preparation.md) describes
 the pure array boundary and its limits. Its
 [task pointer](tasks/c-equivalence-preprocessing.md) owns current execution and
-acceptance evidence. It does not restore any retired scientific API or claim
-completed reconstruction equivalence. The [retirement contract](contracts/c-equivalence-retirement-v1.md)
+acceptance evidence. The [CE03 optical-transfer contract](contracts/c-equivalence-optical-transfer-v1.md)
+defines `prepare_bead_otf`, `declare_otf`, `sample_otf`, `PreparedOtf`,
+`OpticalTransfer` and `OtfError` for empirical bead preparation and complex
+radial/full transfer sampling. [Usage](usage/c-optical-transfer.md) describes
+explicit units, selected modes and safe stencil boundaries; its
+[task pointer](tasks/c-equivalence-optical-transfer.md) owns current CE03 evidence.
+These stages do not restore retired APIs or claim completed reconstruction
+equivalence. The old `prepare_otf` API and `simrecon._otf` remain unavailable. The [retirement contract](contracts/c-equivalence-retirement-v1.md)
 removes the old scientific stack, including phase/OTF preparation, correction,
 calibration, estimation, simulation and reconstruction. The
 [replacement roadmap](plans/c-equivalence-roadmap.md) supersedes the RA execution
@@ -32,7 +38,9 @@ no readiness or acceptance verdict.
 
 The neutral public functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records/errors.
-The new scientific stage is `prepare_bands`, with `PreparedBands`.
+The scientific entries are `prepare_bands`, `prepare_bead_otf`, `declare_otf` and
+`sample_otf`, with their declared records/errors. All remain pure array/value
+boundaries until later file composition.
 The neutral CLI and delivery commands remain installed.
 
 - The [MRC conversion contract](contracts/mrc-conversion-v1.md) defines metadata
