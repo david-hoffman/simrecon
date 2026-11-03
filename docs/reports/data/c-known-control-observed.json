@@ -1,6 +1,6 @@
 {
-  "observed_started_utc": "2026-11-03T05:34:00.989609+00:00",
-  "observed_completed_utc": "2026-11-03T05:34:01.736474+00:00",
+  "observed_started_utc": "2026-11-03T06:04:50.324483+00:00",
+  "observed_completed_utc": "2026-11-03T06:04:50.647268+00:00",
   "accepted_contract_sha256": "384eebdb7a1cb6c6e3ca63b84a4fafdfeaf2699db3601ed0e74a000a647269cd",
   "frozen_artifacts_sha256": {
     "preregistration.md": "eea711b51578fed0a0e4e2a8b9d0ada7b52e04b19302e6a56efa06b2736500d0",
@@ -12322,12 +12322,12 @@
       ]
     ]
   },
-  "elapsed_seconds": 0.7467976250045467,
+  "elapsed_seconds": 0.3227202089910861,
   "schema": "simrecon-ce04-portable-observation-v1",
-  "source_observation_logical_name": "observed-20261103T053400Z.json",
-  "source_observation_sha256": "da9f9dda5f09d1c60be1fba5d19427d6b798bc871709560a0568daca6e655fdf",
-  "candidate_commit_at_observation": "fffe5aefd10bca096de830f994b9725244f50f43",
-  "candidate_tree_at_observation": "4a29a6aa8eb5e03833b10caafe3cc3eb28cb6d4c",
+  "source_observation_logical_name": "observed-20261103T060450Z.json",
+  "source_observation_sha256": "5e6831a0d9c54a11050fcc34322598d3141ff6299a2650882b9ab0f93a40f68c",
+  "candidate_commit_at_observation": "416ec3859724a8ea067090e8f2182d97496be558",
+  "candidate_tree_at_observation": "9c16773e51d409ba44f8e96d739ad77836d51fc0",
   "candidate_source_sha256": {
     "src/simrecon/__init__.py": "63db3f533c205ba5f0f1ff46a8d5e3e12a6ac8b289c0d849d97f92ed8950a2a4",
     "src/simrecon/_acquisition.py": "01d254d528a6083136f9e8ba8356e4ac990e9bb7c3a90c6def8ddc2e539d72a6",
@@ -12335,7 +12335,7 @@
     "src/simrecon/_delivery.py": "3299a24f718f85aac1fb5162d18cb34a99bb7763003ea6513e121c8f8d212545",
     "src/simrecon/_imagej.py": "78b0d08d08f80216e8402f68947c4172ff2180727620cbe45bec3b2b28685245",
     "src/simrecon/_imagej_metadata.py": "251d0aa17fbc2a5f71640b49a15ae26c9aeb386fddc1439b0e527e0bb980df57",
-    "src/simrecon/_known_reconstruction.py": "23ceb82885ea6ab7cec3b5ee7ebf2f1dd8829710c43ae35faffdff5dc0893966",
+    "src/simrecon/_known_reconstruction.py": "c0f0be99f0550a29f23f3200ef0582366c21b239b2ceeacaf6746ad84b272677",
     "src/simrecon/_legacy.py": "7119fd85ded5472b626ef9320a74ba4856e9493b06e6a1147fba9f852bf6d5a9",
     "src/simrecon/_metadata.py": "860e4581685e3fa961b7f3be3eb3f8fa7646e0692345fa6cef29be2e0d052ea6",
     "src/simrecon/_model.py": "821fea440306640e015013ae8afcdb40d5e968275887257fb3461970ddaf4c59",
@@ -12357,7 +12357,7 @@
     "numpy": "2.5.3",
     "package_version": "unknown",
     "installed_distribution_version_separately_verified": "0.1.0",
-    "distribution_version_verified_utc": "2026-11-03T05:36:21.564810+00:00"
+    "distribution_version_verified_utc": "2026-11-03T06:05:59.722937+00:00"
   },
   "provenance_note": "The original observation used a clean committed product state before the presentation commit. Candidate source hashes bind its owned Python bytes. Not every hashed source was imported. Final candidate and gate evidence are separate. Local paths and executable locations remain in the original private record; all exported scientific arrays and checks are unchanged."
 }

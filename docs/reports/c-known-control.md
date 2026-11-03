@@ -99,7 +99,7 @@ changed to match the product result.
 | Prepared-quadrature maximum absolute error | 7.989074937500148e-16 |
 | Filtered-quadrature maximum absolute error | 3.818283603795215e-16 |
 | Full-image maximum absolute error | 7.105427357601002e-15 |
-| Full-image root-mean-square error | 1.6915881290306159e-15 |
+| Full-image root-mean-square (RMS) error | 1.6915881290306159e-15 |
 | Normalized h=1 complex-spectrum maximum absolute error | 6.736447455048117e-16 |
 | Coordinates, source, settings, ownership, and input preservation | All exact checks passed |
 | Figure layout | Reviewed PNG passed; original overlapping layout retained separately |
@@ -168,3 +168,9 @@ of every supported branch, physical specimen recovery, resolution, or agreement
 with a historical C executable. It uses no retired scene or executable. The
 complete scientific acceptance, candidate identity, and verification evidence
 remain separate from these frozen presentation inputs.
+
+The observation was renewed after the scalar-validation correction, with the
+registered raw inputs, independent expectation, numerical budgets and plot scales
+unchanged. The earlier observation and failed/corrected first layout remain
+retained as historical evidence. The renewed scientific arrays and checks match
+the earlier control; the new source hashes identify the corrected implementation.

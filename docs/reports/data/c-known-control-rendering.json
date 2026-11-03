@@ -1,10 +1,10 @@
 {
-  "rendered_utc": "2026-11-03T05:36:30.023374+00:00",
-  "candidate_commit": "fffe5aefd10bca096de830f994b9725244f50f43",
-  "candidate_tree": "4a29a6aa8eb5e03833b10caafe3cc3eb28cb6d4c",
-  "observed_sha256": "da9f9dda5f09d1c60be1fba5d19427d6b798bc871709560a0568daca6e655fdf",
-  "observed_started_utc": "2026-11-03T05:34:00.989609+00:00",
-  "observed_completed_utc": "2026-11-03T05:34:01.736474+00:00",
+  "rendered_utc": "2026-11-03T06:05:34.216683+00:00",
+  "candidate_commit": "416ec3859724a8ea067090e8f2182d97496be558",
+  "candidate_tree": "9c16773e51d409ba44f8e96d739ad77836d51fc0",
+  "observed_sha256": "5e6831a0d9c54a11050fcc34322598d3141ff6299a2650882b9ab0f93a40f68c",
+  "observed_started_utc": "2026-11-03T06:04:50.324483+00:00",
+  "observed_completed_utc": "2026-11-03T06:04:50.647268+00:00",
   "renderer_sha256": "6d8dd4ce4898a7be43be19bf3a7f08d509e52d634b891cefb949faa957cad88d",
   "support_sha256": "2fe82234db2003890aff8dfab6a52d424addb0061ee1836fd050051d679bfd0f",
   "frozen_artifacts_sha256": {
@@ -203,16 +203,16 @@
   "matplotlib": "3.11.2",
   "claim_limit": "Comparison changes interpolation representation and quotient order; no recovery/resolution/binary claim",
   "schema": "simrecon-ce04-portable-rendering-v1",
-  "source_rendering_record_logical_name": "ce04-control-20261103T053400Z-correction1.provenance.json",
-  "source_rendering_record_sha256": "d1a008a2e9b93260d28f31f3079ec2faa2851d852f4b641f5139442099f8f07c",
-  "portable_observation_sha256": "697413b7fa527b58585d343eb0b5f57c3e3057f711c7c772de070ef6b6eacada",
+  "source_rendering_record_logical_name": "ce04-control-20261103T060450Z.provenance.json",
+  "source_rendering_record_sha256": "1cb02987be7ed65ac55e00fda3aa0cbf70e10c693eed49a1292e174ada61bf15",
+  "portable_observation_sha256": "1c709b1c79ce56bac5ef8f08652e548b66f8d5b4d302e27e1e99872b3c5ddfb8",
   "outputs_sha256": {
-    "png": "14d6b6613f5fc5242bb9a481d5d169c07bf1b6d9129e0a4b3f785876cc704d0d",
-    "pdf": "7151bea710b40bea3d21cc2afc0ad5177671f9b0dfb80dbfd44c272ae4b86844"
+    "png": "1ce00fe51f4739b3314dd0c1088e49bf4cfa7401e86cf7a32bb93eabc9b2b2f4",
+    "pdf": "38275b654a6e05307278e514c3a0d35503d3a7093c3b27bc594c41456567e6fb"
   },
   "visual_review": {
     "status": "PASS",
-    "reviewed_utc": "2026-11-03T05:37:49.742969+00:00",
+    "reviewed_utc": "2026-11-03T06:05:59.725433+00:00",
     "format": "PNG",
     "checks": [
       "range annotations separated from spectrum titles",
@@ -220,7 +220,7 @@
       "image/spectrum axes, units, titles and footnotes legible",
       "fixed numerical scales unchanged; no range exceedances"
     ],
-    "prior_render": "First render retained; failed overlap and right-edge clipping. Correction1 changes layout only; same observation and all scientific checks."
+    "prior_render": "First layout failed and correction1 passed; both retained. The corrected renderer was reused for this renewed observation after scalar validation repair."
   },
   "provenance_note": "Local executable and artifact paths remain in the original private provenance. Output hashes identify byte-identical PNG/PDF exports. Display layout changed after the first visual check; numerical inputs, values, scales and tolerances did not change."
 }
