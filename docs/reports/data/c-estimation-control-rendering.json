@@ -1,0 +1,65 @@
+{
+  "caption": "Carried state: x1=0.001000000 (origin: angle, rad), amp1=0.00390620181. This is not an evaluated magnitude point.\nThe trace separately requires this nonzero pair; resetting x1=amp1=0 would still select the same midpoint in this case.\nA blanket active-tie -> 0 shortcut fails: nonzero curvature selects 21/16. Both stages keep overlap #1 fixed.\nPanels use different y scales. Magnitude objective is flat at 1/256: midpoint selection means no objective improvement or convergence.\nNumbers show finite evaluation order; curves are display samples only. No physical truth, recovery, resolution or historical executable comparison.",
+  "environment": {
+    "matplotlib_version": "3.11.2",
+    "numpy_version": "2.5.3",
+    "python_version": "3.13.12"
+  },
+  "expected_or_observed_arrays_modified": false,
+  "format": "CE05 fixed-scale render v1",
+  "freeze_manifest_sha256": "ec34d4616d6e004ede5e08e54fcc6d89b75628f9deb0753036468f50973a1ba7",
+  "frozen_data_sha256": {
+    "expected.json": "592f00e286e09f43fc3753e83d5aa2ba9cce73c6680dfde259bade64a8e584f5",
+    "inputs.json": "4a0665f7cd99aa7d48c8d66717979df7f5dd674ee678d9c8f2c214fe9582254b",
+    "plot-spec.json": "8236058b1a4a7d6a346d4a5e30409f26dce8e7b67a237ef5370407edd8dacfff",
+    "trace-summary.json": "b1ae4ba97aaf78df02bca6b4a8c8745f273052257577668bd2baebb8e3c4f3df"
+  },
+  "matplotlib_version": "3.11.2",
+  "max_absolute_output_differences": {
+    "carriers_cyc_um": 0.0,
+    "modulation": 0.0,
+    "raw_modulation": 0.0
+  },
+  "observation_sha256": "3925de4ba54f9e52f843ef172da7197276baac4bceb23a9b64c4144eaeb695be",
+  "panels": [
+    {
+      "expected_count": 3,
+      "expected_terminal_bracket": {
+        "amp1": 0.003906201808818211,
+        "amp2": 0.00390625,
+        "amp3": 0.003906201808818211,
+        "branch": "stop",
+        "stage": "angle",
+        "strict_improvement": false,
+        "x1": 0.001,
+        "x2": 0.0,
+        "x3": -0.001
+      },
+      "observed_count": 3,
+      "observed_outside_fixed_axes": 0,
+      "stage": "angle"
+    },
+    {
+      "expected_count": 2,
+      "expected_terminal_bracket": {
+        "amp1": 0.003906201808818211,
+        "amp2": 0.00390625,
+        "amp3": 0.00390625,
+        "branch": "stop",
+        "stage": "magnitude",
+        "strict_improvement": false,
+        "x1": 0.001,
+        "x2": 1.375,
+        "x3": 1.25
+      },
+      "observed_count": 2,
+      "observed_outside_fixed_axes": 0,
+      "stage": "magnitude"
+    }
+  ],
+  "plot_health_sha256": "30d2f1b4a7d153aaeea0b48a249e2a1cd9bef46ccaae1239d95c0b02257a8376",
+  "png_sha256": "de7f8e2f74bec1fabea859cafc2302c8380bcb8e8a9581000c286ec469a8aa9c",
+  "scales_modified": false,
+  "status": "cp4 frozen identity; rendering supplies no verdict; exact B acceptance is in binding-acceptance.json",
+  "tools_manifest_sha256": "a492536b988baeb5d98d0743d58766654aa4f6974a51744ded2b71d867a907ef"
+}
