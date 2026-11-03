@@ -15,17 +15,24 @@ from ._optical_transfer import (
     prepare_bead_otf,
     sample_otf,
 )
+from ._parameter_estimation import (
+    EstimatedParameters,
+    ParameterEstimationError,
+    estimate_parameters,
+)
 from ._pixels import read
 from ._preparation import PreparedBands, prepare_bands
 
 __all__ = [
     "DataBlock",
     "DatasetInfo",
+    "EstimatedParameters",
     "ImagejSeries",
     "ImagejWriteReport",
     "KnownReconstruction",
     "OpticalTransfer",
     "OtfError",
+    "ParameterEstimationError",
     "PreparedBands",
     "PreparedOtf",
     "RawAcquisition",
@@ -34,6 +41,7 @@ __all__ = [
     "WriteReport",
     "declare_acquisition",
     "declare_otf",
+    "estimate_parameters",
     "export_imagej",
     "harmonize",
     "inspect",
