@@ -88,6 +88,10 @@ def _integer(value: Any, name: str, minimum: int = 1) -> int:
 def _scalar(value: Any, name: str, *, positive: bool = False) -> float:
     if isinstance(value, (bool, np.bool_)) or not isinstance(value, Real):
         raise ReconstructionError(f"{name} must be a real scalar")
+    # Extract without losing value: narrow floats widen, integers avoid fixed-width
+    # abs overflow, and longdouble retains its precision. Check before float().
+    if isinstance(value, np.generic):
+        value = value.item()
     magnitude: Any = abs(value)
     if magnitude > _F32_MAX:
         raise ReconstructionError(f"{name} exceeds float32 magnitude")
