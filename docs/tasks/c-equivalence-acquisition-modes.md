@@ -65,7 +65,8 @@ targets. Record removed/kept paths and errors in the sole Current state.
 The coordinator will prepare a plain-English PR summary and a useful numerical
 figure with independently fixed inputs/expectations and explicit claim limits.
 Technical evidence belongs in the collapsible appendix. Presentation supplies no
-scientific acceptance or gate waiver. Only after CE06's complete readiness and
+scientific acceptance or gate waiver. See the [usage guide](../usage/c-acquisition-modes.md)
+and [numerical control](../reports/c-acquisition-control.md). Only after CE06's complete readiness and
 housekeeping may CE07 start in its own task/worktree from the exact CE06 head;
 CE08 follows the completed CE07 head. Stop at the approved CE08 outcome.
 
