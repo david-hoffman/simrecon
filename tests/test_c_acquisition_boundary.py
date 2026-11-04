@@ -1066,3 +1066,537 @@ def test_regrouping_routes_by_underlying_selector_text() -> None:
     np.testing.assert_array_equal(actual.source_direction_z, direction_major.source_direction_z)
     np.testing.assert_array_equal(actual.images, direction_major.images)
     assert_resolved_selector("direction-major", record=actual.storage_order)
+
+
+class AdvertisedClass:
+    """Forward public data and conversions while claiming the backing value's class."""
+
+    def __init__(self, value: Any, *, slice_backing: Any = None) -> None:
+        self.value = value
+        self.slice_backing = value if slice_backing is None else slice_backing
+
+    def __getattribute__(self, name: str) -> Any:
+        """Advertise the backing class without changing the actual type."""
+        if name == "__class__":
+            return type(self.value)
+        return super().__getattribute__(name)
+
+    def __getattr__(self, name: str) -> Any:
+        """Forward attributes to the genuine backing value."""
+        return getattr(self.value, name)
+
+    def __getitem__(self, key: Any) -> Any:
+        """Read from the selected slice backing."""
+        return self.slice_backing[key]
+
+    def __iter__(self) -> Any:
+        """Iterate over the genuine backing value."""
+        return iter(self.value)
+
+    def __len__(self) -> int:
+        """Report the genuine backing length."""
+        return len(self.value)
+
+    def __int__(self) -> int:
+        """Convert the genuine backing value to an integer."""
+        return int(self.value)
+
+    def __float__(self) -> float:
+        """Convert the genuine backing value to a float."""
+        return float(self.value)
+
+    def __index__(self) -> int:
+        """Return the integral backing value for indexing."""
+        return self.value.__index__()
+
+    def __bool__(self) -> bool:
+        """Return the genuine backing truth value."""
+        return bool(self.value)
+
+    def __abs__(self) -> Any:
+        """Return the genuine backing magnitude."""
+        return abs(self.value)
+
+    def __le__(self, other: Any) -> Any:
+        """Compare the genuine backing value with the supplied bound."""
+        return self.value <= other
+
+    def __gt__(self, other: Any) -> Any:
+        """Compare the genuine backing value with the supplied lower bound."""
+        return self.value > other
+
+
+def advertise(value: Any, *, slice_backing: Any = None) -> Any:
+    proxy = AdvertisedClass(value, slice_backing=slice_backing)
+    assert not issubclass(type(proxy), type(value))
+    assert isinstance(proxy, type(value))
+    return proxy
+
+
+class ConsistentArray(np.ndarray):
+    """A real NumPy subclass with ordinary array behavior."""
+
+
+def assert_public_control(result: Any, error: type[ValueError]) -> None:
+    if error is api("ParameterEstimationError"):
+        assert issubclass(type(result), api("EstimatedParameters"))
+        data = result.modulation
+    else:
+        assert issubclass(type(result), api("KnownReconstruction"))
+        data = result.image
+    assert data.size and np.isfinite(data).all()
+
+
+@pytest.mark.parametrize(
+    "field,reason",
+    [
+        ("bands", r"bands|AcquisitionBands|PreparedBands"),
+        ("transfer", r"transfer|OpticalTransfer|otf"),
+        ("input_shape", r"input[ _-]+shape|on[ _-]+shape"),
+        ("quadratures", r"quadratures?|bands[ _-]+(?:array|coefficients)"),
+        ("noise_variance_factors", r"noise(?:[ _-]+(?:variance|factors?))?"),
+        ("declared_samples", r"(?:transfer|otf|table)[ ._-]+samples?|samples?"),
+        ("computed_samples", r"(?:transfer|otf|table)[ ._-]+samples?|samples?"),
+    ],
+    ids=["bands", "transfer", "shape", "quadratures", "noise", "declared", "computed"],
+)
+def test_actual_used_records_and_arrays(
+    acquisition_record_consumer: tuple[Any, type[ValueError]], field: str, reason: str
+) -> None:
+    from simrecon import prepare_acquisition_bands, prepare_bands, prepare_bead_otf
+    from test_c_acquisition_transfer import bead_options, bead_raw
+
+    consume, error = acquisition_record_consumer
+    bands = prepare_acquisition_bands(raw_pattern(y=2, x=4), **options())
+    assert issubclass(type(bands), api("AcquisitionBands"))
+    table = (
+        prepare_bead_otf(bead_raw(10, 8), **bead_options()).transfer
+        if field == "computed_samples"
+        else transfer()
+    )
+    assert_public_control(consume(bands, table), error)
+
+    candidate_bands, candidate_table = bands, table
+    if field == "bands":
+        legacy_options = options(lateral_zoom=1)
+        del legacy_options["acquisition_mode"]
+        legacy = prepare_bands(raw_pattern(z=2, y=2, x=4), **legacy_options)
+        assert issubclass(type(legacy), api("PreparedBands"))
+        assert_public_control(consume(legacy, transfer(k=2)), error)
+        candidate_bands = advertise(bands)
+    elif field == "transfer":
+        candidate_table = advertise(table)
+    elif field.endswith("_samples"):
+        samples = table.samples
+        assert samples.dtype == np.complex128
+        if field == "computed_samples":
+            assert np.any(samples != samples.astype(np.complex64))
+        genuine_samples = ConsistentArray(samples.shape, dtype=samples.dtype)
+        np.copyto(genuine_samples, samples)
+        genuine_samples.flags.writeable = False
+        subclass_table = copy(table)
+        object.__setattr__(subclass_table, "samples", genuine_samples)
+        assert_public_control(consume(bands, subclass_table), error)
+        candidate_table = copy(table)
+        object.__setattr__(candidate_table, "samples", advertise(samples))
+    else:
+        candidate_bands = copy(bands)
+        object.__setattr__(candidate_bands, field, advertise(getattr(bands, field)))
+
+    with pytest.raises(error, match=rf"(?i)\b(?:{reason})\b") as caught:
+        consume(candidate_bands, candidate_table)
+    assert caught.type is error
+
+
+def assert_estimator_acquisition_provenance(result: Any) -> None:
+    from c_acquisition_fixture import ESTIMATE_KEYS, SOURCE6, SOURCE10
+
+    settings = result.resolved_settings
+    assert type(settings) is tuple
+    assert all(type(pair) is tuple and len(pair) == 2 and type(pair[0]) is str for pair in settings)
+    assert tuple(key for key, _ in settings) == (
+        *ESTIMATE_KEYS,
+        "acquisition_mode",
+        "acquisition_reference_sha256",
+    )
+    provenance = settings[-1][1]
+    for actual, expected in ((provenance, SOURCE10), (result.reference_sha256, SOURCE6)):
+        assert type(actual) is tuple
+        assert all(type(pair) is tuple for pair in actual)
+        assert all(type(part) is str for pair in actual for part in pair), (
+            "Provenance leaf types",
+            [type(part).__name__ for pair in actual for part in pair],
+        )
+        assert actual == expected
+
+
+def test_estimator_publishes_only_validated_acquisition_provenance() -> None:
+    from collections import UserString
+    from dataclasses import fields
+
+    from c_acquisition_fixture import SOURCE10
+    from simrecon import (
+        AcquisitionBands,
+        ParameterEstimationError,
+        estimate_parameters,
+        prepare_acquisition_bands,
+    )
+
+    bands = prepare_acquisition_bands(raw_pattern(y=2, x=4), **options())
+    table = transfer()
+    name, digest = SOURCE10[0]
+    later = ((name, UserString(digest)), *SOURCE10[1:])
+    assert later == SOURCE10
+
+    class StableBands(AcquisitionBands):
+        """Genuine subclass with ordinary stable provenance."""
+
+    class UnstableBands(AcquisitionBands):
+        """Genuine record exposing different provenance on repeated reads."""
+
+        def __getattribute__(self, field: str) -> Any:
+            if field == "reference_sha256":
+                if getattr(self, "_provenance_seen", False):
+                    return later
+                object.__setattr__(self, "_provenance_seen", True)
+            return super().__getattribute__(field)
+
+    def estimate(candidate: AcquisitionBands) -> Any:
+        return estimate_parameters(
+            candidate,
+            table,
+            initial_carriers_cyc_um=np.array([[0.1, 0.02]]),
+            search_carriers=False,
+            **optics(),
+        )
+
+    values = {field.name: getattr(bands, field.name) for field in fields(bands)}
+    stable = estimate(StableBands(**values))
+    assert_public_control(stable, ParameterEstimationError)
+    assert_estimator_acquisition_provenance(stable)
+
+    unstable = UnstableBands(**values)
+    try:
+        actual = estimate(unstable)
+    except ParameterEstimationError as error:
+        import re
+
+        assert type(error) is ParameterEstimationError
+        assert re.search(
+            r"(?i)\b(?:provenance|reference_sha256|source[ _-]+identity|"
+            r"reference[ _-]+(?:hashes|digests)|digest|"
+            r"(?:invalid|inconsistent)[ _-]+(?:AcquisitionBands|bands|record))\b",
+            str(error),
+        ), str(error)
+    else:
+        assert_public_control(actual, ParameterEstimationError)
+        assert_estimator_acquisition_provenance(actual)
+
+
+@pytest.mark.parametrize(
+    "entry,field",
+    [
+        ("prepare_acquisition_bands", "images"),
+        ("prepare_acquisition_bands", "off_exposures"),
+        ("reinterpret_2d_planes", "off_exposures"),
+    ],
+    ids=["prepare-on", "prepare-off", "regroup-off"],
+)
+def test_actual_acquisition_raw_arrays(entry: str, field: str) -> None:
+    import simrecon
+
+    raw = raw_pattern(y=2, x=4)
+    off = np.ones((*raw.shape[:4], 1, *raw.shape[4:]), dtype=np.float64)
+    args = {"images": raw, "off_exposures": off}
+    declare: Any
+    settings: dict[str, Any]
+    if entry == "prepare_acquisition_bands":
+        declare, settings = simrecon.prepare_acquisition_bands, options()
+    else:
+        declare, settings = simrecon.reinterpret_2d_planes, {"storage_order": "direction-major"}
+
+    genuine = args[field]
+    result = declare(**(args | {field: genuine.view(ConsistentArray)}), **settings)
+    if entry == "prepare_acquisition_bands":
+        assert result.off_quadratures is not None and np.isfinite(result.off_quadratures).all()
+    else:
+        np.testing.assert_array_equal(result.off_exposures, off)
+    reason = (
+        r"\b(?:images?|on[ _-]+(?:frames?|exposures?))\b"
+        if field == "images"
+        else (_OFF_SAMPLE_SUBJECT)
+    )
+    with pytest.raises(simrecon.AcquisitionModeError, match=rf"(?i){reason}") as caught:
+        declare(**(args | {field: advertise(genuine)}), **settings)
+    assert caught.type is simrecon.AcquisitionModeError
+
+
+_RAW_IMAGE_SUBJECT = r"\b(?:(?<!\boff[ _-])images?|on[ _-]+(?:frames?|exposures?))\b"
+_RAW_ARRAY_KIND = (
+    r"(?:an?\s+)?(?:instance\s+of\s+)?(?:(?:actual|genuine)\s+)?"
+    r"(?:numpy[ ._-]+)?(?:ndarray|array)\b(?!\s+(?:of\b|with\s+(?:a\s+)?dtype\b))"
+)
+_RAW_NONARRAY_REASON = (
+    rf"(?i)(?:{_RAW_IMAGE_SUBJECT}(?:[ _-]+input)?\s*(?::\s*)?(?:"
+    rf"(?:must\s+be|expected|requires?|(?:(?:is|are)\s+)?not)\s+{_RAW_ARRAY_KIND}|"
+    rf"{_RAW_ARRAY_KIND}\s+(?:is\s+)?required\b|non[ _-]?array\b)|"
+    rf"\bexpected\s+{_RAW_ARRAY_KIND}\s+for\s+{_RAW_IMAGE_SUBJECT})"
+)
+
+
+def test_regrouping_rejects_split_backing_raw_images() -> None:
+    from simrecon import AcquisitionModeError, reinterpret_2d_planes
+
+    legal = np.ones((1, 2, 3, 2, 2, 4), dtype=np.float64)
+    inexact = legal.copy()
+    sample = 1 + 2**-30
+    inexact.flat[0] = sample
+    assert sample != 1 and np.float32(sample) == 1
+    split = advertise(legal, slice_backing=inexact)
+    np.testing.assert_array_equal(np.asarray(split), legal)
+    assert split[0, 0, :, 0].flat[0] == sample
+
+    settings = {"storage_order": "direction-major"}
+    for images in (legal, legal.view(ConsistentArray)):
+        np.testing.assert_array_equal(reinterpret_2d_planes(images, **settings).images, 1)
+    with pytest.raises(
+        AcquisitionModeError,
+        match=rf"(?i)(?=.*\bimages?\b)(?=.*{_SAMPLE_REPRESENTATION})",
+    ) as caught:
+        reinterpret_2d_planes(inexact, **settings)
+    assert caught.type is AcquisitionModeError
+
+    with pytest.raises(AcquisitionModeError, match=_RAW_NONARRAY_REASON) as caught:
+        reinterpret_2d_planes(split, **settings)
+    assert caught.type is AcquisitionModeError
+
+
+@pytest.mark.parametrize(
+    "field,legal,neighbor,reason",
+    [
+        ("norders", 2, np.int64(2), r"norders|order[ _-]+count|number[ _-]+of[ _-]+orders"),
+        ("dxy_um", 1.0, np.float64(1), r"dxy(?:_um)?|lateral[ _-]+(?:pitch|sampling|spacing)"),
+        ("equalize", False, np.bool_(False), r"equaliz\w*"),
+        (
+            "combine_off_orders",
+            np.zeros(2, dtype=np.int32),
+            np.zeros(2, dtype=np.int64).view(ConsistentArray),
+            r"combine[ _-]+off[ _-]+orders|"
+            r"off[ _-]+(?:combination[ _-]+)?(?:order[ _-]+)?selectors?",
+        ),
+    ],
+    ids=["count", "real", "boolean", "selectors"],
+)
+def test_actual_acquisition_declaration_categories(
+    field: str, legal: Any, neighbor: Any, reason: str
+) -> None:
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands
+
+    raw = raw_pattern(y=2, x=4)
+    expected = (0, 0) if field == "combine_off_orders" else legal
+    for value in (legal, neighbor):
+        result = prepare_acquisition_bands(raw, **options(**{field: value}))
+        assert result.quadratures.size and np.isfinite(result.quadratures).all()
+        assert dict(result.resolved_settings)[field] == expected
+
+    with pytest.raises(AcquisitionModeError, match=rf"(?i)\b(?:{reason})\b") as caught:
+        prepare_acquisition_bands(raw, **options(**{field: advertise(legal)}))
+    assert caught.type is AcquisitionModeError
+
+
+def test_actual_single_plane_rectangular_bead_input() -> None:
+    from simrecon import OtfError, prepare_bead_otf
+    from test_c_acquisition_transfer import bead_options, bead_raw
+
+    raw = bead_raw(10, 8)
+    assert raw.shape == (3, 1, 10, 8)
+    settings = bead_options()
+    result = prepare_bead_otf(raw, **settings)
+    assert result.transfer.samples.shape == (2, 5, 1)
+    assert np.isfinite(result.transfer.samples).all()
+
+    with pytest.raises(
+        OtfError, match=r"(?i)\b(?:raw|bead[ _-]+(?:images?|frames?|data))\b"
+    ) as caught:
+        prepare_bead_otf(advertise(raw), **settings)
+    assert caught.type is OtfError
+
+
+def has_off_representation_reason(message: str) -> bool:
+    import re
+
+    # Keep an explicit contrast between inputs from joining an unrelated reason.
+    parts = re.split(
+        r"\b(?:but|whereas|while)\b|(?:,|\band\b)\s+(?=(?:on|off)[ _-])",
+        message,
+        flags=re.IGNORECASE,
+    )
+    on_reason = rf"(?i){_RAW_IMAGE_SUBJECT}{_SAME_CLAUSE}{_SAMPLE_REPRESENTATION}"
+    # An off label on a wrapper cannot relabel an explicitly named on-image failure.
+    if any(
+        re.search(on_reason, segment)
+        for part in parts
+        for segment in re.split(rf"(?i){_OFF_SAMPLE_SUBJECT}", part)
+    ):
+        return False
+    return any(re.search(_OFF_SAMPLE_REASON, part) is not None for part in parts)
+
+
+@pytest.mark.parametrize(
+    "entry", ["prepare_acquisition_bands", "reinterpret_2d_planes"], ids=["prepare", "regroup"]
+)
+def test_inexact_off_diagnostic_chain_identifies_off_input(entry: str) -> None:
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands, reinterpret_2d_planes
+
+    raw = raw_pattern(y=2, x=4)
+    off = np.ones((*raw.shape[:4], 1, *raw.shape[4:]), dtype=np.float64)
+    malformed = off.copy()
+    malformed.flat[0] = 1 + 2**-30
+    assert malformed.flat[0] != 1 and np.float32(malformed.flat[0]) == 1
+    declare: Any
+    settings: dict[str, Any]
+    if entry == "prepare_acquisition_bands":
+        declare, settings = prepare_acquisition_bands, options()
+        repaired = declare(raw, off_exposures=off, **settings)
+        assert repaired.off_quadratures is not None and np.isfinite(repaired.off_quadratures).all()
+    else:
+        declare, settings = reinterpret_2d_planes, {"storage_order": "direction-major"}
+        repaired = declare(raw, off_exposures=off, **settings)
+        np.testing.assert_array_equal(repaired.off_exposures, off)
+
+    with pytest.raises(AcquisitionModeError, match=_OFF_SAMPLE_REASON) as caught:
+        declare(raw, off_exposures=malformed, **settings)
+    assert caught.type is AcquisitionModeError
+
+    frame: BaseException | None = caught.value
+    while frame is not None:
+        message = str(frame)
+        assert has_off_representation_reason(message), f"{type(frame).__name__}: {message}"
+        frame = frame.__cause__ or (None if frame.__suppress_context__ else frame.__context__)
+
+
+def has_used_array_reason(field: str, message: str) -> bool:
+    import re
+
+    # A bare field label can identify a direct validation error. A bare word
+    # inside an operation message (for example overlap samples) cannot.
+    direct = (
+        r"""(?:^|:\s+)\s*['"]?{}['"]?"""
+        r"(?:\s*[:=]|\s+(?:changed|must\s+be|(?:is|are)\s+(?:invalid|inconsistent|"
+        r"not\s+(?:an?\s+)?(?:numpy\s+)?(?:ndarray|array)))\b)"
+    )
+    reasons = {
+        "quadratures": (
+            r"\b(?:quadratures?|bands[ _-]+arrays?|(?:bands|side[ _-]?bands?)[ _-]+coefficients?)\b"
+        ),
+        "samples": (
+            r"\b(?:optical[ _-]?transfer|transfer|otf|table)[ ._-]+(?:samples?|coefficients?)\b"
+            r"|" + direct.format("samples")
+        ),
+        "noise_variance_factors": (
+            r"\bnoise[ _-]+(?:variance(?:[ _-]+factors?)?|factors?|arrays?)\b"
+            r"|" + direct.format("noise")
+        ),
+    }
+    return re.search(reasons[field], message, re.IGNORECASE) is not None
+
+
+@pytest.mark.parametrize(
+    "acquisition_record_consumer,field",
+    [
+        ("estimate", "quadratures"),
+        ("estimate", "samples"),
+        ("reconstruct", "quadratures"),
+        ("reconstruct", "noise_variance_factors"),
+        ("reconstruct", "samples"),
+    ],
+    indirect=["acquisition_record_consumer"],
+    ids=[
+        "estimate-quadratures",
+        "estimate-transfer-samples",
+        "reconstruct-quadratures",
+        "reconstruct-noise",
+        "reconstruct-transfer-samples",
+    ],
+)
+def test_consumers_use_the_validated_acquisition_arrays(
+    acquisition_record_consumer: tuple[Any, type[ValueError]], field: str
+) -> None:
+    from dataclasses import fields, replace
+
+    from simrecon import ParameterEstimationError, prepare_acquisition_bands
+
+    consume, error = acquisition_record_consumer
+    bands = prepare_acquisition_bands(raw_pattern(y=2, x=4), **options())
+    table = transfer()
+    original = table if field == "samples" else bands
+    original_type: Any = type(original)
+
+    class UsedArrayRecord(original_type):
+        """Genuine record with an optional inconsistent read of one used field."""
+
+        def __getattribute__(self, name: str) -> Any:
+            if name == field and (later := getattr(self, "_later_value", None)) is not None:
+                if getattr(self, "_selected_array_seen", False):
+                    return later
+                object.__setattr__(self, "_selected_array_seen", True)
+            return super().__getattribute__(name)
+
+    def observe(record: Any) -> np.ndarray:
+        result = consume(bands, record) if field == "samples" else consume(record, table)
+        assert_public_control(result, error)
+        return result.modulation if error is ParameterEstimationError else result.image
+
+    control = observe(original)
+    values = {item.name: getattr(original, item.name) for item in fields(original)}
+    stable = UsedArrayRecord(**values)
+    np.testing.assert_array_equal(observe(stable), control)
+
+    alternate = values[field].copy()
+    if field == "quadratures":
+        alternate[:, :, 1:] *= 2
+    elif field == "noise_variance_factors":
+        alternate *= 2
+    else:
+        alternate[1:] *= 2
+        alternate.flags.writeable = False
+    alternate_control = observe(replace(original, **{field: alternate}))
+    assert not np.array_equal(alternate_control, control), f"{field} control must affect the result"
+
+    unstable = UsedArrayRecord(**values)
+    later = advertise(alternate) if field == "samples" else alternate.tolist()
+    assert not issubclass(type(later), np.ndarray)
+    object.__setattr__(unstable, "_later_value", later)
+    try:
+        actual = observe(unstable)
+    except error as rejected:
+        assert type(rejected) is error
+        assert has_used_array_reason(field, str(rejected)), str(rejected)
+    else:
+        assert np.array_equal(actual, control), (
+            f"{field}: result differs from the validated input; "
+            f"matches genuine alternate: {np.array_equal(actual, alternate_control)}"
+        )
+
+
+@pytest.mark.parametrize(
+    "z,y,x",
+    [(1, 10, 8), (1, 10, 10), (2, 10, 8), (2, 10, 10)],
+    ids=["single-rectangular", "single-square", "multi-rectangular", "original-square"],
+)
+def test_bead_numeric_lists_match_identical_arrays(z: int, y: int, x: int) -> None:
+    from simrecon import prepare_bead_otf
+    from test_c_acquisition_transfer import bead_options, bead_raw
+
+    raw = bead_raw(y, x, z)
+    nested = raw.tolist()
+    np.testing.assert_array_equal(np.asarray(nested), raw)
+    settings = bead_options()
+
+    original = prepare_bead_otf(raw, **settings).transfer.samples
+    assert original.dtype == np.complex128
+    assert original.shape == (2, x // 2 + 1, z)
+    assert np.isfinite(original).all()
+    decoded = prepare_bead_otf(nested, **settings).transfer.samples
+    assert decoded.dtype == np.complex128
+    np.testing.assert_array_equal(decoded, original)

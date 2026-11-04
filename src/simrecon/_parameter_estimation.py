@@ -14,7 +14,7 @@ from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 
-from ._acquisition_modes import AcquisitionBands, validate_used
+from ._acquisition_modes import AcquisitionBands, _UsedBands, validate_used
 from ._model import SimreconError
 from ._optical_transfer import OpticalTransfer, OtfError, _valid_transfer, sample_otf
 from ._preparation import _REFERENCE as _BAND_REFERENCE
@@ -184,15 +184,16 @@ class _Grid:
     mode: str = "3d"
 
 
-def _validate_bands(bands: Any, transfer: OpticalTransfer) -> _Grid:
-    if isinstance(bands, AcquisitionBands):
-        shape, orders, lateral, axial, dxy, dz, scale, mode = validate_used(bands)
+def _validate_bands(bands: Any, transfer: OpticalTransfer) -> tuple[_Grid, _UsedBands | None]:
+    if issubclass(type(bands), AcquisitionBands):
+        used = validate_used(bands)
+        shape = used.shape
         z, y, x = shape[3:]
         k = transfer.samples.shape[-1] if transfer.layout == "radial" else transfer.samples.shape[1]
-        if mode == "2d" and k != 1:
+        if used.mode == "2d" and k != 1:
             raise ParameterEstimationError("true 2d bands require transfer axial K=1")
-        dzf = 1 / (z * dz) if dz > 0 else transfer.dkz_cyc_um
-        frequencies = (1 / (x * dxy), 1 / (y * dxy), dzf)
+        dzf = 1 / (z * used.dz) if used.dz > 0 else transfer.dkz_cyc_um
+        frequencies = (1 / (x * used.dxy), 1 / (y * used.dxy), dzf)
         if any(not math.isfinite(f) or f <= 0 for f in frequencies):
             raise ParameterEstimationError("derived sampling must remain finite and positive")
         t, d = shape[:2]
@@ -200,10 +201,21 @@ def _validate_bands(bands: Any, transfer: OpticalTransfer) -> _Grid:
             ((2, z, y, x), 16),
             ((2, z, y, x), 1),
             ((t, d, 2), 8),
-            ((t, d, orders - 1), 16),
+            ((t, d, used.orders - 1), 16),
         ):
             _extent(sh, size)
-        return _Grid(shape, orders, dxy, dz, lateral, axial, scale, *frequencies, mode=mode)
+        grid = _Grid(
+            shape,
+            used.orders,
+            used.dxy,
+            used.dz,
+            used.lateral,
+            used.axial,
+            used.scale,
+            *frequencies,
+            mode=used.mode,
+        )
+        return grid, used
     if not isinstance(bands, PreparedBands):
         raise ParameterEstimationError("bands must be a PreparedBands or AcquisitionBands record")
     if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
@@ -268,13 +280,13 @@ def _validate_bands(bands: Any, transfer: OpticalTransfer) -> _Grid:
         raise ParameterEstimationError(
             "derived sampling frequencies must remain finite and positive"
         )
-    return _Grid(shape, orders, dxy, dz, lateral, axial, scale, *frequencies)
+    return _Grid(shape, orders, dxy, dz, lateral, axial, scale, *frequencies), None
 
 
 class _Estimator:
     def __init__(
         self,
-        bands: PreparedBands | AcquisitionBands,
+        quadratures: _Array,
         transfer: OpticalTransfer,
         grid: _Grid,
         radial: float,
@@ -282,7 +294,7 @@ class _Estimator:
         omit: bool,
     ):
         self.grid = grid
-        self.data = np.array(bands.quadratures, copy=True)
+        self.data = np.array(quadratures, copy=True)
         self.transfer = transfer
         self.radial = radial
         self.cutoff = cutoff
@@ -740,8 +752,10 @@ def estimate_parameters(
         ):
             if type(flag) is not bool:
                 raise ParameterEstimationError(f"{name} must be an actual boolean")
-        transfer = _valid_transfer(transfer)
-        grid = _validate_bands(bands, transfer)
+        transfer = _valid_transfer(
+            transfer, require_actual=issubclass(type(bands), AcquisitionBands)
+        )
+        grid, used = _validate_bands(bands, transfer)
         if search_carriers and grid.orders < (2 if grid.shape[3] == 1 else 3):
             raise ParameterEstimationError(
                 "carrier search requires two orders in 2d or three in 3d"
@@ -778,7 +792,8 @@ def estimate_parameters(
         if cutoff > z // 2:
             cutoff = max(z // 2 - 1, 0)
         _signed(z + cutoff, "wrapped axial z+Z")
-        estimator = _Estimator(bands, transfer, grid, radial, cutoff, omit_kz0)
+        quadratures = bands.quadratures if used is None else used.quadratures
+        estimator = _Estimator(quadratures, transfer, grid, radial, cutoff, omit_kz0)
         carriers = np.empty((times, directions, 2), dtype=np.float64)
         raw = np.empty((times, directions, grid.orders - 1), dtype=np.complex128)
         modulation = np.empty_like(raw)
@@ -879,10 +894,10 @@ def estimate_parameters(
                 input_scale=grid.scale,
             ).items()
         )
-        if isinstance(bands, AcquisitionBands):
+        if used is not None:
             settings += (
                 ("acquisition_mode", grid.mode),
-                ("acquisition_reference_sha256", bands.reference_sha256),
+                ("acquisition_reference_sha256", used.reference),
             )
         return EstimatedParameters(
             _owned(carriers),

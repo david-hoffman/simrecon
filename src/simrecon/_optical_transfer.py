@@ -223,22 +223,41 @@ def declare_otf(
     return OpticalTransfer(_owned(array, np.complex128), layout, dkr, dkz, array.shape[0])
 
 
-def _valid_transfer(transfer: Any) -> OpticalTransfer:
-    if not isinstance(transfer, OpticalTransfer):
+def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> OpticalTransfer:
+    transfer_type_valid = (
+        issubclass(type(transfer), OpticalTransfer)
+        if require_actual
+        else isinstance(transfer, OpticalTransfer)
+    )
+    if not transfer_type_valid:
         raise OtfError("transfer must be an OpticalTransfer record")
     array = transfer.samples
-    if not isinstance(array, np.ndarray):
+    array_type_valid = (
+        issubclass(type(array), np.ndarray) if require_actual else isinstance(array, np.ndarray)
+    )
+    if not array_type_valid:
         raise OtfError("transfer samples must be an owned complex128 array")
-    _table_shape(array, transfer.layout)
+    layout = transfer.layout
+    _table_shape(array, layout)
     if array.dtype != np.complex128 or array.flags.writeable or not array.flags.owndata:
         raise OtfError("transfer samples must be owned, read-only complex128")
     _finite(array, "transfer samples")
-    _scalar(transfer.dkr_cyc_um, "transfer dkr", positive=True)
-    _scalar(transfer.dkz_cyc_um, "transfer dkz", positive=True)
-    if _integer(transfer.norders, "norders", 1) != array.shape[0]:
+    dkr = transfer.dkr_cyc_um
+    _scalar(dkr, "transfer dkr", positive=True)
+    dkz = transfer.dkz_cyc_um
+    _scalar(dkz, "transfer dkz", positive=True)
+    norders = transfer.norders
+    if _integer(norders, "norders", 1) != array.shape[0]:
         raise OtfError("transfer norders disagrees with samples")
-    if transfer.source_revision != "SVN307" or transfer.reference_sha256 != _REFERENCE:
+    revision = transfer.source_revision
+    if revision != "SVN307":
         raise OtfError("invalid transfer source identity")
+    reference = transfer.reference_sha256
+    if reference != _REFERENCE:
+        raise OtfError("invalid transfer source identity")
+    if require_actual:
+        # Keep the validated values for CE06 sampling without copying the sample table.
+        return OpticalTransfer(array, layout, dkr, dkz, norders, revision, reference)
     return transfer
 
 
@@ -768,6 +787,8 @@ def prepare_bead_otf(
     if array.ndim != 4:
         raise OtfError("raw axes must be (phase,z,y,x)")
     p, z, n, x = array.shape
+    if (z == 1 or n != x) and not issubclass(type(raw), np.ndarray) and isinstance(raw, np.ndarray):
+        raise OtfError("raw advertises a NumPy array without being one")
     if x % 2:
         raise OtfError("odd lateral storage is unsupported; require even size")
     if p not in (1, 3, 5, 7, 9):

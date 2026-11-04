@@ -58,7 +58,7 @@ def signed(value: int, name: str) -> int:
 
 def integer(value: Any, name: str, *, minimum: int = 1) -> int:
     """Resolve a nonboolean source integer declaration."""
-    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Integral):
+    if issubclass(type(value), (bool, np.bool_)) or not issubclass(type(value), Integral):
         raise AcquisitionModeError(f"{name} must be an integer")
     result = signed(int(value), name)
     if result < minimum:
@@ -68,9 +68,9 @@ def integer(value: Any, name: str, *, minimum: int = 1) -> int:
 
 def scalar(value: Any, name: str, *, positive: bool = False) -> float:
     """Resolve a finite source-float mathematical scalar without narrowing."""
-    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Real):
+    if issubclass(type(value), (bool, np.bool_)) or not issubclass(type(value), Real):
         raise AcquisitionModeError(f"{name} must be a finite real scalar")
-    if isinstance(value, np.generic):
+    if issubclass(type(value), np.generic):
         value = value.item()
     magnitude: Any = abs(value)
     if magnitude > F32_MAX:
@@ -101,11 +101,13 @@ def extent(shape: tuple[int, ...], itemsize: int) -> None:
 def array_metadata(value: Any, name: str, shape: tuple[int, ...], *, raw: bool = False) -> None:
     """Validate real array representation before copying or numerical work."""
     extent(shape, 8)
+    if not issubclass(type(value), np.ndarray):
+        raise AcquisitionModeError(f"{name} must be a NumPy array")
     _array_metadata(value, name, shape)
     finite(value, name)
     if raw:
         try:
-            _raw_samples(value)
+            _raw_samples(value, name)
         except SimreconError as error:
             if name != "off_exposures":
                 raise
@@ -174,7 +176,9 @@ def event(
 
 def raw_shape(images: Any) -> tuple[int, ...]:
     """Validate canonical raw dimensions and source per-frame extents."""
-    if not isinstance(images, np.ndarray) or images.ndim != 6:
+    if not issubclass(type(images), np.ndarray):
+        raise AcquisitionModeError("images must be a NumPy array")
+    if images.ndim != 6:
         raise AcquisitionModeError("images must be a six-dimensional NumPy array")
     shape = tuple(integer(n, "images dimension") for n in images.shape)
     t, d, p, z, y, x = shape
@@ -211,8 +215,8 @@ def off_count(off: Any, shape: tuple[int, ...]) -> int:
     if off is None:
         return 0
     t, d, p, z, y, x = shape
-    if not isinstance(off, np.ndarray) or off.ndim != 7:
-        raise AcquisitionModeError("off_exposures require (T,D,P,Z,N,Y,X)")
+    if not issubclass(type(off), np.ndarray) or off.ndim != 7:
+        raise AcquisitionModeError("off_exposures require a NumPy array with axes (T,D,P,Z,N,Y,X)")
     n = integer(off.shape[4], "off_exposures N")
     if off.shape != (t, d, p, z, n, y, x):
         raise AcquisitionModeError("off_exposures shape disagrees with images")

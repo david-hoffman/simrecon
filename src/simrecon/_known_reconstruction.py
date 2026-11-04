@@ -16,7 +16,7 @@ from numpy.typing import NDArray
 from scipy.fft import ifftn
 
 from ._acquisition_layout import ModeEvent, event
-from ._acquisition_modes import AcquisitionBands, validate_used
+from ._acquisition_modes import AcquisitionBands, _UsedBands, validate_used
 from ._model import SimreconError
 from ._optical_transfer import OpticalTransfer, OtfError, _valid_transfer, sample_otf
 from ._preparation import _REFERENCE as _BAND_REFERENCE
@@ -170,12 +170,16 @@ class _Grid:
         return self.axial * z, int(self.lateral * y), int(self.lateral * x)
 
 
-def _validate_bands(bands: Any) -> _Grid:
-    if isinstance(bands, AcquisitionBands):
-        shape, orders, lateral, axial, dxy, dz, scale, mode = validate_used(bands)
-        for sh, size in (((shape[1], 2), 8), ((shape[1], orders), 16), (shape[3:], 16)):
+def _validate_bands(bands: Any) -> tuple[_Grid, _UsedBands | None]:
+    if issubclass(type(bands), AcquisitionBands):
+        used = validate_used(bands)
+        shape = used.shape
+        for sh, size in (((shape[1], 2), 8), ((shape[1], used.orders), 16), (shape[3:], 16)):
             _extent(sh, size)
-        return _Grid(shape, orders, lateral, axial, dxy, dz, scale, mode=mode)
+        grid = _Grid(
+            shape, used.orders, used.lateral, used.axial, used.dxy, used.dz, used.scale, used.mode
+        )
+        return grid, used
     if not isinstance(bands, PreparedBands):
         raise ReconstructionError("bands must be a PreparedBands or AcquisitionBands record")
     if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
@@ -254,7 +258,7 @@ def _validate_bands(bands: Any) -> _Grid:
     _finite(noise, "bands noise_variance_factors")
     if (noise <= 0).any():
         raise ReconstructionError("bands noise_variance_factors must be positive")
-    return grid
+    return grid, None
 
 
 def _wrap_once(angle: float) -> float:
@@ -669,8 +673,9 @@ def reconstruct_known(
         numerical failures. Allocation/backend failures retain their causes.
     """
     with _operation():
-        grid = _validate_bands(bands)
-        transfer = _valid_transfer(transfer)
+        grid, used = _validate_bands(bands)
+        acquisition = used is not None
+        transfer = _valid_transfer(transfer, require_actual=acquisition)
         if transfer.norders < grid.orders:
             raise ReconstructionError("transfer has insufficient orders")
         wavelength = _integer(wavelength_nm, "wavelength_nm")
@@ -706,7 +711,7 @@ def reconstruct_known(
             raise ReconstructionError("output_taper must be cosine, none or power")
         taper_text = str.__str__(output_taper)
         extended = (
-            isinstance(bands, AcquisitionBands)
+            acquisition
             or increment != 0
             or exponent is not None
             or precise_taper
@@ -745,12 +750,14 @@ def reconstruct_known(
         dy = _positive(1 / (grid.shape[-2] * grid.dxy), "dxy sampling")
         amplitudes = np.ones((directions, grid.orders), np.complex128)
         amplitudes[:, 1:] = mods
-        inverse_noise = 1 / np.array(bands.noise_variance_factors, dtype=np.float64, copy=True)
+        noise = bands.noise_variance_factors if used is None else used.noise
+        inverse_noise = 1 / np.array(noise, dtype=np.float64, copy=True)
         _finite(inverse_noise, "inverse noise weight")
         taper_radius = _positive(radius + hypot(*carriers[0]) * (grid.orders - 1), "taper cutoff")
         sr = sr_bins * min(dx, dy)
         _finite(sr, "suppression radius")
-        original = np.array(bands.quadratures, dtype=np.complex128, copy=True)
+        quadratures = bands.quadratures if used is None else used.quadratures
+        original = np.array(quadratures, dtype=np.complex128, copy=True)
         filtered = np.empty_like(original)
         mode_trace: list[ModeEvent] = []
         effective = []
@@ -778,7 +785,7 @@ def reconstruct_known(
                 transfer,
                 carriers,
                 amplitudes,
-                inverse_noise[t] if isinstance(bands, AcquisitionBands) else inverse_noise,
+                inverse_noise[t] if acquisition else inverse_noise,
                 dx,
                 dy,
                 dzf,

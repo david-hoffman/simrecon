@@ -74,30 +74,42 @@ class AcquisitionBands:
     reference_sha256: tuple[tuple[str, str], ...] = REFERENCE
 
 
-def validate_used(
-    bands: AcquisitionBands,
-) -> tuple[tuple[int, ...], int, float, int, float, float, float, str]:
+@dataclass(frozen=True)
+class _UsedBands:
+    shape: tuple[int, ...]
+    orders: int
+    lateral: float
+    axial: int
+    dxy: float
+    dz: float
+    scale: float
+    mode: str
+    reference: tuple[tuple[str, str], ...]
+    quadratures: Array
+    noise: Array
+
+
+def validate_used(bands: AcquisitionBands) -> _UsedBands:
     """Validate only the acquisition fields consumed by downstream science."""
-    if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
-        raise AcquisitionModeError("bands input_shape requires six dimensions")
-    shape = tuple(integer(n, "bands dimension") for n in bands.input_shape)
+    input_shape = bands.input_shape
+    if not issubclass(type(input_shape), tuple) or len(input_shape) != 6:
+        raise AcquisitionModeError("bands input_shape requires a tuple of six dimensions")
+    shape = tuple(integer(n, "bands dimension") for n in input_shape)
     t, d, p, z, y, x = shape
     mode = literal(bands.acquisition_mode, "bands acquisition_mode", ("2d", "3d"))
     if (mode == "2d" and z != 1) or (mode == "3d" and z < 2) or x < 2 or x % 2:
         raise AcquisitionModeError("bands dimensions disagree with acquisition_mode/even X")
     data = bands.quadratures
-    if not isinstance(data, np.ndarray) or data.dtype != np.complex128 or data.ndim != 6:
-        raise AcquisitionModeError("bands quadratures require six-axis complex128")
+    if not issubclass(type(data), np.ndarray) or data.dtype != np.complex128 or data.ndim != 6:
+        raise AcquisitionModeError("bands quadratures require a six-axis complex128 NumPy array")
     q = data.shape[2]
     orders = (q + 1) // 2
     if orders < 2 or q % 2 != 1 or q > p or data.shape != (t, d, q, z, y, x // 2 + 1):
         raise AcquisitionModeError("bands quadratures require odd Q<=P, O>=2 and matching shape")
     noise = bands.noise_variance_factors
-    if (
-        not isinstance(noise, np.ndarray)
-        or noise.dtype != np.float64
-        or noise.shape != (t, d, orders)
-    ):
+    if not issubclass(type(noise), np.ndarray):
+        raise AcquisitionModeError("bands noise variance factors must be a NumPy array")
+    if noise.dtype != np.float64 or noise.shape != (t, d, orders):
         raise AcquisitionModeError("bands noise_variance_factors require float64 (T,D,O)")
     lateral = zoom(bands.lateral_zoom, y, x)
     axial = integer(bands.axial_zoom, "axial_zoom")
@@ -141,7 +153,7 @@ def validate_used(
     finite(noise, "bands noise_variance_factors")
     if (noise <= 0).any():
         raise AcquisitionModeError("bands noise_variance_factors must be positive")
-    return shape, orders, lateral, axial, dxy, dz, scale, mode
+    return _UsedBands(shape, orders, lateral, axial, dxy, dz, scale, mode, reference, data, noise)
 
 
 def _optics(
@@ -406,7 +418,7 @@ def prepare_acquisition_bands(
             ("adjust_phases", adjust_phases),
             ("negative_angle_step", negative_angle_step),
         ):
-            if not isinstance(flag, (bool, np.bool_)):
+            if not issubclass(type(flag), (bool, np.bool_)):
                 raise AcquisitionModeError(f"{name} must be a boolean")
         hpf = scalar(drift_filter_fraction, "drift_filter_fraction")
         start_angle = scalar(phase_start_angle_rad, "phase_start_angle_rad")
@@ -421,7 +433,7 @@ def prepare_acquisition_bands(
             if orders > 25:
                 raise AcquisitionModeError("combine_off_orders fixed allocation requires O<=25")
             if (
-                not isinstance(combine_off_orders, np.ndarray)
+                not issubclass(type(combine_off_orders), np.ndarray)
                 or combine_off_orders.shape != (orders,)
                 or combine_off_orders.dtype.kind not in "iu"
             ):
@@ -490,7 +502,7 @@ def prepare_acquisition_bands(
             array_metadata(off_exposures, "off_exposures", off_exposures.shape, raw=True)
         bmap = (
             real_array(background, "background", (ny, nx))
-            if isinstance(background, np.ndarray)
+            if issubclass(type(background), np.ndarray)
             else np.full((ny, nx), scalar(background, "background"))
         )
         smap = (
@@ -768,7 +780,7 @@ def prepare_acquisition_bands(
             dz_um=dz,
             norders=orders,
             background="map"
-            if isinstance(background, np.ndarray)
+            if issubclass(type(background), np.ndarray)
             else scalar(background, "background"),
             lateral_zoom=lateral,
             axial_zoom=axial,
