@@ -7,6 +7,7 @@ import numpy as np
 import pytest
 
 from c_acquisition_fixture import api, close, events, matrix, optics, options
+from c_acquisition_fixture import numerical_case as numerical_case
 
 
 def impulses(*, mode: str, t: int = 1) -> tuple[Any, Any]:
@@ -54,46 +55,20 @@ def test_fitted_2d_cubic_exact_control_alias_mutation_and_first_off_phase(
     assert len(fits) == 2
     for fit in fits:
         assert type(fit["scope"]) is str
-        close(fit["matrix"], [[1, 1, 1], [2, 4, 8], [3, 9, 27]], work=4, scale=27)
-        close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]], work=800, scale=27, condition=128)
-        close(fit["evaluation_timestamps_after"], [0, 1, 2, 3], work=4, scale=max(origin, 3))
-        close(fit["sample_timestamps_after"], [0, 1, 2, 3], work=4, scale=max(origin, 3))
-        close(
-            fit["evaluated_xy"],
-            [[0, 0], [1, 0], [8, 0], [27, 0]],
-            work=800,
-            scale=27,
-            condition=128,
-        )
+        close(fit["matrix"], [[1, 1, 1], [2, 4, 8], [3, 9, 27]])
+        close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]])
+        close(fit["evaluation_timestamps_after"], [0, 1, 2, 3])
+        close(fit["sample_timestamps_after"], [0, 1, 2, 3])
+        close(fit["evaluated_xy"], [[0, 0], [1, 0], [8, 0], [27, 0]])
     expected_displacement = np.array([[0, 0], [1, 0], [8, 0], [27, 0]])
-    close(
-        actual.exposure_displacements_pixels,
-        np.tile(expected_displacement, (2, 1, 1, 1, 1)),
-        work=800,
-        scale=27,
-        condition=128,
-    )
+    close(actual.exposure_displacements_pixels, np.tile(expected_displacement, (2, 1, 1, 1, 1)))
     expected_phases = (
         phases[[0, 2, 4, 6]] + 2 * pi * np.cos(theta) / spacing * expected_displacement[:, 0]
     )
-    close(
-        actual.phase_angles_rad,
-        np.tile(expected_phases, (2, 1, 1, 1)),
-        work=800,
-        scale=32,
-        condition=128,
-    )
+    close(actual.phase_angles_rad, np.tile(expected_phases, (2, 1, 1, 1)))
     left, noise = matrix(expected_phases, 2, "drift")
-    close(
-        actual.separation_matrices,
-        np.tile(left, (2, 1, 1, 1, 1)),
-        work=800,
-        scale=32,
-        condition=256,
-    )
-    close(
-        actual.noise_variance_factors, np.tile(noise, (2, 1, 1)), work=800, scale=32, condition=256
-    )
+    close(actual.separation_matrices, np.tile(left, (2, 1, 1, 1, 1)))
+    close(actual.noise_variance_factors, np.tile(noise, (2, 1, 1)))
     assert actual.phase_policies == ((("drift",),), (("drift",),))
     np.testing.assert_array_equal(actual.header_timestamps_after, before_clock)
     np.testing.assert_array_equal(clock, before_clock)
@@ -136,26 +111,20 @@ def test_ordinary_3d_cubic_distinct_vectors_global_prefix_reused_at_later_time(b
     expected = eta**3
     for t, fit in enumerate(fits):
         assert type(fit["scope"]) is str
-        close(
-            fit["sample_displacements_xy"],
-            np.c_[measured, np.zeros(4)],
-            work=800,
-            scale=27,
-            condition=128,
-        )
-        close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]], work=800, scale=27, condition=256)
-        close(fit["evaluation_timestamps_after"], eta, work=24, scale=10)
+        close(fit["sample_displacements_xy"], np.c_[measured, np.zeros(4)])
+        close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]])
+        close(fit["evaluation_timestamps_after"], eta)
         # First sample retains tau0 (10 at t0, 0 after prefix mutation at t1).
-        close(fit["sample_timestamps_after"], [10 if t == 0 else 0, 1, 2, 3], work=4, scale=10)
+        close(fit["sample_timestamps_after"], [10 if t == 0 else 0, 1, 2, 3])
     correction = expected.reshape(4, 2, 3) - measured[:, None, None]
     close(
         actual.exposure_displacements_pixels[..., 0],
         np.tile(correction, (2, 1, 1, 1)),
-        work=800,
-        scale=32,
-        condition=256,
+        proof=actual.exposure_displacements_pixels,
     )
-    close(actual.exposure_displacements_pixels[..., 1], 0, work=800, scale=32, condition=256)
+    close(
+        actual.exposure_displacements_pixels[..., 1], 0, proof=actual.exposure_displacements_pixels
+    )
     for d in range(4):
         expected_phase = (
             2 * pi * np.arange(3) / 3
@@ -164,20 +133,16 @@ def test_ordinary_3d_cubic_distinct_vectors_global_prefix_reused_at_later_time(b
         close(
             actual.phase_angles_rad[:, d],
             np.tile(expected_phase, (2, 1, 1)),
-            work=800,
-            scale=32,
-            condition=256,
+            proof=actual.phase_angles_rad,
         )
         _, last_noise = matrix(expected_phase[-1], 2, "drift")
         close(
             actual.noise_variance_factors[:, d],
             np.tile(last_noise, (2, 1)),
-            work=800,
-            scale=32,
-            condition=256,
+            proof=actual.noise_variance_factors,
         )
     np.testing.assert_array_equal(actual.header_timestamps_after[24:], original[24:])
-    close(actual.header_timestamps_after[:24], eta, work=24, scale=10)
+    close(actual.header_timestamps_after[:24], eta, proof=actual.header_timestamps_after)
     np.testing.assert_array_equal(clock, original)
     assert len(events(actual, "between-correction")) == (6 if both else 0)
 
@@ -250,5 +215,43 @@ def test_overdetermined_cubic_orthogonal_residual_and_duplicate_time_positive() 
             ),
         )
         fit = events(actual, "cubic-fit")[0]
-        close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]], work=1600, scale=65, condition=512)
-        close(fit["evaluated_xy"][:, 0], np.array(times) ** 3, work=1600, scale=65, condition=512)
+        close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]])
+        close(fit["evaluated_xy"][:, 0], np.array(times) ** 3)
+
+
+def test_3d_overdetermined_fit_subtracts_measured_not_fitted_midpoints() -> None:
+    # At times1..4 the residual(-4,6,-4,1) is orthogonal to all three
+    # cubic columns. The fitted curve is t**3 but measured samples differ.
+    shifts = np.array([0, -3, 14, 23, 65])
+    raw = np.zeros((1, 5, 3, 2, 10, 160))
+    for d in range(5):
+        raw[0, d, :, :, 5, 20 + shifts[d]] = 64
+    off = raw[..., None, :, :].copy()
+    prefix = np.array([10 + d + (p - 3) / 10 for d in range(5) for p in range(6)])
+    clock = np.r_[prefix, np.arange(30) + 100.0]
+    phases = np.arange(60, dtype=float) / 3
+    result = api("prepare_acquisition_bands")(
+        raw,
+        **(
+            options(
+                acquisition_mode="3d",
+                off_exposures=off,
+                drift_within=True,
+                adjust_phases=True,
+                header_timestamps=clock,
+                header_phases_rad=phases,
+                linespacing_um=100.0,
+            )
+            | optics()
+        ),
+    )
+    fit = events(result, "cubic-fit")[0]
+    close(fit["coefficients"], [[0, 0], [0, 0], [1, 0]])
+    close(fit["sample_displacements_xy"][:, 0], shifts, proof=fit["sample_displacements_xy"])
+    expected = (prefix - 10).reshape(5, 2, 3) ** 3 - shifts[:, None, None]
+    close(
+        result.exposure_displacements_pixels[0, ..., 0],
+        expected,
+        proof=result.exposure_displacements_pixels,
+    )
+    assert np.max(abs(shifts - np.arange(5) ** 3)) == 6

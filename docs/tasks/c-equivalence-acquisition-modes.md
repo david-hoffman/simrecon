@@ -79,7 +79,7 @@ optical-transfer, parameter-estimation and known-reconstruction modules, their
 public initializer, and new cohesive acquisition-mode, drift and layout modules:
 `src/simrecon/_preparation.py`, `_optical_transfer.py`,
 `_parameter_estimation.py`, `_known_reconstruction.py`, `__init__.py`,
-`_acquisition_modes.py`, `_drift.py` and `_acquisition_layout.py`.
+`_acquisition_modes.py`, `_acquisition_drift.py` and `_acquisition_layout.py`.
 Unused new-file slots may stay absent. No neutral I/O, test, dependency,
 workflow, discovery, coverage or policy edits belong to C.
 

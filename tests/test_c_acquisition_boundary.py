@@ -17,12 +17,17 @@ from c_acquisition_fixture import (
     raw_pattern,
     transfer,
 )
+from c_acquisition_fixture import (
+    numerical_case as numerical_case,
+)
 
 
 def reject(raw: Any = None, **changes: Any) -> None:
     if raw is None:
         raw = raw_pattern(y=10, x=10)
-    with pytest.raises(api("AcquisitionModeError"), match=".+"):
+    error = api("AcquisitionModeError")
+    assert issubclass(error, ValueError) and issubclass(error, api("SimreconError"))
+    with pytest.raises(error, match=".+"):
         api("prepare_acquisition_bands")(raw, **options(**changes))
 
 
@@ -109,6 +114,7 @@ def test_flags_actual_booleans(field: str, bad: Any) -> None:
 )
 def test_raw_shape_type_finite_and_float32_exact_domain(kind: str) -> None:
     raw = raw_pattern(y=2, x=4)
+    binary64_alias = False
     if kind in {"bool", "complex", "object", "string", "longdouble"}:
         raw = raw.astype(
             {
@@ -119,6 +125,13 @@ def test_raw_shape_type_finite_and_float32_exact_domain(kind: str) -> None:
                 "longdouble": np.longdouble,
             }[kind]
         )
+        if kind == "longdouble":
+            wide, ordinary = np.finfo(raw.dtype), np.finfo(np.float64)
+            binary64_alias = (
+                raw.dtype.itemsize == np.dtype(np.float64).itemsize
+                and wide.nmant == ordinary.nmant
+                and wide.maxexp == ordinary.maxexp
+            )
     elif kind in {"nan", "infinity", "inexact"}:
         raw.flat[0] = {"nan": np.nan, "infinity": np.inf, "inexact": -1 + 2**-30}[kind]
     elif kind == "empty":
@@ -131,7 +144,11 @@ def test_raw_shape_type_finite_and_float32_exact_domain(kind: str) -> None:
         raw = raw[0]
     else:
         raw = raw.tolist()
-    reject(raw, edge_pixels=0)
+    if binary64_alias:
+        accepted = api("prepare_acquisition_bands")(raw, **options())
+        assert accepted.quadratures.dtype == np.complex128
+    else:
+        reject(raw, edge_pixels=0)
 
 
 @pytest.mark.parametrize(
@@ -319,8 +336,8 @@ def test_precise_precompute_finite_positive_and_ordered_boundaries(
     bounds = np.array([b - 2 * pi if b > pi else b + 2 * pi if b < -pi else b for b in bounds])
     entries = events(actual, "sector-boundaries")
     assert len(entries) == 1
-    close(entries[0]["carrier_angles_rad"], angles, work=3, scale=pi)
-    close(entries[0]["boundary_angles_rad"], bounds, work=6, scale=pi)
+    close(entries[0]["carrier_angles_rad"], angles)
+    close(entries[0]["boundary_angles_rad"], bounds)
     assert not events(actual, "precise-query")
 
 
@@ -410,7 +427,7 @@ def test_k1_sampler_last_vertex_error_and_interior_complex_positive() -> None:
     samples = np.array([[[1 + 2j], [3 - 1j], [2 + 4j]], [[2 - 3j], [4 + 1j], [3 - 2j]]])
     table = api("declare_otf")(samples, layout="radial", dkr_cyc_um=0.25, dkz_cyc_um=1 / 0.7)
     positive = api("sample_otf")(table, 0.375, 0, 0, dkz_cyc_um=1 / 0.7, order=0)
-    close(positive, 2.5 + 1.5j, work=4, scale=4)
+    close(positive, 2.5 + 1.5j)
     with pytest.raises(api("OtfError"), match="(?i)stencil|vertex|alloc|bound|index"):
         api("sample_otf")(table, 0.5, 0, 0, dkz_cyc_um=1 / 0.7, order=0)
     # Every used zero-weight vertex matters downstream too; no data=0 bypass.
@@ -435,7 +452,7 @@ def test_known_negative_raw_signed_output_and_raw_dtype_positive_endpoints() -> 
         modulation=np.zeros((1, 1)),
         **known_options(filter_overlaps=False),
     )
-    close(actual.image, -4.8, work=8, scale=6)
+    close(actual.image, -4.8)
     assert np.max(actual.image) < 0
 
 
@@ -503,8 +520,8 @@ def test_prepass_off_loop_exact_y_plus_one_endpoint_positive() -> None:
         raw, **(options(off_exposures=off, drift_between=True) | optics())
     )
     build = events(actual, "between-build")[0]
-    close(build["centers"], 0.02, work=100, scale=2)
-    close(actual.off_quadratures[0, 0, 0, 0, 0, 0], 33, work=100, scale=33)
+    close(build["centers"], 0.02)
+    close(actual.off_quadratures[0, 0, 0, 0, 0, 0], 33, proof=actual.off_quadratures)
 
 
 def test_outside_scope_keyword_does_not_silently_enable_unsafe_modes() -> None:
@@ -512,3 +529,72 @@ def test_outside_scope_keyword_does_not_silently_enable_unsafe_modes() -> None:
     for keyword in ["padding_z", "bessel", "two_objective", "automatic_wiener", "reference_type"]:
         with pytest.raises(TypeError):
             api("prepare_acquisition_bands")(raw, **options(), **{keyword: True})
+
+
+def test_true_2d_requires_k1_in_both_consumers_and_later_wiener_failure() -> None:
+    bands = api("prepare_acquisition_bands")(raw_pattern(t=2, y=2, x=4), **options())
+    carriers = np.array([[0.1, 0.02]])
+    for k in [1, 2]:
+        table = transfer(k=k)
+        if k == 2:
+            with pytest.raises(api("ParameterEstimationError"), match="(?i)2d|axial|K|plane"):
+                api("estimate_parameters")(
+                    bands,
+                    table,
+                    initial_carriers_cyc_um=carriers,
+                    search_carriers=False,
+                    **optics(),
+                )
+            with pytest.raises(api("ReconstructionError"), match="(?i)2d|axial|K|plane"):
+                api("reconstruct_known")(
+                    bands,
+                    table,
+                    carriers_cyc_um=carriers,
+                    modulation=np.ones((1, 1)),
+                    **known_options(),
+                )
+        else:
+            estimate = api("estimate_parameters")(
+                bands, table, initial_carriers_cyc_um=carriers, search_carriers=False, **optics()
+            )
+            assert np.isfinite(estimate.modulation).all()
+            positive = api("reconstruct_known")(
+                bands,
+                table,
+                carriers_cyc_um=carriers,
+                modulation=np.ones((1, 1)),
+                **known_options(),
+            )
+            assert np.isfinite(positive.image).all()
+            # Effective sequence(.05,-.1): the first time is valid, the second
+            # invalidates the entire operation, never a partial image.
+            with pytest.raises(api("ReconstructionError"), match="(?i)wiener|positive|time"):
+                api("reconstruct_known")(
+                    bands,
+                    table,
+                    carriers_cyc_um=carriers,
+                    modulation=np.ones((1, 1)),
+                    **known_options(wiener=0.2, wiener_increment=-0.3),
+                )
+
+
+def test_complex_workspace_unsigned_limit_is_independently_binding() -> None:
+    # All preceding signed element/lookup counts remain representable.
+    xo = yo = 16384
+    zo = 2
+    assert xo * yo * zo == 536870912 < 2**31
+    assert 4 * xo * yo == 1073741824 < 2**31
+    assert 8 * xo * yo * zo == 2**32
+    assert 4 * xo * yo * zo == 2147483648 < 2**32
+    with pytest.raises(
+        api("AcquisitionModeError"), match="(?i)unsigned|uint32|workspace|byte|represent"
+    ) as caught:
+        api("prepare_acquisition_bands")(
+            np.ones((1, 1, 3, 1, 4, 4)), **options(lateral_zoom=4096.0, axial_zoom=2)
+        )
+    cause = caught.value.__cause__
+    while cause is not None:
+        assert not isinstance(cause, MemoryError), (
+            "allocation failure is not early representation rejection"
+        )
+        cause = cause.__cause__

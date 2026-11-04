@@ -17,6 +17,9 @@ from c_acquisition_fixture import (
     reconstruct_expected,
     transfer,
 )
+from c_acquisition_fixture import (
+    numerical_case as numerical_case,
+)
 
 
 @pytest.mark.parametrize("mode,z", [("2d", 1), ("3d", 3)])
@@ -29,9 +32,7 @@ def test_raw_known_image_fractional_embedding_dimensional_inverse(
     prep = options(acquisition_mode=mode, norders=3, lateral_zoom=zoom, axial_zoom=axial)
     bands = api("prepare_acquisition_bands")(raw, **prep)
     independent = prepare_expected(raw, prep)
-    close(
-        bands.quadratures, independent["quadratures"], work=raw.size, scale=float(np.sum(abs(raw)))
-    )
+    close(bands.quadratures, independent["quadratures"])
     table = transfer(3, layout=layout, k=z, complex_values=True)
     carriers = np.array([[0.09, 0.03], [-0.04, 0.08], [0.01, -0.07]])
     modulation = np.array([[0.7 + 0.2j, 0.2 - 0.1j], [0.8 - 0.2j, -0.3j], [0.3 + 0.4j, 0.6]])
@@ -40,13 +41,7 @@ def test_raw_known_image_fractional_embedding_dimensional_inverse(
         bands, table, carriers_cyc_um=carriers, modulation=modulation, **known_options()
     )
     for name in ["image", "filtered_quadratures", "x_um", "y_um", "z_um", "axial_cutoffs_bins"]:
-        close(
-            getattr(actual, name),
-            expected[name],
-            work=raw.size,
-            scale=float(np.sum(abs(independent["quadratures"]))),
-            condition=128,
-        )
+        close(getattr(actual, name), expected[name])
     assert not actual.image.flags.writeable and actual.image.dtype == np.float64
     if z == 1 and axial > 1:
         np.testing.assert_array_equal(actual.image[:, 1:], 0)
@@ -83,20 +78,8 @@ def test_overlap_suppression_omit_and_explode_public_image(
     actual = api("reconstruct_known")(
         bands, table, carriers_cyc_um=carriers, modulation=modulation, **settings
     )
-    close(
-        actual.image,
-        expected["image"],
-        work=48,
-        scale=float(np.sum(abs(bands.quadratures))),
-        condition=128,
-    )
-    close(
-        actual.filtered_quadratures,
-        expected["filtered_quadratures"],
-        work=48,
-        scale=float(np.sum(abs(bands.quadratures))),
-        condition=64,
-    )
+    close(actual.image, expected["image"])
+    close(actual.filtered_quadratures, expected["filtered_quadratures"])
     # Explode changes only the output ramp, never filtering.
     ordinary = api("reconstruct_known")(
         bands,
@@ -123,9 +106,13 @@ def test_no_overlap_still_counts_other_center_orders_and_self(d: int) -> None:
         modulation=np.ones((d, 1)),
         **known_options(filter_overlaps=False),
     )
-    close(actual.filtered_quadratures[:, :, 0, 0, 0, 0], 1 / (d + 0.25), work=4, scale=1)
-    close(actual.filtered_quadratures[:, :, 1, 0, 0, 0], 0.8, work=4, scale=1)
-    close(actual.image, d * (1 / (d + 0.25) + 1.6), work=8, scale=10)
+    close(
+        actual.filtered_quadratures[:, :, 0, 0, 0, 0],
+        1 / (d + 0.25),
+        proof=actual.filtered_quadratures,
+    )
+    close(actual.filtered_quadratures[:, :, 1, 0, 0, 0], 0.8, proof=actual.filtered_quadratures)
+    close(actual.image, d * (1 / (d + 0.25) + 1.6))
 
 
 @pytest.mark.parametrize("increment", [0.0, 0.2, -0.1])
@@ -138,15 +125,15 @@ def test_wiener_schedule_preincrement_each_time_and_trace(increment: float) -> N
         bands, transfer(), carriers_cyc_um=np.zeros((1, 2)), modulation=np.zeros((1, 1)), **settings
     )
     values = tuple(0.2 + (t + 1) * increment / 2 for t in range(2))
-    close(actual.image[:, 0, 0, 0], [1 / (1 + w * w) for w in values], work=8, scale=1)
-    close(dict(actual.resolved_settings)["effective_wiener"], values, work=8, scale=1)
+    close(actual.image[:, 0, 0, 0], [1 / (1 + w * w) for w in values], proof=actual.image)
+    close(dict(actual.resolved_settings)["effective_wiener"], values)
     steps = events(actual, "wiener-step")
     assert len(steps) == 2
     for t, e in enumerate(steps):
         assert tuple(e) == ("previous", "increment", "effective")
-        close(e["previous"], 0.2 + t * increment / 2, work=4, scale=1)
-        close(e["increment"], increment / 2, work=4, scale=1)
-        close(e["effective"], values[t], work=4, scale=1)
+        close(e["previous"], 0.2 + t * increment / 2)
+        close(e["increment"], increment / 2)
+        close(e["effective"], values[t])
 
 
 @pytest.mark.parametrize(
@@ -171,13 +158,7 @@ def test_native_taper_power_signed_finite_branch(taper: str, gamma: Any) -> None
     actual = api("reconstruct_known")(
         bands, transfer(), carriers_cyc_um=carriers, modulation=modulation, **settings
     )
-    close(
-        actual.image,
-        expected["image"],
-        work=24,
-        scale=float(np.sum(abs(bands.quadratures))),
-        condition=64,
-    )
+    close(actual.image, expected["image"])
     if taper == "power" and gamma == 0:
         no_taper = api("reconstruct_known")(
             bands, transfer(), carriers_cyc_um=carriers, modulation=modulation, **known_options()
@@ -199,3 +180,96 @@ def test_zero_axial_cutoff_damping_rejected_only_when_visited(
         else:
             actual = api("reconstruct_known")(bands, transfer(), **args, **settings)
             assert np.isfinite(actual.image).all()
+
+
+def test_fractional_power_at_visited_zero_base_and_original_record_options() -> None:
+    from c_acquisition_fixture import as_disc, certified_close
+
+    raw = raw_pattern(z=2, y=2, x=4)
+    prep = options(acquisition_mode="3d")
+    old = dict(prep)
+    del old["acquisition_mode"]
+    old["lateral_zoom"] = 1
+    original = api("prepare_bands")(raw, **old)
+    acquisition = api("prepare_acquisition_bands")(raw, **prep)
+    carrier = np.zeros((1, 2))
+    factors = np.ones((1, 1), dtype=complex)
+    settings = known_options(
+        output_taper="power",
+        power_taper_exponent=0.5,
+        filter_overlaps=False,
+        explode_factor=-0.5,
+        wiener_increment=0.1,
+        precise_taper=False,
+    )
+    # At positive native x Nyquist rho=(.5)/(.5)=1: positive fractional
+    # power is exactly zero, unlike exponent0 and singular negative exponent.
+    for bands in [original, acquisition]:
+        result = api("reconstruct_known")(
+            bands, transfer(k=2), carriers_cyc_um=carrier, modulation=factors, **settings
+        )
+        assert result.filtered_quadratures[0, 0, 0, 0, 0, 2] == 0
+        independent = prepare_expected(raw, prep)
+        model = type(
+            "PublicInputs",
+            (),
+            dict(
+                quadratures=independent["quadratures"],
+                noise_variance_factors=independent["noise_variance_factors"],
+                input_shape=raw.shape,
+                acquisition_mode="3d",
+                dxy_um=1.0,
+                dz_um=0.5,
+                lateral_zoom=1.0,
+                axial_zoom=1,
+            ),
+        )()
+        truth = reconstruct_expected(
+            model, transfer(k=2), as_disc(carrier), as_disc(factors), **settings
+        )
+        certified_close(result.image, truth["image"])
+
+
+def test_precise_positive_options_on_original_prepared_bands() -> None:
+    from types import SimpleNamespace
+
+    from c_acquisition_fixture import as_disc, certified_close
+
+    raw = raw_pattern(t=2, z=8, y=2, x=4)
+    prep = options(acquisition_mode="3d", dz_um=2.0)
+    old = prep.copy()
+    del old["acquisition_mode"]
+    old["lateral_zoom"] = 1
+    bands = api("prepare_bands")(raw, **old)
+    source = prepare_expected(raw, prep)
+    independent = SimpleNamespace(
+        **source,
+        input_shape=raw.shape,
+        acquisition_mode="3d",
+        dxy_um=1.0,
+        dz_um=2.0,
+        lateral_zoom=1.0,
+        axial_zoom=1,
+    )
+    carriers = as_disc(np.array([[0.1, 0.02]]))
+    modulation = as_disc(np.array([[0.4 + 0.1j]]))
+    table = transfer(k=8, complex_values=True)
+    settings = known_options(
+        numerical_aperture=1.0,
+        precise_taper=True,
+        output_taper="cosine",
+        filter_overlaps=False,
+        explode_factor=1.25,
+        wiener_increment=0.2,
+    )
+    expected = reconstruct_expected(independent, table, carriers, modulation, **settings)
+    actual = api("reconstruct_known")(
+        bands,
+        table,
+        carriers_cyc_um=np.asarray(carriers),
+        modulation=np.asarray(modulation),
+        **settings,
+    )
+    certified_close(actual.image, expected["image"])
+    assert len(events(actual, "sector-boundaries")) == 2
+    assert not events(actual, "precise-query")

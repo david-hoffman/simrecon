@@ -1,6 +1,5 @@
 """Independent actual between/within drift estimators and correction ordering."""
 
-from math import pi
 from typing import Any
 
 import numpy as np
@@ -8,11 +7,15 @@ import pytest
 
 from c_acquisition_fixture import (
     api,
+    as_disc,
     assert_mode_trace,
     between_expected,
+    certified_pi,
     close,
     correlate,
     correlation_budget,
+    correlation_field,
+    edge,
     events,
     lift,
     optics,
@@ -20,6 +23,9 @@ from c_acquisition_fixture import (
     prepare_expected,
     raw_pattern,
     transform,
+)
+from c_acquisition_fixture import (
+    numerical_case as numerical_case,
 )
 
 
@@ -36,6 +42,11 @@ def drift_images(*, d: int = 2, z: int = 3, t: int = 1) -> Any:
 
 
 def compare_correlation(actual: dict[str, Any], expected: dict[str, Any], bound: float) -> None:
+    power = np.asarray(expected["absolute_correlation"])
+    maximum = float(np.max(power))
+    if maximum > 0:
+        ordered = np.sort(power.reshape(-1))
+        assert ordered[-1] - ordered[-2] > 2 * bound, "independent peak margin unresolved"
     for name in ["cross_spectrum", "correlation", "absolute_correlation"]:
         np.testing.assert_allclose(actual[name], expected[name], rtol=0, atol=bound)
     assert actual["integer_peak_xyz"] == expected["integer_peak_xyz"]
@@ -99,14 +110,14 @@ def test_actual_between_prepass_middle_first_off_fourth_root_and_correction(
     for name in ["subz", "first_z", "unused_axial_cutoff"]:
         assert built[0][name] == expected[name]
     for name in ["centers", "fourier", "optical_radial_cutoff"]:
-        close(built[0][name], expected[name], work=raw.size, scale=float(np.sum(abs(raw))))
+        close(built[0][name], expected[name])
     assert built[0]["optical_radial_cutoff"] > 0.5  # deliberately unclamped
     correlations = events(actual, "drift-correlation")
     for d, e in enumerate(correlations, 1):
         assert e["scope"] == "between" and e["exponent"] == 0.25 and e["moving_index"] == d
         bound = correlation_budget(expected["centers"][0], expected["centers"][d], 0.25)
         compare_correlation(e, expected["correlations"][d - 1], bound)
-    ordinary = prepare_expected(raw, settings)
+    ordinary = prepare_expected(raw, settings | {"drift_between": False})
     correction = events(actual, "between-correction")
     assert len(correction) == 1
     for d in [0, 1]:
@@ -114,7 +125,7 @@ def test_actual_between_prepass_middle_first_off_fourth_root_and_correction(
         zz, yy, xx = np.meshgrid(lift(z), lift(10), np.arange(6), indexing="ij")
         phase = np.exp(
             2j
-            * pi
+            * certified_pi()
             * (displacement[0] * xx / 10 + displacement[1] * yy / 10 + displacement[2] * zz / z)
         )
         # Relation checks application of measured estimate, not its accuracy;
@@ -122,15 +133,9 @@ def test_actual_between_prepass_middle_first_off_fourth_root_and_correction(
         close(
             actual.quadratures[0, d],
             ordinary["quadratures"][0, d] * phase,
-            work=raw.size,
-            scale=float(np.sum(abs(raw))),
+            proof=actual.quadratures,
         )
-    close(
-        actual.off_quadratures,
-        ordinary["off_quadratures"],
-        work=raw.size,
-        scale=float(np.sum(abs(raw))),
-    ) if n else None
+    close(actual.off_quadratures, ordinary["off_quadratures"]) if n else None
     assert_mode_trace(actual)
 
 
@@ -151,17 +156,20 @@ def test_absolute_negative_peak_first_strict_tie_and_positive_half_wrap() -> Non
     plane = np.tile([1.0, -1.0] * 5, (10, 1))
     raw[:, 0, :, 0] = plane
     raw[:, 1, :, 0] = -plane
-    expected = between_expected(raw[0], **optics(numerical_aperture=1.0))
+    # Phase-identical raw data give the prepass center plane/100, before
+    # literal fixed10 edge treatment. Certify the field without pretending
+    # its narrow peak gap certifies an independent selected displacement.
+    centers = [edge(np.sum(as_disc(raw[0, d, :, 0]) / 300, axis=0), 10)[None] for d in range(2)]
+    expected = correlation_field(*centers, exponent=0.25, pitch=1.0, rd=2 / 0.52, highpass=0.0)
     actual = api("prepare_acquisition_bands")(
         raw, **(options(drift_between=True) | optics(numerical_aperture=1.0))
     )
     e = events(actual, "drift-correlation")[0]
     assert np.min(e["correlation"]) < 0
-    # Actual raw edge operation is included in the independent tie decision.
-    bound = correlation_budget(expected["centers"][0], expected["centers"][1], 0.25)
+    bound = correlation_budget(centers[0], centers[1], 0.25)
     np.testing.assert_allclose(
         e["absolute_correlation"],
-        expected["correlations"][0]["absolute_correlation"],
+        expected["absolute_correlation"],
         rtol=0,
         atol=bound,
     )
@@ -214,16 +222,16 @@ def test_within_2d_actual_reference_half_power_and_before_separation(
     yy, xx = np.meshgrid(lift(10), np.arange(6), indexing="ij")
     for p, e in enumerate(corrections):
         displacement = actual.exposure_displacements_pixels[0, 0, 0, p]
-        ramp = np.exp(2j * pi * (displacement[0] * xx / 10 + displacement[1] * yy / 10))
-        close(e["phase_multiplier"], ramp, work=100, scale=1)
+        ramp = np.exp(2j * certified_pi() * (displacement[0] * xx / 10 + displacement[1] * yy / 10))
+        close(e["phase_multiplier"], ramp)
         onfourier[p] *= ramp
         offfourier[p] *= ramp
     left = prepared["separation_matrices"][0, 0, 0]
     onbands, offbands = left @ onfourier.reshape(3, -1), left @ offfourier.reshape(3, -1)
     onbands, offbands = onbands.reshape(3, 10, 6), offbands.reshape(3, 10, 6)
     onbands[:, :, -1], offbands[:, :, -1] = onfourier[:, :, -1], offfourier[:, :, -1]
-    close(actual.quadratures[0, 0, :, 0], onbands, work=300, scale=float(np.sum(abs(raw))))
-    close(actual.off_quadratures[0, 0, :, 0], offbands, work=300, scale=float(np.sum(abs(raw))))
+    close(actual.quadratures[0, 0, :, 0], onbands, proof=actual.quadratures)
+    close(actual.off_quadratures[0, 0, :, 0], offbands, proof=actual.off_quadratures)
     assert actual.header_timestamps_after is None
     assert not events(actual, "cubic-fit")
     assert len(events(actual, "between-build")) == (1 if storage == "direction-major" else 0)
@@ -236,5 +244,75 @@ def test_fast_d1_between_only_skips_unsafe_prepass_but_is_initialized_zero() -> 
     )
     expected = prepare_expected(raw, options(storage_order="z-major"))
     np.testing.assert_array_equal(actual.between_displacements_pixels, 0)
-    close(actual.quadratures, expected["quadratures"], work=raw.size, scale=float(np.sum(abs(raw))))
+    close(actual.quadratures, expected["quadratures"])
     assert not events(actual, "between-build") and not events(actual, "drift-correlation")
+
+
+def test_nonzero_constant_tie_zero_curvature_and_independent_positive_half_wrap() -> None:
+    # Constant raw inputs give only DC. With P/V prepass normalization the
+    # DC cross is1, hence every inverse correlation cell is exactly1.
+    constant = np.ones((1, 2, 3, 1, 10, 10))
+    tie = api("prepare_acquisition_bands")(
+        constant, **(options(drift_between=True) | optics(numerical_aperture=1.0))
+    )
+    event = events(tie, "drift-correlation")[0]
+    close(event["correlation"], 1.0)
+    assert event["integer_peak_xyz"] == (0, 0, 0)
+    assert event["offset_status_xyz"] == ("zero-curvature", "zero-curvature", "not-fitted")
+    np.testing.assert_array_equal(event["wrapped_displacement_xyz"], 0)
+    # Distinct from allzero initialized-center: a translated interior impulse
+    # has full-spectrum correlation100 at x5, all other cells0.
+    raw = np.zeros_like(constant)
+    raw[:, 0, :, 0, 4, 2] = 100
+    raw[:, 1, :, 0, 4, 7] = 100
+    half = api("prepare_acquisition_bands")(
+        raw, **(options(drift_between=True) | optics(numerical_aperture=1.0))
+    )
+    event = events(half, "drift-correlation")[0]
+    expected = np.zeros((1, 10, 10))
+    expected[0, 0, 5] = 100
+    close(event["correlation"], expected)
+    assert event["integer_peak_xyz"] == (5, 0, 0)
+    close(event["wrapped_displacement_xyz"], [5, 0, 0])
+    # Exact even symmetry gives equal two neighbors and therefore offset0;
+    # strict >half retains +5. This is not a nearly-flat curvature rule.
+    assert event["offset_status_xyz"] == ("fitted", "fitted", "not-fitted")
+
+
+def test_z6_substack3_nonzero_native_axial_shift_and_full_z_correction() -> None:
+    from c_acquisition_fixture import certified_close
+
+    raw = np.zeros((1, 2, 3, 6, 10, 10))
+    # Selected source sections1..3: reference at selected0 and moving at1.
+    raw[:, 0, :, 1, 4, 4] = 600
+    raw[:, 1, :, 2, 4, 4] = 600
+    settings = options(acquisition_mode="3d", drift_between=True) | optics(numerical_aperture=1.0)
+    expected = between_expected(raw[0], **optics(numerical_aperture=1.0))
+    actual = api("prepare_acquisition_bands")(raw, **settings)
+    assert events(actual, "between-build")[0]["subz"] == 3
+    close(
+        actual.between_displacements_pixels[0, 1],
+        [0, 0, 1],
+        proof=actual.between_displacements_pixels,
+    )
+    ordinary = prepare_expected(raw, options(acquisition_mode="3d"))
+    zz, yy, xx = np.meshgrid(lift(6), lift(10), np.arange(6), indexing="ij")
+    truth = ordinary["quadratures"][0, 1] * np.exp(2j * certified_pi() * zz / 6)
+    certified_close(actual.quadratures[0, 1], truth)
+    assert expected["correlations"][0]["integer_peak_xyz"] == (0, 0, 1)
+
+
+def test_drift_optical_boundary_is_strict_before_quarter_power() -> None:
+    raw = np.zeros((1, 2, 3, 1, 10, 10))
+    raw[:, 0, :, 0, 4, 3] = 100
+    raw[:, 1, :, 0, 4, 4] = 100
+    op = optics(wavelength_nm=500, numerical_aperture=0.125)
+    # Rd=2*.125/.5=.5. Native x Nyquist is exactly.5 and must remain0;
+    # the x4 bin has radius.4 and a nonzero unit-magnitude cross value.
+    expected = between_expected(raw[0], **op)
+    actual = api("prepare_acquisition_bands")(raw, **(options(drift_between=True) | op))
+    event = events(actual, "drift-correlation")[0]
+    assert event["cross_spectrum"][0, 0, 5] == 0j
+    close(abs(event["cross_spectrum"][0, 0, 4]), 1.0, proof=event["cross_spectrum"])
+    bound = correlation_budget(expected["centers"][0], expected["centers"][1], 0.25)
+    compare_correlation(event, expected["correlations"][0], bound)

@@ -16,6 +16,9 @@ from c_acquisition_fixture import (
     prepare_expected,
     raw_pattern,
 )
+from c_acquisition_fixture import (
+    numerical_case as numerical_case,
+)
 
 
 @pytest.mark.parametrize("mode,z", [("2d", 1), ("3d", 3)])
@@ -54,7 +57,7 @@ def test_raw_camera_off_edge_separation_composition(
         if value is None or isinstance(value, tuple):
             assert observed == value
         else:
-            close(observed, value, work=raw.size, scale=float(np.sum(abs(raw))), condition=8)
+            close(observed, value)
     for value, before in zip(
         [raw, background, slope] + ([] if off is None else [off]), originals, strict=True
     ):
@@ -68,7 +71,7 @@ def test_raw_camera_off_edge_separation_composition(
     assert len(designs) == 2 * 2 * z
     for e in designs:
         assert e["policy"] == "supplied"
-        close(e["noise_variance_factors"], [1.5, 1.75], work=4, scale=8)
+        close(e["noise_variance_factors"], [1.5, 1.75])
 
 
 @pytest.mark.parametrize(
@@ -99,13 +102,7 @@ def test_all_equalization_policies_use_independent_anchors(
         "frame_sums",
         "off_frame_sums",
     ]:
-        close(
-            getattr(actual, name),
-            expected[name],
-            work=raw.size,
-            scale=float(np.sum(abs(raw))),
-            condition=8,
-        )
+        close(getattr(actual, name), expected[name])
     if n == 1:
         np.testing.assert_array_equal(actual.off_equalization_gains, 1)
 
@@ -150,20 +147,12 @@ def test_phase_policy_matrix_noise_and_raw_nyquist(d: int, policy: str) -> None:
         "noise_variance_factors",
         "phase_angles_rad",
     ]:
-        close(
-            getattr(actual, name),
-            expected[name],
-            work=raw.size,
-            scale=float(np.sum(abs(raw))),
-            condition=16,
-        )
+        close(getattr(actual, name), expected[name])
     assert actual.phase_policies == expected["phase_policies"]
     if policy == "reduced":
         close(
             actual.noise_variance_factors,
             [[[1.5, 1.75]]] * d if d == 1 else np.tile([1.5, 1.75], (1, d, 1)),
-            work=4,
-            scale=8,
         )
     # Endpoint retains different raw phase slots; a matrix multiplication there is wrong.
     assert np.max(abs(expected["quadratures"][..., -1])) > 0
@@ -243,7 +232,7 @@ def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
         )
         | optics()
     )
-    baseline = prepare_expected(raw, settings)
+    baseline = prepare_expected(raw, settings | {"combine_off_orders": None})
     expected = baseline["quadratures"].copy()
     y, x = 4, 6
     cells = np.array(
@@ -257,6 +246,22 @@ def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
     )
     assert 0 < np.count_nonzero(cells) < cells.size
     assert cells[0, 1]  # integer truncated kx=0; physical kx>0 is still inside
+    if z > 1 and selectors[1] > 0:
+        # Off side=k*on side exactly: the phase-independent perturbation has
+        # no side harmonic and zero native x Nyquist. A positive signal gives
+        # fractions k/(k+1),1/(k+1), canceling the side on plane0. The NEXT
+        # invocation then reaches the approved zero-noise operation failure.
+        cancellation = False
+        for t, d in np.ndindex(2, 2):
+            native = transform(baseline["quadratures"][t, d], inverse=True, axes=(1,)) / z
+            power = np.sum(abs(native[1:3, 0]) ** 2, axis=0)
+            signal2 = np.mean(power[cells]) - np.mean(power[~cells])
+            if float(np.asarray(signal2)) > float(signal2.error):
+                cancellation = True
+        if cancellation:
+            with pytest.raises(api("AcquisitionModeError"), match="(?i)noise|zero|statistic"):
+                api("prepare_acquisition_bands")(raw, **settings)
+            return
     expected_events = []
     for t, d in np.ndindex(2, 2):
         native = (
@@ -305,7 +310,7 @@ def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
                 )
         expected[t, d] = transform(native, axes=(1,)) if z > 1 else native
     actual = api("prepare_acquisition_bands")(raw, **settings)
-    close(actual.quadratures, expected, work=raw.size, scale=float(np.sum(abs(raw))), condition=256)
+    close(actual.quadratures, expected)
     np.testing.assert_array_equal(actual.noise_variance_factors, baseline["noise_variance_factors"])
     observed = events(actual, "off-combination")
     assert len(observed) == len(expected_events)
@@ -314,13 +319,7 @@ def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
             if isinstance(value, (int, bool)):
                 assert e[name] == value
             else:
-                close(
-                    e[name],
-                    value,
-                    work=raw.size,
-                    scale=max(float(np.max(abs(value))), 1),
-                    condition=128,
-                )
+                close(e[name], value)
 
 
 @pytest.mark.parametrize("cause", ["empty-outside", "zero-noise"])
@@ -364,17 +363,39 @@ def test_off_one_zero_both_zero_and_positive_noise_weight_decisions(
     e = events(actual, "off-combination")[0]
     no, nf = 4 / 5, 16 / 5
     so, sf = 9 * on_baseline**2 - no, 9 * off_baseline**2 - nf
-    close(e["on_noise"], no, work=8, scale=1)
-    close(e["off_noise"], nf, work=8, scale=4)
-    close(e["on_signal2_before_clip"], so, work=8, scale=500)
-    close(e["off_signal2_before_clip"], sf, work=8, scale=500)
+    close(e["on_noise"], no)
+    close(e["off_noise"], nf)
+    close(e["on_signal2_before_clip"], so)
+    close(e["off_signal2_before_clip"], sf)
     a, b = max(so, 0), max(sf, 0)
     if a == b == 0:
         a = b = 1
     u, v = np.sqrt(a) / no, np.sqrt(b) / nf
-    close(e["on_fraction"], u / (u + v), work=8, scale=1)
-    close(e["off_fraction"], v / (u + v), work=8, scale=1)
+    close(e["on_fraction"], u / (u + v))
+    close(e["off_fraction"], v / (u + v))
     assert e["both_zero_replaced"] is (on_baseline == off_baseline == 0)
     assert e["inside_count"] == 1 and e["outside_count"] == 5
     side = events(actual, "off-combination")[1]
     assert side["both_zero_replaced"] is True
+
+
+def test_identical_on_off_side_cancellation_rejects_later_zero_noise() -> None:
+    from c_acquisition_fixture import optics
+
+    raw = raw_pattern(z=3, y=4, x=6)
+    off = raw[..., None, :, :].copy()
+    # First noise values/signals are equal, so fractions=.5,.5 and side
+    # subtraction is exact zero. The next literal base-plane0 call must fail.
+    with pytest.raises(api("AcquisitionModeError"), match="(?i)noise|zero|statistic"):
+        api("prepare_acquisition_bands")(
+            raw,
+            **(
+                options(
+                    acquisition_mode="3d",
+                    dxy_um=0.25,
+                    off_exposures=off,
+                    combine_off_orders=np.array([0, 1], dtype=np.int32),
+                )
+                | optics()
+            ),
+        )

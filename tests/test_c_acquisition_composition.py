@@ -1,7 +1,6 @@
 """Real raw/layout/camera/metadata -> bands -> actual estimates -> known image."""
 
 from copy import copy
-from math import pi
 from typing import Any
 
 import numpy as np
@@ -9,7 +8,9 @@ import pytest
 
 from c_acquisition_fixture import (
     api,
+    certified_pi,
     close,
+    disc_empty,
     known_options,
     lift,
     matrix,
@@ -24,12 +25,15 @@ from c_acquisition_fixture import (
     transfer,
     transform,
 )
+from c_acquisition_fixture import (
+    numerical_case as numerical_case,
+)
 
 
 def independent_factors(bands: Any, table: Any, carriers: Any, **op: Any) -> Any:
     tcount, dcount, _, _, _, _ = bands.input_shape
     o = bands.noise_variance_factors.shape[-1]
-    result = np.empty((tcount, dcount, o - 1), dtype=complex)
+    result = disc_empty((tcount, dcount, o - 1), dtype=complex)
     for t, d in np.ndindex(tcount, dcount):
         for b in range(1, o):
             overlap = overlaps(bands, table, carriers[d], (0, b), t, d, **op)
@@ -54,13 +58,11 @@ def composition(
     control_truth = reconstruct_expected(
         independent, table, carriers, fixed, **(known_options() | op)
     )
-    scale = float(np.sum(abs(independent.quadratures)))
-    work = int(np.prod(independent.input_shape[-3:]))
-    close(control.image, control_truth["image"], work=work, scale=scale, condition=256)
+    close(control.image, control_truth["image"])
     estimated = api("estimate_parameters")(
         bands, table, initial_carriers_cyc_um=carriers, search_carriers=False, **op
     )
-    close(estimated.modulation, factors, work=work, scale=8, condition=256)
+    close(estimated.modulation, factors)
     for t in range(bands.input_shape[0]):
         actual = api("reconstruct_known")(
             one_time(bands, t),
@@ -72,7 +74,7 @@ def composition(
         expected = reconstruct_expected(
             one_time(independent, t), table, carriers, factors[t], **(known_options() | op)
         )
-        close(actual.image, expected["image"], work=work, scale=scale, condition=512)
+        close(actual.image, expected["image"])
 
 
 @pytest.mark.parametrize("storage", ["direction-major", "z-major"])
@@ -127,18 +129,15 @@ def test_literal_reinterpret_unique_exposure_labels_and_real_composition(
     independent = copy(bands)
     for field in ["quadratures", "noise_variance_factors"]:
         object.__setattr__(independent, field, truth[field])
-        close(
-            getattr(bands, field),
-            truth[field],
-            work=raw.size,
-            scale=float(np.sum(abs(raw))),
-            condition=16,
-        )
+        close(getattr(bands, field), truth[field])
     composition(bands, independent, transfer(), np.tile([0.05, 0.02], (d, 1)))
 
 
 @pytest.mark.parametrize("layout", ["radial", "full"])
-def test_raw_on_off_camera_linked_phase_actual_estimator_final_signed_image(layout: str) -> None:
+@pytest.mark.parametrize("pitch", [1.0, 0.5])
+def test_raw_on_off_camera_linked_phase_actual_estimator_final_signed_image(
+    layout: str, pitch: float
+) -> None:
     raw = np.zeros((1, 1, 4, 1, 10, 10))
     seed = np.zeros((10, 10))
     seed[3, 4] = 32
@@ -152,6 +151,7 @@ def test_raw_on_off_camera_linked_phase_actual_estimator_final_signed_image(layo
     clock = np.arange(8, dtype=float) + 10
     theta, spacing = 0.7, 5.0
     settings = options(
+        dxy_um=pitch,
         off_exposures=off,
         background=2.0,
         flatfield_slope=np.full((10, 10), 2.0),
@@ -167,14 +167,16 @@ def test_raw_on_off_camera_linked_phase_actual_estimator_final_signed_image(layo
     bands = api("prepare_acquisition_bands")(raw, **settings)
     # Analytic integer translations: all Fourier magnitudes are common up to
     # positive exposure amplitudes; autocorrelation peaks at the stated shift.
-    expected_phase = phase[::2] + 2 * pi * np.cos(theta) / spacing * np.array(shifts)
+    expected_phase = phase[::2] + 2 * certified_pi() * pitch * np.cos(theta) / spacing * np.array(
+        shifts
+    )
     left, noise = matrix(expected_phase, 2, "drift")
     alpha = 1 / (100 * 1.5**2 * 2)
     on = transform(2 * alpha * (raw[0, 0, :, 0] - 2), axes=(1, 2))[..., :6]
     offsum = transform(2 * alpha * (off[0, 0, :, 0, 0] - 2), axes=(1, 2))[..., :6]
     yy, xx = np.meshgrid(lift(10), np.arange(6), indexing="ij")
     for p in range(4):
-        ramp = np.exp(2j * pi * shifts[p] * xx / 10)
+        ramp = np.exp(2j * certified_pi() * shifts[p] * xx / 10)
         on[p] *= ramp
         offsum[p] *= ramp
     separated = (left @ on.reshape(4, -1)).reshape(3, 10, 6)
@@ -184,23 +186,13 @@ def test_raw_on_off_camera_linked_phase_actual_estimator_final_signed_image(layo
     object.__setattr__(independent, "quadratures", separated[None, None, :, None])
     object.__setattr__(independent, "noise_variance_factors", noise[None, None])
     close(
-        bands.exposure_displacements_pixels[0, 0, 0, :, 0], shifts, work=100, scale=2, condition=128
+        bands.exposure_displacements_pixels[0, 0, 0, :, 0],
+        shifts,
+        proof=bands.exposure_displacements_pixels,
     )
-    close(bands.phase_angles_rad[0, 0, 0], expected_phase, work=100, scale=8, condition=128)
-    close(
-        bands.quadratures,
-        independent.quadratures,
-        work=100,
-        scale=float(np.sum(abs(raw))),
-        condition=256,
-    )
-    close(
-        bands.off_quadratures[0, 0, :, 0],
-        oseparated,
-        work=100,
-        scale=float(np.sum(abs(raw))),
-        condition=256,
-    )
+    close(bands.phase_angles_rad[0, 0, 0], expected_phase, proof=bands.phase_angles_rad)
+    close(bands.quadratures, independent.quadratures)
+    close(bands.off_quadratures[0, 0, :, 0], oseparated, proof=bands.off_quadratures)
     composition(
         bands,
         independent,
@@ -256,17 +248,18 @@ def test_actual_3d_within_cubic_measured_between_sequence_to_estimate_and_image(
         | optics()
     )
     bands = api("prepare_acquisition_bands")(raw, **settings)
-    expected = np.empty_like(bands.quadratures)
-    noise = np.empty_like(bands.noise_variance_factors)
+    expected = disc_empty(bands.quadratures.shape, dtype=complex)
+    noise = disc_empty(bands.noise_variance_factors.shape)
     dx = (prefix - 10).reshape(4, 2, 3) ** 3 - measured[:, None, None]
     yy, xx = np.meshgrid(lift(10), np.arange(41), indexing="ij")
     for d in range(4):
         for z in range(2):
             on = transform(2 * raw[0, d, :, z] / 6400, axes=(1, 2))[..., :41]
             for p in range(3):
-                on[p] *= np.exp(2j * pi * dx[d, z, p] * xx / 80)
+                on[p] *= np.exp(2j * certified_pi() * dx[d, z, p] * xx / 80)
             phase = (
-                2 * pi * np.arange(3) / 3 + 2 * pi * np.cos(theta - d * pi / 4) / spacing * dx[d, z]
+                2 * certified_pi() * np.arange(3) / 3
+                + 2 * certified_pi() * np.cos(theta - d * certified_pi() / 4) / spacing * dx[d, z]
             )
             left, nv = matrix(phase, 2, "drift")
             section = (left @ on.reshape(3, -1)).reshape(3, 10, 41)
@@ -276,14 +269,166 @@ def test_actual_3d_within_cubic_measured_between_sequence_to_estimate_and_image(
                 noise[0, d] = nv
         expected[0, d] = transform(expected[0, d], axes=(1,))
         if between and d > 0:
-            expected[0, d] *= np.exp(2j * pi * measured[d] * xx / 80)[None, None]
+            expected[0, d] *= np.exp(2j * certified_pi() * measured[d] * xx / 80)[None, None]
     independent = copy(bands)
     object.__setattr__(independent, "quadratures", expected)
     object.__setattr__(independent, "noise_variance_factors", noise)
-    close(bands.quadratures, expected, work=1600, scale=float(np.sum(abs(raw))), condition=512)
+    close(bands.quadratures, expected)
     composition(
         bands,
         independent,
         transfer(k=2, complex_values=True),
         np.array([[0.03, 0.02], [0.02, -0.03], [-0.04, 0.01], [0.01, 0.04]]),
     )
+
+
+def test_new_record_ordinary_3d_search_pair02_divisor2_to_actual_image() -> None:
+    from types import SimpleNamespace
+
+    from c_acquisition_fixture import as_disc, certified_close, parameter_model
+
+    raw = raw_pattern(t=2, d=3, p=5, z=3, y=4, x=6)
+    prep = options(acquisition_mode="3d", norders=3)
+    bands = api("prepare_acquisition_bands")(raw, **prep)
+    expected = prepare_expected(raw, prep)
+    independent = SimpleNamespace(
+        **expected,
+        input_shape=raw.shape,
+        acquisition_mode="3d",
+        dxy_um=1.0,
+        dz_um=0.5,
+        lateral_zoom=1.0,
+        axial_zoom=1,
+    )
+    table = transfer(3, k=3, complex_values=True)
+    initial = np.tile([0.15, 0.05], (3, 1))
+    fixed = np.full((3, 2), 0.3 + 0.1j)
+    control = api("reconstruct_known")(
+        bands, table, carriers_cyc_um=initial, modulation=fixed, **known_options()
+    )
+    certified_close(
+        control.image,
+        reconstruct_expected(
+            independent, table, as_disc(initial), as_disc(fixed), **known_options()
+        )["image"],
+    )
+    truth = parameter_model(independent, table, initial_carriers_cyc_um=initial, **optics())
+    estimated = api("estimate_parameters")(
+        bands, table, initial_carriers_cyc_um=initial, **optics()
+    )
+    certified_close(estimated.carriers_cyc_um, truth.carriers_cyc_um)
+    certified_close(estimated.modulation, truth.modulation)
+    assert [build.orders for build in estimated.overlaps if build.purpose == "coarse"] == [
+        (0, 2)
+    ] * 3
+    for t in range(2):
+        actual = api("reconstruct_known")(
+            one_time(bands, t),
+            table,
+            carriers_cyc_um=estimated.carriers_cyc_um[t],
+            modulation=estimated.modulation[t],
+            **known_options(),
+        )
+        model = copy(independent)
+        model.input_shape = (1, *raw.shape[1:])
+        model.quadratures = independent.quadratures[t : t + 1]
+        model.noise_variance_factors = independent.noise_variance_factors[t : t + 1]
+        certified_close(
+            actual.image,
+            reconstruct_expected(
+                model, table, truth.carriers_cyc_um[t], truth.modulation[t], **known_options()
+            )["image"],
+        )
+
+
+@pytest.mark.parametrize("mode,z", [("2d", 1), ("3d", 3)])
+def test_selected_off_combination_c4_into_actual_fit_and_image(mode: str, z: int) -> None:
+    from c_acquisition_fixture import events
+
+    raw = raw_pattern(d=2, z=z, y=10, x=10)
+    off = (np.roll(raw, 1, axis=-1) + np.roll(raw, 2, axis=-2) + 3)[..., None, :, :].copy()
+    prep = options(
+        acquisition_mode=mode,
+        dxy_um=0.1,
+        off_exposures=off,
+        combine_off_orders=np.array([1, 1], dtype=np.int32),
+    ) | optics(wavelength_nm=500, numerical_aperture=1.0)
+    truth = prepare_expected(raw, prep)
+    bands = api("prepare_acquisition_bands")(raw, **prep)
+    for event in events(bands, "off-combination"):
+        assert event["cutoff_integer"] == 4
+        assert event["inside_count"] == 29 and event["outside_count"] == 31
+    independent = copy(bands)
+    for key in ["quadratures", "noise_variance_factors"]:
+        object.__setattr__(independent, key, truth[key])
+        close(getattr(bands, key), truth[key])
+    # dxy.1 makes the native grid ten times wider; table spacing1 keeps all
+    # actually requested vertices interior without changing its raw values.
+    samples = np.ones((2, 32, z), dtype=complex)
+    table = api("declare_otf")(samples, layout="radial", dkr_cyc_um=1.0, dkz_cyc_um=2.0)
+    composition(
+        bands,
+        independent,
+        table,
+        np.array([[0.3, 0.1], [-0.2, 0.25]]),
+        op=optics(wavelength_nm=500, numerical_aperture=1.0),
+    )
+
+
+@pytest.mark.parametrize("storage", ["direction-major", "z-major"])
+def test_literal_helper_effective_time0_search_reuse_refits_modulation(storage: str) -> None:
+    from types import SimpleNamespace
+
+    from c_acquisition_fixture import certified_close, parameter_model
+
+    raw = raw_pattern(t=1, d=2, p=3, z=2, y=4, x=6)
+    helper = api("reinterpret_2d_planes")(raw, storage_order=storage)
+    expected_images = np.empty((2, 2, 3, 1, 4, 6))
+    for q, di in np.ndindex(2, 2):
+        old_d, old_z = (di, q) if storage == "z-major" else divmod(q * 2 + di, 2)
+        expected_images[q, di, :, 0] = raw[0, old_d, :, old_z]
+    np.testing.assert_array_equal(helper.images, expected_images)
+    prep = options(storage_order=storage)
+    bands = api("prepare_acquisition_bands")(helper.images, **prep)
+    truth = prepare_expected(expected_images, prep)
+    independent = SimpleNamespace(
+        **truth,
+        input_shape=helper.images.shape,
+        acquisition_mode="2d",
+        dxy_um=1.0,
+        dz_um=0.5,
+        lateral_zoom=1.0,
+        axial_zoom=1,
+    )
+    table = transfer()
+    initial = np.tile([0.15, 0.05], (2, 1))
+    # Known control precedes the actual search/reuse composition.
+    composition(bands, independent, table, initial)
+    expected = parameter_model(independent, table, initial_carriers_cyc_um=initial, **optics())
+    estimated = api("estimate_parameters")(
+        bands, table, initial_carriers_cyc_um=initial, **optics()
+    )
+    assert estimated.branches == (("searched", "searched"), ("time0-reused", "time0-reused"))
+    np.testing.assert_array_equal(estimated.carriers_cyc_um[0], estimated.carriers_cyc_um[1])
+    certified_close(estimated.modulation, expected.modulation)
+    assert np.max(abs(np.asarray(expected.modulation[1] - expected.modulation[0]))) > np.max(
+        (expected.modulation[1] - expected.modulation[0]).error
+    )
+    for t in range(2):
+        image = api("reconstruct_known")(
+            one_time(bands, t),
+            table,
+            carriers_cyc_um=estimated.carriers_cyc_um[t],
+            modulation=estimated.modulation[t],
+            **known_options(),
+        )
+        model = copy(independent)
+        model.input_shape = (1, *helper.images.shape[1:])
+        model.quadratures = independent.quadratures[t : t + 1]
+        model.noise_variance_factors = independent.noise_variance_factors[t : t + 1]
+        certified_close(
+            image.image,
+            reconstruct_expected(
+                model, table, expected.carriers_cyc_um[t], expected.modulation[t], **known_options()
+            )["image"],
+        )

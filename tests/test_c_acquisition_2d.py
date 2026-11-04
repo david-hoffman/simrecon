@@ -20,6 +20,9 @@ from c_acquisition_fixture import (
     regression,
     transfer,
 )
+from c_acquisition_fixture import (
+    numerical_case as numerical_case,
+)
 
 
 @pytest.mark.parametrize("layout", ["radial", "full"])
@@ -44,22 +47,14 @@ def test_actual_raw_bands_known_fit_complex_overlap(
         if name == "written":
             np.testing.assert_array_equal(observed, value)
         else:
-            close(
-                observed, value, work=24, scale=float(np.sum(abs(bands.quadratures))), condition=32
-            )
+            close(observed, value)
     evaluation = events(actual, "evaluation")[0]
     for name, value in expected_fit.items():
-        close(
-            evaluation[name],
-            value,
-            work=24,
-            scale=max(abs(expected_fit["SX"]), abs(expected_fit["SY"])),
-            condition=32,
-        )
+        close(evaluation[name], value)
     assert evaluation["objective"] is None
     assert evaluation["angle_rad"] is None and evaluation["magnitude_cyc_um"] is None
-    close(actual.raw_modulation, [[[expected_fit["forward"]]]], work=24, scale=1, condition=32)
-    close(actual.modulation, actual.raw_modulation, work=24, scale=1)
+    close(actual.raw_modulation, [[[expected_fit["forward"]]]])
+    close(actual.modulation, actual.raw_modulation)
 
 
 @pytest.mark.parametrize("fit_phases", [False, True])
@@ -73,7 +68,8 @@ def test_known_direct_factors_products_before_floors_and_phase(
     bands.quadratures[0, 0, 0] = 1
     direct = np.array([2j, 3.0, 5j])
     for m, value in enumerate(direct, 1):
-        bands.quadratures[0, 0, 2 * m - 1] = value
+        bands.quadratures[0, 0, 2 * m - 1] = value.real
+        bands.quadratures[0, 0, 2 * m] = value.imag
     table = transfer(orders=4)
     supplied = None if floor is None else np.array(floor)
     actual = api("estimate_parameters")(
@@ -91,19 +87,21 @@ def test_known_direct_factors_products_before_floors_and_phase(
         final *= np.maximum(1, supplied / abs(final))
     if not fit_phases:
         final[1:] = abs(final[1:]) * np.exp(1j * np.arange(2, 4) * np.angle(final[0]))
-    close(actual.raw_modulation[0, 0], direct, work=8, scale=5)
-    close(actual.modulation[0, 0], final, work=8, scale=31)
+    close(actual.raw_modulation[0, 0], direct, proof=actual.raw_modulation)
+    close(actual.modulation[0, 0], final, proof=actual.modulation)
     products = events(actual, "cumulative-product")
     assert len(products) == 2
     for m, e in enumerate(products, 2):
         assert tuple(e) == ("order", "direct_forward", "previous_cumulative", "product")
         assert e["order"] == m
-        close(e["direct_forward"], direct[m - 1], work=8, scale=5)
-        close(e["previous_cumulative"], cumulative[m - 2], work=8, scale=30)
-        close(e["product"], cumulative[m - 1], work=8, scale=30)
+        close(e["direct_forward"], direct[m - 1])
+        close(e["previous_cumulative"], cumulative[m - 2])
+        close(e["product"], cumulative[m - 1])
     adjustments = events(actual, "adjustment")
     for m, e in enumerate(adjustments):
-        close(e["raw_forward"], cumulative[m], work=8, scale=30)
+        close(e["raw_forward"], cumulative[m])
+        assert e["floor_applied"] is bool(supplied is not None and abs(cumulative[m]) < supplied[m])
+        close(e["final"], final[m])
     kinds = [e.kind for e in actual.trace]
     assert max(i for i, k in enumerate(kinds) if k == "cumulative-product") < min(
         i for i, k in enumerate(kinds) if k == "adjustment"
@@ -228,7 +226,7 @@ def test_weak_unequal_energy_and_zero_known_vector_are_permitted(amplitude: floa
         search_carriers=False,
         **optics(),
     )
-    close(actual.modulation, 3, work=8, scale=3)
+    close(actual.modulation, 3)
 
 
 @pytest.mark.parametrize("reuse", [False, True])
@@ -252,19 +250,13 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
     known_truth = reconstruct_expected(
         one_time(bands, 0), table, initial, np.array([[0.4, 0.2]]), **known_options()
     )
-    close(
-        known.image,
-        known_truth["image"],
-        work=24,
-        scale=float(np.sum(abs(bands.quadratures))),
-        condition=128,
-    )
+    close(known.image, known_truth["image"])
     actual = api("estimate_parameters")(
         bands, table, initial_carriers_cyc_um=initial, use_time0_carriers=reuse, **optics()
     )
-    close(actual.carriers_cyc_um[0, 0], expected["carrier"], work=24, scale=1, condition=256)
-    close(actual.raw_modulation[0, 0], expected["raw"], work=24, scale=1, condition=256)
-    close(actual.modulation[0, 0], expected["modulation"], work=24, scale=1, condition=256)
+    close(actual.carriers_cyc_um[0, 0], expected["carrier"], proof=actual.carriers_cyc_um)
+    close(actual.raw_modulation[0, 0], expected["raw"], proof=actual.raw_modulation)
+    close(actual.modulation[0, 0], expected["modulation"], proof=actual.modulation)
     first = [e for e in actual.trace if e.time_index == 0]
     trace = [
         (e.kind, dict(e.details))
@@ -287,42 +279,22 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
                 "correlation",
                 "objective",
             ]:
-                close(
-                    e[key],
-                    want[key],
-                    work=24,
-                    scale=max(abs(want["SX"]), abs(want["SY"]), 1),
-                    condition=256,
-                )
+                close(e[key], want[key])
             assert e["orders"] == (0, 1)
         elif kind == "bracket":
             assert e["branch"] == want["branch"]
-            close(
-                [e[k] for k in ["x1", "amp1", "x2", "amp2", "x3", "amp3"]],
-                want["values"],
-                work=24,
-                scale=4,
-                condition=256,
-            )
+            close([e[k] for k in ["x1", "amp1", "x2", "amp2", "x3", "amp3"]], want["values"])
             assert e["strict_improvement"] is (e["amp3"] > e["amp2"])
         else:
-            close(e["result"], want["result"], work=24, scale=4, condition=256)
+            close(e["result"], want["result"])
     builds = [b for b in actual.overlaps if b.time_index == 0]
     assert [b.orders for b in builds] == [(0, 1), (0, 1), (1, 2)]
     assert [b.purpose for b in builds] == ["coarse", "refinement", "later-order"]
     for build, want in zip(builds, expected["builds"], strict=True):
         np.testing.assert_array_equal(build.written, want["written"])
-        close(
-            build.fourier,
-            want["fourier"],
-            work=24,
-            scale=float(np.sum(abs(bands.quadratures))),
-            condition=32,
-        )
+        close(build.fourier, want["fourier"])
     coarse_event = events(actual, "coarse")[0]
-    close(
-        coarse_event["carrier_cyc_um"], expected["coarse_carrier"], work=24, scale=1, condition=128
-    )
+    close(coarse_event["carrier_cyc_um"], expected["coarse_carrier"])
     if reuse:
         assert actual.branches == (("searched",), ("time0-reused",))
         assert [b.orders for b in actual.overlaps if b.time_index == 1] == [(0, 1), (0, 2)]
@@ -332,12 +304,12 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
             known_factors.append(
                 regression(overlap["spatial"], expected["carrier"], (0, b), 1.0)["forward"]
             )
-        close(actual.raw_modulation[1, 0], known_factors, work=24, scale=4, condition=256)
-        close(actual.modulation[1, 0], np.cumprod(known_factors), work=24, scale=4, condition=256)
+        close(actual.raw_modulation[1, 0], known_factors, proof=actual.raw_modulation)
+        close(actual.modulation[1, 0], np.cumprod(known_factors), proof=actual.modulation)
         assert not np.allclose(actual.modulation[1], actual.modulation[0], rtol=0, atol=1e-5)
     else:
         expected1 = finite_search(bands, table, initial[0], t=1, **optics())
-        close(actual.carriers_cyc_um[1, 0], expected1["carrier"], work=24, scale=1, condition=256)
+        close(actual.carriers_cyc_um[1, 0], expected1["carrier"], proof=actual.carriers_cyc_um)
         assert actual.branches == (("searched",), ("searched",))
     composed = api("reconstruct_known")(
         one_time(bands, 0),
@@ -353,13 +325,7 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
         expected["modulation"][None],
         **known_options(),
     )
-    close(
-        composed.image,
-        truth["image"],
-        work=24,
-        scale=float(np.sum(abs(bands.quadratures))),
-        condition=512,
-    )
+    close(composed.image, truth["image"])
 
 
 def test_algebraic_initial_search_ties_duplicate_angle_and_stale_magnitude_state() -> None:
@@ -377,8 +343,8 @@ def test_algebraic_initial_search_ties_duplicate_angle_and_stale_magnitude_state
     )
     coarse = events(actual, "coarse")[0]
     assert coarse["integer_peak_xy"] == (1, 0)
-    close(coarse["correlation_power"], [[4, 16, 4, 16]], work=4, scale=16)
-    close(coarse["carrier_cyc_um"], [0.25, 0.0], work=4, scale=1)
+    close(coarse["correlation_power"], [[4, 16, 4, 16]])
+    close(coarse["carrier_cyc_um"], [0.25, 0.0])
     bracket = events(actual, "bracket")
     assert [(e["stage"], e["branch"]) for e in bracket] == [
         ("angle", "initial"),
@@ -392,15 +358,15 @@ def test_algebraic_initial_search_ties_duplicate_angle_and_stale_magnitude_state
     assert all(e["x1"] == e["amp1"] == 0 for e in bracket)
     parabolas = events(actual, "parabola")
     assert parabolas[0]["status"] == "duplicate-coordinate" and parabolas[0]["result"] == 0
-    close(parabolas[1]["result"], 0.2625, work=4, scale=1)
+    close(parabolas[1]["result"], 0.2625)
     assert len(events(actual, "evaluation")) == 5
     for e in events(actual, "evaluation"):
-        close(e["SX"], 8, work=4, scale=8)
-        close(e["SY"], 2, work=4, scale=2)
-        close(e["forward"], 0.25, work=4, scale=1)
-        close(e["objective"], 1 / 16, work=4, scale=1)
-    close(actual.carriers_cyc_um, [[[0.2625, 0]]], work=4, scale=1)
-    close(actual.modulation, 0.25, work=4, scale=1)
+        close(e["SX"], 8)
+        close(e["SY"], 2)
+        close(e["forward"], 0.25)
+        close(e["objective"], 1 / 16)
+    close(actual.carriers_cyc_um, [[[0.2625, 0]]])
+    close(actual.modulation, 0.25)
 
 
 @pytest.mark.parametrize(
@@ -427,7 +393,7 @@ def test_zero_factor_domain_and_actual_regression_failures(selector: str) -> Non
         result = api("estimate_parameters")(
             bands, transfer(), initial_carriers_cyc_um=np.zeros((1, 2)), **settings, **optics()
         )
-        close(result.modulation, 0, work=8, scale=1)
+        close(result.modulation, 0)
         assert events(result, "evaluation")[0]["objective"] is None
     else:
         with pytest.raises(
@@ -454,13 +420,81 @@ def test_threshold_multiplier_strict_equality_and_complex_cross_transfer(mode: s
     )
     expected = overlaps(bands, table, np.zeros(2), (0, 1), **optics())
     np.testing.assert_array_equal(actual.overlaps[0].written, expected["written"])
-    close(
-        actual.overlaps[0].fourier,
-        expected["fourier"],
-        work=8 * z,
-        scale=float(np.sum(abs(bands.quadratures))),
-        condition=32,
-    )
+    close(actual.overlaps[0].fourier, expected["fourier"])
     h = api("sample_otf")(table, 0.25, 0, 0, dkz_cyc_um=2.0, order=1)
     assert h == 0.006
     assert bool(actual.overlaps[0].written[1, 0, 0, 1]) is (z > 1)
+
+
+def test_threshold_short_circuit_preserves_unsafe_unrequested_vertex() -> None:
+    from c_acquisition_fixture import Disc, certified_close
+
+    raw = np.broadcast_to(
+        np.array([1.0, 1.0, 4.0])[None, None, :, None, None, None], (1, 1, 3, 1, 1, 4)
+    )
+    bands = api("prepare_acquisition_bands")(raw, **options())
+    table = api("declare_otf")(
+        np.tile(np.array([5.0, -1.0])[None, :, None], (2, 1, 1)),
+        layout="radial",
+        dkr_cyc_um=0.3,
+        dkz_cyc_um=2.0,
+    )
+    vector = np.array([[0.1, 0.0]])
+    expected = regression(
+        overlaps(bands, table, vector[0], (0, 1), **optics(numerical_aperture=0.1))["spatial"],
+        vector[0],
+        (0, 1),
+        1.0,
+    )
+    result = api("estimate_parameters")(
+        bands,
+        table,
+        initial_carriers_cyc_um=vector,
+        search_carriers=False,
+        **optics(numerical_aperture=0.1),
+    )
+    evaluation = events(result, "evaluation")[0]
+    certified_close(
+        evaluation["SX"], Disc(648 / 17, expected["SX"].observer, expected["SX"].backend)
+    )
+    certified_close(
+        evaluation["SY"], Disc(162 / 17, expected["SY"].observer, expected["SY"].backend)
+    )
+    close(result.modulation, expected["forward"])
+    with pytest.raises(api("OtfError"), match="(?i)stencil|vertex|alloc|bound|index"):
+        api("sample_otf")(table, 0.35, 0, 0, dkz_cyc_um=2.0)
+
+
+def test_3d_closed_search_divisor2_and_frozen_pair02_control() -> None:
+    from c_acquisition_fixture import known_options
+
+    bands = api("prepare_acquisition_bands")(
+        raw_pattern(p=5, z=2, y=1, x=4), **options(acquisition_mode="3d", norders=3)
+    )
+    bands.quadratures[:] = 0
+    bands.quadratures[0, 0, 0, 0, 0] = [1, -1, 1]
+    bands.quadratures[0, 0, 1, 0, 0] = [2, -2, 2]
+    bands.quadratures[0, 0, 3, 0, 0] = [1, 0, 1]
+    table = transfer(3, k=2)
+    initial = np.array([[-0.125, 0.0]])
+    control = api("reconstruct_known")(
+        bands, table, carriers_cyc_um=initial, modulation=np.ones((1, 2)), **known_options()
+    )
+    close(control.image, np.tile([-4.0, 0.0, 24.0, 0.0], (1, 2, 1, 1)))
+    result = api("estimate_parameters")(bands, table, initial_carriers_cyc_um=initial, **optics())
+    coarse = events(result, "coarse")[0]
+    close(coarse["correlation_power"], [[16.0, 64.0, 16.0, 64.0]])
+    close(coarse["carrier_cyc_um"], [0.125, 0.0])
+    close(result.carriers_cyc_um, [[[0.1375, 0.0]]])
+    close(result.raw_modulation, [[[1.5, 0.25]]])
+    close(result.modulation, result.raw_modulation)
+    assert [b.orders for b in result.overlaps] == [(0, 2), (0, 2), (0, 1)]
+    assert not events(result, "cumulative-product")
+    image = api("reconstruct_known")(
+        bands,
+        table,
+        carriers_cyc_um=result.carriers_cyc_um[0],
+        modulation=result.modulation[0],
+        **known_options(),
+    )
+    close(image.image, np.tile([-4 * np.cos(np.pi / 10), 0.0, 24.0, 0.0], (1, 2, 1, 1)))
