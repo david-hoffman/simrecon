@@ -73,7 +73,7 @@ reconstructions returned. All 4,934 recorded comparisons and structural checks
 passed, including coordinates, diagnostic order, ownership and caller input
 preservation. No warnings or failed calls were captured. The observation used
 Python 3.13.12 and NumPy 2.5.3. Its SHA-256 digest is
-`caf9bfb1181dbca0824518ea6a9438f1734c813404127e94a45fc14f9da15f73`.
+`6ac0490c28affbf44a381109864b1b7fedd5f9f1bcfb41c3418a55047757856c`.
 The evidence index binds the observation to the code commit, input, independent
 reference and runtime hashes. The figures use that same observation.
 
@@ -85,9 +85,9 @@ and elementary-function envelopes. They do not certify an arbitrary or actual
 backend. The detailed derivation propagates zero Fourier cells separately
 through the quarter power and resolves the peak/parabola margins.
 
-Frozen inputs, expectations and bounds preceded the observations. The selector and diagnostic correction was observed once with the same
-inputs and bounds. Its numerical values and comparison results matched the
-prior run exactly. Earlier observations, renders and expectation drafts
+Frozen inputs, expectations and bounds preceded the observations. After the
+input validation and diagnostic corrections, the fixed control reproduced the
+prior numerical values and comparison results exactly. Earlier observations, renders and expectation drafts
 remain in the evidence. The inputs, seeds, references, tolerances and
 parameters stayed fixed. Final candidate and check identities belong in
 the PR/evidence record outside these tracked report bytes.
