@@ -1,6 +1,8 @@
 """True 2D estimation, cumulative factors, public result provenance and controls."""
 
 from copy import copy
+from itertools import product
+from types import SimpleNamespace
 from typing import Any
 
 import numpy as np
@@ -232,13 +234,27 @@ def test_weak_unequal_energy_and_zero_known_vector_are_permitted(amplitude: floa
 @pytest.mark.parametrize("reuse", [False, True])
 @pytest.mark.parametrize("layout", ["radial", "full"])
 def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, layout: str) -> None:
-    from c_acquisition_fixture import finite_search, known_options, one_time, reconstruct_expected
+    from c_acquisition_fixture import (
+        finite_search,
+        known_options,
+        model_table,
+        one_time,
+        prepare_expected,
+        reconstruct_expected,
+    )
 
     raw = raw_pattern(t=2, p=5, y=4, x=6)
-    bands = api("prepare_acquisition_bands")(raw, **options(norders=3))
+    prep = options(norders=3)
+    raw_truth = prepare_expected(raw, prep)
+    bands = api("prepare_acquisition_bands")(raw, **prep)
+    independent = copy(bands)
+    for field in ["quadratures", "noise_variance_factors"]:
+        object.__setattr__(independent, field, raw_truth[field])
+        close(getattr(bands, field), raw_truth[field])
     table = transfer(3, layout=layout)
+    independent_table = model_table(table)
     initial = np.array([[0.15, 0.05]])
-    expected = finite_search(bands, table, initial[0], **optics())
+    expected = finite_search(independent, independent_table, initial[0], **optics())
     # Known-parameter control precedes actual finite-search composition.
     known = api("reconstruct_known")(
         one_time(bands, 0),
@@ -248,7 +264,11 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
         **known_options(),
     )
     known_truth = reconstruct_expected(
-        one_time(bands, 0), table, initial, np.array([[0.4, 0.2]]), **known_options()
+        one_time(independent, 0),
+        independent_table,
+        initial,
+        np.array([[0.4, 0.2]]),
+        **known_options(),
     )
     close(known.image, known_truth["image"])
     actual = api("estimate_parameters")(
@@ -300,7 +320,9 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
         assert [b.orders for b in actual.overlaps if b.time_index == 1] == [(0, 1), (0, 2)]
         known_factors = []
         for b in [1, 2]:
-            overlap = overlaps(bands, table, expected["carrier"], (0, b), t=1, **optics())
+            overlap = overlaps(
+                independent, independent_table, expected["carrier"], (0, b), t=1, **optics()
+            )
             known_factors.append(
                 regression(overlap["spatial"], expected["carrier"], (0, b), 1.0)["forward"]
             )
@@ -308,7 +330,7 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
         close(actual.modulation[1, 0], np.cumprod(known_factors), proof=actual.modulation)
         assert not np.allclose(actual.modulation[1], actual.modulation[0], rtol=0, atol=1e-5)
     else:
-        expected1 = finite_search(bands, table, initial[0], t=1, **optics())
+        expected1 = finite_search(independent, independent_table, initial[0], t=1, **optics())
         close(actual.carriers_cyc_um[1, 0], expected1["carrier"], proof=actual.carriers_cyc_um)
         assert actual.branches == (("searched",), ("searched",))
     composed = api("reconstruct_known")(
@@ -319,8 +341,8 @@ def test_finite_2d_search_pair_trace_adjacent_fits_and_time_reuse(reuse: bool, l
         **known_options(),
     )
     truth = reconstruct_expected(
-        one_time(bands, 0),
-        table,
+        one_time(independent, 0),
+        independent_table,
         expected["carrier"][None],
         expected["modulation"][None],
         **known_options(),
@@ -406,24 +428,62 @@ def test_zero_factor_domain_and_actual_regression_failures(selector: str) -> Non
 
 @pytest.mark.parametrize("mode,z", [("2d", 1), ("3d", 2)])
 def test_threshold_multiplier_strict_equality_and_complex_cross_transfer(mode: str, z: int) -> None:
-    bands = api("prepare_acquisition_bands")(
-        raw_pattern(z=z, y=2, x=4), **options(acquisition_mode=mode)
+    from c_acquisition_fixture import as_disc, prepare_expected, sample
+
+    raw = raw_pattern(z=z, y=2, x=4)
+    prep = options(acquisition_mode=mode)
+    independent = SimpleNamespace(
+        **prepare_expected(raw, prep),
+        input_shape=raw.shape,
+        **{
+            k: prep[k]
+            for k in ["acquisition_mode", "dxy_um", "dz_um", "lateral_zoom", "axial_zoom"]
+        },
     )
-    # Both raw samples are exactly representable. Sampling at q=.25 produces
-    # u=.006 through declared dkr=.25/.006, so equality is a sampled value.
+    # At |q|=.25 the binary64 nominal sample is .006, but its nonzero
+    # enclosure crosses the strict threshold. No interpolation evaluation
+    # order is prescribed. Freeze ALL permitted mask/field alternatives;
+    # equality is in the rejecting branch, positive perturbations may pass.
+    # Distinct queries may round differently; no extra symmetry is assumed.
     samples = np.ones((2, 4, 1), dtype=complex)
     samples[0] *= 1 + 1j
     samples[1, :, 0] = np.arange(4) * (1 + 0j)
-    table = api("declare_otf")(samples, layout="radial", dkr_cyc_um=0.25 / 0.006, dkz_cyc_um=2.0)
+    declaration = dict(layout="radial", dkr_cyc_um=0.25 / 0.006, dkz_cyc_um=2.0)
+    independent_table = SimpleNamespace(samples=samples, **declaration)
+    alternatives = [
+        overlaps(
+            independent,
+            independent_table,
+            np.zeros(2),
+            (0, 1),
+            threshold_choices=choice,
+            **optics(),
+        )
+        for choice in (product([False, True], repeat=4) if z == 1 else [()])
+    ]
+    sample_truth = as_disc(sample(independent_table, 0.25, 0, 0, 2.0, 1))
+    assert abs(complex(sample_truth) - 0.006) < float(sample_truth.error)
+    bands = api("prepare_acquisition_bands")(raw, **prep)
+    table = api("declare_otf")(samples, **declaration)
     actual = api("estimate_parameters")(
         bands, table, initial_carriers_cyc_um=np.zeros((1, 2)), search_carriers=False, **optics()
     )
-    expected = overlaps(bands, table, np.zeros(2), (0, 1), **optics())
-    np.testing.assert_array_equal(actual.overlaps[0].written, expected["written"])
-    close(actual.overlaps[0].fourier, expected["fourier"])
+    matches = [
+        expected
+        for expected in alternatives
+        if np.array_equal(actual.overlaps[0].written, expected["written"])
+    ]
+    assert len(matches) == 1
+    # Selecting among precomputed alternatives proves this conditional field
+    # relation and its accuracy, not an unobserved exact-equality decision.
+    close(actual.overlaps[0].fourier, matches[0]["fourier"])
+    close(actual.overlaps[0].spatial, matches[0]["spatial"])
     h = api("sample_otf")(table, 0.25, 0, 0, dkz_cyc_um=2.0, order=1)
-    assert h == 0.006
-    assert bool(actual.overlaps[0].written[1, 0, 0, 1]) is (z > 1)
+    close(h, sample_truth)
+    assert not actual.overlaps[0].written[:, 0, 0, 0].any()  # exact zero is below
+    assert actual.overlaps[0].written[:, 0, 0, 2].all()  # .012 is strictly above
+    if z > 1:
+        assert actual.overlaps[0].written[:, 0, 0, 1].all()  # 5*.006 is strictly above
 
 
 def test_threshold_short_circuit_preserves_unsafe_unrequested_vertex() -> None:

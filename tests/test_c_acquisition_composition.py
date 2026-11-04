@@ -63,6 +63,9 @@ def composition(
         bands, table, initial_carriers_cyc_um=carriers, search_carriers=False, **op
     )
     close(estimated.modulation, factors)
+    np.testing.assert_array_equal(
+        estimated.carriers_cyc_um, np.broadcast_to(carriers, estimated.carriers_cyc_um.shape)
+    )
     for t in range(bands.input_shape[0]):
         actual = api("reconstruct_known")(
             one_time(bands, t),
@@ -86,7 +89,7 @@ def test_literal_reinterpret_unique_exposure_labels_and_real_composition(
     for t, di, p, h in np.ndindex(raw.shape[:4]):
         raw[t, di, p, h] += 1000 * t + 100 * di + 10 * h + p
     off = np.repeat((raw + 5)[..., None, :, :], 2, axis=4).astype(np.int16)
-    extra = np.arange(2 * d * 3 * z, dtype=float).reshape(2, d, 3, z) / 8
+    extra = np.arange(2 * d * 3 * z, dtype=np.float32).reshape(2, d, 3, z) / np.float32(8)
     before = [v.copy() for v in [raw, off, extra]]
     helper = api("reinterpret_2d_planes")(
         raw, storage_order=storage, off_exposures=off, exposure_background=extra
@@ -114,6 +117,7 @@ def test_literal_reinterpret_unique_exposure_labels_and_real_composition(
         np.testing.assert_array_equal(a, b)
     assert helper.original_shape == raw.shape and helper.storage_order == storage
     assert helper.images.dtype == raw.dtype and helper.off_exposures.dtype == off.dtype
+    assert extra.dtype == np.float32 and helper.exposure_background.dtype == np.float64
     if storage == "direction-major" and d == z == 2:
         np.testing.assert_array_equal(source, [[[0, 0], [0, 1]], [[1, 0], [1, 1]]])
         assert not np.array_equal(helper.images[0, 1, :, 0], raw[0, 1, :, 0])
@@ -410,6 +414,7 @@ def test_literal_helper_effective_time0_search_reuse_refits_modulation(storage: 
     )
     assert estimated.branches == (("searched", "searched"), ("time0-reused", "time0-reused"))
     np.testing.assert_array_equal(estimated.carriers_cyc_um[0], estimated.carriers_cyc_um[1])
+    certified_close(estimated.carriers_cyc_um, expected.carriers_cyc_um)
     certified_close(estimated.modulation, expected.modulation)
     assert np.max(abs(np.asarray(expected.modulation[1] - expected.modulation[0]))) > np.max(
         (expected.modulation[1] - expected.modulation[0]).error

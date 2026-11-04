@@ -1,6 +1,7 @@
 """Expanded empirical domains and direct complex128 transfer composition."""
 
 from math import cos, pi, sqrt
+from types import SimpleNamespace
 from typing import Any
 
 import numpy as np
@@ -18,6 +19,8 @@ from c_acquisition_fixture import (
     lift,
     optics,
     options,
+    parameter_model,
+    prepare_expected,
     raw_pattern,
     reconstruct_expected,
     sample,
@@ -217,8 +220,48 @@ def test_actual_non_complex64_exact_prepared_transfer_used_without_rebinding(dz:
     for p, w in enumerate([1, 2, 3]):
         raw[p, 0, 16, 16] = 3 * w
         raw[p, 0, 16, 18] = w
-    prepared = api("prepare_bead_otf")(raw, **bead_options())
+    # Freeze the entire general-array oracle before any product observation.
+    # Returned bands, transfer values and estimates never supply its centers.
+    bead_settings = bead_options()
+    bead_truth = bead_expected(raw, bead_settings)
+    independent_table = SimpleNamespace(
+        samples=bead_truth["samples"],
+        layout="radial",
+        dkr_cyc_um=bead_truth["dkr"],
+        dkz_cyc_um=bead_truth["dkz"],
+    )
+    specimen = raw_pattern(y=4, x=6)
+    prep = options(dz_um=dz)
+    independent = SimpleNamespace(
+        **prepare_expected(specimen, prep),
+        input_shape=specimen.shape,
+        **{
+            k: prep[k]
+            for k in ["acquisition_mode", "dxy_um", "dz_um", "lateral_zoom", "axial_zoom"]
+        },
+    )
+    carriers = np.array([[0.04, 0.02]])
+    modulation = np.array([[0.3 + 0.1j]])
+    expected = reconstruct_expected(
+        independent, independent_table, carriers, modulation, **known_options()
+    )
+    factor_truth = parameter_model(
+        independent,
+        independent_table,
+        initial_carriers_cyc_um=carriers,
+        search_carriers=False,
+        **optics(),
+    )
+    expected_fit = reconstruct_expected(
+        independent,
+        independent_table,
+        factor_truth.carriers_cyc_um[0],
+        factor_truth.modulation[0],
+        **known_options(),
+    )
+    prepared = api("prepare_bead_otf")(raw, **bead_settings)
     table = prepared.transfer
+    close(table.samples, bead_truth["samples"])
     exact = (17 + 3 * cos(pi / 8)) / 20
     close(table.samples[0, 1, 0], exact, proof=table.samples)
     quantized = complex(np.complex64(table.samples[0, 1, 0]))
@@ -231,11 +274,9 @@ def test_actual_non_complex64_exact_prepared_transfer_used_without_rebinding(dz:
             table.samples, layout="radial", dkr_cyc_um=table.dkr_cyc_um, dkz_cyc_um=table.dkz_cyc_um
         )
     # Actual raw specimen -> preparation -> known image, then actual fitted factors.
-    specimen = raw_pattern(y=4, x=6)
-    bands = api("prepare_acquisition_bands")(specimen, **options(dz_um=dz))
-    carriers = np.array([[0.04, 0.02]])
-    modulation = np.array([[0.3 + 0.1j]])
-    expected = reconstruct_expected(bands, table, carriers, modulation, **known_options())
+    bands = api("prepare_acquisition_bands")(specimen, **prep)
+    close(bands.quadratures, independent.quadratures)
+    close(bands.noise_variance_factors, independent.noise_variance_factors)
     known = api("reconstruct_known")(
         bands, table, carriers_cyc_um=carriers, modulation=modulation, **known_options()
     )
@@ -243,6 +284,9 @@ def test_actual_non_complex64_exact_prepared_transfer_used_without_rebinding(dz:
     estimated = api("estimate_parameters")(
         bands, table, initial_carriers_cyc_um=carriers, search_carriers=False, **optics()
     )
+    close(estimated.carriers_cyc_um, factor_truth.carriers_cyc_um)
+    close(estimated.raw_modulation, factor_truth.raw_modulation)
+    close(estimated.modulation, factor_truth.modulation)
     fitted = api("reconstruct_known")(
         bands,
         table,
@@ -250,14 +294,11 @@ def test_actual_non_complex64_exact_prepared_transfer_used_without_rebinding(dz:
         modulation=estimated.modulation[0],
         **known_options(),
     )
-    expected_fit = reconstruct_expected(
-        bands, table, estimated.carriers_cyc_um[0], estimated.modulation[0], **known_options()
-    )
     close(fitted.image, expected_fit["image"])
     # Sampler math independently uses the original table; no dkz=1 requirement.
     close(
         api("sample_otf")(table, 0.1, 0, 0, dkz_cyc_um=table.dkz_cyc_um),
-        sample(table, 0.1, 0, 0, table.dkz_cyc_um, 0),
+        sample(independent_table, 0.1, 0, 0, independent_table.dkz_cyc_um, 0),
     )
 
 

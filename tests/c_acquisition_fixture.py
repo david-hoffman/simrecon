@@ -429,6 +429,7 @@ def overlaps(
     d: int = 0,
     *,
     omit: bool = False,
+    threshold_choices: tuple[bool, ...] | None = None,
     **op: Any,
 ) -> dict[str, Any]:
     _, _, _, z, y, x = bands.input_shape
@@ -449,6 +450,9 @@ def overlaps(
     varying = bool(np.any(as_disc(carrier).error > 0))
     multiplier = 1 if z == 1 else 5
     native = bands.quadratures[t, d]
+    # Only a dedicated sensitivity proof supplies alternatives. Ordinary
+    # callers still require every threshold decision to be certified.
+    choices = None if threshold_choices is None else iter(threshold_choices)
 
     def band(m: int, h: int, i: int, j: int) -> complex:
         value = (
@@ -487,15 +491,17 @@ def overlaps(
                     continue
                 first = b if side else a
                 h1 = sample(table, qxy[0], qxy[1], h, dzf, first)
-                if not threshold_survives((multiplier if side else 1) * abs(h1)):
+                if not threshold_survives((multiplier if side else 1) * abs(h1), choices=choices):
                     continue
                 h2 = sample(table, shifted[0], shifted[1], h, dzf, a if side else b)
-                if not threshold_survives((1 if side else multiplier) * abs(h2)):
+                if not threshold_survives((1 if side else multiplier) * abs(h2), choices=choices):
                     continue
                 fourier[side, h % z, i, j] = (
                     read(first, h, i, j) * h2 / sqrt(abs(h1) ** 2 + abs(h2) ** 2)
                 )
                 written[side, h % z, i, j] = True
+    if choices is not None:
+        assert next(choices, None) is None, "unused threshold alternative"
     return dict(
         fourier=fourier, spatial=transform(fourier, inverse=True, axes=(1, 2, 3)), written=written
     )
@@ -2007,15 +2013,38 @@ def certify_parameter_argument(value: Any) -> Any:
             and isinstance(value, np.ndarray)
             and np.shares_memory(actual, value)
         ):
-            return Disc(value, np.max(expected.observer), np.max(expected.backend))
+            # Binding a prediction is not an accuracy assertion. Check the
+            # full returned field before consuming any view, and propagate
+            # the independent centers (never the returned numerical values).
+            certified_close(actual, expected)
+            addresses = {
+                actual.ctypes.data
+                + sum(i * s for i, s in zip(index, actual.strides, strict=True)): index
+                for index in np.ndindex(actual.shape)
+            }
+            result = disc_empty(value.shape, dtype=expected.dtype)
+            for index in np.ndindex(value.shape):
+                address = value.ctypes.data + sum(
+                    i * s for i, s in zip(index, value.strides, strict=True)
+                )
+                result[index] = expected[addresses[address]]
+            return result
     return as_disc(value)
 
 
 def observe_public(name: str, function: Any) -> Any:
     def call(*args: Any, **kwargs: Any) -> Any:
         model = None
+        prediction_kwargs = kwargs.copy()
+        if name == "reconstruct_known":
+            # A failed comparison of an already returned estimate is a test
+            # failure. It must not be swallowed as unavailable prediction for
+            # an invalid-input call, nor manufacture a public rejection.
+            for key in ["carriers_cyc_um", "modulation"]:
+                if key in kwargs:
+                    prediction_kwargs[key] = certify_parameter_argument(kwargs[key])
         try:
-            model = predict_public(name, args, kwargs)
+            model = predict_public(name, args, prediction_kwargs)
         except (
             ValueError,
             TypeError,
@@ -2123,15 +2152,19 @@ def decision_greater(left: Any, right: Any, label: str) -> bool:
     return bool(np.asarray(left) > np.asarray(right))
 
 
-def threshold_survives(value: Any) -> bool:
-    if float(np.asarray(value)) == 0.006:
-        # The dedicated declared-table boundary is an exact source-order
-        # binary64 quotient, .25/(.25/.006), and comparison with that same
-        # declared threshold. Generic nonboundary values require a gap.
+def threshold_survives(value: Any, *, choices: Any = None) -> bool:
+    difference = as_disc(value) - as_disc(0.006)
+    gap, error = float(abs(np.asarray(difference))), float(difference.error)
+    if gap <= error and error > 0 and choices is not None:
+        # An enclosure crossing the unchanged strict threshold permits both
+        # outcomes. Enumerating them is a conditional sensitivity proof, not
+        # an equality certificate or a tolerance on the production predicate.
+        choice = next(choices)
+        assert type(choice) is bool
         CERTIFICATES.append(
-            dict(kind="threshold-equality", value=0.006, policy="strict canonical boundary")
+            dict(kind="threshold-alternative", gap=gap, error=error, survives=choice)
         )
-        return False
+        return choice
     return decision_greater(value, 0.006, "transfer-threshold")
 
 
@@ -2510,7 +2543,9 @@ def assert_complete_record(result: Any, entry: str, args: Any, kwargs: Any) -> N
             if original is not None:
                 trailing = original.shape[4:] if field == "off_exposures" else ()
                 assert returned.shape == (t * z, d, p, 1, *trailing)
-                assert returned.dtype == original.dtype
+                assert returned.dtype == (
+                    original.dtype if field == "off_exposures" else np.float64
+                )
         assert result.source_direction_z.shape == (z, d, 2)
         assert result.source_direction_z.dtype == np.int64
         assert type(result.original_shape) is tuple and all(
