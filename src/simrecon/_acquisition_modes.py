@@ -21,6 +21,7 @@ from ._acquisition_layout import (
     finite,
     integer,
     layout,
+    literal,
     off_count,
     operation,
     output_extents,
@@ -75,15 +76,13 @@ class AcquisitionBands:
 
 def validate_used(
     bands: AcquisitionBands,
-) -> tuple[tuple[int, ...], int, float, int, float, float, float]:
+) -> tuple[tuple[int, ...], int, float, int, float, float, float, str]:
     """Validate only the acquisition fields consumed by downstream science."""
     if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
         raise AcquisitionModeError("bands input_shape requires six dimensions")
     shape = tuple(integer(n, "bands dimension") for n in bands.input_shape)
     t, d, p, z, y, x = shape
-    mode = bands.acquisition_mode
-    if not isinstance(mode, str) or mode not in ("2d", "3d"):
-        raise AcquisitionModeError("bands acquisition_mode must be 2d or 3d")
+    mode = literal(bands.acquisition_mode, "bands acquisition_mode", ("2d", "3d"))
     if (mode == "2d" and z != 1) or (mode == "3d" and z < 2) or x < 2 or x % 2:
         raise AcquisitionModeError("bands dimensions disagree with acquisition_mode/even X")
     data = bands.quadratures
@@ -142,7 +141,7 @@ def validate_used(
     finite(noise, "bands noise_variance_factors")
     if (noise <= 0).any():
         raise AcquisitionModeError("bands noise_variance_factors must be positive")
-    return shape, orders, lateral, axial, dxy, dz, scale
+    return shape, orders, lateral, axial, dxy, dz, scale, mode
 
 
 def _optics(
@@ -378,8 +377,7 @@ def prepare_acquisition_bands(
     with operation():
         shape = raw_shape(images)
         times, directions, phases, nz, ny, nx = shape
-        if not isinstance(acquisition_mode, str) or acquisition_mode not in ("2d", "3d"):
-            raise AcquisitionModeError("acquisition_mode must be 2d or 3d")
+        acquisition_mode = literal(acquisition_mode, "acquisition_mode", ("2d", "3d"))
         two_d = acquisition_mode == "2d"
         if (two_d and nz != 1) or (not two_d and nz < 2):
             raise AcquisitionModeError("acquisition_mode requires native Z1 in 2d or Z>=2 in 3d")

@@ -181,14 +181,15 @@ class _Grid:
     dx: float
     dy: float
     dzf: float
+    mode: str = "3d"
 
 
 def _validate_bands(bands: Any, transfer: OpticalTransfer) -> _Grid:
     if isinstance(bands, AcquisitionBands):
-        shape, orders, lateral, axial, dxy, dz, scale = validate_used(bands)
+        shape, orders, lateral, axial, dxy, dz, scale, mode = validate_used(bands)
         z, y, x = shape[3:]
         k = transfer.samples.shape[-1] if transfer.layout == "radial" else transfer.samples.shape[1]
-        if z == 1 and k != 1:
+        if mode == "2d" and k != 1:
             raise ParameterEstimationError("true 2d bands require transfer axial K=1")
         dzf = 1 / (z * dz) if dz > 0 else transfer.dkz_cyc_um
         frequencies = (1 / (x * dxy), 1 / (y * dxy), dzf)
@@ -202,9 +203,9 @@ def _validate_bands(bands: Any, transfer: OpticalTransfer) -> _Grid:
             ((t, d, orders - 1), 16),
         ):
             _extent(sh, size)
-        return _Grid(shape, orders, dxy, dz, lateral, axial, scale, *frequencies)
+        return _Grid(shape, orders, dxy, dz, lateral, axial, scale, *frequencies, mode=mode)
     if not isinstance(bands, PreparedBands):
-        raise ParameterEstimationError("bands must be an actual PreparedBands record")
+        raise ParameterEstimationError("bands must be a PreparedBands or AcquisitionBands record")
     if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
         raise ParameterEstimationError("bands input_shape requires six dimensions")
     shape = tuple(_integer(n, "bands dimension") for n in bands.input_shape)
@@ -701,8 +702,8 @@ def estimate_parameters(
 
     Parameters
     ----------
-    bands : PreparedBands
-        Accepted CE02 native quadratures and used preparation metadata.
+    bands : PreparedBands or AcquisitionBands
+        Accepted native quadratures and used preparation metadata.
     transfer : OpticalTransfer
         Accepted CE03 complete complex radial or full transfer tables.
     initial_carriers_cyc_um : numpy.ndarray
@@ -712,7 +713,7 @@ def estimate_parameters(
     numerical_aperture, immersion_index : float
         Positive optical aperture and index, with NA <= index and 1 <= index <= 2.
     search_carriers, use_time0_carriers : bool, optional
-        Search with the fixed order (0,2) pair and reuse time-zero carriers.
+        Search with order pair (0,1) in 2D or (0,2) in 3D and reuse time-zero carriers.
         Reused carriers receive fresh modulation fits at each time.
     amplitude_floors : numpy.ndarray or None, optional
         Positive real floors for all positive orders, or disabled.
@@ -880,7 +881,7 @@ def estimate_parameters(
         )
         if isinstance(bands, AcquisitionBands):
             settings += (
-                ("acquisition_mode", bands.acquisition_mode),
+                ("acquisition_mode", grid.mode),
                 ("acquisition_reference_sha256", bands.reference_sha256),
             )
         return EstimatedParameters(

@@ -806,3 +806,263 @@ def test_acquisition_declared_on_frame_count_fits_signed32(
         ) as caught:
             consume(bands, table)
         assert caught.type is error
+
+
+class MutableSelector(str):
+    """Supported selector text with caller-owned metadata."""
+
+    note: str
+
+
+class EqualToSelector(str):
+    """Selector text that compares like a different supported literal."""
+
+    claimed_literal: str
+
+    def __eq__(self, other: object) -> bool:
+        """Compare as the claimed literal."""
+        return self.claimed_literal == other
+
+    def __hash__(self) -> int:
+        """Use the claimed literal hash for hashed membership too."""
+        return hash(self.claimed_literal)
+
+
+_MODE_REASON = (
+    r"(?i)\bacquisition[ _-]+(?:modes?|dimensionality)\b|"
+    r"""^\s*mode\s*(?::|=|must be)\s*['"]?(?:2d|3d)\b"""
+)
+_LAYOUT_REASON = (
+    r"(?i)\b(?:storage[ _-]+(?:orders?|layouts?)|"
+    r"raw[ _-]+(?:frame|stream|section)[ _-]+(?:order|layout))\b|"
+    r"""^\s*(?:invalid[ _-]+frame[ _-]+order\b|"""
+    r"""layout\s*(?::|=|must be)\s*['"]?(?:direction[ _-]+major|z[ _-]+major)\b)"""
+)
+_OFF_SAMPLE_SUBJECT = (
+    r"\boff(?:\s*\(\s*reference\s*\))?[ _-]+(?:exposures?|frames?|images?|samples?|data)\b"
+)
+_SAMPLE_FLOAT32 = r"(?:float[ _-]*32|binary[ _-]*32|single[ _-]+precision|32[ _-]*bit[ _-]+float)"
+_SAMPLE_REPRESENTATION = (
+    r"\b(?:(?:exact(?:ly)?|lossless(?:ly)?)[ _-]+(?:convert\w*|conversion|represent\w*)|"
+    r"(?:convert\w*|represent\w*)[ _-]+(?:exactly|losslessly)|"
+    rf"{_SAMPLE_FLOAT32}[ _-]+(?:conversion|represent\w*|exact)|"
+    r"(?:convert\w*|represent\w*|round[ _-]+trip) (?:to|as|in|through|via) "
+    rf"(?:a )?{_SAMPLE_FLOAT32})\b"
+)
+# Keep the subject and operation together within the same clause.
+_SAME_CLAUSE = r"(?:(?![.!?](?:\s|$)|[;\n]).)*"
+_OFF_SAMPLE_REASON = (
+    rf"(?i)(?:{_OFF_SAMPLE_SUBJECT}{_SAME_CLAUSE}{_SAMPLE_REPRESENTATION}|"
+    rf"{_SAMPLE_REPRESENTATION}{_SAME_CLAUSE}{_OFF_SAMPLE_SUBJECT})"
+)
+
+
+def assert_resolved_selector(literal: str, **observed: object) -> None:
+    for field, value in observed.items():
+        assert type(value) is str, f"{field} resolved to {type(value).__name__}"
+        assert value == literal, f"{field} resolved to {value!r}"
+
+
+@pytest.mark.parametrize("mode,z", [("2d", 1), ("3d", 3)], ids=["2d", "3d"])
+@pytest.mark.parametrize("kind", ["plain", "numpy", "mutable"])
+def test_acquisition_consumer_resolves_literal_mode(
+    acquisition_record_consumer: tuple[Any, type[ValueError]], mode: str, z: int, kind: str
+) -> None:
+    original = api("prepare_acquisition_bands")(
+        raw_pattern(z=z, y=4, x=6), **options(acquisition_mode=mode)
+    )
+    consume, error = acquisition_record_consumer
+    table = transfer(k=z)
+    expected = consume(original, table)
+    field = "modulation" if error.__name__ == "ParameterEstimationError" else "image"
+    expected_values = getattr(expected, field)
+    assert expected_values.size and np.isfinite(expected_values).all()
+    assert_resolved_selector(mode, result=dict(expected.resolved_settings)["acquisition_mode"])
+    if kind == "plain":
+        return
+
+    # Preserve every other used field on a real prepared record. The public
+    # consumer validates the selected mode without replaying raw preparation.
+    candidate = copy(original)
+    selector = np.str_(mode) if kind == "numpy" else MutableSelector(mode)
+    if isinstance(selector, MutableSelector):
+        selector.note = "before"
+    object.__setattr__(candidate, "acquisition_mode", selector)
+    result = consume(candidate, table)
+    if isinstance(selector, MutableSelector):
+        selector.note = "after"
+    np.testing.assert_array_equal(getattr(result, field), expected_values)
+    assert_resolved_selector(mode, result=dict(result.resolved_settings)["acquisition_mode"])
+
+
+@pytest.mark.parametrize("mode,z", [("2d", 1), ("3d", 3)], ids=["2d", "3d"])
+def test_prepare_acquisition_resolves_literal_mode(mode: str, z: int) -> None:
+    from simrecon import prepare_acquisition_bands as prepare
+
+    raw = raw_pattern(z=z, y=4, x=6)
+    plain = prepare(raw, **options(acquisition_mode=mode))
+    selector = MutableSelector(mode)
+    selector.note = "before"
+    actual = prepare(raw, **options(acquisition_mode=selector))
+    selector.note = "after"
+    assert actual.input_shape == raw.shape
+    np.testing.assert_array_equal(actual.quadratures, plain.quadratures)
+    assert_resolved_selector(
+        mode,
+        record=actual.acquisition_mode,
+        settings=dict(actual.resolved_settings)["acquisition_mode"],
+    )
+
+
+@pytest.mark.parametrize("layout", ["direction-major", "z-major"])
+def test_prepare_acquisition_resolves_literal_layout(layout: str) -> None:
+    from simrecon import prepare_acquisition_bands as prepare
+
+    raw = raw_pattern(y=10, x=10)
+    settings = options(drift_between=True) | optics()
+    plain = prepare(raw, storage_order=layout, **settings)
+    selector = MutableSelector(layout)
+    selector.note = "before"
+    actual = prepare(raw, storage_order=selector, **settings)
+    selector.note = "after"
+    # At D=1 the selected z-major prepass is skipped. The ordinary layout
+    # still builds its prepass, even though there is no moving direction.
+    assert len(events(actual, "between-build")) == int(layout == "direction-major")
+    np.testing.assert_array_equal(actual.quadratures, plain.quadratures)
+    assert_resolved_selector(
+        layout,
+        record=actual.storage_order,
+        settings=dict(actual.resolved_settings)["storage_order"],
+    )
+
+
+@pytest.mark.parametrize("layout", ["direction-major", "z-major"])
+def test_regrouping_resolves_literal_layout(layout: str) -> None:
+    from simrecon import reinterpret_2d_planes as regroup
+
+    raw = raw_pattern(d=2, z=2, y=2, x=4)
+    selector = MutableSelector(layout)
+    selector.note = "before"
+    plain = regroup(raw, storage_order=layout)
+    actual = regroup(raw, storage_order=selector)
+    selector.note = "after"
+
+    source = (
+        [[[0, 0], [0, 1]], [[1, 0], [1, 1]]]
+        if layout == "direction-major"
+        else [[[0, 0], [1, 0]], [[0, 1], [1, 1]]]
+    )
+    np.testing.assert_array_equal(actual.source_direction_z, source)
+    for t, d in np.ndindex(2, 2):
+        original_direction, original_z = source[t][d]
+        np.testing.assert_array_equal(
+            actual.images[t, d, :, 0], raw[0, original_direction, :, original_z]
+        )
+    np.testing.assert_array_equal(actual.images, plain.images)
+    assert_resolved_selector(layout, record=actual.storage_order)
+
+
+@pytest.mark.parametrize(
+    "entry,field,legal,reason",
+    [
+        ("prepare_acquisition_bands", "acquisition_mode", "2d", _MODE_REASON),
+        ("prepare_acquisition_bands", "storage_order", "direction-major", _LAYOUT_REASON),
+        ("reinterpret_2d_planes", "storage_order", "direction-major", _LAYOUT_REASON),
+    ],
+    ids=["prepare-mode", "prepare-layout", "regroup-layout"],
+)
+def test_acquisition_declarations_validate_underlying_selector_text(
+    entry: str, field: str, legal: str, reason: str
+) -> None:
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands, reinterpret_2d_planes
+
+    declare = (
+        prepare_acquisition_bands if entry == "prepare_acquisition_bands" else reinterpret_2d_planes
+    )
+    raw = raw_pattern(y=2, x=4)
+    settings = options() if entry == "prepare_acquisition_bands" else dict[str, Any]()
+    settings[field] = legal
+    positive = declare(raw, **settings)
+    assert_resolved_selector(legal, record=getattr(positive, field))
+    selector = EqualToSelector("unsupported")
+    selector.claimed_literal = legal
+    assert str.__str__(selector) == "unsupported" and selector == legal
+    settings[field] = selector
+    with pytest.raises(AcquisitionModeError, match=reason) as caught:
+        declare(raw, **settings)
+    assert caught.type is AcquisitionModeError
+
+
+def test_acquisition_power_result_resolves_literal_taper() -> None:
+    from simrecon import prepare_acquisition_bands
+    from simrecon import reconstruct_known as reconstruct
+
+    bands = prepare_acquisition_bands(raw_pattern(y=4, x=6), **options())
+    args = dict(
+        carriers_cyc_um=np.array([[0.11, 0.02]]),
+        modulation=np.array([[0.5 + 0.2j]]),
+    )
+    table = transfer()
+    plain = reconstruct(
+        bands, table, **args, **known_options(output_taper="power", power_taper_exponent=1)
+    )
+    untapered = reconstruct(bands, table, **args, **known_options())
+    assert np.any(plain.image != untapered.image)
+    selector = MutableSelector("power")
+    selector.note = "before"
+    actual = reconstruct(
+        bands, table, **args, **known_options(output_taper=selector, power_taper_exponent=1)
+    )
+    selector.note = "after"
+    np.testing.assert_array_equal(actual.image, plain.image)
+    np.testing.assert_array_equal(actual.filtered_quadratures, plain.filtered_quadratures)
+    assert_resolved_selector("power", result=dict(actual.resolved_settings)["output_taper"])
+
+
+@pytest.mark.parametrize(
+    "entry", ["prepare_acquisition_bands", "reinterpret_2d_planes"], ids=["prepare", "regroup"]
+)
+def test_inexact_off_sample_names_the_off_field(entry: str) -> None:
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands, reinterpret_2d_planes
+
+    raw = raw_pattern(y=2, x=4)
+    off = np.ones((*raw.shape[:4], 1, *raw.shape[4:]), dtype=np.float64)
+    malformed = off.copy()
+    malformed.flat[0] = 1 + 2**-30
+    assert malformed.flat[0] != 1 and np.float32(malformed.flat[0]) == 1
+
+    settings: dict[str, Any]
+    if entry == "prepare_acquisition_bands":
+        declare, settings = prepare_acquisition_bands, options()
+        repaired = prepare_acquisition_bands(raw, off_exposures=off, **settings)
+        assert repaired.off_quadratures is not None
+        assert np.isfinite(repaired.off_quadratures).all()
+    else:
+        declare, settings = reinterpret_2d_planes, {"storage_order": "direction-major"}
+        repaired = reinterpret_2d_planes(raw, off_exposures=off, **settings)
+        np.testing.assert_array_equal(repaired.off_exposures, off)
+
+    with pytest.raises(AcquisitionModeError, match=_OFF_SAMPLE_REASON) as caught:
+        declare(raw, off_exposures=malformed, **settings)
+    assert caught.type is AcquisitionModeError
+
+
+def test_regrouping_routes_by_underlying_selector_text() -> None:
+    from simrecon import reinterpret_2d_planes as regroup
+
+    raw = raw_pattern(d=2, z=2, y=2, x=4)
+    direction_major = regroup(raw, storage_order="direction-major")
+    z_major = regroup(raw, storage_order="z-major")
+    assert not np.array_equal(direction_major.source_direction_z, z_major.source_direction_z)
+    assert not np.array_equal(direction_major.images, z_major.images)
+
+    selector = EqualToSelector("direction-major")
+    selector.claimed_literal = "z-major"
+    assert str.__str__(selector) == "direction-major"
+    matches_direction_major = selector == "direction-major"
+    assert selector == "z-major" and not matches_direction_major
+    actual = regroup(raw, storage_order=selector)
+
+    np.testing.assert_array_equal(actual.source_direction_z, direction_major.source_direction_z)
+    np.testing.assert_array_equal(actual.images, direction_major.images)
+    assert_resolved_selector("direction-major", record=actual.storage_order)

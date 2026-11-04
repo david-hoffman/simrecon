@@ -162,6 +162,7 @@ class _Grid:
     dxy: float
     dz: float
     scale: float
+    mode: str = "3d"
 
     @property
     def output_shape(self) -> tuple[int, int, int]:
@@ -171,12 +172,12 @@ class _Grid:
 
 def _validate_bands(bands: Any) -> _Grid:
     if isinstance(bands, AcquisitionBands):
-        shape, orders, lateral, axial, dxy, dz, scale = validate_used(bands)
+        shape, orders, lateral, axial, dxy, dz, scale, mode = validate_used(bands)
         for sh, size in (((shape[1], 2), 8), ((shape[1], orders), 16), (shape[3:], 16)):
             _extent(sh, size)
-        return _Grid(shape, orders, lateral, axial, dxy, dz, scale)
+        return _Grid(shape, orders, lateral, axial, dxy, dz, scale, mode=mode)
     if not isinstance(bands, PreparedBands):
-        raise ReconstructionError("bands must be an actual PreparedBands record")
+        raise ReconstructionError("bands must be a PreparedBands or AcquisitionBands record")
     if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
         raise ReconstructionError("bands input_shape must contain six dimensions")
     shape = tuple(_integer(n, "bands dimension") for n in bands.input_shape)
@@ -622,8 +623,8 @@ def reconstruct_known(
 
     Parameters
     ----------
-    bands : PreparedBands
-        Actual CE02 bands; at least two orders and Z>=2 are required.
+    bands : PreparedBands or AcquisitionBands
+        At least two orders are required. AcquisitionBands also supports native Z1.
     transfer : OpticalTransfer
         Complete accepted CE03 radial or full tables shared across directions.
     carriers_cyc_um : numpy.ndarray
@@ -644,7 +645,7 @@ def reconstruct_known(
         Source order-zero branches. Dampening precedes omission in weights;
         final assembly omits order zero whenever omit_order0 is true.
     output_taper : {'cosine', 'none', 'power'}, optional
-        Shifted object-frequency taper after native division.
+        Shifted object-frequency taper after native division. Power requires an exponent.
     wiener_increment : float, optional
         Full-series increment, applied as increment/T before each time.
     power_taper_exponent : float or None, optional
@@ -701,10 +702,9 @@ def reconstruct_known(
         for name, flag in flags.items():
             if not isinstance(flag, (bool, np.bool_)):
                 raise ReconstructionError(f"{name} must be a boolean")
-        if not isinstance(output_taper, str) or output_taper not in ("cosine", "none", "power"):
+        if not issubclass(type(output_taper), str):
             raise ReconstructionError("output_taper must be cosine, none or power")
-        if output_taper == "power" and exponent is None:
-            raise ReconstructionError("output_taper='power' requires power_taper_exponent")
+        taper_text = str.__str__(output_taper)
         extended = (
             isinstance(bands, AcquisitionBands)
             or increment != 0
@@ -712,8 +712,24 @@ def reconstruct_known(
             or precise_taper
             or not filter_overlaps
             or explode != 1
-            or output_taper == "power"
+            or taper_text == "power"
         )
+        if extended:
+            output_taper = taper_text
+        taper_choices = ("cosine", "none", "power") if extended else ("cosine", "none")
+        if output_taper not in taper_choices:
+            raise ReconstructionError("output_taper must be cosine, none or power")
+        power = extended and output_taper == "power"
+        if power and exponent is None:
+            raise ReconstructionError("output_taper='power' requires power_taper_exponent")
+        if grid.mode == "2d":
+            k = (
+                transfer.samples.shape[-1]
+                if transfer.layout == "radial"
+                else transfer.samples.shape[1]
+            )
+            if k != 1:
+                raise ReconstructionError("true 2d bands require transfer axial K=1")
         directions = grid.shape[1]
         carriers = _parameter_array(
             carriers_cyc_um, "carriers_cyc_um", (directions, 2), complex_ok=False
@@ -721,9 +737,6 @@ def reconstruct_known(
         mods = _parameter_array(
             modulation, "modulation", (directions, grid.orders - 1), complex_ok=True
         )
-        k = transfer.samples.shape[-1] if transfer.layout == "radial" else transfer.samples.shape[1]
-        if grid.shape[3] == 1 and k != 1:
-            raise ReconstructionError("true 2d bands require transfer axial K=1")
         dzf = _positive(
             1 / (grid.shape[3] * grid.dz) if grid.dz > 0 else transfer.dkz_cyc_um, "dz sampling"
         )
@@ -779,7 +792,7 @@ def reconstruct_known(
                 bool(omit_order0),
                 bool(omit_kz0),
                 output_taper == "cosine",
-                exponent if output_taper == "power" else None,
+                exponent if power else None,
                 precise,
                 bool(filter_overlaps),
             )
@@ -810,10 +823,7 @@ def reconstruct_known(
         )
         if extended:
             resolved += (
-                (
-                    "acquisition_mode",
-                    bands.acquisition_mode if isinstance(bands, AcquisitionBands) else "3d",
-                ),
+                ("acquisition_mode", grid.mode),
                 ("wiener_increment", increment),
                 ("effective_wiener", tuple(effective)),
                 ("power_taper_exponent", exponent),

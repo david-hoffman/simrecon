@@ -104,7 +104,14 @@ def array_metadata(value: Any, name: str, shape: tuple[int, ...], *, raw: bool =
     _array_metadata(value, name, shape)
     finite(value, name)
     if raw:
-        _raw_samples(value)
+        try:
+            _raw_samples(value)
+        except SimreconError as error:
+            if name != "off_exposures":
+                raise
+            raise AcquisitionModeError(
+                "off_exposures samples must be exactly float32 representable"
+            ) from error
     elif (value > F32_MAX).any() or (value < -F32_MAX).any():
         raise AcquisitionModeError(f"{name} exceeds float32 magnitude")
 
@@ -185,11 +192,18 @@ def raw_shape(images: Any) -> tuple[int, ...]:
     return shape
 
 
+def literal(value: Any, name: str, choices: tuple[str, ...]) -> str:
+    """Resolve a supported string's underlying text as a plain Python string."""
+    if issubclass(type(value), str):
+        text = str.__str__(value)
+        if text in choices:
+            return text
+    raise AcquisitionModeError(f"{name} must be {' or '.join(choices)}")
+
+
 def layout(value: Any) -> str:
     """Resolve the declared physical section stream order."""
-    if not isinstance(value, str) or value not in ("direction-major", "z-major"):
-        raise AcquisitionModeError("storage_order must be direction-major or z-major")
-    return value
+    return literal(value, "storage_order", ("direction-major", "z-major"))
 
 
 def off_count(off: Any, shape: tuple[int, ...]) -> int:
