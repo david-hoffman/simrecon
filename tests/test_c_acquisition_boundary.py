@@ -1600,3 +1600,182 @@ def test_bead_numeric_lists_match_identical_arrays(z: int, y: int, x: int) -> No
     decoded = prepare_bead_otf(nested, **settings).transfer.samples
     assert decoded.dtype == np.complex128
     np.testing.assert_array_equal(decoded, original)
+
+
+class SplitIndexArray(np.ndarray):
+    """Genuine storage whose indexing can expose a different genuine array."""
+
+    indexed_values: np.ndarray
+
+    def __getitem__(self, key: Any) -> Any:
+        """Return the selected indexed values, falling back to genuine storage."""
+        values = getattr(self, "indexed_values", None)
+        if values is None:
+            return super().__getitem__(key)
+        return values[key]
+
+
+@pytest.mark.parametrize(
+    "entry",
+    ["prepare_acquisition_bands", "reinterpret_2d_planes"],
+    ids=["prepare", "regroup"],
+)
+@pytest.mark.parametrize("field", ["images", "off_exposures"], ids=["on", "off"])
+def test_raw_array_indexing_preserves_checked_values(entry: str, field: str) -> None:
+    import re
+
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands, reinterpret_2d_planes
+
+    images = np.ones((1, 1, 3, 1, 2, 4), dtype=np.float64)
+    off = np.ones((*images.shape[:4], 1, *images.shape[4:]), dtype=np.float64)
+    inputs = {"images": images, "off_exposures": off}
+    legal = inputs[field]
+    inexact = legal.copy()
+    sample = 1 + 2**-30
+    inexact.flat[0] = sample
+    assert float(inexact.flat[0]) == sample and float(np.float32(sample)) == 1.0
+
+    split = legal.view(SplitIndexArray)
+    split.indexed_values = inexact
+    np.testing.assert_array_equal(np.asarray(split), legal)
+    assert float(np.asarray(split).flat[0]) == 1.0
+    assert float(split[0, 0, :, 0].flat[0]) == sample
+
+    prepare = entry == "prepare_acquisition_bands"
+    output_field = (
+        {"images": "quadratures", "off_exposures": "off_quadratures"}[field] if prepare else field
+    )
+
+    def observe(candidate: np.ndarray) -> np.ndarray:
+        selected = inputs | {field: candidate}
+        on, off = selected["images"], selected["off_exposures"]
+        if prepare:
+            result = prepare_acquisition_bands(on, off_exposures=off, **options())
+        else:
+            result = reinterpret_2d_planes(on, off_exposures=off, storage_order="direction-major")
+        observed = getattr(result, output_field)
+        assert isinstance(observed, np.ndarray) and observed.size and np.isfinite(observed).all()
+        return observed
+
+    checked = observe(legal)
+    if not prepare:
+        np.testing.assert_array_equal(checked, legal)
+    np.testing.assert_array_equal(observe(legal.view(ConsistentArray)), checked)
+
+    reason = _RAW_IMAGE_SUBJECT if field == "images" else _OFF_SAMPLE_SUBJECT
+    with pytest.raises(AcquisitionModeError, match=rf"(?i){reason}") as caught:
+        observe(inexact)
+    assert caught.type is AcquisitionModeError
+
+    try:
+        actual = observe(split)
+    except AcquisitionModeError as rejected:
+        assert type(rejected) is AcquisitionModeError
+        assert re.search(reason, str(rejected), re.IGNORECASE), str(rejected)
+    else:
+        assert np.array_equal(actual, checked), (
+            f"{entry} used substituted {field}: checked first output {checked.flat[0]!r}, "
+            f"actual {actual.flat[0]!r}; substituted input {sample!r}"
+        )
+
+
+def test_transfer_sample_indexing_preserves_checked_values(
+    acquisition_record_consumer: tuple[Any, type[ValueError]],
+) -> None:
+    from dataclasses import replace
+
+    from simrecon import ParameterEstimationError, prepare_acquisition_bands
+
+    consume, error = acquisition_record_consumer
+    bands = prepare_acquisition_bands(raw_pattern(y=2, x=4), **options())
+    table = transfer(complex_values=True)
+    original = table.samples
+    assert original.dtype == np.complex128
+    alternate = original.copy()
+    alternate[1:] *= 2
+    alternate.flags.writeable = False
+
+    stable = ConsistentArray(original.shape, dtype=np.complex128)
+    split = SplitIndexArray(original.shape, dtype=np.complex128)
+    for samples in (stable, split):
+        np.copyto(samples, original)
+        samples.flags.writeable = False
+        assert samples.dtype == np.complex128 and samples.flags.owndata
+        assert not samples.flags.writeable
+        np.testing.assert_array_equal(np.asarray(samples), original)
+    split.indexed_values = alternate
+    np.testing.assert_array_equal(split[1:], alternate[1:])
+    assert not np.array_equal(split[1:], original[1:])
+
+    def observe(samples: np.ndarray) -> np.ndarray:
+        result = consume(bands, replace(table, samples=samples))
+        assert_public_control(result, error)
+        return result.modulation if error is ParameterEstimationError else result.image
+
+    checked = observe(original)
+    np.testing.assert_array_equal(observe(stable), checked)
+    alternate_result = observe(alternate)
+    assert not np.array_equal(alternate_result, checked), "Doubled samples must affect the result"
+
+    invalid = original.copy()
+    invalid[1, 0, 0] = complex(np.inf)
+    invalid.flags.writeable = False
+    with pytest.raises(error) as caught:
+        observe(invalid)
+    assert caught.type is error
+    assert has_used_array_reason("samples", str(caught.value)), str(caught.value)
+
+    try:
+        actual = observe(split)
+    except error as rejected:
+        assert type(rejected) is error
+        assert has_used_array_reason("samples", str(rejected)), str(rejected)
+    else:
+        assert np.array_equal(actual, checked), (
+            "Result differs from the checked transfer samples; "
+            f"matches the genuine doubled table: {np.array_equal(actual, alternate_result)}"
+        )
+
+
+def test_masked_negative_noise_fails_used_field_validation(
+    acquisition_record_consumer: tuple[Any, type[ValueError]],
+) -> None:
+    from dataclasses import replace
+
+    from simrecon import ParameterEstimationError, prepare_acquisition_bands
+
+    consume, error = acquisition_record_consumer
+    bands = prepare_acquisition_bands(raw_pattern(y=2, x=4), **options())
+    table = transfer()
+    positive = np.ones((1, 1, 2), dtype=np.float64)
+    negative = positive.copy()
+    negative[0, 0, 1] = -1e6
+    masked_negative = np.ma.array(negative, mask=[[[False, True]]])
+    np.testing.assert_array_equal(np.asarray(masked_negative), negative)
+    np.testing.assert_array_equal(np.ma.getmaskarray(masked_negative), [[[False, True]]])
+    positive_unmasked = np.ma.array(positive, mask=False)
+
+    def observe(noise: np.ndarray) -> np.ndarray:
+        result = consume(replace(bands, noise_variance_factors=noise), table)
+        assert_public_control(result, error)
+        return result.modulation if error is ParameterEstimationError else result.image
+
+    checked = observe(positive)
+    np.testing.assert_array_equal(observe(positive_unmasked), checked)
+    if error is not ParameterEstimationError:
+        alternate = positive.copy()
+        alternate[0, 0, 1] = 2.0
+        assert not np.array_equal(observe(alternate), checked), "Side-order noise must affect image"
+
+    reason = r"(?i)\bnoise(?:_variance_factors)?\b"
+    with pytest.raises(error, match=reason) as caught:
+        observe(negative)
+    assert caught.type is error
+
+    with pytest.raises(error, match=reason) as caught:
+        actual = observe(masked_negative)
+        pytest.fail(
+            "Masked negative backing noise was accepted; "
+            f"result equals the positive control: {np.array_equal(actual, checked)}"
+        )
+    assert caught.type is error

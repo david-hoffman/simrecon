@@ -174,10 +174,11 @@ def event(
     append(trace, ModeEvent(kind, t, d, z, p, tuple(captured)))
 
 
-def raw_shape(images: Any) -> tuple[int, ...]:
-    """Validate canonical raw dimensions and source per-frame extents."""
+def raw_images(images: Any) -> tuple[Array, tuple[int, ...]]:
+    """Resolve raw image storage and validate dimensions and per-frame extents."""
     if not issubclass(type(images), np.ndarray):
         raise AcquisitionModeError("images must be a NumPy array")
+    images = np.asarray(images)
     if images.ndim != 6:
         raise AcquisitionModeError("images must be a six-dimensional NumPy array")
     shape = tuple(integer(n, "images dimension") for n in images.shape)
@@ -193,7 +194,7 @@ def raw_shape(images: Any) -> tuple[int, ...]:
     ):
         signed(count, name)
     extent(shape, 8)
-    return shape
+    return images, shape
 
 
 def literal(value: Any, name: str, choices: tuple[str, ...]) -> str:
@@ -210,12 +211,15 @@ def layout(value: Any) -> str:
     return literal(value, "storage_order", ("direction-major", "z-major"))
 
 
-def off_count(off: Any, shape: tuple[int, ...]) -> int:
-    """Validate off exposure dimensions and count before inspecting values."""
+def raw_off(off: Any, shape: tuple[int, ...]) -> tuple[Array | None, int]:
+    """Resolve off storage and validate dimensions and count before inspecting values."""
     if off is None:
-        return 0
+        return None, 0
     t, d, p, z, y, x = shape
-    if not issubclass(type(off), np.ndarray) or off.ndim != 7:
+    if not issubclass(type(off), np.ndarray):
+        raise AcquisitionModeError("off_exposures require a NumPy array with axes (T,D,P,Z,N,Y,X)")
+    off = np.asarray(off)
+    if off.ndim != 7:
         raise AcquisitionModeError("off_exposures require a NumPy array with axes (T,D,P,Z,N,Y,X)")
     n = integer(off.shape[4], "off_exposures N")
     if off.shape != (t, d, p, z, n, y, x):
@@ -224,7 +228,7 @@ def off_count(off: Any, shape: tuple[int, ...]) -> int:
     signed(d * p * (n + 1), "direction/phase/exposure count")
     signed(t * d * z * p * (n + 1), "header exposure count")
     extent(off.shape, 8)
-    return n
+    return off, n
 
 
 def zoom(value: Any, y: int, x: int) -> float:
@@ -305,18 +309,18 @@ def reinterpret_2d_planes(
         Invalid values, unsafe representation or allocation failure.
     """
     with operation():
-        shape = raw_shape(images)
+        images, shape = raw_images(images)
         t, d, p, z, y, x = shape
         order = layout(storage_order)
-        n = off_count(off_exposures, shape)
+        off_exposures, n = raw_off(off_exposures, shape)
         signed(t * z, "effective time count")
         target = (t * z, d, p, 1, y, x)
         extent(target, images.dtype.itemsize)
         extent((z, d, 2), 8)
-        if n:
+        if off_exposures is not None:
             extent((t * z, d, p, 1, n, y, x), off_exposures.dtype.itemsize)
         array_metadata(images, "images", shape, raw=True)
-        if n:
+        if off_exposures is not None:
             array_metadata(off_exposures, "off_exposures", off_exposures.shape, raw=True)
         extra = (
             None
@@ -325,7 +329,9 @@ def reinterpret_2d_planes(
         )
         result = np.empty(target, dtype=images.dtype)
         result_off = (
-            None if not n else np.empty((t * z, d, p, 1, n, y, x), dtype=off_exposures.dtype)
+            None
+            if off_exposures is None
+            else np.empty((t * z, d, p, 1, n, y, x), dtype=off_exposures.dtype)
         )
         result_extra = None if extra is None else np.empty(target[:4], dtype=np.float64)
         labels = np.empty((z, d, 2), dtype=np.int64)
@@ -338,6 +344,7 @@ def reinterpret_2d_planes(
                 for time in range(t):
                     result[time * z + q, direction, :, 0] = images[time, old_d, :, old_z]
                     if result_off is not None:
+                        assert off_exposures is not None
                         result_off[time * z + q, direction, :, 0] = off_exposures[
                             time, old_d, :, old_z
                         ]

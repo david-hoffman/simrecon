@@ -18,7 +18,13 @@ from scipy.fft import ifftn
 from ._acquisition_layout import ModeEvent, event
 from ._acquisition_modes import AcquisitionBands, _UsedBands, validate_used
 from ._model import SimreconError
-from ._optical_transfer import OpticalTransfer, OtfError, _valid_transfer, sample_otf
+from ._optical_transfer import (
+    OpticalTransfer,
+    OtfError,
+    _sample_transfer,
+    _Transfer,
+    _valid_transfer,
+)
 from ._preparation import _REFERENCE as _BAND_REFERENCE
 from ._preparation import PreparedBands
 
@@ -356,7 +362,7 @@ class _Precise:
 
 @dataclass(frozen=True)
 class _Filter:
-    transfer: OpticalTransfer
+    transfer: _Transfer
     carriers: _F64
     amplitudes: _C128
     inverse_noise: _F64
@@ -400,7 +406,7 @@ class _Filter:
         # Do not skip the accepted sampler when a later multiplier is zero.
         try:
             return complex(
-                sample_otf(self.transfer, x, y, z, dkz_cyc_um=self.dzf, order=order).item()
+                _sample_transfer(self.transfer, x, y, z, dkz_cyc_um=self.dzf, order=order).item()
             )
         except OtfError as error:
             raise ReconstructionError(f"transfer sampling failed: {error}") from error
@@ -675,8 +681,8 @@ def reconstruct_known(
     with _operation():
         grid, used = _validate_bands(bands)
         acquisition = used is not None
-        transfer = _valid_transfer(transfer, require_actual=acquisition)
-        if transfer.norders < grid.orders:
+        table = _valid_transfer(transfer, require_actual=acquisition)
+        if table.norders < grid.orders:
             raise ReconstructionError("transfer has insufficient orders")
         wavelength = _integer(wavelength_nm, "wavelength_nm")
         if wavelength > 32767:
@@ -728,11 +734,7 @@ def reconstruct_known(
         if power and exponent is None:
             raise ReconstructionError("output_taper='power' requires power_taper_exponent")
         if grid.mode == "2d":
-            k = (
-                transfer.samples.shape[-1]
-                if transfer.layout == "radial"
-                else transfer.samples.shape[1]
-            )
+            k = table.samples.shape[-1] if table.layout == "radial" else table.samples.shape[1]
             if k != 1:
                 raise ReconstructionError("true 2d bands require transfer axial K=1")
         directions = grid.shape[1]
@@ -743,7 +745,7 @@ def reconstruct_known(
             modulation, "modulation", (directions, grid.orders - 1), complex_ok=True
         )
         dzf = _positive(
-            1 / (grid.shape[3] * grid.dz) if grid.dz > 0 else transfer.dkz_cyc_um, "dz sampling"
+            1 / (grid.shape[3] * grid.dz) if grid.dz > 0 else table.dkz_cyc_um, "dz sampling"
         )
         radius, cuts = _support(grid, carriers, wavelength, na, immersion, dzf)
         dx = _positive(1 / (grid.shape[-1] * grid.dxy), "dxy sampling")
@@ -782,7 +784,7 @@ def reconstruct_known(
                 _Precise(carriers, grid.orders, radius, mode_trace, t) if precise_taper else None
             )
             filtering = _Filter(
-                transfer,
+                table,
                 carriers,
                 amplitudes,
                 inverse_noise[t] if acquisition else inverse_noise,

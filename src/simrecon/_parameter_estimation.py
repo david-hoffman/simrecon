@@ -16,7 +16,13 @@ from numpy.typing import NDArray
 
 from ._acquisition_modes import AcquisitionBands, _UsedBands, validate_used
 from ._model import SimreconError
-from ._optical_transfer import OpticalTransfer, OtfError, _valid_transfer, sample_otf
+from ._optical_transfer import (
+    OpticalTransfer,
+    OtfError,
+    _sample_transfer,
+    _Transfer,
+    _valid_transfer,
+)
 from ._preparation import _REFERENCE as _BAND_REFERENCE
 from ._preparation import PreparedBands
 
@@ -184,7 +190,7 @@ class _Grid:
     mode: str = "3d"
 
 
-def _validate_bands(bands: Any, transfer: OpticalTransfer) -> tuple[_Grid, _UsedBands | None]:
+def _validate_bands(bands: Any, transfer: _Transfer) -> tuple[_Grid, _UsedBands | None]:
     if issubclass(type(bands), AcquisitionBands):
         used = validate_used(bands)
         shape = used.shape
@@ -287,7 +293,7 @@ class _Estimator:
     def __init__(
         self,
         quadratures: _Array,
-        transfer: OpticalTransfer,
+        transfer: _Transfer,
         grid: _Grid,
         radial: float,
         cutoff: int,
@@ -318,7 +324,7 @@ class _Estimator:
     def sample(self, xy: tuple[float, float], z: int, order: int) -> complex:
         try:
             return complex(
-                sample_otf(
+                _sample_transfer(
                     self.transfer, xy[0], xy[1], z, dkz_cyc_um=self.grid.dzf, order=order
                 ).item()
             )
@@ -752,15 +758,13 @@ def estimate_parameters(
         ):
             if type(flag) is not bool:
                 raise ParameterEstimationError(f"{name} must be an actual boolean")
-        transfer = _valid_transfer(
-            transfer, require_actual=issubclass(type(bands), AcquisitionBands)
-        )
-        grid, used = _validate_bands(bands, transfer)
+        table = _valid_transfer(transfer, require_actual=issubclass(type(bands), AcquisitionBands))
+        grid, used = _validate_bands(bands, table)
         if search_carriers and grid.orders < (2 if grid.shape[3] == 1 else 3):
             raise ParameterEstimationError(
                 "carrier search requires two orders in 2d or three in 3d"
             )
-        if transfer.norders < grid.orders:
+        if table.norders < grid.orders:
             raise ParameterEstimationError("transfer requires all used orders")
         wavelength = _integer(wavelength_nm, "wavelength_nm")
         if wavelength > 32767:
@@ -793,7 +797,7 @@ def estimate_parameters(
             cutoff = max(z // 2 - 1, 0)
         _signed(z + cutoff, "wrapped axial z+Z")
         quadratures = bands.quadratures if used is None else used.quadratures
-        estimator = _Estimator(quadratures, transfer, grid, radial, cutoff, omit_kz0)
+        estimator = _Estimator(quadratures, table, grid, radial, cutoff, omit_kz0)
         carriers = np.empty((times, directions, 2), dtype=np.float64)
         raw = np.empty((times, directions, grid.orders - 1), dtype=np.complex128)
         modulation = np.empty_like(raw)

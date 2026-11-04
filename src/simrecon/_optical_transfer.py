@@ -61,6 +61,20 @@ class OpticalTransfer:
 
 
 @dataclass(frozen=True)
+class _CheckedTransfer:
+    """Private sampling data borrowing the validated complex128 storage."""
+
+    samples: _C128
+    layout: str
+    dkr_cyc_um: float
+    dkz_cyc_um: float
+    norders: int
+
+
+_Transfer = OpticalTransfer | _CheckedTransfer
+
+
+@dataclass(frozen=True)
 class PreparedOtf:
     """Combined transfer with the empirical preparation's public diagnostics."""
 
@@ -223,7 +237,7 @@ def declare_otf(
     return OpticalTransfer(_owned(array, np.complex128), layout, dkr, dkz, array.shape[0])
 
 
-def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> OpticalTransfer:
+def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer:
     transfer_type_valid = (
         issubclass(type(transfer), OpticalTransfer)
         if require_actual
@@ -238,16 +252,18 @@ def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> OpticalTr
     if not array_type_valid:
         raise OtfError("transfer samples must be an owned complex128 array")
     layout = transfer.layout
-    _table_shape(array, layout)
-    if array.dtype != np.complex128 or array.flags.writeable or not array.flags.owndata:
+    samples = np.asarray(array) if require_actual else array
+    _table_shape(samples, layout)
+    flags = np.ndarray.flags.__get__(array) if require_actual else array.flags
+    if samples.dtype != np.complex128 or flags.writeable or not flags.owndata:
         raise OtfError("transfer samples must be owned, read-only complex128")
-    _finite(array, "transfer samples")
+    _finite(samples, "transfer samples")
     dkr = transfer.dkr_cyc_um
     _scalar(dkr, "transfer dkr", positive=True)
     dkz = transfer.dkz_cyc_um
     _scalar(dkz, "transfer dkz", positive=True)
     norders = transfer.norders
-    if _integer(norders, "norders", 1) != array.shape[0]:
+    if _integer(norders, "norders", 1) != samples.shape[0]:
         raise OtfError("transfer norders disagrees with samples")
     revision = transfer.source_revision
     if revision != "SVN307":
@@ -256,8 +272,7 @@ def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> OpticalTr
     if reference != _REFERENCE:
         raise OtfError("invalid transfer source identity")
     if require_actual:
-        # Keep the validated values for CE06 sampling without copying the sample table.
-        return OpticalTransfer(array, layout, dkr, dkz, norders, revision, reference)
+        return _CheckedTransfer(samples, layout, dkr, dkz, norders)
     return transfer
 
 
@@ -354,7 +369,36 @@ def sample_otf(
         If inputs or source intermediates are invalid, any vertex leaves the
         allocation (even at zero weight), or evaluation/allocation fails.
     """
-    transfer = _valid_transfer(transfer)
+    return _interpolate(
+        _valid_transfer(transfer), kx_cyc_um, ky_cyc_um, kz_index, dkz_cyc_um, order
+    )
+
+
+@_operation
+def _sample_transfer(
+    transfer: _Transfer,
+    kx: Any,
+    ky: Any,
+    kz: Any,
+    *,
+    dkz_cyc_um: float,
+    order: int,
+) -> _C128:
+    if type(transfer) is _CheckedTransfer:
+        return _interpolate(transfer, kx, ky, kz, dkz_cyc_um, order)
+    return sample_otf(
+        cast(OpticalTransfer, transfer), kx, ky, kz, dkz_cyc_um=dkz_cyc_um, order=order
+    )
+
+
+def _interpolate(
+    transfer: _Transfer,
+    kx_cyc_um: Any,
+    ky_cyc_um: Any,
+    kz_index: Any,
+    dkz_cyc_um: float,
+    order: int,
+) -> _C128:
     selected = _integer(order, "order")
     if selected >= transfer.norders:
         raise OtfError("order is outside the complete table")

@@ -22,11 +22,11 @@ from ._acquisition_layout import (
     integer,
     layout,
     literal,
-    off_count,
     operation,
     output_extents,
     owned,
-    raw_shape,
+    raw_images,
+    raw_off,
     real_array,
     scalar,
     signed,
@@ -100,7 +100,10 @@ def validate_used(bands: AcquisitionBands) -> _UsedBands:
     if (mode == "2d" and z != 1) or (mode == "3d" and z < 2) or x < 2 or x % 2:
         raise AcquisitionModeError("bands dimensions disagree with acquisition_mode/even X")
     data = bands.quadratures
-    if not issubclass(type(data), np.ndarray) or data.dtype != np.complex128 or data.ndim != 6:
+    if not issubclass(type(data), np.ndarray):
+        raise AcquisitionModeError("bands quadratures require a six-axis complex128 NumPy array")
+    data = np.asarray(data)
+    if data.dtype != np.complex128 or data.ndim != 6:
         raise AcquisitionModeError("bands quadratures require a six-axis complex128 NumPy array")
     q = data.shape[2]
     orders = (q + 1) // 2
@@ -109,6 +112,7 @@ def validate_used(bands: AcquisitionBands) -> _UsedBands:
     noise = bands.noise_variance_factors
     if not issubclass(type(noise), np.ndarray):
         raise AcquisitionModeError("bands noise variance factors must be a NumPy array")
+    noise = np.asarray(noise)
     if noise.dtype != np.float64 or noise.shape != (t, d, orders):
         raise AcquisitionModeError("bands noise_variance_factors require float64 (T,D,O)")
     lateral = zoom(bands.lateral_zoom, y, x)
@@ -387,7 +391,7 @@ def prepare_acquisition_bands(
         Invalid declaration, unsafe source branch or failed numerical operation.
     """
     with operation():
-        shape = raw_shape(images)
+        images, shape = raw_images(images)
         times, directions, phases, nz, ny, nx = shape
         acquisition_mode = literal(acquisition_mode, "acquisition_mode", ("2d", "3d"))
         two_d = acquisition_mode == "2d"
@@ -427,7 +431,7 @@ def prepare_acquisition_bands(
             if linespacing_um is None
             else scalar(linespacing_um, "linespacing_um", positive=True)
         )
-        n = off_count(off_exposures, shape)
+        off_exposures, n = raw_off(off_exposures, shape)
         selectors = (0,) * orders
         if combine_off_orders is not None:
             if orders > 25:
@@ -498,7 +502,7 @@ def prepare_acquisition_bands(
             extent(sh, size)
         fcount = signed(times * directions * nz * phases * (n + 1), "metadata exposure count")
         array_metadata(images, "images", shape, raw=True)
-        if n:
+        if off_exposures is not None:
             array_metadata(off_exposures, "off_exposures", off_exposures.shape, raw=True)
         bmap = (
             real_array(background, "background", (ny, nx))
@@ -606,6 +610,7 @@ def prepare_acquisition_bands(
                     off = None if not n else np.zeros((phases, ny, nx))
                     for p in range(phases):
                         if off is not None:
+                            assert off_exposures is not None
                             for e in range(n):
                                 off[p] += camera.load(off_exposures[t, d, p, z, e], (t, d, z, p, e))
                             _edge(off[p], width)
