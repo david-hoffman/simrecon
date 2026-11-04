@@ -701,3 +701,108 @@ def test_complex_workspace_unsigned_limit_is_independently_binding() -> None:
             "allocation failure is not early representation rejection"
         )
         cause = cause.__cause__
+
+
+@pytest.fixture(params=["estimate", "reconstruct"])
+def acquisition_record_consumer(request: pytest.FixtureRequest) -> tuple[Any, type[ValueError]]:
+    from functools import partial
+
+    from simrecon import (
+        ParameterEstimationError,
+        ReconstructionError,
+        estimate_parameters,
+        reconstruct_known,
+    )
+
+    carriers = np.array([[0.1, 0.02]])
+    if request.param == "estimate":
+        return (
+            partial(
+                estimate_parameters,
+                initial_carriers_cyc_um=carriers,
+                search_carriers=False,
+                **optics(),
+            ),
+            ParameterEstimationError,
+        )
+    return (
+        partial(
+            reconstruct_known,
+            carriers_cyc_um=carriers,
+            modulation=np.ones((1, 1)),
+            **known_options(),
+        ),
+        ReconstructionError,
+    )
+
+
+@pytest.mark.parametrize("valid", [True, False], ids=["exact-string", "mutable-lookalike"])
+def test_acquisition_provenance_requires_exact_strings(
+    acquisition_record_consumer: tuple[Any, type[ValueError]], valid: bool
+) -> None:
+    from collections import UserString
+
+    from c_acquisition_fixture import SOURCE10
+    from simrecon import prepare_acquisition_bands
+
+    bands = copy(prepare_acquisition_bands(raw_pattern(y=2, x=4), **options()))
+    source, digest = SOURCE10[0]
+    if valid:
+        provenance = SOURCE10
+    else:
+        provenance = ((source, UserString(digest)), *SOURCE10[1:])
+        assert provenance == SOURCE10
+    object.__setattr__(bands, "reference_sha256", provenance)
+
+    consume, error = acquisition_record_consumer
+    table = transfer()
+    if valid:
+        assert consume(bands, table) is not None
+    else:
+        with pytest.raises(
+            error,
+            match=(
+                r"(?im)\b(?:acquisition|acquisitionbands|bands|ten[ -]file)[ ._-]+"
+                r"(?:reference_sha256|(?:input[ -]+)?provenance|"
+                r"reference[ -]+(?:hashes|digests))\b|"
+                r"^(?=.*\b(?:reference_sha256|mainfile\.c)\b)"
+                r"(?=.*\b(?:digest|hash|pairs?|paired|str(?:ing)?s?|UserString)\b).+"
+            ),
+        ) as caught:
+            consume(bands, table)
+        assert caught.type is error
+
+
+@pytest.mark.parametrize("valid", [True, False], ids=["last-fitting", "first-overflow"])
+def test_acquisition_declared_on_frame_count_fits_signed32(
+    acquisition_record_consumer: tuple[Any, type[ValueError]], valid: bool
+) -> None:
+    from simrecon import prepare_acquisition_bands
+
+    bands = copy(prepare_acquisition_bands(raw_pattern(t=5, y=2, x=4), **options()))
+    times, directions, _, sections, height, width = bands.input_shape
+    signed_max = 2**31 - 1
+    max_phases = signed_max // (times * directions * sections)
+    phases = max_phases if valid else max_phases + 1
+    # The per-section design and the one-time frame count fit in both cases.
+    assert bands.quadratures.shape[2] * phases <= signed_max
+    assert directions * sections * phases <= signed_max
+    object.__setattr__(bands, "input_shape", (times, directions, phases, sections, height, width))
+
+    consume, error = acquisition_record_consumer
+    table = transfer()
+    if valid:
+        assert consume(bands, table) is not None
+    else:
+        with pytest.raises(
+            error,
+            match=(
+                r"(?i)\b(?:T\s*[*×]\s*D\s*[*×]\s*(?:Z\s*[*×]\s*P|P\s*[*×]\s*Z)|"
+                r"(?:aggregate|declared|total)[ _-]+"
+                r"(?:on[ _-]+frames?|frame[ _-]+count|number[ _-]+of[ _-]+frames)|"
+                r"number[ _-]+of[ _-]+on[ _-]+frames|"
+                r"on[ _-]+frames?[ _-]+(?:count|product|total))\b"
+            ),
+        ) as caught:
+            consume(bands, table)
+        assert caught.type is error

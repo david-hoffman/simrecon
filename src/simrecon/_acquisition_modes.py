@@ -108,13 +108,29 @@ def validate_used(
     scale = scalar(bands.input_scale, "input_scale", positive=True)
     if scale != 1 / (x * y * z * lateral**2 * axial * d):
         raise AcquisitionModeError("bands input_scale disagrees with acquisition normalization")
-    if bands.source_revision != "SVN307" or bands.reference_sha256 != REFERENCE:
-        raise AcquisitionModeError("bands source/reference identity is invalid")
+    revision, reference = bands.source_revision, bands.reference_sha256
+    if type(revision) is not str or revision != "SVN307":
+        raise AcquisitionModeError("bands source_revision must be the Python string SVN307")
+    if (
+        type(reference) is not tuple
+        or len(reference) != len(REFERENCE)
+        or any(
+            type(pair) is not tuple
+            or len(pair) != 2
+            or any(type(value) is not str for value in pair)
+            for pair in reference
+        )
+        or reference != REFERENCE
+    ):
+        raise AcquisitionModeError(
+            "bands reference_sha256 must be the approved ordered tuple of Python string pairs"
+        )
     for name, count in (
         ("native volume", x * y * z),
         ("padded volume", (x + 2) * y * z),
         ("half volume", (x // 2 + 1) * y * z),
         ("direction/z/phase count", d * z * p),
+        ("declared on-frame count (T*D*Z*P)", t * d * z * p),
         ("quadrature/phase count", q * p),
         ("direction/order count", d * orders),
     ):
