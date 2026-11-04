@@ -78,6 +78,8 @@ def scalar(value: Any, name: str, *, positive: bool = False) -> float:
     result = float(value)
     if not math.isfinite(result) or (positive and result <= 0):
         raise AcquisitionModeError(f"{name} must be finite" + (" and positive" if positive else ""))
+    if abs(result) > F32_MAX:
+        raise AcquisitionModeError(f"{name} exceeds float32 magnitude")
     return result
 
 
@@ -98,11 +100,12 @@ def extent(shape: tuple[int, ...], itemsize: int) -> None:
             raise AcquisitionModeError("array shape/stride/byte extent exceeds native intp")
 
 
-def array_metadata(value: Any, name: str, shape: tuple[int, ...], *, raw: bool = False) -> None:
-    """Validate real array representation before copying or numerical work."""
+def array_metadata(value: Any, name: str, shape: tuple[int, ...], *, raw: bool = False) -> Array:
+    """Validate and return the plain array backing the supplied values."""
     extent(shape, 8)
     if not issubclass(type(value), np.ndarray):
         raise AcquisitionModeError(f"{name} must be a NumPy array")
+    value = np.asarray(value)
     _array_metadata(value, name, shape)
     finite(value, name)
     if raw:
@@ -116,12 +119,13 @@ def array_metadata(value: Any, name: str, shape: tuple[int, ...], *, raw: bool =
             ) from error
     elif (value > F32_MAX).any() or (value < -F32_MAX).any():
         raise AcquisitionModeError(f"{name} exceeds float32 magnitude")
+    return value
 
 
 def real_array(value: Any, name: str, shape: tuple[int, ...]) -> Array:
     """Copy a validated real mathematical array as binary64."""
-    array_metadata(value, name, shape)
-    return np.array(value, dtype=np.float64, copy=True)
+    checked = array_metadata(value, name, shape)
+    return np.array(checked, dtype=np.float64, copy=True)
 
 
 def owned(value: Array, *, writable: bool = False) -> Array:

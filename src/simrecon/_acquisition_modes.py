@@ -436,17 +436,16 @@ def prepare_acquisition_bands(
         if combine_off_orders is not None:
             if orders > 25:
                 raise AcquisitionModeError("combine_off_orders fixed allocation requires O<=25")
-            if (
-                not issubclass(type(combine_off_orders), np.ndarray)
-                or combine_off_orders.shape != (orders,)
-                or combine_off_orders.dtype.kind not in "iu"
-            ):
+            stored = (
+                np.asarray(combine_off_orders)
+                if issubclass(type(combine_off_orders), np.ndarray)
+                else None
+            )
+            if stored is None or stored.shape != (orders,) or stored.dtype.kind not in "iu":
                 raise AcquisitionModeError(
                     "combine_off_orders requires an integer NumPy (O,) array"
                 )
-            selectors = tuple(
-                integer(v, "combine_off_orders", minimum=-(2**31)) for v in combine_off_orders
-            )
+            selectors = tuple(integer(v, "combine_off_orders", minimum=-(2**31)) for v in stored)
         combine = any(v > 0 for v in selectors)
         if combine and n == 0:
             raise AcquisitionModeError("positive combine_off_orders requires off exposures")

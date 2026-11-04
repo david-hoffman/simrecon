@@ -1779,3 +1779,292 @@ def test_masked_negative_noise_fails_used_field_validation(
             f"result equals the positive control: {np.array_equal(actual, checked)}"
         )
     assert caught.type is error
+
+
+def test_superseded_phase_list_rejects_masked_nonfinite_value() -> None:
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands
+
+    images = np.ones((1, 1, 3, 1, 2, 4), dtype=np.float64)
+    settings = options(phase_steps_rad=np.array([2.0]))
+    legal = np.zeros((1, 3), dtype=np.float64)
+    unmasked = np.ma.array(legal, mask=False)
+    invalid = legal.copy()
+    invalid[0, 1] = np.nan
+    mask = [[False, True, False]]
+    masked = np.ma.array(invalid, mask=mask)
+    np.testing.assert_array_equal(np.asarray(masked), invalid)
+    np.testing.assert_array_equal(np.ma.getmaskarray(masked), mask)
+    assert np.isnan(np.ma.getdata(masked)[0, 1]) and np.ma.is_masked(masked[0, 1])
+
+    for phases in (legal, unmasked):
+        result = prepare_acquisition_bands(images, phases_rad=phases, **settings)
+        assert result.phase_policies == ((("steps",),),)
+        np.testing.assert_array_equal(result.phase_angles_rad, [[[[0.0, 2.0, 4.0]]]])
+
+    reason = (
+        r"(?i)\b(?:phases[ _-]+rad|phase[ _-]+list|"
+        r"(?:explicit|supplied)[ _-]+(?:phases|phase[ _-]+(?:angles|array)))\b"
+    )
+    with pytest.raises(AcquisitionModeError, match=reason) as caught:
+        prepare_acquisition_bands(images, phases_rad=invalid, **settings)
+    assert caught.type is AcquisitionModeError
+
+    with pytest.raises(AcquisitionModeError, match=reason) as caught:
+        result = prepare_acquisition_bands(images, phases_rad=masked, **settings)
+        pytest.fail(f"Masked nonfinite phases_rad accepted with policy {result.phase_policies!r}")
+    assert caught.type is AcquisitionModeError
+
+
+def test_regrouped_exposure_background_rejects_masked_out_of_magnitude_value() -> None:
+    from simrecon import AcquisitionModeError, reinterpret_2d_planes
+
+    images = np.ones((1, 1, 3, 1, 2, 4), dtype=np.float64)
+    legal = np.ones((1, 1, 3, 1), dtype=np.float64)
+    unmasked = np.ma.array(legal, mask=False)
+    invalid = legal.copy()
+    selected = (0, 0, 1, 0)
+    invalid[selected] = float(2**128)
+    mask = np.zeros(legal.shape, dtype=bool)
+    mask[selected] = True
+    masked = np.ma.array(invalid, mask=mask)
+    np.testing.assert_array_equal(np.asarray(masked), invalid)
+    np.testing.assert_array_equal(np.ma.getmaskarray(masked), mask)
+    actual = np.ma.getdata(masked)[selected]
+    assert actual == float(2**128) and actual > float(np.finfo(np.float32).max)
+    assert np.ma.is_masked(masked[selected])
+
+    for background in (legal, unmasked):
+        result = reinterpret_2d_planes(
+            images, storage_order="z-major", exposure_background=background
+        )
+        np.testing.assert_array_equal(result.exposure_background, legal)
+
+    reason = r"(?i)\b(?:exposure|(?:per[ _-]+)?frame|per[ _-]+exposure)[ _-]+backgrounds?\b"
+    with pytest.raises(AcquisitionModeError, match=reason) as caught:
+        reinterpret_2d_planes(images, storage_order="z-major", exposure_background=invalid)
+    assert caught.type is AcquisitionModeError
+
+    with pytest.raises(AcquisitionModeError, match=reason) as caught:
+        result = reinterpret_2d_planes(images, storage_order="z-major", exposure_background=masked)
+        pytest.fail(
+            f"Masked out-of-magnitude exposure_background accepted: {result.exposure_background!r}"
+        )
+    assert caught.type is AcquisitionModeError
+
+
+def test_lateral_pitch_checks_magnitude_of_actual_float_value() -> None:
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands
+
+    class Pitch(float):
+        """A genuine float whose magnitude operation reports one micrometre."""
+
+        def __abs__(self) -> float:
+            return 1.0
+
+    images = np.ones((1, 1, 3, 1, 2, 4), dtype=np.float64)
+    legal = 1.0
+    stable = Pitch(legal)
+    invalid = 1e100
+    out_of_range = Pitch(invalid)
+    assert float(stable) == abs(stable) == legal
+    assert float.__float__(out_of_range) == float(out_of_range) == invalid
+    assert np.isfinite(invalid) and invalid > float(np.finfo(np.float32).max)
+    assert abs(out_of_range) == legal
+
+    for pitch in (legal, stable):
+        result = prepare_acquisition_bands(images, **options(dxy_um=pitch))
+        assert result.dxy_um == legal
+
+    reason = r"(?i)\b(?:dxy(?:[ _-]+um)?|lateral[ _-]+(?:pixel[ _-]+)?(?:pitch|sampling|spacing))\b"
+    with pytest.raises(AcquisitionModeError, match=reason) as caught:
+        prepare_acquisition_bands(images, **options(dxy_um=invalid))
+    assert caught.type is AcquisitionModeError
+
+    with pytest.raises(AcquisitionModeError, match=reason) as caught:
+        result = prepare_acquisition_bands(images, **options(dxy_um=out_of_range))
+        pytest.fail(f"Out-of-magnitude lateral pitch published as dxy_um={result.dxy_um!r}")
+    assert caught.type is AcquisitionModeError
+
+
+def test_off_combination_validates_signed_selector_backing() -> None:
+    from collections.abc import Iterator
+
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands
+
+    class SkipOrderIteration(np.ndarray):
+        """Iteration presents two skipped orders regardless of the stored selectors."""
+
+        def __iter__(self) -> Iterator[Any]:
+            return iter((0, 0))
+
+    images = raw_pattern(y=2, x=4)
+    settings = options()
+    legal = np.array([0, 0], dtype=np.int32)
+    positive = np.array([1, 0], dtype=np.int32)
+    inconsistent = positive.view(SkipOrderIteration)
+    np.testing.assert_array_equal(np.asarray(inconsistent), [1, 0])
+    assert inconsistent.dtype == np.int32 and inconsistent.shape == (2,)
+    assert tuple(inconsistent) == (0, 0)
+
+    plain = prepare_acquisition_bands(images, combine_off_orders=legal, **settings)
+    stable = prepare_acquisition_bands(
+        images, combine_off_orders=legal.view(ConsistentArray), **settings
+    )
+    assert plain.off_quadratures is None and stable.off_quadratures is None
+    assert plain.quadratures.size and np.isfinite(plain.quadratures).all()
+    np.testing.assert_array_equal(stable.quadratures, plain.quadratures)
+
+    with pytest.raises(AcquisitionModeError) as caught:
+        prepare_acquisition_bands(images, combine_off_orders=positive, **settings)
+    assert caught.type is AcquisitionModeError
+
+    with pytest.raises(AcquisitionModeError) as caught:
+        prepare_acquisition_bands(images, combine_off_orders=inconsistent, **settings)
+        pytest.fail("Positive backing combine_off_orders accepted without off exposures")
+    assert caught.type is AcquisitionModeError
+
+
+@pytest.mark.parametrize(
+    "acquisition_record_consumer,field",
+    [
+        ("estimate", "dkr_cyc_um"),
+        ("estimate", "dkz_cyc_um"),
+        ("reconstruct", "dkr_cyc_um"),
+    ],
+    indirect=["acquisition_record_consumer"],
+    ids=["estimate-lateral", "estimate-axial", "reconstruct-lateral"],
+)
+def test_acquisition_consumers_use_checked_transfer_increment(
+    acquisition_record_consumer: tuple[Any, type[ValueError]], field: str
+) -> None:
+    from dataclasses import replace
+
+    from simrecon import ParameterEstimationError, prepare_acquisition_bands
+
+    class Increment(float):
+        """A float with a consistent reflected division by default."""
+
+        division_scale = 1
+
+        def __rtruediv__(self, numerator: float) -> float:
+            return numerator / (float(self) * self.division_scale)
+
+    class DoubledDivision(Increment):
+        """Reflected division behaves as if the declared increment were doubled."""
+
+        division_scale = 2
+
+    consume, error = acquisition_record_consumer
+    axial = field == "dkz_cyc_um"
+    z = 3 if axial else 1
+    bands = prepare_acquisition_bands(
+        raw_pattern(z=z, y=2, x=4), **options(acquisition_mode="3d" if axial else "2d")
+    )
+    table = transfer(k=z, complex_values=True)
+    increment = getattr(table, field)
+    doubled = 2 * increment
+    stable = Increment(increment)
+    inconsistent = DoubledDivision(increment)
+    assert np.isfinite(increment) and 0 < increment < doubled
+    assert float(stable) == float.__float__(inconsistent) == float(inconsistent) == increment
+    assert 1.0 / stable == 1.0 / increment
+    assert 1.0 / inconsistent == 1.0 / doubled != 1.0 / increment
+
+    def observe(candidate: Any) -> np.ndarray:
+        result = consume(bands, candidate)
+        assert_public_control(result, error)
+        return result.modulation if error is ParameterEstimationError else result.image
+
+    legal = observe(table)
+    np.testing.assert_array_equal(observe(replace(table, **{field: stable})), legal)
+    alternate = observe(replace(table, **{field: doubled}))
+    assert alternate.shape == legal.shape
+    assert not np.array_equal(alternate, legal), f"Doubled {field} must affect the result"
+
+    try:
+        actual = observe(replace(table, **{field: inconsistent}))
+    except error as rejected:
+        assert type(rejected) is error
+    else:
+        assert np.array_equal(actual, legal), (
+            f"Result differs from the checked {field}; "
+            f"matches doubled ordinary increment: {np.array_equal(actual, alternate)}"
+        )
+
+
+@pytest.mark.parametrize(
+    "acquisition_record_consumer",
+    ["estimate", "reconstruct"],
+    indirect=True,
+)
+def test_acquisition_consumers_validate_transfer_layout_text(
+    acquisition_record_consumer: tuple[Any, type[ValueError]],
+) -> None:
+    from dataclasses import replace
+
+    from simrecon import ParameterEstimationError, prepare_acquisition_bands
+
+    consume, error = acquisition_record_consumer
+    bands = prepare_acquisition_bands(raw_pattern(y=2, x=4), **options())
+    table = transfer(complex_values=True)
+    stable = MutableSelector("radial")
+    inconsistent = EqualToSelector("full")
+    inconsistent.claimed_literal = "radial"
+    assert table.layout == str(stable) == "radial" and table.samples.ndim == 3
+    assert str.__str__(inconsistent) == "full" and inconsistent == "radial"
+
+    def observe(candidate: Any) -> np.ndarray:
+        result = consume(bands, candidate)
+        assert_public_control(result, error)
+        return result.modulation if error is ParameterEstimationError else result.image
+
+    np.testing.assert_array_equal(observe(replace(table, layout=stable)), observe(table))
+
+    with pytest.raises(error) as caught:
+        consume(bands, replace(table, layout="full"))
+    assert caught.type is error
+
+    with pytest.raises(error) as caught:
+        consume(bands, replace(table, layout=inconsistent))
+        pytest.fail("Rank-three radial samples accepted with underlying transfer layout 'full'")
+    assert caught.type is error
+
+
+def test_known_acquisition_requires_enough_transfer_orders_without_filter_visits() -> None:
+    from dataclasses import replace
+
+    from simrecon import ReconstructionError, prepare_acquisition_bands, reconstruct_known
+
+    class StableOrderCount(int):
+        """An integer subclass with ordinary comparison."""
+
+    class HiddenShortage(int):
+        """A genuine integer whose less-than comparison conceals the shortage."""
+
+        def __lt__(self, other: int) -> bool:
+            return False
+
+    bands = prepare_acquisition_bands(raw_pattern(y=1, x=4), **options())
+    settings = known_options(carriers_cyc_um=np.array([[0.1, 0.02]]), modulation=np.ones((1, 1)))
+    sufficient = transfer()
+    insufficient = transfer(orders=1)
+    inconsistent = HiddenShortage(insufficient.norders)
+    assert bands.input_shape[-2] == 1 and bands.quadratures.shape[2] == 3
+    assert sufficient.norders == sufficient.samples.shape[0] == 2
+    assert int(inconsistent) == insufficient.norders == insufficient.samples.shape[0] == 1
+    assert int(inconsistent) < sufficient.norders and (inconsistent < sufficient.norders) is False
+
+    legal = reconstruct_known(bands, sufficient, **settings)
+    stable = reconstruct_known(bands, replace(sufficient, norders=StableOrderCount(2)), **settings)
+    assert_public_control(legal, ReconstructionError)
+    assert_public_control(stable, ReconstructionError)
+    np.testing.assert_array_equal(stable.image, legal.image)
+
+    with pytest.raises(ReconstructionError) as caught:
+        reconstruct_known(bands, insufficient, **settings)
+    assert caught.type is ReconstructionError
+
+    with pytest.raises(ReconstructionError) as caught:
+        reconstruct_known(bands, replace(insufficient, norders=inconsistent), **settings)
+        pytest.fail("One-order transfer accepted for a two-order one-row acquisition")
+    assert caught.type is ReconstructionError

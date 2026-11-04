@@ -117,7 +117,9 @@ def _integer(value: Any, name: str, minimum: int = 0) -> int:
     return result
 
 
-def _scalar(value: Any, name: str, *, positive: bool = False) -> float:
+def _scalar(
+    value: Any, name: str, *, positive: bool = False, check_converted: bool = False
+) -> float:
     if isinstance(value, (bool, np.bool_)) or not isinstance(value, Real):
         raise OtfError(f"{name} must be a finite real scalar")
     magnitude: Any = abs(value)
@@ -126,6 +128,8 @@ def _scalar(value: Any, name: str, *, positive: bool = False) -> float:
     result = float(value)
     if not isfinite(result) or (positive and result <= 0):
         raise OtfError(f"{name} is outside its finite physical representation")
+    if check_converted and abs(result) > _F32_MAX:
+        raise OtfError(f"{name} exceeds float32 magnitude")
     return result
 
 
@@ -186,10 +190,17 @@ def _owned(value: Any, dtype: Any) -> NDArray[Any]:
     return result
 
 
-def _table_shape(array: NDArray[Any], layout: Any) -> None:
+def _table_shape(
+    array: NDArray[Any], layout: Any, *, describe_layout_mismatch: bool = False
+) -> None:
     if not isinstance(layout, str) or layout not in ("radial", "full"):
         raise OtfError("unsupported transfer layout; use radial or full")
-    if array.ndim != (3 if layout == "radial" else 4) or any(d < 1 for d in array.shape):
+    expected_ndim = 3 if layout == "radial" else 4
+    if array.ndim != expected_ndim or any(d < 1 for d in array.shape):
+        if describe_layout_mismatch and array.ndim != expected_ndim:
+            raise OtfError(
+                f"{layout} transfer layout requires {expected_ndim} axes, got {array.ndim}"
+            )
         raise OtfError("complete transfer requires nonempty order and table axes")
     for dimension in array.shape:
         _i32(dimension, "transfer dimension")
@@ -252,18 +263,24 @@ def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer
     if not array_type_valid:
         raise OtfError("transfer samples must be an owned complex128 array")
     layout = transfer.layout
+    if require_actual:
+        if not issubclass(type(layout), str):
+            raise OtfError("unsupported transfer layout; use radial or full")
+        layout = str.__str__(layout)
     samples = np.asarray(array) if require_actual else array
-    _table_shape(samples, layout)
+    _table_shape(samples, layout, describe_layout_mismatch=require_actual)
     flags = np.ndarray.flags.__get__(array) if require_actual else array.flags
     if samples.dtype != np.complex128 or flags.writeable or not flags.owndata:
         raise OtfError("transfer samples must be owned, read-only complex128")
     _finite(samples, "transfer samples")
-    dkr = transfer.dkr_cyc_um
-    _scalar(dkr, "transfer dkr", positive=True)
-    dkz = transfer.dkz_cyc_um
-    _scalar(dkz, "transfer dkz", positive=True)
-    norders = transfer.norders
-    if _integer(norders, "norders", 1) != samples.shape[0]:
+    dkr = _scalar(
+        transfer.dkr_cyc_um, "transfer dkr", positive=True, check_converted=require_actual
+    )
+    dkz = _scalar(
+        transfer.dkz_cyc_um, "transfer dkz", positive=True, check_converted=require_actual
+    )
+    norders = _integer(transfer.norders, "norders", 1)
+    if norders != samples.shape[0]:
         raise OtfError("transfer norders disagrees with samples")
     revision = transfer.source_revision
     if revision != "SVN307":
