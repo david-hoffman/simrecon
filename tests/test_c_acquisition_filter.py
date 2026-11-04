@@ -40,8 +40,12 @@ def test_raw_known_image_fractional_embedding_dimensional_inverse(
     actual = api("reconstruct_known")(
         bands, table, carriers_cyc_um=carriers, modulation=modulation, **known_options()
     )
-    for name in ["image", "filtered_quadratures", "x_um", "y_um", "z_um", "axial_cutoffs_bins"]:
+    for name in ["image", "filtered_quadratures", "x_um", "y_um", "z_um"]:
         close(getattr(actual, name), expected[name])
+    cutoffs = actual.axial_cutoffs_bins
+    assert isinstance(cutoffs, np.ndarray) and cutoffs.dtype.kind in "iu"
+    assert cutoffs.shape == expected["axial_cutoffs_bins"].shape
+    np.testing.assert_array_equal(cutoffs, expected["axial_cutoffs_bins"])
     assert not actual.image.flags.writeable and actual.image.dtype == np.float64
     if z == 1 and axial > 1:
         np.testing.assert_array_equal(actual.image[:, 1:], 0)

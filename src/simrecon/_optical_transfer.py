@@ -400,17 +400,23 @@ def _map(value: Any, name: str, shape: tuple[int, ...]) -> _F64 | None:
 
 
 def _edge(plane: _F64) -> None:
-    n = plane.shape[0]
-    difference = (plane[-1] - plane[0]) / 2
+    y, x = plane.shape
+    # The empirical caller uses a padded row and Y in its horizontal
+    # subtraction address. Retain padding writes and their sequential order.
+    padded = np.zeros((y, x + 2), dtype=np.float64)
+    padded[:, :x] = plane
+    difference = (padded[-1, :x] - padded[0, :x]) / 2
     for offset in range(10):
         change = difference * (1 - sin((offset + 0.5) * pi / 20))
-        plane[offset] += change
-        plane[n - 1 - offset] -= change
-    difference = (plane[:, -1] - plane[:, 0]) / 2
-    for offset in range(10):
-        change = difference * (1 - sin((offset + 0.5) * pi / 20))
-        plane[:, offset] += change
-        plane[:, n - 1 - offset] -= change
+        padded[offset, :x] += change
+        padded[y - 1 - offset, :x] -= change
+    for row in range(y):
+        difference_x = (padded[row, x - 1] - padded[row, 0]) / 2
+        for offset in range(10):
+            change_x = difference_x * (1 - sin((offset + 0.5) * pi / 20))
+            padded[row, offset] += change_x
+            padded[row, y - 1 - offset] -= change_x
+    plane[:] = padded[:, :x]
 
 
 def _center(images: _F64) -> _F64:
@@ -436,16 +442,16 @@ def _center(images: _F64) -> _F64:
         raise OtfError("singular unused center background diagnostic")
     # The source diagnostic reads the original padded phase allocation. Check
     # actual addresses, even though its result is unused by preparation.
-    p, z, n, _ = images.shape
+    p, z, y, x = images.shape
     rows = max(0, ceil(yc - 20))
-    padded_plane = _i32((n + 2) * n)
+    padded_plane = _i32((x + 2) * y)
     if rows:
         first = _i32(_floor32(zc) * padded_plane)
-        last = _i32(_i32(first + _i32((rows - 1) * (n + 2))) + n - 1)
+        last = _i32(_i32(first + _i32((rows - 1) * (x + 2))) + x - 1)
         count = _i32(padded_plane * z)
         _address(first, count)
         _address(last, count)
-        diagnostic = images[:, floor(zc), :rows, :].sum() / (p * (yc - 20) * n)
+        diagnostic = images[:, floor(zc), :rows, :].sum() / (p * (yc - 20) * x)
         if not np.isfinite(diagnostic):
             raise OtfError("nonfinite unused center background diagnostic")
     return np.array(center[::-1], dtype=np.float64)
@@ -502,12 +508,14 @@ def _radial_tables(
     angle: float,
     compensate: bool,
 ) -> _C128:
-    p, z, n, _ = spatial.shape
+    p, z, ny, nx = spatial.shape
     transformed = rfftn(spatial, axes=(1, 2, 3))
-    x = np.arange(n // 2 + 1, dtype=np.float64)[None, None, :]
-    y = _frequencies(n)[None, :, None]
+    x = np.arange(nx // 2 + 1, dtype=np.float64)[None, None, :]
+    y = _frequencies(ny)[None, :, None]
     axial = _frequencies(z)[:, None, None]
-    transformed *= np.exp(2j * pi * (x * center[0] / n + y * center[1] / n + axial * center[2] / z))
+    transformed *= np.exp(
+        2j * pi * (x * center[0] / nx + y * center[1] / ny + axial * center[2] / z)
+    )
     if compensate:
         for slot in range(p):
             order = (slot + 1) // 2
@@ -540,8 +548,8 @@ def _radial_tables(
             transformed[slot] /= sphere
     _finite(transformed, "centered bead transform")
     radius = np.rint(np.hypot(x[0], y[0])).astype(np.int64)
-    radial = np.zeros((p, n // 2 + 1, z), dtype=np.complex128)
-    for r in range(n // 2 + 1):
+    radial = np.zeros((p, nx // 2 + 1, z), dtype=np.complex128)
+    for r in range(nx // 2 + 1):
         selected = radius == r
         count = int(selected.sum())
         if count:
@@ -708,7 +716,7 @@ def prepare_bead_otf(
     ----------
     raw : array_like
         Finite float32-exact real observations with axes (phase, z, y, x).
-        Odd phase counts 1 through 9, z >= 2 and square even x=y >= 10 apply.
+        Odd phase counts 1 through 9, Z>=1, even X>=8 and 10<=Y<=X+2 apply.
     dxy_um, dz_um : float
         Positive lateral and axial pixel pitches in micrometres.
     linespacing_um : float
@@ -760,22 +768,20 @@ def prepare_bead_otf(
     if array.ndim != 4:
         raise OtfError("raw axes must be (phase,z,y,x)")
     p, z, n, x = array.shape
-    if n != x:
-        raise OtfError("rectangular bead preparation is unsupported; require square planes")
-    if n % 2:
+    if x % 2:
         raise OtfError("odd lateral storage is unsupported; require even size")
     if p not in (1, 3, 5, 7, 9):
         raise OtfError("unsupported phase count; require odd phases 1,3,5,7,9")
-    if z < 2 or n < 10:
-        raise OtfError("require z>=2 and lateral size>=10")
+    if z < 1 or x < 8 or n < 10 or n > x + 2:
+        raise OtfError("fixed10 padded bead edges require Z>=1, even X>=8, Y>=10, Y<=X+2")
     for dimension in array.shape:
         _i32(dimension, "bead dimension")
-    _i32(_i32(_i32(n + 2) * n) * z, "per-phase padded real count")
+    _i32(_i32(_i32(x + 2) * n) * z, "per-phase padded real count")
     _i32(z * p, "background count")
-    _i32((n // 2 + 1) * z, "radial order count")
+    _i32((x // 2 + 1) * z, "radial order count")
     _extent(array.shape, 8)
-    _extent((p, z, n, n // 2 + 1), 16)
-    _extent((p, n // 2 + 1, z), 16)
+    _extent((p, z, n, x // 2 + 1), 16)
+    _extent((p, x // 2 + 1, z), 16)
     scalars = {
         "dxy_um": _scalar(dxy_um, "dxy_um", positive=True),
         "dz_um": _scalar(dz_um, "dz_um", positive=True),
@@ -810,10 +816,10 @@ def prepare_bead_otf(
     start = _integer(fix_radial_from, "fix_radial_from")
     bins = _bins(cleanup_axial_bins, "cleanup_axial_bins", 3)
     origin = None if origin_fit_bins is None else _bins(origin_fit_bins, "origin_fit_bins", 2)
-    if origin is not None and not 1 <= origin[0] < origin[1] <= n // 2:
+    if origin is not None and not 1 <= origin[0] < origin[1] <= x // 2:
         raise OtfError("origin fit needs 1<=a<b<=N/2")
-    camera = _map(background_map, "background_map", (n, n))
-    slopes = _map(slope_map, "slope_map", (n, n))
+    camera = _map(background_map, "background_map", (n, x))
+    slopes = _map(slope_map, "slope_map", (n, x))
     if (camera is None) != (slopes is None):
         raise OtfError("background and slope maps must be supplied together")
     exposures = _map(exposure_background_counts, "exposure_background_counts", (z, p))
@@ -834,6 +840,7 @@ def prepare_bead_otf(
         else "auto"
     )
     border = (np.arange(n) < 20) | (np.arange(n) > n - 20)
+    border_x = (np.arange(x) < 20) | (np.arange(x) > x - 20)
     for section in range(z):
         for phase in range(p):
             plane = images[phase, section]
@@ -848,7 +855,7 @@ def prepare_bead_otf(
             elif background is not None:
                 b = background
             else:
-                b = plane[np.ix_(border, border)].mean()
+                b = plane[np.ix_(border, border_x)].mean()
             backgrounds[section, phase] = b
             _edge(plane)
     center = _center(images)
@@ -869,7 +876,13 @@ def prepare_bead_otf(
         radial[:, 0] = radial[:, 1]
         radial[0, 0, 0] = dc
     if start:
-        radial[:, start:, 0] = (radial[:, start:, 1] + radial[:, start:, -1]) / 2
+        for slot in range(p):
+            flat = radial[slot].reshape(-1)
+            for r in range(start, x // 2 + 1):
+                base = _i32(r * z)
+                low = _address(_i32(base + 1), flat.size)
+                high = _address(_i32(base + z - 1), flat.size)
+                flat[base] = (flat[low] + flat[high]) / 2
     _cleanup(
         radial,
         bins,

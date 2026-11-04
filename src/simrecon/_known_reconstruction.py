@@ -7,7 +7,7 @@ estimate parameters or qualify a historical compiled reconstruction runtime.
 from collections.abc import Iterator
 from contextlib import contextmanager
 from dataclasses import dataclass
-from math import asin, ceil, cos, hypot, isfinite, sin, trunc
+from math import asin, atan2, ceil, cos, hypot, isfinite, sin, sqrt, tan, trunc
 from numbers import Integral, Real
 from typing import Any, cast
 
@@ -15,6 +15,8 @@ import numpy as np
 from numpy.typing import NDArray
 from scipy.fft import ifftn
 
+from ._acquisition_layout import ModeEvent, event
+from ._acquisition_modes import AcquisitionBands, validate_used
 from ._model import SimreconError
 from ._optical_transfer import OpticalTransfer, OtfError, _valid_transfer, sample_otf
 from ._preparation import _REFERENCE as _BAND_REFERENCE
@@ -61,6 +63,7 @@ class KnownReconstruction:
     radial_cutoff_cyc_um: float
     axial_cutoffs_bins: _I64
     resolved_settings: tuple[tuple[str, Any], ...]
+    mode_trace: tuple[ModeEvent, ...] = ()
     source_revision: str = "SVN307"
     reference_sha256: tuple[tuple[str, str], ...] = _REFERENCE
 
@@ -154,7 +157,7 @@ def _parameter_array(value: Any, name: str, shape: tuple[int, ...], *, complex_o
 class _Grid:
     shape: tuple[int, ...]
     orders: int
-    lateral: int
+    lateral: int | float
     axial: int
     dxy: float
     dz: float
@@ -163,10 +166,15 @@ class _Grid:
     @property
     def output_shape(self) -> tuple[int, int, int]:
         z, y, x = self.shape[3:]
-        return self.axial * z, self.lateral * y, self.lateral * x
+        return self.axial * z, int(self.lateral * y), int(self.lateral * x)
 
 
 def _validate_bands(bands: Any) -> _Grid:
+    if isinstance(bands, AcquisitionBands):
+        shape, orders, lateral, axial, dxy, dz, scale = validate_used(bands)
+        for sh, size in (((shape[1], 2), 8), ((shape[1], orders), 16), (shape[3:], 16)):
+            _extent(sh, size)
+        return _Grid(shape, orders, lateral, axial, dxy, dz, scale)
     if not isinstance(bands, PreparedBands):
         raise ReconstructionError("bands must be an actual PreparedBands record")
     if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
@@ -248,6 +256,99 @@ def _validate_bands(bands: Any) -> _Grid:
     return grid
 
 
+def _wrap_once(angle: float) -> float:
+    if angle > np.pi:
+        return angle - 2 * np.pi
+    if angle < -np.pi:
+        return angle + 2 * np.pi
+    return angle
+
+
+def _between_angle(angle: float, first: float, second: float) -> bool:
+    lo, hi = min(first, second), max(first, second)
+    if hi - lo < np.pi / 2:
+        return angle > lo and angle <= hi
+    return (angle > 0 and angle > hi and angle - 2 * np.pi <= lo) or (
+        angle < 0 and angle <= lo and angle + 2 * np.pi > hi
+    )
+
+
+class _Precise:
+    def __init__(
+        self, carriers: _F64, orders: int, radius: float, trace: list[ModeEvent], time: int
+    ):
+        self.carriers, self.orders, self.radius = carriers, orders, radius
+        self.trace, self.time = trace, time
+        directions = len(carriers)
+        angles = []
+        for x, y in carriers:
+            if x == 0 and y == 0:
+                raise ReconstructionError("precise precompute: undefined zero carrier polar angle")
+            angles.append(np.pi if y == 0 and x < 0 else atan2(y, x))
+        starts = [angle - np.pi / (2 * directions) for angle in angles]
+        self.boundaries = [_wrap_once(v) for v in (*starts, *(v + np.pi for v in starts))]
+        _finite(self.boundaries, "precise sector boundaries")
+        event(
+            trace,
+            "sector-boundaries",
+            time,
+            0,
+            carrier_angles_rad=np.array(angles),
+            boundary_angles_rad=np.array(self.boundaries),
+        )
+
+    def next_start(self, direction: int) -> float:
+        target = self.boundaries[direction] + np.pi / len(self.carriers)
+        best, saved = 2 * np.pi, direction
+        for j, boundary in enumerate(self.boundaries):
+            difference = _wrap_once(target - boundary)
+            if abs(difference) < best:
+                best, saved = abs(difference), j
+        return self.boundaries[saved]
+
+    def rho(self, x: float, y: float, direction: int) -> float:
+        if x == 0 and y == 0:
+            raise ReconstructionError("precise taper: undefined zero object-frequency polar angle")
+        angle = np.pi if y == 0 and x < 0 else atan2(y, x)
+        next_boundaries = [self.next_start(d) for d in range(len(self.carriers))]
+        selected = None
+        for d, boundary in enumerate(next_boundaries):
+            if _between_angle(angle, self.boundaries[d], boundary) or _between_angle(
+                angle, self.boundaries[d + len(self.carriers)], _wrap_once(boundary + np.pi)
+            ):
+                selected = d
+                break
+        if selected is None:
+            raise ReconstructionError("precise taper sector leaves uninitialized intersection")
+        x0, y0 = (self.orders - 1) * self.carriers[selected]
+        k = tan(angle)
+        v, denominator = x0 + k * y0, 1 + k * k
+        discriminant = v * v - denominator * (x0 * x0 + y0 * y0 - self.radius * self.radius)
+        _finite((k, v, denominator, discriminant), "precise tangent/intersection")
+        if discriminant < 0:
+            raise ReconstructionError("precise taper has negative discriminant")
+        root = sqrt(discriminant)
+        plus, minus = (v + root) / denominator, (v - root) / denominator
+        limit = max(hypot(plus, k * plus), hypot(minus, k * minus))
+        _positive(limit, "precise intersection limit")
+        rho = hypot(x, y) / limit
+        _finite(rho, "precise rho")
+        event(
+            self.trace,
+            "precise-query",
+            self.time,
+            direction,
+            object_frequency_xy=np.array([x, y]),
+            angle_rad=float(angle),
+            next_boundaries=np.array(next_boundaries),
+            selected_direction=selected,
+            discriminant=float(discriminant),
+            limit=float(limit),
+            rho=float(rho),
+        )
+        return rho
+
+
 @dataclass(frozen=True)
 class _Filter:
     transfer: OpticalTransfer
@@ -267,6 +368,9 @@ class _Filter:
     omit: bool
     omit_kz0: bool
     cosine: bool
+    power_exponent: float | None = None
+    precise: _Precise | None = None
+    overlaps: bool = True
 
     def damping(self, direction: int, order: int, radius: float, z: int) -> float:
         value = float(self.inverse_noise[direction, order])
@@ -307,6 +411,8 @@ class _Filter:
             for signed_order in range(1 - self.amplitudes.shape[1], self.amplitudes.shape[1]):
                 if (other, signed_order) == (direction, order):
                     continue
+                if not self.overlaps and not (order == 0 and signed_order == 0):
+                    continue
                 qx = object_x - signed_order * float(self.carriers[other, 0])
                 qy = object_y - signed_order * float(self.carriers[other, 1])
                 radius = hypot(qx, qy)
@@ -321,12 +427,22 @@ class _Filter:
         denominator += self.wiener_square
         _positive(denominator, "filter denominator")
         scale = g * h.conjugate() / denominator
-        if self.cosine:
-            rho = hypot(object_x, object_y) / self.taper_radius
-            if self.cutoffs[1] > 0:
-                rho = hypot(rho, abs(z) / self.cutoffs[1])
+        if self.cosine or self.power_exponent is not None:
+            if self.precise is not None and self.cutoffs[1] <= 0:
+                rho = self.precise.rho(object_x, object_y, direction)
+            else:
+                rho = hypot(object_x, object_y) / self.taper_radius
+                if self.cutoffs[1] > 0:
+                    rho = hypot(rho, abs(z) / self.cutoffs[1])
             _finite(rho, "taper radius")
-            scale *= cos((np.pi / 2) * min(rho, 1.0))
+            rho = min(rho, 1.0)
+            if self.cosine:
+                scale *= cos((np.pi / 2) * rho)
+            else:
+                assert self.power_exponent is not None
+                if rho == 1 and self.power_exponent < 0:
+                    raise ReconstructionError("negative power taper at zero base is singular")
+                scale *= (1 - rho) ** self.power_exponent
         if order:
             scale *= amplitude.conjugate()
         _finite(scale, "native filter scale")
@@ -334,7 +450,7 @@ class _Filter:
 
 
 def _support(
-    grid: _Grid, carriers: _F64, wavelength: int, na: float, immersion: float
+    grid: _Grid, carriers: _F64, wavelength: int, na: float, immersion: float, dzf: float
 ) -> tuple[float, tuple[int, ...]]:
     le = (wavelength / immersion) / 1000
     lx = 0.88 * le
@@ -345,7 +461,6 @@ def _support(
             raise ReconstructionError("carrier asin argument is outside its real domain")
         asin(argument)
     radius = _positive(min(2 * na / (wavelength / 1000), 1 / (2 * grid.dxy)), "radial cutoff")
-    dzf = _positive(1 / (grid.shape[3] * grid.dz), "axial sampling")
     cutoff = ((1 - cos(theta)) / le) / dzf
     _finite(cutoff, "axial cutoff")
     c0 = ceil(cutoff)
@@ -416,7 +531,13 @@ def _lift(index: int, length: int) -> int:
 
 
 def _assemble(
-    filtered: _C128, grid: _Grid, carriers: _F64, omit: bool, x_um: _F64, y_um: _F64
+    filtered: _C128,
+    grid: _Grid,
+    carriers: _F64,
+    omit: bool,
+    x_um: _F64,
+    y_um: _F64,
+    explode: float = 1.0,
 ) -> _F64:
     tcount, directions, _, zsize, ysize, _ = filtered.shape
     xsize = grid.shape[-1]
@@ -447,7 +568,11 @@ def _assemble(
                                 value += 1j * odd
                             padded[z % oz, y % oy, x % ox] = value
                 _finite(padded, "embedded coefficients")
-                spatial = cast(_C128, ifftn(padded, norm="forward"))
+                if zsize == 1:
+                    spatial = np.zeros_like(padded)
+                    spatial[0] = cast(_C128, ifftn(padded[0], norm="forward"))
+                else:
+                    spatial = cast(_C128, ifftn(padded, norm="forward"))
                 _finite(spatial, "inverse transform result")
                 if m == 0:
                     image[t] += spatial.real
@@ -455,6 +580,7 @@ def _assemble(
                     phase = (
                         2
                         * np.pi
+                        * explode
                         * m
                         * (carriers[d, 0] * x_um[None, :] + carriers[d, 1] * y_um[:, None])
                     )
@@ -471,7 +597,7 @@ def _readonly(array: Any) -> Any:
 
 
 def reconstruct_known(
-    bands: PreparedBands,
+    bands: PreparedBands | AcquisitionBands,
     transfer: OpticalTransfer,
     *,
     carriers_cyc_um: Any,
@@ -486,6 +612,11 @@ def reconstruct_known(
     omit_order0: bool = False,
     omit_kz0: bool = False,
     output_taper: str = "cosine",
+    wiener_increment: float = 0.0,
+    power_taper_exponent: float | None = None,
+    precise_taper: bool = False,
+    filter_overlaps: bool = True,
+    explode_factor: float = 1.0,
 ) -> KnownReconstruction:
     """Filter native bands and assemble a signed image with supplied parameters.
 
@@ -512,8 +643,18 @@ def reconstruct_known(
     dampen_order0, omit_order0, omit_kz0 : bool, optional
         Source order-zero branches. Dampening precedes omission in weights;
         final assembly omits order zero whenever omit_order0 is true.
-    output_taper : {'cosine', 'none'}, optional
-        Shifted object-frequency cosine taper after division, or no taper.
+    output_taper : {'cosine', 'none', 'power'}, optional
+        Shifted object-frequency taper after native division.
+    wiener_increment : float, optional
+        Full-series increment, applied as increment/T before each time.
+    power_taper_exponent : float or None, optional
+        Required exponent for power taper; exponent zero gives constant one.
+    precise_taper : bool, optional
+        Precompute source sectors and use their defined 2D intersections.
+    filter_overlaps : bool, optional
+        Include all overlaps, or only other center powers for center orders.
+    explode_factor : float, optional
+        Signed assembly-phase multiplier; filtering uses original carriers.
 
     Returns
     -------
@@ -541,19 +682,38 @@ def reconstruct_known(
         if na > min(2, immersion):
             raise ReconstructionError("numerical_aperture exceeds caller physical domain")
         w = _scalar(wiener, "wiener", positive=True)
-        square = _positive(w * w, "wiener square")
+        increment = _scalar(wiener_increment, "wiener_increment")
+        explode = _scalar(explode_factor, "explode_factor")
+        exponent = (
+            None
+            if power_taper_exponent is None
+            else _scalar(power_taper_exponent, "power_taper_exponent")
+        )
         sr_bins = _scalar(suppression_radius_bins, "suppression_radius_bins")
         flags = {
             "suppress_singularities": suppress_singularities,
             "dampen_order0": dampen_order0,
             "omit_order0": omit_order0,
             "omit_kz0": omit_kz0,
+            "precise_taper": precise_taper,
+            "filter_overlaps": filter_overlaps,
         }
         for name, flag in flags.items():
             if not isinstance(flag, (bool, np.bool_)):
                 raise ReconstructionError(f"{name} must be a boolean")
-        if not isinstance(output_taper, str) or output_taper not in ("cosine", "none"):
-            raise ReconstructionError("output_taper must be cosine or none")
+        if not isinstance(output_taper, str) or output_taper not in ("cosine", "none", "power"):
+            raise ReconstructionError("output_taper must be cosine, none or power")
+        if output_taper == "power" and exponent is None:
+            raise ReconstructionError("output_taper='power' requires power_taper_exponent")
+        extended = (
+            isinstance(bands, AcquisitionBands)
+            or increment != 0
+            or exponent is not None
+            or precise_taper
+            or not filter_overlaps
+            or explode != 1
+            or output_taper == "power"
+        )
         directions = grid.shape[1]
         carriers = _parameter_array(
             carriers_cyc_um, "carriers_cyc_um", (directions, 2), complex_ok=False
@@ -561,10 +721,15 @@ def reconstruct_known(
         mods = _parameter_array(
             modulation, "modulation", (directions, grid.orders - 1), complex_ok=True
         )
-        radius, cuts = _support(grid, carriers, wavelength, na, immersion)
+        k = transfer.samples.shape[-1] if transfer.layout == "radial" else transfer.samples.shape[1]
+        if grid.shape[3] == 1 and k != 1:
+            raise ReconstructionError("true 2d bands require transfer axial K=1")
+        dzf = _positive(
+            1 / (grid.shape[3] * grid.dz) if grid.dz > 0 else transfer.dkz_cyc_um, "dz sampling"
+        )
+        radius, cuts = _support(grid, carriers, wavelength, na, immersion, dzf)
         dx = _positive(1 / (grid.shape[-1] * grid.dxy), "dxy sampling")
         dy = _positive(1 / (grid.shape[-2] * grid.dxy), "dxy sampling")
-        dzf = _positive(1 / (grid.shape[-3] * grid.dz), "dz sampling")
         amplitudes = np.ones((directions, grid.orders), np.complex128)
         amplitudes[:, 1:] = mods
         inverse_noise = 1 / np.array(bands.noise_variance_factors, dtype=np.float64, copy=True)
@@ -572,34 +737,60 @@ def reconstruct_known(
         taper_radius = _positive(radius + hypot(*carriers[0]) * (grid.orders - 1), "taper cutoff")
         sr = sr_bins * min(dx, dy)
         _finite(sr, "suppression radius")
-        filtering = _Filter(
-            transfer,
-            carriers,
-            amplitudes,
-            inverse_noise,
-            dx,
-            dy,
-            dzf,
-            radius,
-            cuts,
-            taper_radius,
-            sr,
-            square,
-            bool(suppress_singularities),
-            bool(dampen_order0),
-            bool(omit_order0),
-            bool(omit_kz0),
-            output_taper == "cosine",
-        )
         original = np.array(bands.quadratures, dtype=np.complex128, copy=True)
-        filtered = _filter_quadratures(original, grid, filtering)
+        filtered = np.empty_like(original)
+        mode_trace: list[ModeEvent] = []
+        effective = []
+        step = increment / grid.shape[0]
+        current = w
+        for t in range(grid.shape[0]):
+            previous = current
+            current = _positive(current + step, "effective Wiener parameter")
+            square = _positive(current * current, "wiener square")
+            effective.append(current)
+            if extended:
+                event(
+                    mode_trace,
+                    "wiener-step",
+                    t,
+                    0,
+                    previous=previous,
+                    increment=step,
+                    effective=current,
+                )
+            precise = (
+                _Precise(carriers, grid.orders, radius, mode_trace, t) if precise_taper else None
+            )
+            filtering = _Filter(
+                transfer,
+                carriers,
+                amplitudes,
+                inverse_noise[t] if isinstance(bands, AcquisitionBands) else inverse_noise,
+                dx,
+                dy,
+                dzf,
+                radius,
+                cuts,
+                taper_radius,
+                sr,
+                square,
+                bool(suppress_singularities),
+                bool(dampen_order0),
+                bool(omit_order0),
+                bool(omit_kz0),
+                output_taper == "cosine",
+                exponent if output_taper == "power" else None,
+                precise,
+                bool(filter_overlaps),
+            )
+            filtered[t : t + 1] = _filter_quadratures(original[t : t + 1], grid, filtering)
         oz, oy, ox = grid.output_shape
         x_um = (np.arange(ox, dtype=np.float64) - ox // 2) * (grid.dxy / grid.lateral)
         y_um = (np.arange(oy, dtype=np.float64) - oy // 2) * (grid.dxy / grid.lateral)
         z_um = (np.arange(oz, dtype=np.float64) - oz // 2) * (grid.dz / grid.axial)
         for vector in (x_um, y_um, z_um):
             _finite(vector, "physical coordinates")
-        image = _assemble(filtered, grid, carriers, bool(omit_order0), x_um, y_um)
+        image = _assemble(filtered, grid, carriers, bool(omit_order0), x_um, y_um, explode)
         resolved = (
             ("wavelength_nm", wavelength),
             ("numerical_aperture", na),
@@ -617,6 +808,19 @@ def reconstruct_known(
             ("axial_zoom", grid.axial),
             ("input_scale", grid.scale),
         )
+        if extended:
+            resolved += (
+                (
+                    "acquisition_mode",
+                    bands.acquisition_mode if isinstance(bands, AcquisitionBands) else "3d",
+                ),
+                ("wiener_increment", increment),
+                ("effective_wiener", tuple(effective)),
+                ("power_taper_exponent", exponent),
+                ("precise_taper", bool(precise_taper)),
+                ("filter_overlaps", bool(filter_overlaps)),
+                ("explode_factor", explode),
+            )
         return KnownReconstruction(
             _readonly(image),
             _readonly(filtered),
@@ -628,4 +832,5 @@ def reconstruct_known(
             radius,
             _readonly(np.array(cuts, dtype=np.int64)),
             resolved,
+            tuple(mode_trace),
         )

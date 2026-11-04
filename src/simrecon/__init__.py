@@ -1,6 +1,13 @@
 """Spatial image conversion, native preparation and known-parameter reconstruction."""
 
 from ._acquisition import RawAcquisition, declare_acquisition
+from ._acquisition_layout import (
+    AcquisitionModeError,
+    ModeEvent,
+    TwoDPlaneInputs,
+    reinterpret_2d_planes,
+)
+from ._acquisition_modes import AcquisitionBands, prepare_acquisition_bands
 from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
 from ._known_reconstruction import KnownReconstruction, ReconstructionError, reconstruct_known
 from ._legacy import inspect
@@ -24,6 +31,12 @@ from ._pixels import read
 from ._preparation import PreparedBands, prepare_bands
 
 __all__ = [
+    "AcquisitionBands",
+    "AcquisitionModeError",
+    "ModeEvent",
+    "TwoDPlaneInputs",
+    "prepare_acquisition_bands",
+    "reinterpret_2d_planes",
     "DataBlock",
     "DatasetInfo",
     "EstimatedParameters",

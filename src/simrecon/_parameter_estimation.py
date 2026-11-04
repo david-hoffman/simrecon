@@ -14,6 +14,7 @@ from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 
+from ._acquisition_modes import AcquisitionBands, validate_used
 from ._model import SimreconError
 from ._optical_transfer import OpticalTransfer, OtfError, _valid_transfer, sample_otf
 from ._preparation import _REFERENCE as _BAND_REFERENCE
@@ -174,7 +175,7 @@ class _Grid:
     orders: int
     dxy: float
     dz: float
-    lateral: int
+    lateral: int | float
     axial: int
     scale: float
     dx: float
@@ -182,7 +183,26 @@ class _Grid:
     dzf: float
 
 
-def _validate_bands(bands: Any) -> _Grid:
+def _validate_bands(bands: Any, transfer: OpticalTransfer) -> _Grid:
+    if isinstance(bands, AcquisitionBands):
+        shape, orders, lateral, axial, dxy, dz, scale = validate_used(bands)
+        z, y, x = shape[3:]
+        k = transfer.samples.shape[-1] if transfer.layout == "radial" else transfer.samples.shape[1]
+        if z == 1 and k != 1:
+            raise ParameterEstimationError("true 2d bands require transfer axial K=1")
+        dzf = 1 / (z * dz) if dz > 0 else transfer.dkz_cyc_um
+        frequencies = (1 / (x * dxy), 1 / (y * dxy), dzf)
+        if any(not math.isfinite(f) or f <= 0 for f in frequencies):
+            raise ParameterEstimationError("derived sampling must remain finite and positive")
+        t, d = shape[:2]
+        for sh, size in (
+            ((2, z, y, x), 16),
+            ((2, z, y, x), 1),
+            ((t, d, 2), 8),
+            ((t, d, orders - 1), 16),
+        ):
+            _extent(sh, size)
+        return _Grid(shape, orders, dxy, dz, lateral, axial, scale, *frequencies)
     if not isinstance(bands, PreparedBands):
         raise ParameterEstimationError("bands must be an actual PreparedBands record")
     if not isinstance(bands.input_shape, tuple) or len(bands.input_shape) != 6:
@@ -253,7 +273,7 @@ def _validate_bands(bands: Any) -> _Grid:
 class _Estimator:
     def __init__(
         self,
-        bands: PreparedBands,
+        bands: PreparedBands | AcquisitionBands,
         transfer: OpticalTransfer,
         grid: _Grid,
         radial: float,
@@ -312,11 +332,12 @@ class _Estimator:
         _finite(result, "complex band combination")
         return result
 
-    def build(self, carrier: _Array, order: int, purpose: str) -> _Overlap:
+    def build(self, carrier: _Array, order: int, purpose: str, lower: int = 0) -> _Overlap:
         _, _, _, nz, ny, nx = self.grid.shape
         fourier = np.zeros((2, nz, ny, nx), dtype=np.complex128)
         written = np.zeros(fourier.shape, dtype=np.bool_)
-        delta = (order * float(carrier[0]), order * float(carrier[1]))
+        delta = ((order - lower) * float(carrier[0]), (order - lower) * float(carrier[1]))
+        higher_multiplier = 1 if nz == 1 else 5
         _finite(delta, "order carrier separation")
         for i in range(ny):
             fy = (i if i <= ny // 2 else i - ny) * self.grid.dy
@@ -335,19 +356,22 @@ class _Estimator:
                     for z in range(-self.cutoff, self.cutoff + 1):
                         if z == 0 and self.omit:
                             continue
-                        primary = self.sample((fx, fy), z, 0 if side == 0 else order)
-                        if (1 if side == 0 else 5) * abs(primary) <= 0.006:
+                        primary = self.sample((fx, fy), z, lower if side == 0 else order)
+                        if not ((1 if side == 0 else higher_multiplier) * abs(primary) > 0.006):
                             continue
-                        other = self.sample(shifted, z, order if side == 0 else 0)
-                        if (5 if side == 0 else 1) * abs(other) <= 0.006:
+                        other = self.sample(shifted, z, order if side == 0 else lower)
+                        if not ((higher_multiplier if side == 0 else 1) * abs(other) > 0.006):
                             continue
                         denominator = math.sqrt(abs(primary) ** 2 + abs(other) ** 2)
                         _finite(denominator, "overlap denominator")
-                        value = self.band(0 if side == 0 else order, z, i, j) * other / denominator
+                        value = (
+                            self.band(lower if side == 0 else order, z, i, j) * other / denominator
+                        )
                         _finite(value, "weighted overlap")
                         fourier[side, z % nz, i, j] = value
                         written[side, z % nz, i, j] = True
-        spatial = np.fft.ifftn(fourier, axes=(1, 2, 3)) * (nx * ny * nz)
+        axes = (2, 3) if nz == 1 else (1, 2, 3)
+        spatial = np.fft.ifftn(fourier, axes=axes) * (nx * ny * nz)
         _finite(spatial, "overlap inverse transform")
         for array in (fourier, spatial, written):
             array.flags.writeable = False
@@ -356,7 +380,7 @@ class _Estimator:
             self.t,
             self.d,
             purpose,
-            (0, order),
+            (lower, order),
             _owned(carrier),
             fourier,
             spatial,
@@ -375,7 +399,7 @@ class _Estimator:
         magnitude: float | None = None,
     ) -> tuple[complex, float | None]:
         _, _, _, _, ny, nx = self.grid.shape
-        order = build.orders[1]
+        order = build.orders[1] - build.orders[0]
         x = np.arange(nx, dtype=np.float64) - nx // 2
         y = np.arange(ny, dtype=np.float64) - ny // 2
         phase = (
@@ -447,7 +471,8 @@ class _Estimator:
         return forward, objective
 
     def coarse(self, initial: _Array) -> _Array:
-        build = self.build(initial, 2, "coarse")
+        pair_order = 1 if self.grid.shape[3] == 1 else 2
+        build = self.build(initial, pair_order, "coarse")
         _, _, _, _, ny, nx = self.grid.shape
         product = np.sum(build.spatial[0] * np.conjugate(build.spatial[1]), axis=0)
         correlation = np.fft.fft2(product)
@@ -477,7 +502,9 @@ class _Estimator:
                     px += sign * nx
                 else:
                     py += sign * ny
-        carrier = np.array([px * self.grid.dx / 2, py * self.grid.dy / 2], dtype=np.float64)
+        carrier = np.array(
+            [px * self.grid.dx / pair_order, py * self.grid.dy / pair_order], dtype=np.float64
+        )
         _finite(carrier, "coarse carrier")
         self.event(
             "coarse",
@@ -506,7 +533,8 @@ class _Estimator:
         mag0 = math.hypot(cx, cy)
         angle0 = math.pi if cy == 0 and cx < 0 else math.atan2(cy, cx)
         _finite((mag0, angle0), "coarse polar conversion")
-        build = self.build(coarse, 2, "refinement")
+        pair_order = 1 if self.grid.shape[3] == 1 else 2
+        build = self.build(coarse, pair_order, "refinement")
         x1, amp1 = 0.0, 0.0
         first = True
 
@@ -591,10 +619,11 @@ class _Estimator:
         carrier = _cartesian(angle, magnitude)
         factor, _ = self.evaluate(build, carrier, "final", False, angle, magnitude)
         factors = [0j] * (self.grid.orders - 1)
-        factors[1] = factor
+        factors[pair_order - 1] = factor
         for order in range(1, self.grid.orders):
-            if order != 2:
-                other = self.build(carrier, order, "later-order")
+            if order != pair_order:
+                lower = order - 1 if self.grid.shape[3] == 1 else 0
+                other = self.build(carrier, order, "later-order", lower)
                 factors[order - 1], _ = self.evaluate(
                     other, carrier, "later-order", True, angle, magnitude
                 )
@@ -655,7 +684,7 @@ def _parabola(
 
 
 def estimate_parameters(
-    bands: PreparedBands,
+    bands: PreparedBands | AcquisitionBands,
     transfer: OpticalTransfer,
     *,
     initial_carriers_cyc_um: _Array,
@@ -710,10 +739,12 @@ def estimate_parameters(
         ):
             if type(flag) is not bool:
                 raise ParameterEstimationError(f"{name} must be an actual boolean")
-        grid = _validate_bands(bands)
-        if search_carriers and grid.orders < 3:
-            raise ParameterEstimationError("carrier search requires at least three orders")
-        _valid_transfer(transfer)
+        transfer = _valid_transfer(transfer)
+        grid = _validate_bands(bands, transfer)
+        if search_carriers and grid.orders < (2 if grid.shape[3] == 1 else 3):
+            raise ParameterEstimationError(
+                "carrier search requires two orders in 2d or three in 3d"
+            )
         if transfer.norders < grid.orders:
             raise ParameterEstimationError("transfer requires all used orders")
         wavelength = _integer(wavelength_nm, "wavelength_nm")
@@ -774,6 +805,18 @@ def estimate_parameters(
                         factors.append(factor)
                 carriers[t, d] = carrier
                 raw[t, d] = factors
+                if grid.shape[3] == 1:
+                    for b in range(1, len(factors)):
+                        direct, previous = factors[b], factors[b - 1]
+                        factors[b] *= previous
+                        _finite(factors[b], "cumulative modulation product")
+                        estimator.event(
+                            "cumulative-product",
+                            order=b + 1,
+                            direct_forward=direct,
+                            previous_cumulative=previous,
+                            product=factors[b],
+                        )
                 after_floor = list(factors)
                 applied = [False] * len(factors)
                 for b, factor in enumerate(factors):
@@ -835,6 +878,11 @@ def estimate_parameters(
                 input_scale=grid.scale,
             ).items()
         )
+        if isinstance(bands, AcquisitionBands):
+            settings += (
+                ("acquisition_mode", bands.acquisition_mode),
+                ("acquisition_reference_sha256", bands.reference_sha256),
+            )
         return EstimatedParameters(
             _owned(carriers),
             _owned(modulation),

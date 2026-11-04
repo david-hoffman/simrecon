@@ -17,6 +17,7 @@ from c_acquisition_fixture import (
     correlation_field,
     edge,
     events,
+    gamma,
     lift,
     optics,
     options,
@@ -48,7 +49,7 @@ def compare_correlation(actual: dict[str, Any], expected: dict[str, Any], bound:
         ordered = np.sort(power.reshape(-1))
         assert ordered[-1] - ordered[-2] > 2 * bound, "independent peak margin unresolved"
     for name in ["cross_spectrum", "correlation", "absolute_correlation"]:
-        np.testing.assert_allclose(actual[name], expected[name], rtol=0, atol=bound)
+        np.testing.assert_allclose(actual[name], np.asarray(expected[name]), rtol=0, atol=bound)
     assert actual["integer_peak_xyz"] == expected["integer_peak_xyz"]
     assert actual["offset_status_xyz"] == expected["offset_status_xyz"]
     error = []
@@ -59,22 +60,33 @@ def compare_correlation(actual: dict[str, Any], expected: dict[str, Any], bound:
             error.append(0.0)
         else:
             assert abs(curvature) > 4 * bound
+            # Each neighbor may move by bound, so slope moves by at most
+            # bound and curvature by 4*bound. Enclose this quotient too.
+            uncertainty = (bound * abs(curvature) + abs(slope) * 4 * bound) / (
+                abs(curvature) * (abs(curvature) - 4 * bound)
+            )
             error.append(
-                (bound * abs(curvature) + abs(slope) * 4 * bound)
-                / (abs(curvature) * (abs(curvature) - 4 * bound))
+                float(
+                    np.nextafter(float(np.asarray(uncertainty)) + float(uncertainty.error), np.inf)
+                )
             )
     np.testing.assert_allclose(
-        actual["neighbors_xyz"], expected["neighbors_xyz"], rtol=0, atol=bound
+        actual["neighbors_xyz"], np.asarray(expected["neighbors_xyz"]), rtol=0, atol=bound
     )
-    np.testing.assert_allclose(
-        actual["offsets_xyz"], expected["offsets_xyz"], rtol=0, atol=max(error)
-    )
-    np.testing.assert_allclose(
-        actual["wrapped_displacement_xyz"],
-        expected["wrapped_displacement_xyz"],
-        rtol=0,
-        atol=max(error),
-    )
+    offset_bound = max(error)
+    for name in ["offsets_xyz", "wrapped_displacement_xyz"]:
+        value = expected[name]
+        # The independent fit also propagates rounding in the quotient and
+        # in adding the integer peak and applying the resolved wrap.
+        allowance = max(offset_bound, float(np.max(value.error)))
+        if name == "wrapped_displacement_xyz":
+            scale = float(np.max(abs(np.asarray(value)))) + max(
+                expected["absolute_correlation"].shape
+            )
+            allowance += gamma(2) * (scale + allowance)
+        allowance = float(np.nextafter(allowance, np.inf))
+        assert np.isfinite(allowance)
+        np.testing.assert_allclose(actual[name], np.asarray(value), rtol=0, atol=allowance)
 
 
 @pytest.mark.parametrize("z", [1, 4, 6])
@@ -147,6 +159,8 @@ def test_all_zero_correlation_keeps_initialized_center_and_no_phase_invention() 
     np.testing.assert_array_equal(e["wrapped_displacement_xyz"], [5, 5, 0])
     assert e["offset_status_xyz"] == ("zero-curvature", "zero-curvature", "not-fitted")
     np.testing.assert_array_equal(e["cross_spectrum"], 0)
+    np.testing.assert_array_equal(e["correlation"], 0)
+    np.testing.assert_array_equal(e["absolute_correlation"], 0)
 
 
 def test_absolute_negative_peak_first_strict_tie_and_positive_half_wrap() -> None:
@@ -156,10 +170,15 @@ def test_absolute_negative_peak_first_strict_tie_and_positive_half_wrap() -> Non
     plane = np.tile([1.0, -1.0] * 5, (10, 1))
     raw[:, 0, :, 0] = plane
     raw[:, 1, :, 0] = -plane
-    # Phase-identical raw data give the prepass center plane/100, before
-    # literal fixed10 edge treatment. Certify the field without pretending
-    # its narrow peak gap certifies an independent selected displacement.
-    centers = [edge(np.sum(as_disc(raw[0, d, :, 0]) / 300, axis=0), 10)[None] for d in range(2)]
+    # Repair the three selected -1 sentinels before accumulating the
+    # prepass, without touching either the raw input or a camera map.
+    selected = raw[0, :, :, 0].copy()
+    sentinel = selected[..., -1, -1] == -1
+    assert np.count_nonzero(sentinel) == 3
+    selected[..., -1, -1][sentinel] = selected[..., -1, -2][sentinel]
+    # The field is independently certified. First-maximum selection below
+    # is a relation on the returned field because the peak gap is unresolved.
+    centers = [edge(np.sum(as_disc(planes) / 300, axis=0), 10)[None] for planes in selected]
     expected = correlation_field(*centers, exponent=0.25, pitch=1.0, rd=2 / 0.52, highpass=0.0)
     actual = api("prepare_acquisition_bands")(
         raw, **(options(drift_between=True) | optics(numerical_aperture=1.0))
@@ -167,12 +186,9 @@ def test_absolute_negative_peak_first_strict_tie_and_positive_half_wrap() -> Non
     e = events(actual, "drift-correlation")[0]
     assert np.min(e["correlation"]) < 0
     bound = correlation_budget(centers[0], centers[1], 0.25)
-    np.testing.assert_allclose(
-        e["absolute_correlation"],
-        expected["absolute_correlation"],
-        rtol=0,
-        atol=bound,
-    )
+    for name in ["correlation", "absolute_correlation"]:
+        np.testing.assert_allclose(e[name], np.asarray(expected[name]), rtol=0, atol=bound)
+    np.testing.assert_array_equal(e["absolute_correlation"], abs(e["correlation"]))
     peak_value = np.max(e["absolute_correlation"])
     assert e["integer_peak_xyz"] == tuple(
         np.unravel_index(np.argmax(e["absolute_correlation"]), e["absolute_correlation"].shape)[
@@ -180,6 +196,9 @@ def test_absolute_negative_peak_first_strict_tie_and_positive_half_wrap() -> Non
         ]
     )
     assert peak_value > 0
+    signed = np.asarray(expected["correlation"])
+    assert -np.min(signed) - np.max(signed) > 2 * bound
+    assert e["correlation"][e["integer_peak_xyz"][::-1]] < 0
 
 
 @pytest.mark.parametrize("storage", ["direction-major", "z-major"])
@@ -249,20 +268,31 @@ def test_fast_d1_between_only_skips_unsafe_prepass_but_is_initialized_zero() -> 
 
 
 def test_nonzero_constant_tie_zero_curvature_and_independent_positive_half_wrap() -> None:
-    # Constant raw inputs give only DC. With P/V prepass normalization the
-    # DC cross is1, hence every inverse correlation cell is exactly1.
-    constant = np.ones((1, 2, 3, 1, 10, 10))
+    # Four phases of one give exact center 1/256 on a 16-by-16 plane.
+    # The optical mask selects DC alone: Rd=1/32 < first bin=1/16.
+    # The dyadic radix-2 DC sum is 1. Quarter-power of unit cross is 1
+    # and the one-coefficient inverse yields exactly one at every cell.
+    constant = np.ones((1, 2, 4, 1, 16, 16))
     tie = api("prepare_acquisition_bands")(
-        constant, **(options(drift_between=True) | optics(numerical_aperture=1.0))
+        constant,
+        **(options(drift_between=True) | optics(wavelength_nm=500, numerical_aperture=1 / 128)),
     )
     event = events(tie, "drift-correlation")[0]
-    close(event["correlation"], 1.0)
+    expected_cross = np.zeros((1, 16, 9), dtype=complex)
+    expected_cross[0, 0, 0] = 1
+    np.testing.assert_array_equal(event["cross_spectrum"], expected_cross)
+    close(event["correlation"], as_disc(np.ones((1, 16, 16))))
+    np.testing.assert_array_equal(event["correlation"], 1)
+    np.testing.assert_array_equal(event["absolute_correlation"], 1)
+    np.testing.assert_array_equal(event["neighbors_xyz"], 1)
+    np.testing.assert_array_equal(event["offsets_xyz"], 0)
     assert event["integer_peak_xyz"] == (0, 0, 0)
     assert event["offset_status_xyz"] == ("zero-curvature", "zero-curvature", "not-fitted")
     np.testing.assert_array_equal(event["wrapped_displacement_xyz"], 0)
-    # Distinct from allzero initialized-center: a translated interior impulse
-    # has full-spectrum correlation100 at x5, all other cells0.
-    raw = np.zeros_like(constant)
+
+    # Keep the independent translated impulse on its original grid.
+    # The full-spectrum correlation is 100 at x=5 and zero elsewhere.
+    raw = np.zeros((1, 2, 3, 1, 10, 10))
     raw[:, 0, :, 0, 4, 2] = 100
     raw[:, 1, :, 0, 4, 7] = 100
     half = api("prepare_acquisition_bands")(
@@ -274,8 +304,9 @@ def test_nonzero_constant_tie_zero_curvature_and_independent_positive_half_wrap(
     close(event["correlation"], expected)
     assert event["integer_peak_xyz"] == (5, 0, 0)
     close(event["wrapped_displacement_xyz"], [5, 0, 0])
-    # Exact even symmetry gives equal two neighbors and therefore offset0;
-    # strict >half retains +5. This is not a nearly-flat curvature rule.
+    # The half-wrap equality proof assumes preservation of the equal
+    # periodic neighbors of the impulse. Then offset0 and strict >half
+    # retain +5. The generic coefficient error bound cannot prove that tie.
     assert event["offset_status_xyz"] == ("fitted", "fitted", "not-fitted")
 
 

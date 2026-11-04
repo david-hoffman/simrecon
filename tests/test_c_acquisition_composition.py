@@ -45,6 +45,16 @@ def independent_factors(bands: Any, table: Any, carriers: Any, **op: Any) -> Any
     return result
 
 
+def one_time_model(independent: Any, t: int) -> Any:
+    # Reconstruction only consumes these numerical time slices. An
+    # independent preparation model has no public event records to slice.
+    result = copy(independent)
+    object.__setattr__(result, "input_shape", (1, *independent.input_shape[1:]))
+    for key in ("quadratures", "noise_variance_factors"):
+        object.__setattr__(result, key, getattr(independent, key)[t : t + 1])
+    return result
+
+
 def composition(
     bands: Any, independent: Any, table: Any, carriers: Any, *, op: dict[str, Any] | None = None
 ) -> None:
@@ -75,7 +85,7 @@ def composition(
             **(known_options() | op),
         )
         expected = reconstruct_expected(
-            one_time(independent, t), table, carriers, factors[t], **(known_options() | op)
+            one_time_model(independent, t), table, carriers, factors[t], **(known_options() | op)
         )
         close(actual.image, expected["image"])
 
@@ -427,10 +437,7 @@ def test_literal_helper_effective_time0_search_reuse_refits_modulation(storage: 
             modulation=estimated.modulation[t],
             **known_options(),
         )
-        model = copy(independent)
-        model.input_shape = (1, *helper.images.shape[1:])
-        model.quadratures = independent.quadratures[t : t + 1]
-        model.noise_variance_factors = independent.noise_variance_factors[t : t + 1]
+        model = one_time_model(independent, t)
         certified_close(
             image.image,
             reconstruct_expected(

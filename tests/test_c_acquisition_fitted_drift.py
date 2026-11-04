@@ -179,9 +179,12 @@ def test_fitted_metadata_prerequisites_and_cubic_failures(kind: str) -> None:
         settings["header_timestamps"] = np.ones(8)
     else:
         settings["header_timestamps"] = np.arange(8) * 2.0**-1070
-    with pytest.raises(
-        api("AcquisitionModeError"), match="(?i)phase|timestamp|metadata|fit|cubic|rank|alloc|power"
-    ):
+    reason = "(?i)phase|timestamp|metadata|fit|cubic|rank|alloc|power"
+    if kind in {"singular", "power-underflow"}:
+        # Underflow zeros the higher design columns, so the selected solve
+        # may identify the cause directly as a singular matrix.
+        reason += "|singular matrix"
+    with pytest.raises(api("AcquisitionModeError"), match=reason):
         api("prepare_acquisition_bands")(raw, **settings)
 
 

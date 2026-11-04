@@ -22,13 +22,22 @@ from c_acquisition_fixture import (
 )
 
 
-def reject(raw: Any = None, **changes: Any) -> None:
+def reject(raw: Any = None, match: str | None = None, /, **changes: Any) -> None:
     if raw is None:
         raw = raw_pattern(y=10, x=10)
     error = api("AcquisitionModeError")
     assert issubclass(error, ValueError) and issubclass(error, api("SimreconError"))
-    with pytest.raises(error, match=".+"):
+    with pytest.raises(error, match=".+" if match is None else match) as caught:
         api("prepare_acquisition_bands")(raw, **options(**changes))
+    if match is not None:
+        assert caught.type is error, f"Wrong exact class: {caught.type.__name__}"
+
+
+def assert_finite_bands(raw: Any, settings: dict[str, Any]) -> None:
+    bands = api("prepare_acquisition_bands")(raw, **options(**settings))
+    assert bands.quadratures.size and np.isfinite(bands.quadratures).all()
+    assert np.isfinite(bands.noise_variance_factors).all()
+    assert (bands.noise_variance_factors > 0).all()
 
 
 @pytest.mark.parametrize(
@@ -73,7 +82,34 @@ def reject(raw: Any = None, **changes: Any) -> None:
     ],
 )
 def test_invalid_declarations_are_not_inferred_or_truncated(field: str, bad: Any) -> None:
-    reject(**{field: bad})
+    if field == "combine_off_orders" and isinstance(bad, np.ndarray):
+        raw = raw_pattern(y=10, x=10)
+        # Keep optics valid. The positive signed32 declaration alone lacks N;
+        # the invalid bool/overflow arrays have an otherwise valid off route.
+        valid_off = (np.roll(raw, 1, axis=-1) + 3)[..., None, :, :]
+        off = None if bad.dtype == np.int32 else valid_off
+        settings = dict(dxy_um=0.2, off_exposures=off, **optics(), **{field: bad})
+        repair = (
+            {"off_exposures": valid_off}
+            if off is None
+            else {field: np.array([1, 0], dtype=np.int32)}
+        )
+        selector = (
+            r"combine[ _-]+off[ _-]+orders|"
+            r"(?:off[ _-]+(?:combination[ _-]+)?|combination[ _-]+)"
+            r"(?:order[ _-]+)?(?:selectors?|flags?)"
+        )
+        target = selector
+        if off is None:
+            target = (
+                rf"{selector}|off[ _-]+(?:exposures?|frames?|images?|data|reference|combination)|"
+                r"combining[ _-]+order[ _-]+(?:zero|\d+)\s+"
+                r"(?:requires?|needs?) N\s*(?:>\s*0|>=\s*1)"
+            )
+        reject(raw, rf"(?i)\b(?:{target})\b", **settings)
+        assert_finite_bands(raw, settings | repair)
+    else:
+        reject(**{field: bad})
 
 
 @pytest.mark.parametrize(
@@ -91,7 +127,23 @@ def test_invalid_declarations_are_not_inferred_or_truncated(field: str, bad: Any
 )
 @pytest.mark.parametrize("bad", [0, 1, None, "false"])
 def test_flags_actual_booleans(field: str, bad: Any) -> None:
-    reject(**{field: bad})
+    raw = raw_pattern(y=10, x=10)
+    off = (np.roll(raw, 1, axis=-1) + 3)[..., None, :, :]
+    # Valid optics and off reference leave a truthy invalid drift flag as
+    # the rejected declaration, without a missing numerical prerequisite.
+    settings = dict(off_exposures=off, **optics(), **{field: bad})
+    selected_drift = field in {"drift_between", "drift_within"} and bad in (1, "false")
+    match = None
+    if selected_drift:
+        axis = field.removeprefix("drift_")
+        match = (
+            rf"(?i)\b(?:drift[ _-]+{axis}|{axis}(?:[ _-]+(?:direction|angle|exposure))?"
+            r"[ _-]+(?:drift|motion correction))\b"
+        )
+    reject(raw, match, **settings)
+    # Both malformed values repair to the same request for each flag.
+    if selected_drift and bad == 1:
+        assert_finite_bands(raw, settings | {field: True})
 
 
 @pytest.mark.parametrize(
@@ -191,17 +243,35 @@ def test_all_supplied_arrays_validate_even_if_numerically_unused(field: str, kin
 @pytest.mark.parametrize(
     "mode,z,d,changes,reason",
     [
-        ("2d", 1, 2, {"storage_order": "z-major", "drift_between": True}, "fast|z-major|uninitial"),
-        ("3d", 2, 1, {"storage_order": "z-major", "drift_within": True}, "fast|z-major|uninitial"),
-        ("3d", 2, 4, {"storage_order": "z-major", "drift_within": True}, "fast|z-major|uninitial"),
+        (
+            "2d",
+            1,
+            2,
+            {"storage_order": "z-major", "drift_between": True},
+            "fast|z[- ]major|uninitial|storage[ _-]order",
+        ),
+        (
+            "3d",
+            2,
+            1,
+            {"storage_order": "z-major", "drift_within": True},
+            "fast|z[- ]major|uninitial|storage[ _-]order",
+        ),
+        (
+            "3d",
+            2,
+            4,
+            {"storage_order": "z-major", "drift_within": True},
+            "fast|z[- ]major|uninitial|storage[ _-]order",
+        ),
         ("3d", 2, 3, {"drift_within": True, "adjust_phases": True}, "cubic|four|4|alloc|metadata"),
-        ("2d", 1, 1, {"drift_within": True}, "off|reference|N"),
+        ("2d", 1, 1, {"drift_within": True}, r"\boff\b|reference|\bN\b"),
         (
             "2d",
             1,
             1,
-            {"drift_within": True, "fit_drift": True, "header_timestamps": np.arange(3.0)},
-            "phase|timestamp|null|alloc",
+            {"drift_within": True, "fit_drift": True},
+            "phase|timestamp|null|alloc|metadata",
         ),
         ("2d", 1, 1, {"drift_between": True, "dz_um": 0.0}, "dz|pitch|axial"),
     ],
@@ -210,10 +280,25 @@ def test_structural_unsafe_branch_rejects_before_numeric_work(
     mode: str, z: int, d: int, changes: dict[str, Any], reason: str
 ) -> None:
     # Zero raw energy cannot hide the structural selector behind a no-energy error.
-    raw = np.zeros((1, d, 3, z, 10, 10))
+    phases = 4 if changes.get("fit_drift") else 3
+    raw = np.zeros((1, d, phases, z, 10, 10))
+    prerequisites: dict[str, Any] = {}
+    if changes.get("fit_drift") or (mode == "3d" and changes.get("drift_within")):
+        # The fitted 2D row has a usable clock, phase vector and N1, but
+        # deliberately lacks the flag that allocates the source clock.
+        # In 3D supply the clock/phase route so storage or D is decisive.
+        n = int(mode == "2d")
+        size = d * phases * z * (n + 1)
+        prerequisites.update(
+            off_exposures=np.ones((*raw.shape[:4], 1, 10, 10)) if n else None,
+            header_timestamps=np.arange(size, dtype=float),
+            header_phases_rad=np.arange(size) * (pi / 4),
+            adjust_phases=mode == "3d",
+            linespacing_um=100.0,
+        )
     with pytest.raises(api("AcquisitionModeError"), match="(?i)" + reason):
         api("prepare_acquisition_bands")(
-            raw, **(options(acquisition_mode=mode) | optics() | changes)
+            raw, **(options(acquisition_mode=mode) | optics() | prerequisites | changes)
         )
 
 
@@ -288,14 +373,24 @@ def test_invalid_used_records_both_consumers(field: str, bad: Any) -> None:
 )
 def test_new_known_options_invalid_or_nonpositive_schedule(field: str, bad: Any) -> None:
     bands = api("prepare_acquisition_bands")(raw_pattern(y=2, x=4), **options())
-    with pytest.raises(api("ReconstructionError"), match=".+"):
-        api("reconstruct_known")(
-            bands,
-            transfer(),
-            carriers_cyc_um=np.zeros((1, 2)),
-            modulation=np.ones((1, 1)),
-            **(known_options() | {field: bad}),
-        )
+    table = transfer()
+    settings = known_options() | dict(
+        carriers_cyc_um=np.zeros((1, 2)), modulation=np.ones((1, 1)), **{field: bad}
+    )
+    missing_power = (field, bad) == ("output_taper", "power")
+    match = (
+        r"(?i)\b(?:power[ _-]+(?:taper(?:[ _-]+exponent)?|exponent|parameter)|output[ _-]+taper)\b"
+        if missing_power
+        else ".+"
+    )
+    error = api("ReconstructionError")
+    with pytest.raises(error, match=match) as caught:
+        api("reconstruct_known")(bands, table, **settings)
+    if missing_power:
+        assert caught.type is error, f"Wrong exact class: {caught.type.__name__}"
+        repaired = settings | {"power_taper_exponent": 1.0}
+        result = api("reconstruct_known")(bands, table, **repaired)
+        assert result.image.size and np.isfinite(result.image).all()
 
 
 def test_power_negative_at_zero_base_rejects_and_exponent_zero_constant() -> None:
@@ -331,6 +426,14 @@ def test_precise_precompute_finite_positive_and_ordered_boundaries(
     actual = api("reconstruct_known")(
         bands, transfer(k=z), carriers_cyc_um=carriers, modulation=np.ones((3, 1)), **settings
     )
+    if mode == "3d":
+        # le=.52 um, theta=pi/2, dzf=1/16 cycles/um. c0=ceil(16/.52)=31
+        # and c1=trunc(1.3*31)=40. Both exceed the native half-size 4
+        # and independently clip to 3. In 2D the other filter keeps c=0.
+        cutoffs = actual.axial_cutoffs_bins
+        assert isinstance(cutoffs, np.ndarray) and cutoffs.dtype.kind in "iu"
+        assert cutoffs.shape == (2,)
+        np.testing.assert_array_equal(cutoffs, [3, 3])
     angles = np.array([atan2(ky, kx) for kx, ky in carriers])
     bounds = np.r_[angles - pi / 6, angles - pi / 6 + pi]
     bounds = np.array([b - 2 * pi if b > pi else b + 2 * pi if b < -pi else b for b in bounds])

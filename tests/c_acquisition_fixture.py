@@ -502,13 +502,61 @@ def overlaps(
                 written[side, h % z, i, j] = True
     if choices is not None:
         assert next(choices, None) is None, "unused threshold alternative"
-    return dict(
-        fourier=fourier, spatial=transform(fourier, inverse=True, axes=(1, 2, 3)), written=written
-    )
+    spatial = closed_zero_overlap(bands, table, carrier, pair, native, written)
+    if spatial is None:
+        spatial = transform(fourier, inverse=True, axes=(1, 2, 3))
+    return dict(fourier=fourier, spatial=spatial, written=written)
+
+
+def closed_zero_overlap(
+    bands: Any, table: Any, carrier: Any, pair: Any, native: Any, written: Any
+) -> Any:
+    """Return the exact binary64 butterfly for the two-point DC/Nyquist control."""
+    if (
+        bands.input_shape[-3:] != (1, 1, 2)
+        or pair != (0, 1)
+        or bands.dxy_um != 1
+        or table.layout != "radial"
+        or table.dkr_cyc_um != 0.125
+        or not np.all(written)
+        or np.any(carrier)
+        or np.any(as_disc(carrier).error)
+        or np.any(as_disc(native).error)
+        or np.any(as_disc(table.samples).error)
+        or not np.array_equal(np.asarray(native[:3]).reshape(3, 2), [[10, 10], [5, -5], [0, 0]])
+        or not np.all(np.asarray(table.samples[0]) == 3)
+        or not np.all(np.asarray(table.samples[1]) == 4)
+    ):
+        return None
+    # Both samples are at integer radial cells and axial zero. The constant
+    # transfers give sqrt(3**2+4**2)=5; products precede division, so
+    # the Fourier rows are (8,8) and (3,-3). Their two-point inverse uses
+    # only exact additions/subtractions, leaving disjoint spatial support.
+    return as_disc(np.array([[[[16, 0]]], [[[0, 6]]]], dtype=np.complex128))
 
 
 def regression(spatial: Any, carrier: Any, pair: tuple[int, int], pitch: float) -> dict[str, Any]:
     _, _, y, x = spatial.shape
+    if (
+        not np.any(carrier)
+        and not np.any(as_disc(carrier).error)
+        and not np.any(as_disc(spatial).error)
+        and np.array_equal(np.asarray(spatial).reshape(2, -1), [[16, 0], [0, 6]])
+    ):
+        # Centered phase at k=0 is 1. Both pointwise cross terms are exactly
+        # zero, while the integer squares give positive unequal energies.
+        return {
+            key: as_disc(value)
+            for key, value in dict(
+                SX=256.0,
+                SY=36.0,
+                cross=0j,
+                forward=0j,
+                reverse=0j,
+                combined=0j,
+                correlation=0.0,
+            ).items()
+        }
     xx, yy = np.meshgrid((np.arange(x) - x // 2) * pitch, (np.arange(y) - y // 2) * pitch)
     left = spatial[0]
     right = spatial[1] * np.exp(
@@ -911,7 +959,7 @@ def between_expected(
             centers[direction, h] += (plane - background) / (p * x * y * z)
     for direction, h in np.ndindex(d, subz):
         centers[direction, h] = edge(centers[direction, h], 10)
-    rd = 2 * op["numerical_aperture"] / (op["wavelength_nm"] / 1000)
+    rd = 2 * as_disc(op["numerical_aperture"]) / (as_disc(op["wavelength_nm"]) / 1000)
     le = op["wavelength_nm"] / op["immersion_index"] / 1000
     cz = min(
         ceil((1 - cos(asin(op["numerical_aperture"] / op["immersion_index"]))) / le * z * dz),
@@ -1050,7 +1098,18 @@ def finite_search(
             # of every phase probe: SX=8Z,SY=2Z,C=2Z, objective=1/16.
             objective = as_disc(1 / 16)
         trace.append(
-            dict(kind="evaluation", stage=stage, carrier_cyc_um=k, objective=objective, **fit)
+            dict(
+                kind="evaluation",
+                stage=stage,
+                orders=pair,
+                overlap_index=1,
+                remake_overlaps=not trace,
+                angle_rad=as_disc(a),
+                magnitude_cyc_um=as_disc(m),
+                carrier_cyc_um=k,
+                objective=objective,
+                **fit,
+            )
         )
         return objective
 
@@ -1131,7 +1190,22 @@ def finite_search(
             continue
         later_pair = (b - 1, b) if z == 1 else (0, b)
         build = overlaps(bands, table, carrier, later_pair, t, d, **op)
-        factors[b - 1] = regression(build["spatial"], carrier, later_pair, bands.dxy_um)["forward"]
+        fit = regression(build["spatial"], carrier, later_pair, bands.dxy_um)
+        trace.append(
+            dict(
+                kind="evaluation",
+                stage="later-order",
+                orders=later_pair,
+                overlap_index=len(builds),
+                remake_overlaps=True,
+                angle_rad=as_disc(angle),
+                magnitude_cyc_um=as_disc(mag),
+                carrier_cyc_um=carrier,
+                objective=abs(fit["forward"]) ** 2,
+                **fit,
+            )
+        )
+        factors[b - 1] = fit["forward"]
         builds.append(build)
     return dict(
         carrier=carrier,
@@ -1895,6 +1969,23 @@ def predict_public(name: str, args: Any, kwargs: Any) -> Any:
             or 8 * int(zoom * x) * int(zoom * y) * int(a * z) > 2**32 - 1
         ):
             return None
+        if name == "prepare_acquisition_bands":
+            # These invalid declarations must reach the public validator
+            # before truthiness or selector arithmetic picks an operation.
+            if any(
+                type(settings.get(key, False)) is not bool
+                for key in ("drift_between", "drift_within")
+            ):
+                return None
+            selectors = settings.get("combine_off_orders")
+            if selectors is not None and (
+                not isinstance(selectors, np.ndarray)
+                or selectors.dtype.kind not in "iu"
+                or np.any(selectors > 2**31 - 1)
+                or np.any(selectors < -(2**31))
+                or (np.any(selectors > 0) and settings.get("off_exposures") is None)
+            ):
+                return None
         expected = prepare_expected(image, settings)
         model = SimpleNamespace(
             **expected,
@@ -1942,6 +2033,8 @@ def predict_public(name: str, args: Any, kwargs: Any) -> Any:
     if name == "estimate_parameters":
         return parameter_model(model_bands(args[0]), model_table(args[1]), **kwargs)
     if name == "reconstruct_known":
+        if kwargs.get("output_taper") == "power" and kwargs.get("power_taper_exponent") is None:
+            return None
         bands = model_bands(args[0])
         if bands.noise_variance_factors.ndim == 2:
             bands = copy(bands)
@@ -2196,6 +2289,7 @@ def parameter_model(
             result = finite_search(bands, table, initial_carriers_cyc_um[d], t=t, d=d, **op)
             carriers[t, d] = result["carrier"]
             raw[t, d] = result["raw"]
+            build_offset = len(builds)
             builds.extend(result["builds"])
             numeric_events["coarse"].append(
                 dict(
@@ -2215,6 +2309,10 @@ def parameter_model(
                             )
                         )
                     )
+                elif kind == "evaluation":
+                    numeric_events[kind].append(
+                        event | {"overlap_index": build_offset + event["overlap_index"]}
+                    )
                 else:
                     numeric_events[kind].append(event)
         else:
@@ -2231,7 +2329,19 @@ def parameter_model(
                 fit = regression(built["spatial"], carrier, (0, b), bands.dxy_um)
                 builds.append(built)
                 raw[t, d, b - 1] = fit["forward"]
-                numeric_events["evaluation"].append(fit)
+                numeric_events["evaluation"].append(
+                    dict(
+                        stage="known",
+                        orders=(0, b),
+                        overlap_index=len(builds) - 1,
+                        remake_overlaps=True,
+                        angle_rad=None,
+                        magnitude_cyc_um=None,
+                        objective=None,
+                        carrier_cyc_um=carrier,
+                        **fit,
+                    )
+                )
         factors = raw[t, d].copy()
         if z == 1:
             for b in range(1, orders - 1):
@@ -2248,7 +2358,10 @@ def parameter_model(
             entering = factors[b].copy()
             floors = settings.get("amplitude_floors")
             if floors is not None and abs(factors[b]) < floors[b]:
-                factors[b] *= floors[b] / abs(factors[b])
+                magnitude = abs(factors[b])
+                if magnitude.error == 0 and magnitude == 0:
+                    raise CertificateError("selected amplitude floor on exact zero")
+                factors[b] *= floors[b] / magnitude
             after = factors[b].copy()
             if not settings.get("fit_all_phases", True):
                 phase = np.arctan2(factors[0].imag, factors[0].real)
@@ -2705,6 +2818,32 @@ def immutable_setting(value: Any) -> bool:
 
 def assert_mode_trace_complete(record: Any, trace: Any, shape: Any, orders: Any) -> None:
     assert type(trace) is tuple
+    complex_fields = {"fourier", "cross_spectrum", "phase_multiplier", "quadratures_after"}
+    real_array_fields = {
+        "centers",
+        "correlation",
+        "absolute_correlation",
+        "neighbors_xyz",
+        "offsets_xyz",
+        "wrapped_displacement_xyz",
+        "sample_timestamps_before",
+        "sample_timestamps_after",
+        "evaluation_timestamps_before",
+        "evaluation_timestamps_after",
+        "sample_displacements_xy",
+        "matrix",
+        "coefficients",
+        "evaluated_xy",
+        "displacement_xy",
+        "phases_rad",
+        "separation_matrix",
+        "noise_variance_factors",
+        "displacement_xyz",
+        "carrier_angles_rad",
+        "boundary_angles_rad",
+        "object_frequency_xy",
+        "next_boundaries",
+    }
     for event in trace:
         assert_frozen_value(event, "kind")
         assert type(event.kind) is str
@@ -2714,31 +2853,26 @@ def assert_mode_trace_complete(record: Any, trace: Any, shape: Any, orders: Any)
             type(None),
         }
         assert type(event.details) is tuple
+        assert all(
+            type(pair) is tuple and len(pair) == 2 and type(pair[0]) is str
+            for pair in event.details
+        )
         assert tuple(key for key, _ in event.details) == tuple(MODE_KEYS[event.kind].split())
         data = dict(event.details)
-        if event.kind == "drift-correlation":
-            assert data["scope"] in {"between", "within"}
-            assert all(
-                status in {"zero-curvature", "outside-range", "fitted", "not-fitted"}
-                for status in data["offset_status_xyz"]
-            )
-        if event.kind == "off-combination":
-            assert data["affected_z"] == 0
         if event.kind == "wiener-step":
             assert event.direction_index == 0
             assert event.z_index is event.phase_index is None
         for key, value in data.items():
-            if isinstance(value, np.ndarray):
-                complex_fields = {
-                    "fourier",
-                    "cross_spectrum",
-                    "phase_multiplier",
-                    "quadratures_after",
-                }
+            if key in complex_fields or key in real_array_fields:
+                assert isinstance(value, np.ndarray), (event.kind, key)
                 assert value.dtype == np.dtype(complex if key in complex_fields else float)
                 assert np.isfinite(value).all()
-            elif key in {"scope", "policy"}:
+            elif key == "scope":
                 assert type(value) is str
+                if event.kind == "drift-correlation":
+                    assert value in {"between", "within"}
+            elif key == "policy":
+                assert type(value) is str and value in {"uniform", "steps", "supplied", "drift"}
             elif key in {"offset_status_xyz"}:
                 assert (
                     type(value) is tuple and len(value) == 3 and all(type(s) is str for s in value)
@@ -2766,6 +2900,13 @@ def assert_mode_trace_complete(record: Any, trace: Any, shape: Any, orders: Any)
             else:
                 assert type(value) is float, (event.kind, key, type(value))
                 assert np.isfinite(value)
+        if event.kind == "drift-correlation":
+            axial_unfitted = data["scope"] == "within" or data["correlation"].shape[0] == 1
+            statuses = {"zero-curvature", "outside-range", "fitted"}
+            assert all(status in statuses for status in data["offset_status_xyz"][:2])
+            assert data["offset_status_xyz"][2] in ({"not-fitted"} if axial_unfitted else statuses)
+        if event.kind == "off-combination":
+            assert data["affected_z"] == 0
         if shape is not None:
             _, d, p, z, y, x = shape
             hx = x // 2 + 1
@@ -2923,6 +3064,16 @@ def assert_estimation_schema(result: Any, bands: Any, settings: Any) -> None:
         "adjustment": "order raw_forward floor floor_applied after_floor phase_replaced final",
         "cumulative-product": "order direct_forward previous_cumulative product",
     }
+    offset_status = {"zero-curvature", "outside-range", "fitted"}
+    event_strings = {
+        "stage": {"angle", "magnitude"},
+        "branch": {"initial", "positive", "negative-swap", "shift", "stop"},
+        "status": {"duplicate-coordinate", "zero-curvature", "fitted"},
+        "x_offset_status": offset_status,
+        "y_offset_status": offset_status,
+    }
+    assert type(result.trace) is tuple
+    assert type(result.overlaps) is tuple
     for event in result.trace:
         assert_frozen_value(event, "kind")
         assert (
@@ -2931,9 +3082,23 @@ def assert_estimation_schema(result: Any, bands: Any, settings: Any) -> None:
             and type(event.direction_index) is int
         )
         assert type(event.details) is tuple
+        assert all(
+            type(pair) is tuple and len(pair) == 2 and type(pair[0]) is str
+            for pair in event.details
+        )
         assert tuple(k for k, _ in event.details) == tuple(schemas[event.kind].split())
+        known = event.kind == "evaluation" and dict(event.details)["stage"] == "known"
         for key, value in event.details:
-            if isinstance(value, np.ndarray):
+            if key in {
+                "correlation_complex",
+                "correlation_power",
+                "x_neighbors",
+                "y_neighbors",
+                "peak_before_alias_xy",
+                "peak_after_alias_xy",
+                "carrier_cyc_um",
+            }:
+                assert isinstance(value, np.ndarray), (event.kind, key)
                 if key == "correlation_complex":
                     assert value.shape == (y, x) and value.dtype == np.complex128
                 elif key == "correlation_power":
@@ -2941,8 +3106,11 @@ def assert_estimation_schema(result: Any, bands: Any, settings: Any) -> None:
                 else:
                     assert value.shape == ((3,) if key in {"x_neighbors", "y_neighbors"} else (2,))
                     assert value.dtype == np.float64
-            elif key in {"stage", "branch", "status", "x_offset_status", "y_offset_status"}:
-                assert type(value) is str
+            elif key in event_strings:
+                allowed = event_strings[key]
+                if key == "stage" and event.kind == "evaluation":
+                    allowed = allowed | {"final", "later-order", "known"}
+                assert type(value) is str and value in allowed
             elif key in {"order", "overlap_index", "source_time"}:
                 assert type(value) is int
             elif key in {
@@ -2973,8 +3141,12 @@ def assert_estimation_schema(result: Any, bands: Any, settings: Any) -> None:
                 "product",
             }:
                 assert type(value) is complex and np.isfinite(value)
+            elif known and key in {"angle_rad", "magnitude_cyc_um", "objective"}:
+                assert value is None
+            elif key == "floor" and value is None:
+                continue
             else:
-                assert value is None or type(value) is float and np.isfinite(value)
+                assert type(value) is float and np.isfinite(value), (event.kind, key)
     for index, build in enumerate(result.overlaps):
         assert_frozen_value(build, "index")
         assert type(build.index) is int and build.index == index
@@ -2985,7 +3157,11 @@ def assert_estimation_schema(result: Any, bands: Any, settings: Any) -> None:
             "later-order",
             "known",
         }
-        assert type(build.orders) is tuple and all(type(v) is int for v in build.orders)
+        assert (
+            type(build.orders) is tuple
+            and len(build.orders) == 2
+            and all(type(v) is int for v in build.orders)
+        )
         assert build.carrier_cyc_um.shape == (2,) and build.carrier_cyc_um.dtype == np.float64
         assert build.fourier.shape == build.spatial.shape == build.written.shape == (2, z, y, x)
         assert (

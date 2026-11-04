@@ -217,10 +217,15 @@ def test_record_ownership_frozen_metadata_and_resolved_settings() -> None:
 def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
     mode: str, z: int, n: int, selectors: tuple[int, int]
 ) -> None:
-    from c_acquisition_fixture import lift, optics, transform
+    from c_acquisition_fixture import combine_expected, lift, optics, transform
 
     raw = raw_pattern(t=2, d=2, z=z, y=4, x=6)
-    off = np.repeat((2 * raw + 1)[..., None, :, :], n, axis=4)
+    repeated_side = z > 1 and selectors[1] > 0
+    if repeated_side:
+        off_frame = np.roll(raw, 1, axis=-1) + np.roll(raw, 2, axis=-2) + 3
+    else:
+        off_frame = 2 * raw + 1
+    off = np.repeat(off_frame[..., None, :, :], n, axis=4)
     # Distinct off data; neither averaging nor per-current-z combination agrees.
     off[..., 0, :, :] += np.arange(24).reshape(4, 6) % 3
     settings = (
@@ -246,22 +251,6 @@ def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
     )
     assert 0 < np.count_nonzero(cells) < cells.size
     assert cells[0, 1]  # integer truncated kx=0; physical kx>0 is still inside
-    if z > 1 and selectors[1] > 0:
-        # Off side=k*on side exactly: the phase-independent perturbation has
-        # no side harmonic and zero native x Nyquist. A positive signal gives
-        # fractions k/(k+1),1/(k+1), canceling the side on plane0. The NEXT
-        # invocation then reaches the approved zero-noise operation failure.
-        cancellation = False
-        for t, d in np.ndindex(2, 2):
-            native = transform(baseline["quadratures"][t, d], inverse=True, axes=(1,)) / z
-            power = np.sum(abs(native[1:3, 0]) ** 2, axis=0)
-            signal2 = np.mean(power[cells]) - np.mean(power[~cells])
-            if float(np.asarray(signal2)) > float(signal2.error):
-                cancellation = True
-        if cancellation:
-            with pytest.raises(api("AcquisitionModeError"), match="(?i)noise|zero|statistic"):
-                api("prepare_acquisition_bands")(raw, **settings)
-            return
     expected_events = []
     for t, d in np.ndindex(2, 2):
         native = (
@@ -270,6 +259,13 @@ def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
             else expected[t, d].copy()
         )
         offnative = baseline["off_quadratures"][t, d]
+        if repeated_side:
+            # Each invocation rereads the updated on plane zero and the same
+            # separated off plane zero. The observer certifies the divisors.
+            for callz in range(z):
+                combine_expected(native, offnative, callz, settings, expected_events)
+            expected[t, d] = transform(native, axes=(1,))
+            continue
         for callz in range(z):
             for m, selector in enumerate(selectors):
                 if selector <= 0:
@@ -311,12 +307,18 @@ def test_literal_off_statistics_integer_cells_plus_minus_and_repeated_plane0(
         expected[t, d] = transform(native, axes=(1,)) if z > 1 else native
     actual = api("prepare_acquisition_bands")(raw, **settings)
     close(actual.quadratures, expected)
+    if repeated_side:
+        close(actual.off_quadratures, baseline["off_quadratures"])
     np.testing.assert_array_equal(actual.noise_variance_factors, baseline["noise_variance_factors"])
     observed = events(actual, "off-combination")
     assert len(observed) == len(expected_events)
     for e, want in zip(observed, expected_events, strict=True):
         for name, value in want.items():
-            if isinstance(value, (int, bool)):
+            if isinstance(value, (bool, np.bool_)):
+                assert type(e[name]) is bool
+                assert e[name] is bool(value)
+            elif isinstance(value, (int, np.integer)):
+                assert type(e[name]) is int
                 assert e[name] == value
             else:
                 close(e[name], value)
