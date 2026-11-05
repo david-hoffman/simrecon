@@ -2803,3 +2803,205 @@ def test_added_bead_accepts_signed_carrier_angle_minimum(
     signed_minimum = dtype(minimum)
     assert type(signed_minimum) is dtype and int(signed_minimum) == minimum
     assert_same_public_result(prepare(signed_minimum, compensate), control)
+
+
+def binary16_public_call(entry: str, *args: Any, **settings: Any) -> Any:
+    """Call the public entry with original inputs and check finite owned output arrays."""
+    import simrecon
+    from c_acquisition_fixture import returned_arrays
+
+    inputs = returned_arrays((args, settings))
+    before = [(value, value.copy()) for _, value in inputs]
+    result = getattr(simrecon, entry)(*args, **settings)
+    outputs = returned_arrays(result)
+    assert outputs
+    for name, value in outputs:
+        assert value.flags.owndata and np.isfinite(value).all(), name
+        assert all(not np.shares_memory(value, original) for _, original in inputs), name
+    for value, original in before:
+        assert value.dtype == original.dtype and np.array_equal(value, original)
+    return result
+
+
+def assert_binary16_public_equal(actual: Any, expected: Any) -> None:
+    """Compare the public values exactly through the accepted record field traversal."""
+    from c_acquisition_fixture import public_record_fields
+
+    if isinstance(expected, np.ndarray):
+        assert isinstance(actual, np.ndarray) and actual.dtype == expected.dtype
+        assert actual.flags.writeable == expected.flags.writeable
+        assert np.array_equal(actual, expected)
+        return
+    names = public_record_fields(expected)
+    if names:
+        assert public_record_fields(actual) == names
+        for name in names:
+            assert_binary16_public_equal(getattr(actual, name), getattr(expected, name))
+    elif isinstance(expected, (tuple, list)):
+        assert len(actual) == len(expected)
+        for value, control in zip(actual, expected, strict=True):
+            assert_binary16_public_equal(value, control)
+    else:
+        assert actual == expected
+
+
+def binary16_acquisition_inputs() -> tuple[np.ndarray, dict[str, np.ndarray]]:
+    """Reproduce the exact acquisition observer's raw values and metadata."""
+    raw = np.arange(864, dtype=np.float64).reshape(1, 2, 3, 1, 12, 12) % 21 + 2
+    metadata = {
+        "background": np.zeros((12, 12)),
+        "flatfield_slope": np.ones((12, 12)),
+        "exposure_background": np.zeros((1, 2, 3, 1)),
+        "phases_rad": np.array([[0, 2, 4], [0, 2, 4]]),
+        "phase_steps_rad": np.array([2, 2]),
+        "header_timestamps": np.arange(6),
+        "header_phases_rad": np.arange(6),
+    }
+    return raw, metadata
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "background",
+        "flatfield_slope",
+        "exposure_background",
+        "phases_rad",
+        "phase_steps_rad",
+        "header_timestamps",
+        "header_phases_rad",
+    ],
+)
+def test_binary16_acquisition_metadata_matches_accepted_controls(field: str) -> None:
+    raw, metadata = binary16_acquisition_inputs()
+    values = metadata[field]
+    settings = options(dxy_um=0.125, dz_um=0.0)
+    controls = [
+        binary16_public_call(
+            "prepare_acquisition_bands", raw, **(settings | {field: values.astype(dtype)})
+        )
+        for dtype in (np.float32, np.float64)
+    ]
+    assert_binary16_public_equal(controls[0], controls[1])
+    native = values.astype(np.float16)
+    assert type(native) is np.ndarray and native.dtype == np.float16
+    actual = binary16_public_call("prepare_acquisition_bands", raw, **(settings | {field: native}))
+    assert_binary16_public_equal(actual, controls[1])
+
+
+@pytest.mark.parametrize("storage", ["direction-major", "z-major"])
+def test_binary16_reinterpretation_exposure_matches_accepted_controls(storage: str) -> None:
+    raw, _ = binary16_acquisition_inputs()
+    stack = np.repeat(raw, 2, axis=3)
+    values = np.arange(12).reshape(1, 2, 3, 2)
+    controls = [
+        binary16_public_call(
+            "reinterpret_2d_planes",
+            stack,
+            storage_order=storage,
+            exposure_background=values.astype(dtype),
+        )
+        for dtype in (np.float32, np.float64)
+    ]
+    assert_binary16_public_equal(controls[0], controls[1])
+    native = values.astype(np.float16)
+    assert type(native) is np.ndarray and native.dtype == np.float16
+    actual = binary16_public_call(
+        "reinterpret_2d_planes", stack, storage_order=storage, exposure_background=native
+    )
+    assert_binary16_public_equal(actual, controls[1])
+
+
+def binary16_bead_inputs(
+    shape: tuple[int, int, int, int],
+) -> tuple[np.ndarray, dict[str, Any]]:
+    """Reproduce the optical observer's bead values and selected settings."""
+    raw = np.zeros(shape, dtype=np.float64)
+    for phase in range(3):
+        raw[phase, -1, 5, shape[-1] // 2] = phase + 1
+    settings = dict(
+        dxy_um=1.0,
+        dz_um=1.0,
+        linespacing_um=1.0,
+        wavelength_nm=500,
+        background_counts=0.0,
+        compensate_bead=False,
+        fix_axial_axis=False,
+        fix_radial_from=0,
+        cleanup_axial_bins=(0, 0, 0),
+        numerical_aperture=1.0,
+        immersion_index=1.0,
+        origin_fit_bins=None,
+        rescale_each=False,
+        forced_pi_shift=False,
+    )
+    return raw, settings
+
+
+@pytest.mark.parametrize(
+    "shape",
+    [
+        pytest.param((3, 1, 10, 8), id="rectangular-Z1"),
+        pytest.param((3, 1, 10, 10), id="square-Z1"),
+        pytest.param((3, 2, 10, 8), id="rectangular-Z2"),
+    ],
+)
+def test_binary16_added_bead_raw_matches_accepted_control(
+    shape: tuple[int, int, int, int],
+) -> None:
+    raw, settings = binary16_bead_inputs(shape)
+    native = raw.astype(np.float16)
+    assert type(native) is np.ndarray and native.dtype == np.float16
+    control = binary16_public_call("prepare_bead_otf", native.astype(np.float64), **settings)
+    actual = binary16_public_call("prepare_bead_otf", native, **settings)
+    assert_binary16_public_equal(actual, control)
+
+
+@pytest.mark.parametrize("field,value", [("dxy_um", 1.0), ("carrier_angle_rad", 0.25)])
+def test_binary16_added_bead_scalar_matches_accepted_control(field: str, value: float) -> None:
+    raw, settings = binary16_bead_inputs((3, 1, 10, 8))
+    native = np.float16(value)
+    assert type(native) is np.float16 and float(native) == value
+    control = binary16_public_call("prepare_bead_otf", raw, **(settings | {field: float(native)}))
+    actual = binary16_public_call("prepare_bead_otf", raw, **(settings | {field: native}))
+    assert_binary16_public_equal(actual, control)
+
+
+@pytest.mark.parametrize("field", ["background_map", "slope_map", "exposure_background_counts"])
+def test_binary16_added_bead_map_matches_accepted_control(field: str) -> None:
+    raw, settings = binary16_bead_inputs((3, 1, 10, 8))
+    native_maps: dict[str, np.ndarray]
+    if field == "exposure_background_counts":
+        native_maps = {field: np.zeros((1, 3), dtype=np.float16)}
+    else:
+        native_maps = dict(background_map=np.zeros((10, 8)), slope_map=np.ones((10, 8)))
+        native_maps[field] = native_maps[field].astype(np.float16)
+    control_maps = {name: value.astype(np.float64) for name, value in native_maps.items()}
+    assert native_maps[field].dtype == np.float16
+    control = binary16_public_call("prepare_bead_otf", raw, **(settings | control_maps))
+    actual = binary16_public_call("prepare_bead_otf", raw, **(settings | native_maps))
+    assert_binary16_public_equal(actual, control)
+
+
+@pytest.mark.parametrize("entry", ["estimate_parameters", "reconstruct_known"])
+@pytest.mark.parametrize("field", ["dkr_cyc_um", "dkz_cyc_um"])
+def test_binary16_acquisition_transfer_increment_matches_accepted_control(
+    entry: str, field: str
+) -> None:
+    from dataclasses import replace
+
+    raw = raw_pattern(y=4, x=6)
+    bands = binary16_public_call("prepare_acquisition_bands", raw, **options())
+    table = transfer()
+    carriers = np.array([[0.1, 0.02]])
+    if entry == "estimate_parameters":
+        settings = optics()
+        settings.update(initial_carriers_cyc_um=carriers, search_carriers=False)
+    else:
+        settings = known_options(carriers_cyc_um=carriers, modulation=np.ones((1, 1)))
+    native = replace(table, **{field: np.float16(getattr(table, field))})
+    control = replace(table, **{field: float(getattr(table, field))})
+    assert type(getattr(native, field)) is np.float16
+    ordinary = binary16_public_call(entry, bands, control, **settings)
+    actual = binary16_public_call(entry, bands, native, **settings)
+    assert_binary16_public_equal(actual, ordinary)

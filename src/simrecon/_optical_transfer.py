@@ -138,11 +138,13 @@ def _scalar(
     if not valid:
         raise OtfError(f"{name} must be a finite real scalar")
     magnitude_input = value
-    if widen_signed_magnitude and issubclass(type(value), np.signedinteger):
-        signed_value = cast(np.signedinteger[Any], value)
-        if signed_value.dtype.kind == "i":
-            # The positive magnitude of a signed minimum cannot fit its NumPy dtype.
-            magnitude_input = np.generic.item(signed_value)
+    if require_actual and issubclass(type(value), np.generic):
+        scalar_value = cast("np.generic[Any]", value)
+        if scalar_value.dtype.char == "e" or (
+            widen_signed_magnitude and scalar_value.dtype.kind == "i"
+        ):
+            # Compare half values and signed magnitudes without input-width overflow.
+            magnitude_input = np.generic.item(scalar_value)
     magnitude: Any = abs(magnitude_input)
     if magnitude > _F32_MAX:
         raise OtfError(f"{name} exceeds float32 magnitude")
@@ -176,15 +178,23 @@ def _numeric(value: Any, name: str, *, complex_ok: bool = False) -> NDArray[Any]
     return array
 
 
-def _values(array: NDArray[Any], name: str, *, exact: bool, complex_ok: bool = False) -> None:
+def _values(
+    array: NDArray[Any],
+    name: str,
+    *,
+    exact: bool,
+    complex_ok: bool = False,
+    wide_bound: bool = False,
+) -> None:
     _finite(array, name)
+    bound = np.float64(_F32_MAX) if wide_bound else _F32_MAX
     if complex_ok:
-        if (np.abs(np.real(array)) > _F32_MAX).any() or (np.abs(np.imag(array)) > _F32_MAX).any():
+        if (np.abs(np.real(array)) > bound).any() or (np.abs(np.imag(array)) > bound).any():
             raise OtfError(f"{name} exceeds complex64 magnitude")
         if exact:
             _exact_values(array, np.complex64, name)
     else:
-        if (array > _F32_MAX).any() or (array < -_F32_MAX).any():
+        if (array > bound).any() or (array < -bound).any():
             raise OtfError(f"{name} exceeds float32 magnitude")
         if exact:
             _exact_values(array, np.float32, name)
@@ -503,14 +513,14 @@ def _bins(value: Any, name: str, length: int, *, require_actual: bool = False) -
     return tuple(_integer(item, name, require_actual=require_actual) for item in items)
 
 
-def _map(value: Any, name: str, shape: tuple[int, ...]) -> _F64 | None:
+def _map(value: Any, name: str, shape: tuple[int, ...], *, wide_bound: bool = False) -> _F64 | None:
     if value is None:
         return None
     array = _numeric(value, name)
     if array.shape != shape:
         raise OtfError(f"{name} must have shape {shape}")
     _extent(shape, 8)
-    _values(array, name, exact=False)
+    _values(array, name, exact=False, wide_bound=wide_bound)
     return np.array(array, dtype=np.float64, copy=True)
 
 
@@ -952,12 +962,14 @@ def prepare_bead_otf(
     )
     if origin is not None and not 1 <= origin[0] < origin[1] <= x // 2:
         raise OtfError("origin fit needs 1<=a<b<=N/2")
-    camera = _map(background_map, "background_map", (n, x))
-    slopes = _map(slope_map, "slope_map", (n, x))
+    camera = _map(background_map, "background_map", (n, x), wide_bound=added_geometry)
+    slopes = _map(slope_map, "slope_map", (n, x), wide_bound=added_geometry)
     if (camera is None) != (slopes is None):
         raise OtfError("background and slope maps must be supplied together")
-    exposures = _map(exposure_background_counts, "exposure_background_counts", (z, p))
-    _values(array, "raw", exact=True)
+    exposures = _map(
+        exposure_background_counts, "exposure_background_counts", (z, p), wide_bound=added_geometry
+    )
+    _values(array, "raw", exact=True, wide_bound=added_geometry)
     dkr = 1 / (n * scalars["dxy_um"])
     dkz = 1 / (z * scalars["dz_um"])
     _scalar(dkr, "derived transfer dkr", positive=True)

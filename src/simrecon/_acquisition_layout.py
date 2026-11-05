@@ -117,7 +117,7 @@ def array_metadata(value: Any, name: str, shape: tuple[int, ...], *, raw: bool =
             raise AcquisitionModeError(
                 "off_exposures samples must be exactly float32 representable"
             ) from error
-    elif (value > F32_MAX).any() or (value < -F32_MAX).any():
+    elif (value > np.float64(F32_MAX)).any() or (value < np.float64(-F32_MAX)).any():
         raise AcquisitionModeError(f"{name} exceeds float32 magnitude")
     return value
 
