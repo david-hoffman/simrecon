@@ -14,10 +14,13 @@ The [public contract](../contracts/c-equivalence-optical-transfer-v1.md) defines
 all units, branches and failures. The [task pointer](../tasks/c-equivalence-optical-transfer.md)
 links the sole live acceptance/evidence record; documentation alone is no verdict.
 
-A raw bead array has axes `(phase,z,y,x)`. The selected ordinary 3D profile
-requires an odd phase count of 1, 3, 5, 7 or 9, at least two axial planes, and square even
-lateral dimensions of at least 10 pixels. Compensation requires more than one
-phase. Raw samples must be finite and exactly representable as float32.
+A raw bead array has axes `(phase,z,y,x)`. It requires an odd phase count of
+1, 3, 5, 7 or 9, at least one axial plane, even x length at least 8, y length
+at least 10 and y<=x+2. Every executed-operation condition still applies;
+these dimensions alone do not guarantee success. The original square 3D
+controls remain valid. [CE06](c-acquisition-modes.md) adds the defined
+rectangular/single-plane family with its literal initialized-padding writes.
+Compensation requires more than one phase. Raw samples must be finite and exactly representable as float32.
 Arithmetic uses binary64. Spacings, bead diameter and line spacing use
 micrometres (um); wavelength is required acquisition metadata in nanometres
 (nm), and angles are radians.
@@ -107,11 +110,13 @@ unsupported modes and unresolved numerical operations also raise `OtfError`,
 a ValueError subclass. Near cancellation or a transform zero, finite arithmetic
 can be sensitive; no universal forward-error guarantee is made.
 
-Non-square empirical modes, odd-x packing, 2D empirical preparation, I2M/
-two-objective paths and file adapters remain outside this selected profile.
-Complete declared layouts compose with the
-[known-parameter 3D array stage](c-known-reconstruction.md). They do not enable
-deferred 2D modes or a complete file workflow. Historical effective external FFT headers/libraries
+Odd-x packing, I2M/two-objective paths and file adapters remain outside this
+selected profile. Single-plane repairs still need their actual safe domain;
+default repairs are not automatically safe at z length 1. Consume the actual
+prepared complex128 transfer directly, without complex64 redeclaration or
+axial-step rebinding. Complete declared layouts and prepared values compose
+with [known reconstruction](c-known-reconstruction.md) and the accepted
+[acquisition modes](c-acquisition-modes.md); file workflow binding is separate. Historical effective external FFT headers/libraries
 remain unqualified. This work proves the declared source mathematics; it makes
 no bitwise C-output, image recovery or resolution claim. The
 [small sampling control](../reports/c-otf-control.md) explains the independent

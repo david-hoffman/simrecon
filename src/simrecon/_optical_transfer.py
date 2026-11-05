@@ -6,7 +6,7 @@ It provides no file adapter or compiled-source equivalence claim.
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from functools import wraps
+from functools import partial, wraps
 from math import asin, atan, ceil, cos, floor, hypot, isfinite, pi, sin
 from numbers import Integral, Real
 from typing import Any, cast
@@ -61,6 +61,20 @@ class OpticalTransfer:
 
 
 @dataclass(frozen=True)
+class _CheckedTransfer:
+    """Private sampling data borrowing the validated complex128 storage."""
+
+    samples: _C128
+    layout: str
+    dkr_cyc_um: float
+    dkz_cyc_um: float
+    norders: int
+
+
+_Transfer = OpticalTransfer | _CheckedTransfer
+
+
+@dataclass(frozen=True)
 class PreparedOtf:
     """Combined transfer with the empirical preparation's public diagnostics."""
 
@@ -94,8 +108,13 @@ def _i32(value: int, name: str = "source integer intermediate") -> int:
     return value
 
 
-def _integer(value: Any, name: str, minimum: int = 0) -> int:
-    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Integral):
+def _integer(value: Any, name: str, minimum: int = 0, *, require_actual: bool = False) -> int:
+    valid = (
+        not issubclass(type(value), (bool, np.bool_)) and issubclass(type(value), Integral)
+        if require_actual
+        else not isinstance(value, (bool, np.bool_)) and isinstance(value, Integral)
+    )
+    if not valid:
         raise OtfError(f"{name} must be an integer")
     result = _i32(int(value), name)
     if result < minimum:
@@ -103,15 +122,37 @@ def _integer(value: Any, name: str, minimum: int = 0) -> int:
     return result
 
 
-def _scalar(value: Any, name: str, *, positive: bool = False) -> float:
-    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Real):
+def _scalar(
+    value: Any,
+    name: str,
+    *,
+    positive: bool = False,
+    require_actual: bool = False,
+    widen_signed_magnitude: bool = False,
+) -> float:
+    valid = (
+        not issubclass(type(value), (bool, np.bool_)) and issubclass(type(value), Real)
+        if require_actual
+        else not isinstance(value, (bool, np.bool_)) and isinstance(value, Real)
+    )
+    if not valid:
         raise OtfError(f"{name} must be a finite real scalar")
-    magnitude: Any = abs(value)
+    magnitude_input = value
+    if require_actual and issubclass(type(value), np.generic):
+        scalar_value = cast("np.generic[Any]", value)
+        if scalar_value.dtype.char == "e" or (
+            widen_signed_magnitude and scalar_value.dtype.kind == "i"
+        ):
+            # Compare half values and signed magnitudes without input-width overflow.
+            magnitude_input = np.generic.item(scalar_value)
+    magnitude: Any = abs(magnitude_input)
     if magnitude > _F32_MAX:
         raise OtfError(f"{name} exceeds float32 magnitude")
     result = float(value)
     if not isfinite(result) or (positive and result <= 0):
         raise OtfError(f"{name} is outside its finite physical representation")
+    if require_actual and abs(result) > _F32_MAX:
+        raise OtfError(f"{name} exceeds float32 magnitude")
     return result
 
 
@@ -137,15 +178,23 @@ def _numeric(value: Any, name: str, *, complex_ok: bool = False) -> NDArray[Any]
     return array
 
 
-def _values(array: NDArray[Any], name: str, *, exact: bool, complex_ok: bool = False) -> None:
+def _values(
+    array: NDArray[Any],
+    name: str,
+    *,
+    exact: bool,
+    complex_ok: bool = False,
+    wide_bound: bool = False,
+) -> None:
     _finite(array, name)
+    bound = np.float64(_F32_MAX) if wide_bound else _F32_MAX
     if complex_ok:
-        if (np.abs(np.real(array)) > _F32_MAX).any() or (np.abs(np.imag(array)) > _F32_MAX).any():
+        if (np.abs(np.real(array)) > bound).any() or (np.abs(np.imag(array)) > bound).any():
             raise OtfError(f"{name} exceeds complex64 magnitude")
         if exact:
             _exact_values(array, np.complex64, name)
     else:
-        if (array > _F32_MAX).any() or (array < -_F32_MAX).any():
+        if (array > bound).any() or (array < -bound).any():
             raise OtfError(f"{name} exceeds float32 magnitude")
         if exact:
             _exact_values(array, np.float32, name)
@@ -172,10 +221,17 @@ def _owned(value: Any, dtype: Any) -> NDArray[Any]:
     return result
 
 
-def _table_shape(array: NDArray[Any], layout: Any) -> None:
+def _table_shape(
+    array: NDArray[Any], layout: Any, *, describe_layout_mismatch: bool = False
+) -> None:
     if not isinstance(layout, str) or layout not in ("radial", "full"):
         raise OtfError("unsupported transfer layout; use radial or full")
-    if array.ndim != (3 if layout == "radial" else 4) or any(d < 1 for d in array.shape):
+    expected_ndim = 3 if layout == "radial" else 4
+    if array.ndim != expected_ndim or any(d < 1 for d in array.shape):
+        if describe_layout_mismatch and array.ndim != expected_ndim:
+            raise OtfError(
+                f"{layout} transfer layout requires {expected_ndim} axes, got {array.ndim}"
+            )
         raise OtfError("complete transfer requires nonempty order and table axes")
     for dimension in array.shape:
         _i32(dimension, "transfer dimension")
@@ -223,21 +279,61 @@ def declare_otf(
     return OpticalTransfer(_owned(array, np.complex128), layout, dkr, dkz, array.shape[0])
 
 
-def _valid_transfer(transfer: Any) -> OpticalTransfer:
-    if not isinstance(transfer, OpticalTransfer):
+def _matches_transfer_reference(reference: Any) -> bool:
+    if not issubclass(type(reference), tuple) or tuple.__len__(reference) != len(_REFERENCE):
+        return False
+    for pair, expected in zip(tuple.__iter__(reference), _REFERENCE, strict=True):
+        if not issubclass(type(pair), tuple) or tuple.__len__(pair) != 2:
+            return False
+        if any(
+            not issubclass(type(value), str) or str.__str__(value) != text
+            for value, text in zip(tuple.__iter__(pair), expected, strict=True)
+        ):
+            return False
+    return True
+
+
+def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer:
+    transfer_type_valid = (
+        issubclass(type(transfer), OpticalTransfer)
+        if require_actual
+        else isinstance(transfer, OpticalTransfer)
+    )
+    if not transfer_type_valid:
         raise OtfError("transfer must be an OpticalTransfer record")
     array = transfer.samples
-    if not isinstance(array, np.ndarray):
+    array_type_valid = (
+        issubclass(type(array), np.ndarray) if require_actual else isinstance(array, np.ndarray)
+    )
+    if not array_type_valid:
         raise OtfError("transfer samples must be an owned complex128 array")
-    _table_shape(array, transfer.layout)
-    if array.dtype != np.complex128 or array.flags.writeable or not array.flags.owndata:
+    layout = transfer.layout
+    if require_actual:
+        if not issubclass(type(layout), str):
+            raise OtfError("unsupported transfer layout; use radial or full")
+        layout = str.__str__(layout)
+    samples = np.asarray(array) if require_actual else array
+    _table_shape(samples, layout, describe_layout_mismatch=require_actual)
+    flags = np.ndarray.flags.__get__(array) if require_actual else array.flags
+    if samples.dtype != np.complex128 or flags.writeable or not flags.owndata:
         raise OtfError("transfer samples must be owned, read-only complex128")
-    _finite(array, "transfer samples")
-    _scalar(transfer.dkr_cyc_um, "transfer dkr", positive=True)
-    _scalar(transfer.dkz_cyc_um, "transfer dkz", positive=True)
-    if _integer(transfer.norders, "norders", 1) != array.shape[0]:
+    _finite(samples, "transfer samples")
+    dkr = _scalar(transfer.dkr_cyc_um, "transfer dkr", positive=True, require_actual=require_actual)
+    dkz = _scalar(transfer.dkz_cyc_um, "transfer dkz", positive=True, require_actual=require_actual)
+    norders = _integer(transfer.norders, "norders", 1, require_actual=require_actual)
+    if norders != samples.shape[0]:
         raise OtfError("transfer norders disagrees with samples")
-    if transfer.source_revision != "SVN307" or transfer.reference_sha256 != _REFERENCE:
+    revision = transfer.source_revision
+    if require_actual:
+        if not issubclass(type(revision), str) or str.__str__(revision) != "SVN307":
+            raise OtfError("invalid transfer source identity: source_revision")
+        if not _matches_transfer_reference(transfer.reference_sha256):
+            raise OtfError("invalid transfer source identity: reference_sha256")
+        return _CheckedTransfer(samples, layout, dkr, dkz, norders)
+    if revision != "SVN307":
+        raise OtfError("invalid transfer source identity")
+    reference = transfer.reference_sha256
+    if reference != _REFERENCE:
         raise OtfError("invalid transfer source identity")
     return transfer
 
@@ -335,7 +431,36 @@ def sample_otf(
         If inputs or source intermediates are invalid, any vertex leaves the
         allocation (even at zero weight), or evaluation/allocation fails.
     """
-    transfer = _valid_transfer(transfer)
+    return _interpolate(
+        _valid_transfer(transfer), kx_cyc_um, ky_cyc_um, kz_index, dkz_cyc_um, order
+    )
+
+
+@_operation
+def _sample_transfer(
+    transfer: _Transfer,
+    kx: Any,
+    ky: Any,
+    kz: Any,
+    *,
+    dkz_cyc_um: float,
+    order: int,
+) -> _C128:
+    if type(transfer) is _CheckedTransfer:
+        return _interpolate(transfer, kx, ky, kz, dkz_cyc_um, order)
+    return sample_otf(
+        cast(OpticalTransfer, transfer), kx, ky, kz, dkz_cyc_um=dkz_cyc_um, order=order
+    )
+
+
+def _interpolate(
+    transfer: _Transfer,
+    kx_cyc_um: Any,
+    ky_cyc_um: Any,
+    kz_index: Any,
+    dkz_cyc_um: float,
+    order: int,
+) -> _C128:
     selected = _integer(order, "order")
     if selected >= transfer.norders:
         raise OtfError("order is outside the complete table")
@@ -379,38 +504,44 @@ def sample_otf(
     return result
 
 
-def _bins(value: Any, name: str, length: int) -> tuple[int, ...]:
+def _bins(value: Any, name: str, length: int, *, require_actual: bool = False) -> tuple[int, ...]:
     if isinstance(value, (str, bytes)):
         raise OtfError(f"{name} must be an integer sequence")
     items = tuple(value)
     if len(items) != length:
         raise OtfError(f"{name} requires {length} integers")
-    return tuple(_integer(item, name) for item in items)
+    return tuple(_integer(item, name, require_actual=require_actual) for item in items)
 
 
-def _map(value: Any, name: str, shape: tuple[int, ...]) -> _F64 | None:
+def _map(value: Any, name: str, shape: tuple[int, ...], *, wide_bound: bool = False) -> _F64 | None:
     if value is None:
         return None
     array = _numeric(value, name)
     if array.shape != shape:
         raise OtfError(f"{name} must have shape {shape}")
     _extent(shape, 8)
-    _values(array, name, exact=False)
+    _values(array, name, exact=False, wide_bound=wide_bound)
     return np.array(array, dtype=np.float64, copy=True)
 
 
 def _edge(plane: _F64) -> None:
-    n = plane.shape[0]
-    difference = (plane[-1] - plane[0]) / 2
+    y, x = plane.shape
+    # The empirical caller uses a padded row and Y in its horizontal
+    # subtraction address. Retain padding writes and their sequential order.
+    padded = np.zeros((y, x + 2), dtype=np.float64)
+    padded[:, :x] = plane
+    difference = (padded[-1, :x] - padded[0, :x]) / 2
     for offset in range(10):
         change = difference * (1 - sin((offset + 0.5) * pi / 20))
-        plane[offset] += change
-        plane[n - 1 - offset] -= change
-    difference = (plane[:, -1] - plane[:, 0]) / 2
-    for offset in range(10):
-        change = difference * (1 - sin((offset + 0.5) * pi / 20))
-        plane[:, offset] += change
-        plane[:, n - 1 - offset] -= change
+        padded[offset, :x] += change
+        padded[y - 1 - offset, :x] -= change
+    for row in range(y):
+        difference_x = (padded[row, x - 1] - padded[row, 0]) / 2
+        for offset in range(10):
+            change_x = difference_x * (1 - sin((offset + 0.5) * pi / 20))
+            padded[row, offset] += change_x
+            padded[row, y - 1 - offset] -= change_x
+    plane[:] = padded[:, :x]
 
 
 def _center(images: _F64) -> _F64:
@@ -436,16 +567,16 @@ def _center(images: _F64) -> _F64:
         raise OtfError("singular unused center background diagnostic")
     # The source diagnostic reads the original padded phase allocation. Check
     # actual addresses, even though its result is unused by preparation.
-    p, z, n, _ = images.shape
+    p, z, y, x = images.shape
     rows = max(0, ceil(yc - 20))
-    padded_plane = _i32((n + 2) * n)
+    padded_plane = _i32((x + 2) * y)
     if rows:
         first = _i32(_floor32(zc) * padded_plane)
-        last = _i32(_i32(first + _i32((rows - 1) * (n + 2))) + n - 1)
+        last = _i32(_i32(first + _i32((rows - 1) * (x + 2))) + x - 1)
         count = _i32(padded_plane * z)
         _address(first, count)
         _address(last, count)
-        diagnostic = images[:, floor(zc), :rows, :].sum() / (p * (yc - 20) * n)
+        diagnostic = images[:, floor(zc), :rows, :].sum() / (p * (yc - 20) * x)
         if not np.isfinite(diagnostic):
             raise OtfError("nonfinite unused center background diagnostic")
     return np.array(center[::-1], dtype=np.float64)
@@ -502,12 +633,14 @@ def _radial_tables(
     angle: float,
     compensate: bool,
 ) -> _C128:
-    p, z, n, _ = spatial.shape
+    p, z, ny, nx = spatial.shape
     transformed = rfftn(spatial, axes=(1, 2, 3))
-    x = np.arange(n // 2 + 1, dtype=np.float64)[None, None, :]
-    y = _frequencies(n)[None, :, None]
+    x = np.arange(nx // 2 + 1, dtype=np.float64)[None, None, :]
+    y = _frequencies(ny)[None, :, None]
     axial = _frequencies(z)[:, None, None]
-    transformed *= np.exp(2j * pi * (x * center[0] / n + y * center[1] / n + axial * center[2] / z))
+    transformed *= np.exp(
+        2j * pi * (x * center[0] / nx + y * center[1] / ny + axial * center[2] / z)
+    )
     if compensate:
         for slot in range(p):
             order = (slot + 1) // 2
@@ -540,8 +673,8 @@ def _radial_tables(
             transformed[slot] /= sphere
     _finite(transformed, "centered bead transform")
     radius = np.rint(np.hypot(x[0], y[0])).astype(np.int64)
-    radial = np.zeros((p, n // 2 + 1, z), dtype=np.complex128)
-    for r in range(n // 2 + 1):
+    radial = np.zeros((p, nx // 2 + 1, z), dtype=np.complex128)
+    for r in range(nx // 2 + 1):
         selected = radius == r
         count = int(selected.sum())
         if count:
@@ -708,7 +841,7 @@ def prepare_bead_otf(
     ----------
     raw : array_like
         Finite float32-exact real observations with axes (phase, z, y, x).
-        Odd phase counts 1 through 9, z >= 2 and square even x=y >= 10 apply.
+        Odd phase counts 1 through 9, Z>=1, even X>=8 and 10<=Y<=X+2 apply.
     dxy_um, dz_um : float
         Positive lateral and axial pixel pitches in micrometres.
     linespacing_um : float
@@ -760,38 +893,46 @@ def prepare_bead_otf(
     if array.ndim != 4:
         raise OtfError("raw axes must be (phase,z,y,x)")
     p, z, n, x = array.shape
-    if n != x:
-        raise OtfError("rectangular bead preparation is unsupported; require square planes")
-    if n % 2:
+    added_geometry = z == 1 or n != x
+    if added_geometry and not issubclass(type(raw), np.ndarray) and isinstance(raw, np.ndarray):
+        raise OtfError("raw advertises a NumPy array without being one")
+    if x % 2:
         raise OtfError("odd lateral storage is unsupported; require even size")
     if p not in (1, 3, 5, 7, 9):
         raise OtfError("unsupported phase count; require odd phases 1,3,5,7,9")
-    if z < 2 or n < 10:
-        raise OtfError("require z>=2 and lateral size>=10")
+    if z < 1 or x < 8 or n < 10 or n > x + 2:
+        raise OtfError("fixed10 padded bead edges require Z>=1, even X>=8, Y>=10, Y<=X+2")
     for dimension in array.shape:
         _i32(dimension, "bead dimension")
-    _i32(_i32(_i32(n + 2) * n) * z, "per-phase padded real count")
+    _i32(_i32(_i32(x + 2) * n) * z, "per-phase padded real count")
     _i32(z * p, "background count")
-    _i32((n // 2 + 1) * z, "radial order count")
+    _i32((x // 2 + 1) * z, "radial order count")
     _extent(array.shape, 8)
-    _extent((p, z, n, n // 2 + 1), 16)
-    _extent((p, n // 2 + 1, z), 16)
+    _extent((p, z, n, x // 2 + 1), 16)
+    _extent((p, x // 2 + 1, z), 16)
+    resolve_scalar = partial(
+        _scalar, require_actual=added_geometry, widen_signed_magnitude=added_geometry
+    )
     scalars = {
-        "dxy_um": _scalar(dxy_um, "dxy_um", positive=True),
-        "dz_um": _scalar(dz_um, "dz_um", positive=True),
-        "linespacing_um": _scalar(linespacing_um, "linespacing_um", positive=True),
-        "bead_diameter_um": _scalar(bead_diameter_um, "bead_diameter_um"),
-        "carrier_angle_rad": _scalar(carrier_angle_rad, "carrier_angle_rad"),
-        "numerical_aperture": _scalar(numerical_aperture, "numerical_aperture", positive=True),
-        "immersion_index": _scalar(immersion_index, "immersion_index", positive=True),
+        "dxy_um": resolve_scalar(dxy_um, "dxy_um", positive=True),
+        "dz_um": resolve_scalar(dz_um, "dz_um", positive=True),
+        "linespacing_um": resolve_scalar(linespacing_um, "linespacing_um", positive=True),
+        "bead_diameter_um": resolve_scalar(bead_diameter_um, "bead_diameter_um"),
+        "carrier_angle_rad": resolve_scalar(carrier_angle_rad, "carrier_angle_rad"),
+        "numerical_aperture": resolve_scalar(
+            numerical_aperture, "numerical_aperture", positive=True
+        ),
+        "immersion_index": resolve_scalar(immersion_index, "immersion_index", positive=True),
     }
     if scalars["bead_diameter_um"] < 0:
         raise OtfError("bead diameter must be nonnegative")
     if scalars["numerical_aperture"] > scalars["immersion_index"]:
         raise OtfError("numerical aperture exceeds immersion index")
-    wavelength = _integer(wavelength_nm, "wavelength_nm", 1)
+    wavelength = _integer(wavelength_nm, "wavelength_nm", 1, require_actual=added_geometry)
     background = (
-        None if background_counts is None else _scalar(background_counts, "background_counts")
+        None
+        if background_counts is None
+        else resolve_scalar(background_counts, "background_counts")
     )
     if background is not None and background < 0:
         raise OtfError("background_counts must be nonnegative")
@@ -803,21 +944,32 @@ def prepare_bead_otf(
         "conjugate": conjugate,
     }
     for name, value in flags.items():
-        if not isinstance(value, (bool, np.bool_)):
+        valid = (
+            issubclass(type(value), (bool, np.bool_))
+            if added_geometry
+            else isinstance(value, (bool, np.bool_))
+        )
+        if not valid:
             raise OtfError(f"{name} must be a boolean")
     if compensate_bead and (p == 1 or scalars["bead_diameter_um"] == 0):
         raise OtfError("single-phase or zero-diameter bead compensation is unsupported")
-    start = _integer(fix_radial_from, "fix_radial_from")
-    bins = _bins(cleanup_axial_bins, "cleanup_axial_bins", 3)
-    origin = None if origin_fit_bins is None else _bins(origin_fit_bins, "origin_fit_bins", 2)
-    if origin is not None and not 1 <= origin[0] < origin[1] <= n // 2:
+    start = _integer(fix_radial_from, "fix_radial_from", require_actual=added_geometry)
+    bins = _bins(cleanup_axial_bins, "cleanup_axial_bins", 3, require_actual=added_geometry)
+    origin = (
+        None
+        if origin_fit_bins is None
+        else _bins(origin_fit_bins, "origin_fit_bins", 2, require_actual=added_geometry)
+    )
+    if origin is not None and not 1 <= origin[0] < origin[1] <= x // 2:
         raise OtfError("origin fit needs 1<=a<b<=N/2")
-    camera = _map(background_map, "background_map", (n, n))
-    slopes = _map(slope_map, "slope_map", (n, n))
+    camera = _map(background_map, "background_map", (n, x), wide_bound=added_geometry)
+    slopes = _map(slope_map, "slope_map", (n, x), wide_bound=added_geometry)
     if (camera is None) != (slopes is None):
         raise OtfError("background and slope maps must be supplied together")
-    exposures = _map(exposure_background_counts, "exposure_background_counts", (z, p))
-    _values(array, "raw", exact=True)
+    exposures = _map(
+        exposure_background_counts, "exposure_background_counts", (z, p), wide_bound=added_geometry
+    )
+    _values(array, "raw", exact=True, wide_bound=added_geometry)
     dkr = 1 / (n * scalars["dxy_um"])
     dkz = 1 / (z * scalars["dz_um"])
     _scalar(dkr, "derived transfer dkr", positive=True)
@@ -834,6 +986,7 @@ def prepare_bead_otf(
         else "auto"
     )
     border = (np.arange(n) < 20) | (np.arange(n) > n - 20)
+    border_x = (np.arange(x) < 20) | (np.arange(x) > x - 20)
     for section in range(z):
         for phase in range(p):
             plane = images[phase, section]
@@ -848,7 +1001,7 @@ def prepare_bead_otf(
             elif background is not None:
                 b = background
             else:
-                b = plane[np.ix_(border, border)].mean()
+                b = plane[np.ix_(border, border_x)].mean()
             backgrounds[section, phase] = b
             _edge(plane)
     center = _center(images)
@@ -869,7 +1022,13 @@ def prepare_bead_otf(
         radial[:, 0] = radial[:, 1]
         radial[0, 0, 0] = dc
     if start:
-        radial[:, start:, 0] = (radial[:, start:, 1] + radial[:, start:, -1]) / 2
+        for slot in range(p):
+            flat = radial[slot].reshape(-1)
+            for r in range(start, x // 2 + 1):
+                base = _i32(r * z)
+                low = _address(_i32(base + 1), flat.size)
+                high = _address(_i32(base + z - 1), flat.size)
+                flat[base] = (flat[low] + flat[high]) / 2
     _cleanup(
         radial,
         bins,

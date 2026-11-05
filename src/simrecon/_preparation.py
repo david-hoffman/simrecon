@@ -129,12 +129,12 @@ def _index_domain(shape: tuple[int, ...], orders: int) -> None:
         raise _invalid("images/norders", "array size exceeds platform intp index range")
 
 
-def _raw_samples(images: NDArray[Any]) -> None:
+def _raw_samples(images: NDArray[Any], name: str = "images") -> None:
     """Check exact float32 representation against the original sample dtype."""
-    _finite(images, "images")
+    _finite(images, name)
     with np.errstate(over="ignore", invalid="ignore"):
         decoded = images.astype(np.float32)
-    _finite(decoded, "images float32 representation")
+    _finite(decoded, f"{name} float32 representation")
     if images.dtype.kind in "iu":
         # Float-to-integer round trips are safe only inside the original domain.
         # Comparing integer inputs with floats would silently round uint64 values.
@@ -142,12 +142,12 @@ def _raw_samples(images: NDArray[Any]) -> None:
         low = 0 if images.dtype.kind == "u" else -(2 ** (bits - 1))
         high = 2**bits if images.dtype.kind == "u" else 2 ** (bits - 1)
         if np.any(decoded < low) or np.any(decoded >= high):
-            raise _invalid("images", "samples are not exactly float32 representable")
+            raise _invalid(name, "samples are not exactly float32 representable")
         restored = decoded.astype(images.dtype)
     else:
         restored = decoded.astype(images.dtype)
     if not np.array_equal(images, restored):
-        raise _invalid("images", "samples are not exactly float32 representable")
+        raise _invalid(name, "samples are not exactly float32 representable")
 
 
 def _phase_matrices(

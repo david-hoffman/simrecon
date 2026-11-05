@@ -58,7 +58,6 @@ def reject_prepare(raw: Any, **changes: Any) -> None:
         "float32_inexact",
         "magnitude",
         "ndim",
-        "z1",
         "n8",
         "p0",
         "p11",
@@ -80,7 +79,6 @@ def test_invalid_raw_numeric_representation_and_shape(kind: str) -> None:
         raw = raw[0]
     else:
         shape = {
-            "z1": (5, 1, 24, 24),
             "n8": (5, 5, 8, 8),
             "p0": (0, 5, 24, 24),
             "p11": (11, 5, 24, 24),
@@ -92,7 +90,7 @@ def test_invalid_raw_numeric_representation_and_shape(kind: str) -> None:
 
 @pytest.mark.parametrize(
     "shape,branch",
-    [((5, 5, 24, 22), "rectangular"), ((5, 5, 23, 23), "odd"), ((4, 5, 24, 24), "phase")],
+    [((5, 5, 23, 23), "odd"), ((4, 5, 24, 24), "phase")],
 )
 def test_unsupported_dimensions_name_branch(shape: tuple[int, ...], branch: str) -> None:
     with pytest.raises(api("OtfError"), match=".+") as caught:
@@ -101,7 +99,6 @@ def test_unsupported_dimensions_name_branch(shape: tuple[int, ...], branch: str)
     assert any(
         word in text
         for word in {
-            "rectangular": ("square", "rectang"),
             "odd": ("odd", "even"),
             "phase": ("phase", "odd"),
         }[branch]
