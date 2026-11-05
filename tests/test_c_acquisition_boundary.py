@@ -2560,3 +2560,179 @@ def test_adjacent_rectangular_bead_checks_actual_pitch_magnitude() -> None:
         output="quadratures",
         check_reported=True,
     )
+
+
+class BeadAdvertisedFloat:
+    """A foreign object advertising float and resolving to 1.0."""
+
+    @property
+    def __class__(self) -> type[float]:  # pyright: ignore[reportIncompatibleMethodOverride]
+        """Advertise float while retaining the foreign runtime type."""
+        return float
+
+    def __abs__(self) -> float:
+        """Report the magnitude of the advertised value."""
+        return 1.0
+
+    def __float__(self) -> float:
+        """Convert to the legal scalar value."""
+        return 1.0
+
+
+class BeadAdvertisedInteger:
+    """A foreign object advertising int and converting to a selected integer."""
+
+    def __init__(self, value: int) -> None:
+        self.value = value
+
+    @property
+    def __class__(self) -> type[int]:  # pyright: ignore[reportIncompatibleMethodOverride]
+        """Advertise int while retaining the foreign runtime type."""
+        return int
+
+    def __int__(self) -> int:
+        """Convert to the selected legal integer."""
+        return self.value
+
+
+class BeadAdvertisedFalse:
+    """A foreign object advertising bool and converting to false."""
+
+    @property
+    def __class__(self) -> type[bool]:  # pyright: ignore[reportIncompatibleMethodOverride]
+        """Advertise bool while retaining the foreign runtime type."""
+        return bool
+
+    def __bool__(self) -> bool:
+        """Convert to the legal disabled flag."""
+        return False
+
+
+class BeadStableInteger(int):
+    """A genuine integer subclass with ordinary conversion."""
+
+
+class BeadGenuineArrayLike:
+    """Supply the supported public array protocol without claiming an array type."""
+
+    def __init__(self, array: np.ndarray) -> None:
+        self.array = array
+
+    def __array__(self, dtype: Any = None, copy: bool | None = None) -> np.ndarray:
+        """Return the backing array through the ordinary NumPy protocol."""
+        if copy is True:
+            return np.array(self.array, dtype=dtype, copy=True)
+        return np.asarray(self.array, dtype=dtype)
+
+
+@pytest.mark.parametrize(
+    "shape,field,witness",
+    [
+        pytest.param((3, 1, 10, 8), "dxy_um", BeadAdvertisedFloat(), id="rectangular-Z1-dxy"),
+        pytest.param(
+            (3, 1, 10, 8),
+            "background_counts",
+            BeadAdvertisedFloat(),
+            id="rectangular-Z1-background",
+        ),
+        pytest.param(
+            (3, 1, 10, 8),
+            "wavelength_nm",
+            BeadAdvertisedInteger(500),
+            id="rectangular-Z1-wavelength",
+        ),
+        pytest.param(
+            (3, 1, 10, 8),
+            "compensate_bead",
+            BeadAdvertisedFalse(),
+            id="rectangular-Z1-compensation",
+        ),
+        pytest.param(
+            (3, 1, 10, 8), "fix_radial_from", BeadAdvertisedInteger(0), id="rectangular-Z1-radial"
+        ),
+        pytest.param(
+            (3, 1, 10, 8),
+            "cleanup_axial_bins",
+            [BeadAdvertisedInteger(0), 0, 0],
+            id="rectangular-Z1-cleanup",
+        ),
+        pytest.param(
+            (3, 1, 10, 8),
+            "origin_fit_bins",
+            [BeadAdvertisedInteger(1), 2],
+            id="rectangular-Z1-origin",
+        ),
+        pytest.param((3, 1, 10, 10), "dxy_um", BeadAdvertisedFloat(), id="square-Z1-dxy"),
+        pytest.param((3, 2, 10, 8), "dxy_um", BeadAdvertisedFloat(), id="rectangular-Z2-dxy"),
+    ],
+)
+def test_added_bead_requires_genuine_declaration(
+    shape: tuple[int, int, int, int], field: str, witness: Any
+) -> None:
+    from simrecon import OtfError, prepare_bead_otf
+
+    p, z, y, x = shape
+    raw = np.zeros(shape, dtype=np.float64)
+    for phase in range(p):
+        raw[phase, z - 1, y // 2, x // 2] = phase + 1
+
+    defaults: dict[str, Any] = dict(
+        dxy_um=1.0,
+        dz_um=1.0,
+        linespacing_um=1.0,
+        wavelength_nm=500,
+        background_counts=0.0,
+        compensate_bead=False,
+        fix_axial_axis=False,
+        fix_radial_from=0,
+        cleanup_axial_bins=(0, 0, 0),
+        numerical_aperture=1.0,
+        immersion_index=1.0,
+        origin_fit_bins=None,
+        rescale_each=False,
+        forced_pi_shift=False,
+    )
+
+    def prepare(raw_input: Any, **changes: Any) -> Any:
+        return prepare_bead_otf(raw_input, **(defaults | changes))
+
+    def check_same_transfer(result: Any, control: Any) -> None:
+        samples = result.transfer.samples
+        assert samples.size and np.isfinite(samples).all()
+        assert np.array_equal(samples, control.transfer.samples)
+        assert np.array_equal(result.center_pixels_xyz, control.center_pixels_xyz)
+        assert result.transfer.dkr_cyc_um == control.transfer.dkr_cyc_um
+        assert result.transfer.dkz_cyc_um == control.transfer.dkz_cyc_um
+
+    ordinary = prepare(raw)
+    check_same_transfer(prepare(raw.tolist()), ordinary)
+    check_same_transfer(prepare(BeadGenuineArrayLike(raw)), ordinary)
+
+    # The stable control enables origin fitting. Compare against the same values in plain lists.
+    plain_lists = prepare(raw, cleanup_axial_bins=[0, 0, 0], origin_fit_bins=[1, 2])
+    stable = prepare(
+        raw,
+        dxy_um=AdjacentStableFloat(1.0),
+        background_counts=np.float64(0.0),
+        wavelength_nm=BeadStableInteger(500),
+        compensate_bead=np.bool_(False),
+        fix_radial_from=np.int64(0),
+        cleanup_axial_bins=[np.int32(0), BeadStableInteger(0), 0],
+        origin_fit_bins=[np.int64(1), BeadStableInteger(2)],
+    )
+    check_same_transfer(stable, plain_lists)
+
+    wide = AdjacentWideFloat(1e40)
+    assert abs(wide) == 1.0 and float(wide) > float(np.finfo(np.float32).max)
+    with pytest.raises(OtfError) as invalid_control:
+        prepare(raw, dxy_um=wide)
+    assert invalid_control.type is OtfError
+
+    candidate = witness[0] if isinstance(witness, list) else witness
+    advertised = candidate.__class__
+    assert advertised in (float, int, bool)
+    assert isinstance(candidate, advertised) and not issubclass(type(candidate), advertised)
+    with pytest.raises(OtfError) as caught:
+        prepare(raw, **{field: witness})
+        pytest.fail(f"Added bead geometry {shape} accepted a false-class declaration for {field}")
+    assert caught.type is OtfError

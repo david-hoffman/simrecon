@@ -127,7 +127,6 @@ def _scalar(
     name: str,
     *,
     positive: bool = False,
-    check_converted: bool = False,
     require_actual: bool = False,
 ) -> float:
     valid = (
@@ -143,7 +142,7 @@ def _scalar(
     result = float(value)
     if not isfinite(result) or (positive and result <= 0):
         raise OtfError(f"{name} is outside its finite physical representation")
-    if (check_converted or require_actual) and abs(result) > _F32_MAX:
+    if require_actual and abs(result) > _F32_MAX:
         raise OtfError(f"{name} exceeds float32 magnitude")
     return result
 
@@ -488,13 +487,13 @@ def _interpolate(
     return result
 
 
-def _bins(value: Any, name: str, length: int) -> tuple[int, ...]:
+def _bins(value: Any, name: str, length: int, *, require_actual: bool = False) -> tuple[int, ...]:
     if isinstance(value, (str, bytes)):
         raise OtfError(f"{name} must be an integer sequence")
     items = tuple(value)
     if len(items) != length:
         raise OtfError(f"{name} requires {length} integers")
-    return tuple(_integer(item, name) for item in items)
+    return tuple(_integer(item, name, require_actual=require_actual) for item in items)
 
 
 def _map(value: Any, name: str, shape: tuple[int, ...]) -> _F64 | None:
@@ -894,7 +893,7 @@ def prepare_bead_otf(
     _extent(array.shape, 8)
     _extent((p, z, n, x // 2 + 1), 16)
     _extent((p, x // 2 + 1, z), 16)
-    resolve_scalar = partial(_scalar, check_converted=added_geometry)
+    resolve_scalar = partial(_scalar, require_actual=added_geometry)
     scalars = {
         "dxy_um": resolve_scalar(dxy_um, "dxy_um", positive=True),
         "dz_um": resolve_scalar(dz_um, "dz_um", positive=True),
@@ -910,7 +909,7 @@ def prepare_bead_otf(
         raise OtfError("bead diameter must be nonnegative")
     if scalars["numerical_aperture"] > scalars["immersion_index"]:
         raise OtfError("numerical aperture exceeds immersion index")
-    wavelength = _integer(wavelength_nm, "wavelength_nm", 1)
+    wavelength = _integer(wavelength_nm, "wavelength_nm", 1, require_actual=added_geometry)
     background = (
         None
         if background_counts is None
@@ -926,13 +925,22 @@ def prepare_bead_otf(
         "conjugate": conjugate,
     }
     for name, value in flags.items():
-        if not isinstance(value, (bool, np.bool_)):
+        valid = (
+            issubclass(type(value), (bool, np.bool_))
+            if added_geometry
+            else isinstance(value, (bool, np.bool_))
+        )
+        if not valid:
             raise OtfError(f"{name} must be a boolean")
     if compensate_bead and (p == 1 or scalars["bead_diameter_um"] == 0):
         raise OtfError("single-phase or zero-diameter bead compensation is unsupported")
-    start = _integer(fix_radial_from, "fix_radial_from")
-    bins = _bins(cleanup_axial_bins, "cleanup_axial_bins", 3)
-    origin = None if origin_fit_bins is None else _bins(origin_fit_bins, "origin_fit_bins", 2)
+    start = _integer(fix_radial_from, "fix_radial_from", require_actual=added_geometry)
+    bins = _bins(cleanup_axial_bins, "cleanup_axial_bins", 3, require_actual=added_geometry)
+    origin = (
+        None
+        if origin_fit_bins is None
+        else _bins(origin_fit_bins, "origin_fit_bins", 2, require_actual=added_geometry)
+    )
     if origin is not None and not 1 <= origin[0] < origin[1] <= x // 2:
         raise OtfError("origin fit needs 1<=a<b<=N/2")
     camera = _map(background_map, "background_map", (n, x))
