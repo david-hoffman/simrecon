@@ -16,6 +16,8 @@ from numpy.typing import NDArray
 from scipy.fft import ifftn
 
 from ._acquisition_layout import ModeEvent, event
+from ._acquisition_layout import integer as _acquisition_integer
+from ._acquisition_layout import scalar as _acquisition_scalar
 from ._acquisition_modes import AcquisitionBands, _UsedBands, validate_used
 from ._model import SimreconError
 from ._optical_transfer import (
@@ -138,7 +140,11 @@ def _source_extent(value: int, limit: int, name: str) -> None:
         raise ReconstructionError(f"{name} exceeds source integer/byte representation")
 
 
-def _parameter_array(value: Any, name: str, shape: tuple[int, ...], *, complex_ok: bool) -> Any:
+def _parameter_array(
+    value: Any, name: str, shape: tuple[int, ...], *, complex_ok: bool, require_actual: bool = False
+) -> Any:
+    if require_actual:
+        value = np.asarray(value) if issubclass(type(value), np.ndarray) else None
     if not isinstance(value, np.ndarray) or value.shape != shape:
         raise ReconstructionError(f"{name} must be a NumPy array of shape {shape}")
     dtype = value.dtype
@@ -684,24 +690,26 @@ def reconstruct_known(
         table = _valid_transfer(transfer, require_actual=acquisition)
         if table.norders < grid.orders:
             raise ReconstructionError("transfer has insufficient orders")
-        wavelength = _integer(wavelength_nm, "wavelength_nm")
+        resolve_integer = _acquisition_integer if acquisition else _integer
+        resolve_scalar = _acquisition_scalar if acquisition else _scalar
+        wavelength = resolve_integer(wavelength_nm, "wavelength_nm")
         if wavelength > 32767:
             raise ReconstructionError("wavelength_nm exceeds signed-short representation")
-        na = _scalar(numerical_aperture, "numerical_aperture", positive=True)
-        immersion = _scalar(immersion_index, "immersion_index", positive=True)
+        na = resolve_scalar(numerical_aperture, "numerical_aperture", positive=True)
+        immersion = resolve_scalar(immersion_index, "immersion_index", positive=True)
         if not 1 <= immersion <= 2:
             raise ReconstructionError("immersion_index must lie in [1,2]")
         if na > min(2, immersion):
             raise ReconstructionError("numerical_aperture exceeds caller physical domain")
-        w = _scalar(wiener, "wiener", positive=True)
-        increment = _scalar(wiener_increment, "wiener_increment")
-        explode = _scalar(explode_factor, "explode_factor")
+        w = resolve_scalar(wiener, "wiener", positive=True)
+        increment = _acquisition_scalar(wiener_increment, "wiener_increment")
+        explode = _acquisition_scalar(explode_factor, "explode_factor")
         exponent = (
             None
             if power_taper_exponent is None
-            else _scalar(power_taper_exponent, "power_taper_exponent")
+            else _acquisition_scalar(power_taper_exponent, "power_taper_exponent")
         )
-        sr_bins = _scalar(suppression_radius_bins, "suppression_radius_bins")
+        sr_bins = resolve_scalar(suppression_radius_bins, "suppression_radius_bins")
         flags = {
             "suppress_singularities": suppress_singularities,
             "dampen_order0": dampen_order0,
@@ -711,7 +719,13 @@ def reconstruct_known(
             "filter_overlaps": filter_overlaps,
         }
         for name, flag in flags.items():
-            if not isinstance(flag, (bool, np.bool_)):
+            actual = acquisition or name in ("precise_taper", "filter_overlaps")
+            valid = (
+                issubclass(type(flag), (bool, np.bool_))
+                if actual
+                else isinstance(flag, (bool, np.bool_))
+            )
+            if not valid:
                 raise ReconstructionError(f"{name} must be a boolean")
         if not issubclass(type(output_taper), str):
             raise ReconstructionError("output_taper must be cosine, none or power")
@@ -739,10 +753,18 @@ def reconstruct_known(
                 raise ReconstructionError("true 2d bands require transfer axial K=1")
         directions = grid.shape[1]
         carriers = _parameter_array(
-            carriers_cyc_um, "carriers_cyc_um", (directions, 2), complex_ok=False
+            carriers_cyc_um,
+            "carriers_cyc_um",
+            (directions, 2),
+            complex_ok=False,
+            require_actual=acquisition,
         )
         mods = _parameter_array(
-            modulation, "modulation", (directions, grid.orders - 1), complex_ok=True
+            modulation,
+            "modulation",
+            (directions, grid.orders - 1),
+            complex_ok=True,
+            require_actual=acquisition,
         )
         dzf = _positive(
             1 / (grid.shape[3] * grid.dz) if grid.dz > 0 else table.dkz_cyc_um, "dz sampling"

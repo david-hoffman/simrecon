@@ -6,7 +6,7 @@ It provides no file adapter or compiled-source equivalence claim.
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from functools import wraps
+from functools import partial, wraps
 from math import asin, atan, ceil, cos, floor, hypot, isfinite, pi, sin
 from numbers import Integral, Real
 from typing import Any, cast
@@ -108,8 +108,13 @@ def _i32(value: int, name: str = "source integer intermediate") -> int:
     return value
 
 
-def _integer(value: Any, name: str, minimum: int = 0) -> int:
-    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Integral):
+def _integer(value: Any, name: str, minimum: int = 0, *, require_actual: bool = False) -> int:
+    valid = (
+        not issubclass(type(value), (bool, np.bool_)) and issubclass(type(value), Integral)
+        if require_actual
+        else not isinstance(value, (bool, np.bool_)) and isinstance(value, Integral)
+    )
+    if not valid:
         raise OtfError(f"{name} must be an integer")
     result = _i32(int(value), name)
     if result < minimum:
@@ -118,9 +123,19 @@ def _integer(value: Any, name: str, minimum: int = 0) -> int:
 
 
 def _scalar(
-    value: Any, name: str, *, positive: bool = False, check_converted: bool = False
+    value: Any,
+    name: str,
+    *,
+    positive: bool = False,
+    check_converted: bool = False,
+    require_actual: bool = False,
 ) -> float:
-    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Real):
+    valid = (
+        not issubclass(type(value), (bool, np.bool_)) and issubclass(type(value), Real)
+        if require_actual
+        else not isinstance(value, (bool, np.bool_)) and isinstance(value, Real)
+    )
+    if not valid:
         raise OtfError(f"{name} must be a finite real scalar")
     magnitude: Any = abs(value)
     if magnitude > _F32_MAX:
@@ -128,7 +143,7 @@ def _scalar(
     result = float(value)
     if not isfinite(result) or (positive and result <= 0):
         raise OtfError(f"{name} is outside its finite physical representation")
-    if check_converted and abs(result) > _F32_MAX:
+    if (check_converted or require_actual) and abs(result) > _F32_MAX:
         raise OtfError(f"{name} exceeds float32 magnitude")
     return result
 
@@ -248,6 +263,20 @@ def declare_otf(
     return OpticalTransfer(_owned(array, np.complex128), layout, dkr, dkz, array.shape[0])
 
 
+def _matches_transfer_reference(reference: Any) -> bool:
+    if not issubclass(type(reference), tuple) or tuple.__len__(reference) != len(_REFERENCE):
+        return False
+    for pair, expected in zip(tuple.__iter__(reference), _REFERENCE, strict=True):
+        if not issubclass(type(pair), tuple) or tuple.__len__(pair) != 2:
+            return False
+        if any(
+            not issubclass(type(value), str) or str.__str__(value) != text
+            for value, text in zip(tuple.__iter__(pair), expected, strict=True)
+        ):
+            return False
+    return True
+
+
 def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer:
     transfer_type_valid = (
         issubclass(type(transfer), OpticalTransfer)
@@ -273,23 +302,23 @@ def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer
     if samples.dtype != np.complex128 or flags.writeable or not flags.owndata:
         raise OtfError("transfer samples must be owned, read-only complex128")
     _finite(samples, "transfer samples")
-    dkr = _scalar(
-        transfer.dkr_cyc_um, "transfer dkr", positive=True, check_converted=require_actual
-    )
-    dkz = _scalar(
-        transfer.dkz_cyc_um, "transfer dkz", positive=True, check_converted=require_actual
-    )
-    norders = _integer(transfer.norders, "norders", 1)
+    dkr = _scalar(transfer.dkr_cyc_um, "transfer dkr", positive=True, require_actual=require_actual)
+    dkz = _scalar(transfer.dkz_cyc_um, "transfer dkz", positive=True, require_actual=require_actual)
+    norders = _integer(transfer.norders, "norders", 1, require_actual=require_actual)
     if norders != samples.shape[0]:
         raise OtfError("transfer norders disagrees with samples")
     revision = transfer.source_revision
+    if require_actual:
+        if not issubclass(type(revision), str) or str.__str__(revision) != "SVN307":
+            raise OtfError("invalid transfer source identity: source_revision")
+        if not _matches_transfer_reference(transfer.reference_sha256):
+            raise OtfError("invalid transfer source identity: reference_sha256")
+        return _CheckedTransfer(samples, layout, dkr, dkz, norders)
     if revision != "SVN307":
         raise OtfError("invalid transfer source identity")
     reference = transfer.reference_sha256
     if reference != _REFERENCE:
         raise OtfError("invalid transfer source identity")
-    if require_actual:
-        return _CheckedTransfer(samples, layout, dkr, dkz, norders)
     return transfer
 
 
@@ -848,7 +877,8 @@ def prepare_bead_otf(
     if array.ndim != 4:
         raise OtfError("raw axes must be (phase,z,y,x)")
     p, z, n, x = array.shape
-    if (z == 1 or n != x) and not issubclass(type(raw), np.ndarray) and isinstance(raw, np.ndarray):
+    added_geometry = z == 1 or n != x
+    if added_geometry and not issubclass(type(raw), np.ndarray) and isinstance(raw, np.ndarray):
         raise OtfError("raw advertises a NumPy array without being one")
     if x % 2:
         raise OtfError("odd lateral storage is unsupported; require even size")
@@ -864,14 +894,17 @@ def prepare_bead_otf(
     _extent(array.shape, 8)
     _extent((p, z, n, x // 2 + 1), 16)
     _extent((p, x // 2 + 1, z), 16)
+    resolve_scalar = partial(_scalar, check_converted=added_geometry)
     scalars = {
-        "dxy_um": _scalar(dxy_um, "dxy_um", positive=True),
-        "dz_um": _scalar(dz_um, "dz_um", positive=True),
-        "linespacing_um": _scalar(linespacing_um, "linespacing_um", positive=True),
-        "bead_diameter_um": _scalar(bead_diameter_um, "bead_diameter_um"),
-        "carrier_angle_rad": _scalar(carrier_angle_rad, "carrier_angle_rad"),
-        "numerical_aperture": _scalar(numerical_aperture, "numerical_aperture", positive=True),
-        "immersion_index": _scalar(immersion_index, "immersion_index", positive=True),
+        "dxy_um": resolve_scalar(dxy_um, "dxy_um", positive=True),
+        "dz_um": resolve_scalar(dz_um, "dz_um", positive=True),
+        "linespacing_um": resolve_scalar(linespacing_um, "linespacing_um", positive=True),
+        "bead_diameter_um": resolve_scalar(bead_diameter_um, "bead_diameter_um"),
+        "carrier_angle_rad": resolve_scalar(carrier_angle_rad, "carrier_angle_rad"),
+        "numerical_aperture": resolve_scalar(
+            numerical_aperture, "numerical_aperture", positive=True
+        ),
+        "immersion_index": resolve_scalar(immersion_index, "immersion_index", positive=True),
     }
     if scalars["bead_diameter_um"] < 0:
         raise OtfError("bead diameter must be nonnegative")
@@ -879,7 +912,9 @@ def prepare_bead_otf(
         raise OtfError("numerical aperture exceeds immersion index")
     wavelength = _integer(wavelength_nm, "wavelength_nm", 1)
     background = (
-        None if background_counts is None else _scalar(background_counts, "background_counts")
+        None
+        if background_counts is None
+        else resolve_scalar(background_counts, "background_counts")
     )
     if background is not None and background < 0:
         raise OtfError("background_counts must be nonnegative")

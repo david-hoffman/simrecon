@@ -2068,3 +2068,495 @@ def test_known_acquisition_requires_enough_transfer_orders_without_filter_visits
         reconstruct_known(bands, replace(insufficient, norders=inconsistent), **settings)
         pytest.fail("One-order transfer accepted for a two-order one-row acquisition")
     assert caught.type is ReconstructionError
+
+
+def public_declaration_inputs() -> tuple[Any, Any, np.ndarray, dict[str, Any]]:
+    """Build the shared two-dimensional inputs of the paired public observer."""
+    from simrecon import prepare_acquisition_bands
+
+    bands = prepare_acquisition_bands(raw_pattern(y=4, x=6), **options())
+    table = transfer(complex_values=True)
+    carriers = np.array([[0.1, 0.02]])
+    known = known_options(carriers_cyc_um=carriers, modulation=np.ones((1, 1)))
+    return bands, table, carriers, known
+
+
+@pytest.mark.parametrize("entry", ["estimate_parameters", "reconstruct_known"])
+@pytest.mark.parametrize("field", ["dkr_cyc_um", "norders"])
+def test_public_transfer_scalar_declarations(entry: str, field: str) -> None:
+    from dataclasses import replace
+
+    from simrecon import (
+        ParameterEstimationError,
+        ReconstructionError,
+        estimate_parameters,
+        reconstruct_known,
+    )
+
+    class StableFloat(float):
+        """A genuine float subclass with ordinary behavior."""
+
+    class StableInt(int):
+        """A genuine integer subclass with ordinary behavior."""
+
+    class AdvertisedFloat:
+        def __init__(self, value: float) -> None:
+            self.value = value
+
+        @property
+        def __class__(self) -> type[float]:  # pyright: ignore[reportIncompatibleMethodOverride]
+            return float
+
+        def __abs__(self) -> float:
+            return abs(self.value)
+
+        def __float__(self) -> float:
+            return float(self.value)
+
+    class AdvertisedInt:
+        def __init__(self, value: int) -> None:
+            self.value = value
+
+        @property
+        def __class__(self) -> type[int]:  # pyright: ignore[reportIncompatibleMethodOverride]
+            return int
+
+        def __int__(self) -> int:
+            return int(self.value)
+
+    bands, table, carriers, known = public_declaration_inputs()
+    assert type(bands) is api("AcquisitionBands")
+    assert type(table) is api("OpticalTransfer")
+    if entry == "estimate_parameters":
+        consume = estimate_parameters
+        settings = optics()
+        settings.update(initial_carriers_cyc_um=carriers, search_carriers=False)
+        output = "modulation"
+        error = ParameterEstimationError
+    else:
+        consume = reconstruct_known
+        settings = known
+        output = "image"
+        error = ReconstructionError
+
+    if field == "dkr_cyc_um":
+        value = table.dkr_cyc_um
+        assert type(value) is float and np.isfinite(value) and value > 0
+        stable = StableFloat(value)
+        advertised = AdvertisedFloat(value)
+        assert abs(advertised) == float(advertised) == float(stable) == value
+    else:
+        value = table.norders
+        assert type(value) is int and value == table.samples.shape[0] == 2
+        stable = StableInt(value)
+        advertised = AdvertisedInt(value)
+        assert int(advertised) == int(stable) == value
+    assert issubclass(type(stable), type(value))
+    assert not issubclass(type(advertised), type(value))
+    assert isinstance(advertised, type(value))
+
+    legal = consume(bands, table, **settings)
+    stable_result = consume(bands, replace(table, **{field: stable}), **settings)
+    assert_public_control(legal, error)
+    assert_public_control(stable_result, error)
+    assert np.array_equal(getattr(stable_result, output), getattr(legal, output))
+
+    with pytest.raises(error) as caught:
+        consume(bands, replace(table, **{field: advertised}), **settings)
+        pytest.fail(f"{entry} accepted a foreign object advertising the type of {field}")
+    assert caught.type is error
+
+
+@pytest.mark.parametrize("field", ["power_taper_exponent", "wiener_increment", "explode_factor"])
+def test_public_known_option_checks_converted_magnitude(field: str) -> None:
+    from simrecon import ReconstructionError, reconstruct_known
+
+    class StableFloat(float):
+        """A genuine float subclass with ordinary behavior."""
+
+    class WideConversion(float):
+        def __float__(self) -> float:
+            return 2.0**128
+
+    bands, table, _, known = public_declaration_inputs()
+    if field == "power_taper_exponent":
+        known["output_taper"] = "power"
+
+    def reconstruct(value: float) -> Any:
+        settings = known.copy()
+        settings[field] = value
+        return reconstruct_known(bands, table, **settings)
+
+    invalid = 2.0**128
+    inconsistent = WideConversion(1.0)
+    assert float(np.finfo(np.float32).max) == invalid - 2.0**104 < invalid
+    assert float.__float__(inconsistent) == abs(inconsistent) == 1.0
+    assert float(inconsistent) == invalid
+
+    legal = reconstruct(1.0)
+    stable = reconstruct(StableFloat(1.0))
+    assert_public_control(legal, ReconstructionError)
+    assert_public_control(stable, ReconstructionError)
+    assert dict(legal.resolved_settings)[field] == dict(stable.resolved_settings)[field] == 1.0
+    assert np.array_equal(stable.image, legal.image)
+
+    with pytest.raises(ReconstructionError) as invalid_control:
+        reconstruct(invalid)
+    assert invalid_control.type is ReconstructionError
+
+    with pytest.raises(ReconstructionError) as caught:
+        result = reconstruct(inconsistent)
+        pytest.fail(
+            f"{field} accepted a conversion outside float32 magnitude and reported "
+            f"{dict(result.resolved_settings)[field]!r}"
+        )
+    assert caught.type is ReconstructionError
+
+
+def test_public_known_overlap_flag_requires_actual_boolean() -> None:
+    from simrecon import ReconstructionError, reconstruct_known
+
+    class AdvertisedBoolean:
+        @property
+        def __class__(self) -> type[bool]:  # pyright: ignore[reportIncompatibleMethodOverride]
+            return bool
+
+        def __bool__(self) -> bool:
+            return False
+
+    bands, table, _, known = public_declaration_inputs()
+
+    def reconstruct(value: Any) -> Any:
+        return reconstruct_known(bands, table, **(known | {"filter_overlaps": value}))
+
+    legal, alternate = reconstruct(True), reconstruct(False)
+    stable = reconstruct(np.bool_(True))
+    for result, flag in ((legal, True), (alternate, False), (stable, True)):
+        assert_public_control(result, ReconstructionError)
+        assert dict(result.resolved_settings)["filter_overlaps"] == flag
+    assert np.array_equal(stable.image, legal.image)
+    assert legal.image.shape == alternate.image.shape
+    assert not np.array_equal(legal.image, alternate.image)
+
+    advertised = AdvertisedBoolean()
+    assert isinstance(advertised, bool) and type(advertised) is not bool
+    assert bool(advertised) is False
+    with pytest.raises(ReconstructionError) as caught:
+        reconstruct(advertised)
+        pytest.fail("filter_overlaps accepted a non-Boolean object advertising bool")
+    assert caught.type is ReconstructionError
+
+
+def test_public_preparation_reports_applied_background() -> None:
+    from simrecon import AcquisitionModeError, prepare_acquisition_bands
+
+    class StableFloat(float):
+        """A genuine float subclass with ordinary behavior."""
+
+    class ChangingBackground(float):
+        reads = 0
+
+        def __float__(self) -> float:
+            self.reads += 1
+            return 1.0 if self.reads == 1 else 2.0
+
+    raw = raw_pattern(y=4, x=6)
+
+    def prepare(value: float) -> Any:
+        return prepare_acquisition_bands(raw, **options(background=value))
+
+    one, two = prepare(1.0), prepare(2.0)
+    stable = prepare(StableFloat(1.0))
+    for result, background in ((one, 1.0), (two, 2.0), (stable, 1.0)):
+        assert result.quadratures.size and np.isfinite(result.quadratures).all()
+        assert dict(result.resolved_settings)["background"] == background
+        assert result.background_after.shape == (4, 6)
+        assert np.all(result.background_after == background)
+    assert np.array_equal(stable.quadratures, one.quadratures)
+    assert one.quadratures.shape == two.quadratures.shape
+    assert not np.array_equal(one.quadratures, two.quadratures)
+
+    witness = ChangingBackground(1.0)
+    try:
+        result = prepare(witness)
+    except AcquisitionModeError as rejected:
+        assert type(rejected) is AcquisitionModeError
+    else:
+        reported = dict(result.resolved_settings)["background"]
+        assert reported in (1.0, 2.0), f"Unexpected resolved background: {reported!r}"
+        expected = one if reported == 1.0 else two
+        camera_matches = np.array_equal(result.background_after, expected.background_after)
+        quadratures_match = np.array_equal(result.quadratures, expected.quadratures)
+        assert camera_matches and quadratures_match, (
+            f"Reported background {reported!r} counts disagrees with the legal control: "
+            f"camera map matches={camera_matches}, quadratures match={quadratures_match}"
+        )
+
+
+def adjacent_acquisition_consumer(
+    entry: str,
+) -> tuple[Any, Any, np.ndarray, type[ValueError], str]:
+    """Bind the adjacent observer's public consumer and its unchanged options."""
+    from simrecon import (
+        ParameterEstimationError,
+        ReconstructionError,
+        estimate_parameters,
+        reconstruct_known,
+    )
+
+    bands, table, carriers, known = public_declaration_inputs()
+    assert type(bands) is api("AcquisitionBands")
+    assert type(table) is api("OpticalTransfer")
+    if entry == "estimate_parameters":
+        settings = optics()
+        settings.update(initial_carriers_cyc_um=carriers, search_carriers=False)
+
+        def consume(candidate: Any, **changes: Any) -> Any:
+            return estimate_parameters(bands, candidate, **(settings | changes))
+
+        return consume, table, carriers, ParameterEstimationError, "modulation"
+
+    def reconstruct(candidate: Any, **changes: Any) -> Any:
+        return reconstruct_known(bands, candidate, **(known | changes))
+
+    return reconstruct, table, carriers, ReconstructionError, "image"
+
+
+def assert_adjacent_checked_input(
+    call: Any,
+    *,
+    field: str,
+    legal: Any,
+    stable: Any,
+    invalid: Any,
+    inconsistent: Any,
+    error: type[ValueError],
+    output: str,
+    check_reported: bool = False,
+) -> None:
+    """Compare genuine controls and require the exact public class for both rejections."""
+    ordinary_result, stable_result = call(legal), call(stable)
+    ordinary_output = getattr(ordinary_result, output)
+    stable_output = getattr(stable_result, output)
+    for values in (ordinary_output, stable_output):
+        assert isinstance(values, np.ndarray) and values.size and np.isfinite(values).all()
+    assert np.array_equal(stable_output, ordinary_output)
+    if check_reported:
+        assert dict(ordinary_result.resolved_settings)[field] == legal
+        assert dict(stable_result.resolved_settings)[field] == legal
+
+    with pytest.raises(error) as invalid_control:
+        call(invalid)
+    assert invalid_control.type is error
+
+    with pytest.raises(error) as caught:
+        result = call(inconsistent)
+        detail = (
+            f" and reported {dict(result.resolved_settings)[field]!r}" if check_reported else ""
+        )
+        pytest.fail(f"Public call accepted inconsistent {field}{detail}")
+    assert caught.type is error
+
+
+@pytest.mark.parametrize(
+    "entry,field",
+    [
+        ("estimate_parameters", "source_revision"),
+        ("estimate_parameters", "reference_sha256"),
+        ("reconstruct_known", "source_revision"),
+        ("reconstruct_known", "reference_sha256"),
+    ],
+)
+def test_adjacent_transfer_requires_genuine_provenance(entry: str, field: str) -> None:
+    from dataclasses import replace
+
+    class StableStr(str):
+        """A genuine string subclass with ordinary comparison."""
+
+    class StableTuple(tuple):
+        """A genuine tuple subclass with ordinary comparison."""
+
+    class SameIdentity:
+        def __ne__(self, other: object) -> bool:
+            return False
+
+    consume, table, _, error, output = adjacent_acquisition_consumer(entry)
+    legal = getattr(table, field)
+    if field == "source_revision":
+        assert type(legal) is str
+        stable, invalid = StableStr(legal), "OTHER"
+    else:
+        assert type(legal) is tuple
+        stable, invalid = StableTuple(legal), ()
+    inconsistent = SameIdentity()
+    assert stable == legal and invalid != legal
+    assert not issubclass(type(inconsistent), type(legal))
+    assert (inconsistent != legal) is False
+
+    assert_adjacent_checked_input(
+        lambda value: consume(replace(table, **{field: value})),
+        field=field,
+        legal=legal,
+        stable=stable,
+        invalid=invalid,
+        inconsistent=inconsistent,
+        error=error,
+        output=output,
+    )
+
+
+@pytest.mark.parametrize("entry", ["estimate_parameters", "reconstruct_known"])
+def test_adjacent_acquisition_requires_genuine_wavelength_integer(entry: str) -> None:
+    class StableInt(int):
+        """A genuine integer subclass with ordinary conversion."""
+
+    class IntClaim:
+        @property
+        def __class__(self) -> type[int]:  # pyright: ignore[reportIncompatibleMethodOverride]
+            return int
+
+        def __int__(self) -> int:
+            return 520
+
+    consume, table, _, error, output = adjacent_acquisition_consumer(entry)
+    inconsistent = IntClaim()
+    assert isinstance(inconsistent, int) and not issubclass(type(inconsistent), int)
+    assert int(inconsistent) == 520
+
+    assert_adjacent_checked_input(
+        lambda value: consume(table, wavelength_nm=value),
+        field="wavelength_nm",
+        legal=520,
+        stable=StableInt(520),
+        invalid=1.5,
+        inconsistent=inconsistent,
+        error=error,
+        output=output,
+        check_reported=True,
+    )
+
+
+@pytest.mark.parametrize(
+    "entry,field",
+    [
+        ("estimate_parameters", "initial_carriers_cyc_um"),
+        ("reconstruct_known", "carriers_cyc_um"),
+    ],
+)
+def test_adjacent_acquisition_requires_genuine_carrier_array(entry: str, field: str) -> None:
+    class StableArray(np.ndarray):
+        """A genuine NumPy array subclass with ordinary behavior."""
+
+    class ArrayClaim:
+        def __init__(self, value: np.ndarray) -> None:
+            self.value = value
+
+        @property
+        def __class__(self) -> type[np.ndarray]:  # pyright: ignore[reportIncompatibleMethodOverride]
+            return np.ndarray
+
+        def __getattr__(self, name: str) -> Any:
+            return getattr(self.value, name)
+
+        def __array__(self, dtype: Any = None, copy: bool | None = None) -> np.ndarray:
+            return np.asarray(self.value, dtype=dtype, copy=copy)
+
+    consume, table, carriers, error, output = adjacent_acquisition_consumer(entry)
+    inconsistent = ArrayClaim(carriers)
+    assert type(carriers) is np.ndarray
+    assert isinstance(inconsistent, np.ndarray) and not issubclass(type(inconsistent), np.ndarray)
+    assert np.array_equal(np.asarray(inconsistent), carriers)
+
+    assert_adjacent_checked_input(
+        lambda value: consume(table, **{field: value}),
+        field=field,
+        legal=carriers,
+        stable=carriers.view(StableArray),
+        invalid=carriers.tolist(),
+        inconsistent=inconsistent,
+        error=error,
+        output=output,
+    )
+
+
+class AdjacentStableFloat(float):
+    """A genuine float subclass with ordinary magnitude and conversion."""
+
+
+class AdjacentWideFloat(float):
+    """A genuine float whose magnitude operation hides its stored value."""
+
+    def __abs__(self) -> float:
+        """Report a small magnitude regardless of the stored value."""
+        return 1.0
+
+
+@pytest.mark.parametrize("field", ["wiener", "suppression_radius_bins"])
+def test_adjacent_known_option_checks_actual_magnitude(field: str) -> None:
+    consume, table, _, error, output = adjacent_acquisition_consumer("reconstruct_known")
+    inconsistent = AdjacentWideFloat(1e40)
+    assert abs(inconsistent) == 1.0
+    assert float(inconsistent) == 1e40 > float(np.finfo(np.float32).max)
+
+    assert_adjacent_checked_input(
+        lambda value: consume(table, **{field: value}),
+        field=field,
+        legal=1.0,
+        stable=AdjacentStableFloat(1.0),
+        invalid=1e40,
+        inconsistent=inconsistent,
+        error=error,
+        output=output,
+        check_reported=True,
+    )
+
+
+def test_adjacent_known_precise_taper_requires_actual_boolean() -> None:
+    class BooleanClaim:
+        @property
+        def __class__(self) -> type[bool]:  # pyright: ignore[reportIncompatibleMethodOverride]
+            return bool
+
+        def __bool__(self) -> bool:
+            return False
+
+    consume, table, _, error, output = adjacent_acquisition_consumer("reconstruct_known")
+    inconsistent = BooleanClaim()
+    assert isinstance(inconsistent, bool) and not issubclass(type(inconsistent), bool)
+    assert bool(inconsistent) is False
+
+    assert_adjacent_checked_input(
+        lambda value: consume(table, precise_taper=value),
+        field="precise_taper",
+        legal=False,
+        stable=np.bool_(False),
+        invalid=1,
+        inconsistent=inconsistent,
+        error=error,
+        output=output,
+        check_reported=True,
+    )
+
+
+def test_adjacent_rectangular_bead_checks_actual_pitch_magnitude() -> None:
+    from simrecon import OtfError, prepare_bead_otf
+    from test_c_acquisition_transfer import bead_options, bead_raw
+
+    bead = bead_raw(10, 8, z=1)
+    legal = bead_options()["dxy_um"]
+    inconsistent = AdjacentWideFloat(1e40)
+    assert bead.shape == (3, 1, 10, 8) and type(legal) is float and legal == 0.25
+    assert abs(inconsistent) == 1.0
+    assert float(inconsistent) == 1e40 > float(np.finfo(np.float32).max)
+
+    assert_adjacent_checked_input(
+        lambda value: prepare_bead_otf(bead, **bead_options(dxy_um=value)),
+        field="dxy_um",
+        legal=legal,
+        stable=AdjacentStableFloat(legal),
+        invalid=1e40,
+        inconsistent=inconsistent,
+        error=OtfError,
+        output="quadratures",
+        check_reported=True,
+    )

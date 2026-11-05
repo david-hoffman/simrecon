@@ -503,11 +503,13 @@ def prepare_acquisition_bands(
         array_metadata(images, "images", shape, raw=True)
         if off_exposures is not None:
             array_metadata(off_exposures, "off_exposures", off_exposures.shape, raw=True)
-        bmap = (
-            real_array(background, "background", (ny, nx))
-            if issubclass(type(background), np.ndarray)
-            else np.full((ny, nx), scalar(background, "background"))
-        )
+        background_setting: str | float
+        if issubclass(type(background), np.ndarray):
+            bmap = real_array(background, "background", (ny, nx))
+            background_setting = "map"
+        else:
+            background_setting = scalar(background, "background")
+            bmap = np.full((ny, nx), background_setting)
         smap = (
             np.ones((ny, nx))
             if flatfield_slope is None
@@ -783,9 +785,7 @@ def prepare_acquisition_bands(
             dxy_um=dxy,
             dz_um=dz,
             norders=orders,
-            background="map"
-            if issubclass(type(background), np.ndarray)
-            else scalar(background, "background"),
+            background=background_setting,
             lateral_zoom=lateral,
             axial_zoom=axial,
             phases_rad=None

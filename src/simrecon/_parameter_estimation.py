@@ -14,6 +14,8 @@ from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 
+from ._acquisition_layout import integer as _acquisition_integer
+from ._acquisition_layout import scalar as _acquisition_scalar
 from ._acquisition_modes import AcquisitionBands, _UsedBands, validate_used
 from ._model import SimreconError
 from ._optical_transfer import (
@@ -158,7 +160,11 @@ def _owned(value: _Array) -> _Array:
     return result
 
 
-def _real_array(value: Any, name: str, shape: tuple[int, ...]) -> _Array:
+def _real_array(
+    value: Any, name: str, shape: tuple[int, ...], *, require_actual: bool = False
+) -> _Array:
+    if require_actual:
+        value = np.asarray(value) if issubclass(type(value), np.ndarray) else None
     if not isinstance(value, np.ndarray) or value.shape != shape:
         raise ParameterEstimationError(f"{name} must be a NumPy array of shape {shape}")
     dtype = value.dtype
@@ -766,22 +772,32 @@ def estimate_parameters(
             )
         if table.norders < grid.orders:
             raise ParameterEstimationError("transfer requires all used orders")
-        wavelength = _integer(wavelength_nm, "wavelength_nm")
+        acquisition = used is not None
+        resolve_integer = _acquisition_integer if acquisition else _integer
+        resolve_scalar = _acquisition_scalar if acquisition else _scalar
+        wavelength = resolve_integer(wavelength_nm, "wavelength_nm")
         if wavelength > 32767:
             raise ParameterEstimationError("wavelength_nm exceeds 32767")
-        na = _scalar(numerical_aperture, "numerical_aperture", positive=True)
-        index = _scalar(immersion_index, "immersion_index", positive=True)
+        na = resolve_scalar(numerical_aperture, "numerical_aperture", positive=True)
+        index = resolve_scalar(immersion_index, "immersion_index", positive=True)
         if not 1 <= index <= 2 or na > min(2, index):
             raise ParameterEstimationError(
                 "numerical_aperture/immersion_index outside optical domain"
             )
         times, directions = grid.shape[:2]
-        initial = _real_array(initial_carriers_cyc_um, "initial_carriers_cyc_um", (directions, 2))
+        initial = _real_array(
+            initial_carriers_cyc_um,
+            "initial_carriers_cyc_um",
+            (directions, 2),
+            require_actual=acquisition,
+        )
         floors = None
         if amplitude_floors is not None:
             if grid.orders > 25:
                 raise ParameterEstimationError("amplitude floors require O<=25")
-            floors = _real_array(amplitude_floors, "amplitude_floors", (grid.orders - 1,))
+            floors = _real_array(
+                amplitude_floors, "amplitude_floors", (grid.orders - 1,), require_actual=acquisition
+            )
             if (floors <= 0).any():
                 raise ParameterEstimationError("amplitude_floors must be strictly positive")
         wavelength_um = wavelength / 1000
