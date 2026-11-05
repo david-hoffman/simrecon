@@ -2736,3 +2736,70 @@ def test_added_bead_requires_genuine_declaration(
         prepare(raw, **{field: witness})
         pytest.fail(f"Added bead geometry {shape} accepted a false-class declaration for {field}")
     assert caught.type is OtfError
+
+
+@pytest.mark.parametrize(
+    "shape,dtype,compensate",
+    [
+        pytest.param((3, 1, 10, 8), np.int8, True, id="rectangular-Z1-int8-compensated"),
+        pytest.param((3, 1, 10, 10), np.int32, False, id="square-Z1-int32"),
+        pytest.param((3, 2, 10, 8), np.int64, False, id="rectangular-Z2-int64"),
+    ],
+)
+def test_added_bead_accepts_signed_carrier_angle_minimum(
+    shape: tuple[int, int, int, int],
+    dtype: type[np.int8] | type[np.int32] | type[np.int64],
+    compensate: bool,
+) -> None:
+    from simrecon import PreparedOtf, prepare_bead_otf
+
+    _, z, y, x = shape
+    raw = np.zeros(shape, dtype=np.float64)
+    raw[:, z - 1, y // 2, x // 2] = (1, 2, 3)
+    before = raw.copy()
+    settings: dict[str, Any] = dict(
+        dxy_um=1.0,
+        dz_um=1.0,
+        linespacing_um=1.0,
+        wavelength_nm=500,
+        bead_diameter_um=0.12,
+        background_counts=0.0,
+        fix_axial_axis=False,
+        fix_radial_from=0,
+        cleanup_axial_bins=(0, 0, 0),
+        numerical_aperture=1.0,
+        immersion_index=1.0,
+        origin_fit_bins=None,
+        rescale_each=False,
+        forced_pi_shift=False,
+    )
+
+    def prepare(angle: int | np.signedinteger, compensation: bool) -> PreparedOtf:
+        call_settings = settings.copy()
+        call_settings.update(carrier_angle_rad=angle, compensate_bead=compensation)
+        result = prepare_bead_otf(raw, **call_settings)
+        samples = result.transfer.samples
+        assert samples.flags.owndata and samples.dtype == np.complex128
+        assert samples.size and np.isfinite(samples).all()
+        resolved = dict(result.resolved_settings)
+        assert resolved["carrier_angle_rad"] == float(angle)
+        assert resolved["compensate_bead"] == compensation
+        assert np.array_equal(raw, before)
+        return result
+
+    def assert_same_public_result(actual: PreparedOtf, expected: PreparedOtf) -> None:
+        assert np.array_equal(actual.transfer.samples, expected.transfer.samples)
+        assert np.array_equal(actual.center_pixels_xyz, expected.center_pixels_xyz)
+        assert actual.transfer.dkr_cyc_um == expected.transfer.dkr_cyc_um
+        assert actual.transfer.dkz_cyc_um == expected.transfer.dkz_cyc_um
+
+    minimum = int(np.iinfo(dtype).min)
+    neighbor = minimum + 1
+    # The observer tests both forms of the next signed value with compensation off.
+    neighbor_control = prepare(neighbor, False)
+    assert_same_public_result(prepare(dtype(neighbor), False), neighbor_control)
+
+    control = prepare(minimum, compensate)
+    signed_minimum = dtype(minimum)
+    assert type(signed_minimum) is dtype and int(signed_minimum) == minimum
+    assert_same_public_result(prepare(signed_minimum, compensate), control)

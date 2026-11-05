@@ -128,6 +128,7 @@ def _scalar(
     *,
     positive: bool = False,
     require_actual: bool = False,
+    widen_signed_magnitude: bool = False,
 ) -> float:
     valid = (
         not issubclass(type(value), (bool, np.bool_)) and issubclass(type(value), Real)
@@ -136,7 +137,13 @@ def _scalar(
     )
     if not valid:
         raise OtfError(f"{name} must be a finite real scalar")
-    magnitude: Any = abs(value)
+    magnitude_input = value
+    if widen_signed_magnitude and issubclass(type(value), np.signedinteger):
+        signed_value = cast(np.signedinteger[Any], value)
+        if signed_value.dtype.kind == "i":
+            # The positive magnitude of a signed minimum cannot fit its NumPy dtype.
+            magnitude_input = np.generic.item(signed_value)
+    magnitude: Any = abs(magnitude_input)
     if magnitude > _F32_MAX:
         raise OtfError(f"{name} exceeds float32 magnitude")
     result = float(value)
@@ -893,7 +900,9 @@ def prepare_bead_otf(
     _extent(array.shape, 8)
     _extent((p, z, n, x // 2 + 1), 16)
     _extent((p, x // 2 + 1, z), 16)
-    resolve_scalar = partial(_scalar, require_actual=added_geometry)
+    resolve_scalar = partial(
+        _scalar, require_actual=added_geometry, widen_signed_magnitude=added_geometry
+    )
     scalars = {
         "dxy_um": resolve_scalar(dxy_um, "dxy_um", positive=True),
         "dz_um": resolve_scalar(dz_um, "dz_um", positive=True),
