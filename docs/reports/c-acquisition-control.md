@@ -73,7 +73,7 @@ reconstructions returned. All 4,934 recorded comparisons and structural checks
 passed, including coordinates, diagnostic order, ownership and caller input
 preservation. No warnings or failed calls were captured. The observation used
 Python 3.13.12 and NumPy 2.5.3. Its SHA-256 digest is
-`8a640c4a730e15dbe19406d17c453d8ffb54df983d431f52631f7e9c41e1c8b6`.
+`c476a5d60acad667683104f241f248f8f11c307ab9503966860e48416ab16101`.
 The evidence index binds the observation to the code commit, input, independent
 reference and runtime hashes. The figures use that same observation.
 
