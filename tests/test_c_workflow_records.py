@@ -847,3 +847,255 @@ def test_readonly_mappings_and_nonempty_opaque_identity_labels_are_permitted() -
         error_budget(case, expected)["image"],
         label="readonly finite mappings",
     )
+
+
+class StableIdentityArray(np.ndarray):
+    """Owned ordinary ndarray storage; deliberately overrides no behavior."""
+
+
+IDENTITY_PREPARED_FIELDS = (
+    "center_pixels_xyz",
+    "background_counts",
+    "phase_angles_rad",
+    "quadratures",
+    "normalization_factors",
+    "quadrature_angles_rad",
+)
+
+
+def identity_storage_copy(values: np.ndarray, storage: str, *, order: str = "C") -> np.ndarray:
+    """Only the permitted backing class/layout changes, never numeric values."""
+    array: np.ndarray
+    assert order in ("C", "F")
+    allocation_order = "F" if order == "F" else "C"
+    if storage == "subclass":
+        array = StableIdentityArray(values.shape, dtype=values.dtype, order=allocation_order)
+    else:
+        assert storage == "plain"
+        array = np.empty(values.shape, dtype=values.dtype, order=allocation_order)
+    np.copyto(array, values)
+    array.flags.writeable = False
+    assert array.flags.owndata and np.isfinite(array).all()
+    return array
+
+
+def frozen_original_array_identity(array: np.ndarray) -> tuple[tuple[int, ...], str, str]:
+    """Independent exact byte oracle for these float64/complex128 inputs.
+
+    Scalar struct packing follows logical C indices and explicit little endian.
+    It preserves signed zero and both complex components without float32 casts,
+    subclass methods, physical-buffer flattening or returned-stage identities.
+    """
+    import hashlib
+    import struct
+
+    assert array.dtype.kind in ("f", "c")
+    assert array.dtype.itemsize == (8 if array.dtype.kind == "f" else 16)
+    chunks = []
+    for index in np.ndindex(array.shape):
+        value: Any = array[index]
+        chunks.append(
+            struct.pack("<d", float(value))
+            if array.dtype.kind == "f"
+            else struct.pack("<dd", float(value.real), float(value.imag))
+        )
+    return (
+        array.shape,
+        array.dtype.newbyteorder("<").str,
+        hashlib.sha256(b"".join(chunks)).hexdigest(),
+    )
+
+
+def original_identity_inputs(
+    example: str, storage: str
+) -> tuple[Case, Any, dict[str, Any], dict[str, np.ndarray]]:
+    """Real public records and frozen caller leaves; no workflow call here."""
+    from dataclasses import replace
+
+    case = (
+        control_cases()["empirical-z2"]
+        if example == "prepared-all-fields"
+        else constant_case(complex_table=example == "direct-complex-bits")
+    )
+    kwargs = keywords(
+        case, selection="prepared-otf" if example == "prepared-all-fields" else "accepted-transfer"
+    )
+    specimen: Any = case.raw
+    arrays: dict[str, np.ndarray] = {"specimen": case.raw}
+    if example == "prepared-all-fields":
+        prepared = kwargs["transfer"]
+        transfer = replace(
+            prepared.transfer,
+            samples=identity_storage_copy(prepared.transfer.samples, storage),
+        )
+        diagnostics = {
+            key: identity_storage_copy(getattr(prepared, key), "plain")
+            for key in IDENTITY_PREPARED_FIELDS
+        }
+        kwargs["transfer"] = replace(prepared, transfer=transfer, **diagnostics)
+        arrays["transfer.transfer.samples"] = transfer.samples
+        arrays.update({f"transfer.{key}": value for key, value in diagnostics.items()})
+    elif example in ("direct-unit", "direct-complex-bits"):
+        transfer = kwargs["transfer"]
+        samples = transfer.samples.copy()
+        if example == "direct-complex-bits":
+            samples.imag[samples.imag == 0] = -0.0
+        samples = identity_storage_copy(
+            samples, storage, order="F" if example == "direct-complex-bits" else "C"
+        )
+        kwargs["transfer"] = replace(transfer, samples=samples)
+        arrays["transfer.samples"] = samples
+    else:
+        assert example == "raw-nominal-phases"
+        # Neutral declaration/data arguments stay PLAIN arrays. Its canonical
+        # data and nominal commands stay plain too. The storage variant applies
+        # ONLY to direct transfer.samples; nominal commands remain provenance.
+        source = np.array(np.stack((case.raw, case.raw + 16), axis=1), dtype=">f8", order="F")
+        source[0, 1].flat[0] = -0.0
+        source[0, 1].flat[1] = 2.0**-20
+        nominal = [[[[-0.0, 0.125 + 2.0**-40, 1.5]], [[0.0, -0.25, 7.0]]]]
+        config = dict(
+            version=1,
+            acquisition_kind="specimen_sim",
+            axes=["time", "channel", "orientation", "phase", "z", "y", "x"],
+            sampling_um=dict(x=1.0, y=1.0, z=1.0),
+            intensity_unit="detector-counts",
+            nominal_phases_rad=nominal,
+        )
+        assert type(source) is np.ndarray
+        record = public().declare_acquisition(source, config=config)
+        assert type(record.data) is np.ndarray and record.data.flags.c_contiguous
+        assert frozen_original_array_identity(record.data) == frozen_original_array_identity(source)
+        phase_truth = np.array(nominal, dtype=np.float64)
+        assert frozen_original_array_identity(record.nominal_phases_rad) == (
+            frozen_original_array_identity(phase_truth)
+        )
+        specimen = replace(
+            record, nominal_phases_rad=identity_storage_copy(record.nominal_phases_rad, "plain")
+        )
+        transfer = kwargs["transfer"]
+        kwargs["transfer"] = replace(
+            transfer, samples=identity_storage_copy(transfer.samples, storage)
+        )
+        kwargs["channel_index"] = 0
+        arrays = {
+            "specimen.data": specimen.data,
+            "specimen.nominal_phases_rad": specimen.nominal_phases_rad,
+            "transfer.samples": kwargs["transfer"].samples,
+        }
+    return case, specimen, kwargs, arrays
+
+
+@pytest.mark.parametrize(
+    "example", ["direct-unit", "direct-complex-bits", "prepared-all-fields", "raw-nominal-phases"]
+)
+@pytest.mark.parametrize("storage", ["plain", "subclass"])
+def test_original_record_array_identities_include_permitted_storage(
+    example: str, storage: str
+) -> None:
+    """WF085: original supplied leaves survive independent of consumed data.
+
+    These are identity/provenance regressions, not new scientific accuracy
+    controls. The genuine prepared record defines input bytes before workflow.
+    All previously accepted raw finite-sum calibration/image proofs remain.
+    """
+    case, specimen, kwargs, arrays = original_identity_inputs(example, storage)
+    expected = {path: frozen_original_array_identity(value) for path, value in arrays.items()}
+    selected = frozen_original_array_identity(case.raw)
+    numpy_errors = np.geterr().copy()
+    try:
+        result = entry()(specimen, **kwargs)
+    finally:
+        assert np.geterr() == numpy_errors
+        for path, value in arrays.items():
+            assert frozen_original_array_identity(value) == expected[path], path
+    assert result.image.shape == (case.raw.shape[0], *case.raw.shape[-3:])
+    assert np.isfinite(result.image).all()
+    assert result.intensity_unit == "detector-counts"
+    assert kwargs["transfer_identity"]["intensity_unit"] == "dimensionless-transfer"
+    names = [identity.name for identity in result.input_identities]
+    assert names == sorted(set(names)), "identities must have unique lexicographically sorted names"
+    identities = {identity.name: identity for identity in result.input_identities}
+    missing = sorted(expected.keys() - identities.keys())
+    assert not missing, f"missing original supplied array identities: {missing}"
+    for path, value in expected.items():
+        identity = identities[path]
+        assert fields_of(identity) == ("name", "shape", "dtype", "sha256")
+        assert (identity.shape, identity.dtype, identity.sha256) == value, path
+    assert set(names) == expected.keys() | {
+        "selected_specimen",
+        "prepared_quadratures",
+        "consumed_transfer",
+    }
+    identity = identities["selected_specimen"]
+    assert (identity.shape, identity.dtype, identity.sha256) == selected
+
+
+def identity_optics_scalar_values() -> dict[str, Any]:
+    """Only finite supported float widths; dtype spelling grants no domain.
+
+    A distinct longdouble scalar class can store ordinary binary64 on a given
+    host. Include that lawful representation; never construct extended-width
+    input when its actual format lies outside the inherited scalar domain.
+    """
+    values: dict[str, Any] = {
+        "python-float": 1.0,
+        "numpy-float16": np.float16(1.0),
+        "numpy-float32": np.float32(1.0),
+        "numpy-float64": np.float64(1.0),
+    }
+    formats = {2: (10, 16, -14), 4: (23, 128, -126), 8: (52, 1024, -1022)}
+    dtype = np.dtype(np.longdouble)
+    info = np.finfo(dtype)
+    if (
+        dtype.kind == "f"
+        and dtype.itemsize in formats
+        and (info.nmant, info.maxexp, info.minexp) == formats[dtype.itemsize]
+    ):
+        values[f"numpy-longdouble-{dtype.itemsize}-byte"] = np.longdouble(1.0)
+    return values
+
+
+@pytest.mark.parametrize("representation", tuple(identity_optics_scalar_values()))
+def test_identity_optics_scalars_complete_an_independent_ordinary_snapshot(
+    representation: str,
+) -> None:
+    """Existing finite scalar domain must complete immutable source snapshots."""
+    case = constant_case()
+    kwargs = keywords(case)
+    supplied = identity_optics_scalar_values()[representation]
+    assert float(supplied) == 1.0 and np.isfinite(supplied)
+    if isinstance(supplied, np.generic):
+        assert supplied.dtype.kind == "f" and supplied.dtype.itemsize in (2, 4, 8)
+    optics_claim = kwargs["transfer_identity"]["optics"]
+    optics_claim["immersion_index"] = supplied
+    # Independent literals BEFORE the call: these real settings normalize to
+    # ordinary Python binary64 values; wavelength retains its integral meaning.
+    expected_optics = (
+        ("immersion_index", 1.0),
+        ("numerical_aperture", 1.0),
+        ("wavelength_nm", 500),
+    )
+    raw_identity = frozen_original_array_identity(case.raw)
+    transfer_identity = frozen_original_array_identity(kwargs["transfer"].samples)
+    numpy_errors = np.geterr().copy()
+    try:
+        result = entry()(case.raw, **kwargs)
+    finally:
+        assert np.geterr() == numpy_errors
+        assert frozen_original_array_identity(case.raw) == raw_identity
+        assert frozen_original_array_identity(kwargs["transfer"].samples) == transfer_identity
+        assert optics_claim["immersion_index"] is supplied
+    assert result.image.shape == (1, 2, 2, 4) and np.isfinite(result.image).all()
+    assert result.intensity_unit == "detector-counts"
+    source_claim = dict(result.source_declarations)["transfer_identity"]
+    assert type(source_claim) is tuple
+    assert dict(source_claim)["id"] == "selected-transfer"
+    assert dict(source_claim)["intensity_unit"] == "dimensionless-transfer"
+    assert_recursive_snapshot(dict(source_claim)["optics"], expected_optics)
+    # Mutate only the real caller's mapping AFTER return. The same independent
+    # expected ordinary-number tree must remain unchanged and immutable.
+    optics_claim.update(immersion_index=1.75, numerical_aperture=0.75, wavelength_nm=501)
+    kwargs["transfer_identity"]["id"] = "caller-mutated"
+    assert dict(source_claim)["id"] == "selected-transfer"
+    assert_recursive_snapshot(dict(source_claim)["optics"], expected_optics)
