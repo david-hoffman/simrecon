@@ -1,11 +1,13 @@
 # Library design: explicit file and array operations
 
-**Version 1.0. CE02–CE05 product boundary.** [PROJECT.md](../PROJECT.md) is the canonical
+**Version 1.0. CE02–CE07 product boundary.** [PROJECT.md](../PROJECT.md) is the canonical
 project record; public contracts define exact behavior.
 
 The array boundary supports specimen preparation, empirical transfers, finite
 carrier/modulation estimation and known-parameter native filtering/assembly under
-their source-derived contracts. Complete file composition remains a later stage.
+their source-derived contracts. The explicit workflow composes those operations
+from specimen and calibration declarations or accepted transfers. Neutral file
+reading and acquisition declaration remain separate caller operations.
 The [C-equivalence roadmap](../plans/c-equivalence-roadmap.md) replaces the earlier
 numerical design. The approved functional architecture and neutral adapters
 remain; they authorize no additional scientific feature. The historical proposal
@@ -25,12 +27,16 @@ below retains its original pending-approval language and old candidate claims.
 | `prepare_bead_otf`, `declare_otf`, `sample_otf` | Prepare, declare and sample complete complex transfer records. | [CE03 transfers](../contracts/c-equivalence-optical-transfer-v1.md) |
 | `estimate_parameters` | Estimate per-time carriers/modulation with the finite source procedure and immutable overlap/trace diagnostics. | [CE05 estimation](../contracts/c-equivalence-carrier-modulation-v1.md) |
 | `reconstruct_known` | Filter native bands and assemble a signed real image with supplied parameters. | [CE04 filtering/assembly](../contracts/c-equivalence-known-parameters-v1.md) |
+| `prepare_acquisition_bands`, `reinterpret_2d_planes` | Prepare selected 2D/3D modes and explicitly adapt literal plane streams. | [CE06 acquisition modes](../contracts/c-equivalence-acquisition-modes-v1.md) |
+| `reconstruct_workflow` | Select the declared calibration/transfer, prepare acquisition bands, estimate parameters and reconstruct each effective time. | [CE07 workflow](../contracts/c-equivalence-workflow-v1.md) |
 
 The thin command-line interface (CLI) offers `simrecon inspect`, `simrecon convert`
 and `simrecon export-imagej` through the same public boundaries. `delivery doctor`
 and verification tools remain delivery infrastructure. No neutral entry point
 implicitly calls correction, calibration, phase separation, estimation, simulation
-or reconstruction. The scientific entries are explicit pure array/value calls.
+or reconstruction. The scientific entries are explicit pure array/value calls. The workflow returns
+the signed image, coordinates, settings, identities and actual stage records.
+It introduces no file decoder, result writer or reconstruction CLI.
 Retired records/functions/modules remain unavailable through aliases or alternate
 entry points. Known-parameter mathematical agreement supplies no historical
 binary agreement, physical recovery or resolution claim.

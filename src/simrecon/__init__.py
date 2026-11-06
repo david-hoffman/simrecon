@@ -29,6 +29,8 @@ from ._parameter_estimation import (
 )
 from ._pixels import read
 from ._preparation import PreparedBands, prepare_bands
+from ._workflow import reconstruct_workflow
+from ._workflow_result import WorkflowError, WorkflowReconstruction
 
 __all__ = [
     "AcquisitionBands",
@@ -52,6 +54,8 @@ __all__ = [
     "ReconstructionError",
     "SimreconError",
     "WriteReport",
+    "WorkflowError",
+    "WorkflowReconstruction",
     "declare_acquisition",
     "declare_otf",
     "estimate_parameters",
@@ -62,6 +66,7 @@ __all__ = [
     "prepare_bead_otf",
     "read",
     "reconstruct_known",
+    "reconstruct_workflow",
     "sample_otf",
     "write",
 ]

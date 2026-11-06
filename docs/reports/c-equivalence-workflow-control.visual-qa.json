@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-06T13:32:05.267739+00:00",
+  "status": "visually-inspected-passed",
+  "inspection": "view_image original on selected complete PNG",
+  "png_sha256": "6552be554eb78242becd54d9c7fcf39e5a2c070d01a9212de0237b006db65b0f",
+  "render_receipt_sha256": "80179018f46bb63164c1bb04841f779cb26d5c3ae19bebed74159ab468125890",
+  "observed_data_sha256": "cbec989592aad73b9393a123874b9efcc13611ff012ae9cdf87a83e0a5af8b56",
+  "approved_bounds_sha256": "154ffa4c6b979639ade82ebe647b4c95ac33094c9c5d1cab51a827c6e7faeea8",
+  "source_samples_unchanged_between_renders": true,
+  "checks": [
+    "All16 image/residual samples shown in4 labeled(z,y)rows",
+    "Reference/actual common fixed0\u20137 source-count scale, no autoscaling or clipping",
+    "Residual fixed to plus/minus approved conditional image bound",
+    "Nominal carrier and actual raw modulation fit/difference/bound visible",
+    "Coordinate/unit/scale status, signed residual extrema and out-of-range counts visible",
+    "Caption identifies input/reference/units/source scaling and unqualified outcomes",
+    "Labels/footer readable without clipping"
+  ],
+  "limits": "One known-nominal-carrier complex-table mathematical control; no carrier-search/empirical-calibration/physical recovery/resolution/historical executable proof from this figure"
+}
