@@ -274,7 +274,7 @@ def test_literal_finite_search_decisions_and_frozen_overlaps(name: str) -> None:
     assert len(actual_shifts) == sum(
         event["kind"] == "shift" for event in expected["parameters"]["decisions"]
     )
-    reused = case.carrier["use_time0_carriers"]
+    reused = case.resolved()[1]["use_time0_carriers"]
     if reused:
         np.testing.assert_array_equal(
             result.parameters.carriers_cyc_um[1], result.parameters.carriers_cyc_um[0]
