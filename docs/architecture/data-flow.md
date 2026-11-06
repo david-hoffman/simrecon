@@ -1,11 +1,12 @@
 # Data flow: explicit file and array operations
 
-**Version 1.0. CE02–CE05 product boundary.** [PROJECT](../PROJECT.md) records
+**Version 1.0. CE02–CE07 product boundary.** [PROJECT](../PROJECT.md) records
 the active boundaries; the linked public contracts define exact behavior.
 The following diagrams are conceptual.
 
 Estimation and known-parameter reconstruction are explicit array routes through
-accepted preparation and transfer records. The former scientific APIs remain retired.
+accepted preparation and transfer records. The public workflow composes selected
+acquisition modes and per-time reconstruction from explicit declarations. The former scientific APIs remain retired.
 The [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) supersedes
 the old numerical route. Neutral file and declaration operations remain available.
 
@@ -87,8 +88,49 @@ from historical executable agreement and physical recovery.
 `PreparedBands` and pass that time's carriers/modulation to `reconstruct_known`.
 The [estimation guide](../usage/c-parameter-estimation.md) gives the public
 record construction and keeps the upstream scale unchanged. Estimation success
-does not guarantee acceptance by the filter's separate domain. Remaining modes,
-complete file composition and recovery acceptance remain CE06–CE08.
+does not guarantee acceptance by the filter's separate domain. CE06 also supplies the selected acquisition-mode bands and layout adapter. The
+CE07 workflow performs the accepted composition below. Independent recovery
+acceptance remains CE08; historical executable agreement stays unqualified.
+
+## Public acquisition workflow
+
+```mermaid
+sequenceDiagram
+    actor Caller
+    participant Workflow as reconstruct_workflow
+    participant Layout as reinterpret_2d_planes
+    participant Transfer as prepare_bead_otf or accepted transfer
+    participant Bands as prepare_acquisition_bands
+    participant Estimate as estimate_parameters
+    participant Known as reconstruct_known
+
+    Caller->>Workflow: Explicit specimen, acquisition/optics and calibration/transfer
+    opt Literal 2D stack selected
+        Workflow->>Layout: Regroup on/off pixels and exposure-background arrays
+        Layout-->>Workflow: TwoDPlaneInputs
+        Note over Workflow: Keep physical header order<br/>Use new direction labels for phases and angles
+    end
+    Workflow->>Transfer: Select accepted transfer or prepare explicit raw beads
+    Transfer-->>Workflow: Actual OpticalTransfer and optional PreparedOtf
+    Workflow->>Bands: Prepare complete effective acquisition once
+    Bands-->>Workflow: AcquisitionBands and mode diagnostics
+    Workflow->>Estimate: Fit complete effective series once
+    Estimate-->>Workflow: EstimatedParameters and finite-decision diagnostics
+    loop Each effective time
+        Workflow->>Known: Actual one-time bands, fitted parameters and scheduled Wiener value
+        Known-->>Workflow: Signed KnownReconstruction
+    end
+    Workflow-->>Caller: Stacked image, coordinates, settings, identities and actual records
+```
+
+The [workflow contract](../contracts/c-equivalence-workflow-v1.md) fixes the exact
+ordering, array ownership, errors and source policies. Raw bead preparation occurs
+only for the selected raw calibration path. An accepted or precomputed transfer
+is consumed directly. Complete transfer declaration and explicit decoded-section
+selection follow their distinct rules. A caller can explicitly read and declare
+file pixels before this array/value boundary. No output writer or reconstruction
+CLI is added. The [usage guide](../usage/c-workflow.md) describes required metadata
+and the separate historical-binary, physical-recovery and resolution limits.
 
 ## Historical numerical routes
 

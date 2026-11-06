@@ -1,8 +1,9 @@
 # SIMrecon project
 
 **Version 1.0.** Git versions revisions. Active product status: CE02 preparation,
-CE03 optical transfers, CE04 known-parameter filtering/assembly and CE05 finite
-carrier/modulation estimation.
+CE03 optical transfers, CE04 known-parameter filtering/assembly, CE05 finite
+carrier/modulation estimation, CE06 selected acquisition modes and CE07 explicit
+workflow composition.
 
 ## Approved architecture and current public boundary
 
@@ -38,8 +39,17 @@ time-specific factors and optional time-zero carrier reuse.
 [Usage](usage/c-parameter-estimation.md) shows explicit per-time composition into
 the unchanged known-parameter operation; its
 [task pointer](tasks/c-equivalence-carrier-modulation.md) locates execution and
-acceptance evidence. Remaining modes, file composition and physical recovery
-acceptance remain later stages. Historical C executable agreement is
+acceptance evidence. The [CE06 acquisition-mode contract](contracts/c-equivalence-acquisition-modes-v1.md)
+defines `prepare_acquisition_bands` and `reinterpret_2d_planes` for selected
+2D/3D, phase, drift, off-exposure, geometry and filtering behavior. Its
+[mode ledger](contracts/c-equivalence-acquisition-modes-ledger-v1.md) records
+supported and excluded branches. The [CE07 workflow contract](contracts/c-equivalence-workflow-v1.md)
+defines `reconstruct_workflow`, `WorkflowReconstruction` and `WorkflowError`.
+It composes explicit calibration/transfer selection, acquisition preparation,
+finite parameter estimation and per-time filtering/assembly. Its
+[usage guide](usage/c-workflow.md) explains explicit metadata and units; its
+[task pointer](tasks/c-equivalence-workflow.md) locates exact acceptance evidence.
+Independent physical recovery acceptance remains CE08. Historical C executable agreement is
 unqualified. The old `prepare_otf`, `reconstruct`, `reconstruct_volume` and retired
 modules remain unavailable. The [retirement contract](contracts/c-equivalence-retirement-v1.md)
 removes the old scientific stack, including phase/OTF preparation, correction,
@@ -55,9 +65,11 @@ no readiness or acceptance verdict.
 The neutral public functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records/errors.
 The scientific entries are `prepare_bands`, `prepare_bead_otf`, `declare_otf`,
-`sample_otf`, `estimate_parameters` and `reconstruct_known`, with their declared
-records/errors. They remain pure array/value
-boundaries until later file composition.
+`sample_otf`, `prepare_acquisition_bands`, `reinterpret_2d_planes`,
+`estimate_parameters`, `reconstruct_known` and `reconstruct_workflow`, with
+their declared records/errors. They remain explicit array/value boundaries.
+Callers may compose neutral reads and declarations before the workflow; the
+workflow adds no file decoder, result writer or reconstruction CLI.
 The neutral CLI and delivery commands remain installed.
 
 - The [MRC conversion contract](contracts/mrc-conversion-v1.md) defines metadata
