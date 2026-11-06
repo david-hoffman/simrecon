@@ -35,7 +35,7 @@ The complete expected and observed arrays are retained in the
 
 The bounds were fixed from the independently accepted test before this observation:
 `gamma(65536)*64` for image and `gamma(4096)*8` for raw modulation, where
-`gamma(n)=n*u/(1-n*u)` and `u=2**-53`. The corrected test-default lookup changed
+`gamma(n)=n*u/(1-n*u)` and `u=2**-53`. The independently reviewed provenance regressions changed
 no control, expression, numerical premise or bound. These enclosures retain the
 declared arithmetic, Fourier-backend, elementary-function, solver and equality
 premises; they are conditional rather than universal backend certificates.
@@ -56,8 +56,9 @@ NumPy 2.5.3 and SciPy 1.18.1. The
 plotting environment (Matplotlib 3.11.0, NumPy 2.5.1). Its
 original pending visual-status field is retained; the separate
 [visual check](c-equivalence-workflow-control.visual-qa.json) records inspection
-of this exact image. The second rendering changed presentation wording only; both
-renderings use the identical observed arrays, reference and scales.
+of this exact image. This observation records the runtime with corrected original
+input identities and scalar snapshots. The renderer reads its saved observed arrays,
+reference and fixed scales without calling reconstruction.
 
 `detector-counts` is the declared input-unit label under the source reconstruction
 scale. It establishes no conserved mass or physical calibration. This control

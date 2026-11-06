@@ -21,6 +21,10 @@ def _freeze(value: Any, *, code: str = "config", active: set[int] | None = None)
     if type(value) is np.ndarray:
         _extent(value.shape, value.dtype.itemsize)
         return _freeze(value.tolist(), code=code, active=active)
+    if isinstance(value, np.floating):
+        # Admissibility is checked before snapshotting. Even a binary64-width
+        # NumPy real can keep its scalar type after item(); terminate explicitly.
+        return float(value)
     if isinstance(value, np.generic):
         return _freeze(value.item(), code=code, active=active)
     if value is None or type(value) in (str, bytes, int, float, complex, bool):
@@ -84,15 +88,18 @@ def _identity(
 
 
 def _digest(name: str, array: Any) -> _ArrayIdentity:
-    _extent(array.shape, array.dtype.itemsize)
-    dtype = array.dtype.newbyteorder("<")
-    normalized = np.ascontiguousarray(array, dtype=dtype)
+    # Use the ndarray descriptor directly: this is a view of the original
+    # validated storage, without subclass methods or surface metadata overrides.
+    backing = np.ndarray.view(array, type=np.ndarray)
+    _extent(backing.shape, backing.dtype.itemsize)
+    dtype = backing.dtype.newbyteorder("<")
+    normalized = np.ascontiguousarray(backing, dtype=dtype)
     digest = hashlib.sha256(memoryview(normalized).cast("B")).hexdigest()
-    return _ArrayIdentity(name, tuple(array.shape), dtype.str, digest)
+    return _ArrayIdentity(name, tuple(backing.shape), dtype.str, digest)
 
 
 def _collect(name: str, value: Any, result: dict[str, _ArrayIdentity]) -> None:
-    if type(value) is np.ndarray:
+    if issubclass(type(value), np.ndarray):
         result[name] = _digest(name, value)
     elif isinstance(value, Mapping):
         for key, child in value.items():
