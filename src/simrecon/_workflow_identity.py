@@ -94,7 +94,10 @@ def _digest(name: str, array: Any) -> _ArrayIdentity:
     _extent(backing.shape, backing.dtype.itemsize)
     dtype = backing.dtype.newbyteorder("<")
     normalized = np.ascontiguousarray(backing, dtype=dtype)
-    digest = hashlib.sha256(memoryview(normalized).cast("B")).hexdigest()
+    # A byte view exposes the normalized storage without requiring Python's
+    # buffer format to express a native-only numerical dtype or copying bytes.
+    byte_view = normalized.view(np.uint8)
+    digest = hashlib.sha256(memoryview(byte_view)).hexdigest()
     return _ArrayIdentity(name, tuple(backing.shape), dtype.str, digest)
 
 
