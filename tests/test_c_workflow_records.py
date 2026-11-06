@@ -1099,3 +1099,172 @@ def test_identity_optics_scalars_complete_an_independent_ordinary_snapshot(
     kwargs["transfer_identity"]["id"] = "caller-mutated"
     assert dict(source_claim)["id"] == "selected-transfer"
     assert_recursive_snapshot(dict(source_claim)["optics"], expected_optics)
+
+
+def decoded_native_storage_formats() -> dict[str, Any]:
+    """Inventory actual binary64 storage, never an extended-width positive.
+
+    Native dtype names alone establish no domain. Keep distinct real/complex
+    storage classes only when their actual component format is IEEE binary64.
+    Inspecting excluded dtype metadata constructs no excluded caller array.
+    """
+    formats: dict[str, Any] = {}
+    seen = set()
+    scalar_types: tuple[tuple[str, Any], ...] = (
+        ("real-standard", np.float64),
+        ("real-native", np.longdouble),
+        ("complex-standard", np.complex128),
+        ("complex-native", np.clongdouble),
+    )
+    for label, scalar_type in scalar_types:
+        dtype = np.dtype(scalar_type)
+        format_dtype: Any = dtype
+        info = np.finfo(format_dtype)
+        key = (dtype.kind, dtype.char, dtype.itemsize)
+        if (
+            dtype.kind in ("f", "c")
+            and dtype.itemsize == (8 if dtype.kind == "f" else 16)
+            and (info.nmant, info.maxexp, info.minexp) == (52, 1024, -1022)
+            and key not in seen
+        ):
+            formats[f"{label}-{dtype.char}"] = dtype
+            seen.add(key)
+    return formats
+
+
+def decoded_native_storage_input(representation: str) -> tuple[Case, dict[str, Any]]:
+    """Build the accepted tiny unit control with varied decoded storage only."""
+    case = constant_case()
+    dtype = decoded_native_storage_formats()[representation]
+    # np.array(..., dtype=...) can canonicalize the native storage class.
+    # Allocate it directly and verify the actual format, not just dtype.str.
+    samples = np.ndarray((2, 8, 2), dtype=dtype)
+    standard = np.ones(samples.shape, dtype=np.complex128 if dtype.kind == "c" else np.float64)
+    np.copyto(samples, standard)
+    assert type(samples) is np.ndarray and samples.flags.owndata
+    assert (samples.dtype.char, samples.dtype.str, samples.dtype.itemsize) == (
+        dtype.char,
+        dtype.str,
+        dtype.itemsize,
+    )
+    info = np.finfo(samples.dtype)
+    assert (info.nmant, info.maxexp, info.minexp) == (52, 1024, -1022)
+    assert np.isfinite(samples).all()
+    # The binary64 components 1 and +0 are exactly complex64-representable.
+    for index in np.ndindex(samples.shape):
+        value: Any = samples[index]
+        assert float(value.real) == 1.0 and float(value.imag) == 0.0
+        assert not np.signbit(value.real) and not np.signbit(value.imag)
+    return case, dict(
+        kind="decoded-sections",
+        layout="radial",
+        samples=samples,
+        dkr_cyc_um=0.25,
+        dkz_cyc_um=0.5,
+        order_encoding="combined-orders",
+    )
+
+
+def decoded_unit_source_snapshot() -> tuple[Any, ...]:
+    """Independent contract literals, frozen before any workflow output."""
+    return (
+        (
+            "specimen_identity",
+            (("id", "raw-observations"), ("intensity_unit", "detector-counts")),
+        ),
+        (
+            "transfer_identity",
+            (
+                ("id", "selected-transfer"),
+                ("intensity_unit", "dimensionless-transfer"),
+                (
+                    "optics",
+                    (("immersion_index", 1.0), ("numerical_aperture", 1.0), ("wavelength_nm", 500)),
+                ),
+            ),
+        ),
+        ("calibration_identity", None),
+        ("selected_channel", None),
+        ("raw_acquisition_metadata", None),
+        (
+            "decoded_transfer_binding",
+            (
+                ("original_shape", (2, 8, 2)),
+                ("layout", "radial"),
+                ("effective_mode", "3d"),
+                ("section_map", (0, 1)),
+                ("unused_sections", ()),
+                ("dkr_cyc_um", 0.25),
+                ("dkz_cyc_um", 0.5),
+            ),
+        ),
+    )
+
+
+@pytest.mark.parametrize("representation", tuple(decoded_native_storage_formats()))
+def test_decoded_native_storage_keeps_original_identity_and_independent_snapshot(
+    representation: str,
+) -> None:
+    """WF085/086: admitted decoded native storage completes the public workflow.
+
+    Exact original bytes and ordinary source metadata are separate from
+    consumed-stage identities. This adds no numerical image accuracy claim.
+    """
+    case, declaration = decoded_native_storage_input(representation)
+    kwargs = keywords(case)
+    kwargs["transfer"] = declaration
+    samples = declaration["samples"]
+    expected_arrays = {
+        "specimen": frozen_original_array_identity(case.raw),
+        "transfer.samples": frozen_original_array_identity(samples),
+    }
+    expected_sources = decoded_unit_source_snapshot()
+    declaration_before = {key: value for key, value in declaration.items() if key != "samples"}
+    source_claim_before = copy.deepcopy(kwargs["transfer_identity"])
+    dtype_facts = (samples.dtype.char, samples.dtype.str, samples.dtype.itemsize)
+    numpy_errors = np.geterr().copy()
+    try:
+        result = entry()(case.raw, **kwargs)
+    finally:
+        assert np.geterr() == numpy_errors
+        assert (samples.dtype.char, samples.dtype.str, samples.dtype.itemsize) == dtype_facts
+        assert frozen_original_array_identity(case.raw) == expected_arrays["specimen"]
+        assert frozen_original_array_identity(samples) == expected_arrays["transfer.samples"]
+        assert {key: value for key, value in declaration.items() if key != "samples"} == (
+            declaration_before
+        )
+        assert kwargs["transfer_identity"] == source_claim_before
+    assert result.image.shape == (1, 2, 2, 4) and np.isfinite(result.image).all()
+    assert result.intensity_unit == "detector-counts"
+    names = [item.name for item in result.input_identities]
+    assert names == sorted(set(names))
+    assert set(names) == expected_arrays.keys() | {
+        "selected_specimen",
+        "prepared_quadratures",
+        "consumed_transfer",
+    }
+    identities = {item.name: item for item in result.input_identities}
+    for path, expected in expected_arrays.items():
+        identity = identities[path]
+        assert fields_of(identity) == ("name", "shape", "dtype", "sha256")
+        assert (identity.shape, identity.dtype, identity.sha256) == expected, path
+    selected = identities["selected_specimen"]
+    assert (selected.shape, selected.dtype, selected.sha256) == expected_arrays["specimen"]
+    assert_recursive_snapshot(result.source_declarations, expected_sources)
+    assert dict(result.resolved_settings)["calibration_selection"] == "decoded-sections"
+    assert result.calibration is None
+    assert result.transfer.samples.dtype == np.dtype(np.complex128)
+    assert result.transfer.samples.flags.owndata and not result.transfer.samples.flags.writeable
+    assert not np.shares_memory(result.transfer.samples, samples)
+    np.testing.assert_array_equal(result.transfer.samples, np.ones((2, 8, 2), dtype=np.complex128))
+    # Genuine caller backing values/mappings remain mutable. Change them only
+    # AFTER return; require the same independently frozen metadata and bytes.
+    samples[:] = 2
+    declaration.update(dkr_cyc_um=0.5, dkz_cyc_um=1.0)
+    kwargs["transfer_identity"]["id"] = "caller-mutated"
+    kwargs["transfer_identity"]["optics"]["immersion_index"] = 1.75
+    assert_recursive_snapshot(result.source_declarations, expected_sources)
+    for path, expected in expected_arrays.items():
+        identity = identities[path]
+        assert (identity.shape, identity.dtype, identity.sha256) == expected, path
+    np.testing.assert_array_equal(result.transfer.samples, np.ones((2, 8, 2), dtype=np.complex128))
