@@ -1,0 +1,288 @@
+{
+  "kind": "PUBLIC_VISUAL_QA_PROJECTION",
+  "status": "ACCEPTED_VISUAL_QA",
+  "reviewer": "Coordinator root, original raster inspection",
+  "original_qa": {
+    "bytes": 10258,
+    "sha256": "939f71239589a242cd2684613624c024beba329e036966159e4f33f637424417"
+  },
+  "data": {
+    "path": "docs/reports/data/ce08-large-observed.npz",
+    "bytes": 4264872,
+    "sha256": "852ab421787ef150b3909ba23c766cad004a23ee8ab76bad929ca59a8aa999c1"
+  },
+  "registration": {
+    "path": "tests/data/ce08-large-recovery-v1.json",
+    "bytes": 10974,
+    "sha256": "49a02fb01bedc4632a11b0f1f6b5d632296f1a5b2faa7f2fe265de7c8f5207aa"
+  },
+  "renderer": {
+    "alias": "large-saved-array-renderer",
+    "bytes": 12284,
+    "sha256": "09abdc18ae0eb89dafde227ecb3e5e8bea94af896a65371525e82502405f4659"
+  },
+  "render_receipt": {
+    "path": "docs/reports/data/ce08-large-render.json",
+    "bytes": 6846,
+    "sha256": "af97f43ab8eb29686ee7891024067257e44d346d8954926eda956929c74866f0"
+  },
+  "outputs": [
+    {
+      "path": "docs/figures/ce08/large-images-01.png",
+      "bytes": 212563,
+      "sha256": "68994834d6cbef16b22b9fc9934315d2364179accbc16caee48064e4189978fc"
+    },
+    {
+      "path": "docs/figures/ce08/large-images-02.png",
+      "bytes": 215306,
+      "sha256": "add7aebd210b019bc9aff8bd590c6ec42cbdad0cd9a846b2304905e97ee71b9b"
+    },
+    {
+      "path": "docs/figures/ce08/large-residuals-01.png",
+      "bytes": 221299,
+      "sha256": "4bcf9870777095e74c9ac8042a2795e0df0951094c36966028f3645c0db07321"
+    },
+    {
+      "path": "docs/figures/ce08/large-residuals-02.png",
+      "bytes": 219278,
+      "sha256": "29bce423aaeef7945d7799dadb466f080489281795c078ef0bb99f1df529ed35"
+    },
+    {
+      "path": "docs/figures/ce08/large-fine-source-residuals-01.png",
+      "bytes": 141650,
+      "sha256": "463791e7f69f59a388fef05cdea81761316a50b6b6339ffadd9cfb60f0ecbe71"
+    },
+    {
+      "path": "docs/figures/ce08/large-fine-source-residuals-02.png",
+      "bytes": 141868,
+      "sha256": "7b38d2833c3a5769e05fc18fcaae0b62cfcd475b927673fadfa943d64c013983"
+    },
+    {
+      "path": "docs/figures/ce08/large-modes.png",
+      "bytes": 301773,
+      "sha256": "b5a094738cc79741275f2b17759d377011b59a918ace11f2503185be6722b63b"
+    }
+  ],
+  "directly_viewed_final_revision": [
+    "fine-source-residuals-01.png",
+    "fine-source-residuals-02.png"
+  ],
+  "reused_viewing_basis": "Remaining listed images were directly viewed in prior revision and their final raster bytes proved identical.",
+  "observed": "Both new fine pages have fully visible wrapped titles, units/axes/colorbars and all labeled planes. Five remaining originals retain accepted viewing through exact raster equality. All8planes/13DC-positive entries shown, common signed fixed scales, consistent series colors/external legend; no title/legend clipping.",
+  "display_range_exceedances": {
+    "images:Signed source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -5,
+        5
+      ]
+    },
+    "images:Same-dose conventional": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -5,
+        5
+      ]
+    },
+    "images:Independent expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -5,
+        5
+      ]
+    },
+    "images:Actual workflow": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -5,
+        5
+      ]
+    },
+    "residuals:Conventional \u2212 source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -5,
+        5
+      ]
+    },
+    "residuals:Expectation \u2212 source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -5,
+        5
+      ]
+    },
+    "residuals:Actual \u2212 source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -5,
+        5
+      ]
+    },
+    "residuals:Actual \u2212 expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.001,
+        0.001
+      ]
+    },
+    "fine-source-residuals:Expectation \u2212 source (fine)": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.15,
+        0.15
+      ]
+    },
+    "fine-source-residuals:Actual \u2212 source (fine)": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.15,
+        0.15
+      ]
+    },
+    "coefficient-real:Source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "coefficient-imaginary:Source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "coefficient-real:Conventional": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "coefficient-imaginary:Conventional": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "coefficient-real:Expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "coefficient-imaginary:Expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "coefficient-real:Actual": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "coefficient-imaginary:Actual": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.4,
+        0.4
+      ]
+    },
+    "amplitude-fraction:Conventional": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        0,
+        1.05
+      ]
+    },
+    "phase:Conventional": {
+      "below": 2,
+      "above": 9,
+      "range": [
+        -0.03,
+        0.03
+      ]
+    },
+    "amplitude-fraction:Expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        0,
+        1.05
+      ]
+    },
+    "phase:Expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.03,
+        0.03
+      ]
+    },
+    "amplitude-fraction:Actual": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        0,
+        1.05
+      ]
+    },
+    "phase:Actual": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.03,
+        0.03
+      ]
+    }
+  },
+  "exceedance_interpretation": {
+    "image_residual_coefficient_amplitude": 0,
+    "conventional_phase_below": 2,
+    "conventional_phase_above": 9,
+    "high_absent_modes": 9,
+    "low_nonzero_modes": 2,
+    "meaning": "Nine high conventional modes have effectively absent amplitude, so their phase is uninformative. Two low modes with nonzero axial content have physical phase shifts from the declared complex transfer; these are real display-range exceedances, not uninformative phases."
+  },
+  "all_planes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "original_renderer_visual_inspection_pending_preserved": true,
+  "prior_findings_preserved": true,
+  "product_calls_added_by_rendering": 0,
+  "limits": "Declared finite analog-difference model only; no resolution/noise/experimental-calibration/historical-binary claim."
+}

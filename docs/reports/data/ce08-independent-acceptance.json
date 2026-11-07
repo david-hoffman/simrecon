@@ -1,0 +1,1481 @@
+{
+  "schema": "org.simrecon.ce08-public-scientific-observations",
+  "status": "SCIENTIFIC_OBSERVATIONS_PASSED_DELIVERY_ACCEPTANCE_SEPARATE",
+  "task_pointer": "docs/tasks/c-equivalence-independent-acceptance.md",
+  "accepted_test_checkpoint_sha256": "1e789c4c939df33d30155a8282c78432ee9fcf06aa9674817468afef5550221c",
+  "studies": {
+    "matched": {
+      "status": "PASSED",
+      "data": {
+        "path": "docs/reports/data/ce08-matched-observed.npz",
+        "bytes": 63449,
+        "sha256": "75404832b5971f8e1f2fb18d1faf6be7132b1bde0ccd33ab7f75c9f90224287c"
+      },
+      "original_observation_receipt": {
+        "bytes": 12827,
+        "sha256": "34a2542b7a7c73034d01185a7a214da1a47ee9627fe86a7f504eab40449814f9"
+      },
+      "observer": {
+        "bytes": 8613,
+        "sha256": "7894e3a1762a0e08ac0044df71a274a754032c8caf3fe0cedfccf9d02721dd76"
+      },
+      "registration": {
+        "path": "tests/data/ce08-matched-recovery-v1.json",
+        "bytes": 10010,
+        "sha256": "63d0efa2d57772614f19b34ff9d747f8323b32683ef4f9aa6988fbd42f1ce8b6"
+      },
+      "source_runtime_hashes": {
+        "src/simrecon/_workflow.py": "e9166cbd73bc80d27b4a2d9aaeaf6e91a4c03964342c347a1dc1a8f6825619e0",
+        "src/simrecon/_workflow_config.py": "aac71bfee41b36c799654bbd499b413b6558482f289ee3c565f5ebe9ec6ade57",
+        "src/simrecon/_workflow_adapters.py": "b7aa94bf1fa6a4e66a4f477dd7d48c42686eb6267c1aaeb48e0925757a5b61f1",
+        "src/simrecon/_workflow_transfer.py": "dad8d3ea39517f6c328420aec821715195e3283f33d73d8ec851ba22984ab5d1",
+        "src/simrecon/_workflow_result.py": "1f0d7fe63a860c85f824932429079382c6e35e3aed1ee092b9294716c55f8932",
+        "src/simrecon/_workflow_identity.py": "6f9063a90c294333c770c8dc4d0e7ba66ce3a62976e387ce2425837497e6d037",
+        "src/simrecon/_acquisition_modes.py": "2add1ab7ed479a297909cb886442bc95a39a7d6f89b963644e6fc23bac326402",
+        "src/simrecon/_preparation.py": "a996c4d04bfcbf7fd69a1ec57d8798c423c95a0f60d4cb03f106150493250d08",
+        "src/simrecon/_optical_transfer.py": "02fafd37a3f5109b4c58ea3d54a68a4c396144ee369f90922868f8b752817cac",
+        "src/simrecon/_parameter_estimation.py": "411aa4e9e48a23b0257ba763b6e642d2765ec9389c04f48b1eac23a82df7bbd1",
+        "src/simrecon/_known_reconstruction.py": "d6b11f0bdb765166ce3acbd7218374e93ee71cbdb75b747b4033d205c13218b6"
+      },
+      "before_after_scientific_and_evidence_fingerprints_equal": true,
+      "environment": {
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "numpy": "2.5.3",
+        "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O"
+      },
+      "checks": [
+        {
+          "name": "input_raw_unchanged",
+          "passed": true
+        },
+        {
+          "name": "unchanged_accepted_physical_criteria",
+          "passed": true
+        },
+        {
+          "name": "unchanged_accepted_numerical_image_bound",
+          "passed": true
+        },
+        {
+          "name": "frozen_input_identities_unchanged",
+          "passed": true
+        },
+        {
+          "name": "pre_product_budget_identity_unchanged",
+          "passed": true
+        }
+      ],
+      "details": {
+        "image_min": -2.3061125954670896,
+        "image_max": 3.199099106595113,
+        "global_relative_l2_source_error": 0.0077326111543306215,
+        "max_abs_actual_minus_expectation": 9.880984919163893e-15,
+        "representative_modes": [
+          {
+            "kxyz": [
+              0,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "truth_modes": [
+              0.12500000000000003,
+              0.0
+            ],
+            "conventional_modes": [
+              0.12499998509883839,
+              0.0
+            ],
+            "expected_modes": [
+              0.1249995269628274,
+              0.0
+            ],
+            "actual_modes": [
+              0.12499952696282793,
+              0.0
+            ],
+            "actual_amplitude_fraction": 0.9999962157026232,
+            "actual_phase_error_rad": 0.0
+          },
+          {
+            "kxyz": [
+              1,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.125,
+              0.0,
+              0.0
+            ],
+            "truth_modes": [
+              0.6,
+              0.14999999999999997
+            ],
+            "conventional_modes": [
+              0.41102252425825697,
+              0.10275561002991186
+            ],
+            "expected_modes": [
+              0.5999956036769782,
+              0.14999887602803663
+            ],
+            "actual_modes": [
+              0.5999956036769784,
+              0.14999887602803585
+            ],
+            "actual_amplitude_fraction": 0.9999926630337065,
+            "actual_phase_error_rad": -3.904531972870659e-08
+          },
+          {
+            "kxyz": [
+              2,
+              1,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.25,
+              0.125,
+              0.0
+            ],
+            "truth_modes": [
+              0.25,
+              -0.10000000000000003
+            ],
+            "conventional_modes": [
+              0.08319056777603387,
+              -0.03327621570081149
+            ],
+            "expected_modes": [
+              0.24999292224797925,
+              -0.09999713891890138
+            ],
+            "actual_modes": [
+              0.24999292224797895,
+              -0.09999713891890179
+            ],
+            "actual_amplitude_fraction": 0.9999716476397971,
+            "actual_phase_error_rad": 1.033832409026888e-07
+          },
+          {
+            "kxyz": [
+              5,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.0,
+              0.0
+            ],
+            "truth_modes": [
+              0.3999999999999999,
+              0.0999999999999999
+            ],
+            "conventional_modes": [
+              -1.5612511283791264e-17,
+              -9.8879238130678e-17
+            ],
+            "expected_modes": [
+              0.3954266192605089,
+              0.09885580651183695
+            ],
+            "actual_modes": [
+              0.395426619260509,
+              0.0988558065118365
+            ],
+            "actual_amplitude_fraction": 0.988566049151352,
+            "actual_phase_error_rad": -2.0190939638809614e-06
+          },
+          {
+            "kxyz": [
+              5,
+              1,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.125,
+              0.0
+            ],
+            "truth_modes": [
+              0.25,
+              -0.12000000000000002
+            ],
+            "conventional_modes": [
+              2.5153490401663703e-17,
+              2.3418766925686896e-17
+            ],
+            "expected_modes": [
+              0.2459475937606398,
+              -0.11805351448076451
+            ],
+            "actual_modes": [
+              0.24594759376063974,
+              -0.11805351448076445
+            ],
+            "actual_amplitude_fraction": 0.9837882988112213,
+            "actual_phase_error_rad": 4.396781064949577e-06
+          }
+        ]
+      },
+      "physical_criteria": {
+        "all_mode_relative_complex_error_max": 0.035,
+        "high_mode_amplitude_fraction_min": 0.965,
+        "high_mode_amplitude_fraction_max": 1.02,
+        "high_mode_phase_error_rad_max": 0.02,
+        "conventional_high_mode_fraction_max": 0.001,
+        "global_relative_l2_error_max": 0.035,
+        "signed_min_upper": -0.5,
+        "signed_max_lower": 0.5,
+        "high_mode_error_improvement_factor_min": 20.0
+      },
+      "fixed_presentation": {
+        "image_density_range": [
+          -4,
+          4
+        ],
+        "source_residual_density_range": [
+          -4,
+          4
+        ],
+        "supplemental_fine_source_residual_density_range": [
+          -0.15,
+          0.15
+        ],
+        "source_residual_rule": "Conventional, expectation and actual minus truth share the common [-4,4] overview. The fixed fine scale is supplemental only; retain all signed arrays and mark values beyond the fine display range.",
+        "numerical_residual_density_range": [
+          -0.001,
+          0.001
+        ],
+        "mode_real_imag_range": [
+          -0.7,
+          0.7
+        ],
+        "amplitude_fraction_range": [
+          0,
+          1.05
+        ],
+        "phase_error_rad_range": [
+          -0.03,
+          0.03
+        ],
+        "all_four_z_planes_required": true,
+        "signed_values_retained": true,
+        "export": "Explicit observer may pass a destination Path to ce08_recovery_model.capture(actual,path); no automatic write, environment switch, private tracked path, runtime seam or figure creation."
+      },
+      "acquisition_and_units": {
+        "field_period_um_xyz": [
+          8.0,
+          8.0,
+          4.0
+        ],
+        "output_pitch_um_xyz": [
+          0.5,
+          0.5,
+          1.0
+        ],
+        "output_labels_um_xyz": [
+          [
+            -4,
+            3.5
+          ],
+          [
+            -4,
+            3.5
+          ],
+          [
+            -2,
+            1
+          ]
+        ],
+        "fixed_workflow_to_density_multiplier": 1,
+        "analog_subtraction_before_one_digitization": true,
+        "physical_plane_exposures": 40,
+        "exposure_s_per_plane": 1
+      },
+      "original_preproduct_budget": {
+        "bytes": 2133,
+        "sha256": "24da3bc84501b3313199f70de0b67ced475aa71f456f42d2a063b4856cbc18fe"
+      },
+      "claims": {
+        "source_mathematical_equivalence": "passed for frozen numerical inputs under stated arithmetic model",
+        "physical_mode_recovery": "passed fixed finite-model criteria",
+        "resolution": "unclaimed",
+        "stochastic_performance": "unclaimed",
+        "experimental_calibration_authenticity": "unclaimed",
+        "historical_binary_output_agreement": "untested"
+      },
+      "budget_binding_receipt": {
+        "bytes": 1469,
+        "sha256": "4aa5feb70fb9c5e518beff68c3e0b37946f4a31173ff6aeed88e8f74de34ed26"
+      }
+    },
+    "large": {
+      "status": "PASSED",
+      "data": {
+        "path": "docs/reports/data/ce08-large-observed.npz",
+        "bytes": 4264872,
+        "sha256": "852ab421787ef150b3909ba23c766cad004a23ee8ab76bad929ca59a8aa999c1"
+      },
+      "original_observation_receipt": {
+        "bytes": 51473,
+        "sha256": "d8ea099a76b531d22c5d4c4511af46b05f5ab89d45d1b04b84481c02a27f329d"
+      },
+      "observer": {
+        "bytes": 11997,
+        "sha256": "0e0b775c32fc6b898deb313f8aacf9eeaac557f97e6a6b5d0d2f441c58df162c"
+      },
+      "registration": {
+        "path": "tests/data/ce08-large-recovery-v1.json",
+        "bytes": 10974,
+        "sha256": "49a02fb01bedc4632a11b0f1f6b5d632296f1a5b2faa7f2fe265de7c8f5207aa"
+      },
+      "source_runtime_hashes": {
+        "src/simrecon/_acquisition_modes.py": "2add1ab7ed479a297909cb886442bc95a39a7d6f89b963644e6fc23bac326402",
+        "src/simrecon/_known_reconstruction.py": "d6b11f0bdb765166ce3acbd7218374e93ee71cbdb75b747b4033d205c13218b6",
+        "src/simrecon/_optical_transfer.py": "02fafd37a3f5109b4c58ea3d54a68a4c396144ee369f90922868f8b752817cac",
+        "src/simrecon/_parameter_estimation.py": "411aa4e9e48a23b0257ba763b6e642d2765ec9389c04f48b1eac23a82df7bbd1",
+        "src/simrecon/_preparation.py": "a996c4d04bfcbf7fd69a1ec57d8798c423c95a0f60d4cb03f106150493250d08",
+        "src/simrecon/_workflow.py": "e9166cbd73bc80d27b4a2d9aaeaf6e91a4c03964342c347a1dc1a8f6825619e0",
+        "src/simrecon/_workflow_adapters.py": "b7aa94bf1fa6a4e66a4f477dd7d48c42686eb6267c1aaeb48e0925757a5b61f1",
+        "src/simrecon/_workflow_config.py": "aac71bfee41b36c799654bbd499b413b6558482f289ee3c565f5ebe9ec6ade57",
+        "src/simrecon/_workflow_identity.py": "6f9063a90c294333c770c8dc4d0e7ba66ce3a62976e387ce2425837497e6d037",
+        "src/simrecon/_workflow_result.py": "1f0d7fe63a860c85f824932429079382c6e35e3aed1ee092b9294716c55f8932",
+        "src/simrecon/_workflow_transfer.py": "dad8d3ea39517f6c328420aec821715195e3283f33d73d8ec851ba22984ab5d1"
+      },
+      "before_after_scientific_and_evidence_fingerprints_equal": true,
+      "environment": {
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "numpy": "2.5.3",
+        "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O"
+      },
+      "checks": [
+        {
+          "name": "raw_input_unchanged",
+          "passed": true
+        },
+        {
+          "name": "fixed_preregistered_density_map",
+          "passed": true
+        },
+        {
+          "name": "unchanged_accepted_physical_criteria",
+          "passed": true
+        },
+        {
+          "name": "unchanged_workflow_numerical_bound",
+          "passed": true
+        },
+        {
+          "name": "unchanged_density_numerical_bound",
+          "passed": true
+        },
+        {
+          "name": "scientific_runtime_inputs_unchanged",
+          "passed": true
+        },
+        {
+          "name": "accepted_evidence_and_budget_unchanged",
+          "passed": true
+        },
+        {
+          "name": "environment_fingerprints_unchanged",
+          "passed": true
+        }
+      ],
+      "details": {
+        "image_min": -2.884365292670268,
+        "image_max": 3.9986562090216977,
+        "global_relative_l2_source_error": 0.0027434144835375867,
+        "max_abs_actual_minus_expectation": 1.0147438445073931e-13,
+        "representative_modes": [
+          {
+            "kxyz": [
+              0,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "truth_modes": [
+              0.12499999999999975,
+              0.0
+            ],
+            "conventional_modes": [
+              0.12500000203511227,
+              0.0
+            ],
+            "expected_modes": [
+              0.12499984035676354,
+              0.0
+            ],
+            "actual_modes": [
+              0.12499984035676363,
+              0.0
+            ],
+            "actual_amplitude_fraction": 0.9999987228541111,
+            "actual_phase_error_rad": 0.0
+          },
+          {
+            "kxyz": [
+              1,
+              1,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.041666666666666664,
+              0.041666666666666664,
+              0.125
+            ],
+            "truth_modes": [
+              0.25,
+              0.05999999999999999
+            ],
+            "conventional_modes": [
+              0.04677353755477319,
+              0.03933229281346479
+            ],
+            "expected_modes": [
+              0.2499943476000091,
+              0.059998644462800586
+            ],
+            "actual_modes": [
+              0.24999434760000966,
+              0.05999864446279875
+            ],
+            "actual_amplitude_fraction": 0.9999773913429704,
+            "actual_phase_error_rad": 3.928970971685691e-09
+          },
+          {
+            "kxyz": [
+              2,
+              -1,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.08333333333333333,
+              -0.041666666666666664,
+              0.0
+            ],
+            "truth_modes": [
+              0.19999999999999996,
+              -0.07999999999999999
+            ],
+            "conventional_modes": [
+              0.15285794264875197,
+              -0.06114317854186123
+            ],
+            "expected_modes": [
+              0.1999995653312106,
+              -0.07999982650249023
+            ],
+            "actual_modes": [
+              0.19999956533120997,
+              -0.07999982650249178
+            ],
+            "actual_amplitude_fraction": 0.9999978272939946,
+            "actual_phase_error_rad": -1.5948646264114113e-09
+          },
+          {
+            "kxyz": [
+              0,
+              0,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.0,
+              0.0,
+              0.125
+            ],
+            "truth_modes": [
+              0.17999999999999997,
+              0.04
+            ],
+            "conventional_modes": [
+              0.039999998727731946,
+              0.03249999919535826
+            ],
+            "expected_modes": [
+              0.17999701894973602,
+              0.03999933641893234
+            ],
+            "actual_modes": [
+              0.17999701894973608,
+              0.039999336418932274
+            ],
+            "actual_amplitude_fraction": 0.9999834372855821,
+            "actual_phase_error_rad": -5.958382071957572e-09
+          },
+          {
+            "kxyz": [
+              15,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.0,
+              0.0
+            ],
+            "truth_modes": [
+              0.3499999999999999,
+              0.06999999999999994
+            ],
+            "conventional_modes": [
+              -1.3749038799831803e-17,
+              1.430845700410731e-17
+            ],
+            "expected_modes": [
+              0.34967707410107923,
+              0.06993532529521494
+            ],
+            "actual_modes": [
+              0.34967707410108023,
+              0.06993532529521068
+            ],
+            "actual_amplitude_fraction": 0.9990773053849822,
+            "actual_phase_error_rad": -2.4617496112383017e-07
+          },
+          {
+            "kxyz": [
+              15,
+              0,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.0,
+              0.125
+            ],
+            "truth_modes": [
+              0.06999999999999997,
+              0.013999999999999999
+            ],
+            "conventional_modes": [
+              -1.584365716361977e-17,
+              3.540974178610644e-18
+            ],
+            "expected_modes": [
+              0.06918191956550392,
+              0.013836402726673759
+            ],
+            "actual_modes": [
+              0.06918191956550397,
+              0.013836402726672895
+            ],
+            "actual_amplitude_fraction": 0.9883131883357286,
+            "actual_phase_error_rad": 2.614841036031326e-07
+          },
+          {
+            "kxyz": [
+              15,
+              0,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.0,
+              -0.125
+            ],
+            "truth_modes": [
+              0.06999999999999997,
+              0.013999999999999986
+            ],
+            "conventional_modes": [
+              -1.3552527156068805e-17,
+              3.3128399714834856e-18
+            ],
+            "expected_modes": [
+              0.0691819775825753,
+              0.013836633524558155
+            ],
+            "actual_modes": [
+              0.06918197758257576,
+              0.01383663352455776
+            ],
+            "actual_amplitude_fraction": 0.9883146193390248,
+            "actual_phase_error_rad": 3.3079964423687955e-06
+          },
+          {
+            "kxyz": [
+              9,
+              12,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              0.5,
+              0.0
+            ],
+            "truth_modes": [
+              0.2999999999999999,
+              -0.09000000000000004
+            ],
+            "conventional_modes": [
+              -9.024498963148992e-10,
+              2.9319414479203915e-10
+            ],
+            "expected_modes": [
+              0.2997231785018069,
+              -0.0899168199400039
+            ],
+            "actual_modes": [
+              0.29972317850180574,
+              -0.08991681994000778
+            ],
+            "actual_amplitude_fraction": 0.9990771390942983,
+            "actual_phase_error_rad": 4.0897232985806457e-07
+          },
+          {
+            "kxyz": [
+              9,
+              12,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              0.5,
+              0.125
+            ],
+            "truth_modes": [
+              0.06,
+              -0.01799999999999999
+            ],
+            "conventional_modes": [
+              8.560585725881594e-10,
+              -1.4860278011427262e-09
+            ],
+            "expected_modes": [
+              0.05929878306767766,
+              -0.017789729825800574
+            ],
+            "actual_modes": [
+              0.05929878306767744,
+              -0.017789729825801317
+            ],
+            "actual_amplitude_fraction": 0.9883134864753443,
+            "actual_phase_error_rad": -1.468313875034122e-06
+          },
+          {
+            "kxyz": [
+              9,
+              12,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              0.5,
+              -0.125
+            ],
+            "truth_modes": [
+              0.05999999999999999,
+              -0.018000000000000016
+            ],
+            "conventional_modes": [
+              -4.982726469179356e-10,
+              4.386706772554551e-10
+            ],
+            "expected_modes": [
+              0.059298953153776125,
+              -0.017789697754024315
+            ],
+            "actual_modes": [
+              0.05929895315377635,
+              -0.01778969775402487
+            ],
+            "actual_amplitude_fraction": 0.9883159400609312,
+            "actual_phase_error_rad": -1.8268328903084572e-07
+          },
+          {
+            "kxyz": [
+              -9,
+              12,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              0.5,
+              0.0
+            ],
+            "truth_modes": [
+              0.28,
+              0.12
+            ],
+            "conventional_modes": [
+              -9.024498982002062e-10,
+              -2.931941444125684e-10
+            ],
+            "expected_modes": [
+              0.27974179451443254,
+              0.11988911234031052
+            ],
+            "actual_modes": [
+              0.27974179451442843,
+              0.11988911234031935
+            ],
+            "actual_amplitude_fraction": 0.9990775425097015,
+            "actual_phase_error_rad": -6.890671220697966e-07
+          },
+          {
+            "kxyz": [
+              -9,
+              12,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              0.5,
+              0.125
+            ],
+            "truth_modes": [
+              0.055999999999999994,
+              0.024000000000000007
+            ],
+            "conventional_modes": [
+              -4.982726499582191e-10,
+              -4.386706776289025e-10
+            ],
+            "expected_modes": [
+              0.05534553620635928,
+              0.023719537965187578
+            ],
+            "actual_modes": [
+              0.05534553620635888,
+              0.023719537965189195
+            ],
+            "actual_amplitude_fraction": 0.9883132916812644,
+            "actual_phase_error_rad": 3.42662457486583e-07
+          },
+          {
+            "kxyz": [
+              -9,
+              12,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              0.5,
+              -0.125
+            ],
+            "truth_modes": [
+              0.055999999999999994,
+              0.024000000000000007
+            ],
+            "conventional_modes": [
+              8.560585685653177e-10,
+              1.4860278011788662e-09
+            ],
+            "expected_modes": [
+              0.055345790746516466,
+              0.023719505735853512
+            ],
+            "actual_modes": [
+              0.05534579074651562,
+              0.023719505735855326
+            ],
+            "actual_amplitude_fraction": 0.9883169233489876,
+            "actual_phase_error_rad": -1.8144931724050763e-06
+          }
+        ],
+        "all_signed_modes": [
+          {
+            "kxyz": [
+              0,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "truth": [
+              0.125,
+              0.0
+            ],
+            "expectation": [
+              0.12499984035676354,
+              0.0
+            ],
+            "actual": [
+              0.12499984035676363,
+              0.0
+            ]
+          },
+          {
+            "kxyz": [
+              1,
+              1,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.041666666666666664,
+              0.041666666666666664,
+              0.125
+            ],
+            "truth": [
+              0.25,
+              0.06
+            ],
+            "expectation": [
+              0.2499943476000091,
+              0.059998644462800586
+            ],
+            "actual": [
+              0.24999434760000966,
+              0.05999864446279875
+            ]
+          },
+          {
+            "kxyz": [
+              -1,
+              -1,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.041666666666666664,
+              -0.041666666666666664,
+              -0.125
+            ],
+            "truth": [
+              0.25,
+              -0.06
+            ],
+            "expectation": [
+              0.2499943476000091,
+              -0.059998644462800586
+            ],
+            "actual": [
+              0.24999434760000966,
+              -0.05999864446279875
+            ]
+          },
+          {
+            "kxyz": [
+              2,
+              -1,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.08333333333333333,
+              -0.041666666666666664,
+              0.0
+            ],
+            "truth": [
+              0.2,
+              -0.08
+            ],
+            "expectation": [
+              0.1999995653312106,
+              -0.07999982650249023
+            ],
+            "actual": [
+              0.19999956533120997,
+              -0.07999982650249178
+            ]
+          },
+          {
+            "kxyz": [
+              -2,
+              1,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.08333333333333333,
+              0.041666666666666664,
+              0.0
+            ],
+            "truth": [
+              0.2,
+              0.08
+            ],
+            "expectation": [
+              0.1999995653312106,
+              0.07999982650249023
+            ],
+            "actual": [
+              0.19999956533120997,
+              0.07999982650249178
+            ]
+          },
+          {
+            "kxyz": [
+              0,
+              0,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.0,
+              0.0,
+              0.125
+            ],
+            "truth": [
+              0.18,
+              0.04
+            ],
+            "expectation": [
+              0.17999701894973602,
+              0.03999933641893234
+            ],
+            "actual": [
+              0.17999701894973608,
+              0.039999336418932274
+            ]
+          },
+          {
+            "kxyz": [
+              0,
+              0,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.0,
+              0.0,
+              -0.125
+            ],
+            "truth": [
+              0.18,
+              -0.04
+            ],
+            "expectation": [
+              0.17999701894973602,
+              -0.03999933641893234
+            ],
+            "actual": [
+              0.17999701894973608,
+              -0.039999336418932274
+            ]
+          },
+          {
+            "kxyz": [
+              15,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.0,
+              0.0
+            ],
+            "truth": [
+              0.35,
+              0.07
+            ],
+            "expectation": [
+              0.34967707410107923,
+              0.06993532529521494
+            ],
+            "actual": [
+              0.34967707410108023,
+              0.06993532529521068
+            ]
+          },
+          {
+            "kxyz": [
+              -15,
+              0,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.625,
+              0.0,
+              0.0
+            ],
+            "truth": [
+              0.35,
+              -0.07
+            ],
+            "expectation": [
+              0.34967707410107923,
+              -0.06993532529521494
+            ],
+            "actual": [
+              0.34967707410108023,
+              -0.06993532529521068
+            ]
+          },
+          {
+            "kxyz": [
+              15,
+              0,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.0,
+              0.125
+            ],
+            "truth": [
+              0.07,
+              0.014
+            ],
+            "expectation": [
+              0.06918191956550392,
+              0.013836402726673759
+            ],
+            "actual": [
+              0.06918191956550397,
+              0.013836402726672895
+            ]
+          },
+          {
+            "kxyz": [
+              -15,
+              0,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.625,
+              0.0,
+              -0.125
+            ],
+            "truth": [
+              0.07,
+              -0.014
+            ],
+            "expectation": [
+              0.06918191956550392,
+              -0.013836402726673759
+            ],
+            "actual": [
+              0.06918191956550397,
+              -0.013836402726672895
+            ]
+          },
+          {
+            "kxyz": [
+              15,
+              0,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.625,
+              0.0,
+              -0.125
+            ],
+            "truth": [
+              0.07,
+              0.014
+            ],
+            "expectation": [
+              0.0691819775825753,
+              0.013836633524558155
+            ],
+            "actual": [
+              0.06918197758257576,
+              0.01383663352455776
+            ]
+          },
+          {
+            "kxyz": [
+              -15,
+              0,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.625,
+              0.0,
+              0.125
+            ],
+            "truth": [
+              0.07,
+              -0.014
+            ],
+            "expectation": [
+              0.0691819775825753,
+              -0.013836633524558155
+            ],
+            "actual": [
+              0.06918197758257576,
+              -0.01383663352455776
+            ]
+          },
+          {
+            "kxyz": [
+              9,
+              12,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              0.5,
+              0.0
+            ],
+            "truth": [
+              0.3,
+              -0.09
+            ],
+            "expectation": [
+              0.2997231785018069,
+              -0.0899168199400039
+            ],
+            "actual": [
+              0.29972317850180574,
+              -0.08991681994000778
+            ]
+          },
+          {
+            "kxyz": [
+              -9,
+              -12,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              -0.5,
+              0.0
+            ],
+            "truth": [
+              0.3,
+              0.09
+            ],
+            "expectation": [
+              0.2997231785018069,
+              0.0899168199400039
+            ],
+            "actual": [
+              0.29972317850180574,
+              0.08991681994000778
+            ]
+          },
+          {
+            "kxyz": [
+              9,
+              12,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              0.5,
+              0.125
+            ],
+            "truth": [
+              0.06,
+              -0.018
+            ],
+            "expectation": [
+              0.05929878306767766,
+              -0.017789729825800574
+            ],
+            "actual": [
+              0.05929878306767744,
+              -0.017789729825801317
+            ]
+          },
+          {
+            "kxyz": [
+              -9,
+              -12,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              -0.5,
+              -0.125
+            ],
+            "truth": [
+              0.06,
+              0.018
+            ],
+            "expectation": [
+              0.05929878306767766,
+              0.017789729825800574
+            ],
+            "actual": [
+              0.05929878306767744,
+              0.017789729825801317
+            ]
+          },
+          {
+            "kxyz": [
+              9,
+              12,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              0.5,
+              -0.125
+            ],
+            "truth": [
+              0.06,
+              -0.018
+            ],
+            "expectation": [
+              0.059298953153776125,
+              -0.017789697754024315
+            ],
+            "actual": [
+              0.05929895315377635,
+              -0.01778969775402487
+            ]
+          },
+          {
+            "kxyz": [
+              -9,
+              -12,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              -0.5,
+              0.125
+            ],
+            "truth": [
+              0.06,
+              0.018
+            ],
+            "expectation": [
+              0.059298953153776125,
+              0.017789697754024315
+            ],
+            "actual": [
+              0.05929895315377635,
+              0.01778969775402487
+            ]
+          },
+          {
+            "kxyz": [
+              -9,
+              12,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              0.5,
+              0.0
+            ],
+            "truth": [
+              0.28,
+              0.12
+            ],
+            "expectation": [
+              0.27974179451443254,
+              0.11988911234031052
+            ],
+            "actual": [
+              0.27974179451442843,
+              0.11988911234031935
+            ]
+          },
+          {
+            "kxyz": [
+              9,
+              -12,
+              0
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              -0.5,
+              0.0
+            ],
+            "truth": [
+              0.28,
+              -0.12
+            ],
+            "expectation": [
+              0.27974179451443254,
+              -0.11988911234031052
+            ],
+            "actual": [
+              0.27974179451442843,
+              -0.11988911234031935
+            ]
+          },
+          {
+            "kxyz": [
+              -9,
+              12,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              0.5,
+              0.125
+            ],
+            "truth": [
+              0.056,
+              0.024
+            ],
+            "expectation": [
+              0.05534553620635928,
+              0.023719537965187578
+            ],
+            "actual": [
+              0.05534553620635888,
+              0.023719537965189195
+            ]
+          },
+          {
+            "kxyz": [
+              9,
+              -12,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              -0.5,
+              -0.125
+            ],
+            "truth": [
+              0.056,
+              -0.024
+            ],
+            "expectation": [
+              0.05534553620635928,
+              -0.023719537965187578
+            ],
+            "actual": [
+              0.05534553620635888,
+              -0.023719537965189195
+            ]
+          },
+          {
+            "kxyz": [
+              -9,
+              12,
+              -1
+            ],
+            "frequency_cyc_um_xyz": [
+              -0.375,
+              0.5,
+              -0.125
+            ],
+            "truth": [
+              0.056,
+              0.024
+            ],
+            "expectation": [
+              0.055345790746516466,
+              0.023719505735853512
+            ],
+            "actual": [
+              0.05534579074651562,
+              0.023719505735855326
+            ]
+          },
+          {
+            "kxyz": [
+              9,
+              -12,
+              1
+            ],
+            "frequency_cyc_um_xyz": [
+              0.375,
+              -0.5,
+              0.125
+            ],
+            "truth": [
+              0.056,
+              -0.024
+            ],
+            "expectation": [
+              0.055345790746516466,
+              -0.023719505735853512
+            ],
+            "actual": [
+              0.05534579074651562,
+              -0.023719505735855326
+            ]
+          }
+        ]
+      },
+      "physical_criteria": {
+        "all_mode_relative_complex_error_max": 0.035,
+        "high_mode_amplitude_fraction_min": 0.965,
+        "high_mode_amplitude_fraction_max": 1.02,
+        "high_mode_phase_error_rad_max": 0.02,
+        "conventional_high_mode_fraction_max": 0.001,
+        "global_relative_l2_error_max": 0.035,
+        "signed_min_upper": -0.5,
+        "signed_max_lower": 0.5,
+        "high_mode_error_improvement_factor_min": 20.0
+      },
+      "fixed_presentation": {
+        "image_density_range": [
+          -5,
+          5
+        ],
+        "source_residual_density_range": [
+          -5,
+          5
+        ],
+        "supplemental_fine_source_residual_density_range": [
+          -0.15,
+          0.15
+        ],
+        "numerical_residual_density_range": [
+          -0.001,
+          0.001
+        ],
+        "mode_real_imag_range": [
+          -0.4,
+          0.4
+        ],
+        "amplitude_fraction_range": [
+          0,
+          1.05
+        ],
+        "phase_error_rad_range": [
+          -0.03,
+          0.03
+        ],
+        "all_eight_planes_and_all_thirteen_modes_required": true,
+        "signed_values_retained": true,
+        "export": "Explicit ce08_recovery_large_model.capture(workflow_image[0],destination). Retain all arrays/planes/modes; no favorable subset, no automatic tracked/private output path. Common overview residual scales plus fixed supplemental fine scale with out-of-range marking. No registration, gain fitting, hidden clipping or rescale."
+      },
+      "acquisition_and_units": {
+        "field_period_um_xyz": [
+          24,
+          24,
+          8
+        ],
+        "output_pitch_um_xyz": [
+          0.5,
+          0.5,
+          1
+        ],
+        "output_labels_um_xyz": [
+          [
+            -12,
+            11.5
+          ],
+          [
+            -12,
+            11.5
+          ],
+          [
+            -4,
+            3
+          ]
+        ],
+        "fixed_workflow_to_density_multiplier": 3,
+        "analog_subtraction_before_one_digitization": true,
+        "physical_plane_exposures": 240,
+        "exposure_s_per_plane": 1
+      },
+      "original_preproduct_budget": {
+        "bytes": 1888,
+        "sha256": "85dd3d8307288c21839e9471b995df5fa0920b6eeb40b84c6104d133844cb33b"
+      },
+      "claims": {
+        "source_mathematical_equivalence": "passed for frozen numerical inputs under stated arithmetic model",
+        "physical_mode_recovery": "passed fixed finite-model criteria",
+        "resolution": "unclaimed",
+        "stochastic_performance": "unclaimed",
+        "experimental_calibration_authenticity": "unclaimed",
+        "historical_binary_output_agreement": "untested"
+      },
+      "environment_before_after_equal": true
+    }
+  },
+  "limits": "Conditional finite periodic analog-difference models; no resolution, stochastic, experimental-calibration or historical-binary agreement claim. Delivery candidate/check/CI/D identities and outcomes remain outside these tracked scientific bytes."
+}
