@@ -34,7 +34,9 @@ The observer opens the independent files after all public calls have returned
 for the case. It scores the live default workflow and other four stage
 records in the same process. The `--sweep` flag on its own runs the public
 sweep and exact replay without opening the evaluator inputs. The cell observer
-uses the sibling `noisy-reference-table.npy`.
+regenerates the independent reference transfer from the bound simulated
+calibration in memory. It verifies the original reference digest before
+selecting the 3,244 scoring bins.
 
 The five public Wiener values are 0.002, 0.006324555320336759, 0.020,
 0.0632455532033676 and 0.200. Each step multiplies the public value by
@@ -42,8 +44,8 @@ The five public Wiener values are 0.002, 0.006324555320336759, 0.020,
 intermediate archive labels, `w-0.006325.npz` and `w-0.063246.npz`, round
 for display. Calls and numeric receipts use the full values.
 
-To supply another copy of the
-exact evaluator table, add `--reference-table PATH` to the cell command.
+For an archival comparison, the cell command accepts a separately supplied
+copy of the exact original table with `--reference-table PATH`.
 
 ```sh
 "$python_locked" -B "$study/reconstruction/run_study.py" beads \

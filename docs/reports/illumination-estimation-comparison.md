@@ -38,7 +38,7 @@ micrometres; the last centres are x `2.275` and y `0.9` micrometres. This is
 correspondence for the accepted finite fixture, with no general image-quality,
 noise-reliability or physical recovery promise.
 
-The [plot data and provenance manifest](../references/scientific/illumination-estimation-comparison.json)
+The [historical plot data and provenance manifest](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/illumination-estimation-comparison.json)
 contains the actual/reference scalars, complete plotted arrays, shapes, dtypes,
 C-order array digests, frozen input/checkpoint/source identities, numerical and
 rendering environments, generator/renderer digests and final PNG digests.
@@ -180,8 +180,9 @@ ccd7074a3f3aeb4ac43f61df0c8576d1007fd78aa0a2dc1bbadc5d221e21463b
 
 Measured from the repository root on macOS 27.0 arm64: Python 3.13.12,
 NumPy 2.5.3, SciPy 1.18.1. Use the existing worktree `.venv`; no plotting or
-other dependency was added to the project. The following command reproduces the
-numerical comparison and input digests using the accepted fixture:
+other dependency was added to the project. The command below uses the runtime
+and accepted fixture from historical revision `b67f9e66c472911e6a896c0265b08eabaf4f1c4d`.
+It reproduces the numerical comparison and input digests in that environment.
 
 ```sh
 .venv/bin/python - <<'PY'
@@ -235,7 +236,7 @@ rendering reads the persisted manifest and imports no product or fixture code.
 The presentation-only generators are retained as ignored local evidence under
 `artifacts/illumination-execution/figures/`, not shipped runtime tools. Their
 exact hashes and portable commands are in the manifest. The executed commands
-from the repository root are:
+from the historical repository root were:
 
 ```sh
 .venv/bin/python artifacts/illumination-execution/figures/generate.py
@@ -247,7 +248,7 @@ MPLBACKEND=Agg MPLCONFIGDIR=artifacts/illumination-execution/figures/mplconfig \
 
 The offline rendering command uses an already populated external uv cache.
 The numerical example above remains reproducible without the ignored scripts;
-the tracked manifest also retains every plotted value for independent replotting.
+the historical manifest retains every plotted value for independent replotting.
 
 Focused execution: `.venv/bin/python -m pytest --tb=short -q tests/test_illumination.py`
 passed all 189 tests with no skips. Owned-source Ruff lint/format checks and the

@@ -1,0 +1,83 @@
+{
+  "case": "cell",
+  "units": {
+    "intensity": "simulation source units (SU)",
+    "coordinate": "µm"
+  },
+  "wiener": 0.02,
+  "gain_su_per_reconstruction_count": 2e-05,
+  "axes_zyx_origin_um": [
+    -2.0,
+    -5.12,
+    -5.12
+  ],
+  "axes_zyx_pitch_um": [
+    0.125,
+    0.039999999999999994,
+    0.039999999999999994
+  ],
+  "shape_zyx": [
+    32,
+    256,
+    256
+  ],
+  "inputs_sha256": {
+    "truth.npy": "9d2441dfd1652fc02f72b380000c75d0fd31b116440b740b697234ce38e4f0ac",
+    "conventional.npy": "87bcb9ab2870348a5913f22b5bdb6438f6176d0b2132f079490e6a621da92524",
+    "observations.npz": "752a76d77bec3a93ca42ec743e572121e90e955c0e10df28f7e9d8659e5ba60e",
+    "runtime.json": "e598d7ac9fd93bb519043cbaa661991b65307e81317b10c6aafa8ac99169af9f"
+  },
+  "plot_script_sha256": "7398e1a3d1620f0bc5e8ac010da984351b434dbf028bc6c77fea92fbc175bda6",
+  "plot_phantoms_sha256": "32e7c99029c071f5dcae271884c48302ccfc952cc60c257f3e5e82ca2e65d30a",
+  "baseline_inputs_sha256": "e4cda1bc38bbde19c977a1e6f2b68121298c66eda24e7eb7f5a1ebd811ec80de",
+  "numpy_version": "2.5.1",
+  "matplotlib_version": "3.11.0",
+  "display": {
+    "projection": "maximum over all z sample centers of signed intensity, without clipping",
+    "projected_z_sample_centers_um": [
+      -2.0,
+      1.875
+    ],
+    "projected_xy_limits_um": [
+      [
+        -3.3,
+        3.3
+      ],
+      [
+        -3.3,
+        3.3
+      ]
+    ],
+    "displayed_sample_range_convention": "sample centers inside the displayed limits",
+    "projection_intensity": {
+      "color_scale_su": [
+        -0.1,
+        2.6
+      ],
+      "displayed_sample_range_su": [
+        5.845662072316618e-05,
+        2.5662915473913865
+      ],
+      "transform": "asinh",
+      "linear_width_su": 0.025
+    },
+    "panel_ranges_su": {
+      "truth": [
+        5.845662072316618e-05,
+        2.5662915473913865
+      ],
+      "same_dose_conventional": [
+        0.0023294444444444356,
+        0.16264055555555554
+      ],
+      "reconstruction": [
+        0.00841329049407309,
+        1.9785218900975086
+      ]
+    }
+  },
+  "figures_sha256": {
+    "cell-xy-mip.png": "55f2fae41c089288d35832349ab65713a36c826f703d790a32c96fa44fe75554",
+    "cell-xy-mip.pdf": "e134e2d4646be8d516f2c78c075fb044cc8fe93c148777ef1f23a3a984a27a2d"
+  }
+}

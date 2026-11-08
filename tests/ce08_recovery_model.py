@@ -1,4 +1,4 @@
-"""Independent physical CE08 acquisition and frozen workflow observer.
+"""Independent physical CE08 acquisition and workflow observer.
 
 No product imports. The approved A-authored finite sums/traversal are reused;
 new analytic acquisition and physical mode response are derived here.
@@ -18,7 +18,6 @@ from ce08_finite_search import overlap, regression
 
 ROOT = Path(__file__).parent
 SPEC = ROOT / "data/ce08-matched-recovery-v1.json"
-FIXTURE = ROOT / "data/ce08-matched-recovery-v1.npz"
 
 
 def registration() -> dict[str, Any]:
@@ -186,9 +185,10 @@ def expected(p: dict[str, Any], raw: Array, h: Array) -> dict[str, Any]:
 
 def capture(actual: Array, destination: Path) -> None:
     """Explicit later observer export; caller chooses path after authorization."""
+    from ce08_recovery_freeze import fixture_evidence
+
     p = registration()
-    with np.load(FIXTURE, allow_pickle=False) as frozen:
-        arrays = {name: frozen[name] for name in frozen.files}
+    arrays, _ = fixture_evidence(p)
     arrays.update(
         actual=np.array(actual, copy=True),
         numerical_residual=actual - arrays["expected_image"],

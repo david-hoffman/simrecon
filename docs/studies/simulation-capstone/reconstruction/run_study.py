@@ -229,7 +229,7 @@ def execute(args: argparse.Namespace, before_witness: Callable[[], None] | None 
                     "truth": args.input / "truth.npy",
                     "conventional": args.input / "conventional.npy",
                 }
-                if args.case == "cell":
+                if args.case == "cell" and args.reference_table is not None:
                     evaluator_paths["reference_table"] = args.reference_table
                 inputs = Inputs.bind_evaluator(public, evaluator_paths)
                 stage = "reference-metrics"
@@ -302,7 +302,11 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("output", type=Path, help="new output directory with an existing parent")
     parser.add_argument("--sweep", action="store_true", help="run the five fixed Wiener values")
     parser.add_argument("--observe", action="store_true", help="score after all public calls")
-    parser.add_argument("--reference-table", type=Path, help="exact evaluator-only cell table")
+    parser.add_argument(
+        "--reference-table",
+        type=Path,
+        help="exact cell observer archive override (default: regenerate from calibration)",
+    )
     args = parser.parse_args()
     if args.sweep and args.case not in ("beads", "cell"):
         parser.error("--sweep requires beads or cell")
@@ -310,8 +314,6 @@ def arguments() -> argparse.Namespace:
         parser.error("--observe requires --sweep")
     if args.reference_table is not None and not (args.observe and args.case == "cell"):
         parser.error("--reference-table requires the cell observer")
-    if args.reference_table is None:
-        args.reference_table = HERE / "noisy-reference-table.npy"
     return args
 
 

@@ -1,19 +1,17 @@
-"""Oracle-only fixture freeze, executable only through source_free_check.py.
+"""Oracle-only fixture evidence, executable through source_free_check.py.
 
-No product import/call, pytest or result selection. Never invoke after product
-execution to replace a preregistration. Fresh B must review the new checkpoint.
+No product import/call, pytest, result selection or automatic file output.
 """
 
 from __future__ import annotations
 
 import json
-from pathlib import Path
+from typing import Any
 
 import numpy as np
 
 from ce08_recovery_budget import bounds
 from ce08_recovery_model import (
-    FIXTURE,
     acquire,
     acquisition_bounds,
     conventional,
@@ -25,14 +23,9 @@ from ce08_recovery_model import (
 )
 
 
-def freeze(evidence: Path) -> None:
-    p = registration()
+def fixture_evidence(p: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Generate the original observer payload and diagnostics in memory."""
     pre_observation = acquisition_bounds(p)
-    evidence.mkdir(parents=True, exist_ok=True)
-    # Bounds are recorded before observation synthesis, even within this run.
-    (evidence / "pre-observation-bounds.json").write_text(
-        json.dumps(pre_observation, indent=2) + "\n"
-    )
     h = transfer_table(p)
     observations = acquire(p, h)
     reference = expected(p, observations["raw"], h)
@@ -114,7 +107,6 @@ def freeze(evidence: Path) -> None:
         arrays[f"fit{m}_complex"] = np.array(
             [fitted[v] for v in ("cross", "forward", "reverse", "combined")]
         )
-    np.savez_compressed(FIXTURE, **arrays)
     diagnostics = {
         "pre_observation": pre_observation,
         "numerical_budget": error,
@@ -137,11 +129,12 @@ def freeze(evidence: Path) -> None:
         "reference_counts_min": float(observations["reference_corrected_counts"].min()),
         "specimen_counts_min": float(observations["specimen_corrected_counts"].min()),
     }
-    (evidence / "oracle-diagnostics.json").write_text(json.dumps(diagnostics, indent=2) + "\n")
-    print(json.dumps(diagnostics, indent=2))
+    return arrays, diagnostics
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
 
-    freeze(Path(sys.argv[1]))
+    argparse.ArgumentParser(description=__doc__).parse_args()
+    _, diagnostics = fixture_evidence(registration())
+    print(json.dumps(diagnostics, indent=2))

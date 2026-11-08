@@ -19,7 +19,8 @@ increments (1 cycle/um) on all axes. At integer indices define
 Order0 is F; order1 is F/2. Every table real/imaginary component is exactly
 representable in float32. No rescaling or Hermitian repair is applied on
 `declare_otf`. Sample order1 on a 41 by41 x/y grid from -0.75 to0.75 cycles/um,
-with integer axial index1 and explicit native axial step0.5 cycles/um.
+with integer axial index1 and explicit native axial step0.5 cycles/um. For the
+exact registered binary64 coordinates, use `(i - 20) * 3 / 80` for indices 0–40.
 
 An independent expectation follows from the exact reproduction of multilinear
 polynomials by tensor interpolation. For nonnegative x, the source normalized
@@ -71,10 +72,8 @@ intentionally exercises the negative-x reflection/conjugation branch. Uniform
 grey residual panels reflect errors small relative to that fixed scale. These
 are numerical transfer units, not a measured physical response or an image.
 
-Reproducible inputs and provenance are retained in the [expected arrays and
-queries](data/c-otf-control-expected.json), [pre-observation specification](data/c-otf-control-specification.md),
-[registration](data/c-otf-control-preregistration.json), [observed arrays and
-signed differences](data/c-otf-control-observed.json), and [rendering record](data/c-otf-control-rendering.json).
+The original numerical and provenance records are the [historical expected arrays and queries](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-otf-control-expected.json), [pre-observation specification](data/c-otf-control-specification.md),
+[registration](data/c-otf-control-preregistration.json), [historical observed arrays and signed differences](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-otf-control-observed.json), and [rendering record](data/c-otf-control-rendering.json).
 The observation used Python3.13.12/NumPy2.5.3; Matplotlib3.11.2 rendered these
 same arrays without rerunning the product. Runtime file hashes identify the
 observed implementation bytes; the precommit observation's Git HEAD identifies

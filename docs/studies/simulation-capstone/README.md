@@ -65,6 +65,13 @@ peak to compare shape.
 
 ### Synthetic cell interior
 
+![XY maximum-intensity projections of cell truth, the exposure average, and SIMrecon](figures/cell-xy-mip.png)
+
+Each projected pixel takes the maximum signed intensity across all 32
+sampled z planes, from −2.000 to +1.875 µm. The same intensity scale applies
+across all three projections. The sections below retain the depth and
+signed residual information.
+
 ![Lateral and axial synthetic-cell slices with a signed reconstruction residual](figures/cell.png)
 
 The single-channel scene includes an irregular nuclear rim, branching tubules,
@@ -141,8 +148,7 @@ identities before scoring a rerun.
 ```sh
 uv sync --locked --all-groups
 study=docs/studies/simulation-capstone
-out=artifacts/simulation-capstone
-mkdir -p "$out"
+out=$(mktemp -d "${TMPDIR:-/tmp}/simrecon-study.XXXXXX")
 export VECLIB_MAXIMUM_THREADS=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1 BLIS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
 
@@ -165,7 +171,8 @@ do
 done
 ```
 
-Use a fresh output directory for each invocation. A failed run can leave
+The generated arrays live in the temporary run directory. Keep it through
+scoring and plotting. Use a fresh output directory for each invocation. A failed run can leave
 partial files. Its status and progress log identify the last stage. A passing
 input check requires the generator's complete manifest. To run a bead or
 cell baseline without the sweep, call `run_study.py` for that case without
@@ -177,8 +184,9 @@ bead in `(phase, z, y, x)` order. The calibration has 0.090 µm lateral sampling
 `truth.npy` and `conventional.npy` contain signed-scale reference volumes in
 `(z, y, x)` order. The reconstruction files `w-*.npz` contain the signed
 counts and coordinate vectors. The sweep writes one compact score row per
-setting in `rows.jsonl` and common information in `case.json`. The cell's
-small pinned reference table is used to select the scoring band. The
+setting in `rows.jsonl` and common information in `case.json`. The cell
+observer regenerates its independent reference transfer in memory from the
+simulated calibration to select the scoring band. The
 [runner notes](reconstruction/README-runner.md) describe every output and
 show the explicit Apple Accelerate thread setting used in the measured run.
 
@@ -230,6 +238,11 @@ export MPLCONFIGDIR="$out/matplotlib-cache"
     --runtime-receipt "$out/sweep-cell/runtime.json" \
     --output-dir "$out/plot-cell"
 
+"$plot_python" "$study/plot/plot_cell_mip.py" \
+    --case-dir "$out/input-cell" --observations "$out/sweep-cell/w-0.020.npz" \
+    --runtime-receipt "$out/sweep-cell/runtime.json" \
+    --output-dir "$out/plot-cell-xy-mip"
+
 "$plot_python" "$study/plot/plot_wiener.py" \
     --metrics "$out/wiener-results.json" \
     --cell-truth "$out/input-cell/truth.npy" \
@@ -241,13 +254,15 @@ export MPLCONFIGDIR="$out/matplotlib-cache"
 
 The full detector cases are opt-in. On the recorded local Mac, a public
 workflow call at the study geometry took about 3 min 25 s. Keep the full
-study output outside Git. The small fixture in the repository README
+study output outside Git. Remove the temporary run directory after copying
+the figures or metrics you want to keep. The small example in the repository README
 exercises the public API in seconds and uses a separate declared transfer.
 The study examples exercise raw calibration and measured carrier search.
 
 [Input provenance](inputs/provenance.json) · [Original accepted outcomes](historical-results.json)
 · [Structured PDF](figures/structured-pair.pdf) · [Bead PDF](figures/beads.pdf)
-· [Cell PDF](figures/cell.pdf) · [Wiener PDF](figures/wiener.pdf)
+· [Cell sections PDF](figures/cell.pdf) · [Cell XY projection PDF](figures/cell-xy-mip.pdf)
+· [Wiener PDF](figures/wiener.pdf)
 
 The figures show synthetic recovery under this model. Experimental recovery,
 reproducibility across new noise draws and agreement with historical C

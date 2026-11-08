@@ -18,7 +18,6 @@ from ce08_finite_math import Array, finite_sum, read_band, signed
 
 ROOT = Path(__file__).parent
 SPEC = ROOT / "data/ce08-large-recovery-v1.json"
-FIXTURE = ROOT / "data/ce08-large-recovery-v1.npz"
 
 
 def registration() -> dict[str, Any]:
@@ -352,9 +351,10 @@ def physical_response(p: dict[str, Any], h: Array) -> tuple[Array, Array]:
 
 def capture(actual_workflow_image: Array, destination: Path) -> None:
     """Later explicit observer: retain every plane/mode and signed value."""
+    from ce08_recovery_large_freeze import fixture_evidence
+
     p = registration()
-    with np.load(FIXTURE, allow_pickle=False) as frozen:
-        arrays = {name: frozen[name] for name in frozen.files}
+    arrays, _ = fixture_evidence(p)
     density = 3 * np.asarray(actual_workflow_image)
     arrays.update(
         actual_workflow_image=actual_workflow_image,

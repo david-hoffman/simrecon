@@ -1,10 +1,11 @@
-"""Reconstruct a tiny, noiseless synthetic fixture with the public workflow.
+"""Reconstruct a tiny, noiseless synthetic specimen with the public workflow.
 
 Run with `uv run --locked python examples/reconstruct_simulated.py`.
-The matched fixture contains differential detector counts and a tabulated optical
-transfer. The full specimen simulations and Wiener sweep are separate opt-in runs.
+The independent acquisition model generates differential detector counts and a
+matched optical transfer table. The full simulations are separate opt-in runs.
 """
 
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -12,14 +13,23 @@ import numpy as np
 from simrecon import WorkflowReconstruction, declare_otf, reconstruct_workflow
 
 
-def reconstruct_simulated(fixture_path: Path) -> WorkflowReconstruction:
+def reconstruct_simulated() -> WorkflowReconstruction:
     """Reconstruct the matched synthetic counts using their declared settings."""
-    with np.load(fixture_path, allow_pickle=False) as fixture:
-        # Raw axes are (time, direction, phase, z, y, x).
-        raw = fixture["raw"]
-        transfer = declare_otf(
-            fixture["transfer"], layout="radial", dkr_cyc_um=0.125, dkz_cyc_um=0.25
-        )
+    # The model is repository test source, so limit the import path to this import.
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tests"))
+    dont_write_bytecode = sys.dont_write_bytecode
+    try:
+        sys.dont_write_bytecode = True
+        from ce08_recovery_model import acquire, registration, transfer_table
+    finally:
+        sys.dont_write_bytecode = dont_write_bytecode
+        sys.path.pop(0)
+
+    parameters = registration()
+    table = transfer_table(parameters)
+    # Raw axes are (time, direction, phase, z, y, x).
+    raw = acquire(parameters, table)["raw"]
+    transfer = declare_otf(table, layout="radial", dkr_cyc_um=0.125, dkz_cyc_um=0.25)
 
     optics = {"wavelength_nm": 500, "numerical_aperture": 0.125, "immersion_index": 1.33}
     return reconstruct_workflow(
@@ -84,10 +94,7 @@ def reconstruct_simulated(fixture_path: Path) -> WorkflowReconstruction:
 
 def main() -> None:
     """Print the signed reconstruction summary without writing an image file."""
-    fixture_path = (
-        Path(__file__).resolve().parents[1] / "tests" / "data" / "ce08-matched-recovery-v1.npz"
-    )
-    result = reconstruct_simulated(fixture_path)
+    result = reconstruct_simulated()
     image = result.image
     if not np.isfinite(image).all():
         raise RuntimeError("The synthetic reconstruction contains nonfinite values.")

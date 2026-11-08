@@ -6,8 +6,8 @@ Every oracle, input, budget and assertion here was authored before product calls
 
 from __future__ import annotations
 
+import hashlib
 import math
-from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -15,6 +15,13 @@ import numpy as np
 from ce08_error_budget import budgets, gamma, norm
 from ce08_finite_math import Array, acquire, geometry, prepare, reconstruct, registration, table
 from ce08_finite_search import coarse, estimate, overlap, parabola, regression
+
+# SHA-256 of the accepted archive's C-order little-endian float32 payloads.
+RAW_SHA256 = {
+    "known-noninteger": "465a09097323adef25f0355257207f0db3a43dc1d692fa023609af7c731606af",
+    "known-signed-contrast": "d3f6fd34709449a719691f155aba234a43a2884c0598c41b4d7386cfa92c8a0e",
+    "finite-search": "c9e6d5dc09aa985da81255a16c69d383fd1b2bc5c86f224c85fab03da430b28b",
+}
 
 
 def close(actual: Any, expected: Any, error: float) -> None:
@@ -262,41 +269,41 @@ def test_independent_small_controls_known_before_finite_nuisance() -> None:
     h = table(p)
     transfer = declare_otf(h, layout="radial", dkr_cyc_um=0.125, dkz_cyc_um=0.25)
     a = np.array([complex(*v) for v in p["source"]["side_modulation_pairs"]])
-    observations = Path(__file__).parent / "data/ce08-small-observations-v1.npz"
-    with np.load(observations, allow_pickle=False) as frozen:
-        for control in p["controls"]:
-            name = control["name"]
-            data = acquire(p, control)
-            raw = frozen[name + "_raw"]
-            np.testing.assert_array_equal(raw, data["raw"])
-            expected_bands = prepare(raw, p)
-            bands = prepared_product(raw, p)
-            bound = budgets(raw, expected_bands, h, p)
-            close(bands.quadratures[0, 0], expected_bands, bound["bands_atol"])
-            fixed = check_known(
-                bands, transfer, p, raw, expected_bands, np.array(control["carrier_cyc_um"]), a
-            )
-            if name == "known-signed-contrast":
-                assert np.min(fixed.image) < 0 < np.max(fixed.image)
-            if not control["search"]:
-                continue
-            # All fixed mappings above have passed before the first product
-            # nuisance call. Expectations here still start at independent raw.
-            expected = estimate(expected_bands, h, p, np.array(control["initial_cyc_um"]))
-            complete = budgets(raw, expected_bands, h, p, expected)
-            actual = estimate_parameters(
-                bands,
-                transfer,
-                initial_carriers_cyc_um=np.array([control["initial_cyc_um"]]),
-                **p["optics"],
-                **p["estimation"],
-            )
-            assert actual.branches == (("searched",),)
-            close(actual.carriers_cyc_um[0, 0], expected["carrier"], complete["carrier_atol"])
-            close(actual.modulation[0, 0], expected["modulation"], complete["modulation_atol"])
-            check_local_trace(actual, bands.quadratures[0, 0], h, p, expected)
-            # The actual estimate is the public input to reconstruct_known.
-            # This conditional operator assertion supplements the independent
-            # raw-to-finite-result reference; it never refits truth or gain.
-            consumed_k, consumed_a = actual.carriers_cyc_um[0, 0], actual.modulation[0, 0]
-            check_known(bands, transfer, p, raw, expected_bands, consumed_k, consumed_a)
+    for control in p["controls"]:
+        name = control["name"]
+        raw = np.asarray(acquire(p, control)["raw"])
+        assert raw.shape == tuple(p["shape_TDPZYX"]) and raw.dtype == np.dtype("float32")
+        assert (
+            hashlib.sha256(raw.astype("<f4", copy=False).tobytes()).hexdigest() == RAW_SHA256[name]
+        )
+        expected_bands = prepare(raw, p)
+        bands = prepared_product(raw, p)
+        bound = budgets(raw, expected_bands, h, p)
+        close(bands.quadratures[0, 0], expected_bands, bound["bands_atol"])
+        fixed = check_known(
+            bands, transfer, p, raw, expected_bands, np.array(control["carrier_cyc_um"]), a
+        )
+        if name == "known-signed-contrast":
+            assert np.min(fixed.image) < 0 < np.max(fixed.image)
+        if not control["search"]:
+            continue
+        # All fixed mappings above have passed before the first product
+        # nuisance call. Expectations here still start at independent raw.
+        expected = estimate(expected_bands, h, p, np.array(control["initial_cyc_um"]))
+        complete = budgets(raw, expected_bands, h, p, expected)
+        actual = estimate_parameters(
+            bands,
+            transfer,
+            initial_carriers_cyc_um=np.array([control["initial_cyc_um"]]),
+            **p["optics"],
+            **p["estimation"],
+        )
+        assert actual.branches == (("searched",),)
+        close(actual.carriers_cyc_um[0, 0], expected["carrier"], complete["carrier_atol"])
+        close(actual.modulation[0, 0], expected["modulation"], complete["modulation_atol"])
+        check_local_trace(actual, bands.quadratures[0, 0], h, p, expected)
+        # The actual estimate is the public input to reconstruct_known.
+        # This conditional operator assertion supplements the independent
+        # raw-to-finite-result reference; it never refits truth or gain.
+        consumed_k, consumed_a = actual.carriers_cyc_um[0, 0], actual.modulation[0, 0]
+        check_known(bands, transfer, p, raw, expected_bands, consumed_k, consumed_a)

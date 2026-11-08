@@ -1,6 +1,7 @@
 """Bind the exact capstone inputs and independently check and score sweep observations."""
 
 import hashlib
+import io
 import json
 import math
 from dataclasses import dataclass
@@ -10,6 +11,7 @@ from typing import Any
 import numpy as np
 import sweep_response as response
 import sweep_scoring as scoring
+from reference_table import calibration_table
 
 SPECIMEN_SHAPE = (1, 3, 5, 32, 128, 128)
 CALIBRATION_SHAPE = (5, 32, 128, 128)
@@ -162,6 +164,13 @@ def _check_reuse_wieners(value, prior):
 
 
 PUBLIC_ROLES = frozenset(("specimen", "calibration", "settings"))
+EVALUATOR_ROLES = frozenset(("truth", "conventional"))
+
+
+def _valid_evaluator_roles(case, roles):
+    return roles == EVALUATOR_ROLES or (
+        case == "cell" and roles == EVALUATOR_ROLES | {"reference_table"}
+    )
 
 
 def _read_settings(case, path):
@@ -243,23 +252,41 @@ class Inputs(PublicInputs):
     @classmethod
     def bind(cls, case, files):
         """Bind all study inputs for independent qualification without runtime calls."""
-        _require(case in PINS and set(files) == set(PINS[case]), "incorrect sweep input roles")
-        public = PublicInputs.bind(case, {role: files[role] for role in PUBLIC_ROLES})
-        return cls.bind_evaluator(
-            public, {role: files[role] for role in files.keys() - PUBLIC_ROLES}
+        evaluator_roles = files.keys() - PUBLIC_ROLES
+        _require(
+            case in PINS
+            and files.keys() >= PUBLIC_ROLES
+            and _valid_evaluator_roles(case, evaluator_roles),
+            "incorrect sweep input roles",
         )
+        public = PublicInputs.bind(case, {role: files[role] for role in PUBLIC_ROLES})
+        return cls.bind_evaluator(public, {role: files[role] for role in evaluator_roles})
 
     @classmethod
     def bind_evaluator(cls, public, files):
-        """Open exact truth and comparator inputs after the numeric product calls."""
+        """Bind truth and comparator and establish the independent mask for scoring."""
         _require(
-            set(files) == PINS[public.case].keys() - PUBLIC_ROLES, "incorrect sweep evaluator roles"
+            public.case in PINS and _valid_evaluator_roles(public.case, set(files)),
+            "incorrect sweep evaluator roles",
         )
         truth = _load_pinned(public.case, files, "truth", scoring.OUTPUT_SHAPE, "<f8")
         conventional = _load_pinned(public.case, files, "conventional", scoring.OUTPUT_SHAPE, "<f8")
         mask = None
         if public.case == "cell":
-            table = _load_pinned(public.case, files, "reference_table", TRANSFER_SHAPE, "<c16")
+            if "reference_table" in files:
+                table = _load_pinned(public.case, files, "reference_table", TRANSFER_SHAPE, "<c16")
+            else:
+                table = _array(
+                    calibration_table(public.calibration), TRANSFER_SHAPE, "<c16", "reference_table"
+                )
+                with io.BytesIO() as stream:
+                    np.save(stream, table, allow_pickle=False)
+                    digest = hashlib.sha256(stream.getbuffer()).hexdigest()
+                _require(
+                    digest == PINS["cell"]["reference_table"],
+                    f"regenerated cell reference_table does not match its independent file pin "
+                    f"(SHA-256 {digest})",
+                )
             mask = scoring.conditioned_low_mask(table)
             reference = scoring.cell_scores(truth, truth, mask)
             low = reference["low_band"]

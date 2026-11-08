@@ -2,7 +2,7 @@
 
 The actual product agrees with independent stored-input direct sums for **13 returned datasets / 810 complex samples**. Every sample meets its absolute output budget and every observed normalized FFT meets delta. A separate genuine computed-range case rejects with `unrepresentable_volume_order_otf`. The actual existing volume separator agrees with an independent represented-matrix least-squares solution. These are local finite-grid measurements, not instrument calibration or backend error theorems.
 
-Inputs, expected/output arrays, exact gains, all normalized FFT arrays, frequencies, numerical errors and budgets are stored in [the numerical JSON](../references/scientific/volume-order-transfers-comparison.json). The generator used the locked product process: Python 3.13.12 / NumPy 2.5.3 on macOS 27 arm64. Native wider longdouble is unavailable. All numbers below are dimensionless except sampling (micrometres), frequencies (cycles/micrometre) and composition intensities (arbitrary specimen units).
+Inputs, expected/output arrays, exact gains, all normalized FFT arrays, frequencies, numerical errors and budgets are stored in [the historical numerical JSON](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/volume-order-transfers-comparison.json). The generator used the locked product process: Python 3.13.12 / NumPy 2.5.3 on macOS 27 arm64. Native wider longdouble is unavailable. All numbers below are dimensionless except sampling (micrometres), frequencies (cycles/micrometre) and composition intensities (arbitrary specimen units).
 
 ## Independent calculation and stored inputs
 
@@ -114,7 +114,8 @@ Per-dataset hashes use UTF-8 JSON with sorted keys, separators `(',',':')`, no N
 | mixed_detection_range | `19fcdcee028fe6fc519d69568d527741be44c09cd9e0ea9197090c9048e965d2` | `3314a0d420688c61b529523ac880b005194eb7ec4b39216d4e1f3a186cfc8c89` | `106c432e6291ab042b6f8cc5a14975c5fc2afde8199568f45ccab90a6e7a1080` |
 | large_gain_zero_weight | `a2afdd7ae749ae4ccbafb9cc67bb98e897f9949bee11fe72fa4aa833559ccb49` | `c5cf451e98bd9243cfac906012e66eda28ff7e5c5f9220c7fd0d4294d81d9e2c` | `f736a32c271631002c4e836b0b1c574471815097d6dc4891f121dbf84213649c` |
 
-Reproduction in this worktree uses retained independent generators. Set `PLOT_PYTHON` to a separately supplied plotting interpreter with the recorded Python/Matplotlib/Pillow versions. Its actual executable identity stays in ignored local evidence; the locked product interpreter is referenced as `.venv/bin/python`. No plotting dependency is added to the locked product environment:
+The original commands below require the historical runtime and ignored
+task-local generators. Set `PLOT_PYTHON` to a separately supplied plotting interpreter with the recorded Python/Matplotlib/Pillow versions. Its actual executable identity stays in ignored local evidence; the locked product interpreter is referenced as `.venv/bin/python`. No plotting dependency is added to the locked product environment:
 
 The reported comparison generator hash identifies the current source with portable public provenance. The original numerical run used the earlier source retained in ignored local evidence; this metadata correction did not rerun that calculation. Existing figure bytes were retained because all rendered numerical datasets and plot divisors are unchanged. The ignored plot identity preserves the original render-input hash and maps it to the updated JSON hash.
 

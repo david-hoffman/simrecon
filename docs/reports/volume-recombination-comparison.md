@@ -2,13 +2,13 @@
 
 The runtime agrees with independent stored-input least-squares and direct Fourier sums in five informative cases. Maximum measured complex-modulus errors are `4.44e-16` for spectrum and `4.82e-16` for volume, in image intensity units. These comparisons establish agreement with the [defined finite estimator](../contracts/volume-recombination-v1.md); they do not establish general physical recovery.
 
-[Numerical JSON](volume-recombination-comparison.json) contains every input array, order transfer and coordinate, converted-data oracle, actual output, representative phase components, exact Decimal expectation pairs, budgets and hashes. [PNG](volume-recombination-comparison.png) and [SVG](volume-recombination-comparison.svg) show signed real and imaginary components. Each real/imaginary pair shares its scale. C-order flattening retains all z planes. The last row shows independently compared phase components for orientation zero. Figures are not numerical oracles.
+[The historical numerical JSON](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/volume-recombination-comparison.json) contains every input array, order transfer and coordinate, converted-data oracle, actual output, representative phase components, exact Decimal expectation pairs, budgets and hashes. [PNG](volume-recombination-comparison.png) and [SVG](volume-recombination-comparison.svg) show signed real and imaginary components. Each real/imaginary pair shares its scale. C-order flattening retains all z planes. The last row shows independently compared phase components for orientation zero. Figures are not numerical oracles.
 
 ![Signed spectrum, volume and phase comparisons](volume-recombination-comparison.png)
 
 ## Inputs and independent expectations
 
-The revised accepted [fixture](../../tests/volume_reconstruction_fixture.py) supplies the independent oracle. It solves the represented phase matrix's normal equations using pivoted Decimal elimination, then accumulates negative-exponent forward and positive-exponent inverse finite sums. It uses converted float64 images and the exact represented basis `[1,cos(phi),sin(phi),cos(phi)²-sin(phi)²,2*cos(phi)*sin(phi)]`. Expected arrays are computed before calling `reconstruct_volume` and never derived from runtime outputs. Oracle precision is 75 decimal digits; modulus errors are evaluated at 90 digits against the unrounded Decimal pairs. JSON also stores their rounded complex128 arrays for rendering.
+The revised accepted [historical fixture](https://github.com/david-hoffman/simrecon/blob/db9e9768d433d871204c95356644fba787127af8/tests/volume_reconstruction_fixture.py) supplies the independent oracle. It solves the represented phase matrix's normal equations using pivoted Decimal elimination, then accumulates negative-exponent forward and positive-exponent inverse finite sums. It uses converted float64 images and the exact represented basis `[1,cos(phi),sin(phi),cos(phi)²-sin(phi)²,2*cos(phi)*sin(phi)]`. Expected arrays are computed before calling `reconstruct_volume` and never derived from runtime outputs. Oracle precision is 75 decimal digits; modulus errors are evaluated at 90 digits against the unrounded Decimal pairs. JSON also stores their rounded complex128 arrays for rendering.
 
 Every reported case passes the fixture's sufficient informative-regime checks. These checks are observer conditions, not runtime rejection thresholds. Spectrum budget is `65536*J*(N+M)*eps*B + 256*J*(N+M)*q`; volume budget is `P*beta_S + 16384*J*P*eps*B + 64*P*q`, with `J=5R`, detector count `M`, output count `P`, image maximum `B`, `eps=2^-52` and `q=2^-1074`.
 
@@ -78,7 +78,8 @@ All five regenerated case records are exactly equal to preserved refresh02 evide
 
 Computation used locked product Python `3.13.12`, NumPy `2.5.3`, SIMrecon `0.1.0`, on Darwin arm64. Rendering used a separately identified plotting-only environment: Python `3.13.12`, Matplotlib `3.11.0`, Pillow `12.3.0`, Darwin arm64. The renderer imports neither the runtime nor the oracle, reads only the stored numerical JSON, validates plotted array hashes and writes PNG/SVG. Plotting dependencies were not added to the product.
 
-Public command labels use repository-relative paths:
+The original commands below require the historical runtime and ignored
+task-local scripts.
 
 ```sh
 PYTHONPATH=tests .venv/bin/python artifacts/volume-recombination-execution/c-correction-03-generate-01.py

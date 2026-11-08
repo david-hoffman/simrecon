@@ -1,7 +1,7 @@
 # Measured volume-order gain comparison
 
 This comparison executes the public separator, selected-order estimator and
-recombiner. The [numeric JSON](volume-order-gain-comparison.json) retains the
+recombiner. The [historical comparison JSON](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/volume-order-gain-comparison.json) retains the
 inputs, calibration fields, expected and actual arrays, scalar diagnostics,
 array identities, sufficient-precision regime measures and error budgets.
 The [contract](../contracts/volume-order-gain-v1.md) defines the behavior.

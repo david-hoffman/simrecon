@@ -1,17 +1,16 @@
-"""Oracle-only new preregistration freeze; never invokes product or pytest."""
+"""Generate the large CE08 observer payload and summary in memory."""
 
 from __future__ import annotations
 
 import json
 import math
-from pathlib import Path
 from typing import Any
 
 import numpy as np
 
+from ce08_finite_math import Array
 from ce08_recovery_large_budget import bounds, gamma
 from ce08_recovery_large_model import (
-    FIXTURE,
     acquire,
     acquisition_bounds,
     carriers,
@@ -68,11 +67,33 @@ def assert_recovery(metrics: dict[str, Any], p: dict[str, Any]) -> None:
     assert metrics["image_max"] > c["signed_max_lower"]
 
 
-def freeze(evidence: Path) -> None:
-    evidence.mkdir(parents=True, exist_ok=True)
-    p = registration()
+def directional_power_inventory(
+    p: dict[str, Any], h: Array, illumination_a: Array
+) -> tuple[list[list[float]], Array]:
+    """Group the signed native power terms by direction for the wrong-denominator control."""
+    keys = [
+        (0, 0, 0),
+        *(tuple(row[:3]) for row in p["source"]["positive_modes_kxyz_real_imag"]),
+    ]
+    inventory, by_direction = [], np.zeros((len(keys), 3))
+    for i, key in enumerate(keys):
+        for d, k0 in enumerate(carriers(p)):
+            for order in range(-2, 3):
+                q = np.array((key[0] / 24, key[1] / 24)) - order * k0
+                eligible = np.linalg.norm(q) < 0.5
+                hh = sample(h, abs(order), float(q[0]), float(q[1]), key[2]) if eligible else 0j
+                aa = 1 + 0j if order == 0 else illumination_a[d, abs(order) - 1]
+                term = abs(aa * hh) ** 2
+                by_direction[i, d] += term
+                inventory.append(
+                    [i, d, order, q[0], q[1], key[2], hh.real, hh.imag, term, int(eligible)]
+                )
+    return inventory, by_direction
+
+
+def fixture_evidence(p: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Generate the original observer payload and diagnostics in memory."""
     pre = acquisition_bounds(p)
-    (evidence / "pre-observation-bounds.json").write_text(json.dumps(pre, indent=2) + "\n")
     h = transfer_table(p)
     data = acquire(p, h)
     ref = expected(p, data["raw"], h)
@@ -93,7 +114,10 @@ def freeze(evidence: Path) -> None:
     np.testing.assert_allclose(
         unquantized["modulation"], illumination_a, rtol=0, atol=error["modulation_atol"]
     )
-    keys = [(0, 0, 0), *(tuple(row[:3]) for row in p["source"]["positive_modes_kxyz_real_imag"])]
+    keys = [
+        (0, 0, 0),
+        *(tuple(row[:3]) for row in p["source"]["positive_modes_kxyz_real_imag"]),
+    ]
     response_map = dict(zip(keys, response, strict=True))
     for key, value in list(response_map.items()):
         response_map[tuple(-j for j in key)] = value
@@ -107,19 +131,7 @@ def freeze(evidence: Path) -> None:
         unquantized["density_image"], ideal_image, rtol=0, atol=error["density_image_atol"]
     )
     # Public source-origin and all-signed-direction inventory, no product.
-    inventory, by_direction = [], np.zeros((len(keys), 3))
-    for i, key in enumerate(keys):
-        for d, k0 in enumerate(carriers(p)):
-            for order in range(-2, 3):
-                q = np.array((key[0] / 24, key[1] / 24)) - order * k0
-                eligible = np.linalg.norm(q) < 0.5
-                hh = sample(h, abs(order), float(q[0]), float(q[1]), key[2]) if eligible else 0j
-                aa = 1 + 0j if order == 0 else illumination_a[d, abs(order) - 1]
-                term = abs(aa * hh) ** 2
-                by_direction[i, d] += term
-                inventory.append(
-                    [i, d, order, q[0], q[1], key[2], hh.real, hh.imag, term, int(eligible)]
-                )
+    inventory, by_direction = directional_power_inventory(p, h, illumination_a)
     # Regrouping15 nonnegative powers into3 sums of5 incurs at most the
     # sum of both gamma bounds; this is not the physical/product tolerance.
     np.testing.assert_allclose(
@@ -196,8 +208,6 @@ def freeze(evidence: Path) -> None:
         arrays[f"fit{i}_complex"] = np.array(
             [build[name] for name in ("cross", "forward", "reverse", "combined")]
         )
-    # Preserve oracle arrays even if the preregistered physical goal fails.
-    np.savez_compressed(FIXTURE, **arrays)
     metrics = recovery_metrics(ref["density_image"], cm, tm, data["truth"], p)
     diagnostics = {
         "pre_observation": pre,
@@ -227,12 +237,13 @@ def freeze(evidence: Path) -> None:
             abs(unquantized["density_image"] - ideal_image).max()
         ),
     }
-    (evidence / "oracle-diagnostics.json").write_text(json.dumps(diagnostics, indent=2) + "\n")
-    print(json.dumps(diagnostics, indent=2))
     assert_recovery(metrics, p)
+    return arrays, diagnostics
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
 
-    freeze(Path(sys.argv[1]))
+    argparse.ArgumentParser(description=__doc__).parse_args()
+    _, diagnostics = fixture_evidence(registration())
+    print(json.dumps(diagnostics, indent=2))
