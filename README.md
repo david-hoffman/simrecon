@@ -214,3 +214,10 @@ The Python implementation is independently written. Local legacy source under
 `SIMrecon_svn/` is ignored, unshipped study material. Source study and comparison
 with owner-provided outputs are permitted; building, running, linking or importing
 the C reference or bundled executables remains prohibited.
+
+## License
+
+SIMrecon's original code and documentation are licensed under the [MIT License](LICENSE).
+Third-party material retains its original terms. See the preserved
+[OpenClaw notice](docs/references/licenses/openclaw-LICENSE.source.txt) and
+[pstack notice](docs/references/licenses/pstack-LICENSE.source.txt).
