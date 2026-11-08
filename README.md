@@ -15,7 +15,8 @@ control. They follow the selected retained C mathematics: preparation/separation
 empirical transfers, complex sampling, finite parameter search and image assembly.
 The earlier scientific APIs remain retired. The
 [C-equivalence roadmap](docs/plans/c-equivalence-roadmap.md) defines the sequence;
-historical C executable agreement and physical image recovery remain unqualified.
+the simulation examples below document synthetic recovery. Historical C executable
+agreement and measured-instrument recovery remain separate questions.
 
 ## What you can use today
 
@@ -104,6 +105,58 @@ Use the [conversion contract and configuration examples](docs/contracts/mrc-conv
 [Fiji export guide](docs/usage/imagej-export.md). Do not infer phase, orientation
 or Z ordering from a flattened stack. The [environment guide](docs/operations/environment.md)
 covers development setup and prerequisite checks.
+
+### Run a synthetic reconstruction
+
+After setup, run the small synthetic example from the repository root.
+
+```sh
+uv run --locked --no-sync python examples/reconstruct_simulated.py
+```
+
+The example loads the bundled synthetic specimen and declared transfer table.
+It calls `reconstruct_workflow` and prints the signed reconstruction shape,
+sampling in micrometres, and intensity range. For your own data, pass specimen
+counts in `(time, direction, phase, z, y, x)` order and supply the measured
+acquisition settings and a matching calibration. The
+[workflow guide](docs/usage/c-workflow.md) shows the raw-bead and transfer-table
+interfaces.
+
+## Simulation examples
+
+The full studies start from a known three-dimensional fluorescence volume.
+Each specimen uses a **32 × 128 × 128** detector grid in `(z, y, x)` order,
+with 0.125 µm axial and 0.080 µm lateral sampling. The reconstruction doubles
+the lateral sampling to 0.040 µm. The comparison image averages the same 15
+exposures. The [simulation study](docs/studies/simulation-capstone/README.md)
+has the full commands, settings, figures and results for the paired noiseless
+and noisy acquisition, fluorescent beads, and a synthetic cell interior.
+
+![Matched lateral and axial slices of a synthetic cell showing fluorescence truth, exposure average, SIMrecon and signed reconstruction error](docs/studies/simulation-capstone/figures/cell.png)
+
+*The simulated cell contains an irregular nuclear rim, branching tubules and
+puncta at several depths. The first three columns share a scale in simulation source units (SU).
+The last column shows signed reconstruction error on a separate scale.*
+
+In the bead case, SIMrecon separated the specific **0.14 µm** pair under a
+predefined two-peak rule. The same-exposure average left that pair unresolved.
+The [bead profiles](docs/studies/simulation-capstone/figures/beads.png) show
+the measured peaks. Each noisy specimen uses one simulated noise draw.
+
+### Wiener sweep
+
+The [Wiener sweep](docs/studies/simulation-capstone/README.md#wiener-sweep) varies
+the public Wiener parameter across five equally spaced values in log space,
+from **0.002** to **0.200**. Each step multiplies the public value by √10
+and its squared filter term by 10. Each comparison uses the same specimen
+frames, calibration, and coordinate and intensity scales. The sweep reports
+bead-pair separation and cell reconstruction error at each setting.
+
+![Measured Wiener sweep with matched cell slices and error, and the 0.14 µm bead valley depth across five settings](docs/studies/simulation-capstone/figures/wiener.png)
+
+*The panels compare fixed cell slices at three of the five settings. The
+plots show cell error in the selected frequency band and the bead pair's
+valley drop. The dotted guide marks the study's 0.020 setting.*
 
 ## Rebuild sequence
 

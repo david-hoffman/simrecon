@@ -1,0 +1,248 @@
+{
+  "cell_low_band_relative_rms_error": [
+    0.03128529954749615,
+    0.031029700376163795,
+    0.03158323831833974,
+    0.0967883025202836,
+    0.4345402704295868
+  ],
+  "display": {
+    "normalization": "asinh",
+    "panels": {
+      "residual_su": {
+        "same_exposure": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            -2.361753490458344,
+            0.04101183479185705
+          ],
+          "full_plane_clipped_samples": 0
+        },
+        "w_0.002": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            -0.353038786955407,
+            0.30488165441742554
+          ],
+          "full_plane_clipped_samples": 0
+        },
+        "w_0.020": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            -0.5090900386461044,
+            0.05798233670154146
+          ],
+          "full_plane_clipped_samples": 0
+        },
+        "w_0.200": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            -2.1187519769762564,
+            0.11870250486224526
+          ],
+          "full_plane_clipped_samples": 0
+        }
+      },
+      "signed_su": {
+        "same_exposure": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            0.00030622397698164955,
+            0.12483505234282277
+          ],
+          "full_plane_clipped_samples": 0
+        },
+        "truth": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            3.600630197904661e-07,
+            2.4598032061749344
+          ],
+          "full_plane_clipped_samples": 0
+        },
+        "w_0.002": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            -0.27785958513630515,
+            2.4013700832409084
+          ],
+          "full_plane_clipped_samples": 0
+        },
+        "w_0.020": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            -0.056178271507898656,
+            1.95071316752883
+          ],
+          "full_plane_clipped_samples": 0
+        },
+        "w_0.200": {
+          "crop_clipped_samples": 0,
+          "crop_sample_range_su": [
+            -0.03358509314033736,
+            0.38430763564539633
+          ],
+          "full_plane_clipped_samples": 0
+        }
+      }
+    },
+    "residual_su": {
+      "limits": [
+        -2.472752102946942,
+        2.472752102946942
+      ],
+      "linear_width": 0.035
+    },
+    "signed_su": {
+      "limits": [
+        -2.5662915473913865,
+        2.5662915473913865
+      ],
+      "linear_width": 0.025
+    },
+    "xy_limits_um": [
+      [
+        -3.3,
+        3.3
+      ],
+      [
+        -3.3,
+        3.3
+      ]
+    ],
+    "xy_z_um": -0.75
+  },
+  "inputs": {
+    "cell_conventional": {
+      "name": "conventional.npy",
+      "sha256": "87bcb9ab2870348a5913f22b5bdb6438f6176d0b2132f079490e6a621da92524"
+    },
+    "cell_observations": {
+      "0.002": {
+        "name": "w-0.002.npz",
+        "sha256": "80ee2102699d0145e5f4b0e007b5daa07550e41b029eab7f0979d56300c0ba71"
+      },
+      "0.020": {
+        "name": "w-0.020.npz",
+        "sha256": "752a76d77bec3a93ca42ec743e572121e90e955c0e10df28f7e9d8659e5ba60e"
+      },
+      "0.200": {
+        "name": "w-0.200.npz",
+        "sha256": "5625765780c333c258a481a34a23ca75fde6287989c5ecad282925bae8bd51e2"
+      }
+    },
+    "cell_truth": {
+      "name": "truth.npy",
+      "sha256": "9d2441dfd1652fc02f72b380000c75d0fd31b116440b740b697234ce38e4f0ac"
+    },
+    "metrics": {
+      "name": "sweep-metrics.json",
+      "sha256": "f649a4efce5cbbb851775f0d0a8a9ada816eeda76d004bdf28210b76e1747870"
+    }
+  },
+  "outputs": {
+    "wiener-caption.md": "d0a4926be09a98f0bd72e01c20dbdfd56a751259e035ef443e1aec43dc3ec0cc",
+    "wiener.pdf": "93e5840eef2aa469ded0ff429e9e1d1fbcfb0bef29be08972cfc120be6d5369b",
+    "wiener.png": "203cca62b97fd629055c5d180141248489521ad5fd04219a749ea65d6abb6fc7"
+  },
+  "p14": [
+    {
+      "baseline_su": 0.003042396929079147,
+      "peaks_um": [
+        -0.065,
+        0.06
+      ],
+      "position_errors_um": [
+        0.0050000000000000044,
+        -0.010000000000000009
+      ],
+      "reason": null,
+      "separation_error_um": -0.015000000000000013,
+      "separation_um": 0.125,
+      "status": "resolved",
+      "truth_separation_um": 0.14,
+      "valley_dip_fraction": 0.6014642150685364
+    },
+    {
+      "baseline_su": 0.00028803312370261693,
+      "peaks_um": [
+        -0.065,
+        0.06
+      ],
+      "position_errors_um": [
+        0.0050000000000000044,
+        -0.010000000000000009
+      ],
+      "reason": null,
+      "separation_error_um": -0.015000000000000013,
+      "separation_um": 0.125,
+      "status": "resolved",
+      "truth_separation_um": 0.14,
+      "valley_dip_fraction": 0.45879722991065897
+    },
+    {
+      "baseline_su": -0.0028402113512331307,
+      "peaks_um": [
+        -0.065,
+        0.06
+      ],
+      "position_errors_um": [
+        0.0050000000000000044,
+        -0.010000000000000009
+      ],
+      "reason": null,
+      "separation_error_um": -0.015000000000000013,
+      "separation_um": 0.125,
+      "status": "resolved",
+      "truth_separation_um": 0.14,
+      "valley_dip_fraction": 0.2091953025310031
+    },
+    {
+      "baseline_su": -0.0067340647433038305,
+      "peaks_um": [
+        -0.06,
+        0.055
+      ],
+      "position_errors_um": null,
+      "reason": "valley drop below 15% of weaker height",
+      "separation_error_um": null,
+      "separation_um": null,
+      "status": "unresolved",
+      "truth_separation_um": 0.14,
+      "valley_dip_fraction": 0.013168593150164758
+    },
+    {
+      "baseline_su": -0.003560095030314815,
+      "peaks_um": [],
+      "position_errors_um": null,
+      "reason": "fewer than two eligible maxima",
+      "separation_error_um": null,
+      "separation_um": null,
+      "status": "unresolved",
+      "truth_separation_um": 0.14,
+      "valley_dip_fraction": null
+    }
+  ],
+  "panel_wieners": [
+    0.002,
+    0.02,
+    0.2
+  ],
+  "plot_versions": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.5.1"
+  },
+  "reconstruction_gain_su_per_count": 2e-05,
+  "reference_wiener": 0.02,
+  "renderer": {
+    "name": "plot_wiener.py",
+    "sha256": "2f4a3993e4c385156c94c51631a99d74c9510b191763537ccc2ab68f15023e85"
+  },
+  "wieners": [
+    0.002,
+    0.006324555320336759,
+    0.02,
+    0.0632455532033676,
+    0.2
+  ]
+}
