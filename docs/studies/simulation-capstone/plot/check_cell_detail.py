@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -22,6 +23,7 @@ CONVENTIONAL = "conventional.npy"
 RUNTIME = "runtime.json"
 PROGRESS = "progress.jsonl"
 IMAGE = "w-0.020.npz"
+OBSERVATION_NAME = re.compile(r"w-[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?\.npz")
 PUBLIC_INPUTS = {"specimen": SPECIMEN, "calibration": CALIBRATION, "settings": SETTINGS}
 MANIFEST_FIELDS = {
     SPECIMEN: ("raw-specimen", "ADU"),
@@ -74,6 +76,7 @@ def check_array(
     array: np.ndarray, shape: tuple[int, ...], dtype: type | np.dtype, label: str
 ) -> np.ndarray:
     """Require the expected array representation and finite samples."""
+    require(isinstance(array, np.ndarray), f"{label}: expected a NumPy ndarray")
     require(array.shape == shape, f"{label}: expected shape {shape}, got {array.shape}")
     dtype_matches = (
         array.dtype == dtype if isinstance(dtype, np.dtype) else array.dtype.type == dtype
@@ -98,9 +101,9 @@ def native_axes() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     return lateral_um, lateral_um, axial_um
 
 
-def read_signed(directory: Path) -> tuple[np.ndarray, list[float]]:
+def read_signed(directory: Path, name: str = IMAGE) -> tuple[np.ndarray, list[float]]:
     """Validate the signed archive and return its native count line and y/z coordinates."""
-    path = directory / IMAGE
+    path = directory / name
     reference_axes = native_axes()
     with np.load(path, allow_pickle=False) as observation:
         image = check_array(observation["image"], SHAPE, np.float64, f"{path}: image")
@@ -310,7 +313,7 @@ def read_settings(directory: Path, case: str, entries: dict[str, dict[str, Any]]
     return settings
 
 
-def check_closed(directory: Path, case: str) -> dict[str, Any]:
+def check_closed(directory: Path, case: str) -> tuple[dict[str, Any], dict[str, Any]]:
     """Require completed public reconstruction before opening any study arrays."""
     progress = directory / PROGRESS
     records = [json.loads(line) for line in progress.read_text().splitlines()]
@@ -326,17 +329,81 @@ def check_closed(directory: Path, case: str) -> dict[str, Any]:
         f"{progress}: run is incomplete",
     )
     final = records[-1]
-    require(WIENER in final["observations"], f"{progress}: no completed Wiener 0.020 observation")
+    completed = final["observations"]
+    require(
+        isinstance(completed, list) and WIENER in completed,
+        f"{progress}: no completed Wiener 0.020 observation",
+    )
     if case == "cell-detail":
         require(
-            final["observations"] == [WIENER] and final["scored"] == [],
+            completed == [WIENER] and final["scored"] == [],
             f"{progress}: cell-detail requires a normal run",
         )
-    return file_identity(progress)
+    return file_identity(progress), final
+
+
+def matches_completed_sweep(completed: list[float], observations: dict[str, Any]) -> bool:
+    """Match distinct completed Wiener settings to the runtime sweep metadata."""
+    if len(completed) != len(observations) or len(completed) < 2:
+        return False
+    resolved = [entry["resolved_settings"]["wiener"] for entry in observations.values()]
+    if not all(
+        type(value) is int or (type(value) is float and math.isfinite(value))
+        for value in (*completed, *resolved)
+    ):
+        return False
+    values = set(completed)
+    return len(values) == len(completed) and values == set(resolved)
+
+
+def _bound_observation(path: Path, observation: dict[str, Any]) -> dict[str, Any]:
+    identity = file_identity(path)
+    require(
+        observation["sha256"] == identity["sha256"],
+        f"{path}: SHA-256 differs from runtime receipt",
+    )
+    return identity
+
+
+def _legacy_sweep_identity(
+    directory: Path, completion: dict[str, Any], observations: dict[str, Any]
+) -> dict[str, Any]:
+    scored = completion.get("scored")
+    completed = set(completion["observations"])
+    require(
+        isinstance(scored, list)
+        and all(type(value) in (int, float) and value in completed for value in scored)
+        and len(set(scored)) == len(scored),
+        f"{directory / PROGRESS}: scored settings must be a unique subset of completed settings",
+    )
+    directory = directory.resolve()
+    identities = {}
+    file_keys: set[tuple[int, int]] = set()
+    for name, observation in observations.items():
+        require(
+            OBSERVATION_NAME.fullmatch(name) is not None,
+            f"{directory / RUNTIME}: invalid observation archive name {name!r}",
+        )
+        path = directory / name
+        require(
+            path.resolve().parent == directory,
+            f"{path}: observation archive escapes the case directory",
+        )
+        require(not path.is_symlink(), f"{path}: observation archive must not be a symlink")
+        require(path.is_file(), f"{path}: observation archive is missing or not a regular file")
+        metadata = path.stat()
+        file_key = (metadata.st_dev, metadata.st_ino)
+        require(file_key not in file_keys, f"{path}: observation archives must be distinct files")
+        file_keys.add(file_key)
+        require("sha256" in observation, f"{path}: missing runtime SHA-256")
+        identities[name] = _bound_observation(path, observation)
+        if name != IMAGE:
+            read_signed(directory, name)
+    return identities[IMAGE]
 
 
 def read_runtime(
-    directory: Path, case: str, entries: dict[str, dict[str, Any]]
+    directory: Path, case: str, entries: dict[str, dict[str, Any]], completion: dict[str, Any]
 ) -> dict[str, dict[str, Any]]:
     """Bind the public input roles and the signed Wiener 0.020 archive."""
     path = directory / RUNTIME
@@ -363,16 +430,21 @@ def read_runtime(
     observation = observations[IMAGE]
     resolved = observation["resolved_settings"]
     require(
-        runtime["workflow_effective_wiener"] == [WIENER]
-        and resolved["wiener"] == WIENER
-        and resolved["effective_wiener"] == [WIENER],
+        resolved["wiener"] == WIENER and resolved["effective_wiener"] == [WIENER],
         f"{path}: expected effective and resolved Wiener 0.020",
     )
-    image_identity = file_identity(directory / IMAGE)
-    require(
-        observation["sha256"] == image_identity["sha256"],
-        f"{directory / IMAGE}: SHA-256 differs from runtime receipt",
-    )
+    if "workflow_effective_wiener" in runtime:
+        image_identity = _bound_observation(directory / IMAGE, observation)
+        require(
+            runtime["workflow_effective_wiener"] == [WIENER],
+            f"{path}: workflow_effective_wiener must be [0.02]",
+        )
+    else:
+        require(
+            case == "cell" and matches_completed_sweep(completion["observations"], observations),
+            f"{path}: missing workflow_effective_wiener outside a completed cell sweep",
+        )
+        image_identity = _legacy_sweep_identity(directory, completion, observations)
     return {
         "runtime": file_identity(path),
         "image": image_identity,
@@ -396,14 +468,12 @@ def study_receipt(
     detail_input: Path, detail_output: Path, base_input: Path, base_output: Path
 ) -> dict[str, Any]:
     """Return the same verified receipt as the command, including adverse verdicts."""
-    progress = {
-        "cell-detail": check_closed(detail_output, "cell-detail"),
-        "cell": check_closed(base_output, "cell"),
-    }
+    detail_progress, detail_completion = check_closed(detail_output, "cell-detail")
+    base_progress, base_completion = check_closed(base_output, "cell")
     detail_entries = read_manifest(detail_input, "cell-detail")
     base_entries = read_manifest(base_input, "cell")
-    detail_run = read_runtime(detail_output, "cell-detail", detail_entries)
-    base_run = read_runtime(base_output, "cell", base_entries)
+    detail_run = read_runtime(detail_output, "cell-detail", detail_entries, detail_completion)
+    base_run = read_runtime(base_output, "cell", base_entries, base_completion)
 
     require(
         detail_entries[CALIBRATION]["sha256"] == base_entries[CALIBRATION]["sha256"],
@@ -443,11 +513,11 @@ def study_receipt(
             "manifest": file_identity(directory / MANIFEST),
             "public_inputs": {name: entries[name]["sha256"] for name in PUBLIC_INPUTS.values()},
             "runtime": run["runtime"],
-            "progress": progress[case],
+            "progress": progress,
         }
-        for case, directory, entries, run in (
-            ("cell-detail", detail_input, detail_entries, detail_run),
-            ("cell", base_input, base_entries, base_run),
+        for case, directory, entries, run, progress in (
+            ("cell-detail", detail_input, detail_entries, detail_run, detail_progress),
+            ("cell", base_input, base_entries, base_run, base_progress),
         )
     }
 
