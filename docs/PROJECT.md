@@ -1,7 +1,8 @@
 # SIMrecon project
 
 **Version 1.0.** Git versions revisions. Active product status: CE02 preparation,
-CE03 optical transfers and CE04 known-parameter filtering/assembly.
+CE03 optical transfers, CE04 known-parameter filtering/assembly and CE05 finite
+carrier/modulation estimation.
 
 ## Approved architecture and current public boundary
 
@@ -29,9 +30,16 @@ defines `reconstruct_known`, `KnownReconstruction` and `ReconstructionError`: na
 bandwise filtering followed by signed Fourier assembly with supplied carriers and
 complex modulation. [Usage](usage/c-known-reconstruction.md) specifies units,
 coordinates and limits; its [task pointer](tasks/c-equivalence-known-parameters.md)
-locates execution and acceptance evidence. This is the selected known-parameter
-array stage. Parameter fitting, remaining modes, file composition and physical
-recovery acceptance remain later stages. Historical C executable agreement is
+locates execution and acceptance evidence. The
+[CE05 carrier/modulation contract](contracts/c-equivalence-carrier-modulation-v1.md)
+defines `estimate_parameters`, `EstimatedParameters` and `ParameterEstimationError`.
+It preserves the selected finite search and its ordered diagnostics, with
+time-specific factors and optional time-zero carrier reuse.
+[Usage](usage/c-parameter-estimation.md) shows explicit per-time composition into
+the unchanged known-parameter operation; its
+[task pointer](tasks/c-equivalence-carrier-modulation.md) locates execution and
+acceptance evidence. Remaining modes, file composition and physical recovery
+acceptance remain later stages. Historical C executable agreement is
 unqualified. The old `prepare_otf`, `reconstruct`, `reconstruct_volume` and retired
 modules remain unavailable. The [retirement contract](contracts/c-equivalence-retirement-v1.md)
 removes the old scientific stack, including phase/OTF preparation, correction,
@@ -47,7 +55,8 @@ no readiness or acceptance verdict.
 The neutral public functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records/errors.
 The scientific entries are `prepare_bands`, `prepare_bead_otf`, `declare_otf`,
-`sample_otf` and `reconstruct_known`, with their declared records/errors. They remain pure array/value
+`sample_otf`, `estimate_parameters` and `reconstruct_known`, with their declared
+records/errors. They remain pure array/value
 boundaries until later file composition.
 The neutral CLI and delivery commands remain installed.
 

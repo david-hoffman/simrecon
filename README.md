@@ -2,11 +2,13 @@
 
 **A Python library for structured illumination microscopy (SIM) files and explicit numerical stages.**
 
-`reconstruct_known` now filters prepared bands and assembles a signed real image
-from supplied carriers, complex modulation and optical transfer function (OTF)
-tables. The array stages follow the selected retained C mathematics: specimen
-preparation/separation, empirical bead transfers, complex sampling and fixed-parameter
-filtering/assembly. Carrier fitting and a complete file workflow remain future stages.
+`estimate_parameters` fits fundamental illumination carriers and complex
+modulation from prepared bands and optical transfer function (OTF) tables.
+Callers pass each time's estimates to `reconstruct_known` to filter native bands
+and assemble a signed real image. The array stages follow the selected retained C
+mathematics: preparation/separation, empirical transfers, complex sampling,
+finite parameter search and filtering/assembly. A complete file workflow remains
+a later stage.
 The earlier scientific APIs remain retired. The
 [C-equivalence roadmap](docs/plans/c-equivalence-roadmap.md) defines the sequence;
 historical C executable agreement and physical image recovery remain unqualified.
@@ -19,16 +21,18 @@ historical C executable agreement and physical image recovery remain unqualified
 | Resolve metadata and convert files | `harmonize`, `write`; `simrecon inspect`, `simrecon convert` | Preserve pixels and declared metadata in modern MRC output. No scientific correction, reconstruction or modern-MRC input decoding. |
 | Declare an acquisition array | `declare_acquisition` | Own a bit-preserving array and explicit acquisition metadata. Declaration estimates no scientific parameters. |
 | View all illumination settings in Fiji | `export_imagej`; `simrecon export-imagej` | A supported Priism acquisition becomes an OME-BigTIFF viewing copy. OME means Open Microscopy Environment. Keep the original for opaque metadata recovery. |
-| Prepare specimen phase bands | `prepare_bands` | Explicit camera/phase settings and the selected C preprocessing map. Feeds the known-parameter stage. |
+| Prepare specimen phase bands | `prepare_bands` | Explicit camera/phase settings and the selected C preprocessing map. Feeds estimation and filtering. |
 | Prepare empirical bead transfers | `prepare_bead_otf` | Explicit bead/acquisition settings, ordinary square 3D arrays and the selected C preparation path. |
 | Declare and sample complex transfers | `declare_otf`, `sample_otf` | Complete radial/full tables, explicit frequency sampling and actual safe interpolation stencils. |
+| Estimate carriers and modulation | `estimate_parameters` | Ordinary stationary 3D, explicit initial vectors and optics. Finite source procedure, per-time factors and full immutable diagnostics. |
 | Filter and assemble with supplied parameters | `reconstruct_known` | Accepted bands/transfers, supplied carriers/modulation, explicit optics and positive Wiener parameter. Signed image and coordinates; no parameter fitting. |
 | Develop and verify the package | `delivery doctor`, Make commands below | Delivery tools and their verification gates remain installed. |
 
 The retained library functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records and errors.
 The new scientific entries are described in the [specimen preparation guide](docs/usage/c-preparation.md),
-[empirical transfer guide](docs/usage/c-optical-transfer.md), and
+[empirical transfer guide](docs/usage/c-optical-transfer.md),
+[carrier/modulation guide](docs/usage/c-parameter-estimation.md), and
 [known-parameter guide](docs/usage/c-known-reconstruction.md). The retired
 `prepare_otf` name and old private module remain unavailable.
 Historical scientific guides and comparison reports remain evidence of their
@@ -37,7 +41,7 @@ current package; a historical passing result is not proof of C equivalence.
 
 ## Software boundaries
 
-This is a **conceptual CE04 boundary diagram**, not a numerical result:
+This is a **conceptual CE02–CE05 boundary diagram**, not a numerical result:
 
 ```mermaid
 flowchart TD
@@ -55,11 +59,16 @@ flowchart TD
     Bead --> Sampling["sample_otf: complex frequency samples"]
     Declared --> Sampling
     Bands --> Known["reconstruct_known: native filtering and assembly"]
+    Bands --> Estimate["estimate_parameters: finite carrier/modulation search"]
+    Bead --> Estimate
+    Declared --> Estimate
+    Guesses["Initial fundamental vectors and explicit optics"] --> Estimate
+    Estimate --> Parameters
     Bead --> Known
     Declared --> Known
-    Parameters["Supplied carriers, modulation, optics and filter settings"] --> Known
+    Parameters["Supplied or time-selected carriers/modulation,<br/>optics and filter settings"] --> Known
     Known --> Image["Signed real image, coordinates and filtered quadratures"]
-    Future["Fitting, remaining modes, file workflow and recovery<br/>CE05–CE08 pending"]
+    Future["Remaining modes, file workflow and recovery<br/>CE06–CE08 pending"]
 ```
 
 `inspect` describes a source without loading its pixels. `read` loads selected
@@ -67,7 +76,9 @@ blocks. `harmonize` resolves metadata and layout from explicit configuration.
 `declare_acquisition` copies and labels caller arrays. The file writers stream a
 described source into a conversion or viewing copy. These file and metadata operations perform no
 scientific image correction or reconstruction. The separate scientific array
-stages follow their own explicit contracts. Records hold values rather than
+stages follow their own explicit contracts. Estimated parameters have a time
+axis; callers construct one-time bands and pass the corresponding estimates as
+shown in the carrier/modulation guide. Records hold values rather than
 open file handles; NumPy buffers are not deeply immutable.
 
 The [project record](docs/PROJECT.md), [library design](docs/architecture/library-design.md)
@@ -101,9 +112,10 @@ RA scientific execution plan. CE01 removes incompatible scientific components
 and their stale tests while retaining neutral I/O, historical evidence and all
 accepted Agentic Software Delivery (ASD) improvements. CE02 supplies specimen
 preprocessing/separation; CE03 supplies empirical transfer preparation/sampling.
-CE04 supplies known-parameter filtering and assembly. Finite parameter fitting,
-remaining defined modes, public file workflow composition and independent recovery
-acceptance follow in CE05–CE08.
+CE04 supplies known-parameter filtering and assembly. CE05 supplies the finite
+carrier/modulation procedure and explicit per-time composition. Remaining defined
+modes, public file workflow composition and independent recovery acceptance follow
+in CE06–CE08.
 
 Mathematical equivalence permits declared invertible representation and unit
 conversions. It does not permit a different estimator or data-dependent fitted
