@@ -1,0 +1,41 @@
+{
+  "baseline": "edcf53b5d5c0f494c388944d3cfda5c04b9fda97",
+  "estimate": 3095,
+  "native": 3087,
+  "generated_family_native": 68,
+  "declaration_count": 723,
+  "deltas": [
+    {
+      "id": "tests/test_c_acquisition_boundary.py::test_consumers_use_the_validated_acquisition_arrays",
+      "estimated": 10,
+      "native": 5,
+      "axes": [
+        {
+          "line": 1504,
+          "arguments": "'acquisition_record_consumer,field'",
+          "rows": 5,
+          "expression": "[('estimate', 'quadratures'), ('estimate', 'samples'), ('reconstruct', 'quadratures'), ('reconstruct', 'noise_variance_factors'), ('reconstruct', 'samples')]"
+        }
+      ],
+      "fixtures": {
+        "acquisition_record_consumer": 2
+      }
+    },
+    {
+      "id": "tests/test_c_acquisition_boundary.py::test_acquisition_consumers_use_checked_transfer_increment",
+      "estimated": 6,
+      "native": 3,
+      "axes": [
+        {
+          "line": 1927,
+          "arguments": "'acquisition_record_consumer,field'",
+          "rows": 3,
+          "expression": "[('estimate', 'dkr_cyc_um'), ('estimate', 'dkz_cyc_um'), ('reconstruct', 'dkr_cyc_um')]"
+        }
+      ],
+      "fixtures": {
+        "acquisition_record_consumer": 2
+      }
+    }
+  ]
+}

@@ -371,6 +371,14 @@ def prepare_expected(images: Any, settings: dict[str, Any]) -> dict[str, Any]:
     )
 
 
+def radial_interpolate(values: Any, k: int, i: int, j: int, a: Any, b: Any, j1: int) -> Any:
+    """Evaluate the unchanged four-vertex radial expression in its original order."""
+    offsets = [i * k + j, i * k + j1, (i + 1) * k + j, (i + 1) * k + j1]
+    assert all(0 <= ix < len(values) for ix in offsets), "independent unsafe radial stencil"
+    v = values[offsets]
+    return (1 - a) * ((1 - b) * v[0] + b * v[1]) + a * ((1 - b) * v[2] + b * v[3])
+
+
 def sample(table: Any, kx: float, ky: float, z: int, native_dkz: float, order: int) -> complex:
     h = as_disc(table.samples[order])
     t = as_disc(z) * native_dkz / table.dkz_cyc_um
@@ -383,15 +391,7 @@ def sample(table: Any, kx: float, ky: float, z: int, native_dkz: float, order: i
         a, b = u - i, t - j
         j1 = 0 if j == h.shape[1] - 1 else j + 1
         values = h.reshape(-1)
-        offsets = [
-            i * h.shape[1] + j,
-            i * h.shape[1] + j1,
-            (i + 1) * h.shape[1] + j,
-            (i + 1) * h.shape[1] + j1,
-        ]
-        assert all(0 <= ix < len(values) for ix in offsets), "independent unsafe radial stencil"
-        v = values[offsets]
-        return (1 - a) * ((1 - b) * v[0] + b * v[1]) + a * ((1 - b) * v[2] + b * v[3])
+        return radial_interpolate(values, h.shape[1], i, j, a, b, j1)
     u, v = as_disc(kx) / table.dkr_cyc_um, as_disc(ky) / table.dkr_cyc_um
     if conjugate:
         u, v, t = -u, -v, -t
@@ -420,6 +420,54 @@ def sample(table: Any, kx: float, ky: float, z: int, native_dkz: float, order: i
     return np.conj(result) if conjugate else result
 
 
+def local_samples(table: Any) -> Any:
+    """Reuse identical pure queries for one caller-owned observer invocation.
+
+    The table remains unchanged for this closure's lifetime.
+    Coordinate keys include their complete nominal and uncertainty bits, so
+    geometrically equal centers with different certificates remain distinct.
+    Callers only read the returned scalar discs; no cached object is mutated.
+    """
+    cache: dict[Any, Any] = {}
+    orders: dict[int, Any] = {}
+    axials: dict[Any, Any] = {}
+
+    def component(value: Any) -> Any:
+        parts = (value, getattr(value, "observer", 0.0), getattr(value, "backend", 0.0))
+        return tuple(
+            (part.dtype.str, part.shape, part.tobytes()) for part in map(np.asarray, parts)
+        )
+
+    def query(kx: Any, ky: Any, z: int, native_dkz: Any, order: int) -> Any:
+        if table.layout == "radial":
+            radial = np.hypot(as_disc(kx), as_disc(ky)) / table.dkr_cyc_um
+            axial_key = (component(z), component(native_dkz), component(order))
+            key = (component(radial), axial_key)
+            if key not in cache:
+                if order not in orders:
+                    h = as_disc(table.samples[order])
+                    orders[order] = (h.shape[1], h.reshape(-1))
+                k, values = orders[order]
+                if axial_key not in axials:
+                    t = as_disc(z) * native_dkz / table.dkz_cyc_um
+                    if t < 0:
+                        t += k
+                    j = int(np.floor(t))
+                    axials[axial_key] = (j, t - j, 0 if j == k - 1 else j + 1)
+                j, b, j1 = axials[axial_key]
+                i = int(np.floor(radial))
+                a = radial - i
+                cache[key] = radial_interpolate(values, k, i, j, a, b, j1)
+        else:
+            xy = (component(kx), component(ky))
+            key = (xy, component(z), component(native_dkz), component(order))
+            if key not in cache:
+                cache[key] = sample(table, kx, ky, z, native_dkz, order)
+        return cache[key]
+
+    return query
+
+
 def overlaps(
     bands: Any,
     table: Any,
@@ -430,6 +478,7 @@ def overlaps(
     *,
     omit: bool = False,
     threshold_choices: tuple[bool, ...] | None = None,
+    sampler: Any = None,
     **op: Any,
 ) -> dict[str, Any]:
     _, _, _, z, y, x = bands.input_shape
@@ -453,6 +502,7 @@ def overlaps(
     # Only a dedicated sensitivity proof supplies alternatives. Ordinary
     # callers still require every threshold decision to be certified.
     choices = None if threshold_choices is None else iter(threshold_choices)
+    sample_at = local_samples(table) if sampler is None else sampler
 
     def band(m: int, h: int, i: int, j: int) -> complex:
         value = (
@@ -490,10 +540,10 @@ def overlaps(
                 if omit and h == 0:
                     continue
                 first = b if side else a
-                h1 = sample(table, qxy[0], qxy[1], h, dzf, first)
+                h1 = sample_at(qxy[0], qxy[1], h, dzf, first)
                 if not threshold_survives((multiplier if side else 1) * abs(h1), choices=choices):
                     continue
-                h2 = sample(table, shifted[0], shifted[1], h, dzf, a if side else b)
+                h2 = sample_at(shifted[0], shifted[1], h, dzf, a if side else b)
                 if not threshold_survives((1 if side else multiplier) * abs(h2), choices=choices):
                     continue
                 fourier[side, h % z, i, j] = (
@@ -673,6 +723,20 @@ def reconstruct_expected(
     zlabels = (as_disc(np.arange(zo)) - zo // 2) * bands.dz_um / a
     filtered = bands.quadratures.copy()
     image = disc_zeros((tcount, zo, yo, xo))
+    # These finite-sum matrices and geometric declarations are unchanged by
+    # time, direction and order. Reuse their identical certified values locally.
+    ex = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(xo)) / xo, lift(x)))
+    ey = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(yo)) / yo, lift(y)))
+    ez = (
+        np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(zo)) / zo, lift(z)))
+        if bands.acquisition_mode != "2d"
+        else None
+    )
+    carrier_radius = np.linalg.norm(carriers[0])
+    carriers_vary = bool(np.any(as_disc(carriers).error > 0))
+    suppression_radius = op.get("suppression_radius_bins", 10.0) * min(dx, dy)
+    sample_at = local_samples(table)
+    inverse_noise: dict[Any, Any] = {}
     effective = []
     w = as_disc(op["wiener"])
     for t in range(tcount):
@@ -681,21 +745,22 @@ def reconstruct_expected(
         for d in range(dcount):
 
             def gain(e: int, m: int, r: float, h: int, time: int = t) -> float:
-                nv = bands.noise_variance_factors[time, e, m]
-                g = 1 / nv
-                sr = op.get("suppression_radius_bins", 10.0) * min(dx, dy)
+                noise_key = (time, e, m)
+                if noise_key not in inverse_noise:
+                    inverse_noise[noise_key] = 1 / bands.noise_variance_factors[time, e, m]
+                g = inverse_noise[noise_key]
                 if (
                     op.get("suppress_singularities", True)
-                    and r <= sr
+                    and r <= suppression_radius
                     and (
                         m > 0
                         or not (op.get("dampen_order0", False) or op.get("omit_order0", False))
                     )
                 ):
-                    g /= 1 + 1000 / (r * r + 0.2)
+                    g = g / (1 + 1000 / (r * r + 0.2))
                 elif m == 0 and op.get("dampen_order0", False):
                     assert cut[0] > 0
-                    g *= (r / radius) ** 2 + abs(h / cut[0]) ** 3
+                    g = g * ((r / radius) ** 2 + abs(h / cut[0]) ** 3)
                 elif m == 0 and op.get("omit_order0", False):
                     g = 0.0
                 if m == 0 and h == 0 and op.get("omit_kz0", False):
@@ -721,7 +786,7 @@ def reconstruct_expected(
                             if reflected:
                                 values = np.conj(values)
                             b = values[0] if m == 0 else values[2 * m - 1] + 1j * values[2 * m]
-                            h1 = sample(table, ix * dx, iy * dy, h, dzf, m)
+                            h1 = sample_at(ix * dx, iy * dy, h, dzf, m)
                             am = 1 if m == 0 else modulation[d, m - 1]
                             g = gain(d, m, r, h)
                             denominator = abs(h1) ** 2 * abs(am) ** 2 * g
@@ -736,9 +801,7 @@ def reconstruct_expected(
                                         continue
                                     qxy = kxy - n * carriers[e]
                                     qr = np.linalg.norm(qxy)
-                                    varying = bool(np.any(as_disc(carriers).error > 0)) and not (
-                                        m == 0 and n == 0
-                                    )
+                                    varying = carriers_vary and not (m == 0 and n == 0)
                                     if radial_decision(
                                         qr,
                                         radius,
@@ -746,15 +809,13 @@ def reconstruct_expected(
                                         varying=varying,
                                         label="other-order-support",
                                     ):
-                                        h2 = sample(table, qxy[0], qxy[1], h, dzf, abs(n))
+                                        h2 = sample_at(qxy[0], qxy[1], h, dzf, abs(n))
                                         an = 1 if n == 0 else modulation[e, abs(n) - 1]
                                         denominator += (
                                             abs(h2) ** 2 * abs(an) ** 2 * gain(e, abs(n), qr, h)
                                         )
                             denominator += w * w
-                            rho = np.linalg.norm(kxy) / (
-                                radius + np.linalg.norm(carriers[0]) * (o - 1)
-                            )
+                            rho = np.linalg.norm(kxy) / (radius + carrier_radius * (o - 1))
                             if cut[1] > 0:
                                 rho = sqrt(rho * rho + (abs(h) / cut[1]) ** 2)
                             rho = np.minimum(rho, 1.0)
@@ -793,15 +854,11 @@ def reconstruct_expected(
                 )
                 # Evaluate native Fourier polynomial at output points directly.
                 # This avoids sharing the product's embedding and FFT algorithm.
-                ex = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(xo)) / xo, lift(x)))
-                ey = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(yo)) / yo, lift(y)))
                 if bands.acquisition_mode == "2d":
                     u = disc_zeros((zo, yo, xo), dtype=complex)
                     u[0] = ey @ coefficients[0] @ ex.T
                 else:
-                    ez = np.exp(
-                        2j * certified_pi() * np.outer(as_disc(np.arange(zo)) / zo, lift(z))
-                    )
+                    assert ez is not None
                     u = np.tensordot(ez, coefficients, axes=(1, 0))
                     u = np.moveaxis(np.tensordot(ey, u, axes=(1, 1)), 0, 1)
                     u = np.moveaxis(np.tensordot(ex, u, axes=(1, 2)), 0, 2)
@@ -1239,17 +1296,19 @@ class Disc(np.ndarray):
 
     def __new__(cls, value: Any, observer: Any = 0.0, backend: Any = 0.0) -> Any:
         obj = np.asarray(value).view(cls)
-        oe = np.broadcast_to(observer, obj.shape).copy().astype(float)
-        be = np.broadcast_to(backend, obj.shape).copy().astype(float)
-        obj.observer = np.where(oe > 0, np.nextafter(oe, np.inf), oe)
-        obj.backend = np.where(be > 0, np.nextafter(be, np.inf), be)
+        oe = np.broadcast_to(observer, obj.shape).astype(float, order="C", copy=True)
+        be = np.broadcast_to(backend, obj.shape).astype(float, order="C", copy=True)
+        np.nextafter(oe, np.inf, out=oe, where=oe > 0)
+        np.nextafter(be, np.inf, out=be, where=be > 0)
+        obj.observer = oe
+        obj.backend = be
         return obj
 
     def __array_finalize__(self, source: Any) -> None:
         """Preserve independent uncertainty through this NumPy protocol."""
         if source is not None:
-            self.observer = getattr(source, "observer", np.zeros(self.shape))
-            self.backend = getattr(source, "backend", np.zeros(self.shape))
+            self.observer = source.observer if hasattr(source, "observer") else np.zeros(self.shape)
+            self.backend = source.backend if hasattr(source, "backend") else np.zeros(self.shape)
 
     @property
     def error(self) -> Any:
@@ -1266,7 +1325,7 @@ class Disc(np.ndarray):
         self.backend[index] = getattr(value, "backend", 0)
 
     def copy(self, order: Any = "C") -> Any:
-        return Disc(np.asarray(self).copy(order), self.observer.copy(), self.backend.copy())
+        return Disc(np.asarray(self).copy(order), self.observer, self.backend)
 
     def reshape(self, *shape: Any, **kwargs: Any) -> Any:
         return Disc(
@@ -1326,11 +1385,15 @@ class Disc(np.ndarray):
         }:
             return result
         obs = [
-            np.broadcast_to(getattr(x, "observer", 0), np.shape(v))
+            x.observer
+            if isinstance(x, Disc) and x.observer.shape == v.shape
+            else np.broadcast_to(getattr(x, "observer", 0), v.shape)
             for x, v in zip(inputs, values, strict=True)
         ]
         back = [
-            np.broadcast_to(getattr(x, "backend", 0), np.shape(v))
+            x.backend
+            if isinstance(x, Disc) and x.backend.shape == v.shape
+            else np.broadcast_to(getattr(x, "backend", 0), v.shape)
             for x, v in zip(inputs, values, strict=True)
         ]
         magnitude = [abs(x) for x in values]
@@ -1417,9 +1480,10 @@ class Disc(np.ndarray):
             rounding = np.full(np.shape(result), 4 * U)
         if operation is np.exp:
             rounding = np.full(np.shape(result), sqrt(2) * 4 * U) * np.exp(np.real(values[0]))
-        observer = propagate(obs) + rounding
+        propagated_observer = propagate(obs)
+        observer = propagated_observer + rounding
         total_input = [a + b for a, b in zip(obs, back, strict=True)]
-        backend = np.maximum(propagate(total_input) - propagate(obs), 0) + rounding
+        backend = np.maximum(propagate(total_input) - propagated_observer, 0) + rounding
         wrapped = Disc(result, observer, backend)
         if target is not None:
             destination = target[0]
@@ -2280,6 +2344,7 @@ def parameter_model(
         "cumulative-product": [],
     }
     builds = []
+    sample_at = local_samples(table)
     op = {k: settings[k] for k in optics()}
     for t, d in np.ndindex(tcount, dcount):
         search = settings.get("search_carriers", True) and (
@@ -2324,7 +2389,15 @@ def parameter_model(
             carriers[t, d] = carrier
             for b in range(1, orders):
                 built = overlaps(
-                    bands, table, carrier, (0, b), t, d, omit=settings.get("omit_kz0", False), **op
+                    bands,
+                    table,
+                    carrier,
+                    (0, b),
+                    t,
+                    d,
+                    omit=settings.get("omit_kz0", False),
+                    sampler=sample_at,
+                    **op,
                 )
                 fit = regression(built["spatial"], carrier, (0, b), bands.dxy_um)
                 builds.append(built)

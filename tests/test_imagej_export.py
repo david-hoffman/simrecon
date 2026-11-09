@@ -27,7 +27,9 @@ from imagej_export_fixture import (
     CANONICAL,
     NS,
     Acquisition,
+    CompiledObserver,
     assert_values,
+    compile_observer,
     decode_raw,
     exact_json_dumps,
     finite_json,
@@ -79,6 +81,11 @@ def api() -> Callable[..., Any]:
     candidate = getattr(simrecon, "export_imagej", None)
     assert callable(candidate), "IMAGEJ-EXPORT-01 requires public simrecon.export_imagej"
     return candidate
+
+
+@pytest.fixture(scope="session")
+def compiled_observer(tmp_path_factory: pytest.TempPathFactory) -> CompiledObserver:
+    return compile_observer(tmp_path_factory.mktemp("imagej-observer"))
 
 
 def input_info(
@@ -537,7 +544,7 @@ AXES = [
     ],
 )
 def test_every_setting_file_raw_and_imageplus(
-    tmp_path: Path, api: Callable[..., Any], spec: Acquisition
+    tmp_path: Path, api: Callable[..., Any], spec: Acquisition, compiled_observer: CompiledObserver
 ) -> None:
     source, info, config = input_info(tmp_path, spec)
     config_before, descriptor_before = copy.deepcopy(config), copy.deepcopy(info)
@@ -575,7 +582,7 @@ def test_every_setting_file_raw_and_imageplus(
         f"axes{'_'.join(spec.plane_axes) or 'absent'}",
     )
     assert_carrier(destination, source, spec, info)
-    record = observe(destination, tmp_path / "reader")
+    record = observe(destination, tmp_path / "reader", compiled_observer)
     assert_observer(record, destination, spec, info)
     persist_observation(
         record,
@@ -594,7 +601,7 @@ def test_every_setting_file_raw_and_imageplus(
 
 @pytest.mark.parametrize("endian", ["little", "big"])
 def test_overrides_and_nonfinite_source_words_are_retained(
-    tmp_path: Path, api: Callable[..., Any], endian: str
+    tmp_path: Path, api: Callable[..., Any], endian: str, compiled_observer: CompiledObserver
 ) -> None:
     # Both are valid source files with positive explicit resolved sampling.
     # Exact decoded binary32 source words and copied old/new provenance retain
@@ -638,7 +645,7 @@ def test_overrides_and_nonfinite_source_words_are_retained(
         persist_report_observation(
             report, source, output, config, spec, info, f"source-words-{label}-{endian}"
         )
-        record = observe(output, case / "reader")
+        record = observe(output, case / "reader", compiled_observer)
         assert_observer(record, output, spec, info)
         persist_observation(record, source, output, config, f"{label}-header-{endian}")
 
@@ -736,7 +743,11 @@ def test_scale_float32_underflow_overflow(
     + [(2.0**-149, "y"), (float.fromhex("0x1.fffffep+127"), "z")],
 )
 def test_scale_positive_float32_limits_and_binary64_precision(
-    tmp_path: Path, api: Callable[..., Any], value: float, axis: str
+    tmp_path: Path,
+    api: Callable[..., Any],
+    value: float,
+    axis: str,
+    compiled_observer: CompiledObserver,
 ) -> None:
     spec = Acquisition(
         plane_axes=("z",),
@@ -751,7 +762,7 @@ def test_scale_positive_float32_limits_and_binary64_precision(
     assert_limitations_representation(report)
     persist_report_observation(report, source, output, config, spec, info, f"scale-{axis}")
     assert_carrier(output, source, spec, info)
-    record = observe(output, tmp_path / "reader")
+    record = observe(output, tmp_path / "reader", compiled_observer)
     assert_observer(record, output, spec, info)
     persist_observation(record, source, output, config, "representable-scale")
 
@@ -859,7 +870,7 @@ def cli(
 
 
 def test_cli_success_matches_library_report_and_actual_reader(
-    tmp_path: Path, api: Callable[..., Any]
+    tmp_path: Path, api: Callable[..., Any], compiled_observer: CompiledObserver
 ) -> None:
     spec = Acquisition(
         plane_axes=("phase", "orientation"),
@@ -924,7 +935,7 @@ def test_cli_success_matches_library_report_and_actual_reader(
     )
     assert_values(report["limitations"], list(other.limitations))
     assert_carrier(output, source, spec, info)
-    record = observe(output, tmp_path / "reader")
+    record = observe(output, tmp_path / "reader", compiled_observer)
     assert_observer(record, output, spec, info)
     persist_observation(record, source, output, config, "cli-success")
 

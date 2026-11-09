@@ -1,35 +1,122 @@
-# Test apparatus optimization — incomplete handoff
+# Test apparatus optimization
 
 ## Current state
 
-**Incomplete; discovery only. No optimization, full baseline, acceptance review,
-or final verification has completed. No PR is ready.** The user explicitly
-authorized pushing this handoff branch to continue in a new cloud container.
-This is the pre-PR incomplete-backup exception in `AGENTS.md`, not a waiver of
-the full-local submission gate.
+**Frozen verification pointer.** This record is prepared before exact-candidate
+canonical verification. Final commit/tree, full-run results, final independent
+reviews, remote-base check, cleanup and PR status belong in the associated PR and
+conversation, outside verified tracked bytes. Any failed/missing required check
+or unmet **600-second canonical `make verify` goal** blocks submission.
 
-The requested goal is aggressive removal of equivalent test/fixture work while
-preserving current C-equivalent scientific contracts and numerical behavior.
-The user added a target of **total test time below 10 minutes**; the coordinator
-adopted the stricter target of canonical `make verify` below **600 seconds**, with
-pytest time reported separately. No total task, review, scenario, token or money
-budget was set. Do not invoke Superpowers. Do not merge.
+The user authorizes measured apparatus optimization, all required focused/full
+checks and fresh independent roles, preservation/cleanup, push and a new PR.
+Do not invoke Superpowers, import PR83 changes, weaken rigor/change C-equivalent
+science, reopen PR83 or merge. No total task/review/scenario/token/money cap is set.
+The handoff branch/commit `db5dae9abc06a54e78d31d9cbec46465d55068ae` is preserved;
+continuation branch is `codex/test-apparatus-optimization`.
 
-The sole execution blocker is the active cloud instance's network policy. Pinned
-reader preparation failed with proxy `403 Forbidden`. These hosts are required:
+The new container applies the required host policy. Fresh probes reached both
+reader-download sites (200) and OSV's query endpoint (405 for GET); authenticated
+reader preparation and the mandatory real vulnerability audit passed. Initial
+sandbox proxy failures were repaired by the documented managed-proxy execution
+route. Pinned preflight passed (uv 0.12.19, Python 3.13.12, Temurin 21.0.7+6,
+isolated Hatchling 1.32.4). Remote main initially equaled the required baseline;
+publication must recheck it without substituting the measurement baseline.
 
-- `downloads.openmicroscopy.org`: pinned Bio-Formats jar.
-- `sites.imagej.net`: pinned ImageJ jar.
-- `api.osv.dev`: mandatory vulnerability audit.
+The first actual clean exact-baseline full gate passed at
+`edcf53b5d5c0f494c388944d3cfda5c04b9fda97`, tree
+`0fa2edf2df263fa08110daa26ceb22c847b2900b`, unchanged during verification:
+**2287.89 s outer, 2243.177 s pytest, 3087 passed, all 13 phases**.
+All 723 declarations have native cases. The old 3095 estimate overcounted two
+indirect-fixture parameter sets by 5 and 3; the generated family has 68 cases.
+[Portable baseline, keeper, review and qualification evidence](../reports/test-apparatus-audit/resume/)
+retains exact counters, hashes and limitations. Raw baseline logs, trace, native
+JSON/HTML/database and wheel remain in ignored `artifacts/test-apparatus-audit/baseline/`.
+Original audit ledgers and PR83 historical accounting remain untouched.
 
-The user reported publishing the environment configuration. Fresh status still
-showed running revision `1`, enforced policy, and no added hosts; fresh HTTP
-connections were still denied. Available tools exposed status/diagnostics but
-no environment restart or policy mutation. A new instance must actually apply
-the published settings. Do not bypass the proxy, weaken reader authentication,
-omit the audit, or treat publication as proof of connectivity.
+Science is high risk: fresh blind A completed two coherent fixture/test rounds;
+fresh blind B1 and B2 independently accepted their exact checkpoints. The final
+14-suite proof is **1062 passed / 18 warnings / 387.00 s**, with unchanged checked
+hashes. Round 1 was 1083 passed / 578.07 s; retain that charge. Five scientific
+files changed; all scientific product code, independent CE08 suites/oracles and
+real example remain byte-identical. No product C work was needed or invented.
+The final exact-query keys/local interpolation/noise-inverse reuse retain nominal
+and separate observer/backend bits, scalar arithmetic and on-demand expectations.
+Twenty clock-label examples now share five control invocations; six drift
+assertion sets move into their same-case complete-workflow keepers. All 26 logical
+examples and assertion ASTs remain; physical scope becomes 187 declarations /
+1062 nodes, expected global **722 declarations / 3066 nodes**. The original 723
+obligations map to 721 self-retainers plus these two explicit consolidation maps.
+The other four conditional discovery proposals were not applied.
 
-## Exact starting point and authority
+A separate bounded worker owns the grouping and Java harness. Exactly two workers,
+loadgroup, no restart, serial fallback, reader/cache affinity and omission guards
+are preserved. Composition shares an early group with two cheap validation files;
+remaining allowed scientific files retain independent groups. The unchanged Java
+observer compiles once per worker-owned pytest session, with all **20 genuine
+fresh reader JVM observations** and original assertions/parameter rows retained.
+Reader/sibling proof: 117 passed / 53.57 s; group keepers: 11 passed / 7.50 s.
+Real two-worker/five-child qualification preserved all eight native shards through
+fixture cleanup and canonical combine; its 28-file fixture-copy scope does not
+replace the canonical **30-owned-file** JSON/HTML requirement. Makefile, all 13
+phases, lock/dependencies, workflows, coverage policy/reports and M25's unchanged
+33554432-byte limit remain binding. Final fresh D plus bounded review include the
+independent preservation sweep after the exact full gate.
+
+Canonical `make check` now passes locked setup, lint, format and all-file Pyright.
+Its earlier run failed two fixture optional-matrix type diagnostics; A corrected
+the guarded type path. The three A-local type-wrapper import failures are tooling
+charges, not scientific defects. No valid product-red was claimed or manufactured.
+Supplemental numeric/error/certificate comparisons pass. A newly added invalid
+nonfinite private probe emits 6 old versus 4 new duplicate warnings with identical
+distinct categories/messages/locations; all counts are retained, no warning filter
+or public product behavior changed, and B2 independently reviewed this limit.
+
+Cumulative known roles: four preserved discovery launches plus bounded worker,
+blind A (two continued author rounds), exporter and two fresh B launches. B1 and
+B2 each accepted once with zero candidate review corrections; B1 corrected one
+own invalid-probe assumption. Generic policy text (B1) and infrastructure-only
+completion metadata (B2) were overread without scientific implementation/history/
+oracle exposure; disclosures are retained. Final D/bounded rounds and actual final
+run tallies are recorded externally after this frozen pointer. Historical PR83
+rounds/costs remain unknown, not zero. Every earlier charge below remains.
+
+Other resumed charges: one passed preflight and full baseline; one pre-verifier
+instrumentation launch failed (GNU time missing); absent sudo and one package-URL
+404 preceded local official-Debian GNU-time extraction. Initial three sandbox
+host probes and one fetch failed, then managed-proxy probes/fetches succeeded.
+A retained three first-round qualifier passes, one profiled and one unprofiled
+long-case pass; one unsupported reciprocal probe and one lint-only correction.
+Round 2 corrected an assumed unsafe but valid flat-address input and diagnosed
+6/4 duplicate private warnings before transparent equivalence reporting. Bounded
+rounds retain the initial sandbox dependency fetch failure, two native collector
+analysis corrections, one C-escape decoder correction, provisional caller-count
+and 28/30-file scope corrections, and type-tool lookup repair. Role reports retain
+individual commands. Actual served models, per-role tokens/cache/cost, complete
+elapsed and owner-wait totals are unknown; requested roles used Sol/high. Do not
+add overlapping durations, erase attempts or infer a default allowance.
+
+Baseline/final profiling uses the same exact-argv external uv wrapper (top-level
+only durations/JUnit), strace 6.13 seccomp execve tracing and locally extracted GNU
+time. Nested argv/checks are unchanged. Single runs, warmer candidate caches,
+worker concurrency and instrumentation overhead limit timing attribution. Final
+same-run M25 and native integer/platform/report limits must be reported externally;
+no stale evidence or second M25 run solely to retrieve numbers is allowed.
+
+Cleanup already removed the bounded worker's confirmed disposable qualification
+suites/temp and 739 MiB reader/class scratch after durable exports; no owned
+worker process remains. Keep current checkout, tracked fixtures, original data,
+shared environments/caches/JDK/jars, all durable audit evidence and uncertain
+references. Completion housekeeping and final review/verification results go in
+the PR/conversation without mutating this exact-candidate pointer.
+
+## Preserved handoff record
+
+The sections below retain the original instance's discovery, resume instructions
+and cumulative charges. Their incomplete/unknown statements describe that
+historical handoff; the sole current status is above.
+
+### Exact starting point and authority
 
 Repository: `https://github.com/david-hoffman/simrecon`.
 
@@ -61,7 +148,7 @@ full-local gate, roles and blindness remain binding. Learn selectively from
 [PR56](https://github.com/david-hoffman/simrecon/pull/56). Existing two-worker
 flags and prior shell-dispatch delivery consolidation are already present.
 
-## Completed read-only discovery
+### Completed read-only discovery
 
 Four fresh, nonblind, nondelegating agents used requested `gpt-6.1-sol` / high
 settings under project model-selection guidance. They are inventory/accounting,
@@ -114,7 +201,7 @@ compensated direct transforms, physical/quantization checks, shapes and hashes
 remain intact. `examples/reconstruct_simulated.py` is a real caller of CE08 test
 support. Do not restore retired science or substitute precomputed old snapshots.
 
-## Resume sequence and role ownership
+### Resume sequence and role ownership
 
 1. Read this coordinator handoff on `codex/test-apparatus-edcf53b`. Confirm the
    branch descends from the required commit and contains only handoff evidence.
@@ -158,7 +245,7 @@ support. Do not restore retired science or substitute precomputed old snapshots.
 8. Follow repository completion housekeeping; recheck origin/base; push the final
    passing branch and open a new PR. Do not reopen PR83, cherry-pick it or merge.
 
-## Evidence, accounting and cleanup
+### Evidence, accounting and cleanup
 
 Current attempt: one preflight run failed during authenticated reader setup;
 separate interpreter/import and isolated hatchling 1.32.4 health checks passed.

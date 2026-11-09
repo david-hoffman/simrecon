@@ -13,6 +13,7 @@ from c_acquisition_fixture import (
     disc_empty,
     known_options,
     lift,
+    local_samples,
     matrix,
     one_time,
     optics,
@@ -34,9 +35,10 @@ def independent_factors(bands: Any, table: Any, carriers: Any, **op: Any) -> Any
     tcount, dcount, _, _, _, _ = bands.input_shape
     o = bands.noise_variance_factors.shape[-1]
     result = disc_empty((tcount, dcount, o - 1), dtype=complex)
+    sample_at = local_samples(table)
     for t, d in np.ndindex(tcount, dcount):
         for b in range(1, o):
-            overlap = overlaps(bands, table, carriers[d], (0, b), t, d, **op)
+            overlap = overlaps(bands, table, carriers[d], (0, b), t, d, sampler=sample_at, **op)
             result[t, d, b - 1] = regression(overlap["spatial"], carriers[d], (0, b), bands.dxy_um)[
                 "forward"
             ]

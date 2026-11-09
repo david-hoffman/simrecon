@@ -15,7 +15,6 @@ from c_workflow_oracle import (
     b3_cases,
     constant_case,
     control_cases,
-    empirical,
     error_budget,
     filter_and_assemble,
     gamma,
@@ -41,6 +40,14 @@ CASES = (
     + tuple(b2_cases())
     + tuple(b3_cases())
 )
+DRIFT_CONSUMPTION_CASES = (
+    "between-current-background",
+    "within2d-unfitted",
+    "within2d-fitted",
+    "within3d-cubic-first-block",
+    "within2d-exact-cubic-impulses",
+    "within3d-exact-cubic-impulses",
+)
 
 
 @pytest.mark.parametrize("name", CASES)
@@ -60,6 +67,8 @@ def test_complete_actual_workflow_against_raw_finite_observer(name: str) -> None
     result = run(case)
     budget = assert_scientific(case, result, expected)
     assert_records(case, result)
+    if name in DRIFT_CONSUMPTION_CASES:
+        assert_drift_consumption(case, result, expected, budget)
     if name in b3_cases():
         settings = dict(result.resolved_settings)
         for group, values in (
@@ -163,7 +172,7 @@ def test_complete_actual_workflow_against_raw_finite_observer(name: str) -> None
     if case.acquisition["acquisition_mode"] == "2d" and case.acquisition["axial_zoom"] > 1:
         np.testing.assert_array_equal(result.image[:, 1:], 0)
     if case.bead is not None:
-        truth = empirical(*case.bead)
+        truth = expected["calibration"]
         close(
             result.transfer.samples,
             truth["table"].samples,
@@ -234,7 +243,8 @@ def test_closed_algebra_actual_modulation_and_image(complex_table: bool) -> None
 def test_literal_finite_search_decisions_and_frozen_overlaps(name: str) -> None:
     case = control_cases()[name]
     expected = observe(case)
-    bounds = error_budget(case, expected)["parameter_bounds"]
+    budget = error_budget(case, expected)
+    bounds = budget["parameter_bounds"]
     result = run(case)
     events = result.parameters.trace
     coarse = [event for event in events if event.kind == "coarse"]
@@ -281,7 +291,7 @@ def test_literal_finite_search_decisions_and_frozen_overlaps(name: str) -> None:
         )
         assert (
             np.max(abs(result.parameters.modulation[1] - result.parameters.modulation[0]))
-            > 10 * error_budget(case, expected)["modulation"]
+            > 10 * budget["modulation"]
         )
 
 
@@ -392,8 +402,8 @@ def test_raw_and_precomputed_empirical_paths_preserve_computed_domain(z: int) ->
     before = prepared_snapshot_expectation(supplied)
     raw = run(case)
     precomputed = run(case, selection="accepted-transfer", overrides=kwargs)
-    assert_scientific(case, raw, truth)
-    assert_scientific(case, precomputed, truth)
+    assert_scientific(case, raw, truth, budget=budget)
+    assert_scientific(case, precomputed, truth, budget=budget)
     assert_prepared_snapshot(precomputed.calibration, supplied, before)
     np.testing.assert_array_equal(
         precomputed.calibration.transfer.samples, precomputed.transfer.samples
@@ -486,27 +496,16 @@ def test_positive_wiener_schedule_and_no_time_slice_reprepare() -> None:
     assert result.parameters.branches == (("known",), ("known",))
 
 
-@pytest.mark.parametrize(
-    "name",
-    [
-        "between-current-background",
-        "within2d-unfitted",
-        "within2d-fitted",
-        "within3d-cubic-first-block",
-        "within2d-exact-cubic-impulses",
-        "within3d-exact-cubic-impulses",
-    ],
-)
-def test_drift_records_are_really_consumed_in_native_output(name: str) -> None:
+def assert_drift_consumption(
+    case: Any, result: Any, expected: dict[str, Any], budget: dict[str, Any]
+) -> None:
     """Prove stage consumption separately from the raw absolute error envelope.
 
     Genuine stage values condition this independent native-filter/assembly
     relation. They are not a new absolute raw-to-image oracle. The companion
     raw finite-sum test and exact cubic impulse controls supply that proof.
     """
-    case = control_cases()[name]
-    expected = observe(case)
-    result = run(case)
+    name = case.name
     prep = dict(expected["preparation"])
     prep["quadratures"] = result.bands.quadratures.copy()
     prep["noise_variance_factors"] = result.bands.noise_variance_factors.copy()
@@ -534,7 +533,6 @@ def test_drift_records_are_really_consumed_in_native_output(name: str) -> None:
         truth = np.array(
             [[0.0, 0.0], [0.0, 0.0], [1.0 if name.startswith("within2d") else 1 / 216, 0.0]]
         )
-        budget = error_budget(case, expected)
         close(
             dict(events[0].details)["coefficients"],
             truth,

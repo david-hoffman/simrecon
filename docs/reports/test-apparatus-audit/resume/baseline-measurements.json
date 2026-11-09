@@ -1,0 +1,516 @@
+{
+  "baseline_commit": "edcf53b5d5c0f494c388944d3cfda5c04b9fda97",
+  "baseline_tree": "0fa2edf2df263fa08110daa26ceb22c847b2900b",
+  "overall_wall_seconds": 2287.89,
+  "pytest_wall_seconds": 2243.177,
+  "test_cases": 3087,
+  "test_declarations": 723,
+  "result": "passed",
+  "phases": [
+    {
+      "name": "sync",
+      "returncode": 0,
+      "elapsed_seconds": 0.83278
+    },
+    {
+      "name": "coverage-clean",
+      "returncode": 0,
+      "elapsed_seconds": 0.163122
+    },
+    {
+      "name": "lint",
+      "returncode": 0,
+      "elapsed_seconds": 0.079598
+    },
+    {
+      "name": "format",
+      "returncode": 0,
+      "elapsed_seconds": 0.074488
+    },
+    {
+      "name": "types",
+      "returncode": 0,
+      "elapsed_seconds": 27.716953
+    },
+    {
+      "name": "tests",
+      "returncode": 0,
+      "elapsed_seconds": 2244.917994
+    },
+    {
+      "name": "coverage-combine",
+      "returncode": 0,
+      "elapsed_seconds": 1.411229
+    },
+    {
+      "name": "coverage-json",
+      "returncode": 0,
+      "elapsed_seconds": 0.580818
+    },
+    {
+      "name": "coverage-html",
+      "returncode": 0,
+      "elapsed_seconds": 0.996478
+    },
+    {
+      "name": "coverage-report",
+      "returncode": 0,
+      "elapsed_seconds": 0.46223
+    },
+    {
+      "name": "wheel",
+      "returncode": 0,
+      "elapsed_seconds": 0.899487
+    },
+    {
+      "name": "wheel-import",
+      "returncode": 0,
+      "elapsed_seconds": 2.752795
+    },
+    {
+      "name": "audit",
+      "returncode": 0,
+      "elapsed_seconds": 0.838938
+    }
+  ],
+  "file_durations": [
+    {
+      "file": "tests/test_c_acquisition_composition.py",
+      "setup": 0.05,
+      "call": 1076.05,
+      "teardown": 0.0,
+      "total_seconds": 1076.1
+    },
+    {
+      "file": "tests/test_c_acquisition_filter.py",
+      "setup": 0.0,
+      "call": 146.7899999999999,
+      "teardown": 0.0,
+      "total_seconds": 146.7899999999999
+    },
+    {
+      "file": "tests/test_c_acquisition_transfer.py",
+      "setup": 0.0,
+      "call": 118.80000000000003,
+      "teardown": 0.0,
+      "total_seconds": 118.80000000000003
+    },
+    {
+      "file": "tests/test_c_workflow_records.py",
+      "setup": 0.0,
+      "call": 98.80000000000013,
+      "teardown": 0.0,
+      "total_seconds": 98.80000000000013
+    },
+    {
+      "file": "tests/test_verification_evidence_outputs.py",
+      "setup": 2.6899999999999995,
+      "call": 95.45,
+      "teardown": 0.0,
+      "total_seconds": 98.14
+    },
+    {
+      "file": "tests/test_shared_node_baseline_public_callers.py",
+      "setup": 0.0,
+      "call": 77.50999999999998,
+      "teardown": 0.0,
+      "total_seconds": 77.50999999999998
+    },
+    {
+      "file": "tests/test_c_workflow_numerical.py",
+      "setup": 0.0,
+      "call": 76.60000000000004,
+      "teardown": 0.0,
+      "total_seconds": 76.60000000000004
+    },
+    {
+      "file": "tests/test_c_acquisition_2d.py",
+      "setup": 0.02,
+      "call": 66.26000000000003,
+      "teardown": 0.0,
+      "total_seconds": 66.28000000000003
+    },
+    {
+      "file": "tests/test_imagej_export.py",
+      "setup": 0.0,
+      "call": 56.47999999999995,
+      "teardown": 0.0,
+      "total_seconds": 56.47999999999995
+    },
+    {
+      "file": "tests/test_verification_receipt.py",
+      "setup": 3.0700000000000016,
+      "call": 51.65000000000001,
+      "teardown": 0.0,
+      "total_seconds": 54.72000000000001
+    },
+    {
+      "file": "tests/test_measurements_export.py",
+      "setup": 3.6699999999999986,
+      "call": 41.559999999999995,
+      "teardown": 0.0,
+      "total_seconds": 45.23
+    },
+    {
+      "file": "tests/test_c_acquisition_drift.py",
+      "setup": 0.0,
+      "call": 40.31000000000001,
+      "teardown": 0.0,
+      "total_seconds": 40.31000000000001
+    },
+    {
+      "file": "tests/test_c_acquisition_preparation.py",
+      "setup": 0.03,
+      "call": 34.95000000000002,
+      "teardown": 0.0,
+      "total_seconds": 34.98000000000002
+    },
+    {
+      "file": "tests/test_c_acquisition_fitted_drift.py",
+      "setup": 0.0,
+      "call": 33.480000000000004,
+      "teardown": 0.0,
+      "total_seconds": 33.480000000000004
+    },
+    {
+      "file": "tests/test_verification_output_protection.py",
+      "setup": 1.4300000000000004,
+      "call": 27.129999999999995,
+      "teardown": 0.0,
+      "total_seconds": 28.559999999999995
+    },
+    {
+      "file": "tests/test_shared_node_baseline_external_native_evidence.py",
+      "setup": 0.0,
+      "call": 25.04,
+      "teardown": 0.0,
+      "total_seconds": 25.04
+    },
+    {
+      "file": "tests/test_source_free_check.py",
+      "setup": 0.0,
+      "call": 17.099999999999998,
+      "teardown": 0.0,
+      "total_seconds": 17.099999999999998
+    },
+    {
+      "file": "tests/test_shared_node_baseline_infrastructure.py",
+      "setup": 0.0,
+      "call": 15.430000000000021,
+      "teardown": 0.0,
+      "total_seconds": 15.430000000000021
+    },
+    {
+      "file": "tests/test_c_independent_large_recovery.py",
+      "setup": 0.0,
+      "call": 14.81,
+      "teardown": 0.0,
+      "total_seconds": 14.81
+    },
+    {
+      "file": "tests/test_shared_node_baseline_infrastructure_supplement.py",
+      "setup": 0.0,
+      "call": 14.770000000000003,
+      "teardown": 0.0,
+      "total_seconds": 14.770000000000003
+    },
+    {
+      "file": "tests/test_c_acquisition_boundary.py",
+      "setup": 0.0,
+      "call": 12.61999999999994,
+      "teardown": 0.0,
+      "total_seconds": 12.61999999999994
+    },
+    {
+      "file": "tests/test_shared_node_baseline_diagnostic_metadata.py",
+      "setup": 0.0,
+      "call": 9.640000000000006,
+      "teardown": 0.0,
+      "total_seconds": 9.640000000000006
+    },
+    {
+      "file": "tests/test_delivery_preflight.py",
+      "setup": 0.0,
+      "call": 8.12,
+      "teardown": 0.0,
+      "total_seconds": 8.12
+    },
+    {
+      "file": "tests/test_mrc_conversion.py",
+      "setup": 0.0,
+      "call": 6.96,
+      "teardown": 0.0,
+      "total_seconds": 6.96
+    },
+    {
+      "file": "tests/test_parallel_runner.py",
+      "setup": 0.0,
+      "call": 6.619999999999999,
+      "teardown": 0.0,
+      "total_seconds": 6.619999999999999
+    },
+    {
+      "file": "tests/test_verification_wheel_hashes.py",
+      "setup": 0.29,
+      "call": 6.22,
+      "teardown": 0.0,
+      "total_seconds": 6.51
+    },
+    {
+      "file": "tests/test_shared_node_baseline_compatibility.py",
+      "setup": 0.0,
+      "call": 6.1499999999999995,
+      "teardown": 0.0,
+      "total_seconds": 6.1499999999999995
+    },
+    {
+      "file": "tests/test_c_known_assembly.py",
+      "setup": 0.0,
+      "call": 5.489999999999998,
+      "teardown": 0.0,
+      "total_seconds": 5.489999999999998
+    },
+    {
+      "file": "tests/test_test_run.py",
+      "setup": 0.0,
+      "call": 4.840000000000001,
+      "teardown": 0.0,
+      "total_seconds": 4.840000000000001
+    },
+    {
+      "file": "tests/test_c_known_filter.py",
+      "setup": 0.0,
+      "call": 3.8399999999999945,
+      "teardown": 0.0,
+      "total_seconds": 3.8399999999999945
+    },
+    {
+      "file": "tests/test_c_workflow_00_known.py",
+      "setup": 0.0,
+      "call": 3.74,
+      "teardown": 0.0,
+      "total_seconds": 3.74
+    },
+    {
+      "file": "tests/test_mrc_conversion_coverage.py",
+      "setup": 0.06,
+      "call": 3.13,
+      "teardown": 0.0,
+      "total_seconds": 3.19
+    },
+    {
+      "file": "tests/test_c_equivalence_retirement.py",
+      "setup": 1.15,
+      "call": 1.93,
+      "teardown": 0.0,
+      "total_seconds": 3.08
+    },
+    {
+      "file": "tests/test_delivery.py",
+      "setup": 0.0,
+      "call": 2.7299999999999995,
+      "teardown": 0.0,
+      "total_seconds": 2.7299999999999995
+    },
+    {
+      "file": "tests/test_c_estimation_search.py",
+      "setup": 0.0,
+      "call": 1.8900000000000001,
+      "teardown": 0.0,
+      "total_seconds": 1.8900000000000001
+    },
+    {
+      "file": "tests/test_c_estimation_composition.py",
+      "setup": 0.0,
+      "call": 1.6700000000000002,
+      "teardown": 0.0,
+      "total_seconds": 1.6700000000000002
+    },
+    {
+      "file": "tests/test_imagej_reader_setup.py",
+      "setup": 0.01,
+      "call": 1.4500000000000004,
+      "teardown": 0.0,
+      "total_seconds": 1.4600000000000004
+    },
+    {
+      "file": "tests/test_mrc_conversion_keys.py",
+      "setup": 0.0,
+      "call": 0.99,
+      "teardown": 0.0,
+      "total_seconds": 0.99
+    },
+    {
+      "file": "tests/test_c_independent_small_controls.py",
+      "setup": 0.0,
+      "call": 0.75,
+      "teardown": 0.0,
+      "total_seconds": 0.75
+    },
+    {
+      "file": "tests/test_c_known_boundary.py",
+      "setup": 0.0,
+      "call": 0.7200000000000004,
+      "teardown": 0.0,
+      "total_seconds": 0.7200000000000004
+    },
+    {
+      "file": "tests/test_c_otf.py",
+      "setup": 0.02,
+      "call": 0.5400000000000001,
+      "teardown": 0.0,
+      "total_seconds": 0.5600000000000002
+    },
+    {
+      "file": "tests/test_c_estimation_overlap.py",
+      "setup": 0.0,
+      "call": 0.55,
+      "teardown": 0.0,
+      "total_seconds": 0.55
+    },
+    {
+      "file": "tests/test_shared_node_baseline_public_failures.py",
+      "setup": 0.0,
+      "call": 0.55,
+      "teardown": 0.0,
+      "total_seconds": 0.55
+    },
+    {
+      "file": "tests/test_coverage_combine_integrity.py",
+      "setup": 0.0,
+      "call": 0.45999999999999996,
+      "teardown": 0.0,
+      "total_seconds": 0.45999999999999996
+    },
+    {
+      "file": "tests/test_c_estimation_boundary.py",
+      "setup": 0.0,
+      "call": 0.34000000000000014,
+      "teardown": 0.0,
+      "total_seconds": 0.34000000000000014
+    },
+    {
+      "file": "tests/test_c_preparation.py",
+      "setup": 0.0,
+      "call": 0.32000000000000006,
+      "teardown": 0.0,
+      "total_seconds": 0.32000000000000006
+    },
+    {
+      "file": "tests/test_c_independent_matched_recovery.py",
+      "setup": 0.0,
+      "call": 0.26,
+      "teardown": 0.0,
+      "total_seconds": 0.26
+    },
+    {
+      "file": "tests/test_raw_acquisition_declarations.py",
+      "setup": 0.0,
+      "call": 0.21000000000000005,
+      "teardown": 0.0,
+      "total_seconds": 0.21000000000000005
+    },
+    {
+      "file": "tests/test_c_otf_validation.py",
+      "setup": 0.0,
+      "call": 0.060000000000000005,
+      "teardown": 0.0,
+      "total_seconds": 0.060000000000000005
+    },
+    {
+      "file": "tests/test_c_workflow_validation.py",
+      "setup": 0.0,
+      "call": 0.04,
+      "teardown": 0.0,
+      "total_seconds": 0.04
+    },
+    {
+      "file": "tests/test_c_workflow_compatibility.py",
+      "setup": 0.0,
+      "call": 0.02,
+      "teardown": 0.0,
+      "total_seconds": 0.02
+    },
+    {
+      "file": "tests/test_c_workflow_failures.py",
+      "setup": 0.0,
+      "call": 0.0,
+      "teardown": 0.0,
+      "total_seconds": 0.0
+    }
+  ],
+  "coverage": {
+    "global": {
+      "statements": {
+        "covered": 4783,
+        "total": 4919
+      },
+      "branches": {
+        "covered": 1845,
+        "total": 1952
+      }
+    },
+    "packages": {
+      "simrecon": {
+        "statements": {
+          "covered": 4031,
+          "total": 4166
+        },
+        "branches": {
+          "covered": 1542,
+          "total": 1648
+        }
+      },
+      "scripts": {
+        "statements": {
+          "covered": 752,
+          "total": 753
+        },
+        "branches": {
+          "covered": 303,
+          "total": 304
+        }
+      }
+    },
+    "native_totals": {
+      "covered_lines": 4783,
+      "num_statements": 4919,
+      "percent_covered": 96.46339688546063,
+      "percent_covered_display": "96",
+      "missing_lines": 136,
+      "excluded_lines": 0,
+      "percent_statements_covered": 97.23521040861964,
+      "percent_statements_covered_display": "97",
+      "num_branches": 1952,
+      "num_partial_branches": 91,
+      "covered_branches": 1845,
+      "missing_branches": 107,
+      "percent_branches_covered": 94.51844262295081,
+      "percent_branches_covered_display": "95"
+    },
+    "file_count": 30,
+    "owned_file_count": 30,
+    "receipt_counters_match": true
+  },
+  "measurements": {
+    "schema": "org.simrecon.measurements",
+    "version": 1,
+    "run_id": "f0717037-66cc-4113-bf2b-da13417b809f",
+    "measurements": {
+      "M25": {
+        "baseline": 134084,
+        "peak": 134084,
+        "units": "KiB",
+        "increment_bytes": 0,
+        "limit_bytes": 33554432
+      }
+    }
+  },
+  "successful_execve_events": 15328,
+  "real_jdk_execs": 76,
+  "limits": [
+    "One observed run; no performance comparison or statistical claim.",
+    "Exporter checks presence and selected internal consistency; it does not replace native verification validation.",
+    "Native printed precision; summed worker durations are not elapsed wall time. IDs retained verbatim."
+  ]
+}
