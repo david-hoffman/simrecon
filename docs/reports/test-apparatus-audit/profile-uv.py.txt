@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+"""Export top-level pytest timing only; leave nested commands unchanged."""
+import os
+import sys
+from pathlib import Path
+
+uv = "/workspace/.simrecon-tools/uv-env/bin/uv"
+arguments = sys.argv[1:]
+top_level_tests = [
+    "run", "--locked", "coverage", "run", "-m", "pytest",
+    "-n", "2", "--dist=loadgroup", "--max-worker-restart=0",
+]
+if arguments == top_level_tests:
+    output = Path(os.environ["SIMRECON_AUDIT_PROFILE_DIR"]).resolve()
+    arguments += [
+        "--durations=0", "--durations-min=0",
+        f"--junitxml={output / 'junit.xml'}",
+    ]
+os.execv(uv, [uv, *arguments])

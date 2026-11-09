@@ -1,0 +1,12 @@
+"uv" sync --locked --all-groups
+Resolved 29 packages in 4ms
+   Building simrecon @ file:///workspace/simrecon
+      Built simrecon @ file:///workspace/simrecon
+Prepared 1 package in 1.06s
+Uninstalled 1 package in 1ms
+Installed 1 package in 0.73ms
+ ~ simrecon==0.1.0 (from file:///workspace/simrecon)
+"uv" run --locked --no-sync python scripts/prepare_imagej_reader.py
+Reader preparation failed: bioformats_package.jar: download failed (1): Reader preparation failed: <urlopen error Tunnel connection failed: 403 Forbidden>
+
+make: *** [Makefile:20: sync] Error 1
