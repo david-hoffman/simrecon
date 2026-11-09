@@ -10,9 +10,9 @@
     },
     {
       "path": "tests/c_acquisition_fixture.py",
-      "added_lines": 1068,
-      "removed_lines": 54,
-      "net_lines": 1014
+      "added_lines": 1106,
+      "removed_lines": 58,
+      "net_lines": 1048
     },
     {
       "path": "tests/c_workflow_oracle.py",
@@ -65,5 +65,5 @@
   ],
   "scientific_product_net_lines": 0,
   "runtime_harness_net_lines": 38,
-  "test_and_support_net_lines": 1204
+  "test_and_support_net_lines": 1238
 }

@@ -54,42 +54,63 @@ statistical performance guarantee. Historical PR83 performance is not used.
 
 ## Continued attempts and candidate evidence
 
-[CONTINUATION-EVIDENCE.md](CONTINUATION-EVIDENCE.md) records the later attempts,
-limits and cumulative accounting. [continuation-files.json](continuation-files.json)
+[CONTINUATION-EVIDENCE.md](CONTINUATION-EVIDENCE.md) records every retained
+continuation, rejection, correction and limit. [continuation-files.json](continuation-files.json)
 identifies selected source/archive hashes. `manifest.json` covers every portable
-file in this directory except the manifest itself, including the coordinator's
-`preservation-inputs.json` and `change-accounting.json`. Original discovery and
-earlier resumed archives are retained. New gzip files use deterministic mtime 0.
+file here except itself, including the coordinator's `preservation-inputs.json`
+and `change-accounting.json`. Original discovery and earlier resumed archives
+remain intact. Added gzip files use deterministic mtime 0. The combined packet
+is nonblind; only separately selected sanitized test costs go to blind roles.
 
 Candidate 1 at `a41b378b10681c83029dd6f27fe3df65d66b22f2` passed all 13 phases
-and 3066 cases in 829.59 seconds outer wall (783.316 seconds pytest), missing the
-600-second goal. Its native receipt, M25, coverage JSON, time, complete console
-and JUnit exports were verified against the preserved same-run originals.
-`candidate-1-profile-summary.json.gz` adds compact duration/resource/exec counts
-without copying raw traces or repeating full catalogs. This completed gate is
-historical evidence for that commit; it does not verify later scientific inputs.
+and 3066 cases in 829.59 seconds outer wall (783.316 JUnit pytest wall).
+Candidate 2 at `8b9c39f7ea458a21c5feed39775005dc8cf487bd` passed the same phases
+and case count in 611.04 seconds (564.184 JUnit pytest wall), missing the strict
+600-second goal by 11.04 seconds. Both runs' preserved native receipt/M25,
+coverage, time, complete console and JUnit exports are retained. Candidate 2's
+complete parsed summary and compact reconciliation/resource/test-cost exports
+are also retained. Neither run verifies later A7 bytes.
 
-The continuation retains rejected A3/B3 representation findings, the corrected
-1062-case A3 proof and B4 acceptance, A4's 465-case workflow proof and B5
-acceptance, and A5's 597-case acquisition proof and final B6 acceptance/hash
-manifest. A5's focused proof passed in 282.58 seconds with 18 warnings; it used
-the disclosed measurement plugin. B6 reconfirmed the author's final report and
-admission-summary additions before its final acceptance. Earlier evidence-only
-snapshots remain separately labeled. All 26 earlier keeper mappings remain in
-the original scientific ledgers. Fourteen known role launches and six completed
-B reviews remain cumulatively charged; actual served model/token/cost totals
-are unknown. Neither focused proof is a canonical runtime result.
+Candidate 2 reconciles exactly 26 old node identities removed, five clock
+keepers added and 3061 unchanged. Only final @group suffixes are normalized;
+spaces and internal @ remain. All eight native integer counters match baseline
+across all 30 files. Same-run receipt/input/M25, all 30 HTML pages and combined
+native database consistency were checked. Reader child evidence is filtered by
+exact run ID. Canonical combine consumes raw shards without --keep; child data
+retains its combined union, with no claim that raw shards survive post-combine.
+The independent final bounded reviewer still assesses these gates and evidence.
 
-The final guarded workflow timing is `workflow-final-probe`; the older
-`workflow-facts-probe` final-checkpoint attribution is explicitly withdrawn.
-Its archive is labeled PRE-GUARD. The continuation explains the provenance
-correction. Rejected nominal-memo and two-thread Pyright experiments and the
-public-only advisor report remain historical evidence, with their failures and
-limits intact. `check-round5.log.gz` retains the passing final quality check.
+The archive retains all A3/B3 representation failures, corrected A3/B4 acceptance,
+A4/B5 workflow acceptance, A5/B6 acquisition acceptance, and the later A7/B7 edge
+checkpoint. A6 regression factoring was measured, rejected and fully restored
+before A7. Source-based archive-repacking diagnosis and genuine four-run JVM C1
+measurements were rejected without source adoption; the initial missing-time
+failure/resumption, actual Java JSON records and paired outputs remain charged.
+The public-only advisor continued in its existing launch. Full comparison arrays,
+raw traces and pstats stay untouched locally; concise numerical summaries and
+hashes preserve their relationship without huge duplicate payloads.
 
-Final exact-candidate canonical verification, same-run native coverage/M25,
-600-second outcome, required integrated review/preservation sweep, platform
-checks, cleanup and remote results remain coordinator responsibilities. Final
-candidate hashes/results stay outside tracked candidate bytes in the PR and
-conversation; raw evidence stays in ignored `artifacts/test-apparatus-audit/`.
+A7's exact fixture is `ea32ed4fb891b18af81dcc557ef0ad1fa6ac958068406a8b20032b7acdfac7dc`.
+Its 270 warn/raise comparisons match, completed acquisition proof passes 597
+cases/18 warnings in 246.24 seconds (379.665 summed JUnit seconds), and all 13
+source pins match afterward. Root make check passes all 116 lint/format files
+and full Pyright. Final B7 accepts that exact checkpoint, with independent
+closed/ownership, exact-comparison and factor-reuse controls. Compact qualifier
+and independent B7 probe sources are retained. Focused proof uses the disclosed
+artifact measurement plugin; it is not a canonical runtime result.
+
+Earlier PRE-FORMAT timings remain separate from final ea32 observations; component
+variance is explicit. The older workflow-facts-probe final-checkpoint attribution
+also remains withdrawn and labeled PRE-GUARD; workflow-final-probe supplies the
+correct guarded observation. Fourteen launches through B6 and fifteen through
+B7, seven completed B reviews, all failed/partial/rejected work and reviewer
+input corrections remain cumulative. Actual served model/token/cost totals are
+unknown. Coordinator physical net line accounting is product 0, runtime harness
++38, tests/support +1238; these are not behavior or coverage statement counts.
+
+Next exact-candidate canonical verification, same-run native coverage/M25,
+under-600-second outcome, fresh integrated D/bounded review and preservation
+sweep, platform checks and authorized publication remain coordinator obligations.
+Final candidate hashes/results stay outside tracked candidate bytes in the PR
+and conversation; raw evidence stays in ignored `artifacts/test-apparatus-audit/`.
 No intermediate focused result establishes complete readiness.

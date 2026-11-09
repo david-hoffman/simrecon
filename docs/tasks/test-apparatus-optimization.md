@@ -57,6 +57,60 @@ proof. All 30 native files and baseline global/package integer coverage counters
 were retained. Same-run M25 observed baseline=peak=101792 KiB, increment=0 bytes
 against the unchanged limit; this is a high-water observation, not no allocation.
 
+The next clean committed candidate `8b9c39f7ea458a21c5feed39775005dc8cf487bd`
+also passes all 13 phases and 3066 cases, with **611.04 s outer / 564.25 s
+pytest / 47 warnings**. It misses the target by 11.04 s and is not submitted.
+The preserved run retains all 30 files and the exact baseline global/package
+native counters. Same-run M25 baseline=peak=101828 KiB, increment=0 bytes, run
+`dfcc09c0-921b-493c-9d15-5eeb87dc735f`, unchanged limit. Normalized JUnit identity
+delta is exactly 26 removed/5 added keeper cases; all other identities match.
+Canonical combine consumes input shards normally; raw post-combine shards are
+not retained. Their data survive through the installed native combine path and
+the qualified real-cleanup/arc-union proof; complete combined database/JSON/HTML
+and combine logs are preserved. Do not misstate this as raw-shard retention.
+
+The first remaining scientific hypothesis, repeated full quadrature expansion,
+was measured and rejected as too small. Each real 2D control makes six overlap
+builds/30 expansions but 628 regressions. A6 factored invariant frozen-regression
+quantities: exact normal-case outputs/certificates matched, but two real rows only
+improved 38.79 to 36.14 s and a wider searched composition helper improved 2.2568
+to 1.9341 s. The expensive ordinary/cubic controls do not use that search. A6 was
+withdrawn, its limited/unrun qualifications reported and exact B6 source restored;
+all six scientific hash pins match. No new B review or broad proof is claimed.
+
+A separate bounded read-only diagnosis rejected archive bundling: slow harness
+tests build tiny synthetic repositories and never copy/hash root audit documents.
+The worker then measured a JVM C1 startup flag on two paired real-reader inputs.
+Exact outputs matched, but default-to-C1 wall times 1.002 to 0.824 and 1.108 to
+0.829 s imply only 4.563 s across 20 observations, with added VM compatibility
+logic needed. This was rejected without source edits or another 117-case proof.
+Its first missing-system-GNU-time launch and local-tool resumption remain charged.
+
+Continuing blind A7 measured `edge()` and made one small coherent correction:
+skip width-zero unused deltas under strict quiet float64 guards, and lazily reuse
+identical scalar taper factors per call for qualified positive widths. All pixel
+arithmetic/order, allocations/assignment/reshape/getter/copy, separate padded/flat
+error ownership and scalar fallbacks remain. The frozen fixture checkpoint is
+`ea32ed4fb891b18af81dcc557ef0ad1fa6ac958068406a8b20032b7acdfac7dc`.
+All 270 guard/representation/alias/failure comparisons pass under NumPy warn and
+raise; narrow Pyright passes with zero diagnostics. Final-hash matched complete
+preparation observed 1.5307 to 0.8238 s and bead 9.1715 to 8.4124 s, with identical
+complete output/certificate/warning/input bits. Earlier formatter-only probes
+observed 0.7487/7.1002 s; all attempts and non-edge timing variation remain
+explicitly reported. Bead edge work itself changed 2.8785 to 1.2450 s. These are
+component observations, not the
+missing canonical performance result. The renewed affected proof passes **597
+cases / 18 warnings / 246.24 s**, with 379.665 s summed JUnit time. Fresh B7 accepts
+the exact checkpoint after independently checking 10 closed/ownership controls,
+74 exact warn/raise controls, two factor checks, all unchanged test pins and the
+complete proof. No actionable finding remains in that scope; B6 unchanged
+evidence retains applicability. Public-only advisor rejects native axial-geometry
+hoisting as unproved: main Z3 controls clamp cutoff to zero.
+The next step is the clean committed exact-candidate canonical gate, followed by
+fresh D/bounded preservation reviews if it meets the runtime goal. Further fixture
+changes renew affected review/proof. No scheduling or profiling waiver
+substitutes for the missing measured performance result.
+
 A3 added a narrowly qualified test-only native observer lane path. B3 found two
 real apparatus admission defects: plain noise lacked the expected certificate,
 and plain quadrature arithmetic acquired an extra rounding radius. Its verdict
@@ -111,7 +165,7 @@ independent preservation sweep after the exact full gate.
 
 Physical diff-line accounting against the required baseline is scientific
 production **0 net lines**, runtime pytest grouping **+38**, tests/support
-**+1204**. This is a work-reuse optimization with extra qualification/fixture
+**+1238**. This is a work-reuse optimization with extra qualification/fixture
 machinery, not a code-deletion result. The per-file export and all 16 unchanged
 CE08/example file checks accompany the continuation evidence.
 
@@ -126,7 +180,7 @@ or public product behavior changed, and B2 independently reviewed this limit.
 
 Cumulative known roles before final reviews: four preserved discovery launches,
 bounded worker, continuing blind A, exporter, public-only Astra/ultra advisor,
-and six fresh B launches. These are **14 launches**, not fourteen independent
+and seven fresh B launches. These are **15 launches**, not fifteen independent
 author implementations; continued turns add no launch. B3 required the two
 admission corrections above; B5 required correction of evidence provenance.
 B1 corrected one own invalid-probe assumption. Generic policy text (B1),
@@ -171,7 +225,10 @@ no stale evidence or second M25 run solely to retrieve numbers is allowed.
 
 Cleanup already removed the bounded worker's confirmed disposable qualification
 suites/temp and 739 MiB reader/class scratch after durable exports; no owned
-worker process remains. Eight coordinator-owned `/tmp` upstream-skill/download
+worker process remains. Later rejected JVM benchmark work/classes/preferences/
+reader fixtures were also removed after durable exact outputs/timings were
+exported; shared authenticated reader/JDK/jar inputs remain. Eight coordinator-owned
+`/tmp` upstream-skill/download
 probe/package-index scratch files were removed with ordinary `rm`; their absence
 was confirmed without error. The only worktree is the preserved current checkout.
 Keep current checkout, tracked fixtures, original data,

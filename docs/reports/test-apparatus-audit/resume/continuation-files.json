@@ -1,7 +1,7 @@
 {
   "schema": "org.simrecon.test-apparatus.continuation-evidence",
   "version": 1,
-  "status": "Portable evidence selection frozen after completed A5 proof, final B6 acceptance/reconciled evidence and root final task paragraph; no staging or commit by exporter",
+  "status": "Portable selection frozen after completed A7proof/B7 acceptance, final root task paragraph and known15roles; no stage/commit by exporter",
   "blindness": "Nonblind archival index. Do not supply to blind scientific roles.",
   "known_role_launches_before_fresh_B6": 13,
   "role_launch_count_source": "Coordinator instruction; no fabricated serving/token/cost measurements",
@@ -620,14 +620,14 @@
       "transform": "Selected final B6 proof/probe counts, source hashes, limits and cleanup"
     },
     "CONTINUATION-EVIDENCE.md": {
-      "size_bytes": 9367,
-      "sha256": "5f2fdf75d374581b0b3e254363d4c7a41f17dbdba0dc357d7dfc788de6f4fcde",
-      "status": "Final archival context after coordinator freeze"
+      "size_bytes": 16299,
+      "sha256": "fd34c0fd7762a0b1ccae2f55aa52490fd5eb33c53b94b025655c569bb5fa1e07",
+      "status": "Final archival context after A7/B7 coordinator freeze"
     },
     "README.md": {
-      "size_bytes": 6381,
-      "sha256": "7054594e55c73921fc5cfb93c7fa489676f494f421df8b43df4be2a58fe7ade6",
-      "status": "Final archival context after coordinator freeze"
+      "size_bytes": 7897,
+      "sha256": "cab8b092dcef88d0735ea209910cb9e089b828dfcba10c3cb3fb916c95e228c8",
+      "status": "Final archival context after A7/B7 coordinator freeze"
     },
     "preservation-inputs.json": {
       "size_bytes": 8583,
@@ -636,16 +636,812 @@
     },
     "change-accounting.json": {
       "size_bytes": 1614,
-      "sha256": "f1f523440311e96bd27e3dc601a0a0469457a4c3bb5891d03e15c06a241c9051",
+      "sha256": "2c3bdaa2f8cd0e3f7aee69b13ff57b81018be8f979bdad8393048db9a7fb6504",
       "status": "Coordinator-owned record preserved without rewrite"
+    },
+    "candidate-2-reconciliation.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/candidate-2-reconciliation.json",
+      "source_size_bytes": 59785,
+      "source_sha256": "148f699db06586ed793512da530753369b93f4b0e0531535e4baed28e6a6518b",
+      "size_bytes": 13283,
+      "sha256": "1344178553e5091b0baeb5ddd7fae4ac1a867f91e2617621acb61f6effde1728",
+      "gzip_mtime": 0
+    },
+    "candidate-2-reconciliation-report.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/candidate-2-reconciliation-report.md",
+      "source_size_bytes": 4762,
+      "source_sha256": "8556df47de8870dcc620e0e832ef64d6629aaf525ca35c88fc7b1f646ade0ab6",
+      "size_bytes": 2387,
+      "sha256": "7c36f304a8f174d10f081bffc77bd2ed8f28ffa5dbfb5b4f19952bbe5a1420e6",
+      "gzip_mtime": 0
+    },
+    "candidate-2-measurements.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/candidate-2-measurements.json",
+      "source_size_bytes": 13271,
+      "source_sha256": "286bb09cfbe78cd1473dff3b88a1ce50200abfc979b1d338d605b14cc8cb0b05",
+      "size_bytes": 3131,
+      "sha256": "7a930080b64154f9a1d94a6a672f7da453812d83f35576eed3e85cfd6809514c",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/ROUND6.md",
+      "source_size_bytes": 2399,
+      "source_sha256": "3b488ae34119c1f1698f436009b0292966136cd89f6c51620052dc301bac197c",
+      "size_bytes": 1376,
+      "sha256": "a48cbc573438cba612230c4a832dacc23f9e63cd3be91d2726c5fd6c5c0be886",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-REGRESSION-EXPERIMENT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/ROUND6-REGRESSION-EXPERIMENT.md",
+      "source_size_bytes": 4140,
+      "source_sha256": "a27eb67d26c3a119d055268dd599bc0fb87bca15f20d2152245bafe36a5b6726",
+      "size_bytes": 2114,
+      "sha256": "5299126f8f2ec328e80371665705e48c9cf547b71bc7739baae0a6b49fb16239",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-restored-hash-check.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round6-restored-hash-check.log",
+      "source_size_bytes": 218,
+      "source_sha256": "f328277d6f8ac7321cc7ac715296a969440e090d4ac4c7ec30e81c780b0cc88d",
+      "size_bytes": 119,
+      "sha256": "0c18b3f7dc5fd099f40529d88ad4c602eef80679d1df647190cd4111028988bb",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-experiment-source.sha256.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round6-regression-experiment/source.sha256",
+      "source_size_bytes": 97,
+      "source_sha256": "7ee2378c64b46637a9474a1179f5b52c556f2e2a46b18d207db55f521484b540",
+      "size_bytes": 104,
+      "sha256": "a80168a801f0b9f69ad4efff839a47f45543beda3c04254c5a41c2ab1cfa6f2d",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-probe-before.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-probe-before.json",
+      "source_size_bytes": 1989,
+      "source_sha256": "b6b772c8e861d2ad46f42a7cbfd14d93c5b194e8799dc81bfc27699de0f274f6",
+      "size_bytes": 624,
+      "sha256": "c42a75712ae8f9ff0ce071972a82d79d7cc5bd7748c52fcb44b391038f44dd95",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-probe-factored.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-probe-factored.json",
+      "source_size_bytes": 2003,
+      "source_sha256": "f4d50fe6d21ed13ef696c14e8277d31455255c0089d7137b64aed51eb37fa268",
+      "size_bytes": 628,
+      "sha256": "a20f1169c7a714925041964c76f009bf48561ee3dc9cea68954d1c3149bace4b",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-probe-composition-before.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-probe-composition-before.json",
+      "source_size_bytes": 1069,
+      "source_sha256": "d89a00f9c17307b1914068a724440e4b5e6e80583a90bc4024d6bc5b84ae05e3",
+      "size_bytes": 484,
+      "sha256": "224f5e0f25e85cfcd896e9ea4d639f796a8a6f4747a126dc12861189bfccc32b",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-probe-composition-after.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-probe-composition-after.json",
+      "source_size_bytes": 1076,
+      "source_sha256": "e8522f85bad241dcf20350d95c5430964827e8375b3677c2f1abe03dba11dda4",
+      "size_bytes": 481,
+      "sha256": "cd503daf238e34fc1e213546827176b48bca7f80a0307c307beee86a28a9163a",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-real-before.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-real-before.log",
+      "source_size_bytes": 1485,
+      "source_sha256": "1b26a914ee9b684a9c7290f981e0962c359ea704a09dc8504d21eebf44bf7c49",
+      "size_bytes": 616,
+      "sha256": "2f58f5801d22b85354d1c9577a6afdfb604d2d35aef9219713a1176e639e9a9d",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-real-before.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-real-before.xml",
+      "source_size_bytes": 605,
+      "source_sha256": "132973e81659d4c51e953b6a1c32032f74a8db3cf47716cdc1fbfb4dad9025d6",
+      "size_bytes": 295,
+      "sha256": "1edd54e6491290d7d6ddd03b64442e617ede9e47f2878fae0b41b4d421b12e02",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-real-after.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-real-after.log",
+      "source_size_bytes": 1484,
+      "source_sha256": "30f57ee7762642865a2c8ac3114a5705e62278da7a6d915c9ce08eaf1a03b983",
+      "size_bytes": 615,
+      "sha256": "b74f3f7b1643c593bbfd4a39bb593d67647347c4f9c0f3ba62e6a9291128e653",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round6-search-real-after.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/search-real-after.xml",
+      "source_size_bytes": 605,
+      "source_sha256": "4e6ceb5c9aed2580797083e57d81de5562838b6bee7513d0c5ace1ab07f2b78b",
+      "size_bytes": 296,
+      "sha256": "71a640c4328a3c43a6778523882a0f77bfc27112f2133e3dd80a405de096b984",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round4-archive-diagnosis-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round4-archive-diagnosis/REPORT.md",
+      "source_size_bytes": 2147,
+      "source_sha256": "dc9b419f1894b4c8de7e100ed3e97a22a09274ccb2693b31269b57ccf556a67f",
+      "size_bytes": 1121,
+      "sha256": "78fb5a5927fe8730a872a52176693cc25d20931e59ea2f7e17bf31360b5b8f14",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-qualification-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/qualification-summary.json",
+      "source_size_bytes": 11606,
+      "source_sha256": "cbf15866760aac6cc59d75dbb7440d36cc2302a4abcc981a45f0680249970b92",
+      "size_bytes": 2513,
+      "sha256": "f188ff7418cf2206222d330482ee9190e754eb003441064d6f9d9fed64a1cecc",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-runs.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/runs.json",
+      "source_size_bytes": 8168,
+      "source_sha256": "ae5f1fd2351da92632ff9007dd495f9ade9c21d544986c1dfb2d8caf3e3cf9f4",
+      "size_bytes": 977,
+      "sha256": "a784772f1d88bac1e4b9512856924a1e8603701182369c5e8f9ec8e682d5499e",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-inputs.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/inputs.json",
+      "source_size_bytes": 4120,
+      "source_sha256": "41ea5ad1ba3f732c4cd294b003f666f0f59027e49eb47448c943c486cd41b2d5",
+      "size_bytes": 1690,
+      "sha256": "7baccc0d379ed2890edd8eebcfadaac1e2f9a61fb27aaeb000d3a186cacdfc6f",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-initial-launch-failure.txt.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/initial-launch-failure.txt",
+      "source_size_bytes": 491,
+      "source_sha256": "f27ccc3f3f9dfa69f94fb88194d9284005c062bed946544d268ee27e3ab1e686",
+      "size_bytes": 320,
+      "sha256": "18e36a215e243207de06a42e11f5ddd2ddc9108a387a7ddbb2f79bb9a96d8d21",
+      "gzip_mtime": 0
+    },
+    "advisor-round6-remaining-work.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/advisor/round6-remaining-work.md",
+      "source_size_bytes": 2370,
+      "source_sha256": "3c1d748eefd12b0a5033aa66621759c8324c579df94256e52dde0ecf6375719a",
+      "size_bytes": 1322,
+      "sha256": "6633afd35b671144871e89a33815b5b71a24641489651f4b2d7c08b3a4eb4608",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-default-record.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-default-record.json",
+      "source_size_bytes": 193753,
+      "source_sha256": "2e4c3443436fbfdf00cb2acbcf53d03811993dd64049eaf88647f78cc5057398",
+      "size_bytes": 19183,
+      "sha256": "ee13f9fc9c49c3b3264009d2d7bede9850cc122f7a325674c989eeae151f7e5f",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-default-stderr.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-default-stderr.log",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-default-stdout.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-default-stdout.log",
+      "source_size_bytes": 29,
+      "source_sha256": "bcc53da492ff8dbbb01e4a73bd8b32fb5353e0638543584215f8d5fa9428b23b",
+      "size_bytes": 49,
+      "sha256": "05a4cd9018fa1f587c3b961b5c6a0971aa7a510e01e7c6a7e483acbb8112d762",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-default-time.txt.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-default-time.txt",
+      "source_size_bytes": 22,
+      "source_sha256": "25823dd3e0b870a6c03654e138f050431e829758a864a2b55ce8243ffaf02a6f",
+      "size_bytes": 42,
+      "sha256": "828015f959a50ec92ac3ca2bae9398fc67d4ff9c231b688ca3980894694af810",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-tier1-record.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-tier1-record.json",
+      "source_size_bytes": 193753,
+      "source_sha256": "2e4c3443436fbfdf00cb2acbcf53d03811993dd64049eaf88647f78cc5057398",
+      "size_bytes": 19183,
+      "sha256": "ee13f9fc9c49c3b3264009d2d7bede9850cc122f7a325674c989eeae151f7e5f",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-tier1-stderr.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-tier1-stderr.log",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-tier1-stdout.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-tier1-stdout.log",
+      "source_size_bytes": 29,
+      "source_sha256": "bcc53da492ff8dbbb01e4a73bd8b32fb5353e0638543584215f8d5fa9428b23b",
+      "size_bytes": 49,
+      "sha256": "05a4cd9018fa1f587c3b961b5c6a0971aa7a510e01e7c6a7e483acbb8112d762",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-asymmetric-unequal-czt-tier1-time.txt.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/asymmetric-unequal-czt-tier1-time.txt",
+      "source_size_bytes": 22,
+      "source_sha256": "2a7a1c602b3e9de35e447208ce12e22e9bba1f896025ef6f074f2486f58592fd",
+      "size_bytes": 42,
+      "sha256": "8faf12991a0d874b8e57e3ee9d41e056a97d4ed9b54616b0690d1209dc182123",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-javac-version.stderr.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/javac-version.stderr.log",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-javac-version.stdout.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/javac-version.stdout.log",
+      "source_size_bytes": 13,
+      "source_sha256": "8feefc5dd82710a2a089d604983b9ee4eb75c27b294d876e842050c2255fed2f",
+      "size_bytes": 33,
+      "sha256": "140060af6baf22c01475c7e992f5993ee009f14a778a87cfdfd9c731d02ea683",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-javac.stderr.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/javac.stderr.log",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-javac.stdout.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/javac.stdout.log",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-default-record.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-default-record.json",
+      "source_size_bytes": 131401,
+      "source_sha256": "bdce853119baa0b03c7a7e24b848cfa6ad66b3d078c6427212dc12e4e7d15c2a",
+      "size_bytes": 10735,
+      "sha256": "f7ad4d0d65e4aef53a9e3e72eb5f66139c98af1fca358aeee61a76bd2f1d26e5",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-default-stderr.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-default-stderr.log",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-default-stdout.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-default-stdout.log",
+      "source_size_bytes": 29,
+      "source_sha256": "bcc53da492ff8dbbb01e4a73bd8b32fb5353e0638543584215f8d5fa9428b23b",
+      "size_bytes": 49,
+      "sha256": "05a4cd9018fa1f587c3b961b5c6a0971aa7a510e01e7c6a7e483acbb8112d762",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-default-time.txt.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-default-time.txt",
+      "source_size_bytes": 22,
+      "source_sha256": "6ce76b639cdd8963cf54b39dee05436f2d175457c8a748c2b20ce5732e44ad05",
+      "size_bytes": 42,
+      "sha256": "41b94804121d4498d1ff2484e8b10bb18804d89477cb45ae7ce43ed3cab77166",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-tier1-record.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-tier1-record.json",
+      "source_size_bytes": 131401,
+      "source_sha256": "bdce853119baa0b03c7a7e24b848cfa6ad66b3d078c6427212dc12e4e7d15c2a",
+      "size_bytes": 10735,
+      "sha256": "f7ad4d0d65e4aef53a9e3e72eb5f66139c98af1fca358aeee61a76bd2f1d26e5",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-tier1-stderr.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-tier1-stderr.log",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-tier1-stdout.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-tier1-stdout.log",
+      "source_size_bytes": 29,
+      "source_sha256": "bcc53da492ff8dbbb01e4a73bd8b32fb5353e0638543584215f8d5fa9428b23b",
+      "size_bytes": 49,
+      "sha256": "05a4cd9018fa1f587c3b961b5c6a0971aa7a510e01e7c6a7e483acbb8112d762",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-normal-tier1-time.txt.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/normal-tier1-time.txt",
+      "source_size_bytes": 21,
+      "source_sha256": "8a58cfc55b67453f8384800cc50004e2e5cc4d58dabdae214f4fce0fc9475bec",
+      "size_bytes": 41,
+      "sha256": "034833b40c6ca4b716d058e1e8795fdbcfed426654d1e0e2bbe93954064e53ca",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-option-version.stderr.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/option-version.stderr",
+      "source_size_bytes": 207,
+      "source_sha256": "05bdb1b56934557328cb9ba08de057aad3c47915aafa85a42c4b84954df8435b",
+      "size_bytes": 163,
+      "sha256": "57747b0564034a9a9ba2304a976d6c13a7f00f6b5276b5c9f0b2829dca2c6c0b",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round5-jvm-startup-option-version.stdout.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round5-jvm-startup/option-version.stdout",
+      "source_size_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gzip_mtime": 0
+    },
+    "candidate-2-public-scientific-cost-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/candidate-2-public-scientific-test-costs.json",
+      "source_sha256": "8a8e5c904b7a91582242fceca897fe151621f9c40d407e92bec5642cd1703cfe",
+      "exported_payload_size_bytes": 15030,
+      "exported_payload_sha256": "1ff557373c39cb196b664b024fecbafaed20badf9497174e836bdcb844c53dbc",
+      "size_bytes": 2084,
+      "sha256": "a5fa6ce8574fc59e1b5213c067f13d6d5e831ad47527fa688ad15c6b9f15f64e",
+      "gzip_mtime": 0,
+      "transform": "All scientific file totals plus top40normalized scientific node totals; full2117rows remain in ignored original and raw console"
+    },
+    "candidate-2-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/candidate-2-summary.json",
+      "source_size_bytes": 3958726,
+      "source_sha256": "ae04d1ada11330ecf53aee50b5dd64af1de05639acef0fe18e21ae6442c7f60b",
+      "size_bytes": 248089,
+      "sha256": "9ea19b6d29d031bed56c226025a13120b44bafd5e313b69f9fa7d0991f472fef",
+      "gzip_mtime": 0
+    },
+    "candidate-2-console.log.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-2/console.log",
+      "source_size_bytes": 1336292,
+      "source_sha256": "a3f393bf88df1b9eb64834f47d0d79743034070d801dd23d9a80c7ef69279e40",
+      "size_bytes": 148525,
+      "sha256": "b9c337713bef6e60a3a3c94d7e6c1d85f28b414c05a694637ff47a7586d8af17",
+      "gzip_mtime": 0
+    },
+    "candidate-2-coverage-coverage.json.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-2/coverage/coverage.json",
+      "source_size_bytes": 353163,
+      "source_sha256": "860835ad0ad50f2090c38569bb9344c2d0499fc61ca1c4f835f71c0495c5f005",
+      "size_bytes": 28023,
+      "sha256": "acccb64074da0048d7f395e2f4533bc3c1b4f9eae2ed582f8696db3696913ec1",
+      "gzip_mtime": 0
+    },
+    "candidate-2-junit.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-2/junit.xml",
+      "source_size_bytes": 518425,
+      "source_sha256": "6bfc8819f256d403532d782324b6e2418f15a6ba56eed5533fdc73127086367b",
+      "size_bytes": 40028,
+      "sha256": "366740c45d87bc4c15d34365921300bead5b9382da78446383d3f761d90e9be0",
+      "gzip_mtime": 0
+    },
+    "candidate-2-time.txt.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-2/time.txt",
+      "source_size_bytes": 1435,
+      "source_sha256": "6984ed39d47f1999697f41f4441244582834c39b92aef45621b2636ac62f01d3",
+      "size_bytes": 680,
+      "sha256": "e9813cb61f75cc98ec396c53f32783aa0518a4f126a0aec63d5d7c93b46d26e8",
+      "gzip_mtime": 0
+    },
+    "candidate-2-verification-measurements.json.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-2/verification/measurements.json",
+      "source_size_bytes": 230,
+      "source_sha256": "b12473bd6512f448786da4428efea1b9f7642c65fbb41eec626c382b53ef1f33",
+      "size_bytes": 181,
+      "sha256": "5d36dc64562a2a19f5fceb55f2468cfe8df25a2bf8ce1b566f6e0ccbb11cb07b",
+      "gzip_mtime": 0
+    },
+    "candidate-2-verification-receipt.json.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-2/verification/receipt.json",
+      "source_size_bytes": 265754,
+      "source_sha256": "e55b08c10577a51d3b890d1e27f758efab383772d60603cb049672cdca6a0627",
+      "size_bytes": 100808,
+      "sha256": "1dd15bdef8309f65495ebd83e6d5807780dcee3d4d6541ef507c7cc521dd6a93",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round7-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/REPORT.md",
+      "source_size_bytes": 14767,
+      "source_sha256": "2d127d10dc9aefbb3ba93b2bd3c5442769c8dd9c0a1671f0f7eef52f1019db52",
+      "size_bytes": 6670,
+      "sha256": "1e390ec4f0ddde78976c9bce8a904c8199cee14f806e793f2fea1928f5fb16a9",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-ROUND7.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/ROUND7.md",
+      "source_size_bytes": 6725,
+      "source_sha256": "644ca2128d5735bf7107f8c4647d9e477a5537a3f09c16b2902f2cb805665df7",
+      "size_bytes": 3362,
+      "sha256": "f1ab68ae3dcf1bca0267acd16d84c8e1258a7740c7c9b95ca63593110ddb0067",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-checks.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round7-checks.json",
+      "source_size_bytes": 5191,
+      "source_sha256": "8ae34a5a63c864ecc58fee33f35388cdf630176002d46bbf5ccfcad96243e4fd",
+      "size_bytes": 1932,
+      "sha256": "ee86738b55eb9b0ea879f061635bb01762e69ba10d6deff5a2dd65bec317d6f5",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-final-packet.sha256.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round7-final-packet.sha256",
+      "source_size_bytes": 1125,
+      "source_sha256": "9418854f0433726b2305010e810777dd8f130716f8bbaba761175d134d9e799c",
+      "size_bytes": 505,
+      "sha256": "cde351b6e5cf90b10548cc587698b91de87aaeab8bce68026cdb4e813c2ef967",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-scientific-inputs.sha256.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round7-scientific-inputs.sha256",
+      "source_size_bytes": 1307,
+      "source_sha256": "db7ef4179d5919b492df32a62a5a404cb8659c2ca5e1a415522283da34166e71",
+      "size_bytes": 671,
+      "sha256": "8a4589d37ab3ae4c720b90d77d5f8d8db3b6195f516b82f152a2c21eada06b8c",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-hashes-after-proof.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round7-hashes-after-proof.log",
+      "source_size_bytes": 501,
+      "source_sha256": "f4c89430753e0e4fd7e8bd82bbe68d18ebe35f5521cfb3eed9f4cefd76ca0530",
+      "size_bytes": 162,
+      "sha256": "705916eae35f5f17ed030146afc0af1e762decb88927ba26d3f1d638329c75a5",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-covered8-acquisition-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered8-round7-acquisition-summary.json",
+      "source_size_bytes": 2620,
+      "source_sha256": "9b80c8a5798000bec18469fc0f71757c6c7b44012c4dfb8f437ea0234c84c01e",
+      "size_bytes": 890,
+      "sha256": "ed5804d3cab7f50f0d0e5aa06f30826c2c26e3ca46293df0a4a1ae89d3631a6f",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-covered8-acquisition.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered8-round7-acquisition.log",
+      "source_size_bytes": 83499,
+      "source_sha256": "21d60a9bb71227fd3f2e78edafec4433d5771b017f52bcb06ee8df8caac62aee",
+      "size_bytes": 7898,
+      "sha256": "6c9ad4c17cd71f3106652621c83d518efd47d0961631a7ab404af719fb22aab5",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-covered8-acquisition.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered8-round7-acquisition.xml",
+      "source_size_bytes": 110307,
+      "source_sha256": "096be8bd226bf353981ee6bb77b000aeef5e86cb608a726929679b5f5d694d71",
+      "size_bytes": 8347,
+      "sha256": "12add799cee39bf9f17e55b3e57e24607a0b1b5a3fb571815ce45880ca005ab4",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-edge-reuse-equivalence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-reuse-equivalence.json",
+      "source_size_bytes": 180886,
+      "source_sha256": "8566345c62dce2699f74c31025d05f70f8a14823674754a821f824583573a5fe",
+      "size_bytes": 3328,
+      "sha256": "3302df4efe001aa2d99bafabfe6b982f69d58b5d1b847c16946028cd3a10b567",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-edge-reuse-equivalence.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-reuse-equivalence.log",
+      "source_size_bytes": 202,
+      "source_sha256": "18c5a37029026832cbee89affcc205504391ec8636541248f2ab5f1a34849a32",
+      "size_bytes": 175,
+      "sha256": "fa434a9a15cca02efbb5d25cb1f3b1e38aa0b97ea8cd166e164072cf06abb5f0",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-qualify_edge_reuse.py.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/qualify_edge_reuse.py",
+      "source_size_bytes": 5886,
+      "source_sha256": "339488640832928b3b1190c0e7ff37b4253c342b6bbe881d409f16dbb5754e0b",
+      "size_bytes": 2116,
+      "sha256": "3022cab6d7abe652aaa3633b5b78e316fac30339b60d6ff57609b2381d391d1e",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-root-types.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round7-root-types.log",
+      "source_size_bytes": 37,
+      "source_sha256": "6d88a1b220adb7a3d62092b6e38431f0b3fe8babe9864fab90e5849766260332",
+      "size_bytes": 53,
+      "sha256": "c8f40ac3b3f577d99ca528dc797ac395a63bdcedd0b425151e1b76ffc54e42f5",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "check-round7.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/check-round7.log",
+      "source_size_bytes": 469,
+      "source_sha256": "edad0afd0990764b3a016f1b547512e336492fbc6672a81b2c9e873037433fca",
+      "size_bytes": 280,
+      "sha256": "df617416279cbd8c7b153d4e7b6e906cb6626db99a7809973360f1467d1a5d8b",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-B6-before-edge-probe-before.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-before.json",
+      "source_size_bytes": 1000,
+      "source_sha256": "32f8c3c15664677586f109c286f3ea0a3b08296ce98112f15d4c5c7f37a23ac6",
+      "size_bytes": 424,
+      "sha256": "83100056c63b4e5aa8da6ac86726be19b32726fcc67b16d786969316713d0764",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-B6-before-edge-probe-before.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-before.log",
+      "source_size_bytes": 1547,
+      "source_sha256": "47c8862a5f59e527472f178c32dffd4ebc8428b9dbec964ddd209546a6d2042c",
+      "size_bytes": 657,
+      "sha256": "96ccb269cea3385e418970713b699c1222f1facacc10150ea9372c820ef2bd74",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-B6-before-edge-probe-bead-before.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-bead-before.json",
+      "source_size_bytes": 676,
+      "source_sha256": "fda003298f1735872800fcd39b8c18d1bc764a81ac13ff99dfd34e3892c8ffdf",
+      "size_bytes": 382,
+      "sha256": "b1d599eec383b727e888167f0cd68c773a64e20e2d034cdc1c0a3f72990d7a7f",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-B6-before-edge-probe-bead-before.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-bead-before.log",
+      "source_size_bytes": 1223,
+      "source_sha256": "c0c556e664d38efcc50f7e55d65b66d95e36feca6e30a0a55816a4ce1ba08a22",
+      "size_bytes": 616,
+      "sha256": "38a0fd694e59cdefb50a79e4830e194504138659876331b2ecc586d8522286cf",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-PRE-FORMAT-edge-probe-after.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-after.json",
+      "source_size_bytes": 999,
+      "source_sha256": "025e447df588799f01293f02d21a61d37ee718e2f0721d4ec9839dc96d691e69",
+      "size_bytes": 421,
+      "sha256": "b2cb46769ec99eef4196d9c4bf35a13fc6dcce16db49dc501e96b60834edc476",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-PRE-FORMAT-edge-probe-after.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-after.log",
+      "source_size_bytes": 1546,
+      "source_sha256": "c8d72271311fdc2281affde0acb5369042fef2b5b5fedc3ab9de821284874fb1",
+      "size_bytes": 655,
+      "sha256": "720c1f152a075be6ab3aaafb871200b90abdb7c626d35c2078e97fe4f25dc64a",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-PRE-FORMAT-edge-probe-bead-after.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-bead-after.json",
+      "source_size_bytes": 682,
+      "source_sha256": "5b0d1932989172dbc03b58ba82ac24e32b8d4e518f5898cd69725998b22c07bc",
+      "size_bytes": 385,
+      "sha256": "b3c9a53652c11300cf50c8c2bf33fe4357ce27a924b0ac2483aa62f3400edd23",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-PRE-FORMAT-edge-probe-bead-after.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-bead-after.log",
+      "source_size_bytes": 1229,
+      "source_sha256": "e093cbd1b6a5e6ed76eb0c01c2737367e618c831fdd2d22844b24d34b7e91ae6",
+      "size_bytes": 619,
+      "sha256": "922778fc91429b0a17390dc8b92caf9e6929ab81d331b910a5b4c4d9df30f817",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-FINAL-HASH-edge-probe-final.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-final.json",
+      "source_size_bytes": 998,
+      "source_sha256": "f14ff9c89b8f1f6756fabeebc7eab7d454137fa7ce606ae7e91610bf7fcf0c3f",
+      "size_bytes": 421,
+      "sha256": "8e1b42a63c3fff7633fe60113e259b96c95e0871f92ac1d33602257d4b079658",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-FINAL-HASH-edge-probe-final.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-final.log",
+      "source_size_bytes": 1545,
+      "source_sha256": "7f2db91084bd331206b054fac73cdd8ebd1aea2f28bcf27963ed979ac669535f",
+      "size_bytes": 655,
+      "sha256": "311614b213d59526782526f91c56b915481f513e943601358911cebe99409320",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-FINAL-HASH-edge-probe-bead-final.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-bead-final.json",
+      "source_size_bytes": 676,
+      "source_sha256": "bbf140e54d70670e6c68720342c0e98a7d04fb7821b8cc9bdccdc5d1147e00a2",
+      "size_bytes": 382,
+      "sha256": "a524ef289beecdc27a77672795bdb2df5988f2542b2886aa0d5f001c8cc7af5a",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-a-round7-FINAL-HASH-edge-probe-bead-final.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/edge-probe-bead-final.log",
+      "source_size_bytes": 1223,
+      "source_sha256": "ff39d46d1e3e79ed570c7ef317a1d95d854506c45c1e548bc42af91007f09f47",
+      "size_bytes": 618,
+      "sha256": "bf221e3649fde6fb5c7c86b77e7793164194dbe33c6a9af813c015be502f9fc3",
+      "gzip_mtime": 0,
+      "limits": "Completed stable A7 author/quality evidence; B7 final acceptance and canonical gate remain separate. PRE-FORMAT timings are historical814df source observations, not finalea32 timings."
+    },
+    "scientific-b-round7-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/REPORT.md",
+      "source_size_bytes": 11664,
+      "source_sha256": "4f3d7276e990949efbba8b6e72edcfe924c123c9456c25e715e59669a2d8d9a5",
+      "size_bytes": 5440,
+      "sha256": "f5b39a6248018da379aa248c69dbce6a19850307ff27e520757d2ae2a1a99833",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-accepted-filehashes.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/accepted-filehashes.json",
+      "source_size_bytes": 8847,
+      "source_sha256": "f30145d23b9aa729ed18902e84d93a408de5df5fdf6df7fe78093f01e87c3f88",
+      "size_bytes": 3358,
+      "sha256": "d9a633936af5b776d6ede02cb2a9dc2241debf0ef62cffcae34b56c9e25aeeaf",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-completed-proof.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/completed-proof.json",
+      "source_size_bytes": 617,
+      "source_sha256": "5507393bff4999b04bc0ad95a971967dd82199af1967fbc5b31cd2cd513c128f",
+      "size_bytes": 286,
+      "sha256": "bf62d7ce6301b71a5f55a56c10ae0f4e9a6ec8aee44b517d120401d457f0f24d",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-probes-check_completed_proof.py.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/probes/check_completed_proof.py",
+      "source_size_bytes": 1659,
+      "source_sha256": "f79ea5df03796c7db6911aac6d6241391afa5d9674d8b46e0848bd6d16573478",
+      "size_bytes": 757,
+      "sha256": "011274eca77adcbd092a83c51f0c5a96cb69c0caabba4406692d57eabf21b7a4",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-probes-edge_challenge.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/probes/edge_challenge.log",
+      "source_size_bytes": 17837,
+      "source_sha256": "647ec12476047731d113455ae8326271dbe64e4e085332d108bad7f3f9d8f154",
+      "size_bytes": 615,
+      "sha256": "5bed3476a65d6c01d7a860239ea4293389b7e752eebe0498e0ee2c43b62b71e4",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-probes-edge_challenge.py.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/probes/edge_challenge.py",
+      "source_size_bytes": 5328,
+      "source_sha256": "d72c186fced25292ed0bd181325a470859826c12a6ef3b0a113bca6197fd89b0",
+      "size_bytes": 1899,
+      "sha256": "4ba129102206846b2af00ed600196c76851191a6fc852102277c420cce89ba7a",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-probes-edge_closed.py.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/probes/edge_closed.py",
+      "source_size_bytes": 4021,
+      "source_sha256": "d6040f87f333d52eed4acec366c5c09af697e6169d2283cca1a61ef2824aebda",
+      "size_bytes": 1547,
+      "sha256": "40cc46b24e3dafe3291395ac3d630cfbdaae421906aa27b505e0f04af45b7588",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-probes-inspect_evidence.py.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/probes/inspect_evidence.py",
+      "source_size_bytes": 1918,
+      "source_sha256": "79dfe90ef879146f3df8339586946f774d172e8cb7d26acab0ad8c8b068d67cf",
+      "size_bytes": 854,
+      "sha256": "08565c7ab704ace0e17773300f94005e942a750ffba1572bb9d420f8df4b9861",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-probes-write_manifest.py.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/probes/write_manifest.py",
+      "source_size_bytes": 4008,
+      "source_sha256": "0fc888dfa8cad71cdaf495e8c71b8916bc86b2a3c5400342f175ab01cfd2e468",
+      "size_bytes": 1711,
+      "sha256": "8f84bfd9ad80f4d733ba79461e028ad0ae2f412ab2a9d090b9eed533f2d6c183",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
+    },
+    "scientific-b-round7-static-evidence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round7/static-evidence.json",
+      "source_size_bytes": 1386,
+      "source_sha256": "449df97e5209f97f736d7aa7923309dd7b375ba508bcb2a0f9dc4f16bf3465eb",
+      "size_bytes": 700,
+      "sha256": "5580df9eae7ebc73ca83c0bff7535ca2fa29c057c2ed1a8300403c4dfb430c42",
+      "gzip_mtime": 0,
+      "status": "Final stable B7 checkpoint acceptance and independent compact probe sources/evidence; canonical/native/platform/performance/final-D gates separate"
     }
   },
   "pending": [],
   "known_role_launches_including_fresh_B6": 14,
-  "known_completed_B_reviews": 6,
+  "known_completed_B_reviews": 7,
   "remaining_gates_outside_this_archive": [
-    "Exact final-candidate ordinary canonical make verify, including13phases/nativecoverage/same-runM25 and under600seconds result",
-    "Required final integrated independent review/preservation sweep",
+    "Next exact final-candidate ordinary canonical make verify:all13phases/nativecoverage/same-runM25 plus strictunder600seconds result",
+    "Fresh final integrated D/bounded independent review and preservation sweep",
     "Configured platform checks and authorized publication"
-  ]
+  ],
+  "known_role_launches_including_fresh_B7": 15,
+  "post_candidate2_completed_attempts": [
+    "Candidate2 canonical13phases3066passed611.04s; under600goal missed11.04s",
+    "A6 regression factoring withdrawn and all6prior scientific hashes restored before A7",
+    "Archive-repacking hypothesis rejected by source-only worker diagnosis, no edits/probes",
+    "JVM C1flag experiment rejected after4genuine reader observations; initial missing-time tooling failure/resumption retained",
+    "Public-only advisor continuation, no new launch",
+    "Stable A7edge qualifier270 exact pairs; focused597pass18warnings246.24s/sum379.665, all13source pins match, fullquality passed; no canonical/runtime-goal conclusion",
+    "Final B7accepted ea32 A7edge checkpoint:10independentclosed+74exact+2factor controls;597proof independently parsed;3missing-path attempts retained, no candidate corrections/probe failures"
+  ],
+  "large_raw_payload_hashes_only": {
+    "artifacts/test-apparatus-audit/resume/scientific-a/search-output-before.json": {
+      "size_bytes": 11736157,
+      "sha256": "15ffa044e9b82aa47aa3bca4b746e0dd28f9b043215effd080abeb1bdf755c69",
+      "retention": "Raw unchanged, local only; concise equality fingerprints/certificate counts preserved in probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/search-output-factored.json": {
+      "size_bytes": 11736157,
+      "sha256": "15ffa044e9b82aa47aa3bca4b746e0dd28f9b043215effd080abeb1bdf755c69",
+      "retention": "Raw unchanged, local only; concise equality fingerprints/certificate counts preserved in probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/search-output-composition-before.json": {
+      "size_bytes": 4929274,
+      "sha256": "ffa1dac7bd42d4258a785414fdac624ce93ea387782603bce55736ff88c0428b",
+      "retention": "Raw unchanged, local only; concise equality fingerprints/certificate counts preserved in probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/search-output-composition-after.json": {
+      "size_bytes": 4929274,
+      "sha256": "ffa1dac7bd42d4258a785414fdac624ce93ea387782603bce55736ff88c0428b",
+      "retention": "Raw unchanged, local only; concise equality fingerprints/certificate counts preserved in probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/edge-output-before.json": {
+      "size_bytes": 14785,
+      "sha256": "052a2a6a198d74ff65cc34c15736221bc71d4abd72de826e001e7b54576a1cf4",
+      "retention": "Raw unchanged local comparison outputs; final complete-equality outcome is retained in stable ledger and numeric probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/edge-output-final.json": {
+      "size_bytes": 14785,
+      "sha256": "052a2a6a198d74ff65cc34c15736221bc71d4abd72de826e001e7b54576a1cf4",
+      "retention": "Raw unchanged local comparison outputs; final complete-equality outcome is retained in stable ledger and numeric probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/edge-output-after.json": {
+      "size_bytes": 14785,
+      "sha256": "052a2a6a198d74ff65cc34c15736221bc71d4abd72de826e001e7b54576a1cf4",
+      "retention": "Raw unchanged local comparison outputs; final complete-equality outcome is retained in stable ledger and numeric probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/edge-output-bead-before.json": {
+      "size_bytes": 3317,
+      "sha256": "1e87afd00e0b9d6609e2891b3d62340c5fb339d9879182f389fa09f0de6dfeaa",
+      "retention": "Raw unchanged local comparison outputs; final complete-equality outcome is retained in stable ledger and numeric probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/edge-output-bead-final.json": {
+      "size_bytes": 3317,
+      "sha256": "1e87afd00e0b9d6609e2891b3d62340c5fb339d9879182f389fa09f0de6dfeaa",
+      "retention": "Raw unchanged local comparison outputs; final complete-equality outcome is retained in stable ledger and numeric probe summaries"
+    },
+    "artifacts/test-apparatus-audit/resume/scientific-a/edge-output-bead-after.json": {
+      "size_bytes": 3317,
+      "sha256": "1e87afd00e0b9d6609e2891b3d62340c5fb339d9879182f389fa09f0de6dfeaa",
+      "retention": "Raw unchanged local comparison outputs; final complete-equality outcome is retained in stable ledger and numeric probe summaries"
+    }
+  }
 }

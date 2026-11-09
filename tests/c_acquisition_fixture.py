@@ -153,6 +153,26 @@ def matrix(phases: Any, orders: int, policy: str) -> tuple[Any, Any]:
     return left, np.stack([as_disc(v) for v in noise])
 
 
+def _ordinary_edge_values(plane: Any) -> bool:
+    """Select quiet binary64 arithmetic; other inputs retain the scalar path."""
+    if type(plane) is not Disc or plane.dtype != np.dtype(float) or min(plane.shape) == 0:
+        return False
+    for index, part in enumerate((np.asarray(plane), plane.observer, plane.backend)):
+        if (
+            type(part) is not np.ndarray
+            or part.shape != plane.shape
+            or part.dtype != np.dtype(float)
+            or not np.all(np.isfinite(part))
+            or index > 0
+            and np.any(part < 0)
+        ):
+            return False
+        magnitude = abs(part)
+        if np.any((magnitude != 0) & ((magnitude < 2.0**-256) | (magnitude > 2.0**256))):
+            return False
+    return True
+
+
 def edge(plane: Any, width: int, *, bead: bool = False) -> Any:
     plane = as_disc(plane)
     y, x = plane.shape
@@ -166,17 +186,31 @@ def edge(plane: Any, width: int, *, bead: bool = False) -> Any:
         )
     padded = disc_zeros((y, x + 2))
     padded[:, :x] = plane
-    for j in range(x):
+    ordinary = type(width) is int and _ordinary_edge_values(plane)
+    skip_unused = ordinary and width == 0
+    reuse_factors = (
+        ordinary and type(bead) is bool and 0 < width <= y and width <= (y if bead else x) <= x + 2
+    )
+    factors: dict[int, Any] = {}
+
+    def factor(k: int) -> Any:
+        if reuse_factors:
+            if k not in factors:
+                factors[k] = 1 - sin(certified_pi() * (k + 0.5) / (2 * width))
+            return factors[k]
+        return 1 - sin(certified_pi() * (k + 0.5) / (2 * width))
+
+    for j in range(0 if skip_unused else x):
         delta = (padded[-1, j] - padded[0, j]) / 2
         for k in range(width):
-            v = delta * (1 - sin(certified_pi() * (k + 0.5) / (2 * width)))
+            v = delta * factor(k)
             padded[k, j] += v
             padded[y - 1 - k, j] -= v
     flat = padded.reshape(-1)
-    for i in range(y):
+    for i in range(0 if skip_unused else y):
         delta = (padded[i, x - 1] - padded[i, 0]) / 2
         for k in range(width):
-            v = delta * (1 - sin(certified_pi() * (k + 0.5) / (2 * width)))
+            v = delta * factor(k)
             flat[i * (x + 2) + k] += v
             flat[i * (x + 2) + (y if bead else x) - 1 - k] -= v
     return padded[:, :x].copy()
