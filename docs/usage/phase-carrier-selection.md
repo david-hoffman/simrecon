@@ -1,5 +1,7 @@
 # Caller-policy selection of unknown-phase carriers
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `select_volume_phase_carrier` runs the complete independent phase-fit scan, then
 applies your explicit residual and local phase-rank limits to stationary rows.
 It selects a row only when exactly one passes. It retains every row, including

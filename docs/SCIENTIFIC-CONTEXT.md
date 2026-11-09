@@ -1,5 +1,15 @@
 # Scientific context for the new SIM library
 
+> **Historical scientific background.** Reconstruction and the former scientific
+> APIs are temporarily unavailable under CE01. The
+> [C-equivalence rebuild roadmap](plans/c-equivalence-roadmap.md) and
+> [common contract](contracts/c-equivalence-common-v1.md) govern replacement work.
+> The notes below preserve original proposals, claims and reading limits; they
+> neither supply an active API nor establish mathematical equivalence to C.
+> Historical scenario/default-limit language is superseded by current
+> [AGENTS.md](../AGENTS.md) and [PROJECT](PROJECT.md). Scientific evidence and
+> observed failures retain their original meaning.
+
 **Version 1.0**. Recorded September 30, 2026. This document connects scientific sources to algorithm responsibilities. It is background for task intake, not an approved numerical specification or a claim that the new library exists.
 
 The owner permits studying `SIMrecon_svn/` to understand algorithms and requires all new library code to be written from scratch. Source code and historical output can inform investigation; neither independently establishes correct behavior. The owner authorized an initial eight-hour delivery installation pass on September 30, 2026, then clarified, "We never decided on architecture." The installed Python NumPy/SciPy scaffold is provisional. Architecture, scientific behavior, and implementation require their respective approvals; see [project](PROJECT.md).

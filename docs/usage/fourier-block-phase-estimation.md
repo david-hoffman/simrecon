@@ -1,5 +1,7 @@
 # Fourier-block observable phase fitting
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `estimate_observable_volume_phases` fits one common vector of exposure phases and
 one real nuisance specimen in the supplied calibration gauge. Its required inputs
 and result fields are unchanged. Carrier-orbit blocks replace the global dense

@@ -1,5 +1,7 @@
 # Prepare a sampled 2D intensity calibration
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `prepare_otf` converts a caller-supplied intensity point spread function (PSF) into its normalized optical transfer function (OTF). Supply the spatial sample sizes, origin and source label explicitly:
 
 ```python

@@ -1,5 +1,7 @@
 # Declared linear-response correction
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 Use `correct_linear_response` when you supply the complete samplewise relation
 `raw = offset + response * signal`. Raw and offset have the input intensity unit.
 Response has input units per output unit and must be strictly positive. The

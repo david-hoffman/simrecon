@@ -1,0 +1,38 @@
+# CE01: preserve post-PR7 ASD improvements
+
+**Version 1.0. Explicit owner instruction, 2 November 2026.**
+
+The scientific reset does not roll back Agentic Software Delivery (ASD). Preserve all accepted delivery-policy, tooling, check, fixture and neutral-test improvements since PR #7. Already present changes remain; accepted later changes absent from the PR #54 integration base must be carried forward inside CE01. Do not revive superseded experiments or transplant the retired scientific runtime merely to retain delivery changes.
+
+## Source and necessary reconciliation
+
+The latest completed RA14 source tree is `0939754aaaf560ca554139d50084f9f0ccc296d8`. It contains post-base delivery improvements. This is a source/evidence pin, not permission to adopt its non-equivalent science. Pin exact selected files and qualifying evidence before edits; review the full later delivery delta for omissions. Historical task records and charges remain evidence even when their scientific functionality is removed.
+
+Required known bundles include:
+
+| Improvement | Source/provenance | Preservation obligation |
+|---|---|---|
+| Simplified fixture/worktree housekeeping | `bee980cc4d1b556bd3c8d3b0540d96c5df36e0ce`, retained in completed RA14 | Keep matching AGENTS, four role skills, delivery specification/templates and `docs/operations/fixture-cleanup.md`; preserve the historical policy/task corrections. Existing-command housekeeping does not grow into a new cleanup tool, role pipeline or global preservation-proof project. |
+| Quoted selected uv executable | `3bb7be01cc84bd5f8c177b9c5ed2940ad0ec24aa` | Preserve quoting in Make recipes and its relevant neutral checks. |
+| Qualified test consolidation and fixture improvements | Later TSC01/test-consolidation records retained at the source tree, including M25 correction `5547475` | Keep neutral obligation coverage, bounded fixture setup/dispatcher improvements, controlled reader-timeout witness, MRC memory-fixture improvements, verifier/export/protection/wheel/source-free controls and reduced redundant work. M25 must retain the stronger payload sizing above historical memory high-water plus its unchanged limit. Do not resurrect deleted duplicate tests, including `test_delivery_bounded.py`, merely because the older manifest listed them. |
+| Fixed two-worker verification | `d62aa2e2e2bf95ebfaaf6d0b6476a323980fd722` and its retained qualification evidence | Preserve Make test command, pinned xdist/execnet dependencies and lock inputs, `_pytest_policy.py` grouping, parallel-runner tests/helper and test-run guards. Retired scientific affinity entries may be removed only with their subjects and neutral grouping/coverage integrity preserved. |
+
+No whole-tree or whole-test-directory replacement is authorized. Inspect the changed-file closure and retain every neutral improvement, including mixed-file cases; omit science scheduled for retirement. Preserve improvement intent and public obligations when a removed scientific subject makes exact old bytes inapplicable. Record that mapping explicitly rather than reintroducing dead science.
+
+The original retirement JSON was an inventory at PR #54, before this carry-forward. It lacked four new neutral tests/helpers and listed the formerly consolidated `test_delivery_bounded.py` for retention. CE01's reconciled JSON now records those four keepers, preserves the consolidated deletion and pins pre-A mixed/neutral inputs. These are input identities, not a claim that the files remain unchanged after authorized test retirement. Complete the mixed-file declaration and obligation-to-keeper mapping through fresh blind A/B before restricted C. Renew exact test/check/source identities for that accepted checkpoint and the actual integrated candidate. No broader deletion authority follows. A/B receive sanitized public obligations and allowed test paths; the nonblind discovery map stays with the coordinator and permitted infrastructure worker/reviewer.
+
+Specific known reconciliation items: retain the newer `reader_timeout_fixture.py`, `verification_fixture_dispatch.py`, `parallel_runner_fixture.py` and `test_parallel_runner.py`; retain the deliberate deletion of `test_delivery_bounded.py` and its stronger keeper tests. Reconcile changed neutral portions of `shared_node_baseline_public_callers_fixture.py`, `test_shared_node_baseline_public_callers.py` and `test_shared_node_baseline_compatibility.py`. Preserve the fixed two-worker capability even though its old scientific affinity entries refer to files CE01 removes; give that adjustment and requalification explicit infrastructure ownership. Update stale PROJECT prose that calls already activated parallel testing "proposed," without importing the old RA scientific architecture as an active dependency.
+
+## Ownership and gates
+
+Coordinator owns policy/documentation preservation and exact source/task/qualification inventory. A fresh independent policy reviewer checks the reconciled policy before activation. One explicitly bounded worker owns named neutral delivery runtime/configuration and neutral test/fixture changes, with one fresh independent bounded reviewer. Freeze that allowed file scope from the source delta before edits. Do not use this ownership to redesign science, change security/permission boundaries or weaken gates; an unresolved or higher-risk finding returns to the proper existing route.
+
+Scientific A/B and C/D ownership remains separate. Required check/test/source identities are renewed for the actual integrated baseline; earlier evidence explains provenance but does not prove a newly transplanted candidate. Full exact local verification precedes PR submission, then both configured platform proofs remain required. M25 still measures retained MRC conversion and retains its 33,554,432-byte limit and required same-run export. Source-free diagnostics, report integrity, real-caller tests, no skipped/expected-failure cases, wheel/audit checks and independent role requirements remain.
+
+## Cleanup and continuation
+
+Each new task's first operational phase is the preceding completed PR's fixture/worktree cleanup. Use the accepted simplified cleanup procedure at the pinned latest source, even while the older checkout's copy awaits preservation. Close predecessor-owned writers, identify explicit disposable paths, preserve needed commits and durable evidence, then use existing filesystem/Git commands and confirm results. Do not remove the active correction checkout, shared caches, original data/C or old worktrees still serving as evidence/source/environment dependencies. Preserve uncertain targets and report them; continue with clear targets. This is the user's explicit predecessor-cleanup scope, not a general age-based sweep.
+
+For CE01 the preceding completed scientific PR is RA14 #70. Its worktree and investigation contain retained evidence and source dependencies. Inspect their recorded cleanup scope first; do not equate an old worktree with a disposable one. Transfer required source/evidence only where their path/provenance obligations permit it. Later tasks receive an explicit predecessor cleanup inventory and durable evidence pointer before handoff, so disposable worktrees can be removed without losing proof.
+
+After a PR has complete local/platform/review evidence and is ready for owner review, its coordinator creates the next task with the exact base/head, the next contract, one new isolated worktree/branch, all standing constraints and cumulative accounting. Each successor PR targets that completed predecessor. The user authorizes this automatic continuation; no repeated permission interview is required. No merge/release is implied, and no dependent task starts from an incomplete prerequisite.

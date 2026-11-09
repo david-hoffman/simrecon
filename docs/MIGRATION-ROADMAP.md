@@ -1,3 +1,52 @@
+# Migration status: C-equivalence rebuild
+
+**Version 1.0. Active roadmap replaced on 2 November 2026.**
+
+**Reconstruction and the former scientific APIs are temporarily unavailable.**
+The [C-equivalence roadmap](plans/c-equivalence-roadmap.md) is the current execution
+plan. Its [common contract](contracts/c-equivalence-common-v1.md) requires the same
+mathematical mapping and finite decision procedure as the retained C call path,
+after any declared invertible representation/unit conversion. Bitwise agreement
+is not required. Earlier finite-model agreement does not establish this result.
+
+CE01 retires incompatible scientific components, their public bindings and stale
+scientific tests/fixtures in the first corrective PR. The retained functions are
+`inspect`, `read`, `harmonize`, `write`, `declare_acquisition` and `export_imagej`,
+with their required records/errors, neutral CLI and delivery tools. All accepted
+Agentic Software Delivery (ASD) improvements, full exact-candidate verification,
+platform/report gates and the same-run M25 MRC memory measurement remain.
+[Retirement scope](contracts/c-equivalence-retirement-v1.md) and
+[ASD preservation](contracts/c-equivalence-asd-preservation-v1.md) define ownership.
+
+| Stage | Replacement obligation |
+|---|---|
+| CE01 | Retire incompatible science; preserve neutral I/O, delivery infrastructure and historical evidence. |
+| CE02 | Rebuild C preprocessing, scaling, equalization, edge handling, transforms and phase separation. |
+| CE03 | Rebuild C optical transfer preparation and sampling. |
+| CE04 | Rebuild known-parameter C filtering and signed Fourier assembly. |
+| CE05 | Rebuild C carrier and modulation fitting, including its finite search decisions. |
+| CE06 | Port remaining defined acquisition modes or explicitly record unsupported/unsafe reference branches. |
+| CE07 | Compose accepted stages into one public C-equivalent workflow. |
+| CE08 | Independently assess mathematical agreement, recoverable information, noise and limits. |
+
+Each stage waits for its exact completed predecessor and an approved source-derived
+public packet. The [CE01 task pointer](tasks/c-equivalence-reset.md) carries current
+execution evidence. The table is no claim that replacement runtime is available.
+Original source C, owner arrays, failed-study evidence and historical charges stay
+intact. C remains ignored/unshipped and must not be built, run, linked or imported.
+Only independently supplied matching C output/configuration bundles support an
+output-parity claim. No merge or release follows from this plan.
+
+The old raw-input/RA roadmap below is retained as history. Its component status,
+“next” instructions and numerical models describe their original execution
+baselines. They no longer authorize continuation or advertise current APIs.
+Historical claims and failed-study limits are not rewritten as successful
+C equivalence. The immutable base for this retained text is
+`8f6b35ceda362944f00de44acbf7098989f157e4:docs/MIGRATION-ROADMAP.md`.
+
+<details>
+<summary>Historical migration roadmap and RA continuation records</summary>
+
 # Scientific migration roadmap: raw acquisitions to reference parity
 
 **Version 1.0.** Git versions revisions. Baseline updated after owner integration on October 10, 2026, 22:01 UTC.
@@ -217,3 +266,5 @@ Above completed PR39, [fixed-transfer local volume phase estimation](contracts/p
 The standing roadmap continuation above completed PR40 next selects [observable-subspace local volume phase estimation](contracts/observable-volume-phase-estimation-v1.md), with [task/evidence pointer](tasks/observable-volume-phase-estimation.md). The additive operation removes exact normalized-transfer structural nuisance nullspaces while preserving the full observation objective, fixed calibration gauge and local phase-information meaning. Weak and phase-dependent nuisance deficiencies remain explicit. Unobservable specimen modes are unavailable physical information, not recovered zeros. Existing phase-estimation behavior is preserved. The slice inherits the binding100%native executable-line/branch-destination and full-local/per-platform proof requirements. Dense scalability, unknown carrier/drift/gain, the complete raw workflow and phases7–9 remain unfinished.
 
 Above completed PR41, the next Phase5 composition is [unknown-phase finite integer-carrier scanning](contracts/phase-carrier-scan-v1.md), with [task/evidence pointer](tasks/phase-carrier-scan.md). It applies the accepted observable-subspace local phase objective independently to every caller-listed integer hypothesis from shared nominal initialization and fixed calibration. Candidate order, duplicates, aliases and availability diagnostics are retained. It supplies no automatic physical-carrier selection, continuous refinement, scalable-volume guarantee or completion of the remaining raw-workflow/simulation/reference exits. The task retains the binding100%native measured coverage and all exact-candidate/platform gates.
+
+</details>

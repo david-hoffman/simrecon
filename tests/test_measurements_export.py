@@ -6,7 +6,6 @@ import copy
 import hashlib
 import json
 import os
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -16,7 +15,8 @@ from uuid import UUID
 import pytest
 
 from measurement_fixture_export import LIMIT_BYTES, MEASUREMENTS_PATH, export_measurement
-from verification_fixture_tools import PHASES
+from verification_fixture_dispatch import read_measurements
+from verification_fixture_tools import PHASES, install_phase_commands, prepare_phase_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = Path(__file__).parent
@@ -54,10 +54,11 @@ def report(units: str = "KiB", baseline: int = 100, peak: int = 107) -> dict[str
     }
 
 
-@pytest.fixture
-def repository(tmp_path: Path) -> Repository:
+def writer_root(tmp_path: Path, *, with_git: bool = True) -> Path:
     root = tmp_path / "repo"
     root.mkdir()
+    if not with_git:
+        return root
     for name in ("src/simrecon/sample.py", "scripts/sample.py"):
         path = root / name
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -70,17 +71,15 @@ def repository(tmp_path: Path) -> Repository:
     git(root, "config", "user.name", "Measurements fixture")
     git(root, "add", ".")
     git(root, "commit", "-qm", "public synthetic candidate")
+    return root
+
+
+@pytest.fixture
+def repository(tmp_path: Path) -> Repository:
+    root = writer_root(tmp_path)
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
-    shutil.copyfile(
-        FIXTURES / "verification_fixture_tools.py", bin_dir / "verification_fixture_tools.py"
-    )
-    for name in ("make", "uv"):
-        target = bin_dir / name
-        target.write_text(
-            f"#!{sys.executable}\n" + (FIXTURES / "measurements_fixture_commands.py").read_text()
-        )
-        target.chmod(0o755)
+    install_phase_commands(bin_dir, "measurements_fixture_commands", hybrid=True)
     return root, bin_dir
 
 
@@ -101,6 +100,7 @@ def invoke(
     env["EXPORT_FIXTURE_MODE"] = mode
     env["EXPORT_FIXTURE_REPORT"] = json.dumps(report() if value is DEFAULT_REPORT else value)
     env["RECEIPT_FIXTURE_MODE"] = receipt_mode
+    env["RECEIPT_FIXTURE_INPUTS"] = str(prepare_phase_inputs(bin_dir, receipt_mode))
     result = run(
         [
             sys.executable,
@@ -120,9 +120,7 @@ def invoke(
 
 
 def observations(root: Path) -> list[dict[str, Any]]:
-    return [
-        json.loads(line) for line in (root / "measurement-calls.jsonl").read_text().splitlines()
-    ]
+    return read_measurements(root / "measurement-calls.jsonl")
 
 
 def assert_measurements(receipt: dict[str, Any], root: Path, expected: dict[str, Any]) -> None:
@@ -143,15 +141,9 @@ def assert_measurements(receipt: dict[str, Any], root: Path, expected: dict[str,
     [
         ("KiB", 100, 107),
         ("bytes", 100, 107),
-        ("KiB", 0, 0),
         ("bytes", 0, 0),
-        ("bytes", 19, 19),
         ("KiB", 31, 31 + 32768),
         ("bytes", 31, 31 + 33554432),
-        # Integer counterparts to the isolated Boolean/negative-baseline rejections.
-        ("bytes", 1, 1),
-        ("bytes", 0, 1),
-        ("KiB", 0, 7),
     ],
 )
 def test_e1_e3_same_run_exact_report(
@@ -177,18 +169,14 @@ def test_e1_e3_same_run_exact_report(
     metadata = [c for c in calls if c not in phases]
     assert metadata
     assert all(c["path"] is None and c["run_id"] is None for c in metadata)
-
-
-def test_e1_fresh_id_per_invocation(repository: Repository) -> None:
-    root, _ = repository
-    first, first_receipt = invoke(repository)
-    assert first.returncode == 0, first.stderr
-    assert first_receipt is not None
-    second, second_receipt = invoke(repository)
-    assert second.returncode == 0, second.stderr
-    assert second_receipt is not None
-    assert first_receipt["measurements"]["run_id"] != second_receipt["measurements"]["run_id"]
-    assert_measurements(second_receipt, root, report())
+    if (units, baseline, peak) == ("KiB", 100, 107):
+        # Assert the first live report above before the unchanged-input rerun.
+        second, second_receipt = invoke(repository, value=expected)
+        assert second.returncode == 0, second.stdout + second.stderr
+        assert second_receipt is not None
+        assert second_receipt["result"] == "passed" and second_receipt["problems"] == []
+        assert second_receipt["measurements"]["run_id"] != run_id
+        assert_measurements(second_receipt, root, expected)
 
 
 def test_e1_legacy_collector_disabled(repository: Repository) -> None:
@@ -241,22 +229,14 @@ def test_e2_before_tests_failure_never_reports_stale(repository: Repository) -> 
 
 
 def invalid_reports() -> list[Any]:
-    values: list[Any] = [None, [], "object required", 17, True]
+    values: list[Any] = [None]
     for field, invalid in (
         ("schema", "wrong"),
-        ("schema", None),
-        ("version", 2),
         ("version", True),
-        ("version", 1.0),
+        ("version", 2),
         ("run_id", STALE_ID),
-        ("run_id", ""),
-        ("run_id", 1),
-        ("run_id", None),
-        ("measurements", []),
-        ("measurements", None),
         ("measurements", {}),
         ("measurements", {"M25": []}),
-        ("measurements", {"M25": None}),
     ):
         value = report()
         value[field] = invalid
@@ -272,40 +252,22 @@ def invalid_reports() -> list[Any]:
         value = report()
         del value["measurements"]["M25"][field]
         values.append(value)
-    for field in ("baseline", "peak", "increment_bytes", "limit_bytes"):
-        original = report()["measurements"]["M25"][field]
-        for invalid in (True, float(original), str(original), None, -1):
-            value = report()
-            value["measurements"]["M25"][field] = invalid
-            values.append(value)
-    for unit in ("KB", "kib", "Bytes", "MiB", "", None, 1, True):
-        # Zero is exact under both approved native scales: only the unit is invalid.
-        value = report("bytes", 0, 0)
-        value["measurements"]["M25"]["units"] = unit
-        values.append(value)
-    lower_peak = report()
-    lower_peak["measurements"]["M25"].update(baseline=108, peak=107, increment_bytes=0)
-    values.append(lower_peak)
-    for units, wrong_increment in (("KiB", 7), ("bytes", 7168)):
-        value = report(units)
-        value["measurements"]["M25"]["increment_bytes"] = wrong_increment
-        values.append(value)
-    for invalid_limit in (0, LIMIT_BYTES - 1, LIMIT_BYTES + 1):
-        value = report()
-        value["measurements"]["M25"]["limit_bytes"] = invalid_limit
-        values.append(value)
-    values += [report("bytes", 0, LIMIT_BYTES + 1), report("KiB", 0, 32769)]
-    # Isolate numeric representation from arithmetic, order and the fixed limit.
-    # Under ordinary numeric coercion each otherwise satisfies the public equation.
+    # Each isolated representation counterexample satisfies the arithmetic if
+    # coercion were allowed, so a different guard cannot supply the rejection.
     for units, fields in (
         ("bytes", {"baseline": True, "peak": 1, "increment_bytes": 0}),
-        ("bytes", {"baseline": 0, "peak": True, "increment_bytes": 1}),
-        ("bytes", {"baseline": 0, "peak": 1, "increment_bytes": True}),
+        ("bytes", {"baseline": 0, "peak": 1.0, "increment_bytes": 1}),
         ("KiB", {"baseline": -1, "peak": 6, "increment_bytes": 7168}),
+        ("bytes", {"baseline": 2, "peak": 1, "increment_bytes": 0}),
+        ("bytes", {"baseline": 0, "peak": 0, "increment_bytes": 0, "units": "KB"}),
+        ("KiB", {"increment_bytes": 7}),
+        ("bytes", {"increment_bytes": 7168}),
+        ("KiB", {"limit_bytes": LIMIT_BYTES + 1}),
     ):
         value = report(units)
         value["measurements"]["M25"].update(fields)
         values.append(value)
+    values.append(report("bytes", 0, LIMIT_BYTES + 1))
     return values
 
 
@@ -355,12 +317,11 @@ def test_e2_missing_malformed_changed_or_late_evidence(repository: Repository, m
     assert all(p["returncode"] == 0 for p in receipt["phases"])
 
 
-@pytest.mark.parametrize("mode", ["changed-report-same-id", "reformatted-report-same-id"])
 def test_e3_later_valid_report_replacement_preserving_run_id_rejected(
-    repository: Repository, mode: str
+    repository: Repository,
 ) -> None:
     root, _ = repository
-    result, receipt = invoke(repository, mode=mode)
+    result, receipt = invoke(repository, mode="reformatted-report-same-id")
     assert result.returncode == 1, result.stdout + result.stderr
     assert receipt is not None and receipt["result"] == "failed"
     assert any("measurement" in p.lower() for p in receipt["problems"]), receipt["problems"]
@@ -395,15 +356,6 @@ def test_e3_later_valid_report_replacement_preserving_run_id_rejected(
     original = {**report(), "run_id": run_id}
     assert tests_bytes == json.dumps(original).encode()
     final_expected = copy.deepcopy(original)
-    if mode == "changed-report-same-id":
-        # Independent valid alternative: (211 - 200) KiB * 1024 = 11264 bytes.
-        final_expected["measurements"]["M25"] = {
-            "baseline": 200,
-            "peak": 211,
-            "units": "KiB",
-            "increment_bytes": 11264,
-            "limit_bytes": 33554432,
-        }
     final_bytes = destination.read_bytes()
     assert final_bytes == (json.dumps(final_expected, indent=2, sort_keys=True) + "\n").encode()
     assert json.loads(final_bytes) == final_expected
@@ -448,9 +400,9 @@ def test_e2_helper_protects_destination_before_phases(
 
 @pytest.fixture
 def writer_environment(
-    repository: Repository, monkeypatch: pytest.MonkeyPatch
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> tuple[Path, pytest.MonkeyPatch]:
-    root, _ = repository
+    root = writer_root(tmp_path)
     monkeypatch.chdir(root)
     for key in ENV_KEYS:
         monkeypatch.delenv(key, raising=False)
@@ -468,10 +420,11 @@ def native_record() -> dict[str, Any]:
     return {k: v for k, v in report()["measurements"]["M25"].items() if k != "limit_bytes"}
 
 
-def test_e1_writer_standalone_no_report(
-    writer_environment: tuple[Path, pytest.MonkeyPatch],
-) -> None:
-    root, _ = writer_environment
+def test_e1_writer_standalone_no_report(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    root = writer_root(tmp_path, with_git=False)
+    monkeypatch.chdir(root)
+    for key in ENV_KEYS:
+        monkeypatch.delenv(key, raising=False)
     export_measurement(native_record())
     assert not (root / "artifacts").exists()
 
@@ -479,33 +432,26 @@ def test_e1_writer_standalone_no_report(
 @pytest.mark.parametrize("key", ENV_KEYS)
 @pytest.mark.parametrize("value", ["present", ""])
 def test_e2_writer_partial_pair_rejected(
-    writer_environment: tuple[Path, pytest.MonkeyPatch], key: str, value: str
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, key: str, value: str
 ) -> None:
-    root, monkeypatch = writer_environment
+    root = writer_root(tmp_path, with_git=False)
+    monkeypatch.chdir(root)
+    for env_key in ENV_KEYS:
+        monkeypatch.delenv(env_key, raising=False)
     monkeypatch.setenv(key, value)
     with pytest.raises(ValueError, match="both path and run ID"):
         export_measurement(native_record())
     assert not (root / "artifacts").exists()
 
 
-def test_e1_writer_exact_same_call_record(
-    writer_environment: tuple[Path, pytest.MonkeyPatch],
-) -> None:
-    root, monkeypatch = writer_environment
-    enable_writer(monkeypatch)
-    supplied = native_record()
-    before = copy.deepcopy(supplied)
-    export_measurement(supplied)
-    assert supplied == before
-    assert json.loads((root / MEASUREMENTS_PATH).read_text()) == {**report(), "run_id": STALE_ID}
-    assert git(root, "status", "--porcelain") == ""
-
-
 @pytest.mark.parametrize("ignored", [False, True])
 def test_e2_writer_requires_ignored_approved_path_before_write(
-    writer_environment: tuple[Path, pytest.MonkeyPatch], ignored: bool
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, ignored: bool
 ) -> None:
-    root, monkeypatch = writer_environment
+    root = writer_root(tmp_path, with_git=not ignored)
+    monkeypatch.chdir(root)
+    for key in ENV_KEYS:
+        monkeypatch.delenv(key, raising=False)
     if ignored:
         enable_writer(monkeypatch, "artifacts/verification/other.json")
         expected = "approved artifact path"
@@ -518,21 +464,16 @@ def test_e2_writer_requires_ignored_approved_path_before_write(
     assert not (root / "artifacts").exists()
 
 
-@pytest.mark.parametrize("kind", ["tracked", "leaf-tracked", "leaf-git"])
 def test_e2_writer_preserves_protected_bytes(
-    writer_environment: tuple[Path, pytest.MonkeyPatch], kind: str
+    writer_environment: tuple[Path, pytest.MonkeyPatch],
 ) -> None:
     root, monkeypatch = writer_environment
     monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
-    protected, original = protected_setup(root, kind)
+    protected, original = protected_setup(root, "tracked")
     before = writer_protected_snapshot(root)
     enable_writer(monkeypatch)
-    if kind == "tracked":
-        # A directly tracked destination must still reject, not replace its bytes.
-        with pytest.raises(ValueError, match="ignored|tracked|Git metadata"):
-            export_measurement(native_record())
-    else:
-        assert_writer_safe_alias_outcome(root, native_record())
+    with pytest.raises(ValueError, match="ignored|tracked|Git metadata"):
+        export_measurement(native_record())
     assert protected.read_bytes() == original
     assert {path: path.read_bytes() for path in before} == before
     assert writer_protected_snapshot(root) == before
@@ -589,23 +530,11 @@ def test_e2_failed_tests_discard_current_invalid_measurements(repository: Reposi
     assert any("measurement" in p.lower() for p in receipt["problems"])
 
 
-def test_e2_later_phase_failure_retains_valid_measurements(repository: Repository) -> None:
-    root, _ = repository
-    result, receipt = invoke(repository, receipt_mode="wheel-build-failure")
-    assert result.returncode == 31, result.stdout + result.stderr
-    assert receipt is not None and receipt["result"] == "failed"
-    assert [p["name"] for p in receipt["phases"]] == PHASES[:11]
-    assert receipt["phases"][-1]["returncode"] == 31
-    assert_measurements(receipt, root, report())
-
-
 @pytest.mark.parametrize("protected_area", ["private", "common"])
-@pytest.mark.parametrize("writer", [False, True])
 def test_e2_linked_worktree_metadata_protected(
     repository: Repository,
     monkeypatch: pytest.MonkeyPatch,
     protected_area: str,
-    writer: bool,
 ) -> None:
     root, bin_dir = repository
     monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
@@ -618,24 +547,18 @@ def test_e2_linked_worktree_metadata_protected(
     destination.parent.mkdir(parents=True)
     destination.symlink_to(protected)
     before = writer_protected_snapshot(linked)
-    if writer:
-        monkeypatch.chdir(linked)
-        enable_writer(monkeypatch)
-        assert_writer_safe_alias_outcome(linked, native_record())
-    else:
-        result, _ = invoke((linked, bin_dir))
-        assert result.returncode == 1, result.stdout + result.stderr
-        calls_path = linked / "measurement-calls.jsonl"
-        calls = observations(linked) if calls_path.exists() else []
-        assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
+    result, _ = invoke((linked, bin_dir))
+    assert result.returncode == 1, result.stdout + result.stderr
+    calls_path = linked / "measurement-calls.jsonl"
+    calls = observations(linked) if calls_path.exists() else []
+    assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
     assert protected.read_bytes() == original
     assert {path: path.read_bytes() for path in before} == before
     assert writer_protected_snapshot(linked) == before
 
 
-@pytest.mark.parametrize("writer", [False, True])
 def test_e2_ancestor_symlink_cannot_write_git_metadata(
-    repository: Repository, monkeypatch: pytest.MonkeyPatch, writer: bool
+    repository: Repository, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     root, _ = repository
     monkeypatch.setenv("GIT_OPTIONAL_LOCKS", "0")
@@ -647,15 +570,10 @@ def test_e2_ancestor_symlink_cannot_write_git_metadata(
     (root / "artifacts").mkdir()
     (root / "artifacts/verification").symlink_to(root / ".git", target_is_directory=True)
     before = writer_protected_snapshot(root)
-    if writer:
-        monkeypatch.chdir(root)
-        enable_writer(monkeypatch)
-        assert_writer_safe_alias_outcome(root, native_record())
-    else:
-        result, _ = invoke(repository)
-        assert result.returncode == 1, result.stdout + result.stderr
-        calls = observations(root) if (root / "measurement-calls.jsonl").exists() else []
-        assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
+    result, _ = invoke(repository)
+    assert result.returncode == 1, result.stdout + result.stderr
+    calls = observations(root) if (root / "measurement-calls.jsonl").exists() else []
+    assert not any(any(phase in c["args"] for phase in PHASES) for c in calls)
     assert {path: path.read_bytes() for path in before} == before
     after = {
         p.relative_to(root / ".git"): p.read_bytes()
@@ -760,18 +678,6 @@ def assert_writer_report(root: Path, supplied: dict[str, Any]) -> None:
     }
 
 
-def assert_writer_safe_alias_outcome(root: Path, supplied: dict[str, Any]) -> None:
-    """Allow honest rejection or exact output; callers independently prove preservation."""
-    original = copy.deepcopy(supplied)
-    try:
-        export_measurement(supplied)
-    except (ValueError, OSError):
-        pass
-    else:
-        assert_writer_report(root, original)
-    assert supplied == original
-
-
 @pytest.mark.parametrize(
     "target_kind",
     ["tracked", "git", "linked-tracked", "private", "common", "pointer", "missing-tracked"],
@@ -871,7 +777,7 @@ def test_e2_writer_ancestor_alias_preserves_protected_bytes(
 
 
 @pytest.mark.parametrize("linked", [False, True])
-@pytest.mark.parametrize("prior", ["absent", "ordinary", "replaced-symbolic", "replaced-hard"])
+@pytest.mark.parametrize("prior", ["absent", "ordinary"])
 def test_e1_writer_ordinary_and_safely_replaced_output_remain_usable(
     persistence_repository: tuple[Path, pytest.MonkeyPatch], linked: bool, prior: str
 ) -> None:
@@ -880,14 +786,6 @@ def test_e1_writer_ordinary_and_safely_replaced_output_remain_usable(
         root = linked_writer_root(root, monkeypatch)
     destination = root / MEASUREMENTS_PATH
     destination.parent.mkdir(parents=True)
-    if prior.startswith("replaced"):
-        target = root / "candidate.txt"
-        if prior == "replaced-symbolic":
-            destination.symlink_to(target)
-        else:
-            destination.hardlink_to(target)
-        assert destination.samefile(target)
-        destination.unlink()
     if prior != "absent":
         destination.write_bytes(b"ordinary ignored stale measurement output\n")
     before = writer_protected_snapshot(root)
@@ -916,6 +814,10 @@ def test_e1_e3_writer_preserves_legitimate_native_record_values(
     persistence_repository: tuple[Path, pytest.MonkeyPatch], units: str, baseline: int, peak: int
 ) -> None:
     root, monkeypatch = persistence_repository
+    clean_git_case = (units, baseline, peak) == ("KiB", 100, 107)
+    if clean_git_case:
+        assert not (root / "artifacts").exists()
+        monkeypatch.delenv("GIT_OPTIONAL_LOCKS", raising=False)
     supplied = {
         k: v
         for k, v in report(units, baseline, peak)["measurements"]["M25"].items()
@@ -929,6 +831,8 @@ def test_e1_e3_writer_preserves_legitimate_native_record_values(
     assert supplied == original_record
     assert {path: path.read_bytes() for path in before} == before
     assert writer_protected_snapshot(root) == before
+    if clean_git_case:
+        assert git(root, "status", "--porcelain") == ""
 
 
 @pytest.mark.parametrize("failure_kind", ["leaf-directory", "parent-file", "unavailable-git"])

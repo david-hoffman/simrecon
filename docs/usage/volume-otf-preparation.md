@@ -1,5 +1,7 @@
 # Prepare a sampled volume OTF
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `prepare_volume_otf` prepares the optical transfer function (OTF) of a supplied
 three-dimensional intensity point spread function (PSF). Supply the z/y/x sample
 spacing in micrometres (µm), the zero-displacement sample index and an opaque source

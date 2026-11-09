@@ -1,5 +1,7 @@
 # Select a volume carrier with explicit caller policy
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `select_volume_carrier` retains the complete `scan_volume_carriers` result and
 selects a row only when exactly one passes all three caller limits. Supply
 known actual fundamental phases in radians, one positive order, specimen spacing

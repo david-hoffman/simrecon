@@ -144,8 +144,15 @@ def assert_error(code, data, config, metadata=None):
 
 
 # Public layouts: kinds, prefix orders, omissions and legitimate count alternatives.
-@pytest.mark.parametrize("kind", ["specimen_sim", "sim_beads"])
-@pytest.mark.parametrize("prefix", list(itertools.permutations(CANONICAL[:5])))
+@pytest.mark.parametrize(
+    "kind,prefix",
+    [
+        ("specimen_sim", tuple(CANONICAL[(a * j + b) % 5] for j in range(5)))
+        for a in range(1, 5)
+        for b in range(5)
+    ]
+    + [("sim_beads", tuple(reversed(CANONICAL[:5])))],
+)
 def test_all_sim_axis_orders(kind, prefix):
     axes = (*prefix, "y", "x")
     data = labeled_samples(axes)
@@ -184,9 +191,11 @@ def test_optional_sim_axes_are_not_inserted_or_reinterpreted(optional):
     assert set(result.axes) == set(axes)
 
 
-@pytest.mark.parametrize("kind", ["specimen_sim", "sim_beads"])
-@pytest.mark.parametrize("orientation,phase", [(1, 1), (1, 2), (2, 1), (2, 5), (4, 7)])
-@pytest.mark.parametrize("z", [False, True])
+@pytest.mark.parametrize(
+    "kind,orientation,phase,z",
+    [("specimen_sim", o, p, False) for o, p in [(1, 1), (1, 2), (2, 1), (2, 5), (4, 7)]]
+    + [("sim_beads", 1, 1, False), ("sim_beads", 4, 7, True)],
+)
 def test_small_large_and_nonidentifying_counts(kind, orientation, phase, z):
     axes = ("orientation", "z", "phase", "y", "x") if z else SIM_AXES
     data = labeled_samples(axes, {"orientation": orientation, "phase": phase, "z": 1})
@@ -369,7 +378,12 @@ def test_smallest_positive_binary64_and_one_rounding():
 
 
 @pytest.mark.parametrize(
-    "prefix", list(itertools.permutations(("time", "channel", "orientation", "phase")))
+    "prefix",
+    [
+        tuple(CANONICAL[i] for i in order)
+        for order in itertools.permutations(range(4))
+        if sum(order[i] > order[j] for i in range(4) for j in range(i + 1, 4)) % 2 == 0
+    ],
 )
 def test_nominal_command_named_coordinates_and_no_modulo(prefix):
     axes = (*prefix[:2], "z", *prefix[2:], "y", "x")

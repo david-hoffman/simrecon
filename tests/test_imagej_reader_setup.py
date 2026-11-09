@@ -137,16 +137,25 @@ def test_download_rejects_redirects_and_deadline(tmp_path: Path, monkeypatch) ->
         reader.NoRedirect().redirect_request(None, None, 302, "", None, "https://other.invalid")
         is None
     )
-    times = iter([0, 180])
-    monkeypatch.setattr(reader.time, "monotonic", lambda: next(times))
 
     class Opener:
         def open(self, *args, **kwargs):
             return Response(b"trusted")
 
     monkeypatch.setattr(reader.urllib.request, "build_opener", lambda *a: Opener())
-    with pytest.raises(TimeoutError, match="deadline"):
-        reader.download(input_for(b"trusted"), tmp_path / "scratch")
+    # Simulated component boundaries, not observations of elapsed survival.
+    for elapsed in (179.999, 180):
+        times = iter([0])
+        monkeypatch.setattr(
+            reader.time, "monotonic", lambda times=times, elapsed=elapsed: next(times, elapsed)
+        )
+        destination = tmp_path / str(elapsed)
+        if elapsed < 180:
+            reader.download(input_for(b"trusted"), destination)
+            assert destination.read_bytes() == b"trusted"
+        else:
+            with pytest.raises(TimeoutError, match="deadline"):
+                reader.download(input_for(b"trusted"), destination)
 
 
 @pytest.fixture

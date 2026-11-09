@@ -1,5 +1,7 @@
 # Known integer specimen drift
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `correct_integer_drift` prepares one orientation's observations and phases for
 existing separation and reconstruction. Supply known specimen displacements in
 `(y, x)` pixels and the stationary illumination carrier in integer detector

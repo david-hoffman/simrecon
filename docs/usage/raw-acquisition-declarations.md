@@ -1,5 +1,7 @@
 # Raw acquisition declarations
 
+> **Current neutral API.** This guide remains applicable during CE01. Reconstruction and the former scientific APIs are temporarily unavailable; see the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md). This operation performs no scientific correction, calibration, estimation or reconstruction.
+
 `declare_acquisition` prepares an owned array and explicit metadata in memory.
 It preserves every sample's storage bytes while ordering only the declared
 axes as time/channel/orientation/phase/z/y/x. It adds no absent dimensions.
@@ -8,9 +10,9 @@ defines the supported declarations and stable error codes.
 
 This is a declaration foundation for structured illumination microscopy (SIM).
 It does not establish experimental correctness or reconstruction readiness.
-Actual target 3D acquisition settings remain unresolved; this boundary does not
-close full phase 2. Physical correction, calibration, phase estimation and
-scientific parameter selection require their own approved inputs and operations.
+This boundary establishes no scientific reconstruction readiness. Physical
+correction, calibration, phase estimation and scientific parameter selection are
+retired during CE01 and require the C-equivalence rebuild contracts.
 The numbers below are synthetic labels, not proposed instrument settings or
 scientific tolerances.
 
@@ -63,8 +65,8 @@ print("synthetic declaration OK")
 Supported kinds are `specimen_sim`, `sim_beads` and `detection_psf` (detection
 point-spread function). The two SIM kinds require explicit orientation and phase
 axes, even for singleton counts. Detection PSF forbids those axes. Every positive
-count is valid at this boundary; downstream numerical kernels retain their own
-identifiability requirements. Extra switch-off/I2M exposure axes and ragged
+count is valid at this declaration boundary. A future numerical contract must
+separately define its identifiability requirements. Extra switch-off/I2M exposure axes and ragged
 layouts are unsupported. A declaration cannot detect falsely labeled exposures.
 
 Samples must be a plain NumPy array of integer or floating dtype. Signed and

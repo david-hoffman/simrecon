@@ -1,5 +1,7 @@
 # Empirical bead-referenced volume responses
 
+> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+
 `prepare_empirical_volume_response` takes already separated observations for one
 orientation/channel/time. It finds the sole positive maximum of converted `dc`,
 rolls all three volumes by that observed origin, and divides their signed discrete
