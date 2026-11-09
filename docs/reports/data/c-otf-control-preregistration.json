@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-11-02T23:53:23.366645+00:00",
+  "prior_preregistration": "preregistration.json",
+  "prior_spec_commit": "4d150c6d3cba8cf759f53775efa12ee6601b300a",
+  "reason": "Make existing pre-observation renderer signal limits explicit in prose; all expected/query/table/bound values unchanged.",
+  "figure_product_observations": 0,
+  "specification_sha256": "36de1c0bc3ca939d721c3325a2572b1d959a5aa8a69fd2f67458fdd21312d406",
+  "expected_sha256": "a8d6b6be7b9c7bb02a293c17d6dace643a72ca77ab06138967b0dd232e65fabb",
+  "renderer_sha256": "53b82e91273db4d7a6a4f1e1e845a194f29a24638127ca4e7fa54d01edd93899",
+  "fixed_scales": {
+    "real": [
+      -1,
+      7
+    ],
+    "imaginary": [
+      -3,
+      3
+    ],
+    "both_signed_residuals": [
+      -5e-12,
+      5e-12
+    ]
+  },
+  "absolute_complex_error_bound": 5e-12
+}
