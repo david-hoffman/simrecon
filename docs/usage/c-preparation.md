@@ -1,6 +1,9 @@
 # Prepare native specimen quadratures
 
 CE02 adds `prepare_bands` for declared three-dimensional specimen exposures.
+Its original contract stays unchanged. The separate
+[acquisition-mode entry](c-acquisition-modes.md) supports the accepted extended
+2D/3D modes. This page describes `prepare_bands`.
 It corrects camera counts, applies the selected lateral edge operation and
 sum equalization, then performs lateral transforms, phase separation and an
 axial transform. It returns native Fourier quadratures and scalar order-noise

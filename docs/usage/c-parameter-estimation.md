@@ -2,9 +2,13 @@
 
 `estimate_parameters` uses prepared specimen bands and declared optical transfer
 tables to estimate illumination carriers and complex side-order modulation.
-It follows the selected retained C finite search. The supported profile is
-ordinary stationary single-objective three-dimensional data, one explicit
-wavelength/channel, with no drift or input padding. This is an array stage;
+It follows the selected retained C finite search. The original profile described here is ordinary stationary single-objective
+three-dimensional data, one explicit wavelength/channel, with no drift or
+input padding. [CE06 acquisition modes](c-acquisition-modes.md) additionally
+accept `AcquisitionBands`, true 2D estimation and the contracted extended
+preparation modes. The equations and slicing example below describe original
+`PreparedBands`; the complete CE06 contract defines its extended records and
+different 2D pair/product rules. This is an array stage;
 raw-file workflow composition remains separate.
 
 ```python

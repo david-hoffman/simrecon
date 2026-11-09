@@ -73,11 +73,15 @@ not waive the stencil checks. Output arrays own read-only storage; inputs stay
 unchanged. An accepted writable band's finite quadratures/noise can be supplied
 without replaying its raw images.
 
-The supported profile is ordinary stationary single-objective three-dimensional
-data with at least two retained orders, accepted integer zoom and explicit positive
-Wiener parameter. Drift, carrier/modulation estimation, automatic Wiener selection,
-axial input padding, two-objective/Bessel modes, fractional lateral zoom, power or
-precise-boundary taper and file composition remain outside this stage.
+The original profile described here is ordinary stationary single-objective
+three-dimensional data with at least two retained orders, integer zoom and an
+explicit positive Wiener parameter. Its original calls retain their behavior.
+[CE06 acquisition modes](c-acquisition-modes.md) add `AcquisitionBands`, true
+2D, safe fractional enlargement and contracted power/precise/filter/debug
+options, with their actual finite-domain restrictions. Automatic Wiener
+selection, axial input padding, two-objective/Bessel paths and complete file
+composition remain outside the selected support. This entry continues to
+consume supplied parameters; actual estimation is the separate accepted stage.
 
 This establishes a finite source-mathematical mapping within its declared domain.
 Historical C executable agreement, physical image recovery and resolution remain
