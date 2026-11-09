@@ -1,6 +1,7 @@
 # SIMrecon project
 
-**Version 1.0.** Git versions revisions. Active product status: CE01 neutral-only boundary.
+**Version 1.0.** Git versions revisions. Active product status: CE02 preparation;
+reconstruction remains unavailable.
 
 ## Approved architecture and current public boundary
 
@@ -11,19 +12,27 @@ contract on October 1, 2026, then two bounded amendments.
 remain evidence; architecture alone authorizes no additional scientific behavior.
 
 **Reconstruction and the former scientific APIs are temporarily unavailable during
-the mathematical C-equivalence rebuild.** The [retirement contract](contracts/c-equivalence-retirement-v1.md)
+the mathematical C-equivalence rebuild.** The new
+[CE02 preparation contract](contracts/c-equivalence-preprocessing-v1.md) defines
+`prepare_bands` / `PreparedBands` for the selected C camera, edge, equalization,
+transform and phase-separation mapping. [Usage](usage/c-preparation.md) describes
+the pure array boundary and its limits. Its
+[task pointer](tasks/c-equivalence-preprocessing.md) owns current execution and
+acceptance evidence. It does not restore any retired scientific API or claim
+completed reconstruction equivalence. The [retirement contract](contracts/c-equivalence-retirement-v1.md)
 removes the old scientific stack, including phase/OTF preparation, correction,
 calibration, estimation, simulation and reconstruction. The
 [replacement roadmap](plans/c-equivalence-roadmap.md) supersedes the RA execution
 plan. Its [common contract](contracts/c-equivalence-common-v1.md) requires the same
 mathematical mapping and finite decision procedure as the selected retained C
 call path; it does not claim bitwise agreement or a completed equivalent runtime.
-The [CE01 task pointer](tasks/c-equivalence-reset.md) owns current candidate,
-role/check/review and remaining execution evidence. Documentation status alone is
+The [CE01 task pointer](tasks/c-equivalence-reset.md) retains predecessor
+candidate, role/check/review and execution evidence. Documentation status alone is
 no readiness or acceptance verdict.
 
-The retained public functions are `inspect`, `read`, `harmonize`, `write`,
+The neutral public functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records/errors.
+The new scientific stage is `prepare_bands`, with `PreparedBands`.
 The neutral CLI and delivery commands remain installed.
 
 - The [MRC conversion contract](contracts/mrc-conversion-v1.md) defines metadata
