@@ -1,10 +1,12 @@
-# Library design: active neutral boundary
+# Library design: explicit file and array operations
 
-**Version 1.0. CE01 product status.** [PROJECT.md](../PROJECT.md) is the canonical
+**Version 1.0. CE02–CE04 product boundary.** [PROJECT.md](../PROJECT.md) is the canonical
 project record; public contracts define exact behavior.
 
-**Scientific APIs, including reconstruction, are temporarily unavailable.** The
-[C-equivalence roadmap](../plans/c-equivalence-roadmap.md) replaces the earlier
+The array boundary supports specimen preparation, empirical transfers and
+known-parameter native filtering/assembly under their source-derived contracts.
+Carrier/modulation fitting and complete file composition remain later stages.
+The [C-equivalence roadmap](../plans/c-equivalence-roadmap.md) replaces the earlier
 numerical design. The approved functional architecture and neutral adapters
 remain; they authorize no additional scientific feature. The historical proposal
 below retains its original pending-approval language and old candidate claims.
@@ -19,13 +21,18 @@ below retains its original pending-approval language and old candidate claims.
 | `write` | Stream a described source to modern MRC with pixel and metadata preservation. | [MRC conversion](../contracts/mrc-conversion-v1.md) |
 | `declare_acquisition` | Own a bit-preserving caller array and explicit acquisition declarations. | [Acquisition declarations](../contracts/raw-acquisition-declarations-v1.md) |
 | `export_imagej` | Produce a supported Priism acquisition's OME-BigTIFF viewing copy. | [ImageJ export](../contracts/imagej-export-v1.md) |
+| `prepare_bands` | Produce native quadratures and scalar noise factors from declared exposures. | [CE02 preparation](../contracts/c-equivalence-preprocessing-v1.md) |
+| `prepare_bead_otf`, `declare_otf`, `sample_otf` | Prepare, declare and sample complete complex transfer records. | [CE03 transfers](../contracts/c-equivalence-optical-transfer-v1.md) |
+| `reconstruct_known` | Filter native bands and assemble a signed real image with supplied parameters. | [CE04 filtering/assembly](../contracts/c-equivalence-known-parameters-v1.md) |
 
 The thin command-line interface (CLI) offers `simrecon inspect`, `simrecon convert`
 and `simrecon export-imagej` through the same public boundaries. `delivery doctor`
 and verification tools remain delivery infrastructure. No neutral entry point
 implicitly calls correction, calibration, phase separation, estimation, simulation
-or reconstruction. Retired scientific records/functions/modules are unavailable;
-there is no alternate or lazy numerical entry point during CE01.
+or reconstruction. The scientific entries are explicit pure array/value calls.
+Retired records/functions/modules remain unavailable through aliases or alternate
+entry points. Known-parameter mathematical agreement supplies no historical
+binary agreement, physical recovery or resolution claim.
 
 ## Values, metadata and file resources
 
@@ -61,10 +68,10 @@ and its 33,554,432-byte increment limit are defined in [PROJECT](../PROJECT.md).
 ## Replacement science and historical design
 
 The [common C-equivalence contract](../contracts/c-equivalence-common-v1.md) governs
-future numerical inputs, units, transforms, support, signs, scales and finite
-decisions. A proposed primitive supplies no active workflow until its approved
+the selected numerical inputs, units, transforms, support, signs, scales and
+finite decisions. A proposed primitive supplies no active workflow until its approved
 public composition and independent acceptance are complete. NumPy/SciPy remain
-locked dependencies; their presence supplies no scientific API. No alternative
+locked dependencies; the active scientific entries are listed above. No alternative
 estimator, hidden normalization or unsupported C branch is adopted here.
 
 The original design is preserved verbatim below from
