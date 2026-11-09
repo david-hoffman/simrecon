@@ -1,0 +1,272 @@
+{
+  "case": "cell-detail",
+  "control": "cell",
+  "wiener": 0.02,
+  "model_rayleigh_point_pair_um": 0.22875,
+  "true_lateral_fwhm_um": 0.06475755123835111,
+  "source_center_separation_um": 0.16,
+  "section": {
+    "x_center_um": 0.56,
+    "y_center_um": -0.04,
+    "z_um": 0.5,
+    "crop_radius_samples": 8,
+    "native_pitch_nm": 40,
+    "image_interpolation": "nearest pixel",
+    "image_intensity": {
+      "truth_linear_limits_su": [
+        0,
+        17.0
+      ],
+      "shared_observed_asinh_limits_su": [
+        -0.29558617034045154,
+        3.347927842090993
+      ],
+      "shared_observed_asinh_linear_width_su": 0.12
+    },
+    "exposure_average_profile_zoom_x_limits_nm": [
+      -160,
+      160
+    ]
+  },
+  "measurement": {
+    "status": "pass",
+    "native_line": {
+      "axis": "x",
+      "shape_zyx": [
+        32,
+        256,
+        256
+      ],
+      "x_midpoint_um": 0.56,
+      "x_pitch_um": 0.04,
+      "y_index": 127,
+      "z_index": 20,
+      "detail_yz_um": [
+        -0.04,
+        0.5
+      ],
+      "base_yz_um": [
+        -0.04,
+        0.5
+      ],
+      "value_unit": "SU",
+      "su_per_signed_count": 2e-05
+    },
+    "checks": {
+      "truth_difference": {
+        "passed": true,
+        "max_abs_error_su": 3.552713678800501e-15,
+        "max_error_over_tolerance": 0.01360904014275895
+      },
+      "detail_same_exposure": {
+        "passed": true,
+        "detector_max_abs_error_su": 5.551115123125783e-17,
+        "score_row_max_abs_error_su": 1.942890293094024e-16
+      },
+      "base_same_exposure": {
+        "passed": true,
+        "detector_max_abs_error_su": 5.551115123125783e-17
+      }
+    },
+    "cases": {
+      "cell-detail": {
+        "manifest": {
+          "name": "manifest.json",
+          "bytes": 1081,
+          "sha256": "9c981d687fe5951854f2544340d5f0fc587577d4d23471334c2c85f85e46f25e"
+        },
+        "public_inputs": {
+          "specimen.npy": "e38fa50de19c73bb940880ee9732c820e7a5bc1842b8797dcfa4519ef07334ac",
+          "calibration.npy": "80051fac421b6f880503186d4b3828dd21fbf97d1002b6fd0eb9c655e96681c0",
+          "settings.json": "b5dfc347127c10f356ad999a8dbbc54157a01e63fa1b538e6ca3791116cc9d42"
+        },
+        "runtime": {
+          "name": "runtime.json",
+          "bytes": 6888,
+          "sha256": "b1acaed4e694e0561fee3c38e2bd295584746be15318b6c117fb3476b3948bb5"
+        },
+        "progress": {
+          "name": "progress.jsonl",
+          "bytes": 1239,
+          "sha256": "212dc3438d14da788186b1fa5084f0ee2423cfdb2c0ffff3cfd72f272f269c6b"
+        }
+      },
+      "cell": {
+        "manifest": {
+          "name": "manifest.json",
+          "bytes": 1074,
+          "sha256": "1f0e919d15310402733e830f439f5895284e7ba6a7f91006ccf74420fcaa038e"
+        },
+        "public_inputs": {
+          "specimen.npy": "b10a960be758ce42d5f805e02e80d2afe233b287b56395dda7446dededa72480",
+          "calibration.npy": "80051fac421b6f880503186d4b3828dd21fbf97d1002b6fd0eb9c655e96681c0",
+          "settings.json": "7751737903c6d66a44a409791d0703ab0f31a5ece75c0f1437461edf0f70277a"
+        },
+        "runtime": {
+          "name": "runtime.json",
+          "bytes": 6873,
+          "sha256": "61b13695509f1cb5a188b23d013e4349bdc35384e2c09a44849351063c46955e"
+        },
+        "progress": {
+          "name": "progress.jsonl",
+          "bytes": 1204,
+          "sha256": "234ffd4bd41965353f992c669e4b43b58b051423aef3d0e2b0d4ff61e9a09817"
+        }
+      }
+    },
+    "arms": {
+      "truth": {
+        "passed": true,
+        "expected_passes_rule": true,
+        "rule": "pair_resolution",
+        "identity": {
+          "case": "cell-detail",
+          "via": "manifest",
+          "bytes": 16777344,
+          "name": "truth.npy",
+          "role": "continuous-source-reference",
+          "sha256": "a0a8c36a7262b97d2378a4454789e70ce77916bee009a35e31707389ec98d7bd",
+          "unit": "SU"
+        },
+        "eligible_peak_count": 2,
+        "eligibility_half_width_um": 0.2,
+        "midpoint_value_su": 0.5193112058410244,
+        "peaks": [
+          {
+            "x_index": 140,
+            "x_offset_um": -0.08,
+            "value_su": 16.830788025336464
+          },
+          {
+            "x_index": 144,
+            "x_offset_um": 0.08,
+            "value_su": 16.831356444933252
+          }
+        ],
+        "spacing_um": 0.16,
+        "valley": {
+          "x_index": 142,
+          "x_offset_um": 0.0,
+          "value_su": 0.5193112058410244
+        },
+        "dip_fraction": 0.9691451639068075,
+        "passes_rule": true
+      },
+      "same_exposure": {
+        "passed": true,
+        "expected_passes_rule": false,
+        "rule": "pair_resolution",
+        "identity": {
+          "case": "cell-detail",
+          "via": "manifest",
+          "bytes": 16777344,
+          "name": "conventional.npy",
+          "role": "same-exposure-conventional",
+          "sha256": "c67a8fba08db0d7bd0f9c949f19d6bda7d747a14b93edf45c684c3a031378d49",
+          "unit": "SU"
+        },
+        "eligible_peak_count": 1,
+        "eligibility_half_width_um": 0.2,
+        "midpoint_value_su": 0.12575457334000587,
+        "peaks": [
+          {
+            "x_index": 142,
+            "x_offset_um": 0.0,
+            "value_su": 0.12575457334000587
+          }
+        ],
+        "spacing_um": null,
+        "valley": null,
+        "dip_fraction": null,
+        "passes_rule": false
+      },
+      "detail_sim": {
+        "passed": true,
+        "expected_passes_rule": true,
+        "rule": "pair_resolution",
+        "identity": {
+          "case": "cell-detail",
+          "via": "runtime",
+          "name": "w-0.020.npz",
+          "bytes": 15947171,
+          "sha256": "b6b5a226f1f6850385148868b7917366d0f9c4fa0765b6f32f917d08a63c6220"
+        },
+        "eligible_peak_count": 2,
+        "eligibility_half_width_um": 0.2,
+        "midpoint_value_su": 1.9280225174589185,
+        "peaks": [
+          {
+            "x_index": 140,
+            "x_offset_um": -0.08,
+            "value_su": 3.347927842090993
+          },
+          {
+            "x_index": 144,
+            "x_offset_um": 0.08,
+            "value_su": 3.325725719063724
+          }
+        ],
+        "spacing_um": 0.16,
+        "valley": {
+          "x_index": 142,
+          "x_offset_um": 0.0,
+          "value_su": 1.9280225174589185
+        },
+        "dip_fraction": 0.4202701364074889,
+        "passes_rule": true
+      },
+      "base_sim": {
+        "passed": true,
+        "expected_passes_rule": false,
+        "rule": "false_split",
+        "identity": {
+          "case": "cell",
+          "via": "runtime",
+          "name": "w-0.020.npz",
+          "bytes": 15947775,
+          "sha256": "752a76d77bec3a93ca42ec743e572121e90e955c0e10df28f7e9d8659e5ba60e"
+        },
+        "eligible_peak_count": 1,
+        "eligibility_half_width_um": 0.16,
+        "midpoint_value_su": 0.8606347855724129,
+        "peaks": [
+          {
+            "x_index": 142,
+            "x_offset_um": 0.0,
+            "value_su": 0.8606347855724129
+          }
+        ],
+        "spacing_um": null,
+        "valley": null,
+        "dip_fraction": null,
+        "passes_rule": false
+      }
+    }
+  },
+  "rendered_inputs_sha256": {
+    "cell-detail": {
+      "truth.npy": "a0a8c36a7262b97d2378a4454789e70ce77916bee009a35e31707389ec98d7bd",
+      "conventional.npy": "c67a8fba08db0d7bd0f9c949f19d6bda7d747a14b93edf45c684c3a031378d49",
+      "observations.npz": "b6b5a226f1f6850385148868b7917366d0f9c4fa0765b6f32f917d08a63c6220",
+      "runtime.json": "b1acaed4e694e0561fee3c38e2bd295584746be15318b6c117fb3476b3948bb5"
+    },
+    "cell": {
+      "truth.npy": "9d2441dfd1652fc02f72b380000c75d0fd31b116440b740b697234ce38e4f0ac",
+      "conventional.npy": "87bcb9ab2870348a5913f22b5bdb6438f6176d0b2132f079490e6a621da92524",
+      "observations.npz": "752a76d77bec3a93ca42ec743e572121e90e955c0e10df28f7e9d8659e5ba60e",
+      "runtime.json": "61b13695509f1cb5a188b23d013e4349bdc35384e2c09a44849351063c46955e"
+    }
+  },
+  "sources_sha256": {
+    "baseline_inputs.py": "e4cda1bc38bbde19c977a1e6f2b68121298c66eda24e7eb7f5a1ebd811ec80de",
+    "check_cell_detail.py": "825752d8c0a902dca59505788913052d114ffc9d29479ec6f9af09794de5abad",
+    "plot_phantoms.py": "32e7c99029c071f5dcae271884c48302ccfc952cc60c257f3e5e82ca2e65d30a",
+    "plot_cell_detail.py": "f51fd2b1101ae4048530922302104f998b569edb991f2072411f1dc1cf08f0c9"
+  },
+  "numpy_version": "2.5.1",
+  "matplotlib_version": "3.11.0",
+  "figures_sha256": {
+    "cell-close-pair.png": "783fa5bd49de29e255ea54e2b5c11ad11642701b22114dee3a61add0c9d32ceb",
+    "cell-close-pair.pdf": "ca3fd753e9c0d015f57efd7a8409e0342cace2825bf35d17ed100d5f2520b57c"
+  }
+}

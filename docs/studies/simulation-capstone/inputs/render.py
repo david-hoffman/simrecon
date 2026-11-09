@@ -79,9 +79,8 @@ def _sphere_band(layers, radii, weights, shifted_x, shifted_y, k, outer, center,
     return band
 
 
-def _gaussian_layers(pupil, z, order, is_cell):
+def _gaussian_layers(pupil, z, order, groups):
     nodes, weights = hermgauss(order)
-    groups = cell_groups() if is_cell else structured_groups()
     layers = []
     for depth, sz, features in groups:
         defocus = z[:, None] - depth - np.sqrt(2) * sz * nodes
@@ -108,7 +107,8 @@ def render(kind, pupil):
     """Return expected signal electrons in (direction, phase, Z, Y, X) order."""
     pad, radial, _, _, order = BASE
     calibration = kind == "calibration"
-    phantom = kind in ("beads", "cell")
+    is_cell = kind in ("cell", "cell-detail")
+    phantom = kind == "beads" or is_cell
     xy = BXY if calibration else XY
     side = pad * N
     z = axis(Z, DZ)
@@ -136,7 +136,8 @@ def render(kind, pupil):
         if kind == "beads":
             layers, radii, weights = _sphere_layers(pupil, z, order)
         else:
-            layers, weights = _gaussian_layers(pupil, z, order, kind == "cell")
+            groups = cell_groups(detail=kind == "cell-detail") if is_cell else structured_groups()
+            layers, weights = _gaussian_layers(pupil, z, order, groups)
     raw = np.empty((1 if calibration else 3, 5, Z, N, N))
     crop = slice((side - N) // 2, (side + N) // 2)
     for d, (kxy, theta, outer, center) in enumerate(directions):
@@ -149,7 +150,7 @@ def render(kind, pupil):
             elif kind == "beads":
                 band = _sphere_band(layers, radii, weights, *args)
             else:
-                band = _gaussian_band(layers, weights, *args, kind == "cell")
+                band = _gaussian_band(layers, weights, *args, is_cell)
             band *= window * origin * np.exp(-1j * m * theta) / xy**2
             plane = np.zeros((side, side), complex)
             for iz, values in enumerate(band):

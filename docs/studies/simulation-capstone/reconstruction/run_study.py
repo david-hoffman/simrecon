@@ -21,7 +21,7 @@ from simrecon import (
 )
 
 HERE = Path(__file__).resolve().parent
-CASES = ("clean", "noisy", "beads", "cell")
+CASES = ("clean", "noisy", "beads", "cell", "cell-detail")
 PUBLIC_FILES = {
     "specimen": "specimen.npy",
     "calibration": "calibration.npy",
@@ -54,10 +54,11 @@ def normal_arguments(case: str, paths: dict[str, Path]) -> tuple[np.ndarray, dic
         0.0,
     ):
         raise ValueError("expected the frozen default Wiener value and zero increment")
-    settings["calibration"]["raw"] = np.load(
-        paths["calibration"], mmap_mode="r", allow_pickle=False
+    settings["calibration"]["raw"] = np.asarray(
+        np.load(paths["calibration"], mmap_mode="r", allow_pickle=False)
     )
-    return np.load(paths["specimen"], mmap_mode="r", allow_pickle=False), settings
+    specimen = np.asarray(np.load(paths["specimen"], mmap_mode="r", allow_pickle=False))
+    return specimen, settings
 
 
 def observation_name(wiener: float) -> str:

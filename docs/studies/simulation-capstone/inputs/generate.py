@@ -11,12 +11,13 @@ from optics import BASE, Pupil, camera, conventional
 from render import render
 from scenes import cell_truth, sphere_truth, structured_truth
 
-# Case values bind the original public specimen identity and camera draw.
+# Case values bind each public specimen identity and camera draw.
 CASES = {
     "clean": ("full-noiseless-specimen", None),
     "noisy": ("full-noisy-specimen", 21103431),
     "beads": ("beads-noisy-specimen", 83071341),
     "cell": ("cell-noisy-specimen", 83071342),
+    "cell-detail": ("cell-detail-noisy-specimen", 83071342),
 }
 FILES = {
     "specimen.npy": ("raw-specimen", "ADU"),
@@ -63,8 +64,8 @@ def _settings(output, specimen_id, calibration_id):
 def _truth(case):
     if case == "beads":
         return sphere_truth(96)
-    if case == "cell":
-        return cell_truth()
+    if case in ("cell", "cell-detail"):
+        return cell_truth(detail=case == "cell-detail")
     return structured_truth()
 
 

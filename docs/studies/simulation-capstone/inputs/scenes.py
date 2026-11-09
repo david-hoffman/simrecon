@@ -74,8 +74,8 @@ def gaussian_group(amplitude, points, sx, sy=None, angle=0.0):
     return [(amplitude, x, y, sx, sy or sx, angle, 0.0, 0.0, 0.0) for x, y in points]
 
 
-def cell_groups():
-    """Return the Gaussian layers of the corrected cell interior."""
+def cell_groups(*, detail=False):
+    """Return the cell layers, optionally replacing one punctum with a close pair."""
     rim = [
         feature
         for j, point in enumerate(RIM)
@@ -91,9 +91,11 @@ def cell_groups():
             segment = segment[1:]  # the common origin is already in the trunk
         tubes.setdefault(z, []).extend(gaussian_group(0.37, segment, 0.084))
     groups.extend((z, 0.115, features) for z, features in tubes.items())
-    groups.extend(
-        (z, 0.091, gaussian_group(1.23, [(x, y)], 0.078, 0.091, 0.31)) for x, y, z in PUNCTA
-    )
+    for x, y, z in PUNCTA:
+        if detail and (x, y, z) == (0.55, -0.04, 0.53):
+            groups.append((0.50, 0.065, gaussian_group(16.8, [(0.48, y), (0.64, y)], 0.0275)))
+        else:
+            groups.append((z, 0.091, gaussian_group(1.23, [(x, y)], 0.078, 0.091, 0.31)))
     # Diffuse asymmetric lobes leave a low-signal nuclear interior at the rim depth.
     groups.extend(
         [
@@ -198,13 +200,13 @@ def structured_truth():
     return result
 
 
-def cell_truth():
+def cell_truth(*, detail=False):
     """Evaluate the revised continuous cell on the output grid."""
     x = axis(2 * N, PITCH)[None, None, :]
     y = axis(2 * N, PITCH)[None, :, None]
     z = axis(Z, DZ)[:, None, None]
     result = np.zeros(np.broadcast_shapes(np.shape(x), np.shape(y), np.shape(z)))
-    for depth, sz, features in cell_groups():
+    for depth, sz, features in cell_groups(detail=detail):
         plane = np.zeros(np.broadcast_shapes(np.shape(x), np.shape(y)))
         for amp, cx, cy, sx, sy, angle, *_ in features:
             xx, yy = x - cx, y - cy

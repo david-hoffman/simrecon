@@ -81,6 +81,39 @@ and **78.92%** for the exposure average. The signed residual shows underestimati
 The first cell layout failed a preset carrier-peak margin. The revised layout
 was fixed before a fresh qualification and reconstruction.
 
+### Sub-diffraction detail in the cell
+
+![Same-depth views and native signed profiles of a 160 nm punctum pair in the synthetic cell](figures/cell-close-pair.png)
+
+The `cell-detail` variant replaces one isolated punctum with two equal
+Gaussian emitters at the same depth. Their centers are 160 nm apart and each
+has a lateral full width at half maximum of 65 nm. The model's lateral
+Rayleigh reference for two points is 229 nm (0.61 × 525 nm / 1.40). The
+variant uses the original scalar optics, bead calibration, camera settings
+and specimen seed. The original cell supplies a single-punctum control at
+the same site and remains the cell in the Wiener sweep.
+[Widefield resolution criteria](https://pmc.ncbi.nlm.nih.gov/articles/PMC7917581/)
+
+At Wiener 0.020 the reconstruction returned two peaks 160 nm apart
+with a 42.0% dip below the weaker peak. The same-exposure average had
+1 eligible peak. The original cell returned
+1 eligible peak under the single-punctum
+rule. These observations cover one synthetic geometry and one camera draw
+per scene.
+
+The crops show the same plane at z = +0.50 µm. The two observed images use
+a shared signed scale in simulation source units (SU) with an inverse
+hyperbolic sine display transform. The truth has its own linear scale.
+The profile inset magnifies the exposure-average trace. The 80 nm camera average is interpolated onto the
+40 nm lateral output grid. The profile samples the x direction at
+y = −0.04 µm around x = 0.56 µm. The pair rule looks within 200 nm of the midpoint. It
+requires two peaks of at least 0.005 SU within 45 nm of their respective
+known centers, at least 100 nm between peaks, and a valley at least 15%
+below the weaker peak. The single-punctum rule looks within 160 nm
+of the midpoint and uses the same height, spacing and valley thresholds.
+
+[Reproduce the close-pair comparison](#reproduce-the-close-pair-comparison).
+
 ## Wiener sweep
 
 The sweep uses the same saved noisy bead and cell inputs. The public
@@ -190,6 +223,25 @@ simulated calibration to select the scoring band. The
 [runner notes](reconstruction/README-runner.md) describe every output and
 show the explicit Apple Accelerate thread setting used in the measured run.
 
+### Reproduce the close-pair comparison
+
+After running the original-cell commands above, generate and reconstruct
+the detail variant in the same run directory.
+
+```sh
+uv run --locked --no-sync python "$study/inputs/generate.py" \
+    cell-detail "$out/input-cell-detail"
+uv run --locked --no-sync python "$study/reconstruction/run_study.py" \
+    cell-detail "$out/input-cell-detail" "$out/cell-detail"
+uv run --locked --no-sync python "$study/plot/check_cell_detail.py" \
+    "$out/input-cell-detail" "$out/cell-detail" "$out/input-cell" "$out/sweep-cell" \
+    > "$out/cell-detail-receipt.json"
+```
+
+A normal `cell` run at Wiener 0.020 also works as the control. The
+[figure receipt](figures/cell-close-pair.json) records the observed peaks,
+the input and output identities, and the exact display ranges.
+
 ### Rebuild the figures
 
 The [figure files](figures/) include lossless PNG and publication PDFs with
@@ -242,6 +294,10 @@ export MPLCONFIGDIR="$out/matplotlib-cache"
     --case-dir "$out/input-cell" --observations "$out/sweep-cell/w-0.020.npz" \
     --runtime-receipt "$out/sweep-cell/runtime.json" \
     --output-dir "$out/plot-cell-xy-mip"
+
+"$plot_python" "$study/plot/plot_cell_detail.py" \
+    "$out/input-cell-detail" "$out/cell-detail" "$out/input-cell" "$out/sweep-cell" \
+    "$out/cell-detail-figure"
 
 "$plot_python" "$study/plot/plot_wiener.py" \
     --metrics "$out/wiener-results.json" \

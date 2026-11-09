@@ -7,9 +7,16 @@ signed image and physical coordinates in micrometres.
 
 ![XY maximum-intensity projections of synthetic-cell truth, the exposure average, and SIMrecon](docs/studies/simulation-capstone/figures/cell-xy-mip.png)
 
-*Each panel projects the brightest signed sample at each XY coordinate over
-all 32 z planes. The panels share an intensity scale. The exposure average
+*For the original cell, each panel projects the brightest signed sample over
+all 32 z planes at each XY coordinate. The panels share an intensity scale. The exposure average
 uses the same 15 simulated exposures as the reconstruction.*
+
+![Same-depth images and signed profiles of two synthetic-cell puncta 160 nm apart](docs/studies/simulation-capstone/figures/cell-close-pair.png)
+
+*In a cell variant, SIMrecon separated two emitters **160 nm** apart, below
+the modeled widefield Rayleigh reference of 229 nm. The two reconstructed
+peaks were **160 nm** apart with a **42.0%** dip below the weaker peak.
+The same-exposure average left the pair unresolved.*
 
 ## Install and run the quick start
 
@@ -52,7 +59,7 @@ and declaring supported microscopy files.
 
 ## Run a simulation
 
-Generate and reconstruct the synthetic cell from the repository root.
+Generate and reconstruct the close-pair cell variant from the repository root.
 The commands write the arrays and reconstruction to a fresh temporary
 directory. Remove it after inspecting or exporting the results.
 
@@ -62,12 +69,13 @@ run=$(mktemp -d "${TMPDIR:-/tmp}/simrecon-cell.XXXXXX")
 printf 'Run directory %s\n' "$run"
 export VECLIB_MAXIMUM_THREADS=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
 
-uv run --locked --no-sync python "$study/inputs/generate.py" cell "$run/input"
-uv run --locked --no-sync python "$study/reconstruction/run_study.py" cell "$run/input" "$run/output"
+uv run --locked --no-sync python "$study/inputs/generate.py" cell-detail "$run/input"
+uv run --locked --no-sync python "$study/reconstruction/run_study.py" cell-detail "$run/input" "$run/output"
 ```
 
 The [simulation study](docs/studies/simulation-capstone/README.md) gives the
-complete reproduction commands, optical settings, and results. It includes
+complete reproduction commands, optical settings, and results. Use `cell`
+for the original cell and its single-punctum control. The study also includes
 paired clean and noisy acquisitions, cell sections and residuals, and a
 [logarithmic Wiener sweep](docs/studies/simulation-capstone/README.md#wiener-sweep).
 

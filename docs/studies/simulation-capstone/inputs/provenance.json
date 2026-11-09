@@ -84,6 +84,48 @@
       },
       "specimen_seed": 83071342
     },
+    "cell-detail": {
+      "bundle": "cell-detail",
+      "calibration_seed": 49019457,
+      "files": {
+        "calibration.npy": {
+          "bytes": 10485888,
+          "frozen_bytes": 10485888,
+          "frozen_relative_path": "cell-detail/calibration.npy",
+          "frozen_sha256": "80051fac421b6f880503186d4b3828dd21fbf97d1002b6fd0eb9c655e96681c0",
+          "sha256": "80051fac421b6f880503186d4b3828dd21fbf97d1002b6fd0eb9c655e96681c0"
+        },
+        "conventional.npy": {
+          "bytes": 16777344,
+          "frozen_bytes": 16777344,
+          "frozen_relative_path": "cell-detail/conventional.npy",
+          "frozen_sha256": "c67a8fba08db0d7bd0f9c949f19d6bda7d747a14b93edf45c684c3a031378d49",
+          "sha256": "c67a8fba08db0d7bd0f9c949f19d6bda7d747a14b93edf45c684c3a031378d49"
+        },
+        "settings.json": {
+          "bytes": 2100,
+          "frozen_bytes": 2100,
+          "frozen_relative_path": "cell-detail/settings.json",
+          "frozen_sha256": "b5dfc347127c10f356ad999a8dbbc54157a01e63fa1b538e6ca3791116cc9d42",
+          "sha256": "b5dfc347127c10f356ad999a8dbbc54157a01e63fa1b538e6ca3791116cc9d42"
+        },
+        "specimen.npy": {
+          "bytes": 31457408,
+          "frozen_bytes": 31457408,
+          "frozen_relative_path": "cell-detail/specimen.npy",
+          "frozen_sha256": "e38fa50de19c73bb940880ee9732c820e7a5bc1842b8797dcfa4519ef07334ac",
+          "sha256": "e38fa50de19c73bb940880ee9732c820e7a5bc1842b8797dcfa4519ef07334ac"
+        },
+        "truth.npy": {
+          "bytes": 16777344,
+          "frozen_bytes": 16777344,
+          "frozen_relative_path": "cell-detail/truth.npy",
+          "frozen_sha256": "a0a8c36a7262b97d2378a4454789e70ce77916bee009a35e31707389ec98d7bd",
+          "sha256": "a0a8c36a7262b97d2378a4454789e70ce77916bee009a35e31707389ec98d7bd"
+        }
+      },
+      "specimen_seed": 83071342
+    },
     "clean": {
       "bundle": "design-128",
       "calibration_seed": null,
@@ -170,6 +212,17 @@
     }
   },
   "checkpoints": {
+    "cell-detail": {
+      "manifest": "A-SHA256SUMS",
+      "sha256": "6679cdf29746ea1ea77c6a4f1e7bc04bbd832a6ada826aac772c1d15bb774c6e",
+      "sources": {
+        "../contract.md": "233e5ef0591341cb46623b7b2bc0af33bc94a02713c57ed3e26d29a542ea7d25",
+        "A-REPORT.md": "78132660e95e3e97b66c6dbbf09b143f9444e0e918a324318e4a9ba1237b51bb",
+        "COORDINATOR-SCHEMA.md": "0b134c7d950cbea16851bc024a762c529e4677b78dbc76b7acbd885c5dee65d9",
+        "check_cell_detail.py": "825752d8c0a902dca59505788913052d114ffc9d29479ec6f9af09794de5abad",
+        "witness_cell_detail.py": "5e7456fe3d63b2cb72843238acc61a00d3cdd4a2cc5dbe077db4279662de8a6a"
+      }
+    },
     "design": {
       "manifest": "CHECKPOINT.sha256",
       "sha256": "af1fb3b5d643963425d4206c19bf57f37ae15b898915f296a37ef2ded2639884",
