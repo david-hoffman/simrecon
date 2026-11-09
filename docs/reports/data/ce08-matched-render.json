@@ -1,0 +1,208 @@
+{
+  "python": "3.13.12",
+  "numpy": "2.5.1",
+  "matplotlib": "3.11.0",
+  "shape_ZYX": [
+    4,
+    16,
+    16
+  ],
+  "all_planes_rendered": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "fixed_presentation": {
+    "image_density_range": [
+      -4,
+      4
+    ],
+    "source_residual_density_range": [
+      -4,
+      4
+    ],
+    "supplemental_fine_source_residual_density_range": [
+      -0.15,
+      0.15
+    ],
+    "source_residual_rule": "Conventional, expectation and actual minus truth share the common [-4,4] overview. The fixed fine scale is supplemental only; retain all signed arrays and mark values beyond the fine display range.",
+    "numerical_residual_density_range": [
+      -0.001,
+      0.001
+    ],
+    "mode_real_imag_range": [
+      -0.7,
+      0.7
+    ],
+    "amplitude_fraction_range": [
+      0,
+      1.05
+    ],
+    "phase_error_rad_range": [
+      -0.03,
+      0.03
+    ],
+    "all_four_z_planes_required": true,
+    "signed_values_retained": true,
+    "export": "Explicit observer may pass a destination Path to ce08_recovery_model.capture(actual,path); no automatic write, environment switch, private tracked path, runtime seam or figure creation."
+  },
+  "display_range_exceedances": {
+    "images:Signed source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -4,
+        4
+      ]
+    },
+    "images:Same-dose conventional": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -4,
+        4
+      ]
+    },
+    "images:Independent expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -4,
+        4
+      ]
+    },
+    "images:Actual workflow": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -4,
+        4
+      ]
+    },
+    "residuals:Conventional \u2212 source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -4,
+        4
+      ]
+    },
+    "residuals:Expectation \u2212 source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -4,
+        4
+      ]
+    },
+    "residuals:Actual \u2212 source": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -4,
+        4
+      ]
+    },
+    "residuals:Actual \u2212 expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.001,
+        0.001
+      ]
+    },
+    "fine-source-residuals:Expectation \u2212 source (fine)": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.15,
+        0.15
+      ]
+    },
+    "fine-source-residuals:Actual \u2212 source (fine)": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.15,
+        0.15
+      ]
+    },
+    "phase:Conventional": {
+      "below": 1,
+      "above": 1,
+      "range": [
+        -0.03,
+        0.03
+      ]
+    },
+    "phase:Expectation": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.03,
+        0.03
+      ]
+    },
+    "phase:Actual": {
+      "below": 0,
+      "above": 0,
+      "range": [
+        -0.03,
+        0.03
+      ]
+    }
+  },
+  "series_colors": {
+    "Source": "#222222",
+    "Conventional": "#E69F00",
+    "Expectation": "#0072B2",
+    "Actual": "#009E73"
+  },
+  "fine_residual_scale_is_preregistered_supplement": true,
+  "visual_inspection_pending": true,
+  "limits": "Saved arrays only; no product calls or new scientific oracle. Display limits never alter saved values.",
+  "kind": "PUBLIC_RENDER_RECEIPT_PROJECTION",
+  "original_receipt": {
+    "bytes": 4943,
+    "sha256": "0460d03b568584ae4bc6e50d0b3e1c7bbf7b5378d3272f35f3267e90f18f0e84"
+  },
+  "renderer": {
+    "alias": "matched-saved-array-renderer",
+    "bytes": 10227,
+    "sha256": "5fe4d73d37adfcb229fc690305ba8b21309ab767cda5174bac6fd83c32031f3a"
+  },
+  "observation": {
+    "path": "docs/reports/data/ce08-matched-observed.npz",
+    "bytes": 63449,
+    "sha256": "75404832b5971f8e1f2fb18d1faf6be7132b1bde0ccd33ab7f75c9f90224287c"
+  },
+  "registration": {
+    "path": "tests/data/ce08-matched-recovery-v1.json",
+    "bytes": 10010,
+    "sha256": "63d0efa2d57772614f19b34ff9d747f8323b32683ef4f9aa6988fbd42f1ce8b6"
+  },
+  "outputs": [
+    {
+      "path": "docs/figures/ce08/matched-images-01.png",
+      "bytes": 144233,
+      "sha256": "4b3c63b515a455586a77fac04fdd9c962d80b2045d39d39a65b5dec39acd6fe7"
+    },
+    {
+      "path": "docs/figures/ce08/matched-residuals-01.png",
+      "bytes": 155667,
+      "sha256": "0516824121c7fd97735141226d60bb9a1567039fd7ce52d4a334d0c31eff2947"
+    },
+    {
+      "path": "docs/figures/ce08/matched-fine-source-residuals-01.png",
+      "bytes": 115266,
+      "sha256": "87fee844d79999f906254f2fc8e2904cf0b70fe7b79db59bd483cf3bdd392c4e"
+    },
+    {
+      "path": "docs/figures/ce08/matched-modes.png",
+      "bytes": 227244,
+      "sha256": "73be837d626bcc4d9e111bc2468372be1e0676603e34009a6e82954701b11868"
+    }
+  ],
+  "path_policy": "Public aliases and repository-relative paths; no change to original receipt or pending visual field."
+}
