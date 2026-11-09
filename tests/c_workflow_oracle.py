@@ -2940,6 +2940,19 @@ def _table_slopes(table: Table, order: int) -> tuple[float, float]:
     return lateral, axial
 
 
+@dataclass
+class _SampleFacts:
+    """Own lazily reached facts for one unchanged table/error-array pair."""
+
+    table: Table
+    table_error: np.ndarray
+    slopes: dict[int, tuple[float, float]] = field(default_factory=dict)
+    maxima: dict[int, float] = field(default_factory=dict)
+    sample_implementation: Any = field(
+        default_factory=lambda original=Table.sample: original, init=False, repr=False
+    )
+
+
 def _sample_error(
     table: Table,
     order: int,
@@ -2948,14 +2961,38 @@ def _sample_error(
     dkz: float,
     table_error: np.ndarray,
     position_error: float,
+    *,
+    facts: _SampleFacts | None = None,
 ) -> tuple[complex, float]:
     value = table.sample(float(xy[0]), float(xy[1]), iz, dkz, order)
-    lateral, axial = _table_slopes(table, order)
+    cached = (
+        facts
+        if facts is not None
+        and facts.table is table
+        and facts.table_error is table_error
+        and type(table) is Table
+        and type(table.samples) is np.ndarray
+        and type(table_error) is np.ndarray
+        and getattr(table.sample, "__func__", None) is facts.sample_implementation
+        else None
+    )
+    if cached is None:
+        lateral, axial = _table_slopes(table, order)
+    else:
+        if order not in cached.slopes:
+            cached.slopes[order] = _table_slopes(table, order)
+        lateral, axial = cached.slopes[order]
     er = position_error + SHORT * float(np.linalg.norm(xy))
     ez = SHORT * abs(iz * dkz)
     if table.layout == "full" and xy[0] != 0:
         assert abs(xy[0]) > position_error + SHORT * abs(xy[0]), "unresolved full-table reflection"
-    error = float(np.max(table_error[order])) + lateral * er + axial * ez + SHORT * (1 + abs(value))
+    if cached is None:
+        maximum = float(np.max(table_error[order]))
+    else:
+        if order not in cached.maxima:
+            cached.maxima[order] = float(np.max(table_error[order]))
+        maximum = cached.maxima[order]
+    error = maximum + lateral * er + axial * ez + SHORT * (1 + abs(value))
     return value, error
 
 
@@ -3000,7 +3037,11 @@ def overlap_errors(
     build: dict[str, Any],
     table_error: np.ndarray,
     carrier_error: float,
+    *,
+    sample_facts: _SampleFacts | None = None,
 ) -> dict[str, Any]:
+    if sample_facts is None:
+        sample_facts = _SampleFacts(case.table, table_error)
     a, _, f = case.resolved()
     quadratures = prep["quadratures"][build["time_index"], build["direction_index"]]
     eq = prep_error["quadratures"][build["time_index"], build["direction_index"]]
@@ -3049,14 +3090,18 @@ def overlap_errors(
                 for iz in range(-cutoff, cutoff + 1):
                     if f["omit_kz0"] and iz == 0:
                         continue
-                    h1, e1 = _sample_error(case.table, m, xy, iz, dkz, table_error, 0.0)
+                    h1, e1 = _sample_error(
+                        case.table, m, xy, iz, dkz, table_error, 0.0, facts=sample_facts
+                    )
                     scale1 = 1 if m == 0 else factor
                     gap = abs(scale1 * abs(h1) - 0.006) - scale1 * e1
                     assert gap > 0, "unresolved first overlap threshold"
                     threshold = min(threshold, gap)
                     if scale1 * abs(h1) <= 0.006:
                         continue
-                    h2, e2 = _sample_error(case.table, other, shifted, iz, dkz, table_error, edelta)
+                    h2, e2 = _sample_error(
+                        case.table, other, shifted, iz, dkz, table_error, edelta, facts=sample_facts
+                    )
                     scale2 = 1 if other == 0 else factor
                     gap = abs(scale2 * abs(h2) - 0.006) - scale2 * e2
                     assert gap > 0, "unresolved second overlap threshold"
@@ -3360,7 +3405,11 @@ def parameter_errors(
     prep_error: dict[str, Any],
     est: dict[str, Any],
     table_error: np.ndarray,
+    *,
+    sample_facts: _SampleFacts | None = None,
 ) -> dict[str, Any]:
+    if sample_facts is None:
+        sample_facts = _SampleFacts(case.table, table_error)
     a, c, _ = case.resolved()
     t, d, p, z, y, x = case.raw.shape
     o = a["norders"]
@@ -3400,7 +3449,15 @@ def parameter_errors(
                 coarse_index, coarse_build = next(
                     (i, b) for i, b in local_builds if b["purpose"] == "coarse"
                 )
-                ce = overlap_errors(case, prep, prep_error, coarse_build, table_error, known[di])
+                ce = overlap_errors(
+                    case,
+                    prep,
+                    prep_error,
+                    coarse_build,
+                    table_error,
+                    known[di],
+                    sample_facts=sample_facts,
+                )
                 builds[coarse_index] = ce
                 coarse = next(
                     ev
@@ -3414,7 +3471,13 @@ def parameter_errors(
                     (i, b) for i, b in local_builds if b["purpose"] == "refinement"
                 )
                 re = overlap_errors(
-                    case, prep, prep_error, refine, table_error, co["carrier_radius"]
+                    case,
+                    prep,
+                    prep_error,
+                    refine,
+                    table_error,
+                    co["carrier_radius"],
+                    sample_facts=sample_facts,
                 )
                 builds[refine_index] = re
                 ea0, em0 = co["angle_rad"], co["magnitude_cyc_um"]
@@ -3598,14 +3661,24 @@ def parameter_errors(
                     if event["stage"] == "later-order":
                         index = event["overlap_index"]
                         build = est["overlaps"][index]
-                        be = overlap_errors(case, prep, prep_error, build, table_error, ek)
+                        be = overlap_errors(
+                            case,
+                            prep,
+                            prep_error,
+                            build,
+                            table_error,
+                            ek,
+                            sample_facts=sample_facts,
+                        )
                         builds[index] = be
                         evaluate(event, be, ek)
             else:
                 ek = carrier[0, di] if est["branches"][it][di] == "time0-reused" else known[di]
                 carrier[it, di] = ek
                 for index, build in local_builds:
-                    be = overlap_errors(case, prep, prep_error, build, table_error, ek)
+                    be = overlap_errors(
+                        case, prep, prep_error, build, table_error, ek, sample_facts=sample_facts
+                    )
                     builds[index] = be
                 for event in local_events:
                     evaluate(event, builds[event["overlap_index"]], ek)
@@ -3734,7 +3807,11 @@ def native_errors(
     modulation_error: np.ndarray,
     carrier_error: np.ndarray,
     table_error: np.ndarray,
+    *,
+    sample_facts: _SampleFacts | None = None,
 ) -> dict[str, Any]:
+    if sample_facts is None:
+        sample_facts = _SampleFacts(case.table, table_error)
     a, _, f = case.resolved()
     t, d, p, z, y, x = case.raw.shape
     o = a["norders"]
@@ -3781,7 +3858,9 @@ def native_errors(
                             if not inside:
                                 errors[it, di, slots, iz % z, sy, sx] = 0
                                 continue
-                            h, eh = _sample_error(case.table, m, xy, iz, dkz, table_error, 0.0)
+                            h, eh = _sample_error(
+                                case.table, m, xy, iz, dkz, table_error, 0.0, facts=sample_facts
+                            )
                             g, eg = _weight_error(
                                 case,
                                 prep,
@@ -3831,6 +3910,7 @@ def native_errors(
                                         dkz,
                                         table_error,
                                         float(eqxy),
+                                        facts=sample_facts,
                                     )
                                     rr = math.hypot(*query)
                                     gg, eeg = _weight_error(
@@ -4027,7 +4107,10 @@ def error_budget(case: Case, observation: dict[str, Any]) -> dict[str, Any]:
         table_error = np.zeros_like(effective.table.samples, dtype=float)
     prep = observation["preparation"]
     pe = preparation_errors(effective, prep)
-    parameters = parameter_errors(effective, prep, pe, observation["parameters"], table_error)
+    sample_facts = _SampleFacts(effective.table, table_error)
+    parameters = parameter_errors(
+        effective, prep, pe, observation["parameters"], table_error, sample_facts=sample_facts
+    )
     native = native_errors(
         effective,
         prep,
@@ -4038,6 +4121,7 @@ def error_budget(case: Case, observation: dict[str, Any]) -> dict[str, Any]:
         parameters["modulation"],
         parameters["carrier_radius"],
         table_error,
+        sample_facts=sample_facts,
     )
     a, _, _ = effective.resolved()
     t, d, p, z, y, x = effective.raw.shape

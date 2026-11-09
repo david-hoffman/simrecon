@@ -138,5 +138,24 @@
       "current_sha256": "dad8d3ea39517f6c328420aec821715195e3283f33d73d8ec851ba22984ab5d1"
     }
   },
-  "limits": "Pre-final-gate preservation input export; no verification or independent-review verdict."
+  "limits": "Pre-final-gate preservation input export; not an independent-review verdict. Thirty owned Python files plus scripts/.gitkeep. Final candidate/gate/review identities remain outside tracked bytes.",
+  "covered_python_owned_files": 30,
+  "ce08_and_example_files": {
+    "examples/reconstruct_simulated.py": true,
+    "tests/ce08_error_budget.py": true,
+    "tests/ce08_finite_math.py": true,
+    "tests/ce08_finite_search.py": true,
+    "tests/ce08_recovery_budget.py": true,
+    "tests/ce08_recovery_freeze.py": true,
+    "tests/ce08_recovery_large_budget.py": true,
+    "tests/ce08_recovery_large_freeze.py": true,
+    "tests/ce08_recovery_large_model.py": true,
+    "tests/ce08_recovery_model.py": true,
+    "tests/data/ce08-large-recovery-v1.json": true,
+    "tests/data/ce08-matched-recovery-v1.json": true,
+    "tests/data/ce08-small-controls-v1.json": true,
+    "tests/test_c_independent_large_recovery.py": true,
+    "tests/test_c_independent_matched_recovery.py": true,
+    "tests/test_c_independent_small_controls.py": true
+  }
 }

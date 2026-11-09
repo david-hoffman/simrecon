@@ -34,20 +34,66 @@ retains exact counters, hashes and limitations. Raw baseline logs, trace, native
 JSON/HTML/database and wheel remain in ignored `artifacts/test-apparatus-audit/baseline/`.
 Original audit ledgers and PR83 historical accounting remain untouched.
 
-Science is high risk: fresh blind A completed two coherent fixture/test rounds;
-fresh blind B1 and B2 independently accepted their exact checkpoints. The final
-14-suite proof is **1062 passed / 18 warnings / 387.00 s**, with unchanged checked
-hashes. Round 1 was 1083 passed / 578.07 s; retain that charge. Five scientific
-files changed; all scientific product code, independent CE08 suites/oracles and
-real example remain byte-identical. No product C work was needed or invented.
-The final exact-query keys/local interpolation/noise-inverse reuse retain nominal
-and separate observer/backend bits, scalar arithmetic and on-demand expectations.
+Science is high risk. A single continuing blind A owns the coherent fixture/test
+rounds; every correction checkpoint receives a fresh blind B. B1/B2 accepted the
+first two checkpoints. Their 14-suite proofs were 1083 passed / 578.07 s and
+**1062 passed / 18 warnings / 387.00 s**. All scientific product code, independent
+CE08 suites/oracles and real example remain byte-identical. No product C work
+was needed or invented. Exact-query keys/local interpolation/noise-inverse reuse
+retain nominal and separate observer/backend bits, scalar arithmetic and
+on-demand expectations.
 Twenty clock-label examples now share five control invocations; six drift
 assertion sets move into their same-case complete-workflow keepers. All 26 logical
 examples and assertion ASTs remain; physical scope becomes 187 declarations /
 1062 nodes, expected global **722 declarations / 3066 nodes**. The original 723
 obligations map to 721 self-retainers plus these two explicit consolidation maps.
-The other four conditional discovery proposals were not applied.
+The other four conditional discovery proposals were not applied. Later rounds
+retain these exact keeper mappings, logical examples and physical node counts.
+
+The first clean committed candidate `a41b378b10681c83029dd6f27fe3df65d66b22f2`
+passed all 13 phases and 3066 cases, but **829.59 s outer / 783.316 s pytest**
+missed the goal. It is retained as a failed performance attempt, not readiness
+proof. All 30 native files and baseline global/package integer coverage counters
+were retained. Same-run M25 observed baseline=peak=101792 KiB, increment=0 bytes
+against the unchanged limit; this is a high-water observation, not no allocation.
+
+A3 added a narrowly qualified test-only native observer lane path. B3 found two
+real apparatus admission defects: plain noise lacked the expected certificate,
+and plain quadrature arithmetic acquired an extra rounding radius. Its verdict
+was correction required, not product-red. The obsolete covered proof was stopped
+after 593 passes / 228.71 s and remains diagnostic. A requires Disc inputs for
+both; unsupported inputs preserve the scalar fallback. Fresh B4 accepted the
+corrected checkpoint and its **1062 passes / 18 warnings / 346.53 s** proof.
+Representative probes alone did not establish sufficient complete-gate margin.
+
+A4 shares immutable per-invocation workflow slope/error facts and passes three
+already computed same-case budgets to their existing consumers. Independent
+observations, sample calls, all assertions and six suites remain. B5 accepted
+the exact three-file checkpoint after **465 passes / 63.43 s**. The earlier
+workflow-facts timing provenance was wrong: its sampler wrapper disabled the
+later purity guard. That claim is withdrawn, retained as a pre-guard diagnostic
+and replaced by a final-checkpoint probe leaving the sampler unchanged. The
+renewed evidence retains 87556 heavy-case queries while reducing repeated slope
+computations to two. A nominal-query memo did not earn its cost and was removed.
+The six-suite aggregate saving was only 9.256 s; no large saving is inferred.
+
+A5 adds narrowly qualified overlap observer lanes, exact flat-vertex packing and
+bounded native coordinate batches. Original scalar arithmetic/dispatch, separate
+certificate components, literal stencil visits/aliases, thresholds, first-failure
+prefix and unsupported/custom-sampler fallbacks remain binding. Overlap tile128
+and native tile64 were selected from matched exact-output probes, with partial
+tiles and representation/failure boundaries checked. Large covered observer
+probes observed overlap 36.7078 to 10.3349 s and native 13.6872 to 7.0800 s; these
+are representative component observations, not a canonical performance verdict.
+The renewed eight-suite proof passes **597 cases / 18 warnings / 282.58 s**
+(461.713 s summed JUnit durations); its exact fixture hash is unchanged. Together
+with the separately accepted 465 workflow cases this retains all 1062 focused
+nodes. Fresh B6 accepts the exact revised acquisition checkpoint, independently
+checking 57 scalar/lane nodes, 17 complete overlap controls, 10 native controls
+and two closed-form truths. Its final evidence-only report hashes were reconciled
+after the author finalized the summary; source and 597-node XML never changed.
+Final exports are preserved with the portable continuation evidence before the
+next committed canonical candidate is frozen.
 
 A separate bounded worker owns the grouping and Java harness. Exactly two workers,
 loadgroup, no restart, serial fallback, reader/cache affinity and omission guards
@@ -63,6 +109,12 @@ phases, lock/dependencies, workflows, coverage policy/reports and M25's unchange
 33554432-byte limit remain binding. Final fresh D plus bounded review include the
 independent preservation sweep after the exact full gate.
 
+Physical diff-line accounting against the required baseline is scientific
+production **0 net lines**, runtime pytest grouping **+38**, tests/support
+**+1204**. This is a work-reuse optimization with extra qualification/fixture
+machinery, not a code-deletion result. The per-file export and all 16 unchanged
+CE08/example file checks accompany the continuation evidence.
+
 Canonical `make check` now passes locked setup, lint, format and all-file Pyright.
 Its earlier run failed two fixture optional-matrix type diagnostics; A corrected
 the guarded type path. The three A-local type-wrapper import failures are tooling
@@ -72,14 +124,17 @@ nonfinite private probe emits 6 old versus 4 new duplicate warnings with identic
 distinct categories/messages/locations; all counts are retained, no warning filter
 or public product behavior changed, and B2 independently reviewed this limit.
 
-Cumulative known roles: four preserved discovery launches plus bounded worker,
-blind A (two continued author rounds), exporter and two fresh B launches. B1 and
-B2 each accepted once with zero candidate review corrections; B1 corrected one
-own invalid-probe assumption. Generic policy text (B1) and infrastructure-only
-completion metadata (B2) were overread without scientific implementation/history/
-oracle exposure; disclosures are retained. Final D/bounded rounds and actual final
-run tallies are recorded externally after this frozen pointer. Historical PR83
-rounds/costs remain unknown, not zero. Every earlier charge below remains.
+Cumulative known roles before final reviews: four preserved discovery launches,
+bounded worker, continuing blind A, exporter, public-only Astra/ultra advisor,
+and six fresh B launches. These are **14 launches**, not fourteen independent
+author implementations; continued turns add no launch. B3 required the two
+admission corrections above; B5 required correction of evidence provenance.
+B1 corrected one own invalid-probe assumption. Generic policy text (B1),
+infrastructure-only completion metadata (B2) and advisor filename-only inventory
+were overread without scientific implementation/history/oracle exposure;
+disclosures are retained. Final D/bounded rounds and actual final run tallies
+are recorded externally after this frozen pointer. Historical PR83 rounds/costs
+remain unknown, not zero. Every earlier charge below remains.
 
 Other resumed charges: one passed preflight and full baseline; one pre-verifier
 instrumentation launch failed (GNU time missing); absent sudo and one package-URL
@@ -96,6 +151,17 @@ individual commands. Actual served models, per-role tokens/cache/cost, complete
 elapsed and owner-wait totals are unknown; requested roles used Sol/high. Do not
 add overlapping durations, erase attempts or infer a default allowance.
 
+Later charges include A3's rejected native lane admission, retained interrupted
+proof, corrected proof, A4's pre-guard evidence correction and removed nominal
+memo, and A5's small exact-operation/representation/tile qualifiers. B3/B4/B5
+reports retain their own probes and cleanup. The bounded worker additionally
+qualified threaded Pyright without editing Makefile: successful checks improved,
+but malformed configuration hung for 96.641 s before its owned process was
+terminated. The 147.102 s six-command experiment was rejected; canonical types
+remain serial and unchanged. No candidate source repair was made for that
+dependency behavior. The continuing evidence catalog retains individual commands,
+results, rejected states and measured limits without adding overlapping clocks.
+
 Baseline/final profiling uses the same exact-argv external uv wrapper (top-level
 only durations/JUnit), strace 6.13 seccomp execve tracing and locally extracted GNU
 time. Nested argv/checks are unchanged. Single runs, warmer candidate caches,
@@ -105,7 +171,10 @@ no stale evidence or second M25 run solely to retrieve numbers is allowed.
 
 Cleanup already removed the bounded worker's confirmed disposable qualification
 suites/temp and 739 MiB reader/class scratch after durable exports; no owned
-worker process remains. Keep current checkout, tracked fixtures, original data,
+worker process remains. Eight coordinator-owned `/tmp` upstream-skill/download
+probe/package-index scratch files were removed with ordinary `rm`; their absence
+was confirmed without error. The only worktree is the preserved current checkout.
+Keep current checkout, tracked fixtures, original data,
 shared environments/caches/JDK/jars, all durable audit evidence and uncertain
 references. Completion housekeeping and final review/verification results go in
 the PR/conversation without mutating this exact-candidate pointer.

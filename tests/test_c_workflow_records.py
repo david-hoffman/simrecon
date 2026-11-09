@@ -680,17 +680,17 @@ def test_literal_direction_stream_is_distinct_from_nominal_z_major() -> None:
     direction = control_cases()["literal-direction-major"]
     nominal = control_cases()["literal-z-major"]
     expected_d, expected_z = observe(direction), observe(nominal)
-    assert np.max(abs(expected_d["image"] - expected_z["image"])) > 100 * max(
-        error_budget(direction, expected_d)["image"], error_budget(nominal, expected_z)["image"]
-    )
+    difference = np.max(abs(expected_d["image"] - expected_z["image"]))
+    budget_d, budget_z = error_budget(direction, expected_d), error_budget(nominal, expected_z)
+    assert difference > 100 * max(budget_d["image"], budget_z["image"])
     actual_d, actual_z = run(direction), run(nominal)
-    for case, expected, actual in (
-        (direction, expected_d, actual_d),
-        (nominal, expected_z, actual_z),
+    for case, expected, actual, budget in (
+        (direction, expected_d, actual_d, budget_d),
+        (nominal, expected_z, actual_z, budget_z),
     ):
         assert actual.layout is not None
         assert dict(actual.resolved_settings)["effective_shape"][:4] == (2, 2, 5, 1)
-        assert_scientific(case, actual, expected)
+        assert_scientific(case, actual, expected, budget=budget)
         close(
             actual.bands.input_scale,
             1 / (10 * 10 * 2),

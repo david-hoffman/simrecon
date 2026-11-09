@@ -1,0 +1,651 @@
+{
+  "schema": "org.simrecon.test-apparatus.continuation-evidence",
+  "version": 1,
+  "status": "Portable evidence selection frozen after completed A5 proof, final B6 acceptance/reconciled evidence and root final task paragraph; no staging or commit by exporter",
+  "blindness": "Nonblind archival index. Do not supply to blind scientific roles.",
+  "known_role_launches_before_fresh_B6": 13,
+  "role_launch_count_source": "Coordinator instruction; no fabricated serving/token/cost measurements",
+  "entries": {
+    "scientific-a-round3-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/ROUND3.md",
+      "source_size_bytes": 12498,
+      "source_sha256": "b76078b850496f8211476508df512d2d79d3c840cd590a645da896c23799303e",
+      "size_bytes": 5777,
+      "sha256": "40be6b5d12979fe650da6e8552a993c4a3a8c58b777369b977542c9ed9138952",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-CORRECTION-B3.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/CORRECTION-B3.md",
+      "source_size_bytes": 2577,
+      "source_sha256": "5b0b5e1d3a32a5d4f81aa56503d239efcbce844539b9259379c42b712ff1cc56",
+      "size_bytes": 1426,
+      "sha256": "477aac9c18b7434e940af9177e94bf707e54b9db9c93b5e5cba6c4df9b625b83",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-manifest.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/round3-manifest.json",
+      "source_size_bytes": 3089,
+      "source_sha256": "f9cbd4cdc2eca929cbac61b3db03081341c759c4ddad6798c35bda1d584614c3",
+      "size_bytes": 1250,
+      "sha256": "ff7e8b5674b2395f3acc91fcc60bbe7cd7a28daec815af9ed536cf6623342ea3",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-scientific-inputs.sha256.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/scientific-inputs.sha256",
+      "source_size_bytes": 497,
+      "source_sha256": "bb62b1720cdc237dc48d7db72eda0fb3ae3fdc574aba2d29db3292808d4c5ae3",
+      "size_bytes": 315,
+      "sha256": "55d18a94603037ee1110a46d0e211e4b0d3c8a228ec51796e52f261820cced06",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-constructor-equivalence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/constructor-equivalence.json",
+      "source_size_bytes": 852,
+      "source_sha256": "f89b188b2472be544354f4e7caa70d93d3f49357258cef399c46b7206bfa9d1f",
+      "size_bytes": 372,
+      "sha256": "62e918861c98d5ab41d1db5cf422227727aa80e6ca21c4b6a66f0148b9ce0449",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-exact-equivalence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/exact-equivalence.json",
+      "source_size_bytes": 5778,
+      "source_sha256": "853e0da81c177cab10e0680ab046462d34348f74666415b36d89cac385e933d0",
+      "size_bytes": 902,
+      "sha256": "6f312e6c091b97cdbdbe5838622fe0ceecc8e61b614c8f4e0d23117ecf2d02f9",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-lane-node-equivalence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/lane-node-equivalence.json",
+      "source_size_bytes": 14127,
+      "source_sha256": "11cf2ecba8a0d34784ec0e06c2b044edf0942ae5207ae4842db99263ab5b038b",
+      "size_bytes": 348,
+      "sha256": "cc1c5fac6986337c8d31fdeed6d12b5fc0b1bd5a2697febe7e5be71dee79df89",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-native-batch-equivalence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/native-batch-equivalence.json",
+      "source_size_bytes": 6073,
+      "source_sha256": "81ef310efd538686d2319e833dee314b7d4bd5ac9813cb8c3997a255d1269887",
+      "size_bytes": 403,
+      "sha256": "b21fc18ac4dfadda87c8840b766351c1103864366701915f389fe59bc5741bf0",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-representation-matrix-equivalence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/representation-matrix-equivalence.json",
+      "source_size_bytes": 16419,
+      "source_sha256": "8b67f69b08397c622a7d7c10dcbe3e3b72f45d1858afced15b2db40950eb5eac",
+      "size_bytes": 430,
+      "sha256": "e03103b5800a7e84bc2af41a42ac0bf10b8fed11643a56a48c58ca428cfafe27",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-covered14-corrected-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3/covered14-round3-corrected-summary.json",
+      "source_size_bytes": 2097,
+      "source_sha256": "f8d0e818b15aead166f4107f1ed17a9bd8b71c72066b23c4fd27fedc8b6d875d",
+      "size_bytes": 564,
+      "sha256": "0fca13113f12144cf30fb34a7f1c0e2f3fd02a5b0a06645148afbad374358c6a",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-covered14-corrected.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered14-round3-corrected.xml",
+      "source_size_bytes": 192055,
+      "source_sha256": "9723f1951aa382c8df54450594ccd39b971f6c6a58f991243307124560c77f4a",
+      "size_bytes": 13877,
+      "sha256": "aeb7d19f0612b6e1b5cf0e233390f9dd294fddd1e0180e40f80384c8a710f8b8",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-rejected-manifest.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3-rejected/round3-manifest.json",
+      "source_size_bytes": 2881,
+      "source_sha256": "40cb9c64fa8c4c0c3c56fbdfc5dc512420e6704a069961eba01b40540b0dc9c5",
+      "size_bytes": 1128,
+      "sha256": "c3ccf94ed381c73b3ca9b6cef362d672004ff4d0422102d1d0c459defe25a18a",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-rejected-reproduce-plain-noise.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3-rejected/reproduce-plain-noise.log",
+      "source_size_bytes": 193,
+      "source_sha256": "ce930beb98224ffe797fec683273a9aac1954659e06ffe5176b265d05f37215d",
+      "size_bytes": 173,
+      "sha256": "b1b43cc10ec29f1622c4de98326cef0c7bbcb1512eef6bc9499fc8ef8605e85d",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round3-rejected-reproduce-representations.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round3-rejected/reproduce-representations.log",
+      "source_size_bytes": 1702,
+      "source_sha256": "3229dbece7c361b1f1e3f074e3b1dd53daec53da196b9a85bf4344a7008af4aa",
+      "size_bytes": 330,
+      "sha256": "47c979e614900d2d9ed3f40571e6894e6a39454e5ff9f01e6f941fb33aae49ca",
+      "gzip_mtime": 0
+    },
+    "scientific-b-round3-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round3/REPORT.md",
+      "source_size_bytes": 10169,
+      "source_sha256": "051a9961b61a095b59bc7157c9716ee5d9dcebecd57c0ae6051767d6163eca15",
+      "size_bytes": 4714,
+      "sha256": "f657db7c240df3a5c802e6b7f3f3db2e8d56cbec8f5213c107a90b03366dc4ab",
+      "gzip_mtime": 0
+    },
+    "scientific-b-round3-classified-correction.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round3/classified-correction.json",
+      "source_size_bytes": 4383,
+      "source_sha256": "1cdf2cbd3a996940b5216169a56d4105a310326c8f11d34370695e5f505340f0",
+      "size_bytes": 1693,
+      "sha256": "3a674b3faa3dd2f986f664d80761ba72e242a3fcf8bbadc9cc1b0440fa9032a4",
+      "gzip_mtime": 0
+    },
+    "scientific-b-round4-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round4/REPORT.md",
+      "source_size_bytes": 15215,
+      "source_sha256": "9a210fdf5a5cb9daec7d106914edd4b5f9ae7edddc27c209a2f4f8c2b9c69f50",
+      "size_bytes": 6551,
+      "sha256": "31aa472adb95d39f46a1c2d6a562f04af69fe4ecedd8eec0607620918e609f4e",
+      "gzip_mtime": 0
+    },
+    "scientific-b-round4-accepted-filehashes.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round4/accepted-filehashes.json",
+      "source_size_bytes": 6944,
+      "source_sha256": "c2630bb15d4a0762b48eede73fa91f8ae2db618a90d9d4558df30ce4611a39a5",
+      "size_bytes": 2896,
+      "sha256": "ba252ff2c22cb25e578195d1340dcd2d0dee443ceec147560d85dce047a2a032",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round4/ROUND4.md",
+      "source_size_bytes": 7806,
+      "source_sha256": "51328e3390aecb5def4d1d61974516ed7e562a8757f8b4388d17b9f346db3a5e",
+      "size_bytes": 3541,
+      "sha256": "5f832750492496c012f3e00e2d12f1481794e9a2f79eeef5cf400d08c5fbe333",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-scientific-inputs.sha256.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round4/round4-scientific-inputs.sha256",
+      "source_size_bytes": 590,
+      "source_sha256": "d8e5b2eb8a258c7304a432f318193994c50e749cad0afc97fd46fb6c27a8962a",
+      "size_bytes": 360,
+      "sha256": "4e0fc8f168a250fb69e0a09a48af5bae1c8057968990243e6ef732b6c4fdd376",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-workflow-facts-equivalence.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round4/workflow-facts-equivalence.json",
+      "source_size_bytes": 31949,
+      "source_sha256": "1ddc2daabf7b878192986b1e9116dd0d337d1f25364c16f8f11a7846873db262",
+      "size_bytes": 3510,
+      "sha256": "41a5ca55be5eb888011a5d9a41ef707a7ab89763d07ca26074c3943f9b0db596",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-covered6-workflow-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round4/covered6-round4-workflow-summary.json",
+      "source_size_bytes": 667,
+      "source_sha256": "e58d96537e0cfa01fbce2cb5080d6a806913b25bdaab283b309bc1f872b88bd4",
+      "size_bytes": 225,
+      "sha256": "71e9ebd312ce2215f1758e3950e6529f909aa9eb60d41c9e1ab491301bf08474",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-covered6-workflow.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered6-round4-workflow.xml",
+      "source_size_bytes": 81996,
+      "source_sha256": "48e681a92c22fdb1ee0b6bf86b6e4c9301a7d8c8f1b30e2944cf50074bd9c205",
+      "size_bytes": 5675,
+      "sha256": "a7f7c756a8ed4e21f33cb58e158fe2e258b357e3c47a0df275578aa282ab546f",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-workflow-final-probe.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round4/workflow-final-probe.json",
+      "source_size_bytes": 3530,
+      "source_sha256": "4d879f4e996c782497d5e32e2f614dcb5c1222e47719ab5d0a8f91ac749c9177",
+      "size_bytes": 812,
+      "sha256": "1b974fc1e3e04609cab2b598811771cfb2fe4ebc813fa3c7cd61f70e3f85a5e4",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-PRE-GUARD-workflow-facts-probe.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round4-fixed-facts/workflow-facts-probe.json",
+      "source_size_bytes": 3469,
+      "source_sha256": "7d80467fb574b427ff2d58bd98d89629dc3db3ca17fed659e3906f86659b3f85",
+      "size_bytes": 805,
+      "sha256": "d37dc9e99699b2065596c20408c56d37b229121453adc90bb5344a38b4560341",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-workflow-stage-probe.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/workflow-stage-probe.json",
+      "source_size_bytes": 1072,
+      "source_sha256": "244cf4942ce2e911991725374924d1d1f660d8e332294fc86beb42f2e6404650",
+      "size_bytes": 325,
+      "sha256": "5008ea868f2a616d76eb1fcb3231de030d2c973ad483a9843eb84d023f199f49",
+      "gzip_mtime": 0
+    },
+    "scientific-a-round4-rejected-memo-probe.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/workflow-memo-probe.json",
+      "source_size_bytes": 5224,
+      "source_sha256": "86fb2ec35aae4e5e4be7e4c95adfec6dfe52824a2a430514952de74b592a0da6",
+      "size_bytes": 983,
+      "sha256": "baf2b4e75634dc870f50391171f33c5f1e6f3e63a85e9be7515228b36ed9ffce",
+      "gzip_mtime": 0
+    },
+    "scientific-b-round5-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round5/REPORT.md",
+      "source_size_bytes": 12402,
+      "source_sha256": "d7510a44b4afd741b5f14f0b6531f4bba8172a93b9561b3fb53c61446798f6be",
+      "size_bytes": 5402,
+      "sha256": "5300b32193a499673bcf77ef6c0144a7ac923b7850ea6991809278ea3433199f",
+      "gzip_mtime": 0
+    },
+    "scientific-b-round5-accepted-filehashes.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round5/accepted-filehashes.json",
+      "source_size_bytes": 5109,
+      "source_sha256": "1cbf2130cfb6b9f84ab1840663cf2508db286eb687a03768fbdeab7bcf5665f4",
+      "size_bytes": 2192,
+      "sha256": "413838c09efe408bbc0653ae15cf7aaa34166b20c490f9b86f19e9d4e014cc9a",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round3-types-qualification-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round3-types/qualification-summary.json",
+      "source_size_bytes": 4464,
+      "source_sha256": "8159b3960165b39f8c485cfb4f4bf57e67585e0ff42629aebcd16682f747c5a9",
+      "size_bytes": 1720,
+      "sha256": "985b2cb0ac30ce8c4900ed017116362999d83286fdc99e9dd6d4cc698c5be110",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round3-types-inputs.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round3-types/inputs.json",
+      "source_size_bytes": 27004,
+      "source_sha256": "cb3cb96e96bac3d340d013889293a27e0271e23df2d600988c593e152d82ee47",
+      "size_bytes": 6364,
+      "sha256": "9b98cd48e510f0f4d3f91e98bb2c2474784c28f413ed3960a0eda28718f0de25",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round3-types-control-inputs.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round3-types/control-inputs.json",
+      "source_size_bytes": 182,
+      "source_sha256": "930493b3c308c718642ca3008802e51a789dc846fa6dff97a875bd1c128ca3d5",
+      "size_bytes": 146,
+      "sha256": "65b300e53c94ed608491a6593ad4e60ca5d49cf244215bf5629e3dce6a49b095",
+      "gzip_mtime": 0
+    },
+    "infrastructure-round3-types-runs.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/infrastructure/round3-types/runs.json",
+      "source_size_bytes": 5112,
+      "source_sha256": "597ed9eb854edf86b7ec58668159e46b23de12fb10eee073a1313b250d8bd47c",
+      "size_bytes": 751,
+      "sha256": "3ebeca9545625fa51325b3004a5f9d93e4f07c3a25c785042de594afb6df8dda",
+      "gzip_mtime": 0
+    },
+    "advisor-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/advisor/REPORT.md",
+      "source_size_bytes": 3318,
+      "source_sha256": "d23bcfb710d1e59d18835b01c048cb571e01d961ab35a3949c0b60e314590b58",
+      "size_bytes": 1817,
+      "sha256": "9aa283d5799d5e96d5bdd1274d302cf567d928beb1a06115561912a584d7db0b",
+      "gzip_mtime": 0
+    },
+    "candidate-1-profile-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/candidate-1-summary.json",
+      "source_sha256": "6d7508663828fa23befc36a8af13117a54d202b939fe3695cb36be45f2ddc671",
+      "exported_payload_size_bytes": 62158,
+      "exported_payload_sha256": "2724bd327adaf177dc084968a965af59f78ed9cbc0ab4b0e8456b5f954973f37",
+      "size_bytes": 6314,
+      "sha256": "28317e3c97e3aaa93fb3406832629d0f0a266b13b9ab087206b8c3dcd5f3f5c3",
+      "gzip_mtime": 0,
+      "transform": "Selected compact resource/duration/JUnit/execve totals; raw catalogs and argv omitted"
+    },
+    "candidate-1-console.log.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-1/console.log",
+      "source_size_bytes": 1336021,
+      "source_sha256": "2f8d3b43c7e9d70628c5f4f8a25f2c15937bb056555120eeb113921e1ba24384",
+      "size_bytes": 146810,
+      "sha256": "838a8ff57ab3b0977c1bcf76d6b463f6f0f5b5b7d988da07af3c9265477827fd",
+      "gzip_mtime": 0,
+      "status": "Existing candidate export verified; untouched"
+    },
+    "candidate-1-coverage-coverage.json.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-1/coverage/coverage.json",
+      "source_size_bytes": 353163,
+      "source_sha256": "141b05f1ed6c4f2e8c93072c382af9b1d96953a7dd73519d5aae6eecfc7c0ee1",
+      "size_bytes": 28023,
+      "sha256": "9626c004c985728d28739ba3c84389acb830a72fd5fbaa8e2e23548ee4f90051",
+      "gzip_mtime": 0,
+      "status": "Existing candidate export verified; untouched"
+    },
+    "candidate-1-junit.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-1/junit.xml",
+      "source_size_bytes": 518423,
+      "source_sha256": "8a1dbd12c6faa9f78a7d64e70099ea022f17ca00162012a8217698f0602785f1",
+      "size_bytes": 39636,
+      "sha256": "8b6fc9e5ef8a89c74024652c4eb99201e6d4f2da1fdf3766c10b6aa5120f43ba",
+      "gzip_mtime": 0,
+      "status": "Existing candidate export verified; untouched"
+    },
+    "candidate-1-time.txt.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-1/time.txt",
+      "source_size_bytes": 1161,
+      "source_sha256": "3649162a62e49dc31e909083c40c42a369bfce2904ec2bbf3fd9cec69e341627",
+      "size_bytes": 612,
+      "sha256": "646bb5c47ce9a94201d03cc9d1343be223debf0fe371c190952c612e84c7e1d0",
+      "gzip_mtime": 0,
+      "status": "Existing candidate export verified; untouched"
+    },
+    "candidate-1-verification-measurements.json.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-1/verification/measurements.json",
+      "source_size_bytes": 230,
+      "source_sha256": "fe44901c474f11f92cdef0af1a5171d29df25162ce26b04a520ca5b99c78cf3d",
+      "size_bytes": 181,
+      "sha256": "28e31a2aa9b9b4bd67a240db1c026b20f5d4b0d6a57a0768ace39502e0e81f31",
+      "gzip_mtime": 0,
+      "status": "Existing candidate export verified; untouched"
+    },
+    "candidate-1-verification-receipt.json.gz": {
+      "source": "artifacts/test-apparatus-audit/candidate-1/verification/receipt.json",
+      "source_size_bytes": 240634,
+      "source_sha256": "f10f43bf5490ff1428cc1ea7458cac91bf2822035684b6aca4d20fb55ee8dff4",
+      "size_bytes": 92947,
+      "sha256": "02a0148c6a4b829f7e395daf4b28e01d9376de294e20ea7e07abe76c3f539351",
+      "gzip_mtime": 0,
+      "status": "Existing candidate export verified; untouched"
+    },
+    "candidate-1-measurements.json": {
+      "size_bytes": 11591,
+      "sha256": "fe381f51eeb6bc95c2e8fa78d323d0f717c5671a54238db4cf02bcc8cd048a30",
+      "status": "Existing compact export verified against preserved receipt/JUnit/M25/global coverage; untouched"
+    },
+    "scientific-a-round5-scientific-inputs.sha256.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round5-scientific-inputs.sha256",
+      "source_size_bytes": 590,
+      "source_sha256": "fbae3fba991bec21bee8482babd4b674852a37a01fe4efb17a61da968fad7d64",
+      "size_bytes": 359,
+      "sha256": "6dde487952a193bd6dd754f071952d179e741e87c3461915fa12a4d48cd58d27",
+      "gzip_mtime": 0,
+      "limits": "A5 frozen report/hash or separately matched helper probe; not the running final acquisition proof"
+    },
+    "scientific-a-round5-overlap-probe-large-covered.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/overlap-probe-large-covered.json",
+      "source_size_bytes": 707,
+      "source_sha256": "941ea63a68592c3682ec48f040289734b845757135a5558e85a62febc6bee5e5",
+      "size_bytes": 325,
+      "sha256": "89e8b762e8865b0076eea2d551dafd740d15ce58c416c74e955f6058daa8f25a",
+      "gzip_mtime": 0,
+      "limits": "A5 frozen report/hash or separately matched helper probe; not the running final acquisition proof"
+    },
+    "scientific-a-round5-overlap-probe-packed-tile-covered.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/overlap-probe-packed-tile-covered.json",
+      "source_size_bytes": 700,
+      "source_sha256": "24fe57a40e3d867725653505f76208b006e0ff7de8338bf3a3bfef215eb76ece",
+      "size_bytes": 315,
+      "sha256": "3c7d1cbfbb8c4695bb7e69f70dda06013f4d403b958c9383e3028959cd764825",
+      "gzip_mtime": 0,
+      "limits": "A5 frozen report/hash or separately matched helper probe; not the running final acquisition proof"
+    },
+    "scientific-a-round5-batch-tile-probe.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/batch-tile-probe.json",
+      "source_size_bytes": 1410,
+      "source_sha256": "38f9a6eea5de116df3e861a76e30ec8d07f6306985a655eb3b1eb6d8ebc8c84e",
+      "size_bytes": 404,
+      "sha256": "e0dbf7ae3361e6724708a49e44a96c36e2678f1069ad56950060639a48d1c70a",
+      "gzip_mtime": 0,
+      "limits": "A5 frozen report/hash or separately matched helper probe; not the running final acquisition proof"
+    },
+    "scientific-a-round5-batch-tile-probe-large-native.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/batch-tile-probe-large-native.json",
+      "source_size_bytes": 952,
+      "source_sha256": "6a429c6cfb3cd9ce5bc859688906f8c2fb6e78e687b68f6dd8d636d209ba19d0",
+      "size_bytes": 394,
+      "sha256": "4709120e346c2e54b59bae4cd0d999fa16bea531885cb08a2fe8a7c6ac5f0360",
+      "gzip_mtime": 0,
+      "limits": "A5 frozen report/hash or separately matched helper probe; not the running final acquisition proof"
+    },
+    "scientific-a-round5-native-u-probe.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/native-u-probe.json",
+      "source_size_bytes": 471,
+      "source_sha256": "613c724722b23d6cb1f695eef5e0f8039fc8b17c0f94c8c94aa277699fdf44ed",
+      "size_bytes": 260,
+      "sha256": "9ea7721f712acb165d32efd183f8cbb788b873d4e10afe20a3e1e3a85ab8a228",
+      "gzip_mtime": 0,
+      "limits": "A5 frozen report/hash or separately matched helper probe; not the running final acquisition proof"
+    },
+    "scientific-a-round5-pre-proof-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/ROUND5.md",
+      "source_size_bytes": 10339,
+      "source_sha256": "265600f12e946ead34fa35ca4c137e95e123ec56869575be74a36c345bef195f",
+      "size_bytes": 4666,
+      "sha256": "db97ea34e5db5325b3571ac5487a8164ce118827b3559420fd83238f275b4566",
+      "gzip_mtime": 0,
+      "limits": "A5 frozen report/hash or separately matched helper probe; not the running final acquisition proof",
+      "status": "Frozen A5 pre-proof report; running acquisition proof is explicitly pending in its text. Final report will be archived separately after completion."
+    },
+    "scientific-a-round5-round5-checks.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round5-checks.json",
+      "source_size_bytes": 4496,
+      "source_sha256": "561ff54e7b32ac122e2d2d4b616ec63ab6a9c57f877f58b2607938dd0611e8cc",
+      "size_bytes": 1639,
+      "sha256": "d2d82663c3da0e603faee14370edeab8bc0165c35da9e7e3a0de83583a4437fd",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-covered8-round5-acquisition.xml.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered8-round5-acquisition.xml",
+      "source_size_bytes": 110307,
+      "source_sha256": "dfdddcbaf4c24626910bad89ce6a0f2144e9bf85d036b224cfa9abf9df7d8dc3",
+      "size_bytes": 8490,
+      "sha256": "082d310f8aebab0d1168fa26fcaf9e4485247f5942d7c0d03c49b5837aad7828",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-covered8-round5-acquisition.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered8-round5-acquisition.log",
+      "source_size_bytes": 84504,
+      "source_sha256": "76844e9adb520cf3795d231ebe50252d53fda108a963039e08e8ebd1b3ce330b",
+      "size_bytes": 8127,
+      "sha256": "245ff03a9b9dceee277ade810e865f2b217f5dbc8cf652e908501f15e3f872b0",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-exact-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/exact-round5.log",
+      "source_size_bytes": 5773,
+      "source_sha256": "5f5ba17dfacae6d85498b848de67ebb2582ca2826e49682ee57932ef4ff737dd",
+      "size_bytes": 897,
+      "sha256": "d80af52f2f7d427878e7429af7a50bccda3258635270484a1c075dc2599d6d01",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-native-batch-equivalence-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/native-batch-equivalence-round5.log",
+      "source_size_bytes": 6915,
+      "source_sha256": "6edbf93b681ff7bd6397ea99164f3662d314aedf9f0143c6aee85d412d0fac8f",
+      "size_bytes": 488,
+      "sha256": "9cf879ce0d5f09deb32959e81c4390f4900e6a75f98ee9aff624a8dceed07f60",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-native-boundary-equivalence.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/native-boundary-equivalence.log",
+      "source_size_bytes": 2534,
+      "source_sha256": "0a45cc66c8514a59d94b85d6b43a79783897aab62b2051074fd2ced251c27aae",
+      "size_bytes": 375,
+      "sha256": "1df581ede360e0c23237c62827e0f88183c46458b52ee48def6ed067b994481a",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-overlap-batch-equivalence-final.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/overlap-batch-equivalence-final.log",
+      "source_size_bytes": 88,
+      "source_sha256": "da60438bbc83517e153121a0104fcd2caac68772edd9ae19405004d6f65ad9bb",
+      "size_bytes": 92,
+      "sha256": "35e8e77a7f3f9250ebf2c468ef3371840f677f5c8652a3d0b5898fc123c7f35e",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-representation-matrix-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/representation-matrix-round5.log",
+      "source_size_bytes": 154,
+      "source_sha256": "8f490a52498d2298f98f027c6a2cbbbccf74763d6699b99031ec4b40287ac947",
+      "size_bytes": 142,
+      "sha256": "1f2757982960b4ee3cbd058278378df3ae6a893d7e9d0a7852223c715a285c78",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-overlap-node-equivalence-final.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/overlap-node-equivalence-final.log",
+      "source_size_bytes": 123,
+      "source_sha256": "e602b2797afc177ef7f82b1323441c122758285e8409529f24b3a974c30abe82",
+      "size_bytes": 126,
+      "sha256": "768c93f085b73d7c3eb3194213de33281f778753e08d868b96aeb18edaf151e0",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-constructor-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/constructor-round5.log",
+      "source_size_bytes": 852,
+      "source_sha256": "1c3cea052cc70569ea69be4bb058cd84f2e51583c13ea9bf04396f25c35c403f",
+      "size_bytes": 373,
+      "sha256": "43ee6721ea9a333abc957669724f74222d39c6b461ec69ad6b12a13b472f21a9",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-lanes-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/lanes-round5.log",
+      "source_size_bytes": 132,
+      "source_sha256": "b107348c5561d9ac3739ff39c453b63b63e00ae0aca0c832eeb6ca9bec9c48ad",
+      "size_bytes": 131,
+      "sha256": "56626c73c0c915a52cef8fb6da8f62cd56c4840f2d5dbf8d8e2ccc684c007a85",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-reproduce-plain-noise-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/reproduce-plain-noise-round5.log",
+      "source_size_bytes": 227,
+      "source_sha256": "ea67e290c13c30ae6588caad93bcc73be475e3c0748a8469fdeeacdfac08a1cb",
+      "size_bytes": 130,
+      "sha256": "c7f23653d147e8ffda16cb4e79e90aae1c46162e067f23d6685e9dd5dd892c3c",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-reproduce-representations-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/reproduce-representations-round5.log",
+      "source_size_bytes": 1701,
+      "source_sha256": "2d973b61bfab76c7bb6dc64a02322f16f86df1658c0c3c78f64fc7616c87d603",
+      "size_bytes": 298,
+      "sha256": "2fcf4792b880e0be5bd72745d1f2164116dca2288a66d2ec357b72c521e01504",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-round5-root-types.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round5-root-types.log",
+      "source_size_bytes": 37,
+      "source_sha256": "6d88a1b220adb7a3d62092b6e38431f0b3fe8babe9864fab90e5849766260332",
+      "size_bytes": 53,
+      "sha256": "c8f40ac3b3f577d99ca528dc797ac395a63bdcedd0b425151e1b76ffc54e42f5",
+      "gzip_mtime": 0,
+      "status": "Completed A5 status0 evidence; XML597 pass and native log282.58s checked; focused proof is not canonical readiness"
+    },
+    "scientific-a-round5-pre-admission-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/covered8-round5-acquisition-summary.json",
+      "source_size_bytes": 2006,
+      "source_sha256": "a10817d079983205fd4659ce411bb4c6e7d461eded822df06e5fe0b67d1196f6",
+      "size_bytes": 775,
+      "sha256": "289a46af5ffd9831c1557c914eb0d1001e73adbacb62ea8b32b400992acee37d",
+      "gzip_mtime": 0,
+      "status": "Completed597-pass proof summary before author appended admission observations; retained historical snapshot, superseded by final summary"
+    },
+    "scientific-a-round5-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round5/ROUND5.md",
+      "source_size_bytes": 11188,
+      "source_sha256": "a1bb5c82e74759b6dc11cc6a2f545a36d6dc52f3007bbfd20ccf2d2c96ee978a",
+      "size_bytes": 5045,
+      "sha256": "311cbd4c734f2d7dfaed703035fb49b985ca3664ec4fe55e5cc9161a927b253c",
+      "gzip_mtime": 0,
+      "status": "Final frozen A5 or final root quality evidence; no canonical readiness implied"
+    },
+    "scientific-a-round5-covered8-round5-acquisition-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/round5/covered8-round5-acquisition-summary.json",
+      "source_size_bytes": 2617,
+      "source_sha256": "6fc47b33b0ddca0976e87ca500b8b282b757479e4834683f66a6e844649600c9",
+      "size_bytes": 887,
+      "sha256": "ca843620e3fa7929c6e58c86ff84344df8b4bcc76c67f833ff8b49fab1e6e096",
+      "gzip_mtime": 0,
+      "status": "Final frozen A5 or final root quality evidence; no canonical readiness implied"
+    },
+    "scientific-a-round5-admission-observations.jsonl.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/batch-eligibility-48227.jsonl",
+      "source_size_bytes": 16992,
+      "source_sha256": "94948d1fbcf7ffb817bc6739f3e03a3d9ef177f532e22588369ae0ab1749e687",
+      "size_bytes": 371,
+      "sha256": "03dda488800297bad9de81fdda5e7d92630bac177fba4a6be972d05c0905f721",
+      "gzip_mtime": 0,
+      "status": "Final frozen A5 or final root quality evidence; no canonical readiness implied"
+    },
+    "scientific-a-round4-final-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-a/ROUND4.md",
+      "source_size_bytes": 7881,
+      "source_sha256": "f641a1e1f514650ce57a352d4d6118589741377edfc58a50bc946e62d0b5904b",
+      "size_bytes": 3562,
+      "sha256": "c286d8a6437cef6e036abddde1851b95c7d89d4028bc86129849df4c54067130",
+      "gzip_mtime": 0,
+      "status": "Final frozen A5 or final root quality evidence; no canonical readiness implied"
+    },
+    "check-round5.log.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/check-round5.log",
+      "source_size_bytes": 469,
+      "source_sha256": "06d9912d2685e74acaa12d43d84d15ff1a4147cfad69a9959da37497eea80de2",
+      "size_bytes": 282,
+      "sha256": "c1f629db51578e114b6e7033d625f368dd6ccdf65d52e1f97e12c1f15084f4d1",
+      "gzip_mtime": 0,
+      "status": "Final frozen A5 or final root quality evidence; no canonical readiness implied"
+    },
+    "scientific-b-round6-REPORT.md.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round6/REPORT.md",
+      "source_size_bytes": 13294,
+      "source_sha256": "0456532b92a79f551fc79600157ffbf5ce61c1010034eae99d8d7c57bb73691e",
+      "size_bytes": 5876,
+      "sha256": "9a8f3b67290ea2ea319e42a3825f3b8233777831cce65ebd5878786c8e9e91e5",
+      "gzip_mtime": 0,
+      "status": "Final B6 accepted checkpoint; author final report/summary evidence-only changes reread/reconfirmed by reviewer"
+    },
+    "scientific-b-round6-accepted-filehashes.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round6/accepted-filehashes.json",
+      "source_size_bytes": 7102,
+      "source_sha256": "d8a2f4b91add465d9ff3ec789e9401508a238cac85021a45816a15dd254fc37d",
+      "size_bytes": 2632,
+      "sha256": "6f46ba8fbf5bb6b355f1335a54315500987fe4ab32302f6297dfa7a61ab85d98",
+      "gzip_mtime": 0,
+      "status": "Final B6 accepted checkpoint; author final report/summary evidence-only changes reread/reconfirmed by reviewer"
+    },
+    "scientific-b-round6-probe-summary.json.gz": {
+      "source": "artifacts/test-apparatus-audit/resume/scientific-b-round6/accepted-filehashes.json",
+      "source_sha256": "d8a2f4b91add465d9ff3ec789e9401508a238cac85021a45816a15dd254fc37d",
+      "exported_payload_size_bytes": 4035,
+      "exported_payload_sha256": "b44322cf9ddcaaef5b066aff478e3387e69e61062790edd465d436ceb6d4b514",
+      "size_bytes": 1779,
+      "sha256": "3a8001c208be7db72f6c041aebd90db9f3d0fb84095ab9f4200f68453f9e697f",
+      "gzip_mtime": 0,
+      "transform": "Selected final B6 proof/probe counts, source hashes, limits and cleanup"
+    },
+    "CONTINUATION-EVIDENCE.md": {
+      "size_bytes": 9367,
+      "sha256": "5f2fdf75d374581b0b3e254363d4c7a41f17dbdba0dc357d7dfc788de6f4fcde",
+      "status": "Final archival context after coordinator freeze"
+    },
+    "README.md": {
+      "size_bytes": 6381,
+      "sha256": "7054594e55c73921fc5cfb93c7fa489676f494f421df8b43df4be2a58fe7ade6",
+      "status": "Final archival context after coordinator freeze"
+    },
+    "preservation-inputs.json": {
+      "size_bytes": 8583,
+      "sha256": "442180a5bc74ec9ad747f6a8331c2d64ca7e601bb889f2b77796efbbbedfb626",
+      "status": "Coordinator-owned record preserved without rewrite"
+    },
+    "change-accounting.json": {
+      "size_bytes": 1614,
+      "sha256": "f1f523440311e96bd27e3dc601a0a0469457a4c3bb5891d03e15c06a241c9051",
+      "status": "Coordinator-owned record preserved without rewrite"
+    }
+  },
+  "pending": [],
+  "known_role_launches_including_fresh_B6": 14,
+  "known_completed_B_reviews": 6,
+  "remaining_gates_outside_this_archive": [
+    "Exact final-candidate ordinary canonical make verify, including13phases/nativecoverage/same-runM25 and under600seconds result",
+    "Required final integrated independent review/preservation sweep",
+    "Configured platform checks and authorized publication"
+  ]
+}

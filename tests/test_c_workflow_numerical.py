@@ -473,7 +473,7 @@ def test_hidden_fit_class_and_native_filter_discriminators() -> None:
     )
     # Raw calibration uncertainty and shared-field finite decisions propagate
     # independently through this original raw empirical/search witness.
-    assert_scientific(case, result, expected)
+    assert_scientific(case, result, expected, budget=budget)
     # Replaying the raw phase harmonic as modulation is independently wrong.
     parameters = copy.deepcopy(expected["parameters"])
     parameters["modulation"][:] = 0.25
