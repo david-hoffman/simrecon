@@ -5,7 +5,7 @@ from typing import cast
 import pytest
 from _pytest.terminal import TerminalReporter
 
-# Measured, isolated array/workflow files have independent whole-file affinity.
+# Measured, isolated array/workflow and disposable verifier files have affinity.
 # Reader-cache users and every unlisted/new file retain the serial-rest group.
 # Two cheap validation files frontload composition in xdist's case-count ordering.
 PARALLEL_GROUPS: dict[str, str] = {
@@ -44,6 +44,19 @@ PARALLEL_GROUPS: dict[str, str] = {
         "c_workflow_validation",
     )
 }
+PARALLEL_GROUPS.update(
+    {
+        f"tests/test_{name}.py": f"infrastructure-test_{name}"
+        for name in (
+            "verification_evidence_outputs",
+            "verification_receipt",
+            "measurements_export",
+            "verification_output_protection",
+            "shared_node_baseline_external_native_evidence",
+            "source_free_check",
+        )
+    }
+)
 
 
 @pytest.hookimpl(tryfirst=True)

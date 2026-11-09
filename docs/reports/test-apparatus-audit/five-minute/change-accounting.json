@@ -1,0 +1,75 @@
+{
+  "baseline": "edcf53b5d5c0f494c388944d3cfda5c04b9fda97",
+  "units": "Physical diff lines, not coverage statements or behavior counts",
+  "files": [
+    {
+      "path": "src/simrecon/_pytest_policy.py",
+      "added": 52,
+      "removed": 1,
+      "net": 51
+    },
+    {
+      "path": "tests/c_acquisition_fixture.py",
+      "added": 1316,
+      "removed": 58,
+      "net": 1258
+    },
+    {
+      "path": "tests/c_workflow_oracle.py",
+      "added": 94,
+      "removed": 10,
+      "net": 84
+    },
+    {
+      "path": "tests/c_workflow_support.py",
+      "added": 7,
+      "removed": 2,
+      "net": 5
+    },
+    {
+      "path": "tests/imagej_export_fixture.py",
+      "added": 50,
+      "removed": 3,
+      "net": 47
+    },
+    {
+      "path": "tests/test_c_acquisition_composition.py",
+      "added": 3,
+      "removed": 1,
+      "net": 2
+    },
+    {
+      "path": "tests/test_c_workflow_numerical.py",
+      "added": 21,
+      "removed": 23,
+      "net": -2
+    },
+    {
+      "path": "tests/test_c_workflow_records.py",
+      "added": 67,
+      "removed": 60,
+      "net": 7
+    },
+    {
+      "path": "tests/test_imagej_export.py",
+      "added": 19,
+      "removed": 8,
+      "net": 11
+    },
+    {
+      "path": "tests/test_parallel_runner.py",
+      "added": 49,
+      "removed": 3,
+      "net": 46
+    },
+    {
+      "path": "tests/verification_fixture_dispatch.py",
+      "added": 26,
+      "removed": 0,
+      "net": 26
+    }
+  ],
+  "scientific_product_net": 0,
+  "runtime_harness_net": 51,
+  "tests_support_net": 1484
+}

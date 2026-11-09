@@ -43,6 +43,14 @@ SCIENCE: tuple[str, ...] = (
     "c_workflow_records",
     "c_workflow_validation",
 )
+INFRASTRUCTURE: tuple[str, ...] = (
+    "verification_evidence_outputs",
+    "verification_receipt",
+    "measurements_export",
+    "verification_output_protection",
+    "shared_node_baseline_external_native_evidence",
+    "source_free_check",
+)
 # Keep the slow composition file in an initially assigned, high-case-count group.
 COMPOSITION = ("c_acquisition_composition", "c_otf_validation", "c_workflow_validation")
 
@@ -81,7 +89,7 @@ def test_real_make_tests_delivers_fixed_flags_to_selected_uv(tmp_path: Path) -> 
 
 
 def test_whole_file_groups_preserve_exact_nodes_and_serial_mode(tmp_path: Path) -> None:
-    names = sorted((*SCIENCE, "unclassified", "new_file"))
+    names = sorted((*SCIENCE, *INFRASTRUCTURE, "unclassified", "new_file"))
     files = {
         f"tests/test_{name}.py": "import pytest\ndef test_first():\n    assert True\n\n"
         '@pytest.mark.parametrize("label", ["original@science-test_volume_phase_estimation"])\n'
@@ -111,6 +119,8 @@ def test_whole_file_groups_preserve_exact_nodes_and_serial_mode(tmp_path: Path) 
                     if name in COMPOSITION
                     else f"science-test_{name}"
                     if name in SCIENCE
+                    else f"infrastructure-test_{name}"
+                    if name in INFRASTRUCTURE
                     else "serial-rest"
                 ]
                 for name in names

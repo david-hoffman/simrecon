@@ -2,6 +2,133 @@
 
 ## Current state
 
+The user now requests a **300-second canonical `make verify` goal on this machine**.
+The stronger goal continues the apparatus task: preserve all rigor, scientific
+behavior, original audit/keeper mappings, exactly two workers/no restart, all
+13 phases, native 30-file/child coverage and same-run M25 limit33554432 bytes.
+Do not invoke Superpowers, import PR83 changes or merge. No total execution,
+review, scenario, token or money cap was set.
+
+Starting checkpoint is the completed [PR87](https://github.com/david-hoffman/simrecon/pull/87)
+commit `6876e9ea3bd7ffb1feb46c5aec66667646de76cf`, tree
+`8f6949aa4a0a2705a9b91303cec255e6a60a8128`: clean exact full gate passed
+**598.57 s outer / 547.857 s JUnit pytest / 3066 cases / all13 phases**.
+Final D and bounded reviews accepted; final sweep preserved all723 original
+obligations across52 files. All30 native file counters equal the required
+measurement baseline. Same-run M25 `96b66c3b-ab9c-4abc-ac7e-0cc755cae09e`
+observed baseline=peak101568 KiB, increment0 against33554432 bytes. This is a
+single observed run/high-water measurement, not a timing or no-allocation guarantee.
+PR87 remains open/unmerged at this exact head; Verify318 completed successfully.
+Original required measurement baseline remains
+`edcf53b5d5c0f494c388944d3cfda5c04b9fda97` (2287.89s full gate). Its existing
+fresh exact measurement is retained, not repeated. All prior charges below remain.
+
+Local continuation branch is `codex/test-apparatus-five-minutes`, starting at
+6876e9e; the passing PR branch and handoff db5dae9 remain preserved. The installed
+full-local gate also blocks pushing a new candidate to the open PR until it meets
+the new selected target and required focused/full checks and fresh reviews.
+No performance claim for300s exists yet. A bounded controlled-tool version staging
+edit is authorized after a six-invocation real-verifier paired probe; six explicit
+independent infrastructure-file groups are authorized after native-cleanup/arc-union
+qualification. Scientific fixture a64a93dae93864d5b76a2fb54b794a876b76f76527e7018966a681870ee82bf9
+is now adopted and accepted by fresh B9; no300-second result is claimed.
+
+Fresh bounded infrastructure worker and fresh blind scientific A own independent
+measurement-first slices. Infrastructure has310 original declarations/949 cases;
+science has413 original declarations and shared fixture/oracle dependents.
+Existing complete audit inventories are reused. Start from retained candidate3
+phase/test/process profiles; attribute expensive repeated work, then propose
+coherent measured corrections before edits. Root serializes heavy timing probes
+and shared-file changes. Scientific changes require a fresh blind B checkpoint
+and final fresh D; bounded changes require fresh independent bounded review.
+No scientific product work is invented; any diagnosed product change gets its
+own named owner/frozen-test route. Further policy/worker-count/gate relaxation is
+not authorized by the timing goal.
+
+Cheap health confirms unchanged uv0.12.19/Python3.13.12/NumPy2.5.3/h5py3.16.0 in
+the existing locked environment. New known roles are infrastructure18, A19, public-only Astra/ultra advisor20,
+blind B8(21) and fresh blind B9(22);
+the prior17 launches and every failed/rejected attempt are preserved. Requested
+Sol/high; actual serving, per-role tokens/cost, full elapsed and owner-wait totals
+remain unknown. Measurements/checks and new review corrections accumulate here
+and in ignored `artifacts/test-apparatus-audit/five-minute/` until frozen exports.
+The retained heavy-case attribution is48.246s: four reconstructions29.830s,
+32 native batches26.097s, eight overlaps10.282s; interpolation alone8.199s is
+not a sufficient ceiling. A scratch local-cache probe improves8.9814 to7.4749s
+with3700 identical ordered certificates, not adopted alone. Broader native-order/
+full-layout/owner-plan work is being measured. The bounded version staging probe
+passes all six real verifier outcomes/native emissions, and a six-file nine-case
+group qualifier passes9.581s with33 native shards unchanged through cleanup and
+exact combined arc union/all30 JSON+HTML entries. Scoped Ruff/types pass; the
+first two long shell-string lint lines were corrected. A blocked optional ptrace
+probe did not launch its child and is retained. The first full341 owner attempt failed337/4 in149.091s because its basetemp
+was inside the parent Git checkout (deleted-identity cases found the parent repo)
+and absolute Coverage overrides contaminated two real fixture-local reports.
+Both harness causes were concretely reproduced; source was unchanged. Four cases
+pass2.83s in the corrected canonical context with owned /tmp basetemp and no
+manual coverage overrides. The renewed341 proof passes119.60s; all743 new native
+shards survive real fixture cleanup, exact arc union and all30 JSON/HTML reports
+pass (1427/4920 scoped statements,255/1952 branches). This scoped proof is not
+the final full gate. Three changed infrastructure files retain their pinned hashes.
+Sandboxed type-wrapper import-resolution failures and two overlapping successful
+canonical scoped type checks remain tooling charges, not source corrections.
+
+Scientific scratch O3/O4 zero-axial probes preserve complete arrays/error columns
+and ordered certificates while improving representative reconstructs52.7/55.5%;
+full sampler459queries improves66%. Broad full/uncertain/guard/failure checks pass;
+no global observer-result cache or top-level observation is removed. Current
+clock-row default profile passes13.27s; five real run calls consume10.7765s with
+CPU≈wall, observe.4631s and budget.7694s. Its difference from the old32.79s row is
+unmatched timing context, not a code improvement; no BLAS-policy change is adopted.
+The coherent fixture624e5371 was adopted after the guard matrix and passes all597
+ordinary owner cases/18warnings in226.52s, with350.437s summed JUnit durations.
+B8 required correction: admitted2^-256 side tables/modulation under='warn' emit
+228 instead of the accepted/literal370 underflow warnings, although numerical
+bytes and9 certificates match. This is a fixture diagnostic defect, not product
+red; B8 halted acceptance and its source/probes/normal proof remain preserved.
+A19 corrected eligibility by NumPy underflow policy without filtering/replaying
+warnings: new families/sharing/dead metadata work require under='ignore'; other
+modes keep prior B7 legacy lanes and original scalar fallback for new families.
+Current frozen fixture a64a93dae93864d5b76a2fb54b794a876b76f76527e7018966a681870ee82bf9
+passes45 exact warn/raise/call/log/ignore comparisons and313 boundary cases/
+16warnings/7.59s. Root canonical narrow Pyright and scoped Ruff pass. Fresh B9
+accepts the entire B7-to-current engine and correction with no actionable finding.
+It conditionally retains597 default-ignore proof via an independent whole-fixture
+AST mode-equivalence projection and unchanged suite policy pins, together with
+exact-a64 boundary/policy renewals. Its own9 guard,36 policy,8 overlap and closed
+native28-cell/full6-query/pair03 spatial probes pass. Five own scaffolding failures
+are retained, not candidate defects; source and all69 author pins are verified.
+The eight test bodies/132 declarations/420 Assert nodes are unchanged. Broader
+source adds generic orders/full-zero sampling, uncertain support record staging,
+per-reconstruction fact sharing and qualified unused-metadata omission; no
+whole-observer result cache or top-level product observation was removed.
+
+PROJECT explicitly fixes two workers. Root has asked whether the user permits
+qualifying four workers for this stronger target; no answer is assumed and no
+four-worker policy change/run is authorized yet. This machine has a four-CPU
+quota and16GiB memory limit. Until answered, all canonical/owner work retains two.
+Physical line accounting against the required baseline is scientific product0,
+runtime harness+51 and tests/support+1484; all21 frozen input checks and30 owned
+Python files remain. New [portable campaign evidence](../reports/test-apparatus-audit/five-minute/)
+retains completed proofs/rejections and their limits without rewriting the prior
+195-entry resume archive or163-record continuation catalog. Global locked
+make check passes all116 files, including scoped Ruff/format and all-file Pyright.
+
+**Next exact-candidate pointer:** freeze this record before committing and running
+the canonical gate. Final commit/tree/results/reviews/publication remain outside
+verified tracked bytes. The current300s target and fresh final reviews are still
+pending. Current next action is the clean canonical two-worker attempt. No
+four-worker activation is inferred from silence. Heavy timing stays serialized. Final candidate hashes/results
+belong outside verified tracked bytes as before. Cleanup preserves the current
+checkout, original data, tracked fixtures, shared tools/caches and durable evidence.
+
+## Completed 600-second campaign record
+
+The following former Current state is preserved as the completed campaign's
+pre-verification record. The later passing results and17-role final review are
+recorded above, in PR87 and ignored publication receipts; it supplies no300-second
+readiness verdict. Its accounting, failed attempts and resume lineage remain.
+
 **Frozen verification pointer.** This record is prepared before exact-candidate
 canonical verification. Final commit/tree, full-run results, final independent
 reviews, remote-base check, cleanup and PR status belong in the associated PR and
@@ -235,6 +362,7 @@ Keep current checkout, tracked fixtures, original data,
 shared environments/caches/JDK/jars, all durable audit evidence and uncertain
 references. Completion housekeeping and final review/verification results go in
 the PR/conversation without mutating this exact-candidate pointer.
+
 
 ## Preserved handoff record
 

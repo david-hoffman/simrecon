@@ -191,6 +191,32 @@ wheel)
 esac
 """
     elif profile == "evidence":
+        if target.name == "uv":
+            from importlib.metadata import version
+
+            # Controlled sync does not change installed distributions. Stage
+            # these external payloads once; every actual query still records
+            # its argv and emits bytes through the selected command.
+            shell += (
+                'if [ "$#" = 4 ] && [ "$1" = run ] && '
+                '[ "$2" = --locked ] && [ "$4" = --version ]; then\n'
+                '    case "$3" in\n'
+            )
+            for tool in ("ruff", "pyright", "coverage", "pytest"):
+                shell += f"    {tool}) output={quote(f'{tool} {version(tool)}\n')};;\n"
+            shell += """    *) output='';;
+    esac
+    if [ -n "$output" ]; then
+        path=${SIMRECON_MEASUREMENTS_PATH:-}
+        run_id=${SIMRECON_MEASUREMENTS_RUN_ID:-}
+        record calls.jsonl "$@"
+        record measurement-calls.jsonl "$path" "$run_id" "$@"
+        record evidence-calls.jsonl fast '' "$output" '' "$path" "$run_id" "$0" "$@"
+        printf '%s' "$output"
+        exit 0
+    fi
+fi
+"""
         shell += """if [ -z "$phase" ]; then
     if [ "$#" = 1 ] && [ "$1" = --version ]; then printf 'fixture tool 1.0\\n'; exit 0; fi
 """
