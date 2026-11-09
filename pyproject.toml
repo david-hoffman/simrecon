@@ -22,9 +22,11 @@ delivery = "simrecon._delivery:main"
 dev = [
   "mrcfile==1.5.4",
   "coverage>=7.13,<8",
+  "execnet==2.1.2",
   "pre-commit>=4.3,<5",
   "pyright[nodejs]>=1.1.400,<2",
   "pytest>=8.3,<10",
+  "pytest-xdist==3.8.0",
   "ruff>=0.13,<1",
 ]
 

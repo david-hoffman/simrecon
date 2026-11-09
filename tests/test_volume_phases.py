@@ -329,7 +329,8 @@ def test_nonfinite_source_rejections(api: Any, value: float, which: str) -> None
 GOOD_DTYPES = [
     np.dtype(name).newbyteorder(order)
     for name in ("i1", "i2", "i4", "i8", "u1", "u2", "u4", "u8", "f2", "f4", "f8", "longdouble")
-    for order in ("=", ">", "<")
+    # NumPy uses the same byte-order-independent dtype for all one-byte markers.
+    for order in (("=",) if name in ("i1", "u1") else ("=", ">", "<"))
 ]
 
 
@@ -802,44 +803,57 @@ def test_returned_outputs_are_snapshots_of_both_inputs(api: Any) -> None:
     np.testing.assert_array_equal(output_coordinates(result), saved)
 
 
-@pytest.mark.parametrize("mode", ["warn", "raise"])
+def run_v08_child(mode: str, failure_kind: str, stage: str, expected: str) -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "scripts/source_free_check.py",
+            "--timeout",
+            "300",
+            "python",
+            str(Path(__file__).resolve()),
+            mode,
+            failure_kind,
+            stage,
+        ],
+        cwd=Path(__file__).resolve().parents[1],
+        capture_output=True,
+        text=True,
+        timeout=300,
+        check=False,
+        # Inherit source-free diagnostics and native subprocess coverage.
+    )
+    assert completed.returncode == 0, (
+        stage,
+        completed.returncode,
+        completed.stdout,
+        completed.stderr,
+    )
+    assert expected in completed.stdout
+
+
+@pytest.fixture(scope="module")
+def v08_healthy_mode(request: pytest.FixtureRequest) -> Literal["warn", "raise"]:
+    mode = request.param
+    assert mode in ("warn", "raise")
+    # The inactive observer delegates unchanged for every label. Each mode has
+    # its own healthy process, with the same storage and inputs as the faults.
+    run_v08_child(mode, "linalg", "healthy", "V08 same-input healthy control passed")
+    return mode
+
+
+@pytest.mark.parametrize("v08_healthy_mode", ["warn", "raise"], indirect=True)
 @pytest.mark.parametrize("failure_kind", ["linalg", "nan", "inf", "unrelated", "allocation"])
 def test_V08_numerical_dependency_failure_is_whole_call_and_preserves_inputs(
-    mode: Literal["warn", "raise"], failure_kind: str
+    v08_healthy_mode: Literal["warn", "raise"], failure_kind: str
 ) -> None:
     """Same-input health and witnessed faults in separate fresh processes."""
-    for stage in ("healthy", "fault"):
-        completed = subprocess.run(
-            [
-                sys.executable,
-                "scripts/source_free_check.py",
-                "--timeout",
-                "300",
-                "python",
-                str(Path(__file__).resolve()),
-                mode,
-                failure_kind,
-                stage,
-            ],
-            cwd=Path(__file__).resolve().parents[1],
-            capture_output=True,
-            text=True,
-            timeout=300,
-            check=False,
-            # Inherit source-free diagnostics and native subprocess coverage.
-        )
-        assert completed.returncode == 0, (
-            stage,
-            completed.returncode,
-            completed.stdout,
-            completed.stderr,
-        )
-        expected = (
-            "V08 same-input healthy control passed"
-            if stage == "healthy"
-            else "V08 witnessed fault/restored controls passed; reached="
-        )
-        assert expected in completed.stdout
+    run_v08_child(
+        v08_healthy_mode,
+        failure_kind,
+        "fault",
+        "V08 witnessed fault/restored controls passed; reached=",
+    )
 
 
 def numerical_failure_inputs() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:

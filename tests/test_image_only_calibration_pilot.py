@@ -41,6 +41,9 @@ from image_only_calibration_pilot_fixture import (
     reference_controls,
     unit_sites,
 )
+from image_only_calibration_pilot_fixture import (
+    optical_reference_cache as optical_reference_cache,
+)
 from simrecon import SimreconError
 
 # Intentional import failure when the authorized runtime does not yet exist.
@@ -976,48 +979,69 @@ def test_owned_frozen_records_snapshot_inputs_and_every_candidate(invoke: Any) -
 
 
 @pytest.mark.parametrize(
-    "style", ["endian", "strided", "fortran", "readonly", "integer", "unsigned", "float32", "wide"]
+    "styles",
+    [
+        ("endian", "strided", "fortran", "readonly"),
+        ("integer",),
+        ("unsigned",),
+        ("float32",),
+        ("wide",),
+    ],
+    ids=["same-float64-values", "integer", "unsigned", "float32", "wide"],
 )
-def test_legitimate_array_storage_and_conversion(invoke: Any, style: str) -> None:
-    original = observations()
-    converted = []
-    for a in original:
-        if style == "endian":
-            value = a.astype(">f8")
-        elif style == "strided":
-            storage = np.empty((*a.shape[:-1], 2 * a.shape[-1]))
-            storage[..., ::2] = a
-            value = storage[..., ::2]
-        elif style == "fortran":
-            value = np.asfortranarray(a)
-        elif style == "readonly":
-            value = a.copy()
-            value.flags.writeable = False
-        elif style == "integer":
-            value = a.astype(np.int16)
-        elif style == "unsigned":
-            value = a.astype(np.uint16)
-        elif style == "float32":
-            value = a.astype(np.float32)
-        else:
-            value = a.astype(np.longdouble)
-            value += np.longdouble(2) ** -60
-        converted.append(value)
-    normalized = [np.array(a, dtype=np.float64) for a in converted]
-    reference = invoke(
-        central_counts=normalized[0], structured_counts=normalized[1], heldout_counts=normalized[2]
-    )
-    snapshots = [a.copy() for a in converted]
-    flags = [(a.strides, a.flags.writeable) for a in converted]
-    actual = invoke(
-        central_counts=converted[0], structured_counts=converted[1], heldout_counts=converted[2]
-    )
-    assert actual.status == reference.status
-    same_candidate(actual.frozen_candidate, reference.frozen_candidate)
-    np.testing.assert_array_equal(actual.heldout_prediction, reference.heldout_prediction)
-    for a, saved, flag in zip(converted, snapshots, flags, strict=True):
-        np.testing.assert_array_equal(a, saved)
-        assert (a.strides, a.flags.writeable) == flag
+def test_legitimate_array_storage_and_conversion(invoke: Any, styles: tuple[str, ...]) -> None:
+    def fit_arrays(arrays: list[np.ndarray]) -> Any:
+        central, structured, heldout = arrays
+        result = invoke(
+            central_counts=central, structured_counts=structured, heldout_counts=heldout
+        )
+        # invoke reloads the module for each call. Check public identity at return.
+        assert type(result) is PILOT.CalibrationPilotResult
+        assert type(result.frozen_candidate) is PILOT.PilotCandidate
+        return result
+
+    canonical = observations() if len(styles) > 1 else None
+    reference = None
+    for style in styles:
+        converted = []
+        for a in observations():
+            if style == "endian":
+                value = a.astype(">f8")
+            elif style == "strided":
+                storage = np.empty((*a.shape[:-1], 2 * a.shape[-1]))
+                storage[..., ::2] = a
+                value = storage[..., ::2]
+            elif style == "fortran":
+                value = np.asfortranarray(a)
+            elif style == "readonly":
+                value = a.copy()
+                value.flags.writeable = False
+            elif style == "integer":
+                value = a.astype(np.int16)
+            elif style == "unsigned":
+                value = a.astype(np.uint16)
+            elif style == "float32":
+                value = a.astype(np.float32)
+            else:
+                value = a.astype(np.longdouble)
+                value += np.longdouble(2) ** -60
+            converted.append(value)
+        normalized = [np.array(a, dtype=np.float64) for a in converted]
+        if canonical is not None:
+            for a, original in zip(normalized, canonical, strict=True):
+                assert a.shape == original.shape and a.tobytes() == original.tobytes(), style
+        if reference is None:
+            control = normalized if canonical is None else canonical
+            reference = fit_arrays([a.copy() for a in control])
+        snapshots = [(a.copy(), a.tobytes(), a.strides, a.flags.writeable) for a in converted]
+        actual = fit_arrays(converted)
+        assert actual.status == reference.status, style
+        same_candidate(actual.frozen_candidate, reference.frozen_candidate)
+        np.testing.assert_array_equal(actual.heldout_prediction, reference.heldout_prediction)
+        for a, (saved, payload, strides, writeable) in zip(converted, snapshots, strict=True):
+            np.testing.assert_array_equal(a, saved)
+            assert a.tobytes() == payload, style
+            assert (a.strides, a.flags.writeable) == (strides, writeable), style
 
 
 class ArraySubclass(np.ndarray):
@@ -1638,16 +1662,53 @@ def test_one_electron_dependency_units_and_unrelated_warnings(
 
 
 def test_numpy_warning_rng_policies_and_inputs_survive_success_and_failure(invoke: Any) -> None:
+    def invoke_with_observed_inputs(**changes: Any) -> tuple[Any, tuple[np.ndarray, ...]]:
+        central, structured, heldout = observations()
+        estimate = camera()
+        inputs = (central, structured, heldout, estimate.means_counts)
+        snapshots = [
+            (a.copy(), a.tobytes(), a.dtype, a.shape, a.strides, a.flags.writeable) for a in inputs
+        ]
+        try:
+            result = invoke(
+                central_counts=central,
+                structured_counts=structured,
+                heldout_counts=heldout,
+                camera_estimate=estimate,
+                **changes,
+            )
+            return result, inputs
+        finally:
+            for a, snapshot in zip(inputs, snapshots, strict=True):
+                saved, payload, dtype, shape, strides, writeable = snapshot
+                assert (a.dtype, a.shape, a.strides, a.flags.writeable) == (
+                    dtype,
+                    shape,
+                    strides,
+                    writeable,
+                )
+                assert a.tobytes() == payload
+                np.testing.assert_array_equal(a, saved)
+
     state = np.random.get_state()
     policy = np.geterr()
     filters = list(warnings.filters)
     try:
         np.seterr(all="raise")
         selected = np.geterr()
-        result = invoke()
+        result, inputs = invoke_with_observed_inputs()
         assert result.status == "completed_local" and np.geterr() == selected
+        candidates = [result.initial_candidate, result.frozen_candidate]
+        candidates.extend(
+            score.candidate for score in result.objective_trace if score.candidate is not None
+        )
+        outputs = [a for candidate in candidates for a in candidate_arrays(candidate)]
+        outputs.extend(
+            [result.heldout_prediction, result.heldout_residual_mean, result.heldout_residual_rms]
+        )
+        assert all(not np.shares_memory(output, a) for output in outputs for a in inputs)
         with pytest.raises(SimreconError):
-            invoke(origin_um_zyx=(False, 0, 0))
+            invoke_with_observed_inputs(origin_um_zyx=(False, 0, 0))
         assert np.geterr() == selected and warnings.filters == filters
         after = np.random.get_state()
         assert state[0] == after[0] and state[2:] == after[2:]

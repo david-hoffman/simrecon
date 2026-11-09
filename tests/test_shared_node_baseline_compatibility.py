@@ -1850,31 +1850,6 @@ def test_verifier_genuine_failed_phase_status_order_and_safe_receipt(tmp_path: P
     assert (repo / "marker.txt").read_bytes() == b"unchanged tracked marker\n"
 
 
-def test_verifier_missing_command_and_tracked_receipt_protection(tmp_path: Path) -> None:
-    repo, _ = disposable_verifier(tmp_path)
-    marker = repo / "marker.txt"
-    result = child(
-        [
-            sys.executable,
-            "scripts/verify.py",
-            "--make",
-            str(repo / "absent-command"),
-            "--receipt",
-            "artifacts/verification/missing.json",
-        ],
-        cwd=repo,
-    )
-    assert result.returncode == 127
-    receipt = json.loads((repo / "artifacts/verification/missing.json").read_text())
-    assert receipt["result"] == "failed" and len(receipt["phases"]) == 1
-    assert receipt["phases"][0]["returncode"] == 127
-    protected = child([sys.executable, "scripts/verify.py", "--receipt", "marker.txt"], cwd=repo)
-    assert protected.returncode != 0 and marker.read_bytes() == b"unchanged tracked marker\n"
-    marker.unlink()
-    missing = child([sys.executable, "scripts/verify.py", "--receipt", "marker.txt"], cwd=repo)
-    assert missing.returncode != 0 and not marker.exists()
-
-
 def test_verifier_phase_introduced_receipt_alias_on_failed_run(tmp_path: Path) -> None:
     repo, runner = disposable_verifier(tmp_path, temporal_alias=True)
     marker = repo / "marker.txt"

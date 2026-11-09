@@ -127,12 +127,18 @@ def assert_scaled_scalar_target(
         assert abs(observed - target) + uncertainty <= Decimal("1e-5") * peak
 
 
+@pytest.fixture(scope="module")
+def on_axis_peak_reference() -> Reference:
+    return on_axis_reference((1, 1, 1, 1, 1), exact(7), exact(0.3) * exact(0.4))
+
+
 @pytest.mark.parametrize("dz,order", [(0.01, 1), (3.7, 2), (0.6, 3), (0.8, 7)])
-def test_zero_and_on_axis_peak_have_electron_area_units(dz: float, order: int) -> None:
+def test_zero_and_on_axis_peak_have_electron_area_units(
+    dz: float, order: int, on_axis_peak_reference: Reference
+) -> None:
     args = inputs()
     args.update(detector_spacing_um_zyx=(dz, 0.3, 0.4), pupil_order=order)
-    reference = on_axis_reference((1, 1, 1, 1, 1), exact(7), exact(0.3) * exact(0.4))
-    assert_finite_target(call(args), reference)
+    assert_finite_target(call(args), on_axis_peak_reference)
     args["source_e"] = np.zeros((2, 2, 3))
     args["phases_rad"] = np.array([[0.0, math.pi, -31.0]])
     zero = call(args)
@@ -245,9 +251,13 @@ def test_explicit_edge_sources_signed_carriers_defocus_and_refinements(order: in
     )
     actual = call(args)
     assert_finite_target(actual, reference)
-    assert np.array_equal(actual, call(args))
+    before_mutation = actual.copy()
     actual.fill(-123)
-    assert_finite_target(call(args), reference)
+    repeated = call(args)
+    assert not np.shares_memory(actual, repeated)
+    assert np.all(actual == -123)
+    assert np.array_equal(repeated, before_mutation)
+    assert_finite_target(repeated, reference)
 
 
 @pytest.mark.parametrize("subsamples", [(1, 1), (2, 3), (3, 2)])
@@ -381,33 +391,11 @@ def test_builtin_integer_coefficients_and_large_finite_phase() -> None:
     assert_finite_target(call(args), reference)
 
 
-@pytest.mark.parametrize(
-    "variant", ["integer", "unsigned", "float32", "endian", "strided", "fortran", "readonly"]
-)
-def test_permitted_array_representations(variant: str) -> None:
-    args = inputs()
-    args.update(
-        source_e=np.arange(1.0, 9.0).reshape(2, 2, 2),
-        carriers_yx_per_um=np.array([[1.0, 1.0], [0.0, 2.0]]),
-        phases_rad=np.array([[0.0, 1.0], [1.0, 0.0]]),
-        beam_amplitudes=(4.0, 2.0, 1.0),
-    )
-    for key in ("source_e", "carriers_yx_per_um", "phases_rad"):
-        array = args[key]
-        if variant in {"integer", "unsigned", "float32", "endian"}:
-            array = array.astype(
-                {"integer": "i2", "unsigned": "u8", "float32": "f4", "endian": ">f8"}[variant]
-            )
-        elif variant == "strided":
-            storage = np.repeat(array[..., ::-1], 2, axis=-1)
-            array = storage[..., ::-2]
-        elif variant == "fortran":
-            array = np.asfortranarray(array)
-        else:
-            array.flags.writeable = False
-        args[key] = array
+@pytest.fixture(scope="module")
+def array_representation_reference() -> Reference:
+    # All seven representations preserve these exact normalized inputs.
     dz, dy, dx = map(exact, (0.7, 0.3, 0.4))
-    reference = finite_images(
+    return finite_images(
         (
             Source(dz / 2, dy / 2, dx / 2, exact(1)),
             Source(dz / 2, dy / 2, 3 * dx / 2, exact(2)),
@@ -430,7 +418,36 @@ def test_permitted_array_representations(variant: str) -> None:
         ((1.0, 1.0), (0.0, 2.0)),
         ((0.0, 1.0), (1.0, 0.0)),
     )
-    assert_finite_target(call(args), reference)
+
+
+@pytest.mark.parametrize(
+    "variant", ["integer", "unsigned", "float32", "endian", "strided", "fortran", "readonly"]
+)
+def test_permitted_array_representations(
+    variant: str, array_representation_reference: Reference
+) -> None:
+    args = inputs()
+    args.update(
+        source_e=np.arange(1.0, 9.0).reshape(2, 2, 2),
+        carriers_yx_per_um=np.array([[1.0, 1.0], [0.0, 2.0]]),
+        phases_rad=np.array([[0.0, 1.0], [1.0, 0.0]]),
+        beam_amplitudes=(4.0, 2.0, 1.0),
+    )
+    for key in ("source_e", "carriers_yx_per_um", "phases_rad"):
+        array = args[key]
+        if variant in {"integer", "unsigned", "float32", "endian"}:
+            array = array.astype(
+                {"integer": "i2", "unsigned": "u8", "float32": "f4", "endian": ">f8"}[variant]
+            )
+        elif variant == "strided":
+            storage = np.repeat(array[..., ::-1], 2, axis=-1)
+            array = storage[..., ::-2]
+        elif variant == "fortran":
+            array = np.asfortranarray(array)
+        else:
+            array.flags.writeable = False
+        args[key] = array
+    assert_finite_target(call(args), array_representation_reference)
 
 
 def test_float64_input_rounding_is_permitted() -> None:

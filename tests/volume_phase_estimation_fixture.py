@@ -636,6 +636,12 @@ def run_dependency_child(request: Any) -> bool:
         "import volume_phase_estimation_fixture; import pytest; import sys; "
         "raise SystemExit(pytest.main(sys.argv[1:]))"
     )
+    nodeid = request.node.nodeid
+    if hasattr(request.config, "workerinput") and request.config.getoption(
+        "loadgroup", default=False
+    ):
+        # xdist appends the file-affinity suffix after the literal case ID.
+        nodeid = nodeid.removesuffix("@test_volume_phase_estimation")
     command = [
         sys.executable,
         "-B",
@@ -649,7 +655,7 @@ def run_dependency_child(request: Any) -> bool:
         "--tb=line",
         "-q",
         "-x",
-        request.node.nodeid,
+        nodeid,
     ]
     child = subprocess.run(command, cwd=root, env=env, capture_output=True, text=True, timeout=90)
     if child.returncode:

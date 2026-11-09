@@ -6,7 +6,7 @@ from decimal import Decimal as D
 from decimal import localcontext
 from itertools import combinations
 from types import SimpleNamespace
-from typing import Any, Literal, cast
+from typing import Any, Literal, NamedTuple, cast
 
 import numpy as np
 import pytest
@@ -74,9 +74,23 @@ def assert_error(reconstruct: Any, case: dict[str, Any], code: str | tuple[str, 
         assert a.strides == strides and a.flags.writeable == writable
 
 
+class AccuracyGrid(NamedTuple):
+    """Immutable exact intensity coordinates in C order."""
+
+    shape: tuple[int, ...]
+    flat: tuple[tuple[D, D], ...]
+
+
 def accuracy_expectation(case: dict[str, Any]) -> tuple[Any, tuple[D, D]]:
     assert_informative_regime(case)
     return direct_oracle(case, 75, decimal_output=True), accuracy_bounds(case)
+
+
+@pytest.fixture(scope="module")
+def integer_conversion_accuracy() -> tuple[tuple[AccuracyGrid, ...], tuple[D, D]]:
+    # These hooks change representation or raise, never the underlying integer.
+    grids, budgets = accuracy_expectation(make_case((2, 3, 4), ((0, 0),)))
+    return tuple(AccuracyGrid(grid.shape, tuple(grid.flat)) for grid in grids), budgets
 
 
 def assert_result_accuracy(result: Any, expected: Any, budgets: tuple[D, D]) -> None:
@@ -611,10 +625,33 @@ def test_complete_window_even_for_zero_transfers_and_mask(reconstruct: Any, axis
 
 
 def test_exact_carriers_and_no_practical_output_cap(reconstruct: Any) -> None:
-    case = dc_case((1, 1, 1), (1, 1025))
-    case["output_shape_yx"] = [np.int64(1), np.uint64(1025)]
+    width = 1025
+    shape = (1, 1, width)
+    case = dc_case((1, 1, 1), (1, width))
+    case["output_shape_yx"] = [np.int64(1), np.uint64(width)]
     case["carriers_bins"] = np.zeros((1, 2), dtype=np.uint64)
-    compare(reconstruct, case)
+    assert_informative_regime(case)
+    result = call(reconstruct, case)
+    # The all-ones observations fit the unit intercept exactly. Only T0 at DC
+    # survives; every output voxel then has the same unit value.
+    unit, zero = (D(1), D(0)), (D(0), D(0))
+    spectrum = tuple(unit if mode == 0 else zero for mode in modes(width))
+    assert_result_accuracy(
+        result,
+        (AccuracyGrid(shape, spectrum), AccuracyGrid(shape, (unit,) * width)),
+        accuracy_bounds(case),
+    )
+    np.testing.assert_array_equal(result.fz_per_um, [0.0])
+    np.testing.assert_array_equal(result.fy_per_um, [0.0])
+    assert result.fx_per_um.shape == (width,)
+    dz, dy, dx = case["order_otfs"][0].voxel_size_um
+    with localcontext() as context:
+        context.prec = 90
+        assert result.voxel_size_um == (dz, dy, float(decimal(dx) / width))
+        for actual, mode in zip(result.fx_per_um, modes(width), strict=True):
+            exact = D(mode) / decimal(dx)
+            assert abs(decimal(actual) - exact) <= 8 * D(2) ** -52 * abs(exact) + D(2) ** -1074
+    assert result.fx_per_um[width // 2] == 0
     case["carriers_bins"][0, 1] = np.iinfo(np.uint64).max
     assert_error(reconstruct, case, "invalid_volume_reconstruction_output_shape")
     case["carriers_bins"] = np.zeros((1, 2), dtype=float)
@@ -902,17 +939,15 @@ def composition_case() -> dict[str, Any]:
     return case
 
 
-def test_oracle_actual_forward_fixture_and_second_order_information() -> None:
-    spectrum, _ = direct_oracle(composition_case())
-    # Ridge biases the mode. This is stored-input agreement, not universal recovery.
-    expected = (0.1 * np.exp(0.3j)) * 0.8**2 / (0.8**2 + 0.25)
-    assert abs(spectrum[2, 0, 10] - expected) < 3e-13
-
-
 def test_actual_effective_transfer_forward_composition_second_order_information(
     reconstruct: Any,
 ) -> None:
-    result = compare(reconstruct, composition_case())
+    case = composition_case()
+    spectrum, _ = direct_oracle(case)
+    # Ridge biases the mode. This is stored-input agreement, not universal recovery.
+    expected = (0.1 * np.exp(0.3j)) * 0.8**2 / (0.8**2 + 0.25)
+    assert abs(spectrum[2, 0, 10] - expected) < 3e-13
+    result = compare(reconstruct, case)
     assert abs(result.spectrum[2, 0, 10]) > 0.05
 
 
@@ -1282,10 +1317,10 @@ def assert_integer_conversion_outcome(
 )
 @pytest.mark.parametrize("container", [tuple, list])
 def test_permitted_integer_subclass_positive(
-    reconstruct: Any, field: str, axis: int, container: Any
+    reconstruct: Any, field: str, axis: int, container: Any, integer_conversion_accuracy: Any
 ) -> None:
     case = make_case((2, 3, 4), ((0, 0),))
-    expected, budgets = accuracy_expectation(case)
+    expected, budgets = integer_conversion_accuracy
     values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
     set_integer_representation(case, field, axis, PermittedInt(values[axis]), container)
     result = call(reconstruct, case)
@@ -1299,11 +1334,16 @@ def test_permitted_integer_subclass_positive(
 @pytest.mark.parametrize("container", [tuple, list])
 @pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
 def test_integer_subclass_conversion_translation_or_legitimate_bypass(
-    reconstruct: Any, field: str, axis: int, container: Any, kind: Any
+    reconstruct: Any,
+    field: str,
+    axis: int,
+    container: Any,
+    kind: Any,
+    integer_conversion_accuracy: Any,
 ) -> None:
     # Supplemental W15/W17/W21/W25: expectation is computed before hook insertion.
     case = make_case((2, 3, 4), ((0, 0),))
-    expected, budgets = accuracy_expectation(case)
+    expected, budgets = integer_conversion_accuracy
     values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
     scalar = ConversionFailureInt(values[axis], kind("controlled integer conversion"))
     set_integer_representation(case, field, axis, scalar, container)
@@ -1342,34 +1382,43 @@ def test_integer_subclass_conversion_translation_or_legitimate_bypass(
     ],
 )
 def test_oracle_integer_conversion_observer_alternatives(
-    kind: Any, outcome: str, copy_mode: str, field: str
+    kind: Any, outcome: str, copy_mode: str, field: str, integer_conversion_accuracy: Any
 ) -> None:
-    assert_controlled_integer_conversion_observer(kind, outcome, copy_mode, field, 0, tuple)
+    assert_controlled_integer_conversion_observer(
+        kind, outcome, copy_mode, field, 0, tuple, integer_conversion_accuracy
+    )
 
 
 def assert_controlled_integer_conversion_observer(
-    kind: Any, outcome: str, copy_mode: str, field: str, axis: int, container: Any
+    kind: Any,
+    outcome: str,
+    copy_mode: str,
+    field: str,
+    axis: int,
+    container: Any,
+    integer_conversion_accuracy: Any,
 ) -> None:
     import copy
 
     from simrecon import SimreconError
 
     case = make_case((2, 3, 4), ((0, 0),))
-    expected, budgets = accuracy_expectation(case)
+    expected, budgets = integer_conversion_accuracy
     values = case[field] if field == "output_shape_yx" else case["order_otfs"][0].origin_zyx
     scalar = ConversionFailureInt(values[axis], kind("controlled integer conversion"))
     set_integer_representation(case, field, axis, scalar, container)
     code = "invalid_volume_reconstruction_" + (
         "output_shape" if field == "output_shape_yx" else "otfs"
     )
-    arrays = []
-    for exact in expected:
-        array = np.empty(exact.shape, dtype=np.complex128)
-        for index in np.ndindex(exact.shape):
-            real, imag = exact[index]
-            array[index] = complex(float(real), float(imag))
-        arrays.append(array)
-    result = SimpleNamespace(spectrum=arrays[0], volume=arrays[1])
+
+    def fresh_result() -> Any:
+        spectrum, volume = (
+            np.array([complex(float(real), float(imag)) for real, imag in grid.flat]).reshape(
+                grid.shape
+            )
+            for grid in expected
+        )
+        return SimpleNamespace(spectrum=spectrum, volume=volume)
 
     def observed(*args: Any, **kwargs: Any) -> Any:
         supplied = (
@@ -1393,9 +1442,10 @@ def assert_controlled_integer_conversion_observer(
         if copy_mode in ("snapshot", "deepcopy"):
             assert converted.failure is not supplied.failure
             assert type(converted.failure) is kind
-        if outcome == "bad_bypass":
-            result.spectrum.flat[0] += 1
         if outcome in ("bypass", "bad_bypass"):
+            result = fresh_result()
+            if outcome == "bad_bypass":
+                result.spectrum.flat[0] += 1
             return result
         if outcome == "uninvoked":
             raise SimreconError(code, "controlled representation failure")
@@ -1403,7 +1453,7 @@ def assert_controlled_integer_conversion_observer(
             int(converted)
         except (TypeError, ValueError, OverflowError, RuntimeError, MemoryError):
             if outcome == "swallowed":
-                return result
+                return fresh_result()
             if outcome in ("translated", "wrong_code"):
                 raise SimreconError(
                     code
@@ -1431,14 +1481,24 @@ def assert_controlled_integer_conversion_observer(
 
 
 @pytest.mark.parametrize(
-    "field,axis",
-    [("output_shape_yx", 0), ("output_shape_yx", 1), *(("origin_zyx", i) for i in range(3))],
+    "container,field,axis",
+    [
+        (container, field, axis)
+        for container in (tuple, list)
+        for field, length in (("output_shape_yx", 2), ("origin_zyx", 3))
+        for axis in range(length)
+        if container is list or axis != 0  # The alternatives already cover tuple at axis 0.
+    ],
 )
-@pytest.mark.parametrize("container", [tuple, list])
 @pytest.mark.parametrize("kind", [TypeError, ValueError, OverflowError, RuntimeError, MemoryError])
 @pytest.mark.parametrize("swallowed", [False, True])
 def test_oracle_integer_conversion_snapshot_positions(
-    field: str, axis: int, container: Any, kind: Any, swallowed: bool
+    field: str,
+    axis: int,
+    container: Any,
+    kind: Any,
+    swallowed: bool,
+    integer_conversion_accuracy: Any,
 ) -> None:
     outcome = (
         "swallowed"
@@ -1447,7 +1507,9 @@ def test_oracle_integer_conversion_snapshot_positions(
         if kind in (TypeError, ValueError, OverflowError)
         else "raw"
     )
-    assert_controlled_integer_conversion_observer(kind, outcome, "snapshot", field, axis, container)
+    assert_controlled_integer_conversion_observer(
+        kind, outcome, "snapshot", field, axis, container, integer_conversion_accuracy
+    )
 
 
 @pytest.mark.parametrize("key", ["output_shape_yx", "order_otfs"])
@@ -1486,16 +1548,12 @@ def scalar_overlap_case() -> tuple[dict[str, Any], complex]:
     return case, 0.25 * numerator / denominator
 
 
-def test_oracle_analytic_complex_overlap() -> None:
+def test_analytic_complex_overlap_weighting(reconstruct: Any) -> None:
     case, expected = scalar_overlap_case()
     spectrum, volume = direct_oracle(case)
     assert abs(spectrum.item() - expected) < 1e-13
     assert abs(volume.item() - expected) < 1e-13
     assert abs(expected.imag) > 0.01
-
-
-def test_analytic_complex_overlap_weighting(reconstruct: Any) -> None:
-    case, _ = scalar_overlap_case()
     compare(reconstruct, case)
 
 

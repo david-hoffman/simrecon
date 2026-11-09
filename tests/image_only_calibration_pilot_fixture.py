@@ -9,13 +9,18 @@ from __future__ import annotations
 
 import itertools
 import math
-from dataclasses import dataclass
+import warnings
+from collections import OrderedDict
+from collections.abc import Iterator, Mapping
+from dataclasses import dataclass, field
 from fractions import Fraction
 from functools import lru_cache
 from typing import Any
 
 import numpy as np
+import pytest
 from numpy.typing import NDArray
+from scipy import special
 from scipy.special import j0, roots_legendre
 
 from simrecon import ScalarCameraEstimate
@@ -418,7 +423,7 @@ def unit_sites(
     return np.array(sites), count, mass
 
 
-def optical_enclosure(
+def _optical_enclosure_uncached(
     sites: F64,
     weight: float,
     shape: tuple[int, int, int],
@@ -557,6 +562,162 @@ def optical_enclosure(
     if not np.isfinite(out).all():
         raise OracleInconclusive("pilot observer arithmetic did not produce finite values")
     return OpticalEnclosure(out, error)
+
+
+_OPTICAL_CACHE_SIZE = 128
+_OPTICAL_DTYPE = np.dtype(np.float64)
+_ARRAY_BYTES = tuple[tuple[int, ...], str, bytes]
+_OPTICAL_KEY = tuple[
+    _ARRAY_BYTES, str, tuple[int, int, int], _ARRAY_BYTES, _ARRAY_BYTES, _ARRAY_BYTES, int
+]
+_DIAGNOSTICS = tuple[Mapping[str, object], tuple[object, ...], str, dict[str, str], object]
+
+
+@dataclass
+class OpticalReferenceCache:
+    """Module-owned immutable payloads and observed exact reuse."""
+
+    entries: OrderedDict[_OPTICAL_KEY, tuple[_ARRAY_BYTES, Fraction]] = field(
+        default_factory=OrderedDict
+    )
+    hits: int = 0
+
+
+def _optical_diagnostics() -> _DIAGNOSTICS:
+    return (
+        np.geterr(),
+        tuple(warnings.filters),
+        vars(warnings)["defaultaction"],
+        special.geterr(),
+        warnings.showwarning,
+    )
+
+
+def _same_optical_diagnostics(before: _DIAGNOSTICS, after: _DIAGNOSTICS) -> bool:
+    return before[:-1] == after[:-1] and before[-1] is after[-1]
+
+
+def _optical_array_bytes(array: F64) -> _ARRAY_BYTES:
+    return array.shape, array.dtype.str, array.tobytes()
+
+
+def _optical_cache_key(
+    sites: F64,
+    weight: float,
+    shape: tuple[int, int, int],
+    carriers: F64,
+    phases: F64,
+    amplitudes: F64,
+    order: int,
+) -> _OPTICAL_KEY | None:
+    if (
+        type(weight) is not float
+        or not math.isfinite(weight)
+        or type(shape) is not tuple
+        or len(shape) != 3
+        or any(
+            type(n) is not int or not 1 <= n <= limit
+            for n, limit in zip(shape, (9, 5, 16), strict=True)
+        )
+        or type(order) is not int
+        or order not in (1, 128, 256, 512)
+    ):
+        return None
+    arrays = (sites, carriers, phases, amplitudes)
+    if any(
+        type(array) is not np.ndarray
+        or array.dtype != _OPTICAL_DTYPE
+        or array.dtype.metadata is not None
+        or not array.flags.aligned
+        or not array.flags.c_contiguous
+        for array in arrays
+    ):
+        return None
+    # Limit retained payload to the observer's finite box and the real callers'
+    # orientation/phase counts. Other inputs still reach the unchanged observer.
+    if (
+        sites.ndim != 2
+        or sites.shape[1] != 3
+        or not 1 <= len(sites) <= 1024
+        or carriers.ndim != 2
+        or carriers.shape[1] != 2
+        or not 1 <= len(carriers) <= 3
+        or phases.ndim != 2
+        or len(phases) != len(carriers)
+        or not 1 <= phases.shape[1] <= 9
+        or amplitudes.shape != (3,)
+        or any(
+            array.strides != tuple(8 * math.prod(array.shape[i + 1 :]) for i in range(array.ndim))
+            or not np.isfinite(array).all()
+            for array in arrays
+        )
+    ):
+        return None
+    return (
+        _optical_array_bytes(sites),
+        weight.hex(),
+        shape,
+        _optical_array_bytes(carriers),
+        _optical_array_bytes(phases),
+        _optical_array_bytes(amplitudes),
+        order,
+    )
+
+
+optical_enclosure = _optical_enclosure_uncached
+
+
+@pytest.fixture(scope="module", autouse=True)
+def optical_reference_cache() -> Iterator[OpticalReferenceCache]:
+    """Reuse exact observations while a reference-calling test module runs."""
+    global optical_enclosure
+    cache = OpticalReferenceCache()
+    baseline: _DIAGNOSTICS | None = None
+
+    def observe(
+        sites: F64,
+        weight: float,
+        shape: tuple[int, int, int],
+        carriers: F64,
+        phases: F64,
+        amplitudes: F64,
+        order: int,
+    ) -> OpticalEnclosure:
+        nonlocal baseline
+        args = (sites, weight, shape, carriers, phases, amplitudes, order)
+        if np.geterrcall() is not None:
+            return _optical_enclosure_uncached(*args)
+        policy = _optical_diagnostics()
+        if baseline is not None and not _same_optical_diagnostics(policy, baseline):
+            return _optical_enclosure_uncached(*args)
+        key = _optical_cache_key(*args)
+        if key is None:
+            return _optical_enclosure_uncached(*args)
+        cached = cache.entries.get(key)
+        if cached is not None:
+            cache.hits += 1
+            cache.entries.move_to_end(key)
+            (output_shape, dtype, data), radius = cached
+            values = np.frombuffer(data, dtype=dtype).reshape(output_shape).copy()
+            return OpticalEnclosure(values, radius)
+
+        # The bounded reference math is diagnostic-free on eligible successes.
+        # The real reference callers first reach this point in a test body.
+        result = _optical_enclosure_uncached(*args)
+        if np.geterrcall() is None and _same_optical_diagnostics(policy, _optical_diagnostics()):
+            if baseline is None:
+                baseline = policy
+            cache.entries[key] = _optical_array_bytes(result.values), result.radius
+            if len(cache.entries) > _OPTICAL_CACHE_SIZE:
+                cache.entries.popitem(last=False)
+        return result
+
+    optical_enclosure = observe
+    try:
+        yield cache
+    finally:
+        optical_enclosure = _optical_enclosure_uncached
+        cache.entries.clear()
 
 
 def optical_sum(

@@ -13,7 +13,7 @@ import math
 import sys
 import traceback
 import warnings
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from typing import Any
 
@@ -234,6 +234,36 @@ def reference(cache: Any, options: dict[str, Any]) -> tuple[Any, float, float]:
     return matrix, bound * cr, len(options["phases_rad"]) * bound * cc
 
 
+def immutable_reference(array: Any) -> Any:
+    return np.frombuffer(array.tobytes(), dtype=array.dtype).reshape(array.shape)
+
+
+@pytest.fixture(scope="module")
+def finite_map_reference() -> Callable[..., tuple[Any, float, float]]:
+    """Share the independent matrix and both norms for identical finite maps."""
+    references: dict[tuple[Any, ...], tuple[Any, float, float]] = {}
+
+    def lookup(cache: Any, options: dict[str, Any]) -> tuple[Any, float, float]:
+        # Normalize storage only. Keep exact values for every numerical input
+        # consumed by reference(), including the actual represented payload.
+        key = (
+            cache.source_shape_zyx,
+            cache.source_spacing_um_zyx,
+            cache.refractive_index,
+            np.asarray(cache.lateral_spectra, dtype=np.float32).tobytes(),
+            np.asarray(options["carrier_yx_per_um"], dtype=np.float64).tobytes(),
+            np.asarray(options["phases_rad"], dtype=np.float64).tobytes(),
+            options["beam_amplitudes"],
+            options["excitation_um"],
+        )
+        if key not in references:
+            matrix, forward_norm, adjoint_norm = reference(cache, options)
+            references[key] = immutable_reference(matrix), forward_norm, adjoint_norm
+        return references[key]
+
+    return lookup
+
+
 def assert_fidelity(actual: Any, expected: Any, scale: float) -> None:
     assert np.all(np.isfinite(actual))
     if scale == 0:
@@ -367,7 +397,7 @@ def test_signed_direct_payload_forward_and_real_adjoint_values(shape: Any) -> No
 @pytest.mark.parametrize("operation", ["forward", "adjoint"])
 @pytest.mark.parametrize("shape", [(2, 2, 2), (3, 2, 4)])
 def test_nonzero_finite_map_accepts_coordinated_unused_lateral_padding(
-    operation: str, shape: Any
+    operation: str, shape: Any, finite_map_reference: Callable[..., tuple[Any, float, float]]
 ) -> None:
     # Each addition is exact float32 here. The added inverse is supported only
     # on y=Ny OR x=Nx. The original signed finite map and its G scales survive.
@@ -375,8 +405,8 @@ def test_nonzero_finite_map_accepts_coordinated_unused_lateral_padding(
     payload = base.lateral_spectra + padding_only_spectra(shape, 256.0)
     cache = operator.InverseKernelCache(**(cache_fields(shape) | {"lateral_spectra": payload}))
     options, data = settings(), operand(operation, shape)
-    matrix, f_norm, j_norm = reference(base, options)
-    padded_matrix, padded_f, padded_j = reference(cache, options)
+    matrix, f_norm, j_norm = finite_map_reference(base, options)
+    padded_matrix, padded_f, padded_j = finite_map_reference(cache, options)
     np.testing.assert_array_equal(padded_matrix, matrix)
     assert (padded_f, padded_j) == (f_norm, j_norm)
     assert np.max(np.abs(payload - base.lateral_spectra)) == 256
@@ -394,18 +424,20 @@ def test_nonzero_finite_map_accepts_coordinated_unused_lateral_padding(
 
 
 @pytest.mark.parametrize("operation", ["forward", "adjoint"])
-def test_all_source_detector_edges_corners_and_interior_basis_columns(operation: str) -> None:
+def test_all_source_detector_edges_corners_and_interior_basis_columns(
+    operation: str, finite_map_reference: Callable[..., tuple[Any, float, float]]
+) -> None:
     # A dense basis sweep asserts every finite interaction, including opposite corners.
     shape = (2, 2, 4)
-    cache = operator.InverseKernelCache(**cache_fields(shape))
-    options = settings(phases_rad=np.array([-0.4, 0.9]))
-    matrix, f_norm, j_norm = reference(cache, options)
     data_shape = shape if operation == "forward" else (2, 2, 1, 2)
     for index in range(math.prod(data_shape)):
+        cache = operator.InverseKernelCache(**cache_fields(shape))
+        options = settings(phases_rad=np.array([-0.4, 0.9]))
+        matrix, f_norm, j_norm = finite_map_reference(cache, options)
         data = np.zeros(data_shape, dtype=np.float32)
         data.flat[index] = -1 if index % 2 else 1
-        result = getattr(operator, operation)(data, kernel_cache=cache, **options)
         expected = apply_reference(matrix, data, transpose=operation == "adjoint")
+        result = getattr(operator, operation)(data, kernel_cache=cache, **options)
         assert_fidelity(result, expected, f_norm if operation == "forward" else j_norm)
 
 
@@ -494,6 +526,7 @@ def test_zero_scale_is_exact_zero_after_validation(operation: str, zero_kind: st
 def test_float32_operand_and_cache_layouts_are_semantic_not_rejection_rules(
     operation: str,
     layout: str,
+    finite_map_reference: Callable[..., tuple[Any, float, float]],
 ) -> None:
     def variant(array: Any) -> Any:
         if layout == "big_endian":
@@ -511,9 +544,10 @@ def test_float32_operand_and_cache_layouts_are_semantic_not_rejection_rules(
     original = make_cache()
     cache = make_cache(lateral_spectra=variant(original.lateral_spectra))
     data = variant(operand(operation))
-    matrix, f_norm, j_norm = reference(cache, settings())
+    options = settings()
+    matrix, f_norm, j_norm = finite_map_reference(cache, options)
     with unchanged_policy_and_random(data, cache.lateral_spectra):
-        result = run(operation, data, cache)
+        result = getattr(operator, operation)(data, kernel_cache=cache, **options)
     expected_shape = (3, 3, 1, 2) if operation == "forward" else SHAPE
     assert_storage(result, expected_shape, np.float64)
     assert_fidelity(
@@ -557,16 +591,18 @@ def test_outputs_own_storage_and_do_not_alias_inputs_cache_or_other_calls(operat
 def test_tiny_and_large_float32_operands_keep_max_absolute_scaled_accuracy(
     operation: str,
     magnitude: float,
+    finite_map_reference: Callable[..., tuple[Any, float, float]],
 ) -> None:
     cache = make_cache()
     data = np.sign(operand(operation)).astype(np.float32) * np.float32(magnitude)
-    matrix, f_norm, j_norm = reference(cache, settings())
+    options = settings()
+    matrix, f_norm, j_norm = finite_map_reference(cache, options)
     old_policy = np.seterr(all="raise")
     try:
         with observe_arithmetic_ownership() as caught:
             warnings.simplefilter("always")
             with unchanged_policy_and_random(data, cache.lateral_spectra):
-                result = run(operation, data, cache)
+                result = getattr(operator, operation)(data, kernel_cache=cache, **options)
         assert_arithmetic_ownership_resolved(caught)
     finally:
         np.seterr(**old_policy)
@@ -585,12 +621,14 @@ def test_tiny_and_large_float32_operands_keep_max_absolute_scaled_accuracy(
 def test_extreme_represented_cache_is_not_a_hidden_conditioning_gate(
     operation: str,
     kernel_magnitude: float,
+    finite_map_reference: Callable[..., tuple[Any, float, float]],
 ) -> None:
     # A constant spectrum represents a lateral delta. No ill-conditioned inference occurs.
     cache = make_cache(lateral_spectra=np.full((3, 4, 5), kernel_magnitude, dtype=np.float32))
     data = operand(operation)
-    matrix, f_norm, j_norm = reference(cache, settings())
-    result = run(operation, data, cache)
+    options = settings()
+    matrix, f_norm, j_norm = finite_map_reference(cache, options)
+    result = getattr(operator, operation)(data, kernel_cache=cache, **options)
     assert_fidelity(
         result,
         apply_reference(matrix, data, transpose=operation == "adjoint"),
@@ -606,6 +644,7 @@ def test_extreme_represented_cache_is_not_a_hidden_conditioning_gate(
 def test_huge_reducible_or_safely_normalized_settings_remain_valid(
     operation: str,
     extreme: str,
+    finite_map_reference: Callable[..., tuple[Any, float, float]],
 ) -> None:
     changes: dict[str, Any] = {}
     options = settings()
@@ -626,13 +665,15 @@ def test_huge_reducible_or_safely_normalized_settings_remain_valid(
         changes["refractive_index"] = 1e200
         options["carrier_yx_per_um"] = np.array([-1e200, 1e200])
     cache = make_cache(**changes)
-    matrix, f_norm, j_norm = reference(cache, options)
+    matrix, f_norm, j_norm = finite_map_reference(cache, options)
     data = operand(operation)
     old_policy = np.seterr(all="raise")
     try:
         with observe_arithmetic_ownership() as caught:
             warnings.simplefilter("always")
-            with unchanged_policy_and_random(data, cache.lateral_spectra):
+            with unchanged_policy_and_random(
+                data, cache.lateral_spectra, options["carrier_yx_per_um"], options["phases_rad"]
+            ):
                 result = getattr(operator, operation)(data, kernel_cache=cache, **options)
         assert_arithmetic_ownership_resolved(caught)
     finally:
@@ -1808,8 +1849,7 @@ def supplemental_axial_delta_reference(
     return forward_values, adjoint_values, 4 * area * axial_norm, area * axial_norm
 
 
-@pytest.mark.parametrize("operation", ["forward", "adjoint"])
-def test_supplemental_moderate_nonsquare_signed_axial_delta_composition(operation: str) -> None:
+def axial_delta_inputs() -> tuple[Any, Any, Any, Any, dict[str, Any]]:
     shape, spacing = (3, 32, 64), (0.19, 0.08, 0.11)
     weights = np.array([0.75, -0.5, 0.125], dtype=np.float32)
     payload = np.empty((3, 64, 65), dtype=np.float32)
@@ -1830,11 +1870,16 @@ def test_supplemental_moderate_nonsquare_signed_axial_delta_composition(operatio
     p, z, y, x = np.indices((3, 3, 16, 32))
     residual = ((11 * p - 5 * z + 7 * y + 3 * x) % 37 - 18).astype(np.float32) / np.float32(16)
     residual[0, 0, 0, 0], residual[-1, -1, -1, -1] = 1.875, -2.25
-    options = settings()
-    expected_forward, expected_adjoint, cr, cc = supplemental_axial_delta_reference(
+    return source, residual, weights, cache, settings()
+
+
+@pytest.fixture(scope="module")
+def axial_delta_reference() -> dict[str, tuple[Any, float]]:
+    source, residual, weights, cache, options = axial_delta_inputs()
+    forward, adjoint, cr, cc = supplemental_axial_delta_reference(
         source,
         residual,
-        spacing,
+        cache.source_spacing_um_zyx,
         weights,
         options["carrier_yx_per_um"],
         options["phases_rad"],
@@ -1842,10 +1887,24 @@ def test_supplemental_moderate_nonsquare_signed_axial_delta_composition(operatio
         options["excitation_um"],
         cache.refractive_index,
     )
+    bound = light_bound(options["beam_amplitudes"])
+    return {
+        "forward": (immutable_reference(forward), bound * cr * float(np.max(np.abs(source)))),
+        "adjoint": (
+            immutable_reference(adjoint),
+            bound * (3 * cc) * float(np.max(np.abs(residual))),
+        ),
+    }
+
+
+@pytest.mark.parametrize("operation", ["forward", "adjoint"])
+def test_supplemental_moderate_nonsquare_signed_axial_delta_composition(
+    operation: str, axial_delta_reference: dict[str, tuple[Any, float]]
+) -> None:
+    source, residual, _weights, cache, options = axial_delta_inputs()
+    payload = cache.lateral_spectra
     data = source if operation == "forward" else residual
-    expected = expected_forward if operation == "forward" else expected_adjoint
-    scale = light_bound(options["beam_amplitudes"]) * (cr if operation == "forward" else 3 * cc)
-    scale *= float(np.max(np.abs(data)))
+    expected, scale = axial_delta_reference[operation]
     old_policy = np.seterr(all="raise")
     try:
         with observe_arithmetic_ownership() as caught:

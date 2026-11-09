@@ -41,6 +41,9 @@ from image_only_bead_calibration_fixture import (
     poll_range_arguments,
     poll_range_qualification,
 )
+from image_only_calibration_pilot_fixture import (
+    optical_reference_cache as optical_reference_cache,
+)
 from simrecon import ScalarCameraEstimate, SimreconError, estimate_scalar_camera
 
 bead = importlib.import_module("scripts.image_only_bead_calibration")
@@ -862,13 +865,9 @@ def test_origin_and_heldout_only_change_allowed_metadata_summaries(
     assert_independent(changed, baseline)
 
 
-def test_deterministic_repeated_fixed_dependency_execution(subnormal_result: Any) -> None:
-    repeated = fit(**arguments())
-    assert_same(repeated, subnormal_result)
-    assert_independent(repeated, subnormal_result)
-
-
-def test_records_frozen_public_types_and_independent_writable_snapshots(moving_result: Any) -> None:
+def test_records_frozen_public_types_and_independent_writable_snapshots(
+    moving_result: Any, subnormal_result: Any
+) -> None:
     result = moving_result
     assert_ledger(result, bead, pilot.PilotCandidate)
     assert_independent(result)
@@ -887,13 +886,16 @@ def test_records_frozen_public_types_and_independent_writable_snapshots(moving_r
     # Actual mutation of one caller-visible array must leave every other
     # snapshot and later call unaffected. Use a separate result, not fixtures.
     fresh = fit(**arguments())
+    assert_same(fresh, subnormal_result)
+    assert_independent(fresh, subnormal_result)
     arrays = output_arrays(fresh)
     copies = [a.copy() for a in arrays]
     arrays[0].flat[0] += 1
     for array, saved in zip(arrays[1:], copies[1:], strict=True):
         np.testing.assert_array_equal(array, saved)
     again = fit(**arguments())
-    assert_same(again, fit(**arguments()))
+    assert_same(again, subnormal_result)
+    assert_independent(again, fresh, subnormal_result)
 
 
 def test_initial_range_keeps_constructed_candidate_but_no_success_or_polls() -> None:

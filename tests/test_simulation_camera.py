@@ -418,12 +418,6 @@ def test_intermediate_product_and_offset_overflow(signal: Any, kw: Any) -> None:
     rejected(signal, "simulation_camera_range", **kw)
 
 
-def test_electron_sum_overflow_rejects_whole_call() -> None:
-    # A million independent normals make failure to reach overflow negligible:
-    # lambda=1e308, sigma=1e308; R>~0.798 sigma overflows P+R.
-    rejected(np.full(N, 1e308), "simulation_camera_range", read_noise_e=1e308, seed=139)
-
-
 @pytest.mark.parametrize("policy", ["ignore", "warn", "raise", "call", "print", "log"])
 def test_numpy_policy_preserved_and_expected_warnings_contained(
     policy: Literal["ignore", "warn", "raise", "call", "print", "log"],
@@ -437,7 +431,24 @@ def test_numpy_policy_preserved_and_expected_warnings_contained(
             rejected(np.array([1e308]), "simulation_camera_range", gain_counts_per_e=2)
             rejected(np.array([1e308]), "simulation_camera_range", background_e=1e308)
             rejected(np.array([1e20]), "simulation_camera_range", shot_noise=True)
-            rejected(np.full(4096, 1e308), "simulation_camera_range", read_noise_e=1e308, seed=151)
+            # lambda = 31*sigma. On |Z| <= 31, R is finite and the zero pixel
+            # stays finite. At any large pixel with Z >= 1, lambda+R >= 2**1024
+            # even though scaling both terms by 0.5 first would stay finite.
+            # Across all six policies, the normal-law union bound for missing
+            # that threshold or drawing outside |Z| <= 31 is < 3.729e-19.
+            sigma = float.fromhex("0x1p+1019")
+            signal = np.full(257, float.fromhex("0x1.fp+1023"))
+            signal[0] = 0.0
+            rejected(
+                signal,
+                "simulation_camera_range",
+                read_noise_e=sigma,
+                gain_counts_per_e=0.5,
+                seed=151,
+            )
+            assert signal.flags.writeable
+            assert np.geterr() == dict.fromkeys(before, policy)
+            assert np.geterrcall() is callback
             rejected(np.array([1.0]), background_e=10**400)
             rejected(np.array([np.inf]))
             if np.finfo(np.longdouble).max > np.finfo(np.float64).max:

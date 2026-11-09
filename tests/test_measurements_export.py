@@ -177,18 +177,19 @@ def test_e1_e3_same_run_exact_report(
     metadata = [c for c in calls if c not in phases]
     assert metadata
     assert all(c["path"] is None and c["run_id"] is None for c in metadata)
-
-
-def test_e1_fresh_id_per_invocation(repository: Repository) -> None:
-    root, _ = repository
-    first, first_receipt = invoke(repository)
-    assert first.returncode == 0, first.stderr
-    assert first_receipt is not None
-    second, second_receipt = invoke(repository)
-    assert second.returncode == 0, second.stderr
-    assert second_receipt is not None
-    assert first_receipt["measurements"]["run_id"] != second_receipt["measurements"]["run_id"]
-    assert_measurements(second_receipt, root, report())
+    if (units, baseline, peak) == ("KiB", 100, 107):
+        # Bind the exact bytes the controlled tests phase emitted in each run.
+        destination = root / MEASUREMENTS_PATH
+        assert destination.read_bytes() == json.dumps({**expected, "run_id": run_id}).encode()
+        second, second_receipt = invoke(repository, value=expected)
+        assert second.returncode == 0, second.stdout + second.stderr
+        assert second_receipt is not None
+        assert second_receipt["result"] == "passed" and second_receipt["problems"] == []
+        assert_measurements(second_receipt, root, expected)
+        second_run_id = second_receipt["measurements"]["run_id"]
+        assert second_run_id != run_id
+        emitted = json.dumps({**expected, "run_id": second_run_id}).encode()
+        assert destination.read_bytes() == emitted
 
 
 def test_e1_legacy_collector_disabled(repository: Repository) -> None:
@@ -457,6 +458,16 @@ def writer_environment(
     return root, monkeypatch
 
 
+@pytest.fixture
+def empty_writer_environment(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> tuple[Path, pytest.MonkeyPatch]:
+    monkeypatch.chdir(tmp_path)
+    for key in ENV_KEYS:
+        monkeypatch.delenv(key, raising=False)
+    return tmp_path, monkeypatch
+
+
 def enable_writer(
     monkeypatch: pytest.MonkeyPatch, destination: str = str(MEASUREMENTS_PATH)
 ) -> None:
@@ -469,36 +480,23 @@ def native_record() -> dict[str, Any]:
 
 
 def test_e1_writer_standalone_no_report(
-    writer_environment: tuple[Path, pytest.MonkeyPatch],
+    empty_writer_environment: tuple[Path, pytest.MonkeyPatch],
 ) -> None:
-    root, _ = writer_environment
+    root, _ = empty_writer_environment
     export_measurement(native_record())
-    assert not (root / "artifacts").exists()
+    assert not any(root.iterdir())
 
 
 @pytest.mark.parametrize("key", ENV_KEYS)
 @pytest.mark.parametrize("value", ["present", ""])
 def test_e2_writer_partial_pair_rejected(
-    writer_environment: tuple[Path, pytest.MonkeyPatch], key: str, value: str
+    empty_writer_environment: tuple[Path, pytest.MonkeyPatch], key: str, value: str
 ) -> None:
-    root, monkeypatch = writer_environment
+    root, monkeypatch = empty_writer_environment
     monkeypatch.setenv(key, value)
     with pytest.raises(ValueError, match="both path and run ID"):
         export_measurement(native_record())
-    assert not (root / "artifacts").exists()
-
-
-def test_e1_writer_exact_same_call_record(
-    writer_environment: tuple[Path, pytest.MonkeyPatch],
-) -> None:
-    root, monkeypatch = writer_environment
-    enable_writer(monkeypatch)
-    supplied = native_record()
-    before = copy.deepcopy(supplied)
-    export_measurement(supplied)
-    assert supplied == before
-    assert json.loads((root / MEASUREMENTS_PATH).read_text()) == {**report(), "run_id": STALE_ID}
-    assert git(root, "status", "--porcelain") == ""
+    assert not any(root.iterdir())
 
 
 @pytest.mark.parametrize("ignored", [False, True])
@@ -927,6 +925,8 @@ def test_e1_e3_writer_preserves_legitimate_native_record_values(
     export_measurement(supplied)
     assert_writer_report(root, original_record)
     assert supplied == original_record
+    if (units, baseline, peak) == ("KiB", 100, 107):
+        assert git(root, "status", "--porcelain") == ""
     assert {path: path.read_bytes() for path in before} == before
     assert writer_protected_snapshot(root) == before
 

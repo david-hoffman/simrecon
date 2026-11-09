@@ -567,14 +567,25 @@ def test_v1_native_system_python_entry(repository):
     assert native_version.stdout.strip().split()[-1] in receipt["environment"]["python"]["version"]
 
 
-def test_v4_forbidden_tracked_receipt(repository):
+@pytest.mark.parametrize("missing", [False, True], ids=["present", "missing"])
+def test_v4_forbidden_tracked_receipt(repository, missing):
     root, _ = repository
-    original = (root / "candidate.txt").read_bytes()
-    result, _ = invoke(repository, extra=("--receipt", "candidate.txt"))
+    destination = root / "candidate.txt"
+    original = destination.read_bytes()
+    assert git(root, "ls-files", "--error-unmatch", destination.name) == destination.name
+    if missing:
+        destination.unlink()
+        assert not destination.exists() and not destination.is_symlink()
+    status_before = git(root, "status", "--porcelain")
+    result, _ = invoke(repository, extra=("--receipt", destination.name))
     assert result.returncode != 0
     assert "can't open file" not in result.stderr
-    assert (root / "candidate.txt").read_bytes() == original
-    assert git(root, "status", "--porcelain") == ""
+    if missing:
+        assert not destination.exists() and not destination.is_symlink()
+    else:
+        assert destination.read_bytes() == original
+        assert status_before == ""
+    assert git(root, "status", "--porcelain") == status_before
 
 
 def test_v5_malformed_input_syntax(repository):

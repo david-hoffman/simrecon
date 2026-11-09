@@ -1040,14 +1040,16 @@ def declare_raw(images: np.ndarray, phases: np.ndarray, kind: str) -> Any:
 @pytest.mark.parametrize(
     "bead,brightness,roll,alpha_c,alpha_s,gain",
     [
-        ((10, 13, 16), 600.0, (0, 0, 0), 0.25, -0.125, 1.0),
+        ((10, 7, 13), 600.0, (0, 0, 0), 0.25, -0.125, 1.0),
         ((3, 5, 7), 1200.0, (2, -3, 4), -0.375, 0.5, 1.5),
     ],
 )
 def test_different_grid_raw_physical_composition(
     bead: Any, brightness: float, roll: Any, alpha_c: float, alpha_s: float, gain: float
 ) -> None:
-    nc, ns = (21, 27, 33), (7, 9, 11)
+    # Equal physical periods select identical mode numbers. The specimen grid
+    # retains the polynomial support through axial ±3 and lateral ±2.
+    nc, ns = (21, 15, 27), (7, 5, 9)
     dc, ds = (0.125, 0.0625, 0.03125), (0.375, 0.1875, 0.09375)
     physical_phases = np.array([2 * math.pi * p / 5 for p in range(5)])
     calibration_phases = physical_phases.copy()
@@ -1135,7 +1137,8 @@ def test_different_grid_raw_physical_composition(
     )
     images = corrected.data[0]
     phases = physical_phases + alpha_s
-    mask = np.ones((7, 9, 15))
+    output_shape_yx = (ns[1], ns[2] + 4)
+    mask = np.ones((ns[0], *output_shape_yx))
     expected_s, expected_v = estimator(
         images, phases, transfer.orders.values, (0, 1), gain, 0.25, mask
     )
@@ -1146,7 +1149,7 @@ def test_different_grid_raw_physical_composition(
         carriers_bins=np.array([[0, 1]]),
         gains=np.array([gain]),
         regularization=0.25,
-        output_shape_yx=(9, 15),
+        output_shape_yx=output_shape_yx,
         apodization=mask,
     )
     beta_s, beta_v = reconstruction_budget(images, phases, mask.shape)
@@ -1172,7 +1175,7 @@ def test_different_grid_raw_physical_composition(
         carriers_bins=np.array([[0, 1]]),
         gains=np.array([gain]),
         regularization=0.25,
-        output_shape_yx=(9, 15),
+        output_shape_yx=output_shape_yx,
         apodization=mask,
     )
     unequal_beta_s, unequal_beta_v = reconstruction_budget(unequal_images, phases, mask.shape)
