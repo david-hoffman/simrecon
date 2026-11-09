@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-06T20:21:11.372906+00:00",
+  "status": "visually-inspected-passed",
+  "inspection": "view_image original after render exit0; exact PNG bytes match prior complete original PNG3 inspection, so layout evidence remains applicable",
+  "png_sha256": "6552be554eb78242becd54d9c7fcf39e5a2c070d01a9212de0237b006db65b0f",
+  "render_receipt_sha256": "9cce178e63d268a7d209e30c6e291198adaf2264f327c4481ae57d5dab8969dc",
+  "observed_data_sha256": "296c0a7e9d01d0cc3a5a1a92aaf0ecf778b2b568b8e7720aabb99636a577650f",
+  "approved_bounds_sha256": "dc826839f9bfe5760d4a4578a6de599558acc16e440b95e66094c398c23d83ba",
+  "source_samples_unchanged_between_observations": true,
+  "exact_raster_bytes_match_previous_inspected_png": true,
+  "previous_inspection_sha256": "7d6ef94e1f4a298f93530af1711162c0c387541fbdb51b8ab9abed4912b58077",
+  "checks": [
+    "All16 image/residual samples in4 labeled(z,y)rows",
+    "Common fixed0\u20137 image scale with zero out-of-range counts",
+    "Residual fixed to approved conditional bound with zero out-of-bound counts",
+    "Raw modulation fit/reference/error/bound, coordinates/units/semantics visible",
+    "Complete source caption/claim limits and legible unclipped labels preserved"
+  ],
+  "limits": "One fixed known-nominal-carrier complex-table mathematical control; no carrier-search/empirical-calibration/physical recovery/resolution/historical executable qualification"
+}
