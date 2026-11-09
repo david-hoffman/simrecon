@@ -31,7 +31,7 @@ With `mu=(1+sqrt(2)-i)/4`, independent fitted modulation is
 `h1=2+3*abs(a)**2`. At the four x coordinates the closed image is
 `12/h0+6*real(conj(a)*exp(i*pi*x/4))/h1`. Every y/z row has that same profile.
 The complete expected and observed arrays are retained in the
-[observed data](c-equivalence-workflow-control.json).
+[historical observation](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/c-equivalence-workflow-control.json).
 
 The bounds were fixed from the independently accepted test before this observation:
 `gamma(65536)*64` for image and `gamma(4096)*8` for raw modulation, where

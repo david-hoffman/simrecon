@@ -1,0 +1,84 @@
+{
+  "inputs": {
+    "noiseless": {
+      "truth": {
+        "file": "truth.npy",
+        "sha256": "9dbc7f2d52800de65d76489defe7ae6adafec05f64c0d49390c69c78552f80a2"
+      },
+      "conventional": {
+        "file": "conventional.npy",
+        "sha256": "dc0a273e54269cf1699f98d3c34e75606c936fda0b80f71971a4e4d97c60f088"
+      },
+      "signed_workflow_receipt": {
+        "file": "receipt.npz",
+        "sha256": "ed86c0b271ea06f0a25c58714ef78c17512d0bd1a214dfc1f90089f951f1324b"
+      },
+      "historical_results": {
+        "file": "historical-results.json",
+        "sha256": "18866185d48b6bb04795bae7f54e5df688769e98389869cbc68651d7e33f14f3"
+      }
+    },
+    "paired_noisy": {
+      "truth": {
+        "file": "truth.npy",
+        "sha256": "9dbc7f2d52800de65d76489defe7ae6adafec05f64c0d49390c69c78552f80a2"
+      },
+      "conventional": {
+        "file": "conventional.npy",
+        "sha256": "24623826ad61acace40e905e833428926c895b257595fbac3241ca46b47a119c"
+      },
+      "signed_workflow_receipt": {
+        "file": "receipt.npz",
+        "sha256": "430b1e09d4ba5e4f0f3883126ea4dd016557658fd2ec1defc271a51f21277ac0"
+      },
+      "historical_results": {
+        "file": "historical-results.json",
+        "sha256": "18866185d48b6bb04795bae7f54e5df688769e98389869cbc68651d7e33f14f3"
+      }
+    }
+  },
+  "z_index_zero_based": 14,
+  "z_um": -0.25,
+  "panel_shape_y_x": [
+    256,
+    256
+  ],
+  "xy_extent_sample_edges_um": [
+    -5.140000000000001,
+    5.1,
+    -5.140000000000001,
+    5.1
+  ],
+  "xy_spacing_um": [
+    0.039999999999999994,
+    0.039999999999999994
+  ],
+  "orientation": "X increases rightward. Y increases upward. Nearest-neighbor display.",
+  "gain_su_per_workflow_output_count": 2e-05,
+  "intensity_observed_range_su": [
+    -0.09161184529952021,
+    1.4780483196599985
+  ],
+  "intensity_color_limits_su": [
+    -1.4780483196599985,
+    1.4780483196599985
+  ],
+  "intensity_asinh_linear_width_su": 0.03,
+  "residual_definition": "Scaled signed reconstruction minus ground truth.",
+  "residual_observed_range_su": [
+    -0.6218827588052992,
+    0.47604535383367585
+  ],
+  "residual_linear_color_limits_su": [
+    -0.6218827588052992,
+    0.6218827588052992
+  ],
+  "numpy_version": "2.5.1",
+  "matplotlib_version": "3.11.0",
+  "plot_script_sha256": "dc5c9e0ff60bfab86f427e1967caef629497a7eca722d9864c38386554bc5ac6",
+  "baseline_inputs_sha256": "e4cda1bc38bbde19c977a1e6f2b68121298c66eda24e7eb7f5a1ebd811ec80de",
+  "outputs_sha256": {
+    "structured-pair.png": "2c33bdb6aba9e845a9a21d26e364e16b35b414bfc25f6c95c8ec0b2ec5801e66",
+    "structured-pair.pdf": "317dbfc868c9b5552d3d2d7a3dd9bb1f8fbd3c0cb315804b6ffa2b64da4ead9a"
+  }
+}

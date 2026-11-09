@@ -1,0 +1,39 @@
+{
+  "beads": {
+    "specimen": "16ba57e6443b7f483ebfc96a76b0803b8b327f720061bbed41dc27666c89308f",
+    "calibration": "80051fac421b6f880503186d4b3828dd21fbf97d1002b6fd0eb9c655e96681c0",
+    "settings": {
+      "archived": {
+        "sha256": "2fc11c25e27db5c73f251be0cfcd50db8b1594bf96e03dde4ad9e6dc6f29b0c1",
+        "specimen": "beads-noisy-specimen.npy",
+        "calibration": "beads-noisy-bead.npy"
+      },
+      "portable": {
+        "sha256": "46644b59698c150cfa8eb1f19acd05614e233cac0364ccc0df5f68df99e7931a",
+        "specimen": "specimen.npy",
+        "calibration": "calibration.npy"
+      }
+    },
+    "truth": "81beb10b80a56298d463f74d7eea1eb6272fcb844861bb8d90ebfb66b12c694e",
+    "conventional": "c07e68704647f0fa9b163303a960fd5b33a05f09f8ed5dd9a1e219f7cee0819b"
+  },
+  "cell": {
+    "specimen": "b10a960be758ce42d5f805e02e80d2afe233b287b56395dda7446dededa72480",
+    "calibration": "80051fac421b6f880503186d4b3828dd21fbf97d1002b6fd0eb9c655e96681c0",
+    "settings": {
+      "archived": {
+        "sha256": "e2772e2e1499c8016dbdda77e6cbda1126aec19e89637393dc00bdee5b147b23",
+        "specimen": "cell-noisy-specimen.npy",
+        "calibration": "cell-noisy-bead.npy"
+      },
+      "portable": {
+        "sha256": "7751737903c6d66a44a409791d0703ab0f31a5ece75c0f1437461edf0f70277a",
+        "specimen": "specimen.npy",
+        "calibration": "calibration.npy"
+      }
+    },
+    "truth": "9d2441dfd1652fc02f72b380000c75d0fd31b116440b740b697234ce38e4f0ac",
+    "conventional": "87bcb9ab2870348a5913f22b5bdb6438f6176d0b2132f079490e6a621da92524",
+    "reference_table": "d3be93b1882a793ff6e38da7478f9791150113886a1d1c3b2029b53fab343678"
+  }
+}

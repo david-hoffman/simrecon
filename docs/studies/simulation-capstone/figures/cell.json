@@ -1,0 +1,96 @@
+{
+  "case": "cell",
+  "units": {
+    "intensity": "simulation source units (SU)",
+    "coordinate": "µm"
+  },
+  "wiener": 0.02,
+  "gain_su_per_reconstruction_count": 2e-05,
+  "axes_zyx_origin_um": [
+    -2.0,
+    -5.12,
+    -5.12
+  ],
+  "axes_zyx_pitch_um": [
+    0.125,
+    0.039999999999999994,
+    0.039999999999999994
+  ],
+  "shape_zyx": [
+    32,
+    256,
+    256
+  ],
+  "displayed_sample_range_convention": "sample centers inside the displayed limits",
+  "inputs_sha256": {
+    "truth.npy": "9d2441dfd1652fc02f72b380000c75d0fd31b116440b740b697234ce38e4f0ac",
+    "conventional.npy": "87bcb9ab2870348a5913f22b5bdb6438f6176d0b2132f079490e6a621da92524",
+    "observations.npz": "752a76d77bec3a93ca42ec743e572121e90e955c0e10df28f7e9d8659e5ba60e",
+    "runtime.json": "852f4309efb1e06538f053329ad89a3a11f1d5945ec133aaf6d527efea760eaf"
+  },
+  "plot_script_sha256": "32e7c99029c071f5dcae271884c48302ccfc952cc60c257f3e5e82ca2e65d30a",
+  "baseline_inputs_sha256": "e4cda1bc38bbde19c977a1e6f2b68121298c66eda24e7eb7f5a1ebd811ec80de",
+  "numpy_version": "2.5.1",
+  "matplotlib_version": "3.11.0",
+  "display": {
+    "xy_z_um": -0.75,
+    "xz_y_um": 0.44,
+    "xy_limits_um": [
+      [
+        -3.3,
+        3.3
+      ],
+      [
+        -3.3,
+        3.3
+      ]
+    ],
+    "xz_limits_um": [
+      [
+        -3.3,
+        3.3
+      ],
+      [
+        -1.9,
+        1.9
+      ]
+    ],
+    "intensity": {
+      "color_scale_su": [
+        -0.1,
+        2.6
+      ],
+      "displayed_sample_range_su": [
+        -0.056178271507898656,
+        2.4598032061749344
+      ],
+      "transform": "asinh",
+      "linear_width_su": 0.025
+    },
+    "residual": {
+      "quantity": "signed reconstruction minus fluorescence truth",
+      "color_scale_su": [
+        -0.55,
+        0.55
+      ],
+      "displayed_sample_range_su": [
+        -0.5090900386461044,
+        0.0837455532336202
+      ],
+      "transform": "asinh",
+      "linear_width_su": 0.035,
+      "displayed_xy_sample_range_su": [
+        -0.5090900386461044,
+        0.05798233670154146
+      ],
+      "displayed_xz_sample_range_su": [
+        -0.145005688546624,
+        0.0837455532336202
+      ]
+    }
+  },
+  "figures_sha256": {
+    "cell.png": "9090446b3858008494d56d23d5a673ede87e879f3f9bb1ac6ebbb9871138cef0",
+    "cell.pdf": "2851b3a096fb347c7e85f18c0b57e2cc665304db46c8cc48d875263b736d5910"
+  }
+}

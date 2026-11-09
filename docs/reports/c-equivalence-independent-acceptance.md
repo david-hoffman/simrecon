@@ -226,16 +226,16 @@ quantization ceiling. Alternate trigonometric/FFT calculations independently
 challenge the finite-sum oracle. These arithmetic enclosures are conditional,
 not universal backend certificates or historical binary32 guarantees.
 
-## Saved evidence and reproduction
+## Evidence and reproduction
 
-The [matched observed archive](data/ce08-matched-observed.npz) and
-[larger observed archive](data/ce08-large-observed.npz) are byte-identical public
-copies of the actual saved observations. They include raw inputs, independent
-expectations, conventional images, actual images, signed residuals and mode
-coefficients. Actual images were saved before acceptance assertions; failed
-status would preserve the output. Both observed studies passed their unchanged
-criteria. Earlier test/tooling failures and rejected observer claims remain in
-the durable task evidence; none was reclassified as a physical recovery failure.
+The tests below generate the matched and larger specimens, detector counts,
+and independent expectations from their preregistered recipes. The report
+figures show the original accepted observations. The provenance records the
+archive names and hashes from the original CE08 commit
+`94af6e8b2a0ce52db9a4119d76fa9be8a1030090`. That record preserves the identity
+of the inputs, expectations, outputs, and signed residuals used for the figures.
+Both observed studies passed their unchanged criteria. Earlier test and tooling
+failures and rejected observer claims remain in the durable task evidence.
 
 The [public provenance](data/ce08-independent-acceptance.json) records all
 representative coefficients, the larger complete signed coefficient table,
@@ -243,8 +243,8 @@ source runtime hashes, observed metrics, frozen criteria and original receipt
 hashes. [Matched rendering](data/ce08-matched-render.json),
 [matched visual QA](data/ce08-matched-visual-qa.json),
 [larger rendering](data/ce08-large-render.json) and
-[larger visual QA](data/ce08-large-visual-qa.json) bind every figure to its saved
-arrays and preregistration. Original render receipts keep their pending visual
+[larger visual QA](data/ce08-large-visual-qa.json) bind every figure to the original
+observations and preregistration. Original render receipts keep their pending visual
 field; separate visual QA records the actual inspection. Public receipts use
 explicit aliases and repository-relative paths; originals remain unchanged in
 the task evidence. Plotting used Python 3.13.12, Matplotlib 3.11.0 and NumPy 2.5.1,

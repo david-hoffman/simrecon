@@ -36,14 +36,15 @@ budget `1.1368683772161603e-13`. Phasor distance is not an angle in radians.
 These are noiseless finite-model results with supplied motion; the pixel-only
 result is a deliberately wrong control with inconsistent illumination phases.
 
-The [figure data](../references/scientific/integer-drift-figures.json) retain
+The [historical figure data](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/integer-drift-figures.json) retain
 the displayed arrays, recorded metrics and source archive/fixture hashes.
 Images use nearest-neighbor display without smoothing. Plotting reads these
 saved values and makes no new product calls. Error maps are the absolute complex
 differences derived from the saved reconstruction arrays; phase distances reuse
 the original high-precision measurements rather than rounded complex snapshots.
 
-Reproduce from the repository root:
+The original commands below require the historical runtime and ignored
+task-local scripts.
 
 ```sh
 .venv/bin/python artifacts/integer-drift-execution/C-comparison.py
@@ -55,17 +56,17 @@ The second script is the exact Python block in the
 `(10, 12) (0.25, 0.125) True`. Both scripts are ignored local evidence.
 
 The comparison writes and reloads
-[`drift-comparison-inputs.npz`](../../artifacts/integer-drift-execution/drift-comparison-inputs.npz)
+`artifacts/integer-drift-execution/drift-comparison-inputs.npz`
 before numerical evaluation. The separate
-[`drift-comparison-outputs.npz`](../../artifacts/integer-drift-execution/drift-comparison-outputs.npz)
+`artifacts/integer-drift-execution/drift-comparison-outputs.npz`
 retains actual aligned images, returned phases and phasors, independent expected
 pixels/phasors/stationary images/components, fitted observations, reconstructed
 image/spectrum and the deliberately wrong controls. The
-[`drift-comparison.json`](../../artifacts/integer-drift-execution/drift-comparison.json)
+`artifacts/integer-drift-execution/drift-comparison.json`
 records every array's dtype, shape and byte hash, archive and source hashes,
 command/status, environment, timestamps, budgets and measured maxima. All stored
-caller inputs remained unchanged. These ignored artifacts must accompany the
-handoff; the Markdown alone is not the complete numerical evidence.
+caller inputs remained unchanged. The ignored artifacts were required for the original handoff. The archived
+figure data cover the displayed arrays and their metrics.
 
 Expected values reuse B2's frozen `tests/integer_drift_fixture.py`, SHA256
 `1f0642051492dff8aef8e342acecff2ff82749c9d180d9eddd34ffcae1b56a8f`.

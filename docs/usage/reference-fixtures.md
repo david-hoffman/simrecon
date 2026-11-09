@@ -1,6 +1,6 @@
 # Generate documentary reference fixtures
 
-> **Historical guide — API retired by CE01.** The scientific operations and commands below are unavailable in the current package. This page preserves the original model, examples, claims and failures; it is not an active reproduction guide. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. Historical commands require their original pinned revision/environment, not the neutral-only package.
+> **Historical fixture exporter — API retired by CE01.** The exporter commands below require their original revision and environment. Use the [C-equivalence rebuild roadmap](../plans/c-equivalence-roadmap.md) for replacement status. The [report archive ledger](#historical-report-data) also covers later controls.
 
 From the worktree root, use the locked project interpreter:
 
@@ -123,3 +123,35 @@ A shallow checkout may lack these revisions. Historical references identify thes
 exact blobs and digests; current generation does not recreate original acceptance.
 Permanent exporter checks use compact preservation digests and independent
 mathematical formulas without requiring Git history as their sole oracle.
+
+## Historical report data
+
+These array payloads are available in Git history at revision
+`596cf1f736a130cd1f14f4d01c4c9517b4daa973`. The reports retain their figures,
+numerical summaries and provenance. Use the archived bytes to inspect the
+original arrays and their recorded observation identities.
+
+| Path at the pinned revision | Whole-file SHA-256 |
+| --- | --- |
+| [docs/references/scientific/reconstruction-comparison.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/reconstruction-comparison.json) | `0c0f449da247a1d1f313df23344a8693564f52e7e8c0c2209f4032f84a541856` |
+| [docs/references/scientific/illumination-estimation-comparison.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/illumination-estimation-comparison.json) | `8974c59824f6ce13b5fab48499378a964436213a72363aef0aa36c769059b53c` |
+| [docs/references/scientific/volume-order-transfers-comparison.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/volume-order-transfers-comparison.json) | `00af6fe195f69cb1e4205437406933a637c4306abed0203ab49260d3afcdbd98` |
+| [docs/references/scientific/otf-calibration-product-comparison.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/otf-calibration-product-comparison.json) | `2c85c613dd7a3aefe80ecc9b8c6317884b12a06b928a8e49879d602caf2de2db` |
+| [docs/references/scientific/integer-drift-figures.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/integer-drift-figures.json) | `6419dc034efa638a733734cc3b5540df469f958b596797f8bfdc70e7c1dda12e` |
+| [docs/reports/volume-order-gain-comparison.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/volume-order-gain-comparison.json) | `e25145531da38ce9920dde950805375b317dbb31ef1c1b0802fb5718f0d7350d` |
+| [docs/reports/volume-recombination-comparison.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/volume-recombination-comparison.json) | `d3bdc21ef20d94cc26035ae5e4f3a548cad2a096d229f0d0e7897971f81e4bb2` |
+| [docs/reports/c-equivalence-workflow-control.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/c-equivalence-workflow-control.json) | `296c0a7e9d01d0cc3a5a1a92aaf0ecf778b2b568b8e7720aabb99636a577650f` |
+| [docs/reports/data/c-known-control-expected.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-known-control-expected.json) | `095709a4c4dd2dad39147216837fdd1d70233094ab987fca9ccd5756267c825a` |
+| [docs/reports/data/c-known-control-observed.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-known-control-observed.json) | `1c709b1c79ce56bac5ef8f08652e548b66f8d5b4d302e27e1e99872b3c5ddfb8` |
+| [docs/reports/data/c-estimation-control-inputs.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-estimation-control-inputs.json) | `4a0665f7cd99aa7d48c8d66717979df7f5dd674ee678d9c8f2c214fe9582254b` |
+| [docs/reports/data/c-estimation-control-expected.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-estimation-control-expected.json) | `592f00e286e09f43fc3753e83d5aa2ba9cce73c6680dfde259bade64a8e584f5` |
+| [docs/reports/data/c-estimation-control-observed.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-estimation-control-observed.json) | `aaae18ebe83401e2d3ec12f948de462e27653da522990eca9309a64e9bf9d941` |
+| [docs/reports/data/c-estimation-control-plot-spec.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-estimation-control-plot-spec.json) | `8236058b1a4a7d6a346d4a5e30409f26dce8e7b67a237ef5370407edd8dacfff` |
+| [docs/reports/data/c-otf-control-expected.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-otf-control-expected.json) | `a8d6b6be7b9c7bb02a293c17d6dace643a72ca77ab06138967b0dd232e65fabb` |
+| [docs/reports/data/c-otf-control-observed.json](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-otf-control-observed.json) | `c4ffd2456ff8d5c9ab44713488b6dcadad507d159664f9a272114a2db3ac7746` |
+
+For example, verify the reconstruction comparison without writing a file.
+
+```sh
+git show 596cf1f736a130cd1f14f4d01c4c9517b4daa973:docs/references/scientific/reconstruction-comparison.json | shasum -a 256
+```

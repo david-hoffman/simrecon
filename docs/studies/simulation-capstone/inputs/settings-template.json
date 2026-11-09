@@ -1,0 +1,63 @@
+{
+  "acquisition": {
+    "acquisition_mode": "3d",
+    "axial_zoom": 1,
+    "background": 512,
+    "dxy_um": 0.08,
+    "dz_um": 0.125,
+    "edge_pixels": -2,
+    "equalize": false,
+    "equalize_time": false,
+    "equalize_z": false,
+    "lateral_zoom": 2,
+    "norders": 3,
+    "phase_policy": "uniform",
+    "storage_order": "direction-major"
+  },
+  "calibration": {
+    "settings": {
+      "background_counts": 512,
+      "bead_diameter_um": 0.1,
+      "carrier_angle_rad": 0.19198621771937624,
+      "cleanup_axial_bins": [
+        0,
+        0,
+        0
+      ],
+      "compensate_bead": true,
+      "conjugate": false,
+      "dxy_um": 0.09,
+      "dz_um": 0.125,
+      "fix_axial_axis": false,
+      "fix_radial_from": 0,
+      "forced_pi_shift": false,
+      "immersion_index": 1.515,
+      "linespacing_um": 0.20333333333333334,
+      "numerical_aperture": 1.4,
+      "origin_fit_bins": null,
+      "rescale_each": false,
+      "wavelength_nm": 525
+    }
+  },
+  "carrier": {
+    "amplitude_floors": null,
+    "fit_all_phases": true,
+    "linespacing_um": 0.20333333333333334,
+    "phase_start_angle_rad": 0.0,
+    "search_carriers": true
+  },
+  "filtering": {
+    "filter_overlaps": true,
+    "omit_kz0": false,
+    "output_taper": "none",
+    "suppress_singularities": false,
+    "wiener": 0.02,
+    "wiener_increment": 0.0
+  },
+  "optics": {
+    "immersion_index": 1.515,
+    "numerical_aperture": 1.4,
+    "wavelength_nm": 525
+  },
+  "plane_policy": "native"
+}

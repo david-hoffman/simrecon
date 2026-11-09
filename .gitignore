@@ -12,3 +12,7 @@ dist/
 build/
 artifacts/
 *.egg-info/
+
+# Generated numerical arrays
+*.npy
+*.npz

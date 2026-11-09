@@ -1,0 +1,149 @@
+{
+  "case": "beads",
+  "units": {
+    "intensity": "simulation source units (SU)",
+    "coordinate": "µm"
+  },
+  "wiener": 0.02,
+  "gain_su_per_reconstruction_count": 2e-05,
+  "axes_zyx_origin_um": [
+    -2.0,
+    -5.12,
+    -5.12
+  ],
+  "axes_zyx_pitch_um": [
+    0.125,
+    0.039999999999999994,
+    0.039999999999999994
+  ],
+  "shape_zyx": [
+    32,
+    256,
+    256
+  ],
+  "displayed_sample_range_convention": "sample centers inside the displayed limits",
+  "inputs_sha256": {
+    "truth.npy": "81beb10b80a56298d463f74d7eea1eb6272fcb844861bb8d90ebfb66b12c694e",
+    "conventional.npy": "c07e68704647f0fa9b163303a960fd5b33a05f09f8ed5dd9a1e219f7cee0819b",
+    "observations.npz": "ab674452e83e0736d91886875593c126043b1f3a8f9232dfcef86c32fa10290d",
+    "runtime.json": "f73ac4b1e02b6552938779fdc31df2fefb0861f3ac8581c27fff8fd99fc9ee55",
+    "scores.json": "5ecc4f2a1ce055bed2caabbfdbd0f6009b8d5d04578a887b2ca5c83caacfba3a"
+  },
+  "plot_script_sha256": "32e7c99029c071f5dcae271884c48302ccfc952cc60c257f3e5e82ca2e65d30a",
+  "baseline_inputs_sha256": "e4cda1bc38bbde19c977a1e6f2b68121298c66eda24e7eb7f5a1ebd811ec80de",
+  "numpy_version": "2.5.1",
+  "matplotlib_version": "3.11.0",
+  "display": {
+    "projection": "maximum over z of signed intensity, without clipping",
+    "projected_xy_limits_um": [
+      [
+        -3.6,
+        3.5
+      ],
+      [
+        -2.8,
+        3.1
+      ]
+    ],
+    "projection_intensity": {
+      "color_scale_su": [
+        -0.5,
+        20.0
+      ],
+      "displayed_sample_range_su": [
+        0.0,
+        18.533604547844988
+      ],
+      "transform": "asinh",
+      "linear_width_su": 0.005
+    },
+    "profile_sampling_um": {
+      "start": -0.7,
+      "stop_inclusive": 0.7,
+      "pitch": 0.005
+    },
+    "profile_display_limits_um": [
+      -0.48,
+      0.48
+    ],
+    "profile_scaling": "subtract frozen baseline, then divide by each trace's own peak",
+    "profiles": {
+      "P14": {
+        "true_center_separation_um": 0.14,
+        "box_center_xy_um": [
+          -0.897,
+          -1.658
+        ],
+        "frozen_decision": {
+          "truth": {
+            "status": "resolved",
+            "separation_um": 0.125,
+            "valley_dip_fraction": 0.8182183379792768
+          },
+          "same_dose_conventional": {
+            "status": "unresolved",
+            "separation_um": null,
+            "valley_dip_fraction": null
+          },
+          "reconstruction": {
+            "status": "resolved",
+            "separation_um": 0.125,
+            "valley_dip_fraction": 0.2091953025310031
+          }
+        }
+      },
+      "P23": {
+        "true_center_separation_um": 0.23,
+        "box_center_xy_um": [
+          1.359,
+          -0.519
+        ],
+        "frozen_decision": {
+          "truth": {
+            "status": "resolved",
+            "separation_um": 0.2,
+            "valley_dip_fraction": 1.0
+          },
+          "same_dose_conventional": {
+            "status": "resolved",
+            "separation_um": 0.195,
+            "valley_dip_fraction": 0.1673446833047594
+          },
+          "reconstruction": {
+            "status": "resolved",
+            "separation_um": 0.22499999999999998,
+            "valley_dip_fraction": 0.9398717238586896
+          }
+        }
+      },
+      "P45": {
+        "true_center_separation_um": 0.45,
+        "box_center_xy_um": [
+          0.658,
+          1.815
+        ],
+        "frozen_decision": {
+          "truth": {
+            "status": "resolved",
+            "separation_um": 0.44,
+            "valley_dip_fraction": 1.0
+          },
+          "same_dose_conventional": {
+            "status": "resolved",
+            "separation_um": 0.44,
+            "valley_dip_fraction": 0.9472116856883145
+          },
+          "reconstruction": {
+            "status": "resolved",
+            "separation_um": 0.44,
+            "valley_dip_fraction": 0.988972003335811
+          }
+        }
+      }
+    }
+  },
+  "figures_sha256": {
+    "beads.png": "09983bfc9122729794b8e9cd1281f3fe49fb9ace26c5600b5aca8eecd4352229",
+    "beads.pdf": "1f7177974de5f7dc25429f3756ee10bf5db56e572ab5ccff92edaf3f7a15dda1"
+  }
+}

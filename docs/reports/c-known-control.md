@@ -17,7 +17,7 @@ resolution claim.
 The complete inputs, finite-sum derivation, comparison procedure, error budget,
 and plot scales were frozen before product observation. They are available as
 the byte-identical [scientific specification](data/c-known-control-specification.md)
-and [independent expected arrays](data/c-known-control-expected.json).
+and [historical independent expected arrays](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-known-control-expected.json).
 The [portable registration](data/c-known-control-preregistration.json) records
 logical file names, source/copy hashes, the original freeze time, and the
 accepted-contract reaffirmation. Renaming these copies does not change their
@@ -115,7 +115,7 @@ fixed 4e-6-count scale, rather than exact zero error. All ten panels stay inside
 their registered ranges. The comparison changes relocation interpolation as
 well as quotient order; it does not isolate quotient noncommutation.
 
-The complete [product observation](data/c-known-control-observed.json) contains
+The complete [historical product observation](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/reports/data/c-known-control-observed.json) contains
 the raw/table inputs, prepared/filtered complex quadratures, image, normalized
 spectra, public metadata and unchanged checks. [Rendering provenance](data/c-known-control-rendering.json)
 records the fixed scales and byte-identical image export. Portable records omit

@@ -9,7 +9,7 @@ integration remain pending for this stacked implementation.
 
 ![Actual reconstruction, independent expectations and signed diagnostics](../figures/reconstruction-comparison.png)
 
-The [machine-readable manifest](../references/scientific/reconstruction-comparison.json)
+The [historical comparison manifest](https://github.com/david-hoffman/simrecon/blob/596cf1f736a130cd1f14f4d01c4c9517b4daa973/docs/references/scientific/reconstruction-comparison.json)
 contains the full actual image/spectrum, independent expected arrays, acquisitions,
 PSF/OTF, all parameters, public phase components, maxima and provenance. Expectations
 come from the B4-accepted independent fixture, reproduced by the
@@ -158,7 +158,8 @@ exponent range than float64. Plotting used isolated Python 3.13.12, Matplotlib
 hashes are recorded. The transient plotting environment is not a stable executable
 path or a product dependency. No product dependency/lock change was made.
 
-Actual commands, with `uv` resolving to the pinned local executable:
+The original commands below require the historical runtime and ignored
+task-local scripts.
 
 ```sh
 .venv/bin/python artifacts/reconstruction-execution/generate-reconstruction-comparison.py
