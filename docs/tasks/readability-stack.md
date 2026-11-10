@@ -180,7 +180,12 @@ Cumulative accounting is retained: original analysis had eight fresh-context
 agent tasks including two independent document reviews; kickoff had one fresh
 read-only packet advisor, two cloud-list attempts and one connectivity probe.
 Task 01 adds two report-only documentation advisors, one environment advisor,
-and the final independent review(s) reported with the candidate. Preflight had
+one preliminary independent review, and the fresh correction review reported
+with the final candidate. The preliminary review found generated SVG trailing
+spaces in the full seed-to-main diff; these were removed without changing the
+figure geometry. The first full verification was interrupted during tests for
+this documentation correction (incomplete, not passing); the corrected committed
+candidate requires a fresh full run. Preflight had
 two failed attempts (default Java; sandbox fetch) before one passing run. The
 initial Git fetch failed in the sandbox; escalated fetch succeeded. One local
 SVG-render attempt lacked its delegate and one cached retry hit a read-only cache;
