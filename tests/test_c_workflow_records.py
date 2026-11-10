@@ -184,7 +184,6 @@ def test_decoded_single_invalid_and_adjacent_positive(fault: str, code: str) -> 
     assert_error(code, case.raw, kwargs)
 
 
-@pytest.mark.parametrize("label", ["seconds", "milliseconds", "acquisition-clock-ticks", " ms "])
 @pytest.mark.parametrize(
     "control",
     [
@@ -195,7 +194,7 @@ def test_decoded_single_invalid_and_adjacent_positive(fault: str, code: str) -> 
         "within3d-exact-cubic-impulses",
     ],
 )
-def test_clock_labels_preserve_numeric_meaning_and_cubic_units(label: str, control: str) -> None:
+def test_clock_labels_preserve_numeric_meaning_and_cubic_units(control: str) -> None:
     if control == "no-drift":
         case = constant_case()
         case.extras.update(
@@ -206,58 +205,66 @@ def test_clock_labels_preserve_numeric_meaning_and_cubic_units(label: str, contr
     expected = observe(case)
     budget = error_budget(case, expected)
     baseline = run(case)
-    case.extras["header_timestamp_unit"] = label
-    renamed = run(case)
-    assert dict(renamed.resolved_settings)["header_timestamp_unit"] == label
-    for left, right in (
-        (baseline.image, renamed.image),
-        (baseline.bands.quadratures, renamed.bands.quadratures),
-        (baseline.parameters.modulation, renamed.parameters.modulation),
-        (baseline.parameters.carriers_cyc_um, renamed.parameters.carriers_cyc_um),
-        (baseline.bands.exposure_displacements_pixels, renamed.bands.exposure_displacements_pixels),
-        (baseline.bands.header_timestamps_after, renamed.bands.header_timestamps_after),
-    ):
-        np.testing.assert_array_equal(left, right)
-    assert baseline.input_identities == renamed.input_identities
-    actual_events = [e for e in renamed.bands.trace if e.kind == "cubic-fit"]
-    truth_events = [e for e in expected["preparation"]["events"] if e["kind"] == "cubic"]
-    assert len(actual_events) == len(truth_events)
-    cubic_bounds = budget["preparation_bounds"]["cubics"]
-    assert len(cubic_bounds) == len(truth_events)
-    for actual, truth, cubic_bound in zip(actual_events, truth_events, cubic_bounds, strict=True):
-        details = dict(actual.details)
-        for key in (
-            "matrix",
-            "coefficients",
-            "evaluated_xy",
-            "sample_timestamps_after",
-            "evaluation_timestamps_after",
+    # Four existing positive labels share the same unchanged numeric oracle
+    # and original-clock baseline; each still exercises the real public call.
+    for label in ("seconds", "milliseconds", "acquisition-clock-ticks", " ms "):
+        case.extras["header_timestamp_unit"] = label
+        renamed = run(case)
+        assert dict(renamed.resolved_settings)["header_timestamp_unit"] == label
+        for left, right in (
+            (baseline.image, renamed.image),
+            (baseline.bands.quadratures, renamed.bands.quadratures),
+            (baseline.parameters.modulation, renamed.parameters.modulation),
+            (baseline.parameters.carriers_cyc_um, renamed.parameters.carriers_cyc_um),
+            (
+                baseline.bands.exposure_displacements_pixels,
+                renamed.bands.exposure_displacements_pixels,
+            ),
+            (baseline.bands.header_timestamps_after, renamed.bands.header_timestamps_after),
         ):
-            if key in ("matrix", "sample_timestamps_after", "evaluation_timestamps_after"):
-                np.testing.assert_array_equal(details[key], truth[key])
-            else:
-                # Diagnostic evaluated_xy is BEFORE the measured-direction
-                # subtraction. Its error map differs from applied motion.
-                bound = (
-                    cubic_bound["coefficients"]
-                    if key == "coefficients"
-                    else cubic_bound["fitted_evaluation"]
-                )
-                close(details[key], truth[key], bound, label=f"clock/cubic {key}")
-        # Rows correspond to eta,eta²,eta³. B0 is fixed, never a fitted
-        # intercept or a converted seconds/milliseconds coefficient.
-        assert details["coefficients"].shape == (3, 2)
-    algebra = cubic(
-        np.array([0.0, 1.0, 2.0, 3.0]),
-        np.column_stack(([0.0, 1.0, 8.0, 27.0], [0.0, 2.0, 16.0, 54.0])),
-        np.array([0.0, 1.0, 2.0, 3.0]),
-    )
-    close(
-        algebra["coefficients"],
-        [[0, 0], [0, 0], [1, 2]],
-        gamma(4096) * 64,
-        label="independent cubic units sanity check",
-    )
+            np.testing.assert_array_equal(left, right)
+        assert baseline.input_identities == renamed.input_identities
+        actual_events = [e for e in renamed.bands.trace if e.kind == "cubic-fit"]
+        truth_events = [e for e in expected["preparation"]["events"] if e["kind"] == "cubic"]
+        assert len(actual_events) == len(truth_events)
+        cubic_bounds = budget["preparation_bounds"]["cubics"]
+        assert len(cubic_bounds) == len(truth_events)
+        for actual, truth, cubic_bound in zip(
+            actual_events, truth_events, cubic_bounds, strict=True
+        ):
+            details = dict(actual.details)
+            for key in (
+                "matrix",
+                "coefficients",
+                "evaluated_xy",
+                "sample_timestamps_after",
+                "evaluation_timestamps_after",
+            ):
+                if key in ("matrix", "sample_timestamps_after", "evaluation_timestamps_after"):
+                    np.testing.assert_array_equal(details[key], truth[key])
+                else:
+                    # Diagnostic evaluated_xy is BEFORE the measured-direction
+                    # subtraction. Its error map differs from applied motion.
+                    bound = (
+                        cubic_bound["coefficients"]
+                        if key == "coefficients"
+                        else cubic_bound["fitted_evaluation"]
+                    )
+                    close(details[key], truth[key], bound, label=f"clock/cubic {key}")
+            # Rows correspond to eta,eta²,eta³. B0 is fixed, never a fitted
+            # intercept or a converted seconds/milliseconds coefficient.
+            assert details["coefficients"].shape == (3, 2)
+        algebra = cubic(
+            np.array([0.0, 1.0, 2.0, 3.0]),
+            np.column_stack(([0.0, 1.0, 8.0, 27.0], [0.0, 2.0, 16.0, 54.0])),
+            np.array([0.0, 1.0, 2.0, 3.0]),
+        )
+        close(
+            algebra["coefficients"],
+            [[0, 0], [0, 0], [1, 2]],
+            gamma(4096) * 64,
+            label="independent cubic units sanity check",
+        )
 
 
 def declare_selected(
@@ -673,17 +680,17 @@ def test_literal_direction_stream_is_distinct_from_nominal_z_major() -> None:
     direction = control_cases()["literal-direction-major"]
     nominal = control_cases()["literal-z-major"]
     expected_d, expected_z = observe(direction), observe(nominal)
-    assert np.max(abs(expected_d["image"] - expected_z["image"])) > 100 * max(
-        error_budget(direction, expected_d)["image"], error_budget(nominal, expected_z)["image"]
-    )
+    difference = np.max(abs(expected_d["image"] - expected_z["image"]))
+    budget_d, budget_z = error_budget(direction, expected_d), error_budget(nominal, expected_z)
+    assert difference > 100 * max(budget_d["image"], budget_z["image"])
     actual_d, actual_z = run(direction), run(nominal)
-    for case, expected, actual in (
-        (direction, expected_d, actual_d),
-        (nominal, expected_z, actual_z),
+    for case, expected, actual, budget in (
+        (direction, expected_d, actual_d, budget_d),
+        (nominal, expected_z, actual_z, budget_z),
     ):
         assert actual.layout is not None
         assert dict(actual.resolved_settings)["effective_shape"][:4] == (2, 2, 5, 1)
-        assert_scientific(case, actual, expected)
+        assert_scientific(case, actual, expected, budget=budget)
         close(
             actual.bands.input_scale,
             1 / (10 * 10 * 2),

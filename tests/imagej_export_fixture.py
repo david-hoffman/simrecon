@@ -363,15 +363,57 @@ def reader_inputs() -> dict[str, Any]:
     return inputs
 
 
-def observe(path: Path | None, scratch: Path) -> dict[str, Any]:
+@dataclass(frozen=True)
+class CompiledObserver:
+    """Worker-owned classes compiled from the unchanged independent observer."""
+
+    classes: Path
+    source_sha256: str
+    java_sha256: str
+    javac_sha256: str
+
+
+def compile_observer(scratch: Path) -> CompiledObserver:
+    """Compile once in pytest-owned scratch with the selected JDK's compiler."""
     inputs = reader_inputs()
+    java = Path(inputs["java"]["executable"]).resolve()
+    javac = java.with_name("javac")
+    version = subprocess.run([str(javac), "-version"], capture_output=True, text=True, timeout=20)
+    (scratch / "javac-version.stdout.log").write_text(version.stdout)
+    (scratch / "javac-version.stderr.log").write_text(version.stderr)
+    assert version.returncode == 0, version.stdout + version.stderr
+    assert version.stdout.strip() == "javac 21.0.7", version.stdout + version.stderr
+    source = ROOT / "tests/imagej_export_reader.java"
+    classes = scratch / "classes"
+    classes.mkdir()
+    cp = os.pathsep.join(
+        inputs["jars"][name]["path"] for name in ("ij-1.54p.jar", "bioformats_package.jar")
+    )
+    result = subprocess.run(
+        [str(javac), "-encoding", "UTF-8", "--class-path", cp, "-d", str(classes), str(source)],
+        capture_output=True,
+        text=True,
+        timeout=180,
+    )
+    (scratch / "javac.stdout.log").write_text(result.stdout)
+    (scratch / "javac.stderr.log").write_text(result.stderr)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert (classes / "ImagejExportReader.class").is_file()
+    return CompiledObserver(classes, sha256(source), sha256(java), sha256(javac))
+
+
+def observe(path: Path | None, scratch: Path, compiled: CompiledObserver) -> dict[str, Any]:
+    inputs = reader_inputs()
+    assert sha256(ROOT / "tests/imagej_export_reader.java") == compiled.source_sha256
+    assert sha256(Path(inputs["java"]["executable"])) == compiled.java_sha256
     scratch = scratch / ("launch-" + str(uuid.uuid4()))
     scratch.mkdir(parents=True, exist_ok=True)
     prefs = scratch / "preferences"
     prefs.mkdir(exist_ok=True)
     result_file = scratch / "observer.json"
     cp = os.pathsep.join(
-        inputs["jars"][name]["path"] for name in ("ij-1.54p.jar", "bioformats_package.jar")
+        [str(compiled.classes)]
+        + [inputs["jars"][name]["path"] for name in ("ij-1.54p.jar", "bioformats_package.jar")]
     )
     args = [
         inputs["java"]["executable"],
@@ -381,7 +423,7 @@ def observe(path: Path | None, scratch: Path) -> dict[str, Any]:
         f"-Djava.util.prefs.systemRoot={prefs / 'system'}",
         "--class-path",
         cp,
-        str(ROOT / "tests/imagej_export_reader.java"),
+        "ImagejExportReader",
         "--startup" if path is None else str(path),
         str(result_file),
     ]
@@ -415,6 +457,11 @@ def observe(path: Path | None, scratch: Path) -> dict[str, Any]:
         "java_executable_sha256": sha256(Path(inputs["java"]["executable"])),
     }
     record["preferences"] = "isolated owned scratch/user+system preferences; user.home isolated"
+    record["observer_compilation"] = {
+        "source_sha256": compiled.source_sha256,
+        "javac_sha256": compiled.javac_sha256,
+        "reuse": "pytest session/worker-owned temporary classes; fresh JVM per observation",
+    }
     return record
 
 

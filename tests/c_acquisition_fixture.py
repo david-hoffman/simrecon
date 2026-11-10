@@ -153,6 +153,26 @@ def matrix(phases: Any, orders: int, policy: str) -> tuple[Any, Any]:
     return left, np.stack([as_disc(v) for v in noise])
 
 
+def _ordinary_edge_values(plane: Any) -> bool:
+    """Select quiet binary64 arithmetic; other inputs retain the scalar path."""
+    if type(plane) is not Disc or plane.dtype != np.dtype(float) or min(plane.shape) == 0:
+        return False
+    for index, part in enumerate((np.asarray(plane), plane.observer, plane.backend)):
+        if (
+            type(part) is not np.ndarray
+            or part.shape != plane.shape
+            or part.dtype != np.dtype(float)
+            or not np.all(np.isfinite(part))
+            or index > 0
+            and np.any(part < 0)
+        ):
+            return False
+        magnitude = abs(part)
+        if np.any((magnitude != 0) & ((magnitude < 2.0**-256) | (magnitude > 2.0**256))):
+            return False
+    return True
+
+
 def edge(plane: Any, width: int, *, bead: bool = False) -> Any:
     plane = as_disc(plane)
     y, x = plane.shape
@@ -166,17 +186,31 @@ def edge(plane: Any, width: int, *, bead: bool = False) -> Any:
         )
     padded = disc_zeros((y, x + 2))
     padded[:, :x] = plane
-    for j in range(x):
+    ordinary = type(width) is int and _ordinary_edge_values(plane)
+    skip_unused = ordinary and width == 0
+    reuse_factors = (
+        ordinary and type(bead) is bool and 0 < width <= y and width <= (y if bead else x) <= x + 2
+    )
+    factors: dict[int, Any] = {}
+
+    def factor(k: int) -> Any:
+        if reuse_factors:
+            if k not in factors:
+                factors[k] = 1 - sin(certified_pi() * (k + 0.5) / (2 * width))
+            return factors[k]
+        return 1 - sin(certified_pi() * (k + 0.5) / (2 * width))
+
+    for j in range(0 if skip_unused else x):
         delta = (padded[-1, j] - padded[0, j]) / 2
         for k in range(width):
-            v = delta * (1 - sin(certified_pi() * (k + 0.5) / (2 * width)))
+            v = delta * factor(k)
             padded[k, j] += v
             padded[y - 1 - k, j] -= v
     flat = padded.reshape(-1)
-    for i in range(y):
+    for i in range(0 if skip_unused else y):
         delta = (padded[i, x - 1] - padded[i, 0]) / 2
         for k in range(width):
-            v = delta * (1 - sin(certified_pi() * (k + 0.5) / (2 * width)))
+            v = delta * factor(k)
             flat[i * (x + 2) + k] += v
             flat[i * (x + 2) + (y if bead else x) - 1 - k] -= v
     return padded[:, :x].copy()
@@ -371,6 +405,14 @@ def prepare_expected(images: Any, settings: dict[str, Any]) -> dict[str, Any]:
     )
 
 
+def radial_interpolate(values: Any, k: int, i: int, j: int, a: Any, b: Any, j1: int) -> Any:
+    """Evaluate the unchanged four-vertex radial expression in its original order."""
+    offsets = [i * k + j, i * k + j1, (i + 1) * k + j, (i + 1) * k + j1]
+    assert all(0 <= ix < len(values) for ix in offsets), "independent unsafe radial stencil"
+    v = values[offsets]
+    return (1 - a) * ((1 - b) * v[0] + b * v[1]) + a * ((1 - b) * v[2] + b * v[3])
+
+
 def sample(table: Any, kx: float, ky: float, z: int, native_dkz: float, order: int) -> complex:
     h = as_disc(table.samples[order])
     t = as_disc(z) * native_dkz / table.dkz_cyc_um
@@ -383,15 +425,7 @@ def sample(table: Any, kx: float, ky: float, z: int, native_dkz: float, order: i
         a, b = u - i, t - j
         j1 = 0 if j == h.shape[1] - 1 else j + 1
         values = h.reshape(-1)
-        offsets = [
-            i * h.shape[1] + j,
-            i * h.shape[1] + j1,
-            (i + 1) * h.shape[1] + j,
-            (i + 1) * h.shape[1] + j1,
-        ]
-        assert all(0 <= ix < len(values) for ix in offsets), "independent unsafe radial stencil"
-        v = values[offsets]
-        return (1 - a) * ((1 - b) * v[0] + b * v[1]) + a * ((1 - b) * v[2] + b * v[3])
+        return radial_interpolate(values, h.shape[1], i, j, a, b, j1)
     u, v = as_disc(kx) / table.dkr_cyc_um, as_disc(ky) / table.dkr_cyc_um
     if conjugate:
         u, v, t = -u, -v, -t
@@ -420,6 +454,1006 @@ def sample(table: Any, kx: float, ky: float, z: int, native_dkz: float, order: i
     return np.conj(result) if conjugate else result
 
 
+def local_samples(table: Any) -> Any:
+    """Reuse identical pure queries for one caller-owned observer invocation.
+
+    The table remains unchanged for this closure's lifetime.
+    Coordinate keys include their complete nominal and uncertainty bits, so
+    geometrically equal centers with different certificates remain distinct.
+    Callers only read the returned scalar discs; no cached object is mutated.
+    """
+    cache: dict[Any, Any] = {}
+    raw_cache: dict[Any, Any] = {}
+    orders: dict[int, Any] = {}
+    axials: dict[Any, Any] = {}
+
+    def component(value: Any) -> Any:
+        parts = (value, getattr(value, "observer", 0.0), getattr(value, "backend", 0.0))
+        return tuple(
+            (part.dtype.str, part.shape, part.tobytes()) for part in map(np.asarray, parts)
+        )
+
+    def query(kx: Any, ky: Any, z: int, native_dkz: Any, order: int) -> Any:
+        axial_key = (component(z), component(native_dkz), component(order))
+        raw_key = (component(kx), component(ky), axial_key)
+        if raw_key in raw_cache:
+            return raw_cache[raw_key]
+        if table.layout == "radial":
+            radial = np.hypot(as_disc(kx), as_disc(ky)) / table.dkr_cyc_um
+            key = (component(radial), axial_key)
+            if key not in cache:
+                if order not in orders:
+                    h = as_disc(table.samples[order])
+                    orders[order] = (h.shape[1], h.reshape(-1))
+                k, values = orders[order]
+                if axial_key not in axials:
+                    t = as_disc(z) * native_dkz / table.dkz_cyc_um
+                    if t < 0:
+                        t += k
+                    j = int(np.floor(t))
+                    axials[axial_key] = (j, t - j, 0 if j == k - 1 else j + 1)
+                j, b, j1 = axials[axial_key]
+                i = int(np.floor(radial))
+                a = radial - i
+                cache[key] = radial_interpolate(values, k, i, j, a, b, j1)
+        else:
+            xy = (component(kx), component(ky))
+            key = (xy, axial_key)
+            if key not in cache:
+                cache[key] = sample(table, kx, ky, z, native_dkz, order)
+        raw_cache[raw_key] = cache[key]
+        return cache[key]
+
+    # A batch observer may recognize only this unwrapped, table-owned pure
+    # sampler. Unknown/custom callables retain their original scalar calls.
+    vars(query).update(
+        _local_sample_owner=query, _local_sample_table=table, _local_sample_factory=local_samples
+    )
+    return query
+
+
+def _lane_pack(values: Any) -> Any:
+    """Pack existing scalar bits without performing a new outward rounding."""
+    return (
+        [np.asarray(value) for value in values],
+        np.array(
+            [np.asarray(getattr(value, "observer", 0)).item() for value in values], dtype=float
+        ),
+        np.array(
+            [np.asarray(getattr(value, "backend", 0)).item() for value in values], dtype=float
+        ),
+    )
+
+
+def _lane_take(value: Any, indices: Any) -> Any:
+    """Select independent lanes without adding a scalar indexing operation."""
+    return [value[0][i] for i in indices], value[1][indices], value[2][indices]
+
+
+def _lane_constant(value: Any, count: int) -> Any:
+    """Repeat an unchanged scalar operand and its existing certificate bits."""
+    return _lane_pack([value] * count)
+
+
+def _lane_columns(nominal: Any, observer: Any, backend: Any) -> Any:
+    """Perform precisely the error-column rounding of one Disc construction."""
+    observer = np.array(observer, dtype=float, copy=True)
+    backend = np.array(backend, dtype=float, copy=True)
+    np.nextafter(observer, np.inf, out=observer, where=observer > 0)
+    np.nextafter(backend, np.inf, out=backend, where=backend > 0)
+    if not all(np.all(np.isfinite(column)) for column in (observer, backend)):
+        raise RuntimeError("native lane finite-arithmetic headroom proof failed")
+    return [np.asarray(value) for value in nominal], observer, backend
+
+
+def _lane_op(operation: Any, *inputs: Any) -> Any:
+    """Keep scalar nominal dispatch and batch the unchanged real error algebra."""
+    count = len(inputs[0][0])
+    if any(len(value[0]) != count for value in inputs):
+        raise RuntimeError("native lane lengths disagree")
+    # These are original zero-dimensional operands, not NumPy scalar operands.
+    raw = [operation(*(value[0][i] for value in inputs)) for i in range(count)]
+    magnitude = []
+    for item in (
+        inputs
+        if operation in (np.multiply, np.square)
+        or not all(value.dtype.kind in "biuf" for column in inputs for value in column[0])
+        else ()
+    ):
+        if (
+            item[0]
+            and item[0][0].dtype.kind != "c"
+            and all(value.dtype == item[0][0].dtype for value in item[0])
+        ):
+            # Real absolute value only clears the sign bit; retain its dtype.
+            magnitude.append(abs(np.array(item[0])))
+        else:
+            magnitude.append(np.array([abs(value) for value in item[0]]))
+    result_magnitude = np.array([abs(value) for value in raw])
+    real_gamma, complex_gamma, norm_gamma = gamma(1), gamma(8), gamma(4)
+    rounding = np.array(
+        [(complex_gamma if value.dtype.kind == "c" else real_gamma) * abs(value) for value in raw]
+    )
+    if operation is np.hypot:
+        rounding = np.array([norm_gamma * abs(value) for value in raw])
+    if operation is np.absolute:
+        rounding = np.array(
+            [
+                (norm_gamma if inputs[0][0][i].dtype.kind == "c" else real_gamma) * abs(value)
+                for i, value in enumerate(raw)
+            ]
+        )
+
+    def propagate(errors: Any) -> Any:
+        if operation in (np.add, np.subtract):
+            return errors[0] + errors[1]
+        if operation in (np.conjugate, np.absolute):
+            return errors[0]
+        if operation is np.multiply:
+            return magnitude[0] * errors[1] + magnitude[1] * errors[0] + errors[0] * errors[1]
+        if operation is np.square:
+            return 2 * magnitude[0] * errors[0] + errors[0] ** 2
+        if operation is np.hypot:
+            # Keep each original 0D error-hypot evaluation, too: SIMD hypot
+            # over an error column need not have identical final bits.
+            return np.array(
+                [np.hypot(np.asarray(errors[0][i]), np.asarray(errors[1][i])) for i in range(count)]
+            )
+        raise RuntimeError(f"unimplemented native lane primitive: {operation.__name__}")
+
+    obs = [value[1] for value in inputs]
+    total = [value[1] + value[2] for value in inputs]
+    propagated = propagate(obs)
+    observer = propagated + rounding
+    backend = np.maximum(propagate(total) - propagated, 0) + rounding
+    # result_magnitude deliberately uses abs of the raw scalar ufunc results;
+    # magnitude above uses abs of the original 0D ndarray operands.
+    if not np.all(np.isfinite(result_magnitude)):
+        raise RuntimeError("native lane nominal finite-arithmetic headroom proof failed")
+    return _lane_columns(raw, observer, backend)
+
+
+def _lane_scalar(value: Any, index: int) -> Any:
+    """Restore a scalar's already-rounded bits without rounding them again."""
+    result = np.asarray(value[0][index]).copy().view(Disc)
+    result.observer = np.array(value[1][index], dtype=float)
+    result.backend = np.array(value[2][index], dtype=float)
+    return result
+
+
+def _lane_structural_round(value: Any) -> Any:
+    """Reproduce one original stack/index Disc constructor's outward step."""
+    return _lane_columns(value[0], value[1], value[2])
+
+
+def _lane_vector_component(value: Any, component: int, count: int) -> Any:
+    """Pack a vector operand component without introducing a new getter rounding."""
+    nominal = np.asarray(value)[component]
+    result = np.asarray(nominal).copy().view(Disc)
+    result.observer = np.array(getattr(value, "observer", np.zeros(2))[component])
+    result.backend = np.array(getattr(value, "backend", np.zeros(2))[component])
+    return _lane_constant(result, count)
+
+
+def _ordinary_lane_operand(value: Any) -> bool:
+    """Select quiet normal binary64 inputs; all other forms keep scalar ownership."""
+    if type(value) not in (np.ndarray, Disc):
+        return False
+    if value.dtype not in (np.dtype(float), np.dtype(complex)):
+        return False
+    parts = [np.asarray(value).real]
+    if np.iscomplexobj(value):
+        parts.append(np.asarray(value).imag)
+    if type(value) is Disc:
+        for column in (value.observer, value.backend):
+            if (
+                type(column) is not np.ndarray
+                or column.shape != value.shape
+                or column.dtype != np.dtype(float)
+            ):
+                return False
+            parts.append(column)
+    for column in parts:
+        if not np.all(np.isfinite(column)):
+            return False
+        magnitude = abs(column)
+        if np.any((magnitude != 0) & (magnitude < 2.0**-256)):
+            return False
+    return True
+
+
+def _lane_nominal_norm2(x: Any, y: Any, index: int) -> Any:
+    """Keep the original scalar norm when admitted masks ignore error columns."""
+    return np.linalg.norm(np.array([x[0][index], y[0][index]]))
+
+
+def _lane_norm2(x: Any, y: Any, index: int) -> Any:
+    """Use precisely the original two-component norm and its separate columns."""
+    value = np.array([x[0][index], y[0][index]])
+    result = np.linalg.norm(value)
+    observer = np.sum(np.array([x[1][index], y[1][index]]))
+    backend = np.sum(np.array([x[2][index], y[2][index]]))
+    rounding = gamma(8 * max(value.size, 1)) * abs(result)
+    return Disc(result, observer + rounding, backend + rounding)
+
+
+def _lane_quotient(numerator: Any, denominator: Any, lower: float) -> Any:
+    """Evaluate the scalar positive_quotient expression and each divisor record."""
+    count = len(numerator[0])
+    raw = [numerator[0][i] / denominator[0][i] for i in range(count)]
+    magnitude = np.array([abs(value) for value in raw])
+    oe = (numerator[1] + magnitude * denominator[1]) / lower
+    total = (numerator[1] + numerator[2] + magnitude * (denominator[1] + denominator[2])) / lower
+    rounding = gamma(8) * magnitude
+    result = _lane_columns(raw, oe + rounding, np.maximum(total - oe, 0) + rounding)
+    records = [
+        dict(
+            kind="filter-divisor",
+            lower=lower,
+            observer=float(oe[i]),
+            conditional_backend=float(total[i] - oe[i] + rounding[i]),
+        )
+        for i in range(count)
+    ]
+    return result, records
+
+
+def _batch_range_limit(terms: int) -> float:
+    """Reserve 32 powers and 64 exponent bits for the restricted expression."""
+    # Interpolation error has degree <=3; denominator error degree <=9;
+    # numerator/quotient error degree <=17 after the positive Wiener lower
+    # bound. Degree32 plus64 bits covers constants, sums and outward steps.
+    exponent = (np.finfo(float).maxexp - 1 - int(ceil(np.log2(max(terms, 1)))) - 64) // 32
+    return float(2.0**exponent)
+
+
+def _batch_in_range(value: Any, limit: float) -> bool:
+    """Decline acceleration outside finite input headroom, retaining fallback."""
+    plain = np.asarray(value)
+    if plain.dtype.kind not in "biufc" or not np.all(np.isfinite(plain)):
+        return False
+    if (
+        np.any(abs(plain.real) > limit)
+        or np.iscomplexobj(plain)
+        and np.any(abs(plain.imag) > limit)
+    ):
+        return False
+    return all(
+        np.all(np.isfinite(error)) and np.all(error >= 0) and np.all(error <= limit)
+        for error in (getattr(value, "observer", 0), getattr(value, "backend", 0))
+    )
+
+
+def _radial_lane_interpolation(params: Any) -> Any:
+    """Pack four existing vertices and retain both original getter rounds."""
+    a = _lane_op(
+        np.subtract,
+        _lane_pack([item[0] for item in params]),
+        _lane_pack([item[1] for item in params]),
+    )
+    b = _lane_pack([item[2] for item in params])
+    vertices = []
+    for vertex in range(4):
+        values, observer, backend = [], [], []
+        for _, _, _, flat, offsets in params:
+            offset = offsets[vertex]
+            values.append(np.asarray(flat)[offset])
+            observer.append(flat.observer[offset])
+            backend.append(flat.backend[offset])
+        # values[offsets] and its following scalar getter each performed a
+        # separate outward construction in the original radial expression.
+        vertices.append(_lane_structural_round(_lane_columns(values, observer, backend)))
+    v0, v1, v2, v3 = vertices
+    one = _lane_constant(1, len(params))
+    first = _lane_op(
+        np.add,
+        _lane_op(np.multiply, _lane_op(np.subtract, one, b), v0),
+        _lane_op(np.multiply, b, v1),
+    )
+    second = _lane_op(
+        np.add,
+        _lane_op(np.multiply, _lane_op(np.subtract, one, b), v2),
+        _lane_op(np.multiply, b, v3),
+    )
+    return _lane_op(
+        np.add,
+        _lane_op(np.multiply, _lane_op(np.subtract, one, a), first),
+        _lane_op(np.multiply, a, second),
+    )
+
+
+def _full_zero_samples(table: Any, dzf: Any, limit: float, *, context: Any = None) -> Any:
+    """Pack unchanged zero-axial full stencils, retaining all eight vertex reads."""
+    prepared, cache = ({}, {}) if context is None else context
+
+    def component(value):
+        return tuple(
+            (part.dtype.str, part.shape, part.tobytes())
+            for part in map(
+                np.asarray, (value, getattr(value, "observer", 0), getattr(value, "backend", 0))
+            )
+        )
+
+    def query(queries):
+        if np.geterr()["under"] != "ignore":
+            return None
+        keys, params, pending = [], [], {}
+        for kx, ky, order in queries:
+            key = (component(kx), component(ky), component(order))
+            keys.append(key)
+            if key in cache or key in pending:
+                continue
+            if order not in prepared:
+                h = as_disc(table.samples[order])
+                prepared[order] = (h.shape, h.reshape(-1))
+            (nz, ny, nx), flat = prepared[order]
+            t = as_disc(0) * dzf / table.dkz_cyc_um
+            u = as_disc(kx) / table.dkr_cyc_um
+            v = as_disc(ky) / table.dkr_cyc_um
+            conjugate = kx < 0
+            if conjugate:
+                u, v, t = -u, -v, -t
+            if v < 0:
+                v += ny
+            if t < 0:
+                t += nz
+            ix, iy, iz = int(np.floor(u)), int(np.floor(v)), int(np.floor(t))
+            weights = (u - ix, v - iy, t - iz)
+            if not all(_batch_in_range(value, limit) for value in weights):
+                return None
+            offsets = [
+                ((iz if az == 0 else (iz + 1) % nz) * ny + (iy if ay == 0 else (iy + 1) % ny)) * nx
+                + ix
+                + ax
+                for ax, ay, az in np.ndindex(2, 2, 2)
+            ]
+            if not all(0 <= offset < len(flat) for offset in offsets):
+                return None
+            pending[key] = len(params)
+            params.append((weights, flat, offsets, conjugate))
+        if params:
+            count = len(params)
+            high = [_lane_pack([item[0][axis] for item in params]) for axis in range(3)]
+            one = _lane_constant(1, count)
+            low = [_lane_op(np.subtract, one, values) for values in high]
+            result = _lane_constant(0j, count)
+            for vertex, (ax, ay, az) in enumerate(np.ndindex(2, 2, 2)):
+                w = _lane_op(np.multiply, high[0] if ax else low[0], high[1] if ay else low[1])
+                w = _lane_op(np.multiply, w, high[2] if az else low[2])
+                values = [np.asarray(flat)[offsets[vertex]] for _, flat, offsets, _ in params]
+                observer = [flat.observer[offsets[vertex]] for _, flat, offsets, _ in params]
+                backend = [flat.backend[offsets[vertex]] for _, flat, offsets, _ in params]
+                # Preparing flat retained its table getter/reshape rounds;
+                # this is the original flat scalar getter's outward step.
+                value = _lane_columns(values, observer, backend)
+                result = _lane_op(np.add, result, _lane_op(np.multiply, value, w))
+            conjugated = [i for i, item in enumerate(params) if item[3]]
+            if conjugated:
+                flipped = _lane_op(np.conjugate, _lane_take(result, conjugated))
+                for local, index in enumerate(conjugated):
+                    result[0][index] = flipped[0][local]
+                    result[1][index], result[2][index] = flipped[1][local], flipped[2][local]
+            for key, index in pending.items():
+                cache[key] = _lane_scalar(result, index)
+        return _lane_pack([cache[key] for key in keys])
+
+    return query
+
+
+def _native_radial_batch(
+    bands: Any,
+    table: Any,
+    carriers: Any,
+    modulation: Any,
+    time: int,
+    direction: int,
+    order: int,
+    dx: Any,
+    dy: Any,
+    dzf: Any,
+    radius: Any,
+    w: Any,
+    *,
+    sample_context: Any,
+) -> Any:
+    """Preflight and evaluate one zero-axial native component without side effects."""
+    _, directions, _, z, y, x = bands.input_shape
+    # Packed error arithmetic coalesces underflow warnings. Other policies
+    # retain B7 families, private caches and full norm metadata.
+    extended = np.geterr()["under"] == "ignore"
+    orders = modulation.shape[1] + 1
+    terms = (2 * orders - 1) * directions + 1
+    carriers_vary = extended and bool(np.any(as_disc(carriers).error > 0))
+    limit = _batch_range_limit(terms)
+    if any(
+        not _batch_in_range(value, limit)
+        for value in (
+            bands.quadratures,
+            bands.noise_variance_factors,
+            table.samples,
+            carriers,
+            modulation,
+            dx,
+            dy,
+            dzf,
+            radius,
+            w,
+            table.dkr_cyc_um,
+            table.dkz_cyc_um,
+        )
+    ):
+        return None
+    if any(
+        np.asarray(step).shape != () or np.asarray(step).dtype.kind not in "iuf"
+        for step in (table.dkr_cyc_um, table.dkz_cyc_um)
+    ):
+        return None
+    if extended and not all(
+        _ordinary_lane_operand(as_disc(value))
+        for value in (dx, dy, dzf, radius, w, table.dkr_cyc_um, table.dkz_cyc_um)
+    ):
+        return None
+    margin = float(abs(np.asarray(w))) - float(w.error)
+    if margin < 1 / limit or table.dkr_cyc_um <= 0 or table.dkz_cyc_um <= 0:
+        return None
+    if min(table.dkr_cyc_um, table.dkz_cyc_um) < 1 / limit:
+        return None
+    lower = margin**2
+    noises, amplitudes = {}, {}
+    for di in range(directions):
+        for m in range(orders):
+            nv = bands.noise_variance_factors[time, di, m]
+            if (
+                float(np.asarray(nv)) <= 0
+                or float(abs(np.asarray(nv))) - float(nv.error) < 1 / limit
+            ):
+                return None
+            noises[di, m] = 1 / nv
+            amplitudes[di, m] = 1 if m == 0 else modulation[di, m - 1]
+            if not _batch_in_range(noises[di, m], limit):
+                return None
+    if extended:
+        for di in range(directions):
+            for signed in range(-(orders - 1), orders):
+                if not _batch_in_range(signed * carriers[di], limit):
+                    return None
+    prepared, sample_cache, raw_cache = (
+        [dict(part) for part in sample_context] if extended else ({}, {}, {})
+    )
+
+    def component(value: Any) -> Any:
+        return tuple(
+            (part.dtype.str, part.shape, part.tobytes())
+            for part in map(
+                np.asarray, (value, getattr(value, "observer", 0), getattr(value, "backend", 0))
+            )
+        )
+
+    def samples(queries: Any) -> Any:
+        pending, params, keys, missing = {}, [], [], []
+        for kx, ky, m in queries:
+            raw_key = (component(kx), component(ky), m)
+            keys.append(raw_key)
+            if raw_key not in raw_cache and raw_key not in pending:
+                pending[raw_key] = len(missing)
+                missing.append((kx, ky, m, raw_key))
+        if missing:
+            radial = _lane_op(
+                np.hypot,
+                _lane_pack([as_disc(item[0]) for item in missing]),
+                _lane_pack([as_disc(item[1]) for item in missing]),
+            )
+            radial = _overlap_lane_divide(
+                radial, _lane_constant(table.dkr_cyc_um, len(missing)), limit
+            )
+            if radial is None:
+                return None
+            if not _batch_in_range(np.array(radial[0]), limit) or any(
+                np.any(column < 0) or np.any(column > limit) for column in radial[1:]
+            ):
+                return None
+            pending = {}
+            for index, (_, _, m, raw_key) in enumerate(missing):
+                u = _lane_scalar(radial, index)
+                key = (component(u), m)
+                raw_cache[raw_key] = key
+                if key in sample_cache or key in pending:
+                    continue
+                if m not in prepared:
+                    h = as_disc(table.samples[m])
+                    t = as_disc(0) * dzf / table.dkz_cyc_um
+                    if t < 0:
+                        t += h.shape[1]
+                    j = int(np.floor(t))
+                    prepared[m] = (
+                        h.shape[1],
+                        h.reshape(-1),
+                        j,
+                        t - j,
+                        0 if j == h.shape[1] - 1 else j + 1,
+                    )
+                k, flat, j, b, j1 = prepared[m]
+                i = int(np.floor(u))
+                offsets = [i * k + j, i * k + j1, (i + 1) * k + j, (i + 1) * k + j1]
+                if not all(0 <= ix < len(flat) for ix in offsets):
+                    return None
+                params.append((u, i, b, flat, offsets))
+                pending[key] = len(params) - 1
+        if params:
+            result = _radial_lane_interpolation(params)
+            for key, index in pending.items():
+                sample_cache[key] = _lane_scalar(result, index)
+        return _lane_pack([sample_cache[raw_cache[key]] for key in keys])
+
+    if table.layout == "full":
+        samples = _full_zero_samples(table, dzf, limit, context=(prepared, sample_cache))
+
+    cells = []
+    for iy in range(-(y // 2 - 1), y // 2 + 1):
+        for ix in range(-(x // 2 - 1), x // 2 + 1):
+            if order == 0 and ix < 0:
+                continue
+            reflected = ix < 0
+            row, col = ((-iy) % y, -ix) if reflected else (iy % y, ix)
+            cells.append(dict(iy=iy, ix=ix, row=row, col=col, reflected=reflected))
+    for start in range(0, len(cells), 64):
+        tile = cells[start : start + 64]
+        count = len(tile)
+        xv = _lane_op(
+            np.multiply, _lane_pack([cell["ix"] for cell in tile]), _lane_constant(dx, count)
+        )
+        yv = _lane_op(
+            np.multiply, _lane_pack([cell["iy"] for cell in tile]), _lane_constant(dy, count)
+        )
+        rv = _lane_op(np.hypot, xv, yv)
+        for index, cell in enumerate(tile):
+            cell["r"] = _lane_scalar(rv, index)
+            cell["inside"] = not bool(cell["r"] > radius)
+        selected = [index for index, cell in enumerate(tile) if cell["inside"]]
+        if not selected:
+            continue
+        active = [tile[index] for index in selected]
+        xv, yv = _lane_take(xv, selected), _lane_take(yv, selected)
+        count = len(active)
+        # np.stack originally adds one outward step to each coordinate.
+        native_x, native_y = _lane_structural_round(xv), _lane_structural_round(yv)
+        multiple = order * carriers[direction]
+        kx = _lane_op(np.add, native_x, _lane_vector_component(multiple, 0, count))
+        ky = _lane_op(np.add, native_y, _lane_vector_component(multiple, 1, count))
+        for index, cell in enumerate(active):
+            iy, ix, row, col, reflected = (
+                cell[key] for key in ("iy", "ix", "row", "col", "reflected")
+            )
+            values = bands.quadratures[time, direction, :, 0, row, col]
+            if reflected:
+                values = np.conj(values)
+            cell["band"] = (
+                values[0] if order == 0 else values[2 * order - 1] + 1j * values[2 * order]
+            )
+            cell["queries"] = [(_lane_scalar(xv, index), _lane_scalar(yv, index), order)]
+            cell["included"] = []
+            cell["support_records"] = []
+        for di in range(directions):
+            for signed in range(-(orders - 1), orders):
+                if (di, signed) == (direction, order):
+                    continue
+                multiple = signed * carriers[di]
+                qx = _lane_op(np.subtract, kx, _lane_vector_component(multiple, 0, count))
+                qy = _lane_op(np.subtract, ky, _lane_vector_component(multiple, 1, count))
+                included = []
+                for index in range(count):
+                    # Varying support decisions retain the original full norm
+                    # certificate; other masks consume only its scalar nominal.
+                    varying = carriers_vary and not (order == 0 and signed == 0)
+                    qr = (
+                        _lane_norm2(qx, qy, index)
+                        if varying or not extended
+                        else _lane_nominal_norm2(qx, qy, index)
+                    )
+                    if varying:
+                        difference = as_disc(qr) - as_disc(radius)
+                        gap = float(abs(np.asarray(difference)))
+                        error = float(difference.error)
+                        if gap <= error:
+                            return None
+                        active[index]["support_records"].append(
+                            dict(
+                                kind="support-decision",
+                                label="other-order-support",
+                                gap=gap,
+                                error=error,
+                                resolved=True,
+                            )
+                        )
+                    if bool(np.asarray(qr) < np.asarray(radius)):
+                        included.append(index)
+                if not included:
+                    continue
+                # Each original qxy[component] adds its own outward step.
+                query_x = _lane_structural_round(_lane_take(qx, included))
+                query_y = _lane_structural_round(_lane_take(qy, included))
+                for offset, index in enumerate(included):
+                    active[index]["queries"].append(
+                        (_lane_scalar(query_x, offset), _lane_scalar(query_y, offset), abs(signed))
+                    )
+                    active[index]["included"].append((di, signed))
+    inside = [cell for cell in cells if cell["inside"]]
+    # Tiles bound intermediate arithmetic; cells/records are kept private until
+    # the whole component succeeds, so a decline has no certificate/write prefix.
+    for start in range(0, len(inside), 16):
+        tile = inside[start : start + 16]
+        queries = [query for cell in tile for query in cell["queries"]]
+        sampled = samples(queries)
+        if sampled is None:
+            return None
+        offsets = np.cumsum([0] + [len(cell["queries"]) for cell in tile[:-1]]).tolist()
+        h1 = _lane_take(sampled, offsets)
+        count = len(tile)
+        am = amplitudes[direction, order]
+        g = noises[direction, order]
+        denominator = _lane_op(
+            np.multiply,
+            _lane_op(
+                np.multiply,
+                _lane_op(np.square, _lane_op(np.absolute, h1)),
+                _lane_constant(abs(am) ** 2, count),
+            ),
+            _lane_constant(g, count),
+        )
+        positions = [offset + 1 for offset in offsets]
+        for di in range(directions):
+            for signed in range(-(orders - 1), orders):
+                if (di, signed) == (direction, order):
+                    continue
+                selected = [
+                    i
+                    for i, cell in enumerate(tile)
+                    if positions[i] < offsets[i] + len(cell["queries"])
+                    and cell["included"][positions[i] - offsets[i] - 1] == (di, signed)
+                ]
+                if not selected:
+                    continue
+                h2 = _lane_take(sampled, [positions[i] for i in selected])
+                term = _lane_op(
+                    np.multiply,
+                    _lane_op(
+                        np.multiply,
+                        _lane_op(np.square, _lane_op(np.absolute, h2)),
+                        _lane_constant(abs(amplitudes[di, abs(signed)]) ** 2, len(selected)),
+                    ),
+                    _lane_constant(noises[di, abs(signed)], len(selected)),
+                )
+                updated = _lane_op(np.add, _lane_take(denominator, selected), term)
+                for at, index in enumerate(selected):
+                    denominator[0][index] = updated[0][at]
+                    denominator[1][index], denominator[2][index] = updated[1][at], updated[2][at]
+                    positions[index] += 1
+        denominator = _lane_op(np.add, denominator, _lane_constant(w * w, count))
+        numerator = _lane_op(
+            np.multiply, _lane_pack([cell["band"] for cell in tile]), _lane_constant(1.0, count)
+        )
+        numerator = _lane_op(np.multiply, numerator, _lane_constant(g, count))
+        numerator = _lane_op(np.multiply, numerator, _lane_op(np.conjugate, h1))
+        numerator = _lane_op(np.multiply, numerator, _lane_constant(np.conj(am), count))
+        result, records = _lane_quotient(numerator, denominator, lower)
+        for index, cell in enumerate(tile):
+            cell["value"], cell["record"] = _lane_scalar(result, index), records[index]
+    if extended:
+        for destination, local in zip(
+            sample_context, (prepared, sample_cache, raw_cache), strict=True
+        ):
+            destination.update(local)
+    return {(cell["iy"], cell["ix"]): cell for cell in cells}
+
+
+def _overlap_lane_divide(numerator: Any, denominator: Any, limit: float) -> Any:
+    """Use ordinary Disc division, with no Wiener-specific lower bound."""
+    count = len(numerator[0])
+    magnitude = np.array([abs(value) for value in denominator[0]])
+    total_denominator = denominator[1] + denominator[2]
+    if np.any(magnitude - total_denominator < 1 / limit):
+        return None
+    raw = [np.true_divide(numerator[0][i], denominator[0][i]) for i in range(count)]
+    absolute = np.array([abs(value) for value in raw])
+
+    def propagate(ne: Any, de: Any) -> Any:
+        return (ne + absolute * de) / (magnitude - de)
+
+    observer = propagate(numerator[1], denominator[1])
+    total = propagate(numerator[1] + numerator[2], total_denominator)
+    rounding = np.array(
+        [(gamma(8) if value.dtype.kind == "c" else gamma(1)) * abs(value) for value in raw]
+    )
+    return _lane_columns(raw, observer + rounding, np.maximum(total - observer, 0) + rounding)
+
+
+def _overlap_lane_sqrt(value: Any) -> Any:
+    """Keep each original scalar square-root and error-column expression."""
+    if any(bool(item < 0) for item in value[0]):
+        return None
+    raw = [np.sqrt(item) for item in value[0]]
+
+    def propagate(errors: Any) -> Any:
+        result = []
+        for nominal, error in zip(value[0], errors, strict=True):
+            error = np.asarray(error)
+            denominator = np.sqrt(nominal + error) + np.sqrt(np.maximum(nominal - error, 0))
+            with np.errstate(divide="ignore", invalid="ignore"):
+                result.append(np.where(denominator > 0, 2 * error / denominator, 0))
+        return np.array(result)
+
+    observer = propagate(value[1])
+    total = propagate(value[1] + value[2])
+    rounding = np.array([gamma(1) * abs(item) for item in raw])
+    return _lane_columns(raw, observer + rounding, np.maximum(total - observer, 0) + rounding)
+
+
+def _overlap_threshold(value: Any) -> Any:
+    """Prepare the unchanged strict-threshold records without publishing them."""
+    difference = _lane_op(np.subtract, value, _lane_constant(as_disc(0.006), len(value[0])))
+    records, selected = [], []
+    for index, nominal in enumerate(difference[0]):
+        gap = float(abs(nominal))
+        error = float(difference[1][index] + difference[2][index])
+        resolved = gap > error or gap == error == 0
+        if not resolved:
+            return None
+        records.append(
+            dict(kind="decision", label="transfer-threshold", gap=gap, error=error, resolved=True)
+        )
+        if bool(value[0][index] > np.asarray(0.006)):
+            selected.append(index)
+    return records, selected
+
+
+def _overlap_radial_samples(table: Any, dzf: Any, limit: float) -> Any:
+    """Own exact radial-query reuse and interpolation lanes for one overlap."""
+    prepared, axials, cache, raw_cache = {}, {}, {}, {}
+
+    def component(value: Any) -> Any:
+        return tuple(
+            (part.dtype.str, part.shape, part.tobytes())
+            for part in map(
+                np.asarray, (value, getattr(value, "observer", 0), getattr(value, "backend", 0))
+            )
+        )
+
+    def query(queries: Any) -> Any:
+        keys, missing, pending, params = [], [], {}, []
+        for kx, ky, h, order in queries:
+            raw = (component(kx), component(ky), component(h), component(order))
+            keys.append(raw)
+            if raw not in raw_cache and raw not in pending:
+                pending[raw] = len(missing)
+                missing.append((kx, ky, h, order, raw))
+        if missing:
+            radial = _lane_op(
+                np.hypot,
+                _lane_pack([item[0] for item in missing]),
+                _lane_pack([item[1] for item in missing]),
+            )
+            radial = _overlap_lane_divide(
+                radial, _lane_constant(table.dkr_cyc_um, len(missing)), limit
+            )
+            if radial is None:
+                return None
+            if not _batch_in_range(np.array(radial[0]), limit) or any(
+                np.any(column < 0) or np.any(column > limit) for column in radial[1:]
+            ):
+                return None
+            pending = {}
+            for index, (_, _, h, order, raw) in enumerate(missing):
+                u = _lane_scalar(radial, index)
+                key = (component(u), component(h), component(order))
+                raw_cache[raw] = key
+                if key in cache or key in pending:
+                    continue
+                if order not in prepared:
+                    values = as_disc(table.samples[order])
+                    prepared[order] = (values.shape[1], values.reshape(-1))
+                k, flat = prepared[order]
+                axial_key = (h, order)
+                if axial_key not in axials:
+                    t = as_disc(h) * dzf / table.dkz_cyc_um
+                    if t < 0:
+                        t += k
+                    j = int(np.floor(t))
+                    axials[axial_key] = (j, t - j, 0 if j == k - 1 else j + 1)
+                j, b, j1 = axials[axial_key]
+                i = int(np.floor(u))
+                offsets = [i * k + j, i * k + j1, (i + 1) * k + j, (i + 1) * k + j1]
+                if not all(0 <= offset < len(flat) for offset in offsets):
+                    return None
+                pending[key] = len(params)
+                params.append((u, i, b, flat, offsets))
+            if params:
+                result = _radial_lane_interpolation(params)
+                for key, index in pending.items():
+                    cache[key] = _lane_scalar(result, index)
+        return _lane_pack([cache[raw_cache[key]] for key in keys])
+
+    return query
+
+
+def _overlap_radial_batch(
+    bands: Any,
+    table: Any,
+    carrier: Any,
+    pair: Any,
+    complete: Any,
+    cutoff: int,
+    radius: Any,
+    dzf: Any,
+    *,
+    omit: bool,
+) -> Any:
+    """Prepare ordinary overlap visits; decline before any writes/certificates."""
+    _, _, _, z, y, x = bands.input_shape
+    extended = np.geterr()["under"] == "ignore"
+    norm = _lane_nominal_norm2 if extended else _lane_norm2
+    limit = _batch_range_limit(1)
+    if any(
+        not _batch_in_range(value, limit)
+        for value in (
+            bands.quadratures,
+            table.samples,
+            carrier,
+            bands.dxy_um,
+            table.dkr_cyc_um,
+            table.dkz_cyc_um,
+            dzf,
+            radius,
+        )
+    ):
+        return None
+    if any(
+        np.asarray(value).shape != ()
+        or np.asarray(value).dtype != np.dtype(float)
+        or float(value) < 1 / limit
+        for value in (bands.dxy_um, table.dkr_cyc_um, table.dkz_cyc_um)
+    ):
+        return None
+    if extended and not all(
+        _ordinary_lane_operand(as_disc(value))
+        for value in (bands.dxy_um, table.dkr_cyc_um, table.dkz_cyc_um, dzf, radius)
+    ):
+        return None
+    if table.layout == "full":
+        full_at = _full_zero_samples(table, dzf, limit)
+
+        def sample_at(queries: Any) -> Any:
+            if any(h != 0 for _, _, h, _ in queries):
+                return None
+            return full_at([(kx, ky, order) for kx, ky, _, order in queries])
+    else:
+        sample_at = _overlap_radial_samples(table, dzf, limit)
+    delta = (pair[1] - pair[0]) * as_disc(carrier)
+    if extended and not _batch_in_range(delta, limit):
+        return None
+    multiplier = 1 if z == 1 else 5
+    visits = []
+    cells = list(np.ndindex(y, x))
+    for start in range(0, len(cells), 128):
+        tile = cells[start : start + 128]
+        count = len(tile)
+        qx = _overlap_lane_divide(
+            _lane_pack([as_disc(lift(x)[j]) for _, j in tile]),
+            _lane_constant(x * bands.dxy_um, count),
+            limit,
+        )
+        qy = _overlap_lane_divide(
+            _lane_pack([as_disc(lift(y)[i]) for i, _ in tile]),
+            _lane_constant(y * bands.dxy_um, count),
+            limit,
+        )
+        if qx is None or qy is None:
+            return None
+        qx, qy = _lane_structural_round(qx), _lane_structural_round(qy)
+        selected = [index for index in range(count) if not bool(norm(qx, qy, index) > radius)]
+        if not selected:
+            continue
+        tile = [tile[index] for index in selected]
+        qx, qy = _lane_take(qx, selected), _lane_take(qy, selected)
+        count = len(tile)
+        for side in range(2):
+            offset = delta if side else -delta
+            sx = _lane_op(np.add, qx, _lane_vector_component(offset, 0, count))
+            sy = _lane_op(np.add, qy, _lane_vector_component(offset, 1, count))
+            selected = [
+                index
+                for index in range(count)
+                if bool(np.asarray(norm(sx, sy, index)) <= np.asarray(radius))
+            ]
+            if not selected:
+                continue
+            active = [tile[index] for index in selected]
+            # Each original qxy/shifted scalar getter adds one outward step.
+            ax = _lane_structural_round(_lane_take(qx, selected))
+            ay = _lane_structural_round(_lane_take(qy, selected))
+            bx = _lane_structural_round(_lane_take(sx, selected))
+            by = _lane_structural_round(_lane_take(sy, selected))
+            first, other = (pair[1], pair[0]) if side else pair
+            for h in range(-cutoff, cutoff + 1):
+                if omit and h == 0:
+                    continue
+                h1 = sample_at(
+                    [
+                        (_lane_scalar(ax, i), _lane_scalar(ay, i), h, first)
+                        for i in range(len(active))
+                    ]
+                )
+                if h1 is None:
+                    return None
+                threshold = _overlap_threshold(
+                    _lane_op(
+                        np.multiply,
+                        _lane_constant(multiplier if side else 1, len(active)),
+                        _lane_op(np.absolute, h1),
+                    )
+                )
+                if threshold is None:
+                    return None
+                records, selected_first = threshold
+                if len(selected_first) != len(active):
+                    return None
+                current = []
+                for i, (row, col) in enumerate(active):
+                    visit = dict(row=row, col=col, side=side, h=h, records=[records[i]])
+                    visits.append(visit)
+                    current.append(visit)
+                if not selected_first:
+                    continue
+                h2 = sample_at(
+                    [(_lane_scalar(bx, i), _lane_scalar(by, i), h, other) for i in selected_first]
+                )
+                if h2 is None:
+                    return None
+                threshold = _overlap_threshold(
+                    _lane_op(
+                        np.multiply,
+                        _lane_constant(1 if side else multiplier, len(selected_first)),
+                        _lane_op(np.absolute, h2),
+                    )
+                )
+                if threshold is None:
+                    return None
+                records, selected_second = threshold
+                if len(selected_second) != len(selected_first):
+                    return None
+                for index, original in enumerate(selected_first):
+                    current[original]["records"].append(records[index])
+                if not selected_second:
+                    continue
+                selected_h1 = _lane_take(h1, [selected_first[i] for i in selected_second])
+                selected_h2 = _lane_take(h2, selected_second)
+                denominator = _overlap_lane_sqrt(
+                    _lane_op(
+                        np.add,
+                        _lane_op(np.square, _lane_op(np.absolute, selected_h1)),
+                        _lane_op(np.square, _lane_op(np.absolute, selected_h2)),
+                    )
+                )
+                if denominator is None:
+                    return None
+                band = []
+                for index in selected_second:
+                    row, col = active[selected_first[index]]
+                    band.append(
+                        complete[0][h % z, row, col]
+                        if first == 0
+                        else complete[2 * first - 1][h % z, row, col]
+                        + 1j * complete[2 * first][h % z, row, col]
+                    )
+                numerator = _lane_op(np.multiply, _lane_pack(band), selected_h2)
+                value = _overlap_lane_divide(numerator, denominator, limit)
+                if value is None:
+                    return None
+                for index, selected_index in enumerate(selected_second):
+                    current[selected_first[selected_index]]["value"] = _lane_scalar(value, index)
+    visits.sort(key=lambda visit: (visit["row"], visit["col"], visit["side"], visit["h"]))
+    return visits
+
+
 def overlaps(
     bands: Any,
     table: Any,
@@ -430,6 +1464,7 @@ def overlaps(
     *,
     omit: bool = False,
     threshold_choices: tuple[bool, ...] | None = None,
+    sampler: Any = None,
     **op: Any,
 ) -> dict[str, Any]:
     _, _, _, z, y, x = bands.input_shape
@@ -453,6 +1488,7 @@ def overlaps(
     # Only a dedicated sensitivity proof supplies alternatives. Ordinary
     # callers still require every threshold decision to be certified.
     choices = None if threshold_choices is None else iter(threshold_choices)
+    sample_at = local_samples(table) if sampler is None else sampler
 
     def band(m: int, h: int, i: int, j: int) -> complex:
         value = (
@@ -472,7 +1508,60 @@ def overlaps(
             else complete[2 * m - 1][h % z, i, j] + 1j * complete[2 * m][h % z, i, j]
         )
 
-    for i, j in np.ndindex(y, x):
+    extended = np.geterr()["under"] == "ignore"
+    batch_eligible = (
+        type(pair) is tuple
+        and len(pair) == 2
+        and all(type(order) is int for order in pair)
+        and (
+            pair[0] == 0 and 0 < pair[1] < bands.noise_variance_factors.shape[-1]
+            if extended
+            else pair == (0, 1)
+        )
+        and cutoff in (0, 1)
+        and (extended or z in (1, 2))
+        and x % 2 == y % 2 == 0
+        and (table.layout == "radial" or extended and table.layout == "full" and cutoff == 0)
+        and not varying
+        and threshold_choices is None
+        and type(bands.quadratures) is Disc
+        and np.asarray(bands.quadratures).dtype == np.dtype(complex)
+        and np.asarray(carrier).shape == (2,)
+        and np.asarray(carrier).dtype == np.dtype(float)
+        and type(carrier) in (np.ndarray, Disc)
+        and type(table.samples) in (np.ndarray, Disc)
+        and (
+            not extended
+            or all(
+                _ordinary_lane_operand(value)
+                for value in (bands.quadratures, table.samples, carrier)
+            )
+        )
+        and table.samples.ndim == (3 if table.layout == "radial" else 4)
+        and table.samples.shape[0] > pair[1]
+        and min(table.samples.shape[1:]) > 0
+        and np.asarray(table.samples).dtype == np.dtype(complex)
+        and (
+            sampler is None
+            or getattr(sampler, "_local_sample_owner", None) is sampler
+            and getattr(sampler, "_local_sample_table", None) is table
+            and getattr(sampler, "_local_sample_factory", None) is local_samples
+        )
+    )
+    batch = (
+        _overlap_radial_batch(bands, table, carrier, pair, complete, cutoff, radius, dzf, omit=omit)
+        if batch_eligible
+        else None
+    )
+    if batch is not None:
+        for visit in batch:
+            CERTIFICATES.extend(visit["records"])
+            if "value" in visit:
+                index = (visit["side"], visit["h"] % z, visit["row"], visit["col"])
+                fourier[index] = visit["value"]
+                written[index] = True
+
+    for i, j in () if batch is not None else np.ndindex(y, x):
         qxy = np.stack([as_disc(lift(x)[j]) / (x * pitch), as_disc(lift(y)[i]) / (y * pitch)])
         if np.linalg.norm(qxy) > radius:
             continue
@@ -490,10 +1579,10 @@ def overlaps(
                 if omit and h == 0:
                     continue
                 first = b if side else a
-                h1 = sample(table, qxy[0], qxy[1], h, dzf, first)
+                h1 = sample_at(qxy[0], qxy[1], h, dzf, first)
                 if not threshold_survives((multiplier if side else 1) * abs(h1), choices=choices):
                     continue
-                h2 = sample(table, shifted[0], shifted[1], h, dzf, a if side else b)
+                h2 = sample_at(shifted[0], shifted[1], h, dzf, a if side else b)
                 if not threshold_survives((1 if side else multiplier) * abs(h2), choices=choices):
                     continue
                 fourier[side, h % z, i, j] = (
@@ -673,29 +1762,130 @@ def reconstruct_expected(
     zlabels = (as_disc(np.arange(zo)) - zo // 2) * bands.dz_um / a
     filtered = bands.quadratures.copy()
     image = disc_zeros((tcount, zo, yo, xo))
+    # These finite-sum matrices and geometric declarations are unchanged by
+    # time, direction and order. Reuse their identical certified values locally.
+    ex = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(xo)) / xo, lift(x)))
+    ey = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(yo)) / yo, lift(y)))
+    ez = (
+        np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(zo)) / zo, lift(z)))
+        if bands.acquisition_mode != "2d"
+        else None
+    )
+    carrier_radius = np.linalg.norm(carriers[0])
+    carriers_vary = bool(np.any(as_disc(carriers).error > 0))
+    extended = np.geterr()["under"] == "ignore"
+    batch_eligible = (
+        (o >= 2 if extended else o == 2)
+        and cut == [0] * o
+        and x % 2 == y % 2 == 0
+        and (table.layout in ("radial", "full") if extended else table.layout == "radial")
+        and (extended or not carriers_vary)
+        and op.get("output_taper", "cosine") == "none"
+        and op.get("filter_overlaps", True)
+        and not any(
+            op.get(flag, default)
+            for flag, default in (
+                ("suppress_singularities", True),
+                ("dampen_order0", False),
+                ("omit_order0", False),
+                ("omit_kz0", False),
+                ("precise_taper", False),
+            )
+        )
+        # Plain native operands have distinct zero-error dispatch. Preserve
+        # their existing scalar expression instead of injecting lane rounds.
+        and isinstance(bands.quadratures, Disc)
+        and isinstance(bands.noise_variance_factors, Disc)
+        and all(
+            _ordinary_lane_operand(value) if extended else isinstance(value, np.ndarray)
+            for value in (
+                bands.quadratures,
+                bands.noise_variance_factors,
+                table.samples,
+                carriers,
+                modulation,
+            )
+        )
+        and bands.quadratures.shape == (tcount, dcount, 2 * o - 1, z, y, x // 2 + 1)
+        and bands.noise_variance_factors.shape == (tcount, dcount, o)
+        and np.shape(carriers) == (dcount, 2)
+        and np.shape(modulation) == (dcount, o - 1)
+        and table.samples.ndim == (3 if table.layout == "radial" else 4)
+        and table.samples.shape[0] >= o
+        and min(table.samples.shape[1:]) > 0
+        and all(
+            np.asarray(value).dtype == dtype and np.asarray(value).flags.c_contiguous
+            for value, dtype in (
+                (bands.quadratures, np.complex128),
+                (bands.noise_variance_factors, np.float64),
+                (table.samples, np.complex128),
+                (carriers, np.float64),
+            )
+        )
+        and np.asarray(modulation).dtype in (np.dtype(np.float64), np.dtype(np.complex128))
+    )
+    # Each context belongs only to this immutable table/dzf invocation.
+    # A declined component commits nothing, retaining scalar failure ownership.
+    native_sample_context = ({}, {}, {})
+    suppression_radius = op.get("suppression_radius_bins", 10.0) * min(dx, dy)
+    sample_at = local_samples(table)
+    inverse_noise: dict[Any, Any] = {}
+    amplitude_values: dict[Any, Any] = {}
+    amplitude_powers: dict[Any, Any] = {}
+    amplitude_conjugates: dict[Any, Any] = {}
+    carrier_multiples: dict[Any, Any] = {}
+    taper_denominator = None
+
+    def amplitude(direction: int, order: int) -> Any:
+        key = (direction, order)
+        if key not in amplitude_values:
+            amplitude_values[key] = 1 if order == 0 else modulation[direction, order - 1]
+        return amplitude_values[key]
+
+    def amplitude_power(direction: int, order: int, value: Any) -> Any:
+        key = (direction, order)
+        if key not in amplitude_powers:
+            amplitude_powers[key] = abs(value) ** 2
+        return amplitude_powers[key]
+
+    def amplitude_conjugate(direction: int, order: int) -> Any:
+        key = (direction, order)
+        if key not in amplitude_conjugates:
+            amplitude_conjugates[key] = np.conj(amplitude(direction, order))
+        return amplitude_conjugates[key]
+
+    def carrier_multiple(direction: int, order: int) -> Any:
+        key = (direction, order)
+        if key not in carrier_multiples:
+            carrier_multiples[key] = order * carriers[direction]
+        return carrier_multiples[key]
+
     effective = []
     w = as_disc(op["wiener"])
     for t in range(tcount):
         w += as_disc(op.get("wiener_increment", 0)) / tcount
         effective.append(w)
+        w_squared = None
+        w_margin = None
         for d in range(dcount):
 
             def gain(e: int, m: int, r: float, h: int, time: int = t) -> float:
-                nv = bands.noise_variance_factors[time, e, m]
-                g = 1 / nv
-                sr = op.get("suppression_radius_bins", 10.0) * min(dx, dy)
+                noise_key = (time, e, m)
+                if noise_key not in inverse_noise:
+                    inverse_noise[noise_key] = 1 / bands.noise_variance_factors[time, e, m]
+                g = inverse_noise[noise_key]
                 if (
                     op.get("suppress_singularities", True)
-                    and r <= sr
+                    and r <= suppression_radius
                     and (
                         m > 0
                         or not (op.get("dampen_order0", False) or op.get("omit_order0", False))
                     )
                 ):
-                    g /= 1 + 1000 / (r * r + 0.2)
+                    g = g / (1 + 1000 / (r * r + 0.2))
                 elif m == 0 and op.get("dampen_order0", False):
                     assert cut[0] > 0
-                    g *= (r / radius) ** 2 + abs(h / cut[0]) ** 3
+                    g = g * ((r / radius) ** 2 + abs(h / cut[0]) ** 3)
                 elif m == 0 and op.get("omit_order0", False):
                     g = 0.0
                 if m == 0 and h == 0 and op.get("omit_kz0", False):
@@ -705,13 +1895,45 @@ def reconstruct_expected(
             for m in range(o):
                 target = filtered[t, d, 0 if m == 0 else 2 * m - 1 : 1 if m == 0 else 2 * m + 1]
                 temporary = disc_zeros((z, y, x), dtype=complex)
+                batch = (
+                    _native_radial_batch(
+                        bands,
+                        table,
+                        carriers,
+                        modulation,
+                        t,
+                        d,
+                        m,
+                        dx,
+                        dy,
+                        dzf,
+                        radius,
+                        w,
+                        sample_context=native_sample_context,
+                    )
+                    if batch_eligible
+                    else None
+                )
                 for iy in range(-(y // 2 - 1), y // 2 + 1):
                     for ix in range(-(x // 2 - 1), x // 2 + 1):
                         if m == 0 and ix < 0:
                             continue
                         reflected = ix < 0
                         row, col = ((-iy) % y, -ix) if reflected else (iy % y, ix)
-                        r = hypot(ix * dx, iy * dy)
+                        r = batch[iy, ix]["r"] if batch is not None else hypot(ix * dx, iy * dy)
+                        if batch is not None:
+                            cell = batch[iy, ix]
+                            if cell["inside"]:
+                                CERTIFICATES.extend(cell["support_records"])
+                                CERTIFICATES.append(cell["record"])
+                                if m == 0:
+                                    target[0, 0, row, col] = cell["value"]
+                                else:
+                                    temporary[0, iy % y, ix % x] = cell["value"]
+                            else:
+                                target[:, 0, row, col] = 0
+                            target[:, 1:z, row, col] = 0
+                            continue
                         for h in range(-cut[m], cut[m] + 1):
                             if r > radius:
                                 target[:, h % z, row, col] = 0
@@ -721,11 +1943,13 @@ def reconstruct_expected(
                             if reflected:
                                 values = np.conj(values)
                             b = values[0] if m == 0 else values[2 * m - 1] + 1j * values[2 * m]
-                            h1 = sample(table, ix * dx, iy * dy, h, dzf, m)
-                            am = 1 if m == 0 else modulation[d, m - 1]
+                            h1 = sample_at(ix * dx, iy * dy, h, dzf, m)
+                            am = amplitude(d, m)
                             g = gain(d, m, r, h)
-                            denominator = abs(h1) ** 2 * abs(am) ** 2 * g
-                            kxy = np.stack([as_disc(ix * dx), as_disc(iy * dy)]) + m * carriers[d]
+                            denominator = abs(h1) ** 2 * amplitude_power(d, m, am) * g
+                            kxy = np.stack([as_disc(ix * dx), as_disc(iy * dy)]) + carrier_multiple(
+                                d, m
+                            )
                             for e in range(dcount):
                                 for n in range(-(o - 1), o):
                                     if e == d and n == m:
@@ -734,11 +1958,9 @@ def reconstruct_expected(
                                         m == 0 and n == 0
                                     ):
                                         continue
-                                    qxy = kxy - n * carriers[e]
+                                    qxy = kxy - carrier_multiple(e, n)
                                     qr = np.linalg.norm(qxy)
-                                    varying = bool(np.any(as_disc(carriers).error > 0)) and not (
-                                        m == 0 and n == 0
-                                    )
+                                    varying = carriers_vary and not (m == 0 and n == 0)
                                     if radial_decision(
                                         qr,
                                         radius,
@@ -746,15 +1968,19 @@ def reconstruct_expected(
                                         varying=varying,
                                         label="other-order-support",
                                     ):
-                                        h2 = sample(table, qxy[0], qxy[1], h, dzf, abs(n))
-                                        an = 1 if n == 0 else modulation[e, abs(n) - 1]
+                                        h2 = sample_at(qxy[0], qxy[1], h, dzf, abs(n))
+                                        an = amplitude(e, abs(n))
                                         denominator += (
-                                            abs(h2) ** 2 * abs(an) ** 2 * gain(e, abs(n), qr, h)
+                                            abs(h2) ** 2
+                                            * amplitude_power(e, abs(n), an)
+                                            * gain(e, abs(n), qr, h)
                                         )
-                            denominator += w * w
-                            rho = np.linalg.norm(kxy) / (
-                                radius + np.linalg.norm(carriers[0]) * (o - 1)
-                            )
+                            if w_squared is None:
+                                w_squared = w * w
+                            denominator += w_squared
+                            if taper_denominator is None:
+                                taper_denominator = radius + carrier_radius * (o - 1)
+                            rho = np.linalg.norm(kxy) / taper_denominator
                             if cut[1] > 0:
                                 rho = sqrt(rho * rho + (abs(h) / cut[1]) ** 2)
                             rho = np.minimum(rho, 1.0)
@@ -763,8 +1989,9 @@ def reconstruct_expected(
                                 taper = cos(certified_pi() * rho / 2)
                             elif op["output_taper"] == "power":
                                 taper = (1 - rho) ** op["power_taper_exponent"]
-                            numerator = b * taper * g * np.conj(h1) * np.conj(am)
-                            w_margin = float(abs(np.asarray(w))) - float(w.error)
+                            numerator = b * taper * g * np.conj(h1) * amplitude_conjugate(d, m)
+                            if w_margin is None:
+                                w_margin = float(abs(np.asarray(w))) - float(w.error)
                             if w_margin <= 0:
                                 raise CertificateError("positive Wiener value is uncertified")
                             lower = w_margin**2
@@ -793,15 +2020,11 @@ def reconstruct_expected(
                 )
                 # Evaluate native Fourier polynomial at output points directly.
                 # This avoids sharing the product's embedding and FFT algorithm.
-                ex = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(xo)) / xo, lift(x)))
-                ey = np.exp(2j * certified_pi() * np.outer(as_disc(np.arange(yo)) / yo, lift(y)))
                 if bands.acquisition_mode == "2d":
                     u = disc_zeros((zo, yo, xo), dtype=complex)
                     u[0] = ey @ coefficients[0] @ ex.T
                 else:
-                    ez = np.exp(
-                        2j * certified_pi() * np.outer(as_disc(np.arange(zo)) / zo, lift(z))
-                    )
+                    assert ez is not None
                     u = np.tensordot(ez, coefficients, axes=(1, 0))
                     u = np.moveaxis(np.tensordot(ey, u, axes=(1, 1)), 0, 1)
                     u = np.moveaxis(np.tensordot(ex, u, axes=(1, 2)), 0, 2)
@@ -1238,18 +2461,39 @@ class Disc(np.ndarray):
         return 1000
 
     def __new__(cls, value: Any, observer: Any = 0.0, backend: Any = 0.0) -> Any:
-        obj = np.asarray(value).view(cls)
-        oe = np.broadcast_to(observer, obj.shape).copy().astype(float)
-        be = np.broadcast_to(backend, obj.shape).copy().astype(float)
-        obj.observer = np.where(oe > 0, np.nextafter(oe, np.inf), oe)
-        obj.backend = np.where(be > 0, np.nextafter(be, np.inf), be)
+        base = np.asarray(value)
+
+        def scalar_error(error: Any) -> bool:
+            return isinstance(error, (int, float, np.integer, np.floating, np.bool_)) or (
+                isinstance(error, np.ndarray) and error.shape == () and error.dtype.kind in "biuf"
+            )
+
+        if (
+            cls is Disc
+            and base.shape == ()
+            and base.dtype.kind in "biufc"
+            and base.flags.c_contiguous
+            and scalar_error(observer)
+            and scalar_error(backend)
+        ):
+            obj = np.ndarray.__new__(cls, (), dtype=base.dtype, buffer=base)
+            oe = np.array(observer, dtype=float, order="C", copy=True)
+            be = np.array(backend, dtype=float, order="C", copy=True)
+        else:
+            obj = base.view(cls)
+            oe = np.broadcast_to(observer, obj.shape).astype(float, order="C", copy=True)
+            be = np.broadcast_to(backend, obj.shape).astype(float, order="C", copy=True)
+        np.nextafter(oe, np.inf, out=oe, where=oe > 0)
+        np.nextafter(be, np.inf, out=be, where=be > 0)
+        obj.observer = oe
+        obj.backend = be
         return obj
 
     def __array_finalize__(self, source: Any) -> None:
         """Preserve independent uncertainty through this NumPy protocol."""
         if source is not None:
-            self.observer = getattr(source, "observer", np.zeros(self.shape))
-            self.backend = getattr(source, "backend", np.zeros(self.shape))
+            self.observer = source.observer if hasattr(source, "observer") else np.zeros(self.shape)
+            self.backend = source.backend if hasattr(source, "backend") else np.zeros(self.shape)
 
     @property
     def error(self) -> Any:
@@ -1266,7 +2510,7 @@ class Disc(np.ndarray):
         self.backend[index] = getattr(value, "backend", 0)
 
     def copy(self, order: Any = "C") -> Any:
-        return Disc(np.asarray(self).copy(order), self.observer.copy(), self.backend.copy())
+        return Disc(np.asarray(self).copy(order), self.observer, self.backend)
 
     def reshape(self, *shape: Any, **kwargs: Any) -> Any:
         return Disc(
@@ -1326,11 +2570,15 @@ class Disc(np.ndarray):
         }:
             return result
         obs = [
-            np.broadcast_to(getattr(x, "observer", 0), np.shape(v))
+            x.observer
+            if isinstance(x, Disc) and x.observer.shape == v.shape
+            else np.broadcast_to(getattr(x, "observer", 0), v.shape)
             for x, v in zip(inputs, values, strict=True)
         ]
         back = [
-            np.broadcast_to(getattr(x, "backend", 0), np.shape(v))
+            x.backend
+            if isinstance(x, Disc) and x.backend.shape == v.shape
+            else np.broadcast_to(getattr(x, "backend", 0), v.shape)
             for x, v in zip(inputs, values, strict=True)
         ]
         magnitude = [abs(x) for x in values]
@@ -1417,9 +2665,10 @@ class Disc(np.ndarray):
             rounding = np.full(np.shape(result), 4 * U)
         if operation is np.exp:
             rounding = np.full(np.shape(result), sqrt(2) * 4 * U) * np.exp(np.real(values[0]))
-        observer = propagate(obs) + rounding
+        propagated_observer = propagate(obs)
+        observer = propagated_observer + rounding
         total_input = [a + b for a, b in zip(obs, back, strict=True)]
-        backend = np.maximum(propagate(total_input) - propagate(obs), 0) + rounding
+        backend = np.maximum(propagate(total_input) - propagated_observer, 0) + rounding
         wrapped = Disc(result, observer, backend)
         if target is not None:
             destination = target[0]
@@ -2280,6 +3529,7 @@ def parameter_model(
         "cumulative-product": [],
     }
     builds = []
+    sample_at = local_samples(table)
     op = {k: settings[k] for k in optics()}
     for t, d in np.ndindex(tcount, dcount):
         search = settings.get("search_carriers", True) and (
@@ -2324,7 +3574,15 @@ def parameter_model(
             carriers[t, d] = carrier
             for b in range(1, orders):
                 built = overlaps(
-                    bands, table, carrier, (0, b), t, d, omit=settings.get("omit_kz0", False), **op
+                    bands,
+                    table,
+                    carrier,
+                    (0, b),
+                    t,
+                    d,
+                    omit=settings.get("omit_kz0", False),
+                    sampler=sample_at,
+                    **op,
                 )
                 fit = regression(built["spatial"], carrier, (0, b), bands.dxy_um)
                 builds.append(built)

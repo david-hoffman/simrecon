@@ -320,7 +320,11 @@ def finite_details(value: Any) -> None:
 
 
 def assert_scientific(
-    case: Case, result: Any, expected: dict[str, Any] | None = None
+    case: Case,
+    result: Any,
+    expected: dict[str, Any] | None = None,
+    *,
+    budget: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Absolute raw-observation proof, conditional on the declared arithmetic model.
 
@@ -329,7 +333,8 @@ def assert_scientific(
     """
     if expected is None:
         expected = observe(case)
-    budget = error_budget(case, expected)
+    if budget is None:
+        budget = error_budget(case, expected)
     prep, est = expected["preparation"], expected["parameters"]
     pe, ke, ne = (
         budget[key] for key in ("preparation_bounds", "parameter_bounds", "native_bounds")

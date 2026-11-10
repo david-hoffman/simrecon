@@ -14,7 +14,45 @@ import pytest
 from parallel_runner_fixture import ROOT, observations, run, suite
 
 # The approved whole-file contract is independent of the implementation mapping.
-SCIENCE: tuple[str, ...] = ()
+SCIENCE: tuple[str, ...] = (
+    "c_acquisition_2d",
+    "c_acquisition_boundary",
+    "c_acquisition_composition",
+    "c_acquisition_drift",
+    "c_acquisition_filter",
+    "c_acquisition_fitted_drift",
+    "c_acquisition_preparation",
+    "c_acquisition_transfer",
+    "c_estimation_boundary",
+    "c_estimation_composition",
+    "c_estimation_overlap",
+    "c_estimation_search",
+    "c_independent_large_recovery",
+    "c_independent_matched_recovery",
+    "c_independent_small_controls",
+    "c_known_assembly",
+    "c_known_boundary",
+    "c_known_filter",
+    "c_otf",
+    "c_otf_validation",
+    "c_preparation",
+    "c_workflow_00_known",
+    "c_workflow_compatibility",
+    "c_workflow_failures",
+    "c_workflow_numerical",
+    "c_workflow_records",
+    "c_workflow_validation",
+)
+INFRASTRUCTURE: tuple[str, ...] = (
+    "verification_evidence_outputs",
+    "verification_receipt",
+    "measurements_export",
+    "verification_output_protection",
+    "shared_node_baseline_external_native_evidence",
+    "source_free_check",
+)
+# Keep the slow composition file in an initially assigned, high-case-count group.
+COMPOSITION = ("c_acquisition_composition", "c_otf_validation", "c_workflow_validation")
 
 
 def test_real_make_tests_delivers_fixed_flags_to_selected_uv(tmp_path: Path) -> None:
@@ -51,7 +89,7 @@ def test_real_make_tests_delivers_fixed_flags_to_selected_uv(tmp_path: Path) -> 
 
 
 def test_whole_file_groups_preserve_exact_nodes_and_serial_mode(tmp_path: Path) -> None:
-    names = sorted((*SCIENCE, "unclassified", "new_file"))
+    names = sorted((*SCIENCE, *INFRASTRUCTURE, "unclassified", "new_file"))
     files = {
         f"tests/test_{name}.py": "import pytest\ndef test_first():\n    assert True\n\n"
         '@pytest.mark.parametrize("label", ["original@science-test_volume_phase_estimation"])\n'
@@ -76,7 +114,15 @@ def test_whole_file_groups_preserve_exact_nodes_and_serial_mode(tmp_path: Path) 
             normalized = [node.rsplit("@", 1)[0] if workers else node for node in row["nodes"]]
             assert normalized == expected
             groups = [
-                [f"science-test_{name}" if name in SCIENCE else "serial-rest"]
+                [
+                    "science-composition"
+                    if name in COMPOSITION
+                    else f"science-test_{name}"
+                    if name in SCIENCE
+                    else f"infrastructure-test_{name}"
+                    if name in INFRASTRUCTURE
+                    else "serial-rest"
+                ]
                 for name in names
                 for _ in range(2)
             ]

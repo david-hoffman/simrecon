@@ -1,0 +1,30 @@
+{
+  "inventory.json": {
+    "uncompressed_bytes": 581213,
+    "uncompressed_sha256": "702403f9ef83f391aaf72aefaeff3647f1f26276170a590dd5b6b7eb15aa5868",
+    "archive": "inventory.json.gz",
+    "archive_bytes": 59203,
+    "archive_sha256": "8e5ea5a260a020726362d5f046fbdd4f48327217ed441eb0ae959155463aebb6"
+  },
+  "scientific-ledger.json": {
+    "uncompressed_bytes": 2664409,
+    "uncompressed_sha256": "8cf59d82a545883a3c4b4d6a02508adeba11259fe43f5634f921479f62119bf4",
+    "archive": "scientific-ledger.json.gz",
+    "archive_bytes": 373315,
+    "archive_sha256": "b42886ce412a4510f3ec12c370ebd4d704610c1969715b629f91dbded4bc01e7"
+  },
+  "neutral-ledger.json": {
+    "uncompressed_bytes": 157380,
+    "uncompressed_sha256": "bbb5334d5e5a6160c43e6f921c68caadba91aff42d2ffecd0176db3c39a00750",
+    "archive": "neutral-ledger.json.gz",
+    "archive_bytes": 17131,
+    "archive_sha256": "1129d343dbf4a8ce9da91c913662a78080cff2b3b31364cee074b3982f00453b"
+  },
+  "infrastructure-ledger.json": {
+    "uncompressed_bytes": 1234924,
+    "uncompressed_sha256": "aaaf753ab935a4ebf3dca4dfc2dd727af7caf76f63dcce9057be086065664a88",
+    "archive": "infrastructure-ledger.json.gz",
+    "archive_bytes": 186192,
+    "archive_sha256": "05d456116683b0c4d11d9792034cb18c90759b40e1bf596b2ab1f3910873f6be"
+  }
+}
