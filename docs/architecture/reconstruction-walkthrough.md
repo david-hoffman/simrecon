@@ -1,38 +1,27 @@
 # Reconstruction: mathematics alongside the executing code
 
-**Initial explanatory draft, 2026-11-09.** Source snapshot:
-`edcf53b5d5c0f494c388944d3cfda5c04b9fda97`. This describes the current Python
-implementation; it changes no algorithm or scientific contract. Source line
-links refer to that snapshot and should be updated when functions move.
+**Task 01 reader guide, 2026-11-10.** Checked against runtime baseline
+`0ea11a5876549bf26a3a813009b97c09decc806d`, preserved in preparation commit
+`ac2b0d65f239fb5f628792ae58af13ea1da868bf`. This explains the current Python
+implementation; it changes no algorithm or scientific contract. Relative source
+line links refer to this checkout and must move with functions in later tasks.
 
 Start with the diagram and phase-separation section, then follow filtering and
 assembly. The detailed boundary notes explain places where an idealized SIM
 formula alone would misdescribe this implementation. Existing
 [usage guides](../usage/c-workflow.md) explain calls, and
 [contracts](../contracts/c-equivalence-workflow-v1.md) remain the behavior authority.
-The [restructuring specification](../plans/human-readable-restructure.md) proposes
-where these responsibilities could live; all source links here use current paths.
+The [module map](../plans/human-readable-restructure.md) records
+where later tasks will place these responsibilities; all source links here use current paths.
 
 This is a source-derived explanation, not a new numerical validation, physical
 recovery result, or historical C-executable comparison. The retained C reference
 was not compiled, run, imported or copied for this analysis.
 
-## A small diagram for the README
+## Pipeline overview
 
-This is a proposed README insertion; the README itself is unchanged.
-
-```mermaid
-flowchart LR
-    Raw["Specimen exposures + explicit settings"] --> Prep["Prepare acquisition bands"]
-    Beads["Raw bead calibration + settings"] --> OTF["Optical transfer"]
-    Tables["Declared complex transfer tables"] --> OTF
-    Prep --> Fit["Estimate carriers + modulation"]
-    OTF --> Fit
-    Prep --> Recon["Filter native bands + assemble"]
-    OTF --> Recon
-    Fit --> Recon
-    Recon --> Image["Signed image + physical coordinates"]
-```
+The [README data-flow diagram](../../README.md#follow-the-reconstruction) gives
+the short reading path; the expanded stage diagram below includes the array axes.
 
 `reconstruct_workflow` composes these stages. A caller may instead supply known
 carriers/modulation to `reconstruct_known`, bypassing estimation. Supported file
@@ -232,7 +221,7 @@ $$
 L=\begin{pmatrix}1&1&1\\1&-1/2&-1/2\\0&\sqrt3/2&-\sqrt3/2\end{pmatrix}.
 $$
 
-For the illustrative phase signal `d_p=10+4cosφ_p+2sinφ_p`, exposures are `(14,8+√3,8−√3)` and separated outputs are `B0=30`, `E1=6`, `O1=3`, hence `B1+=6+3i` and `B1−=6−3i`. This isolates the separator; it does not include camera scale, spatial transforms, Nyquist behavior, optics or reconstruction. Label any plotted points “analytic illustration of one ordinary separated sample.”
+For the illustrative phase signal `d_p=10+4cosφ_p+2sinφ_p`, exposures are `(14,8+√3,8−√3)` and separated outputs are `B0=30`, `E1=6`, `O1=3`, hence `B1+=6+3i` and `B1−=6−3i`. This isolates the separator; it does not include camera scale, spatial transforms, Nyquist behavior, optics or reconstruction. Both examples illustrate ordinary separated samples; neither represents the stored x-Nyquist exception.
 
 ![Analytical toy phase measurements, signed separation weights, and unnormalized quadratures](../figures/readable-reconstruction/phase-separation.svg)
 
@@ -268,11 +257,21 @@ u=r/\Delta k_{r,H}\quad\text{(radial)},\qquad
 \tau = k_{z,\mathrm{index}}\Delta k_{z,\mathrm{native}}/\Delta k_{z,H}.
 $$
 
-Radial sampling is bilinear in (u,τ). Full sampling is trilinear, reflecting and conjugating for negative x. It interpolates complex samples, not their magnitudes. Every literal stencil vertex is checked, including zero-weight vertices; allocation boundary failures are errors rather than silent zero extension. Source [`_radial_sample`](../../src/simrecon/_optical_transfer.py#L358), [`_full_sample`](../../src/simrecon/_optical_transfer.py#L370).
+Radial sampling is bilinear in (u,τ). Full sampling is trilinear, reflecting and conjugating for negative x. Negative y/z coordinates receive a once-only adjustment; literal flat addresses govern admissibility, including deterministic cross-row aliases. This is not repeated periodic wrapping or per-axis clipping. It interpolates complex samples, not their magnitudes. Every literal stencil vertex is checked, including zero-weight vertices; allocation boundary failures are errors rather than silent zero extension. Source [`_radial_sample`](../../src/simrecon/_optical_transfer.py#L358), [`_full_sample`](../../src/simrecon/_optical_transfer.py#L370).
 
 Workflow transfer selection resolves raw bead calibration, a PreparedOtf, an OpticalTransfer, or explicitly decoded sections (`_workflow_transfer.py:339`). Raw beads call [`prepare_bead_otf`](../../src/simrecon/_optical_transfer.py#L814), with correction/edge/centering, normalized phase separation, 3D Fourier transform, optional sphere-response compensation, radial averaging, cleanup and normalization. The bead separator **does divide by P**, unlike specimen separation: `_optical_transfer.py:585–618`. Do not reuse one formula for both stages.
 
-For bead diameter a and spatial frequency magnitude ρ, compensation divides by the sphere response
+For bead diameter a in µm, compensation uses the order-shifted frequency norm,
+not the native frequency magnitude. With odd bead phase count P_b, line spacing
+L in µm, orientation θ and slot order m=(slot+1)//2,
+
+$$
+\rho_m=\left\|(k_x,k_y,k_z)+
+\frac{m}{\lfloor P_b/2\rfloor L}(\cos\theta,\sin\theta,0)\right\|.
+$$
+
+All k components and ρ_m are in cycles/µm. For each slot, compensation divides
+by the sphere response (ρ=ρ_m below)
 
 $$
 S(u)=3(\sin u-u\cos u)/u^3,\qquad u=\pi a\rho,\quad S(0)=1.
@@ -419,7 +418,14 @@ provides no resolution or recovery claim.*
 
 ## Interpretation limits and source map
 
-The present code aims at a selected finite mathematical mapping with explicit source conventions. Current project text leaves independent physical recovery/resolution acceptance to CE08 and historical binary C agreement unqualified (`docs/PROJECT.md` current boundary; workflow emits these limits at `_workflow.py:303–310`). Do not claim this walkthrough, a passing algebra illustration, or a source trace establishes physical correctness or C binary equivalence.
+The present code implements a selected finite mathematical mapping with explicit
+source conventions. Independent recovery evidence is recorded separately in
+[CE08 acceptance studies](../reports/c-equivalence-independent-acceptance.md) and the
+[simulation capstone](../studies/simulation-capstone/README.md), with their own
+inputs and limits. The workflow's emitted limits still defer physical acceptance
+to CE08 (`_workflow.py:303–310`); that string is not a current study-status summary.
+Historical binary C agreement remains unqualified. This walkthrough, its algebra
+illustrations and source traces add no physical recovery or C-binary evidence.
 
 Use these source entry points to read one stage at a time:
 
@@ -441,7 +447,7 @@ Use these source entry points to read one stage at a time:
 The central conventions are: specimen separator is unnormalized; E/O are complex arrays; B+=E+iO and positive assembly ramp share one sign convention; x Nyquist bypasses phase separation; filter acts before relocation; output is signed; zoom is sampling enlargement, not recovery evidence.
 
 
-## Figure provenance and next documentation work
+## Figure provenance
 
 The two SVG figures were generated with NumPy and Matplotlib 3.10.8 from the
 explicit analytical formulas in their captions. They use no microscopy dataset,
@@ -449,10 +455,9 @@ product reconstruction output or fitted values. The inputs and illustrative
 scales are completely specified above; SVG metadata also records them. They are
 standalone conceptual artifacts, with accessible text labels and prose captions.
 
-This first draft covers the current path and its most consequential conventions.
-A later documentation task should add a small reproducible notebook or figure
-script under `docs/` (separate from product source), a microscope-specific bead/OTF
-cartoon, and a worked overlap-weighting example. Review those examples against
-the selected contracts before claiming scientific agreement. Keep exact mode
-admission and representation rules in the linked contracts rather than silently
-turning this explanation into a second specification.
+The captions specify the analytical inputs so the illustrations can be checked
+without running reconstruction. Task 01 corrects the phase-slot labels to B₀,
+E₁ and O₁: zero phase order is not necessarily zero spatial frequency. Keep exact
+mode admission and representation rules in the linked contracts rather than
+turning this explanation into a second specification. Future explanatory examples
+or extraction tasks must retain this distinction from scientific validation.

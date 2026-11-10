@@ -25,7 +25,7 @@ The remote `main` head observed at kickoff is
 The latter changes verification fixtures and `_pytest_policy.py`; retain those
 changes. Recheck source inventory and source links against the actual task base.
 
-Carry these already-written artifacts into the first cloud task:
+Task 01 carries and completes these preparation artifacts:
 
 - [Restructuring specification](../plans/human-readable-restructure.md).
 - [Mathematical walkthrough](../architecture/reconstruction-walkthrough.md).
@@ -111,23 +111,89 @@ Do not force-push someone else's work or delete branches during this rollout.
 - Documentation/source links move with symbols. Keep conceptual figures clearly
   distinguished from scientific validation and historical C-executable agreement.
 
+## Task 01 contract and evidence pointer
+
+Route: non-normative documentation with fresh-context mathematical/inventory
+advisors and independent final documentation review, required by this task.
+This is not scientific implementation or policy activation. The worker owns
+`README.md`, the walkthrough, its two SVG figures, the restructuring map and this
+handoff. No runtime, tests, dependency, configuration or verification-gate edits.
+Preserve current `main` and all 36 exports. No merge or auto-merge.
+
+Checks: source-derived equations and conventions, conceptual figure labels and
+rendering, local Markdown targets/anchors and source-line bounds, full module
+inventory/map, unchanged non-documentation baseline, whitespace, then the clean
+committed candidate's full `make verify`. An independent reviewer checks the
+candidate and applicable evidence before submission. Exact final head/tree,
+base, verdict and receipt go in the PR/conversation rather than changing verified
+tracked bytes. Detailed local evidence is retained in ignored
+`artifacts/readability-01/` and `artifacts/verification/`.
+
+## Task 02 launch packet
+
+The completing coordinator must fill the exact Task 01 PR URL, verified pushed
+head SHA/tree and observed base SHA into the next-task prompt outside tracked
+bytes. Start only from that head in a **new cloud task**, after Task 01 review,
+verification, push and PR creation. Fetch and confirm identities before editing.
+
+Create `codex/readability-02-devtools`, targeting `codex/readability-01-docs`.
+Read AGENTS.md, PROJECT.md, this handoff and the module map. Implement Task 02
+only: move doctor launcher and pytest policy to a development-only local package,
+preserve `delivery doctor`, current strict pytest policy/affinity and #87 observer
+changes, exclude harness modules from the product wheel, and explicitly reconcile
+locked installation, all owned-file/subprocess measurement, tooling roots and
+separate artifact paths. Inventory temporary caller environments and dynamic
+import strings. Choose the applicable repository route and fresh required roles;
+advisors do not replace independent review. No scientific changes or weaker gates.
+Commit and fully verify the exact candidate before opening the stacked PR; no
+merge or auto-merge. Return evidence and then launch Task 03 in another new cloud
+task, or provide its prompt if launching is unavailable. Never implement Task 03
+in Task 02's task.
+
 ## Current state
 
-The owner has authorized the complete stack. Existing documentation drafts are
-being transported for Task 01; runtime implementation has not started. The
-official `codex cloud exec` launcher is installed and reports ChatGPT login, but
-task listing is blocked by an environment-proxy 403 for `chatgpt.com`. The user
-has been asked to allow that host while preserving existing network entries.
-No cloud task or PR has been created by this kickoff yet. No launch retry may be
-reported as success without an actual returned task identifier.
+Task 01 is executing in a new cloud task on `codex/readability-01-docs`, from
+seed `ac2b0d65f239fb5f628792ae58af13ea1da868bf`. Remote fetch/ls-remote confirmed
+`main` at `0ea11a5876549bf26a3a813009b97c09decc806d`, already an ancestor of the
+seed; PR #87 is preserved. The GitHub connector confirmed repository identity
+`david-hoffman/simrecon` (repository ID 1398550280). Task URL is not exposed by
+this runtime; do not fabricate one.
 
-The current managed environment configuration identifier is not assumed to be
-the legacy CLI's `--env` identifier; discover the latter from the official cloud
-interface after access is restored. Check remote main/predecessor identity again
-at launch. No hidden scheduling, daemon or automatic polling loop is installed.
+Documentation is prepared for candidate review and full verification; exact
+completion outcomes are attached to the final PR/conversation. Two fresh Sol/high
+advisors checked mathematics and inventory; corrections clarify bead compensation,
+interpolation boundaries and phase-slot labels, refresh 7,805 source lines and
+reconcile the full 25-module map with the authorized sequence. The 36 exports and
+scientific source are unchanged. A separate fresh independent final reviewer is
+required; advisor findings are not that verdict.
 
-Original analysis: eight fresh-context agent tasks and two independent document
-reviews. Kickoff: one fresh read-only packet advisor; cloud listing attempted once
-inside and once outside the command sandbox, followed by a single unauthenticated
-connectivity probe confirming proxy denial. Human-set budgets: not set. Per-agent
-token/cost measurements: unavailable. Installed external Serena tooling is retained.
+Environment preflight passed using Python 3.13.12, uv 0.12.19 and existing Temurin
+21.0.7+6 via `SIMRECON_JAVA`. Earlier attempts diagnosed default Java 21.0.13 and
+sandbox proxy access failures; no gate was weakened. Git operations require the
+supported escalation path here. The `gh` API returned 403, but the GitHub connector
+works. The official `codex cloud list` failed; an escalated connectivity check
+confirmed proxy HTTP 403 for `chatgpt.com`. If that remains unresolved after PR
+creation, return the filled Task 02 prompt; do not substitute a subagent or local
+process. No successor has been launched.
+
+Cumulative accounting is retained: original analysis had eight fresh-context
+agent tasks including two independent document reviews; kickoff had one fresh
+read-only packet advisor, two cloud-list attempts and one connectivity probe.
+Task 01 adds two report-only documentation advisors, one environment advisor,
+and the final independent review(s) reported with the candidate. Preflight had
+two failed attempts (default Java; sandbox fetch) before one passing run. The
+initial Git fetch failed in the sandbox; escalated fetch succeeded. One local
+SVG-render attempt lacked its delegate and one cached retry hit a read-only cache;
+the supported escalated isolated renderer supplied previews
+without changing project dependencies. Task 01 cloud discovery/probe attempts:
+one each, both failed. Human-set budgets: not set. Per-role token counts, monetary
+cost and complete elapsed/wait measurements: unknown. Role settings are requested
+Sol/high; actual serving attribution is unavailable.
+
+Cleanup: removed the task-owned temporary editing/check scripts and duplicate
+preflight log after preserving the check script and logs under ignored evidence.
+Moved the cloud launcher’s generated `error.log` into that evidence directory.
+Retained the current checkout, required environment/cache, reader inputs and
+durable ignored review/verification evidence. No cleanup error; no unrelated work,
+tracked fixtures or predecessor branches were removed. Final verification
+artifacts are retained for the next task.

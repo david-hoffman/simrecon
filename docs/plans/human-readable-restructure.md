@@ -1,16 +1,16 @@
-# A readable scientific codebase: analysis and proposed task specification
+# A readable scientific codebase: restructuring map
 
-**Status: proposal, not an approved replacement architecture or implementation.**
-Source reviewed: `edcf53b5d5c0f494c388944d3cfda5c04b9fda97`, 2026-11-09.
-This task changes documentation only. Existing contracts, public APIs, numerical
-behavior, verification gates and delivery policy remain in force.
+**Task 01 documentation foundation, 2026-11-10.** The owner authorized the
+restructuring direction as stacked PRs, each in a new cloud task. The
+[stack handoff](../tasks/readability-stack.md) is the execution order and sole
+Current state. Later tasks still require narrow contracts, review and verification;
+this document changes no runtime behavior, public API or delivery policy.
 
-**Implementation kickoff:** the owner subsequently authorized the proposed work
-as stacked PRs, each started in a new cloud task. The
-[stack handoff](../tasks/readability-stack.md) records that authorization,
-dependencies and settled choices. The analysis below retains its original source
-snapshot; its earlier no-code restriction no longer applies to the authorized
-implementation tasks. The handoff's Current state is the active execution pointer.
+Original analysis: `edcf53b5d5c0f494c388944d3cfda5c04b9fda97`.
+Inventory and source links refreshed against actual Task 01 runtime baseline
+`0ea11a5876549bf26a3a813009b97c09decc806d`, retained in preparation commit
+`ac2b0d65f239fb5f628792ae58af13ea1da868bf`. PR #87's newer verification changes
+are preserved. Relative source links describe this checkout, not future paths.
 
 ## Purpose and scope
 
@@ -18,11 +18,11 @@ A scientist should be able to follow an exposure through reconstruction, find th
 function implementing each mathematical step, and understand its inputs without
 reading delivery history. A fresh coding agent should follow the same map.
 
-The requested outcome is an analysis, an initial scientific explanation, and a
-reviewable specification for later restructuring. No Python source, tests,
-configuration, dependencies, entry points or README are changed by this task.
-Serena was installed externally for this investigation; durable repository setup
-is tracked in [issue #86](https://github.com/david-hoffman/simrecon/issues/86).
+Task 01 supplies the README reading path, scientific walkthrough and conceptual
+figures, complete module map and successor handoff. It changes documentation only;
+Python source, tests, configuration, dependencies and verification gates are outside
+its scope. Durable Serena setup remains Task 09 and
+[issue #86](https://github.com/david-hoffman/simrecon/issues/86).
 
 [Issue #81](https://github.com/david-hoffman/simrecon/issues/81) is narrower: rename
 single-underscore implementation **modules**, preserve documented package exports
@@ -40,7 +40,7 @@ functions, exclude generated caches, and cover `src/simrecon/*.py` only.
 | Observation | Consequence |
 | --- | --- |
 | 25 Python files; all 24 non-`__init__` filenames start with `_`; no subpackages | Browsing does not expose responsibility boundaries. |
-| 7,754 source lines; 207 function definitions, 113 with a single leading underscore (121 including dunder methods) | Internal implementation dominates the navigation surface. |
+| 7,805 source lines; 207 function definitions, 113 with a single leading underscore (121 including dunder methods) | Internal implementation dominates the navigation surface. |
 | 138 definitions have no docstring; 58 have a one-line docstring; 11 have a multiline docstring | Documentation is uneven; removing underscores alone will not explain the science. |
 | Optical transfer: 1,061 lines; parameter estimation: 933; known reconstruction: 877; acquisition modes: 841 | These files contain multiple substantial operations worth naming explicitly. |
 | `_preparation.py` documents all 11 functions and explains QR inversion and dtype checks | There is already a useful local style to build on; comments are not uniformly absent. |
@@ -88,9 +88,9 @@ executes the package's eager scientific imports.
    Not justified by the present problem. Adds configuration, abstractions and
    packaging that obscure the existing array transformations.
 
-### Proposed destination map
+### Intended destination structure
 
-Names below are proposals. They do not create supported imports today. Empty or
+These are later-task destinations, not supported imports today. Empty or
 minimal subpackage `__init__.py` files should avoid eager aggregate imports.
 
 ```text
@@ -122,10 +122,10 @@ src/simrecon/
         identity.py
         result.py
         transfer.py
-scripts/
-    delivery.py                 # proposed repository-only doctor invocation
-    pytest_policy.py            # proposed explicit local pytest plugin
-    ...                        # existing verification and fixture tools
+development-only package/      # Task 02 settles its source root and installation
+    delivery.py                 # preserves installed delivery doctor command
+    pytest_policy.py            # preserves strict pytest behavior
+scripts/                        # existing verification and fixture tools
 ```
 
 Do not manufacture a singleton `optics/` directory merely for symmetry. Once the
@@ -135,19 +135,56 @@ declaration), `optics/sampling.py` (coordinate/interpolation rules), and
 reconstruction after naming their algorithmic seams and documenting shared state.
 These are later extraction tasks, not incidental edits during file moves.
 
-The existing `scripts/` location is the least disruptive initial home for two
-small development utilities. Its scope is already measured. Loading the pytest
-plugin must be configured explicitly from that location; do not assume import
-resolution will happen automatically. Preserve the doctor operation with a
-documented repository command, for example
-`uv run python scripts/delivery.py doctor --check`. The moved launcher would also
-need an explicit `__main__` guard; moving today's function-only file is insufficient.
-The `delivery` executable would no longer belong to the product installation.
-If keeping the exact `delivery doctor` spelling is required, use a separately
-installed local development-tools package instead; account for its lock inputs,
-installation and verification separately. Do not keep a product shim that imports
-repository-only files. This command-compatibility choice must be settled in the
-future tooling task before removing the installed entry point.
+Task 02 moves the two development utilities into a separately installed local
+development-only package and preserves the exact `delivery doctor` command.
+This settled choice replaces the analysis's scripts-only alternative. Task 02
+must fix its package name/source root, locked installation, measured scope and
+separate build artifacts in its narrow contract. A proposed import name is
+`simrecon_devtools`; it is not an existing or owner-selected public API. The
+product wheel must exclude these utilities and must not import repository-only
+files through a compatibility shim.
+
+### Explicit old-to-new module map
+
+All 25 existing files are accounted for below. Paths in the first two columns
+are relative to `src/simrecon/`, except the two development-package destinations.
+No move is performed in Task 01. Task 03 combines whole-module moves and issue
+#81 prefix removal once; it must also add minimal package `__init__.py` files.
+
+| Current module | Intended destination | Task |
+| --- | --- | --- |
+| `__init__.py` | `__init__.py` (retain facade) | 03 |
+| `_model.py` | `models.py` | 03 |
+| `_cli.py` | `cli.py` | 03 |
+| `_legacy.py` | `io/priism.py` | 03 |
+| `_pixels.py` | `io/pixels.py` | 03 |
+| `_metadata.py` | `io/metadata.py` | 03 |
+| `_modern.py` | `io/mrc_writer.py` | 03 |
+| `_imagej.py` | `io/imagej.py` | 03 |
+| `_imagej_metadata.py` | `io/imagej_metadata.py` | 03 |
+| `_acquisition.py` | `acquisition/declarations.py` | 03 |
+| `_preparation.py` | `acquisition/preparation.py` | 03 |
+| `_acquisition_layout.py` | `acquisition/layout.py` | 03 |
+| `_acquisition_drift.py` | `acquisition/drift.py` | 03 |
+| `_acquisition_modes.py` | `acquisition/modes.py` | 03 |
+| `_optical_transfer.py` | `optical_transfer.py` | 03 |
+| `_parameter_estimation.py` | `reconstruction/parameter_estimation.py` | 03 |
+| `_known_reconstruction.py` | `reconstruction/known_parameters.py` | 03 |
+| `_workflow.py` | `workflow/reconstruct.py` | 03 |
+| `_workflow_adapters.py` | `workflow/adapters.py` | 03 |
+| `_workflow_config.py` | `workflow/config.py` | 03 |
+| `_workflow_identity.py` | `workflow/identity.py` | 03 |
+| `_workflow_result.py` | `workflow/result.py` | 03 |
+| `_workflow_transfer.py` | `workflow/transfer.py` | 03 |
+| `_delivery.py` | Development-only package: `delivery.py` | 02 |
+| `_pytest_policy.py` | Development-only package: `pytest_policy.py` | 02 |
+
+The supported compatibility boundary is the 36 names in
+[`simrecon.__all__`](../../src/simrecon/__init__.py#L35), preserved by every task.
+Newly unprefixed module/helper names do not become stable public APIs. Current
+imports are acyclic; preserve that property, the existing exception hierarchies
+and the neutral CLI while moving files. Larger kernel extractions require
+separate scope after the initial moves.
 
 ### Dependency direction and record ownership
 
@@ -225,39 +262,36 @@ Descriptions must be checked against executing code, not generated from names.
 
 | Location | Audience and responsibility |
 | --- | --- |
-| Root `README.md` (future edit) | Small data-flow diagram, existing quick start, links to science and contributor maps |
-| [Reconstruction walkthrough](../architecture/reconstruction-walkthrough.md) (initial draft now) | Actual stage order, equations, shapes, conceptual figures, source links |
+| Root `README.md` | Small data-flow diagram, existing quick start, links to science and contributor maps |
+| [Reconstruction walkthrough](../architecture/reconstruction-walkthrough.md)  | Actual stage order, equations, shapes, conceptual figures, source links |
 | `docs/architecture/data-flow.md` | Detailed active routes: neutral files, arrays, calibration, workflow; move historical narrative to a clearly linked history page in a later docs task |
 | `docs/architecture/library-design.md` | Package responsibilities and dependency rules once the restructure is accepted |
 | `docs/usage/` | Runnable public-boundary examples and parameter guidance |
 | `docs/contracts/` | Exact behavior authority; retain links rather than duplicating every validation rule |
 | `docs/operations/` | Contributor setup, verification and Serena navigation |
 | `docs/figures/` | Small labeled conceptual/scientific figures used by the walkthrough |
-| This specification | Proposed work, sequencing, migration risks and acceptance conditions |
+| This map | Intended destinations, migration risks and acceptance conditions |
 
-The walkthrough includes a README-sized diagram ready for a later README edit.
-Link by both symbol name and source path. Update these links in the same change
-that moves a symbol; retain the reviewed source revision in scientific prose.
-Current source links may drift until that maintenance is implemented.
+The README now links the walkthrough and this map. Link by both symbol name and
+source path; update links in the same change that moves a symbol and retain the
+reviewed baseline. Historical studies and plans remain evidence for their own
+commits, not descriptions of future package paths.
 
-## Proposed work sequence and acceptance
+## Ordered implementation and acceptance
 
-Each row is a separately reviewable task; none is executed by this analysis.
+The [nine-task handoff](../tasks/readability-stack.md#ordered-tasks) is the sole
+ordered execution list: documentation → development tooling → package moves and
+#81 together → preparation → optical transfer → estimation → filtering/assembly
+→ workflow/I/O → Serena. Each PR starts in a new cloud task and targets its
+verified predecessor (Task 01 targets `main`). No separate underscore-only move,
+combined second PR in a task, merge or auto-merge is authorized.
 
-| Step | Deliverable | Acceptance evidence |
-| --- | --- | --- |
-| 1. Establish the reader map | Review the initial walkthrough against code/contracts; add README navigation and diagram; identify current versus historical docs | Equations, axis transitions and links independently reviewed; conceptual figures labeled; no implied reconstruction CLI or output writer |
-| 2. Finish #81 narrowly | Remove implementation-module prefixes in place; update all qualified consumers | Existing top-level exports and CLI preserved; dunders retained; `make verify`; no algorithm changes |
-| 3. Separate repository tooling | Relocate doctor and pytest plugin, settle development command spelling, update tool discovery/coverage | Product-only install imports and runs neutral CLI without Codex/pytest; development doctor and strict pytest outcomes preserved; all moved owned tools remain measured |
-| 4. Group whole modules | Apply shallow packages and descriptive filenames with minimal import edits | No cycles or new facade exports; installed-wheel/resource checks and all affected public routes pass; docs links updated; `make verify` |
-| 5. Name and explain operations | Rename semantic helpers, enrich docstrings/comments, then extract cohesive scientific operations | Explicit old→new symbol map; no changed signs/scales/order/boundaries/ownership/errors; representative equations matched to source; independent scientific review and existing gates |
-| 6. Standardize navigation tooling | Implement [#86](https://github.com/david-hoffman/simrecon/issues/86) with pinned Serena setup and external/ignored state | Fresh install and MCP handshake, symbol/definition/reference lookup, unchanged tracked tree after read-only navigation |
-
-Step 6 can proceed independently of the code moves; its paths/examples must be
-updated afterwards. Steps 3 and 4 may be combined only if their combined migration
-is clearer than two moves. Complete #81 first if retaining its narrow review scope
-is valuable; alternatively explicitly amend that task to combine final paths and
-prefix removal, rather than making the same import migration twice unnoticed.
+Task 01 acceptance requires independently checked equations, axes, source links,
+figures and inventory, with no implied reconstruction CLI or output writer.
+Later moves preserve public exports, CLI, scientific signs/scales/order, accepted
+input domains, ownership, errors and diagnostics. Relevant installed-product,
+pytest/doctor and source-navigation checks accompany their narrow contracts;
+every PR requires the exact committed candidate's full `make verify`.
 
 ### Concrete migration hazards to include in future contracts
 
@@ -298,21 +332,16 @@ the repository and exercised through an MCP client with read-only tools; native
 tool registration in this already-running chat was not required. Issue #86 records
 durable setup work. No restructuring or delivery-policy activation is performed.
 
-Completed checks: source/equation review, 54 local link targets and source-line
-bounds, balanced Markdown code/math blocks, whitespace checks, SVG XML parsing,
-and visual inspection of both rendered figures. Git confirms only two new
-Markdown documents and two new SVG figures, all under `docs/`; tracked files are
-unchanged. It does not claim a new passing `make verify`
-run or revalidation of the numerical product. No commit, PR, push or merge is
-part of this request. Future implementation must select the applicable repository
-review route and complete its required checks.
+The original analysis reported source/equation review, 54 local link targets and
+source-line bounds, balanced Markdown code/math blocks, whitespace checks, SVG
+XML parsing and visual inspection of both figures. Those were preparation checks,
+not verification of the eventual PR candidate. The preparation branch was labeled
+incomplete and had no full `make verify` claim.
 
-The initial recommendation is actionable without another requirements interview.
-Before implementation, settle the desired compatibility of the `delivery` command
-and whether #81 should land alone or with package moves. Neither decision blocks
-this documentation analysis. Human-set budget/review limits: not set; per-agent
-token and monetary measurements: unavailable. External Serena installation is
-retained as requested; task-only analysis drafts, figure previews, temporary browser profile and plotting
-cache were removed, and task-owned servers/browser processes were stopped. The
-external Serena helper/configuration and installation remain available; shared
-environments and existing evidence were preserved.
+Task 01 refreshes the inventory and explanation against its actual baseline.
+The command-compatibility and #81 sequencing decisions are settled above; there
+is no outstanding interview on those points. Fresh advisory/review results,
+verification identities and cumulative accounting belong to the
+[handoff](../tasks/readability-stack.md#current-state) and PR evidence. Historical
+analysis and kickoff charges remain retained there. Human-set budgets: not set;
+unavailable token/cost measurements remain unknown.
