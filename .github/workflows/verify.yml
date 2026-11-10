@@ -47,6 +47,7 @@ jobs:
             .coverage.*
             artifacts/coverage/
             artifacts/verification/
+            artifacts/devtools/dist/
             artifacts/imagej-reader/inputs.json
             dist/
           include-hidden-files: true

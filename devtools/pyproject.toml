@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "simrecon-devtools"
+version = "0.1.0"
+description = "Repository development utilities for SIMrecon"
+requires-python = ">=3.13,<3.14"
+license = "MIT"
+dependencies = ["pytest>=8.3,<10"]
+
+[project.scripts]
+delivery = "simrecon_devtools.delivery:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/simrecon_devtools"]

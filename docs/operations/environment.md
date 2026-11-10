@@ -26,3 +26,9 @@ Historical macOS hidden editable-install flags and duplicate environments are li
 Use supported bounded waits/deadlines under [role launches](role-launches.md). Timeout is incomplete evidence, not success or automatic retry. Host/wait fallback setup is separately authorized. Full verification remains default local gating; optimizations need measured local need and explicit scope.
 
 Related references: [full verification and receipts](verification.md) and [native role launches](role-launches.md).
+
+The locked development group installs the local editable `simrecon-devtools`
+distribution from `devtools/`. It supplies `delivery` and the explicitly loaded
+`simrecon_devtools.pytest_policy` plugin, including for temporary caller
+directories. Both project manifests and `uv.lock` are installation inputs.
+A product-only installation supplies `simrecon`, with no doctor or pytest policy.

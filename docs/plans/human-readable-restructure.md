@@ -7,10 +7,12 @@ Current state. Later tasks still require narrow contracts, review and verificati
 this document changes no runtime behavior, public API or delivery policy.
 
 Original analysis: `edcf53b5d5c0f494c388944d3cfda5c04b9fda97`.
-Inventory and source links refreshed against actual Task 01 runtime baseline
+Historical inventory refreshed against actual Task 01 runtime baseline
 `0ea11a5876549bf26a3a813009b97c09decc806d`, retained in preparation commit
 `ac2b0d65f239fb5f628792ae58af13ea1da868bf`. PR #87's newer verification changes
-are preserved. Relative source links describe this checkout, not future paths.
+are preserved. Source links follow the current checkout; Task 02 relocates only
+the two
+development modules. The inventory below remains the Task 01 baseline.
 
 ## Purpose and scope
 
@@ -44,7 +46,7 @@ functions, exclude generated caches, and cover `src/simrecon/*.py` only.
 | 138 definitions have no docstring; 58 have a one-line docstring; 11 have a multiline docstring | Documentation is uneven; removing underscores alone will not explain the science. |
 | Optical transfer: 1,061 lines; parameter estimation: 933; known reconstruction: 877; acquisition modes: 841 | These files contain multiple substantial operations worth naming explicitly. |
 | `_preparation.py` documents all 11 functions and explains QR inversion and dtype checks | There is already a useful local style to build on; comments are not uniformly absent. |
-| The installed wheel is configured to include `_delivery.py` and `_pytest_policy.py` | Repository maintenance is distributed inside the scientific runtime. |
+| At Task 01, the installed wheel included `_delivery.py` and `_pytest_policy.py` | Task 02 separates this maintenance code from the scientific runtime. |
 | Current internal imports form an acyclic graph | Preserve that useful property when moving code. |
 
 Evidence: [package exports](../../src/simrecon/__init__.py),
@@ -63,7 +65,7 @@ current architecture pages still increases navigation effort.
 
 ### What the doctor does, and whether it needs a script
 
-[`_delivery.main`](../../src/simrecon/_delivery.py) launches a fresh Codex process
+[`delivery.main`](../../devtools/src/simrecon_devtools/delivery.py) launches a fresh Codex process
 with a fixed doctor prompt and mode, then propagates output and exit status.
 It is not a reconstruction stage or a lesson-processing algorithm. The
 [doctor prompt](../agentic-software-delivery-v1.0/DOCTOR-PROMPT.md) can also be given
@@ -73,9 +75,9 @@ not intrinsically necessary to the scientific product.
 Keep the procedure for now, move its launcher out of the product, and evaluate
 retiring the shortcut separately if it has no useful users. Deleting the wrapper
 must not accidentally delete the underlying development procedure. Similarly,
-[`_pytest_policy`](../../src/simrecon/_pytest_policy.py) belongs to verification,
-not image reconstruction. Importing either through `simrecon` currently also
-executes the package's eager scientific imports.
+[`pytest_policy`](../../devtools/src/simrecon_devtools/pytest_policy.py) belongs to verification,
+not image reconstruction. Task 02 installs both through `simrecon_devtools`,
+independently of the product’s eager scientific imports.
 
 ## Options and recommendation
 
@@ -122,7 +124,7 @@ src/simrecon/
         identity.py
         result.py
         transfer.py
-development-only package/      # Task 02 settles its source root and installation
+devtools/src/simrecon_devtools/ # Task 02 local development distribution
     delivery.py                 # preserves installed delivery doctor command
     pytest_policy.py            # preserves strict pytest behavior
 scripts/                        # existing verification and fixture tools
@@ -138,10 +140,10 @@ These are later extraction tasks, not incidental edits during file moves.
 Task 02 moves the two development utilities into a separately installed local
 development-only package and preserves the exact `delivery doctor` command.
 This settled choice replaces the analysis's scripts-only alternative. Task 02
-must fix its package name/source root, locked installation, measured scope and
-separate build artifacts in its narrow contract. A proposed import name is
-`simrecon_devtools`; it is not an existing or owner-selected public API. The
-product wheel must exclude these utilities and must not import repository-only
+uses `devtools/src/simrecon_devtools`, installed through the locked development
+group, measured as its own package, with artifacts in `artifacts/devtools/dist/`.
+The import name `simrecon_devtools` is development infrastructure, not a supported
+scientific API. The product wheel must exclude these utilities and must not import repository-only
 files through a compatibility shim.
 
 ### Explicit old-to-new module map
@@ -304,9 +306,9 @@ every PR requires the exact committed candidate's full `make verify`.
 - Public `inspect`, `read`, `harmonize`, and `write` lack function docstrings.
   Making their modules unprefixed may reveal previously suppressed Ruff D rules.
   Supply useful docs; do not disable the existing rules to make a rename pass.
-- `scripts/verify.py` and `pyproject.toml` explicitly measure `src/simrecon` and
-  `scripts`. Moves must preserve per-file/per-package accounting, never-imported
-  files and subprocess measurement. Percentages remain advisory under current
+- `scripts/verify.py` and `pyproject.toml` explicitly measure `src/simrecon`,
+  `scripts` and `devtools/src/simrecon_devtools`. Moves must preserve per-file and
+  per-package accounting, never-imported files and subprocess measurement. Percentages remain advisory under current
   policy; mandatory reports and integrity checks remain binding.
 - Verification expects one product wheel. A separate tooling distribution needs
   isolated artifacts and explicit verification; a second wheel in `dist/` is not

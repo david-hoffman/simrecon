@@ -150,9 +150,9 @@ merge or auto-merge. Return evidence and then launch Task 03 in another new clou
 task, or provide its prompt if launching is unavailable. Never implement Task 03
 in Task 02's task.
 
-## Current state
+## Task 01 retained execution accounting
 
-Task 01 is executing in a new cloud task on `codex/readability-01-docs`, from
+Historical pre-verification pointer (completion evidence is PR #88). Task 01 is executing in a new cloud task on `codex/readability-01-docs`, from
 seed `ac2b0d65f239fb5f628792ae58af13ea1da868bf`. Remote fetch/ls-remote confirmed
 `main` at `0ea11a5876549bf26a3a813009b97c09decc806d`, already an ancestor of the
 seed; PR #87 is preserved. The GitHub connector confirmed repository identity
@@ -202,3 +202,87 @@ Retained the current checkout, required environment/cache, reader inputs and
 durable ignored review/verification evidence. No cleanup error; no unrelated work,
 tracked fixtures or predecessor branches were removed. Final verification
 artifacts are retained for the next task.
+
+## Task 02 contract and evidence pointer
+
+Authorized route: bounded conventional infrastructure maintenance, with one named
+code/test/infrastructure worker and a fresh independent final bounded reviewer.
+A fresh report-only tooling advisor checks consumer inventory and route; advice
+is not acceptance. Launcher arguments, doctor permissions, strict pytest outcomes,
+#87 affinity/observers, science and all 36 public exports retain their behavior.
+No new scientific, binary, security or delivery-policy meaning is authorized.
+
+Code ownership: the two relocated harness modules and new local `devtools/`
+package metadata; root `pyproject.toml`, `uv.lock`, `Makefile`; owned measurement
+inventory in `scripts/verify.py`; narrow installed-artifact checking and its
+infrastructure tests/fixtures; CI artifact retention only. Documentation ownership:
+this handoff, current PROJECT/environment/verification guidance, live module-map
+links and a unique evidence-linked lesson if useful. No scientific source/test
+rewrite, new thresholds, reduced discovery, product shim or general framework.
+
+Concrete obligations and checks:
+
+- Locked all-groups install provides `delivery` and the explicit pytest plugin
+  in temporary caller environments, without a product dependency on devtools.
+- Keep doctor arguments/output/status/missing-executable behavior; retain public
+  console tests and strict serial/two-worker runner tests, #87 affinity and child
+  shard preservation. Move the two implementation bodies intact.
+- Include every development source in lint/format/types and native per-file,
+  per-package/global coverage. Check never-imported and missing/excluded report
+  cases as well as relevant subprocesses. Percentages remain advisory.
+- Keep one product wheel in `dist/`; build/check the development wheel separately
+  in `artifacts/devtools/dist/`. Inspect installed product exports, CLI and absence
+  of harness imports/dependencies outside the checkout with only runtime packages.
+  Check development console/plugin installation separately.
+- Preserve all 13 full verification phases, report protections, same-run M25 and
+  supported-platform CI. Commit first, then run full `make verify`, then obtain
+  fresh exact-candidate independent acceptance before submission.
+
+Final identities, complete commands/results and review verdict belong in the
+PR/conversation, outside verified tracked bytes. Durable ignored evidence lives
+in `artifacts/readability-02/` and the usual coverage/verification directories.
+Task 03 may start only in another genuinely new cloud task from the exact pushed,
+verified Task 02 head, targeting `codex/readability-02-devtools`.
+
+## Current state
+
+Task 02 is executing in a new cloud task on `codex/readability-02-devtools`.
+Predecessor PR #88 is open, unmerged, at verified pushed commit
+`d4ae74785460039eef911dec02ac98be6394c922`, tree
+`abae50021f597fcb549398d9080e9c50cfc57c3f`; remote main remains
+`0ea11a5876549bf26a3a813009b97c09decc806d`, its ancestor. Explicit remote
+refs confirm these identities; no restacking was needed and no newer changes
+were discarded. The remote Task 02 branch was absent at intake. Predecessor CI run 42884406794 completed successfully on both configured
+platforms; final remote state is rechecked before submission.
+The cloud CLI discovery attempt returned HTTP 401 (authentication token could
+not be parsed). No successor launch is claimed; supply a filled next-task prompt
+if this remains blocked. Task URL/ID is not exposed; environment identity is not a cloud task identity.
+
+Pinned Python 3.13.12, uv 0.12.19 and Temurin 21.0.7+6 were checked in this
+new environment. `SIMRECON_JAVA` selects the pinned Java executable. No earlier
+filesystem path was accepted without probing it. The initial sandbox Git fetch
+failed on proxy connectivity; an escalated fetch succeeded but did not create
+the intended tracking ref under the checkout’s fetch configuration. An explicit
+refspec then confirmed the predecessor. No verification gate was changed.
+
+Cumulative prior analysis/kickoff/Task 01 accounting above remains retained.
+Task 02 adds one fresh report-only tooling advisor, one bounded implementation
+worker, coordinator setup/documentation and the fresh independent final review
+reported with completion. The worker recorded 11 failed commands: six environment
+(offline lock once, sandbox builds three times, sandbox Pyright twice including
+its diagnostic), three lint/format commands, one nonexistent-test invocation and
+one authored test-expectation defect. Three author correction batches fixed
+formatting twice and the protection test expectation once. Focused runs passed
+28 and 263 tests plus three final targeted cases (overlap, not a distinct-test
+sum); `make check preflight`, both builds and actual `make wheel-import` passed.
+Coordinator setup adds one failed sandbox fetch, one tracking-ref resolution
+failure after a successful fetch, and one failed cloud discovery (HTTP 401).
+Full-run attempts and final review/launch outcomes are reported with completion. Human-set budgets: not
+set. Token/cost and actual served-model attribution: unknown; fresh role requests
+use Sol/high. A reviewer is not the advisor or worker and inherits no author chat.
+
+Cleanup retains the current checkout, required environment/cache/reader inputs
+and durable ignored evidence. Task-created temporary caller/install environments
+use scoped temporary directories; any remaining uncertain scratch is preserved.
+Final cleanup details and errors are reported outside verified tracked bytes.
+No second PR, merge or auto-merge is authorized in this task.

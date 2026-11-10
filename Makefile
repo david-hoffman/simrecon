@@ -28,14 +28,14 @@ preflight: sync
 
 coverage-clean:
 	"$(UV)" run --locked coverage erase
-	rm -rf artifacts/coverage dist
+	rm -rf artifacts/coverage artifacts/devtools/dist dist
 	mkdir -p artifacts/coverage
 
 lint:
-	"$(UV)" run --locked ruff check src tests scripts
+	"$(UV)" run --locked ruff check src devtools/src tests scripts
 
 format:
-	"$(UV)" run --locked ruff format --check src tests scripts
+	"$(UV)" run --locked ruff format --check src devtools/src tests scripts
 
 types:
 	"$(UV)" run --locked pyright
@@ -57,9 +57,10 @@ coverage-report:
 
 wheel:
 	"$(UV)" build --wheel
+	"$(UV)" build --wheel ./devtools --out-dir artifacts/devtools/dist
 
 wheel-import:
-	"$(UV)" run --no-project --with ./dist/simrecon-0.1.0-py3-none-any.whl python -c "import simrecon; print(simrecon.__file__)"
+	"$(UV)" run --locked python scripts/check_installed_wheels.py --uv "$(UV)"
 
 audit:
 	"$(UV)" audit --locked

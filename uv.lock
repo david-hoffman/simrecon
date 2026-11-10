@@ -360,6 +360,7 @@ dev = [
     { name = "pytest" },
     { name = "pytest-xdist" },
     { name = "ruff" },
+    { name = "simrecon-devtools" },
 ]
 
 [package.metadata]
@@ -380,7 +381,19 @@ dev = [
     { name = "pytest", specifier = ">=8.3,<10" },
     { name = "pytest-xdist", specifier = "==3.8.0" },
     { name = "ruff", specifier = ">=0.13,<1" },
+    { name = "simrecon-devtools", editable = "devtools" },
 ]
+
+[[package]]
+name = "simrecon-devtools"
+version = "0.1.0"
+source = { editable = "devtools" }
+dependencies = [
+    { name = "pytest" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pytest", specifier = ">=8.3,<10" }]
 
 [[package]]
 name = "tifffile"
