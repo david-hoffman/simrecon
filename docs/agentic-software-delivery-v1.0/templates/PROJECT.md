@@ -26,7 +26,7 @@ Gate mode: full-local by default. If a human-requested CI-authoritative evaluati
 
 ## Adoption baseline and history
 
-Link read-only inventory with revision/commands/environment, exact coverage scope/failures/tooling/meaning gaps. Label stale/blocked measurements. Separate setup from product remediation and expose infeasible baseline dependencies for owner decision; an installation request proves no readiness. Keep root LESSONS as one home. No cache/shard/helper is required without demonstrated need and authorized infrastructure scope.
+Link read-only inventory with revision/commands/environment, exact coverage scope/failures/tooling/meaning gaps. Label stale/blocked measurements. Separate setup from product remediation and expose infeasible baseline dependencies for owner decision; an installation request proves no readiness. Keep docs/lessons as one home. No cache/shard/helper is required without demonstrated need and authorized infrastructure scope.
 
 ## Authority and next work
 

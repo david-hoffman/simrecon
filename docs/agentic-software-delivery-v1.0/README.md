@@ -38,7 +38,7 @@ Use one Current state and concise packets/handoffs. Record cumulative attempts/s
 
 You supply intent, missing material decisions, any actual limits and explicit authority for merge/release or external messages. Routine in-scope checks, transitions, diagnosed repairs and fresh reviews follow your request without repeated permission. Prompted role/file restrictions are not technical barriers or a bug-free guarantee. CI executes repository-controlled checks.
 
-Root LESSONS holds one new timestamped evidence-linked file per useful lesson; corrections add superseding entries, no shared index. Doctor prepares an evidenced patch to existing rules within human-requested docs scope, with fresh independent policy review before activation. Requested in-flight migration applies accepted policy to named tasks and preserves every historical attempt/expenditure; historical records remain intact.
+docs/lessons holds one new timestamped evidence-linked file per useful lesson; corrections add superseding entries, no shared index. Doctor prepares an evidenced patch to existing rules within human-requested docs scope, with fresh independent policy review before activation. Requested in-flight migration applies accepted policy to named tasks and preserves every historical attempt/expenditure; historical records remain intact.
 
 | Entry | Purpose |
 |---|---|

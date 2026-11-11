@@ -46,7 +46,7 @@ Use this section or point to one Current state in PR/discussion. Prepare the poi
 - Blockers; next responsible role/action/narrow packet/completion:
 - Completion housekeeping result: removed paths, kept paths/reasons, command errors and confirmation. Record in the existing Current state; size measurements are optional. Exceptions do not block the underlying task:
 
-There are no default B review windows, review quotas, C/bounded repair quotas or execution budgets. Diagnose recurring failures and every correction with evidence, then continue through fresh required review until the objective is complete or an actual blocker remains. No uncontrolled automatic repair loop. Fresh/continued sessions, renamed tasks, checkpoints/model swaps/splits/migration erase no attempts. Blind A/B receive PUBLIC-PACKET only, never this implementation-bearing state. Only root LESSONS entries are append-only.
+There are no default B review windows, review quotas, C/bounded repair quotas or execution budgets. Diagnose recurring failures and every correction with evidence, then continue through fresh required review until the objective is complete or an actual blocker remains. No uncontrolled automatic repair loop. Fresh/continued sessions, renamed tasks, checkpoints/model swaps/splits/migration erase no attempts. Blind A/B receive PUBLIC-PACKET only, never this implementation-bearing state. Only docs/lessons entries are append-only.
 
 ## PR presentation (coordinator / permitted candidate context)
 

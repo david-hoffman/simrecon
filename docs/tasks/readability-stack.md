@@ -67,6 +67,7 @@ Use the actual observed predecessor branch/head if a name has changed.
 | 07 Filtering and assembly readability | `codex/readability-07-reconstruction` | Task 06 branch | Clarify native filtering, quadrature recombination, carrier relocation, inverse normalization and signed output. |
 | 08 Workflow and I/O readability | `codex/readability-08-workflow-io` | Task 07 branch | Clarify orchestration/adapters and missing neutral-function docstrings; make names understandable and finish current-source navigation. |
 | 09 Standard Serena tooling | `codex/readability-09-serena` | Task 08 branch | Complete issue #86 against settled paths: pinned reproducible setup, read-only navigation, fresh-task/subagent instructions, state outside the product. |
+| 10 Lessons location (owner follow-up) | `codex/readability-10-lessons` | Task 09 branch | Move the complete append-only lesson directory to `docs/lessons/`, preserve entry names/history, repair current location consumers and relative links, and independently review instruction-path impact. |
 
 The package-map task explicitly includes issue #81; do not first do a redundant
 underscore-only import migration. The tooling task chooses a development-only
@@ -1427,33 +1428,147 @@ and browser version are retained separately. The scientific advisor's early bead
 line-number pointer was corrected after source inspection. No product/test repair
 or gate change followed these documentation/tooling findings.
 
+## Task 09 walkthrough follow-up completion and retained charges
+
+Task09 follow-up completed at pushed head
+`b01d975a01c8080f387b9f7108169d382dca6a91`, tree
+`ef14f8c623208faceb056131bbed4e84d3e5e8b7`, updating open/unmerged PR96
+<https://github.com/david-hoffman/simrecon/pull/96> against Task08. Fresh separate
+scientific/source and human/visual/evidence reviews ACCEPT with no actionable
+findings. All13 exact-candidate canonical phases PASS,3100tests/47warnings;
+all1174tracked manifest paths and four explicit inputs match. Receipt SHA256
+`0cbf1f1fcf060769ddcb571abe16de6a2261bdec6650045f8d9550b3eef4e783`.
+Native global statements4834/4972 and branches1854/1964; product3993/4128 and
+1534/1640; development39/39 and8/8; scripts802/805 and312/316, all36owned files.
+Same-run mandatory M25 increment0bytes under33554432; both separately installed
+wheels and audit PASS. These numbers certify Task09 only.
+
+Durable `/workspace/simrecon-readability-09/artifacts/readability-09-walkthrough/completion.json`
+retains exact identities, author/figure/browser/source/link proof, both fresh
+review reports, all same-run artifacts/counts/wheels and recursively linked prior
+completion/archived original evidence. The earlier
+`artifacts/readability-09/stack-completion.json` is historical before this follow-up;
+it remains retained, not overwritten. At Task10 intake current-head CI42982823008
+was in progress on macOS130396983467 and Ubuntu130396983477; pending is not PASS.
+Before Task10 candidate freeze, root independently confirmed both jobs completed
+SUCCESS for the exact Task09 head, with no retry. This certifies the predecessor,
+not Task10; root monitors Task10 configured CI after submission.
+
+Follow-up charges add one scientific advisor, one documentation author, two fresh
+final reviewers, one locked preflight PASS, one commit/full gate PASS and normal
+fast-forward PR96 update. Retain advisor early bead-line correction, author
+Matplotlib import probe failure then use of existing plotting environment,
+generator style/whitespace correction and three layout corrections, optional
+sandbox Chromium socket/SIGTRAP failure/missing ImageMagick delegate, supported
+outer browser render PASS, and all reviewer diagnostic charges in completion.
+No product/test repair, interrupted gate or gate relaxation. Actual served model,
+tokens/cost/full-task elapsed unknown; numeric limits not set. All Task01–09
+charges remain additive, including Task07 interrupted full run/recovery,
+Task04 unchanged successful CI retry and Task09 original four MCP attempts/two
+outer successes/config failure/prematurely stopped sandbox startup.
+
+Task09 cleanup removed its three exact /tmp editing scripts and Matplotlib cache;
+rendering/check processes closed. Current/predecessor worktrees/environments,
+original archive/durable evidence and pinned external Serena installation/state,
+shared reader inputs/caches remain retained. No cleanup error or unrelated deletion.
+
+## Task 10 owner-authorized lessons location contract
+
+The owner requested: “One other follow up, maybe needs a new task: move LESSONS
+to be under docs/ and lowercase (`lessons`)”. This extends the original nine-task
+queue with one separately stacked follow-up PR after the completed Task09 update.
+The new canonical location is `docs/lessons/`; entry filenames and `README.md`
+keep their original case. No merge or auto-merge is authorized.
+
+Route: deterministic documentation relocation plus authorized canonical
+instruction-path migration, with one named author and fresh independent policy
+impact/evidence review before activation. Active policy-path changes are not
+self-classified as policy-free mechanical edits. Preserve authority, role ownership,
+blind A/B exclusions, guide-only allowlist, append-only/superseding rules, all
+historical entries and evidence. No fabricated product-red test or new oracle.
+
+Author owns moving all204baseline tracked lesson files and necessary current
+location references/relative link repairs in docs/instructions, including adopted
+specification/templates/prompts and the local test-role guide allowlist. Coordinator
+owns this queue, narrow contract, sole Current state, ignored proof and PR metadata.
+Pinned historical commit URLs and factual past records retain their meaning;
+necessary relative links must resolve to the same intended path/anchor. No pruning,
+consolidation, prose cleanup, duplicate home or compatibility symlink. Runtime,
+tests/fixtures, workflows/configuration/dependencies, Serena and walkthrough
+scientific content remain frozen except necessary location repointing in prose.
+Preserve all36exports, strict plugin/locked install/separate installed wheels,
+all-owned/subprocess native measurement, same-run M25 and PR87 affinity/observers.
+
+Before editing, coordinator confirmed clean exact predecessor and remote PR96
+OPEN/unmerged, local/remote Task10 branch absence, unchanged main and ancestry.
+One isolated `/workspace/simrecon-readability-10` worktree/own `.venv` branches from
+exact Task09 above, targeting `codex/readability-09-serena`. Fresh collaboration
+fork-none requested Sol/high author/reviewer work directly under owner clarification;
+no nested roles/nativeCLI/auth/cloud-launcher detour. Actual serving/tokens/cost/full
+elapsed unknown; numeric budgets not set. Record every launch/check/correction,
+retain all prior attempts and costs; no reset on relocation.
+
+Required focused proof: exact204file move/hash mapping, unchanged entry bytes
+except enumerated path repairs, frozen non-owned files, current-reference inventory
+and Markdown path/anchor intended-target equivalence. Cheap canonical locked
+preflight precedes expensive checks. Commit the prepared candidate, then require
+unchanged full13phase `make verify` on its clean exact identity, current native
+36file/global/package reports, same-run M25 limit33554432bytes, both separate
+installed wheels and audit. Fingerprint contract/author proof/reader inputs before
+and after. Fresh independent policy/evidence reviewer then challenges the exact
+passing scope, policy-path authority/role blindness/append-only rules/history/link
+preservation and gate validity. Recheck remote/base/ancestry, normal push/open
+exactly one PR against Task09; root monitors required Ubuntu24.04/macOS15 CI.
+Pending is not PASS. No merge/auto-merge or further successor work.
+
+PR presentation leads with the new location and preservation of lesson history;
+a figure adds no useful explanation for a directory move. Technical appendix
+retains exact identities, inventories/checks/review, native/resource/wheel proof,
+CI limitations and cumulative accounting. Final hash/results belong outside
+verified tracked bytes in `artifacts/readability-10/completion.json` and PR/chat.
+
+## Task 10 prepared migration proof and charges
+
+Named fresh author completed the204file rename with filenames unchanged:
+49files (README plus48entries) byte-identical;155entry files have exactly297
+relative Markdown destination repairs. All321moved links plus25inbound links
+retain the same intended path/query/anchor;23tracked heading anchors preserved.
+Historical untracked artifact targets remain historical limitations, not new
+missing tracked evidence. All651non-document frozen paths are unchanged;
+319nonlesson Markdown files were checked against exact authorized location-only
+transforms. All67baseline old-reference lines are classified;22surviving old-name
+mentions are historical records or this coordinator-owned request/history.
+Six narrow supersession pointers reconcile historical retain-root recommendations
+without rewriting their past provenance. Pinned external URLs remain unchanged.
+Detailed mapping/per-entry hashes/repair diff/current-reference classifications
+and path+anchor proof live under `artifacts/readability-10/`.
+
+Coordinator own canonical locked preflight PASS using isolated Python3.13.12,
+uv0.12.19 and Temurin21.0.7+6 via SIMRECON_JAVA. One fresh author launch/session
+and all focused checks/diagnosed corrections remain charged in its final report;
+coordinator setup/ref/inventory/whitespace checks are additive. Worker recorded
+three focused proof PASS invocations and no failed author check/correction.
+Coordinator independently reran migration proof PASS, confirmed all1174baseline
+paths (934unchanged same-path bytes;204moves plus36authorized document changes),
+and retained one expected pending worker-report presence probe/nonzero status. No new product
+oracle/test, runtime/test/configuration correction, full gate retry or gate
+relaxation. Missing actual serving/tokens/cost/full elapsed remain unknown and
+numeric human budgets not set. Full exact-candidate gate and fresh independent
+policy/evidence review follow the prepared commit.
+
 ## Current state
 
-Task09 owner-authorized walkthrough follow-up is prepared in
-`/workspace/simrecon-readability-09`, branch `codex/readability-09-serena`, updating
-PR96 against verified Task08 PR95. Documentation-only author and independent
-scientific/source advisor completed the narrow ownership above; focused checks and
-actual figure rendering PASS, with final full gate and fresh acceptance pending. Existing Serena
-guide and actual external navigation evidence are retained. Source audit refreshes
-the stale workflow-limit/CE08 status wording and makes the rectangular bead-grid
-convention explicit; no runtime correction is authorized by these prose findings.
+Task10 has prepared the owner-authorized lessons location migration in
+`/workspace/simrecon-readability-10`, branch `codex/readability-10-lessons`, against
+verified/pushed Task09 PR96. One named author owns the directory/reference migration;
+coordinator owns this sole handoff and exact-candidate full gate/submission.
+Focused inventory/link/content proof PASS. Next: commit the completed candidate,
+run the unchanged full13phase exact-candidate gate, then obtain fresh independent
+policy/evidence acceptance before normal push/opening one PR.
+Detailed contract/baseline and later exact proof/results live in ignored
+`artifacts/readability-10/`; predecessor completion above retains every prior charge.
 
-Next: commit the completed documentation candidate, run the unchanged full13-phase
-`make verify` on the clean exact candidate with current native reports, same-run
-M25, installed wheels and audit, then obtain fresh separate scientific/source and
-human/visual/evidence acceptance before the normal fast-forward PR96 update.
-Final identities/results, figure/render proof, review/receipt/CI and cumulative
-post-commit charges belong outside verified tracked bytes in ignored
-`artifacts/readability-09-walkthrough/completion.json` and PR/conversation.
-Root monitors both configured CI platforms (pending is not PASS), then launches
-separate Task10 for the LESSONS move after this update is fully verified,
-independently accepted and pushed. No merge/auto-merge.
-
-Cleanup: keep current checkout/.venv, original archive and durable proof/previews,
-external pinned Serena installation/state, predecessor worktrees and shared
-reader inputs/caches. Rendering/check processes are closed. The author identified only its three
-/tmp editing scripts and /tmp Matplotlib cache as disposable; coordinator removed
-those exact targets and confirmed them absent, retaining all durable evidence. No
-cleanup error or unrelated deletion. Final cleanup/process facts belong
-in ignored completion. The original nine-task history and all charges remain
-retained through the original completion and sole cumulative handoff.
+Cleanup: retain current/predecessor worktrees and environments, durable evidence,
+external pinned Serena installation/state and shared reader inputs/caches. Remove
+only specifically confirmed disposable own scratch after owned processes close;
+keep uncertain targets. Final removed/kept/error/process facts belong in completion.

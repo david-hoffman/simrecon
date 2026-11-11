@@ -6,7 +6,7 @@
 Run doctor under docs/agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md section 8.
 Check the working tree and stop
 rather than overwrite unrelated/uncommitted work or interrupt an active delivery task.
-Read relevant project instructions, recent entries in LESSONS/, and concrete CI/test
+Read relevant project instructions, recent entries in docs/lessons/, and concrete CI/test
 or repository evidence. Search narrowly; do not replay all sessions or recrawl sources.
 
 Classify failures under spec section 4: environment/tooling failure, test defect,
@@ -50,7 +50,7 @@ Those need separate scoped work. Data-loss behavior, including settled overwrite
 example when practical. Explain what was and was not verified.
 
 Present exact diff, evidence/lesson IDs and expected improvement. The human request authorizes its intended policy scope; record the concrete contract and proceed without another document approval. Ask only for missing material decisions, unclear/outside-request objectives or human-required external authority. Require a fresh independent policy review before activation. Commit/push/merge only within actual owner authority; normal Git/PR gates remain. Then
-add a new timestamped lesson file in LESSONS/ linking the disposition to that commit
+add a new timestamped lesson file in docs/lessons/ linking the disposition to that commit
 and the earlier entry. Migrate in-flight work only with explicit owner authorization, preserving every historical attempt/round/repair/expenditure and actual human-set limit; leave historical records intact.
 All delivery documents stay version 1.0; Git tracks their revisions.
 Honor actual human-set limits; absent limits are not set and missing measurements are unknown. The independent policy reviewer is coordinator-launched, never a nested self-review. No daemon or uncontrolled automatic repair loop; diagnosed in-scope corrections continue without default-quota approval stops. Conditional CI-authoritative eligibility is separate evaluated scope, not a way for this patch to approve its own gate.
