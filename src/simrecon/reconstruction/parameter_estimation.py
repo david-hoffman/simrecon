@@ -25,7 +25,7 @@ from ..optical_transfer import (
     OtfError,
     _sample_transfer,
     _Transfer,
-    _valid_transfer,
+    validate_optical_transfer,
 )
 
 _Array = NDArray[Any]
@@ -764,7 +764,9 @@ def estimate_parameters(
         ):
             if type(flag) is not bool:
                 raise ParameterEstimationError(f"{name} must be an actual boolean")
-        table = _valid_transfer(transfer, require_actual=issubclass(type(bands), AcquisitionBands))
+        table = validate_optical_transfer(
+            transfer, require_actual=issubclass(type(bands), AcquisitionBands)
+        )
         grid, used = _validate_bands(bands, table)
         if search_carriers and grid.orders < (2 if grid.shape[3] == 1 else 3):
             raise ParameterEstimationError(

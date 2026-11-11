@@ -2,6 +2,9 @@
 
 The implementation evaluates the selected source mathematics in binary64.
 It provides no file adapter or compiled-source equivalence claim.
+The supported API is the documented package-root exports; other module helpers
+remain implementation details. For array axes and Fourier conventions see
+docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions.
 """
 
 from collections.abc import Callable
@@ -49,7 +52,32 @@ class OtfError(ValueError):
 
 @dataclass(frozen=True)
 class OpticalTransfer:
-    """Owned, read-only complete complex orders and their frequency increments."""
+    """Owned complex orders with explicit frequency increments and provenance.
+
+    Attributes
+    ----------
+    samples : numpy.ndarray
+        Read-only complex128 storage: (order, radius, z) for radial layout,
+        or (order, z, y, x-half) for full layout. Axial/y bins are unshifted;
+        full x stores the nonnegative half. The last axis varies fastest.
+    layout : {'radial', 'full'}
+        Interpretation of the table axes, with each order supplied explicitly.
+    dkr_cyc_um, dkz_cyc_um : float
+        Positive lateral and axial increments in cycles per micrometre.
+    norders : int
+        Number of complete orders, including order zero.
+    source_revision : str
+        Selected source revision, SVN307.
+    reference_sha256 : tuple of (str, str)
+        Source filenames and their pinned hashes.
+
+    Notes
+    -----
+    Producers copy their inputs. Frozen fields alone do not validate a manually
+    constructed record; consumers check its storage, metadata and provenance.
+    Empirical complex128 values need not be complex64-exact like declarations.
+    See docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions.
+    """
 
     samples: _C128
     layout: str
@@ -76,7 +104,35 @@ _Transfer = OpticalTransfer | _CheckedTransfer
 
 @dataclass(frozen=True)
 class PreparedOtf:
-    """Combined transfer with the empirical preparation's public diagnostics."""
+    """Combined radial transfer and the retained empirical diagnostics.
+
+    Attributes
+    ----------
+    transfer : OpticalTransfer
+        Combined (order, radius, z) tables after optional final conjugation.
+    center_pixels_xyz : numpy.ndarray
+        Float64 (3,) center in x, y, z detector pixels.
+    background_counts : numpy.ndarray
+        Float64 (z, phase) offsets selected before edge treatment.
+    phase_angles_rad : numpy.ndarray
+        Float64 (phase,) uniform phases in radians.
+    quadratures : numpy.ndarray
+        Complex128 (phase-slot, radius, z) tables in 0,C1,S1,... order, after
+        repairs, masking, origin fitting and scaling, before combination.
+    normalization_factors : numpy.ndarray
+        Float64 (phase-slot,) inverse maxima applied to the quadratures.
+    quadrature_angles_rad : numpy.ndarray
+        Float64 (order-minus-zero,) combination angles in radians.
+    resolved_settings : tuple of (str, object)
+        Resolved scalar, flag and bin options, including background policy.
+
+    Notes
+    -----
+    Preparation returns independently owned, read-only arrays. Radius has
+    X//2+1 bins and the transfer has (P+1)//2 orders for P input phases.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
 
     transfer: OpticalTransfer
     center_pixels_xyz: _F64
@@ -89,6 +145,8 @@ class PreparedOtf:
 
 
 def _operation[F: Callable[..., Any]](function: F) -> F:
+    """Translate operation failures, retaining cause and the wrapped name label."""
+
     @wraps(function)
     def checked(*args: Any, **kwargs: Any) -> Any:
         try:
@@ -103,12 +161,14 @@ def _operation[F: Callable[..., Any]](function: F) -> F:
 
 
 def _i32(value: int, name: str = "source integer intermediate") -> int:
+    """Check one actually evaluated signed32 source integer without truncation."""
     if not _I32_MIN <= value <= _I32_MAX:
         raise OtfError(f"{name} exceeds signed32 representation")
     return value
 
 
 def _integer(value: Any, name: str, minimum: int = 0, *, require_actual: bool = False) -> int:
+    """Resolve a nonboolean integral setting within signed32 and its lower bound."""
     valid = (
         not issubclass(type(value), (bool, np.bool_)) and issubclass(type(value), Integral)
         if require_actual
@@ -130,6 +190,7 @@ def _scalar(
     require_actual: bool = False,
     widen_signed_magnitude: bool = False,
 ) -> float:
+    """Resolve a finite real setting within float32 magnitude, optionally positive."""
     valid = (
         not issubclass(type(value), (bool, np.bool_)) and issubclass(type(value), Real)
         if require_actual
@@ -157,6 +218,7 @@ def _scalar(
 
 
 def _extent(shape: tuple[int, ...], itemsize: int) -> None:
+    """Check native target shape/stride extent, including nominally empty arrays."""
     extent = itemsize
     for dimension in shape:
         if not 0 <= dimension <= _INTP_MAX:
@@ -167,11 +229,13 @@ def _extent(shape: tuple[int, ...], itemsize: int) -> None:
 
 
 def _finite(array: NDArray[Any], name: str) -> None:
+    """Reject unresolved arithmetic without changing the borrowed array."""
     if not np.isfinite(array).all():
         raise OtfError(f"{name} contains nonfinite or unresolved arithmetic")
 
 
 def _numeric(value: Any, name: str, *, complex_ok: bool = False) -> NDArray[Any]:
+    """Resolve numeric array input; boolean, object and string dtypes reject."""
     array = np.asarray(value)
     if array.dtype.kind not in ("iufc" if complex_ok else "iuf"):
         raise OtfError(f"{name} must contain real{' or complex' if complex_ok else ''} numbers")
@@ -186,6 +250,7 @@ def _values(
     complex_ok: bool = False,
     wide_bound: bool = False,
 ) -> None:
+    """Check source-float magnitude and optional exact float32/complex64 values."""
     _finite(array, name)
     bound = np.float64(_F32_MAX) if wide_bound else _F32_MAX
     if complex_ok:
@@ -201,6 +266,7 @@ def _values(
 
 
 def _exact_values(array: NDArray[Any], dtype: Any, name: str) -> None:
+    """Require an exact source-dtype round trip, retaining exact integer comparisons."""
     rounded = array.astype(dtype)
     if array.dtype.kind in "iu":
         # NumPy's mixed integer/float equality can itself round a large integer.
@@ -213,6 +279,7 @@ def _exact_values(array: NDArray[Any], dtype: Any, name: str) -> None:
 
 
 def _owned(value: Any, dtype: Any) -> NDArray[Any]:
+    """Copy finite values to independently owned, C-order, read-only target storage."""
     shape = np.shape(value)
     _extent(shape, np.dtype(dtype).itemsize)
     result = np.array(value, dtype=dtype, copy=True, order="C")
@@ -224,6 +291,7 @@ def _owned(value: Any, dtype: Any) -> NDArray[Any]:
 def _table_shape(
     array: NDArray[Any], layout: Any, *, describe_layout_mismatch: bool = False
 ) -> None:
+    """Check nonempty layout axes, signed32 per-order counts and native target extent."""
     if not isinstance(layout, str) or layout not in ("radial", "full"):
         raise OtfError("unsupported transfer layout; use radial or full")
     expected_ndim = 3 if layout == "radial" else 4
@@ -270,6 +338,17 @@ def declare_otf(
     OtfError
         If input, source counts or native allocation representation is invalid,
         or copying fails.
+
+    Notes
+    -----
+    Declaration changes no value, normalization, symmetry or order count.
+    Finite zeros and asymmetric complex values are permitted. Each dimension
+    and per-order source count must fit signed32; complex128 native allocation
+    shape/stride extent must fit intp before copying. A computed empirical
+    transfer is consumed directly rather than redeclared through this stricter
+    complex64-exact input boundary. Caller storage is never mutated.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
     """
     array = _numeric(samples, "samples", complex_ok=True)
     _table_shape(array, layout)
@@ -280,6 +359,7 @@ def declare_otf(
 
 
 def _matches_transfer_reference(reference: Any) -> bool:
+    """Match actual immutable source-name/hash tuples rather than advertised equality."""
     if not issubclass(type(reference), tuple) or tuple.__len__(reference) != len(_REFERENCE):
         return False
     for pair, expected in zip(tuple.__iter__(reference), _REFERENCE, strict=True):
@@ -293,7 +373,36 @@ def _matches_transfer_reference(reference: Any) -> bool:
     return True
 
 
-def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer:
+def validate_optical_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer:
+    """Validate a transfer record without copying or quantizing its samples.
+
+    Parameters
+    ----------
+    transfer : OpticalTransfer
+        Complete finite, owned, read-only complex128 tables and source metadata.
+        Unlike declaration input, computed samples need not be complex64-exact.
+    require_actual : bool, optional
+        Use actual Python/NumPy types and base descriptors when validating
+        acquisition/workflow inputs rather than trusting advertised attributes.
+
+    Returns
+    -------
+    OpticalTransfer or _CheckedTransfer
+        The original record, or checked metadata borrowing the same sample
+        storage. Neither path changes the caller's arrays or normalizes values.
+
+    Raises
+    ------
+    OtfError
+        If layout, finite values, ownership, counts, increments or provenance
+        violate the accepted record domain.
+
+    Notes
+    -----
+    This shared implementation helper does not add a supported package export.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     transfer_type_valid = (
         issubclass(type(transfer), OpticalTransfer)
         if require_actual
@@ -339,23 +448,50 @@ def _valid_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer
 
 
 def _floor32(value: float) -> int:
+    """Floor a finite table coordinate into the signed32 source-index domain."""
     if not isfinite(value):
         raise OtfError("nonfinite source index")
     return _i32(floor(value), "floor index")
 
 
 def _remainder(value: int, divisor: int) -> int:
+    """Use C signed remainder, leaving a negative dividend's remainder nonpositive."""
     return value % divisor if value >= 0 else -((-value) % divisor)
 
 
 def _address(value: int, count: int) -> int:
+    """Validate an actual flat address, allowing safe aliases across conceptual axes."""
     _i32(value)
     if not 0 <= value < count:
         raise OtfError("source flat access leaves the order allocation")
     return value
 
 
-def _radial_sample(flat: _C128, k: int, u: float, t: float) -> complex:
+def interpolate_radial_stencil(flat: _C128, k: int, u: float, t: float) -> complex:
+    """Read one literal bilinear radial/axial stencil from a borrowed order.
+
+    Parameters
+    ----------
+    flat : numpy.ndarray
+        Borrowed complex128 order flattened from (radius, z), axial fastest.
+    k : int
+        Positive table axial length.
+    u, t : float
+        Radius and axial coordinates in table-bin units, not cycles/um.
+
+    Returns
+    -------
+    complex
+        Bilinear complex value; input storage is unchanged.
+
+    Notes
+    -----
+    Negative t receives one addition of k. Only j==k-1 wraps its next vertex
+    to zero. Actual signed32 flat addresses define the domain, including safe
+    cross-row aliases; all four vertices must exist even at zero weight.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     if t < 0:
         t += k
     i, j = _floor32(u), _floor32(t)
@@ -367,7 +503,36 @@ def _radial_sample(flat: _C128, k: int, u: float, t: float) -> complex:
     return (1 - a) * ((1 - c) * v00 + c * v01) + a * ((1 - c) * v10 + c * v11)
 
 
-def _full_sample(flat: _C128, shape: tuple[int, ...], u: float, v: float, t: float) -> complex:
+def interpolate_full_stencil(
+    flat: _C128, shape: tuple[int, ...], u: float, v: float, t: float
+) -> complex:
+    """Read one full-table trilinear stencil with half-space conjugation.
+
+    Parameters
+    ----------
+    flat : numpy.ndarray
+        Borrowed complex128 order, flattened from (z, y, x-half).
+    shape : tuple of int
+        Positive table lengths (z, y, x-half).
+    u, v, t : float
+        x, y and axial coordinates in table-bin units.
+
+    Returns
+    -------
+    complex
+        Trilinear complex value, conjugated when the original u was negative.
+        Input storage is unchanged.
+
+    Notes
+    -----
+    Negative x reflects all three coordinates; signed zero does not reflect.
+    Negative y/z receive one period addition, then next-bin indices use C
+    signed remainder. This preserves safe flat aliases rather than clipping
+    each axis. Every vertex must fit signed32 and the selected allocation,
+    including zero-weight vertices; outside support is not zero-filled.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     k, y, x = shape
     reflected = u < 0
     if reflected:
@@ -423,16 +588,28 @@ def sample_otf(
     -------
     numpy.ndarray
         Owned complex128 values in the broadcast shape, including scalar and
-        empty shapes.
+        empty shapes. The result is writable; transfer and query inputs are
+        borrowed unchanged.
 
     Raises
     ------
     OtfError
         If inputs or source intermediates are invalid, any vertex leaves the
         allocation (even at zero weight), or evaluation/allocation fails.
+
+    Notes
+    -----
+    Axial table coordinates use kz_index*(native_dkz/table_dkz), allowing a
+    different native grid. Negative full-table x reflects all coordinates
+    and conjugates the result. Negative axial/y coordinates receive one
+    period addition; safe flat aliases remain permitted. This is complex
+    interpolation with literal vertices, without repeated wrapping, clipping
+    or zero extension. Failure of one query rejects the entire call.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
     """
-    return _interpolate(
-        _valid_transfer(transfer), kx_cyc_um, ky_cyc_um, kz_index, dkz_cyc_um, order
+    return interpolate_transfer_queries(
+        validate_optical_transfer(transfer), kx_cyc_um, ky_cyc_um, kz_index, dkz_cyc_um, order
     )
 
 
@@ -446,14 +623,42 @@ def _sample_transfer(
     dkz_cyc_um: float,
     order: int,
 ) -> _C128:
+    """Sample public or already-checked records for reconstruction consumers.
+
+    Parameters
+    ----------
+    transfer : OpticalTransfer or _CheckedTransfer
+        Validated record; checked records borrow their original sample storage.
+    kx, ky : array_like
+        Finite real lateral frequencies in cycles per micrometre.
+    kz : array_like of int
+        Nonboolean signed32 native axial indices, broadcast with kx and ky.
+    dkz_cyc_um : float
+        Positive native axial increment in cycles per micrometre.
+    order : int
+        Complete order to sample, starting at zero.
+
+    Returns
+    -------
+    numpy.ndarray
+        New owned complex128 values with the broadcast query shape. Inputs
+        are borrowed unchanged; an unsafe vertex rejects the whole call.
+
+    Notes
+    -----
+    Keep this decorated helper's name: _operation includes function.__name__
+    in translated backend/allocation errors consumed by downstream wrappers.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     if type(transfer) is _CheckedTransfer:
-        return _interpolate(transfer, kx, ky, kz, dkz_cyc_um, order)
+        return interpolate_transfer_queries(transfer, kx, ky, kz, dkz_cyc_um, order)
     return sample_otf(
         cast(OpticalTransfer, transfer), kx, ky, kz, dkz_cyc_um=dkz_cyc_um, order=order
     )
 
 
-def _interpolate(
+def interpolate_transfer_queries(
     transfer: _Transfer,
     kx_cyc_um: Any,
     ky_cyc_um: Any,
@@ -461,6 +666,37 @@ def _interpolate(
     dkz_cyc_um: float,
     order: int,
 ) -> _C128:
+    """Convert physical queries to table bins and sample a validated transfer.
+
+    Parameters
+    ----------
+    transfer : OpticalTransfer or _CheckedTransfer
+        Validated borrowed complex128 radial or full tables.
+    kx_cyc_um, ky_cyc_um : array_like
+        Finite real lateral frequencies in cycles per micrometre.
+    kz_index : array_like of int
+        Nonboolean signed32 axial indices in the native frequency grid.
+    dkz_cyc_um : float
+        Positive native axial increment, distinct from the transfer increment.
+    order : int
+        Complete order index, starting at zero.
+
+    Returns
+    -------
+    numpy.ndarray
+        New owned, writable complex128 array in the broadcast shape, including
+        zero-dimensional and empty outputs. No caller storage is changed.
+
+    Notes
+    -----
+    Axial coordinates use kz_index*(native_dkz/table_dkz). Radial queries use
+    hypot(kx,ky)/dkr; full queries use (kx,ky)/dkr. There is no extrapolation
+    or magnitude interpolation. Literal flat stencils govern admissibility;
+    one failing query rejects the call rather than returning partial values.
+    Native shape/stride extent is checked even when the output is empty.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     selected = _integer(order, "order")
     if selected >= transfer.norders:
         raise OtfError("order is outside the complete table")
@@ -487,11 +723,11 @@ def _interpolate(
         fx, fy = float(x[index]), float(y[index])
         t = int(z[index]) * scale
         if transfer.layout == "radial":
-            value = _radial_sample(
+            value = interpolate_radial_stencil(
                 flat, transfer.samples.shape[2], hypot(fx, fy) / transfer.dkr_cyc_um, t
             )
         else:
-            value = _full_sample(
+            value = interpolate_full_stencil(
                 flat,
                 transfer.samples.shape[1:],
                 fx / transfer.dkr_cyc_um,
@@ -505,6 +741,7 @@ def _interpolate(
 
 
 def _bins(value: Any, name: str, length: int, *, require_actual: bool = False) -> tuple[int, ...]:
+    """Resolve a fixed-length sequence of nonnegative signed32 integer bounds."""
     if isinstance(value, (str, bytes)):
         raise OtfError(f"{name} must be an integer sequence")
     items = tuple(value)
@@ -514,6 +751,7 @@ def _bins(value: Any, name: str, length: int, *, require_actual: bool = False) -
 
 
 def _map(value: Any, name: str, shape: tuple[int, ...], *, wide_bound: bool = False) -> _F64 | None:
+    """Copy an optional finite real correction map to writable float64 storage."""
     if value is None:
         return None
     array = _numeric(value, name)
@@ -524,7 +762,25 @@ def _map(value: Any, name: str, shape: tuple[int, ...], *, wide_bound: bool = Fa
     return np.array(array, dtype=np.float64, copy=True)
 
 
-def _edge(plane: _F64) -> None:
+def apodize_bead_edges_inplace(plane: _F64) -> None:
+    """Apply the fixed ten-pixel additive bead edge operation in place.
+
+    Parameters
+    ----------
+    plane : numpy.ndarray
+        Writable float64 (y, x) detector-count plane from owned bead storage.
+        Validated geometry has even X>=8 and 10<=Y<=X+2.
+
+    Notes
+    -----
+    Vertical updates precede horizontal updates in initialized (Y,X+2)
+    padding. Horizontal subtraction uses Y-1-offset, including padding
+    columns; it is not the specimen edge helper's X-based operation. Opposite
+    strips can overlap, so writes remain sequential. Only detector columns
+    are copied back; padding is not an additional Fourier input.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     y, x = plane.shape
     # The empirical caller uses a padded row and Y in its horizontal
     # subtraction address. Retain padding writes and their sequential order.
@@ -544,7 +800,29 @@ def _edge(plane: _F64) -> None:
     plane[:] = padded[:, :x]
 
 
-def _center(images: _F64) -> _F64:
+def locate_bead_center(images: _F64) -> _F64:
+    """Locate the bead peak before subtraction of the selected backgrounds.
+
+    Parameters
+    ----------
+    images : numpy.ndarray
+        Borrowed float64 (phase, z, y, x) edge-treated detector counts.
+
+    Returns
+    -------
+    numpy.ndarray
+        New float64 (3,) center in x, y, z detector pixels. Input is unchanged.
+
+    Notes
+    -----
+    Average phases, select the first maximum with a zero initial maximum,
+    then use periodic nearest neighbors for a local parabolic offset. An
+    offset outside [-1.5,1.5] is discarded, without wrapping the final center.
+    The unused source background diagnostic still requires finite arithmetic
+    and valid padded addresses; it never supplies preparation backgrounds.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     mean = images.mean(axis=0)
     _finite(mean, "mean bead")
     location = np.unravel_index(int(np.argmax(mean)), mean.shape)
@@ -582,7 +860,32 @@ def _center(images: _F64) -> _F64:
     return np.array(center[::-1], dtype=np.float64)
 
 
-def _separate(images: _F64) -> tuple[_F64, _F64]:
+def separate_bead_phase_quadratures(images: _F64) -> tuple[_F64, _F64]:
+    """Separate uniform bead phases with the calibration's 1/P convention.
+
+    Parameters
+    ----------
+    images : numpy.ndarray
+        Borrowed float64 (phase, z, y, x) background-subtracted counts, with
+        phase count P in {1,3,5,7,9}.
+
+    Returns
+    -------
+    separated : numpy.ndarray
+        New float64 (phase-slot, z, y, x) spatial quadratures in 0,C1,S1,...
+        order. Each cosine/sine sum and the zero-order sum is divided by P.
+    phases : numpy.ndarray
+        New float64 (phase,) uniform phases 2*pi*p/P in radians.
+
+    Notes
+    -----
+    Input is unchanged. Every pixel participates, including x Nyquist; the
+    specimen separator has a different normalization and Nyquist rule.
+    Analytic phase pairing retains exact constant/symmetric nulls without
+    introducing an intensity threshold.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     p = images.shape[0]
     phases = 2 * pi * np.arange(p) / p
     separated = np.empty_like(images)
@@ -618,12 +921,29 @@ def _separate(images: _F64) -> tuple[_F64, _F64]:
     return separated, phases
 
 
-def _frequencies(length: int) -> _F64:
+def signed_fourier_indices(length: int) -> _F64:
+    """Return unshifted float64 bin indices, retaining positive even Nyquist.
+
+    Parameters
+    ----------
+    length : int
+        Positive Fourier-axis length.
+
+    Returns
+    -------
+    numpy.ndarray
+        New (length,) indices q(i)=i for i<=length//2, otherwise i-length.
+        Values are bin indices, not physical frequencies.
+
+    Notes
+    -----
+    See docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions.
+    """
     indices = np.arange(length, dtype=np.float64)
     return np.where(indices <= length // 2, indices, indices - length)
 
 
-def _radial_tables(
+def build_bead_radial_quadratures(
     spatial: _F64,
     center: _F64,
     dkr: float,
@@ -633,11 +953,47 @@ def _radial_tables(
     angle: float,
     compensate: bool,
 ) -> _C128:
+    """Transform, center, compensate and radially average bead quadratures.
+
+    Parameters
+    ----------
+    spatial : numpy.ndarray
+        Borrowed float64 (phase-slot, z, y, x) separated spatial counts.
+    center : numpy.ndarray
+        Float64 (3,) center in x, y, z detector pixels.
+    dkr, dkz : float
+        Positive increments in cycles/um. The bead convention uses
+        dkr=1/(Y*dxy) on both lateral axes, even for rectangular images.
+    diameter, spacing : float
+        Bead diameter and illumination line spacing in micrometres.
+    angle : float
+        Calibration carrier orientation in radians.
+    compensate : bool
+        Divide by the order-shifted continuum sphere response; requires
+        multiple phases and positive diameter, with finite nonzero divisors.
+
+    Returns
+    -------
+    numpy.ndarray
+        New writable complex128 (phase-slot, X//2+1, Z) radial quadratures.
+        Input arrays are unchanged. Empty radial bins retain zero.
+
+    Notes
+    -----
+    The forward transform is an unnormalized negative-exponential sum over
+    true Z,Y,X; the positive ramp recenters all three axes before compensation.
+    Sphere shifts use order/(maximum_order*spacing), not native radius alone.
+    Average actual stored x-half cells by rounded integer radius, without
+    full-plane weights. Then project axial conjugate pairs, making z=0 and
+    even self-paired Nyquist real while retaining other imaginary odd parts.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     p, z, ny, nx = spatial.shape
     transformed = rfftn(spatial, axes=(1, 2, 3))
     x = np.arange(nx // 2 + 1, dtype=np.float64)[None, None, :]
-    y = _frequencies(ny)[None, :, None]
-    axial = _frequencies(z)[:, None, None]
+    y = signed_fourier_indices(ny)[None, :, None]
+    axial = signed_fourier_indices(z)[:, None, None]
     transformed *= np.exp(
         2j * pi * (x * center[0] / nx + y * center[1] / ny + axial * center[2] / z)
     )
@@ -686,7 +1042,7 @@ def _radial_tables(
     return radial
 
 
-def _cleanup(
+def mask_bead_support_inplace(
     radial: _C128,
     bins: tuple[int, ...],
     dkr: float,
@@ -695,6 +1051,30 @@ def _cleanup(
     na: float,
     immersion: float,
 ) -> None:
+    """Apply literal radial/axial support-cleanup writes in place.
+
+    Parameters
+    ----------
+    radial : numpy.ndarray
+        Writable complex128 (phase-slot, radius, z) quadratures after repairs.
+    bins : tuple of int
+        Nonnegative source bounds (l11,l12,l2); l11=0 bypasses all cleanup.
+    dkr, dkz : float
+        Positive radial and axial increments in cycles per micrometre.
+    wavelength : int
+        Positive wavelength in nanometres, converted to micrometres here.
+    na, immersion : float
+        Positive numerical aperture and refractive index, with na<=immersion.
+
+    Notes
+    -----
+    Side slots use 0.92*na, including orders above two. A strict radial cutoff
+    zeros whole rows; the remaining axial bounds execute ascending flat writes.
+    Safe cross-row writes can affect later rows and must retain their order.
+    Actual out-of-allocation writes reject rather than clipping to each row.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     if bins[0] == 0:
         return
     p, rcount, z = radial.shape
@@ -746,13 +1126,48 @@ def _cleanup(
                     write(r, j, partner=True)
 
 
-def _finish(
+def normalize_and_combine_bead_quadratures(
     radial: _C128,
     origin: tuple[int, ...] | None,
     each: bool,
     forced: bool,
     conjugate: bool,
 ) -> tuple[_C128, _F64, _F64]:
+    """Fit the origin, scale quadratures in place and combine complex orders.
+
+    Parameters
+    ----------
+    radial : numpy.ndarray
+        Writable complex128 (phase-slot, radius, z) tables after support cleanup.
+    origin : tuple of int or None
+        Inclusive radial interval 1<=a<b<=X//2 for order-zero real-sum fitting.
+    each : bool
+        Normalize each slot by its own maximum modulus; otherwise reuse the
+        order-zero inverse maximum on all slots, preserving relative amplitude.
+    forced : bool
+        Apply the selected first-order pi-angle adjustment.
+    conjugate : bool
+        Conjugate combined output orders, leaving scaled quadratures unchanged.
+
+    Returns
+    -------
+    combined : numpy.ndarray
+        New writable complex128 ((P+1)//2, radius, z) combined orders.
+    factors : numpy.ndarray
+        New float64 (P,) inverse maxima applied in place to radial.
+    angles : numpy.ndarray
+        New float64 ((P-1)//2,) magnitude/sign combination angles in radians.
+
+    Notes
+    -----
+    Origin fitting precedes maximum-modulus scaling; angles use the scaled
+    quadratures. Side output is C*cos(angle)-S*sin(angle), not C+i*S. The
+    angle starts at atan(sum(abs(S))/sum(abs(C))), followed by the literal
+    sign decisions and optional first-order shift. Zero cosine magnitude
+    rejects; zero sign samples retain their specified unchanged-angle branch.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
     p, _, _ = radial.shape
     if origin is not None:
         a, b = origin
@@ -888,6 +1303,25 @@ def prepare_bead_otf(
     OtfError
         If validation, an actual source address or a numerical operation fails.
         Backend and allocation exceptions retain their original causes.
+
+    Notes
+    -----
+    All supplied corrections validate even when superseded. Select backgrounds
+    before fixed10 edge updates, locate the center before subtracting those
+    backgrounds, then separate uniform phases with 1/P and transform with an
+    unnormalized negative exponential. The centering ramp has positive signs
+    on all axes. Optional shifted-sphere division precedes radial averaging
+    and axial conjugate projection. Axis repairs, support cleanup, origin fit,
+    maximum-modulus scaling and magnitude/sign combination follow in order.
+
+    Table increments are dkr=1/(Y*dxy_um) and dkz=1/(Z*dz_um), including
+    rectangular inputs. Counts and executed source addresses fit signed32;
+    float64/complex128 target extents fit native intp. These geometry bounds
+    alone do not guarantee safe diagnostics, repairs or later sample stencils.
+    No caller storage is changed. Returned arrays are independent read-only
+    copies; empirical values retain complex128 precision for direct consumers.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
     """
     array = _numeric(raw, "raw")
     if array.ndim != 4:
@@ -1003,11 +1437,12 @@ def prepare_bead_otf(
             else:
                 b = plane[np.ix_(border, border_x)].mean()
             backgrounds[section, phase] = b
-            _edge(plane)
-    center = _center(images)
+            apodize_bead_edges_inplace(plane)
+    # Center the edge-treated observations before subtracting the chosen offsets.
+    center = locate_bead_center(images)
     images -= backgrounds.T[:, :, None, None]
-    separated, phases = _separate(images)
-    radial = _radial_tables(
+    separated, phases = separate_bead_phase_quadratures(images)
+    radial = build_bead_radial_quadratures(
         separated,
         center,
         dkr,
@@ -1017,6 +1452,7 @@ def prepare_bead_otf(
         scalars["carrier_angle_rad"],
         compensate_bead,
     )
+    # Repair r=0 first, then axial zero; source-safe flat aliases stay literal.
     if fix_axial_axis:
         dc = radial[0, 0, 0]
         radial[:, 0] = radial[:, 1]
@@ -1029,7 +1465,7 @@ def prepare_bead_otf(
                 low = _address(_i32(base + 1), flat.size)
                 high = _address(_i32(base + z - 1), flat.size)
                 flat[base] = (flat[low] + flat[high]) / 2
-    _cleanup(
+    mask_bead_support_inplace(
         radial,
         bins,
         dkr,
@@ -1038,7 +1474,10 @@ def prepare_bead_otf(
         scalars["numerical_aperture"],
         scalars["immersion_index"],
     )
-    combined, factors, angles = _finish(radial, origin, rescale_each, forced_pi_shift, conjugate)
+    # Cleanup precedes origin fitting and normalization; these steps do not commute.
+    combined, factors, angles = normalize_and_combine_bead_quadratures(
+        radial, origin, rescale_each, forced_pi_shift, conjugate
+    )
     resolved = dict(scalars) | {
         "wavelength_nm": wavelength,
         "background_counts": background,

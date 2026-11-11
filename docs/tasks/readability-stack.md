@@ -705,34 +705,182 @@ scratch. No disposable fixture or worktree was identified. All historical charge
 human numeric budgets not set, requested Sol/high roles, observed served model,
 tokens/cost and complete elapsed unknown. No merge or auto-merge.
 
+## Task 04 completed evidence retained at Task 05 intake
+
+Task 04 PR [#91](https://github.com/david-hoffman/simrecon/pull/91) is open and
+unmerged at `c7bea91a4c07068e7662be1f5ca5aed24e369f18`, tree
+`ccb7ef698f1ec26f8953ad3144fea0676f67001b`, based on Task 03
+`d3bbef6c8cac8dd528198a1fdb84b0b59c0d44d8`, tree
+`b5a0504e1e9cc8fc2a216560955d0d45798cc5b1`. Fresh B and D ACCEPT;
+all 13 full local phases passed: 3,100 tests, 47 warnings, unchanged 1,168-file
+manifest and 36 owned Python files. Receipt SHA256
+`f263a02790d968b6f5d04e851fc623a3807881782014c9bdbbfac7b22dd8cc96`.
+Global statements 4,834/4,972 and branches 1,854/1,964; product 3,993/4,128,
+1,534/1,640; devtools 39/39, 8/8; scripts 802/805, 312/316. Same-run M25
+increment 0 bytes, limit 33,554,432 bytes; separate product/development installed
+wheels and audit passed. This proves only Task 04's candidate, not Task 05.
+
+Completion and complete detailed charges remain at
+`/workspace/simrecon-readability-04/artifacts/readability-04/completion.json` and
+its sibling reports. Final Task 04 coordinator counts: one setup/preflight pass,
+one candidate commit, one full verify pass/no full failure, six ancillary failures
+(the five documented above plus a premature tests-log lookup), no change after
+the full gate, four disposable scripts removed/no cleanup errors. D: one fresh
+ACCEPT/no correction/actionable findings, three optional probes (one older-system-
+Python API failure, two pinned passes), no suite repeats or target edits. Earlier
+A/B/C and stack charges above remain unchanged; unknown metering is not zero.
+Task 04 CI run 42942992919 was pending at its handoff. Ubuntu subsequently passed;
+initial macOS job 130268993418 failed one unchanged verifier-fixture test when
+only the empty `objects/maintenance.lock` disappeared (3,100 other cases passed,
+46 warnings). A report-only root advisor diagnosed a strongly supported Git
+2.56 detached-auto-maintenance race; actual removing process was not traced.
+The unchanged focused test passed locally once (4.49 s, Git 2.52), with zero
+diagnostic failures/edits. Root requested one unchanged macOS rerun; the latest
+configured jobs both completed SUCCESS (macOS 130274284681, Ubuntu 130274286631).
+Retain one failed CI job/test, one diagnostic advisor/check and one requested
+successful retry as additional Task 04 charges; no gate or product/test change. Detail:
+`/workspace/simrecon-readability-04/artifacts/readability-04/ci-diagnosis.md`.
+Task 05 rechecks before submission; pending is not passing.
+
+## Task 05 contract and evidence pointer
+
+Task 05 alone clarifies declaration, sampling and empirical bead-preparation
+operations in `src/simrecon/optical_transfer.py`, with readable meaningful helper
+names, accurate NumPy docstrings and comments linked to equations/conventions.
+Keep this module intact: any larger optics extraction is a separate successor.
+Only necessary import/call consumers may change in acquisition, reconstruction or
+workflow; no incidental later-task readability work. Preserve exact numerical
+expressions, order/sign/scale, all accepted input domains/errors, array ownership,
+record fields/payloads, 36 documented root exports, Python dunders, neutral CLI
+and literal module/local `t`/`d` traceback context. No scientific feature/fix,
+API expansion/alias, retired API, blanket test rewrite, dependencies or weaker gate.
+
+Route **high risk**, selected for actual numerical-operation/cross-domain impact:
+fresh blind A maps retained public tests; fresh blind B audits applicability,
+oracles and concrete omissions; restricted C owns only product source; committed
+exact-candidate full `make verify`; fresh independent D. Owner November 11
+clarification permits fresh collaboration roles `fork_turns="none"`, Sol/high,
+without native launcher/cloud retries or nested delegation. No weaker route.
+A owns only `tests/test_optical_transfer_readability.py` if a concrete missing
+approved public risk is diagnosed and routed; existing accepted tests/fixtures
+are retained by default, with no artificial red/new oracle merely for names.
+C cannot edit tests/fixtures/config/workflows/coverage/skills/policy. Coordinator
+owns this handoff and necessary live navigation/source links and PR presentation.
+
+| ID | Preserved observable obligation | Authority and evidence |
+| --- | --- | --- |
+| T05-1 | Declared radial/full tables, positive increments, exact representation, owned records and downstream selection keep existing domains/payloads. | CE03 and relevant CE06/CE07 contracts; retained public tests; D. |
+| T05-2 | Complex radial/full interpolation, negative-x conjugation, once-adjusted negative coordinates, literal safe flat vertices and axial scaling keep values/errors. | CE03 equations and retained analytic controls; AST preservation; D. |
+| T05-3 | Camera/background/edges, centering, normalized bead phase separation, shifted sphere compensation, radial averaging/support/axis/origin/normalization keep ordered mathematics. | CE03 contract and retained independent public controls; full suite; D. |
+| T05-4 | Valid boundaries, invalid/representation/operation-time failures and workflow time/direction context keep errors/outcomes. | Existing public contracts/tests; unchanged literals/locals; D. |
+| T05-5 | Root exports, neutral CLI, Task02 tooling separation, locked install, strict plugin/#87 observers/affinity, separate wheels and all-owned/subprocess reporting remain. | Frozen files, installed-artifact checks, full gate. |
+| T05-6 | Names/docstrings/comments accurately explain current axes, units, signs, domains and mutation/ownership without a stable helper API or extraction. | Actual source, live walkthrough links and independent D. |
+
+Coverage inherits approved behavior coverage and independent risk review; no
+percentage threshold selected. Mandatory native statement/branch file/package/
+global measurement, never-imported files/relevant subprocesses, independent
+Ubuntu/macOS CI, all 13 phases, same-run M25 limit 33,554,432 bytes, both separate
+installed wheels and audit remain binding. Pending CI is not passing. No physical
+recovery, historical C-executable agreement or performance claim follows.
+
+Remote identities and PR #91 were checked before worktree creation; the Task 05
+branch was absent and main remained `0ea11a5876549bf26a3a813009b97c09decc806d`.
+Own isolated locked preflight passed Python 3.13.12, uv 0.12.19 and Temurin
+21.0.7+6 through `SIMRECON_JAVA`. One sandbox Git ref lookup and one initial
+sandbox preflight failed proxy access; supported escalated retries passed.
+No native launcher/authentication retry. Human numeric budgets not set; actual
+served attribution, role tokens/cached tokens/cost and complete elapsed unknown.
+All predecessor attempts/spending remain retained without double counting.
+
+Detailed ignored evidence: `artifacts/readability-05/`, plus usual verification
+and coverage directories. Prepare this sole Current state before final commit;
+exact head/tree/results/receipt/PR/CI go outside tracked bytes in completion JSON
+and PR/conversation. Plain-English PR summary explains optical-transfer reading
+steps with technical appendix; no decorative figure is needed. Coordinator
+housekeeping removes only confirmed disposable task-owned scripts after process
+closure, retains active checkout/environment, predecessor/shared inputs, durable
+evidence and uncertain scratch. No merge, auto-merge or release.
+
+## Task 05 execution accounting and retained checkpoint
+
+Fresh blind A retained existing tests/fixtures without edits, artificial red or
+new oracle; its two source-free runs passed 334+42 selected cases. Fresh blind B
+independently checked representative interpolation/phase/compensation/geometry/
+ownership/representation/context expectations and omission risks, then ACCEPTED
+the unchanged checkpoint. Its two source-free runs passed 334+51 selected cases;
+all 24 public/test/fixture/packet input hashes matched. Both reported no source
+exposure, failures, corrections, disposable scratch or remaining owned processes.
+These are retained applicability checks, not a new derivation of every historical
+oracle. Detailed limits/mapping/hashes: `a-report.md`, `b-review.md` and
+`accepted-checkpoint.json` in ignored `artifacts/readability-05/`.
+
+Restricted C made 11 meaningful helper renames in the intact optical-transfer
+module and updated only the shared validation import/call in three consumers.
+NumPy docs cover records/declaration, literal complex stencils, positive centering
+ramps, 1/P bead separation, shifted continuum sphere, radial projection/support
+and ordered normalization/combination. Local mathematical names and validators
+remain. Decorated `_sample_transfer` keeps its name because translated failures
+use `function.__name__`; the coordinator's new append-only lesson records this
+source-observed diagnostic dependency without a new backend-failure claim.
+
+C structural preservation passes all 27 product ASTs after removing docstrings
+and reversing only approved module-bound helper definitions/references/imports.
+It rejects selected shadowing and preserves every constant/keyword/field/local/
+parameter/operator/expression/control-flow statement and order. Only the affected
+workflow import aliases are order-normalized. All 325 baseline tracked files
+outside source/docs are byte-identical, including 93 test files and all tooling,
+locks, settings, CI and delivery rules. All 24 B checkpoint entries plus B report
+hash match; root facade and 36 exports are byte-identical. C's exact hashes,
+normalization limits and complete source/decorator/location maps are retained in
+`c-preservation.json`, `c-rename-map.json`, `c-line-map.json` and `c-report.md`.
+
+C focused checks passed 334 optical/acquisition/failure/migration cases (68.06 s)
+and 142 selected direct-consumer cases (9.26 s, 695 deselected), with no failed
+case; pinned Pyright reports zero errors/warnings. Final lint/format pass. Full C
+accounting: one author, five lint attempts (four pass, one fail: 15 long-link plus
+one import-order finding), four format checks (three pass, one blank-line fail),
+two formatter mutations, three preservation passes, one type pass and two test
+passes; one ancillary missing-relative-artifact search. Two coordinator-requested
+same-line doc wording corrections were applied and rechecked; no numerical,
+test/oracle, type or preservation failure and no native launch/retry.
+
+Coordinator relocated 60 affected-source endpoints (21 moved), retained all 38
+previous source anchors, added bead-reader rows and library navigation, and
+checked 154 local paths/anchors including root-relative docstring pointers.
+Coordinator reran structural preservation after integration successfully. Two
+ancillary mapper-schema assumptions failed (nested map/list shape), were diagnosed
+and corrected without product changes; one initial predecessor-doc path lookup
+was also corrected. Environment charges remain one failed sandbox Git ref check
+and one failed sandbox preflight, followed by supported successful retries and
+one pinned isolated preflight pass. No full gate has yet run for Task 05.
+
+C's Pyright/test sessions exited; coordinator removed only the confirmed
+`/tmp/task05-author.py` disposable authoring script and confirmed absence, no
+cleanup errors. Retain the current checkout/environment, predecessor/shared
+inputs, durable checkers/reports/maps and uncertain ordinary runner scratch.
+All earlier stack/predecessor/CI diagnosis charges above remain retained without
+reset/double counting. Human numeric budgets not set; requested roles Sol/high,
+actual served attribution/tokens/cached tokens/cost/complete elapsed unknown.
+
 ## Current state
 
-Task 04 high-risk preparation readability is prepared in
-`/workspace/simrecon-readability-04`, branch `codex/readability-04-preparation`,
-from Task 03 `d3bbef6c8cac8dd528198a1fdb84b0b59c0d44d8`, tree
-`b5a0504e1e9cc8fc2a216560955d0d45798cc5b1`, targeting
-`codex/readability-03-packages` PR #90. Predecessor remains open/unmerged at the
-recorded head/base; its Ubuntu/macOS CI completed SUCCESS on the exact Task 03
-head. This does not verify Task 04.
+Task 05 high-risk optical-transfer readability is prepared in
+`/workspace/simrecon-readability-05`, branch `codex/readability-05-optical-transfer`,
+from Task 04 `c7bea91a4c07068e7662be1f5ca5aed24e369f18`, tree
+`ccb7ef698f1ec26f8953ad3144fea0676f67001b`, targeting predecessor branch
+`codex/readability-04-preparation` PR #91. That PR remains open/unmerged at the
+recorded head/base; latest configured Ubuntu/macOS jobs passed after one unchanged
+rerun, with the original failure/diagnosis/charges retained above. This certifies
+only the predecessor. A/B retained checkpoint accepted; restricted C/focused and
+coordinator source/navigation checks pass. No scientific/test/config/gate change.
 
-Fresh A/B accepted the unchanged retained public test checkpoint. Restricted C's
-11 names, five acquisition module docs and two consumer-only updates pass focused
-checks and whole-source AST preservation; coordinator navigation/docs/lesson and
-this sole handoff are prepared before commit. Exact final commit/tree/full gate,
-review verdict, receipt/coverage/M25/wheels, PR and CI will be recorded outside
-these verified tracked bytes in `artifacts/readability-04/completion.json`, retained
-verification evidence and PR/conversation. No full Task 04 acceptance claim is
-made by this pointer. Next: commit, canonical all-13-phase full `make verify`, fresh
-exact-candidate D, remote recheck, push and open one stacked PR. No subsequent task,
-native launcher retry, merge, auto-merge or release.
-
-Cumulative Task 04: A one author/no correction/no failed check; B one ACCEPT/one
-ancillary path failure; C one implementation author/one pytest pass/two type attempts (one environment
-failure, one pass)/one initial lint failure and format repair/four preservation
-runs (three pass, one script failure corrected)/one ancillary empty process lookup;
-coordinator one setup/preflight pass, five ancillary failures corrected, no full
-run yet. Detailed reports retain exact commands/counts and prior stack accounting
-above is unchanged. Human budgets not set; missing metering/served attribution
-unknown. Keep active checkout/environment/shared/predecessor inputs and durable
-evidence; four confirmed disposable C scripts removed without error, no owned
-running role test process. Full verification/review are the remaining required owned processes.
+Next: commit this candidate, canonical all-13-phase full `make verify` with
+same-run mandatory M25 and explicit ignored public/checkpoint/reader input
+fingerprints, then fresh exact-candidate independent D, remote recheck and push/
+open one stacked PR. Exact final head/tree/full results/receipt/native counts/
+M25/wheels/review/PR/CI and additional gate/review charges will be recorded outside
+these verified tracked bytes in `artifacts/readability-05/completion.json`, retained
+verification evidence and PR/conversation. No Task 05 full acceptance is yet
+claimed by this pointer. No successor, native launcher detour, merge, auto-merge
+or release. Cleanup keeps active/shared/durable inputs; one confirmed disposable
+C script removed without error.

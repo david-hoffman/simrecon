@@ -27,7 +27,7 @@ from ..optical_transfer import (
     OtfError,
     _sample_transfer,
     _Transfer,
-    _valid_transfer,
+    validate_optical_transfer,
 )
 
 _F64 = NDArray[np.float64]
@@ -687,7 +687,7 @@ def reconstruct_known(
     with _operation():
         grid, used = _validate_bands(bands)
         acquisition = used is not None
-        table = _valid_transfer(transfer, require_actual=acquisition)
+        table = validate_optical_transfer(transfer, require_actual=acquisition)
         if table.norders < grid.orders:
             raise ReconstructionError("transfer has insufficient orders")
         resolve_integer = _acquisition_integer if acquisition else _integer

@@ -52,6 +52,10 @@ packages group whole modules by responsibility:
   preparation, layout, drift and acquisition-mode composition.
 - [`optical_transfer.py`](../../src/simrecon/optical_transfer.py) contains the
   intact transfer declaration, sampling and bead-preparation implementation.
+  Its named operations expose literal radial/full interpolation, bead centering,
+  phase separation, radial projection, support masking and quadrature combination;
+  the [optical-transfer walkthrough](reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration)
+  links those operations and their conventions.
 - [`reconstruction/`](../../src/simrecon/reconstruction/) contains finite
   parameter estimation and known-parameter filtering/assembly.
 - [`workflow/`](../../src/simrecon/workflow/) contains orchestration, adapters,
