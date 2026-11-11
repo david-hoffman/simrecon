@@ -137,6 +137,9 @@ workstation uses `/Users/davidhoffman/.local/bin/uv`; CI installs pinned uv/Pyth
 [Environment setup](operations/environment.md) separates current checks from
 historical incidents.
 
+[Optional Serena navigation](operations/serena.md) documents a pinned external
+MCP setup, isolated session state, read-only analysis and ordinary search fallback.
+
 ```sh
 make preflight UV=/Users/davidhoffman/.local/bin/uv
 make check UV=/Users/davidhoffman/.local/bin/uv

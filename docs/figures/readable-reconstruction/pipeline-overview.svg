@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="648pt" height="432pt" viewBox="0 0 648 432" xmlns="http://www.w3.org/2000/svg" version="1.1" role="img" aria-labelledby="figure-title figure-description">
+ <title id="figure-title">Conceptual reconstruction data flow</title>
+ <desc id="figure-description">Arrows show data dependencies, not timing. The workflow resolves the transfer before preparing specimen bands. Known parameters bypass estimation. T time, D direction, P phase, Z axial, Y and X lateral samples.</desc>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Conceptual reconstruction data flow</dc:title>
+    <dc:description>Arrows show data dependencies, not timing. The workflow resolves the transfer before preparing specimen bands. Known parameters bypass estimation. T time, D direction, P phase, Z axial, Y and X lateral samples.</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 432
+L 648 432
+L 648 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 37.8432 101.4336
+L 342.6624 101.4336
+Q 350.12736 101.4336 350.12736 96.768
+L 350.12736 54
+Q 350.12736 49.3344 342.6624 49.3344
+L 37.8432 49.3344
+Q 30.37824 49.3344 30.37824 54
+L 30.37824 96.768
+Q 30.37824 101.4336 37.8432 101.4336
+z
+" clip-path="url(#p39b4f1d6f9)" style="fill: #253447; fill-opacity: 0.05098; stroke: #253447; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 37.8432 186.9696
+L 342.6624 186.9696
+Q 350.12736 186.9696 350.12736 182.304
+L 350.12736 127.872
+Q 350.12736 123.2064 342.6624 123.2064
+L 37.8432 123.2064
+Q 30.37824 123.2064 30.37824 127.872
+L 30.37824 182.304
+Q 30.37824 186.9696 37.8432 186.9696
+z
+" clip-path="url(#p39b4f1d6f9)" style="fill: #246b9e; fill-opacity: 0.05098; stroke: #246b9e; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 37.8432 284.1696
+L 342.6624 284.1696
+Q 350.12736 284.1696 350.12736 279.504
+L 350.12736 225.072
+Q 350.12736 220.4064 342.6624 220.4064
+L 37.8432 220.4064
+Q 30.37824 220.4064 30.37824 225.072
+L 30.37824 279.504
+Q 30.37824 284.1696 37.8432 284.1696
+z
+" clip-path="url(#p39b4f1d6f9)" style="fill: #246b9e; fill-opacity: 0.05098; stroke: #246b9e; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 37.8432 381.3696
+L 342.6624 381.3696
+Q 350.12736 381.3696 350.12736 376.704
+L 350.12736 322.272
+Q 350.12736 317.6064 342.6624 317.6064
+L 37.8432 317.6064
+Q 30.37824 317.6064 30.37824 322.272
+L 30.37824 376.704
+Q 30.37824 381.3696 37.8432 381.3696
+z
+" clip-path="url(#p39b4f1d6f9)" style="fill: #246b9e; fill-opacity: 0.05098; stroke: #246b9e; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 411.0912 179.1936
+L 610.1568 179.1936
+Q 617.62176 179.1936 617.62176 174.528
+L 617.62176 127.872
+Q 617.62176 123.2064 610.1568 123.2064
+L 411.0912 123.2064
+Q 403.62624 123.2064 403.62624 127.872
+L 403.62624 174.528
+Q 403.62624 179.1936 411.0912 179.1936
+z
+" clip-path="url(#p39b4f1d6f9)" style="fill: #277a59; fill-opacity: 0.05098; stroke: #277a59; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 411.0912 381.3696
+L 610.1568 381.3696
+Q 617.62176 381.3696 617.62176 376.704
+L 617.62176 322.272
+Q 617.62176 317.6064 610.1568 317.6064
+L 411.0912 317.6064
+Q 403.62624 317.6064 403.62624 322.272
+L 403.62624 376.704
+Q 403.62624 381.3696 411.0912 381.3696
+z
+" clip-path="url(#p39b4f1d6f9)" style="fill: #b8571a; fill-opacity: 0.05098; stroke: #b8571a; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 435.9744 174.528
+L 386.208 197.856
+L 386.208 333.936
+" clip-path="url(#p39b4f1d6f9)" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 37.8432 170.64
+L 22.2912 170.64
+L 22.2912 349.488
+" clip-path="url(#p39b4f1d6f9)" style="fill: none; stroke: #246b9e; stroke-width: 1.2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(100.024987 71.976562)">Declared specimen exposures</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(122.2578 85.413938)">T × D × P × Z × Y × X</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(104.999362 144.961875)">1  Prepare acquisition bands</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(85.2603 158.39925)">correct → edges/equalize → Fourier</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(77.2878 171.836625)">phase separation → axial Fourier (3D)</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(119.41155 248.880562)">2  Estimate parameters</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(59.192175 262.317937)">carrier vectors k and complex modulation a</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(115.0203 339.361875)">3  Reconstruct each time</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(80.688112 352.79925)">native filtering → Fourier embedding</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(81.9603 366.236625)">inverse sum + positive carrier ramp</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(441.32025 147.792563)">Explicit complex OTF H</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(425.53275 161.229938)">or separate bead calibration</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(450.61275 339.195)">Known parameters?</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(440.664937 352.632375)">Call reconstruct_known</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #253447" transform="translate(447.838687 366.4035)">to bypass estimation</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 190.2528 98.768953
+Q 190.2528 112.320415 190.2528 124.306628
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 192.6528 119.506628
+L 190.2528 124.306628
+L 187.8528 119.506628
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 190.2528 184.30614
+Q 190.2528 203.691321 190.2528 221.511256
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 192.6528 216.711256
+L 190.2528 221.511256
+L 187.8528 216.711256
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #253447" x="199.584" y="206.723312" transform="rotate(-0 199.584 206.723312)">complex native bands</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 190.2528 281.50614
+Q 190.2528 300.891321 190.2528 318.711256
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 192.6528 313.911256
+L 190.2528 318.711256
+L 187.8528 313.911256
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #253447" x="199.584" y="303.923312" transform="rotate(-0 199.584 303.923312)">per-time k and a</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 409.806907 164.396395
+Q 376.877043 203.687711 344.952593 241.779384
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 349.87522 239.642158
+L 344.952593 241.779384
+L 346.196388 236.558946
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 384.206667 333.936
+Q 364.434852 333.936 346.228284 333.936
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 351.028284 336.336
+L 346.228284 333.936
+L 351.028284 331.536
+" style="fill: none; stroke: #253447; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 409.090627 349.488
+Q 376.875937 349.488 346.226495 349.488
+" style="fill: none; stroke-dasharray: 5.18,2.24; stroke-dashoffset: 0; stroke: #b8571a; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 351.026495 351.888
+L 346.226495 349.488
+L 351.026495 347.088
+" style="fill: none; stroke-dasharray: 5.18,2.24; stroke-dashoffset: 0; stroke: #b8571a; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 24.292153 349.488
+Q 30.066897 349.488 34.276394 349.488
+" style="fill: none; stroke: #246b9e; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 29.476394 347.088
+L 34.276394 349.488
+L 29.476394 351.888
+" style="fill: none; stroke: #246b9e; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #253447" x="190.2528" y="401.976" transform="rotate(-0 190.2528 401.976)">Signed real output: T × Zout × Yout × Xout</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #253447" x="12.96" y="20.56" transform="rotate(-0 12.96 20.56)">One declared channel → signed image</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p39b4f1d6f9">
+   <rect x="12.96" y="34.56" width="622.08" height="388.8"/>
+  </clipPath>
+ </defs>
+</svg>
