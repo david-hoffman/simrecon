@@ -981,23 +981,122 @@ ignored authoring/review/check outputs are durable evidence. C/A/B own processes
 closed. Retain current checkout/.venv, predecessor/shared reader inputs/caches
 and uncertain ordinary runner scratch. No removal or cleanup error.
 
+## Task 06 retained completion pointer
+
+Task06 completed at pushed head `7023bc69d8c7e07cc1c8ba93d6c0c7ef8e345a61`,
+tree `e6825d8bbe7ce33990b4e008e674cf59afec9330`, PR #93 open/unmerged,
+targeting Task05. Fresh B/D ACCEPT; exact clean committed full13phase PASS,
+3,100 tests/47warnings,1,169-file manifest unchanged,all3 input fingerprints
+matched,36 measured owned files,M25 increment0 within33,554,432bytes,both
+installed wheels/audit PASS. Receipt SHA256
+`15eb175510988a1242c28fc7dee952e53ace05b89e9954302e24f37af87b051e`.
+Native counts: global4,834/4,972 statements and1,854/1,964 branches;
+product3,993/4,128 and1,534/1,640;devtools39/39 and8/8;
+scripts802/805 and312/316. Detailed completion/accounting/evidence remain at
+`/workspace/simrecon-readability-06/artifacts/readability-06/completion.json`.
+Task06 CI was pending at launch and never counted passing then. Root subsequently
+confirmed run42954992027 completed SUCCESS on both macOS130307856907 and
+Ubuntu130307857235.
+All historical charges and Task06 incomplete A invocation/type/tool/checker
+failures/corrections remain retained above and in that completion; no reset.
+Predecessor PASS does not accept Task07 changed candidate.
+
+## Task 07 contract and evidence pointer
+
+Authorized high-risk filtering/assembly readability only, from exact Task06
+head/tree above, target `codex/readability-06-estimation` PR93. Keep the intact
+`reconstruction/known_parameters.py` and its algorithms. Meaningful helper names,
+NumPy docs/reason comments and equation/convention links clarify native filtering,
+quadrature recombination, carrier relocation, inverse normalization and signed
+output. Preserve numerical expressions/evaluation order/sign/scale/domain/errors,
+ownership/record fields/payloads/local names,36exports/dunders/CLI and literal
+module/local t/d traceback context. No larger extraction, numericalfix, feature,
+APIexpansion,alias,blankettests or later workflow/I/O/Serena changes except
+necessary direct consumers. Coordinator owns live source links,handoff and PR
+presentation. Existing walkthrough supplies useful math; no extra figure needed.
+
+Fresh blind A maps retained public proof; fresh blind B independently audits
+oracles,permitted positives/omissions and accepts checkpoint; restricted C owns
+only named product source/necessary direct consumers; fresh exact-candidate D
+follows commit/full gate PASS. Public inputs/source-free diagnostics only for A/B;
+no implementation/history/state/coverage/lessons. November11 fresh collaboration
+roles supersede launch location alone, no nativeCLI/auth/cloud detours.
+
+Preserve Task02 devtools/delivery/strict explicit plugin/locked install/separate
+installed wheels/all-owned-subprocess measurement/PR87affinity-observers and all
+13phases. Coverage percentages advisory; exact native reports/counts and behavior
+risk review required. Full-local committed make verify uses supported canonical
+path, mandatory same-run M25 limit33,554,432bytes and public/checkpoint/reader
+input fingerprints. Recheck remote head/base/ancestry before submission; normal
+push/open exactly one stacked PR,no merge/auto-merge. Root owns successor08.
+
+## Task 07 retained pre-verification accounting
+
+Fresh blind A mapped existing public proof,31input hashes matched,369source-free
+focused tests PASS12.23s,zero edits/exposure. The initial packet named two absent
+mode-test paths; actual acquisition boundary/filter/2D files were explicitly
+allowed after inventory. Fresh blind B independently checked all35inputs,
+recalculated closed numerical expectations/permitted positives/omissions and
+ACCEPTED. It retained A's unchanged369PASS and ran10previously-unexecuted
+compatibility cases PASS1.90s,one sanitized test-observer negative-power warning.
+No test/oracle correction or artificial red. Accepted ignored checkpoint freezes
+36inputs plus B report; SHA256
+`bca4e4065e855e869773e3124505da27ada89508317658f90be654ddc029305a`.
+Retained test limits are explicit: tolerance proof cannot establish literal
+expressions/order/names/docs,backend interceptions are not exhaustive and direct
+nonzero reconstruction-stage t/d error assertions are not established by A/B.
+Restricted C/fresh D inspect those unchanged structural obligations.
+
+C names six helper globals,one precise-taper operation class and five methods;
+records/classes/fields,all locals/parameters,expressions/control flow/order and
+non-docstring literals remain. No other production helper consumer needed edits.
+Structural pairing compares all27product ASTs and NUMBER/STRING/f-string lexemes,
+allows32explicit scoped binding edits,rejects shadowing and verifies1,165frozen
+files including93testfiles,37checkpoint/report paths and exact facade/36exports.
+Coordinator integration of that proof PASS. Existing421focused public cases
+PASS67.18s with one expected fixture warning;lint/format PASS. Coordinator
+unchanged canonical locked make types PASS0errors/0warnings on supported path,
+without repeating known sandbox-discovery failures or changing configuration.
+
+Coordinator relocated26walkthrough source-reference endpoints with0fallbacks;
+141localpaths/anchors and44retained source positions PASS. Final exact source,
+rename map,line map,author checks,commands/charges and preservation limits are
+retained in ignored `artifacts/readability-07/c-report.md` and adjacent evidence.
+C's initial broad method token edit touched3record.scale reads; immediate
+inventory caught/restored all3 before checks/tests,one charged edit correction.
+Two diagnosed lint failures/two line-length cleanup iterations,one prose refinement requested by coordinator
+(exact equation anchors/explode multiplier),and C's2initial absent-path reads
+remain charged; no product-test failure or test/config repair. Coordinator adds
+2ancillary path/timing read errors,one locked preflight PASS,one typePASS,
+one structural integrationPASS and two navigationPASS checks. All prior stack and
+Task06 incomplete-result/type/checker/environment/CI charges remain retained
+above and in predecessor completions; no reset/doublecounting. Requested
+rolesSol/high;actual serving/tokens/cost/full elapsedunknown;human numeric
+budgetsnotset. No nativeCLI/auth/cloud-launcher attempts.
+
+Cleanup: no confirmed disposable external task scratch created; ignored author,
+review and check outputs are durable evidence. Closed completed own role/check
+processes; preserve current checkout/.venv,predecessor/shared reader inputs/caches
+and uncertain ordinary runner scratch. No removal or cleanup error.
+
 ## Current state
 
-Task06 high-risk estimation readability is prepared in
-`/workspace/simrecon-readability-06`, branch `codex/readability-06-estimation`,
-from Task05 exact head `24e53bc2a7a792498950d83107ee382e599dc0cb`, tree
-`ee6dfadaf2aab323d2b6a0b736b1a555ffb3ecd5`, targeting PR92 branch
-`codex/readability-05-optical-transfer`. Predecessor open/unmerged exacthead/base
-and ancestry confirmed before editing, main unchanged; root confirmed latest
-Ubuntu/macOS CI SUCCESS. A/B retained checkpoint ACCEPT, restricted C/focused
-checks and coordinator structural/source/navigation checks PASS. No numerical,
-test/fixture/config/gate change, no extraction, no unrelated next-stage work.
+Task07 high-risk filtering/assembly readability is prepared in
+`/workspace/simrecon-readability-07`,branch `codex/readability-07-reconstruction`,
+from Task06 exact head `7023bc69d8c7e07cc1c8ba93d6c0c7ef8e345a61`,tree
+`e6825d8bbe7ce33990b4e008e674cf59afec9330`,target PR93 branch
+`codex/readability-06-estimation`. Predecessor open/unmerged exacthead/base,
+remote refs,main and ancestry confirmed before editing;newbranch absent.
+Root confirmed Task06CI42954992027 both required platformsSUCCESS. Fresh blind
+A/B retained checkpointACCEPT;restrictedC/focused checks,coordinator structural,
+source-link and canonical types checksPASS. No numerical/test/fixture/config/gate
+change,extraction or unrelated successor work.
 
-Next: commit this candidate, then canonical all13phase full `make verify` with
-same-run mandatory M25 and explicit public/checkpoint/reader fingerprints, fresh
-exact-candidate independent D, remote recheck and normal push/open one stacked PR.
-Exact final head/tree/full results/receipt/native coverage/M25/wheels/review/PR/CI
-and subsequent charges belong outside verified tracked bytes in ignored
-`artifacts/readability-06/completion.json`, verification evidence and PR/conversation.
-This pointer claims no Task06 full acceptance yet. No successor, merge,
-auto-merge or release; root launches Task07 only after this packet completes.
+Next: commit this candidate,then canonical all13phase full make verify with
+same-run mandatoryM25 and explicit public/checkpoint/reader fingerprints,fresh
+exact-candidate independentD,remote recheck and normalpush/openone stackedPR.
+Exact final head/tree/fullresults/receipt/nativecounts/M25/wheels/review/PR/CI and
+additional gate/review charges stay outside verified trackedbytes in ignored
+`artifacts/readability-07/completion.json`,verification evidence and PR/conversation.
+This pointer claims no Task07full acceptance yet. No successor/merge/auto-merge;
+root starts08 only after this packet completes. Historical accounting remains.
