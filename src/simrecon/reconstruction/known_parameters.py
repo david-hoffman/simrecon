@@ -18,7 +18,7 @@ from scipy.fft import ifftn
 from ..acquisition.layout import ModeEvent, event
 from ..acquisition.layout import integer as _acquisition_integer
 from ..acquisition.layout import scalar as _acquisition_scalar
-from ..acquisition.modes import AcquisitionBands, _UsedBands, validate_used
+from ..acquisition.modes import AcquisitionBands, _UsedBands, validate_downstream_bands
 from ..acquisition.preparation import _REFERENCE as _BAND_REFERENCE
 from ..acquisition.preparation import PreparedBands
 from ..models import SimreconError
@@ -184,7 +184,7 @@ class _Grid:
 
 def _validate_bands(bands: Any) -> tuple[_Grid, _UsedBands | None]:
     if issubclass(type(bands), AcquisitionBands):
-        used = validate_used(bands)
+        used = validate_downstream_bands(bands)
         shape = used.shape
         for sh, size in (((shape[1], 2), 8), ((shape[1], used.orders), 16), (shape[3:], 16)):
             _extent(sh, size)

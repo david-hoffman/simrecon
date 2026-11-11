@@ -232,9 +232,12 @@ explicitly describe other import paths as implementation details. Keep Python
 dunders and truly local implementation details where useful; do not use privacy
 as a reason to hide the scientific steps again.
 
-Examples to evaluate with callers, rather than apply by blind substitution:
+Task 04 implements the first two preparation examples below; those earlier
+identifiers are retained here only to explain the naming transition. The remaining
+workflow examples are still suggestions to evaluate with callers, rather than
+apply by blind substitution:
 
-| Current symbol | Suggested name | Meaning to make visible |
+| Earlier preparation / current workflow symbol | Readable name | Meaning to make visible |
 | --- | --- | --- |
 | `acquisition.preparation._phase_matrices` | `build_phase_separation_matrices` | Separation weights and order noise factors, with distinct phase policies |
 | `acquisition.preparation._edge` | `apodize_frame_edges_inplace` | Ordered y/x mutation, including overlap behavior |
