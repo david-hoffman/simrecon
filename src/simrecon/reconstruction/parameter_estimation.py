@@ -16,7 +16,7 @@ from numpy.typing import NDArray
 
 from ..acquisition.layout import integer as _acquisition_integer
 from ..acquisition.layout import scalar as _acquisition_scalar
-from ..acquisition.modes import AcquisitionBands, _UsedBands, validate_used
+from ..acquisition.modes import AcquisitionBands, _UsedBands, validate_downstream_bands
 from ..acquisition.preparation import _REFERENCE as _BAND_REFERENCE
 from ..acquisition.preparation import PreparedBands
 from ..models import SimreconError
@@ -198,7 +198,7 @@ class _Grid:
 
 def _validate_bands(bands: Any, transfer: _Transfer) -> tuple[_Grid, _UsedBands | None]:
     if issubclass(type(bands), AcquisitionBands):
-        used = validate_used(bands)
+        used = validate_downstream_bands(bands)
         shape = used.shape
         z, y, x = shape[3:]
         k = transfer.samples.shape[-1] if transfer.layout == "radial" else transfer.samples.shape[1]

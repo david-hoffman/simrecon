@@ -1,4 +1,10 @@
-"""Own raw sample storage and explicit acquisition declarations in memory."""
+"""Own raw sample bytes and explicit acquisition declarations in memory.
+
+Declaration canonicalizes only named axes, without inferring missing dimensions
+or interpreting nominal phase commands as measured truth. For the downstream
+scientific boundary see the repository-relative section:
+docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions
+"""
 
 import math
 from collections.abc import Iterator, Mapping
@@ -27,7 +33,12 @@ class RawAcquisition:
     """Owned samples, resolved declarations and independent raw snapshots.
 
     Record bindings are frozen. Buffers remain mutable, and metadata is
-    read-only by convention. Declarations establish no experimental validity.
+    read-only by convention. Data axes retain only declared members of
+    time/channel/orientation/phase/z/y/x in that order. Sample dtype and all
+    element bytes survive unchanged, including signed/nonfinite float patterns.
+    Nominal float64 phase commands use declared group axes excluding z/y/x,
+    in radians; they supply no implicit separator input or measured phase truth.
+    Declarations establish no experimental validity.
     """
 
     data: npt.NDArray[Any]

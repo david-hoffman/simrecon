@@ -1,4 +1,10 @@
-"""Pure array camera preparation and native SVN307 phase quadratures."""
+"""Camera correction, ordered edges and native SVN307 phase quadratures.
+
+Repository-relative scientific conventions:
+docs/architecture/reconstruction-walkthrough.md#camera-correction-edges-and-equalization
+docs/architecture/reconstruction-walkthrough.md#band-separation-phase-measurements-to-quadratures
+Only root-facade exports are supported public APIs.
+"""
 
 from __future__ import annotations
 
@@ -150,10 +156,40 @@ def _raw_samples(images: NDArray[Any], name: str = "images") -> None:
         raise _invalid(name, "samples are not exactly float32 representable")
 
 
-def _phase_matrices(
+def build_phase_separation_matrices(
     angles: FloatArray, orders: int, supplied: bool
 ) -> tuple[FloatArray, FloatArray]:
-    """Build selected separation rows and scalar order noise without a rank cutoff."""
+    """Build phase-separation rows and scalar order-noise variance factors.
+
+    Parameters
+    ----------
+    angles : numpy.ndarray
+        Float64 (direction, phase) angles in radians; no wrapping is applied.
+    orders : int
+        Retained order count including zero; Q=2*orders-1 must not exceed P.
+    supplied : bool
+        False selects unnormalized uniform cosine/sine rows. True selects the
+        inverse or unweighted left inverse of the scaled forward design.
+
+    Returns
+    -------
+    rows : numpy.ndarray
+        Owned writable float64 (D,Q,P) rows in 0,cos1,sin1,cos2,sin2,... order.
+        Uniform rows have no 1/P factor. For supplied phases, the forward
+        columns are 1/P, 2*cos(m*angle)/P and 2*sin(m*angle)/P.
+    noise : numpy.ndarray
+        Independent writable float64 (D,orders) variance factors, not standard
+        deviations. Uniform factors are one; supplied factors sum squared
+        order rows over phase and divide by P.
+
+    Notes
+    -----
+    Callers validate finite input shapes/counts. Supplied designs must resolve
+    a full-column-rank left inverse; no phase-spacing or condition-number
+    cutoff, weighting or regularization is imposed. Inputs remain unchanged.
+    See the repository-relative scientific walkthrough:
+    docs/architecture/reconstruction-walkthrough.md#explicit-phases-are-a-left-inverse-problem
+    """
     directions, phases = angles.shape
     slots = 2 * orders - 1
     rows = np.ones((directions, slots, phases), dtype=np.float64)
@@ -200,8 +236,27 @@ def _phase_matrices(
     return rows, noise
 
 
-def _edge(frame: FloatArray, width: int) -> None:
-    """Apply y then x edge updates, retaining sequential overlap writes."""
+def apodize_frame_edges_inplace(frame: FloatArray, width: int) -> None:
+    """Apodize one frame in place with the selected ordered edge operation.
+
+    Parameters
+    ----------
+    frame : numpy.ndarray
+        Writable float64 (y,x) camera-corrected detector-count samples.
+    width : int
+        Validated width at most min(y,x). Positive widths add opposite-edge
+        differences, -1 multiplies by a half-sample sine window, and 0 or
+        values below -1 leave the frame unchanged.
+
+    Notes
+    -----
+    Returns None and mutates only frame. For positive widths, snapshot the
+    y-edge difference, apply top/bottom writes sequentially, then compute the
+    x-edge difference from the modified frame. Overlapping strips retain that
+    write order; this branch is not a multiplicative window.
+    See the repository-relative scientific walkthrough:
+    docs/architecture/reconstruction-walkthrough.md#camera-correction-edges-and-equalization
+    """
     y, x = frame.shape
     if width == -1:
         frame *= np.sin(np.pi * (np.arange(y) + 0.5) / y)[:, None]
@@ -281,7 +336,16 @@ def prepare_bands(
     Notes
     -----
     Implements the CE02 mathematical mapping, not bitwise C rounding. Inputs
-    remain unchanged. No estimation, resampling or reconstruction is performed.
+    remain unchanged. Correction is alpha*slope*(raw-background-extra), with
+    alpha=1/(X*Y*Z*lateral_zoom**2*axial_zoom*D). Frame sums follow edge handling;
+    equalization uses direction0/phase0 pre-equalization sums, sharing z/time
+    only when selected. Signed nonzero divisors are valid.
+    Both forward transforms use negative-exponential unnormalized sums and
+    first-sample origins. Stored x bins are nonnegative; unshifted y/z labels
+    use the positive even Nyquist convention. Separation excludes x=X/2.
+    See the repository-relative scientific walkthrough:
+    docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions
+    No estimation, resampling or reconstruction is performed.
     """
     if not isinstance(images, np.ndarray) or images.ndim != 6:
         raise _invalid("images", "must be a six-dimensional NumPy array")
@@ -338,7 +402,7 @@ def prepare_bands(
         raise _invalid("input scale", "zero or nonfinite numerical alpha")
     try:
         with np.errstate(over="raise", invalid="raise", divide="raise"):
-            rows, noise = _phase_matrices(angles, orders, supplied)
+            rows, noise = build_phase_separation_matrices(angles, orders, supplied)
             frames = np.empty(shape, dtype=np.float64)
             sums = np.empty(shape[:4], dtype=np.float64)
             events: list[tuple[int, int, int, int]] = []
@@ -347,6 +411,8 @@ def prepare_bands(
                     for z in range(z_count):
                         for p in range(phases):
                             raw = np.array(images[t, d, p, z], dtype=np.float64, copy=True)
+                            # The corner sentinel changes owned camera maps for
+                            # every later load in t,d,z,p order, not just this frame.
                             if raw[-1, -1] == -1:
                                 raw[-1, -1] = raw[-1, -2]
                                 camera_background[-1, -1] = camera_background[-1, -2]
@@ -354,7 +420,7 @@ def prepare_bands(
                                 events.append((t, d, z, p))
                             frame = alpha * slope * (raw - camera_background - extra[t, d, p, z])
                             _finite(frame, "camera correction")
-                            _edge(frame, width)
+                            apodize_frame_edges_inplace(frame, width)
                             _finite(frame, "edge operation")
                             sums[t, d, p, z] = frame.sum()
                             frames[t, d, p, z] = frame
@@ -379,6 +445,7 @@ def prepare_bands(
                     _finite(lateral_fft, "lateral transform")
                     separated = np.empty((slots, z_count, y, x // 2 + 1), dtype=np.complex128)
                     separated[..., :-1] = np.einsum("qp,pzyx->qzyx", rows[d], lateral_fft[..., :-1])
+                    # The stored x Nyquist pair retains raw phase-slot identity.
                     separated[..., -1] = lateral_fft[:slots, ..., -1]
                     _finite(separated, "phase separation transform")
                     axial_fft = np.fft.fft(separated, axis=1)

@@ -146,7 +146,11 @@ def append(sequence: list[Any], value: Any) -> None:
 
 @dataclass(frozen=True)
 class ModeEvent:
-    """Immutable operation event with owned independent diagnostic arrays."""
+    """Immutable operation event with independent read-only diagnostic arrays.
+
+    Indices identify actual t/d/z/p traversal. Details preserve keyword insertion
+    order; array snapshots cannot alias later mutable workspaces or each other.
+    """
 
     kind: str
     time_index: int
@@ -165,7 +169,13 @@ def event(
     p: int | None = None,
     **details: Any,
 ) -> None:
-    """Append a schema-ordered snapshot of an actually executed operation."""
+    """Append a snapshot of an actually executed operation in detail-key order.
+
+    Mutates trace only: ndarray details become independent read-only copies;
+    NumPy scalar details become Python scalars. Indices retain the caller's
+    actual time/direction/z/phase context, including failed later-stage routing.
+    No diagnostic is synthesized for an unexecuted branch.
+    """
     captured = []
     for key, value in details.items():
         if isinstance(value, np.ndarray):
@@ -305,12 +315,26 @@ def reinterpret_2d_planes(
     Returns
     -------
     TwoDPlaneInputs
-        Owned read-only arrays, effective time T*Zstack, and original d/z labels.
+        Independent read-only raw arrays in their respective input dtypes:
+        images (T*Zstack,D,P,1,Y,X), optional off (T*Zstack,D,P,1,N,Y,X), and
+        optional float64 backgrounds (T*Zstack,D,P,1). The int64
+        source_direction_z array has shape (Zstack,D,2) with original (d,z)
+        labels. Sample bits and caller storage are preserved.
 
     Raises
     ------
     AcquisitionModeError
         Invalid values, unsafe representation or allocation failure.
+
+    Notes
+    -----
+    For effective time t*Zstack+q and direction d_new, z-major reads original
+    (d_new,q); direction-major reads divmod(q*D+d_new,Zstack). This reinterprets
+    the physical stream and can mix nominal planes/directions. It performs no
+    camera correction, Fourier transform, resampling or scientific recovery.
+    Keep storage_order when passing the result to acquisition preparation.
+    See the repository-relative scientific walkthrough:
+    docs/architecture/reconstruction-walkthrough.md#selected-acquisition-extensions
     """
     with operation():
         images, shape = raw_images(images)

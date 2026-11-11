@@ -542,35 +542,197 @@ figure is needed for these file moves. C's three confirmed disposable scripts
 processes exited; absence confirmed, no errors. Durable checker copy, evidence,
 current checkout, environment, shared inputs and uncertain pytest scratch retained.
 
+## Task 03 completed evidence and retained charges
+
+Task 03 completed as PR [#90](https://github.com/david-hoffman/simrecon/pull/90),
+head `d3bbef6c8cac8dd528198a1fdb84b0b59c0d44d8`, tree
+`b5a0504e1e9cc8fc2a216560955d0d45798cc5b1`, against Task 02
+`6627f33cc718b1da1cb7b35a620d22655848ae91`. Fresh B2, D and infrastructure
+review ACCEPT. First full committed-candidate `make verify` passed all 13 phases:
+3,100 tests, 47 warnings, 783.90 s; all 1,167 tracked manifest hashes unchanged,
+all 36 owned Python files measured. Receipt SHA256
+`944bfc6b052b7e269ce5417fb6c3d67c8340e0c8ca931dd2bfa1651f3f95ec87`.
+Native covered/total statements and branches: global 4,834/4,972 and 1,854/1,964;
+product 3,993/4,128 and 1,534/1,640; development 39/39 and 8/8; scripts
+802/805 and 312/316. Same-run M25 increment 0 bytes (limit 33,554,432);
+both installed wheels and audit passed. This is predecessor evidence, never a
+changed Task 04 pass. Detailed completion and review evidence remain in the
+Task 03 worktree's ignored `artifacts/readability-03/completion.json`, reports,
+verification receipt and coverage; PR #90 retains its remotely readable summary.
+Task 03 CI run 42937791643 was pending at Task 04 intake. The stack root then
+confirmed completed SUCCESS for Ubuntu 24.04 job 130252044602 and macOS 15
+job 130252045099 on the exact Task 03 head. This remains predecessor evidence.
+
+Retained Task 03 totals, adding final reviews to the detailed attempts above:
+A one author/two test corrections/four failed narrow checks; B two fresh reviews,
+one nonacceptance/one accepted correction/one oracle finding/one absent-path read;
+C one author/one lint correction/one failed initial lint check; infrastructure
+one author/no correction or failure. D one ACCEPT/one nonblocking presentation
+finding/two failed optional probes corrected/no target edits. Infrastructure
+review one ACCEPT/one successful offline installed check/one absent-path lookup/
+one corrected optional manifest display key. Coordinator one optional absent-glob
+failure/one incidental doc replacement correction/one full gate pass/none failed;
+three confirmed disposable C scripts removed. No post-verification candidate
+changes. All older analysis/kickoff/Task 01/02/native-launch/setup charges remain
+above. Human budgets not set; actual served model/tokens/cost/complete elapsed
+unknown. No merge or auto-merge.
+
+## Task 04 contract and evidence pointer
+
+Task 04 alone names meaningful preparation/acquisition operations and improves
+accurate docstrings/comments linking the walkthrough equations and conventions.
+Ownership is the five existing `src/simrecon/acquisition/` modules and necessary
+import/call-only consumers of renamed helpers. Prefer meaningful scientific
+operations over blanket validator renames. No larger extraction or numerical
+rewrite, new scientific behavior, public API expansion, compatibility aliases,
+local-variable renames, retired API revival, test rewrite, dependency or gate change.
+Preserve exact expressions, signs, scales, evaluation/traversal order, accepted
+input domains, error hierarchy/messages, array ownership and diagnostic/provenance
+records. Preserve the 36 documented root exports, dunders and neutral CLI.
+Literal module and local `t`/`d` traceback context must survive. Tasks 05–09 remain
+outside scope except necessary consumers of renamed acquisition helpers.
+
+Route **high risk**: helper identities cross scientific consumers, so narrow
+readability edits retain fresh blind A, fresh blind B, restricted C, committed
+exact-candidate full `make verify`, then fresh independent D. November 11 owner
+clarification permits direct fresh collaboration roles (`fork_turns="none"`),
+not nested delegation or native authentication/cloud-launcher retries. Requested
+roles use Sol/high under repository calibration; observed served attribution and
+usage are unknown. A owns only `tests/test_preparation_readability.py` if a concrete
+uncovered public risk justifies it; existing independently accepted public tests
+and fixtures are retained by default. No artificial red or new oracle solely to
+prove a rename. B audits retained oracle applicability/omissions and freezes exact
+test identities. C owns only product scope, no tests/fixtures/configuration,
+workflow, delivery, gate or policy edits. Coordinator owns this handoff, current
+navigation/source links and PR presentation. New required infrastructure work
+returns to separately named ownership and review, never implicitly to C.
+
+| ID | Preserved observable obligation | Evidence and authority |
+| --- | --- | --- |
+| T04-1 | Camera/sentinel correction and ordered edge apodization retain values, accepted domains and mutation boundaries. | CE02/CE06 public contracts, retained public tests, A/B mapping and D comparison. |
+| T04-2 | Equalization anchors, FFT half-spectrum normalization/signs, phase-separation policies and noise factors retain exact computation/order. | CE02/CE06 contracts, independently accepted tests and alpha-renamed AST comparison. |
+| T04-3 | On/off composition, 2D layout, drift correlation/translation/cubic fitting and event traversal preserve results, record ownership and provenance. | CE06/plane/declaration contracts, retained public controls, full gate and D. |
+| T04-4 | Invalid, representation-limit and operation-time failures plus permitted positive boundaries retain errors and workflow nonzero time/direction context. | Existing contracts/tests including real workflow failures; no renamed locals or literal modules. |
+| T04-5 | All 36 exports, neutral APIs/CLI, devtools installed command/strict plugin, #87 affinity/observers, locked install and separate wheels remain intact. | Existing public interfaces and installed-product/full verification checks. |
+| T04-6 | Ordinary scientific operation names/docstrings/comments explain actual equations, axes, units, signs, policies and ownership, without expanding the supported API. | Executing source and approved reader map, text/dynamic-name inventory, live link checks and D. |
+
+Coverage inherits behavior coverage with independent risk review; no percentage
+target is selected. Mandatory native statement/branch file/package/global reports,
+never-imported and subprocess measurement, independent Ubuntu/macOS CI reports,
+all 13 phases, separate installed wheels, audit and same-run M25 limit 33,554,432
+bytes remain. Pending CI is not passing. The predecessor receipt certifies only
+its unchanged predecessor. No smaller route or weaker gate is selected.
+
+Before editing, GitHub confirmed PR #90 open/unmerged at the pinned head/base;
+new isolated Task 04 worktree and locked environment were created. Python 3.13.12,
+uv 0.12.19 and pinned Temurin 21.0.7+6 via `SIMRECON_JAVA`; `uv sync --locked
+--all-groups` and canonical `make preflight` passed on supported escalation path.
+Durable evidence/packets/checkpoint/reports live in ignored
+`artifacts/readability-04/`; full receipt/coverage in their usual directories.
+Prepare the tracked handoff before commit; exact final hashes/results, reviews
+and PR/CI go outside tracked bytes. PR summary will explain named preparation
+steps and preserved behavior, with technical appendix; no decorative figure needed.
+Cleanup preserves active worktree/environment, predecessor/shared inputs and
+all durable evidence; remove only confirmed disposable owned scratch using the
+existing housekeeping workflow. Numeric budgets not set; missing metering unknown.
+
+## Task 04 execution accounting and retained checkpoint
+
+Fresh blind A retained existing science tests/fixtures without edits, artificial
+red or new oracle. Its sampled independently checked controls map T04-1–6 to
+specific keepers; source-free execution passed 78 cases in 6.20 s. Fresh blind B
+independently checked analytic phase/noise/Fourier/cubic/on-off/layout controls,
+permitted positives and concrete omission risks; all 17 input hashes match and
+its independent source-free run passed 48 cases in 17.76 s. B **ACCEPT** applies
+to the unchanged retained checkpoint, not unseen implementation/full historical
+oracle derivation. Neither blind role reports implementation/history/coverage
+exposure. A: one author/no test correction/no failed check; B: one accepted review,
+no test correction or failed test, one permitted-doc path lookup failure corrected.
+Detailed mapping, limits and exact hashes: `a-report.md`, `b-review.md` and
+`accepted-checkpoint.json` under ignored `artifacts/readability-04/`.
+
+Restricted C made 11 meaningful helper/class renames across preparation, drift
+and mode composition, retaining mathematical locals and truly local validators.
+Five acquisition modules gained accurate physical/array/domain/ownership docs,
+with walkthrough equation/convention pointers. Only two reconstruction modules
+needed import/call-only updates for downstream-band validation. No scientific
+algorithm extraction, argument/local/field/event-keyword/literal change survives.
+An initial mechanical edit accidentally touched the diagnostic `correlation`
+keyword; C caught and restored it before verification. Current names explain phase
+separation, ordered edge updates, signed bins, positive drift ramps, displacement
+correlation, between-direction drift, in-place cubic timestamp fitting, carried
+camera state, equalization and literal on/off order combination.
+
+Entire-source AST preservation passes for all 27 source files, including all
+seven changed runtime files, stripping only docstrings and normalizing exact
+module-bound approved helper identities and affected import alias ordering.
+The checker rejects selected local/argument/nested-definition shadowing and keeps
+keywords, constants, fields, operators and control flow exact. Root facade and
+36 exports are byte-identical; all 93 test files and all 324 baseline tracked
+non-source/non-doc inputs are unchanged; all 17 B inputs match. The new append-only
+coordinator lesson records the corrected keyword collision, not new policy.
+Evidence: `c-rename-map.json`, `c-preservation-check.py`, `c-preservation.json`,
+`c-line-map.json` and `c-report.md`.
+
+C focused lint/format and pinned escalated Pyright pass (zero type errors);
+704 representative retained cases pass in 180.41 s with two existing test-owned
+observer divide warnings. An initial Pyright lookup failed to resolve NumPy in
+the sandbox, causing 121 cascading diagnostics; the supported pinned interpreter
+execution resolved them without source/config changes. C also corrected one
+initial long-line/import-order lint failure and one supplemental checker
+copy/node-identity error while strengthening shadow detection; no product-red,
+test correction, numerical fix or gate relaxation. Same-line doc precision fixes
+retain line positions. Detailed C accounting/commands remain in its report.
+
+Coordinator updated the walkthrough's actual operation names, 55 explicit source
+locations and seven shorthand endpoints, using retained AST statement identity
+or exact unchanged source blocks. All 129 local paths/anchors and 38 retained
+source positions pass; plan rows explicitly label the earlier preparation names
+as transitions. Source/dynamic-consumer scan has no stale live consumers; historical
+map rows remain labeled. Re-ran C preservation and document checks successfully.
+Coordinator failures retained: one GitHub workflow-call schema mismatch corrected,
+one premature absent A-report probe, and three auxiliary document-location mapping
+attempts corrected after identifying decorator/keyword/comment lines without AST
+statement positions. These are five ancillary failures, not product/test/full-gate
+failures. No tracked source changed during those document-tool corrections.
+
+All role-owned check sessions exited. C identified exactly four disposable
+authoring scripts under `artifacts/readability-04/`: `c-edit.py`, `c-docs.py`,
+`c-mode-docs.py`, `c-links.py`. Coordinator removed those paths with existing
+commands and confirmed absence, no errors. Preserve the durable checker/reports,
+current checkout/.venv, predecessor worktrees, shared inputs and uncertain runner
+scratch. No disposable fixture or worktree was identified. All historical charges above remain;
+human numeric budgets not set, requested Sol/high roles, observed served model,
+tokens/cost and complete elapsed unknown. No merge or auto-merge.
+
 ## Current state
 
-Task 03: high-risk whole-module/package migration and issue #81 under the
-November 11 owner clarification authorizing fresh collaboration A/B/C/D agents.
-Worktree `/workspace/simrecon-readability-03`, branch
-`codex/readability-03-packages`, from Task 02
-`6627f33cc718b1da1cb7b35a620d22655848ae91`, targeting
-`codex/readability-02-devtools` (PR #89). Remote PR #88/#89 remain open/unmerged
-at exact recorded heads; ancestry/main unchanged, Task 03 branch absent at intake.
-Predecessor Ubuntu/macOS CI is not changed-candidate verification.
+Task 04 high-risk preparation readability is prepared in
+`/workspace/simrecon-readability-04`, branch `codex/readability-04-preparation`,
+from Task 03 `d3bbef6c8cac8dd528198a1fdb84b0b59c0d44d8`, tree
+`b5a0504e1e9cc8fc2a216560955d0d45798cc5b1`, targeting
+`codex/readability-03-packages` PR #90. Predecessor remains open/unmerged at the
+recorded head/base; its Ubuntu/macOS CI completed SUCCESS on the exact Task 03
+head. This does not verify Task 04.
 
-A's 29-case migration checkpoint received fresh B2 ACCEPT after one B1 oracle
-finding and scoped blind correction. Restricted C completed the preserved whole-
-module moves; separate infrastructure owner made exactly two path literals;
-coordinator updated live source navigation. Frozen test identities, role/risk
-reports, checks and all cumulative charges are retained above and under
-`artifacts/readability-03/`. Product/focused checks pass. Final candidate is
-prepared for commit and the canonical exact-candidate full gate; full receipt,
-fresh D/infrastructure verdicts, hashes and PR/CI outcomes will be recorded outside
-these verified tracked bytes, in the durable evidence and PR/conversation.
-No claim of full-candidate acceptance is made by this pointer. Submission requires
-passing all phases and fresh exact-candidate reviews, then remote recheck, push
-and one PR. No native CLI retry, merge, auto-merge, release or Task 04 work.
+Fresh A/B accepted the unchanged retained public test checkpoint. Restricted C's
+11 names, five acquisition module docs and two consumer-only updates pass focused
+checks and whole-source AST preservation; coordinator navigation/docs/lesson and
+this sole handoff are prepared before commit. Exact final commit/tree/full gate,
+review verdict, receipt/coverage/M25/wheels, PR and CI will be recorded outside
+these verified tracked bytes in `artifacts/readability-04/completion.json`, retained
+verification evidence and PR/conversation. No full Task 04 acceptance claim is
+made by this pointer. Next: commit, canonical all-13-phase full `make verify`, fresh
+exact-candidate D, remote recheck, push and open one stacked PR. No subsequent task,
+native launcher retry, merge, auto-merge or release.
 
-Totals retained: A one author/two authored test corrections/four failed checks;
-B two fresh reviews/one nonacceptance/one accepted correction/one oracle finding;
-C one author/one lint correction/one failed lint; infrastructure one author/no
-correction. Prior historical launch/setup/check failures remain above. Human
-numeric limits not set; tokens/cost/served attribution/complete elapsed unknown.
-Three confirmed C scripts removed; no cleanup errors. All role commands exited;
-keep current checkout, `.venv`, shared pinned tools, predecessors, durable evidence
-and uncertain pytest scratch. Active final verification/review inputs are retained.
+Cumulative Task 04: A one author/no correction/no failed check; B one ACCEPT/one
+ancillary path failure; C one implementation author/one pytest pass/two type attempts (one environment
+failure, one pass)/one initial lint failure and format repair/four preservation
+runs (three pass, one script failure corrected)/one ancillary empty process lookup;
+coordinator one setup/preflight pass, five ancillary failures corrected, no full
+run yet. Detailed reports retain exact commands/counts and prior stack accounting
+above is unchanged. Human budgets not set; missing metering/served attribution
+unknown. Keep active checkout/environment/shared/predecessor inputs and durable
+evidence; four confirmed disposable C scripts removed without error, no owned
+running role test process. Full verification/review are the remaining required owned processes.

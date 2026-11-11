@@ -1,4 +1,9 @@
-"""Integrated native 2D/3D acquisition preparation in the selected source order."""
+"""Compose native 2D/3D camera, drift, on/off and phase-preparation stages.
+
+Operation order and conventions are explained in the repository-relative
+docs/architecture/reconstruction-walkthrough.md#selected-acquisition-extensions.
+Helper names are implementation details; root-facade exports stay unchanged.
+"""
 
 from __future__ import annotations
 
@@ -8,7 +13,13 @@ from typing import Any
 
 import numpy as np
 
-from .drift import between, correlation, cubic, frequencies, ramp
+from .drift import (
+    build_drift_correction_ramp,
+    estimate_between_direction_drift,
+    estimate_correlation_displacement,
+    fit_cubic_drift_inplace,
+    signed_frequency_indices,
+)
 from .layout import (
     REFERENCE,
     AcquisitionModeError,
@@ -32,7 +43,7 @@ from .layout import (
     signed,
     zoom,
 )
-from .preparation import _edge, _phase_matrices
+from .preparation import apodize_frame_edges_inplace, build_phase_separation_matrices
 
 
 @dataclass(frozen=True)
@@ -42,6 +53,13 @@ class AcquisitionBands:
     Quadratures and scalar noise factors own writable storage. Other arrays
     are independent read-only snapshots. Displacements use detector pixels
     and native axial sections; sampling pitches are in micrometres.
+    Quadratures are complex128 (T,D,Q,Z,Y,X//2+1), Q=2*norders-1, with slots
+    0,E1,O1,E2,O2,... and negative-sign unnormalized forward transforms. The x
+    Nyquist column keeps raw phase-slot identity. Scalar variance factors are
+    float64 (T,D,norders); separators (T,D,Z,Q,P) and phases (T,D,Z,P) retain
+    section-specific designs, but noise records the last section of each t/d.
+    Frame sums/gains use (T,D,P,Z); exposure shifts use (T,D,Z,P,2) x/y pixels.
+    Off quadratures retain lateral transforms only, with no axial FFT.
     """
 
     quadratures: Array
@@ -89,8 +107,29 @@ class _UsedBands:
     noise: Array
 
 
-def validate_used(bands: AcquisitionBands) -> _UsedBands:
-    """Validate only the acquisition fields consumed by downstream science."""
+def validate_downstream_bands(bands: AcquisitionBands) -> _UsedBands:
+    """Validate the band fields consumed by estimation and known reconstruction.
+
+    Parameters
+    ----------
+    bands : AcquisitionBands
+        Prepared acquisition record. Only consumed dimensions, complex128
+        quadratures, float64 positive scalar variance factors, sampling/scale,
+        mode and source identity are checked.
+
+    Returns
+    -------
+    _UsedBands
+        Narrow validated view retaining references to the input quadratures and
+        noise; it neither copies nor mutates them. At least two retained orders
+        are required by these downstream consumers, unlike preparation itself.
+
+    Notes
+    -----
+    This is not complete record revalidation: phase/sentinel/trace diagnostics
+    and unused fields are not validated, and no physical validity is inferred.
+    It does not rerun preparation, phase separation or noise estimation.
+    """
     input_shape = bands.input_shape
     if not issubclass(type(input_shape), tuple) or len(input_shape) != 6:
         raise AcquisitionModeError("bands input_shape requires a tuple of six dimensions")
@@ -181,7 +220,7 @@ def _optics(
     return wave, aperture, index
 
 
-def _combine(
+def combine_off_orders_inplace(
     on: Array,
     off: Array,
     selectors: tuple[int, ...],
@@ -194,10 +233,40 @@ def _combine(
     d: int,
     z: int,
 ) -> None:
+    """Combine selected on/off orders into the on array's plane zero in place.
+
+    Parameters
+    ----------
+    on, off : numpy.ndarray
+        Complex128 (Q,Z,Y,X//2+1) separated half-spectra. Only on is mutated;
+        every call reads/writes z=0 even when the traversal context z is later.
+    selectors : tuple of int
+        Per-order signed selectors; only positive entries select combination.
+    cutoff, dxy, x : int, float, int
+        Truncated optical cutoff, pitch in micrometres and even native width.
+        The literal mask truncates scaled kx/ky to integers before squaring;
+        it does not substitute a continuous physical-frequency disk.
+    trace, t, d, z : list of ModeEvent, int
+        Appended owned statistics/snapshots and actual traversal context.
+
+    Notes
+    -----
+    Returns None. Weights are proportional to sqrt(clipped signal power)/noise
+    power. If both clipped signals are zero, both are replaced by one. Nonempty
+    inside/outside sets and positive noise divisors are required. Order zero
+    adds weighted off; side orders subtract it. Off and scalar separation-noise
+    factors are unchanged. Includes the raw x Nyquist column and reuses plane
+    zero's current values on successive z calls.
+    See the repository-relative scientific walkthrough:
+    docs/architecture/reconstruction-walkthrough.md#selected-acquisition-extensions
+    """
     y = on.shape[-2]
     c2 = signed(cutoff * cutoff, "off cutoff square")
     xs = [signed(math.trunc(i / (x * dxy)), "off integer kx") for i in range(x // 2 + 1)]
-    ys = [signed(math.trunc(float(i) / (y * dxy)), "off integer ky") for i in frequencies(y)]
+    ys = [
+        signed(math.trunc(float(i) / (y * dxy)), "off integer ky")
+        for i in signed_frequency_indices(y)
+    ]
     inside = np.empty((y, x // 2 + 1), dtype=np.bool_)
     for i, ky in enumerate(ys):
         for j, kx in enumerate(xs):
@@ -258,8 +327,16 @@ def _combine(
         )
 
 
-class _Camera:
-    """Persistent camera maps, last on offset and actual load-order sentinel log."""
+class CameraCorrectionState:
+    """Carry camera maps and the last on offset through actual off/on load order.
+
+    The caller supplies owned writable float64 (Y,X) background/slope maps;
+    this state retains and mutates those maps without copying. Background and
+    extra are detector counts, slope is multiplicative and dimensionless,
+    and alpha supplies the acquisition normalization. Off loads inherit the
+    previous on offset, initially zero, including across t/d/z/p boundaries.
+    Sentinel entries record the actual (t,d,z,p,e) load order.
+    """
 
     def __init__(self, background: Array, slope: Array, alpha: float):
         self.background, self.slope, self.alpha = background, slope, alpha
@@ -267,6 +344,12 @@ class _Camera:
         self.sentinels: list[tuple[int, int, int, int, int]] = []
 
     def load(self, raw: Array, indices: tuple[int, int, int, int, int]) -> Array:
+        """Return an owned float64 (Y,X) corrected frame; raw stays unchanged.
+
+        Exact -1 at the raw bottom-right copies its left neighbor and changes
+        the stored corner background/slope for all later loads. Correction is
+        alpha*slope*(raw-background-extra), before edge treatment or sums.
+        """
         frame = np.array(raw, dtype=np.float64, copy=True)
         if frame[-1, -1] == -1:
             frame[-1, -1] = frame[-1, -2]
@@ -278,7 +361,7 @@ class _Camera:
         return frame
 
 
-def _equalize(
+def equalize_frame_sums_inplace(
     frames: Array,
     sums: Array,
     gains: Array,
@@ -290,6 +373,27 @@ def _equalize(
     share_z: bool,
     share_time: bool,
 ) -> None:
+    """Record frame sums and apply the selected anchor gains in place.
+
+    Parameters
+    ----------
+    frames : numpy.ndarray
+        Writable float64 (P,Y,X) frames after camera/edge treatment.
+    sums, gains : numpy.ndarray
+        Writable float64 (T,D,P,Z) histories; the caller initializes gains to
+        one and fills the direction0/phase0 anchor before dependent frames.
+    t, d, z : int
+        Actual traversal indices at which sums and gains are written.
+    enabled, share_z, share_time : bool
+        Enable division and choose anchor z=0 and/or t=0 instead of current z/t.
+
+    Notes
+    -----
+    Returns None. Sums are recorded before gain application. The anchor always
+    uses direction0/phase0. Signed nonzero divisors are accepted; disabled
+    equalization permits zero sums. The caller enables off equalization only
+    for N>1 and keeps off anchor history independent of on history.
+    """
     values = frames.sum(axis=(-2, -1))
     finite(values, "frame sums")
     sums[t, d, :, z] = values
@@ -354,7 +458,7 @@ def prepare_acquisition_bands(
     lateral_zoom, axial_zoom : real scalar, int
         Safe enlargement with integral output extents; positive axial factor.
     flatfield_slope, exposure_background : numpy.ndarray or None, optional
-        Multiplicative (Y,X) map and (T,D,P,Z) on offsets in counts.
+        Dimensionless multiplicative (Y,X) map; (T,D,P,Z) on offsets in counts.
     phases_rad, phase_steps_rad : numpy.ndarray or None, optional
         Declared (D,P) phases or higher-priority (D,) steps, in radians.
     edge_pixels : int, optional
@@ -376,19 +480,41 @@ def prepare_acquisition_bands(
     header_timestamps, header_phases_rad : numpy.ndarray or None, optional
         Complete physical exposure stream, in one time unit and radians.
     linespacing_um, phase_start_angle_rad : real scalar or None, optional
-        Linked-phase reciprocal spacing and first direction angle.
+        Line spacing in micrometres and first direction angle in radians.
     negative_angle_step : bool, optional
         Use negative rather than positive pi/D linked-phase direction steps.
 
     Returns
     -------
     AcquisitionBands
-        Native bands, per-time noise and owned stage diagnostics.
+        Owned complex128 quadratures (T,D,Q,Z,Y,X//2+1), Q=2*norders-1, and
+        float64 scalar noise variance factors (T,D,norders), both writable.
+        Other arrays are independent read-only diagnostics. Separators have
+        shape (T,D,Z,Q,P), phases (T,D,Z,P) in radians, frame sums/gains
+        (T,D,P,Z), between shifts (T,D,3) in x/y pixels and native z sections,
+        and exposure shifts (T,D,Z,P,2) in x/y pixels. Off quadratures, when
+        present, have the same shape but do not undergo the axial transform.
 
     Raises
     ------
     AcquisitionModeError
         Invalid declaration, unsafe source branch or failed numerical operation.
+
+    Notes
+    -----
+    Inputs stay unchanged. Corrected off frames are summed before edge handling
+    and loaded before each on frame, carrying the previous on offset. On and
+    off anchors are independent; N=1 off sums are never equalized. Within
+    correction precedes separation; between correction follows the on-only 3D
+    axial transform. Both use positive first-sample-origin Fourier ramps.
+    Forward transforms are negative-exponential unnormalized sums; kx>=0 is
+    stored with positive even Nyquist labels. At x=X/2 raw phase slots bypass
+    separation. Combination repeatedly updates z=0; 3D noise retains the last
+    section's factor. These restricted drift modes do not imply general motion
+    recovery or successful downstream estimation.
+    Repository-relative equations and branch limits:
+    docs/architecture/reconstruction-walkthrough.md#selected-acquisition-extensions
+    docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions
     """
     with operation():
         images, shape = raw_images(images)
@@ -554,7 +680,7 @@ def prepare_acquisition_bands(
         alpha = 1 / (nx * ny * nz * lateral**2 * axial * directions)
         if not math.isfinite(alpha) or alpha <= 0:
             raise AcquisitionModeError("input scale alpha is zero or nonfinite")
-        camera = _Camera(bmap, smap, alpha)
+        camera = CameraCorrectionState(bmap, smap, alpha)
         quadratures = np.empty(qshape, dtype=np.complex128)
         off_q = None if not n else np.empty(qshape, dtype=np.complex128)
         sums, gains = np.empty(shape[:4]), np.ones(shape[:4])
@@ -573,7 +699,7 @@ def prepare_acquisition_bands(
         for t in range(times):
             if prepass:
                 assert wave is not None and na is not None and immersion is not None
-                displacements[t] = between(
+                displacements[t] = estimate_between_direction_drift(
                     images,
                     off_exposures,
                     bmap,
@@ -588,10 +714,12 @@ def prepare_acquisition_bands(
                 )
             if drift_within and not two_d:
                 assert clock is not None
+                # Source indexing reuses the global prefix at every t, ignoring
+                # off stride; cubic evaluation mutates that owned prefix in place.
                 samples = np.array(
                     [clock[d * nz * phases + (nz * phases) // 2] for d in range(directions)]
                 )
-                evaluated = cubic(
+                evaluated = fit_cubic_drift_inplace(
                     samples,
                     clock[: directions * nz * phases],
                     displacements[t, :, :2],
@@ -602,6 +730,7 @@ def prepare_acquisition_bands(
                 )
                 exposure_displacements[t] = evaluated.reshape(directions, nz, phases, 2)
                 for d in range(1, directions):
+                    # Subtract the measured between vector, not its fitted value.
                     exposure_displacements[t, d] -= displacements[t, d, :2]
             time_policies = []
             for d in range(directions):
@@ -614,11 +743,13 @@ def prepare_acquisition_bands(
                             assert off_exposures is not None
                             for e in range(n):
                                 off[p] += camera.load(off_exposures[t, d, p, z, e], (t, d, z, p, e))
-                            _edge(off[p], width)
+                            apodize_frame_edges_inplace(off[p], width)
+                        # Off loads above use the previous on offset. Updating it
+                        # here preserves carry across phase/z/direction/time.
                         camera.extra = 0.0 if extras is None else float(extras[t, d, p, z])
                         on[p] = camera.load(images[t, d, p, z], (t, d, z, p, n))
-                        _edge(on[p], width)
-                    _equalize(
+                        apodize_frame_edges_inplace(on[p], width)
+                    equalize_frame_sums_inplace(
                         on,
                         sums,
                         gains,
@@ -631,7 +762,7 @@ def prepare_acquisition_bands(
                     )
                     if off is not None:
                         assert off_sums is not None and off_gains is not None
-                        _equalize(
+                        equalize_frame_sums_inplace(
                             off,
                             off_sums,
                             off_gains,
@@ -651,7 +782,7 @@ def prepare_acquisition_bands(
                         assert off_fft is not None and na is not None and wave is not None
                         ref = (on_fft[0] + off_fft[0])[None]
                         for p in range(phases):
-                            shift = correlation(
+                            shift = estimate_correlation_displacement(
                                 ref,
                                 (on_fft[p] + off_fft[p])[None],
                                 x=nx,
@@ -675,7 +806,9 @@ def prepare_acquisition_bands(
                                     for p in range(phases)
                                 ]
                             )
-                            exposure_displacements[t, d, z] = cubic(
+                            # Aliasing is intentional: sample/evaluation mutation
+                            # shifts the shared origin once, in source order.
+                            exposure_displacements[t, d, z] = fit_cubic_drift_inplace(
                                 samples,
                                 samples,
                                 exposure_displacements[t, d, z],
@@ -687,7 +820,7 @@ def prepare_acquisition_bands(
                     if drift_within:
                         for p in range(phases):
                             shift = exposure_displacements[t, d, z, p]
-                            multiplier = ramp(shift, 1, ny, nx)[0]
+                            multiplier = build_drift_correction_ramp(shift, 1, ny, nx)[0]
                             on_fft[p] *= multiplier
                             if off_fft is not None:
                                 off_fft[p] *= multiplier
@@ -724,7 +857,7 @@ def prepare_acquisition_bands(
                             exposure_displacements[t, d, z] @ phase_vector
                         )
                         selected_policy = "drift"
-                    rows, variance = _phase_matrices(
+                    rows, variance = build_phase_separation_matrices(
                         selected_angles[None], orders, selected_policy != "uniform"
                     )
                     row, variance_row = rows[0], variance[0]
@@ -748,12 +881,13 @@ def prepare_acquisition_bands(
                     quadratures[t, d, :, z, :, :-1] = np.einsum(
                         "qp,pyx->qyx", row, on_fft[..., :-1]
                     )
+                    # Retain corrected raw phase identity at x Nyquist.
                     quadratures[t, d, :, z, :, -1] = on_fft[:slots, :, -1]
                     if off_q is not None and off_fft is not None:
                         off_q[t, d, :, z, :, :-1] = np.einsum("qp,pyx->qyx", row, off_fft[..., :-1])
                         off_q[t, d, :, z, :, -1] = off_fft[:slots, :, -1]
                         if combine:
-                            _combine(
+                            combine_off_orders_inplace(
                                 quadratures[t, d],
                                 off_q[t, d],
                                 selectors,
@@ -768,7 +902,7 @@ def prepare_acquisition_bands(
                 if not two_d:
                     quadratures[t, d] = np.fft.fft(quadratures[t, d], axis=1)
                 if drift_between and d > 0:
-                    multiplier = ramp(displacements[t, d], nz, ny, nx)
+                    multiplier = build_drift_correction_ramp(displacements[t, d], nz, ny, nx)
                     quadratures[t, d] *= multiplier[None]
                     event(
                         trace,
