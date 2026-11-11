@@ -57,6 +57,37 @@ and the alternative entry point for a prepared transfer. See the
 [acquisition guide](docs/usage/raw-acquisition-declarations.md) for reading
 and declaring supported microscopy files.
 
+## Follow the reconstruction
+
+```mermaid
+flowchart LR
+    Raw["Specimen exposures + settings"] --> Prep["Prepare acquisition bands"]
+    Beads["Bead calibration + settings"] --> OTF["Optical transfer"]
+    Tables["Declared transfer tables"] --> OTF
+    Prep --> Fit["Estimate carriers + modulation"]
+    OTF --> Fit
+    Prep --> Recon["Filter bands + assemble"]
+    OTF --> Recon
+    Fit --> Recon
+    Recon --> Image["Signed image + coordinates"]
+```
+
+*Conceptual data flow through `reconstruct_workflow`. Optical transfer describes
+how the microscope transmits spatial frequencies. The workflow resolves it before
+preparing specimen bands. File reading/declaration happens before this array
+pipeline; saving its output is a separate caller operation.*
+
+- [Mathematical walkthrough](docs/architecture/reconstruction-walkthrough.md):
+  phase separation, transfer sampling, parameter fitting, filtering and assembly,
+  with equations, conceptual figures and links to the executing functions.
+- [Detailed data routes](docs/architecture/data-flow.md): array and file boundaries,
+  with historical routes labeled separately.
+- [Contributor module map](docs/plans/human-readable-restructure.md#explicit-old-to-new-module-map):
+  current paths, intended destinations and preserved public exports.
+- [Project setup and checks](docs/PROJECT.md#commands-and-evidence) and
+  [ordered readability tasks](docs/tasks/readability-stack.md): development workflow
+  and the status of the staged refactor.
+
 ## Run a simulation
 
 Generate and reconstruct the close-pair cell variant from the repository root.
