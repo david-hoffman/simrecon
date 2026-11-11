@@ -1547,7 +1547,9 @@ Coordinator own canonical locked preflight PASS using isolated Python3.13.12,
 uv0.12.19 and Temurin21.0.7+6 via SIMRECON_JAVA. One fresh author launch/session
 and all focused checks/diagnosed corrections remain charged in its final report;
 coordinator setup/ref/inventory/whitespace checks are additive. Worker recorded
-three focused proof PASS invocations and no failed author check/correction.
+three focused proof PASS invocations, one exploratory wrong specification filename
+lookup/exit2 followed by the correct read, and one guessed supersession heading
+corrected before the expanded link check. No failed migration or focused proof.
 Coordinator independently reran migration proof PASS, confirmed all1174baseline
 paths (934unchanged same-path bytes;204moves plus36authorized document changes),
 and retained one expected pending worker-report presence probe/nonzero status. No new product
