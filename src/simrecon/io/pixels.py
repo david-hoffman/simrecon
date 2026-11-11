@@ -4,12 +4,13 @@ from typing import BinaryIO
 
 import numpy as np
 
-from ._legacy import check_source
-from ._metadata import coordinate, resolved, source_index
-from ._model import DataBlock, DatasetInfo, SimreconError
+from ..models import DataBlock, DatasetInfo, SimreconError
+from .metadata import coordinate, resolved, source_index
+from .priism import check_source
 
 
 def load_block(handle: BinaryIO, info: DatasetInfo, start: int, stop: int) -> DataBlock:
+    """Read canonical planes from an open source while preserving pixel words."""
     data = np.empty((stop - start, *info.stored_shape[1:]), dtype=info.stored_dtype)
     coordinates = tuple(coordinate(info, i) for i in range(start, stop))
     plane_bytes = data[0].nbytes
@@ -27,6 +28,7 @@ def load_block(handle: BinaryIO, info: DatasetInfo, start: int, stop: int) -> Da
 
 
 def read(info: DatasetInfo, *, plane_start: int, plane_stop: int) -> DataBlock:
+    """Read an owned nonempty canonical plane interval from an unchanged source."""
     resolved(info)
     if (
         type(plane_start) is not int

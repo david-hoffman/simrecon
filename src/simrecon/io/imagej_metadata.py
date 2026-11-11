@@ -9,8 +9,8 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from typing import Any
 
-from ._metadata import ORDER, resolved
-from ._model import DatasetInfo, SimreconError
+from ..models import DatasetInfo, SimreconError
+from .metadata import ORDER, resolved
 
 OME_NS = "http://www.openmicroscopy.org/Schemas/OME/2016-06"
 COPY_NS = "org.simrecon.imagej-copy"
@@ -31,14 +31,17 @@ class Layout:
 
     @property
     def shape(self) -> tuple[int, int, int, int, int]:
+        """Return the time, channel, z, y and x shape of each output series."""
         return self.t, self.c, self.z, self.y, self.x
 
     @property
     def series_count(self) -> int:
+        """Return the number of orientation and phase output series."""
         return self.o * self.p
 
     @property
     def planes_per_series(self) -> int:
+        """Return the time, z and channel plane count of each series."""
         return self.t * self.z * self.c
 
     def source_plane(self, o: int, p: int, n: int) -> int:

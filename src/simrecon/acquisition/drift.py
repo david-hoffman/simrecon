@@ -6,8 +6,8 @@ import math
 
 import numpy as np
 
-from ._acquisition_layout import AcquisitionModeError, Array, ModeEvent, event, finite, signed
-from ._preparation import _edge
+from .layout import AcquisitionModeError, Array, ModeEvent, event, finite, signed
+from .preparation import _edge
 
 
 def frequencies(length: int) -> Array:

@@ -10,10 +10,10 @@ from typing import Any
 
 import numpy as np
 
-from ._acquisition import RawAcquisition
-from ._optical_transfer import OpticalTransfer, PreparedOtf
-from ._workflow_config import _extent, _optics, _schema
-from ._workflow_result import _ArrayIdentity, _fail
+from ..acquisition.declarations import RawAcquisition
+from ..optical_transfer import OpticalTransfer, PreparedOtf
+from .config import _extent, _optics, _schema
+from .result import _ArrayIdentity, _fail
 
 
 def _freeze(value: Any, *, code: str = "config", active: set[int] | None = None) -> Any:

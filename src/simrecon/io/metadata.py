@@ -6,12 +6,13 @@ from collections.abc import Mapping
 from dataclasses import replace
 from typing import Any, NoReturn, cast
 
-from ._model import DatasetInfo, SimreconError
+from ..models import DatasetInfo, SimreconError
 
 ORDER = ("time", "channel", "orientation", "phase", "z")
 
 
 def supported(info: DatasetInfo) -> None:
+    """Require a supported stored pixel mode and identity spatial mapping."""
     if info.stored_dtype is None:
         raise SimreconError(
             "unsupported_mode", "Only uint16 mode 6 and float32 mode 2 are supported"
@@ -21,16 +22,19 @@ def supported(info: DatasetInfo) -> None:
 
 
 def resolved(info: DatasetInfo) -> None:
+    """Require supported pixels and an explicit acquisition configuration."""
     supported(info)
     if info.config is None:
         raise SimreconError("config_required", "Explicit acquisition configuration is required")
 
 
 def invalid(message: str) -> NoReturn:
+    """Raise a coded configuration error with the supplied explanation."""
     raise SimreconError("config_invalid", message)
 
 
 def positive(value: Any) -> bool:
+    """Test whether a value is a finite positive number excluding booleans."""
     return (
         isinstance(value, (int, float))
         and not isinstance(value, bool)
@@ -40,6 +44,7 @@ def positive(value: Any) -> bool:
 
 
 def harmonize(info: DatasetInfo, *, config: Mapping[str, object]) -> DatasetInfo:
+    """Resolve logical layout and metadata from an explicit copied configuration."""
     supported(info)
     if not config:
         raise SimreconError("config_required", "Explicit acquisition configuration is required")
@@ -172,6 +177,7 @@ def harmonize(info: DatasetInfo, *, config: Mapping[str, object]) -> DatasetInfo
 
 
 def coordinate(info: DatasetInfo, index: int) -> dict[str, int]:
+    """Map a canonical plane index to its logical acquisition coordinates."""
     result = {}
     for axis, size in reversed(tuple(zip(info.axes[:-2], info.shape[:-2], strict=True))):
         index, result[axis] = divmod(index, size)
@@ -179,6 +185,7 @@ def coordinate(info: DatasetInfo, index: int) -> dict[str, int]:
 
 
 def source_index(info: DatasetInfo, coord: dict[str, int]) -> int:
+    """Map logical acquisition coordinates to the configured source plane index."""
     index = 0
     for axis, size in zip(
         cast(dict[str, Any], info.config)["plane_axes"],

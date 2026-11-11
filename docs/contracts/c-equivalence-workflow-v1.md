@@ -32,7 +32,7 @@ caller-loaded table. No C executable is built, run, linked or imported. No new
 decoder, reconstruction CLI, image writer, or retired API is introduced.
 `reconstruct`, `reconstruct_volume`, `_otf`, `_reconstruction`, `_drift` and all
 other retired scientific paths remain retired. Active drift remains the accepted
-`_acquisition_drift` path. These are workflow wiring requirements, not permission
+`simrecon.acquisition.drift` path. These are workflow wiring requirements, not permission
 to transplant old implementations.
 
 The supported specimen arrays remain general. Ordinary three-direction,

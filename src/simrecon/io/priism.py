@@ -7,10 +7,11 @@ from pathlib import Path
 
 import numpy as np
 
-from ._model import DatasetInfo, SimreconError
+from ..models import DatasetInfo, SimreconError
 
 
 def inspect(source: str | Path) -> DatasetInfo:
+    """Inspect the Priism header and payload size without reading pixel data."""
     source = Path(source)
     stat = source.stat()
     with source.open("rb") as handle:
@@ -79,6 +80,7 @@ def inspect(source: str | Path) -> DatasetInfo:
 
 
 def check_source(info: DatasetInfo) -> None:
+    """Require source size, modification time and header digest to match intake."""
     stat = info.source.stat()
     with info.source.open("rb") as handle:
         digest = hashlib.sha256(handle.read(1024)).hexdigest()

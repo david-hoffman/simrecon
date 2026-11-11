@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 import numpy.typing as npt
 
-from ._model import SimreconError
+from ..models import SimreconError
 
 _AXES = ("time", "channel", "orientation", "phase", "z", "y", "x")
 _OPTIONAL = {

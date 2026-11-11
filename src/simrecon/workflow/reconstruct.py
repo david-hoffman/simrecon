@@ -7,21 +7,21 @@ from typing import Any
 
 import numpy as np
 
-from ._acquisition_layout import reinterpret_2d_planes
-from ._acquisition_modes import prepare_acquisition_bands
-from ._known_reconstruction import reconstruct_known
-from ._parameter_estimation import estimate_parameters
-from ._workflow_adapters import _selected, _snapshot_raw_metadata, _time_bands
-from ._workflow_config import (
+from ..acquisition.layout import reinterpret_2d_planes
+from ..acquisition.modes import prepare_acquisition_bands
+from ..reconstruction.known_parameters import reconstruct_known
+from ..reconstruction.parameter_estimation import estimate_parameters
+from .adapters import _selected, _snapshot_raw_metadata, _time_bands
+from .config import (
     _arrays_and_routes,
     _configs,
     _enum,
     _geometry,
     _scalar,
 )
-from ._workflow_identity import _collect, _digest, _freeze, _identity, _owned
-from ._workflow_result import WorkflowReconstruction, _fail, _stage, _WorkflowEvent
-from ._workflow_transfer import _resolve_transfer, _transfer_inputs
+from .identity import _collect, _digest, _freeze, _identity, _owned
+from .result import WorkflowReconstruction, _fail, _stage, _WorkflowEvent
+from .transfer import _resolve_transfer, _transfer_inputs
 
 
 def reconstruct_workflow(

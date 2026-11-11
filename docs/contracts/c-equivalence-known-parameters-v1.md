@@ -49,7 +49,7 @@ reconstruct_known(
 
 These are new names; the old `reconstruct`, `reconstruct_volume`,
 `simrecon._reconstruction`, `prepare_otf` and `simrecon._otf` remain retired.
-Implementation belongs in new `simrecon._known_reconstruction` and public
+Implementation belongs in new `simrecon.reconstruction.known_parameters` and public
 bindings. No retirement gate is changed.
 
 `bands` is an actual `PreparedBands` with the CE02 public record layout. Let

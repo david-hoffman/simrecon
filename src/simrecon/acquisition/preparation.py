@@ -10,7 +10,7 @@ from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 
-from ._model import SimreconError
+from ..models import SimreconError
 
 FloatArray = NDArray[np.float64]
 ComplexArray = NDArray[np.complex128]

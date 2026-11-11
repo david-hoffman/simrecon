@@ -14,9 +14,9 @@ from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 
-from ._model import SimreconError
-from ._optical_transfer import _REFERENCE as _OTF_REFERENCE
-from ._preparation import _array_metadata, _raw_samples
+from ..models import SimreconError
+from ..optical_transfer import _REFERENCE as _OTF_REFERENCE
+from .preparation import _array_metadata, _raw_samples
 
 Array = NDArray[Any]
 INT_MAX = 2**31 - 1

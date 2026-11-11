@@ -15,20 +15,20 @@ import numpy as np
 from numpy.typing import NDArray
 from scipy.fft import ifftn
 
-from ._acquisition_layout import ModeEvent, event
-from ._acquisition_layout import integer as _acquisition_integer
-from ._acquisition_layout import scalar as _acquisition_scalar
-from ._acquisition_modes import AcquisitionBands, _UsedBands, validate_used
-from ._model import SimreconError
-from ._optical_transfer import (
+from ..acquisition.layout import ModeEvent, event
+from ..acquisition.layout import integer as _acquisition_integer
+from ..acquisition.layout import scalar as _acquisition_scalar
+from ..acquisition.modes import AcquisitionBands, _UsedBands, validate_used
+from ..acquisition.preparation import _REFERENCE as _BAND_REFERENCE
+from ..acquisition.preparation import PreparedBands
+from ..models import SimreconError
+from ..optical_transfer import (
     OpticalTransfer,
     OtfError,
     _sample_transfer,
     _Transfer,
     _valid_transfer,
 )
-from ._preparation import _REFERENCE as _BAND_REFERENCE
-from ._preparation import PreparedBands
 
 _F64 = NDArray[np.float64]
 _C128 = NDArray[np.complex128]

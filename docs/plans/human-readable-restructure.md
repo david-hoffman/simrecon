@@ -1,7 +1,9 @@
 # A readable scientific codebase: restructuring map
 
 **Task 01 documentation foundation, 2026-11-10.** The owner authorized the
-restructuring direction as stacked PRs, each in a new cloud task. The
+restructuring direction as stacked PRs. The November 10 execution-location
+revision uses one cloud session and one fresh-context per-PR coordinator at a
+time; other delivery requirements remain. The
 [stack handoff](../tasks/readability-stack.md) is the execution order and sole
 Current state. Later tasks still require narrow contracts, review and verification;
 this document changes no runtime behavior, public API or delivery policy.
@@ -10,9 +12,8 @@ Original analysis: `edcf53b5d5c0f494c388944d3cfda5c04b9fda97`.
 Historical inventory refreshed against actual Task 01 runtime baseline
 `0ea11a5876549bf26a3a813009b97c09decc806d`, retained in preparation commit
 `ac2b0d65f239fb5f628792ae58af13ea1da868bf`. PR #87's newer verification changes
-are preserved. Source links follow the current checkout; Task 02 relocates only
-the two
-development modules. The inventory below remains the Task 01 baseline.
+are preserved. Source links follow the current checkout. Task 02 separated the two development
+modules; Task 03 moves whole product modules to the shallow packages below. The inventory below remains the Task 01 baseline.
 
 ## Purpose and scope
 
@@ -51,10 +52,10 @@ functions, exclude generated caches, and cover `src/simrecon/*.py` only.
 
 Evidence: [package exports](../../src/simrecon/__init__.py),
 [packaging and tool configuration](../../pyproject.toml),
-[preparation](../../src/simrecon/_preparation.py),
-[optical transfer](../../src/simrecon/_optical_transfer.py),
-[estimation](../../src/simrecon/_parameter_estimation.py), and
-[known reconstruction](../../src/simrecon/_known_reconstruction.py).
+[preparation](../../src/simrecon/acquisition/preparation.py),
+[optical transfer](../../src/simrecon/optical_transfer.py),
+[estimation](../../src/simrecon/reconstruction/parameter_estimation.py), and
+[known reconstruction](../../src/simrecon/reconstruction/known_parameters.py).
 
 The README already provides a useful quick start and scientific examples.
 [Data flow](../architecture/data-flow.md), [PROJECT](../PROJECT.md), contracts,
@@ -92,8 +93,9 @@ independently of the product’s eager scientific imports.
 
 ### Intended destination structure
 
-These are later-task destinations, not supported imports today. Empty or
-minimal subpackage `__init__.py` files should avoid eager aggregate imports.
+Task 03 installs these destinations. Only the root facade exports are supported
+public APIs; the other import paths remain implementation details. Minimal
+subpackage `__init__.py` files avoid eager aggregate imports.
 
 ```text
 src/simrecon/
@@ -150,8 +152,8 @@ files through a compatibility shim.
 
 All 25 existing files are accounted for below. Paths in the first two columns
 are relative to `src/simrecon/`, except the two development-package destinations.
-No move is performed in Task 01. Task 03 combines whole-module moves and issue
-#81 prefix removal once; it must also add minimal package `__init__.py` files.
+No move was performed in Task 01. Task 03 combines whole-module moves and issue
+#81 prefix removal once and adds minimal package `__init__.py` files.
 
 | Current module | Intended destination | Task |
 | --- | --- | --- |
@@ -182,7 +184,7 @@ No move is performed in Task 01. Task 03 combines whole-module moves and issue
 | `_pytest_policy.py` | Development-only package: `pytest_policy.py` | 02 |
 
 The supported compatibility boundary is the 36 names in
-[`simrecon.__all__`](../../src/simrecon/__init__.py#L35), preserved by every task.
+[`simrecon.__all__`](../../src/simrecon/__init__.py#L39), preserved by every task.
 Newly unprefixed module/helper names do not become stable public APIs. Current
 imports are acyclic; preserve that property, the existing exception hierarchies
 and the neutral CLI while moving files. Larger kernel extractions require
@@ -234,11 +236,11 @@ Examples to evaluate with callers, rather than apply by blind substitution:
 
 | Current symbol | Suggested name | Meaning to make visible |
 | --- | --- | --- |
-| `_preparation._phase_matrices` | `build_phase_separation_matrices` | Separation weights and order noise factors, with distinct phase policies |
-| `_preparation._edge` | `apodize_frame_edges_inplace` | Ordered y/x mutation, including overlap behavior |
-| `_workflow_adapters._time_bands` | `select_time_bands` | Construct the one-time input for known reconstruction |
-| `_workflow_transfer._resolve_transfer` | `resolve_optical_transfer` | Choose declared transfer or explicit bead preparation |
-| `_workflow_result._context` | `extract_stage_error_indices` | Read failing stage indices without replaying the operation |
+| `acquisition.preparation._phase_matrices` | `build_phase_separation_matrices` | Separation weights and order noise factors, with distinct phase policies |
+| `acquisition.preparation._edge` | `apodize_frame_edges_inplace` | Ordered y/x mutation, including overlap behavior |
+| `workflow.adapters._time_bands` | `select_time_bands` | Construct the one-time input for known reconstruction |
+| `workflow.transfer._resolve_transfer` | `resolve_optical_transfer` | Choose declared transfer or explicit bead preparation |
+| `workflow.result._context` | `extract_stage_error_indices` | Read failing stage indices without replaying the operation |
 
 Single-letter mathematical locals are fine inside a short equation when the
 notation is defined. Long orchestration code should use `acquisition`, `optics`,
@@ -284,8 +286,10 @@ commits, not descriptions of future package paths.
 The [nine-task handoff](../tasks/readability-stack.md#ordered-tasks) is the sole
 ordered execution list: documentation → development tooling → package moves and
 #81 together → preparation → optical transfer → estimation → filtering/assembly
-→ workflow/I/O → Serena. Each PR starts in a new cloud task and targets its
-verified predecessor (Task 01 targets `main`). No separate underscore-only move,
+→ workflow/I/O → Serena. Under the owner's November 10 execution-location
+revision, each PR has one fresh-context coordinator, worktree and isolated
+environment in the same cloud session and targets its verified predecessor
+(Task 01 targets `main`). No separate underscore-only move,
 combined second PR in a task, merge or auto-merge is authorized.
 
 Task 01 acceptance requires independently checked equations, axes, source links,
@@ -297,7 +301,7 @@ every PR requires the exact committed candidate's full `make verify`.
 
 ### Concrete migration hazards to include in future contracts
 
-- `_workflow_result._context` matches literal module names and local `t`/`d`
+- `workflow.result._context` matches literal module names and local `t`/`d`
   names when extracting error context. Module **or local-variable** renames can
   silently lose context without breaking imports. Preserve/test these outcomes.
 - Entry points and pytest `-p` names are strings, not ordinary symbol references.

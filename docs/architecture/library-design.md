@@ -41,6 +41,33 @@ Retired records/functions/modules remain unavailable through aliases or alternat
 entry points. Known-parameter mathematical agreement supplies no historical
 binary agreement, physical recovery or resolution claim.
 
+## Source packages
+
+The root `simrecon` facade retains its 36 supported exports. The shallow source
+packages group whole modules by responsibility:
+
+- [`io/`](../../src/simrecon/io/) contains Priism inspection/decoding, selected
+  pixel reads, metadata resolution, MRC writing and ImageJ export.
+- [`acquisition/`](../../src/simrecon/acquisition/) contains declarations, native
+  preparation, layout, drift and acquisition-mode composition.
+- [`optical_transfer.py`](../../src/simrecon/optical_transfer.py) contains the
+  intact transfer declaration, sampling and bead-preparation implementation.
+- [`reconstruction/`](../../src/simrecon/reconstruction/) contains finite
+  parameter estimation and known-parameter filtering/assembly.
+- [`workflow/`](../../src/simrecon/workflow/) contains orchestration, adapters,
+  configuration, identities, results/errors and transfer selection.
+- [`models.py`](../../src/simrecon/models.py) owns neutral records and the common
+  error; [`cli.py`](../../src/simrecon/cli.py) exposes the neutral file commands.
+
+These module paths and their helpers are implementation details. Minimal package
+initializers add no aggregate exports. Numerical records stay with their producing
+domains, and the scientific dependency direction remains acyclic. Product modules
+have no dependency on the separate `simrecon_devtools` development package.
+The [walkthrough](reconstruction-walkthrough.md) links each scientific operation;
+the [module map](../plans/human-readable-restructure.md#explicit-old-to-new-module-map)
+retains the complete old-to-new correspondence. No kernels are extracted or
+numerically simplified by these moves.
+
 ## Values, metadata and file resources
 
 `DatasetInfo` describes a source, named axes, shape, dtype, sampling, original
