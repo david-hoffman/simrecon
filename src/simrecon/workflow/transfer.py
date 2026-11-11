@@ -8,7 +8,7 @@ from typing import Any
 
 import numpy as np
 
-from ._optical_transfer import (
+from ..optical_transfer import (
     OpticalTransfer,
     OtfError,
     PreparedOtf,
@@ -17,8 +17,8 @@ from ._optical_transfer import (
     declare_otf,
     prepare_bead_otf,
 )
-from ._workflow_adapters import _file_input
-from ._workflow_config import (
+from .adapters import _file_input
+from .config import (
     _array,
     _enum,
     _extent,
@@ -29,8 +29,8 @@ from ._workflow_config import (
     _schema,
     _signed,
 )
-from ._workflow_identity import _freeze, _identity, _owned
-from ._workflow_result import WorkflowError, _fail, _stage
+from .identity import _freeze, _identity, _owned
+from .result import WorkflowError, _fail, _stage
 
 _CAL_REQUIRED = (
     "dxy_um",

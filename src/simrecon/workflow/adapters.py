@@ -8,12 +8,12 @@ from typing import Any
 
 import numpy as np
 
-from ._acquisition import RawAcquisition
-from ._acquisition_modes import AcquisitionBands
-from ._model import DatasetInfo
-from ._workflow_config import _extent, _integer, _scalar
-from ._workflow_identity import _freeze
-from ._workflow_result import _fail
+from ..acquisition.declarations import RawAcquisition
+from ..acquisition.modes import AcquisitionBands
+from ..models import DatasetInfo
+from .config import _extent, _integer, _scalar
+from .identity import _freeze
+from .result import _fail
 
 _AXES = ("time", "channel", "orientation", "phase", "z", "y", "x")
 

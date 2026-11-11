@@ -9,19 +9,23 @@ from typing import Any, NoReturn
 
 import numpy as np
 
-from ._imagej import export_imagej
-from ._legacy import inspect
-from ._metadata import harmonize
-from ._model import SimreconError
-from ._modern import write
+from .io.imagej import export_imagej
+from .io.metadata import harmonize
+from .io.mrc_writer import write
+from .io.priism import inspect
+from .models import SimreconError
 
 
 class Parser(argparse.ArgumentParser):
+    """Argument parser that reports invalid configuration through SimreconError."""
+
     def error(self, message: str) -> NoReturn:
+        """Raise a coded configuration error for invalid command arguments."""
         raise SimreconError("config_invalid", message)
 
 
 def json_value(value: Any) -> Any:
+    """Convert result records and array metadata into JSON-compatible values."""
     if dataclasses.is_dataclass(value) and not isinstance(value, type):
         return json_value(dataclasses.asdict(value))
     if isinstance(value, dict):
@@ -36,10 +40,12 @@ def json_value(value: Any) -> Any:
 
 
 def reject_constant(value: str) -> NoReturn:
+    """Reject a nonfinite constant encountered while decoding JSON."""
     raise ValueError(f"Nonfinite JSON constant: {value}")
 
 
 def load_config(path: str) -> dict[str, Any]:
+    """Load an explicit configuration object from finite UTF-8 JSON."""
     with Path(path).open(encoding="utf-8") as handle:
         try:
             config = json.load(handle, parse_constant=reject_constant)
@@ -53,6 +59,7 @@ def load_config(path: str) -> dict[str, Any]:
 
 
 def main() -> int:
+    """Run a neutral file command and return its process exit status."""
     parser = Parser(prog="simrecon")
     commands = parser.add_subparsers(dest="command", required=True)
     inspection = commands.add_parser("inspect")

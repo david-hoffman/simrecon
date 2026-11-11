@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.scripts]
-simrecon = "simrecon._cli:main"
+simrecon = "simrecon.cli:main"
 
 [dependency-groups]
 dev = [

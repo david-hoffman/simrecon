@@ -11,10 +11,10 @@ from typing import Any, cast
 import h5py
 import numpy as np
 
-from ._legacy import check_source
-from ._metadata import resolved
-from ._model import DatasetInfo, SimreconError, WriteReport
-from ._pixels import load_block
+from ..models import DatasetInfo, SimreconError, WriteReport
+from .metadata import resolved
+from .pixels import load_block
+from .priism import check_source
 
 CHUNK = 1024 * 1024
 LABEL = b"SIMrecon stack; axial scale unknown; see HDF5 metadata"
@@ -25,6 +25,7 @@ LIMITATIONS = (
 
 
 def metadata(info: DatasetInfo) -> dict[str, Any]:
+    """Build the metadata record embedded in the output HDF5 extension."""
     return {
         "schema": "org.simrecon.mrc-metadata",
         "version": 1,
@@ -52,6 +53,7 @@ def metadata(info: DatasetInfo) -> dict[str, Any]:
 
 
 def header(info: DatasetInfo, extension_size: int) -> bytes:
+    """Encode the MRC2014 header with lateral sampling and unknown axial scale."""
     n, y, x = info.stored_shape
     lengths = [
         size * cast(float, info.sampling_um[axis]) * 10000 for size, axis in ((x, "x"), (y, "y"))
@@ -85,6 +87,7 @@ def header(info: DatasetInfo, extension_size: int) -> bytes:
 
 
 def stage_metadata(path: Path, info: DatasetInfo) -> int:
+    """Write source metadata to an HDF5 file and return its byte size."""
     encoded = json.dumps(
         metadata(info), allow_nan=False, sort_keys=True, separators=(",", ":"), ensure_ascii=False
     ).encode("utf-8")
@@ -108,6 +111,7 @@ def stage_metadata(path: Path, info: DatasetInfo) -> int:
 
 
 def write(destination: str | Path, info: DatasetInfo, *, block_planes: int = 1) -> WriteReport:
+    """Exclusively create an MRC file with metadata and bounded pixel blocks."""
     resolved(info)
     if type(block_planes) is not int or block_planes <= 0:
         raise SimreconError("invalid_block_size", "Block plane count must be a positive integer")

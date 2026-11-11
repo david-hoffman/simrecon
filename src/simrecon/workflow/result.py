@@ -7,12 +7,12 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 from typing import Any, NoReturn
 
-from ._acquisition_layout import REFERENCE, TwoDPlaneInputs
-from ._acquisition_modes import AcquisitionBands
-from ._known_reconstruction import KnownReconstruction
-from ._model import SimreconError
-from ._optical_transfer import OpticalTransfer, PreparedOtf
-from ._parameter_estimation import EstimatedParameters
+from ..acquisition.layout import REFERENCE, TwoDPlaneInputs
+from ..acquisition.modes import AcquisitionBands
+from ..models import SimreconError
+from ..optical_transfer import OpticalTransfer, PreparedOtf
+from ..reconstruction.known_parameters import KnownReconstruction
+from ..reconstruction.parameter_estimation import EstimatedParameters
 
 
 class WorkflowError(SimreconError):
@@ -88,7 +88,7 @@ def _context(error: BaseException) -> tuple[int | None, int | None]:
     while tb is not None:
         frame = tb.tb_frame
         module = frame.f_globals.get("__name__", "")
-        if module in ("simrecon._acquisition_modes", "simrecon._parameter_estimation"):
+        if module in ("simrecon.acquisition.modes", "simrecon.reconstruction.parameter_estimation"):
             local = frame.f_locals
             instance = local.get("self")
             for name in ("t", "d"):

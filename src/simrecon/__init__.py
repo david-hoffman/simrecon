@@ -1,20 +1,21 @@
 """Spatial image conversion, native preparation and known-parameter reconstruction."""
 
-from ._acquisition import RawAcquisition, declare_acquisition
-from ._acquisition_layout import (
+from .acquisition.declarations import RawAcquisition, declare_acquisition
+from .acquisition.layout import (
     AcquisitionModeError,
     ModeEvent,
     TwoDPlaneInputs,
     reinterpret_2d_planes,
 )
-from ._acquisition_modes import AcquisitionBands, prepare_acquisition_bands
-from ._imagej import ImagejSeries, ImagejWriteReport, export_imagej
-from ._known_reconstruction import KnownReconstruction, ReconstructionError, reconstruct_known
-from ._legacy import inspect
-from ._metadata import harmonize
-from ._model import DataBlock, DatasetInfo, SimreconError, WriteReport
-from ._modern import write
-from ._optical_transfer import (
+from .acquisition.modes import AcquisitionBands, prepare_acquisition_bands
+from .acquisition.preparation import PreparedBands, prepare_bands
+from .io.imagej import ImagejSeries, ImagejWriteReport, export_imagej
+from .io.metadata import harmonize
+from .io.mrc_writer import write
+from .io.pixels import read
+from .io.priism import inspect
+from .models import DataBlock, DatasetInfo, SimreconError, WriteReport
+from .optical_transfer import (
     OpticalTransfer,
     OtfError,
     PreparedOtf,
@@ -22,15 +23,18 @@ from ._optical_transfer import (
     prepare_bead_otf,
     sample_otf,
 )
-from ._parameter_estimation import (
+from .reconstruction.known_parameters import (
+    KnownReconstruction,
+    ReconstructionError,
+    reconstruct_known,
+)
+from .reconstruction.parameter_estimation import (
     EstimatedParameters,
     ParameterEstimationError,
     estimate_parameters,
 )
-from ._pixels import read
-from ._preparation import PreparedBands, prepare_bands
-from ._workflow import reconstruct_workflow
-from ._workflow_result import WorkflowError, WorkflowReconstruction
+from .workflow.reconstruct import reconstruct_workflow
+from .workflow.result import WorkflowError, WorkflowReconstruction
 
 __all__ = [
     "AcquisitionBands",

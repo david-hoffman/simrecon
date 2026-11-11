@@ -8,10 +8,10 @@ from typing import Any
 import numpy as np
 import tifffile
 
-from ._imagej_metadata import copy_metadata, ome_xml, setting_name, validate
-from ._legacy import check_source
-from ._model import DatasetInfo
-from ._pixels import read
+from ..models import DatasetInfo
+from .imagej_metadata import copy_metadata, ome_xml, setting_name, validate
+from .pixels import read
+from .priism import check_source
 
 
 @dataclass(frozen=True)

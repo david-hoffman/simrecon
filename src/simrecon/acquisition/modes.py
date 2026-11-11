@@ -8,8 +8,8 @@ from typing import Any
 
 import numpy as np
 
-from ._acquisition_drift import between, correlation, cubic, frequencies, ramp
-from ._acquisition_layout import (
+from .drift import between, correlation, cubic, frequencies, ramp
+from .layout import (
     REFERENCE,
     AcquisitionModeError,
     Array,
@@ -32,7 +32,7 @@ from ._acquisition_layout import (
     signed,
     zoom,
 )
-from ._preparation import _edge, _phase_matrices
+from .preparation import _edge, _phase_matrices
 
 
 @dataclass(frozen=True)

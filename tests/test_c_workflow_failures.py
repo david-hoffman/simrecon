@@ -131,3 +131,41 @@ def test_external_fft_failure_retains_original_cause(monkeypatch: Any) -> None:
     else:
         assert caught is None
         assert_scientific(case, outcome, expected)
+
+
+@pytest.mark.parametrize("stage", ["preparation", "estimation"])
+def test_real_later_time_direction_failure_keeps_local_context(stage: str) -> None:
+    """Public failures retain zero-based local t/d, including nonzero direction.
+
+    Zero frame sums cannot be equalized. Zero quadratures cannot supply the
+    positive lower overlap energy needed for regression. Both failures are
+    reachable by changing one real input block after a permitted-positive call.
+    """
+    case = constant_case(times=2)
+    case.raw = np.repeat(case.raw, 2, axis=1)
+    if stage == "preparation":
+        # A zero-sum spatial stripe changes the first phase's shape without
+        # changing its frame sum. Equalization removes the constant phase
+        # contrast but retains this stripe in both order zero and order one.
+        # Thus the positive control has actual side-band energy, not roundoff.
+        case.raw[:, :, 0] += np.array([2.0, 0.0, -2.0, 0.0])
+    case.acquisition["equalize"] = stage == "preparation"
+    function = entry()
+    result = function(case.raw, **keywords(case))
+    assert result.image.shape[0] == 2
+    assert np.isfinite(result.image).all()
+    if stage == "preparation":
+        case.raw[1, 1, 0] = 0
+    else:
+        case.raw[1, 1] = 0
+    before = case.raw.copy()
+    with pytest.raises(public().WorkflowError) as caught:
+        function(case.raw, **keywords(case))
+    error = caught.value
+    assert error.code == "workflow_operation"
+    assert error.stage == stage
+    assert type(error.time_index) is int and error.time_index == 1
+    assert type(error.direction_index) is int and error.direction_index == 1
+    assert error.__cause__ is not None
+    assert error.message and str(error)
+    np.testing.assert_array_equal(case.raw, before)

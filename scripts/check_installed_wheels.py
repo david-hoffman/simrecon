@@ -44,7 +44,7 @@ assert not any('devtools' in name or '_delivery' in name or '_pytest_policy' in 
                for name in map(str, dist.files))
 scripts = {entry.name: entry.value for entry in dist.entry_points
            if entry.group == 'console_scripts'}
-assert scripts == {'simrecon': 'simrecon._cli:main'}
+assert scripts == {'simrecon': 'simrecon.cli:main'}
 cli = str(Path(sysconfig.get_path('scripts')) / 'simrecon')
 help_result = subprocess.run([cli, '--help'], capture_output=True, text=True, timeout=30)
 assert help_result.returncode == 0, help_result.stderr

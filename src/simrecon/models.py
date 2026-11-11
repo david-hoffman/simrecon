@@ -18,6 +18,8 @@ class SimreconError(ValueError):
 
 @dataclass(frozen=True)
 class DatasetInfo:
+    """Source identity, stored layout and declared acquisition metadata."""
+
     source: Path
     source_size: int
     source_mtime_ns: int
@@ -41,6 +43,8 @@ class DatasetInfo:
 
 @dataclass(frozen=True)
 class DataBlock:
+    """Owned pixel planes with their source declaration and logical coordinates."""
+
     data: np.ndarray
     info: DatasetInfo
     plane_indices: range
@@ -49,6 +53,8 @@ class DataBlock:
 
 @dataclass(frozen=True)
 class WriteReport:
+    """Written file layout, provenance and declared output limitations."""
+
     destination: Path
     stored_shape: tuple[int, int, int]
     pixel_mode: int

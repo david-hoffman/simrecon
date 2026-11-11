@@ -9,10 +9,10 @@ from typing import Any
 
 import numpy as np
 
-from ._acquisition_layout import AcquisitionModeError, extent, output_extents
-from ._model import SimreconError
-from ._preparation import _raw_samples
-from ._workflow_result import WorkflowError, _fail
+from ..acquisition.layout import AcquisitionModeError, extent, output_extents
+from ..acquisition.preparation import _raw_samples
+from ..models import SimreconError
+from .result import WorkflowError, _fail
 
 _F32_MAX = float(np.finfo(np.float32).max)
 _ACQUISITION_REQUIRED = (
