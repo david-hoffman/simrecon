@@ -1558,19 +1558,19 @@ relaxation. Missing actual serving/tokens/cost/full elapsed remain unknown and
 numeric human budgets not set. Full exact-candidate gate and fresh independent
 policy/evidence review follow the prepared commit.
 
+
 ## Current state
 
-Task10 has prepared the owner-authorized lessons location migration in
-`/workspace/simrecon-readability-10`, branch `codex/readability-10-lessons`, against
-verified/pushed Task09 PR96. One named author owns the directory/reference migration;
-coordinator owns this sole handoff and exact-candidate full gate/submission.
-Focused inventory/link/content proof PASS. Next: commit the completed candidate,
-run the unchanged full13phase exact-candidate gate, then obtain fresh independent
-policy/evidence acceptance before normal push/opening one PR.
-Detailed contract/baseline and later exact proof/results live in ignored
-`artifacts/readability-10/`; predecessor completion above retains every prior charge.
+Task10's original migration completed at PR98 head `59d5b85e50c3431bd31ef85e73b5c79a91050c0f`: exact full local gate and independent policy review accepted; its original CI run42988670787 passed both platforms. These are historical facts, not evidence for the following integration candidate.
 
-Cleanup: retain current/predecessor worktrees and environments, durable evidence,
-external pinned Serena installation/state and shared reader inputs/caches. Remove
-only specifically confirmed disposable own scratch after owned processes close;
-keep uncertain targets. Final removed/kept/error/process facts belong in completion.
+The owner now explicitly requested: “Resolve the merge conflicts on 98 and merge it”. This supersedes the earlier no-merge restriction for PR98 only. PR98 targets `main`; root will perform the GitHub squash merge after the new exact candidate passes local verification, fresh independent review and both required CI jobs. No repeated permission, auto-merge or branch deletion is needed or authorized by this record.
+
+Reuse `/workspace/simrecon-readability-10`, branch `codex/readability-10-lessons` and its own `.venv`. Current main `19b6eb51db81024d254b1beefd0b0f615242790b` has exactly the original Task09 base `b01d975a01c8080f387b9f7108169d382dca6a91` tree `ef14f8c623208faceb056131bbed4e84d3e5e8b7`. Squashed parent history caused three renamed-lesson add/add conflicts and this handoff's add/add conflict. The named fresh direct worker resolves the ordinary merge by retaining the already migrated intended bytes, proving the whole resolved index equals the complete premerge Task10 tree before this coordinator-only state update. No newer main content is discarded. Runtime, tests, fixtures, dependencies, configuration and verification gates remain frozen; all204 lessons, location-only repairs, policy authority/blindness/append-only rules and historical accounting remain intact.
+
+Route remains documentation/instruction-path integration with fresh independent policy/evidence acceptance; this is not a waiver or a new behavior change. Existing author/reviewer/check evidence was archived before canonical outputs change: `artifacts/readability-10-merge/original-evidence.tar.gz`, SHA256 `4f2ee1a2520535818d1ea9e1a6d36659e5447198729b93227d1c10abc226542f`. Durable narrow contract, resolution proof, direct worker report, future exact-candidate receipt/review/submission/completion live under `artifacts/readability-10-merge/`; original `artifacts/readability-10/completion.json` and root-followup remain retained. Final candidate hashes/results stay outside verified tracked bytes.
+
+Coordinator's canonical locked preflight PASS: uv0.12.19, isolated worktree Python3.13.12, Temurin21.0.7+6 and isolated pinned hatchling1.32.4. Next: commit the final resolved integration candidate, run unchanged full13phase `make verify` on its clean committed identity with contract/resolution/reader-input fingerprints, obtain fresh independent exact-candidate policy/evidence acceptance, then normal non-force push to existing PR98. Require current36file/global/package/subprocess native coverage reports, same-run M25 limit33554432bytes, both separate installed wheels and audit. Required Ubuntu24.04/macOS15 CI must pass before root merges; pending is not PASS. Diagnose and retain any failed/interrupted check before a retry.
+
+Incremental charges: one fresh coordinator and one fresh named direct worker; one required fresh independent reviewer follows. Coordinator retains initial wide-read output truncation and one wrong role-skill filename lookup/exit1, then correct narrow reads; one non-mutating merge-tree conflict probe, original archive/ref/tree/PR checks and one canonical preflight PASS. Worker records all conflict/check commands and diagnoses in its report. All prior analysis/kickoff/Tasks01–10 attempts/corrections/launches/checks/reviews remain recursively retained, including Task07 interrupted gate, Task04 CI retry, Task09 original MCP attempts and walkthrough follow-up. Requested Sol/high per repository and owner collaboration clarification; actual served attribution/tokens/cost/full-task elapsed unknown; human numeric limits not set. Fresh contexts/integration reset no history or spending.
+
+Cleanup: no specifically confirmed disposable scratch selected. Keep current/predecessor worktrees and isolated environments, original/durable evidence, shared reader inputs/caches and external pinned Serena installation/state. Worker/coordinator own no persistent writer after handoff except the required gate while running; no unrelated deletion or cleanup error. Final process/removed/kept facts belong in ignored completion.
