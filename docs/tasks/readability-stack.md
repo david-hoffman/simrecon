@@ -1205,32 +1205,167 @@ One absent role-skill read was corrected using actual inventory; two expected
 pending-report probes returned nonzero. All ancillary findings remain charged;
 no runtime/config/test repair followed. No nativeCLI/auth/cloud-launch attempt.
 
+## Task 08 completed evidence and retained charges
+
+Task08 completed at pushed head `73ee450426e4136d45f5fe05b8f783f58a5b2dae`,
+tree `7e3854c9490d8d3994a54c1ae5252e102642ccae`, PR95
+<https://github.com/david-hoffman/simrecon/pull/95>, targeting verified Task07
+`14561e5d280ed90405002a9afe8133799e9ed597` (tree
+`310c50c13804c7da6c3897f83512179dfc40a104`). Fresh B and D ACCEPT, no actionable
+findings. All 13 exact-candidate full phases PASS, 3100 tests / 47 warnings;
+receipt SHA256 `6408c1be980b36870c94b239a1ed68828986b15b9d3ce1168599d73e698f7131`.
+All1169 tracked manifest entries, 36 owned Python files and three explicit ignored
+input fingerprints remained unchanged. Native global statements4834/4972 and
+branches1854/1964; product3993/4128 and1534/1640; development39/39 and8/8;
+scripts802/805 and312/316. Same-run mandatory M25 increment0bytes, limit33554432;
+separate installed wheels and audit PASS. These counts certify Task08 only.
+
+The durable `/workspace/simrecon-readability-08/artifacts/readability-08/completion.json`
+retains final hashes, same-run artifacts, reviewed-input/report identities,
+per-file counts and every role/check charge, recursively referencing previous
+completions. Task08 D adds one fresh review/ACCEPT, three structural-checker PASS
+invocations with one corrected metadata-only field, five coverage/navigation
+supplemental invocations (three raw-data-assumption mismatches/two PASS), two
+bounded diagnostic reads and one same-run native export. No accepted evidence
+discrepancy, target edits, suite/M25 rerun or gate relaxation. All prior analysis,
+kickoff, Task01–07 and native authentication/role/check failure charges remain
+above and in their completions. Task07's environment-restart incomplete full
+attempt plus fresh same-candidate fullPASS and Task04's diagnosed macOS Git2.56
+maintenance-lock failure/unchanged successful CI retry remain counted.
+
+Task08 cleanup removed C-confirmed `c-edit.py`, `c-docs.py`, its checker `.pyc`
+and empty `__pycache__` under its evidence directory. Own processes closed.
+Current/predecessor worktrees, environments, durable packets/checkers/reports,
+reader inputs/shared caches and uncertain ordinary runner scratch remain; no
+cleanup error or unrelated deletion. At Task09 intake Task08 CI42965536099 was
+in progress on Ubuntu130341761034 and macOS130341761373. Pending is not PASS;
+root monitors both and records later results outside these verified bytes.
+Before Task09 final commit, root independently confirmed this run completed
+SUCCESS on both Ubuntu130341761034 and macOS130341761373. This certifies the
+predecessor, not the changed Task09 candidate.
+
+## Task 09 contract and preparation
+
+This is the **last authorized task** in this nine-PR stack: standard Serena
+navigation tooling under issue86, against the settled package paths.
+Route: bounded conventional external development-tooling setup, with one named
+worker and one fresh independent exact-candidate reviewer. The reviewer also
+independently assesses instruction/policy impact before activation; actual
+security/execution authority changes would require a new appropriate route.
+The tooling label grants no exception. No delivery-policy rewrite is included.
+
+Worker ownership is `docs/operations/serena.md` and its narrow `docs/PROJECT.md`
+link, plus ignored/external install/smoke evidence. Coordinator owns this sole
+handoff and PR presentation. Keep upstream pinned installation/lock, explicit
+worktree root/read-only analysis, language-server dependencies and all generated
+server/project/cache/log/memory/index state outside product source/distributions.
+Document runtime/update/setup/client instructions, fresh task/subagent process
+ownership, isolation/concurrency/shutdown and non-Serena reading/text-search
+fallback. Exercise a fresh install, MCP initialize/list-tools, symbol overview,
+definition and references on representative Python reconstruction symbols;
+prove tracked bytes/status unchanged by read-only smoke. Read-only configuration
+is not engineered filesystem confinement. Native in-process registration is
+not required; no native CLI/auth/cloud-launcher detour or custom controller.
+
+Preserve scientific/numerical/binary/file-I/O behavior, all36exports, neutral CLI,
+retired boundaries, product/development dependencies/distributions, strict plugin,
+locked isolated install, separate installed wheels, all-owned/subprocess native
+measurement, PR87 affinity/observers and all gates. No new algorithms, product
+shim, generic orchestration framework, blanket tests or policy/permission change.
+November11 fresh collaboration `fork_turns="none"` direct roles supersede launch
+location alone; roles do not delegate. Requested worker/reviewer Sol/high under
+project guidance; actual serving, tokens/cost/full elapsed unknown; numeric
+budgets not set. Every launch/check/correction remains charged.
+
+Own canonical locked preflight PASS using Python3.13.12, uv0.12.19, Temurin
+21.0.7+6 via SIMRECON_JAVA. Exact baseline/remote predecessor and main ancestry
+confirmed; no newer changes discarded. One sandbox remote-check connection
+failure was diagnosed as the known proxy limitation; the same approved command
+succeeded. No credential/network policy or gate change. The contract and
+1167 frozen tracked baseline paths are recorded under `artifacts/readability-09/`.
+
+The exact clean committed candidate must pass all13 canonical `make verify`
+phases, same-run M25 limit33554432bytes, native file/package/global report
+integrity, installed product/development wheels and audit. Fingerprint the
+contract, worker proof and authenticated reader inputs before/after. Fresh final
+review follows PASS. Recheck remote/base/ancestry, normal-push/open exactly one
+PR against Task08. CI independently repeats Ubuntu24.04/macOS15; pending is not
+passing. No merge/auto-merge or successor work. Plain-English PR explains
+optional contributor symbol navigation; no figure is useful for this command
+and configuration documentation. Technical appendix carries evidence/limits.
+
+## Task 09 prepared tooling proof and charges
+
+Fresh bounded worker installed upstream Serena **v2.1.0**, exact commit
+`5e4f5cd173c7ff3eed37ee3f1de6c266b937c5dc`, outside all worktrees at
+`/workspace/.simrecon-serena-09/upstream`, using its upstream `uv.lock`
+SHA256 `24bbc88ca06a3b1bb84635829b9571a1132ee0d78d5ef5f45a673d9ae4d65837`
+and `uv sync --locked --no-dev --python 3.13.12`. The guide documents prerequisites,
+standard stdio client and optional one-shot upstream SDK example, explicit root,
+update/troubleshooting, external state and fresh-role lifecycle. Serena's standard
+Python backend pins Pyright1.1.403 separately; actual nodeenv1.12.0,
+typing_extensions4.16.0 and Node24.22.1 are recorded. That language-server
+transitive environment/platform runtime is not fully locked; no offline or
+universal byte-reproducibility promise follows from the server lock.
+
+Upstream `SERENA_HOME` and `project_serena_folder_location` keep server/global and
+project/language-server/index/cache/log/memory state external. Planning/no-memories,
+project `read_only: true` and upstream fixed tool configuration expose exactly
+three symbol-navigation tools plus current configuration and initial instructions;
+no shell/edit/memory/mode/project-switch tools. Actual MCP protocol2025-11-25
+initialize/list-tools and overview/definition/reference lookup PASS.
+`reconstruct_known` resolves in `reconstruction/known_parameters.py`; references
+include its facade export and `workflow/reconstruct.py` caller. This proves
+navigation, not science or filesystem confinement. Before/after tracked hash
+manifests and porcelain status match; no checkout `.serena`/`.solidlsp`.
+
+Worker charges: one author launch/session; one sandbox upstream-tag network
+failure followed by approved same-command PASS; one help invocation missing
+SERENA_HOME failed on read-only home (no state created); corrected help/project
+creation and fresh locked install PASS. Four MCP attempts remain counted: first
+failed initialize on duplicate external fixed_tools YAML key; corrected existing
+key; second approved outer run PASS; third default-sandbox follow-up incomplete
+before initialize despite backend-ready log; fourth approved outer run PASS
+including initial_instructions and all documented navigation. Attempt3's180s
+protocol timeout had **not expired** when the worker stopped its known owned
+client tree (SIGINT ineffective, TERM then scoped KILL fallback). Its cause is
+unresolved; retain this premature-stop procedural fault and make no sandbox
+equivalence or diagnosed proxy/SDK claim. It supplies no successful evidence.
+Attempt2 and4 proof remain separately preserved for fresh reviewer applicability
+assessment. No further optional channel experiment is needed or authorized by
+this failure alone. Final owned-process inventory is empty.
+
+One runtime-inventory draft correction and one no-op patch-context mismatch are
+also charged; no product/test correction. Worker focused whitespace/shell/SDK
+Python/TOML/tool-JSON/local-link checks PASS. Coordinator independently confirms
+all1167 frozen unowned tracked paths unchanged, all36exports retained, six fenced
+syntax blocks and four local navigation links valid, successful smoke hashes/status
+identical, no checkout state and empty owned-process inventory. Only three docs
+are edited/added. Canonical preflight PASS; full exact-candidate gate and fresh
+review remain pending. Detailed worker/coordinator evidence is durable in ignored
+`artifacts/readability-09/`; the final completion retains all later charges.
+
 ## Current state
-Task08 high-risk workflow/I/O readability is prepared in
-`/workspace/simrecon-readability-08`, branch `codex/readability-08-workflow-io`,
-from verified pushed Task07 head `14561e5d280ed90405002a9afe8133799e9ed597`,
-tree `310c50c13804c7da6c3897f83512179dfc40a104`, targeting PR94 branch
-`codex/readability-07-reconstruction`. Predecessor open/unmerged exact head/base,
-remote main/ancestry and absent new remote branch confirmed. No newer changes
-discarded. Root confirmed Task07 CI42960555856 both configured platforms SUCCESS.
-Own locked isolated preflight PASS using Python3.13.12, uv0.12.19 and
-Temurin21.0.7+6 via SIMRECON_JAVA. Fresh blind A/B retained proof/checkpoint ACCEPT;
-restricted C/focused checks and coordinator preservation/types/navigation PASS.
 
-Next: commit this candidate, run all 13 canonical full `make verify` phases with
-same-run mandatory M25 and public/checkpoint/reader fingerprints, obtain fresh
-exact-candidate D, recheck remote identities and normal-push/open one stacked PR.
-This pointer claims no Task08 full acceptance yet. Final hash/results, receipt,
-native counts, M25/wheels, D/PR/CI and post-commit charges stay outside verified
-tracked bytes in ignored `artifacts/readability-08/completion.json`, verification
-evidence and PR/conversation. No successor/merge/auto-merge; root alone starts09.
-All analysis/kickoff/native-failure/Task01–07 and current role/check charges remain
-retained above and in predecessor completions. Requested roles Sol/high; actual
-serving/tokens/cost/full elapsed unknown; human numeric budgets not set.
+Task09 is being prepared in `/workspace/simrecon-readability-09`, branch
+`codex/readability-09-serena`, from verified pushed Task08
+`73ee450426e4136d45f5fe05b8f783f58a5b2dae`, tree
+`7e3854c9490d8d3994a54c1ae5252e102642ccae`, targeting
+`codex/readability-08-workflow-io` / PR95. Fresh bounded worker has completed the named
+navigation documentation and actual upstream external install/smoke evidence;
+coordinator preservation/docs checks PASS. No Task09 full verification or final
+review is claimed by this pointer.
 
-Cleanup: removed C-confirmed disposable `artifacts/readability-08/c-edit.py`,
-`c-docs.py`, its checker `.pyc` and empty `__pycache__` directory after all own
-processes closed. Keep current checkout/.venv, packets/preservation/navigation
-scripts, source maps, reports and reader/test observations as durable evidence;
-retain predecessor/shared reader inputs/caches and uncertain ordinary runner
-scratch. No removal or cleanup error; no unrelated worktree deletion.
+Next: commit this prepared candidate, complete the exact-candidate full gate,
+obtain fresh independent bounded and policy-impact
+assessment, then push/open one final stacked PR. Final identities/results,
+review/receipt/CI and post-commit charges belong outside verified tracked
+bytes in ignored `artifacts/readability-09/completion.json`, verification
+evidence and PR/conversation. This completion points to Task08 completion and
+recursively retains the complete nine-task history; root returns final chain.
+
+Cleanup: keep current checkout/.venv, durable evidence, external pinned Serena
+installation and required language-server/project state, predecessor/shared
+reader inputs/caches and uncertain ordinary runner scratch. Worker closed all owned
+smoke processes. No confirmed disposable target is selected; no
+unrelated worktree removal. Final process/cleanup facts go in ignored completion.
