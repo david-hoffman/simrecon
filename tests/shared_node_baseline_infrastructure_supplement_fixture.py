@@ -99,7 +99,7 @@ def executable(path: Path, body: str) -> None:
     path.chmod(0o755)
 
 
-def verifier_repo(path: Path, *, change: str = "", fail: str = "") -> Path:
+def verifier_repo(path: Path, *, change: str = "", fail: str = "", devtools: bool = False) -> Path:
     """Real Git/coverage/wheel evidence, with caller-owned Make command fixture.
 
     The phase fixture is not a full project check and makes no readiness claim.
@@ -113,7 +113,16 @@ def verifier_repo(path: Path, *, change: str = "", fail: str = "") -> Path:
     (path / "src/simrecon/__init__.py").write_text("ANSWER = 42\n")
     (path / "scripts/owned.py").write_text("ANSWER = 42\n")
     (path / "marker.txt").write_bytes(b"A07 tracked preservation marker\n")
-    (path / ".coveragerc").write_text("[run]\nbranch = True\nsource = src/simrecon, scripts\n")
+    sources = "src/simrecon, scripts"
+    if devtools:
+        tools = path / "devtools/src/simrecon_devtools"
+        tools.mkdir(parents=True)
+        (tools / "__init__.py").write_text('"""Disposable development package."""\n')
+        (tools / "never_imported.py").write_text(
+            "def choose(flag):\n    if flag:\n        return 1\n    return 0\n"
+        )
+        sources += ", devtools/src/simrecon_devtools"
+    (path / ".coveragerc").write_text("[run]\nbranch = True\nsource = " + sources + "\n")
     make = path / "phase-command"
     executable(
         make,
@@ -170,6 +179,12 @@ def verifier_repo(path: Path, *, change: str = "", fail: str = "") -> Path:
                 native["excluded_lines"] = [1]
             elif change == "global-exclusion-counter":
                 report["totals"]["excluded_lines"] = 1
+            elif change == "missing-devtools":
+                omitted = report["files"].pop(
+                    "devtools/src/simrecon_devtools/never_imported.py")
+                for key, value in omitted["summary"].items():
+                    if type(value) is int:
+                        report["totals"][key] -= value
             report_path.write_text(json.dumps(report))
         elif phase == "coverage-html":
             cov = coverage.Coverage()
@@ -205,6 +220,11 @@ def verifier_repo(path: Path, *, change: str = "", fail: str = "") -> Path:
             with zipfile.ZipFile("dist/simrecon-1.0-py3-none-any.whl", "w") as wheel:
                 for name, content in files.items():
                     wheel.writestr(name, content)
+            if Path("devtools/src/simrecon_devtools").is_dir():
+                development = Path("artifacts/devtools/dist")
+                development.mkdir(parents=True)
+                (development / "simrecon_devtools-1.0-py3-none-any.whl").write_bytes(
+                    b"separate development artifact\\n")
         elif phase == "wheel-import":
             result = subprocess.run(
                 [sys.executable, "-c",
@@ -251,6 +271,7 @@ def verifier_repo(path: Path, *, change: str = "", fail: str = "") -> Path:
         "directory-alias",
         "directory-cycle",
         "fifo-neighbor",
+        "missing-devtools",
     }
     assert fail == "" or fail in PHASES
     return make

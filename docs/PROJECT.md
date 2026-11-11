@@ -70,7 +70,8 @@ The scientific entries are `prepare_bands`, `prepare_bead_otf`, `declare_otf`,
 their declared records/errors. They remain explicit array/value boundaries.
 Callers may compose neutral reads and declarations before the workflow; the
 workflow adds no file decoder, result writer or reconstruction CLI.
-The neutral CLI and delivery commands remain installed.
+The neutral CLI remains in the product. The delivery command is installed by
+the local development package during locked all-groups synchronization.
 
 - The [MRC conversion contract](contracts/mrc-conversion-v1.md) defines metadata
   inspection, selected-block reads, pure metadata/layout resolution, streamed
@@ -115,7 +116,10 @@ limitations, not current product verification.
   tifffile 2026.9.20 supports export and mrcfile 1.5.4 is a development reference.
   Their presence does not reactivate a retired scientific function.
 - Owned library/runtime code lives in `src/simrecon/`; owned verification tools
-  live in `scripts/`. Native statement/branch measurement includes both,
+  live in `scripts/` and `devtools/src/simrecon_devtools/`. The local
+  `simrecon-devtools` distribution owns the doctor launcher and explicit pytest
+  policy plugin; it is a development-group dependency, not a product dependency.
+  Native statement/branch measurement includes all three roots,
   never-imported files and relevant subprocesses.
 - Root [AGENTS.md](../AGENTS.md) holds shared rules; four `.agents/skills/`
   procedures hold role differences and [test-audit](../.agents/skills/test-audit/SKILL.md)
@@ -163,7 +167,11 @@ alone does not establish that native rulesets are absent.
 
 [Verification evidence](operations/verification.md) describes ignored phase logs,
 receipt/input identities and same-run evidence. Coverage JSON/HTML live in
-`artifacts/coverage/`, receipts/logs in `artifacts/verification/`, wheels in `dist/`.
+`artifacts/coverage/`, receipts/logs in `artifacts/verification/`, the sole product
+wheel in `dist/`, and the separate development wheel in
+`artifacts/devtools/dist/`. The wheel phases build and check both distributions;
+installed checks run outside the checkout with separate product/development
+environments. The product environment has only runtime dependencies.
 Prepare the task pointer before verification. Record final commit/tree,
 command/environment/results outside verified tracked bytes and confirm they stay
 unchanged. Passing requires a clean tracked start, unchanged candidate/input
@@ -189,7 +197,7 @@ uv run --locked coverage run -m pytest -n 2 --dist=loadgroup --max-worker-restar
 ```
 
 Exactly two workers run deterministic whole-file affinity groups assigned by the
-measured `simrecon._pytest_policy` module. Every file outside the explicit
+measured `simrecon_devtools.pytest_policy` module. Every file outside the explicit
 allowlist, including a new file, belongs to `serial-rest`; that group is internally
 serial and can run alongside another group. CE01 removes affinity entries only
 with their retired subjects under named infrastructure ownership. Historical
@@ -234,7 +242,8 @@ Coverage.py measures executable source lines (called native statements here) and
 possible line-to-line branch destinations. It supplies no separate language-level
 statement instrument or distinct line target. Report exact covered/total integers
 and unsupported measurements. Native statement/branch reports remain required
-globally, per package (`src/simrecon/`, `scripts/`) and per owned file, independently
+globally, per package (`src/simrecon/`, `scripts/`,
+`devtools/src/simrecon_devtools/`) and per owned file, independently
 on Ubuntu 24.04 and macOS 15, including never-imported files and relevant
 subprocesses. No platform union supplies a platform's missing evidence.
 `make verify` requires current JSON/HTML reports and internally consistent exact

@@ -219,8 +219,8 @@ def test_v1_real_make_check(repository):
     assert calls == [
         ["sync", "--locked", "--all-groups"],
         ["run", "--locked", "--no-sync", "python", "scripts/prepare_imagej_reader.py"],
-        ["run", "--locked", "ruff", "check", "src", "tests", "scripts"],
-        ["run", "--locked", "ruff", "format", "--check", "src", "tests", "scripts"],
+        ["run", "--locked", "ruff", "check", "src", "devtools/src", "tests", "scripts"],
+        ["run", "--locked", "ruff", "format", "--check", "src", "devtools/src", "tests", "scripts"],
         ["run", "--locked", "pyright"],
     ]
 

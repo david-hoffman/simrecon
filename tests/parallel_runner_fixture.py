@@ -48,7 +48,8 @@ def suite(root: Path, files: dict[str, str], *, conftest: str = "") -> Path:
     """Create fresh mutable inputs with the project's actual strict policy plugin."""
     root.mkdir(parents=True)
     (root / "pytest.ini").write_text(
-        "[pytest]\naddopts = --strict-config --strict-markers -ra -p simrecon._pytest_policy\n"
+        "[pytest]\naddopts = --strict-config --strict-markers -ra "
+        "-p simrecon_devtools.pytest_policy\n"
         "strict_xfail = true\n",
         encoding="utf-8",
     )

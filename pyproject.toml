@@ -18,10 +18,10 @@ dependencies = [
 
 [project.scripts]
 simrecon = "simrecon._cli:main"
-delivery = "simrecon._delivery:main"
 
 [dependency-groups]
 dev = [
+  "simrecon-devtools",
   "execnet==2.1.2",
   "pytest-xdist==3.8.0",
   "mrcfile==1.5.4",
@@ -32,13 +32,16 @@ dev = [
   "ruff>=0.13,<1",
 ]
 
+[tool.uv.sources]
+simrecon-devtools = { path = "devtools", editable = true }
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/simrecon"]
 
 [tool.ruff]
 target-version = "py313"
 line-length = 100
-src = ["src", "tests", "scripts"]
+src = ["src", "devtools/src", "tests", "scripts"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "D"]
@@ -51,18 +54,18 @@ convention = "numpy"
 "tests/**" = ["D102", "D103"]
 
 [tool.pyright]
-include = ["src", "tests", "scripts"]
+include = ["src", "devtools/src", "tests", "scripts"]
 typeCheckingMode = "standard"
 pythonVersion = "3.13"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = ["--strict-config", "--strict-markers", "-ra", "-p", "simrecon._pytest_policy"]
+addopts = ["--strict-config", "--strict-markers", "-ra", "-p", "simrecon_devtools.pytest_policy"]
 strict_xfail = true
 
 [tool.coverage.run]
 branch = true
-source = ["src/simrecon", "scripts"]
+source = ["src/simrecon", "devtools/src/simrecon_devtools", "scripts"]
 patch = ["subprocess"]
 
 [tool.coverage.report]

@@ -316,3 +316,45 @@ def test_standard_runpy_main_is_a_real_script_caller_not_a_new_import_api(
     assert result.returncode == 0, result.stderr
     assert "--receipt" in result.stdout
     assert "--measurements-required" in result.stdout
+
+
+@pytest.mark.parametrize("omitted", [False, True])
+def test_devtools_native_measurement_includes_never_imported_files(
+    tmp_path: Path, omitted: bool
+) -> None:
+    """Moved owned files need exact evidence even when the test phase never imports them."""
+    repo = tmp_path / "repository"
+    change = "missing-devtools" if omitted else ""
+    make = verifier_repo(repo, devtools=True, change=change)
+    result = verify(repo, make, change=change)
+    receipt = receipt_at(repo)
+    assert attempted_phases(repo) == list(PHASES)
+    if omitted:
+        assert result.returncode == 1 and receipt["result"] == "failed"
+        assert receipt["coverage"] is None
+        assert any(
+            "devtools/src/simrecon_devtools/never_imported.py" in problem
+            for problem in receipt["problems"]
+        )
+    else:
+        assert result.returncode == 0, result.stdout + result.stderr
+        assert receipt["result"] == "passed" and receipt["problems"] == []
+        missing = {"statements": {"covered": 0, "total": 4}, "branches": {"covered": 0, "total": 2}}
+        coverage = receipt["coverage"]
+        assert coverage["files"]["devtools/src/simrecon_devtools/never_imported.py"] == missing
+        assert coverage["packages"]["simrecon_devtools"] == missing
+        assert coverage["global"] == {
+            "statements": {"covered": 2, "total": 6},
+            "branches": {"covered": 0, "total": 2},
+        }
+
+
+def test_generated_devtools_wheel_cannot_be_overwritten_by_receipt(tmp_path: Path) -> None:
+    """The separate artifact gets the product artifact's existing persistence protection."""
+    repo = tmp_path / "repository"
+    make = verifier_repo(repo, devtools=True)
+    artifact = "artifacts/devtools/dist/simrecon_devtools-1.0-py3-none-any.whl"
+    result = verify(repo, make, receipt=artifact)
+    assert result.returncode != 0
+    assert attempted_phases(repo) == list(PHASES)
+    assert (repo / artifact).read_bytes() == b"separate development artifact\n"

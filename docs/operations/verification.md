@@ -19,3 +19,13 @@ Passing requires every full phase, a clean tracked start, unchanged candidate/in
 D may inspect applicable successful evidence without automatically rerunning it. Changed candidate/tests/fixtures/dependencies/checks/environment/base/relevant inputs invalidate affected reuse. The current submission rule still requires full verification of a changed exact submission candidate. Present package version is static 0.1.0; future Git-derived versions would additionally require commit/tag/dirty build identity. Receipts are ordinary evidence, not certificates/controllers.
 
 Before opening/reopening a PR or pushing to an open one, confirm the exact candidate and passing full local gate. Any known check failure, missing required evidence or unmet selected coverage target blocks submission. Unselected percentages are advisory under the recorded [project policy](../PROJECT.md#coverage-policy-and-adoption-provenance); required report integrity still binds. The owner chose advisory statement/branch percentages; Coverage.py no longer enforces a percentage threshold and receipts accept valid partial or zero execution. Missing/inconsistent measurements, missing reports and unapproved owned-file exclusions still fail. The adoption task records the independently reviewed migration and its activation evidence. Supported-platform CI still repeats the complete gate. Owner action is required to merge/release.
+
+Task 02 adds the owned development source root
+`devtools/src/simrecon_devtools/` to lint, format, type and native coverage checks.
+The receipt records it as `simrecon_devtools`, including never-imported files and
+subprocess execution, without changing advisory percentages or report integrity.
+The existing 13 phases remain: `wheel` builds the sole product wheel in `dist/`
+and the local development wheel separately in `artifacts/devtools/dist/`;
+`wheel-import` checks their installed boundaries outside the checkout in separate
+environments. CI retains both artifact paths. The development distribution is
+not a product runtime dependency, and the product contains no tooling shim.

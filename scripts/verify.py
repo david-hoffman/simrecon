@@ -367,11 +367,17 @@ def metrics(problems: list[str]) -> dict[str, Any]:
     if any(report["totals"][key] != totals[key] for key in keys):
         raise ValueError("Invalid native coverage totals")
     files = {}
+    roots = (
+        ("src/simrecon", "simrecon"),
+        ("devtools/src/simrecon_devtools", "simrecon_devtools"),
+        ("scripts", "scripts"),
+    )
     packages = {
         name: {kind: {"covered": 0, "total": 0} for kind in ("statements", "branches")}
-        for name in ("simrecon", "scripts")
+        for directory, name in roots
+        if name != "simrecon_devtools" or Path(directory).is_dir()
     }
-    for directory, package in (("src/simrecon", "simrecon"), ("scripts", "scripts")):
+    for directory, package in roots:
         for path in sorted(Path(directory).rglob("*.py")):
             item = report["files"][path.as_posix()]
             summary = item["summary"]
@@ -654,7 +660,13 @@ def main() -> int:
             if report is not None:
                 protect_evidence([report], evidence_protected)
             if phase == "wheel":
-                protect_evidence(list(Path("dist").glob("*.whl")), evidence_protected)
+                protect_evidence(
+                    [
+                        *Path("dist").glob("*.whl"),
+                        *Path("artifacts/devtools/dist").glob("*.whl"),
+                    ],
+                    evidence_protected,
+                )
             if args.measurements_required and phase == "tests":
                 protect_evidence([MEASUREMENTS_PATH], evidence_protected)
                 try:
