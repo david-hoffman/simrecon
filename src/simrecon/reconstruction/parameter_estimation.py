@@ -1,4 +1,13 @@
-"""Finite SVN307 carrier search and complex modulation estimation."""
+"""Finite SVN307 carrier search and complex modulation estimation.
+
+Carriers are fundamental (kx, ky) vectors in cycles per micrometre; native
+arrays use (z, y, x) axes. The two overlap sides retain complex transfer
+weighting and unnormalized inverse Fourier sums. See
+``docs/architecture/reconstruction-walkthrough.md#carrier-and-modulation-estimation``
+for the overlap/regression equations and
+``docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions``
+for axes, units and transform signs.
+"""
 
 from __future__ import annotations
 
@@ -295,7 +304,15 @@ def _validate_bands(bands: Any, transfer: _Transfer) -> tuple[_Grid, _UsedBands 
     return _Grid(shape, orders, dxy, dz, lateral, axial, scale, *frequencies), None
 
 
-class _Estimator:
+class _ParameterEstimator:
+    """Keep owned working quadratures and ordered records for one estimation call.
+
+    Notes
+    -----
+    ``t`` and ``d`` select the current time and direction. Each overlap and
+    diagnostic captures those indices; trials append records in execution order.
+    """
+
     def __init__(
         self,
         quadratures: _Array,
@@ -316,7 +333,16 @@ class _Estimator:
         self.t = 0
         self.d = 0
 
-    def event(self, kind: str, **details: Any) -> None:
+    def record_event(self, kind: str, **details: Any) -> None:
+        """Append a finite diagnostic, copying array details into read-only storage.
+
+        Parameters
+        ----------
+        kind : str
+            Diagnostic identity; keyword order is retained in the detail tuple.
+        **details : Any
+            Stage-specific scalar values or arrays captured at the current t/d.
+        """
         captured = []
         for name, value in details.items():
             if isinstance(value, np.ndarray):
@@ -327,7 +353,23 @@ class _Estimator:
             captured.append((name, value))
         _append(self.trace, _Event(kind, self.t, self.d, tuple(captured)))
 
-    def sample(self, xy: tuple[float, float], z: int, order: int) -> complex:
+    def sample_order_transfer(self, xy: tuple[float, float], z: int, order: int) -> complex:
+        """Sample the complex order transfer at a lateral vector and axial bin.
+
+        Parameters
+        ----------
+        xy : tuple of float
+            (kx, ky) in cycles per micrometre, with the overlap's signed shift.
+        z : int
+            Signed axial Fourier bin; ``grid.dzf`` supplies cycles/um per bin.
+        order : int
+            Nonnegative transfer order.
+
+        Returns
+        -------
+        complex
+            Interpolated transfer, retaining its phase.
+        """
         try:
             return complex(
                 _sample_transfer(
@@ -337,7 +379,22 @@ class _Estimator:
         except OtfError as error:
             raise ParameterEstimationError(f"transfer sample/stencil failed: {error}") from error
 
-    def band(self, order: int, z: int, i: int, j: int) -> complex:
+    def reconstruct_complex_band(self, order: int, z: int, i: int, j: int) -> complex:
+        """Read B0 or E+iO from native half-x quadrature storage.
+
+        Parameters
+        ----------
+        order : int
+            Zero for B0, otherwise the positive harmonic to combine.
+        z, i, j : int
+            Axial bin and full-grid y/x indices before half-space reflection.
+
+        Returns
+        -------
+        complex
+            Band coefficient. Reflection conjugates E and O separately before
+            forming E+iO; the harmonic combination itself is not conjugated.
+        """
         _, _, _, nz, ny, nx = self.grid.shape
         reflected = j > nx // 2
         if reflected:
@@ -357,11 +414,40 @@ class _Estimator:
         _finite(result, "complex band combination")
         return result
 
-    def build(self, carrier: _Array, order: int, purpose: str, lower: int = 0) -> _Overlap:
+    def build_order_overlap(
+        self, carrier: _Array, order: int, purpose: str, lower: int = 0
+    ) -> _Overlap:
+        """Construct and record the two transfer-weighted order overlaps.
+
+        Parameters
+        ----------
+        carrier : numpy.ndarray
+            Fundamental (kx, ky) in cycles/um, before order-difference scaling.
+        order, lower : int
+            Higher and lower orders; their difference sets the lateral shift.
+        purpose : str
+            Diagnostic stage retained with the new overlap record.
+
+        Returns
+        -------
+        _Overlap
+            Read-only Fourier/spatial arrays of shape (2, Z, Y, X), the actual
+            write mask, and an owned carrier copy. Side zero weights the lower
+            band by the shifted higher transfer; side one reverses the roles.
+
+        Notes
+        -----
+        Weighting divides by sqrt(|H_lower|**2 + |H_higher|**2), retaining the
+        other transfer's complex phase. Sampling short-circuits on support and
+        preceding transfer thresholds. The inverse transform is an unnormalized positive
+        sum, as in the walkthrough's carrier-and-modulation-estimation section.
+        """
         _, _, _, nz, ny, nx = self.grid.shape
         fourier = np.zeros((2, nz, ny, nx), dtype=np.complex128)
         written = np.zeros(fourier.shape, dtype=np.bool_)
         delta = ((order - lower) * float(carrier[0]), (order - lower) * float(carrier[1]))
+        # The selected 3D map weights the higher-order threshold by five;
+        # true 2D uses one. These are amplitude tests, not extra band weights.
         higher_multiplier = 1 if nz == 1 else 5
         _finite(delta, "order carrier separation")
         for i in range(ny):
@@ -381,20 +467,27 @@ class _Estimator:
                     for z in range(-self.cutoff, self.cutoff + 1):
                         if z == 0 and self.omit:
                             continue
-                        primary = self.sample((fx, fy), z, lower if side == 0 else order)
+                        primary = self.sample_order_transfer(
+                            (fx, fy), z, lower if side == 0 else order
+                        )
                         if not ((1 if side == 0 else higher_multiplier) * abs(primary) > 0.006):
                             continue
-                        other = self.sample(shifted, z, order if side == 0 else lower)
+                        other = self.sample_order_transfer(
+                            shifted, z, order if side == 0 else lower
+                        )
                         if not ((higher_multiplier if side == 0 else 1) * abs(other) > 0.006):
                             continue
                         denominator = math.sqrt(abs(primary) ** 2 + abs(other) ** 2)
                         _finite(denominator, "overlap denominator")
                         value = (
-                            self.band(lower if side == 0 else order, z, i, j) * other / denominator
+                            self.reconstruct_complex_band(lower if side == 0 else order, z, i, j)
+                            * other
+                            / denominator
                         )
                         _finite(value, "weighted overlap")
                         fourier[side, z % nz, i, j] = value
                         written[side, z % nz, i, j] = True
+        # Undo NumPy's inverse normalization to retain the native overlap sum.
         axes = (2, 3) if nz == 1 else (1, 2, 3)
         spatial = np.fft.ifftn(fourier, axes=axes) * (nx * ny * nz)
         _finite(spatial, "overlap inverse transform")
@@ -414,7 +507,7 @@ class _Estimator:
         _append(self.overlaps, result)
         return result
 
-    def evaluate(
+    def fit_overlap_modulation(
         self,
         build: _Overlap,
         carrier: _Array,
@@ -423,6 +516,35 @@ class _Estimator:
         angle: float | None = None,
         magnitude: float | None = None,
     ) -> tuple[complex, float | None]:
+        """Fit forward modulation and record the full regression diagnostics.
+
+        Parameters
+        ----------
+        build : _Overlap
+            Fixed lower/higher spatial arrays and their order pair.
+        carrier : numpy.ndarray
+            Fundamental (kx, ky), cycles/um, for the positive centered ramp.
+        stage : str
+            Diagnostic stage; ``known`` omits the search objective calculation.
+        remake : bool
+            Recorded overlap-rebuild flag for this evaluation.
+        angle, magnitude : float or None
+            Trial polar coordinates, radians and cycles/um, when available.
+
+        Returns
+        -------
+        complex
+            Forward factor C/SX, with C=sum(conj(lower)*ramped_higher).
+        float or None
+            Squared forward magnitude for search, or None for a known carrier.
+
+        Notes
+        -----
+        SX and SY are the respective spatial energies. Reverse/combined fits
+        and normalized correlation remain diagnostics, including their existing
+        singularity rules. See the walkthrough regression equations; the ramp
+        uses centered spatial pixels and the positive order-difference phase.
+        """
         _, _, _, _, ny, nx = self.grid.shape
         order = build.orders[1] - build.orders[0]
         x = np.arange(nx, dtype=np.float64) - nx // 2
@@ -475,7 +597,7 @@ class _Estimator:
         _finite((forward, reverse, combined, correlation), "regression factors")
         if objective is not None:
             _finite(objective, "squared-forward objective")
-        self.event(
+        self.record_event(
             "evaluation",
             stage=stage,
             orders=build.orders,
@@ -495,9 +617,27 @@ class _Estimator:
         )
         return forward, objective
 
-    def coarse(self, initial: _Array) -> _Array:
+    def estimate_coarse_carrier(self, initial: _Array) -> _Array:
+        """Locate the first strict correlation maximum and refine its position.
+
+        Parameters
+        ----------
+        initial : numpy.ndarray
+            Declared fundamental (kx, ky), cycles/um, used to build the overlap
+            and select the literal ordered alias adjustments.
+
+        Returns
+        -------
+        numpy.ndarray
+            Fundamental carrier from pair (0, 1) in 2D or (0, 2) in 3D.
+
+        Notes
+        -----
+        The forward Fourier sum has negative phase. Neighbor fits use wrapped
+        bins; strict comparisons retain the first maximum in y-then-x traversal.
+        """
         pair_order = 1 if self.grid.shape[3] == 1 else 2
-        build = self.build(initial, pair_order, "coarse")
+        build = self.build_order_overlap(initial, pair_order, "coarse")
         _, _, _, _, ny, nx = self.grid.shape
         product = np.sum(build.spatial[0] * np.conjugate(build.spatial[1]), axis=0)
         correlation = np.fft.fft2(product)
@@ -511,10 +651,11 @@ class _Estimator:
                     best, i0, j0 = float(power[i, j]), i, j
         xn = np.array([power[i0, (j0 - 1) % nx], power[i0, j0], power[i0, (j0 + 1) % nx]])
         yn = np.array([power[(i0 - 1) % ny, j0], power[i0, j0], power[(i0 + 1) % ny, j0]])
-        ox, xs = _peak_offset(xn)
-        oy, ys = _peak_offset(yn)
+        ox, xs = _fit_peak_offset(xn)
+        oy, ys = _fit_peak_offset(yn)
         px, py = j0 + ox, i0 + oy
         before = np.array([px, py], dtype=np.float64)
+        # Retain the source's literal initial-carrier products and alias order.
         oldx, oldy = float(initial[0]) * self.grid.dx, float(initial[1]) * self.grid.dy
         _finite((oldx, oldy), "initial carrier alias products")
         decisions = []
@@ -531,7 +672,7 @@ class _Estimator:
             [px * self.grid.dx / pair_order, py * self.grid.dy / pair_order], dtype=np.float64
         )
         _finite(carrier, "coarse carrier")
-        self.event(
+        self.record_event(
             "coarse",
             overlap_index=build.index,
             correlation_complex=correlation,
@@ -550,8 +691,30 @@ class _Estimator:
         )
         return carrier
 
-    def search(self, initial: _Array) -> tuple[_Array, list[complex]]:
-        coarse = self.coarse(initial)
+    def search_carrier_and_modulation(self, initial: _Array) -> tuple[_Array, list[complex]]:
+        """Refine a coarse carrier by finite angle then magnitude trials.
+
+        Parameters
+        ----------
+        initial : numpy.ndarray
+            Declared fundamental (kx, ky), cycles/um, for the coarse search.
+
+        Returns
+        -------
+        numpy.ndarray
+            Fitted fundamental carrier in cycles/um.
+        list of complex
+            Forward factors in ascending positive-order slots, before caller
+            postprocessing. In 2D, later orders use adjacent-order overlaps.
+
+        Notes
+        -----
+        Trials use one frozen refinement overlap. Angle steps are 0.001 radians;
+        magnitude steps are 0.1/(max(X,Y)*dxy) cycles/um. Each walk ends at the
+        first failure of strict improvement, followed by a three-point fit.
+        This finite procedure does not promise a global optimum.
+        """
+        coarse = self.estimate_coarse_carrier(initial)
         cx, cy = float(coarse[0]), float(coarse[1])
         if cx == 0 and cy == 0:
             raise ParameterEstimationError("zero coarse carrier: undefined polar angle atan2(0,0)")
@@ -559,14 +722,15 @@ class _Estimator:
         angle0 = math.pi if cy == 0 and cx < 0 else math.atan2(cy, cx)
         _finite((mag0, angle0), "coarse polar conversion")
         pair_order = 1 if self.grid.shape[3] == 1 else 2
-        build = self.build(coarse, pair_order, "refinement")
+        build = self.build_order_overlap(coarse, pair_order, "refinement")
+        # These bracket values carry across the angle and magnitude stages.
         x1, amp1 = 0.0, 0.0
         first = True
 
         def objective(angle: float, magnitude: float, stage: str) -> float:
             nonlocal first
-            carrier = _cartesian(angle, magnitude)
-            _, score = self.evaluate(build, carrier, stage, first, angle, magnitude)
+            carrier = _carrier_from_polar(angle, magnitude)
+            _, score = self.fit_overlap_modulation(build, carrier, stage, first, angle, magnitude)
             first = False
             assert score is not None
             return score
@@ -574,7 +738,7 @@ class _Estimator:
         def bracket(
             stage: str, branch: str, x2: float, amp2: float, x3: float, amp3: float
         ) -> None:
-            self.event(
+            self.record_event(
                 "bracket",
                 stage=stage,
                 branch=branch,
@@ -603,7 +767,7 @@ class _Estimator:
         for stage, start, step in (("angle", angle0, 0.001), ("magnitude", mag0, dm)):
             x2 = start
             amp2 = score(x2, stage, angle)
-            x3 = _increment(start, step)
+            x3 = _advance_search_coordinate(start, step)
             amp3 = score(x3, stage, angle)
             bracket(stage, "initial", x2, amp2, x3, amp3)
             if amp3 > amp2:
@@ -619,13 +783,13 @@ class _Estimator:
             while amp3 > amp2:
                 amp1, x1 = amp2, x2
                 amp2, x2 = amp3, x3
-                candidate = _increment(candidate, direction)
+                candidate = _advance_search_coordinate(candidate, direction)
                 x3 = candidate
                 amp3 = score(candidate, stage, angle)
                 bracket(stage, "shift", x2, amp2, x3, amp3)
             bracket(stage, "stop", x2, amp2, x3, amp3)
-            fitted, status = _parabola(x1, amp1, x2, amp2, x3, amp3)
-            self.event(
+            fitted, status = _fit_three_point_peak(x1, amp1, x2, amp2, x3, amp3)
+            self.record_event(
                 "parabola",
                 stage=stage,
                 x1=x1,
@@ -641,35 +805,76 @@ class _Estimator:
                 angle = fitted
             else:
                 magnitude = fitted
-        carrier = _cartesian(angle, magnitude)
-        factor, _ = self.evaluate(build, carrier, "final", False, angle, magnitude)
+        carrier = _carrier_from_polar(angle, magnitude)
+        factor, _ = self.fit_overlap_modulation(build, carrier, "final", False, angle, magnitude)
         factors = [0j] * (self.grid.orders - 1)
         factors[pair_order - 1] = factor
         for order in range(1, self.grid.orders):
             if order != pair_order:
                 lower = order - 1 if self.grid.shape[3] == 1 else 0
-                other = self.build(carrier, order, "later-order", lower)
-                factors[order - 1], _ = self.evaluate(
+                other = self.build_order_overlap(carrier, order, "later-order", lower)
+                factors[order - 1], _ = self.fit_overlap_modulation(
                     other, carrier, "later-order", True, angle, magnitude
                 )
         return carrier, factors
 
 
-def _cartesian(angle: float, magnitude: float) -> _Array:
+def _carrier_from_polar(angle: float, magnitude: float) -> _Array:
+    """Convert a finite angle (radians) and magnitude (cycles/um) to (kx, ky).
+
+    Parameters
+    ----------
+    angle : float
+        Polar angle in radians.
+    magnitude : float
+        Carrier magnitude in cycles per micrometre.
+
+    Returns
+    -------
+    numpy.ndarray
+        Two float64 Cartesian carrier components in cycles per micrometre.
+    """
     _finite((angle, magnitude), "fitted polar coordinates")
     result = np.array([magnitude * math.cos(angle), magnitude * math.sin(angle)], dtype=np.float64)
     _finite(result, "Cartesian fitted carrier")
     return result
 
 
-def _increment(value: float, step: float) -> float:
+def _advance_search_coordinate(value: float, step: float) -> float:
+    """Advance a finite search coordinate, rejecting overflow or stagnation.
+
+    Parameters
+    ----------
+    value, step : float
+        Current coordinate and signed step, both radians or both cycles/um.
+
+    Returns
+    -------
+    float
+        Representably distinct next coordinate.
+    """
     result = value + step
     if not math.isfinite(result) or result == value:
         raise ParameterEstimationError("nonfinite or stagnant finite-search candidate increment")
     return result
 
 
-def _peak_offset(values: _Array) -> tuple[float, str]:
+def _fit_peak_offset(values: _Array) -> tuple[float, str]:
+    """Fit the sub-bin offset from equally spaced minus/center/plus powers.
+
+    Parameters
+    ----------
+    values : numpy.ndarray
+        Three neighboring correlation powers, spaced one Fourier bin apart.
+
+    Returns
+    -------
+    float
+        Negative slope/curvature, or zero for the retained fallback rules.
+    str
+        Diagnostic status: zero curvature, outside the literal 1.5-bin range,
+        or a fitted offset.
+    """
     minus, center, plus = (float(v) for v in values)
     slope = (plus - minus) / 2
     curvature = plus + minus - 2 * center
@@ -683,9 +888,26 @@ def _peak_offset(values: _Array) -> tuple[float, str]:
     return result, "fitted"
 
 
-def _parabola(
+def _fit_three_point_peak(
     x1: float, y1: float, x2: float, y2: float, x3: float, y3: float
 ) -> tuple[float, str]:
+    """Fit a peak coordinate from the three ordered finite-search samples.
+
+    Parameters
+    ----------
+    x1, x2, x3 : float
+        Trial coordinates in radians or cycles/um; spacing need not be uniform.
+    y1, y2, y3 : float
+        Corresponding squared-forward objectives in the carried bracket order.
+
+    Returns
+    -------
+    float
+        Fitted coordinate, or the literal zero fallback for duplicate coordinates
+        or zero curvature.
+    str
+        Status retained in the parabola diagnostic.
+    """
     if x1 in (x2, x3) or x2 == x3:
         return 0.0, "duplicate-coordinate"
     sum1, sum2 = x1 + x2, x2 + x3
@@ -754,6 +976,15 @@ def estimate_parameters(
     ParameterEstimationError
         For invalid inputs, unsafe source representation or sampling, singular
         helper arithmetic, or unresolved numerical/backend/allocation operations.
+
+    Notes
+    -----
+    ``raw_modulation`` captures direct fits before the 2D cumulative products.
+    Magnitude floors preserve phase; optional higher-order phase replacement
+    uses multiples of the post-floor order-one phase. Time-zero carrier reuse
+    still builds overlaps and fits modulation from each current time's data.
+    See ``docs/architecture/reconstruction-walkthrough.md#carrier-and-modulation-estimation``
+    and ``#axes-units-and-fourier-conventions`` for equations and conventions.
     """
     with _operation():
         for name, flag in (
@@ -815,7 +1046,7 @@ def estimate_parameters(
             cutoff = max(z // 2 - 1, 0)
         _signed(z + cutoff, "wrapped axial z+Z")
         quadratures = bands.quadratures if used is None else used.quadratures
-        estimator = _Estimator(quadratures, table, grid, radial, cutoff, omit_kz0)
+        estimator = _ParameterEstimator(quadratures, table, grid, radial, cutoff, omit_kz0)
         carriers = np.empty((times, directions, 2), dtype=np.float64)
         raw = np.empty((times, directions, grid.orders - 1), dtype=np.complex128)
         modulation = np.empty_like(raw)
@@ -826,20 +1057,20 @@ def estimate_parameters(
             for d in range(directions):
                 estimator.d = d
                 if search_carriers and not (t > 0 and use_time0_carriers):
-                    carrier, factors = estimator.search(initial[d])
+                    carrier, factors = estimator.search_carrier_and_modulation(initial[d])
                     branch = "searched"
                 else:
                     if search_carriers and t > 0 and use_time0_carriers:
                         carrier = carriers[0, d].copy()
                         branch = "time0-reused"
-                        estimator.event("reuse", source_time=0, carrier_cyc_um=carrier)
+                        estimator.record_event("reuse", source_time=0, carrier_cyc_um=carrier)
                     else:
                         carrier = initial[d].copy()
                         branch = "known"
                     factors = []
                     for order in range(1, grid.orders):
-                        build = estimator.build(carrier, order, "known")
-                        factor, _ = estimator.evaluate(build, carrier, "known", True)
+                        build = estimator.build_order_overlap(carrier, order, "known")
+                        factor, _ = estimator.fit_overlap_modulation(build, carrier, "known", True)
                         factors.append(factor)
                 carriers[t, d] = carrier
                 raw[t, d] = factors
@@ -848,7 +1079,7 @@ def estimate_parameters(
                         direct, previous = factors[b], factors[b - 1]
                         factors[b] *= previous
                         _finite(factors[b], "cumulative modulation product")
-                        estimator.event(
+                        estimator.record_event(
                             "cumulative-product",
                             order=b + 1,
                             direct_forward=direct,
@@ -887,7 +1118,7 @@ def estimate_parameters(
                         final = abs(factor) * complex(math.cos(phase), math.sin(phase))
                     _finite(final, "final modulation")
                     modulation[t, d, b] = final
-                    estimator.event(
+                    estimator.record_event(
                         "adjustment",
                         order=b + 1,
                         raw_forward=factors[b],
