@@ -31,7 +31,7 @@ does not introduce a reconstruction CLI, automatic file decoder or output writer
 
 ## Follow the executing stages
 
-[`reconstruct_workflow`](../../src/simrecon/workflow/reconstruct.py#L27) resolves an explicit single-channel declaration, optional physical-stream regrouping, and exactly one optical-transfer route. It resolves the transfer first, calls [`prepare_acquisition_bands`](../../src/simrecon/acquisition/modes.py#L409), calls [`estimate_parameters`](../../src/simrecon/reconstruction/parameter_estimation.py#L933), then calls [`reconstruct_known`](../../src/simrecon/reconstruction/known_parameters.py#L616) separately for each time using that time's fitted carriers and modulation. The call sites are `workflow/reconstruct.py:212`, `:222`, `:237`, `:255`; concatenation is `:273`.
+[`reconstruct_workflow`](../../src/simrecon/workflow/reconstruct.py#L27) resolves an explicit single-channel declaration, optional physical-stream regrouping, and exactly one optical-transfer route. It resolves the transfer first, calls [`prepare_acquisition_bands`](../../src/simrecon/acquisition/modes.py#L409), calls [`estimate_parameters`](../../src/simrecon/reconstruction/parameter_estimation.py#L933), then calls [`reconstruct_known`](../../src/simrecon/reconstruction/known_parameters.py#L882) separately for each time using that time's fitted carriers and modulation. The call sites are `workflow/reconstruct.py:212`, `:222`, `:237`, `:255`; concatenation is `:273`.
 
 This matters: the workflow does **not** directly call `prepare_bands`. That original 3D public entry remains available, and both preparation entries share [`build_phase_separation_matrices`](../../src/simrecon/acquisition/preparation.py#L159). Acquisition preparation adds selected 2D/3D, phase-step, drift and off-exposure branches. The explanation below follows the no-drift/no-off 3D path first, then describes selected extensions.
 
@@ -78,7 +78,7 @@ $$
 \Delta k_z=1/(Z\,dz).
 $$
 
-For true 2D with dz=0, downstream code uses the declared transfer's positive axial frequency increment for internal sampling; this does not invent an axial specimen pitch (`reconstruction/known_parameters.py:769`). Frequencies are cycles/µm; wavelengths enter in nm and are divided by 1000 when a µm expression is needed.
+For true 2D with dz=0, downstream code uses the declared transfer's positive axial frequency increment for internal sampling; this does not invent an axial specimen pitch (`reconstruction/known_parameters.py:1035`). Frequencies are cycles/µm; wavelengths enter in nm and are divided by 1000 when a µm expression is needed.
 
 Forward transforms are unnormalized sums with the usual negative exponential. If `f` is a corrected frame,
 
@@ -176,7 +176,7 @@ $$
 B_m^-(\mathbf k)=\overline{B_m^+(-\mathbf k)}.
 $$
 
-The minus sign affects all axes, not just x. Code reconstructs half-space reads by reflecting z,y,x and conjugating each quadrature separately before forming E+iO (`reconstruction/parameter_estimation.py:382`, `reconstruction/known_parameters.py:508`, `:573`).
+The minus sign affects all axes, not just x. Code reconstructs half-space reads by reflecting z,y,x and conjugating each quadrature separately before forming E+iO (`reconstruction/parameter_estimation.py:382`, `reconstruction/known_parameters.py:715`, `:834`).
 
 ### Explicit phases are a left-inverse problem
 
@@ -322,7 +322,7 @@ $$
 
 **Filtering happens on native coefficients before relocation.** It does not first move spectra to a giant grid and divide by an interpolated combined image.
 
-In the filter equations, `z` denotes a signed integer axial Fourier-bin label, not a spatial coordinate; the transfer is sampled at axial frequency `z Δk_z`. All lateral vectors are in cycles/µm. With modulation `a_d0=1`, complex transfer H_m, scalar inverse-noise/damping weight g, taper T, and positive Wiener parameter w, [`_Filter.scale`](../../src/simrecon/reconstruction/known_parameters.py#L420) computes
+In the filter equations, `z` denotes a signed integer axial Fourier-bin label, not a spatial coordinate; the transfer is sampled at axial frequency `z Δk_z`. All lateral vectors are in cycles/µm. With modulation `a_d0=1`, complex transfer H_m, scalar inverse-noise/damping weight g, taper T, and positive Wiener parameter w, [`_Filter.native_filter_scale`](../../src/simrecon/reconstruction/known_parameters.py#L541) computes
 
 $$
 W_{dm}(\mathbf k,z)=
@@ -341,9 +341,9 @@ $$
 R=\min\{2\,NA/(\lambda_{nm}/1000),\ 1/(2dxy)\}.
 $$
 
-Let λe=λnm/(1000nimm), λx=0.88λe, θ=asin(NA/nimm), c̃0=ceil(((1−cosθ)/λe)/Δkz). Intermediate order axial cutoffs truncate `(1+λe/λx)c̃0`; the last order truncates `1.3c̃0`. Each is independently clipped when ≥floor(Z/2) to max(floor(Z/2)−1,0). Below, `c0` and `c1` mean the resulting **clipped** order-zero and order-one cutoffs; the initial ceiling value is only the construction input. For M=2, its only side order is the last-order 1.3 case. [`_support`](../../src/simrecon/reconstruction/known_parameters.py#L469).
+Let λe=λnm/(1000nimm), λx=0.88λe, θ=asin(NA/nimm), c̃0=ceil(((1−cosθ)/λe)/Δkz). Intermediate order axial cutoffs truncate `(1+λe/λx)c̃0`; the last order truncates `1.3c̃0`. Each is independently clipped when ≥floor(Z/2) to max(floor(Z/2)−1,0). Below, `c0` and `c1` mean the resulting **clipped** order-zero and order-one cutoffs; the initial ceiling value is only the construction input. For M=2, its only side order is the last-order 1.3 case. [`calculate_native_support`](../../src/simrecon/reconstruction/known_parameters.py#L619).
 
-The base weight is `g=1/ν_dm`. [`_Filter.damping`](../../src/simrecon/reconstruction/known_parameters.py#L392) optionally multiplies near-origin weights by
+The base weight is `g=1/ν_dm`. [`_Filter.inverse_noise_weight`](../../src/simrecon/reconstruction/known_parameters.py#L469) optionally multiplies near-origin weights by
 
 $$
 s(r)=1/[1+1000/(r^2+0.2)].
@@ -358,13 +358,13 @@ $$
 T=\cos(\tfrac\pi2\min(\rho,1)),
 $$
 
-with no axial term when Zp=0. None gives T=1; power gives `(1−min(ρ,1))^η`; the selected precise 2D mode computes sector/circle intersections. Ordinary taper uses the first direction's carrier magnitude for its radius, another concrete convention (`reconstruction/known_parameters.py:780`).
+with no axial term when Zp=0. None gives T=1; power gives `(1−min(ρ,1))^η`; the selected precise 2D mode computes sector/circle intersections. Ordinary taper uses the first direction's carrier magnitude for its radius, another concrete convention (`reconstruction/known_parameters.py:1046`).
 
-Workflow time-dependent w is `w_t=w_base+(t+1)·increment/T`, i.e. increment starts before time zero's reconstruction; the workflow passes that value with zero further increment to the per-time known stage (`workflow/reconstruct.py:137–139`, `:253–264`).
+Workflow time-dependent w is `w_t=w_base+(t+1)·increment/T`, i.e. increment starts before time zero's reconstruction; the workflow passes that value with zero further increment to the per-time known stage (`workflow/reconstruct.py:137–139`, `:262–273`).
 
 ### Filtering and reconstruction of the quadrature pair
 
-[`_filter_quadratures`](../../src/simrecon/reconstruction/known_parameters.py#L492) reads original E/O, forms `B+=E+iO` over full native x using all-axis reflected reads, and applies W. Write `F(k)=W_dm(k) B_m⁺(k)` on visited support; the full-native working array starts at zero. It then stores
+[`filter_native_quadratures`](../../src/simrecon/reconstruction/known_parameters.py#L672) reads original E/O, forms `B+=E+iO` over full native x using all-axis reflected reads, and applies W. Write `F(k)=W_dm(k) B_m⁺(k)` on visited support; the full-native working array starts at zero. It then stores
 
 $$
 E'=(F(\mathbf k)+\overline{F(-\mathbf k)})/2,\qquad
@@ -373,11 +373,11 @@ $$
 
 This retains the pair representation required for later half-storage reconstruction. It is not “filter E and O independently with the same real scalar,” since W can be complex and depend on the positive-side object frequency.
 
-There is a literal odd-Y traversal quirk: the y set is `1−floor(Y/2),…,floor(Y/2)`. For even Y it covers all rows; for odd Y it omits one row. Center values there remain prepared; side reflected zero writes can touch parts of it, but normal recombination omits it. Y=1 yields empty filter/recombination loops. This behavior is visible in `:496` and `:535`. Present as a current limitation/source convention, not a theorem about SIM.
+There is a literal odd-Y traversal quirk: the y set is `1−floor(Y/2),…,floor(Y/2)`. For even Y it covers all rows; for odd Y it omits one row. Center values there remain prepared; side reflected zero writes can touch parts of it, but normal recombination omits it. Y=1 yields empty filter/recombination loops. This behavior is visible in `:703` and `:742`. Present as a current limitation/source convention, not a theorem about SIM.
 
 ## Assemble the signed image
 
-[`_assemble`](../../src/simrecon/reconstruction/known_parameters.py#L550) rebuilds each full native harmonic from half storage and embeds it in an enlarged zero Fourier array. Its signed lift is `j` for `j≤floor(N/2)`, else `j−N`: the even native Nyquist endpoint stays positive and is not split (`_lift`, :546). Grid enlargement changes sampling density; it does not itself prove resolution gain.
+[`assemble_signed_image`](../../src/simrecon/reconstruction/known_parameters.py#L777) rebuilds each full native harmonic from half storage and embeds it in an enlarged zero Fourier array. Its signed lift is `j` for `j≤floor(N/2)`, else `j−N`: the even native Nyquist endpoint stays positive and is not split (`signed_fourier_index`, :754). Grid enlargement changes sampling density; it does not itself prove resolution gain.
 
 For each embedded C_dm, compute the positive-exponential, unnormalized inverse sum
 
@@ -386,7 +386,7 @@ u_{dm}(h,i,j)=\sum_{l,v,w}C_{dm}(l,v,w)
  e^{2\pi i(lh/Z_{out}+vi/Y_{out}+wj/X_{out})}.
 $$
 
-Implementation is `ifftn(..., norm="forward")`, :588–592. Then
+Implementation is `ifftn(..., norm="forward")`, :851–856. Then
 
 $$
 I(h,i,j)=\sum_d\left[\Re u_{d0}(h,i,j)+
@@ -394,7 +394,7 @@ I(h,i,j)=\sum_d\left[\Re u_{d0}(h,i,j)+
  e^{+2\pi i\,m\,\mathbf k_d\cdot\mathbf r_{ij}}\right\}\right],
 $$
 
-omitting the center term if requested. `explode_factor` multiplies the phase in this last expression only; filter overlap coordinates still use the original carriers. The factor 2 supplies the signed harmonic partner through real-part assembly. **No absolute value, positivity clipping, fitted global gain or final average is applied.** See :594–605.
+omitting the center term if requested. `explode_factor` multiplies the phase in this last expression only; filter overlap coordinates still use the original carriers. The factor 2 supplies the signed harmonic partner through real-part assembly. **No absolute value, positivity clipping, fitted global gain or final average is applied.** See :858–871.
 
 The phase uses centered coordinate labels
 
@@ -404,9 +404,9 @@ y_i=(i-\lfloor Y_{out}/2\rfloor)dxy/s_{xy},\quad
 z_h=(h-\lfloor Z_{out}/2\rfloor)dz/s_z.
 $$
 
-The inverse array itself is unshifted. There is no fftshift/checkerboard origin repair. Centered labels and unshifted finite-sum indices must not be conflated (`:832–837`). Noninteger carriers are implemented by this spatial complex ramp; they are not rounded to Fourier bins.
+The inverse array itself is unshifted. There is no fftshift/checkerboard origin repair. Centered labels and unshifted finite-sum indices must not be conflated (`:1100–1105`). Noninteger carriers are implemented by this spatial complex ramp; they are not rounded to Fourier bins.
 
-True 2D uses only a lateral inverse on output plane zero and leaves extra axial planes zero if s_z>1 (`:588–590`). It does not manufacture axial information.
+True 2D uses only a lateral inverse on output plane zero and leaves extra axial planes zero if s_z>1 (`:851–854`). It does not manufacture axial information.
 
 ![Conceptual native and relocated band support](../figures/readable-reconstruction/band-relocation.svg)
 
@@ -444,9 +444,9 @@ Use these source entry points to read one stage at a time:
 | How are bead support and normalization applied? | [`mask_bead_support_inplace`](../../src/simrecon/optical_transfer.py#L1045), [`normalize_and_combine_bead_quadratures`](../../src/simrecon/optical_transfer.py#L1129) |
 | How is modulation fitted? | [`_ParameterEstimator.fit_overlap_modulation`](../../src/simrecon/reconstruction/parameter_estimation.py#L510) |
 | What finite carrier search executes? | [`_ParameterEstimator.estimate_coarse_carrier`](../../src/simrecon/reconstruction/parameter_estimation.py#L620), [`_ParameterEstimator.search_carrier_and_modulation`](../../src/simrecon/reconstruction/parameter_estimation.py#L694) |
-| What is the filter numerator/denominator? | [`_Filter.scale`](../../src/simrecon/reconstruction/known_parameters.py#L420) |
-| What exact samples are visited? | [`_filter_quadratures`](../../src/simrecon/reconstruction/known_parameters.py#L492) |
-| Where are carriers relocated and the image summed? | [`_assemble`](../../src/simrecon/reconstruction/known_parameters.py#L550) |
+| What is the filter numerator/denominator? | [`_Filter.native_filter_scale`](../../src/simrecon/reconstruction/known_parameters.py#L541) |
+| What exact samples are visited? | [`filter_native_quadratures`](../../src/simrecon/reconstruction/known_parameters.py#L672) |
+| Where are carriers relocated and the image summed? | [`assemble_signed_image`](../../src/simrecon/reconstruction/known_parameters.py#L777) |
 
 The central conventions are: specimen separator is unnormalized; E/O are complex arrays; B+=E+iO and positive assembly ramp share one sign convention; x Nyquist bypasses phase separation; filter acts before relocation; output is signed; zoom is sampling enlargement, not recovery evidence.
 

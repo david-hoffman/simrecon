@@ -2,6 +2,15 @@
 
 This evaluates the selected mathematical procedure in binary64. It does not
 estimate parameters or qualify a historical compiled reconstruction runtime.
+
+Filter native detector frequencies before relocating carriers. Side bands use
+the positive harmonic E+iO and an all-axis conjugate-reflected negative partner.
+Assembly applies an unnormalized positive-exponential inverse and a positive
+carrier ramp, retaining signed real samples. The equations and literal traversal
+are specified in ``docs/contracts/c-equivalence-known-parameters-v1.md``. See
+``docs/architecture/reconstruction-walkthrough.md#filter-the-native-bands`` and
+``docs/architecture/reconstruction-walkthrough.md#assemble-the-signed-image``
+for the corresponding conventions.
 """
 
 from collections.abc import Iterator
@@ -273,7 +282,19 @@ def _validate_bands(bands: Any) -> tuple[_Grid, _UsedBands | None]:
     return grid, None
 
 
-def _wrap_once(angle: float) -> float:
+def wrap_angle_once(angle: float) -> float:
+    """Apply at most one full-turn correction to a sector angle.
+
+    Parameters
+    ----------
+    angle : float
+        Angle in radians, constructed from the carrier-sector boundaries.
+
+    Returns
+    -------
+    float
+        Angle after the selected single correction across either pi boundary.
+    """
     if angle > np.pi:
         return angle - 2 * np.pi
     if angle < -np.pi:
@@ -281,7 +302,19 @@ def _wrap_once(angle: float) -> float:
     return angle
 
 
-def _between_angle(angle: float, first: float, second: float) -> bool:
+def angle_in_sector(angle: float, first: float, second: float) -> bool:
+    """Test the selected open-left, closed-right angular sector.
+
+    Parameters
+    ----------
+    angle, first, second : float
+        Query and sector-boundary angles in radians.
+
+    Returns
+    -------
+    bool
+        Whether the query satisfies the literal short/wrapped-sector branches.
+    """
     lo, hi = min(first, second), max(first, second)
     if hi - lo < np.pi / 2:
         return angle > lo and angle <= hi
@@ -290,7 +323,14 @@ def _between_angle(angle: float, first: float, second: float) -> bool:
     )
 
 
-class _Precise:
+class _PreciseTaper:
+    """Precompute carrier sectors and evaluate precise 2D taper intersections.
+
+    Lateral carriers and circle radii use cycles per micrometre. Sector selection
+    and circle-intersection domains follow the precise mode in
+    ``docs/contracts/c-equivalence-acquisition-modes-v1.md#91-complete-precise-boundary-procedure-and-unsafe-origin-disposition``.
+    """
+
     def __init__(
         self, carriers: _F64, orders: int, radius: float, trace: list[ModeEvent], time: int
     ):
@@ -303,7 +343,7 @@ class _Precise:
                 raise ReconstructionError("precise precompute: undefined zero carrier polar angle")
             angles.append(np.pi if y == 0 and x < 0 else atan2(y, x))
         starts = [angle - np.pi / (2 * directions) for angle in angles]
-        self.boundaries = [_wrap_once(v) for v in (*starts, *(v + np.pi for v in starts))]
+        self.boundaries = [wrap_angle_once(v) for v in (*starts, *(v + np.pi for v in starts))]
         _finite(self.boundaries, "precise sector boundaries")
         event(
             trace,
@@ -314,24 +354,55 @@ class _Precise:
             boundary_angles_rad=np.array(self.boundaries),
         )
 
-    def next_start(self, direction: int) -> float:
+    def find_next_sector_boundary(self, direction: int) -> float:
+        """Find the stored boundary nearest the next nominal sector start.
+
+        Parameters
+        ----------
+        direction : int
+            Index of the carrier direction whose sector is being extended.
+
+        Returns
+        -------
+        float
+            Boundary angle in radians; strict improvement retains the first tie.
+        """
         target = self.boundaries[direction] + np.pi / len(self.carriers)
         best, saved = 2 * np.pi, direction
         for j, boundary in enumerate(self.boundaries):
-            difference = _wrap_once(target - boundary)
+            difference = wrap_angle_once(target - boundary)
             if abs(difference) < best:
                 best, saved = abs(difference), j
         return self.boundaries[saved]
 
-    def rho(self, x: float, y: float, direction: int) -> float:
+    def normalized_object_radius(self, x: float, y: float, direction: int) -> float:
+        """Divide an object-frequency radius by its selected circle intersection.
+
+        Parameters
+        ----------
+        x, y : float
+            Shifted lateral object-frequency coordinates, cycles per micrometre.
+        direction : int
+            Self direction recorded in the precise-query event.
+
+        Returns
+        -------
+        float
+            Dimensionless radius for the later cosine or power taper.
+
+        Raises
+        ------
+        ReconstructionError
+            If the polar angle, sector, discriminant or intersection is undefined.
+        """
         if x == 0 and y == 0:
             raise ReconstructionError("precise taper: undefined zero object-frequency polar angle")
         angle = np.pi if y == 0 and x < 0 else atan2(y, x)
-        next_boundaries = [self.next_start(d) for d in range(len(self.carriers))]
+        next_boundaries = [self.find_next_sector_boundary(d) for d in range(len(self.carriers))]
         selected = None
         for d, boundary in enumerate(next_boundaries):
-            if _between_angle(angle, self.boundaries[d], boundary) or _between_angle(
-                angle, self.boundaries[d + len(self.carriers)], _wrap_once(boundary + np.pi)
+            if angle_in_sector(angle, self.boundaries[d], boundary) or angle_in_sector(
+                angle, self.boundaries[d + len(self.carriers)], wrap_angle_once(boundary + np.pi)
             ):
                 selected = d
                 break
@@ -368,6 +439,12 @@ class _Precise:
 
 @dataclass(frozen=True)
 class _Filter:
+    """Native-frequency filter inputs, preserving direction/order weight ownership.
+
+    Frequency steps and radii use cycles per micrometre; axial cutoffs are integer
+    Fourier-bin labels. This record holds inputs rather than relocated spectra.
+    """
+
     transfer: _Transfer
     carriers: _F64
     amplitudes: _C128
@@ -386,10 +463,33 @@ class _Filter:
     omit_kz0: bool
     cosine: bool
     power_exponent: float | None = None
-    precise: _Precise | None = None
+    precise: _PreciseTaper | None = None
     overlaps: bool = True
 
-    def damping(self, direction: int, order: int, radius: float, z: int) -> float:
+    def inverse_noise_weight(self, direction: int, order: int, radius: float, z: int) -> float:
+        """Apply the ordered suppression, center damping and omission branches.
+
+        Parameters
+        ----------
+        direction, order : int
+            Direction and nonnegative order selecting the inverse noise variance.
+        radius : float
+            Native lateral radius in cycles per micrometre, including in suppression.
+        z : int
+            Signed axial Fourier-bin label, evaluated even for other-order weights.
+
+        Returns
+        -------
+        float
+            Weight g used once in the numerator and each matching power term.
+
+        Notes
+        -----
+        The equations are in
+        ``docs/contracts/c-equivalence-known-parameters-v1.md#support-weights-and-taper``.
+        The outer suppression radius gates application; it does not normalize the physical radius.
+        Damping precedes omission here; assembly separately obeys center omission.
+        """
         value = float(self.inverse_noise[direction, order])
         if (
             self.suppress
@@ -408,7 +508,28 @@ class _Filter:
         _finite(value, "damping weight")
         return value
 
-    def sample(self, order: int, x: float, y: float, z: int) -> complex:
+    def sample_native_transfer(self, order: int, x: float, y: float, z: int) -> complex:
+        """Sample the accepted transfer at a native detector-frequency coordinate.
+
+        Parameters
+        ----------
+        order : int
+            Nonnegative transfer order, including for signed-overlap power terms.
+        x, y : float
+            Lateral frequency coordinates in cycles per micrometre.
+        z : int
+            Signed axial bin, converted by the stored axial frequency step.
+
+        Returns
+        -------
+        complex
+            Interpolated transfer value from the accepted CE03 sampler.
+
+        Raises
+        ------
+        ReconstructionError
+            If the actually accessed transfer stencil is invalid.
+        """
         # Do not skip the accepted sampler when a later multiplier is zero.
         try:
             return complex(
@@ -417,13 +538,41 @@ class _Filter:
         except OtfError as error:
             raise ReconstructionError(f"transfer sampling failed: {error}") from error
 
-    def scale(self, direction: int, order: int, x: float, y: float, z: int) -> complex:
-        h = self.sample(order, x, y, z)
-        g = self.damping(direction, order, hypot(x, y), z)
+    def native_filter_scale(
+        self, direction: int, order: int, x: float, y: float, z: int
+    ) -> complex:
+        """Evaluate the native overlap quotient and shifted-frequency taper.
+
+        Parameters
+        ----------
+        direction, order : int
+            Self direction and nonnegative harmonic order.
+        x, y : float
+            Native detector-frequency coordinates, cycles per micrometre.
+        z : int
+            Signed axial Fourier-bin label, shared by all overlap samples.
+
+        Returns
+        -------
+        complex
+            T*g*conj(H)/denominator, with conj(amplitude) for side orders.
+
+        Notes
+        -----
+        ``docs/contracts/c-equivalence-known-parameters-v1.md#support-weights-and-taper``
+        defines K=k+m*carrier and the matching other-native coordinate q=K-n*carrier.
+        See also ``docs/architecture/reconstruction-walkthrough.md#filter-the-native-bands``.
+        Sum signed-order powers
+        before adding the squared Wiener parameter. Taper acts after division
+        at K, while the numerator transfer and weight are evaluated at native k.
+        """
+        h = self.sample_native_transfer(order, x, y, z)
+        g = self.inverse_noise_weight(direction, order, hypot(x, y), z)
         amplitude = complex(self.amplitudes[direction, order])
         denominator = abs(h) ** 2 * abs(amplitude) ** 2 * g
         object_x = x + order * float(self.carriers[direction, 0])
         object_y = y + order * float(self.carriers[direction, 1])
+        # Keep signed-order traversal and accumulation order; self was added first.
         for other in range(self.carriers.shape[0]):
             for signed_order in range(1 - self.amplitudes.shape[1], self.amplitudes.shape[1]):
                 if (other, signed_order) == (direction, order):
@@ -434,10 +583,11 @@ class _Filter:
                 qy = object_y - signed_order * float(self.carriers[other, 1])
                 radius = hypot(qx, qy)
                 _finite(radius, "overlap frequency")
+                # Other support is strict and has no additional axial-cutoff test.
                 if radius < self.radius:
                     m = abs(signed_order)
-                    other_h = self.sample(m, qx, qy, z)
-                    other_g = self.damping(other, m, radius, z)
+                    other_h = self.sample_native_transfer(m, qx, qy, z)
+                    other_g = self.inverse_noise_weight(other, m, radius, z)
                     denominator += (
                         abs(other_h) ** 2 * abs(complex(self.amplitudes[other, m])) ** 2 * other_g
                     )
@@ -446,7 +596,7 @@ class _Filter:
         scale = g * h.conjugate() / denominator
         if self.cosine or self.power_exponent is not None:
             if self.precise is not None and self.cutoffs[1] <= 0:
-                rho = self.precise.rho(object_x, object_y, direction)
+                rho = self.precise.normalized_object_radius(object_x, object_y, direction)
             else:
                 rho = hypot(object_x, object_y) / self.taper_radius
                 if self.cutoffs[1] > 0:
@@ -466,9 +616,39 @@ class _Filter:
         return scale
 
 
-def _support(
+def calculate_native_support(
     grid: _Grid, carriers: _F64, wavelength: int, na: float, immersion: float, dzf: float
 ) -> tuple[float, tuple[int, ...]]:
+    """Resolve the radial support and independently clipped axial order cutoffs.
+
+    Parameters
+    ----------
+    grid : _Grid
+        Native shape, retained orders and detector spacings in micrometres.
+    carriers : numpy.ndarray
+        Fundamental (kx, ky), shape (direction, 2), cycles per micrometre.
+    wavelength : int
+        Emission wavelength in nanometres.
+    na, immersion : float
+        Numerical aperture and immersion refractive index.
+    dzf : float
+        Axial frequency step in cycles per micrometre.
+
+    Returns
+    -------
+    float
+        Radial cutoff in cycles per micrometre, limited by lateral Nyquist.
+    tuple of int
+        Per-order axial cutoffs in bins after ceiling, truncation and clipping.
+
+    Notes
+    -----
+    See ``docs/contracts/c-equivalence-known-parameters-v1.md#support-weights-and-taper``.
+    The carrier asin domains are
+    checked even though ordinary filtering does not use the resulting angles.
+    The last side order uses its own cutoff rule, including when only two orders
+    are retained; do not replace these with a common axial limit.
+    """
     le = (wavelength / immersion) / 1000
     lx = 0.88 * le
     theta = asin(na / immersion)
@@ -489,10 +669,37 @@ def _support(
     return radius, tuple(max(limit - 1, 0) if c >= limit else c for c in cuts)
 
 
-def _filter_quadratures(original: _C128, grid: _Grid, filtering: _Filter) -> _C128:
+def filter_native_quadratures(original: _C128, grid: _Grid, filtering: _Filter) -> _C128:
+    """Filter native positive harmonics and recombine their half-stored pair.
+
+    Parameters
+    ----------
+    original : numpy.ndarray
+        Complex E/O half-storage, axes (time, direction, slot, z, y, half-x).
+    grid : _Grid
+        Native full shape and retained-order geometry.
+    filtering : _Filter
+        Native support and quotient inputs for the supplied time slice.
+
+    Returns
+    -------
+    numpy.ndarray
+        Owned filtered quadratures with the original shape and slot convention.
+
+    Notes
+    -----
+    ``docs/contracts/c-equivalence-known-parameters-v1.md#literal-native-traversal-conjugate-partners-and-odd-height-quirk``
+    defines F(k)=W(k)*(E(k)+i*O(k)), n=conj(F(-k)), E'=(F+n)/2 and
+    O'=(F-n)/(2i). Reflection includes z, y and x. Read the original coefficients
+    throughout; filtering precedes carrier relocation.
+    See
+    ``docs/architecture/reconstruction-walkthrough.md#filtering-and-reconstruction-of-the-quadrature-pair``.
+    """
     filtered = original.copy()
     tcount, directions, _, zsize, ysize, _ = original.shape
     xsize = grid.shape[-1]
+    # This literal range omits one odd-Y row and is empty for Y=1. Preserve the
+    # copied values there except for the source's reflected zero writes below.
     ys = range(1 - ysize // 2, ysize // 2 + 1)
     xs = range(1 - xsize // 2, xsize // 2 + 1)
     for t in range(tcount):
@@ -509,7 +716,7 @@ def _filter_quadratures(original: _C128, grid: _Grid, filtering: _Filter) -> _C1
                         fx, fy = x * filtering.dx, y * filtering.dy
                         if hypot(fx, fy) <= filtering.radius:
                             for z in range(-cutoff, cutoff + 1):
-                                scale = filtering.scale(d, m, fx, fy, z)
+                                scale = filtering.native_filter_scale(d, m, fx, fy, z)
                                 axial = (-z if reflected else z) % zsize
                                 # Read prepared coefficients, before any relocation.
                                 even = original[t, d, slots[0], axial, row, column]
@@ -536,6 +743,7 @@ def _filter_quadratures(original: _C128, grid: _Grid, filtering: _Filter) -> _C1
                         for x in range(xsize // 2 + 1):
                             for z in range(-cutoff, cutoff + 1):
                                 p = plus[z % zsize, y % ysize, x]
+                                # The negative partner reflects every axis, not only x.
                                 n = plus[-z % zsize, -y % ysize, -x % xsize].conjugate()
                                 filtered[t, d, 2 * m - 1, z % zsize, y % ysize, x] = (p + n) / 2
                                 filtered[t, d, 2 * m, z % zsize, y % ysize, x] = (p - n) / (2j)
@@ -543,11 +751,30 @@ def _filter_quadratures(original: _C128, grid: _Grid, filtering: _Filter) -> _C1
     return filtered
 
 
-def _lift(index: int, length: int) -> int:
+def signed_fourier_index(index: int, length: int) -> int:
+    """Lift a wrapped Fourier index while keeping the even Nyquist positive.
+
+    Parameters
+    ----------
+    index : int
+        Native wrapped index from zero through length minus one.
+    length : int
+        Native full axis length before output enlargement.
+
+    Returns
+    -------
+    int
+        Signed Fourier-bin label; the positive Nyquist is never split.
+
+    Notes
+    -----
+    See
+    ``docs/contracts/c-equivalence-known-parameters-v1.md#zero-padding-inverse-scale-and-real-assembly``.
+    """
     return index if index <= length // 2 else index - length
 
 
-def _assemble(
+def assemble_signed_image(
     filtered: _C128,
     grid: _Grid,
     carriers: _F64,
@@ -556,6 +783,40 @@ def _assemble(
     y_um: _F64,
     explode: float = 1.0,
 ) -> _F64:
+    """Embed native harmonics, relocate carriers and accumulate signed real samples.
+
+    Parameters
+    ----------
+    filtered : numpy.ndarray
+        Filtered E/O half-storage, axes (time, direction, slot, z, y, half-x).
+    grid : _Grid
+        Native geometry and enlarged output dimensions.
+    carriers : numpy.ndarray
+        Fundamental (kx, ky), shape (direction, 2), cycles per micrometre.
+    omit : bool
+        Exclude the center harmonic from final accumulation.
+    x_um, y_um : numpy.ndarray
+        Centered lateral output coordinate labels in micrometres.
+    explode : float, optional
+        Signed phase multiplier; native filter coordinates remain unchanged.
+
+    Returns
+    -------
+    numpy.ndarray
+        Signed real image with axes (time, z, y, x).
+
+    Notes
+    -----
+    ``docs/contracts/c-equivalence-known-parameters-v1.md#zero-padding-inverse-scale-and-real-assembly``
+    specifies an unnormalized positive-exponential inverse sum u. With the CE06
+    exploded-phase option the side contribution is
+    2*Re(u*exp(+2*pi*i*explode*m*carrier.r)); the factor two supplies the signed partner.
+    See
+    ``docs/contracts/c-equivalence-acquisition-modes-v1.md#92-exact-zoom-embedding-inverse-dimensionality-and-exploded-phase``
+    and ``docs/architecture/reconstruction-walkthrough.md#assemble-the-signed-image``.
+    Centered coordinate labels do not shift the inverse array. Retain negative
+    samples and the upstream preparation scale without a final average or gain.
+    """
     tcount, directions, _, zsize, ysize, _ = filtered.shape
     xsize = grid.shape[-1]
     oz, oy, ox = grid.output_shape
@@ -565,11 +826,11 @@ def _assemble(
             for m in range(int(omit), grid.orders):
                 padded = np.zeros(grid.output_shape, np.complex128)
                 for k in range(zsize):
-                    z = _lift(k, zsize)
+                    z = signed_fourier_index(k, zsize)
                     for i in range(ysize):
-                        y = _lift(i, ysize)
+                        y = signed_fourier_index(i, ysize)
                         for j in range(xsize):
-                            x = _lift(j, xsize)
+                            x = signed_fourier_index(j, xsize)
                             if x < 0:
                                 zi, yi, xi = -z % zsize, -y % ysize, -x
                             else:
@@ -585,7 +846,10 @@ def _assemble(
                                 value += 1j * odd
                             padded[z % oz, y % oy, x % ox] = value
                 _finite(padded, "embedded coefficients")
+                # norm="forward" leaves the inverse unnormalized: no voxel-count
+                # division is added to the upstream preparation scale.
                 if zsize == 1:
+                    # True 2D transforms only plane zero, even with axial enlargement.
                     spatial = np.zeros_like(padded)
                     spatial[0] = cast(_C128, ifftn(padded[0], norm="forward"))
                 else:
@@ -594,6 +858,8 @@ def _assemble(
                 if m == 0:
                     image[t] += spatial.real
                 else:
+                    # Relocate continuous carriers with the positive centered ramp;
+                    # integer embedding above retains the positive native Nyquist.
                     phase = (
                         2
                         * np.pi
@@ -769,7 +1035,7 @@ def reconstruct_known(
         dzf = _positive(
             1 / (grid.shape[3] * grid.dz) if grid.dz > 0 else table.dkz_cyc_um, "dz sampling"
         )
-        radius, cuts = _support(grid, carriers, wavelength, na, immersion, dzf)
+        radius, cuts = calculate_native_support(grid, carriers, wavelength, na, immersion, dzf)
         dx = _positive(1 / (grid.shape[-1] * grid.dxy), "dxy sampling")
         dy = _positive(1 / (grid.shape[-2] * grid.dxy), "dxy sampling")
         amplitudes = np.ones((directions, grid.orders), np.complex128)
@@ -803,7 +1069,9 @@ def reconstruct_known(
                     effective=current,
                 )
             precise = (
-                _Precise(carriers, grid.orders, radius, mode_trace, t) if precise_taper else None
+                _PreciseTaper(carriers, grid.orders, radius, mode_trace, t)
+                if precise_taper
+                else None
             )
             filtering = _Filter(
                 table,
@@ -827,14 +1095,16 @@ def reconstruct_known(
                 precise,
                 bool(filter_overlaps),
             )
-            filtered[t : t + 1] = _filter_quadratures(original[t : t + 1], grid, filtering)
+            filtered[t : t + 1] = filter_native_quadratures(original[t : t + 1], grid, filtering)
         oz, oy, ox = grid.output_shape
         x_um = (np.arange(ox, dtype=np.float64) - ox // 2) * (grid.dxy / grid.lateral)
         y_um = (np.arange(oy, dtype=np.float64) - oy // 2) * (grid.dxy / grid.lateral)
         z_um = (np.arange(oz, dtype=np.float64) - oz // 2) * (grid.dz / grid.axial)
         for vector in (x_um, y_um, z_um):
             _finite(vector, "physical coordinates")
-        image = _assemble(filtered, grid, carriers, bool(omit_order0), x_um, y_um, explode)
+        image = assemble_signed_image(
+            filtered, grid, carriers, bool(omit_order0), x_um, y_um, explode
+        )
         resolved = (
             ("wavelength_nm", wavelength),
             ("numerical_aperture", na),
