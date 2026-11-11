@@ -1079,24 +1079,158 @@ review and check outputs are durable evidence. Closed completed own role/check
 processes; preserve current checkout/.venv,predecessor/shared reader inputs/caches
 and uncertain ordinary runner scratch. No removal or cleanup error.
 
+## Task 07 retained completion pointer
+
+Task07 completed at pushed head `14561e5d280ed90405002a9afe8133799e9ed597`,
+tree `310c50c13804c7da6c3897f83512179dfc40a104`, PR #94 open/unmerged,
+targeting Task06. Fresh B/D ACCEPT; exact clean committed full 13-phase PASS,
+3,100 tests/47 warnings, 1,169-file manifest unchanged, all three input
+fingerprints matched, 36 measured owned files, M25 increment 0 within
+33,554,432 bytes, both installed wheels/audit PASS. Receipt SHA256
+`585e1c0e6f55a84fa59c446ed5abb5dcf3afd314796c4f73840273df490a5ae1`.
+Native global counts: 4,834/4,972 statements, 1,854/1,964 branches;
+product 3,993/4,128 and 1,534/1,640; development tools 39/39 and 8/8;
+scripts 802/805 and 312/316. Detailed completion/accounting/evidence remain at
+`/workspace/simrecon-readability-07/artifacts/readability-07/completion.json`.
+Task07 CI42960555856 was pending at Task08 launch and was not counted passing.
+Root subsequently confirmed both macOS130325807567 and Ubuntu130325807889
+completed SUCCESS. All Task06 and earlier required CI also passed both platforms.
+
+Task07 preserves two full attempts: the first was incomplete on an environment
+restart. Its 605 archived files/551 coverage shards, absent receipt and absent
+live process are retained. Recovery preflight/unchanged-input checks passed,
+then a fresh same-candidate complete gate passed with no product/config repair,
+partial reuse or post-commit tracked change. D accepted independently after that
+PASS; all ancillary commands/corrections and unknown metering remain charged.
+Task04's diagnosed macOS Git2.56 maintenance-fixture lock race, one failed CI
+job/test, advisor/focused pass and unchanged successful rerun also stay retained.
+No predecessor PASS accepts Task08's changed candidate.
+
+## Task 08 contract and evidence pointer
+
+Authorized high-risk workflow/I/O readability only, from Task07 exact head/tree
+above, targeting `codex/readability-07-reconstruction` PR94. Clarify meaningful
+orchestration/adapters, actual neutral-function docstring gaps and current-source
+navigation. Preserve exact expressions/control flow/evaluation order, numerical
+scales/signs, supported domains/errors/payloads, record classes/fields, ownership,
+ordering, all 36 exports, dunders and neutral CLI. Preserve literal-module and
+local `t`/`d` error-context semantics. No algorithm extraction, numerical rewrite,
+new decoder/writer/reconstruction CLI, API expansion/aliases, test rewrite,
+weaker gates or unrelated prior-stage/Serena work.
+
+Fresh blind A maps retained public proof; fresh blind B audits oracles, permitted
+positives and omissions and accepts the frozen checkpoint. Restricted C owns
+named workflow/I/O source and useful narrow CLI/models docs. Coordinator owns
+necessary live links, handoff and PR presentation. Explicit scoped local mapping
+in `reconstruct_workflow` may replace `a/o/c/f` with readable configuration names;
+all other locals/parameters stay exact. Supplemental binding/AST/literal proof
+and fresh D inspect exact source preservation beyond tolerance-based tests.
+November11 fresh collaboration `fork_turns="none"` roles supersede launch
+location only. No nativeCLI/auth/cloud-launcher detours or nested roles.
+
+Preserve Task02 devtools/delivery, strict explicit pytest plugin, locked isolated
+install, separate installed wheels, all-owned/subprocess measurement and PR87
+affinity/observers. Coverage percentages remain advisory; mandatory exact native
+reports and behavior/risk review remain. Commit before all 13 canonical phases
+of full `make verify`, with same-run M25 limit 33,554,432 bytes and explicit
+public/checkpoint/reader fingerprints; fresh exact-candidate D follows PASS.
+Remote head/base/ancestry are rechecked before normal push/opening one stacked
+PR. No merge/auto-merge; root alone starts Task09 after completion.
+
+## Task 08 retained preparation accounting
+
+Fresh blind A mapped six obligation groups to 183 retained test functions and
+39 permitted input hashes. Useful source-free selections passed 43 and 150
+cases (193 distinct). Its three invocations total 338 expanded passes and five
+environment failures: the second selection lacked `.venv/bin` on PATH for bare
+`simrecon` subprocesses. After diagnosis, the identical selection passed with
+PATH corrected. No product-red, test change or new oracle was manufactured.
+The corrected selection reported 22 source-free external NumPy warnings.
+Fresh blind B independently recalculated representative workflow/format
+expectations, checked permitted positives and omissions, reverified all 39
+hashes before/after, and ACCEPTED. A distinct source-free selection passed 23
+cases with two external NumPy warnings. No concrete public defect/omission or
+test correction. The accepted checkpoint freezes 44 inputs including B report;
+SHA256 `bd23585f7f4b148f96d7995c70126690d8264254115106082c43355e5b922e3c`.
+Exact error prose, dunders, literal module/local t/d extraction and useful new
+docs remain explicit C/D source-comparison duties beyond behavioral tolerances.
+
+B initially fetched full role/audit procedure text before narrowing to permitted
+sections. It disclosed the procedural overread; those sections contained no
+current implementation/history/state, and coordinator directed continuation.
+No nonblind discovery/excluded links or implementation exposure occurred. All
+attempts remain charged. A/B report no live owned processes or manual disposable
+scratch; retained reader/test artifacts are durable evidence.
+
+C names 16 meaningful workflow helpers and four configuration aliases scoped
+to `reconstruct_workflow`. All other locals/parameters, record classes/fields,
+body expressions/control flow/evaluation order and non-docstring literal
+spellings remain exact. Five existing same-module from-import name lists receive
+Ruff-required permutations; statements/module imports stay in place and all
+retrieved names are ordinary defined globals without dynamic module lookup.
+The explicit map records each permutation. No scientific stage, neutral public
+function name, CLI/models source, facade/export, test/fixture/config/gate change.
+Eleven source modules change: six workflow modules and five neutral I/O modules.
+Twenty-five useful function docstrings fill real workflow gaps; expanded neutral
+and workflow docs explain actual shapes/units, provenance/ownership, validation,
+exclusive creation, non-atomic checks and partial-new-file limitations.
+
+Supplemental proof pairs all 27 product ASTs and significant raw tokens with
+only explicit binding changes, formatting parentheses/trailing commas and those
+five import-name permutations. It verifies 1,146 frozen unowned paths, all 93
+test/fixture files and all 44 accepted inputs; helpers reject shadowing/collisions
+and four local aliases are nonparameter bindings with no nested shadowing.
+Restricted C passed 494 focused workflow/compatibility cases and 59 I/O cases;
+M25 was intentionally deselected for the full gate, not duplicated. The I/O
+selection reported 28 external NumPy warnings. No product/test failure.
+Lint/format, coordinator canonical types (0 errors/warnings), structural
+integration and whitespace checks PASS. Navigation checked 155 local paths/anchors,
+44 retained source positions (two moved) and ten inline references including
+shorthand ranges, with no guessed endpoints. A manually caught shorthand range
+was corrected and added to the ignored navigation checker before final PASS.
+
+C cumulative diagnostics: eight supplemental checker invocations (six PASS,
+two pre-edit/format harness mismatches, including the final strict-input
+rerun); six Ruff lint invocations (two initial finding runs, targeted D209/import
+corrections and two clean confirmations); five format invocations. Eighteen
+closing-quote layouts and two import blocks/five name lists were corrected.
+An initial optional-key summary displayed zero until corrected to the actual
+1,146-path key before edits. The checker later rejected formatting punctuation,
+was reconciled with exact AST/token proof, then tightened to remove an unused
+accepted-doc hash exception; actual 44 inputs remained unchanged throughout.
+No product/test failure, checkpoint correction, full-gate attempt or hidden retry.
+Coordinator preparation adds one locked preflight PASS, one canonical types PASS,
+two structural-integration PASS runs and four navigation PASS runs/refinements.
+One absent role-skill read was corrected using actual inventory; two expected
+pending-report probes returned nonzero. All ancillary findings remain charged;
+no runtime/config/test repair followed. No nativeCLI/auth/cloud-launch attempt.
+
 ## Current state
+Task08 high-risk workflow/I/O readability is prepared in
+`/workspace/simrecon-readability-08`, branch `codex/readability-08-workflow-io`,
+from verified pushed Task07 head `14561e5d280ed90405002a9afe8133799e9ed597`,
+tree `310c50c13804c7da6c3897f83512179dfc40a104`, targeting PR94 branch
+`codex/readability-07-reconstruction`. Predecessor open/unmerged exact head/base,
+remote main/ancestry and absent new remote branch confirmed. No newer changes
+discarded. Root confirmed Task07 CI42960555856 both configured platforms SUCCESS.
+Own locked isolated preflight PASS using Python3.13.12, uv0.12.19 and
+Temurin21.0.7+6 via SIMRECON_JAVA. Fresh blind A/B retained proof/checkpoint ACCEPT;
+restricted C/focused checks and coordinator preservation/types/navigation PASS.
 
-Task07 high-risk filtering/assembly readability is prepared in
-`/workspace/simrecon-readability-07`,branch `codex/readability-07-reconstruction`,
-from Task06 exact head `7023bc69d8c7e07cc1c8ba93d6c0c7ef8e345a61`,tree
-`e6825d8bbe7ce33990b4e008e674cf59afec9330`,target PR93 branch
-`codex/readability-06-estimation`. Predecessor open/unmerged exacthead/base,
-remote refs,main and ancestry confirmed before editing;newbranch absent.
-Root confirmed Task06CI42954992027 both required platformsSUCCESS. Fresh blind
-A/B retained checkpointACCEPT;restrictedC/focused checks,coordinator structural,
-source-link and canonical types checksPASS. No numerical/test/fixture/config/gate
-change,extraction or unrelated successor work.
+Next: commit this candidate, run all 13 canonical full `make verify` phases with
+same-run mandatory M25 and public/checkpoint/reader fingerprints, obtain fresh
+exact-candidate D, recheck remote identities and normal-push/open one stacked PR.
+This pointer claims no Task08 full acceptance yet. Final hash/results, receipt,
+native counts, M25/wheels, D/PR/CI and post-commit charges stay outside verified
+tracked bytes in ignored `artifacts/readability-08/completion.json`, verification
+evidence and PR/conversation. No successor/merge/auto-merge; root alone starts09.
+All analysis/kickoff/native-failure/Task01–07 and current role/check charges remain
+retained above and in predecessor completions. Requested roles Sol/high; actual
+serving/tokens/cost/full elapsed unknown; human numeric budgets not set.
 
-Next: commit this candidate,then canonical all13phase full make verify with
-same-run mandatoryM25 and explicit public/checkpoint/reader fingerprints,fresh
-exact-candidate independentD,remote recheck and normalpush/openone stackedPR.
-Exact final head/tree/fullresults/receipt/nativecounts/M25/wheels/review/PR/CI and
-additional gate/review charges stay outside verified trackedbytes in ignored
-`artifacts/readability-07/completion.json`,verification evidence and PR/conversation.
-This pointer claims no Task07full acceptance yet. No successor/merge/auto-merge;
-root starts08 only after this packet completes. Historical accounting remains.
+Cleanup: removed C-confirmed disposable `artifacts/readability-08/c-edit.py`,
+`c-docs.py`, its checker `.pyc` and empty `__pycache__` directory after all own
+processes closed. Keep current checkout/.venv, packets/preservation/navigation
+scripts, source maps, reports and reader/test observations as durable evidence;
+retain predecessor/shared reader inputs/caches and uncertain ordinary runner
+scratch. No removal or cleanup error; no unrelated worktree deletion.

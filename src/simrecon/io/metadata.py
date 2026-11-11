@@ -44,7 +44,43 @@ def positive(value: Any) -> bool:
 
 
 def harmonize(info: DatasetInfo, *, config: Mapping[str, object]) -> DatasetInfo:
-    """Resolve logical layout and metadata from an explicit copied configuration."""
+    """Resolve logical layout and metadata from an explicit copied configuration.
+
+    Parameters
+    ----------
+    info : DatasetInfo
+        Inspected Priism descriptor with mode 6 uint16 or mode 2 float32 pixels
+        and identity spatial mapping.
+    config : Mapping[str, object]
+        Version-1 spatial-image declaration: source ``plane_axes`` and positive
+        ``plane_shape`` must factor the stored section count. Allowed plane
+        names are time, channel, orientation, phase and z. ``spatial_fields``
+        selects direct micrometres or leaves sampling for explicit overrides;
+        a nonempty extension requires the opaque policy. Sampling overrides
+        use micrometres; generic wavelength overrides use nanometres.
+
+    Returns
+    -------
+    DatasetInfo
+        New descriptor with axes in canonical time/channel/orientation/phase/z
+        order followed by y/x, retaining only declared axes. Configuration is
+        deep-copied; resolved sampling, wavelengths and provenance are newly
+        built. Source identity, header and file-metadata fields are retained.
+        No pixels are read, reordered or modified by this operation.
+
+    Raises
+    ------
+    SimreconError
+        Unsupported mode/axes, missing or invalid configuration, mismatched
+        plane count, missing extension policy or missing required positive
+        finite spatial sampling.
+
+    Notes
+    -----
+    Provenance records explicit layout declarations, interpreted header counts
+    and supplied overrides, including equal-value overrides. It does not infer
+    acquisition order, scientific wavelength roles or an absent z axis.
+    """
     supported(info)
     if not config:
         raise SimreconError("config_required", "Explicit acquisition configuration is required")

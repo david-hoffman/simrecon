@@ -45,6 +45,25 @@ whole-acquisition pixel load; metadata growth and caller-requested full reads
 still consume memory. Failure and partial-output behavior come from the public
 contract, not from this diagram. See [library design](library-design.md).
 
+### Follow the file path in source
+
+| Operation | Executing source | What stays explicit |
+| --- | --- | --- |
+| Inspect a Priism source | [`inspect`](../../src/simrecon/io/priism.py) | Header/payload description and unresolved acquisition meaning; no pixel load |
+| Resolve a layout | [`harmonize`](../../src/simrecon/io/metadata.py) | Supplied axis order, micrometre sampling, nanometre wavelength overrides and provenance |
+| Read selected planes | [`read`](../../src/simrecon/io/pixels.py) | Owned `(selected planes, y, x)` buffers and canonical coordinates; integer-word endian conversion |
+| Convert to modern MRC | [`write`](../../src/simrecon/io/mrc_writer.py) | Exclusive destination creation, embedded source metadata and bounded pixel blocks |
+| Make a viewing copy | [`export_imagej`](../../src/simrecon/io/imagej.py) and [carrier metadata](../../src/simrecon/io/imagej_metadata.py) | Separate orientation/phase series and declared `(time, channel, z, y, x)` layout |
+| Invoke a neutral command | [`main`](../../src/simrecon/cli.py) | The same file operations and JSON reports; no reconstruction command |
+
+These implementation modules support the [root facade](../../src/simrecon/__init__.py);
+helper names do not create additional stable APIs. Exclusive creation protects an
+existing destination. A later write failure can leave a partial **new** file;
+source identity checks are not an atomic snapshot. See the exact
+[MRC](../contracts/mrc-conversion-v1.md) and
+[viewing-copy](../contracts/imagej-export-v1.md) contracts before relying on output
+or metadata guarantees.
+
 ## Explicit caller-array declaration
 
 ```mermaid
@@ -131,6 +150,25 @@ selection follow their distinct rules. A caller can explicitly read and declare
 file pixels before this array/value boundary. No output writer or reconstruction
 CLI is added. The [usage guide](../usage/c-workflow.md) describes required metadata
 and the separate historical-binary, physical-recovery and resolution limits.
+
+### Follow the workflow in source
+
+| Responsibility | Executing operation | Boundary |
+| --- | --- | --- |
+| Entry and stage order | [`reconstruct_workflow`](../../src/simrecon/workflow/reconstruct.py#L33) | Resolve declarations, prepare once, fit once, then reconstruct each effective time. |
+| Explicit channel and layout | [`select_specimen_channel`](../../src/simrecon/workflow/adapters.py#L26) | Adapt named raw axes without a file decoder; delay metadata snapshots until validation. |
+| Resolved settings and geometry | [`resolve_workflow_settings`](../../src/simrecon/workflow/config.py#L196) | Validate exact schemas, units and native extents before materializing scientific inputs. |
+| Transfer alternatives | [`resolve_optical_transfer`](../../src/simrecon/workflow/transfer.py#L371) | Use the selected accepted transfer or execute explicit bead preparation once. |
+| Identity and ownership | [`array_identity`](../../src/simrecon/workflow/identity.py#L96) | Hash validated original arrays with little-endian normalization before numerical conversion. |
+| One-time reconstruction input | [`select_time_bands`](../../src/simrecon/workflow/adapters.py#L170) | Retain the selected time and already-computed scientific state. |
+| Failure translation | [`extract_stage_error_indices`](../../src/simrecon/workflow/result.py#L85) | Preserve actual acquisition/estimation traceback context without replaying a stage. |
+
+The array stages retain their own records and mutability rules. The workflow
+snapshots declarations separately from owned read-only image, coordinate and
+identity storage; it does not make every nested stage buffer immutable.
+The contextual-failure adapter retains its literal module whitelist and `t`/`d`
+lookup. These source helpers remain implementation details behind the supported
+root exports.
 
 ## Historical numerical routes
 

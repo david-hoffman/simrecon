@@ -11,17 +11,23 @@ from ..acquisition.layout import reinterpret_2d_planes
 from ..acquisition.modes import prepare_acquisition_bands
 from ..reconstruction.known_parameters import reconstruct_known
 from ..reconstruction.parameter_estimation import estimate_parameters
-from .adapters import _selected, _snapshot_raw_metadata, _time_bands
+from .adapters import select_specimen_channel, select_time_bands, snapshot_raw_metadata
 from .config import (
-    _arrays_and_routes,
-    _configs,
     _enum,
-    _geometry,
     _scalar,
+    resolve_workflow_settings,
+    validate_workflow_arrays_and_routes,
+    validate_workflow_geometry,
 )
-from .identity import _collect, _digest, _freeze, _identity, _owned
-from .result import WorkflowReconstruction, _fail, _stage, _WorkflowEvent
-from .transfer import _resolve_transfer, _transfer_inputs
+from .identity import (
+    array_identity,
+    collect_array_identities,
+    freeze_declarations,
+    owned_readonly_array,
+    validate_source_identity,
+)
+from .result import WorkflowReconstruction, _WorkflowEvent, raise_workflow_error, workflow_stage
+from .transfer import resolve_optical_transfer, validate_transfer_inputs
 
 
 def reconstruct_workflow(
@@ -83,23 +89,48 @@ def reconstruct_workflow(
         Invalid declarations, unsafe representations or failed operations.
     MemoryError
         Allocation failed; interruption also propagates without a result.
+
+    Notes
+    -----
+    This operation composes already decoded arrays and explicit declarations;
+    source file claims are validated as metadata, not opened or authenticated.
+    Geometry, backing storage and route prerequisites are checked before
+    array-sized snapshots. Input hashes precede numerical conversion, and
+    stage inputs receive independent copies after validation. Retained band
+    buffers keep their stage-defined mutability; final image, coordinates and
+    declaration snapshots have separate ownership.
+
+    Acquisition preparation and estimation run across the effective time
+    sequence. Known reconstruction then consumes one-time band views in order,
+    with the corresponding parameters and effective Wiener value. Stage
+    failures retain their cause and available time/direction context.
     """
-    a, o, c, f = _configs(acquisition, optics, carrier, filtering)
+    acquisition_settings, optics_settings, carrier_settings, filtering_settings = (
+        resolve_workflow_settings(acquisition, optics, carrier, filtering)
+    )
     plane_policy = _enum(plane_policy, "plane_policy", ("native", "literal-2d-stack"))
     if (transfer is None) == (calibration is None):
-        _fail("selection", "select exactly one of transfer and calibration")
+        raise_workflow_error("selection", "select exactly one of transfer and calibration")
     if (calibration is not None and transfer_identity is not None) or (
         transfer is not None and transfer_identity is None
     ):
-        _fail("selection", "transfer identity presence disagrees with calibration selection")
-    specimen_claim = _identity(specimen_identity, "specimen_identity", o)
-    raw, selected_channel, raw_metadata = _selected(specimen, channel_index, a, specimen_claim)
+        raise_workflow_error(
+            "selection", "transfer identity presence disagrees with calibration selection"
+        )
+    specimen_claim = validate_source_identity(
+        specimen_identity, "specimen_identity", optics_settings
+    )
+    raw, selected_channel, raw_metadata = select_specimen_channel(
+        specimen, channel_index, acquisition_settings, specimen_claim
+    )
     original = tuple(raw.shape)
-    effective = _geometry(original, a, c, plane_policy)
-    _arrays_and_routes(
+    effective = validate_workflow_geometry(
+        original, acquisition_settings, carrier_settings, plane_policy
+    )
+    validate_workflow_arrays_and_routes(
         raw,
-        a,
-        c,
+        acquisition_settings,
+        carrier_settings,
         original,
         effective,
         off_exposures,
@@ -108,34 +139,53 @@ def reconstruct_workflow(
         header_timestamp_unit,
         header_phases_rad,
     )
-    transfer_inputs = _transfer_inputs(
-        transfer, calibration, transfer_identity, o, a["acquisition_mode"], a["norders"]
+    transfer_inputs = validate_transfer_inputs(
+        transfer,
+        calibration,
+        transfer_identity,
+        optics_settings,
+        acquisition_settings["acquisition_mode"],
+        acquisition_settings["norders"],
     )
-    raw_metadata = _snapshot_raw_metadata(raw_metadata)
+    raw_metadata = snapshot_raw_metadata(raw_metadata)
     times, directions, phases = effective[:3]
     with (
-        _stage("declaration"),
+        workflow_stage("declaration"),
         np.errstate(over="raise", invalid="raise", divide="raise", under="ignore"),
     ):
-        delta = (-1 if c["negative_angle_step"] else 1) * math.pi / directions
-        linked_angles = [c["phase_start_angle_rad"] + d * delta for d in range(directions)]
-        angles = linked_angles if c["angles_rad"] is None else c["angles_rad"]
+        delta = (-1 if carrier_settings["negative_angle_step"] else 1) * math.pi / directions
+        linked_angles = [
+            carrier_settings["phase_start_angle_rad"] + d * delta for d in range(directions)
+        ]
+        angles = (
+            linked_angles
+            if carrier_settings["angles_rad"] is None
+            else carrier_settings["angles_rad"]
+        )
         norders_in = phases // 2 + 1
         magnitude = 1 / (
-            c["linespacing_um"] * (1 if a["acquisition_mode"] == "2d" else norders_in - 1)
+            carrier_settings["linespacing_um"]
+            * (1 if acquisition_settings["acquisition_mode"] == "2d" else norders_in - 1)
         )
         initial = np.array(
             [(magnitude * math.cos(v), magnitude * math.sin(v)) for v in angles], dtype=np.float64
         )
         linkage = np.array(
             [
-                (math.cos(v) / c["linespacing_um"], math.sin(v) / c["linespacing_um"])
+                (
+                    math.cos(v) / carrier_settings["linespacing_um"],
+                    math.sin(v) / carrier_settings["linespacing_um"],
+                )
                 for v in linked_angles
             ],
             dtype=np.float64,
         )
         schedule = np.array(
-            [f["wiener"] + (t + 1) * f["wiener_increment"] / times for t in range(times)],
+            [
+                filtering_settings["wiener"]
+                + (t + 1) * filtering_settings["wiener_increment"] / times
+                for t in range(times)
+            ],
             dtype=np.float64,
         )
     for row in (*initial, *linkage):
@@ -159,10 +209,12 @@ def reconstruct_workflow(
         header_timestamps=header_timestamps,
         header_phases_rad=header_phases_rad,
     ).items():
-        _collect(name, value, identities)
-    identities["selected_specimen"] = _digest("selected_specimen", raw)
+        collect_array_identities(name, value, identities)
+    identities["selected_specimen"] = array_identity("selected_specimen", raw)
     if off_exposures is not None:
-        identities["selected_off_exposures"] = _digest("selected_off_exposures", off_exposures)
+        identities["selected_off_exposures"] = array_identity(
+            "selected_off_exposures", off_exposures
+        )
     # Independent snapshots retain every checked backing dtype until the stage
     # itself performs its accepted conversion, including wide integer rejection.
     raw = np.array(raw, copy=True)
@@ -176,30 +228,33 @@ def reconstruct_workflow(
     header_phases_rad = (
         None if header_phases_rad is None else np.array(header_phases_rad, copy=True)
     )
-    a: dict[str, Any] = {
+    acquisition_settings: dict[str, Any] = {
         key: np.array(value, copy=True) if type(value) is np.ndarray else value
-        for key, value in a.items()
+        for key, value in acquisition_settings.items()
     }
-    c: dict[str, Any] = {
+    carrier_settings: dict[str, Any] = {
         key: np.array(value, copy=True) if type(value) is np.ndarray else value
-        for key, value in c.items()
+        for key, value in carrier_settings.items()
     }
     trace = []
 
     def event(kind: str, time: int | None = None, **details: Any) -> None:
         trace.append(
             _WorkflowEvent(
-                kind, kind, time, tuple((key, _freeze(value)) for key, value in details.items())
+                kind,
+                kind,
+                time,
+                tuple((key, freeze_declarations(value)) for key, value in details.items()),
             )
         )
 
     event("declaration", selected_channel=selected_channel, original_shape=original)
     layout = None
     if plane_policy == "literal-2d-stack":
-        with _stage("layout"):
+        with workflow_stage("layout"):
             layout = reinterpret_2d_planes(
                 raw,
-                storage_order=a["storage_order"],
+                storage_order=acquisition_settings["storage_order"],
                 off_exposures=off_exposures,
                 exposure_background=exposure_background,
             )
@@ -209,55 +264,63 @@ def reconstruct_workflow(
             layout.exposure_background,
         )
     event("layout", plane_policy=plane_policy, effective_shape=effective)
-    table, prepared = _resolve_transfer(transfer_inputs)
+    table, prepared = resolve_optical_transfer(transfer_inputs)
     selection = transfer_inputs.selection
-    identities["consumed_transfer"] = _digest("consumed_transfer", table.samples)
+    identities["consumed_transfer"] = array_identity("consumed_transfer", table.samples)
     event(
         "transfer",
         selection=selection,
         consumed_transfer_sha256=identities["consumed_transfer"].sha256,
     )
-    prep_options = {key: value for key, value in a.items() if key != "phase_policy"}
-    with _stage("preparation"):
+    prep_options = {
+        key: value for key, value in acquisition_settings.items() if key != "phase_policy"
+    }
+    with workflow_stage("preparation"):
         bands = prepare_acquisition_bands(
             raw,
             **prep_options,
-            **o,
+            **optics_settings,
             off_exposures=off_exposures,
             exposure_background=exposure_background,
             header_timestamps=header_timestamps,
             header_phases_rad=header_phases_rad,
-            linespacing_um=c["linespacing_um"],
-            phase_start_angle_rad=c["phase_start_angle_rad"],
-            negative_angle_step=c["negative_angle_step"],
+            linespacing_um=carrier_settings["linespacing_um"],
+            phase_start_angle_rad=carrier_settings["phase_start_angle_rad"],
+            negative_angle_step=carrier_settings["negative_angle_step"],
         )
-    identities["prepared_quadratures"] = _digest("prepared_quadratures", bands.quadratures)
-    event("preparation", input_scale=bands.input_scale, phase_policy=a["phase_policy"])
-    with _stage("estimation"):
+    identities["prepared_quadratures"] = array_identity("prepared_quadratures", bands.quadratures)
+    event(
+        "preparation",
+        input_scale=bands.input_scale,
+        phase_policy=acquisition_settings["phase_policy"],
+    )
+    with workflow_stage("estimation"):
         parameters = estimate_parameters(
             bands,
             table,
             initial_carriers_cyc_um=initial,
-            **o,
-            search_carriers=c["search_carriers"],
-            use_time0_carriers=c["use_time0_carriers"],
-            amplitude_floors=c["amplitude_floors"],
-            fit_all_phases=c["fit_all_phases"],
-            omit_kz0=f["omit_kz0"],
+            **optics_settings,
+            search_carriers=carrier_settings["search_carriers"],
+            use_time0_carriers=carrier_settings["use_time0_carriers"],
+            amplitude_floors=carrier_settings["amplitude_floors"],
+            fit_all_phases=carrier_settings["fit_all_phases"],
+            omit_kz0=filtering_settings["omit_kz0"],
         )
     event("estimation", branches=parameters.branches)
     reconstructions = []
     filter_options = {
-        key: value for key, value in f.items() if key not in ("wiener", "wiener_increment")
+        key: value
+        for key, value in filtering_settings.items()
+        if key not in ("wiener", "wiener_increment")
     }
     for time in range(times):
-        with _stage("reconstruction", time_index=time):
+        with workflow_stage("reconstruction", time_index=time):
             known = reconstruct_known(
-                _time_bands(bands, time),
+                select_time_bands(bands, time),
                 table,
                 carriers_cyc_um=parameters.carriers_cyc_um[time],
                 modulation=parameters.modulation[time],
-                **o,
+                **optics_settings,
                 **filter_options,
                 wiener=float(schedule[time]),
                 wiener_increment=0.0,
@@ -269,15 +332,16 @@ def reconstruct_workflow(
             effective_wiener=float(schedule[time]),
             parameter_time_index=time,
         )
-    with _stage("result"):
-        image = _owned(np.concatenate([r.image for r in reconstructions], axis=0))
+    with workflow_stage("result"):
+        image = owned_readonly_array(np.concatenate([r.image for r in reconstructions], axis=0))
         coordinates = tuple(
-            _owned(getattr(reconstructions[0], key)) for key in ("x_um", "y_um", "z_um")
+            owned_readonly_array(getattr(reconstructions[0], key))
+            for key in ("x_um", "y_um", "z_um")
         )
-        initial, linkage, schedule = (_owned(v) for v in (initial, linkage, schedule))
+        initial, linkage, schedule = (owned_readonly_array(v) for v in (initial, linkage, schedule))
         sources = tuple(
             dict(
-                specimen_identity=_freeze(specimen_claim),
+                specimen_identity=freeze_declarations(specimen_claim),
                 transfer_identity=transfer_inputs.transfer_identity,
                 calibration_identity=transfer_inputs.calibration_identity,
                 selected_channel=selected_channel,
@@ -287,15 +351,19 @@ def reconstruct_workflow(
         )
         settings = tuple(
             dict(
-                acquisition=tuple((key, _freeze(value)) for key, value in a.items()),
-                optics=tuple(o.items()),
-                carrier=tuple((key, _freeze(value)) for key, value in c.items()),
-                filtering=tuple(f.items()),
+                acquisition=tuple(
+                    (key, freeze_declarations(value)) for key, value in acquisition_settings.items()
+                ),
+                optics=tuple(optics_settings.items()),
+                carrier=tuple(
+                    (key, freeze_declarations(value)) for key, value in carrier_settings.items()
+                ),
+                filtering=tuple(filtering_settings.items()),
                 plane_policy=plane_policy,
                 original_shape=original,
                 effective_shape=effective,
                 norders_in=norders_in,
-                phase_policy=a["phase_policy"],
+                phase_policy=acquisition_settings["phase_policy"],
                 calibration_selection=selection,
                 header_timestamp_unit=header_timestamp_unit,
             ).items()
@@ -310,10 +378,10 @@ def reconstruct_workflow(
         ]
         if plane_policy == "literal-2d-stack":
             limits.append("literal-2d-stream-regrouping")
-        if a["acquisition_mode"] == "2d":
-            if a["axial_zoom"] > 1:
+        if acquisition_settings["acquisition_mode"] == "2d":
+            if acquisition_settings["axial_zoom"] > 1:
                 limits.append("true2d-extra-axial-planes-zero")
-            if a["dz_um"] == 0:
+            if acquisition_settings["dz_um"] == 0:
                 limits.append("true2d-axial-pitch-undeclared")
         event("result", output_shape=image.shape)
         return WorkflowReconstruction(

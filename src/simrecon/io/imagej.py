@@ -82,6 +82,30 @@ def export_imagej(
     -------
     ImagejWriteReport
         Completed export, setting records, provenance and explicit limitations.
+
+    Raises
+    ------
+    SimreconError
+        Unsupported or unresolved input, invalid block size, unrepresentable
+        plane/physical-size values or a changed source.
+    OSError
+        Source access or output creation/writing failed. Existing destinations
+        raise FileExistsError; other encoding failures propagate.
+
+    Notes
+    -----
+    Each orientation/phase setting has explicit time/channel/z/y/x dimensions;
+    absent carrier axes have size one without acquiring physical meaning.
+    Little-endian uint16/float32 TIFF words preserve source pixel bits. OME
+    spatial sizes use micrometres; no timing, physical angles or phase offsets
+    are inferred. JSON retains logical metadata and header bytes, while opaque
+    extension content is represented only by its length and hash.
+
+    Exclusive creation prevents overwrite. Source checks before access and at
+    completion do not form an atomic snapshot. A later failure may leave a
+    partial new file; publication and crash durability are not guaranteed.
+    The report owns a deep copy of descriptor provenance. See its limitations
+    for exact viewer, metadata and resource boundaries.
     """
     layout = validate(info, block_planes)
     destination = Path(destination)

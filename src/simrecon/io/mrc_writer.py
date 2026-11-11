@@ -111,7 +111,46 @@ def stage_metadata(path: Path, info: DatasetInfo) -> int:
 
 
 def write(destination: str | Path, info: DatasetInfo, *, block_planes: int = 1) -> WriteReport:
-    """Exclusively create an MRC file with metadata and bounded pixel blocks."""
+    """Exclusively create an MRC2014 file with metadata and bounded pixel blocks.
+
+    Parameters
+    ----------
+    destination : str or Path
+        New output path, opened exclusively. Existing paths, including the
+        source path, are never overwritten or truncated.
+    info : DatasetInfo
+        Harmonized supported Priism descriptor. Canonical acquisition planes
+        are flattened to ``(section, y, x)`` with little-endian uint16 or
+        float32 pixels. Pixel words retain their bits without arithmetic.
+    block_planes : int, optional
+        Positive plain integer limiting the pixel planes read per block.
+
+    Returns
+    -------
+    WriteReport
+        Completed output path, stored shape/mode, plane count, descriptor
+        provenance and flattened-stack limitations. The HDF5 extension retains
+        logical axes/shape, sampling in micrometres, generic wavelengths in
+        nanometres, configuration, provenance and original header/opaque bytes.
+        Main-header lateral cell lengths use angstroms; axial scale is unknown.
+
+    Raises
+    ------
+    SimreconError
+        Unsupported or unresolved input, invalid block size, changed source or
+        unrepresentable main-header lengths/extension size.
+    OSError
+        File creation, reading or writing failed; an existing destination
+        raises FileExistsError. Other staging/encoding failures propagate.
+
+    Notes
+    -----
+    Source size, modification time and header digest are checked before access
+    and after output closure. These checks do not form an atomic snapshot or
+    identify every concurrent payload edit. A later failure may leave a partial
+    new destination; there is no automatic deletion, atomic publication or
+    crash-durability guarantee. Temporary metadata staging is cleaned up.
+    """
     resolved(info)
     if type(block_planes) is not int or block_planes <= 0:
         raise SimreconError("invalid_block_size", "Block plane count must be a positive integer")
