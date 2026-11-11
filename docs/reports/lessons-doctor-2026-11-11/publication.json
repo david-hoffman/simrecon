@@ -1,0 +1,56 @@
+{
+  "observed_at": "2026-11-11T18:25:24.370Z",
+  "authority": "Owner requested 'Do your three steps', including publication of reconciled issues and prioritized intake.",
+  "repository": "david-hoffman/simrecon",
+  "deduplication": [
+    {
+      "query": "is:issue \"unraisable\"",
+      "status": "fulfilled",
+      "result": {
+        "issues": []
+      }
+    },
+    {
+      "query": "is:issue \"reservation\"",
+      "status": "fulfilled",
+      "result": {
+        "issues": []
+      }
+    },
+    {
+      "query": "is:issue \"LESSONS-DOCTOR-01\"",
+      "status": "fulfilled",
+      "result": {
+        "issues": []
+      }
+    }
+  ],
+  "issues": [
+    {
+      "finding": "LESSONS-DOCTOR-01-F001",
+      "number": 99,
+      "title": "Suppress source lines in unraisable exception diagnostics",
+      "url": "https://github.com/david-hoffman/simrecon/issues/99",
+      "state": "open",
+      "body_matches_reviewed_draft": true,
+      "created_at": "2026-11-11T18:25:04Z"
+    },
+    {
+      "finding": "LESSONS-DOCTOR-01-F002",
+      "number": 100,
+      "title": "Prepare the fixed reader-reservation parent when evidence is external",
+      "url": "https://github.com/david-hoffman/simrecon/issues/100",
+      "state": "open",
+      "body_matches_reviewed_draft": true,
+      "created_at": "2026-11-11T18:25:13Z"
+    }
+  ],
+  "reused_work": [
+    {
+      "finding": "LESSONS-DOCTOR-01-F003",
+      "path": "docs/tasks/test-apparatus-optimization.md",
+      "action": "Reuse existing task and its sole Current state; no duplicate issue or gate change."
+    }
+  ],
+  "limitations": "Publication does not implement or resolve the findings. Two explicit readbacks verified open status and exact reviewed body equality. No unrelated existing issues were changed."
+}

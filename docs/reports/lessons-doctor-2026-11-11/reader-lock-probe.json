@@ -1,0 +1,33 @@
+{
+  "observed_at": "2026-11-11T18:14:22.775211+00:00",
+  "baseline": "b05fc782522a81ebd92c10726dac731a26e5a026",
+  "interpreter": "/workspace/simrecon/.venv/bin/python",
+  "python": "3.13.12",
+  "source": "tests/shared_node_baseline_public_callers_fixture.py",
+  "source_sha256": "eaf31b30080cb1997d27012ecc9ad0689515dc14d17c61f8f3b4c7216a10551f",
+  "scope": "Current ReaderReservation with RUN, EVIDENCE and CACHE redirected to disposable synthetic directories; no real cache access, reader download, suite run or implementation change.",
+  "cases": [
+    {
+      "case": "external RUN, absent fixed parent",
+      "exception": "FileNotFoundError",
+      "errno": 2,
+      "location": "ReaderReservation.__enter__: self.lock.mkdir()",
+      "run_created": true,
+      "fixed_parent_created": false,
+      "cache_unchanged": true
+    },
+    {
+      "case": "same code with empty fixed parent prepared",
+      "result": "reservation and restoration succeeded",
+      "cache_unchanged": true,
+      "lock_removed": true
+    },
+    {
+      "case": "preexisting reservation lock",
+      "exception": "FileExistsError",
+      "lock_preserved": true,
+      "cache_unchanged": true
+    }
+  ],
+  "scratch_removed": true
+}

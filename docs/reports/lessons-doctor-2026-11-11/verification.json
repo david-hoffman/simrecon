@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-11-11T18:26:43.768902+00:00",
+  "original_observations_unchanged": 203,
+  "unique_inventory_rows": 203,
+  "semantic_buckets": 11,
+  "mechanisms": 127,
+  "handling": {
+    "no-action": 190,
+    "resolved": 8,
+    "tracked": 4,
+    "deferred": 1
+  },
+  "accepted_policy_hashes_unchanged": 11,
+  "local_markdown_files_checked": 28,
+  "disposition_records": 20,
+  "all_report_json_parsed": true,
+  "work_links_array_rows": 203,
+  "git_diff_check": "passed",
+  "tracked_runtime_tests_scripts_config_unchanged": true,
+  "issue_readbacks": [
+    "https://github.com/david-hoffman/simrecon/issues/99",
+    "https://github.com/david-hoffman/simrecon/issues/100"
+  ],
+  "full_product_verification": "not run; no PR readiness or correction completion claimed",
+  "limits": "Structural checks and isolated diagnostics plus independent policy/report review; not a full product audit."
+}
