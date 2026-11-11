@@ -11,7 +11,39 @@ from ..models import DatasetInfo, SimreconError
 
 
 def inspect(source: str | Path) -> DatasetInfo:
-    """Inspect the Priism header and payload size without reading pixel data."""
+    """Inspect the Priism header and payload size without reading pixel data.
+
+    Parameters
+    ----------
+    source : str or Path
+        Priism file with a complete 1024-byte main header and identifier -16224
+        in either byte order. Pixel decoding is limited to modes 6 and 2.
+
+    Returns
+    -------
+    DatasetInfo
+        Header bytes, size, modification time and header SHA256, with stored
+        shape ``(section, y, x)``. ``stored_dtype`` is uint16 for mode 6,
+        float32 for mode 2, or None for an unsupported mode. Acquisition axes
+        remain unresolved. Header sampling and generic wavelengths are retained
+        as metadata; their interpretation requires explicit harmonization.
+
+    Raises
+    ------
+    SimreconError
+        ``invalid_header`` for incomplete or invalid dimensions/extension,
+        ``unsupported_format`` for a missing identifier, or ``payload_size``
+        when file length disagrees with a known representation.
+    OSError
+        Source access failed.
+
+    Notes
+    -----
+    Only the main header is copied; extension and pixel bytes remain in the
+    source. The descriptor is a recorded identity, not an atomic file snapshot.
+    Inspection does not resolve acquisition order or reject every unsupported
+    pixel mode; harmonize/read enforce the supported pixel domain.
+    """
     source = Path(source)
     stat = source.stat()
     with source.open("rb") as handle:
@@ -80,7 +112,11 @@ def inspect(source: str | Path) -> DatasetInfo:
 
 
 def check_source(info: DatasetInfo) -> None:
-    """Require source size, modification time and header digest to match intake."""
+    """Require source size, modification time and header digest to match intake.
+
+    This check reads no payload digest and is not an atomic snapshot. Same-size,
+    same-timestamp concurrent payload edits can remain undetected.
+    """
     stat = info.source.stat()
     with info.source.open("rb") as handle:
         digest = hashlib.sha256(handle.read(1024)).hexdigest()

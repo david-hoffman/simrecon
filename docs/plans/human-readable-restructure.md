@@ -232,12 +232,11 @@ explicitly describe other import paths as implementation details. Keep Python
 dunders and truly local implementation details where useful; do not use privacy
 as a reason to hide the scientific steps again.
 
-Task 04 implements the first two preparation examples below; those earlier
-identifiers are retained here only to explain the naming transition. The remaining
-workflow examples are still suggestions to evaluate with callers, rather than
-apply by blind substitution:
+Task 04 implements the first two preparation examples below, and Task 08 names
+the three workflow operations after checking their consumers. Earlier identifiers
+are retained here to explain the naming transitions:
 
-| Earlier preparation / current workflow symbol | Readable name | Meaning to make visible |
+| Earlier symbol | Current readable name | Meaning to make visible |
 | --- | --- | --- |
 | `acquisition.preparation._phase_matrices` | `build_phase_separation_matrices` | Separation weights and order noise factors, with distinct phase policies |
 | `acquisition.preparation._edge` | `apodize_frame_edges_inplace` | Ordered y/x mutation, including overlap behavior |
@@ -246,8 +245,10 @@ apply by blind substitution:
 | `workflow.result._context` | `extract_stage_error_indices` | Read failing stage indices without replaying the operation |
 
 Single-letter mathematical locals are fine inside a short equation when the
-notation is defined. Long orchestration code should use `acquisition`, `optics`,
-`carrier`, and `filtering` rather than forcing the reader to remember `a/o/c/f`.
+notation is defined. The workflow uses `acquisition_settings`, `optics_settings`, `carrier_settings`
+and `filtering_settings` for its resolved configuration values. Its public
+parameters keep their original names. This makes long orchestration calls readable
+while preserving the mathematical `t`/`d` locals used by error context.
 Do not merge validators across stages solely because their names look similar;
 their accepted domains, error types and exact-representation rules can differ.
 
@@ -304,15 +305,17 @@ every PR requires the exact committed candidate's full `make verify`.
 
 ### Concrete migration hazards to include in future contracts
 
-- `workflow.result._context` matches literal module names and local `t`/`d`
+- `workflow.result.extract_stage_error_indices` (earlier `_context`) matches
+  literal module names and local `t`/`d`
   names when extracting error context. Module **or local-variable** renames can
   silently lose context without breaking imports. Preserve/test these outcomes.
 - Entry points and pytest `-p` names are strings, not ordinary symbol references.
   Tests and fixture subprocess configuration also contain qualified names.
   Serena reference lookup alone cannot find all of them; also search text.
-- Public `inspect`, `read`, `harmonize`, and `write` lack function docstrings.
-  Making their modules unprefixed may reveal previously suppressed Ruff D rules.
-  Supply useful docs; do not disable the existing rules to make a rename pass.
+- Public `inspect`, `read`, `harmonize`, and `write` lacked function docstrings
+  at the original inventory. Task 03 supplied neutral intent, and Task 08 explains
+  their shapes, units, ownership, provenance and data-safety limits. Preserve the
+  existing Ruff docstring rules rather than disabling them during a rename.
 - `scripts/verify.py` and `pyproject.toml` explicitly measure `src/simrecon`,
   `scripts` and `devtools/src/simrecon_devtools`. Moves must preserve per-file and
   per-package accounting, never-imported files and subprocess measurement. Percentages remain advisory under current

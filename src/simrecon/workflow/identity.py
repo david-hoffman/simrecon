@@ -13,44 +13,50 @@ import numpy as np
 from ..acquisition.declarations import RawAcquisition
 from ..optical_transfer import OpticalTransfer, PreparedOtf
 from .config import _extent, _optics, _schema
-from .result import _ArrayIdentity, _fail
+from .result import _ArrayIdentity, raise_workflow_error
 
 
-def _freeze(value: Any, *, code: str = "config", active: set[int] | None = None) -> Any:
+def freeze_declarations(value: Any, *, code: str = "config", active: set[int] | None = None) -> Any:
     """Snapshot supported values recursively, preserving scalar types and bits."""
     if type(value) is np.ndarray:
         _extent(value.shape, value.dtype.itemsize)
-        return _freeze(value.tolist(), code=code, active=active)
+        return freeze_declarations(value.tolist(), code=code, active=active)
     if isinstance(value, np.floating):
         # Admissibility is checked before snapshotting. Even a binary64-width
         # NumPy real can keep its scalar type after item(); terminate explicitly.
         return float(value)
     if isinstance(value, np.generic):
-        return _freeze(value.item(), code=code, active=active)
+        return freeze_declarations(value.item(), code=code, active=active)
     if value is None or type(value) in (str, bytes, int, float, complex, bool):
         return value
     if not isinstance(value, Mapping) and type(value) not in (tuple, list):
-        _fail(code, "metadata must contain supported built-in values")
+        raise_workflow_error(code, "metadata must contain supported built-in values")
     active = set() if active is None else active
     if id(value) in active:
-        _fail(code, "metadata must be acyclic")
+        raise_workflow_error(code, "metadata must be acyclic")
     active.add(id(value))
     try:
         _extent((len(value),), 8)
         if isinstance(value, Mapping):
             if any(type(key) is not str for key in value):
-                _fail(code, "metadata mapping keys must be strings")
+                raise_workflow_error(code, "metadata mapping keys must be strings")
             return tuple(
-                (key, _freeze(value[key], code=code, active=active)) for key in sorted(value)
+                (key, freeze_declarations(value[key], code=code, active=active))
+                for key in sorted(value)
             )
-        return tuple(_freeze(v, code=code, active=active) for v in value)
+        return tuple(freeze_declarations(v, code=code, active=active) for v in value)
     finally:
         active.remove(id(value))
 
 
-def _identity(
+def validate_source_identity(
     value: Any, name: str, optics: dict[str, Any], *, direct: bool = False, transfer: bool = False
 ) -> dict[str, Any]:
+    """Validate explicit source claims against workflow optics without file I/O.
+
+    Defaults serve validation only; the returned shallow mapping retains the
+    supplied keys. Callers freeze it when an independent declaration is needed.
+    """
     required = ("id", "intensity_unit", "optics") if direct else ("id", "intensity_unit")
     defaults: dict[str, Any] = {"files": ()}
     if not direct:
@@ -58,12 +64,12 @@ def _identity(
     result = _schema(value, name, required, defaults)
     for key in ("id", "intensity_unit"):
         if type(result[key]) is not str or not result[key]:
-            _fail("config", f"{name}.{key} must be a nonempty string")
+            raise_workflow_error("config", f"{name}.{key} must be a nonempty string")
     if transfer and result["intensity_unit"] != "dimensionless-transfer":
-        _fail("config", "transfer identity must declare dimensionless-transfer")
+        raise_workflow_error("config", "transfer identity must declare dimensionless-transfer")
     files = result["files"]
     if type(files) not in (tuple, list):
-        _fail("config", "identity.files must be a sequence")
+        raise_workflow_error("config", "identity.files must be a sequence")
     for file in files:
         item = _schema(file, "identity.files", ("name", "bytes", "sha256", "role"))
         if (
@@ -72,24 +78,29 @@ def _identity(
             or item["name"] in (".", "..")
             or any(c in item["name"] for c in ("/", "\\", "\x00"))
         ):
-            _fail("config", "file name requires a basename")
+            raise_workflow_error("config", "file name requires a basename")
         if type(item["bytes"]) is not int or item["bytes"] < 0:
-            _fail("config", "file bytes must be a nonnegative integer")
+            raise_workflow_error("config", "file bytes must be a nonnegative integer")
         if type(item["sha256"]) is not str or re.fullmatch("[0-9a-f]{64}", item["sha256"]) is None:
-            _fail("config", "file sha256 must be lowercase hexadecimal")
+            raise_workflow_error("config", "file sha256 must be lowercase hexadecimal")
         if type(item["role"]) is not str or not item["role"]:
-            _fail("config", "file role must be nonempty")
+            raise_workflow_error("config", "file role must be nonempty")
     if direct and result["optics"] is None:
-        _fail("config", "direct transfer identity requires optics")
+        raise_workflow_error("config", "direct transfer identity requires optics")
     if result["optics"] is not None and _optics(result["optics"], name + ".optics") != optics:
-        _fail("metadata", f"{name} optics conflict with workflow optics")
+        raise_workflow_error("metadata", f"{name} optics conflict with workflow optics")
     # Defaults are resolved for validation, but source claims retain supplied keys.
     return dict(value)
 
 
-def _digest(name: str, array: Any) -> _ArrayIdentity:
+def array_identity(name: str, array: Any) -> _ArrayIdentity:
     # Use the ndarray descriptor directly: this is a view of the original
     # validated storage, without subclass methods or surface metadata overrides.
+    """Hash validated backing storage in contiguous little-endian representation.
+
+    Retain original shape and normalized dtype in the identity record. This is
+    an array-content identity, not verification of declared source files.
+    """
     backing = np.ndarray.view(array, type=np.ndarray)
     _extent(backing.shape, backing.dtype.itemsize)
     dtype = backing.dtype.newbyteorder("<")
@@ -101,22 +112,24 @@ def _digest(name: str, array: Any) -> _ArrayIdentity:
     return _ArrayIdentity(name, tuple(backing.shape), dtype.str, digest)
 
 
-def _collect(name: str, value: Any, result: dict[str, _ArrayIdentity]) -> None:
+def collect_array_identities(name: str, value: Any, result: dict[str, _ArrayIdentity]) -> None:
+    """Collect array hashes recursively through supported mappings and records."""
     if issubclass(type(value), np.ndarray):
-        result[name] = _digest(name, value)
+        result[name] = array_identity(name, value)
     elif isinstance(value, Mapping):
         for key, child in value.items():
-            _collect(name + "." + key, child, result)
+            collect_array_identities(name + "." + key, child, result)
     elif type(value) in (RawAcquisition, PreparedOtf, OpticalTransfer):
         for field in fields(value):
-            _collect(name + "." + field.name, getattr(value, field.name), result)
+            collect_array_identities(name + "." + field.name, getattr(value, field.name), result)
     elif type(value) in (tuple, list):
         # Accepted record settings may themselves contain numerical declarations.
         for index, child in enumerate(value):
-            _collect(name + "." + str(index), child, result)
+            collect_array_identities(name + "." + str(index), child, result)
 
 
-def _owned(value: Any) -> Any:
+def owned_readonly_array(value: Any) -> Any:
+    """Copy checked array storage in C order and mark the result read-only."""
     _extent(value.shape, value.dtype.itemsize)
     result = np.array(value, copy=True, order="C")
     result.flags.writeable = False

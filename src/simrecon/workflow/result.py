@@ -77,12 +77,18 @@ class WorkflowReconstruction:
     reference_sha256: tuple[tuple[str, str], ...] = REFERENCE
 
 
-def _fail(code: str, message: str, stage: str = "declaration") -> NoReturn:
+def raise_workflow_error(code: str, message: str, stage: str = "declaration") -> NoReturn:
+    """Raise a coded workflow declaration error with the supplied stage."""
     raise WorkflowError("workflow_" + code, message, stage=stage)
 
 
-def _context(error: BaseException) -> tuple[int | None, int | None]:
-    """Read actual active stage indices, without replaying a failed operation."""
+def extract_stage_error_indices(error: BaseException) -> tuple[int | None, int | None]:
+    """Read active stage indices without replaying a failed operation.
+
+    Only the named acquisition/estimation modules contribute literal t/d locals
+    or matching self attributes. Preserve that whitelist and those local names;
+    traceback order determines which observed indices remain.
+    """
     time = direction = None
     tb = error.__traceback__
     while tb is not None:
@@ -103,7 +109,7 @@ def _context(error: BaseException) -> tuple[int | None, int | None]:
 
 
 @contextmanager
-def _stage(stage: str, *, time_index: int | None = None) -> Iterator[None]:
+def workflow_stage(stage: str, *, time_index: int | None = None) -> Iterator[None]:
     """Wrap stage failures with their cause, preserving allocation/interruption."""
     try:
         yield
@@ -117,7 +123,7 @@ def _stage(stage: str, *, time_index: int | None = None) -> Iterator[None]:
             if isinstance(cause, MemoryError):
                 raise MemoryError(f"{stage}: allocation failed") from error
             cause = cause.__cause__
-        time, direction = _context(error)
+        time, direction = extract_stage_error_indices(error)
         text = str(error)
         representation = any(
             part in text

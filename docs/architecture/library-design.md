@@ -47,7 +47,9 @@ The root `simrecon` facade retains its 36 supported exports. The shallow source
 packages group whole modules by responsibility:
 
 - [`io/`](../../src/simrecon/io/) contains Priism inspection/decoding, selected
-  pixel reads, metadata resolution, MRC writing and ImageJ export.
+  pixel reads, metadata resolution, MRC writing and ImageJ export. The
+  [file reading path](data-flow.md#follow-the-file-path-in-source) links their
+  entry points and the existing data-safety limits.
 - [`acquisition/`](../../src/simrecon/acquisition/) contains declarations, native
   preparation, layout, drift and acquisition-mode composition.
 - [`optical_transfer.py`](../../src/simrecon/optical_transfer.py) contains the
@@ -59,7 +61,9 @@ packages group whole modules by responsibility:
 - [`reconstruction/`](../../src/simrecon/reconstruction/) contains finite
   parameter estimation and known-parameter filtering/assembly.
 - [`workflow/`](../../src/simrecon/workflow/) contains orchestration, adapters,
-  configuration, identities, results/errors and transfer selection.
+  configuration, identities, results/errors and transfer selection. The
+  [workflow reading path](data-flow.md#follow-the-workflow-in-source) follows
+  the named adapters, validation, transfer, identity and contextual-error operations.
 - [`models.py`](../../src/simrecon/models.py) owns neutral records and the common
   error; [`cli.py`](../../src/simrecon/cli.py) exposes the neutral file commands.
 

@@ -12,27 +12,34 @@ from ..acquisition.declarations import RawAcquisition
 from ..acquisition.modes import AcquisitionBands
 from ..models import DatasetInfo
 from .config import _extent, _integer, _scalar
-from .identity import _freeze
-from .result import _fail
+from .identity import freeze_declarations
+from .result import raise_workflow_error
 
 _AXES = ("time", "channel", "orientation", "phase", "z", "y", "x")
 
 
 def _file_input(value: Any) -> bool:
+    """Recognize file-like inputs excluded from this pure-array workflow."""
     return isinstance(value, (str, Path, DatasetInfo))
 
 
-def _selected(
+def select_specimen_channel(
     specimen: Any, channel: Any, a: dict[str, Any], identity: dict[str, Any]
 ) -> tuple[Any, int | None, Any]:
+    """Validate raw provenance and select canonical (T,D,P,Z,Y,X) values.
+
+    Selection and transposition may return views. Array-valued metadata is only
+    collected here; snapshotting waits for the workflow's geometry/backing checks.
+    Explicit pitch and identity declarations must agree with known raw metadata.
+    """
     if _file_input(specimen):
-        _fail("unsupported", "pure-array workflow has no file decoder")
+        raise_workflow_error("unsupported", "pure-array workflow has no file decoder")
     if type(specimen) is np.ndarray:
         if channel is not None:
-            _fail("input", "ndarray specimen requires channel_index=None")
+            raise_workflow_error("input", "ndarray specimen requires channel_index=None")
         return specimen, None, None
     if type(specimen) is not RawAcquisition:
-        _fail("input", "specimen requires a plain ndarray or RawAcquisition")
+        raise_workflow_error("input", "specimen requires a plain ndarray or RawAcquisition")
     axes = specimen.axes
     data = specimen.data
     if (
@@ -45,7 +52,7 @@ def _selected(
         or any(n < 1 for n in data.shape)
         or specimen.acquisition_kind != "specimen_sim"
     ):
-        _fail("input", "invalid specimen_sim data/axes/kind")
+        raise_workflow_error("input", "invalid specimen_sim data/axes/kind")
     source_axes, source_shape = specimen.source_axes, specimen.source_shape
     if (
         type(source_axes) is not tuple
@@ -55,32 +62,34 @@ def _selected(
         or type(source_shape) is not tuple
         or source_shape != tuple(data.shape[axes.index(v)] for v in source_axes)
     ):
-        _fail("input", "invalid source axes/shape provenance")
+        raise_workflow_error("input", "invalid source axes/shape provenance")
     if type(specimen.sampling_um) is not dict or set(specimen.sampling_um) != {"x", "y", "z"}:
-        _fail("input", "invalid raw sampling declarations")
+        raise_workflow_error("input", "invalid raw sampling declarations")
     for axis, pitch in specimen.sampling_um.items():
         if pitch is not None:
             number = _scalar(pitch, "raw sampling", positive=True, code="input")
             if axis == "z" and "z" not in axes:
-                _fail("input", "raw z sampling requires z axis")
+                raise_workflow_error("input", "raw z sampling requires z axis")
             expected = a["dz_um"] if axis == "z" else a["dxy_um"]
             if number != expected:
-                _fail("metadata", "known raw sampling conflicts with explicit pitch")
+                raise_workflow_error("metadata", "known raw sampling conflicts with explicit pitch")
     for name in ("intensity_unit", "acquisition_id", "calibration_id"):
         value = getattr(specimen, name)
         if value is not None and (type(value) is not str or not value):
-            _fail("input", "invalid raw identity label")
+            raise_workflow_error("input", "invalid raw identity label")
     if (
         specimen.intensity_unit is not None
         and specimen.intensity_unit != identity["intensity_unit"]
     ):
-        _fail("metadata", "known raw count-unit label conflicts with specimen identity")
+        raise_workflow_error(
+            "metadata", "known raw count-unit label conflicts with specimen identity"
+        )
     if (
         type(specimen.original_config) is not dict
         or type(specimen.original_metadata) is not dict
         or type(specimen.provenance) is not tuple
     ):
-        _fail("input", "invalid raw metadata/provenance")
+        raise_workflow_error("input", "invalid raw metadata/provenance")
     for event in specimen.provenance:
         if (
             type(event) is not dict
@@ -88,12 +97,12 @@ def _selected(
             or type(event["field"]) is not str
             or event["source"] not in ("config", "override")
         ):
-            _fail("input", "invalid raw provenance event")
+            raise_workflow_error("input", "invalid raw provenance event")
     if not specimen.provenance:
-        _fail("input", "missing raw declaration provenance")
+        raise_workflow_error("input", "missing raw declaration provenance")
     channels = data.shape[axes.index("channel")] if "channel" in axes else 1
     if type(specimen.wavelengths_nm) is not dict:
-        _fail("input", "invalid generic raw wavelengths")
+        raise_workflow_error("input", "invalid generic raw wavelengths")
     for key, value in specimen.wavelengths_nm.items():
         if (
             type(key) is not str
@@ -101,22 +110,22 @@ def _selected(
             or str(int(key)) != key
             or int(key) >= channels
         ):
-            _fail("input", "invalid generic wavelength channel")
+            raise_workflow_error("input", "invalid generic wavelength channel")
         # Generic wavelengths are neutral metadata, not source optical inputs.
         if type(value) not in (int, float) or not np.isfinite(value) or value <= 0:
-            _fail("input", "invalid generic raw wavelength")
+            raise_workflow_error("input", "invalid generic raw wavelength")
     nominal = specimen.nominal_phases_rad
     phase_axes = tuple(v for v in axes if v in _AXES[:4])
     if nominal is None:
         if specimen.nominal_phase_axes != ():
-            _fail("input", "invalid absent nominal phase axes")
+            raise_workflow_error("input", "invalid absent nominal phase axes")
     elif (
         type(nominal) is not np.ndarray
         or nominal.dtype != np.float64
         or specimen.nominal_phase_axes != phase_axes
         or nominal.shape != tuple(data.shape[axes.index(v)] for v in phase_axes)
     ):
-        _fail("input", "invalid nominal command metadata")
+        raise_workflow_error("input", "invalid nominal command metadata")
     _extent(data.shape, max(8, data.dtype.itemsize))
     # Defer array-valued metadata materialization until the selected source
     # geometry, raw backings and native extents have passed workflow validation.
@@ -125,15 +134,15 @@ def _selected(
     if "channel" in axes:
         selected_channel = _integer(channel, "channel_index", 0, code="input")
         if selected_channel >= channels:
-            _fail("input", "channel_index is outside the original channel axis")
+            raise_workflow_error("input", "channel_index is outside the original channel axis")
         selection: list[Any] = [slice(None)] * data.ndim
         selection[axes.index("channel")] = selected_channel
         data = data[tuple(selection)]
         axes = tuple(v for v in axes if v != "channel")
     elif channel is not None:
-        _fail("input", "absent channel axis requires channel_index=None")
+        raise_workflow_error("input", "absent channel axis requires channel_index=None")
     if "z" not in axes and a["acquisition_mode"] != "2d":
-        _fail("input", "absent z is permitted only for declared true2d")
+        raise_workflow_error("input", "absent z is permitted only for declared true2d")
     for axis in ("time", "z"):
         if axis not in axes:
             data = np.expand_dims(data, 0)
@@ -142,19 +151,29 @@ def _selected(
     return data.transpose(tuple(axes.index(v) for v in target)), selected_channel, metadata
 
 
-def _snapshot_raw_metadata(metadata: Any) -> Any:
+def snapshot_raw_metadata(metadata: Any) -> Any:
+    """Check nominal command values and freeze the previously selected metadata.
+
+    The workflow calls this after source geometry and backing-array checks;
+    freezing recursively snapshots declarations rather than executing a stage.
+    """
     if metadata is None:
         return None
     nominal = metadata["nominal_phases_rad"]
     if nominal is not None:
         _extent(nominal.shape, nominal.dtype.itemsize)
         if not np.isfinite(nominal).all():
-            _fail("input", "invalid nominal command metadata")
-    return _freeze(metadata, code="input")
+            raise_workflow_error("input", "invalid nominal command metadata")
+    return freeze_declarations(metadata, code="input")
 
 
-def _time_bands(bands: AcquisitionBands, time: int) -> AcquisitionBands:
-    """Slice retained stage state without resetting scientific recurrences."""
+def select_time_bands(bands: AcquisitionBands, time: int) -> AcquisitionBands:
+    """Select a one-time AcquisitionBands record without replaying preparation.
+
+    Array slices retain stage buffers as views. Time-indexed diagnostics are
+    selected and their time indices rebased to zero for reconstruct_known;
+    scientific recurrences have already run across the original acquisition.
+    """
     names = (
         "quadratures",
         "noise_variance_factors",
