@@ -31,7 +31,7 @@ does not introduce a reconstruction CLI, automatic file decoder or output writer
 
 ## Follow the executing stages
 
-[`reconstruct_workflow`](../../src/simrecon/workflow/reconstruct.py#L27) resolves an explicit single-channel declaration, optional physical-stream regrouping, and exactly one optical-transfer route. It resolves the transfer first, calls [`prepare_acquisition_bands`](../../src/simrecon/acquisition/modes.py#L409), calls [`estimate_parameters`](../../src/simrecon/reconstruction/parameter_estimation.py#L711), then calls [`reconstruct_known`](../../src/simrecon/reconstruction/known_parameters.py#L616) separately for each time using that time's fitted carriers and modulation. The call sites are `workflow/reconstruct.py:212`, `:222`, `:237`, `:255`; concatenation is `:273`.
+[`reconstruct_workflow`](../../src/simrecon/workflow/reconstruct.py#L27) resolves an explicit single-channel declaration, optional physical-stream regrouping, and exactly one optical-transfer route. It resolves the transfer first, calls [`prepare_acquisition_bands`](../../src/simrecon/acquisition/modes.py#L409), calls [`estimate_parameters`](../../src/simrecon/reconstruction/parameter_estimation.py#L933), then calls [`reconstruct_known`](../../src/simrecon/reconstruction/known_parameters.py#L616) separately for each time using that time's fitted carriers and modulation. The call sites are `workflow/reconstruct.py:212`, `:222`, `:237`, `:255`; concatenation is `:273`.
 
 This matters: the workflow does **not** directly call `prepare_bands`. That original 3D public entry remains available, and both preparation entries share [`build_phase_separation_matrices`](../../src/simrecon/acquisition/preparation.py#L159). Acquisition preparation adds selected 2D/3D, phase-step, drift and off-exposure branches. The explanation below follows the no-drift/no-off 3D path first, then describes selected extensions.
 
@@ -176,7 +176,7 @@ $$
 B_m^-(\mathbf k)=\overline{B_m^+(-\mathbf k)}.
 $$
 
-The minus sign affects all axes, not just x. Code reconstructs half-space reads by reflecting z,y,x and conjugating each quadrature separately before forming E+iO (`reconstruction/parameter_estimation.py:340`, `reconstruction/known_parameters.py:508`, `:573`).
+The minus sign affects all axes, not just x. Code reconstructs half-space reads by reflecting z,y,x and conjugating each quadrature separately before forming E+iO (`reconstruction/parameter_estimation.py:382`, `reconstruction/known_parameters.py:508`, `:573`).
 
 ### Explicit phases are a left-inverse problem
 
@@ -291,20 +291,20 @@ $$
 
 Unless explicit direction angles are supplied, `θ_d=start±dπ/D`. The 3D denominator comes from the number of input phases (`norders_in=P//2+1`), not necessarily the number of retained orders. Linked phase adjustment separately uses 1/linespacing. `workflow/reconstruct.py:120–135`.
 
-[`_Estimator.build`](../../src/simrecon/reconstruction/parameter_estimation.py#L360) constructs two order-overlap arrays from band coefficients and the other order's OTF, weighted by `1/sqrt(|H_lower|²+|H_higher|²)` and gated by optical support and literal amplitude thresholds. It inverse-transforms them using an unnormalized sum. In 3D, the higher-order OTF threshold multiplier is 5; in 2D it is 1. This is an implemented finite procedure, not an unrestricted optimizer.
+[`_ParameterEstimator.build_order_overlap`](../../src/simrecon/reconstruction/parameter_estimation.py#L417) constructs two order-overlap arrays from band coefficients and the other order's OTF, weighted by `1/sqrt(|H_lower|²+|H_higher|²)` and gated by optical support and literal amplitude thresholds. It inverse-transforms them using an unnormalized sum. In 3D, the higher-order OTF threshold multiplier is 5; in 2D it is 1. This is an implemented finite procedure, not an unrestricted optimizer.
 
-[`_Estimator.evaluate`](../../src/simrecon/reconstruction/parameter_estimation.py#L417) applies the positive centered ramp for the order difference to the higher overlap. With lower spatial array u and ramped higher v,
+[`_ParameterEstimator.fit_overlap_modulation`](../../src/simrecon/reconstruction/parameter_estimation.py#L510) applies the positive centered ramp for the order difference to the higher overlap. With lower spatial array u and ramped higher v,
 
 $$
 S_X=\sum|u|^2,\qquad S_Y=\sum|v|^2,\qquad C=\sum\bar u v,
 \qquad a_{\rm forward}=C/S_X.
 $$
 
-The carrier-search objective is `|a_forward|²`. Reverse and combined fits and normalized correlation are diagnostics; the returned modulation is the forward factor, after requested postprocessing. Evaluation computes the combined fit too, so equal energies SX=SY raise even if a forward ratio alone could exist (`:444–469`).
+The carrier-search objective is `|a_forward|²`. Reverse and combined fits and normalized correlation are diagnostics; the returned modulation is the forward factor, after requested postprocessing. Evaluation computes the combined fit too, so equal energies SX=SY raise even if a forward ratio alone could exist (`:566–591`).
 
-Coarse search cross-correlates order 0 with order 1 in 2D or order 2 in 3D, uses the first strict maximum in traversal order, neighboring parabolic peak offsets and finite alias decisions (`_Estimator.coarse`, :498). Refinement walks angle in 0.001-radian steps, then magnitude in `0.1/(max(X,Y)dxy)` cycles/µm, stops when strict improvement fails, and uses a three-point parabola (`_Estimator.search`, :553). It is not a generic global least-squares fit or guaranteed global optimum.
+Coarse search cross-correlates order 0 with order 1 in 2D or order 2 in 3D, uses the first strict maximum in traversal order, neighboring parabolic peak offsets and finite alias decisions (`_ParameterEstimator.estimate_coarse_carrier`, :620). Refinement walks angle in 0.001-radian steps, then magnitude in `0.1/(max(X,Y)dxy)` cycles/µm, stops when strict improvement fails, and uses a three-point parabola (`_ParameterEstimator.search_carrier_and_modulation`, :694). It is not a generic global least-squares fit or guaranteed global optimum.
 
-Searching may be disabled; modulation is still fitted using supplied carriers. Reusing time-zero carriers still fits fresh modulation per time (`estimate_parameters`, :828–843). 2D performs its literal cumulative order-factor products, optional magnitude floors preserve phase, and `fit_all_phases=False` replaces higher-order phase with m times the order-one phase (`:846–889`). Preserve the distinction between raw fitted factors, adjusted modulation, and reused carriers in the explanation.
+Searching may be disabled; modulation is still fitted using supplied carriers. Reusing time-zero carriers still fits fresh modulation per time (`estimate_parameters`, :1059–1074). 2D performs its literal cumulative order-factor products, optional magnitude floors preserve phase, and `fit_all_phases=False` replaces higher-order phase with m times the order-one phase (`:1077–1120`). Preserve the distinction between raw fitted factors, adjusted modulation, and reused carriers in the explanation.
 
 ## Filter the native bands
 
@@ -436,14 +436,14 @@ Use these source entry points to read one stage at a time:
 | What is the edge operation? | [`apodize_frame_edges_inplace`](../../src/simrecon/acquisition/preparation.py#L239) |
 | What are the phase weights/inverse? | [`build_phase_separation_matrices`](../../src/simrecon/acquisition/preparation.py#L159) |
 | Where do weights multiply exposures? | [`prepare_acquisition_bands`, separation](../../src/simrecon/acquisition/modes.py#L860) |
-| How is E+iO reconstructed from half storage? | [`_Estimator.band`](../../src/simrecon/reconstruction/parameter_estimation.py#L340) |
+| How is E+iO reconstructed from half storage? | [`_ParameterEstimator.reconstruct_complex_band`](../../src/simrecon/reconstruction/parameter_estimation.py#L382) |
 | How are complete transfer tables declared? | [`declare_otf`](../../src/simrecon/optical_transfer.py#L316) |
 | How are transfer values sampled? | [`interpolate_transfer_queries`](../../src/simrecon/optical_transfer.py#L661), [`interpolate_radial_stencil`](../../src/simrecon/optical_transfer.py#L470), [`interpolate_full_stencil`](../../src/simrecon/optical_transfer.py#L506) |
 | How is the bead center found before background subtraction? | [`locate_bead_center`](../../src/simrecon/optical_transfer.py#L803) |
 | How are bead quadratures separated and transformed? | [`separate_bead_phase_quadratures`](../../src/simrecon/optical_transfer.py#L863), [`build_bead_radial_quadratures`](../../src/simrecon/optical_transfer.py#L946) |
 | How are bead support and normalization applied? | [`mask_bead_support_inplace`](../../src/simrecon/optical_transfer.py#L1045), [`normalize_and_combine_bead_quadratures`](../../src/simrecon/optical_transfer.py#L1129) |
-| How is modulation fitted? | [`_Estimator.evaluate`](../../src/simrecon/reconstruction/parameter_estimation.py#L417) |
-| What finite carrier search executes? | [`_Estimator.coarse`](../../src/simrecon/reconstruction/parameter_estimation.py#L498), [`_Estimator.search`](../../src/simrecon/reconstruction/parameter_estimation.py#L553) |
+| How is modulation fitted? | [`_ParameterEstimator.fit_overlap_modulation`](../../src/simrecon/reconstruction/parameter_estimation.py#L510) |
+| What finite carrier search executes? | [`_ParameterEstimator.estimate_coarse_carrier`](../../src/simrecon/reconstruction/parameter_estimation.py#L620), [`_ParameterEstimator.search_carrier_and_modulation`](../../src/simrecon/reconstruction/parameter_estimation.py#L694) |
 | What is the filter numerator/denominator? | [`_Filter.scale`](../../src/simrecon/reconstruction/known_parameters.py#L420) |
 | What exact samples are visited? | [`_filter_quadratures`](../../src/simrecon/reconstruction/known_parameters.py#L492) |
 | Where are carriers relocated and the image summed? | [`_assemble`](../../src/simrecon/reconstruction/known_parameters.py#L550) |

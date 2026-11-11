@@ -862,7 +862,7 @@ All earlier stack/predecessor/CI diagnosis charges above remain retained without
 reset/double counting. Human numeric budgets not set; requested roles Sol/high,
 actual served attribution/tokens/cached tokens/cost/complete elapsed unknown.
 
-## Current state
+## Task 05 retained pre-verification pointer
 
 Task 05 high-risk optical-transfer readability is prepared in
 `/workspace/simrecon-readability-05`, branch `codex/readability-05-optical-transfer`,
@@ -884,3 +884,120 @@ verification evidence and PR/conversation. No Task 05 full acceptance is yet
 claimed by this pointer. No successor, native launcher detour, merge, auto-merge
 or release. Cleanup keeps active/shared/durable inputs; one confirmed disposable
 C script removed without error.
+
+## Task 06 contract and evidence pointer
+
+Authorized high-risk estimation readability only, from Task05 PR #92 exact pushed
+`24e53bc2a7a792498950d83107ee382e599dc0cb`, tree
+`ee6dfadaf2aab323d2b6a0b736b1a555ffb3ecd5`, targeting
+`codex/readability-05-optical-transfer`. Preserve the numerical expressions,
+evaluation order, signs/scaling, units/domains, validation/errors, ownership,
+record fields/payloads, 36 exports, dunders/CLI, and literal module/local `t`/`d`
+workflow context. Clarify overlap construction, finite carrier search and
+modulation fitting in the intact `reconstruction/parameter_estimation.py` with
+meaningful helper names, NumPy docs/reason comments and equation/convention links.
+No numerical fix, new feature/API/alias, test rewrite or unrelated later-stage
+readability. Larger extraction is separately scoped.
+
+Fresh blind A maps existing public proof, fresh blind B audits its oracles,
+permitted positives and omissions, restricted C owns only the named source and
+necessary direct consumers, and fresh D reviews the exact committed passing
+candidate. A/B receive only approved public sources/exact permitted tests and
+source-free diagnostics; no implementation/history/state/coverage/lessons.
+November11 direct collaboration roles supersede launch location alone. No native
+launcher/auth detour. The coordinator owns live source navigation, handoff and
+PR presentation. The existing walkthrough supplies useful math; an extra figure
+would not clarify this name/documentation change.
+
+Preserve Task02 development tooling, explicit strict plugin, locked install,
+separate installed product/development wheels, all-owned/subprocess measurement,
+PR87 affinity/observers, and all 13 full verification phases. Coverage percentages
+remain advisory; mandatory exact native counts/reports and behavior/risk audit
+remain. Commit before canonical full `make verify`, same-run M25 limit33,554,432
+bytes and ignored public/checkpoint/reader input fingerprints. Fresh D follows
+PASS; remote identity/ancestry recheck precedes normal push/one stacked PR.
+No merge or auto-merge. Task07 belongs to the root's next fresh coordinator.
+
+Predecessor completion is retained outside tracked bytes at
+`/workspace/simrecon-readability-05/artifacts/readability-05/completion.json`.
+Task05 A/B/D ACCEPT, one complete 13-phase local PASS, 3,100 tests/47 warnings,
+1,169-file manifest unchanged, 36 measured owned files, M25 increment0 within
+33,554,432 bytes, separate installed wheels/audit PASS. Receipt SHA256
+`4acdfa676ad34478ce004ac380501d4e98a9aaecfd01ffad71792135de0e869b`.
+These facts do not accept Task06. Root confirmed predecessor run42949769406 completed SUCCESS on both Ubuntu
+job130291082328 and macOS job130291082466 after intake; pending was never treated
+as passing. All earlier stack charges, Task04 macOS maintenance-lock
+failure/one advisor/one focused pass/unchanged successful rerun remain above and
+in predecessor completions; no reset/double counting.
+
+## Task 06 retained pre-verification accounting
+
+Fresh blind A retained public proof and26 exact input hashes, with no test edits
+or exposure. Its single focused invocation lost the orchestration session handle;
+status is incomplete/unknown, never counted passing, and no duplicate rerun was
+launched. One A missing-path read and one lost-status incident remain charged.
+Fresh blind B independently rehashed all26 inputs, audited representative
+oracles/omissions/permitted positives, ACCEPTED, and observed207 focused
+source-free tests PASS in5.58s/exit0. B checkpoint freezes31 inputs plus its report;
+no oracle/test correction or scientific source exposure. Exact identities and
+proof limits are in ignored `artifacts/readability-06/accepted-checkpoint.json`
+and A/B reports. Initially passing retained tests are valid; no artificial red.
+
+Restricted C edited only estimation source: four helper globals, one internal
+operation class and seven meaningful method names; NumPy docs/reason comments
+explain units/signs/overlap/search/regression/diagnostics. Record classes, local
+variables/parameters, strings/keywords/fields/payloads/errors and numerical
+expressions/order remain. Structural proof pairs all27 product ASTs and literal
+NUMBER/STRING spellings,40 allowed binding edits,1,165 frozen files including93
+test files,32 checkpoint inputs including B report, and exact root facade/36exports.
+Coordinator live navigation relocates16 source-reference endpoints with zero
+fallbacks;139 local paths/anchors and44 retained source positions pass.
+
+C observed658 focused public tests PASS97.20s, lint/format PASS. Charges: one
+fresh C, one implementation plus prose refinement and formatting, one lint,
+one formatter write/one format check, five preservation invocations (one narrow
+checker-scope defect/four passes), four failed focused type invocations and one
+ancillary filename read. The checker was corrected only for the existing nested
+closures, then tightened to require every intended method call and literal
+spelling; product/tests unchanged during checker corrections. Type failures were
+missing installed NumPy paths in sandbox discovery, despite Python importing
+NumPy from this own environment. Coordinator's unchanged canonical locked full
+Pyright failed with497 cascades in sandbox, then PASS0errors/0warnings through
+the supported escalated path. Specific mechanism untraced; no code/config/gate
+or environment repair was made. Full gate uses supported path.
+
+Coordinator retained one passing isolated locked preflight, one sandbox canonical
+type failure/one supported canonical PASS, one preservation integration PASS,
+and seven ancillary nonzero documentation/evidence/filename/tool-path probes;
+none was a product-test/full-gate failure. Detailed exact commands/statuses remain
+in ignored coordinator accounting, C report and logs. Prior stack, setup/native
+launch and Task04CI failure/diagnosis/rerun charges remain retained above and in
+predecessor completions; no reset/double counting. Requested roles Sol/high;
+actual served attribution/tokens/cost/complete elapsed unknown; human numeric
+budgets not set. No native CLI/auth/cloud launch attempt added.
+
+Cleanup: no confirmed disposable external task scratch was created; all own
+ignored authoring/review/check outputs are durable evidence. C/A/B own processes
+closed. Retain current checkout/.venv, predecessor/shared reader inputs/caches
+and uncertain ordinary runner scratch. No removal or cleanup error.
+
+## Current state
+
+Task06 high-risk estimation readability is prepared in
+`/workspace/simrecon-readability-06`, branch `codex/readability-06-estimation`,
+from Task05 exact head `24e53bc2a7a792498950d83107ee382e599dc0cb`, tree
+`ee6dfadaf2aab323d2b6a0b736b1a555ffb3ecd5`, targeting PR92 branch
+`codex/readability-05-optical-transfer`. Predecessor open/unmerged exacthead/base
+and ancestry confirmed before editing, main unchanged; root confirmed latest
+Ubuntu/macOS CI SUCCESS. A/B retained checkpoint ACCEPT, restricted C/focused
+checks and coordinator structural/source/navigation checks PASS. No numerical,
+test/fixture/config/gate change, no extraction, no unrelated next-stage work.
+
+Next: commit this candidate, then canonical all13phase full `make verify` with
+same-run mandatory M25 and explicit public/checkpoint/reader fingerprints, fresh
+exact-candidate independent D, remote recheck and normal push/open one stacked PR.
+Exact final head/tree/full results/receipt/native coverage/M25/wheels/review/PR/CI
+and subsequent charges belong outside verified tracked bytes in ignored
+`artifacts/readability-06/completion.json`, verification evidence and PR/conversation.
+This pointer claims no Task06 full acceptance yet. No successor, merge,
+auto-merge or release; root launches Task07 only after this packet completes.
