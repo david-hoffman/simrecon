@@ -12,10 +12,10 @@ from ..optical_transfer import (
     OpticalTransfer,
     OtfError,
     PreparedOtf,
-    _valid_transfer,
     _values,
     declare_otf,
     prepare_bead_otf,
+    validate_optical_transfer,
 )
 from .adapters import _file_input
 from .config import (
@@ -129,7 +129,7 @@ def _calibration_settings(
 
 def _validate_transfer(value: OpticalTransfer) -> OpticalTransfer:
     try:
-        checked = _valid_transfer(value, require_actual=True)
+        checked = validate_optical_transfer(value, require_actual=True)
     except OtfError as error:
         code = "workflow_representation" if "representation" in str(error) else "workflow_input"
         raise WorkflowError(code, str(error), stage="transfer") from error

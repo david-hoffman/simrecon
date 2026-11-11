@@ -247,9 +247,9 @@ Off frames have `(T,D,P,Z,N,Y,X)` shape, are summed before edge treatment, separ
 
 ## Optical transfer: explicit tables or bead calibration
 
-An optical transfer function (OTF) H describes the frequency-dependent microscope response used for matching and filtering each order. [`declare_otf`](../../src/simrecon/optical_transfer.py#L248) accepts complete radial `(order,radius,z)` or full `(order,z,y,x-half)` complex tables, explicit positive frequency increments in cycles/µm, and performs no normalization. The declared samples must be exactly complex64-representable; owned computation uses complex128.
+An optical transfer function (OTF) H describes the frequency-dependent microscope response used for matching and filtering each order. [`declare_otf`](../../src/simrecon/optical_transfer.py#L316) accepts complete radial `(order,radius,z)` or full `(order,z,y,x-half)` complex tables, explicit positive frequency increments in cycles/µm, and performs no normalization. The declared samples must be exactly complex64-representable; owned computation uses complex128.
 
-[`sample_otf`](../../src/simrecon/optical_transfer.py#L398) / [`_interpolate`](../../src/simrecon/optical_transfer.py#L456) use
+[`sample_otf`](../../src/simrecon/optical_transfer.py#L563) / [`interpolate_transfer_queries`](../../src/simrecon/optical_transfer.py#L661) use
 
 $$
 u=r/\Delta k_{r,H}\quad\text{(radial)},\qquad
@@ -257,9 +257,9 @@ u=r/\Delta k_{r,H}\quad\text{(radial)},\qquad
 \tau = k_{z,\mathrm{index}}\Delta k_{z,\mathrm{native}}/\Delta k_{z,H}.
 $$
 
-Radial sampling is bilinear in (u,τ). Full sampling is trilinear, reflecting and conjugating for negative x. Negative y/z coordinates receive a once-only adjustment; literal flat addresses govern admissibility, including deterministic cross-row aliases. This is not repeated periodic wrapping or per-axis clipping. It interpolates complex samples, not their magnitudes. Every literal stencil vertex is checked, including zero-weight vertices; allocation boundary failures are errors rather than silent zero extension. Source [`_radial_sample`](../../src/simrecon/optical_transfer.py#L358), [`_full_sample`](../../src/simrecon/optical_transfer.py#L370).
+Radial sampling is bilinear in (u,τ). Full sampling is trilinear, reflecting and conjugating for negative x. Negative y/z coordinates receive a once-only adjustment; literal flat addresses govern admissibility, including deterministic cross-row aliases. This is not repeated periodic wrapping or per-axis clipping. It interpolates complex samples, not their magnitudes. Every literal stencil vertex is checked, including zero-weight vertices; allocation boundary failures are errors rather than silent zero extension. Source [`interpolate_radial_stencil`](../../src/simrecon/optical_transfer.py#L470), [`interpolate_full_stencil`](../../src/simrecon/optical_transfer.py#L506).
 
-Workflow transfer selection resolves raw bead calibration, a PreparedOtf, an OpticalTransfer, or explicitly decoded sections (`workflow/transfer.py:339`). Raw beads call [`prepare_bead_otf`](../../src/simrecon/optical_transfer.py#L814), with correction/edge/centering, normalized phase separation, 3D Fourier transform, optional sphere-response compensation, radial averaging, cleanup and normalization. The bead separator **does divide by P**, unlike specimen separation: `optical_transfer.py:585–618`. Do not reuse one formula for both stages.
+Workflow transfer selection resolves raw bead calibration, a PreparedOtf, an OpticalTransfer, or explicitly decoded sections (`workflow/transfer.py:339`). Raw beads call [`prepare_bead_otf`](../../src/simrecon/optical_transfer.py#L1229), with correction/edge/centering, normalized phase separation, 3D Fourier transform, optional sphere-response compensation, radial averaging, cleanup and normalization. The bead separator **does divide by P**, unlike specimen separation: `optical_transfer.py:863–921`. Do not reuse one formula for both stages.
 
 For bead diameter a in µm, compensation uses the order-shifted frequency norm,
 not the native frequency magnitude. With odd bead phase count P_b, line spacing
@@ -277,7 +277,7 @@ $$
 S(u)=3(\sin u-u\cos u)/u^3,\qquad u=\pi a\rho,\quad S(0)=1.
 $$
 
-The implementation uses an equivalent convergent small-u series and rejects zero/undefined divisors (`:644–673`). Radial averaging is nearest integer-radius bin assignment, not interpolation (`:675–685`). `_finish` normalizes by empirical maxima (per slot or shared zero-slot scale according to settings), estimates quadrature-combination angles and combines `C cosθ−S sinθ`; it is not simply specimen-style E+iO (`:749–810`).
+The implementation uses an equivalent convergent small-u series and rejects zero/undefined divisors (`:1000–1029`). Radial averaging is nearest integer-radius bin assignment, not interpolation (`:1031–1041`). `normalize_and_combine_bead_quadratures` normalizes by empirical maxima (per slot or shared zero-slot scale according to settings), estimates quadrature-combination angles and combines `C cosθ−S sinθ`; it is not simply specimen-style E+iO (`:1129–1225`).
 
 ## Carrier and modulation estimation
 
@@ -304,7 +304,7 @@ The carrier-search objective is `|a_forward|²`. Reverse and combined fits and n
 
 Coarse search cross-correlates order 0 with order 1 in 2D or order 2 in 3D, uses the first strict maximum in traversal order, neighboring parabolic peak offsets and finite alias decisions (`_Estimator.coarse`, :498). Refinement walks angle in 0.001-radian steps, then magnitude in `0.1/(max(X,Y)dxy)` cycles/µm, stops when strict improvement fails, and uses a three-point parabola (`_Estimator.search`, :553). It is not a generic global least-squares fit or guaranteed global optimum.
 
-Searching may be disabled; modulation is still fitted using supplied carriers. Reusing time-zero carriers still fits fresh modulation per time (`estimate_parameters`, :826–841). 2D performs its literal cumulative order-factor products, optional magnitude floors preserve phase, and `fit_all_phases=False` replaces higher-order phase with m times the order-one phase (`:844–887`). Preserve the distinction between raw fitted factors, adjusted modulation, and reused carriers in the explanation.
+Searching may be disabled; modulation is still fitted using supplied carriers. Reusing time-zero carriers still fits fresh modulation per time (`estimate_parameters`, :828–843). 2D performs its literal cumulative order-factor products, optional magnitude floors preserve phase, and `fit_all_phases=False` replaces higher-order phase with m times the order-one phase (`:846–889`). Preserve the distinction between raw fitted factors, adjusted modulation, and reused carriers in the explanation.
 
 ## Filter the native bands
 
@@ -437,7 +437,11 @@ Use these source entry points to read one stage at a time:
 | What are the phase weights/inverse? | [`build_phase_separation_matrices`](../../src/simrecon/acquisition/preparation.py#L159) |
 | Where do weights multiply exposures? | [`prepare_acquisition_bands`, separation](../../src/simrecon/acquisition/modes.py#L860) |
 | How is E+iO reconstructed from half storage? | [`_Estimator.band`](../../src/simrecon/reconstruction/parameter_estimation.py#L340) |
-| How are transfer values sampled? | [`_interpolate`](../../src/simrecon/optical_transfer.py#L456), [`_radial_sample`](../../src/simrecon/optical_transfer.py#L358), [`_full_sample`](../../src/simrecon/optical_transfer.py#L370) |
+| How are complete transfer tables declared? | [`declare_otf`](../../src/simrecon/optical_transfer.py#L316) |
+| How are transfer values sampled? | [`interpolate_transfer_queries`](../../src/simrecon/optical_transfer.py#L661), [`interpolate_radial_stencil`](../../src/simrecon/optical_transfer.py#L470), [`interpolate_full_stencil`](../../src/simrecon/optical_transfer.py#L506) |
+| How is the bead center found before background subtraction? | [`locate_bead_center`](../../src/simrecon/optical_transfer.py#L803) |
+| How are bead quadratures separated and transformed? | [`separate_bead_phase_quadratures`](../../src/simrecon/optical_transfer.py#L863), [`build_bead_radial_quadratures`](../../src/simrecon/optical_transfer.py#L946) |
+| How are bead support and normalization applied? | [`mask_bead_support_inplace`](../../src/simrecon/optical_transfer.py#L1045), [`normalize_and_combine_bead_quadratures`](../../src/simrecon/optical_transfer.py#L1129) |
 | How is modulation fitted? | [`_Estimator.evaluate`](../../src/simrecon/reconstruction/parameter_estimation.py#L417) |
 | What finite carrier search executes? | [`_Estimator.coarse`](../../src/simrecon/reconstruction/parameter_estimation.py#L498), [`_Estimator.search`](../../src/simrecon/reconstruction/parameter_estimation.py#L553) |
 | What is the filter numerator/denominator? | [`_Filter.scale`](../../src/simrecon/reconstruction/known_parameters.py#L420) |
