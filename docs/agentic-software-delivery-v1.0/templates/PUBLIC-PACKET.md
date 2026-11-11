@@ -10,7 +10,7 @@ You are already the fresh initial root for this role; perform it here without la
 - Inherited approved coverage policy reference/permitted text under specification section 5.1; selected metrics/thresholds/scope/reports, advisory metrics and unresolved material choices:
 - Requirement/scenario-to-test mapping, relevant high-risk paths and short independent risk-audit disposition; B audits omissions/plausible wrong outcomes before acceptance:
 - Read allowlist: AGENTS, permitted PROJECT context, named skill/public contracts/references; B also exact A tests/fixtures and sanitized evidence. Follow no unlisted links:
-- Excluded: implementation/source archives/history/conversations, implementation-bearing Current state/plan/handoff, coverage maps and existing LESSONS entries. Only format guide may be named:
+- Excluded: implementation/source archives/history/conversations, implementation-bearing Current state/plan/handoff, coverage maps and existing docs/lessons entries. Only format guide may be named:
 - Write scope: A named tests/fixtures; B reports only. No runtime/check/policy edits:
 - Baseline and accepted test/fixture checkpoint identities; prior accepted evidence for correction:
 - Cheap permitted prerequisites; source-free warning/traceback/subprocess harness; exact narrow checks:

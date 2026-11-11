@@ -2,6 +2,8 @@
 
 **Version 1.0. Recorded October 5, 2026.** This evidence record supports the [repo plan](../plans/agentic-delivery-repo-efficiency-plan.md) and [specification plan](../plans/agentic-delivery-spec-efficiency-plan.md). The coordinator's [single Current state](../tasks/delivery-efficiency.md#current-state) owns approvals, blockers, next action and allowance accounting. This document records implementation, focused results and option dispositions; the linked PR records final exact-candidate verification, independent route verdicts, platform outcomes and readiness outside its tracked tree. It is not a competing task status or substitute for those gates.
 
+Location update: the owner later authorized [Task10](../tasks/readability-stack.md#task-10-owner-authorized-lessons-location-contract) to move the canonical lesson home to [docs/lessons/](../lessons/README.md). Root-location observations and recommendations below retain their historical scope; current instructions use the new home. The relocation does not change append-only treatment or blind-role restrictions.
+
 ## Implementation coverage
 
 The numbered plan sections retain their original rationale and requirements. Their implementation is mapped here; final acceptance of the exact candidate is linked from the coordinator record and PR.
@@ -71,6 +73,6 @@ The optional CI watcher is evaluated through the existing `gh` watch facility af
 
 ## Lesson home and measurement limits
 
-Retain root [LESSONS](../../LESSONS/README.md); do not relocate entries or create a shared index. The plans found no demonstrated efficiency or blindness benefit from relocation. Narrow permitted inputs, source-free diagnostics and independent sessions remain the relevant controls.
+Retain root [LESSONS](../lessons/README.md); do not relocate entries or create a shared index. The plans found no demonstrated efficiency or blindness benefit from relocation. Narrow permitted inputs, source-free diagnostics and independent sessions remain the relevant controls.
 
 The sample comprises one synthetic calibration call for each requested configuration and four named rollout pilots, with outcomes recorded only when actual evidence exists. Monetary cost, complete-session/owner effort and a comparable broad baseline remain unknown. Cached input is a subset of input, not extra usage or a savings percentage. Overlapping role/check/CI durations must not be summed into elapsed critical path. Historical charges, review windows and consumed repairs remain in coordinator accounting. Nothing here grants a new allowance, automatic follow-up sample, merge or release.

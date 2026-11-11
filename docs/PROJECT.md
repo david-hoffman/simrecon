@@ -125,7 +125,7 @@ limitations, not current product verification.
   procedures hold role differences and [test-audit](../.agents/skills/test-audit/SKILL.md)
   supplies the cross-cutting audit procedure. The
   [delivery specification](agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md)
-  defines policy. Root [LESSONS/](../LESSONS/README.md) is the append-only lesson home.
+  defines policy. [lessons/](lessons/README.md) is the append-only lesson home.
 - Git and GitHub Actions run ordinary configured checks. Prompted role/file
   restrictions are not engineered access controls. No controller, daemon or
   scheduled model loop is installed.

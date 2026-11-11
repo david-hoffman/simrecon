@@ -12,6 +12,6 @@ Route: high risk, fresh native blind A/B, restricted C and fresh D. The contract
 
 The single canonical Current state, exact prerequisite/checkpoint/candidate identities, verdicts, evidence and cumulative charges live in ignored artifacts/imagej-adapter-intake/execution-record.json. This tracked note is a pointer, not another state. Prior full-local/CI results verify the prerequisite, not new bytes.
 
-Immutable predecessor ledgers/handoff/snapshots remain under that artifact prefix with manifests. Public/source support and capability reports remain separate. Formal D excludes every LESSONS payload before every read/hash. These prompt boundaries are not engineered access controls.
+Immutable predecessor ledgers/handoff/snapshots remain under that artifact prefix with manifests. Public/source support and capability reports remain separate. Formal D excludes every docs/lessons payload before every read/hash. These prompt boundaries are not engineered access controls.
 
 Preserve PROJECT behavior coverage/independent risk review/advisory percentages. Passing exact-candidate full local make verify before any PR, including draft; complete configured CI platform/event and artifact/input provenance before successor. Human numeric limits not set; missing served attribution/token/cost/elapsed unknown. No merge/release/archive/unrelated external-message authority.

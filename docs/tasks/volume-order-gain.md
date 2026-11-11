@@ -29,7 +29,7 @@ tracked bytes, in the record and delivery conversation or pull request.
   accepted test/fixture bytes remain frozen. Scoped worker evidence does not
   supply full verification or independent candidate acceptance.
 - D receives pruned source/evidence and forms its assessment independently.
-  Every LESSONS payload remains excluded before every D read or hash. Root owns
+  Every docs/lessons payload remains excluded before every D read or hash. Root owns
   full-source, receipt, archive and CI provenance traversals.
 - Human numeric limits are not set. Native roles request gpt-6.1-sol/high under
   project calibration. Available raw usage is retained without double-counting

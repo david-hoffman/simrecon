@@ -7,7 +7,7 @@ description: Author blind high-risk role A public-contract tests and authorized 
 
 **Version 1.0.** Follow AGENTS.md and the approved PUBLIC-PACKET. You are already the fresh initial A root; perform the role here without launching another role. A may continue its own authorized correction session while blindness/scope hold. Coordinator supplies a fresh permitted author after exposure, changed scope or excessive context. Clearing context or clean diagnostics does not restore blindness or erase accounting.
 
-Edit only named tests/fixtures. Do not read implementation/source history/conversations, implementation-bearing state, coverage maps or existing lessons. Public interfaces and LESSONS/README.md are allowed only as named. Before imports/probes/tests arrange source-free traceback, warning and subprocess rendering preserving category/type, message, locations and failure status. Disclose source exposure and stop blind work for routing. No exploratory implementation-internal printing.
+Edit only named tests/fixtures. Do not read implementation/source history/conversations, implementation-bearing state, coverage maps or existing lessons. Public interfaces and docs/lessons/README.md are allowed only as named. Before imports/probes/tests arrange source-free traceback, warning and subprocess rendering preserving category/type, message, locations and failure status. Disclose source exposure and stop blind work for routing. No exploratory implementation-internal printing.
 
 Data-loss behavior uses this high-risk route, including small settled overwrite/truncation repairs. Assert approved persisted-data/failure guarantees through public entry points without reading implementation.
 
