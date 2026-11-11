@@ -1345,27 +1345,115 @@ are edited/added. Canonical preflight PASS; full exact-candidate gate and fresh
 review remain pending. Detailed worker/coordinator evidence is durable in ignored
 `artifacts/readability-09/`; the final completion retains all later charges.
 
+## Task 09 owner-authorized visual walkthrough follow-up
+
+On November 11 the owner asked Task09 to scrub the reconstruction walkthrough
+against current code and make it more visual and less text-heavy for humans.
+This follow-up updates existing open PR96; it does not create another walkthrough
+PR. The owner also requested moving LESSONS into docs/lessons; the stack root
+queued that as separate Task10 after this update. LESSONS is outside this scope.
+This supersedes the earlier “last authorized task”/no-successor planning statement
+only for these newly authorized follow-ups. No merge or auto-merge is authorized.
+
+Route: non-normative scientific documentation with fresh independent source/math
+advice, one named documentation author, then separate fresh final scientific/source
+and human/visual/evidence reviews of the exact passing candidate. No scientific
+implementation, new custom oracle, fabricated product-red tests or policy change.
+The author owns only the walkthrough and associated readable-reconstruction
+figure assets; coordinator owns this sole handoff, ignored proof and PR metadata.
+Runtime/tests/fixtures/configuration/gates/rules, Serena tooling and prior stack
+work remain outside follow-up ownership. Existing contracts remain authoritative.
+
+The rewritten guide leads with the pipeline and diagrams, keeps exact math and
+boundary conventions in useful deep reads, corrects stale status/provenance and
+checks current source anchors. Figure axes/units/arrows/legends/captions must be
+readable at normal size. All figures are conceptual analytical explanations,
+not new physical recovery, resolution or C-executable equivalence evidence.
+Rendered previews and reproduction/check details are retained in the author proof.
+Any actual code defect is report-only for a separate task.
+
+PR96 was confirmed open/unmerged at the original Task09 head
+`3187d57a0d2a88a2a33f1b89421a4da30507a95b`, tree
+`cd754f450e60a4d95497d779bd3737b9e67a317f`. Task08 remains the exact base
+`73ee450426e4136d45f5fe05b8f783f58a5b2dae`, tree
+`7e3854c9490d8d3994a54c1ae5252e102642ccae`; remote branch identities and
+ancestry were rechecked before editing. Preserve newer work and normal-fast-forward
+only. Both original Task09 CI platforms subsequently passed, as retained in the
+original completion/stack ledger; this does not certify the changed follow-up.
+
+Original durable evidence was archived before the canonical gate can overwrite
+reports: `artifacts/readability-09-walkthrough/original-3187d57/evidence.tar.gz`
+contains original Task09 proof/completion/stack ledger, verification receipt/logs,
+coverage, same-run M25 and both wheels. Archive SHA256
+`8afb3c361db53ce08f41f8923691d819186f6c6b7f382ef981652a42a6c1dfad`;
+original receipt SHA256
+`0b7782ed5bee1b71a2f3dbf0c7e5fa6eb69725ed01f22514f1dd5a89a7449b84`.
+Original candidate passed all13 phases,3100tests/47warnings,1170tracked manifest
+entries/three input fingerprints,36owned files,M25 increment0bytes under33554432,
+separate installed wheels and audit; fresh original reviewer ACCEPT. Detailed
+original coverage/counts/wheels/limitations and all charges remain archived and
+in `artifacts/readability-09/completion.json` and its recursively linked records.
+
+Follow-up setup reconfirmed own Python3.13.12, uv0.12.19, Temurin21.0.7+6 via
+SIMRECON_JAVA and locked isolated preflight PASS. Fresh collaboration roles use
+fork-none requested Sol/high and work directly; no nativeCLI/auth retry. Requested
+settings do not prove actual serving attribution. Tokens/cost/full elapsed unknown;
+human numeric budgets not set. Advisor and author launches, source/read/render
+checks, corrections, final reviews, full verification and submission are additive
+to all prior charges, never replacements. Preserve Task07's interrupted full run
+and same-candidate recovery, Task04's diagnosed unchanged successful CI retry,
+and Task09's four MCP attempts/two outer successes/config failure/incomplete
+prematurely stopped sandbox startup and all earlier charges.
+
+Follow-up prepared proof: all five conceptual SVGs have selectable labels and
+accessible titles/descriptions; the co-located generator is documentation-only
+reproduction material, adds no dependency or verification gate, and never calls
+reconstruction. The visible reading path is about70% shorter by the recorded
+word-token count; exact detail remains in ten expandable deep reads. All16original
+section anchors/38source backlinks,57relative Markdown links/46source-line
+bounds,31equations,SVG XML/accessibility,byte-identical regeneration,explicit
+generator Ruff lint/format and whitespace checks PASS. Coordinator independently
+confirms frozen scope and inspects all five actual SVGs rendered by Chromium156
+at900px width, as well as the author PNGs. Three initial layout defects and
+Matplotlib trailing whitespace were diagnosed/corrected before freezing.
+
+Retained follow-up tooling charges: one author venv-Matplotlib import probe failed
+(the base interpreter's existing plotting packages were used without dependency
+changes); initial generator style/whitespace corrections; one optional sandbox
+Chromium socket/SIGTRAP failure; one unavailable ImageMagick rsvg-convert delegate;
+then coordinator's same local browser-render command on the supported outer path
+PASS. Failed optional attempts supply no proof. Successful actual-SVG screenshots
+and browser version are retained separately. The scientific advisor's early bead
+line-number pointer was corrected after source inspection. No product/test repair
+or gate change followed these documentation/tooling findings.
+
 ## Current state
 
-Task09 is being prepared in `/workspace/simrecon-readability-09`, branch
-`codex/readability-09-serena`, from verified pushed Task08
-`73ee450426e4136d45f5fe05b8f783f58a5b2dae`, tree
-`7e3854c9490d8d3994a54c1ae5252e102642ccae`, targeting
-`codex/readability-08-workflow-io` / PR95. Fresh bounded worker has completed the named
-navigation documentation and actual upstream external install/smoke evidence;
-coordinator preservation/docs checks PASS. No Task09 full verification or final
-review is claimed by this pointer.
+Task09 owner-authorized walkthrough follow-up is prepared in
+`/workspace/simrecon-readability-09`, branch `codex/readability-09-serena`, updating
+PR96 against verified Task08 PR95. Documentation-only author and independent
+scientific/source advisor completed the narrow ownership above; focused checks and
+actual figure rendering PASS, with final full gate and fresh acceptance pending. Existing Serena
+guide and actual external navigation evidence are retained. Source audit refreshes
+the stale workflow-limit/CE08 status wording and makes the rectangular bead-grid
+convention explicit; no runtime correction is authorized by these prose findings.
 
-Next: commit this prepared candidate, complete the exact-candidate full gate,
-obtain fresh independent bounded and policy-impact
-assessment, then push/open one final stacked PR. Final identities/results,
-review/receipt/CI and post-commit charges belong outside verified tracked
-bytes in ignored `artifacts/readability-09/completion.json`, verification
-evidence and PR/conversation. This completion points to Task08 completion and
-recursively retains the complete nine-task history; root returns final chain.
+Next: commit the completed documentation candidate, run the unchanged full13-phase
+`make verify` on the clean exact candidate with current native reports, same-run
+M25, installed wheels and audit, then obtain fresh separate scientific/source and
+human/visual/evidence acceptance before the normal fast-forward PR96 update.
+Final identities/results, figure/render proof, review/receipt/CI and cumulative
+post-commit charges belong outside verified tracked bytes in ignored
+`artifacts/readability-09-walkthrough/completion.json` and PR/conversation.
+Root monitors both configured CI platforms (pending is not PASS), then launches
+separate Task10 for the LESSONS move after this update is fully verified,
+independently accepted and pushed. No merge/auto-merge.
 
-Cleanup: keep current checkout/.venv, durable evidence, external pinned Serena
-installation and required language-server/project state, predecessor/shared
-reader inputs/caches and uncertain ordinary runner scratch. Worker closed all owned
-smoke processes. No confirmed disposable target is selected; no
-unrelated worktree removal. Final process/cleanup facts go in ignored completion.
+Cleanup: keep current checkout/.venv, original archive and durable proof/previews,
+external pinned Serena installation/state, predecessor worktrees and shared
+reader inputs/caches. Rendering/check processes are closed. The author identified only its three
+/tmp editing scripts and /tmp Matplotlib cache as disposable; coordinator removed
+those exact targets and confirmed them absent, retaining all durable evidence. No
+cleanup error or unrelated deletion. Final cleanup/process facts belong
+in ignored completion. The original nine-task history and all charges remain
+retained through the original completion and sole cumulative handoff.
