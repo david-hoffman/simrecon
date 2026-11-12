@@ -289,9 +289,17 @@ that retain categories, messages, locations and failure status. Disclose exposur
 and stop blind work for routing.
 
 Installed doctor commands remain `uv run --locked delivery doctor --check`
-(report only) and `uv run --locked delivery doctor` (bounded documentation patch
-within named human-requested scope and fresh independent policy review before
-activation). [Doctor scope](tasks/setup-doctor.md) and
+(writes nothing, including reports) and `uv run --locked delivery doctor` (ordinary
+documentation patch within named human-requested scope and fresh independent policy
+review before activation). An explicitly requested full-backlog report-only pass uses
+the same entry point/procedure, with no new flag or fixes. It inventories every baseline
+lesson, groups semantically then analyzes mechanisms, reconciles remote work before
+authorized issue publication and hands stable findings to normal intake. Observations
+retain confidence; scoped append-only handling records live under
+[lessons/dispositions/](lessons/README.md), separate from immutable observations. Reports
+derive from named source records, never an authoritative shared mutable index. A
+coordinator may separately capture a returned check report under actual write authority.
+[Doctor scope](tasks/setup-doctor.md) and
 [procedure](agentic-software-delivery-v1.0/DOCTOR-PROMPT.md) bind. No check authorizes
 merge, release or external messaging.
 

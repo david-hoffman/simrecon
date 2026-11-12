@@ -1,0 +1,1326 @@
+{
+  "cohort": 4,
+  "baseline": "b05fc782522a81ebd92c10726dac731a26e5a026",
+  "status": "evidence findings and proposed handling only; no activated dispositions or publication",
+  "lesson_count": 50,
+  "lessons": [
+    {
+      "id": "20261027T000006Z-pr53-coordinator-file-limit-caps-coverage",
+      "bucket": "instrumented-resource-limits",
+      "summary": "Per-process file limits also constrain coverage databases",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Retired 128-byte study child fixture; retained real write-failure controls restore file limits before native coverage persistence. No current uncorrected instrumentation failure established.",
+      "evidence": [
+        "docs/lessons/20261027T000006Z-pr53-coordinator-file-limit-caps-coverage.md",
+        "tests/test_imagej_export.py:1042",
+        "tests/shared_node_baseline_fixture.py:71",
+        "docs/operations/evidence/pr53-H2-reproduction.json"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261027T051156Z-pr53-coordinator-worktree-disk-accounting",
+      "bucket": "cleanup-accounting",
+      "summary": "Check available space separately from removed file sizes",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Historical archive and free-space observations are already bounded. Current housekeeping requires exact target/status/absence checks and makes size measurements optional; no current disposal request or storage gap is evidenced.",
+      "evidence": [
+        "docs/lessons/20261027T051156Z-pr53-coordinator-worktree-disk-accounting.md",
+        "docs/operations/fixture-cleanup.md:7",
+        "AGENTS.md"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261027T101839Z-pr53-coordinator-independent-error-scales",
+      "bucket": "finite-arithmetic-oracles",
+      "summary": "Absolute error statistics need their own representable scale",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Useful extreme-range metric advice, but the original evaluator and its dedicated test are retired by CE01. No active equivalent metric or current absolute-error defect was identified; retirement does not prove the historical numerical correction anew.",
+      "evidence": [
+        "docs/lessons/20261027T101839Z-pr53-coordinator-independent-error-scales.md",
+        "docs/contracts/c-equivalence-retirement-v1.md:15",
+        "docs/PROJECT.md:100",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:81"
+      ],
+      "related_lessons": [
+        "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+        "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+        "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+        "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+        "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty",
+        "20261107T024115Z-ce08-coordinator-observer-rounding-claims"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261028T143227Z-pr53-recovery-coordinator-illumination-control",
+      "bucket": "historical-recovery-controls",
+      "summary": "Separate illumination error from source recovery with a frozen-source control",
+      "handling": "deferred",
+      "scope": "Historical PR53 algorithm; excludes revived solver/product work.",
+      "rationale": "The one-exposure control remains valid historical evidence, while remaining exposures and convergence are explicitly unmeasured. Current retirement/rebuild supersedes the old solver route; CE08 forbids old scene/RA15 runs, so no current implementation action follows automatically.",
+      "evidence": [
+        "docs/lessons/20261028T143227Z-pr53-recovery-coordinator-illumination-control.md",
+        "docs/reports/pr53-recovery-investigation.md:68",
+        "docs/reports/pr53-recovery-investigation.md:109",
+        "docs/contracts/c-equivalence-retirement-v1.md:15",
+        "docs/tasks/c-equivalence-independent-acceptance.md:5"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Owner explicitly reopens historical PR53 comparison under a concrete scope and retained old source/environment, or independent current evidence establishes applicability to rebuilt workflow.",
+      "relationships": [],
+      "completion_conditions": "No current execution: owner must reopen the historical comparison with explicit scope before the remaining exposures/convergence work.",
+      "work_links": [],
+      "revisit_owner": "Repository owner/coordinator at explicit historical-study intake."
+    },
+    {
+      "id": "20261102T165615Z-c-equivalence-intake-verify-measurement-owner",
+      "bucket": "measurement-provenance",
+      "summary": "Trace a measurement to its actual emitter before changing a gate",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "The correction concerns attribution of an existing gate. Current PROJECT explicitly identifies M25 as retained MRC-conversion evidence; no missing gate migration remains. General dependency tracing is reusable advice.",
+      "evidence": [
+        "docs/lessons/20261102T165615Z-c-equivalence-intake-verify-measurement-owner.md",
+        "docs/PROJECT.md:184",
+        "docs/contracts/c-equivalence-retirement-v1.md"
+      ],
+      "related_lessons": [
+        "20261104T045108Z-ce06-coordinator-native-usage-counter"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261102T175152Z-ce01-coordinator-git-fixture-temp-root",
+      "bucket": "fixture-environment-context",
+      "summary": "Unavailable-Git fixtures need a temporary root outside a real repository",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "The historical failure was diagnosed by external temporary roots rather than changed test meaning. Current apparatus task records the same ancestor-Git trap and corrected owned /tmp context; no new fixture change is justified by this lesson alone.",
+      "evidence": [
+        "docs/lessons/20261102T175152Z-ce01-coordinator-git-fixture-temp-root.md",
+        "docs/tasks/test-apparatus-optimization.md:63",
+        "tests/test_measurements_export.py",
+        "tests/test_verification_receipt.py"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261102T213329Z-ce02-coordinator-noise-design-invariance",
+      "bucket": "discriminating-numerical-oracles",
+      "summary": "Vary the quantity a numerical test intends to distinguish",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current keeper explicitly distinguishes uniform/irregular variance vectors rather than permutations. Historical review receipts are external and unavailable, so this pass records reusable oracle guidance without reasserting final historical acceptance.",
+      "evidence": [
+        "docs/lessons/20261102T213329Z-ce02-coordinator-noise-design-invariance.md",
+        "tests/test_c_preparation.py:876",
+        "docs/tasks/c-equivalence-preprocessing.md:64"
+      ],
+      "related_lessons": [
+        "20261102T230249Z-ce02-coordinator-diagnostic-causality",
+        "20261102T230249Z-ce02-coordinator-finite-inverse-resolution",
+        "20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations",
+        "20261106T223133Z-ce08-coordinator-probe-coordinate-link",
+        "20261107T011216Z-ce08-coordinator-presampling-physical-modes"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261102T230249Z-ce02-coordinator-diagnostic-causality",
+      "bucket": "discriminating-numerical-oracles",
+      "summary": "Error vocabulary is not a numerical-cause oracle",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current supplemental keeper accepts the documented error class with nonempty text and explicitly leaves cause verification to D. No new diagnostic vocabulary or cause-classifier requirement follows.",
+      "evidence": [
+        "docs/lessons/20261102T230249Z-ce02-coordinator-diagnostic-causality.md",
+        "tests/test_c_preparation.py:927",
+        "docs/contracts/c-equivalence-preprocessing-v1.md"
+      ],
+      "related_lessons": [
+        "20261102T213329Z-ce02-coordinator-noise-design-invariance",
+        "20261102T230249Z-ce02-coordinator-finite-inverse-resolution",
+        "20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations",
+        "20261106T223133Z-ce08-coordinator-probe-coordinate-link",
+        "20261107T011216Z-ce08-coordinator-presampling-physical-modes"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261102T230249Z-ce02-coordinator-finite-inverse-resolution",
+      "bucket": "discriminating-numerical-oracles",
+      "summary": "A finite phase inverse can still be unusable",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current clustered overdetermined regression retains a conditioning bound and permitted explicit numerical failure; original 232 focused passes alone did not certify renewed full/platform/D work. No current recurrence is evidenced; external final CE02 receipts were unavailable, so this is prevention advice rather than a new bug or independently requalified historical resolution.",
+      "evidence": [
+        "docs/lessons/20261102T230249Z-ce02-coordinator-finite-inverse-resolution.md",
+        "tests/test_c_preparation.py:927",
+        "src/simrecon/acquisition/preparation.py",
+        "docs/tasks/c-equivalence-preprocessing.md:64"
+      ],
+      "related_lessons": [
+        "20261102T213329Z-ce02-coordinator-noise-design-invariance",
+        "20261102T230249Z-ce02-coordinator-diagnostic-causality",
+        "20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations",
+        "20261106T223133Z-ce08-coordinator-probe-coordinate-link",
+        "20261107T011216Z-ce08-coordinator-presampling-physical-modes"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261102T235516Z-ce03-coordinator-caller-before-helper",
+      "bucket": "source-derived-operation-domains",
+      "summary": "Trace caller capabilities before helper parameters",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current source contract fixes the selected bead edge width at 10 and excludes helper-only public options. The lesson reports preimplementation scope correction; no current requested feature or scope gap remains.",
+      "evidence": [
+        "docs/lessons/20261102T235516Z-ce03-coordinator-caller-before-helper.md",
+        "docs/contracts/c-equivalence-optical-transfer-v1.md:165",
+        "src/simrecon/optical_transfer.py"
+      ],
+      "related_lessons": [
+        "20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes",
+        "20261103T033106Z-ce04-coordinator-empty-traversal-domain",
+        "20261104T045108Z-ce06-coordinator-source-padding",
+        "20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261102T235516Z-ce03-coordinator-public-file-allowlist",
+      "bucket": "blind-packet-boundaries",
+      "summary": "Separate public-document scope from implementation blindness",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Stable file allowlists are reusable packet advice. AGENTS currently distinguishes approved public packets from excluded implementation/history, and this investigation found no live CE03 packet needing repair. Original stopped launches stay historical charges.",
+      "evidence": [
+        "docs/lessons/20261102T235516Z-ce03-coordinator-public-file-allowlist.md",
+        "AGENTS.md",
+        "docs/tasks/c-equivalence-optical-transfer.md"
+      ],
+      "related_lessons": [
+        "20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets",
+        "20261103T044512Z-ce04-coordinator-exact-blind-input-extracts",
+        "20261104T045108Z-ce06-coordinator-blind-skill-excerpt",
+        "20261106T202111Z-ce07-coordinator-public-directory-metadata-scope"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes",
+      "bucket": "source-derived-operation-domains",
+      "summary": "Separate source index counts from native allocation bytes",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current contract explicitly separates signed32 evaluated counts from size_t allocation bytes and native empty-axis extents. No blanket 2^31-byte cap remains in the opened contract; historical FFT executable/ABI qualification remains outside the claim.",
+      "evidence": [
+        "docs/lessons/20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes.md",
+        "docs/contracts/c-equivalence-optical-transfer-v1.md:41",
+        "src/simrecon/optical_transfer.py:164"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-caller-before-helper",
+        "20261103T033106Z-ce04-coordinator-empty-traversal-domain",
+        "20261104T045108Z-ce06-coordinator-source-padding",
+        "20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets",
+      "bucket": "blind-packet-boundaries",
+      "summary": "Standalone review packets need an absolute evidence root",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "This is a corrected packet-path incident and future packet-preparation guidance. No active packet with unresolved root paths was identified; absent private evidence cannot establish a new current path failure.",
+      "evidence": [
+        "docs/lessons/20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets.md",
+        "docs/tasks/c-equivalence-optical-transfer.md",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-public-file-allowlist",
+        "20261103T044512Z-ce04-coordinator-exact-blind-input-extracts",
+        "20261104T045108Z-ce06-coordinator-blind-skill-excerpt",
+        "20261106T202111Z-ce07-coordinator-public-directory-metadata-scope"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+      "bucket": "finite-arithmetic-oracles",
+      "summary": "Dense equivalent formulas can change exact finite decisions",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "The finite tie issue was an oracle defect with specific reviewed correction recorded in the lesson. Current claim is limited to reusable exact-null/tie guidance; no new discrete-decision counterexample against current tests was found and private B4 records were unavailable.",
+      "evidence": [
+        "docs/lessons/20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles.md",
+        "docs/contracts/c-equivalence-optical-transfer-v1.md",
+        "tests/test_c_otf.py",
+        "docs/tasks/c-equivalence-optical-transfer.md"
+      ],
+      "related_lessons": [
+        "20261027T101839Z-pr53-coordinator-independent-error-scales",
+        "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+        "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+        "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+        "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty",
+        "20261107T024115Z-ce08-coordinator-observer-rounding-claims"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T020523Z-ce03-coordinator-external-protocol-lock-parent",
+      "bucket": "external-evidence-reservation-parent",
+      "summary": "External protocol evidence does not prepare the fixed reader lock parent",
+      "handling": "untriaged",
+      "scope": "Current fixture/environment preparation with external evidence root; preserve lock/cache lifecycle.",
+      "rationale": "Current constructor creates overridden RUN but not fixed EVIDENCE; entry creates only the child lock. Root isolated current-class probe reproduces missing-parent FileNotFoundError, succeeds with parent prepared, and preserves preexisting-lock rejection. Missing documented preparation is a concrete fixture/environment gap, not scientific product-red.",
+      "evidence": [
+        "docs/lessons/20261103T020523Z-ce03-coordinator-external-protocol-lock-parent.md",
+        "tests/shared_node_baseline_public_callers_fixture.py:26",
+        "tests/shared_node_baseline_public_callers_fixture.py:332",
+        "tests/shared_node_baseline_public_callers_fixture.py:361",
+        "tests/test_shared_node_baseline_public_callers.py:52",
+        "tests/test_shared_node_baseline_public_callers.py:878",
+        "docs/reports/lessons-doctor-2026-11-11/reader-lock-probe.json",
+        "docs/contracts/shared-node-baseline-compatibility-v1.md:69"
+      ],
+      "related_lessons": [],
+      "finding": "LESSONS-DOCTOR-01-F002",
+      "revisit": "After documentation-prerequisite versus fixture-lifecycle route is settled and independently reviewed, verify absent-parent, prepared-parent, and preexisting-lock controls.",
+      "relationships": [],
+      "completion_conditions": "Settle minimal prerequisite versus authorized fixture change, preserve lock/cache behavior, and verify the chosen outcome.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T033106Z-ce04-coordinator-empty-traversal-domain",
+      "bucket": "source-derived-operation-domains",
+      "summary": "Preserve empty traversals when classifying numerical singularities",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current contract explicitly retains Y=1 empty filtering/recombination and evaluates damping singularity only when visited. This is source-domain guidance; no current blanket singleton rejection was established.",
+      "evidence": [
+        "docs/lessons/20261103T033106Z-ce04-coordinator-empty-traversal-domain.md",
+        "docs/contracts/c-equivalence-known-parameters-v1.md:164",
+        "docs/contracts/c-equivalence-known-parameters-v1.md:358",
+        "src/simrecon/reconstruction/known_parameters.py"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-caller-before-helper",
+        "20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes",
+        "20261104T045108Z-ce06-coordinator-source-padding",
+        "20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T044512Z-ce04-coordinator-exact-blind-input-extracts",
+      "bucket": "blind-packet-boundaries",
+      "summary": "Extract mixed-scope documents before blind launches",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Exact extracts are already required for narrower public packet portions in current compatibility contract, while current AGENTS retains blindness/exposure routing. No current broken selector packet was found.",
+      "evidence": [
+        "docs/lessons/20261103T044512Z-ce04-coordinator-exact-blind-input-extracts.md",
+        "docs/contracts/shared-node-baseline-compatibility-v1.md:194",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-public-file-allowlist",
+        "20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets",
+        "20261104T045108Z-ce06-coordinator-blind-skill-excerpt",
+        "20261106T202111Z-ce07-coordinator-public-directory-metadata-scope"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+      "bucket": "finite-arithmetic-oracles",
+      "summary": "Use absolute error near a cosine zero",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current contract allows binary64 rounding and finite supplied operands. The lesson is reusable near-zero absolute-budget guidance; no current relative-only invalid comparison was demonstrated.",
+      "evidence": [
+        "docs/lessons/20261103T044512Z-ce04-coordinator-near-zero-oracle-budget.md",
+        "docs/contracts/c-equivalence-known-parameters-v1.md:358",
+        "tests/test_c_known_filter.py"
+      ],
+      "related_lessons": [
+        "20261027T101839Z-pr53-coordinator-independent-error-scales",
+        "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+        "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+        "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+        "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty",
+        "20261107T024115Z-ce08-coordinator-observer-rounding-claims"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+      "bucket": "finite-arithmetic-oracles",
+      "summary": "Derive finite-sum oracles from actual supplied operands",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current contract expressly states finite bands are authoritative and forbids residual removal to force an ideal constant. The historical invalid ideal-intensity assertion is not current product-red.",
+      "evidence": [
+        "docs/lessons/20261103T051249Z-ce04-coordinator-actual-finite-operands.md",
+        "docs/contracts/c-equivalence-known-parameters-v1.md:358",
+        "tests/test_c_known_filter.py"
+      ],
+      "related_lessons": [
+        "20261027T101839Z-pr53-coordinator-independent-error-scales",
+        "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+        "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+        "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+        "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty",
+        "20261107T024115Z-ce08-coordinator-observer-rounding-claims"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+      "bucket": "numeric-representation-validation",
+      "summary": "Validate declared NumPy kinds as well as storage width",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current known-parameter array validator uses exact dtype characters and widens admitted components before magnitude comparison. The platform-specific incident informs prevention, but local C logs needed to requalify historical verification are absent.",
+      "evidence": [
+        "docs/lessons/20261103T052754Z-ce04-c1-declared-numpy-kinds.md",
+        "src/simrecon/reconstruction/known_parameters.py:152",
+        "docs/contracts/c-equivalence-known-parameters-v1.md:84"
+      ],
+      "related_lessons": [
+        "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+        "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+        "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+        "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+        "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination",
+        "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+      "bucket": "numeric-representation-validation",
+      "summary": "Preserve scalar values while checking numerical bounds",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current numerical-domain contracts retain permitted scalar values and exact supplied/converted magnitude distinctions. No fresh counterexample to current scalar validation was found; historical private scalar-correction receipts were not available for resolution attestation.",
+      "evidence": [
+        "docs/lessons/20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation.md",
+        "docs/contracts/c-equivalence-known-parameters-v1.md:91",
+        "src/simrecon/reconstruction/known_parameters.py"
+      ],
+      "related_lessons": [
+        "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+        "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+        "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+        "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+        "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination",
+        "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+      "bucket": "numeric-representation-validation",
+      "summary": "Standard real kinds need explicit dtype checks before range comparison",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current estimator checks exact e/f/d dtype characters before copying to binary64 and comparing magnitude. No new current gap is established; the broader platform qualification advice is not a separate feature request.",
+      "evidence": [
+        "docs/lessons/20261103T185730Z-ce05-coordinator-standard-real-kinds.md",
+        "src/simrecon/reconstruction/parameter_estimation.py:171",
+        "docs/contracts/c-equivalence-carrier-modulation-v1.md"
+      ],
+      "related_lessons": [
+        "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+        "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+        "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+        "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+        "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination",
+        "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "A read-only decoded view can still violate owned-storage input rules",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "The incident was artifact transport, not product science. Current OpticalTransfer ownership requirements remain explicit; no active decoder violating them was identified. Reusable copy-after-final-reshape advice does not commission a generic decoder.",
+      "evidence": [
+        "docs/lessons/20261103T190021Z-ce05-coordinator-decoder-storage-ownership.md",
+        "docs/contracts/c-equivalence-optical-transfer-v1.md",
+        "src/simrecon/optical_transfer.py",
+        "docs/tasks/c-equivalence-carrier-modulation.md"
+      ],
+      "related_lessons": [
+        "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+        "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+        "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+        "20261104T195927Z-ce06-coordinator-validated-values",
+        "20261106T133801Z-ce07-c-validation-before-identity-copy",
+        "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+        "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-blind-skill-excerpt",
+      "bucket": "blind-packet-boundaries",
+      "summary": "Supply the exact permitted skill excerpt to a blind role",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current authoring-question section and public-contract extract rules support the lesson. No live blind CE06 author packet was found; do not issue work merely because old overread records exist.",
+      "evidence": [
+        "docs/lessons/20261104T045108Z-ce06-coordinator-blind-skill-excerpt.md",
+        "AGENTS.md",
+        ".agents/skills/test-audit/SKILL.md",
+        "docs/contracts/shared-node-baseline-compatibility-v1.md:194"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-public-file-allowlist",
+        "20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets",
+        "20261103T044512Z-ce04-coordinator-exact-blind-input-extracts",
+        "20261106T202111Z-ce07-coordinator-public-directory-metadata-scope"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+      "bucket": "finite-arithmetic-oracles",
+      "summary": "An algebraic cancellation is not a finite branch proof",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "The lesson independently disproved an unconditional real-arithmetic zero expectation and retained an exact identical-input witness. Current acquisition contract specifies finite operation mapping; no new numerical floor or current bad expectation was established.",
+      "evidence": [
+        "docs/lessons/20261104T045108Z-ce06-coordinator-exact-cancellation-oracle.md",
+        "docs/contracts/c-equivalence-acquisition-modes-v1.md",
+        "tests/test_c_acquisition_boundary.py"
+      ],
+      "related_lessons": [
+        "20261027T101839Z-pr53-coordinator-independent-error-scales",
+        "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+        "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+        "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+        "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty",
+        "20261107T024115Z-ce08-coordinator-observer-rounding-claims"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-native-usage-counter",
+      "bucket": "measurement-provenance",
+      "summary": "Native resumed-session token counters are cumulative",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current AGENTS explicitly forbids double counting repeated cumulative counters and unknown-as-zero accounting. Native CLI semantics may need requalification on future CLI changes, but no current duplicate aggregate is shown.",
+      "evidence": [
+        "docs/lessons/20261104T045108Z-ce06-coordinator-native-usage-counter.md",
+        "AGENTS.md",
+        "docs/tasks/c-equivalence-acquisition-modes.md"
+      ],
+      "related_lessons": [
+        "20261102T165615Z-c-equivalence-intake-verify-measurement-owner"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-source-padding",
+      "bucket": "source-derived-operation-domains",
+      "summary": "Source edge bounds depend on the actual caller and allocation",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current acquisition contract retains bead X>=8,Y>=10,Y<=X+2 padding bounds separately from specimen edges. No erroneous inherited specimen restriction remains in the opened contract; executable historical C behavior stays unqualified.",
+      "evidence": [
+        "docs/lessons/20261104T045108Z-ce06-coordinator-source-padding.md",
+        "docs/contracts/c-equivalence-acquisition-modes-v1.md:856",
+        "src/simrecon/optical_transfer.py"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-caller-before-helper",
+        "20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes",
+        "20261103T033106Z-ce04-coordinator-empty-traversal-domain",
+        "20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "Check the full declared count even when used arrays are small",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current downstream contract and boundary tests preserve aggregate declared signed-width limits with adjacent legal controls. No new present acceptance of the lesson malformed aggregate was observed; private D/correction receipts are unavailable.",
+      "evidence": [
+        "docs/lessons/20261104T063647Z-ce06-coordinator-aggregate-declared-count.md",
+        "docs/contracts/c-equivalence-acquisition-modes-v1.md:389",
+        "src/simrecon/acquisition/layout.py",
+        "tests/test_c_acquisition_boundary.py"
+      ],
+      "related_lessons": [
+        "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+        "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+        "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+        "20261104T195927Z-ce06-coordinator-validated-values",
+        "20261106T133801Z-ce07-c-validation-before-identity-copy",
+        "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+        "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "Compare provenance values after checking their exact types",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current contract requires the actual immutable ten-file tuple and exact leaf schema. Boundary controls distinguish malformed provenance; no new mutable-equality acceptance was demonstrated.",
+      "evidence": [
+        "docs/lessons/20261104T063647Z-ce06-coordinator-exact-provenance-leaves.md",
+        "docs/contracts/c-equivalence-acquisition-modes-v1.md:799",
+        "docs/contracts/c-equivalence-acquisition-modes-v1.md:820",
+        "tests/test_c_acquisition_boundary.py"
+      ],
+      "related_lessons": [
+        "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+        "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+        "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+        "20261104T195927Z-ce06-coordinator-validated-values",
+        "20261106T133801Z-ce07-c-validation-before-identity-copy",
+        "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+        "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "Resolve a literal selector before both validation and routing",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current selector tests include underlying literal text, deceptive equality, and distinct routed results. The lesson documents a scoped correction; the general resolve-once practice creates no additional current requirement.",
+      "evidence": [
+        "docs/lessons/20261104T081421Z-ce06-coordinator-resolve-selector-once.md",
+        "tests/test_c_acquisition_boundary.py:985",
+        "src/simrecon/acquisition/layout.py",
+        "src/simrecon/acquisition/modes.py"
+      ],
+      "related_lessons": [
+        "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+        "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+        "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+        "20261104T195927Z-ce06-coordinator-validated-values",
+        "20261106T133801Z-ce07-c-validation-before-identity-copy",
+        "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+        "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261104T195927Z-ce06-coordinator-validated-values",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "Use the value that passed validation",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current boundary keepers include genuinely changed alternate records and inconsistent checked values across real consumers. No additional current checked-value mismatch is evidenced; tests alone are not claimed as proof of historical resolution.",
+      "evidence": [
+        "docs/lessons/20261104T195927Z-ce06-coordinator-validated-values.md",
+        "tests/test_c_acquisition_boundary.py:1624",
+        "tests/test_c_acquisition_boundary.py:1937",
+        "src/simrecon/acquisition/layout.py"
+      ],
+      "related_lessons": [
+        "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+        "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+        "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+        "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+        "20261106T133801Z-ce07-c-validation-before-identity-copy",
+        "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+        "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+      "bucket": "numeric-representation-validation",
+      "summary": "Widen signed NumPy values before taking their magnitude",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current scalar helper extracts NumPy scalar value before abs and retains supplied/converted limits; dedicated positive signed-minimum keeper remains. This is reusable advice, with no current recurrence shown.",
+      "evidence": [
+        "docs/lessons/20261105T034222Z-ce06-coordinator-signed-scalar-magnitude.md",
+        "src/simrecon/acquisition/layout.py:72",
+        "tests/test_c_acquisition_boundary.py:2749"
+      ],
+      "related_lessons": [
+        "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+        "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+        "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+        "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+        "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination",
+        "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+      "bucket": "numeric-representation-validation",
+      "summary": "Range comparisons must represent the bound",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current array comparison uses an explicit binary64 bound, and retained public keepers cover admitted binary16 values. No current bound-promotion defect was demonstrated; cross-platform claims remain limited.",
+      "evidence": [
+        "docs/lessons/20261105T053039Z-ce06-coordinator-numpy-bound-promotion.md",
+        "src/simrecon/acquisition/layout.py:107",
+        "tests/test_c_acquisition_boundary.py:2886"
+      ],
+      "related_lessons": [
+        "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+        "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+        "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+        "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+        "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination",
+        "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess",
+      "bucket": "source-derived-operation-domains",
+      "summary": "Resolve workflow carrier guesses from acquisition phase count",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current workflow derives norders_in from effective acquisition phases before output-order use, and keeps separate linkage carriers. No current P5/O2 divisor regression is shown.",
+      "evidence": [
+        "docs/lessons/20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess.md",
+        "src/simrecon/workflow/reconstruct.py:165",
+        "docs/contracts/c-equivalence-workflow-v1.md",
+        "docs/contracts/c-equivalence-workflow-map-v1.md"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-caller-before-helper",
+        "20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes",
+        "20261103T033106Z-ce04-coordinator-empty-traversal-domain",
+        "20261104T045108Z-ce06-coordinator-source-padding"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty",
+      "bucket": "finite-arithmetic-oracles",
+      "summary": "Keep mixed data and solver uncertainty in cubic bounds",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current oracle retains explicit mixed dA/data terms and joint inverse enclosure. Lesson scope is conditional model algebra, not blanket backend certification. No current missing mixed term was found in the narrowed inspection.",
+      "evidence": [
+        "docs/lessons/20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty.md",
+        "tests/c_workflow_oracle.py:2175",
+        "docs/contracts/c-equivalence-workflow-v1.md"
+      ],
+      "related_lessons": [
+        "20261027T101839Z-pr53-coordinator-independent-error-scales",
+        "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+        "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+        "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+        "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+        "20261107T024115Z-ce08-coordinator-observer-rounding-claims"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations",
+      "bucket": "discriminating-numerical-oracles",
+      "summary": "Read resolved optional declarations in test expectations",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current keeper reads case.resolved()[1][use_time0_carriers], matching the documented default. The historical correction remains supplemental; no new test-first evidence or current default KeyError is claimed.",
+      "evidence": [
+        "docs/lessons/20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations.md",
+        "tests/test_c_workflow_numerical.py:287",
+        "tests/c_workflow_oracle.py",
+        "docs/contracts/c-equivalence-workflow-v1.md"
+      ],
+      "related_lessons": [
+        "20261102T213329Z-ce02-coordinator-noise-design-invariance",
+        "20261102T230249Z-ce02-coordinator-diagnostic-causality",
+        "20261102T230249Z-ce02-coordinator-finite-inverse-resolution",
+        "20261106T223133Z-ce08-coordinator-probe-coordinate-link",
+        "20261107T011216Z-ce08-coordinator-presampling-physical-modes"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T133801Z-ce07-c-validation-before-identity-copy",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "Validate before identity hashing can materialize arrays",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current workflow validates raw geometry/routes and transfer inputs before metadata snapshot/hash collection. No current premature identity materialization was established; absent local 472-case records prevent independent historical-resolution qualification.",
+      "evidence": [
+        "docs/lessons/20261106T133801Z-ce07-c-validation-before-identity-copy.md",
+        "src/simrecon/workflow/reconstruct.py:131",
+        "src/simrecon/workflow/identity.py:105",
+        "src/simrecon/workflow/transfer.py"
+      ],
+      "related_lessons": [
+        "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+        "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+        "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+        "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+        "20261104T195927Z-ce06-coordinator-validated-values",
+        "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+        "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "Preserve original identities for accepted array storage",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current identity collector admits ndarray subclasses and hashes direct underlying ndarray views. This matches the described repair, but unavailable local before/after/final records limit historical resolution claims; no new original-identity omission is evidenced.",
+      "evidence": [
+        "docs/lessons/20261106T191513Z-ce07-coordinator-accepted-array-provenance.md",
+        "src/simrecon/workflow/identity.py:105",
+        "src/simrecon/workflow/identity.py:124",
+        "tests/test_c_workflow_records.py"
+      ],
+      "related_lessons": [
+        "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+        "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+        "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+        "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+        "20261104T195927Z-ce06-coordinator-validated-values",
+        "20261106T133801Z-ce07-c-validation-before-identity-copy",
+        "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination",
+      "bucket": "numeric-representation-validation",
+      "summary": "Convert admitted NumPy real snapshots with a terminating conversion",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current snapshot conversion handles np.floating directly with float(value) before np.generic.item recursion. No current termination gap is found; recorded longdouble observations remain platform-specific.",
+      "evidence": [
+        "docs/lessons/20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination.md",
+        "src/simrecon/workflow/identity.py:21",
+        "tests/test_c_workflow_records.py"
+      ],
+      "related_lessons": [
+        "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+        "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+        "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+        "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+        "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+        "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity",
+      "bucket": "numeric-representation-validation",
+      "summary": "Hash canonical numerical storage through a byte view",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current canonical hashing views normalized storage as uint8 before memoryview hashing. This addresses format support separately from identity semantics; no new buffer-export gap is shown and original private four-case logs are unavailable.",
+      "evidence": [
+        "docs/lessons/20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity.md",
+        "src/simrecon/workflow/identity.py:105",
+        "tests/test_c_workflow_records.py"
+      ],
+      "related_lessons": [
+        "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+        "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+        "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+        "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+        "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+        "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T202111Z-ce07-coordinator-public-directory-metadata-scope",
+      "bucket": "blind-packet-boundaries",
+      "summary": "Distinguish payload reads from public directory metadata",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Public-directory metadata permission is future packet precision advice. Current AGENTS protects payload blindness and requires fresh review after exposure; no current B7-like packet violation is being repaired.",
+      "evidence": [
+        "docs/lessons/20261106T202111Z-ce07-coordinator-public-directory-metadata-scope.md",
+        "AGENTS.md",
+        "docs/tasks/c-equivalence-workflow.md"
+      ],
+      "related_lessons": [
+        "20261102T235516Z-ce03-coordinator-public-file-allowlist",
+        "20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets",
+        "20261103T044512Z-ce04-coordinator-exact-blind-input-extracts",
+        "20261104T045108Z-ce06-coordinator-blind-skill-excerpt"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261106T223133Z-ce08-coordinator-probe-coordinate-link",
+      "bucket": "discriminating-numerical-oracles",
+      "summary": "Finite-search oracles must bind probes to bracket candidates",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current independent small-control checker derives required candidate from start/step/prior bracket and refits at that candidate. The lesson recorded correction pending at its timestamp; this pass sees the changed keeper but cannot reopen external B/final receipts to certify historical completion. No current displaced-probe loophole was demonstrated.",
+      "evidence": [
+        "docs/lessons/20261106T223133Z-ce08-coordinator-probe-coordinate-link.md",
+        "tests/test_c_independent_small_controls.py:167",
+        "tests/ce08_finite_search.py",
+        "docs/tasks/c-equivalence-independent-acceptance.md:11"
+      ],
+      "related_lessons": [
+        "20261102T213329Z-ce02-coordinator-noise-design-invariance",
+        "20261102T230249Z-ce02-coordinator-diagnostic-causality",
+        "20261102T230249Z-ce02-coordinator-finite-inverse-resolution",
+        "20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations",
+        "20261107T011216Z-ce08-coordinator-presampling-physical-modes"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261107T011216Z-ce08-coordinator-presampling-physical-modes",
+      "bucket": "discriminating-numerical-oracles",
+      "summary": "Apply optical support before sampling recovery controls",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current independent model synthesizes continuous modes and optical transfer before detector sampling, with declared dose/high-mode limits. No contrary current rasterization route was found. This is a scoped recovery control, not experimental resolution proof.",
+      "evidence": [
+        "docs/lessons/20261107T011216Z-ce08-coordinator-presampling-physical-modes.md",
+        "tests/ce08_recovery_model.py",
+        "tests/data/ce08-matched-recovery-v1.json",
+        "tests/test_c_independent_matched_recovery.py"
+      ],
+      "related_lessons": [
+        "20261102T213329Z-ce02-coordinator-noise-design-invariance",
+        "20261102T230249Z-ce02-coordinator-diagnostic-causality",
+        "20261102T230249Z-ce02-coordinator-finite-inverse-resolution",
+        "20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations",
+        "20261106T223133Z-ce08-coordinator-probe-coordinate-link"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261107T024115Z-ce08-coordinator-observer-rounding-claims",
+      "bucket": "finite-arithmetic-oracles",
+      "summary": "Separate observer precision from frozen numerical input",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current larger observer budget explicitly disclaims unique raw float32 rounding and uses closed cell consistency; the two midpoint-ambiguous samples are a stated claim limit, not a demonstrated product defect or obligation to force uniqueness.",
+      "evidence": [
+        "docs/lessons/20261107T024115Z-ce08-coordinator-observer-rounding-claims.md",
+        "tests/ce08_recovery_large_budget.py:129",
+        "tests/ce08_recovery_large_budget.py:247",
+        "docs/reports/data/ce08-independent-acceptance.json"
+      ],
+      "related_lessons": [
+        "20261027T101839Z-pr53-coordinator-independent-error-scales",
+        "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+        "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+        "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+        "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+        "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass",
+      "bucket": "validated-storage-and-provenance",
+      "summary": "The normal study runner needs plain array views",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current normal runner wraps both decoded memmaps in np.asarray; saved cell control records successful output checks. No current normal-path failure is demonstrated. The specific byte-for-byte normal-run receipt was not independently available here, so no broader runner acceptance claim follows.",
+      "evidence": [
+        "docs/lessons/20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass.md",
+        "docs/studies/simulation-capstone/reconstruction/run_study.py:57",
+        "docs/studies/simulation-capstone/figures/cell-close-pair.json"
+      ],
+      "related_lessons": [
+        "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+        "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+        "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+        "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+        "20261104T195927Z-ce06-coordinator-validated-values",
+        "20261106T133801Z-ce07-c-validation-before-identity-copy",
+        "20261106T191513Z-ce07-coordinator-accepted-array-provenance"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261109T061440Z-test-apparatus-coordinator-empty-affinity",
+      "bucket": "verification-scheduling",
+      "summary": "Two workers can still execute one serial group",
+      "handling": "tracked",
+      "scope": "Existing test-apparatus optimization task and selected measured canonical target.",
+      "rationale": "The original empty map is no longer current: measured whole-file groups are installed and task retains exact 598.57s full-gate evidence. Remaining measured optimization is already owned by the test-apparatus task: coordinator root serializes heavy runs, named bounded infrastructure worker owns groups, current next action is clean two-worker canonical attempt for selected 300s goal. Reuse that task; do not create duplicate optimization work.",
+      "evidence": [
+        "docs/lessons/20261109T061440Z-test-apparatus-coordinator-empty-affinity.md",
+        "devtools/src/simrecon_devtools/pytest_policy.py:9",
+        "docs/tasks/test-apparatus-optimization.md:12",
+        "docs/tasks/test-apparatus-optimization.md:26",
+        "docs/tasks/test-apparatus-optimization.md:117"
+      ],
+      "related_lessons": [],
+      "finding": "LESSONS-DOCTOR-01-F003",
+      "revisit": "Existing apparatus task freezes its next exact candidate and completes canonical two-worker run plus required fresh reviews for selected 300-second target.",
+      "relationships": [],
+      "completion_conditions": "Existing apparatus task must complete the selected exact-candidate 300-second canonical goal with required gates/reviews.",
+      "work_links": [
+        "docs/tasks/test-apparatus-optimization.md"
+      ]
+    },
+    {
+      "id": "20261109T081336Z-test-apparatus-coordinator-certified-query-keys",
+      "bucket": "certified-query-reuse",
+      "summary": "Reuse certified queries with complete uncertainty inputs",
+      "handling": "no-action",
+      "scope": "Historical incident and bounded future prevention; current baseline checked narrowly.",
+      "rationale": "Current local sampler keys retain nominal/observer/backend dtype, shape and bytes plus table/axial/order closure dependencies. Opened portable B report independently accepted complete keys and affected scope; subsequent 300s continuation is tracked separately, so this lesson adds no global cache or timing requirement.",
+      "evidence": [
+        "docs/lessons/20261109T081336Z-test-apparatus-coordinator-certified-query-keys.md",
+        "tests/c_acquisition_fixture.py:457",
+        "docs/reports/test-apparatus-audit/resume/scientific-b-REPORT.md.gz",
+        "docs/tasks/test-apparatus-optimization.md"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "None: reusable knowledge with no demonstrated current gap; no historical-resolution attestation.",
+      "work_links": []
+    },
+    {
+      "id": "20261110T193823Z-readability-02-coordinator-owned-measurement",
+      "bucket": "owned-measurement-inventory",
+      "summary": "Relocating tooling requires receipt inventory updates",
+      "handling": "resolved",
+      "scope": "Specific historical readability correction, matched to current code and explicit task verification record.",
+      "rationale": "Narrow Task02 relocation incident: current verifier explicitly enumerates simrecon_devtools alongside product/scripts, and separate installed-wheel tests remain. Task02 completion records exact full 13-phase pass, 32 measured files, both wheel checks, receipt digest and fresh independent acceptance. This resolves that relocation gap, not all future package moves.",
+      "evidence": [
+        "docs/lessons/20261110T193823Z-readability-02-coordinator-owned-measurement.md",
+        "scripts/verify.py:370",
+        "tests/test_installed_wheels.py:44",
+        "docs/tasks/readability-stack.md:307"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "Specific relocation/rename preservation mechanism meets the cited explicit task verification conditions; future unrelated changes require their own evidence.",
+      "work_links": [
+        "docs/tasks/readability-stack.md"
+      ]
+    },
+    {
+      "id": "20261111T013821Z-readability-04-coordinator-helper-payload-collision",
+      "bucket": "rename-diagnostic-preservation",
+      "summary": "Helper identifiers can also name diagnostic fields",
+      "handling": "resolved",
+      "scope": "Specific historical readability correction, matched to current code and explicit task verification record.",
+      "rationale": "Narrow Task04 accidental diagnostic-field rename was restored before verification; current event payload still uses correlation=. Task04 completion records exact candidate, fresh B/D acceptance, full local 13-phase pass and receipt digest; the lesson separately records preservation of all 27 source files. Future rename inventories remain reusable advice.",
+      "evidence": [
+        "docs/lessons/20261111T013821Z-readability-04-coordinator-helper-payload-collision.md",
+        "src/simrecon/reconstruction/parameter_estimation.py:615",
+        "docs/tasks/readability-stack.md:709"
+      ],
+      "related_lessons": [
+        "20261111T022918Z-readability-05-coordinator-decorated-diagnostic-names"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "Specific relocation/rename preservation mechanism meets the cited explicit task verification conditions; future unrelated changes require their own evidence.",
+      "work_links": [
+        "docs/tasks/readability-stack.md"
+      ]
+    },
+    {
+      "id": "20261111T022918Z-readability-05-coordinator-decorated-diagnostic-names",
+      "bucket": "rename-diagnostic-preservation",
+      "summary": "Decorated operation names are diagnostic inputs",
+      "handling": "resolved",
+      "scope": "Specific historical readability correction, matched to current code and explicit task verification record.",
+      "rationale": "Narrow Task05 preservation decision is visible: _operation still consumes function.__name__, decorated _sample_transfer identity remains, and adjacent source documents why. Task05 predecessor completion records A/B/D acceptance and exact 13-phase pass with receipt digest. This establishes preserved identity, not a newly executed backend-failure path.",
+      "evidence": [
+        "docs/lessons/20261111T022918Z-readability-05-coordinator-decorated-diagnostic-names.md",
+        "src/simrecon/optical_transfer.py:147",
+        "src/simrecon/optical_transfer.py:617",
+        "src/simrecon/optical_transfer.py:649",
+        "docs/tasks/readability-stack.md:922"
+      ],
+      "related_lessons": [
+        "20261111T013821Z-readability-04-coordinator-helper-payload-collision"
+      ],
+      "finding": null,
+      "revisit": null,
+      "relationships": [],
+      "completion_conditions": "Specific relocation/rename preservation mechanism meets the cited explicit task verification conditions; future unrelated changes require their own evidence.",
+      "work_links": [
+        "docs/tasks/readability-stack.md"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "key": "external-evidence-reservation-parent",
+      "title": "Qualify the fixed reader-reservation parent when evidence is redirected",
+      "classification": "fixture/environment preparation gap",
+      "confidence": "confirmed for the current isolated fixture path; no scientific product defect claim",
+      "lesson_ids": [
+        "20261103T020523Z-ce03-coordinator-external-protocol-lock-parent"
+      ],
+      "observed": "Current ReaderReservation creates external RUN then lock.mkdir() under fixed A09 parent. With that parent absent it raises FileNotFoundError before cache access. Preparing only the empty parent succeeds; an existing lock still raises FileExistsError and is preserved. No other module/fixture setup prepares the fixed parent for the real reserved() callers.",
+      "expected": "Existing reader prerequisites and authentic-cache preservation remain binding. docs/contracts/shared-node-baseline-compatibility-v1.md R09 says: Preserve locked sync followed by scripts/prepare_imagej_reader.py and the existing prerequisite relationships. For the already used external evidence configuration, preparation must be explicit and reproducible; public support semantics for the override were not separately documented in the opened current contract.",
+      "evidence": [
+        "docs/lessons/20261103T020523Z-ce03-coordinator-external-protocol-lock-parent.md",
+        "tests/shared_node_baseline_public_callers_fixture.py:26",
+        "tests/shared_node_baseline_public_callers_fixture.py:332",
+        "tests/shared_node_baseline_public_callers_fixture.py:361",
+        "tests/test_shared_node_baseline_public_callers.py:52",
+        "tests/test_shared_node_baseline_public_callers.py:878",
+        "docs/reports/lessons-doctor-2026-11-11/reader-lock-probe.json",
+        "docs/contracts/shared-node-baseline-compatibility-v1.md:69",
+        "Makefile",
+        "scripts/verify.py",
+        "docs/PROJECT.md"
+      ],
+      "completion": "Choose and document the minimal prerequisite (existing mkdir of empty fixed parent, never live lock) or separately authorize a fixture lifecycle change. Demonstrate absent/prepared-parent behavior, preserve preexisting-lock rejection and authentic-cache restoration, obtain appropriate independent review, and retain exact command/candidate/environment evidence. A change to destructive reader-cache lifecycle requires its actual high-risk route; no automatic fix authorized by this report.",
+      "priority": "medium; suitable first intake is a documentation prerequisite, with behavior change separately scoped",
+      "existing_issue_or_task": null,
+      "id": "LESSONS-DOCTOR-01-F002",
+      "relationships": []
+    },
+    {
+      "key": "verification-scheduling-existing-task",
+      "title": "Reuse the existing measured verification optimization task",
+      "classification": "existing tracked work; no new issue",
+      "confidence": "high for task ownership and recorded state; no fresh timing run",
+      "lesson_ids": [
+        "20261109T061440Z-test-apparatus-coordinator-empty-affinity"
+      ],
+      "observed": "Current affinity map is populated, and the task records full exact-candidate 598.57-second completion. The current 300-second continuation remains pending its clean canonical attempt and final reviews.",
+      "expected": "Continue the existing selected two-worker/no-restart/full-13-phase contract with complete native reports, M25 and keeper obligations. Do not reopen the original empty-map incident or infer the selected 300-second goal is met.",
+      "evidence": [
+        "docs/lessons/20261109T061440Z-test-apparatus-coordinator-empty-affinity.md",
+        "devtools/src/simrecon_devtools/pytest_policy.py:9",
+        "docs/tasks/test-apparatus-optimization.md:12",
+        "docs/tasks/test-apparatus-optimization.md:26",
+        "docs/tasks/test-apparatus-optimization.md:117"
+      ],
+      "completion": "Existing task coordinator root freezes the next exact candidate, serializes the canonical two-worker run, and obtains fresh required reviews/readback of full checks. Named bounded infrastructure worker owns scheduling scope. User decision is required before any proposed four-worker change; silence is not authorization.",
+      "priority": "existing selected priority; avoid duplicate intake",
+      "existing_issue_or_task": "docs/tasks/test-apparatus-optimization.md (PR87 historical completed checkpoint; 300-second continuation)",
+      "id": "LESSONS-DOCTOR-01-F003",
+      "relationships": []
+    }
+  ],
+  "limitations": [
+    "All 50 assigned lessons were read fully. Inspection was read-only except this cohort JSON; no product tests, doctor CLI, installs, remote mutations or new agents were used.",
+    "Historical CE02/CE03/CE07/CE08 private evidence pointers are absent from this Linux checkout. Current code/test presence is not treated as final verification or proof of historical resolution. No-action entries retain reusable advice without claiming unavailable final historical verdicts.",
+    "PR53 source/evaluator/scripts and dedicated tests are retired; no reconstruction repair, full-exposure illumination attribution, old-algorithm reproduction, historical C execution or experimental resolution claim is made.",
+    "Root independently produced the scoped reader-lock-probe.json receipt; that receipt uses synthetic redirected paths and supplies current fixture evidence, not a product acceptance or full-cache lifecycle certification.",
+    "Existing remote issue snapshot contains open #81/#84/#85/#86; generic storage/provenance lessons were not attached to #84 because its remaining memory-retention contract does not substantively cover those incidents.",
+    "Tracked apparatus state is taken from its sole task record and current source. A fresh 300-second result is explicitly absent; the earlier 598.57-second outcome applies only to its recorded candidate.",
+    "no-action handling explicitly does not certify historical incident repair. Observation confidence remains exactly as reported in each immutable source lesson; this pass changes none of those confidence statements."
+  ],
+  "counts": {
+    "no-action": 44,
+    "deferred": 1,
+    "untriaged": 1,
+    "tracked": 1,
+    "resolved": 3
+  },
+  "policy_basis": "docs/lessons/README.md, accepted policy on 2026-11-11; proposed dispositions are not activated by this evidence JSON."
+}

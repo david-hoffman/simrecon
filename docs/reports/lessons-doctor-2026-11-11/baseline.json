@@ -1,0 +1,1427 @@
+{
+  "baseline": "b05fc782522a81ebd92c10726dac731a26e5a026",
+  "lesson_count": 203,
+  "lessons": [
+    {
+      "id": "20260930T184757Z-setup-coordinator-ignored-input-identity",
+      "path": "docs/lessons/20260930T184757Z-setup-coordinator-ignored-input-identity.md",
+      "sha256": "ec1d1385c5ec0a76d4e32bec8fbcfb1c485e48a21a7c3275042ba7767260297e",
+      "title": "A Git revision did not identify the ignored legacy input",
+      "cohort": 1
+    },
+    {
+      "id": "20260930T191720Z-setup-coordinator-hidden-editable-install",
+      "path": "docs/lessons/20260930T191720Z-setup-coordinator-hidden-editable-install.md",
+      "sha256": "42abd531a90c6b4fca78966e04f3113196d4e91d4e412f9da8038c8371016f73",
+      "title": "An editable install disappeared when its path file became hidden",
+      "cohort": 1
+    },
+    {
+      "id": "20260930T201435Z-setup-coordinator-native-boundary-compatibility",
+      "path": "docs/lessons/20260930T201435Z-setup-coordinator-native-boundary-compatibility.md",
+      "sha256": "a4afcdf457af7e1f3256ef0597e1c716bf40193932718be992885caeebd8bac6",
+      "title": "A controlled harness accepted an invalid native option combination",
+      "cohort": 1
+    },
+    {
+      "id": "20260930T201856Z-setup-coordinator-correct-native-cli-identity",
+      "path": "docs/lessons/20260930T201856Z-setup-coordinator-correct-native-cli-identity.md",
+      "sha256": "5201c0d1db85fb8c36b8d39926a665d7fe24d2ae9d16492bc0a178d342cbb50b",
+      "title": "Correct the native CLI identity for the live doctor failure",
+      "cohort": 1
+    },
+    {
+      "id": "20260930T212216Z-architecture-intake-intake-mrc-semantic-domains",
+      "path": "docs/lessons/20260930T212216Z-architecture-intake-intake-mrc-semantic-domains.md",
+      "sha256": "9f2247acb7f8241be6a432b2eb1a4ac716078127316fc720d7e53a82702d95e0",
+      "title": "MRC spacing fields need a declared semantic domain",
+      "cohort": 1
+    },
+    {
+      "id": "20260930T230305Z-architecture-intake-intake-mrc-viewer-axes",
+      "path": "docs/lessons/20260930T230305Z-architecture-intake-intake-mrc-viewer-axes.md",
+      "sha256": "482ed17c8ec158afd34069cca19afb2fdbf2da83e8e1e2e0739a6c8f84674d98",
+      "title": "Preserving extended metadata does not establish viewer axis support",
+      "cohort": 1
+    },
+    {
+      "id": "20261001T042302Z-mrc-conversion-intake-section-count",
+      "path": "docs/lessons/20261001T042302Z-mrc-conversion-intake-section-count.md",
+      "sha256": "5ea8b03b8969389e0ff6c7d2dd0018f9ab57f9acdd41d0d1073400aa05f0cb32",
+      "title": "Stored sections need not be physical Z planes",
+      "cohort": 1
+    },
+    {
+      "id": "20261001T045851Z-mrc-conversion-intake-extension-validation",
+      "path": "docs/lessons/20261001T045851Z-mrc-conversion-intake-extension-validation.md",
+      "sha256": "c63652c16bf505c578c50b7cd80ccc6e858787f3892b20c8f52875135c0c196a",
+      "title": "A private extension tag can fail a modern MRC validator",
+      "cohort": 1
+    },
+    {
+      "id": "20261001T050213Z-mrc-conversion-intake-validator-doc-discrepancy",
+      "path": "docs/lessons/20261001T050213Z-mrc-conversion-intake-validator-doc-discrepancy.md",
+      "sha256": "c2bd8a0d10d168e0014b753ba8aeeb5547f49ee8ec1871f824bc311f8180c9a8",
+      "title": "Pinned validator behavior differs from its prose dimensions rule",
+      "cohort": 1
+    },
+    {
+      "id": "20261001T161038Z-mrc-conversion-coordinator-scenario-coverage-gap",
+      "path": "docs/lessons/20261001T161038Z-mrc-conversion-coordinator-scenario-coverage-gap.md",
+      "sha256": "4fb681f47a9838b7e0fef461d39ec6778ee14200cd8033726fd3514957432cb8",
+      "title": "Accepted public scenarios can leave the runtime coverage gate unmet",
+      "cohort": 1
+    },
+    {
+      "id": "20261002T173457Z-mrc-conversion-coordinator-profile-aware-provenance-oracle",
+      "path": "docs/lessons/20261002T173457Z-mrc-conversion-coordinator-profile-aware-provenance-oracle.md",
+      "sha256": "5e6e41edfa17847128852bd738619a469640c91de4a4503855f90c0e854ceec4",
+      "title": "Provenance oracles must honor the declared spatial profile",
+      "cohort": 1
+    },
+    {
+      "id": "20261002T175150Z-mrc-conversion-coordinator-positive-key-contract-gap",
+      "path": "docs/lessons/20261002T175150Z-mrc-conversion-coordinator-positive-key-contract-gap.md",
+      "sha256": "363e5e58f2d851ac4906653bcb98cf722fb98f528542ddd711fa5dd4c26271e2",
+      "title": "Complete branch coverage can miss unapproved positive-input restrictions",
+      "cohort": 1
+    },
+    {
+      "id": "20261002T182621Z-mrc-conversion-coordinator-fresh-role-launch-wording",
+      "path": "docs/lessons/20261002T182621Z-mrc-conversion-coordinator-fresh-role-launch-wording.md",
+      "sha256": "fd6e2f399efb9141b5157bc2823b407224c3af7e073dda8d5ff047b3e04e227b",
+      "title": "Describe a launched role as the current root",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T061140Z-delivery-efficiency-coordinator-captured-measurements",
+      "path": "docs/lessons/20261005T061140Z-delivery-efficiency-coordinator-captured-measurements.md",
+      "sha256": "20e01f2453569f1c965bfba084899a2e4f5355fe0010f01f4122a7c96ed444b8",
+      "title": "Internally captured measurements are absent from phase logs",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T061140Z-delivery-efficiency-coordinator-separate-native-output",
+      "path": "docs/lessons/20261005T061140Z-delivery-efficiency-coordinator-separate-native-output.md",
+      "sha256": "ddc14cbe5ca32c38a4ec4b0b276693b2c4bc7ad977762abf730534871ed022fe",
+      "title": "Native final-message output can overwrite a role report",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T070037Z-delivery-efficiency-coordinator-protect-before-identity",
+      "path": "docs/lessons/20261005T070037Z-delivery-efficiency-coordinator-protect-before-identity.md",
+      "sha256": "22fb1469da26284a166bdcb9602870bae29a90c7a70495ce88e29f88aa36f45b",
+      "title": "Protect output even when candidate identity is unavailable",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T070037Z-delivery-efficiency-coordinator-protect-common-git",
+      "path": "docs/lessons/20261005T070037Z-delivery-efficiency-coordinator-protect-common-git.md",
+      "sha256": "130b6d83971e020b400028c459f3b371d2ea595254f37eb6a68b83d2b87173f5",
+      "title": "Linked worktrees require shared Git metadata protection",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T140744Z-delivery-efficiency-d-output-leaf-symlinks",
+      "path": "docs/lessons/20261005T140744Z-delivery-efficiency-d-output-leaf-symlinks.md",
+      "sha256": "570a3637fd6acdfbffded109513fc6b16dcfc0e18b1b389ec543aaa0de9dfcca",
+      "title": "Output directory checks do not protect existing symlink leaves",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T140744Z-delivery-efficiency-d-wheel-tag-semantics",
+      "path": "docs/lessons/20261005T140744Z-delivery-efficiency-d-wheel-tag-semantics.md",
+      "sha256": "b0694defd698994c76e2389ab28b26237f1ade7ad00d94c851a8315410bcaa81",
+      "title": "Complete coverage does not establish wheel tag validity",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T162658Z-delivery-efficiency-coordinator-calibrate-oracle-decisions",
+      "path": "docs/lessons/20261005T162658Z-delivery-efficiency-coordinator-calibrate-oracle-decisions.md",
+      "sha256": "e653140f896081388e738bf305d41aba3fa40edb4ad4d2ea45bc7a50055d55d6",
+      "title": "Calibrate oracle decisions before reducing model capability",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T171551Z-delivery-efficiency-coordinator-confine-inherited-export-environment",
+      "path": "docs/lessons/20261005T171551Z-delivery-efficiency-coordinator-confine-inherited-export-environment.md",
+      "sha256": "e97f37b2b26582d08198d197258fb131b60a349c892c86ffb524749ccf8312de",
+      "title": "Confine inherited measurement variables in nested verification",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection",
+      "path": "docs/lessons/20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection.md",
+      "sha256": "fd0b6fd9902a5d2a4b0bb113c6fb9be5baf4faf3af5621bf5ffcd9c9a9dcc42f",
+      "title": "Test protected-output redirection after an earlier phase",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T181131Z-delivery-efficiency-coordinator-managed-interpreter-fixtures",
+      "path": "docs/lessons/20261005T181131Z-delivery-efficiency-coordinator-managed-interpreter-fixtures.md",
+      "sha256": "f8fa6f82888febc2273d9ff6d1475487154b6596b23ae5ba13da3e1d6f560327",
+      "title": "Same Python version can conceal an isolated-fixture loader failure",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T213507Z-NF01-intake-html-picture-records",
+      "path": "docs/lessons/20261005T213507Z-NF01-intake-html-picture-records.md",
+      "sha256": "6652ed9a60b337437c2e7e010529b56f3f3df1b8001c8b6206d47f82714e2b37",
+      "title": "HTML picture records do not establish pixel capture",
+      "cohort": 1
+    },
+    {
+      "id": "20261005T222804Z-NF02-coordinator-input-output-type-boundaries",
+      "path": "docs/lessons/20261005T222804Z-NF02-coordinator-input-output-type-boundaries.md",
+      "sha256": "c5919363dddd623053f3a2390bf13c66228fb2598621e9ffb1d9683cfafbc63b",
+      "title": "Input and output type restrictions are separate obligations",
+      "cohort": 1
+    },
+    {
+      "id": "20261006T034103Z-nf02-intake-stationarity-limit",
+      "path": "docs/lessons/20261006T034103Z-nf02-intake-stationarity-limit.md",
+      "sha256": "4b3f712ade4a5644a15417193a294b9881d2b681c16369ac4c8440cf48842694",
+      "title": "Stationarity alone cannot certify least-squares backward accuracy",
+      "cohort": 1
+    },
+    {
+      "id": "20261006T042237Z-nf02-coordinator-readonly-probe-transport",
+      "path": "docs/lessons/20261006T042237Z-nf02-coordinator-readonly-probe-transport.md",
+      "sha256": "263fb5430527d6744b15c70b35080240737ea96cacec0ed1e05222f2259b26fc",
+      "title": "Read-only reviewers need temp-free probe transport",
+      "cohort": 1
+    },
+    {
+      "id": "20261006T060052Z-nf02-coordinator-environment-and-dtype",
+      "path": "docs/lessons/20261006T060052Z-nf02-coordinator-environment-and-dtype.md",
+      "sha256": "acef0f293566d2dfa312c361e74558979e3a0998c71173b072a6b6f0e54b6eff",
+      "title": "Actual dtype identity and stationary check context",
+      "cohort": 1
+    },
+    {
+      "id": "20261006T160343Z-calibration-intake-explicit-pyotf-focus",
+      "path": "docs/lessons/20261006T160343Z-calibration-intake-explicit-pyotf-focus.md",
+      "sha256": "bc04ad5555326cfbfce0ec341ce85423fd1b09c32bcc0dfb36b8bf109f779c9c",
+      "title": "Request the Pyotf focal plane explicitly",
+      "cohort": 1
+    },
+    {
+      "id": "20261006T160735Z-calibration-intake-git-archive-versioneer-identity",
+      "path": "docs/lessons/20261006T160735Z-calibration-intake-git-archive-versioneer-identity.md",
+      "sha256": "814f53d3d56a9734b8e74431f3bf211bd3041694f70ae76f1c3d8ea19aeec398",
+      "title": "Distinguish Git blobs from exported version bytes",
+      "cohort": 1
+    },
+    {
+      "id": "20261006T165011Z-otf-calibration-coordinator-collection-diagnostics",
+      "path": "docs/lessons/20261006T165011Z-otf-calibration-coordinator-collection-diagnostics.md",
+      "sha256": "e690b6543be31d9e64bf507614881ab0c4a7bec5d24fe97c5003e72fe3edbd37",
+      "title": "Pytest collection errors can embed source in exception messages",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T004817Z-reconstruction-B-envelope-tolerance",
+      "path": "docs/lessons/20261007T004817Z-reconstruction-B-envelope-tolerance.md",
+      "sha256": "f3d62609160606964086d23d6e28fe14b0b69aced19641712ddeab53cc50c9b9",
+      "title": "Observed numerical margin does not define the acceptance bound",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T010806Z-reconstruction-B2-warning-observer",
+      "path": "docs/lessons/20261007T010806Z-reconstruction-B2-warning-observer.md",
+      "sha256": "af034963292a8ad3383162917151e663e8e412225a65a8ba076a2c33a896047d",
+      "title": "Warning observers need both return paths and permitted categories",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T012640Z-reconstruction-B3-warning-vocabulary",
+      "path": "docs/lessons/20261007T012640Z-reconstruction-B3-warning-vocabulary.md",
+      "sha256": "fbebd37b0f11c7211757d2d84ff9dcef7fdd6d7219b040acc8e5e35a88be6817",
+      "title": "Warning vocabulary is not an arithmetic report",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T014545Z-reconstruction-B4-observer-validation",
+      "path": "docs/lessons/20261007T014545Z-reconstruction-B4-observer-validation.md",
+      "sha256": "5f013654a36908f2d30062e8a224e1e7e30087f05c51c1b6d8f3399e45ea0e07",
+      "title": "Validate warning observers in both directions",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T060840Z-asd-coverage-coordinator-zero-native-evidence",
+      "path": "docs/lessons/20261007T060840Z-asd-coverage-coordinator-zero-native-evidence.md",
+      "sha256": "0a3896d4779933ce4e91528439799a15797a5949d497dcb52daf55ab7ea2be60",
+      "title": "Zero percent still needs native measurement evidence",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T061928Z-asd-coverage-coordinator-partial-counter-integrity",
+      "path": "docs/lessons/20261007T061928Z-asd-coverage-coordinator-partial-counter-integrity.md",
+      "sha256": "ee47f984791f44ebc40da2f13d4c1e1f61d4f3c7ca255446785c5805ae2efdcb",
+      "title": "A bounded partial-branch counter can still contradict native evidence",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T062953Z-asd-coverage-coordinator-arc-line-consistency",
+      "path": "docs/lessons/20261007T062953Z-asd-coverage-coordinator-arc-line-consistency.md",
+      "sha256": "a67f5a5ad6723169d07e779b5a6c0ef782668a6c2b78787fc00e1747d201b1ef",
+      "title": "Complete-execution gates can mask native report contradictions",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T202030Z-illumination-coordinator-large-angle-rotation",
+      "path": "docs/lessons/20261007T202030Z-illumination-coordinator-large-angle-rotation.md",
+      "sha256": "927dfd33aaec1545c3c5791aabfcefd40da80d9b43510cc273a3bfeacdbccad4",
+      "title": "Rotate represented phases without adding a lost offset",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T205801Z-illumination-coordinator-dtype-capability-observer",
+      "path": "docs/lessons/20261007T205801Z-illumination-coordinator-dtype-capability-observer.md",
+      "sha256": "af44f7e7ee11405f6d30fedadff6262d5285c317a0ddf0da6fb3e4e984a902b8",
+      "title": "Dtype names do not prove a wider observation range",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T213156Z-illumination-coordinator-blind-startup-diagnostics",
+      "path": "docs/lessons/20261007T213156Z-illumination-coordinator-blind-startup-diagnostics.md",
+      "sha256": "7e05f61b3622097e3328da421f51f43f0af8de429b6cbd50ee57a62f7d51aae0",
+      "title": "Protect blind diagnostic startup and scratch channels",
+      "cohort": 1
+    },
+    {
+      "id": "20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction",
+      "path": "docs/lessons/20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction.md",
+      "sha256": "c67f270415ec0ef5b533e8dcc79e2d518aeb9d57fd910276003e3feb4fb296df",
+      "title": "Protect blind startup and scratch diagnostics",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T020601Z-carrier-scan-intake-overlap-residual",
+      "path": "docs/lessons/20261008T020601Z-carrier-scan-intake-overlap-residual.md",
+      "sha256": "c5a3b1b70e277879999fea9987c5158369975ac85c5f4da996cbad3863dff4a3",
+      "title": "A perfect single-pair overlap fit does not identify a carrier",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T023531Z-carrier-scan-intake-scale-free-precision",
+      "path": "docs/lessons/20261008T023531Z-carrier-scan-intake-scale-free-precision.md",
+      "sha256": "6ff1d49c6ded1a94343c9a1b418d37f4914a806f729481f6cd36768c73f16658",
+      "title": "Valid phase-output quantization can break illumination accuracy",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T035131Z-carrier-selection-coordinator-near-zero-residual",
+      "path": "docs/lessons/20261008T035131Z-carrier-selection-coordinator-near-zero-residual.md",
+      "sha256": "621b6c33f0786e7001eb1d057fec3a8f6a4abdfa6c6fae3ab87c62d93f32269a",
+      "title": "Near-zero expected residual does not fix an exact policy decision",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T035242Z-illumination-coordinator-requested-figure-delivery",
+      "path": "docs/lessons/20261008T035242Z-illumination-coordinator-requested-figure-delivery.md",
+      "sha256": "471d4d51aca18ee62764b9d510ef0a08da0a03f8977dccdfa7a3270c638b0c80",
+      "title": "Deliver requested figures in the review surface",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T045954Z-translation-coordinator-nonzero-absolute-tolerance",
+      "path": "docs/lessons/20261008T045954Z-translation-coordinator-nonzero-absolute-tolerance.md",
+      "sha256": "4a360a34968d0ac0d727209160e338db9e20c75b4814b7183c79f8c00abd3942",
+      "title": "Absolute ambiguity checks need a nonzero minimum example",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T055017Z-integer-drift-01-coordinator-specimen-illumination-oracle",
+      "path": "docs/lessons/20261008T055017Z-integer-drift-01-coordinator-specimen-illumination-oracle.md",
+      "sha256": "46fa6b7e76535ec87a15cf529421dc5dda9de07bbe086b731ef55165e9cbe37f",
+      "title": "Build specimen drift before stationary illumination",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T060429Z-integer-drift-01-coordinator-analytic-root-acceptance",
+      "path": "docs/lessons/20261008T060429Z-integer-drift-01-coordinator-analytic-root-acceptance.md",
+      "sha256": "63958e601de461d1c930b8a0fda2a36d3bf74fbbba1cc1c15decd7b5a9b08c5a",
+      "title": "Ideal roots can overconstrain represented phase acceptance",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T065133Z-volume-phase-01-coordinator-fractional-alias-boundary",
+      "path": "docs/lessons/20261008T065133Z-volume-phase-01-coordinator-fractional-alias-boundary.md",
+      "sha256": "ef79547e5e6e35861bd332fbfa66db3abadcbdf95a8ee2b0fe1bb44b93744807",
+      "title": "Fractional drift needs a new aliasing contract",
+      "cohort": 1
+    },
+    {
+      "id": "20261008T073218Z-volume-phase-01-coordinator-mixed-voxel-budgets",
+      "path": "docs/lessons/20261008T073218Z-volume-phase-01-coordinator-mixed-voxel-budgets.md",
+      "sha256": "f6152570bcb6aedfb3759039767433958cf635dc31bf89cbc1603df3a2b84d8f",
+      "title": "Test local accuracy with mixed intensities in one call",
+      "cohort": 1
+    },
+    {
+      "id": "20261009T030207Z-integer-drift-figures-worker-circular-metric-display",
+      "path": "docs/lessons/20261009T030207Z-integer-drift-figures-worker-circular-metric-display.md",
+      "sha256": "69dd1e2920e6a436fd5fefa840ee0191078bc3193e06592d7e54285dcbc27639",
+      "title": "Preserve circular-metric precision when plotting saved comparisons",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T031912Z-volume-otf-01-root-public-failure-seam",
+      "path": "docs/lessons/20261009T031912Z-volume-otf-01-root-public-failure-seam.md",
+      "sha256": "659f0b2a08c033447c835967c4297e07b000e9079b031bab7445dc1ed2f8b4c1",
+      "title": "Name the numerical dependency before blind failure tests",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T074358Z-volume-otf-01-root-frequency-final-grid",
+      "path": "docs/lessons/20261009T074358Z-volume-otf-01-root-frequency-final-grid.md",
+      "sha256": "4d640c5e07e28cfc3941496f54dd0ec43e9515d5287bf03ab7fe5334f9526faa",
+      "title": "Classify the required final frequency grid",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T074358Z-volume-otf-01-root-manifest-read-boundary",
+      "path": "docs/lessons/20261009T074358Z-volume-otf-01-root-manifest-read-boundary.md",
+      "sha256": "17224b8a91f5263a27cad03d35c5837c66fb990ea2fcc0c2ec9507b67a415ec4",
+      "title": "Explicit ownership before preservation hashing",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T074358Z-volume-otf-01-root-whole-binding-invariant",
+      "path": "docs/lessons/20261009T074358Z-volume-otf-01-root-whole-binding-invariant.md",
+      "sha256": "4a3bcf40a4146d0b671791d40b42e7c468bb8f6d4d0baa8163ba5c4cc243ee9e",
+      "title": "Snapshot the whole binding invariant before assignment probes",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T084914Z-volume-order-01-root-output-quantum",
+      "path": "docs/lessons/20261009T084914Z-volume-order-01-root-output-quantum.md",
+      "sha256": "421575fa9af2902777a7ce75559a5894f8279b16ad6381be82ee5a3a6e8423e8",
+      "title": "Gain-scaled error budgets retain an output quantum allowance",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T111529Z-volume-order-01-root-fft-default-call-observer",
+      "path": "docs/lessons/20261009T111529Z-volume-order-01-root-fft-default-call-observer.md",
+      "sha256": "babf85417b52c1f0bdb089d1dc57a231cf30da1478c18be1a274898e778a46bd",
+      "title": "Audit equivalent public FFT defaults",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T111529Z-volume-order-01-root-source-free-internalerror",
+      "path": "docs/lessons/20261009T111529Z-volume-order-01-root-source-free-internalerror.md",
+      "sha256": "9890d574d8529e27bc5a5141c340458f152c321fd60b31d22f2791905105f628",
+      "title": "Source-free diagnostics must cover pytest internal errors",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T123901Z-volume-recombine-01-root-named-diagnostic-identities",
+      "path": "docs/lessons/20261009T123901Z-volume-recombine-01-root-named-diagnostic-identities.md",
+      "sha256": "f529a3917c483e37ccdffa85b9bd4d6af6f68bbdde965a5dc825d20c0eedb95b",
+      "title": "Name each diagnostic helper identity",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T132557Z-volume-recombine-01-root-explicit-stdin-execution",
+      "path": "docs/lessons/20261009T132557Z-volume-recombine-01-root-explicit-stdin-execution.md",
+      "sha256": "4cc824adb0048afe3fb7c3bf78adbed25243aff80a7f16dbe366a1f3b8f31fac",
+      "title": "Zero exit status did not establish stdin probe execution",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T145219Z-volume-recombine-01-root-range-stage-inventory",
+      "path": "docs/lessons/20261009T145219Z-volume-recombine-01-root-range-stage-inventory.md",
+      "sha256": "8b6039438f17ceb6141b55286f4f0af9ed0b31223f6df58f7f4e169832be6c3d",
+      "title": "Range tests must isolate each required materialized stage",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T161749Z-volume-recombine-01-root-exact-observer-dimensions",
+      "path": "docs/lessons/20261009T161749Z-volume-recombine-01-root-exact-observer-dimensions.md",
+      "sha256": "758f50f881ea657ae38785c3397d97b9b24bdb22f2c50f6b4ba25723944c9c0b",
+      "title": "NumPy integer dimensions need exact observer arithmetic",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T170837Z-volume-recombine-01-root-integer-conversion-boundary",
+      "path": "docs/lessons/20261009T170837Z-volume-recombine-01-root-integer-conversion-boundary.md",
+      "sha256": "2b24f3b9c12107cd8ef9f8afaefce392b9b88b7091ba54220d0a7604f0c4c420",
+      "title": "Integer conversion errors need field-specific translation",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T172718Z-volume-recombine-01-root-copy-stable-observer",
+      "path": "docs/lessons/20261009T172718Z-volume-recombine-01-root-copy-stable-observer.md",
+      "sha256": "25af9d78fbfe097f897370d4435a3b0c6a2f6d705e9f2acc4fd12741d0b6cf4b",
+      "title": "Conversion observers must survive permitted scalar snapshots",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T203647Z-volume-order-gain-root-blind-config-excerpt",
+      "path": "docs/lessons/20261009T203647Z-volume-order-gain-root-blind-config-excerpt.md",
+      "sha256": "a74be074bc3465b4b6fb2c5d2aab17a09ab601817d2fbd3403c14bba2d6d8358",
+      "title": "Keep private configuration references outside blind-author packets",
+      "cohort": 2
+    },
+    {
+      "id": "20261009T213515Z-imagej-intake-coordinator-bundled-java",
+      "path": "docs/lessons/20261009T213515Z-imagej-intake-coordinator-bundled-java.md",
+      "sha256": "6f1be453be844f4e288f2b15036a68f600edb01b2cceeec5577ee3f4fd78d04b",
+      "title": "Global Java absence did not establish Fiji runtime absence",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T004950Z-imagej-setup-root-exception-command-text",
+      "path": "docs/lessons/20261010T004950Z-imagej-setup-root-exception-command-text.md",
+      "sha256": "22650ec0b30736198b88d0a626c439f4cbe1fefa06e09ab2e2b4a6b47281b4e5",
+      "title": "Frame suppression does not sanitize exception command text",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T052710Z-imagej-export-01-root-filesystem-errno",
+      "path": "docs/lessons/20261010T052710Z-imagej-export-01-root-filesystem-errno.md",
+      "sha256": "cc1f4f9311ab7fd11ca4628457e939926a9814ced504cd30b97fd08b96a3ff79",
+      "title": "Bounded TIFF writes preserved the filesystem error number",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T192003Z-stack-maintenance-coordinator-pytest-source-identity",
+      "path": "docs/lessons/20261010T192003Z-stack-maintenance-coordinator-pytest-source-identity.md",
+      "sha256": "abbc0f29364c74147801ab9155747ef66ba14aa7ef4203789550c55120dede62",
+      "title": "Resolve pytest failure paths against the invocation directory",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T211858Z-scientific-roadmap-intake-empirical-calibration-gap",
+      "path": "docs/lessons/20261010T211858Z-scientific-roadmap-intake-empirical-calibration-gap.md",
+      "sha256": "85a10e34f355a2228941735795bca49ff1390671f13d63a8436e5a32b04f1be7",
+      "title": "Prepared detection PSFs do not complete empirical SIM calibration",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T213636Z-scientific-phase1-intake-effective-settings",
+      "path": "docs/lessons/20261010T213636Z-scientific-phase1-intake-effective-settings.md",
+      "sha256": "79b8a14f49a06e43e712eb1e898e7b894ca17aba0727c907112f08317db55ddf",
+      "title": "Reference help and calibration output do not establish effective settings",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T213933Z-scientific-roadmap-coordinator-pr21-baseline-correction",
+      "path": "docs/lessons/20261010T213933Z-scientific-roadmap-coordinator-pr21-baseline-correction.md",
+      "sha256": "fdc5fac8adcafbfd6e7591d2f9a3127fcd25291f7a707ea396df7c2a82e4b15c",
+      "title": "Preserve the requested stacked baseline",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T220421Z-scientific-roadmap-coordinator-squash-baseline",
+      "path": "docs/lessons/20261010T220421Z-scientific-roadmap-coordinator-squash-baseline.md",
+      "sha256": "ed84f0ea70bf6a5523932ee368f54d9de2169ec741688ef51ac9a6568445cb40",
+      "title": "Use the merged baseline after squash integration",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T221152Z-scientific-roadmap-coordinator-successor-sequencing",
+      "path": "docs/lessons/20261010T221152Z-scientific-roadmap-coordinator-successor-sequencing.md",
+      "sha256": "1e86a818f372aafbe6fd6babbf8af95045b2585cd9826eb6d4437514d439ab1b",
+      "title": "Finish the changing prerequisite before resuming its successor",
+      "cohort": 2
+    },
+    {
+      "id": "20261010T232710Z-raw-acquisition-declarations-coordinator-pytest-collection-diagnostics",
+      "path": "docs/lessons/20261010T232710Z-raw-acquisition-declarations-coordinator-pytest-collection-diagnostics.md",
+      "sha256": "f06b5aae8827bbe5344d806cf61fadc1143a9c5c96638a594e45721b1ba713f0",
+      "title": "Pytest import collection has a separate diagnostic channel",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T003452Z-linresp-01-coordinator-native-storage-registration",
+      "path": "docs/lessons/20261011T003452Z-linresp-01-coordinator-native-storage-registration.md",
+      "sha256": "6eafa8088a4174997ee93e1fbb6a0ce0fd7b7d15957df25f4bac46cf29645519",
+      "title": "Register storage-specific examples by observed native capability",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T013702Z-bead-peak-intake-zero-order-brightness",
+      "path": "docs/lessons/20261011T013702Z-bead-peak-intake-zero-order-brightness.md",
+      "sha256": "f61eee1b1c2959fcccef36c17e58776567547621144e55227e3e570ab74d5dc9",
+      "title": "Phase-zero brightness differs from zero-order brightness",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T174511Z-empirical-response-intake-positive-peak-mass",
+      "path": "docs/lessons/20261011T174511Z-empirical-response-intake-positive-peak-mass.md",
+      "sha256": "b60d14318a25f8d5359239d40b9a408217439a3428809d47a722bdaf39c44864",
+      "title": "Positive observed peak does not imply positive normalization mass",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T184322Z-empirical-response-coordinator-fft-default-axes",
+      "path": "docs/lessons/20261011T184322Z-empirical-response-coordinator-fft-default-axes.md",
+      "sha256": "b3fc26da34983309feeab36ad9607ab96e12e7b41e73132d4754812be9866efc",
+      "title": "FFT sizes change the default transformed axes",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T201525Z-raw-point-bead-calibration-coordinator-phase-domain",
+      "path": "docs/lessons/20261011T201525Z-raw-point-bead-calibration-coordinator-phase-domain.md",
+      "sha256": "bd5ec38b1b9a84618245d2ac3ee8edce28790f42cdc68f391cfc3e4b4428ca95",
+      "title": "Check the represented phase matrix before applying an accuracy budget",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T212202Z-raw-point-bead-calibration-coordinator-example-caller-handles",
+      "path": "docs/lessons/20261011T212202Z-raw-point-bead-calibration-coordinator-example-caller-handles.md",
+      "sha256": "5de50354c3f2d5c2d9f066a6dde23374fd2080ed3e77e161709bf2d3e2bc7b2f",
+      "title": "Ownership checks need the original caller objects",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T212202Z-raw-point-bead-calibration-coordinator-frequency-bound",
+      "path": "docs/lessons/20261011T212202Z-raw-point-bead-calibration-coordinator-frequency-bound.md",
+      "sha256": "b1e8ac06838835f58b2948f4c583f054de2a46462358c6a8efc276d6ef8eb13a",
+      "title": "Exact frequency expressions prevent extra oracle slack",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T212202Z-raw-point-bead-calibration-coordinator-public-declaration-boundary",
+      "path": "docs/lessons/20261011T212202Z-raw-point-bead-calibration-coordinator-public-declaration-boundary.md",
+      "sha256": "50a12fd8cfcb7f762d371264b6c8c7c769e6ca83b008db02c8365fdf309bb6b3",
+      "title": "Absent-feature errors can conceal invalid test declarations",
+      "cohort": 2
+    },
+    {
+      "id": "20261011T233428Z-empirical-transfer-consumption-coordinator-magnitude-fixture",
+      "path": "docs/lessons/20261011T233428Z-empirical-transfer-consumption-coordinator-magnitude-fixture.md",
+      "sha256": "92758cb11b2487ecd6c182c71a5eb381b892e4315713bab301e776c19feab1fa",
+      "title": "Verify the magnitude premise of a range fixture",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T001651Z-empirical-calibration-consumption-a03-isolate-rejection-proof",
+      "path": "docs/lessons/20261012T001651Z-empirical-calibration-consumption-a03-isolate-rejection-proof.md",
+      "sha256": "7771d943785fc6492710f5337fde330b2598c8aa7ad07fe69667bc18ef944400",
+      "title": "Isolate rejection proof from shared error-code failures",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T030103Z-empirical-transfer-coordinator-masked-array-payload-preservation",
+      "path": "docs/lessons/20261012T030103Z-empirical-transfer-coordinator-masked-array-payload-preservation.md",
+      "sha256": "b4af463d39fd52a9e7c243c14eeef5baaedf13372d8c270faea6c50bd5fbe820",
+      "title": "Masked-array preservation requires two independent observations",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T030103Z-empirical-transfer-coordinator-protected-output-before-identity",
+      "path": "docs/lessons/20261012T030103Z-empirical-transfer-coordinator-protected-output-before-identity.md",
+      "sha256": "151c5ab295eb98b0117bfb63df30dbe7c0abe8cbc70aadd203239b779d8272f5",
+      "title": "An identity check cannot undo an earlier protected overwrite",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T041528Z-empirical-transfer-coordinator-collision-checkpoint-provenance",
+      "path": "docs/lessons/20261012T041528Z-empirical-transfer-coordinator-collision-checkpoint-provenance.md",
+      "sha256": "e1655157bc2c835ce2f63ecced2e082bfd2f2a8d722d9da5ee6986630a12d180",
+      "title": "Review acceptance remains bound to its exact test checkpoint",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T042315Z-empirical-transfer-coordinator-merged-base-identity",
+      "path": "docs/lessons/20261012T042315Z-empirical-transfer-coordinator-merged-base-identity.md",
+      "sha256": "e5af061a9b9362f91e5449f08e51906873051b1451cdefc3eab68b25877fd470",
+      "title": "A merged prerequisite changes exact evidence identity even with equal trees",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T061918Z-measurement-export-coordinator-isolated-unit-rejection",
+      "path": "docs/lessons/20261012T061918Z-measurement-export-coordinator-isolated-unit-rejection.md",
+      "sha256": "d46e685e11791ed4d5718ab9e506c2011a44fbb28a345edada578c4f99248735",
+      "title": "Unit rejection can be masked by arithmetic rejection",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T133254Z-empirical-response-root-directory-alias-evidence",
+      "path": "docs/lessons/20261012T133254Z-empirical-response-root-directory-alias-evidence.md",
+      "sha256": "f345dc9da3a0e47ad82506cc2b105310801f1b2a62939bd02d96cf93e0f898f2",
+      "title": "Directory aliases can hide current verification evidence",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T163533Z-wheel-hash-root-mixed-control-validity",
+      "path": "docs/lessons/20261012T163533Z-wheel-hash-root-mixed-control-validity.md",
+      "sha256": "2935d91af4a25b8630aac7a777337e00746db1c222141b22f1a30fb46fda2a98",
+      "title": "Pair mixed-member integrity controls with a valid wheel",
+      "cohort": 2
+    },
+    {
+      "id": "20261012T201148Z-reference-fixture-generation-root-observer-classification",
+      "path": "docs/lessons/20261012T201148Z-reference-fixture-generation-root-observer-classification.md",
+      "sha256": "d516cf864f19aefd183f9fe398814df7fdc5fd9cac3cb3229cf78cfc7ce71292",
+      "title": "Exact preservation hashes do not classify rejected output",
+      "cohort": 2
+    },
+    {
+      "id": "20261013T002338Z-reference-fixture-generation-coordinator-preserve-rounding-stages",
+      "path": "docs/lessons/20261013T002338Z-reference-fixture-generation-coordinator-preserve-rounding-stages.md",
+      "sha256": "7ab4e2317a41b3c28e8db16d2138ba458f4c7434428aeed91513a34d31d39591",
+      "title": "Preserve scalar rounding stages when regenerating historical fixtures",
+      "cohort": 2
+    },
+    {
+      "id": "20261013T012425Z-reference-fixture-generation-coordinator-parent-harness-precondition",
+      "path": "docs/lessons/20261013T012425Z-reference-fixture-generation-coordinator-parent-harness-precondition.md",
+      "sha256": "e77bd3ce5a24d7097bc1894676971fe038a95b212511e2db94bc418bc637f12d",
+      "title": "Parent module presence is not child diagnostic setup",
+      "cohort": 2
+    },
+    {
+      "id": "20261014T074058Z-baseline-compatibility-coordinator-pytest-selector-inheritance",
+      "path": "docs/lessons/20261014T074058Z-baseline-compatibility-coordinator-pytest-selector-inheritance.md",
+      "sha256": "faa42ed0f34dbfb1b05a4377f86e3fe0ebe607c50e15a59905c7244e0d8d27bd",
+      "title": "Keep diagnostic test selectors out of inherited pytest options",
+      "cohort": 2
+    },
+    {
+      "id": "20261014T083825Z-baseline-compatibility-coordinator-stored-scalar-validation",
+      "path": "docs/lessons/20261014T083825Z-baseline-compatibility-coordinator-stored-scalar-validation.md",
+      "sha256": "236f3732bafae8fc8c3621d97a483f9019a355927ad6788cdd7b11210a18fbb3",
+      "title": "Validate stored scalar values before ordinary conversion",
+      "cohort": 2
+    },
+    {
+      "id": "20261014T092923Z-baseline-compatibility-coordinator-test-typing-preservation",
+      "path": "docs/lessons/20261014T092923Z-baseline-compatibility-coordinator-test-typing-preservation.md",
+      "sha256": "76df7c916a14a83a1578b44eb33d175324d76d751262e9b0558895aaa629cc55",
+      "title": "Keep type correction separate from behavioral test changes",
+      "cohort": 2
+    },
+    {
+      "id": "20261016T031139Z-empirical-trilinear-coordinator-isolate-error-preconditions",
+      "path": "docs/lessons/20261016T031139Z-empirical-trilinear-coordinator-isolate-error-preconditions.md",
+      "sha256": "2fb1fd036463486205f7a01477e28e47cdbbe556b8c8f3bee0e0d9cfbe9f32b7",
+      "title": "Error-code tests need isolated invalid preconditions",
+      "cohort": 2
+    },
+    {
+      "id": "20261016T033855Z-empirical-trilinear-coordinator-weighted-scaling",
+      "path": "docs/lessons/20261016T033855Z-empirical-trilinear-coordinator-weighted-scaling.md",
+      "sha256": "ebd023cc8e9d05236c26267b2b8b7874c52ec912425ca06642e8d7d36339889e",
+      "title": "Scale weighted contributions before binary64 summation",
+      "cohort": 2
+    },
+    {
+      "id": "20261016T145501Z-physical-frequency-coordinator-api-absence-masks-assertions",
+      "path": "docs/lessons/20261016T145501Z-physical-frequency-coordinator-api-absence-masks-assertions.md",
+      "sha256": "dc82cc099701bcd439b961e2b8203f60e78dc1501183f860c04fe06b1b2c5e81",
+      "title": "API absence can mask test-local numerical assertions",
+      "cohort": 2
+    },
+    {
+      "id": "20261016T202123Z-volume-carrier-diagnostics-coordinator-upstream-record-fields",
+      "path": "docs/lessons/20261016T202123Z-volume-carrier-diagnostics-coordinator-upstream-record-fields.md",
+      "sha256": "5cd184cdf93d1af68507c0453ca3f605632dacd566faaa7c48c9eb0d4ee53350",
+      "title": "Verify upstream record fields before composing a new public operation",
+      "cohort": 3
+    },
+    {
+      "id": "20261016T212410Z-volume-carrier-diagnostics-coordinator-make-input-transport",
+      "path": "docs/lessons/20261016T212410Z-volume-carrier-diagnostics-coordinator-make-input-transport.md",
+      "sha256": "019d51e12eecba69a450ff39ef5f222a4625fe0024c46ef3c9313982aaf3f299",
+      "title": "Large input declarations can exhaust Make's child argument envelope",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T001059Z-volume-carrier-selection-coordinator-overlapping-pins",
+      "path": "docs/lessons/20261017T001059Z-volume-carrier-selection-coordinator-overlapping-pins.md",
+      "sha256": "bf24a97478748ace0a9daed3700e6117f4b1227c4292361d618f5f4995012133",
+      "title": "Check overlapping fingerprint maps before writing admission",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T005317Z-volume-carrier-selection-coordinator-full-evidence-grammar",
+      "path": "docs/lessons/20261017T005317Z-volume-carrier-selection-coordinator-full-evidence-grammar.md",
+      "sha256": "0f53287173a91c17aae6f7d346f5329e041c10f61d1d4e816cf76b47b010d79d",
+      "title": "Check the complete evidence grammar before an expensive gate",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T030037Z-finite-bead-coordinator-pytest-collection-diagnostics",
+      "path": "docs/lessons/20261017T030037Z-finite-bead-coordinator-pytest-collection-diagnostics.md",
+      "sha256": "ad7b1b286dfda0823b998ff446abcb9f5a744f42687807e9f374fceb83949c52",
+      "title": "Pytest collection diagnostics need their own source-free proof",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T042051Z-finite-bead-compensation-coordinator-coverage-raw-preservation",
+      "path": "docs/lessons/20261017T042051Z-finite-bead-compensation-coordinator-coverage-raw-preservation.md",
+      "sha256": "7a20da4d88d376e3ef5608bc58e4844032b1bdc6cf6b0bd7a3a2253b2cc5ae29",
+      "title": "Native report export can consume kept coverage inputs",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T044128Z-finite-bead-compensation-coordinator-input-eligibility",
+      "path": "docs/lessons/20261017T044128Z-finite-bead-compensation-coordinator-input-eligibility.md",
+      "sha256": "eb1d3136b87848ea9ec0bd7db5188b6fe7ae4279547d792fa571ea9e847a26f1",
+      "title": "Producer fingerprints also need eligible locations",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T175413Z-phase-step-estimation-coordinator-failed-resume-lineage",
+      "path": "docs/lessons/20261017T175413Z-phase-step-estimation-coordinator-failed-resume-lineage.md",
+      "sha256": "69d4e945e1c1a9aa27db9a718edda1edaf71045bb1844c625d67f07f7288317e",
+      "title": "A failed resume attempt does not establish author lineage",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T181948Z-phase-step-estimation-coordinator-scipy-observer-forwarding",
+      "path": "docs/lessons/20261017T181948Z-phase-step-estimation-coordinator-scipy-observer-forwarding.md",
+      "sha256": "079bf53836c9e53f3182d5a810c7ebb01ab9c7da5670febfa5b54e695fd9f3fb",
+      "title": "Inspecting a dependency signature must not replay its defaults",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T184527Z-phase-step-estimation-coordinator-integer-oracle-domain",
+      "path": "docs/lessons/20261017T184527Z-phase-step-estimation-coordinator-integer-oracle-domain.md",
+      "sha256": "710cce169489fae9d223a199e80f725cbc4e77f4e45cf818dae6268c344692f4",
+      "title": "Exact periodic indices need exact oracle integer arithmetic",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T195057Z-phase-step-estimation-coordinator-manifest-join-cost",
+      "path": "docs/lessons/20261017T195057Z-phase-step-estimation-coordinator-manifest-join-cost.md",
+      "sha256": "b8dc34f91b2c2ebf7114e1a46edb028750f1685093bfcc4bbe6ed8030eb042aa",
+      "title": "Exact-input manifest preparation can have quadratic lookup cost",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T210913Z-phase-step-estimation-coordinator-git-maintenance-fixture",
+      "path": "docs/lessons/20261017T210913Z-phase-step-estimation-coordinator-git-maintenance-fixture.md",
+      "sha256": "f1e6777f842450a8f50dcd833f9c36327fba61e161a409141a7bea10278a0c4d",
+      "title": "Detached Git maintenance can race a byte-preservation fixture",
+      "cohort": 3
+    },
+    {
+      "id": "20261017T220218Z-phase-step-estimation-S08-recursive-metadata-census",
+      "path": "docs/lessons/20261017T220218Z-phase-step-estimation-S08-recursive-metadata-census.md",
+      "sha256": "77ef9265c9d57e87dbdbd90825949e9851c9401889b36a163b1f0b3049887b06",
+      "title": "Exercise recursive metadata census on the complete actual catalog",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T001000Z-phase-step-estimation-coordinator-target-availability",
+      "path": "docs/lessons/20261018T001000Z-phase-step-estimation-coordinator-target-availability.md",
+      "sha256": "dd341d50ab7ed831aa37d7a0d89399abf2b35f4b30e1c792ace90dace6972b3c",
+      "title": "Link integrity and target availability are separate observations",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T002655Z-phase-observable-subspace-coordinator-default-pytest-diagnostic-channels",
+      "path": "docs/lessons/20261018T002655Z-phase-observable-subspace-coordinator-default-pytest-diagnostic-channels.md",
+      "sha256": "fb16fe32f54d5ca037d4d9a39c6b102a7df7739167f359eb9065f48e717ad1fd",
+      "title": "Exercise default pytest diagnostic channels before blind probes",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T011644Z-phase-observable-subspace-coordinator-script-path-identity",
+      "path": "docs/lessons/20261018T011644Z-phase-observable-subspace-coordinator-script-path-identity.md",
+      "sha256": "e9691ce7226d04c55b5e866d476eabfd147c8c7f58565552bc35406f1ad37aec",
+      "title": "Lexical path normalization can select another script",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T020456Z-phase-observable-subspace-coordinator-public-construction-context",
+      "path": "docs/lessons/20261018T020456Z-phase-observable-subspace-coordinator-public-construction-context.md",
+      "sha256": "f38af7b60ed8df049a80efa10e008b887af39e2128c1a0f10cec927d83a90c9e",
+      "title": "Include public construction contracts in blind composition packets",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T022557Z-phase-observable-subspace-coordinator-reduced-phase-update-proof",
+      "path": "docs/lessons/20261018T022557Z-phase-observable-subspace-coordinator-reduced-phase-update-proof.md",
+      "sha256": "6eea400b110b303708863c9aa49416657e00ced519d77fe69fc200ba5e03df96",
+      "title": "Test phase updates inside the reduced specimen domain",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T031429Z-observable-phase-coordinator-fault-delivery-scope",
+      "path": "docs/lessons/20261018T031429Z-observable-phase-coordinator-fault-delivery-scope.md",
+      "sha256": "72b6a69288c028addeea5fab8129d1f098cc32e28b240362d7f650459b41c4db",
+      "title": "Fault injection needs observed delivery scope",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T031509Z-observable-phase-coordinator-fault-scope-clarification",
+      "path": "docs/lessons/20261018T031509Z-observable-phase-coordinator-fault-scope-clarification.md",
+      "sha256": "f84fcc50a6519b071bae04c47aea5102e3c2b62095d628876ad35ef0dac83166",
+      "title": "Clarify fault-control evidence paths",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T033311Z-observable-phase-coordinator-native-dtype-capabilities",
+      "path": "docs/lessons/20261018T033311Z-observable-phase-coordinator-native-dtype-capabilities.md",
+      "sha256": "2e7b8808dbd0fd938b037836bc2ea57712bc887e4e5c356b0d5e6f5819fdfc63",
+      "title": "Native type names do not guarantee a wider value domain",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T042213Z-observable-phase-coordinator-record-dialects",
+      "path": "docs/lessons/20261018T042213Z-observable-phase-coordinator-record-dialects.md",
+      "sha256": "7e6a88fc87891fa158b14d29a5ab365ba6915f3eb59bfdeb7c5dfcffc813cf91",
+      "title": "Synthetic record checks missed actual launch formats",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T065339Z-phase-carrier-scan-coordinator-synthetic-link-census",
+      "path": "docs/lessons/20261018T065339Z-phase-carrier-scan-coordinator-synthetic-link-census.md",
+      "sha256": "9c559f22953824b6edbb189a16b3da01899d79a2ff93619fea582c3fdeb9e229",
+      "title": "Synthetic probe links need an explicit closed-evidence representation",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T080433Z-phase-carrier-scan-coordinator-integer-conversion-boundary",
+      "path": "docs/lessons/20261018T080433Z-phase-carrier-scan-coordinator-integer-conversion-boundary.md",
+      "sha256": "62c104b79211b38e9a87a7165d09e61d9e804677b3fc9575feb516a89bde2edf",
+      "title": "Repeated integer extraction retains its named error boundary",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T165726Z-phase-carrier-selection-coordinator-public-skill-excerpts",
+      "path": "docs/lessons/20261018T165726Z-phase-carrier-selection-coordinator-public-skill-excerpts.md",
+      "sha256": "9701eb9b496ec5ad07bc65b74c065339e4effeee2aba7ccc4fef17a5987b5f1b",
+      "title": "Extract permitted skill sections for blind roles",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T172654Z-phase-carrier-selection-coordinator-unequal-policy-diagnostics",
+      "path": "docs/lessons/20261018T172654Z-phase-carrier-selection-coordinator-unequal-policy-diagnostics.md",
+      "sha256": "30959b666b33ed258159325dcf3c9e330d0c7bbb2d10ee3e072b152092e0847a",
+      "title": "Equal eligible diagnostics cannot distinguish ranking",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T175339Z-phase-carrier-selection-coordinator-preserve-coverage-shards",
+      "path": "docs/lessons/20261018T175339Z-phase-carrier-selection-coordinator-preserve-coverage-shards.md",
+      "sha256": "3d3d55e6b45a7a703929085b6af1949cf97d6eeaebb3e73e6f0761aab558d308",
+      "title": "Preserve raw coverage shards during report export",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T180751Z-phase-carrier-selection-coordinator-optional-conversion-oracles",
+      "path": "docs/lessons/20261018T180751Z-phase-carrier-selection-coordinator-optional-conversion-oracles.md",
+      "sha256": "10e2bf0bdf8f6416cb2f029bcf585405c1749a09f762d53baf17748e2e6ea564",
+      "title": "Optional conversion hooks are not extraction requirements",
+      "cohort": 3
+    },
+    {
+      "id": "20261018T220128Z-fourier-block-phase-coordinator-oracle-versus-truth",
+      "path": "docs/lessons/20261018T220128Z-fourier-block-phase-coordinator-oracle-versus-truth.md",
+      "sha256": "7c52394673609cd554f79dd53497b6b36a7f15f09a22801930993dcfbff6dc93",
+      "title": "Direct-model agreement and phase truth need separate columns",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T011447Z-fourier-block-phase-coordinator-conditional-cleanup-oracles",
+      "path": "docs/lessons/20261019T011447Z-fourier-block-phase-coordinator-conditional-cleanup-oracles.md",
+      "sha256": "53e04c7241e5f6b3a65637800aa4dc9a1ca02f68b6567f6cc8f072ed914d53a2",
+      "title": "Cleanup proof must permit successful alternatives",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T035835Z-asd-cleanup-coordinator-preserve-original-link-paths",
+      "path": "docs/lessons/20261019T035835Z-asd-cleanup-coordinator-preserve-original-link-paths.md",
+      "sha256": "5011dadfe92caf9697542231cd24b2780f8e6cf46c51b51714256a6b7b11f7d9",
+      "title": "Cleanup must preserve original evidence link paths",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T041235Z-volume-translation-coordinator-existing-public-compatibility-checks",
+      "path": "docs/lessons/20261019T041235Z-volume-translation-coordinator-existing-public-compatibility-checks.md",
+      "sha256": "f06beaa445e328a1d0764c159cacad92212728d5597c96e5b8cd2d3660deaa85",
+      "title": "Check existing public compatibility coverage before adding tests",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T042742Z-native-evidence-coordinator-retire-negative-control-aliases",
+      "path": "docs/lessons/20261019T042742Z-native-evidence-coordinator-retire-negative-control-aliases.md",
+      "sha256": "d4ffcddb89dceea8fa683f70da57344d8261c4be3ae721e9b809ea2e889a26d9",
+      "title": "Negative-control fixtures need a closed lifecycle",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T063259Z-raw-phase-motion-coordinator-reference-premise",
+      "path": "docs/lessons/20261019T063259Z-raw-phase-motion-coordinator-reference-premise.md",
+      "sha256": "13c458caac2c28eee903b1ffd97f0783f8434f8a1263912ba29955e0799108fb",
+      "title": "Phase cancellation needs a common acquisition state",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T091322Z-continuous-carrier-intake-coordinator-finite-modulation",
+      "path": "docs/lessons/20261019T091322Z-continuous-carrier-intake-coordinator-finite-modulation.md",
+      "sha256": "a0533758c92c2c48955f45453c695f018eb7189c05a486603604189ebcb5e9f3",
+      "title": "Fractional carrier modulation needs a finite observation meaning",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T114707Z-raw-calibration-intake-coordinator-information-source",
+      "path": "docs/lessons/20261019T114707Z-raw-calibration-intake-coordinator-information-source.md",
+      "sha256": "b7b85fbc074f8811aa315a9f49c1c1ae9df79b3ac8c427afedd48a38a8ea06d3",
+      "title": "Profile compensation does not supply its carrier label",
+      "cohort": 3
+    },
+    {
+      "id": "20261019T141007Z-relative-phase-invariants-coordinator-target-quotient",
+      "path": "docs/lessons/20261019T141007Z-relative-phase-invariants-coordinator-target-quotient.md",
+      "sha256": "7e6bfaac5a97e0ded820387c860063c30e786f62a065ceeb3e811ee4f78a3272",
+      "title": "Check the response target separately from phase labels",
+      "cohort": 3
+    },
+    {
+      "id": "20261020T171219Z-relative-phase-invariants-coordinator-cleanup-evidence-provenance",
+      "path": "docs/lessons/20261020T171219Z-relative-phase-invariants-coordinator-cleanup-evidence-provenance.md",
+      "sha256": "5423cc21a276b8c11588925f8671094c8430ea6a5342417a72fe276f9631557b",
+      "title": "Preserve applicable evidence across cleanup assessments",
+      "cohort": 3
+    },
+    {
+      "id": "20261021T021518Z-relative-phase-invariants-coordinator-native-coverage-arcs",
+      "path": "docs/lessons/20261021T021518Z-relative-phase-invariants-coordinator-native-coverage-arcs.md",
+      "sha256": "27c06a091dd83f4ec418039333273bcf86387651a3fb1c44f33daff87c863dd4",
+      "title": "Physical coverage arcs and logical branch destinations are different evidence",
+      "cohort": 3
+    },
+    {
+      "id": "20261021T182235Z-ci-pr36-pr39-coordinator-git-maintenance",
+      "path": "docs/lessons/20261021T182235Z-ci-pr36-pr39-coordinator-git-maintenance.md",
+      "sha256": "de480d1ca97237eda1a19803af7b692968523306511c229dc5f5161a3832f3ba",
+      "title": "Detached Git maintenance races with fixture byte snapshots",
+      "cohort": 3
+    },
+    {
+      "id": "20261021T191849Z-ci-pr36-pr39-coordinator-cheap-audit",
+      "path": "docs/lessons/20261021T191849Z-ci-pr36-pr39-coordinator-cheap-audit.md",
+      "sha256": "22a30cd8773d6b1e06da5a9c41accf481f40b3db7347cb09f55d303e9f1e7985",
+      "title": "Check a diagnosed dependency audit before another expensive full gate",
+      "cohort": 3
+    },
+    {
+      "id": "20261021T223800Z-ci-pr36-pr39-coordinator-moving-audit",
+      "path": "docs/lessons/20261021T223800Z-ci-pr36-pr39-coordinator-moving-audit.md",
+      "sha256": "848c39b381c8da2faabfc3bcb4a1b3d48e19a8fe1b9c1b6e9d8d68d3a3a85b40",
+      "title": "An unchanged lock can fail a later live dependency audit",
+      "cohort": 3
+    },
+    {
+      "id": "20261022T045737Z-stack-maintenance-bounded-worker-quiesce-repository-builders",
+      "path": "docs/lessons/20261022T045737Z-stack-maintenance-bounded-worker-quiesce-repository-builders.md",
+      "sha256": "90d63eb0aa8046cd27aa12db6d657a365873787ed544b96a0b6124e078842138",
+      "title": "Quiesce each disposable Git builder before snapshotting",
+      "cohort": 3
+    },
+    {
+      "id": "20261022T200641Z-simulation-camera-coordinator-platform-case-identity",
+      "path": "docs/lessons/20261022T200641Z-simulation-camera-coordinator-platform-case-identity.md",
+      "sha256": "60e250883ed901141ed6351607435095e713db7d7f993f930acc7fcc7e2f3739",
+      "title": "Isolate platform-dependent fixture cases",
+      "cohort": 3
+    },
+    {
+      "id": "20261022T215001Z-full-noisy-simulation-coordinator-pupil-convergence",
+      "path": "docs/lessons/20261022T215001Z-full-noisy-simulation-coordinator-pupil-convergence.md",
+      "sha256": "bd187e6d22134d10640334f4308c7229a1398a6355a9eae4c62316c820c03072",
+      "title": "Finite pupil-rule accuracy does not establish continuum convergence",
+      "cohort": 3
+    },
+    {
+      "id": "20261022T230603Z-full-noisy-simulation-coordinator-bead-grid-moments",
+      "path": "docs/lessons/20261022T230603Z-full-noisy-simulation-coordinator-bead-grid-moments.md",
+      "sha256": "e0831c86cade4e67418a20190e9c7570a6ede007db68b13eb746330c45f01ddd",
+      "title": "Stored bead brightness does not establish geometric convergence",
+      "cohort": 3
+    },
+    {
+      "id": "20261022T231548Z-full-noisy-simulation-coordinator-exact-coordinate-differences",
+      "path": "docs/lessons/20261022T231548Z-full-noisy-simulation-coordinator-exact-coordinate-differences.md",
+      "sha256": "0521212c5899c6bb9aed38cc93179bddc2c4ffdc093c8c8025c8052b5731e4c4",
+      "title": "Rational conversion cannot recover an already rounded coordinate difference",
+      "cohort": 3
+    },
+    {
+      "id": "20261026T035722Z-full-noisy-simulation-coordinator-finite-step-public-range",
+      "path": "docs/lessons/20261026T035722Z-full-noisy-simulation-coordinator-finite-step-public-range.md",
+      "sha256": "aa3402978f07f21edc25634465246f408877bb10a299922da8aaa26f4fec51a8",
+      "title": "A finite optimizer step does not prove public prediction range",
+      "cohort": 3
+    },
+    {
+      "id": "20261026T185523Z-pr53-coordinator-finite-fit-is-not-recovery",
+      "path": "docs/lessons/20261026T185523Z-pr53-coordinator-finite-fit-is-not-recovery.md",
+      "sha256": "bcf4a188bdd6d37b623a7b1bc1ffb53269316812d4c6e0b00091d19da46e6629",
+      "title": "Finite workflow completion did not establish recovery",
+      "cohort": 3
+    },
+    {
+      "id": "20261026T185523Z-pr53-coordinator-measurement-wrapper-can-fail-after-generation",
+      "path": "docs/lessons/20261026T185523Z-pr53-coordinator-measurement-wrapper-can-fail-after-generation.md",
+      "sha256": "da592ce6a60b6c6651cd9befb448ecfc30ff9b91840c0ec248cb395e12f85155",
+      "title": "A resource wrapper failed after sealing valid generation",
+      "cohort": 3
+    },
+    {
+      "id": "20261026T201943Z-pr53-coordinator-match-gate-environment-before-long-run",
+      "path": "docs/lessons/20261026T201943Z-pr53-coordinator-match-gate-environment-before-long-run.md",
+      "sha256": "553c8e1dd38a8fd707956d10d48b6c258895bc9eaaf81b6d759940d3f3482d12",
+      "title": "Check test harness integration in the canonical parent environment",
+      "cohort": 3
+    },
+    {
+      "id": "20261027T000006Z-pr53-coordinator-file-limit-caps-coverage",
+      "path": "docs/lessons/20261027T000006Z-pr53-coordinator-file-limit-caps-coverage.md",
+      "sha256": "3ccce69c3f57ed187ce281c7618b9b2ee5d34cd797fd19e0729d12db93f99abc",
+      "title": "Per-process file limits also constrain coverage databases",
+      "cohort": 4
+    },
+    {
+      "id": "20261027T051156Z-pr53-coordinator-worktree-disk-accounting",
+      "path": "docs/lessons/20261027T051156Z-pr53-coordinator-worktree-disk-accounting.md",
+      "sha256": "de354abd6a5d5f52b6fffb899a0f27da2104a188b174b5db2123396d11fe3652",
+      "title": "Check available space separately from removed file sizes",
+      "cohort": 4
+    },
+    {
+      "id": "20261027T101839Z-pr53-coordinator-independent-error-scales",
+      "path": "docs/lessons/20261027T101839Z-pr53-coordinator-independent-error-scales.md",
+      "sha256": "a13f984523b3f3f401c779149d185dee92b1d02958ffd0cfc19bba877be9e167",
+      "title": "Absolute error statistics need their own representable scale",
+      "cohort": 4
+    },
+    {
+      "id": "20261028T143227Z-pr53-recovery-coordinator-illumination-control",
+      "path": "docs/lessons/20261028T143227Z-pr53-recovery-coordinator-illumination-control.md",
+      "sha256": "daf73c218a31828a32a4c8b42c47e0d85854b9bdc42d7979ed7ba60711361e6d",
+      "title": "Separate illumination error from source recovery with a frozen-source control",
+      "cohort": 4
+    },
+    {
+      "id": "20261102T165615Z-c-equivalence-intake-verify-measurement-owner",
+      "path": "docs/lessons/20261102T165615Z-c-equivalence-intake-verify-measurement-owner.md",
+      "sha256": "84e753a7100164d143fc8493877866b0d6a5209463db863d63b386b220720f0a",
+      "title": "Trace a measurement to its actual emitter before changing a gate",
+      "cohort": 4
+    },
+    {
+      "id": "20261102T175152Z-ce01-coordinator-git-fixture-temp-root",
+      "path": "docs/lessons/20261102T175152Z-ce01-coordinator-git-fixture-temp-root.md",
+      "sha256": "1d4bce0eb5c0e8aabf14ca9ccb9511ca8cb913f4bbce21e572377f94230489d2",
+      "title": "Unavailable-Git fixtures need a temporary root outside a real repository",
+      "cohort": 4
+    },
+    {
+      "id": "20261102T213329Z-ce02-coordinator-noise-design-invariance",
+      "path": "docs/lessons/20261102T213329Z-ce02-coordinator-noise-design-invariance.md",
+      "sha256": "472f32755c8b960c1e26ff1fb74cd2049be3543288ed9b8cc0a2fa74e2d8fa94",
+      "title": "Vary the quantity a numerical test intends to distinguish",
+      "cohort": 4
+    },
+    {
+      "id": "20261102T230249Z-ce02-coordinator-diagnostic-causality",
+      "path": "docs/lessons/20261102T230249Z-ce02-coordinator-diagnostic-causality.md",
+      "sha256": "f15fdd99370e5639b29a3006cabd7df6fd692a54a50608b34b83e35b1646083d",
+      "title": "Error vocabulary is not a numerical-cause oracle",
+      "cohort": 4
+    },
+    {
+      "id": "20261102T230249Z-ce02-coordinator-finite-inverse-resolution",
+      "path": "docs/lessons/20261102T230249Z-ce02-coordinator-finite-inverse-resolution.md",
+      "sha256": "6db430acde8ff097601c39059516a4ff8732d27bd18dcf68bb2bc211dd724c45",
+      "title": "A finite phase inverse can still be unusable",
+      "cohort": 4
+    },
+    {
+      "id": "20261102T235516Z-ce03-coordinator-caller-before-helper",
+      "path": "docs/lessons/20261102T235516Z-ce03-coordinator-caller-before-helper.md",
+      "sha256": "e3e28707ae92a375a461b915c02ff1835d8e3bef7d21debb2c5ba7f3670379db",
+      "title": "Trace caller capabilities before helper parameters",
+      "cohort": 4
+    },
+    {
+      "id": "20261102T235516Z-ce03-coordinator-public-file-allowlist",
+      "path": "docs/lessons/20261102T235516Z-ce03-coordinator-public-file-allowlist.md",
+      "sha256": "4b2b85570c1bafc6bc21ab7d1bd45b4d084bfadca2332da25a657be335ad5476",
+      "title": "Separate public-document scope from implementation blindness",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes",
+      "path": "docs/lessons/20261103T004602Z-ce03-coordinator-index-count-vs-allocation-bytes.md",
+      "sha256": "93da11e5ba1eff0508a929467cd56cec5ef273348c3dffe9d3c33f96797af788",
+      "title": "Separate source index counts from native allocation bytes",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets",
+      "path": "docs/lessons/20261103T014832Z-ce03-coordinator-absolute-paths-for-native-packets.md",
+      "sha256": "7e4e5edbf631ee654bac7a00ce4017d890a6540c4c3c75e49cf26a49dad866d4",
+      "title": "Standalone review packets need an absolute evidence root",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles",
+      "path": "docs/lessons/20261103T014832Z-ce03-coordinator-constant-ties-in-dense-oracles.md",
+      "sha256": "be260257a575413207b07f01325e4c402b3f85210f17c1fdb005ac63e7607c38",
+      "title": "Dense equivalent formulas can change exact finite decisions",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T020523Z-ce03-coordinator-external-protocol-lock-parent",
+      "path": "docs/lessons/20261103T020523Z-ce03-coordinator-external-protocol-lock-parent.md",
+      "sha256": "9a3a4eed066d3d0c4b8135d05417ef53e29b8a29a41309239672a2a09b2a8ce9",
+      "title": "External protocol evidence does not prepare the fixed reader lock parent",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T033106Z-ce04-coordinator-empty-traversal-domain",
+      "path": "docs/lessons/20261103T033106Z-ce04-coordinator-empty-traversal-domain.md",
+      "sha256": "f889d3d1ab8e6751cdc2aef3279a0a9688895b12bdd36cfd8a05ea5baa2bd0ca",
+      "title": "Preserve empty traversals when classifying numerical singularities",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T044512Z-ce04-coordinator-exact-blind-input-extracts",
+      "path": "docs/lessons/20261103T044512Z-ce04-coordinator-exact-blind-input-extracts.md",
+      "sha256": "12b534b3370fd89030bd56de24ba4e04ff565dd92b4d5b1bcb03b61bdc6cb543",
+      "title": "Extract mixed-scope documents before blind launches",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T044512Z-ce04-coordinator-near-zero-oracle-budget",
+      "path": "docs/lessons/20261103T044512Z-ce04-coordinator-near-zero-oracle-budget.md",
+      "sha256": "c1ea7e00a8ef12bdd7bbda4263a2f27d182f7ce61a3fe61fd163845d4ad1b9c5",
+      "title": "Use absolute error near a cosine zero",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T051249Z-ce04-coordinator-actual-finite-operands",
+      "path": "docs/lessons/20261103T051249Z-ce04-coordinator-actual-finite-operands.md",
+      "sha256": "b36be186ac295f26a8bde781709de3e78e7a00c7e032b24ec3dd42fd818423f1",
+      "title": "Derive finite-sum oracles from actual supplied operands",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T052754Z-ce04-c1-declared-numpy-kinds",
+      "path": "docs/lessons/20261103T052754Z-ce04-c1-declared-numpy-kinds.md",
+      "sha256": "0047baf2793cb16d2998728b7c2091ef001eb467b4cc9a573522b1f481e2c1e2",
+      "title": "Validate declared NumPy kinds as well as storage width",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation",
+      "path": "docs/lessons/20261103T060418Z-ce04-coordinator-value-preserving-scalar-validation.md",
+      "sha256": "8bdd454b7af2ae51e99c0970bd1ad1ab68420ad97ed6354ca0956ee432ad7b7a",
+      "title": "Preserve scalar values while checking numerical bounds",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T185730Z-ce05-coordinator-standard-real-kinds",
+      "path": "docs/lessons/20261103T185730Z-ce05-coordinator-standard-real-kinds.md",
+      "sha256": "e026381f5bffc54190c59ff54d47ef2d75592c12751f09f4b3632bb64ad53552",
+      "title": "Standard real kinds need explicit dtype checks before range comparison",
+      "cohort": 4
+    },
+    {
+      "id": "20261103T190021Z-ce05-coordinator-decoder-storage-ownership",
+      "path": "docs/lessons/20261103T190021Z-ce05-coordinator-decoder-storage-ownership.md",
+      "sha256": "292fdbec5ee667369470f3ea97a37033f60e37aa85c07056b14dd5053c455a85",
+      "title": "A read-only decoded view can still violate owned-storage input rules",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-blind-skill-excerpt",
+      "path": "docs/lessons/20261104T045108Z-ce06-coordinator-blind-skill-excerpt.md",
+      "sha256": "3248e5b3aca95d07ae5799947c970127583b8afd6e2d5b1839e67df48a3f346b",
+      "title": "Supply the exact permitted skill excerpt to a blind role",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-exact-cancellation-oracle",
+      "path": "docs/lessons/20261104T045108Z-ce06-coordinator-exact-cancellation-oracle.md",
+      "sha256": "625a99db9e001aa26373edbbc187a70ac5cd0e5811e2e24268db41c3204daf44",
+      "title": "An algebraic cancellation is not a finite branch proof",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-native-usage-counter",
+      "path": "docs/lessons/20261104T045108Z-ce06-coordinator-native-usage-counter.md",
+      "sha256": "64566368ecea2e8f4787a02bf73b33297b41a16551446cd7613943f83a688a24",
+      "title": "Native resumed-session token counters are cumulative",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T045108Z-ce06-coordinator-source-padding",
+      "path": "docs/lessons/20261104T045108Z-ce06-coordinator-source-padding.md",
+      "sha256": "e16fb70a31c9f782fc9a588428c1073f4fe37e02ec3abcef9631a028ca5d0f98",
+      "title": "Source edge bounds depend on the actual caller and allocation",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T063647Z-ce06-coordinator-aggregate-declared-count",
+      "path": "docs/lessons/20261104T063647Z-ce06-coordinator-aggregate-declared-count.md",
+      "sha256": "9528551b0d8c2d3cd741963bf09ef9b8c0ed1ac993ac8aecea2e5f354e1c3de7",
+      "title": "Check the full declared count even when used arrays are small",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T063647Z-ce06-coordinator-exact-provenance-leaves",
+      "path": "docs/lessons/20261104T063647Z-ce06-coordinator-exact-provenance-leaves.md",
+      "sha256": "6e2b6529ea1f2aa0d8cb1a0d694db1ca9f5ef15cda25848b2124c69fc03d3fa5",
+      "title": "Compare provenance values after checking their exact types",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T081421Z-ce06-coordinator-resolve-selector-once",
+      "path": "docs/lessons/20261104T081421Z-ce06-coordinator-resolve-selector-once.md",
+      "sha256": "aff046ef4044dc07a8cd2eb68b99089b0549d04499002cce91e0e8009dd1d64f",
+      "title": "Resolve a literal selector before both validation and routing",
+      "cohort": 4
+    },
+    {
+      "id": "20261104T195927Z-ce06-coordinator-validated-values",
+      "path": "docs/lessons/20261104T195927Z-ce06-coordinator-validated-values.md",
+      "sha256": "ff289f4c51f065fd49202c8ec5f523d24bff00e8526355d6cdaa3e3c82dad4e7",
+      "title": "Use the value that passed validation",
+      "cohort": 4
+    },
+    {
+      "id": "20261105T034222Z-ce06-coordinator-signed-scalar-magnitude",
+      "path": "docs/lessons/20261105T034222Z-ce06-coordinator-signed-scalar-magnitude.md",
+      "sha256": "b31d6f4f9efaa7cd625c5d958f85e901495902d137d138bf6b0d5bd84911bcf4",
+      "title": "Widen signed NumPy values before taking their magnitude",
+      "cohort": 4
+    },
+    {
+      "id": "20261105T053039Z-ce06-coordinator-numpy-bound-promotion",
+      "path": "docs/lessons/20261105T053039Z-ce06-coordinator-numpy-bound-promotion.md",
+      "sha256": "ae3b8ad22fc84014b50ecedf7dbdf8860e422e8347d0c2b0efce79a3c06ccddc",
+      "title": "Range comparisons must represent the bound",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess",
+      "path": "docs/lessons/20261106T061925Z-ce07-coordinator-input-orders-and-carrier-guess.md",
+      "sha256": "8ae3066b569ffd92e09fc71732ca1835b9e687e12de8ef73c72e8e71c8bba4ba",
+      "title": "Resolve workflow carrier guesses from acquisition phase count",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty",
+      "path": "docs/lessons/20261106T133205Z-ce07-coordinator-joint-cubic-uncertainty.md",
+      "sha256": "8fb0ca8cca28dda1afd99d0d55e3a92b6626b886dd6d13d2456e848d6fc6ecdc",
+      "title": "Keep mixed data and solver uncertainty in cubic bounds",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations",
+      "path": "docs/lessons/20261106T133205Z-ce07-coordinator-resolved-optional-test-expectations.md",
+      "sha256": "d6fe73d73116622e360917f37a5196e0b7edd4c6624c13a6c9e7bb686227bb11",
+      "title": "Read resolved optional declarations in test expectations",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T133801Z-ce07-c-validation-before-identity-copy",
+      "path": "docs/lessons/20261106T133801Z-ce07-c-validation-before-identity-copy.md",
+      "sha256": "af4aadf2d7bed1028b5856536c5cfeb033a8d08f93a2cea124ff43116b3938e2",
+      "title": "Validate before identity hashing can materialize arrays",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T191513Z-ce07-coordinator-accepted-array-provenance",
+      "path": "docs/lessons/20261106T191513Z-ce07-coordinator-accepted-array-provenance.md",
+      "sha256": "5cc177017f2d4deaf388cffe52d46781c986e134c287cd856351139ab194d211",
+      "title": "Preserve original identities for accepted array storage",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination",
+      "path": "docs/lessons/20261106T191513Z-ce07-coordinator-numpy-real-snapshot-termination.md",
+      "sha256": "e81c6ed7699853230914e8da17d177281d186a518e6701a179da7c0c976933dc",
+      "title": "Convert admitted NumPy real snapshots with a terminating conversion",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity",
+      "path": "docs/lessons/20261106T202111Z-ce07-coordinator-native-numerical-buffer-identity.md",
+      "sha256": "3e927a605f67b6253f3cb7a8d0b5d610eb9de6d5659971ced5b49fd384faedd6",
+      "title": "Hash canonical numerical storage through a byte view",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T202111Z-ce07-coordinator-public-directory-metadata-scope",
+      "path": "docs/lessons/20261106T202111Z-ce07-coordinator-public-directory-metadata-scope.md",
+      "sha256": "3a0ba802f73827e11349b25c3d3d9aa0525dabde3b8e67b50b30538beb73a6e7",
+      "title": "Distinguish payload reads from public directory metadata",
+      "cohort": 4
+    },
+    {
+      "id": "20261106T223133Z-ce08-coordinator-probe-coordinate-link",
+      "path": "docs/lessons/20261106T223133Z-ce08-coordinator-probe-coordinate-link.md",
+      "sha256": "e18f39848787f8945f9616eccec7435219d874dcd3fd26464a14f8fd863d9496",
+      "title": "Finite-search oracles must bind probes to bracket candidates",
+      "cohort": 4
+    },
+    {
+      "id": "20261107T011216Z-ce08-coordinator-presampling-physical-modes",
+      "path": "docs/lessons/20261107T011216Z-ce08-coordinator-presampling-physical-modes.md",
+      "sha256": "23f01be0c251ef34f9d52b8c3278e6791ca0661db27309e333f5b58bd835c7a7",
+      "title": "Apply optical support before sampling recovery controls",
+      "cohort": 4
+    },
+    {
+      "id": "20261107T024115Z-ce08-coordinator-observer-rounding-claims",
+      "path": "docs/lessons/20261107T024115Z-ce08-coordinator-observer-rounding-claims.md",
+      "sha256": "39581827f40e681d093a3bf85715ccc3923ee761fd8c0c9c6b114069cf30a08a",
+      "title": "Separate observer precision from frozen numerical input",
+      "cohort": 4
+    },
+    {
+      "id": "20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass",
+      "path": "docs/lessons/20261109T004544Z-simulation-capstone-coordinator-normal-path-array-subclass.md",
+      "sha256": "37a35683b126fbfd5e5eb1d142c8fea4eada74a168776092ee955a0d73d6b080",
+      "title": "The normal study runner needs plain array views",
+      "cohort": 4
+    },
+    {
+      "id": "20261109T061440Z-test-apparatus-coordinator-empty-affinity",
+      "path": "docs/lessons/20261109T061440Z-test-apparatus-coordinator-empty-affinity.md",
+      "sha256": "a43c4d7b14454228438c93c5f9fe56242ad13b71550a63e72780b2f71ab01622",
+      "title": "Two workers can still execute one serial group",
+      "cohort": 4
+    },
+    {
+      "id": "20261109T081336Z-test-apparatus-coordinator-certified-query-keys",
+      "path": "docs/lessons/20261109T081336Z-test-apparatus-coordinator-certified-query-keys.md",
+      "sha256": "c0a9b4f89b0ed42f0c2b1fc3d57202591c420eafc2f98fa1445826cfe9771e67",
+      "title": "Reuse certified queries with complete uncertainty inputs",
+      "cohort": 4
+    },
+    {
+      "id": "20261110T193823Z-readability-02-coordinator-owned-measurement",
+      "path": "docs/lessons/20261110T193823Z-readability-02-coordinator-owned-measurement.md",
+      "sha256": "e367a28637a90c199f56649563d1552e116202e122d166d84134e8cd142797fa",
+      "title": "Relocating tooling requires receipt inventory updates",
+      "cohort": 4
+    },
+    {
+      "id": "20261111T013821Z-readability-04-coordinator-helper-payload-collision",
+      "path": "docs/lessons/20261111T013821Z-readability-04-coordinator-helper-payload-collision.md",
+      "sha256": "ba987fcc7d05cf01d7a8a7c0cb1f6eb206b7883d9cee7e39620ff8d3b171b016",
+      "title": "Helper identifiers can also name diagnostic fields",
+      "cohort": 4
+    },
+    {
+      "id": "20261111T022918Z-readability-05-coordinator-decorated-diagnostic-names",
+      "path": "docs/lessons/20261111T022918Z-readability-05-coordinator-decorated-diagnostic-names.md",
+      "sha256": "cc4792d4f06ec5e6bc7395b6c60c48e0d792ab768786e53476cf817802166ba7",
+      "title": "Decorated operation names are diagnostic inputs",
+      "cohort": 4
+    }
+  ]
+}

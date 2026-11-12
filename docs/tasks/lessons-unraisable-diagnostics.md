@@ -40,9 +40,27 @@ The issue cites this task filename and
 `docs/reports/lessons-doctor-2026-11-11/cohort-1-probe.json`. Neither file existed
 in the local baseline; authenticated GitHub default-branch contents reads also
 returned 404 on November 11, 2026. This document is newly created, not a recovered
-historical intake. The original probe artifact, its exact helper hashes and prior
-doctor accounting remain unavailable. The issue's reported observations retain
-their stated limits; this intake does not substitute fresh passing evidence.
+historical intake. They were subsequently imported through PR #101 and are now
+available after integrating main at `02bb2c95aada93057186d6efcde0050ffb7d597e`.
+The recovered probe's helper hashes match the recorded diagnostic baseline;
+recovery supplies historical diagnosis, not new product qualification.
+
+### Original doctor handoff provenance
+
+Retain stable finding **LESSONS-DOCTOR-01-F001**, issue #99 and this task ID.
+The [issue draft](../reports/lessons-doctor-2026-11-11/F001-issue.md) and
+[synthetic probe](../reports/lessons-doctor-2026-11-11/cohort-1-probe.json) preserve
+the original completion conditions, both interpreter observations and exact helper
+hashes. The source observations are
+`20261007T213156Z-illumination-coordinator-blind-startup-diagnostics` and
+`20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction`.
+The existing [tracked disposition](../lessons/dispositions/20261111T182059Z-lessons-doctor-01-coordinator-b05-tracked.md)
+retains its bytes and original scope; issue closure alone supplies no resolution.
+The [parent doctor task](lessons-doctor-first-pass.md) retains its nine cumulative
+delegated launches, prior reviews/corrections and unknown metering. Those are
+parent charges, not new correction launches. This contract's R1–R6/S1–S8 and sole
+execution state replace the original doctor's uncommissioned intake state after
+the owner's explicit implementation request; they add no unrelated authority.
 
 ### Requirements
 
@@ -158,21 +176,27 @@ requirements/scenarios; example and test counts are not scenario limits.
 - **Status pointer:** bounded correction candidate prepared under the owner's
   **“Start implementing”** instruction. This section is prepared before the
   candidate commit; final exact-candidate gate/review status is authoritative in
-  the conversation and ignored `artifacts/verification/issue-99/` evidence,
+  the conversation and ignored `artifacts/verification/issue-99-pr/` evidence,
   including `final-review.md`. Do not alter verified tracked bytes to insert
   their own identities or subsequent verdict.
-- Human instructions: `/intake 99`, followed by “Start implementing”; no unresolved
+- Human instructions: `/intake 99`, followed by “Start implementing” and
+  **“where's the pr?”**. The latter commissions push and PR creation; merge,
+  release and unrelated external messages remain unauthorized. No unresolved
   material contract question or human-set execution limit. Execution baseline:
   `8ee8776352422e629b7701d7660006573ae298e6` (completed intake), tree
-  `3c394baca58d58449230602040fb04a32e740a25`. Final candidate identities/results
-  belong outside tracked candidate bytes in the conversation and ignored
-  `artifacts/verification/issue-99/` evidence.
+  `3c394baca58d58449230602040fb04a32e740a25`. Publication integrates main
+  `02bb2c95aada93057186d6efcde0050ffb7d597e`; its incoming changes are
+  documentation/policy only. The add/add task conflict is reconciled here without
+  changing runtime, tests, lock, Makefile or prior lesson/disposition bytes.
+  Final candidate identities/results belong outside tracked candidate bytes in
+  the conversation and ignored `artifacts/verification/issue-99-pr/` evidence.
 - Workspace: existing `/workspace/simrecon`, branch
   `intake/99-unraisable-diagnostics`.
 - Evidence: issue body and empty comments read November 11, 2026; cited task/probe
   absent locally and default-branch reads returned 404. Existing code/tests were
-  inspected nonblind. The missing historical probe/accounting is an evidence
-  limitation, not a new owner decision or a reason to claim fresh reproduction.
+  inspected nonblind. Historical source/probe records are now restored through
+  main; the dated initial access limitation remains true. Recovery changes no
+  observation into fresh reproduction and resets no accounting.
 - Roles: one coordinator intake author and one read-only discovery helper,
   `intake_diagnostic_inventory`; helper inspected the diagnostic owner boundary and
   supplied scenario/routing advice, then a continued report-only packet sanity
@@ -185,6 +209,11 @@ requirements/scenarios; example and test counts are not scenario limits.
   additions. The coordinator owns task/report, full checks and a fresh reviewer
   without author history. See the [scoped report](../reports/lessons-unraisable-diagnostics.md)
   for requirement mapping, frozen hashes, commands, prior attempts and limits.
+  Initial candidate `8e71a6b76e7b584b0a14f2c0274301ee5f512667` passed all 13
+  phases (3120 tests) and one fresh bounded review. That acceptance is retained
+  under `artifacts/verification/issue-99/` and applies to that candidate only.
+  The merged publication candidate requires a new full gate and fresh reviewer;
+  prior acceptance is not relabeled as merged-candidate evidence.
 - Capability evidence: `make preflight` passed on the execution baseline with
   the existing activation file selecting uv 0.12.19, Python 3.13.12 in this
   checkout's `.venv`, Temurin 21.0.7+6 and correct NumPy/h5py/project imports.
@@ -204,16 +233,20 @@ requirements/scenarios; example and test counts are not scenario limits.
   scratch-path inventory failure.
   Intake helper launches=1, continued discovery turns=1; correction-worker
   launches=1. Final full-gate/reviewer attempts and verdicts are retained outside
-  this candidate; prior doctor attempts and metering unknown.
+  this candidate. Initial full-gate attempts=2 (one coordinator-interrupted
+  technical-timeout correction, one passing run); initial review rounds=1,
+  accepted with no findings. Publication integration and fresh proof preserve
+  those charges. Parent doctor accounting is linked above, not counted again.
   Coordinator actual model/effort unknown; helper requested `gpt-6.1-sol`/high,
   worker requested `gpt-6.1-sol`/high, actual served attribution unknown.
   Per-role responses/tokens/cached tokens,
   verified monetary cost and complete elapsed/check/owner-wait totals unknown.
   No historical counters are reset. Actual human-set limits: not set.
-- Next responsible role: coordinator records the clean candidate, obtains full
-  verification and fresh independent final review, then reports exact status in
-  the external evidence pointer above. Focused proof alone is not acceptance or
-  general blind-role diagnostic qualification.
+- Next responsible role: coordinator records the integrated candidate, obtains
+  full verification and fresh independent final review, pushes that exact head
+  and opens the requested PR. Final status/URL belongs in the external evidence
+  pointer above. Focused proof alone is not acceptance or general blind-role
+  diagnostic qualification.
 - Housekeeping: the temporary
   `/workspace/work/intake-99` worktree was used to draft documents before the
   shared setup note selecting the existing cloud checkout was read. The documents

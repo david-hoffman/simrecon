@@ -103,8 +103,32 @@ all other existing gates remain binding. Only local Linux qualification is
 available here; Ubuntu/macOS CI remains required for submission. No Python 3.12,
 general message redaction, engineered isolation or universal diagnostic
 certification is claimed. The missing original doctor probe/accounting remains
-unknown. No actual blind-session product-source exposure is established, and
+an initial-intake access limitation: PR #101 subsequently restored the original
+probe/source records and the parent accounting. Their helper hashes match the
+recorded baseline. See the task's provenance links; the recovered historical
+observations do not supply another product-qualification run. No actual
+blind-session product-source exposure is established, and
 this disposition supplies no closure of other source-free findings.
+
+## Publication integration
+
+The owner subsequently requested the PR. Main had advanced through documentation
+PRs #101/#102 to `02bb2c95aada93057186d6efcde0050ffb7d597e`, adding the original
+22-line doctor intake at this task's path. The coordinator resolves that add/add
+conflict by preserving R1–R6/S1–S8, the implementation authorization and sole
+execution state, and restoring original finding/source/disposition/parent links.
+No incoming or reconciled change touches diagnostic runtime/tests, dependencies,
+Makefile or workflow settings. Existing observations/dispositions remain immutable.
+
+The first correction candidate `8e71a6b76e7b584b0a14f2c0274301ee5f512667` passed
+full verification (3120 tests, all 13 phases) and one fresh independent review.
+Its two gate attempts, including the interrupted technical-timeout correction,
+remain under ignored `artifacts/verification/issue-99/`. Frozen runtime/test hashes
+above remain unchanged. The merged publication candidate gets a new exact full
+gate and a fresh independent reviewer before push/PR; the new identities, results,
+additional attempts and PR URL belong outside tracked bytes in
+`artifacts/verification/issue-99-pr/` and the PR/conversation. No old receipt is
+relabeled as the new candidate. Parent doctor charges remain separate and linked.
 
 Historical intake accounting: one discovery helper launch plus one continued
 sanity-check turn; optional helper `gh` reread forbidden, coordinator connector
