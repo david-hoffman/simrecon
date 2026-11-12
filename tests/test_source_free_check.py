@@ -623,3 +623,166 @@ def test_pytest_caller_collecterror_retains_message_category_and_cause(
         assert "ImportError: CALLER_IMPORT_CAUSE" in output
         assert f'File "{conftest}", line 5' in output
     assert "SOURCE_ONLY_" not in output
+
+
+def finalizer_definition() -> str:
+    """Use a real finalizer with source and local markers distinct from its message."""
+    return (
+        "class Broken:\n"
+        "    def __del__(self):\n"
+        "        local_only = 'LOCAL_ONLY_UNRAISABLE_12'\n"
+        "        raise RuntimeError('UNRAISABLE_MESSAGE_12') # SOURCE_ONLY_UNRAISABLE_12\n"
+    )
+
+
+def finalizer_program(timing: str, status: int) -> str:
+    return (
+        finalizer_definition()
+        + "value = Broken()\n"
+        + ("del value\n" if timing == "explicit" else "")
+        + f"raise SystemExit({status})\n"
+    )
+
+
+def assert_unraisable_diagnostic(output: str, source: Path) -> None:
+    assert "RuntimeError: UNRAISABLE_MESSAGE_12" in output
+    assert f'File "{source}", line 4' in output
+    assert "SOURCE_ONLY_" not in output
+    assert "LOCAL_ONLY_" not in output
+
+
+@pytest.mark.parametrize("timing", ["explicit", "shutdown"])
+@pytest.mark.parametrize("status", [0, 7])
+def test_python_finalization_preserves_diagnostic_and_native_status_without_source(
+    tmp_path: Path, timing: str, status: int
+) -> None:
+    source = tmp_path / "finalizer.py"
+    source.write_text(finalizer_program(timing, status))
+    result = execute("python", str(source))
+    assert result.returncode == status
+    assert_unraisable_diagnostic(result.stdout + result.stderr, source)
+
+
+def test_python_child_inherits_unraisable_renderer_and_preserves_failure(tmp_path: Path) -> None:
+    child = tmp_path / "child_finalizer.py"
+    child.write_text(finalizer_program("explicit", 7))
+    parent = tmp_path / "parent_finalizer.py"
+    parent.write_text(
+        "import subprocess, sys\n"
+        f"result = subprocess.run([sys.executable, {str(child)!r}])\n"
+        "print('CHILD_STATUS', result.returncode)\n"
+        "sys.exit(result.returncode)\n"
+    )
+    result = execute("python", str(parent))
+    assert result.returncode == 7
+    assert "CHILD_STATUS 7" in result.stdout
+    assert_unraisable_diagnostic(result.stdout + result.stderr, child)
+
+
+@pytest.mark.parametrize("action", ["ignore", "always", "error"])
+@pytest.mark.parametrize("origin", ["explicit", "resource-finalization"])
+def test_python_resource_warning_filters_preserve_meaning_location_and_status(
+    tmp_path: Path, action: str, origin: str
+) -> None:
+    source = tmp_path / "resource_warning.py"
+    source.write_text(
+        "import warnings\nvalue = open(__file__)\ndel value # SOURCE_ONLY_RESOURCE_13\n"
+        if origin == "resource-finalization"
+        else "import warnings\n"
+        "warnings.warn('RESOURCE_MESSAGE_13', ResourceWarning) # SOURCE_ONLY_RESOURCE_13\n"
+    )
+    result = execute("python", f"-W{action}::ResourceWarning", str(source))
+    output = result.stdout + result.stderr
+    assert result.returncode == (1 if origin == "explicit" and action == "error" else 0)
+    assert "SOURCE_ONLY_" not in output
+    if action == "ignore":
+        assert "ResourceWarning" not in output
+    else:
+        message = "unclosed file" if origin == "resource-finalization" else "RESOURCE_MESSAGE_13"
+        line = 3 if origin == "resource-finalization" else 2
+        assert f"ResourceWarning: {message}" in output
+        if action == "error":
+            assert f'File "{source}", line {line}' in output
+        else:
+            assert f"{source}:{line}: ResourceWarning:" in output
+
+
+def test_python_warning_promoted_during_finalization_retains_authored_message(
+    tmp_path: Path,
+) -> None:
+    source = tmp_path / "promoted_finalizer.py"
+    source.write_text(
+        "import warnings\n"
+        "class Broken:\n"
+        "    def __del__(self):\n"
+        "        local_only = 'LOCAL_ONLY_PROMOTED_14'\n"
+        "        warnings.warn('PROMOTED_MESSAGE_14', ResourceWarning) # SOURCE_ONLY_PROMOTED_14\n"
+        "value = Broken()\n"
+        "del value\n"
+    )
+    result = execute("python", "-Werror::ResourceWarning", str(source))
+    output = result.stdout + result.stderr
+    assert result.returncode == 0
+    assert "ResourceWarning: PROMOTED_MESSAGE_14" in output
+    assert f'File "{source}", line 5' in output
+    assert "SOURCE_ONLY_" not in output
+    assert "LOCAL_ONLY_" not in output
+
+
+@pytest.mark.parametrize("mode", ["pytest", "python"])
+@pytest.mark.parametrize("action", ["always", "error", "ignore"])
+def test_pytest_unraisable_interception_preserves_selected_warning_policy(
+    tmp_path: Path, mode: str, action: str
+) -> None:
+    source = tmp_path / "test_finalizer.py"
+    source.write_text(
+        finalizer_definition() + "def test_unraisable():\n    value = Broken()\n    del value\n"
+    )
+    arguments = ["-q", "-W", f"{action}::pytest.PytestUnraisableExceptionWarning", str(source)]
+    result = execute(
+        mode, *(["-m", "pytest"] if mode == "python" else []), *arguments, cwd=tmp_path
+    )
+    output = result.stdout + result.stderr
+    assert result.returncode == (1 if action == "error" else 0), output
+    assert ("1 failed" if action == "error" else "1 passed") in output
+    assert "SOURCE_ONLY_" not in output
+    assert "LOCAL_ONLY_" not in output
+    if action == "ignore":
+        assert "PytestUnraisableExceptionWarning" not in output
+        assert "UNRAISABLE_MESSAGE_12" not in output
+    else:
+        assert "PytestUnraisableExceptionWarning" in output
+        assert "test_finalizer.py::test_unraisable" in output
+        assert_unraisable_diagnostic(output, source)
+        if action == "always":
+            assert "1 warning" in output
+
+
+@pytest.mark.parametrize("mode", ["pytest", "python"])
+def test_pytest_grouped_unraisable_errors_preserve_each_cause_without_source(
+    tmp_path: Path, mode: str
+) -> None:
+    source = tmp_path / "test_finalizer_group.py"
+    source.write_text(
+        finalizer_definition()
+        + finalizer_definition()
+        .replace("Broken", "AnotherBroken")
+        .replace("UNRAISABLE_MESSAGE_12", "SECOND_UNRAISABLE_MESSAGE_15")
+        + "def test_unraisable_group():\n"
+        "    first = Broken()\n"
+        "    second = AnotherBroken()\n"
+        "    del first, second\n"
+    )
+    arguments = ["-q", "-W", "error::pytest.PytestUnraisableExceptionWarning", str(source)]
+    result = execute(
+        mode, *(["-m", "pytest"] if mode == "python" else []), *arguments, cwd=tmp_path
+    )
+    output = result.stdout + result.stderr
+    assert result.returncode == 1, output
+    assert "1 failed" in output
+    assert "test_finalizer_group.py::test_unraisable_group" in output
+    assert "ExceptionGroup" in output
+    assert "PytestUnraisableExceptionWarning" in output
+    assert_unraisable_diagnostic(output, source)
+    assert "RuntimeError: SECOND_UNRAISABLE_MESSAGE_15" in output
+    assert f'File "{source}", line 8' in output

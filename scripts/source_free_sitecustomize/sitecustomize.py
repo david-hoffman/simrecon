@@ -104,6 +104,13 @@ def thread_hook(arguments: threading.ExceptHookArgs) -> None:
         exception_hook(arguments.exc_type, arguments.exc_value, arguments.exc_traceback)
 
 
+def unraisable_hook(arguments: sys.UnraisableHookArgs) -> None:
+    """Keep finalizer failures useful without source or arbitrary object reprs."""
+    if arguments.exc_value is not None:
+        sys.stderr.write("Exception ignored in unraisable context:\n")
+        render_exception(arguments.exc_value, arguments.exc_traceback, sys.stderr)
+
+
 def clean_snapshot(snapshot: traceback.TracebackException) -> None:
     """Remove lazy source lookups from a standard traceback snapshot."""
     snapshot.stack = traceback.StackSummary.from_list(
@@ -210,6 +217,7 @@ def install() -> None:
     """Install diagnostic renderers without changing warning filters."""
     warnings.formatwarning = format_warning
     sys.excepthook = exception_hook
+    sys.unraisablehook = unraisable_hook
     threading.excepthook = thread_hook
     traceback.format_exception = format_exception
     traceback.print_exception = print_exception

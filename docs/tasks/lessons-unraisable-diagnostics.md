@@ -155,13 +155,20 @@ requirements/scenarios; example and test counts are not scenario limits.
 
 ## Current state
 
-- **Status:** intake complete; bounded correction not started; no runtime or test
-  change, product-red checkpoint, passing correction or acceptance claimed.
-- Human instruction and constraints: `/intake 99`; no unresolved material contract
-  question. Baseline is the commit above. Final intake commit/tree and check results
-  belong in the conversation, outside the tracked candidate bytes.
+- **Status pointer:** bounded correction candidate prepared under the owner's
+  **“Start implementing”** instruction. This section is prepared before the
+  candidate commit; final exact-candidate gate/review status is authoritative in
+  the conversation and ignored `artifacts/verification/issue-99/` evidence,
+  including `final-review.md`. Do not alter verified tracked bytes to insert
+  their own identities or subsequent verdict.
+- Human instructions: `/intake 99`, followed by “Start implementing”; no unresolved
+  material contract question or human-set execution limit. Execution baseline:
+  `8ee8776352422e629b7701d7660006573ae298e6` (completed intake), tree
+  `3c394baca58d58449230602040fb04a32e740a25`. Final candidate identities/results
+  belong outside tracked candidate bytes in the conversation and ignored
+  `artifacts/verification/issue-99/` evidence.
 - Workspace: existing `/workspace/simrecon`, branch
-  `intake/99-unraisable-diagnostics`; baseline runtime/tests preserved.
+  `intake/99-unraisable-diagnostics`.
 - Evidence: issue body and empty comments read November 11, 2026; cited task/probe
   absent locally and default-branch reads returned 404. Existing code/tests were
   inspected nonblind. The missing historical probe/accounting is an evidence
@@ -172,42 +179,56 @@ requirements/scenarios; example and test counts are not scenario limits.
   check. It performed no tests, edits, launches or acceptance review. Its optional
   `gh` issue reread returned Forbidden; the coordinator's connector issue read
   succeeded. Neither session is eligible to be the fresh correction
-  reviewer. No native correction worker or required reviewer launched in intake.
-- Capability observations: existing baseline interpreter reports Python 3.13.12;
-  current default PATH uv reports 0.13.5, while PROJECT pins 0.12.19. Direct checks
-  confirm shared `/workspace/.simrecon-tools/uv-env/bin/uv` is 0.12.19 and
-  `/workspace/.simrecon-tools/jdk-21.0.7+6/bin/java` is Temurin 21.0.7+6. The
-  existing activation file selects these tools and shared caches. Execution must
-  select them and refresh locked preflight; old setup logs do not prove current
-  candidate readiness. No dependency installation or full test run attempted in
-  intake.
+  reviewer. No correction worker or required reviewer launched in intake. The
+  implementation turn launches fresh bounded worker `unraisable_worker` with
+  named runtime/test ownership; it completed the two runtime edits and 20 test
+  additions. The coordinator owns task/report, full checks and a fresh reviewer
+  without author history. See the [scoped report](../reports/lessons-unraisable-diagnostics.md)
+  for requirement mapping, frozen hashes, commands, prior attempts and limits.
+- Capability evidence: `make preflight` passed on the execution baseline with
+  the existing activation file selecting uv 0.12.19, Python 3.13.12 in this
+  checkout's `.venv`, Temurin 21.0.7+6 and correct NumPy/h5py/project imports.
+  Reader preparation and isolated hatchling 1.32.4 import passed. See ignored
+  `artifacts/verification/issue-99/preflight.log` and `baseline-inputs.json`.
+  Current managed network observations are connected, current and enforced.
+  No dependency pins or environment configuration changed.
 - Risk disposition: S1–S8 require public-entry behavior evidence; misleading
   observer parsing, suppressed diagnostics, pytest interception, child inheritance,
   shutdown timing, warning filters and changed status are the concrete risks.
   No percentage-only finding commissions additional tests.
-- Accounting: scenarios=8; concrete example/test count pending worker mapping.
+- Accounting: scenarios=8; added equivalent test cases=20; existing cases=65;
+  focused total=85. Worker evidence: two failing baseline rounds, two native
+  reference probe invocations, one runtime correction, one passing focused run,
+  one formatting repair after initial lint/format failures, final quality checks
+  passing. The report retains diagnoses, commands and the initial harmless missing
+  scratch-path inventory failure.
   Intake helper launches=1, continued discovery turns=1; correction-worker
-  launches=0 and required review verdicts=0 in this intake only. Prior doctor
-  attempts and metering unknown.
+  launches=1. Final full-gate/reviewer attempts and verdicts are retained outside
+  this candidate; prior doctor attempts and metering unknown.
   Coordinator actual model/effort unknown; helper requested `gpt-6.1-sol`/high,
-  actual served attribution unknown. Per-role responses/tokens/cached tokens,
+  worker requested `gpt-6.1-sol`/high, actual served attribution unknown.
+  Per-role responses/tokens/cached tokens,
   verified monetary cost and complete elapsed/check/owner-wait totals unknown.
   No historical counters are reset. Actual human-set limits: not set.
-- Next action when correction work is requested: use the bounded worker packet,
-  qualify tools/environment, map and reproduce the approved behavior, then
-  repair within ownership and obtain fresh exact-candidate review. The defective
-  launcher remains unqualified for unraisable events until correction acceptance;
-  do not claim blind-role readiness from this intake.
-- Housekeeping: no task probe, fixture or process was created. The temporary
+- Next responsible role: coordinator records the clean candidate, obtains full
+  verification and fresh independent final review, then reports exact status in
+  the external evidence pointer above. Focused proof alone is not acceptance or
+  general blind-role diagnostic qualification.
+- Housekeeping: the temporary
   `/workspace/work/intake-99` worktree was used to draft documents before the
   shared setup note selecting the existing cloud checkout was read. The documents
   were transferred to the existing checkout and the clean temporary worktree
   removed with `git worktree remove`. Keep the current checkout, intake branch,
   durable documents and shared tool caches. Removed paths:
-  `/workspace/work/intake-99`; cleanup errors: none.
-  At correction completion close owned writers and use existing filesystem/Git
-  commands on exact disposable temporary-fixture paths and unused task worktrees,
-  preserving needed commits, evidence and uncertain targets under
+  `/workspace/work/intake-99` from intake and
+  `/workspace/simrecon/work/issue-99-worker-native` after worker subprocesses
+  completed; absence confirmed and empty task-created `work/` removed. No task
+  background process remains. Native probe inputs are reproducible from the
+  tracked synthetic test generators; durable logs are preserved. Pytest used
+  normal managed temporary directories without a task-specific basetemp; no
+  global temporary-directory sweep was performed. Shared tool/test caches and
+  full-verification artifacts are kept. Cleanup errors: none. Further known
+  disposable targets, if any, follow
   [the cleanup workflow](../operations/fixture-cleanup.md).
 
 ## PR presentation
