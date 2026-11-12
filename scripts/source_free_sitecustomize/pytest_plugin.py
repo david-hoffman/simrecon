@@ -32,7 +32,13 @@ def pytest_load_initial_conftests(early_config: pytest.Config) -> Generator[None
 def pytest_exception_interact(
     call: pytest.CallInfo[Any], report: pytest.CollectReport | pytest.TestReport
 ) -> None:
-    """Replace collection rendering using the retained original exception chain."""
+    """Keep collection and promoted unraisable diagnostics source-free."""
+    if (
+        isinstance(report, pytest.TestReport)
+        and call.excinfo is not None
+        and isinstance(call.excinfo.value, pytest.PytestUnraisableExceptionWarning)
+    ):
+        report.longrepr = "".join(traceback.format_exception(call.excinfo.value))
     if isinstance(report, pytest.CollectReport):
         assert call.excinfo is not None
         exception = call.excinfo.value
