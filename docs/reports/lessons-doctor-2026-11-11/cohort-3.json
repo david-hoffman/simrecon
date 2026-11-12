@@ -1,0 +1,1122 @@
+{
+  "cohort": 3,
+  "baseline": "b05fc782522a81ebd92c10726dac731a26e5a026",
+  "lesson_count": 51,
+  "lessons": [
+    {
+      "id": "20261016T202123Z-volume-carrier-diagnostics-coordinator-upstream-record-fields",
+      "bucket": "public-composition-context",
+      "summary": "Validate upstream record fields before composing APIs",
+      "handling": "no-action",
+      "scope": "retired-scientific-composition",
+      "rationale": "The missing source field was corrected at intake. EmpiricalVolumeResponse and its consumers are now retired; the public-field inventory remains reusable intake advice, with no concrete current composition mismatch identified.",
+      "evidence": [
+        "docs/lessons/20261016T202123Z-volume-carrier-diagnostics-coordinator-upstream-record-fields.md",
+        "docs/PROJECT.md:16",
+        "docs/contracts/c-equivalence-retirement-files.json:99",
+        "tests/c_equivalence_retirement_fixture.py:35"
+      ],
+      "related_lessons": [
+        "20261018T020456Z-phase-observable-subspace-coordinator-public-construction-context"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261016T212410Z-volume-carrier-diagnostics-coordinator-make-input-transport",
+      "bucket": "verification-input-transport",
+      "summary": "Measure child argument transport before costly verification",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The observation concerns a specific ignored manifest/gate helper and local Make environment. That helper and original probe are absent here; the current canonical Makefile forwards no 2,552-file command argument declaration. Do not infer a current argument-envelope defect or silently migrate the gate.",
+      "evidence": [
+        "docs/lessons/20261016T212410Z-volume-carrier-diagnostics-coordinator-make-input-transport.md",
+        "Makefile:15",
+        "docs/tasks/volume-carrier-diagnostics.md:11"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed for the observed local Make/platform; universal duplication mechanism remains an inference",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T001059Z-volume-carrier-selection-coordinator-overlapping-pins",
+      "bucket": "evidence-admission-completeness",
+      "summary": "Conflicting fingerprint maps must reject before admission",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The lesson records a corrected binder and independent H02 check, but those ignored bytes/reports are absent. Current product code does not contain that task binder; the preventive rule supplies no concrete present gap.",
+      "evidence": [
+        "docs/lessons/20261017T001059Z-volume-carrier-selection-coordinator-overlapping-pins.md",
+        "docs/tasks/volume-carrier-selection.md:15",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261017T005317Z-volume-carrier-selection-coordinator-full-evidence-grammar",
+        "20261017T044128Z-finite-bead-compensation-coordinator-input-eligibility"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T005317Z-volume-carrier-selection-coordinator-full-evidence-grammar",
+      "bucket": "evidence-admission-completeness",
+      "summary": "Validate actual generator identity and temporal grammar before the full gate",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The task already requires complete structural preflight, actual generator argv and chronology. Its C03 producer correction was explicitly not final qualification; unavailable original records prevent asserting completion, and no currently active producer violation was identified.",
+      "evidence": [
+        "docs/lessons/20261017T005317Z-volume-carrier-selection-coordinator-full-evidence-grammar.md",
+        "docs/tasks/finite-bead-compensation.md:15",
+        "docs/tasks/volume-carrier-selection.md:13"
+      ],
+      "related_lessons": [
+        "20261017T001059Z-volume-carrier-selection-coordinator-overlapping-pins",
+        "20261017T044128Z-finite-bead-compensation-coordinator-input-eligibility"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T030037Z-finite-bead-coordinator-pytest-collection-diagnostics",
+      "bucket": "source-free-diagnostic-channels",
+      "summary": "Qualify pytest collection error rendering and preserve child status",
+      "handling": "no-action",
+      "scope": "retained-diagnostic-infrastructure",
+      "rationale": "Current collection plugin unwraps only pytest importer errors, and dedicated collection/context tests remain. The finite-bead task records S03/H03 acceptance of 69 cases. This supports the narrow historical correction, not universal source-free correctness; no new current gap was found.",
+      "evidence": [
+        "docs/lessons/20261017T030037Z-finite-bead-coordinator-pytest-collection-diagnostics.md",
+        "scripts/source_free_sitecustomize/pytest_plugin.py:32",
+        "tests/test_source_free_check.py:456",
+        "tests/test_source_free_check.py:590",
+        "docs/tasks/finite-bead-compensation.md:19"
+      ],
+      "related_lessons": [
+        "20261018T002655Z-phase-observable-subspace-coordinator-default-pytest-diagnostic-channels"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T042051Z-finite-bead-compensation-coordinator-coverage-raw-preservation",
+      "bucket": "raw-coverage-export-custody",
+      "summary": "Coverage reporting can consume preserved raw inputs",
+      "handling": "no-action",
+      "scope": "standalone-focused-reporting",
+      "rationale": "This concerns an extra focused measurement export, not an installed gate obligation to preserve shards. Current canonical combine deliberately consumes shards. The lesson explicitly forbids modifying canonical gates and preserves missing original input as a gap; no active standalone export was identified.",
+      "evidence": [
+        "docs/lessons/20261017T042051Z-finite-bead-compensation-coordinator-coverage-raw-preservation.md",
+        "Makefile:46",
+        "Makefile:49",
+        "docs/tasks/finite-bead-compensation.md:15"
+      ],
+      "related_lessons": [
+        "20261018T175339Z-phase-carrier-selection-coordinator-preserve-coverage-shards"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T044128Z-finite-bead-compensation-coordinator-input-eligibility",
+      "bucket": "evidence-admission-completeness",
+      "summary": "Hash equality alone does not establish producer-input eligibility",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The task contract explicitly requires complete structural input checking. The rejected producer/cache observation is retained as historical failure; current binder and original association are absent, so no present location-eligibility defect or resolved qualification is asserted.",
+      "evidence": [
+        "docs/lessons/20261017T044128Z-finite-bead-compensation-coordinator-input-eligibility.md",
+        "docs/tasks/finite-bead-compensation.md:15",
+        "docs/tasks/finite-bead-compensation.md:17"
+      ],
+      "related_lessons": [
+        "20261017T001059Z-volume-carrier-selection-coordinator-overlapping-pins",
+        "20261017T005317Z-volume-carrier-selection-coordinator-full-evidence-grammar"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T175413Z-phase-step-estimation-coordinator-failed-resume-lineage",
+      "bucket": "native-lineage-records",
+      "summary": "Failed resume lookup is not successful author lineage",
+      "handling": "no-action",
+      "scope": "task-local-native-evidence",
+      "rationale": "The lesson distinguishes failed and successful lifecycle records and reports H02 bounded acceptance. Actual records/helper are absent; current AGENTS already requires failed launches and provenance to remain explicit. No new active lineage violation is demonstrated.",
+      "evidence": [
+        "docs/lessons/20261017T175413Z-phase-step-estimation-coordinator-failed-resume-lineage.md",
+        "docs/tasks/phase-step-estimation.md:15",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261018T042213Z-observable-phase-coordinator-record-dialects"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T181948Z-phase-step-estimation-coordinator-scipy-observer-forwarding",
+      "bucket": "permitted-oracle-alternatives",
+      "summary": "Observe dependency calls without replaying synthesized defaults",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-observer",
+      "rationale": "The observed SciPy forwarding defect had a specific corrected test and B04 reference. Both test/fixture belong to the retired estimator and are absent; no equivalent current observer defect was found by this narrow check. Preserve the original-call-form principle for future observers.",
+      "evidence": [
+        "docs/lessons/20261017T181948Z-phase-step-estimation-coordinator-scipy-observer-forwarding.md",
+        "docs/PROJECT.md:54",
+        "docs/contracts/c-equivalence-retirement-files.json:355",
+        "tests/c_equivalence_retirement_fixture.py:122"
+      ],
+      "related_lessons": [
+        "20261018T080433Z-phase-carrier-scan-coordinator-integer-conversion-boundary",
+        "20261018T180751Z-phase-carrier-selection-coordinator-optional-conversion-oracles",
+        "20261026T035722Z-full-noisy-simulation-coordinator-finite-step-public-range"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T184527Z-phase-step-estimation-coordinator-integer-oracle-domain",
+      "bucket": "exact-integer-oracles",
+      "summary": "Preserve exact integer arithmetic across the permitted periodic domain",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-oracle",
+      "rationale": "The huge-integer regression and fixture were retired with the former estimator; their absence is intentional, not an open test omission in that API. No analogous current integer-oracle bug is established.",
+      "evidence": [
+        "docs/lessons/20261017T184527Z-phase-step-estimation-coordinator-integer-oracle-domain.md",
+        "docs/contracts/c-equivalence-retirement-files.json:355",
+        "docs/contracts/c-equivalence-retirement-files.json:541",
+        "docs/PROJECT.md:54"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T195057Z-phase-step-estimation-coordinator-manifest-join-cost",
+      "bucket": "manifest-join-complexity",
+      "summary": "Repeated generation-input lookups have quadratic preparation cost",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The bounded estimate identifies a real historical helper cost, but the frozen run_local.py and its workload are absent from this checkout. No checked-in equivalent path was established; do not open a current product-performance defect from the estimate alone.",
+      "evidence": [
+        "docs/lessons/20261017T195057Z-phase-step-estimation-coordinator-manifest-join-cost.md",
+        "docs/tasks/phase-step-estimation.md:15"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T210913Z-phase-step-estimation-coordinator-git-maintenance-fixture",
+      "bucket": "quiescent-git-fixtures",
+      "summary": "Disable detached maintenance in disposable snapshot builders",
+      "handling": "no-action",
+      "scope": "retained-verification-fixtures",
+      "rationale": "All three named retained builder families now set local maintenance.auto=false before commits. The historical CI timing was not reproduced here, and original acceptance artifacts are unavailable. Preserve full byte assertions; no remaining concrete builder omission was identified.",
+      "evidence": [
+        "docs/lessons/20261017T210913Z-phase-step-estimation-coordinator-git-maintenance-fixture.md",
+        "tests/test_verification_output_protection.py:61",
+        "tests/shared_node_baseline_public_callers_fixture.py:816",
+        "tests/shared_node_baseline_infrastructure_supplement_fixture.py:243",
+        "docs/tasks/stack-ci-maintenance-race-20261022.md:14"
+      ],
+      "related_lessons": [
+        "20261021T182235Z-ci-pr36-pr39-coordinator-git-maintenance",
+        "20261022T045737Z-stack-maintenance-bounded-worker-quiesce-repository-builders"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261017T220218Z-phase-step-estimation-S08-recursive-metadata-census",
+      "bucket": "closed-evidence-control-lifecycle",
+      "summary": "Probe the complete recursive artifact census without contaminating live roots",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The metadata-census helper and role catalog are absent. This is reusable setup/admission practice; current housekeeping supersedes mandatory global preservation-proof projects and does not authorize altering strict task evidence grammar.",
+      "evidence": [
+        "docs/lessons/20261017T220218Z-phase-step-estimation-S08-recursive-metadata-census.md",
+        "docs/tasks/phase-step-estimation.md:15",
+        "docs/operations/fixture-cleanup.md:14"
+      ],
+      "related_lessons": [
+        "20261018T065339Z-phase-carrier-scan-coordinator-synthetic-link-census",
+        "20261019T042742Z-native-evidence-coordinator-retire-negative-control-aliases"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T001000Z-phase-step-estimation-coordinator-target-availability",
+      "bucket": "evidence-availability-vs-integrity",
+      "summary": "Distinguish link text integrity from current referent availability",
+      "handling": "no-action",
+      "scope": "historical-evidence-custody",
+      "rationale": "The lesson records D03 mapping missing adversarial aliases to retained keeper reports. The original evidence tree is absent here, so no historical custody is re-created or independently re-qualified. Current cleanup explicitly preserves required referents.",
+      "evidence": [
+        "docs/lessons/20261018T001000Z-phase-step-estimation-coordinator-target-availability.md",
+        "docs/operations/fixture-cleanup.md:12",
+        "docs/tasks/phase-step-estimation.md:17"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T002655Z-phase-observable-subspace-coordinator-default-pytest-diagnostic-channels",
+      "bucket": "source-free-diagnostic-channels",
+      "summary": "Qualify real default pytest diagnostic channels before blind use",
+      "handling": "no-action",
+      "scope": "task-local-ignored-diagnostic-helper",
+      "rationale": "The rejected source_free_probe.py is not the tracked wrapper. Current tracked diagnostic code/test inventory covers collection, nested groups, traceback and thread channels, but this pass does not assert exhaustive channel qualification. No surviving current failure was demonstrated.",
+      "evidence": [
+        "docs/lessons/20261018T002655Z-phase-observable-subspace-coordinator-default-pytest-diagnostic-channels.md",
+        "scripts/source_free_sitecustomize/sitecustomize.py:56",
+        "scripts/source_free_sitecustomize/pytest_plugin.py:32",
+        "tests/test_source_free_check.py:280",
+        "tests/test_source_free_check.py:399"
+      ],
+      "related_lessons": [
+        "20261017T030037Z-finite-bead-coordinator-pytest-collection-diagnostics"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T011644Z-phase-observable-subspace-coordinator-script-path-identity",
+      "bucket": "native-script-path-identity",
+      "summary": "Preserve native filesystem traversal for script arguments",
+      "handling": "no-action",
+      "scope": "task-local-ignored-diagnostic-helper",
+      "rationale": "The rejected task-specific wrapper normalized script paths. Current tracked source_free_check command forwards original Python arguments directly to the interpreter and does not select/open a normalized script. Original H13 helper is absent; no matching current divergence was identified.",
+      "evidence": [
+        "docs/lessons/20261018T011644Z-phase-observable-subspace-coordinator-script-path-identity.md",
+        "scripts/source_free_check.py:38",
+        "docs/tasks/observable-volume-phase-estimation.md:15"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T020456Z-phase-observable-subspace-coordinator-public-construction-context",
+      "bucket": "public-composition-context",
+      "summary": "Supply upstream construction contracts to blind composition authors",
+      "handling": "no-action",
+      "scope": "retired-scientific-composition",
+      "rationale": "The omitted raw-declaration and empirical-response context was supplied without new scientific meaning. The affected observable estimator and response interface are retired; current blind allowlist rules already require approved interfaces. No current missing packet was identified.",
+      "evidence": [
+        "docs/lessons/20261018T020456Z-phase-observable-subspace-coordinator-public-construction-context.md",
+        "AGENTS.md",
+        "docs/contracts/c-equivalence-retirement-files.json:63",
+        "docs/tasks/observable-volume-phase-estimation.md:9"
+      ],
+      "related_lessons": [
+        "20261016T202123Z-volume-carrier-diagnostics-coordinator-upstream-record-fields"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T022557Z-phase-observable-subspace-coordinator-reduced-phase-update-proof",
+      "bucket": "reduced-domain-positive-proof",
+      "summary": "Prove successful updates in a proper observable subspace",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-coverage",
+      "rationale": "The concrete omission concerned the retired observable-subspace estimator. Its code/test files are absent under CE01 retirement. No present analogue is proved, and retirement is not evidence that the historical missing case was repaired.",
+      "evidence": [
+        "docs/lessons/20261018T022557Z-phase-observable-subspace-coordinator-reduced-phase-update-proof.md",
+        "docs/contracts/c-equivalence-retirement-files.json:63",
+        "docs/contracts/c-equivalence-retirement-files.json:243",
+        "docs/PROJECT.md:54"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T031429Z-observable-phase-coordinator-fault-delivery-scope",
+      "bucket": "fault-delivery-scope",
+      "summary": "Record fault delivery separately from scientific outcomes",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-controls",
+      "rationale": "The permitted SVD backend was intentionally open; zero-hit controls did not establish exhaustive exceptional-path proof. The affected scientific operation/tests are retired. Generic fault-delivery advice remains useful, with no concrete current uncovered failure path established.",
+      "evidence": [
+        "docs/lessons/20261018T031429Z-observable-phase-coordinator-fault-delivery-scope.md",
+        "docs/contracts/c-equivalence-retirement-files.json:243",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261018T031509Z-observable-phase-coordinator-fault-scope-clarification"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T031509Z-observable-phase-coordinator-fault-scope-clarification",
+      "bucket": "fault-delivery-scope",
+      "summary": "Use complete evidence locators and preserve append-only clarification",
+      "handling": "no-action",
+      "scope": "historical-evidence-clarification",
+      "rationale": "This entry corrects only the evidence path/acronyms of the preceding lesson. It creates no independent defect or work item; retain its explicit clarification relationship and original bytes.",
+      "evidence": [
+        "docs/lessons/20261018T031509Z-observable-phase-coordinator-fault-scope-clarification.md",
+        "docs/lessons/20261018T031429Z-observable-phase-coordinator-fault-delivery-scope.md",
+        "docs/lessons/README.md"
+      ],
+      "related_lessons": [
+        "20261018T031429Z-observable-phase-coordinator-fault-delivery-scope"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "relationship": "clarifies 20261018T031429Z-observable-phase-coordinator-fault-delivery-scope; observation unchanged",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T033311Z-observable-phase-coordinator-native-dtype-capabilities",
+      "bucket": "platform-representation-domains",
+      "summary": "Choose representation checks from actual native capabilities",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-oracle",
+      "rationale": "Four recorded skips were not passes; original skip outcomes remain historical. Their operation/test suite is now retired. Current policy retains explicit skip/report limits, and this pass found no analogous active skipped test requiring repair.",
+      "evidence": [
+        "docs/lessons/20261018T033311Z-observable-phase-coordinator-native-dtype-capabilities.md",
+        "docs/contracts/c-equivalence-retirement-files.json:243",
+        "docs/PROJECT.md:16",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261022T200641Z-simulation-camera-coordinator-platform-case-identity"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T042213Z-observable-phase-coordinator-record-dialects",
+      "bucket": "native-lineage-records",
+      "summary": "Validate actual supported launch-record dialects before binding",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The rejected binder was adapted to 14 actual retained invocations and independently reviewed according to the lesson. That parser and original replay artifacts are absent, so no active dialect gap or broad resolution is asserted.",
+      "evidence": [
+        "docs/lessons/20261018T042213Z-observable-phase-coordinator-record-dialects.md",
+        "docs/tasks/observable-volume-phase-estimation.md:15",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261017T175413Z-phase-step-estimation-coordinator-failed-resume-lineage"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T065339Z-phase-carrier-scan-coordinator-synthetic-link-census",
+      "bucket": "closed-evidence-control-lifecycle",
+      "summary": "Close synthetic symlink controls before freezing role evidence",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The lesson records exact-link archive/readback and new closure, without changing helper semantics. Current strict binder/closure bytes are absent; no live offending catalog was identified. Current housekeeping keeps original required dependencies.",
+      "evidence": [
+        "docs/lessons/20261018T065339Z-phase-carrier-scan-coordinator-synthetic-link-census.md",
+        "docs/tasks/phase-carrier-scan.md:9",
+        "docs/operations/fixture-cleanup.md:12"
+      ],
+      "related_lessons": [
+        "20261017T220218Z-phase-step-estimation-S08-recursive-metadata-census",
+        "20261019T042742Z-native-evidence-coordinator-retire-negative-control-aliases"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T080433Z-phase-carrier-scan-coordinator-integer-conversion-boundary",
+      "bucket": "permitted-oracle-alternatives",
+      "summary": "Translate encountered conversion errors without requiring hook invocation",
+      "handling": "no-action",
+      "scope": "retired-scientific-validation-boundary",
+      "rationale": "The historical draft had a specific expected-error leak. The carrier-scan runtime/tests are retired and absent; its supplemental failure is not a present product-red reproduction. Preserve legitimate hook-bypass alternatives and unrelated exception propagation in any future contract.",
+      "evidence": [
+        "docs/lessons/20261018T080433Z-phase-carrier-scan-coordinator-integer-conversion-boundary.md",
+        "docs/contracts/c-equivalence-retirement-files.json:75",
+        "docs/contracts/c-equivalence-retirement-files.json:251",
+        "docs/PROJECT.md:54"
+      ],
+      "related_lessons": [
+        "20261017T181948Z-phase-step-estimation-coordinator-scipy-observer-forwarding",
+        "20261018T180751Z-phase-carrier-selection-coordinator-optional-conversion-oracles",
+        "20261026T035722Z-full-noisy-simulation-coordinator-finite-step-public-range"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T165726Z-phase-carrier-selection-coordinator-public-skill-excerpts",
+      "bucket": "blind-public-excerpts",
+      "summary": "Extract permitted skill sections instead of broad contextual searches",
+      "handling": "no-action",
+      "scope": "blind-role-packet-preparation",
+      "rationale": "The failed root disclosed scope exposure and stopped. Current AGENTS requires explicit public allowlists and exposure handling; no current blind packet or repeated breach was found in this report-only task. The incident does not itself require a new runtime/tool.",
+      "evidence": [
+        "docs/lessons/20261018T165726Z-phase-carrier-selection-coordinator-public-skill-excerpts.md",
+        "AGENTS.md",
+        ".agents/skills/test-audit/SKILL.md:8"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T172654Z-phase-carrier-selection-coordinator-unequal-policy-diagnostics",
+      "bucket": "policy-test-discrimination",
+      "summary": "Use unequal eligible diagnostics to distinguish no-ranking behavior",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-coverage",
+      "rationale": "The concrete test omission concerned old phase-carrier selection policy, whose code/tests are absent under retirement. Do not equate arbitrary work counters with proof or resurrect its old coverage obligation in current CE estimation.",
+      "evidence": [
+        "docs/lessons/20261018T172654Z-phase-carrier-selection-coordinator-unequal-policy-diagnostics.md",
+        "docs/contracts/c-equivalence-retirement-files.json:79",
+        "docs/contracts/c-equivalence-retirement-files.json:255",
+        "docs/PROJECT.md:16"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T175339Z-phase-carrier-selection-coordinator-preserve-coverage-shards",
+      "bucket": "raw-coverage-export-custody",
+      "summary": "Snapshot and preserve original coverage shards before exports",
+      "handling": "no-action",
+      "scope": "standalone-focused-reporting",
+      "rationale": "This repeats the Coverage.py 7.16.2 focused-export mechanism and records a corrected 150-case second attempt. Current canonical coverage-combine has its own installed consumption semantics; no active standalone exporter was identified. Original lost shard remains unavailable, not restored by combined data.",
+      "evidence": [
+        "docs/lessons/20261018T175339Z-phase-carrier-selection-coordinator-preserve-coverage-shards.md",
+        "Makefile:46",
+        "docs/lessons/20261017T042051Z-finite-bead-compensation-coordinator-coverage-raw-preservation.md"
+      ],
+      "related_lessons": [
+        "20261017T042051Z-finite-bead-compensation-coordinator-coverage-raw-preservation"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T180751Z-phase-carrier-selection-coordinator-optional-conversion-oracles",
+      "bucket": "permitted-oracle-alternatives",
+      "summary": "Allow exact base extraction that bypasses optional scalar hooks",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-oracle",
+      "rationale": "The corrected residual-conversion checkpoint awaited B04 in the lesson. Its selection tests/runtime were later retired. No current defect follows, and neither retirement nor the old proposed checkpoint proves independent correction acceptance.",
+      "evidence": [
+        "docs/lessons/20261018T180751Z-phase-carrier-selection-coordinator-optional-conversion-oracles.md",
+        "docs/contracts/c-equivalence-retirement-files.json:255",
+        "docs/tasks/phase-carrier-selection.md:11"
+      ],
+      "related_lessons": [
+        "20261017T181948Z-phase-step-estimation-coordinator-scipy-observer-forwarding",
+        "20261018T080433Z-phase-carrier-scan-coordinator-integer-conversion-boundary",
+        "20261026T035722Z-full-noisy-simulation-coordinator-finite-step-public-range"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261018T220128Z-fourier-block-phase-coordinator-oracle-versus-truth",
+      "bucket": "scientific-target-vs-truth",
+      "summary": "Separate arithmetic agreement from hidden physical truth",
+      "handling": "no-action",
+      "scope": "historical-scientific-reporting",
+      "rationale": "The retained comparison names direct-model and truth discrepancies separately. The estimator is retired. Current independent-acceptance reporting also separates source bias from product discrepancy; no present claim conflation was established.",
+      "evidence": [
+        "docs/lessons/20261018T220128Z-fourier-block-phase-coordinator-oracle-versus-truth.md",
+        "docs/reports/fourier-block-phase-estimation-comparison.md",
+        "docs/reports/c-equivalence-independent-acceptance.md",
+        "docs/PROJECT.md:99"
+      ],
+      "related_lessons": [
+        "20261019T141007Z-relative-phase-invariants-coordinator-target-quotient",
+        "20261026T185523Z-pr53-coordinator-finite-fit-is-not-recovery"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T011447Z-fourier-block-phase-coordinator-conditional-cleanup-oracles",
+      "bucket": "conditional-cleanup-proof",
+      "summary": "Permit cleanup success when disappearance is actually proved",
+      "handling": "no-action",
+      "scope": "retained-verification-test-oracle",
+      "rationale": "The lesson records B06 acceptance of a conditional corrected oracle and explicitly leaves original CI cause unknown. Current housekeeping supersedes that custom cleanup proof pipeline. No concrete surviving false rejection was found; preserve refusal/positive alternatives if future custom tooling is commissioned.",
+      "evidence": [
+        "docs/lessons/20261019T011447Z-fourier-block-phase-coordinator-conditional-cleanup-oracles.md",
+        "tests/test_shared_node_baseline_public_callers.py",
+        "docs/operations/fixture-cleanup.md:5",
+        "docs/operations/fixture-cleanup.md:14"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T035835Z-asd-cleanup-coordinator-preserve-original-link-paths",
+      "bucket": "retained-evidence-dependencies",
+      "summary": "Preserve original evidence referents when removing disposable siblings",
+      "handling": "no-action",
+      "scope": "completion-housekeeping",
+      "rationale": "Current cleanup instructions preserve required original dependencies and forbid following targets or broadening deletion. The older ten-file review is historical, not current proof of a destructive program. No concrete current retained-reference loss was identified.",
+      "evidence": [
+        "docs/lessons/20261019T035835Z-asd-cleanup-coordinator-preserve-original-link-paths.md",
+        "docs/operations/fixture-cleanup.md:7",
+        "docs/operations/fixture-cleanup.md:9",
+        "docs/operations/fixture-cleanup.md:12"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T041235Z-volume-translation-coordinator-existing-public-compatibility-checks",
+      "bucket": "reuse-existing-public-proof",
+      "summary": "Check settled compatibility proofs before adding new tests",
+      "handling": "no-action",
+      "scope": "retired-scientific-validation-coverage",
+      "rationale": "Both translation estimators and their dedicated tests were retired. The old 366-case focused result does not establish current full-repository behavior; generic diagnosis/reuse guidance is already reflected in AGENTS. No new test gap is evidenced.",
+      "evidence": [
+        "docs/lessons/20261019T041235Z-volume-translation-coordinator-existing-public-compatibility-checks.md",
+        "docs/contracts/c-equivalence-retirement-files.json:119",
+        "docs/contracts/c-equivalence-retirement-files.json:367",
+        "AGENTS.md"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T042742Z-native-evidence-coordinator-retire-negative-control-aliases",
+      "bucket": "closed-evidence-control-lifecycle",
+      "summary": "Retire proven-disposable hardlink aliases while preserving history",
+      "handling": "no-action",
+      "scope": "task-local-ignored-evidence-helper",
+      "rationale": "The recorded alias was retired with new closure and independent H05 acceptance. That role census/helper is absent here. Current cleanup separates exact disposable targets from retained dependencies; no present alias admission defect was identified.",
+      "evidence": [
+        "docs/lessons/20261019T042742Z-native-evidence-coordinator-retire-negative-control-aliases.md",
+        "docs/operations/fixture-cleanup.md:7",
+        "docs/operations/fixture-cleanup.md:14",
+        "docs/tasks/volume-translation-estimation.md"
+      ],
+      "related_lessons": [
+        "20261017T220218Z-phase-step-estimation-S08-recursive-metadata-census",
+        "20261018T065339Z-phase-carrier-scan-coordinator-synthetic-link-census"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T063259Z-raw-phase-motion-coordinator-reference-premise",
+      "bucket": "scientific-information-premises",
+      "summary": "Require common acquisition state for phase cancellation references",
+      "handling": "no-action",
+      "scope": "historical-conditional-scientific-intake",
+      "rationale": "The report explicitly distinguishes effective phase/common-state premises and counterexamples. It adopted no raw-motion estimator; former translation APIs were retired. A missing physical-motion choice is a future contract decision, not a current product defect.",
+      "evidence": [
+        "docs/lessons/20261019T063259Z-raw-phase-motion-coordinator-reference-premise.md",
+        "docs/reports/raw-phase-motion-intake.md:5",
+        "docs/tasks/raw-phase-motion-intake.md",
+        "docs/PROJECT.md:99"
+      ],
+      "related_lessons": [
+        "20261019T091322Z-continuous-carrier-intake-coordinator-finite-modulation",
+        "20261019T114707Z-raw-calibration-intake-coordinator-information-source"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T091322Z-continuous-carrier-intake-coordinator-finite-modulation",
+      "bucket": "scientific-information-premises",
+      "summary": "Select finite observation meaning before fractional carrier estimation",
+      "handling": "no-action",
+      "scope": "historical-conditional-scientific-intake",
+      "rationale": "The current historical report already distinguishes four finite/continuous/exterior model families and integer special cases. It approved no estimator; current CE work has a different explicit mapping. No silent new model or concrete current gap is established.",
+      "evidence": [
+        "docs/lessons/20261019T091322Z-continuous-carrier-intake-coordinator-finite-modulation.md",
+        "docs/reports/continuous-carrier-intake.md",
+        "docs/PROJECT.md:54",
+        "docs/contracts/c-equivalence-common-v1.md"
+      ],
+      "related_lessons": [
+        "20261019T063259Z-raw-phase-motion-coordinator-reference-premise",
+        "20261019T114707Z-raw-calibration-intake-coordinator-information-source"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed algebraic distinction",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T114707Z-raw-calibration-intake-coordinator-information-source",
+      "bucket": "scientific-information-premises",
+      "summary": "Name independent calibration labels or informative shared constraints",
+      "handling": "no-action",
+      "scope": "historical-conditional-scientific-intake",
+      "rationale": "The report preserves the response-ratio ambiguity and informative alternatives without selecting an instrument premise. The free-response calibration stack is retired; no current claim that a supplied profile independently infers its carrier was identified.",
+      "evidence": [
+        "docs/lessons/20261019T114707Z-raw-calibration-intake-coordinator-information-source.md",
+        "docs/reports/raw-calibration-identifiability.md:3",
+        "docs/PROJECT.md:54"
+      ],
+      "related_lessons": [
+        "20261019T063259Z-raw-phase-motion-coordinator-reference-premise",
+        "20261019T091322Z-continuous-carrier-intake-coordinator-finite-modulation"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed conditional algebra",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261019T141007Z-relative-phase-invariants-coordinator-target-quotient",
+      "bucket": "scientific-target-vs-truth",
+      "summary": "Compare response targets under their declared equivalence quotient",
+      "handling": "no-action",
+      "scope": "historical-hypothesis-and-analytical-report",
+      "rationale": "The lesson originally marked its target-quotient observation as a hypothesis pending review. The retained report now states conditional results and explicit alternatives; original independent final review is unavailable here. Preserve the lesson confidence and do not infer final acceptance or numerical behavior from current prose.",
+      "evidence": [
+        "docs/lessons/20261019T141007Z-relative-phase-invariants-coordinator-target-quotient.md",
+        "docs/reports/relative-phase-invariants.md:3",
+        "docs/tasks/relative-phase-invariants.md:19",
+        "docs/PROJECT.md:99"
+      ],
+      "related_lessons": [
+        "20261018T220128Z-fourier-block-phase-coordinator-oracle-versus-truth",
+        "20261026T185523Z-pr53-coordinator-finite-fit-is-not-recovery"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "hypothesis pending required independent documentary review",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261020T171219Z-relative-phase-invariants-coordinator-cleanup-evidence-provenance",
+      "bucket": "cleanup-evidence-provenance",
+      "summary": "Retain applicable positive and unresolved evidence in cleanup assessment",
+      "handling": "no-action",
+      "scope": "historical-fixed-scope-custom-cleanup",
+      "rationale": "The historical custom operation records fixed-scope success but pending final acceptance. Current housekeeping explicitly replaces former helper/review/byte-accounting machinery; no current custom-operation repair is warranted. Reuse only evidence with stable identity/context.",
+      "evidence": [
+        "docs/lessons/20261020T171219Z-relative-phase-invariants-coordinator-cleanup-evidence-provenance.md",
+        "docs/operations/fixture-cleanup.md:14",
+        "docs/tasks/relative-phase-invariants.md:35"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed within the inspected operation",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261021T021518Z-relative-phase-invariants-coordinator-native-coverage-arcs",
+      "bucket": "native-coverage-measurement-semantics",
+      "summary": "Keep physical arcs distinct from native logical branch destinations",
+      "handling": "no-action",
+      "scope": "task-local-native-coverage-qualification",
+      "rationale": "This lesson concerns a historical qualification reader, not a scientific product defect. Current verifier validates native report counters/destinations; no check equating cross-platform physical arc totals was identified. The old native-analysis helper/review are absent, so its historical correction is not re-qualified.",
+      "evidence": [
+        "docs/lessons/20261021T021518Z-relative-phase-invariants-coordinator-native-coverage-arcs.md",
+        "scripts/verify.py:337",
+        "docs/PROJECT.md:119",
+        "AGENTS.md"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261021T182235Z-ci-pr36-pr39-coordinator-git-maintenance",
+      "bucket": "quiescent-git-fixtures",
+      "summary": "Prevent auto-maintenance before full Git metadata snapshots",
+      "handling": "no-action",
+      "scope": "retained-verification-fixtures",
+      "rationale": "The recurring mechanism is addressed in each named current disposable builder; host Git configuration and complete assertions are preserved. Original platform timing/trace artifacts are unavailable, so no universal race-freedom claim or new issue follows.",
+      "evidence": [
+        "docs/lessons/20261021T182235Z-ci-pr36-pr39-coordinator-git-maintenance.md",
+        "tests/test_verification_output_protection.py:61",
+        "tests/shared_node_baseline_public_callers_fixture.py:816",
+        "tests/shared_node_baseline_infrastructure_supplement_fixture.py:243"
+      ],
+      "related_lessons": [
+        "20261017T210913Z-phase-step-estimation-coordinator-git-maintenance-fixture",
+        "20261022T045737Z-stack-maintenance-bounded-worker-quiesce-repository-builders"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261021T191849Z-ci-pr36-pr39-coordinator-cheap-audit",
+      "bucket": "fresh-dependency-audit",
+      "summary": "Run cheap locked audit after a diagnosed dependency correction",
+      "handling": "no-action",
+      "scope": "dependency-maintenance-preflight",
+      "rationale": "Current Makefile retains final locked audit; lock now selects virtualenv 21.14.13, beyond the recorded 21.14.7 patch. This is procedural advice, not proof that today's advisory feed passes. No live audit was run or current vulnerability asserted.",
+      "evidence": [
+        "docs/lessons/20261021T191849Z-ci-pr36-pr39-coordinator-cheap-audit.md",
+        "Makefile",
+        "uv.lock:420",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261021T223800Z-ci-pr36-pr39-coordinator-moving-audit"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261021T223800Z-ci-pr36-pr39-coordinator-moving-audit",
+      "bucket": "fresh-dependency-audit",
+      "summary": "New external advisories can invalidate an unchanged-lock pass",
+      "handling": "no-action",
+      "scope": "time-sensitive-external-audit-evidence",
+      "rationale": "The lesson explicitly preserves the earlier pass and later failure without waiver. Current lock selects virtualenv 21.14.13 and current policy requires diagnosis of challenging failures. No current feed observation is available; no vulnerability or resolution claim is made.",
+      "evidence": [
+        "docs/lessons/20261021T223800Z-ci-pr36-pr39-coordinator-moving-audit.md",
+        "uv.lock:420",
+        "Makefile",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261021T191849Z-ci-pr36-pr39-coordinator-cheap-audit"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261022T045737Z-stack-maintenance-bounded-worker-quiesce-repository-builders",
+      "bucket": "quiescent-git-fixtures",
+      "summary": "Apply maintenance override to every affected fixture producer",
+      "handling": "no-action",
+      "scope": "retained-verification-fixtures",
+      "rationale": "The two follow-up builders and original output-protection builder all contain local overrides before commit in current source. The retained task specifies the isolated-global-config challenge, but its original results are absent. No remaining named omission is established.",
+      "evidence": [
+        "docs/lessons/20261022T045737Z-stack-maintenance-bounded-worker-quiesce-repository-builders.md",
+        "tests/test_verification_output_protection.py:61",
+        "tests/shared_node_baseline_public_callers_fixture.py:816",
+        "tests/shared_node_baseline_infrastructure_supplement_fixture.py:243",
+        "docs/tasks/stack-ci-maintenance-race-20261022.md:14"
+      ],
+      "related_lessons": [
+        "20261017T210913Z-phase-step-estimation-coordinator-git-maintenance-fixture",
+        "20261021T182235Z-ci-pr36-pr39-coordinator-git-maintenance"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261022T200641Z-simulation-camera-coordinator-platform-case-identity",
+      "bucket": "platform-representation-domains",
+      "summary": "Scope platform exceptions to the identified boundary case",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-oracle",
+      "rationale": "The incorrect broad longdouble exception concerned camera tests removed with the simulator. No active invalid-case exception was found by this narrow check; future representation oracles should use actual capabilities and explicit case identity.",
+      "evidence": [
+        "docs/lessons/20261022T200641Z-simulation-camera-coordinator-platform-case-identity.md",
+        "docs/contracts/c-equivalence-retirement-files.json:157",
+        "docs/contracts/c-equivalence-retirement-files.json:279",
+        "docs/PROJECT.md:54"
+      ],
+      "related_lessons": [
+        "20261018T033311Z-observable-phase-coordinator-native-dtype-capabilities"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261022T215001Z-full-noisy-simulation-coordinator-pupil-convergence",
+      "bucket": "finite-vs-continuum-convergence",
+      "summary": "Finite pupil accuracy alone does not prove continuum convergence",
+      "handling": "no-action",
+      "scope": "retired-simulator-scientific-limit",
+      "rationale": "The study selects pupil order 256 and openly states no complete source/pixel/pupil convergence study is claimed. The simulator is retired. This is a preserved scientific limitation, not a present violation of the finite-equation contract or a mandate for a new experiment.",
+      "evidence": [
+        "docs/lessons/20261022T215001Z-full-noisy-simulation-coordinator-pupil-convergence.md",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:39",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:106",
+        "docs/contracts/c-equivalence-retirement-files.json:165"
+      ],
+      "related_lessons": [
+        "20261022T230603Z-full-noisy-simulation-coordinator-bead-grid-moments"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed within the sampled displacement domain",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261022T230603Z-full-noisy-simulation-coordinator-bead-grid-moments",
+      "bucket": "finite-vs-continuum-convergence",
+      "summary": "Normalized stored brightness does not prove source geometry convergence",
+      "handling": "no-action",
+      "scope": "retired-simulator-scientific-limit",
+      "rationale": "The current historical study discloses differing refinements, fixed paired basis and lack of continuum/source convergence. Removed source-generation code is not an active defect surface. Any future accuracy threshold or experiment needs explicit scientific intake.",
+      "evidence": [
+        "docs/lessons/20261022T230603Z-full-noisy-simulation-coordinator-bead-grid-moments.md",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:39",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:43",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:106",
+        "docs/contracts/c-equivalence-retirement-files.json:169"
+      ],
+      "related_lessons": [
+        "20261022T215001Z-full-noisy-simulation-coordinator-pupil-convergence"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261022T231548Z-full-noisy-simulation-coordinator-exact-coordinate-differences",
+      "bucket": "exact-coordinate-arithmetic",
+      "summary": "Subtract exact lattice coordinates before float conversion",
+      "handling": "no-action",
+      "scope": "retired-simulator-numerical-defect",
+      "rationale": "The independent finite certificate established a historical real numerical defect, with regression pointers. That optics runtime and coordinate test/fixture are retired and absent. Preserve the defect as historical; no current CE path with the same error is demonstrated and historical correction acceptance cannot be recovered here.",
+      "evidence": [
+        "docs/lessons/20261022T231548Z-full-noisy-simulation-coordinator-exact-coordinate-differences.md",
+        "docs/contracts/c-equivalence-retirement-files.json:165",
+        "docs/contracts/c-equivalence-retirement-files.json:303",
+        "docs/contracts/c-equivalence-retirement-files.json:489",
+        "docs/tasks/simulation-optics-aggregate-validation.md:21"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261026T035722Z-full-noisy-simulation-coordinator-finite-step-public-range",
+      "bucket": "permitted-oracle-alternatives",
+      "summary": "Qualify downstream output representability separately from seed finiteness",
+      "handling": "no-action",
+      "scope": "retired-scientific-test-oracle",
+      "rationale": "The invalid success oracle belonged to retired image-only specimen fitting. The lesson explicitly left correction review outstanding; absence of that API supplies no historical acceptance proof. Preserve independent representability reasoning for future contracts.",
+      "evidence": [
+        "docs/lessons/20261026T035722Z-full-noisy-simulation-coordinator-finite-step-public-range.md",
+        "docs/contracts/c-equivalence-retirement-files.json:153",
+        "docs/contracts/c-equivalence-retirement-files.json:231",
+        "docs/PROJECT.md:54"
+      ],
+      "related_lessons": [
+        "20261017T181948Z-phase-step-estimation-coordinator-scipy-observer-forwarding",
+        "20261018T080433Z-phase-carrier-scan-coordinator-integer-conversion-boundary",
+        "20261018T180751Z-phase-carrier-selection-coordinator-optional-conversion-oracles"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed public diagnostic; independent correction review remains separately required",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261026T185523Z-pr53-coordinator-finite-fit-is-not-recovery",
+      "bucket": "scientific-target-vs-truth",
+      "summary": "Workflow completion alone did not establish specimen recovery",
+      "handling": "no-action",
+      "scope": "historical-scientific-outcome",
+      "rationale": "The current report leads with poor recovery, records exact full-field errors and 12-iteration stop, and explicitly leaves cause/convergence unknown. Current CE08 evidence is a distinct conditional study; it does not resolve this old case. No misleading current recovery claim or diagnosed repair is evidenced.",
+      "evidence": [
+        "docs/lessons/20261026T185523Z-pr53-coordinator-finite-fit-is-not-recovery.md",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:5",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:41",
+        "docs/reports/c-equivalence-independent-acceptance.md",
+        "docs/PROJECT.md:99"
+      ],
+      "related_lessons": [
+        "20261018T220128Z-fourier-block-phase-coordinator-oracle-versus-truth",
+        "20261019T141007Z-relative-phase-invariants-coordinator-target-quotient"
+      ],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261026T185523Z-pr53-coordinator-measurement-wrapper-can-fail-after-generation",
+      "bucket": "measurement-context-preflight",
+      "summary": "Separate valid generation from failed resource-wrapper observations",
+      "handling": "no-action",
+      "scope": "historical-scientific-measurement",
+      "rationale": "The retained study distinguishes failed wrapper status, unknown first peak memory, valid sealed files and byte-identical fixed-input repeat. The old driver is retired; no current false resource value or repeated independent-trial claim was found.",
+      "evidence": [
+        "docs/lessons/20261026T185523Z-pr53-coordinator-measurement-wrapper-can-fail-after-generation.md",
+        "docs/studies/full-noisy-study-2026-10-26/README.md:62",
+        "docs/studies/full-noisy-study-2026-10-26/evidence/resources.json",
+        "docs/contracts/c-equivalence-retirement-files.json:137"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    },
+    {
+      "id": "20261026T201943Z-pr53-coordinator-match-gate-environment-before-long-run",
+      "bucket": "canonical-parent-test-integration",
+      "summary": "Probe test helpers under canonical parent instrumentation",
+      "handling": "no-action",
+      "scope": "retired-scientific-driver-test-harness",
+      "rationale": "The 390-case driver correction and original full-gate failure remain distinct historical evidence. Those driver tests were retired; current canonical tests still run ordinary coverage pytest, while tracked source-free wrapper preserves inherited Python paths/plugins. No surviving parent-precondition failure is demonstrated.",
+      "evidence": [
+        "docs/lessons/20261026T201943Z-pr53-coordinator-match-gate-environment-before-long-run.md",
+        "docs/contracts/c-equivalence-retirement-files.json:215",
+        "Makefile:43",
+        "scripts/source_free_check.py:54",
+        "docs/PROJECT.md:99"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": "Revisit only if a current active operation, packet, evidence producer or scientific claim is shown to repeat this mechanism; establish a concrete gap against its own approved contract first.",
+      "observation_confidence": "confirmed",
+      "completion_conditions": "None for this no-action scope: no concrete current gap was demonstrated; this does not certify historical correction completion.",
+      "work_links": "None required: reusable advice, superseded scope or preserved historical limitation; source task/evidence links remain in the lesson and evidence array."
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "Read-only report investigation. No product tests, doctor CLI, dependency audit, scientific experiment or remote mutations were run.",
+    "All 51 cohort lessons were read completely. Current applicable instructions, retirement boundary/manifest, selected task/report records and narrowly relevant diagnostic/fixture/verification source were inspected.",
+    "Named ignored task evidence roots for phase-step estimation, observable-subspace estimation, phase-carrier selection, finite-bead compensation, full-noisy simulation and stack maintenance are absent in this checkout. Historical primary logs/helper bytes and final review/gate records could not be independently re-qualified.",
+    "No lesson is marked resolved: neither current retirement nor a broad later passing result supplies missing exact historical correction acceptance. No-action means reusable advice or preserved historical/scientific limits with no concrete current gap established, not universal prevention completion.",
+    "Former scientific runtime and dedicated tests are intentionally retired under CE01; their regression requests are not silently transferred to the distinct current C-equivalence contracts. Their historical defects and scientific failures remain facts.",
+    "Existing issue snapshot has open issues 81, 84, 85 and 86 and an empty closed array; this is not proof of absence of all historical work. No cohort-3 actionable issue candidate requires deduplication/publication.",
+    "Current advisory feed state, macOS Git race timing and absence of all possible diagnostic-channel exposures were not evaluated; no universal platform or source-free guarantee is claimed.",
+    "Policy disposition adoption is owned by the coordinator; this file supplies proposed handling/evidence only, not activated append-only dispositions or issue publication."
+  ],
+  "policy_basis": "docs/lessons/README.md (reviewed lifecycle); proposed report handling, not an activated disposition record"
+}

@@ -1,4 +1,4 @@
-# LESSONS-READER-PARENT: external-evidence reservation prerequisite
+# LESSONS-READER-PARENT-01: external-evidence reservation prerequisite
 
 **Version 1.0.** Git versions revisions. Intake for
 [issue #100](https://github.com/david-hoffman/simrecon/issues/100), finding
@@ -28,6 +28,40 @@ Baseline: commit `b05fc782522a81ebd92c10726dac731a26e5a026`, tree
 worktree. The intake branch is `codex/intake-100-reader-reservation-parent` in the
 current checkout. Execution must confirm its actual baseline before reuse.
 
+### Doctor-origin handoff and integration
+
+Preserve the original task ID `LESSONS-READER-PARENT-01`, finding
+`LESSONS-DOCTOR-01-F002`, and source observation ID
+`20261103T020523Z-ce03-coordinator-external-protocol-lock-parent`. The
+[original intake](https://github.com/david-hoffman/simrecon/blob/d48e0e47b315e79a8c8ab33bc81b3f7f235e3c3c/docs/tasks/lessons-reader-reservation-parent.md),
+[issue draft](../reports/lessons-doctor-2026-11-11/F002-issue.md),
+[doctor probe](../reports/lessons-doctor-2026-11-11/reader-lock-probe.json), and
+[prior F002 handling](../lessons/dispositions/20261111T182059Z-lessons-doctor-01-coordinator-b10-tracked.md)
+identify the same prerequisite gap. The doctor's original task records its
+owner-authorized priority, policy route, synthetic controls, proposed author/
+reviewer settings and parent-diagnosis charges. Its source bytes remain in Git;
+this record continues its sole correction execution state, not a second task.
+
+Main advanced to `d48e0e47b315e79a8c8ab33bc81b3f7f235e3c3c` (PR #101) during
+the first candidate's full verification. It adds that original intake/probe and
+lesson-disposition guidance; runtime, tests/fixtures, scripts/devtools, Make,
+dependencies and workflows are unchanged. The add/add task-record conflict is
+reconciled here, retaining the doctor's provenance/constraints and this session's
+authorization, contract, observed evidence and every attempt. The original
+suggested reader-environment/PROJECT documentation ownership was proposed, not a
+separate human instruction. This intake selects the existing verification
+environment procedure plus its verification pointer to place the prerequisite
+with its callers and avoid duplicating reader-authentication or PROJECT guidance.
+The independently reviewed policy route and preservation/gate conditions remain.
+
+The [new F002 handling record](../lessons/dispositions/20261112T035346Z-reader-parent-100-coordinator-prerequisite-tracked.md)
+is scoped only to this candidate and the earlier F002 tracked entry. It leaves
+F003 and source-observation confidence untouched. The requested docs and controls
+are supplied; integrated-candidate checks/review and human PR integration remain
+explicit conditions. Revisit on changed fixture paths/lifecycle, contradictory
+environment evidence or altered prerequisite docs; broader qualification and
+automatic fixture preparation require their own scope.
+
 ### Observed facts and evidence limits
 
 - [Fixture declarations](../../tests/shared_node_baseline_public_callers_fixture.py)
@@ -47,12 +81,16 @@ current checkout. Execution must confirm its actual baseline before reuse.
   substitutes `CACHE`, `EVIDENCE` and `RUN`, prepares its own evidence parent, and
   checks restored contents, inode and mode. It does not exercise the absent
   fixed-parent case.
-- The issue reports a later Python 3.13.12 synthetic probe and an earlier intake
-  record. Neither `docs/reports/lessons-doctor-2026-11-11/reader-lock-probe.json`
-  nor this task path existed in the baseline checkout; GitHub default-branch
-  reads returned 404 for both. Preserve the issue's reported history, but mark
-  the original probe, earlier accounting and earlier contract bytes unavailable.
-  Do not reconstruct them or claim a new run from their description.
+- During the initial intake on `b05fc78`, the original doctor probe and intake
+  were absent locally and their default-branch reads returned 404. After PR #101
+  reached main, both became available and were opened. The retained doctor probe
+  records the same fixture digest and three synthetic conditions: absent parent,
+  successful prepared-parent restoration, and existing-lock rejection. This
+  supersedes only the earlier availability limit; it is not a new execution or
+  proof that unavailable original private receipts were recovered. Doctor charges
+  remain linked through [its task](lessons-doctor-first-pass.md), including nine
+  delegated launches for that separate parent task; do not double-count them as
+  this correction's launches. Complete historical metering remains unknown.
 
 ### Requirements and boundary inventory
 
@@ -85,6 +123,8 @@ current checkout. Execution must confirm its actual baseline before reuse.
   [environment.md](../operations/environment.md), a concise pointer/invocation in
   [verification.md](../operations/verification.md), and disposition/evidence in
   this task. Temporary diagnostic material stays outside tracked source/tests.
+  The coordinator also owns the named append-only F002 handling record above,
+  reconciled against main's existing disposition format and reviewed independently.
   Runtime, tests/fixtures, workflows, Make targets, dependencies, skills, delivery
   policy, cache data and lock semantics remain outside this remedy's ownership.
 - **R5 — gates, evidence and scope.** External protocol observations do not move
@@ -218,32 +258,39 @@ Durable evidence is outside the checkout at
 `diagnostic-exit-status.txt` (0), `diagnostic-result.json` (PASS) and run-bound
 protocol observations. The exact script SHA-256 is
 `7fc39ef5ada288f66604642031f68d54899f241cab24a0424659a6dbec128c42`.
-These are new observations, not reconstructed copies of the unavailable original
+These are new observations, distinct from the subsequently available original
 doctor probe. Normal local unwinding only was demonstrated: no crash recovery,
 concurrent-reservation, permissions, interoperability or cross-platform
 qualification claim follows. Full verification is a separate gate.
 
 ## Current state
 
-- **Status:** documentation candidate prepared under “Get a pr up.” Isolated
-  diagnostic PASS; fresh policy review found no preliminary issues. Final review,
+- **Status:** documentation candidate integrated with main PR #101 under “Get a
+  pr up.” Isolated diagnostic PASS; fresh policy review found no preliminary
+  issues before integration and now assesses the reconciled task/disposition.
+  Final review,
   exact-candidate full gate and submission outcomes are recorded outside these
   frozen tracked bytes in `/workspace/shared/reader-parent-100/completion.json`
   and the resulting PR/conversation. This pre-verification pointer does not claim
   those pending results have passed.
 - **Authorization/limits:** `/intake 100`, followed by “Get a pr up”; seven scenarios;
   four diagnostic conditions; no human-set execution,
-  review, correction or spending limits. Missing original doctor records remain
-  unavailable; their prior attempts/spending are unknown, not zero or reset.
-- **Baseline/ownership:** baseline and intake branch above; remote main was
-  reconfirmed unchanged. Author owns the two operational docs, coordinator this
-  task, checks and PR. Runtime/tests/fixtures/lock semantics/gates are unchanged.
+  review, correction or spending limits. Original doctor records became available
+  with PR #101; its separate parent-task charges remain linked and are not reset
+  or double-counted here. Complete historical metering remains unknown.
+- **Baseline/ownership:** initial baseline above; integration base is now
+  `d48e0e47b315e79a8c8ab33bc81b3f7f235e3c3c`. Author's two operational docs are
+  unchanged by integration; coordinator owns this reconciled task, the new scoped
+  F002 handling record, checks and PR. Runtime/tests/fixtures/lock semantics/gates
+  are unchanged; every unrelated main file is retained exactly.
 - **Evidence:** issue #100 and its empty comment list opened through GitHub;
   default-branch task/probe reads returned 404. Local fixture, lifecycle helper,
   CE03 lesson and relevant project/operational documents inspected. One independent
   read-only scope advisor confirmed paths and ownership. New synthetic evidence
-  and its limitations are recorded in the disposition above; original unavailable
-  evidence remains unavailable. Prior canonical gate outputs were preserved in
+  and its limitations are recorded in the disposition above. The initial 404s
+  remain historical facts; the now-available original task/probe/disposition were
+  opened without a rerun or retrospective invention. Original private receipts
+  were not recovered. Prior canonical gate outputs were preserved in
   external `preexisting-gate-evidence.tar.gz` before any new full run.
 - **Checks/review:** intake received fresh independent ACCEPT and passing link/
   whitespace checks. Execution preflight PASS with uv 0.12.19, current-worktree
@@ -255,7 +302,15 @@ qualification claim follows. Full verification is a separate gate.
   Author checks passed: 12 local target occurrences, five shell-block syntax
   checks and whitespace. Fresh remedy reviewer independently matched document
   hashes, detailed diagnostic inventories, journals and retained synthetic state,
-  found no preliminary issues, and awaits the exact committed full-gate result.
+  found no preliminary issues, and independently checked the first full receipt.
+  The first candidate passed all 13 phases and 3,100 tests with 47 warnings; its
+  unchanged 1,175-file manifest, reports, inputs, measurements and wheels are
+  retained outside the checkout in `full-gate-evidence.tar.gz` and
+  `pre-integration-completion.json`. That result is not presented as the changed
+  integration candidate's gate. New full evidence will use `integrated-` names,
+  preserving the first run. Fixture, dependency and environment inputs relevant
+  to the synthetic demonstration are unchanged, so its observed cases are retained
+  for reviewer applicability assessment without rerunning them.
   No runtime/test/fixture/infrastructure change is present; inherited test bytes
   remain the baseline's bytes, with no invented new test-review checkpoint.
 - **Accounting:** one coordinator, one report-only scope-advisor launch and one
@@ -264,13 +319,17 @@ qualification claim follows. Full verification is a separate gate.
   one documentation-author launch at requested `gpt-6.1-sol`/high, one successful
   diagnostic, one preflight and one audit precheck, plus one fresh remedy-policy
   reviewer at requested `gpt-6.1-sol`/high. Remedy review has one preliminary pass,
-  zero corrections; its final verdict is pending. One complete local gate is
-  planned for the frozen committed candidate before PR submission. Initial
+  zero reviewer-requested corrections; its final verdict is pending. One full
+  local gate passed; a second is required for the changed integrated candidate.
+  One coordinator integration correction reconciles the diagnosed add/add task
+  conflict; one stale patch-context rejection changed no files. No product/test
+  defect, author retry or diagnostic rerun is hidden. Initial
   absent-file/search-path diagnostics and unavailable
   remote reads are retained as discovery limits, not product failures. Actual
   served model/effort, tokens, cost and complete elapsed/check-time metering are
   unknown. No known exposure to a required blind role; no blind role was needed.
-- **Next action:** commit the prepared candidate, run the complete local gate with
+- **Next action:** finish independent integration-scope assessment, commit the
+  resolved candidate, run the complete local gate with
   external protocol observations, deliver its exact identity/evidence for the
   reviewer's final verdict, then push/open the PR. Follow the external completion
   pointer for final results; do not edit verified bytes to record their own hash.

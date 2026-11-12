@@ -1,0 +1,216 @@
+{
+  "buckets": [
+    {
+      "id": "B01",
+      "title": "Scientific meaning, assumptions and claim limits",
+      "scope": "Declare acquisition axes, physical quantities, forward-model composition and information premises before interpreting results. Distinguish finite-model agreement, observable targets and limited recovery controls from physical uniqueness, continuum convergence or specimen recovery. Retired scientific contracts remain historical evidence.",
+      "mechanisms": [
+        "estimator-identifiability",
+        "explicit-acquisition-axes",
+        "explicit-metadata-domain",
+        "finite-vs-continuum-convergence",
+        "fixture-coordinate-provenance",
+        "forward-model-composition-oracles",
+        "fractional-alias-contract",
+        "historical-recovery-controls",
+        "model-quantity-terminology",
+        "scientific-information-premises",
+        "scientific-prerequisite-scope",
+        "scientific-target-vs-truth"
+      ]
+    },
+    {
+      "id": "B02",
+      "title": "Finite arithmetic and numerical accuracy",
+      "scope": "Derive numerical decisions from the admitted represented operands, operation and rounding stages, exact integer arithmetic, conditioning and final output range. Use justified local or absolute error budgets, weighted scaling and representable witnesses; real-arithmetic equivalence or ideal values alone do not supply a finite-arithmetic oracle.",
+      "mechanisms": [
+        "absolute-only-ambiguity-oracles",
+        "backward-error-oracle-validity",
+        "boundary-fixture-range-proof",
+        "computed-threshold-oracles",
+        "contract-envelope-oracles",
+        "exact-coordinate-arithmetic",
+        "exact-integer-oracles",
+        "exact-observer-integer-arithmetic",
+        "final-quantity-range-oracle",
+        "finite-arithmetic-oracles",
+        "local-scaled-accuracy-oracles",
+        "materialized-arithmetic-stage-oracle",
+        "oracle-applicability-domain",
+        "output-quantization-budget",
+        "precision-preserving-composition",
+        "represented-angle-arithmetic",
+        "represented-target-accuracy",
+        "rounding-stage-preservation",
+        "signed-normalization-domain",
+        "weighted-component-scaling"
+      ]
+    },
+    {
+      "id": "B03",
+      "title": "Discriminating contract-based test oracles",
+      "scope": "Make public-boundary tests reach and distinguish their intended obligation. Isolate invalid preconditions and fault delivery, retain valid positive companions and caller state, honor defaults and permitted implementation/output alternatives, and observe complete invariants rather than vocabulary, incidental hooks or unrelated coverage.",
+      "mechanisms": [
+        "boundary-reachability-oracle",
+        "caller-handle-preservation",
+        "contract-dependency-failure-boundary",
+        "contract-derived-oracles",
+        "conversion-observer-equivalence",
+        "discriminating-numerical-oracles",
+        "fault-delivery-scope",
+        "fft-call-equivalence",
+        "isolated-invalid-precondition",
+        "masked-array-preservation",
+        "permitted-oracle-alternatives",
+        "permitted-output-alternatives",
+        "permitted-positive-inputs",
+        "policy-test-discrimination",
+        "reduced-domain-positive-proof",
+        "reuse-existing-public-proof",
+        "valid-positive-integrity-controls",
+        "warning-observer-admissions",
+        "whole-invariant-observation"
+      ]
+    },
+    {
+      "id": "B04",
+      "title": "Validated domains, storage and public behavior",
+      "scope": "Validate the actual admitted type, scalar value, aggregate domain, provenance and storage ownership before routing, copying or hashing. Consume the value and identity that passed validation, derive domains from real source callers, and preserve diagnostic identifiers that are part of observable behavior.",
+      "mechanisms": [
+        "conversion-boundary-errors",
+        "numeric-representation-validation",
+        "rename-diagnostic-preservation",
+        "source-derived-operation-domains",
+        "stored-source-validation",
+        "validated-storage-and-provenance"
+      ]
+    },
+    {
+      "id": "B05",
+      "title": "Source-free diagnostic and probe channels",
+      "scope": "Qualify each relevant blind diagnostic channel and its real parent/child startup and argument transport. Preserve message, location, identity and process meaning while excluding source; bind helper bytes and paths and prove probes executed. Collection, ordinary traceback and unraisable exceptions retain separate evidence and acceptance scopes.",
+      "mechanisms": [
+        "blind-collection-diagnostics",
+        "blind-diagnostic-startup",
+        "blind-unraisable-source-leak",
+        "child-harness-preconditions",
+        "diagnostic-file-identity",
+        "diagnostic-helper-identity",
+        "native-script-path-identity",
+        "probe-execution-evidence",
+        "pytest-selector-inheritance",
+        "source-free-diagnostic-channels"
+      ]
+    },
+    {
+      "id": "B06",
+      "title": "Review packets and role boundaries",
+      "scope": "Provide exact permitted public context, construction interfaces, excerpts and evidence roots without expanding blind read authority. Keep launch/report ownership explicit, avoid report-destination collisions, and qualify model capability against the actual review judgment rather than generalizing a narrow calibration.",
+      "mechanisms": [
+        "blind-packet-boundaries",
+        "blind-public-excerpts",
+        "blind-read-ownership",
+        "model-calibration-scope",
+        "public-composition-context",
+        "role-launch-boundaries",
+        "role-report-destinations"
+      ]
+    },
+    {
+      "id": "B07",
+      "title": "Candidate, environment and review identity",
+      "scope": "Bind conclusions to actual executables, imports, generated and ignored inputs, effective owner configuration, baseline ancestry and successful role lineage. Preserve checkpoint limits and prior valid evidence across environment/typing repair; sequence dependent tasks against completed prerequisites instead of treating equal trees or version labels as interchangeable identity.",
+      "mechanisms": [
+        "actual-dtype-and-command-context",
+        "checkpoint-bound-review",
+        "dependent-task-sequencing",
+        "effective-owner-provenance",
+        "environment-identity",
+        "evidence-executable-identity",
+        "exact-stacked-baseline",
+        "generated-source-identity",
+        "material-input-identity",
+        "native-lineage-records",
+        "typing-change-evidence-preservation"
+      ]
+    },
+    {
+      "id": "B08",
+      "title": "Evidence custody and safe filesystem lifecycle",
+      "scope": "Admit structurally eligible evidence and preserve original referents and raw inputs. Keep fixtures quiescent, close disposable controls and aliases, distinguish availability from integrity and freed space from removed sizes, and recheck actual protected write destinations including shared Git metadata and changing symlink leaves.",
+      "mechanisms": [
+        "cleanup-accounting",
+        "cleanup-evidence-provenance",
+        "closed-evidence-control-lifecycle",
+        "conditional-cleanup-proof",
+        "evidence-admission-completeness",
+        "evidence-availability-vs-integrity",
+        "quiescent-git-fixtures",
+        "raw-coverage-export-custody",
+        "retained-evidence-dependencies",
+        "verifier-evidence-aliases",
+        "verifier-output-protection",
+        "verifier-write-protection"
+      ]
+    },
+    {
+      "id": "B09",
+      "title": "Measurement integrity and evidence presentation",
+      "scope": "Trace measurements to their actual emitter and same-run native reports, preserve coverage counter semantics and owned inventories, confine inherited export context, and distinguish unavailable evidence from valid zero or partial results. Deliver requested evidence in the review surface with its actual precision, units, transforms and capture limits; presentation or coverage does not establish unmeasured behavior.",
+      "mechanisms": [
+        "coverage-behavior-separation",
+        "measurement-context-preflight",
+        "measurement-environment-confinement",
+        "measurement-provenance",
+        "metric-display-provenance",
+        "native-coverage-integrity",
+        "native-coverage-measurement-semantics",
+        "owned-measurement-inventory",
+        "reference-conversion-scope",
+        "review-surface-figures",
+        "same-run-measurements"
+      ]
+    },
+    {
+      "id": "B10",
+      "title": "Verification prerequisites and execution cost",
+      "scope": "Check actual parent instrumentation, fixture roots, reader reservation prerequisites, inherited limits and input transport before expensive dependent verification. Reuse certified work only with complete keys, diagnose preparation complexity, refresh external audits when challenged, and continue measured scheduling work under its existing task and gate.",
+      "mechanisms": [
+        "canonical-parent-test-integration",
+        "certified-query-reuse",
+        "external-evidence-reservation-parent",
+        "fixture-environment-context",
+        "fresh-dependency-audit",
+        "instrumented-resource-limits",
+        "manifest-join-complexity",
+        "verification-input-transport",
+        "verification-scheduling"
+      ]
+    },
+    {
+      "id": "B11",
+      "title": "External compatibility and native capabilities",
+      "scope": "Establish behavior against the actual pinned tool, reader, artifact format and platform capability. Distinguish command availability from interoperability, metadata preservation from viewer support, dtype names from representable range, and plausible tags or prose from accepted artifacts; preserve real filesystem error and platform-specific evidence limits.",
+      "mechanisms": [
+        "capability-versus-interoperability",
+        "container-reader-compatibility",
+        "external-cli-compatibility",
+        "filesystem-error-preservation",
+        "native-capability-test-registration",
+        "observer-platform-capability",
+        "platform-representation-domains",
+        "reader-implementation-applicability",
+        "reader-interoperability",
+        "wheel-tag-integrity"
+      ]
+    }
+  ],
+  "limitations": [
+    "Overview taxonomy of 203 lesson rows and 127 distinct exact mechanism slugs from cohort-1.json through cohort-4.json only; cohort-1-probe.json is evidence, not an additional cohort. Each mechanism is assigned once. Original row mechanisms, handling judgments, confidence, relationships and findings remain in the cohort inventory unchanged.",
+    "Membership describes shared corrective reasoning, not a duplicate relationship, a single root cause, an actionable issue or a resolution verdict. A mechanism can span product, test, infrastructure and historical contexts; its primary corrective reasoning determines its one overview bucket.",
+    "The source-free diagnostic family does not merge LESSONS-DOCTOR-01-F001 (the currently reproduced unraisable source leak) with narrowly resolved ordinary subprocess, collection or path-rendering incidents. Their channel, candidate and platform evidence remain separate.",
+    "LESSONS-DOCTOR-01-F002 (fixed reader-reservation parent preparation) and LESSONS-DOCTOR-01-F003 (the existing verification optimization task) share prerequisite/execution-cost context but remain distinct actionable findings with different ownership and completion conditions. F003 reuses existing work and does not create a duplicate optimization issue or claim the pending 300-second goal passed.",
+    "Retirement, absent historical artifacts, current static guards, related passing tests and issue status do not independently certify historical correction acceptance or active replacement behavior. Scientific model, arithmetic accuracy, test-oracle, tooling, evidence and environmental defects remain distinct even when one broad bucket is shared.",
+    "This consolidation reads cohort summaries and rationales; it performs no new product inspection, probe, verification run, remote freshness check or external mutation. The broad taxonomy supplies no new scientific, implementation, policy or publication authority."
+  ]
+}

@@ -6,6 +6,7 @@
 
 - Human request/instruction and intended objective; slice plan/ID/prerequisites/baseline:
 - Project/public-interface references; purpose and non-goals:
+- Doctor-origin work if applicable: stable finding/source IDs, existing issue/task/disposition links, observed/expected behavior and expectation source, evidence/uncertainty, remaining completion conditions/revisit triggers; intake-selected route and sanitized public packets. Links create no additional repair authority:
 - R1: <observable requirement>
 - R2: <observable requirement>
 - Inputs/outputs/errors/permissions and expected-result sources: authorized contract, applicable primary reference or mathematical invariant; units/conventions/estimators and unresolved meaning:
@@ -46,7 +47,7 @@ Use this section or point to one Current state in PR/discussion. Prepare the poi
 - Blockers; next responsible role/action/narrow packet/completion:
 - Completion housekeeping result: removed paths, kept paths/reasons, command errors and confirmation. Record in the existing Current state; size measurements are optional. Exceptions do not block the underlying task:
 
-There are no default B review windows, review quotas, C/bounded repair quotas or execution budgets. Diagnose recurring failures and every correction with evidence, then continue through fresh required review until the objective is complete or an actual blocker remains. No uncontrolled automatic repair loop. Fresh/continued sessions, renamed tasks, checkpoints/model swaps/splits/migration erase no attempts. Blind A/B receive PUBLIC-PACKET only, never this implementation-bearing state. Only docs/lessons entries are append-only.
+There are no default B review windows, review quotas, C/bounded repair quotas or execution budgets. Diagnose recurring failures and every correction with evidence, then continue through fresh required review until the objective is complete or an actual blocker remains. No uncontrolled automatic repair loop. Fresh/continued sessions, renamed tasks, checkpoints/model swaps/splits/migration erase no attempts. Blind A/B receive PUBLIC-PACKET only, never this implementation-bearing state. Lesson observations and disposition records are append-only; reports are derived evidence views, not a competing execution state.
 
 ## PR presentation (coordinator / permitted candidate context)
 

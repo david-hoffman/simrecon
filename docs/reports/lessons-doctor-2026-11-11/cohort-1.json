@@ -1,0 +1,1076 @@
+{
+  "cohort": 1,
+  "baseline": "b05fc782522a81ebd92c10726dac731a26e5a026",
+  "lesson_count": 51,
+  "report_kind": "Report-only evidence and proposed handling; coordinator owns authoritative append-only dispositions, stable final finding IDs, publication and intake.",
+  "policy_basis": "Aligned to independently accepted lesson/disposition guide; no original observation bytes changed.",
+  "lessons": [
+    {
+      "id": "20260930T184757Z-setup-coordinator-ignored-input-identity",
+      "bucket": "material-input-identity",
+      "summary": "A Git revision did not identify the ignored legacy input",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current AGENTS and verification guidance explicitly include ignored/external inputs; optional named input fingerprints identify authorized external bytes. The old ignored study manifest is evidence, not an oracle. No current instruction omission demonstrated.",
+      "evidence": [
+        "docs/lessons/20260930T184757Z-setup-coordinator-ignored-input-identity.md",
+        "AGENTS.md",
+        "docs/operations/verification.md:17",
+        "scripts/verify.py:226"
+      ],
+      "related_lessons": [
+        "20260930T201856Z-setup-coordinator-correct-native-cli-identity",
+        "20261006T160735Z-calibration-intake-git-archive-versioneer-identity"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20260930T191720Z-setup-coordinator-hidden-editable-install",
+      "bucket": "environment-identity",
+      "summary": "An editable install disappeared when its path file became hidden",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current environment guidance retains the unknown flag setter, checks actual executable/import identity and preserves checkpoints after environment-only repair. No present hidden-file symptom was observed; identifying the historic setter is not necessary current work.",
+      "evidence": [
+        "docs/lessons/20260930T191720Z-setup-coordinator-hidden-editable-install.md",
+        "docs/operations/environment.md"
+      ],
+      "related_lessons": [
+        "20261005T181131Z-delivery-efficiency-coordinator-managed-interpreter-fixtures",
+        "20261006T060052Z-nf02-coordinator-environment-and-dtype"
+      ],
+      "finding": null,
+      "revisit": "Reopen if editable path flags recur in a current supported environment; identify the responsible process before attribution."
+    },
+    {
+      "id": "20260930T201435Z-setup-coordinator-native-boundary-compatibility",
+      "bucket": "external-cli-compatibility",
+      "summary": "A controlled harness accepted an invalid native option combination",
+      "handling": "resolved",
+      "scope": "Historical doctor native --sandbox/--approve-for-me option-pair incompatibility only.",
+      "rationale": "The reported incompatible pair is absent in the current launcher: check mode supplies sandbox read-only; default supplies approve-for-me alone. Current public tests reject the combination. The setup record identifies the corrected candidate and exact canonical, fresh D, real default/check and CI evidence. This resolves only the historical option-pair defect, not compatibility with every future native CLI.",
+      "evidence": [
+        "docs/lessons/20260930T201435Z-setup-coordinator-native-boundary-compatibility.md",
+        "devtools/src/simrecon_devtools/delivery.py:35",
+        "tests/test_delivery.py:160",
+        "docs/tasks/setup-plan.md:26"
+      ],
+      "related_lessons": [
+        "20260930T201856Z-setup-coordinator-correct-native-cli-identity"
+      ],
+      "finding": null,
+      "revisit": "Recheck live parser compatibility when the selected native executable/options change."
+    },
+    {
+      "id": "20260930T201856Z-setup-coordinator-correct-native-cli-identity",
+      "bucket": "evidence-executable-identity",
+      "summary": "Correct the native CLI identity for the live doctor failure",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "This explicitly corrects only the prior version attribution. The setup record preserves both the actual0.159.2 failure attribution and historical0.155 probe; current role guidance requires the executable/version actually used. No new defect or updater cause follows.",
+      "evidence": [
+        "docs/lessons/20260930T201856Z-setup-coordinator-correct-native-cli-identity.md",
+        "docs/tasks/setup-plan.md:27",
+        "docs/operations/role-launches.md:5"
+      ],
+      "related_lessons": [
+        "20260930T201435Z-setup-coordinator-native-boundary-compatibility",
+        "20260930T184757Z-setup-coordinator-ignored-input-identity"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20260930T212216Z-architecture-intake-intake-mrc-semantic-domains",
+      "bucket": "explicit-metadata-domain",
+      "summary": "MRC spacing fields need a declared semantic domain",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The active neutral MRC contract requires declared spatial_fields and preserves unknown sampling until explicit overrides. Current harmonization clears unresolved source sampling outside direct_um. Current CE transfer contracts are separate from neutral image conversion. This is reusable domain advice, with no demonstrated current gap.",
+      "evidence": [
+        "docs/lessons/20260930T212216Z-architecture-intake-intake-mrc-semantic-domains.md",
+        "docs/contracts/mrc-conversion-v1.md:35",
+        "src/simrecon/io/metadata.py:147",
+        "docs/PROJECT.md"
+      ],
+      "related_lessons": [
+        "20261001T042302Z-mrc-conversion-intake-section-count",
+        "20261002T173457Z-mrc-conversion-coordinator-profile-aware-provenance-oracle"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20260930T230305Z-architecture-intake-intake-mrc-viewer-axes",
+      "bucket": "reader-interoperability",
+      "summary": "Preserving extended metadata does not establish viewer axis support",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current PROJECT distinguishes MRC metadata preservation from the later explicit OME-BigTIFF ImageJ adapter. The interop report identifies pinned Bio-Formats/ImageJ/Java, asymmetric axis/pixel observations and GUI/platform limits. This supports the intended distinction without treating a focused report as whole-product acceptance.",
+      "evidence": [
+        "docs/lessons/20260930T230305Z-architecture-intake-intake-mrc-viewer-axes.md",
+        "docs/PROJECT.md",
+        "docs/reports/imagej-export-interop.md",
+        "docs/contracts/imagej-export-v1.md:91"
+      ],
+      "related_lessons": [
+        "20261001T045851Z-mrc-conversion-intake-extension-validation",
+        "20261001T050213Z-mrc-conversion-intake-validator-doc-discrepancy"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261001T042302Z-mrc-conversion-intake-section-count",
+      "bucket": "explicit-acquisition-axes",
+      "summary": "Stored sections need not be physical Z planes",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current neutral harmonization accepts explicit plane_axes/plane_shape and makes absent z sampling null; acquisition declarations establish caller meaning without estimating acquisition order. Header section count is not used to invent physical Z. No specific current gap demonstrated.",
+      "evidence": [
+        "docs/lessons/20261001T042302Z-mrc-conversion-intake-section-count.md",
+        "docs/contracts/mrc-conversion-v1.md",
+        "src/simrecon/io/metadata.py:152",
+        "src/simrecon/io/metadata.py:199",
+        "docs/PROJECT.md"
+      ],
+      "related_lessons": [
+        "20260930T212216Z-architecture-intake-intake-mrc-semantic-domains",
+        "20260930T230305Z-architecture-intake-intake-mrc-viewer-axes"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261001T045851Z-mrc-conversion-intake-extension-validation",
+      "bucket": "container-reader-compatibility",
+      "summary": "A private extension tag can fail a modern MRC validator",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The proposed private SRM1 tag was superseded by the approved genuine HDF5 metadata container. Current writer emits HDF5 tag/container bytes and current public conversion tests independently validate with mrcfile. No current SRM1 proposal remains; this no-action decision does not certify all reader compatibility.",
+      "evidence": [
+        "docs/lessons/20261001T045851Z-mrc-conversion-intake-extension-validation.md",
+        "docs/contracts/mrc-conversion-v1.md:7",
+        "src/simrecon/io/mrc_writer.py:80",
+        "tests/test_mrc_conversion_keys.py:87",
+        "tests/test_mrc_conversion_keys.py:186"
+      ],
+      "related_lessons": [
+        "20260930T230305Z-architecture-intake-intake-mrc-viewer-axes",
+        "20261001T050213Z-mrc-conversion-intake-validator-doc-discrepancy"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261001T050213Z-mrc-conversion-intake-validator-doc-discrepancy",
+      "bucket": "reader-implementation-applicability",
+      "summary": "Pinned validator behavior differs from its prose dimensions rule",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current writer/contract preserve zero unknown axial scale and distinguish pinned independent-reader validation from source inspection. The lesson corrects an obsolete proposed convention; current mrcfile validation assertions are present. No new live validation was run in triage.",
+      "evidence": [
+        "docs/lessons/20261001T050213Z-mrc-conversion-intake-validator-doc-discrepancy.md",
+        "docs/contracts/mrc-conversion-v1.md:114",
+        "src/simrecon/io/mrc_writer.py:50",
+        "tests/test_mrc_conversion_keys.py:186"
+      ],
+      "related_lessons": [
+        "20261001T045851Z-mrc-conversion-intake-extension-validation"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261001T161038Z-mrc-conversion-coordinator-scenario-coverage-gap",
+      "bucket": "coverage-behavior-separation",
+      "summary": "Accepted public scenarios can leave the runtime coverage gate unmet",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current PROJECT selects advisory percentages while requiring consistent native reports and independent behavior review. AGENTS routes concrete omissions and prohibits coverage-only fabricated tests. Historical selected targets/failed checks remain historical; no current unfulfilled selected threshold inferred.",
+      "evidence": [
+        "docs/lessons/20261001T161038Z-mrc-conversion-coordinator-scenario-coverage-gap.md",
+        "AGENTS.md",
+        "docs/PROJECT.md",
+        "docs/tasks/asd-coverage-policy.md"
+      ],
+      "related_lessons": [
+        "20261002T175150Z-mrc-conversion-coordinator-positive-key-contract-gap",
+        "20261005T140744Z-delivery-efficiency-d-wheel-tag-semantics",
+        "20261007T060840Z-asd-coverage-coordinator-zero-native-evidence"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261002T173457Z-mrc-conversion-coordinator-profile-aware-provenance-oracle",
+      "bucket": "contract-derived-oracles",
+      "summary": "Provenance oracles must honor the declared spatial profile",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current M39 explicitly uses a profile-aware test-side provenance observer; current metadata preserves original values with explicit overrides. The architecture task records corrected B checkpoint and C2/D2 checks. The broader warning against hidden unit assumptions remains reusable advice.",
+      "evidence": [
+        "docs/lessons/20261002T173457Z-mrc-conversion-coordinator-profile-aware-provenance-oracle.md",
+        "tests/test_mrc_conversion_coverage.py:119",
+        "src/simrecon/io/metadata.py:147",
+        "docs/tasks/architecture-intake.md:57"
+      ],
+      "related_lessons": [
+        "20260930T212216Z-architecture-intake-intake-mrc-semantic-domains",
+        "20261005T222804Z-NF02-coordinator-input-output-type-boundaries",
+        "20261007T004817Z-reconstruction-B-envelope-tolerance"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261002T175150Z-mrc-conversion-coordinator-positive-key-contract-gap",
+      "bucket": "permitted-positive-inputs",
+      "summary": "Complete branch coverage can miss unapproved positive-input restrictions",
+      "handling": "resolved",
+      "scope": "Historical rejection of the sole approved M45/M46 wavelength override keys00 and U+0660.",
+      "rationale": "Current harmonization accepts decimal strings and normalizes effective channel indices via int while retaining raw config. M45/M46 exercise ASCII00 and Arabic-Indic0 through Python/CLI with independent output/provenance checks. Architecture intake records the C2 correction,58-case canonical pass and fresh D2 acceptance. This resolves the named historical rejection, not all possible alias policies or all positive inputs.",
+      "evidence": [
+        "docs/lessons/20261002T175150Z-mrc-conversion-coordinator-positive-key-contract-gap.md",
+        "src/simrecon/io/metadata.py:135",
+        "src/simrecon/io/metadata.py:188",
+        "tests/test_mrc_conversion_keys.py:277",
+        "docs/tasks/architecture-intake.md:57",
+        "docs/tasks/architecture-intake.md:58"
+      ],
+      "related_lessons": [
+        "20261001T161038Z-mrc-conversion-coordinator-scenario-coverage-gap",
+        "20261005T222804Z-NF02-coordinator-input-output-type-boundaries"
+      ],
+      "finding": null,
+      "revisit": "Revisit if channel-key grammar, alias-collision policy or metadata normalization changes."
+    },
+    {
+      "id": "20261002T182621Z-mrc-conversion-coordinator-fresh-role-launch-wording",
+      "bucket": "role-launch-boundaries",
+      "summary": "Describe a launched role as the current root",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current role-launch guidance explicitly says the launched role performs work directly and does not launch another role; AGENTS assigns launches to the coordinator. Historical direct D2 evidence does not imply engineered containment. No further instruction gap demonstrated.",
+      "evidence": [
+        "docs/lessons/20261002T182621Z-mrc-conversion-coordinator-fresh-role-launch-wording.md",
+        "docs/operations/role-launches.md:5",
+        "AGENTS.md",
+        "docs/tasks/architecture-intake.md:57"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T061140Z-delivery-efficiency-coordinator-captured-measurements",
+      "bucket": "same-run-measurements",
+      "summary": "Internally captured measurements are absent from phase logs",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current M25 calls export_measurement only after its assertions; verification guidance says logs retain emitted output only and records mandatory same-run values. This addresses the observed logging inference without requiring a retrieval rerun. No assertion of final rollout acceptance is inferred from the old task pointer.",
+      "evidence": [
+        "docs/lessons/20261005T061140Z-delivery-efficiency-coordinator-captured-measurements.md",
+        "tests/test_mrc_conversion.py:552",
+        "docs/operations/verification.md:19",
+        "docs/PROJECT.md"
+      ],
+      "related_lessons": [
+        "20261005T171551Z-delivery-efficiency-coordinator-confine-inherited-export-environment",
+        "20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T061140Z-delivery-efficiency-coordinator-separate-native-output",
+      "bucket": "role-report-destinations",
+      "summary": "Native final-message output can overwrite a role report",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current role-launch guidance explicitly separates CLI -o final-message output from a detailed report path. The incident is execution evidence under corrected guidance, not a new control requirement. No new report-clobber incident observed.",
+      "evidence": [
+        "docs/lessons/20261005T061140Z-delivery-efficiency-coordinator-separate-native-output.md",
+        "docs/operations/role-launches.md:15"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T070037Z-delivery-efficiency-coordinator-protect-before-identity",
+      "bucket": "verifier-output-protection",
+      "summary": "Protect output even when candidate identity is unavailable",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current verifier discovers tracked/Git locations before content identity, protects actual output leaves and fails when protection discovery fails. Current public missing-tracked-file regression preserves both candidate and Git bytes. Static inspection establishes the targeted guard/regression exists; final exact-candidate acceptance of its historical rollout was not checked, so this does not certify historical resolution.",
+      "evidence": [
+        "docs/lessons/20261005T070037Z-delivery-efficiency-coordinator-protect-before-identity.md",
+        "scripts/verify.py:575",
+        "scripts/verify.py:605",
+        "tests/test_verification_receipt.py:687",
+        "docs/tasks/delivery-efficiency.md:26"
+      ],
+      "related_lessons": [
+        "20261005T070037Z-delivery-efficiency-coordinator-protect-common-git",
+        "20261005T140744Z-delivery-efficiency-d-output-leaf-symlinks",
+        "20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T070037Z-delivery-efficiency-coordinator-protect-common-git",
+      "bucket": "verifier-output-protection",
+      "summary": "Linked worktrees require shared Git metadata protection",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current verifier protects both absolute private Git dir and common Git dir; linked-worktree positive/shared-config rejection tests remain. No current missing common-dir guard demonstrated. Final historical rollout acceptance stays external and unverified here.",
+      "evidence": [
+        "docs/lessons/20261005T070037Z-delivery-efficiency-coordinator-protect-common-git.md",
+        "scripts/verify.py:577",
+        "tests/test_verification_receipt.py:770",
+        "docs/tasks/delivery-efficiency.md:26"
+      ],
+      "related_lessons": [
+        "20261005T070037Z-delivery-efficiency-coordinator-protect-before-identity",
+        "20261005T140744Z-delivery-efficiency-d-output-leaf-symlinks"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T140744Z-delivery-efficiency-d-output-leaf-symlinks",
+      "bucket": "verifier-output-protection",
+      "summary": "Output directory checks do not protect existing symlink leaves",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current verifier checks each actual phase-log leaf before phases and persist_output rechecks it before replacement. The current targeted public symlink cases preserve protected bytes. No reproduction of the old leaf gap remains established; static guards are not full acceptance evidence.",
+      "evidence": [
+        "docs/lessons/20261005T140744Z-delivery-efficiency-d-output-leaf-symlinks.md",
+        "scripts/verify.py:97",
+        "scripts/verify.py:108",
+        "scripts/verify.py:599",
+        "tests/test_verification_receipt.py:733",
+        "docs/tasks/delivery-efficiency.md:26"
+      ],
+      "related_lessons": [
+        "20261005T070037Z-delivery-efficiency-coordinator-protect-before-identity",
+        "20261005T070037Z-delivery-efficiency-coordinator-protect-common-git",
+        "20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T140744Z-delivery-efficiency-d-wheel-tag-semantics",
+      "bucket": "wheel-tag-integrity",
+      "summary": "Complete coverage does not establish wheel tag validity",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current artifact validation checks expanded three-part tag syntax and equality to filename-expanded tags. Public accepted/rejected tag cases are present. The historic defect is not a reason to reopen current code without a concrete counterexample, and no final rollout acceptance is inferred.",
+      "evidence": [
+        "docs/lessons/20261005T140744Z-delivery-efficiency-d-wheel-tag-semantics.md",
+        "scripts/verify.py:462",
+        "tests/test_verification_receipt.py:868",
+        "tests/test_verification_receipt.py:881",
+        "docs/tasks/delivery-efficiency.md:26"
+      ],
+      "related_lessons": [
+        "20261001T161038Z-mrc-conversion-coordinator-scenario-coverage-gap"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T162658Z-delivery-efficiency-coordinator-calibrate-oracle-decisions",
+      "bucket": "model-calibration-scope",
+      "summary": "Calibrate oracle decisions before reducing model capability",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current model-selection guidance preserves narrow synthetic/DOC1 conclusions, hardest-judgment selection, unknown served attribution and unqualified cheaper-role candidates. No general ranking or saving claim follows, and no instruction gap was demonstrated.",
+      "evidence": [
+        "docs/lessons/20261005T162658Z-delivery-efficiency-coordinator-calibrate-oracle-decisions.md",
+        "docs/operations/model-selection.md"
+      ],
+      "related_lessons": [
+        "20261007T205801Z-illumination-coordinator-dtype-capability-observer"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T171551Z-delivery-efficiency-coordinator-confine-inherited-export-environment",
+      "bucket": "measurement-environment-confinement",
+      "summary": "Confine inherited measurement variables in nested verification",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current capture strips inherited export pairs for metadata/default invocations; opt-in phase environment gets its fresh pair. Current public export tests inspect metadata versus phase observations, including nested callers. No current confinement defect demonstrated; historical final acceptance was not independently retrieved.",
+      "evidence": [
+        "docs/lessons/20261005T171551Z-delivery-efficiency-coordinator-confine-inherited-export-environment.md",
+        "scripts/verify.py:58",
+        "scripts/verify.py:524",
+        "tests/test_measurements_export.py:96",
+        "tests/test_measurements_export.py:169"
+      ],
+      "related_lessons": [
+        "20261005T061140Z-delivery-efficiency-coordinator-captured-measurements",
+        "20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection",
+      "bucket": "verifier-output-protection",
+      "summary": "Test protected-output redirection after an earlier phase",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current tests include an earlier successful phase redirecting the measurement destination, and verifier revalidates/clears it just before tests. This preserves a meaningful temporal public-boundary example without manufacturing original product-red. No current missing example demonstrated.",
+      "evidence": [
+        "docs/lessons/20261005T171551Z-delivery-efficiency-coordinator-cover-phase-created-output-redirection.md",
+        "scripts/verify.py:612",
+        "tests/test_measurements_export.py:588",
+        "docs/tasks/delivery-efficiency.md:26"
+      ],
+      "related_lessons": [
+        "20261005T070037Z-delivery-efficiency-coordinator-protect-before-identity",
+        "20261005T140744Z-delivery-efficiency-d-output-leaf-symlinks",
+        "20261005T171551Z-delivery-efficiency-coordinator-confine-inherited-export-environment"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T181131Z-delivery-efficiency-coordinator-managed-interpreter-fixtures",
+      "bucket": "environment-identity",
+      "summary": "Same Python version can conceal an isolated-fixture loader failure",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current isolated preflight fixture uses EnvBuilder symlinks=True and current environment guidance requires actual provider/executable health before dependent work. The CI-specific loader incident and unknown final external acceptance remain historical evidence; no live loader defect was observed.",
+      "evidence": [
+        "docs/lessons/20261005T181131Z-delivery-efficiency-coordinator-managed-interpreter-fixtures.md",
+        "tests/test_delivery_preflight.py:102",
+        "docs/operations/environment.md",
+        "docs/tasks/delivery-efficiency.md:26"
+      ],
+      "related_lessons": [
+        "20260930T191720Z-setup-coordinator-hidden-editable-install",
+        "20261006T060052Z-nf02-coordinator-environment-and-dtype"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T213507Z-NF01-intake-html-picture-records",
+      "bucket": "reference-conversion-scope",
+      "summary": "HTML picture records do not establish pixel capture",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "NF01 explicitly records owner removal of figure-pixel capture and distinguishes required text/notation/captions from out-of-scope source pixels. Converter success remains distinct from captured content. Missing historic pixels do not create an authorized current capture task.",
+      "evidence": [
+        "docs/lessons/20261005T213507Z-NF01-intake-html-picture-records.md",
+        "docs/tasks/numerical-conventions.md:3",
+        "docs/tasks/numerical-conventions.md:15"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261005T222804Z-NF02-coordinator-input-output-type-boundaries",
+      "bucket": "permitted-output-alternatives",
+      "summary": "Input and output type restrictions are separate obligations",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The old phase API and its scientific tests are retired; current PROJECT/common contract establish new independently scoped CE interfaces. Reuse the input/output distinction when designing future observers; the old corrected subclass observer does not establish a current CE defect. No current comparable rejection was demonstrated.",
+      "evidence": [
+        "docs/lessons/20261005T222804Z-NF02-coordinator-input-output-type-boundaries.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-retirement-v1.md:13",
+        "docs/contracts/c-equivalence-common-v1.md:28"
+      ],
+      "related_lessons": [
+        "20261002T173457Z-mrc-conversion-coordinator-profile-aware-provenance-oracle",
+        "20261002T175150Z-mrc-conversion-coordinator-positive-key-contract-gap",
+        "20261007T004817Z-reconstruction-B-envelope-tolerance"
+      ],
+      "finding": null,
+      "revisit": "Apply when an active contract specifies separate input/output representation guarantees."
+    },
+    {
+      "id": "20261006T034103Z-nf02-intake-stationarity-limit",
+      "bucket": "backward-error-oracle-validity",
+      "summary": "Stationarity alone cannot certify least-squares backward accuracy",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The cited stationarity-only proposal was superseded by the historical v2 contract and is not an active API contract after CE retirement. Its algebraic limitation is reusable knowledge; no current CE acceptance oracle was shown to rely on the invalid implication.",
+      "evidence": [
+        "docs/lessons/20261006T034103Z-nf02-intake-stationarity-limit.md",
+        "docs/tasks/known-phase-separation.md:7",
+        "docs/contracts/known-phase-separation-v2.md",
+        "docs/PROJECT.md"
+      ],
+      "related_lessons": [
+        "20261007T004817Z-reconstruction-B-envelope-tolerance"
+      ],
+      "finding": null,
+      "revisit": "Reassess whenever a new solver promises backward or forward accuracy from a stationarity test."
+    },
+    {
+      "id": "20261006T042237Z-nf02-coordinator-readonly-probe-transport",
+      "bucket": "blind-diagnostic-startup",
+      "summary": "Read-only reviewers need temp-free probe transport",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current AGENTS/environment/role guidance requires bounded prerequisite qualification and protected permitted diagnostic channels; the source-free helper supports caller-supplied pytest arguments. Strict no-temp startup capability still depends on the reviewer sandbox and permitted command. No present failed read-only startup was reproduced; no universal temp-free or unraisable guarantee claimed.",
+      "evidence": [
+        "docs/lessons/20261006T042237Z-nf02-coordinator-readonly-probe-transport.md",
+        "AGENTS.md",
+        "docs/operations/role-launches.md:23",
+        "scripts/source_free_check.py:38",
+        "docs/operations/environment.md"
+      ],
+      "related_lessons": [
+        "20261006T165011Z-otf-calibration-coordinator-collection-diagnostics",
+        "20261007T213156Z-illumination-coordinator-blind-startup-diagnostics",
+        "20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction"
+      ],
+      "finding": null,
+      "revisit": "Qualify capture and command transport when a strict read-only reviewer environment is selected."
+    },
+    {
+      "id": "20261006T060052Z-nf02-coordinator-environment-and-dtype",
+      "bucket": "actual-dtype-and-command-context",
+      "summary": "Actual dtype identity and stationary check context",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The old phase runtime is retired; current environment rules distinguish executable/provider/install/import context and require stationary exact-candidate checks. Its NumPy dtype lesson remains platform-specific advice. No current CE conversion or command-context failure was demonstrated.",
+      "evidence": [
+        "docs/lessons/20261006T060052Z-nf02-coordinator-environment-and-dtype.md",
+        "docs/PROJECT.md",
+        "docs/operations/environment.md",
+        "docs/tasks/known-phase-separation.md"
+      ],
+      "related_lessons": [
+        "20260930T191720Z-setup-coordinator-hidden-editable-install",
+        "20261005T181131Z-delivery-efficiency-coordinator-managed-interpreter-fixtures",
+        "20261007T205801Z-illumination-coordinator-dtype-capability-observer"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261006T160343Z-calibration-intake-explicit-pyotf-focus",
+      "bucket": "fixture-coordinate-provenance",
+      "summary": "Request the Pyotf focal plane explicitly",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Retained Pyotf notes explicitly request zrange=[0.0] and identify the exact revision/environment. Current PROJECT does not promote this simulator recipe to an active correctness oracle. The example is scoped evidence, with no current missing-focus fixture demonstrated.",
+      "evidence": [
+        "docs/lessons/20261006T160343Z-calibration-intake-explicit-pyotf-focus.md",
+        "docs/references/scientific/otf-calibration-pyotf-notes.md:17",
+        "docs/references/scientific/otf-calibration-pyotf-notes.md:32",
+        "docs/PROJECT.md"
+      ],
+      "related_lessons": [
+        "20261006T160735Z-calibration-intake-git-archive-versioneer-identity"
+      ],
+      "finding": null,
+      "revisit": "Require explicit axial coordinates if this simulator recipe is reused for a new optical fixture."
+    },
+    {
+      "id": "20261006T160735Z-calibration-intake-git-archive-versioneer-identity",
+      "bucket": "generated-source-identity",
+      "summary": "Distinguish Git blobs from exported version bytes",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The retained manifest now separates tracked blobs, archived bytes, export-subst transformation and0+unknown package version. Current AGENTS requires generated/artifact/resolved-version inputs. No current provenance ambiguity demonstrated.",
+      "evidence": [
+        "docs/lessons/20261006T160735Z-calibration-intake-git-archive-versioneer-identity.md",
+        "docs/references/scientific/otf-calibration-intake-manifest.json:8",
+        "docs/references/scientific/otf-calibration-intake-manifest.json:21",
+        "docs/references/scientific/otf-calibration-intake-manifest.json:32",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20260930T184757Z-setup-coordinator-ignored-input-identity",
+        "20261006T160343Z-calibration-intake-explicit-pyotf-focus"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261006T165011Z-otf-calibration-coordinator-collection-diagnostics",
+      "bucket": "blind-collection-diagnostics",
+      "summary": "Pytest collection errors can embed source in exception messages",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The current pytest plugin unwraps only pytest importer-generated CollectError chains and preserves caller-authored CollectError messages; current public tests cover syntax/import/collection/runtime chains. These are named collection-channel guards, not proof of unraisable containment or all blind channels. No new collection leak was established.",
+      "evidence": [
+        "docs/lessons/20261006T165011Z-otf-calibration-coordinator-collection-diagnostics.md",
+        "scripts/source_free_sitecustomize/pytest_plugin.py:32",
+        "tests/test_source_free_check.py:456",
+        "tests/test_source_free_check.py:494",
+        "tests/test_source_free_check.py:589",
+        "docs/operations/role-launches.md:23"
+      ],
+      "related_lessons": [
+        "20261006T042237Z-nf02-coordinator-readonly-probe-transport",
+        "20261007T213156Z-illumination-coordinator-blind-startup-diagnostics",
+        "20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T004817Z-reconstruction-B-envelope-tolerance",
+      "bucket": "contract-envelope-oracles",
+      "summary": "Observed numerical margin does not define the acceptance bound",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The historical reconstruction API/observer is retired and its contract remains historical. Current AGENTS/common contract require independently justified approved error envelopes and legitimate alternatives. The lesson remains reusable; no current CE oracle overconstraint demonstrated.",
+      "evidence": [
+        "docs/lessons/20261007T004817Z-reconstruction-B-envelope-tolerance.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-common-v1.md:7",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261002T173457Z-mrc-conversion-coordinator-profile-aware-provenance-oracle",
+        "20261005T222804Z-NF02-coordinator-input-output-type-boundaries",
+        "20261006T034103Z-nf02-intake-stationarity-limit",
+        "20261008T060429Z-integer-drift-01-coordinator-analytic-root-acceptance"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T010806Z-reconstruction-B2-warning-observer",
+      "bucket": "warning-observer-admissions",
+      "summary": "Warning observers need both return paths and permitted categories",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "This historical test observer has been removed with retired reconstruction. The linked follow-up lesson records its correction/acceptance, but no current acceptance is inferred transitively. Current rules require useful diagnostic categories/messages and legitimate alternatives; no specific current observer defect demonstrated.",
+      "evidence": [
+        "docs/lessons/20261007T010806Z-reconstruction-B2-warning-observer.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-retirement-v1.md:19",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261007T012640Z-reconstruction-B3-warning-vocabulary",
+        "20261007T014545Z-reconstruction-B4-observer-validation"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T012640Z-reconstruction-B3-warning-vocabulary",
+      "bucket": "warning-observer-admissions",
+      "summary": "Warning vocabulary is not an arithmetic report",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Broad warning-word matching is a historical harness defect, not a reconstruction product failure. Its scientific callers/observer are retired. The later positive/negative observer evidence remains scoped history; no current equivalent filtering defect demonstrated.",
+      "evidence": [
+        "docs/lessons/20261007T012640Z-reconstruction-B3-warning-vocabulary.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-retirement-v1.md:19",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261007T010806Z-reconstruction-B2-warning-observer",
+        "20261007T014545Z-reconstruction-B4-observer-validation"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T014545Z-reconstruction-B4-observer-validation",
+      "bucket": "warning-observer-admissions",
+      "summary": "Validate warning observers in both directions",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "This is positive independent acceptance evidence for a specific old test checkpoint, not a new gap or product acceptance. Preserve its two-direction method; current PROJECT marks the old science retired. No action is supported solely by the historical successful practice.",
+      "evidence": [
+        "docs/lessons/20261007T014545Z-reconstruction-B4-observer-validation.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-retirement-v1.md:19"
+      ],
+      "related_lessons": [
+        "20261007T010806Z-reconstruction-B2-warning-observer",
+        "20261007T012640Z-reconstruction-B3-warning-vocabulary"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T060840Z-asd-coverage-coordinator-zero-native-evidence",
+      "bucket": "native-coverage-integrity",
+      "summary": "Zero percent still needs native measurement evidence",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current advisory policy explicitly distinguishes zero/partial valid measurement from unavailable reports/instrumentation. Current public receipt tests include native advisory percentage cases and current verifier still requires required native report metadata. The lesson is a reusable fixture distinction.",
+      "evidence": [
+        "docs/lessons/20261007T060840Z-asd-coverage-coordinator-zero-native-evidence.md",
+        "docs/PROJECT.md",
+        "docs/contracts/verification-coverage-advisory-v1.md",
+        "tests/test_verification_receipt.py",
+        "scripts/verify.py:339"
+      ],
+      "related_lessons": [
+        "20261001T161038Z-mrc-conversion-coordinator-scenario-coverage-gap",
+        "20261007T061928Z-asd-coverage-coordinator-partial-counter-integrity",
+        "20261007T062953Z-asd-coverage-coordinator-arc-line-consistency"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T061928Z-asd-coverage-coordinator-partial-counter-integrity",
+      "bucket": "native-coverage-integrity",
+      "summary": "A bounded partial-branch counter can still contradict native evidence",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current verifier derives partial count from missing arcs whose sources are not missing; matching public contradiction regressions remain. Current guards are evidence against the old reported gap, not a verified final rollout acceptance, which the historical task leaves in external evidence. No fresh inconsistent receipt observed.",
+      "evidence": [
+        "docs/lessons/20261007T061928Z-asd-coverage-coordinator-partial-counter-integrity.md",
+        "scripts/verify.py:424",
+        "tests/test_verification_receipt.py:382",
+        "docs/tasks/asd-coverage-policy.md:45"
+      ],
+      "related_lessons": [
+        "20261007T060840Z-asd-coverage-coordinator-zero-native-evidence",
+        "20261007T062953Z-asd-coverage-coordinator-arc-line-consistency"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T062953Z-asd-coverage-coordinator-arc-line-consistency",
+      "bucket": "native-coverage-integrity",
+      "summary": "Complete-execution gates can mask native report contradictions",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current verifier rejects executed-arc endpoints listed as missing statements, while a public positive protects endpoints outside measured lists. This directly covers the historical contradiction without inventing graph restrictions. Final corrected advisory acceptance was not retrieved, so no resolution claim is made.",
+      "evidence": [
+        "docs/lessons/20261007T062953Z-asd-coverage-coordinator-arc-line-consistency.md",
+        "scripts/verify.py:419",
+        "tests/test_verification_receipt.py:408",
+        "tests/test_verification_receipt.py:439",
+        "docs/tasks/asd-coverage-policy.md:45"
+      ],
+      "related_lessons": [
+        "20261007T060840Z-asd-coverage-coordinator-zero-native-evidence",
+        "20261007T061928Z-asd-coverage-coordinator-partial-counter-integrity"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T202030Z-illumination-coordinator-large-angle-rotation",
+      "bucket": "represented-angle-arithmetic",
+      "summary": "Rotate represented phases without adding a lost offset",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The old illumination API is retired; the retained comparison describes represented rotations and large-angle observations at its historical revision. This is useful numerical advice, not evidence that current CE behavior violates its own selected mapping.",
+      "evidence": [
+        "docs/lessons/20261007T202030Z-illumination-coordinator-large-angle-rotation.md",
+        "docs/PROJECT.md",
+        "docs/reports/illumination-estimation-comparison.md"
+      ],
+      "related_lessons": [
+        "20261007T205801Z-illumination-coordinator-dtype-capability-observer",
+        "20261008T060429Z-integer-drift-01-coordinator-analytic-root-acceptance"
+      ],
+      "finding": null,
+      "revisit": "Assess represented-angle arithmetic against the actual active contract when large arbitrary phases are admitted."
+    },
+    {
+      "id": "20261007T205801Z-illumination-coordinator-dtype-capability-observer",
+      "bucket": "observer-platform-capability",
+      "summary": "Dtype names do not prove a wider observation range",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "Current model/environment guidance and AGENTS require actual platform/tool capability and explicitly unknown/unavailable evidence. The old int64 observer is retired. The retained illumination comparison explicitly records53-bit longdouble and independent Decimal checks. No current observer capability defect demonstrated.",
+      "evidence": [
+        "docs/lessons/20261007T205801Z-illumination-coordinator-dtype-capability-observer.md",
+        "docs/PROJECT.md",
+        "docs/operations/environment.md",
+        "docs/reports/illumination-estimation-comparison.md"
+      ],
+      "related_lessons": [
+        "20261005T162658Z-delivery-efficiency-coordinator-calibrate-oracle-decisions",
+        "20261006T060052Z-nf02-coordinator-environment-and-dtype",
+        "20261007T202030Z-illumination-coordinator-large-angle-rotation"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261007T213156Z-illumination-coordinator-blind-startup-diagnostics",
+      "bucket": "blind-unraisable-source-leak",
+      "summary": "Protect blind diagnostic startup and scratch channels",
+      "handling": "untriaged",
+      "scope": "Current public source-free helper unraisable-exception traceback channel only; read-only startup, ordinary warnings and collection diagnostics are separate claims.",
+      "rationale": "A new synthetic-marker public-helper probe reproduces source-line disclosure from an unraisable destructor RuntimeError on pinned worktree Python3.13.12/Linux and separately Python3.12.14/Linux. The direct ResourceWarning control suppresses its marker. The shipped install hook omits sys.unraisablehook. The historical lesson is confirmed only for its own incidents; fresh evidence establishes this current named-channel gap, not every diagnostic channel.",
+      "evidence": [
+        "docs/lessons/20261007T213156Z-illumination-coordinator-blind-startup-diagnostics.md",
+        "scripts/source_free_check.py:38",
+        "scripts/source_free_sitecustomize/sitecustomize.py:209",
+        "tests/test_source_free_check.py",
+        "docs/reports/lessons-doctor-2026-11-11/cohort-1-probe.json",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction",
+        "20261006T042237Z-nf02-coordinator-readonly-probe-transport",
+        "20261006T165011Z-otf-calibration-coordinator-collection-diagnostics"
+      ],
+      "finding": "blind-unraisable-source-leak",
+      "revisit": "Normal intake should retain the reproducer, scope required supported interpreter/platform channels and independently verify corrected source suppression with useful diagnostics/status retained."
+    },
+    {
+      "id": "20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction",
+      "bucket": "blind-unraisable-source-leak",
+      "summary": "Protect blind startup and scratch diagnostics",
+      "handling": "untriaged",
+      "scope": "Current public source-free helper unraisable-exception traceback channel only; read-only startup, ordinary warnings and collection diagnostics are separate claims.",
+      "rationale": "A new synthetic-marker public-helper probe reproduces source-line disclosure from an unraisable destructor RuntimeError on pinned worktree Python3.13.12/Linux and separately Python3.12.14/Linux. The direct ResourceWarning control suppresses its marker. The shipped install hook omits sys.unraisablehook. The historical lesson is confirmed only for its own incidents; fresh evidence establishes this current named-channel gap, not every diagnostic channel.",
+      "evidence": [
+        "docs/lessons/20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction.md",
+        "scripts/source_free_check.py:38",
+        "scripts/source_free_sitecustomize/sitecustomize.py:209",
+        "tests/test_source_free_check.py",
+        "docs/reports/lessons-doctor-2026-11-11/cohort-1-probe.json",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261007T213156Z-illumination-coordinator-blind-startup-diagnostics",
+        "20261006T042237Z-nf02-coordinator-readonly-probe-transport",
+        "20261006T165011Z-otf-calibration-coordinator-collection-diagnostics"
+      ],
+      "finding": "blind-unraisable-source-leak",
+      "revisit": "Normal intake should retain the reproducer, scope required supported interpreter/platform channels and independently verify corrected source suppression with useful diagnostics/status retained."
+    },
+    {
+      "id": "20261008T020601Z-carrier-scan-intake-overlap-residual",
+      "bucket": "estimator-identifiability",
+      "summary": "A perfect single-pair overlap fit does not identify a carrier",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The historical scan/selection contracts explicitly disclose pair-dependent residuals and lack of physical uniqueness, and the old APIs are retired. Current CE common contract requires independently established physical discrimination rather than a residual-as-confidence claim. No current false uniqueness claim demonstrated.",
+      "evidence": [
+        "docs/lessons/20261008T020601Z-carrier-scan-intake-overlap-residual.md",
+        "docs/contracts/carrier-selection-v1.md:54",
+        "docs/tasks/carrier-selection.md:9",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-common-v1.md:35"
+      ],
+      "related_lessons": [
+        "20261008T035131Z-carrier-selection-coordinator-near-zero-residual"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261008T023531Z-carrier-scan-intake-scale-free-precision",
+      "bucket": "precision-preserving-composition",
+      "summary": "Valid phase-output quantization can break illumination accuracy",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The observed subnormal ratio defect belongs to the now-retired known-carrier API. Current PROJECT removes that API; no evidence establishes the same dataflow in active CE code. Reusable advice remains to assess intermediate precision under the admitted composed contract; no current repair is inferred.",
+      "evidence": [
+        "docs/lessons/20261008T023531Z-carrier-scan-intake-scale-free-precision.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-retirement-v1.md:13",
+        "docs/tasks/carrier-scan.md"
+      ],
+      "related_lessons": [
+        "20261007T202030Z-illumination-coordinator-large-angle-rotation",
+        "20261008T073218Z-volume-phase-01-coordinator-mixed-voxel-budgets"
+      ],
+      "finding": null,
+      "revisit": "Reproduce with stored inputs at an active public composed operation if the same dimensionless-ratio guarantee is commissioned."
+    },
+    {
+      "id": "20261008T035131Z-carrier-selection-coordinator-near-zero-residual",
+      "bucket": "computed-threshold-oracles",
+      "summary": "Near-zero expected residual does not fix an exact policy decision",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The old selection contract already states that policy thresholds use actual computed diagnostics and mathematical near-zero does not fix the decision. Its API is retired. This was a corrected preimplementation test overconstraint and demonstrates no current product gap.",
+      "evidence": [
+        "docs/lessons/20261008T035131Z-carrier-selection-coordinator-near-zero-residual.md",
+        "docs/contracts/carrier-selection-v1.md:26",
+        "docs/contracts/carrier-selection-v1.md:50",
+        "docs/tasks/carrier-selection.md:11",
+        "docs/PROJECT.md"
+      ],
+      "related_lessons": [
+        "20261008T020601Z-carrier-scan-intake-overlap-residual",
+        "20261008T045954Z-translation-coordinator-nonzero-absolute-tolerance"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261008T035242Z-illumination-coordinator-requested-figure-delivery",
+      "bucket": "review-surface-figures",
+      "summary": "Deliver requested figures in the review surface",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The retained illumination report now embeds two measured figures with units/scales and historical reproduction identity; current PR guidance requires requested useful figures in the review surface. The remote PR display was not checked, so this is no-action reusable presentation guidance, not certified historical delivery completion.",
+      "evidence": [
+        "docs/lessons/20261008T035242Z-illumination-coordinator-requested-figure-delivery.md",
+        "docs/reports/illumination-estimation-comparison.md:9",
+        "AGENTS.md",
+        "docs/tasks/illumination-estimation.md:15"
+      ],
+      "related_lessons": [],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261008T045954Z-translation-coordinator-nonzero-absolute-tolerance",
+      "bucket": "absolute-only-ambiguity-oracles",
+      "summary": "Absolute ambiguity checks need a nonzero minimum example",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The historical task records a nonzero-minimum T06 addition and B2 acceptance; that API/tests are retired. The independent separation argument is reusable for a new absolute-only policy. No active analogous current policy/test defect demonstrated.",
+      "evidence": [
+        "docs/lessons/20261008T045954Z-translation-coordinator-nonzero-absolute-tolerance.md",
+        "docs/tasks/translation-estimation.md:19",
+        "docs/contracts/translation-estimation-v1.md",
+        "docs/PROJECT.md"
+      ],
+      "related_lessons": [
+        "20261008T035131Z-carrier-selection-coordinator-near-zero-residual"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261008T055017Z-integer-drift-01-coordinator-specimen-illumination-oracle",
+      "bucket": "forward-model-composition-oracles",
+      "summary": "Build specimen drift before stationary illumination",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The historical moving-specimen fixture is retired with the old drift/reconstruction stack. Its finite model distinguishes specimen motion from moving an already illuminated frame; it supplies no current CE acceptance result. Current CE drift must be judged against its own selected C mapping. No current wrong physical fixture demonstrated.",
+      "evidence": [
+        "docs/lessons/20261008T055017Z-integer-drift-01-coordinator-specimen-illumination-oracle.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-common-v1.md:7",
+        "docs/contracts/integer-drift-correction-v1.md"
+      ],
+      "related_lessons": [
+        "20261008T060429Z-integer-drift-01-coordinator-analytic-root-acceptance",
+        "20261008T065133Z-volume-phase-01-coordinator-fractional-alias-boundary"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261008T060429Z-integer-drift-01-coordinator-analytic-root-acceptance",
+      "bucket": "represented-target-accuracy",
+      "summary": "Ideal roots can overconstrain represented phase acceptance",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The old integer-drift oracle correction is historical and its tests removed at retirement. Its lesson against stricter ideal-root assertions remains reusable; current AGENTS/common contract require the actual approved representation/error envelope. No current overconstraint demonstrated.",
+      "evidence": [
+        "docs/lessons/20261008T060429Z-integer-drift-01-coordinator-analytic-root-acceptance.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-common-v1.md:7",
+        "AGENTS.md"
+      ],
+      "related_lessons": [
+        "20261007T004817Z-reconstruction-B-envelope-tolerance",
+        "20261007T202030Z-illumination-coordinator-large-angle-rotation",
+        "20261008T055017Z-integer-drift-01-coordinator-specimen-illumination-oracle"
+      ],
+      "finding": null,
+      "revisit": null
+    },
+    {
+      "id": "20261008T065133Z-volume-phase-01-coordinator-fractional-alias-boundary",
+      "bucket": "fractional-alias-contract",
+      "summary": "Fractional drift needs a new aliasing contract",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "This is a conditional algebraic warning, not a commissioned fractional-drift feature. The old integer/volume APIs are retired; active CE common contract requires declared boundary/Nyquist rules and mode ledger. No presently missing scientific decision or active unfulfilled fractional guarantee was shown.",
+      "evidence": [
+        "docs/lessons/20261008T065133Z-volume-phase-01-coordinator-fractional-alias-boundary.md",
+        "docs/PROJECT.md",
+        "docs/contracts/c-equivalence-common-v1.md:21",
+        "docs/contracts/c-equivalence-common-v1.md:28",
+        "docs/tasks/volume-phase-separation.md"
+      ],
+      "related_lessons": [
+        "20261008T055017Z-integer-drift-01-coordinator-specimen-illumination-oracle"
+      ],
+      "finding": null,
+      "revisit": "A future fractional-motion contract must explicitly settle interpolation/Nyquist/aliasing and physical identity; assess against that contract before tests."
+    },
+    {
+      "id": "20261008T073218Z-volume-phase-01-coordinator-mixed-voxel-budgets",
+      "bucket": "local-scaled-accuracy-oracles",
+      "summary": "Test local accuracy with mixed intensities in one call",
+      "handling": "no-action",
+      "scope": "Reusable mechanism and the specifically described historical incident; no general product acceptance claim.",
+      "rationale": "The mixed-voxel case corrected the old phase-test inventory before C, and those APIs/tests are retired. Its local-versus-global scale lesson remains reusable; no active CE per-voxel accuracy promise was shown missing a distinguishing test. No inference from the historical183-case pass is used.",
+      "evidence": [
+        "docs/lessons/20261008T073218Z-volume-phase-01-coordinator-mixed-voxel-budgets.md",
+        "docs/PROJECT.md",
+        "docs/contracts/volume-phase-separation-v1.md",
+        "docs/tasks/volume-phase-separation.md"
+      ],
+      "related_lessons": [
+        "20261008T023531Z-carrier-scan-intake-scale-free-precision"
+      ],
+      "finding": null,
+      "revisit": "Apply to an active array contract that promises per-location scaled accuracy."
+    }
+  ],
+  "findings": [
+    {
+      "key": "blind-unraisable-source-leak",
+      "title": "Suppress source lines in unraisable exceptions from the source-free diagnostic helper",
+      "classification": "product/infrastructure defect; normal intake must assign risk route and scoped ownership",
+      "confidence": "confirmed for Python3.13.12/Linux project interpreter and separate Python3.12.14/Linux; other platforms/channels untested",
+      "lesson_ids": [
+        "20261007T213156Z-illumination-coordinator-blind-startup-diagnostics",
+        "20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction"
+      ],
+      "observed": "Through public scripts/source_free_check.py, a synthetic __del__ raising RuntimeError prints its complete source line and unique source-only comment to stderr while returning ordinary Python status0. The installed source-free hooks omit sys.unraisablehook. Direct unclosed-file ResourceWarning remains source-free in the positive control.",
+      "expected": "The blind diagnostic channel should omit source snippets while retaining exception category, useful message, filename/line and appropriate ordinary process status. AGENTS and role-launch guidance require source-free relevant diagnostics before blind probes; the public helper advertises source-free Python/pytest diagnostics.",
+      "evidence": [
+        "docs/reports/lessons-doctor-2026-11-11/cohort-1-probe.json",
+        "scripts/source_free_check.py:38",
+        "scripts/source_free_sitecustomize/sitecustomize.py:209",
+        "docs/operations/role-launches.md:23",
+        "AGENTS.md",
+        "docs/lessons/20261007T213156Z-illumination-coordinator-blind-startup-diagnostics.md",
+        "docs/lessons/20261007T213220Z-illumination-coordinator-blind-diagnostic-format-correction.md"
+      ],
+      "completion": [
+        "Assign a normal intake contract and named diagnostic-helper/test ownership; preserve prior source-free channels and Python process/diagnostic meaning.",
+        "Independently reproduce the current synthetic unraisable marker leak, then verify source-marker absence with retained RuntimeError/message/location and ordinary status. Keep a legitimate direct ResourceWarning control.",
+        "Record supported interpreter/platform/channel scope and missing evidence; obtain the route-required independent review and exact candidate checks before submission."
+      ],
+      "priority": "P2",
+      "existing_issue_or_task": null,
+      "existing_work_reconciliation": "The supplied existing-issues.json open/closed snapshot has no matching diagnostic helper issue. No remote mutation or independent remote freshness/deduplication claim is made; coordinator must recheck before publication.",
+      "uncertainty": "Failure channel is confirmed; implementation repair is not commissioned by this cohort report. No product source was exposed in the probes. Exact desired support for other unraisable contexts and pytest capture belongs to intake; no current full gate or macOS probe was run."
+    }
+  ],
+  "limitations": [
+    "Every assigned lesson was read in full; current-code checks were narrowly selected for each mechanism, not a full product or test audit.",
+    "Only the authorized synthetic diagnostic probes were executed. No product test suite, make verify, doctor CLI, native Codex launch, viewer or remote mutation was run.",
+    "Historical ignored role reports/receipts referenced by many tasks are not present as a complete accepted-candidate bundle in this checkout. Static current guards and test definitions do not certify the exact historical final acceptance.",
+    "Old scientific APIs/tests are explicitly retired. Historical scientific failures and corrected observers were not mapped automatically onto replacement CE semantics; no current equivalent defect is inferred solely from topic similarity.",
+    "Resolved handling is confined to the two named historical public failures with checked current code plus explicit retained verification/review records. It does not resolve all general prevention advice from those lessons.",
+    "Existing issue reconciliation uses the coordinator-provided snapshot; remote freshness and prepublication duplicate recheck remain coordinator work.",
+    "The unraisable probe covers Linux CPython3.13.12 and3.12.14 only. The separate ResourceWarning control passes; macOS/pytest unraisable capture/other hooks are untested."
+  ]
+}
