@@ -4,6 +4,12 @@
 
 ## Implementer
 
+For new task branch names, issue titles and PR titles, use
+[specification section 4.2](DELIVERY-SYSTEM-SPEC.md#42-branch-names-issue-titles-and-pr-titles)
+and the [PR template](templates/PULL-REQUEST.md). These are preparation/review
+conventions; this document installs no automatic naming check. Preserve existing
+names and separate naming from authority to create or update remote items.
+
 Identify the repository, default branch, existing CI, account capabilities, and the owner's available permissions. Preserve useful existing workflows. Propose the minimal settings diff before applying it. If access is missing, provide the exact remaining owner steps and say they are unapplied.
 
 Create or adapt one ordinary required job, preferably `verify`. Run the project's canonical checks, including end-to-end tests and the approved project coverage checks/reports. Do not add a duplicate workflow just to obtain that name. Use the real existing job name when appropriate. All required targets must run; no path filter or conditional should silently omit them. Avoid error suppression and use native tool failures for empty discovery, missing required reports, and unmet selected measured targets. Advisory percentages must not become hidden gates; installed targets remain binding until owner-authorized policy and infrastructure migration.
