@@ -10,6 +10,19 @@ make verify UV=/Users/davidhoffman/.local/bin/uv \
   VERIFY_ARGS='--contract TASK-ID --reviewed-tests TEST-REVISION --base BASE-REVISION'
 ```
 
+For external protocol observations, first follow the coordinator/operator's
+[manual reader-reservation parent prerequisite](environment.md), including
+preflight, from the intended worktree root. Carry the override into verification:
+
+```sh
+SIMRECON_PROTOCOLS_EVIDENCE=/tmp/simrecon-protocol-observations make verify UV=uv \
+  VERIFY_ARGS='--contract TASK-ID --reviewed-tests TEST-REVISION --base BASE-REVISION'
+```
+
+This relocates A09 `RUN` observations, not its shared lock or the canonical
+receipt/log/coverage outputs. The 13 phases, two-worker test grouping, report
+integrity, same-run M25 measurement and supported-platform gates remain unchanged.
+
 The [public receipt contract](../contracts/verification-receipt-v1.md) defines required phases, statuses and JSON fields. The owner-selected [advisory coverage amendment](../contracts/verification-coverage-advisory-v1.md) replaces the original full-percentage condition with report-integrity checks; exact native counts remain required. The additive [measurement contract](../contracts/measurements-export-v1.md) defines same-run M25 evidence; this repository’s `make verify` supplies `--measurements-required`. Direct helper calls without that flag preserve the legacy receipt behavior. The helper writes ignored `artifacts/verification/receipt.json` and phase logs. Coverage/build evidence comes from that same run; CI retains it on success/failure. It grants no approval, retries no role/check and mutates no Git state.
 
 Optional `--input NAME=PATH` fingerprints an approved regular file's public alias, size and SHA-256 without copying its private path/contents into the receipt. Keep owner data and revealing raw logs local. HEAD/clean Git alone do not identify external/ignored inputs. Do not fingerprint ignored study archives implicitly.
