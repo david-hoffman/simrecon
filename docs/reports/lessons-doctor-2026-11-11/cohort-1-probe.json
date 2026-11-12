@@ -1,0 +1,102 @@
+{
+  "purpose": "Authorized disposable synthetic-marker diagnosis; no product acceptance or suite run.",
+  "interpreter": {
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+  },
+  "helper_inputs": {
+    "scripts/source_free_check.py": "cdf5894e916c9445a1627da9e654d853b8f772fba9f376cee80680fed9701564",
+    "scripts/source_free_sitecustomize/sitecustomize.py": "a773c34a22137a154e9d4354557d18454199ed057939604746a97653b1070c54",
+    "scripts/source_free_sitecustomize/pytest_plugin.py": "02506b7e5e01ed87fa966a94891584c0f01044e6b20d194e6a5ed1ee1ad693a5"
+  },
+  "probes": [
+    {
+      "name": "unraisable_destructor",
+      "source": "class Broken:\n    def __del__(self):\n        raise RuntimeError(\"SYNTHETIC_UNRAISABLE_MESSAGE\")  # SYNTHETIC_SOURCE_ONLY_UNRAISABLE\n\nvalue = Broken()\ndel value\n",
+      "source_sha256": "f13f080ab5fe189f0a74a6ad9954ba5c7f6812a10b1287154e8d0013eefdd62d",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/simrecon/scripts/source_free_check.py",
+        "--timeout",
+        "15",
+        "python",
+        "/tmp/lessons-doctor-cohort1-5tyqjydy/unraisable_destructor.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Exception ignored in: <function Broken.__del__ at 0x7f4462adf4c0>\nTraceback (most recent call last):\n  File \"/tmp/lessons-doctor-cohort1-5tyqjydy/unraisable_destructor.py\", line 3, in __del__\n    raise RuntimeError(\"SYNTHETIC_UNRAISABLE_MESSAGE\")  # SYNTHETIC_SOURCE_ONLY_UNRAISABLE\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: SYNTHETIC_UNRAISABLE_MESSAGE\n",
+      "source_marker_leaked": true,
+      "diagnostic_category_retained": true
+    },
+    {
+      "name": "resource_warning",
+      "source": "import gc\nimport warnings\nwarnings.simplefilter(\"always\", ResourceWarning)\nstream = open(__file__, \"r\")\ndel stream  # SYNTHETIC_SOURCE_ONLY_RESOURCE\ngc.collect()\n",
+      "source_sha256": "c2d7496bbb72ba2fd103070c43a0ae79f7ca4ce42411644d18ee6327cc2ee5cc",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/simrecon/scripts/source_free_check.py",
+        "--timeout",
+        "15",
+        "python",
+        "/tmp/lessons-doctor-cohort1-5tyqjydy/resource_warning.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "/tmp/lessons-doctor-cohort1-5tyqjydy/resource_warning.py:5: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lessons-doctor-cohort1-5tyqjydy/resource_warning.py' mode='r' encoding='UTF-8'>\n",
+      "source_marker_leaked": false,
+      "diagnostic_category_retained": true
+    }
+  ],
+  "cleanup": "TemporaryDirectory removed both owned synthetic scripts after captured results; no repository mutation except this durable probe record.",
+  "project_interpreter_repeat": {
+    "purpose": "Repeated exact marker-only diagnosis with the project worktree interpreter; no product acceptance or suite run.",
+    "interpreter": {
+      "executable": "/workspace/simrecon/.venv/bin/python",
+      "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+    },
+    "helper_inputs": {
+      "scripts/source_free_check.py": "cdf5894e916c9445a1627da9e654d853b8f772fba9f376cee80680fed9701564",
+      "scripts/source_free_sitecustomize/sitecustomize.py": "a773c34a22137a154e9d4354557d18454199ed057939604746a97653b1070c54",
+      "scripts/source_free_sitecustomize/pytest_plugin.py": "02506b7e5e01ed87fa966a94891584c0f01044e6b20d194e6a5ed1ee1ad693a5"
+    },
+    "probes": [
+      {
+        "name": "unraisable_destructor",
+        "source_sha256": "f13f080ab5fe189f0a74a6ad9954ba5c7f6812a10b1287154e8d0013eefdd62d",
+        "command": [
+          "/workspace/simrecon/.venv/bin/python",
+          "/workspace/simrecon/scripts/source_free_check.py",
+          "--timeout",
+          "15",
+          "python",
+          "/tmp/lessons-doctor-cohort1-pinned-qvkzj1k_/unraisable_destructor.py"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "Exception ignored in: <function Broken.__del__ at 0x7f7e7cf5f1a0>\nTraceback (most recent call last):\n  File \"/tmp/lessons-doctor-cohort1-pinned-qvkzj1k_/unraisable_destructor.py\", line 3, in __del__\n    raise RuntimeError(\"SYNTHETIC_UNRAISABLE_MESSAGE\")  # SYNTHETIC_SOURCE_ONLY_UNRAISABLE\nRuntimeError: SYNTHETIC_UNRAISABLE_MESSAGE\n",
+        "source_marker_leaked": true,
+        "diagnostic_category_retained": true
+      },
+      {
+        "name": "resource_warning",
+        "source_sha256": "c2d7496bbb72ba2fd103070c43a0ae79f7ca4ce42411644d18ee6327cc2ee5cc",
+        "command": [
+          "/workspace/simrecon/.venv/bin/python",
+          "/workspace/simrecon/scripts/source_free_check.py",
+          "--timeout",
+          "15",
+          "python",
+          "/tmp/lessons-doctor-cohort1-pinned-qvkzj1k_/resource_warning.py"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "/tmp/lessons-doctor-cohort1-pinned-qvkzj1k_/resource_warning.py:5: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lessons-doctor-cohort1-pinned-qvkzj1k_/resource_warning.py' mode='r' encoding='UTF-8'>\n",
+        "source_marker_leaked": false,
+        "diagnostic_category_retained": true
+      }
+    ],
+    "cleanup": "TemporaryDirectory removed both owned synthetic scripts; first interpreter results preserved."
+  }
+}

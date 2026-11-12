@@ -17,6 +17,17 @@ or mathematical invariant. Resolve units/conventions/estimators before tests; co
 chooses no meaning. For a bug separate reproduction, expectation and hypotheses.
 Investigate uncertain causes before diagnosed scoped repair.
 
+For doctor findings, reuse stable finding/source IDs and existing issue/task links.
+Distinguish verified expectation/evidence, suspected mechanism and unresolved meaning;
+record remaining completion conditions and revisit triggers. Consolidate only coherent
+contracts; split independent mechanisms and preserve dependencies/accounting. A report
+or linked/closed issue grants no repair authority or proof of resolution. Reuse actual
+human authorization, commission only its intended scope, and select the existing route
+by impact/uncertainty. Keep the sole execution Current state in its task; issue/report/
+disposition links are evidence, not competing status stores. Sanitize raw lessons,
+dispositions and discovery reports into public reproductions/expectations for A/B;
+never pass implementation/history-bearing discovery packets to blind roles.
+
 Before formal test design, inherit the approved project coverage policy or resolve the
 missing owner choice under specification section 5.1. Explain behavior coverage with
 independent risk review and optional line, statement, branch or combined targets;
