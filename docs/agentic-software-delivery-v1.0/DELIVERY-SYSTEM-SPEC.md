@@ -133,6 +133,92 @@ Put detailed implementation, APIs/shapes, exact commits/checkpoints, tests, CI, 
 
 The coordinator owns PR presentation and separately authorized policy-documentation changes; restricted C gains no rule/template or frozen-test edit permission. Record the presentation plan and figure decision in candidate/handoff context, keeping implementation-bearing drafts out of blind A/B packets. An authorized default-format amendment requires fresh independent policy review before activation. Tracked documentation or figure changes renew exact-candidate verification. A description-only reformat may reuse unchanged valid candidate evidence under the existing evidence-validity rules.
 
+### 4.2. Branch names, issue titles and PR titles
+
+Use these formats for newly created task branches, issues and pull requests. The
+type describes the work's purpose; it does not select its risk route, grant
+authority or establish readiness. Existing names and historical records remain
+valid; do not rename active branches or existing remote items solely to adopt
+this policy. The default/integration branch and release tags are outside this
+task-branch convention.
+
+| Item | Format | Example (illustrative, not a remote rename) |
+|---|---|---|
+| Branch with a local issue | `<type>/<issue-number>-<slug>` | `fix/99-unraisable-diagnostics` |
+| Branch without a local issue | `<type>/<slug>` | `docs/naming-conventions` |
+| Issue title | `<type>(<scope>): <problem or desired outcome>` | `fix(devtools): Source lines leak into unraisable exception diagnostics` |
+| PR title | `<type>(<scope>): <implemented change>` | `fix(devtools): Suppress source lines in unraisable diagnostics` |
+
+Scope is optional in both titles: `docs: Define branch, issue and PR naming` is
+valid. When present, use a short, existing component or area name in lowercase
+kebab-case, such as `io`, `workflow`, `devtools` or `delivery`. Omit a scope when
+the work spans areas; do not invent an umbrella component just to fill the field.
+Use exactly one space after the colon, a nonempty sentence-case summary and no
+trailing period. Preserve proper names and code identifiers in the summary.
+
+Choose one primary type from this shared vocabulary:
+
+| Type | Purpose |
+|---|---|
+| `feat` | Add or change a supported capability |
+| `fix` | Correct a defect against an established expectation |
+| `perf` | Improve resource use or speed while preserving approved behavior |
+| `refactor` | Restructure implementation while preserving approved behavior |
+| `docs` | Change documentation, including delivery policy |
+| `test` | Add or correct tests or fixtures |
+| `build` | Change dependencies, packaging or build tooling |
+| `ci` | Change continuous-integration configuration |
+| `chore` | Other maintenance or an investigation with no settled change type |
+| `revert` | Revert an earlier change |
+
+Branch type and slug use lowercase ASCII letters, digits and single hyphens;
+the type is one of the values above, and the nonempty slug starts with a letter.
+The single slash separates type from the rest. Use a short, specific description,
+not the entire title. The issue number, when present, is the existing positive
+decimal GitHub issue number in this repository, without `#` or leading zeroes.
+Do not guess an issue number or substitute a PR number. If only an external issue
+exists, use the no-local-issue branch format and link the full issue URL in the PR
+body. Naming creates no requirement to open an issue and no authority to publish
+one. Do not add author, agent, role, date or status prefixes such as `codex/`,
+`intake/` or `wip/` to new task branches.
+
+Issue summaries describe the observed problem, requested outcome or unresolved
+question; label investigations explicitly with verbs such as “Investigate”. Do
+not present a suspected cause as confirmed. PR summaries use an imperative verb
+and describe the final change, for example “Add”, “Fix”, “Document” or “Remove”.
+An issue and its PR may have different types or scopes when the diagnosis or
+implemented slice warrants it. A branch name stays stable after publication;
+explain a material scope change in the task and PR rather than silently renaming
+the branch. Unrelated work still needs a separate contract/branch.
+
+Keep issue/PR numbers, priority, owner, review rounds and workflow state out of
+titles. Use links, labels and the platform's draft/status controls. Aim for titles
+of 72 characters or fewer, but retain words needed for scientific precision;
+this is guidance, not a rejection threshold. Avoid vague summaries such as
+“Updates” or “Misc fixes”.
+
+Link the issue in the PR body. Use `Refs #99` for related or partial work and
+`Closes #99` only when merging into the default branch should complete that
+issue's acceptance scope. For stacked PRs targeting another task branch, use
+`Refs` and keep the final closure explicit. Multiple PRs for one issue share its
+number but use distinct slugs and titles, such as `feat/123-reader-api` and
+`test/123-reader-failure-cases`. Choose one primary issue for the branch and link
+all relevant issues in the body; never encode an issue list in the branch name.
+
+A PR that breaks a supported public interface adds `!` immediately before the
+colon: `feat(io)!: Require explicit image axes`. Explain the incompatibility and
+migration in its body. Without scope, use `feat!: Require explicit image axes`.
+Issue titles and branch names omit `!`; describe a proposed compatibility break
+in the issue body. Neither `!` nor a type prefix authorizes that change or lowers
+scientific/interface review requirements. This naming policy does not prescribe
+individual commit messages, a merge strategy or release/version automation.
+
+The coordinator checks naming during intake and PR preparation; a policy or
+candidate reviewer checks supplied names in the existing review. Templates are
+reminders, not automatic enforcement. No new naming CI job, hook, repository
+rule or acceptance waiver is introduced. Existing verification, independent
+review and publication authority remain binding.
+
 ## 5. End-to-end first, not end-to-end only
 
 **Coverage is primarily earned by exercising useful behavior through the real entry point.** For a web app, run important browser journeys through the real application/backend and a disposable test database. For a CLI, run its executable and inspect outputs, exit codes, and files. For a service or library, use its public API and observable effects; do not invent a browser layer.

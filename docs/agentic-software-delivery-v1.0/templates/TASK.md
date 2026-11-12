@@ -5,6 +5,7 @@
 ## Contract
 
 - Human request/instruction and intended objective; slice plan/ID/prerequisites/baseline:
+- Branch name, existing issue link/title (if any), and proposed PR title under [section 4.2](../DELIVERY-SYSTEM-SPEC.md#42-branch-names-issue-titles-and-pr-titles); distinguish partial references from intended issue closure. Naming supplies no issue/publication authority:
 - Project/public-interface references; purpose and non-goals:
 - Doctor-origin work if applicable: stable finding/source IDs, existing issue/task/disposition links, observed/expected behavior and expectation source, evidence/uncertainty, remaining completion conditions/revisit triggers; intake-selected route and sanitized public packets. Links create no additional repair authority:
 - R1: <observable requirement>

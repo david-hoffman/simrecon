@@ -1,6 +1,9 @@
 <!-- Coordinator-owned starter. Replace placeholders; omit an unhelpful figure. Preserve material evidence and unresolved limits. Exact identities/results belong in the PR, not edits to verified candidate bytes. See specification section 4.1. -->
+<!-- PR title (set in the title field, not as a body heading): <type>(<scope>): <imperative summary>. Scope is optional; breaking changes use <type>(<scope>)!: <summary>. See specification section 4.2 for types, branch names and issue links. -->
 
 [In plain English: concrete caller/scientific problem, what this change enables, and essential assumptions or limits. Define unavoidable acronyms. Use units.]
+
+[Related issues: Refs #<number> for partial/stacked work; Closes #<number> only when a default-branch merge should complete the issue. Use full URLs for external issues. Omit when none. For a breaking PR, explain incompatibility and migration.]
 
 [Optional informative figure, placed here. Label a conceptual diagram as conceptual. For numerical figures, identify observed/reproducible inputs and comparison evidence.]
 

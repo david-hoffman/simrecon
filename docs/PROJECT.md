@@ -269,6 +269,12 @@ verification. [Lint scope](tasks/numpy-docstring-lint.md) records setup.
 
 ## Role entry points and delivery continuity
 
+New task branches, issue titles and PR titles follow
+[naming conventions](agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md#42-branch-names-issue-titles-and-pr-titles).
+Use the shared type vocabulary, optional title scope and existing local issue
+number when available. Existing names remain valid; naming checks are part of
+ordinary preparation/review, with no automated naming gate installed.
+
 Coordinators select impact/uncertainty in the authorized contract: mechanical
 worker; bounded worker plus fresh reviewer; or fresh blind A/B, restricted C and
 fresh D for high risk. Data-loss behavior, even conventional overwrite/truncation
