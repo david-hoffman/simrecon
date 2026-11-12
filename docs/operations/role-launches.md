@@ -23,3 +23,29 @@ Use [PUBLIC-PACKET.md](../agentic-software-delivery-v1.0/templates/PUBLIC-PACKET
 Before blind probes, arrange source-free warning/traceback rendering for Python, pytest and relevant subprocess channels. Retain types/categories, messages, locations and status; suppress source snippets/locals, not diagnostics. Disclose unsupported channels or exposure and stop blind work for coordinator routing. Packets identify the permitted harness/checks.
 
 Use supported bounded terminal waits/notifications with explicit timeout/failure handling; honor any actual human-set total limit. Yield on unchanged status rather than repeated reads; a disconnected launch cannot imply completion. Timeout leaves evidence incomplete and remains a recorded attempt. Diagnose before resuming or retrying within scope, without a default allowance-extension approval. Do not create a reviewer merely as a connectivity probe. A helper, fallback route or host change needs demonstrated scope within the request; missing material decisions, unclear/outside-request objectives or required external authority return to the human. Prompt restrictions are not filesystem isolation. The existing [doctor scope](../tasks/setup-doctor.md) is not a general role coordinator.
+
+## Recoverable launch instructions
+
+Save the reusable instruction with the existing packet/handoff templates and
+[recovery evidence manifest](task-recovery.md), under actual durable-write
+authority. Bind an absolute current worktree, repository/base/candidate commit
+and tree (or explicit unsaved-work identity), exact packet hash, accepted
+test/fixture checkpoint or **none**, named role/ownership, selected model/effort
+and pending gates. A branch name alone cannot bind the recovered stage.
+
+Record the actual native executable/version/help and supported memory/delegation
+controls, selected local tool/input identities, bounded wait/deadline and timeout
+handling, start/status evidence, and separate absolute final-message and detailed
+report destinations. Use the supported launch form above; retain cumulative
+failed launches and unknown metering rather than resetting them on recovery.
+Do not copy native conversation transcripts into shared packets. Re-establish
+material environment inputs before reusing old capability/check evidence.
+
+The coordinator still launches fresh native A/B/C/D for high-risk scientific
+work. Restoring a conversation or copying another `.venv` does not supply that
+freshness. Blind A/B receive only their public packet/allowlist and permitted
+sanitized evidence; nonblind recovery reports, raw logs, implementation history
+and implementation-bearing Current state remain excluded. Fresh bounded review
+is likewise independent of author history. Recovering a packet alone supplies
+neither capability nor a verdict. No launch, sign-in, upload or permission change
+is implicit in saving or restoring these instructions.

@@ -1,5 +1,20 @@
 # Worktree environment
 
+For a workstation without the pinned tools, use the executable
+[bootstrap procedure](bootstrap.md) for Ubuntu 24.04/macOS 15. Its task-owned
+tool paths are portable selections; the workstation paths below are historical
+examples. For non-installing local readiness, use a Python 3.10+ seed:
+
+```sh
+python3 -B scripts/check_dev_environment.py --uv "$UV" --java "$SIMRECON_JAVA"
+```
+
+Select an actually available seed interpreter (the bootstrap installs one when
+needed). Readiness returns nonzero for unhealthy local prerequisites; a zero
+status leaves reader/source-launcher, isolated build, network/authentication and
+full-check evidence pending. It does not install, sync or repair anything.
+Saved task state follows [task recovery](task-recovery.md).
+
 Use one task per worktree. Check `git status --short` and `git rev-parse HEAD` against the approved baseline. Resolve the actual uv/native executable, interpreter/platform and dependency-lock identity before expensive dependent roles/checks. Record applicable installation/import health and isolated/nested environment creation where required. A known environment path is not perpetual evidence; reuse only for unchanged inputs and present health. Reviewer authentication/connectivity is probed only when independent review is required and valid capability evidence is missing/stale; reuse an observed valid launch or the smallest necessary probe, not a redundant review session. Charge preflight/failures to the approved budget; probes are no verdict. Do not share another worktree's `.venv`.
 
 ```sh
@@ -67,3 +82,27 @@ distribution from `devtools/`. It supplies `delivery` and the explicitly loaded
 `simrecon_devtools.pytest_policy` plugin, including for temporary caller
 directories. Both project manifests and `uv.lock` are installation inputs.
 A product-only installation supplies `simrecon`, with no doctor or pytest policy.
+
+## Classifying a failed attempt
+
+Retain the actual command, status, selected executable, timestamp and relevant
+safe diagnostics before choosing a next action. Stop dependent stages on any
+nonzero status. Do not turn a guessed category into a pass or an automatic retry.
+
+| Observation | Supported conclusion and focused next step |
+| --- | --- |
+| Missing/mismatched executable, worktree prefix/import or dependency | Setup/tooling failure. Select the pinned executable or perform explicit locked setup; rerun affected health checks. |
+| Socket/proxy/DNS/TLS/HTTP failure | Connectivity evidence for that command/endpoint. Distinguish sandbox denial from a received remote response using status/headers and safe diagnostics. Keep supplied proxy/TLS settings. Use existing authorization for any permission change. |
+| HTTP 403 alone | Access was refused for that request; credentials are not established as the cause. Check endpoint/response classification before proposing a credential action. |
+| Native stored-login status | Stored login only. It establishes neither completed sign-in nor working role capability. |
+| Observed device-sign-in completion | Completion for that attempt only. Code issuance or waiting without observed completion is not successful sign-in; keep codes private. |
+| Native-service HTTP 401 | Authentication failed for that attempt. It is not a repository defect or permission to erase/replace credentials. |
+| Actual authorized role launch | Capability evidence for that client/model/configuration and environment at that time. Reuse valid evidence; a fabricated review or login-status command cannot replace it. |
+| Required native capability evidence absent/stale | Use the smallest permitted capability probe only when needed. Native client versions are recorded observations, not new pinned dependencies; confirm supported controls. |
+| Executor unreachable despite running desired/observed state | Platform blocker with unresolved cause. A repository script cannot start/repair it, and a running state does not prove connectivity. Retain the failed shell/status evidence and use platform diagnostics. |
+| Mixed or insufficient diagnostics | Cause unknown. Name the unresolved question and one focused next diagnostic; do not start a retry loop. |
+
+No mandatory login, network test or sign-in runs implicitly during local
+readiness. Source-free diagnostics suppress source, not secrets; select safe
+metadata for shared summaries and keep raw sensitive logs private. Readiness,
+preflight, native capability and full verification each have distinct limits.

@@ -8,10 +8,10 @@ Human request: `/intake 105`, November 12, 2026. Prepare the concrete contract
 and narrow future execution packets for
 [fix(dev): Make setup and task recovery reproducible](https://github.com/david-hoffman/simrecon/issues/105).
 Use [DEV105 R1–R6/S01–S17](../contracts/setup-recovery-v1.md).
-This intake writes documentation only; no executable tests, product/infrastructure
-implementation, sign-in or scientific role execution is part of this turn.
-The packets are dormant future-entry instructions, not launched work or acceptance.
-No second approval of a record restating the request is needed.
+The intake wrote documentation only. The subsequent owner instruction
+**“Approved”** authorizes execution of this concrete scope. The coordinator now
+assigns the bounded worker packet; sign-in and scientific roles remain outside
+this infrastructure task. No second approval of this record is needed.
 
 Baseline: `4dcc50dd70da2f93b4a3360e0a4160144656b35a`, initially clean current
 checkout. Intake branch: `docs/105-setup-recovery-intake`; proposed implementation
@@ -32,13 +32,13 @@ and import identity, and checks isolated hatchling. Existing reader preparation
 checks Java 21.0.7/source-launcher behavior and authenticates jars; it preserves
 corrupt input for diagnosis. CI pins uv 0.12.19, Python 3.13.12 and Temurin
 21.0.7+6 on Ubuntu 24.04/macOS 15. Codex versions are observations, not pins.
-There is no separate non-installing local readiness command or portable bootstrap
-guide. The contract proposes those additions and a recovery procedure using the
+At the intake baseline there was no separate non-installing local readiness
+command or portable bootstrap guide. The contract adds those and a recovery procedure using the
 existing mechanisms, without amending permissions or delivery policy.
 
 Remote read of #84's original saved task at
-`f8042042ff2b6865ecf501e38f11232de5d36fc9` succeeded. That Git object is absent
-from this local checkout; no recovery exercise has run. Do not confuse the
+`f8042042ff2b6865ecf501e38f11232de5d36fc9` succeeded. That Git object was absent
+from the intake checkout; execution recovered it in a separate clone. Do not confuse the
 unrelated historical `simulation-reconstruction-memory.md` task with #84's
 `reconstruction-memory-intake.md`. The pinned remote task and later issue comment
 remain the recovery expectation sources. They carry their own historical charges;
@@ -52,7 +52,7 @@ this task references them without resetting or duplicating their counters.
   oracle, data-loss repair or delivery-policy amendment is authorized. Return
   expanded meaning to intake; proposed policy changes need their own fresh policy
   verdict before activation. This record changes no active policy.
-- Future worker owns new `scripts/check_dev_environment.py`,
+- Bounded worker owns new `scripts/check_dev_environment.py`,
   `tests/test_dev_environment.py`, `docs/operations/bootstrap.md`,
   `docs/operations/task-recovery.md`, and operational updates to
   `docs/operations/environment.md` and `docs/operations/role-launches.md` strictly
@@ -65,7 +65,7 @@ this task references them without resetting or duplicating their counters.
   cannot silently amend templates/AGENTS/skills/specification or enable a new role
   route. No product files, locks, dependency manifests, CI, reader implementation,
   coverage/discovery settings or global environment changes are assigned.
-- Future worker/reviewer: `gpt-6.1-sol`, high, conservative current project
+- Worker/reviewer: `gpt-6.1-sol`, high, conservative current project
   selection; lower-cost calibration remains pending for this responsibility.
   Record actual attribution/settings and missing metering as unknown. Diagnose
   environment, test, implementation and requirement failures separately; concrete
@@ -94,51 +94,60 @@ this task references them without resetting or duplicating their counters.
 
 ## Current state
 
-- **Intake complete; execution not started.** Contract and
-  [worker](../packets/setup-recovery-worker.md) /
-  [reviewer](../packets/setup-recovery-reviewer.md) packets prepared for future
-  assignment. No material decision is missing for this bounded scope. Runtime,
-  tests, policy, pins and gates are unchanged. Full setup/recovery/platform proof
-  remains future work, not an intake failure or acceptance claim.
-- Inputs: issue body and one comment read November 12, 2026 through GitHub
-  connector; pinned #84 task and commit read remotely. Current shell is usable;
-  managed status reported connected/current with enforced network policy.
-  These observations do not qualify local dependencies or native sign-in.
-- Discovery failures: initial INTAKE-PROMPT path lookup was corrected; `gh issue
-  view` failed once with sandbox socket denial and once with Forbidden after
-  approved escalation. Public issue HTML fetch and connector reads succeeded.
-  Local `git cat-file` could not find the #84 commit; remote read verified the
-  named source. One initial remote task lookup returned an older unrelated task;
-  the commit's changed-path inventory resolved the correct filename. These are
-  discovery/tooling facts, not product failures or recovered acceptance evidence.
-  The first new-file whitespace wrapper mistook Git's no-index difference status
-  1 for failure; corrected status handling retained empty whitespace diagnostics.
-- Roles/accounting: one intake coordinator, one read-only setup inventory helper
-  (`setup_inventory`, inventory plus a continued packet sanity pass); no
-  implementation worker, scientific roles or required
-  acceptance reviewer launched. Scenarios=17; executable examples/tests not yet
-  authored. Intake helper configuration inherited; actual served model/effort,
-  per-role tokens/responses/cost and aggregate elapsed/check/owner-wait totals
-  unknown. Implementation repairs/review rounds=0. Prior #84 charges remain in
-  their pinned sources; not counted as new #105 launches. Limits not set.
-  Continued advisory review identified one Java-check boundary ambiguity;
-  clarified R2 to defer source-launcher/reader proof explicitly to preflight,
-  preserving local version checks and the existing gate. Intake corrections=1;
-  this sanity pass is not implementation or policy acceptance review.
-- Checks: intake scope, relative links and whitespace only; command outcomes and
-  final document identities recorded in the conversation outside these bytes.
-  No preflight/full verification, authentication probe or platform recovery was
-  run. Next: use the worker packet when implementation is assigned, then a fresh
-  reviewer of the exact passing candidate; no public A/B packet is needed for
-  this bounded work. #84 retains its own public A/B packets unchanged.
-- Housekeeping: retain current checkout/branch, the four intake documents, shared
-  tools/caches and unrelated work. The sole task scratch file is
-  `/tmp/simrecon-issue-105.html`; removed after extracting source facts, absence
-  confirmed, no cleanup error. No task background process or extra worktree was created.
-  Future disposable setup/recovery clones must be listed by exact path before
-  removal, with process/worktree/needed-commit checks under the existing
-  [cleanup workflow](../operations/fixture-cleanup.md). Keep durable evidence
-  outside them; retain uncertain targets.
+- **Implementation candidate prepared under “Approved”.** Execution baseline is
+  `fdcb0fa76c35a522035b532435f1bc2593eb579f`, tree
+  `c8f8d2fdf45007db0912d7dd3619a0010de986d4`, on
+  `fix/105-setup-recovery`. The coordinator assigned the existing worker packet.
+  Final candidate/check/review status is recorded outside tracked candidate
+  bytes in the conversation and local `artifacts/setup-recovery/` evidence;
+  the [sanitized report](../reports/setup-recovery.md) retains portable facts.
+- Roles: one bounded worker `setup_worker` owns named code/tests/operational docs;
+  one operational helper `ubuntu_exercise` performs fresh container setup/repeat
+  and recovered-checkpoint preflight. Coordinator owns recovery identity/accounting,
+  report, task, full gate and fresh independent review. Helpers do not replace the
+  reviewer or any #84 scientific role. Requested worker/helper configuration is
+  `gpt-6.1-sol`, high; served attribution, tokens/responses/cost and aggregate
+  elapsed/check/owner-wait totals remain unknown. Human limits not set.
+- Prerequisites: current Debian host preflight attempt 1 failed on sandbox proxy
+  access; same pinned command passed after approved escalation on attempt 2.
+  Docker socket probe similarly failed in sandbox and passed after escalation.
+  Fresh original #84 clone attempt 1 failed on sandbox proxy connection; attempt 2
+  succeeded. Checkpoint, ancestors and six documents recovered with clean state;
+  historical ignored logs unavailable. See report/manifest for exact identities.
+- Platform evidence: fresh Ubuntu 24.04 first/repeat setup and recovered #84
+  preflight passed; final readiness script passed. No macOS 15 executor is
+  attached; the coordinator asked whether one is available. Missing platform
+  evidence remains a final acceptance/submission blocker. No lowered gate, policy
+  amendment or new scientific acceptance is implied. Native sign-in was not probed.
+- Intake accounting remains: coordinator plus one read-only helper with inventory
+  and continued packet sanity pass; scenarios=17, intake contract correction=1
+  (clarified Java launcher proof deferred to preflight). Initial prompt path error,
+  two failed CLI issue reads, successful HTML/connector reads, unavailable local
+  #84 object, corrected unrelated remote-task lookup and no-index status-wrapper
+  correction remain discovery facts. They are not product failures. The first
+  intake HTML scratch file was removed and absence confirmed.
+- Implementation: 21 new readiness cases plus 11 unchanged preflight cases passed
+  twice; lint/format and focused types passed. Three sandbox type-check failures
+  and two successful escalated runs are retained. One safe-metadata correction
+  and one formatting correction preserve their diagnoses. Ubuntu helper retained
+  two input-permission preparation failures and one additional sandbox socket
+  denial before successful exercise. See the report for commands and limits.
+  Implementation/check/review attempts are cumulative in worker/Ubuntu reports
+  and the sanitized report; final gate/review results stay outside
+  tracked candidate bytes. Prior #84 charges are preserved in the pinned task and
+  later diagnostic comment, without recounting them as new #105 launches.
+- Next: preserve missing-platform evidence, prepare clean candidate, run full
+  verification and obtain fresh independent review. No push/PR/merge/release or
+  external message is authorized. No accepted scientific checkpoint is invented.
+- Housekeeping: after all exercise processes completed, removed the stopped
+  `simrecon-issue105-ubuntu-exercise` container and confirmed-disposable
+  `/workspace/scratch/setup-recovery-105-checkpoint`,
+  `/workspace/scratch/setup-recovery-105-ubuntu`, and worker pytest scratch
+  `/tmp/pytest-of-agent/pytest-5` / `pytest-6`; filesystem absence confirmed,
+  container removal succeeded, no cleanup errors. Recovered clone was clean and
+  original commits remain in their source repository. Keep current checkout/
+  branches, durable documents/local evidence, shared tools/caches and official
+  Ubuntu image (shared-cache ownership uncertain). No #84 Current state was edited.
 
 ## PR presentation
 
