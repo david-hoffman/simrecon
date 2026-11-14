@@ -204,3 +204,28 @@ RFC8259 JSON. Finite summary metrics retain ordinary numeric meaning.
   material applicability across setup-only integration and disclosed limitations
   require substantive assessment. Two author launches preceded this first review;
   all prior diagnosis/corrections/failures remain cumulative. No verdict yet.
+
+### Scientific review1 completion
+
+Session `/root/issue_112/scientific_reviewer_1` accepted exact proposed candidate
+c94d58faf2fbcd0ceb70147f26c5aa8205841594 with clearly bounded scientific
+limitations. [Substantive report](scientific-review-1.md), SHA256
+`82b2e27356c2a20ff3676412ce88241f6f5e1b7231dd826476285d03fbca3ddc`,
+finds all six #112 study criteria satisfied and #113's record/method sufficient
+for separate intake. No blocking proposal correction; no runtime/checkpoint or
+final readiness acceptance. Reviewer independently verified127 scalar references,
+184 attempts,10 resource medians, bound/cancellation and unchanged material
+applicability through setup-only integration. Two bounded reconciliation processes
+exited0; no product test/resource rerun/repair/commit or scratch creation. No
+owned process remained. Actual serving/tokens/cost remain unknown. Counts are
+now two completed author launches and one completed fresh scientific review.
+Study198 interpreter invocations already include its no-script launch; reviewer2
+are distinct and not included in that study count. All prior failures/corrections
+and interrupted/unattempted work remain preserved. Final gate/readiness is pending.
+
+Coordinator confirmed disposable scratch after role completion and removed report
+`__pycache__`, `work/precision-112/study-author/`, duplicate local intake packet/
+report/execution supplement and local artifact/whitespace logs. Durable copies,
+frozen evidence, current checkout/commits and shared environment/caches remain.
+Root's active PR draft stays `work/precision-112/pr-draft.md`. Removal/absence
+commands exited0, no cleanup error, no active/stopped owned numerical process.

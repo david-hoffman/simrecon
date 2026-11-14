@@ -6,7 +6,7 @@
 
 - Authority: [issue #112](https://github.com/david-hoffman/simrecon/issues/112),
   supplied to this session at `/workspace/work/campaign/issue-112.md`; the
-  coordinator's `work/precision-112/intake-packet.md` requests this intake,
+  [coordinator packet](../packets/precision-112/intake-author.md) requests this intake,
   scientific study/proposal, fresh review, verification and eventual PR.
 - Outcome: a reviewed evidence-backed proposal and finite downstream plan,
   [SP112 contract](../contracts/single-precision-study-v1.md). No runtime change,
@@ -120,68 +120,62 @@ examples/run count is unknown until the study author freezes the manifest.
 
 ## Current state
 
-- Status: intake and finite study complete; investigator finalizes report/checks
-  for fresh independent scientific proposal review. All30 M19/M20 outcomes
-  completed under approved fresh admission; exclusive numerical window released.
-  Runtime/defaults unchanged, no implementation qualification claimed. Proposed decisions await measured
-  evidence and independent scientific review. Runtime/defaults unchanged.
-- Authority/baseline/branch and ownership: above; packet SHA-256
-  `e6c6a8c038bebd9e3239d6998c342c835c8aecdc573a628523690364d58782f7`.
-- Roles: fresh intake author `/root/issue_112/intake_author`, no inherited
-  conversation and no delegation. Requested Sol/high per coordinator packet;
-  actual serving attribution unknown. Study author `/root/issue_112/study_author` freshly launched; review pending. See [role ledger](../reports/single-precision-study/role-ledger.md).
-- Launch evidence: accepted CLOUD107 `b84b178`, integration `be8e447`, merged
-  #109 retained on this baseline. Supported fresh `fork_turns=none`; optional
-  memory-disable/read-only controls unavailable. Shared filesystem/permissions
-  and allowlists/no-delegation are prompt restrictions, not engineered isolation.
+- Status: scientifically accepted study/proposal, with explicit bounded limits;
+  exact-candidate canonical gate and fresh final readiness review remain pending.
+  Runtime/defaults are unchanged; no single runtime or product checkpoint is qualified.
+- Baselines: actual trials b344e41a8b52de76d7cbbf8450319893904c3b8f;
+  intended final public integration base64a752b4642709c539df2079cc3c906acf4cc7b8.
+  Root integrated the disjoint eleven-file setup/recovery delta after write hold;
+  independent scientific review verified unchanged numerical material applicability.
 - Final evidence pointer (prepared before verification): campaign root records
-  exact final candidate/base, canonical receipt, independent readiness verdict
-  and publication evidence outside tracked bytes at
-  `/workspace/work/campaign/evidence/112/`. Preliminary study/review artifacts
-  remain tracked; this task will not be changed to record its own verified hash.
-- Evidence: detailed intake commands/scope in
-  [intake report](../reports/single-precision-study/intake-report.md); final candidate/check identities and
-  results must be recorded outside tracked bytes by root. Existing untracked
-  coordinator packet/report directories were present at intake start and were
-  not inspected beyond the assigned packet.
-- Baseline/coverage: no claimed product defect/red. No product test or experiment
-  executed by intake. Native coverage numbers, study measurements and full-gate
-  results are unknown/pending. Percentages advisory; all existing gates retained.
-- Resource state: coordinator supplied pinned container route
-  `simrecon-campaign-ubuntu` and `.venv/bin/python`, reported per-worktree pinned
-  Ubuntu preflight passed and granted the next study role an exclusive numerical
-  window. Intake has performed static work only. Actual versions/grant details
-  must be recorded by study; the intake ran no probes under the grant.
-- Metrics: scenarios=22; matrix rows=20; concrete kernel declarations=16; workload JSON attempts=184
-  (168 completed,16 diagnosed study failures); Docker interpreter invocations=198,
-  plus one recorded no-script exit2 and interrupted launcher137 as detailed in report.
-  This author launch=1; intake initial draft=1, interface corrections=1;
-  study-author launches=1, independent scientific review1 is the next fresh role;
-  intake interface correction=1 (separate-entry draft changed to opt-in keyword). Prior task/campaign charges are retained by root, not reset here.
-  Tokens/cached/output/responses/cost/elapsed/check/owner-wait time unknown.
-  No author-spawned children, numerical processes, installs or tests; no
-  forbidden-source exposure observed. No human numeric limits set.
-- Blockers: fresh scientific assessment and root-owned exact full gate/final
-  readiness review pending. Actual b344 trial evidence is retained across
-  disjoint setup-only64a integration; independent reviewer checks unchanged
-  material applicability. Diagnosed study defects, runner typo and interruption
-  remain preserved in role ledger/raw revisions;
-  FFT envelopes, sensitive search qualification, M12/M17 constructibility and
-  supported profile acceptance remain explicit scientific decisions. None
-  prevents handing the finite study to its authorized investigator.
-- Next action: launch fresh report-only scientific reviewer with exact frozen artifacts,
-  diagnose/correct
-  findings through author and fresh reviews. Root then verifies exact candidate
-  and obtains final readiness review before PR.
-- Housekeeping: intake owns no running process and created no numerical scratch.
-  Preserve local report for root; tracked deliverables/durable report directory
-  and shared environment remain required. Final removal/kept/error result root-owned.
+  exact candidate/tree/base, canonical receipt, final independent verdict and
+  publication evidence outside tracked bytes at
+  `/workspace/work/campaign/evidence/112/`. No post-gate tracked self-hash edit.
+- Roles: fresh intake `/root/issue_112/intake_author`, fresh investigator
+  `/root/issue_112/study_author`, fresh scientist
+  `/root/issue_112/scientific_reviewer_1`. Requested Sol/high, fork_turns=none,
+  no nested delegation; serving attribution and unavailable memory/read-only
+  controls remain unknown/unavailable as disclosed in the
+  [role ledger](../reports/single-precision-study/role-ledger.md).
+- Scientific verdict: [review1](../reports/single-precision-study/scientific-review-1.md)
+  accepts all six #112 study criteria with bounded scientific limitations;
+  exact reviewed proposal candidate and hashes are in that report. No blocking
+  proposal correction. It is no final D/readiness or runtime acceptance.
+- Evidence: [report](../reports/single-precision-study/report.md),
+  [acceptance method](../reports/single-precision-study/acceptance-method.md),
+  frozen manifests/scripts/raw attempts and derived ledgers. Artifact SHA,
+  raw/TSV/RSS reconciliation, independent scalar bounds and staged whitespace
+  checks passed; full-gate/coverage/build/M25 results remain pending root receipt.
+- Metrics:22 scenarios,20 matrix rows,16 kernel declarations; study198 Docker
+  invocations =184 workload attempts (168 completed,16 diagnosed study failures)
+  +1 missing-script launch +5 freezes +7 environment/admission +1 backend probe.
+  Interrupted launcher137 and original unattempted repetition stay separate.
+  Preliminary scientist ran2 bounded reconciliation processes, no resource replay.
+  Author launches2, scientific reviews1, no review-target repair; all methodology,
+  fixture/observer corrections and exposure/accounting are retained in linked ledgers.
+  Human numeric caps: not set. Token/cache/response/cost and complete elapsed/
+  owner-wait measurements: unknown, never zero-filled or double-counted.
+- Limits binding downstream intake: general FFT envelopes/literal CE04 branches,
+  nonunit transfer rounding witnesses, new-record/runtime failures and actual
+  allocation lifecycle; single search, CE06 workflow, physical recovery and
+  workstation readiness remain unqualified. #113 can start independent intake
+  from the accepted constructible record and methods; this activates no behavior.
+- Next action: campaign root runs canonical full Ubuntu `make verify` on the
+  clean final candidate. After a passing exact receipt, issue coordinator launches
+  a fresh report-only final readiness reviewer writing outside tracked bytes.
+  Root alone pushes/opens PR; no merge/release/issue closure is authorized.
+- Housekeeping: removed confirmed disposable report `__pycache__`, investigator
+  scratch directory and duplicate local intake/packet/check scratch after durable
+  copies/check results were preserved; existing commands exited0 and absence was
+  confirmed. No owned live/stopped numerical workload remains. Kept current
+  checkout/commits, tracked evidence, shared environment/caches and
+  `work/precision-112/pr-draft.md` as root's active PR input. No cleanup errors.
 
 ## PR presentation (coordinator)
 
-Lead with the concrete need for a useful opt-in float32/complex64 bulk path and
-the evidence-backed proposal, its mode limitations and preserved default. A
-conceptual dtype/dataflow figure is optional only if it clarifies mixed
-accumulation; omit numerical resource graphics until actual identified runs
-exist. Put actual versions, artifact/check identities, numerical/oracle limits,
-resource measurements and cumulative role evidence in the technical appendix.
+Lead with the proposed useful opt-in bulk-precision path, independently declared
+first-slice bands and finite downstream plan. The identified resource table and
+explicit prototype limits convey the comparison; no figure is needed. Keep
+versions, scientific/gate/review identities, coverage/M25/build proof, complete
+attempt accounting and unresolved limits in the technical appendix. Coordinator
+prepared `work/precision-112/pr-draft.md`; root fills exact final proof after gate.
