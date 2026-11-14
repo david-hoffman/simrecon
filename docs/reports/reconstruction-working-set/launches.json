@@ -1,0 +1,81 @@
+{
+  "schema": "WS116-role-launches-v1",
+  "scope": "Role evidence only; docs/tasks/reconstruction-working-set.md owns Current state",
+  "baseline": "b344e41a8b52de76d7cbbf8450319893904c3b8f",
+  "route": "supported fresh tool sessions after accepted PR109 policy b84b178/integration be8e447",
+  "controls": {
+    "fork_turns": "none",
+    "memory_disable": "unavailable",
+    "per_role_sandbox": "unavailable",
+    "isolation": "shared filesystem/parent permissions; named ownership is prompt-only",
+    "scientific_calibration": "no quality claim from documentation pilot"
+  },
+  "roles": [
+    {
+      "role": "fresh intake author",
+      "session": "/root/issue_116/intake_author",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "actual_served_model_effort": "unknown",
+      "launch_packet": "coordinator inline tool message naming authoritative issue, intake skill and actual templates",
+      "inline_packet_digest": "unknown; host did not expose persisted launch bytes",
+      "completed_artifacts_observed_utc": "2026-11-14T22:11:03Z",
+      "completion": "four concrete intake documents, 19 local link targets and no whitespace diagnostics; no numerical work",
+      "output_sha256": {
+        "docs/contracts/reconstruction-working-set-v1.md": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202",
+        "docs/tasks/reconstruction-working-set.md": "ee65ecf7b4d6a0c6a56639fe2fc5c86c4e2f0056082fe5e26cb90875b00364cf",
+        "docs/packets/reconstruction-working-set-investigator.md": "e98110351fc41d4d5ee023a37c8ff3d59fe8e56287a62c95b686df712a73ad57",
+        "docs/packets/reconstruction-working-set-review.md": "0d56d07158a58a4840dec2d2aca6cfc523d93053101670321495d1d375f35351"
+      },
+      "artifact_digest_scope": "at intake author handoff; later coordinator task-state updates change task bytes",
+      "final_message_destination": "collaboration parent mailbox, distinct from durable documents",
+      "input_cached_output_tokens": "unknown",
+      "money": "unknown",
+      "elapsed_seconds": "unknown"
+    },
+    {
+      "role": "report-only scientific investigator, source-only preparation",
+      "session": "/root/issue_116/investigator",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "actual_served_model_effort": "unknown",
+      "packet_sha256": {
+        "docs/reports/reconstruction-working-set/source-preparation-packet.md": "c6035cd1cd6c5c34fb11f960198c4e265d3290f1126b6b9c4163efbc10eafff1",
+        "docs/packets/reconstruction-working-set-investigator.md": "e98110351fc41d4d5ee023a37c8ff3d59fe8e56287a62c95b686df712a73ad57"
+      },
+      "write_scope": "docs/reports/reconstruction-working-set/ except coordinator packet and launches.json",
+      "permitted_execution": "read-only shell/source inspection and report/harness authoring only",
+      "held_execution": "Python, numerical work, tests, lint, types, installs, benchmarks and full verify",
+      "report_destination": "docs/reports/reconstruction-working-set/",
+      "final_message_destination": "collaboration parent mailbox, distinct from durable report",
+      "completed_artifacts_observed_utc": "2026-11-14T22:19:43Z",
+      "completion": "seven unexecuted source-only artifacts, packet hashes and whitespace checks; no numerical work or acceptance",
+      "source_corrections": 1,
+      "source_scope_clarifications": 1,
+      "output_sha256": {
+        "README.md": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143",
+        "analysis/liveness-draft.md": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402",
+        "handoffs/source-hypotheses.md": "feb6067b51fa65a778fc67f9f6f022406ffe5bb04702a39545e040f2a14cd334",
+        "manifest.json": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9",
+        "run_attempt.py": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a",
+        "workload_child.py": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5",
+        "observer.py": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555"
+      },
+      "check_limits": "Python unparsed/unexecuted; initial whitespace collection stopped on ordinary no-index difference status 1, then all seven files checked; absent historical artifact inventory status 2",
+      "input_cached_output_tokens": "unknown",
+      "money": "unknown",
+      "elapsed_seconds": "unknown"
+    }
+  ],
+  "accounting": {
+    "intake_author_launches": 1,
+    "investigator_launches": 1,
+    "independent_scientific_reviewer_launches": 0,
+    "root_owned_preflight_attempts": 1,
+    "root_owned_preflight_evidence": "/workspace/work/campaign/preflight-116-attempt1.log",
+    "measurement_trials": 0,
+    "full_verification_attempts": 0,
+    "human_numeric_cap": "not set",
+    "tokens_money_total_elapsed": "unknown; do not sum overlapping role durations or root campaign counters"
+  }
+}
