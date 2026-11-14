@@ -2,10 +2,12 @@
 
 **Version 1.0** Git versions revisions.
 
-You are already the assigned worker or fresh independent reviewer. Perform this mode here; do not launch another role. No forked author/implementation conversation for review. Use the named skill/supported memory-delegation controls. Continuing an author session erases no accounting.
+You are already the assigned worker or fresh independent reviewer. Perform this mode here; do not launch another role. No forked author/implementation conversation for review. Use the named skill/supported memory-delegation controls. Continuing an author session erases no accounting. For high-risk roles, native roots remain required until fresh independent CLOUD107 policy acceptance; new tool sessions after acceptance must meet [role-launch guidance](../../operations/role-launches.md). No retroactive requalification follows.
 
 - Mode/route/reason/worktree; actual human request and concrete contract/scenario/example revision; permitted inputs:
 - Model/effort/task family/calibration evidence or pending status; diagnosed escalation triggers:
+- Launch route/current capability evidence; CLOUD107 acceptance reference for a new tool-route session; no conversation inheritance and task/session ID; optional controls available/disabled/unavailable, shared filesystem/permissions and prompt-only limits; requested versus exposed model/effort or unknown:
+- Coordinator-owned packet revision/digest, allowed tools/read-write scope, exact worktree/checkpoint/artifact identities and separate report/final-message destinations; completion and independent substantive verdict evidence:
 - Baseline/candidate/integration base and relevant input identities:
 - Inherited approved coverage policy reference under specification section 5.1; behavior/risk obligations, selected metric/tool/threshold/scope/report requirements, advisory metrics and explicit authorized migration:
 - Requirement/test mapping and short independent risk disposition. B/bounded review audits omissions; D checks actual implementation for concrete missed behavior/risk beyond the accepted baseline:

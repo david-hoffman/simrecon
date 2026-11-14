@@ -307,15 +307,20 @@ worker; bounded worker plus fresh reviewer; or fresh blind A/B, restricted C and
 fresh D for high risk. Data-loss behavior, even conventional overwrite/truncation
 repair, is high risk. Policy adoption has human-requested documentation scope and
 fresh independent policy review before activation; restating a request needs no
-extra approval checkpoint. Use [native role launches](operations/role-launches.md),
+extra approval checkpoint. Use [role launches](operations/role-launches.md),
 [public A/B packets](agentic-software-delivery-v1.0/templates/PUBLIC-PACKET.md),
 [candidate packets](agentic-software-delivery-v1.0/templates/CANDIDATE-PACKET.md)
 and [handoffs](agentic-software-delivery-v1.0/templates/HANDOFF.md).
 [Model selection/calibration](operations/model-selection.md) records conservative
 defaults, qualified scope and lower-cost/effort candidates still lacking evidence.
 Advisors replace no required independent role. Launched roles do their work
-directly without nested launches. Reviewers never inherit author history; context
-reset restores no blindness. A/B follow their public-input allowlist rather than
+directly without nested launches. The CLOUD107 fresh tool-session proposal applies
+only to new sessions after fresh independent policy acceptance; until then the
+high-risk native-root rule remains in force. Check route capabilities in the
+current environment, disclose shared filesystem/permission and unavailable-control
+limits, and retain every packet/gate/ownership requirement. No retroactive role
+qualification or blanket active-task migration follows; preserve earlier charges.
+Reviewers never inherit author history; context reset restores no blindness. A/B follow their public-input allowlist rather than
 implementation-bearing task/history/coverage/lesson links. Before blind probes,
 arrange [source-free warnings, tracebacks and subprocess diagnostics](operations/role-launches.md)
 that retain categories, messages, locations and failure status. Disclose exposure
