@@ -1,0 +1,15 @@
+{
+  "issue_number": 107,
+  "url": "https://github.com/david-hoffman/simrecon/issues/107",
+  "state": "open",
+  "exact_body_match": true,
+  "body_file": "107-update.md",
+  "created_issues": [],
+  "reused_issues": [
+    99,
+    100,
+    107
+  ],
+  "performance_work": "PR87 owner acceptance/stop supersedes prior continuation",
+  "updated_at": "2026-11-14T18:27:57Z"
+}

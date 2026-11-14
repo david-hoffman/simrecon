@@ -321,19 +321,29 @@ arrange [source-free warnings, tracebacks and subprocess diagnostics](operations
 that retain categories, messages, locations and failure status. Disclose exposure
 and stop blind work for routing.
 
-Installed doctor commands remain `uv run --locked delivery doctor --check`
-(writes nothing, including reports) and `uv run --locked delivery doctor` (ordinary
-documentation patch within named human-requested scope and fresh independent policy
-review before activation). An explicitly requested full-backlog report-only pass uses
-the same entry point/procedure, with no new flag or fixes. It inventories every baseline
-lesson, groups semantically then analyzes mechanisms, reconciles remote work before
-authorized issue publication and hands stable findings to normal intake. Observations
+Use [$lessons-doctor](../.agents/skills/lessons-doctor/SKILL.md) directly in the current
+cloud or local coordinator/nonblind author session. For example, request
+`Use $lessons-doctor for a full-backlog report-only pass` or
+`Use $lessons-doctor with --check semantics`. No native launch or nested authentication
+is needed for this entry. Check-only writes nothing, including reports. The optional
+legacy commands `uv run --locked delivery doctor --check` and
+`uv run --locked delivery doctor` remain native-only launchers requiring usable native
+Codex/authentication; they are not the cloud entry. Ordinary documentation patches
+require named human-requested scope and fresh independent policy review before
+activation. Required independent report review also remains a separate fresh session
+without author history; no extra native launcher is required for policy review.
+An explicitly requested full-backlog report-only pass inventories every baseline
+lesson, groups semantically then analyzes mechanisms and runs no fixes. Reused reports
+retain baseline/applicability limits; incremental reconciliation is labeled as such.
+Reconcile current remote issues and linked PR diff/check/completion evidence, not issue
+closure or PR state alone, before resolution claims or authorized publication. Hand
+stable findings to normal intake and keep raw triage out of blind packets. Observations
 retain confidence; scoped append-only handling records live under
 [lessons/dispositions/](lessons/README.md), separate from immutable observations. Reports
 derive from named source records, never an authoritative shared mutable index. A
 coordinator may separately capture a returned check report under actual write authority.
-[Doctor scope](tasks/setup-doctor.md) and
-[procedure](agentic-software-delivery-v1.0/DOCTOR-PROMPT.md) bind. No check authorizes
+[Native launcher scope](tasks/setup-doctor.md) is historical runtime context; the current
+[procedure](agentic-software-delivery-v1.0/DOCTOR-PROMPT.md) binds doctor work. No check authorizes
 merge, release or external messaging.
 
 The [test-audit adoption](tasks/asd-test-audit.md) preserves report-only discovery,
