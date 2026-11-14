@@ -55,8 +55,9 @@ files `src/simrecon/acquisition/modes.py` and
 fixture/resource observer identities, sanitized prior findings and exact check/
 measurement evidence bound above. Root supplies any additionally needed shared
 helper read paths narrowly after parent reassessment; scope cannot silently
-expand. Form your independent assessment before reading current-task implementation
-lessons. Do not infer scientific validity from authorship, lint or old-code agreement.
+expand. Form your independent assessment before reading any current-task lessons
+or dispositions, including coordinator process observations. Do not infer
+scientific validity from authorship, lint or old-code agreement.
 Write only the named external D report; no tracked candidate writes or target/test/config/policy/packet repairs,
 commits, push, restack, publication or cleanup.
 

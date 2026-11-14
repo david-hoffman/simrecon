@@ -86,6 +86,9 @@ errors/independent expectations), RM84 (§§1–5), at their named paths:
   `tests/test_c_acquisition_drift.py`,
   `tests/test_c_acquisition_fitted_drift.py`,
   `tests/test_c_known_assembly.py`; same no-source/no-import-traversal rule.
+  `tests/test_c_workflow_failures.py` and
+  `docs/packets/issue-118-a3-public-addendum.md` are also whole-file public
+  inputs for independently assessing retained S25 fault controls and limits.
 - Existing public-entry resource observers `tests/reconstruction_memory_benchmark.py`
   and `tests/reconstruction_summary_fixture.py`, read-only for frozen resource
   design; no unlisted import traversal or new infrastructure ownership.
@@ -120,7 +123,14 @@ Inherited coverage is behavior plus independent risk review, advisory percentage
 native exact global/package/file/subprocess coverage reports remain later full
 Ubuntu gates. Bare uncovered branches do not automatically commission tests.
 
-After explicit execution grant only, mandatory unchanged source-free command:
+After explicit execution grant only, use the pinned Ubuntu container, never the
+Debian host. Prefix every future command below with:
+
+```sh
+docker exec --user 1000:1000 -w /workspace/work/issue-118 -e PATH=/workspace/.simrecon-tools/uv-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin simrecon-campaign-ubuntu
+```
+
+Mandatory unchanged source-free command arguments after that prefix:
 
 ```sh
 uv run --locked python scripts/source_free_check.py pytest tests/test_preparation_harmonic_lifetimes.py

@@ -14,7 +14,9 @@
   publication authority. Root owns integration/restack/push/PR, not intake/C.
 - Supplied public baseline commit `64a752b4642709c539df2079cc3c906acf4cc7b8`,
   tree `9cafd665c6a2542a54e502c39ffa6bdc2cecad32`, worktree
-  `/workspace/work/issue-118`. These are supplied identities, unverified here.
+  `/workspace/work/issue-118`. Coordinator observed this initial clean commit/tree
+  with Git before the local incomplete static-document checkpoints recorded in
+  the launch ledger. This supplies no numerical or gate qualification.
   Parent117 will be frozen later; this intake is not readiness against that parent.
 - Scientific boundaries/units/inputs/records/errors and expectations: CE02/04/06,
   CE07 and RM84 as named in PH118. No numeric tolerance, memory ceiling,
@@ -73,18 +75,22 @@
 - Status: static intake completed and coordinator inspected; first A stopped
   before authoring after reading excluded mixed-mode procedure text. A fresh
   A2 also stopped before authoring on a whole-PROJECT read exceeding its
-  section-limited allowlist. A3 gets a self-contained packet and only whole-file
-  permissions; PROJECT and mixed-mode audit skill are entirely excluded. High-risk route
-  remains incomplete; TOTAL EXECUTION HOLD
+  section-limited allowlist. Fresh A3 completed static test/report authoring from
+  self-contained context and whole-file public permissions without an excluded
+  overread reported. **UNFINISHED — WAITING** for root's execution window and
+  actual-parent qualification. High-risk route remains incomplete; TOTAL EXECUTION HOLD
   continues for priority112 gate. No installs, Python, probes, lint, types, tests,
   benchmarks, measurements or product edits. No role transition releases hold.
 - Instruction: `docs/packets/issue-118-intake.md`, supplied SHA256
   `4a959093dee94374d7c74ffdb3add0d711813528ec8bbb54febf03e369350021`.
   No missing material scientific decision identified within preservation scope.
   Baseline/actual-parent mismatch is unresolved qualification, not new authority.
-- Scenarios 26; equivalent example/test counts unknown pending A mapping.
+- Scenarios 26; new static test functions 7 / parametrized examples 18; retained
+  public-example counts not inventoried. A3 maps all 26 rows with explicit proof
+  limits in [its report](../reports/issue-118/a3.md); B has not accepted adequacy.
   Accepted test/fixture checkpoint none; frozen candidate none; product changes none
-  by this author. Branch/base above supplied, not inspected with Git.
+  by intake or A. Initial public baseline/branch observed by coordinator; actual
+  parent117 remains unfrozen and numerical qualification is unknown.
 - Intake session `/root/issue_118/intake118`, one launch, no prior intake attempts
   per packet; detailed evidence [intake report](../reports/issue-118/intake.md).
   Intake itself launched no scientific roles. Coordinator launched fresh A
@@ -94,7 +100,8 @@
   verdicts/checkpoints none. Fresh A2 `/root/issue_118/a118_static2` launched
   without inherited conversation, requested Sol/high; it also stopped before
   authoring. No actual product-source/history/record exposure reported in either
-  launch. Launch identities
+  launch. Fresh A3 `/root/issue_118/a118_static3` launched with no inherited
+  conversation, requested Sol/high. Launch identities
   and cumulative accounting are in [role launches](../reports/issue-118/role-launches.md).
 - Outside tracked final candidate receipt/review/publication pointer prepared as
   `/workspace/work/campaign/evidence/118`. Root writes exact final identities there;
@@ -108,7 +115,7 @@
 - Baseline behavior status unknown: no observed numerical product failure or
   acceptance inferred. No correction, test defect or product defect adjudicated.
 - Metrics: intake launches 1; prior intake attempts none per supplied packet;
-  Scientific launches A=2 (both stopped), B=0, C=0, D=0;
+  Scientific launches A=3 (A1/A2 stopped; A3 static complete), B=0, C=0, D=0;
   completed full/delta reviews none.
   One intake static patch-match failure/correction retained in its report; no
   scientific repair commissioned. Three coordinator multi-file patch matches failed
@@ -121,12 +128,19 @@
   Campaign/historical charges remain with root and are not reset or duplicated.
 - Blockers: execution hold; actual-parent freeze/reassessment; unfilled recoverable
   launch bindings; independent A/B checkpoint; implementation/D/full verification
-  and matched measurements. Next launch fresh A3 with self-contained public
-  project/audit facts and whole-file public permissions; retain hold until root's
-  authorized execution release. Then complete A's narrow source-free checks and
-  obtain fresh B before C. Actual-parent117/profile113 reassessment stays binding.
+  and matched measurements. A3 additionally identifies remaining proof limits:
+  T2 map/prepass composition, complete unsafe/projection variant inventory,
+  direct/summary-specific external fault paths and direct-stage resource observer
+  integration. These are unaccepted proof limits, not product defects or new
+  meaning. Retain hold until root's explicit execution release; then continue
+  the same blind A3 for authorized narrow Ubuntu source-free checks and scoped
+  diagnosed corrections, and obtain fresh B before C. Freeze the meaningful
+  feasible resource comparison inventory before C; no measurements are authorized
+  by the proposed design. Actual-parent117/profile113 reassessment stays binding.
 - Cleanup result: no temporary assets/processes created by intake; no deletions.
-  Worktree and all durable evidence kept. Cleanup outcome for task completion pending.
+  A3 also reports no scratch/processes; only named durable tests/report created.
+  Worktree, task environments, fixtures and all durable evidence kept. Cleanup
+  outcome for task completion pending.
 
 ## PR presentation (root)
 

@@ -125,3 +125,56 @@ campaign-owned setup evidence and must not be charged here again.
 - Cumulative launches intake=1, A=2, B=0, C=0, D=0; reviews none. One A1
   procedural scope breach and A2 whole-file overread/corrections retained. All unexposed usage,
   cost and times unknown; human numeric limits not set.
+
+## A 3 — fresh static authoring with whole-file public permissions
+
+- Session `/root/issue_118/a118_static3`; fresh tool route `fork_turns="none"`,
+  requested `gpt-6.1-sol`, high; actual served attribution/metering unknown.
+- Launch approximately 2026-11-14 23:07 UTC. Clean initial commit
+  `cf2bb06b23671d5fb7cf7cfd079843aec862ae68`, tree
+  `0d9b86ef0952d25ce7362a3c89d095228fb6a048`. Preliminary baseline, no checkpoint.
+- Public packet SHA256
+  `cec9a3d50612f2f3d63e8ec1866089fc12c1325b26704f2dd8819f7f329b8d98`;
+  contract unchanged SHA256
+  `d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5`.
+- Exact tool arguments task_name `a118_static3`, settings above, sanitized public
+  packet/start/contract/accounting/hold/write-scope message only. A1/A2 raw
+  reports/conversations and coordinator/task/source state excluded. All named
+  allowed public files are whole-file permissions; PROJECT and mixed audit skill
+  entirely excluded, facts embedded. No unlisted link/import traversal.
+- Named writes `tests/test_preparation_harmonic_lifetimes.py` and detailed
+  `docs/reports/issue-118/a3.md`; separate final channel and outside retention
+  pointer `/workspace/work/campaign/evidence/118/a3-final.txt`.
+- TOTAL EXECUTION HOLD unchanged; static-only, no Python/checks/measurements,
+  shared-tool/cache changes, test execution or product writes. No passing evidence.
+- Unavailable optional controls/shared filesystem limits unchanged; no claim of
+  engineered isolation. Native CLI/login not applicable.
+- Status: static authorship complete, no excluded overread reported. New owned
+  test has 7 functions/18 parametrized examples, SHA256
+  `e62aae8ebfd1a88c2354a4868eebf3cdfd042e3814e8432e46fa6676b4c90629`;
+  detailed report SHA256
+  `bc0443f17502bafb6d2c56a671057c2caed21af93519246b3eacae5181270ef7`.
+  Coordinator independently captured these exact digests. No commands qualifying
+  behavior, formatting, types, resource performance or harness capability ran.
+  Accepted checkpoint none; full/summary baseline comparisons pending.
+  Cumulative launches intake=1, A=3,
+  B=0, C=0, D=0; completed independent reviews0. A1/A2 overreads/routing retained.
+  Unknown usage/cost/time remains unknown; human numeric limits not set.
+- A3 independently identified a S25 retained-proof gap. Coordinator added only
+  whole public test `tests/test_c_workflow_failures.py` via public addendum
+  `docs/packets/issue-118-a3-public-addendum.md`, SHA256
+  `86a1c4d465da36deb5150845510e8d26f61dc8a1d673ba6c2e1712bb383b4c35`.
+  No changed behavioral requirement, test ownership, product context, mandatory
+  failure interception or execution grant. Public fault controls permit a valid
+  no-interception alternative with honest proof limits. A reassesses independently.
+- Coordinator also supplied the exact root-approved Ubuntu Docker command prefix
+  for future commands; no host Debian execution/qualification and no current
+  execution grant. A was asked to record independent pre-discrepancy tolerance
+  derivations and compatibility-versus-accuracy proof limits. No tests ran.
+
+Root requested a concise immutable coordinator observation of the read-boundary
+mismatch before final candidate. It and its scoped tracked disposition were
+written using the format guide, outside A/B inputs. They introduce no policy or
+authority; D's packet explicitly defers all current-task lessons/dispositions
+until after independent assessment. Completion of this packet-routing correction
+will be evaluated after A3; it is distinct from scientific test acceptance.
