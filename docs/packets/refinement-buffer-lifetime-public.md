@@ -21,10 +21,10 @@ source line references, status links or task/report/history links in allowed
 files. Approved contracts specify meaning; no implementation is an oracle.
 
 1. This packet and `docs/contracts/refinement-buffer-lifetime-v1.md`.
-2. `AGENTS.md`, subject to this stricter blind allowlist. `docs/PROJECT.md` only the public boundary descriptions, Stack and structure, Commands and evidence, Required verification platform, Accepted fixed two-worker verification, Coverage policy and adoption provenance, and model/effort/role policy text. Skip its linked status/history/task/lesson/architecture references.
-3. `.agents/skills/test-work/SKILL.md` (A), `.agents/skills/review-work/SKILL.md` B section (B). Do not open `.agents/skills/test-audit/SKILL.md`: its only applicable public questions are reproduced here. Name the approved observable obligation; a credible wrong outcome; the distinct gap in stronger existing proof at the owning boundary; and whether a test demands a production seam no real caller needs. Exercise public production or real-caller boundaries. `docs/lessons/README.md` format guide only if recording an own observation; no lesson entries/dispositions/index/report reads. No lesson writes are owned by this packet: hand an observation to coordinator.
-4. `docs/contracts/c-equivalence-common-v1.md`, `docs/contracts/c-equivalence-preprocessing-v1.md`, `docs/contracts/c-equivalence-optical-transfer-v1.md` (public mathematical and record-construction expectations only, no link following); `docs/contracts/c-equivalence-carrier-modulation-v1.md`; `docs/contracts/c-equivalence-acquisition-modes-v1.md` (public entry/record conventions, section7 and relevant validation/representation equations); `docs/contracts/c-equivalence-workflow-v1.md`; `docs/contracts/reconstruction-memory-v1.md` sections1–4. Historical source pins in these documents are identity declarations, not read permission. RM84 private execution/history and resource experiment implementation are excluded.
-5. `docs/usage/c-parameter-estimation.md`, `docs/usage/c-workflow.md`, `docs/usage/reconstruction-summary.md`. Do not follow their task/evidence links. If another public construction contract is necessary, request an exact sanitized addition from coordinator; do not infer blanket linked-file access.
+2. `AGENTS.md`, subject to this stricter blind allowlist. Do not open `docs/PROJECT.md`; the applicable approved facts are reproduced below. No task/history/lesson/architecture link expansion is permitted.
+3. `.agents/skills/test-work/SKILL.md` (A), or `.agents/skills/review-work/SKILL.md` (B; only B mode applies, and other mode descriptions grant no inputs or authority). Do not open `.agents/skills/test-audit/SKILL.md`: its only applicable public questions are reproduced here. Name the approved observable obligation; a credible wrong outcome; the distinct gap in stronger existing proof at the owning boundary; and whether a test demands a production seam no real caller needs. Exercise public production or real-caller boundaries. No lesson files are inputs or owned outputs: hand an own observation to coordinator.
+4. Whole explicitly named public contracts: `docs/contracts/c-equivalence-common-v1.md`, `docs/contracts/c-equivalence-preprocessing-v1.md`, `docs/contracts/c-equivalence-optical-transfer-v1.md`, `docs/contracts/c-equivalence-carrier-modulation-v1.md`, `docs/contracts/c-equivalence-acquisition-modes-v1.md`, `docs/contracts/c-equivalence-workflow-v1.md`, `docs/contracts/reconstruction-memory-v1.md`. Historical source pins are identity declarations, not read permission. Do not follow any links. RM84 private execution/history and resource experiment implementation are excluded; its public contract grants no access to them or acceptance evidence for this task.
+5. No linked expansion, usage/status/architecture or unlisted public document reads. If another public construction contract is necessary, request an exact sanitized addition from coordinator; do not infer blanket linked-file access.
 6. Public-boundary expectation/test sources screened by coordinator: `tests/c_estimation_fixture.py`, `tests/test_c_estimation_search.py`, `tests/test_c_estimation_overlap.py`, `tests/test_c_estimation_boundary.py`, `tests/test_c_estimation_composition.py`. They are read-only public examples, not authoritative product outputs. No unlisted helper imports may be opened without an exact coordinator allowance. Existing summary tests are excluded because some sections contain implementation fault injection. Independently author compact/full fixtures from approved contracts.
 7. `scripts/source_free_check.py` is the permitted committed diagnostic entry point, not an implementation expectation source. Its committed diagnostic support may execute through that entry after grant; no blanket scripts/source read permission follows. Do not replace it with an arbitrary renderer.
 8. A's exact `tests/test_refinement_buffer_lifetime.py` and `tests/refinement_buffer_lifetime_fixture.py`; B additionally gets their frozen proposed revision/digests, requirement/example mapping and only coordinator-sanitized A evidence. Coordinator must name attachments and exact identities; none yet. No raw nonblind logs or coverage maps.
@@ -64,6 +64,43 @@ report integrity and all installed gates remain binding. No full-report source
 maps are blind inputs. Missing reports are pending. An uncovered branch alone
 commissions no test. Classify concrete behavior gaps, new meaning, product or
 measurement faults for coordinator routing without scope expansion.
+
+## Self-contained approved project facts
+
+SIMrecon is a functional Python/NumPy library with explicit array/value public
+boundaries. `prepare_bands` and `prepare_acquisition_bands` construct declared
+native quadratures; `declare_otf` constructs an explicit transfer;
+`estimate_parameters` returns complete estimator records. `reconstruct_workflow`
+composes declared preparation, estimation and known-parameter reconstruction;
+`reconstruct_summary` accepts the same public inputs/calculation and returns the
+approved lightweight projection. No retired scientific API, hidden alias,
+reconstruction CLI or new scientific mode is authorized. Named public contracts
+define exact shapes, units, records, errors and accepted mathematical mapping.
+
+Project pins are Python 3.13.12, uv 0.12.19, locked NumPy/SciPy dependencies and
+one isolated `.venv` per worktree; the campaign's prepared environment reports
+NumPy 2.5.3 and SciPy 1.18.1. Required qualification is Ubuntu 24.04 (campaign
+Ubuntu 24.04.5 container); macOS is optional. Source-free focused commands must
+use the granted pinned container route below. The canonical full-local gate is
+`make verify`, all 13 installed phases, on the exact clean candidate. Strict test
+discovery/outcome policy, fixed two-worker full-suite runner, native reports,
+wheel/import/audit and same-run mandatory M25 resource evidence remain binding.
+Those full gate/tool sources and reports are outside blind role inputs.
+
+Coverage policy is approved behavior coverage plus independent risk review.
+No line/statement/branch/combined percentage threshold is selected; percentages
+are advisory. Native statement/branch JSON/HTML and exact global/package/file
+integers remain required on Ubuntu, including never-imported owned Python and
+relevant subprocesses. Missing/malformed reports still fail. A maps approved
+behavior/risk, B independently audits it, D examines actual implementation risk.
+An uncovered branch alone grants no new test requirement or edit scope.
+
+Scientific A/B model choice is requested `gpt-6.1-sol` high, conservative pending
+broader scientific calibration; served attribution/metering is unknown unless
+observed. Full-local exact-candidate verification and fresh D acceptance precede
+publication; high-risk work has no CI-authoritative exception. Actual numeric
+human limits are not set; missing accounting stays unknown. Routine scoped role
+correction does not reset charges or require a document-approval checkpoint.
 
 ## Ownership and held execution
 
