@@ -1,13 +1,13 @@
 {
-  "baseline": "87163657dd4e43e98adbc64ef8eca268c033084c",
-  "cutoff": "2026-11-14T19:09:59.189458+00:00",
-  "method": "Incremental reconciliation of prior accepted 203-entry inventory plus four new lessons, not a completed native doctor or fresh full-backlog reanalysis. Prior states remain scoped; closed issues alone cause no resolution.",
+  "baseline": "836ec790aac55fb7fcdff8d51da1547091952b6e",
+  "cutoff": "2026-11-14T19:45:56.103425+00:00",
+  "method": "Incremental reconciliation of prior accepted 203-entry inventory plus five new lessons, including the CLOUD107 observation and scoped dispositions integrated from merged PR109. This is not a completed native doctor or fresh full-backlog reanalysis. Prior states and historical reviews retain their baseline and evidence limits; issue closure alone causes no resolution.",
   "prior_inventory": "docs/reports/lessons-doctor-2026-11-11/inventory.json",
   "counts": {
-    "no-action": 193,
-    "resolved": 12,
+    "no-action": 194,
+    "resolved": 13,
     "deferred": 1,
-    "tracked": 1
+    "tracked": 0
   },
   "buckets": {
     "B01": 17,
@@ -20,7 +20,7 @@
     "B08": 22,
     "B09": 14,
     "B10": 10,
-    "B11": 12
+    "B11": 13
   },
   "disposition_inputs": [
     {
@@ -116,6 +116,10 @@
       "sha256": "095a0a6ee1dce2394915f8d06a8a114a8b52538d92b0101c6573f92df0961a04"
     },
     {
+      "path": "docs/lessons/dispositions/20261114T181615Z-cloud107-coordinator-record-evidence-limits.md",
+      "sha256": "a6a06f87ec164db1d6ace548252162d44138779f9236e47db8621680c1d3ffa7"
+    },
+    {
       "path": "docs/lessons/dispositions/20261114T182704Z-lessons-doctor-02-coordinator-f003-stop.md",
       "sha256": "363438ebe3cf6d6d9be702462abbc48ecc11853fa7021ebd8d3c6c08561ebc42"
     },
@@ -130,6 +134,10 @@
     {
       "path": "docs/lessons/dispositions/20261114T190841Z-lessons-doctor-02-coordinator-f002-resolved.md",
       "sha256": "ac3884b2f6e832de27f8bedd0afd22814d238f714181a1c5986d696ce6bfc58c"
+    },
+    {
+      "path": "docs/lessons/dispositions/20261114T191207Z-cloud107-coordinator-reconcile-launch-investigation.md",
+      "sha256": "f49250af7166384c82253192dd6ae6227e4f066b30a43fab36d00dc697b68d2a"
     }
   ],
   "lessons": [
@@ -6683,24 +6691,33 @@
       "id": "20261113T214513Z-rm84-coordinator-cloud-native-role-readiness",
       "summary": "Reported CLI login did not establish cloud role readiness",
       "bucket": "B11",
-      "handling": "tracked",
+      "handling": "resolved",
       "finding": "RM84-F001",
-      "scope": "Native CLI login does not prove launch readiness. Existing #107 owns initialization/authentication/MCP investigation. The doctor skill is a current-session entry, not a fix for all native roles.",
-      "rationale": "Native CLI login does not prove launch readiness. Existing #107 owns initialization/authentication/MCP investigation. The doctor skill is a current-session entry, not a fix for all native roles.",
+      "scope": "RM84-F001 original investigation completion conditions only: classify initialization/authentication/MCP failures and demonstrate a supported fresh author plus independent reviewer path, with observable identities, failure handling and unchanged gates. Native CLI authentication, native delivery doctor execution and scientific qualification remain outside this resolution.",
+      "rationale": "Merged PR109 supplies separately classified failed native probes, a completed exact documentation artifact and fresh independent review through the supported tool route, plus qualified launch policy and completion evidence. Its scoped disposition explicitly supersedes the original investigation tracking; no resolution is inferred from issue closure or native login status.",
       "work_links": [
-        "https://github.com/david-hoffman/simrecon/issues/107"
+        "https://github.com/david-hoffman/simrecon/issues/107",
+        "https://github.com/david-hoffman/simrecon/pull/109",
+        "docs/tasks/cloud-role-launches.md"
       ],
       "source_sha256": "21e5b4cf292858b9d3b1fcd063f5d1238619cd94bb8ce8ff2c2ee394c3d06135",
-      "disposition": "docs/lessons/dispositions/20261113T214513Z-rm84-coordinator-track-cloud-native-role-readiness.md",
+      "disposition": "docs/lessons/dispositions/20261114T191207Z-cloud107-coordinator-reconcile-launch-investigation.md",
       "evidence": [
         "docs/lessons/20261113T214513Z-rm84-coordinator-cloud-native-role-readiness.md",
-        "docs/lessons/dispositions/20261113T214513Z-rm84-coordinator-track-cloud-native-role-readiness.md"
+        "docs/lessons/dispositions/20261113T214513Z-rm84-coordinator-track-cloud-native-role-readiness.md",
+        "docs/lessons/dispositions/20261114T191207Z-cloud107-coordinator-reconcile-launch-investigation.md",
+        "docs/reports/cloud-role-launches.md",
+        "docs/reports/cloud-role-launches/pilot-levels.md",
+        "docs/reports/lessons-doctor-2026-11-14/integration-109-evidence.json"
       ],
       "observation_confidence_original": "confirmed",
-      "reconciliation_basis": "Read newly integrated observation and its existing scoped disposition; inherited evidence limits preserved.",
-      "relationships": [],
-      "revisit": "As specified in the linked scoped disposition.",
-      "completion_conditions": "Existing disposition defines remaining/satisfied conditions."
+      "reconciliation_basis": "Read the merged PR109 observation, both CLOUD107 dispositions, original tracked completion conditions and launch report/pilot. The coordinator captured current PR109 completion evidence; the integrated PR111 candidate still requires its own fresh review and exact gate.",
+      "relationships": [
+        "Supersedes 20261113T214513Z-rm84-coordinator-track-cloud-native-role-readiness only for RM84-F001 original investigation completion conditions.",
+        "Supported also by 20261114T181615Z-cloud107-coordinator-launch-evidence-levels; CLOUD107-F001 no-action remains a separate claim."
+      ],
+      "revisit": "Coordinator revalidates native or doctor execution when required, material route/runtime/model/control changes, provider/account repair evidence, or contradicted capability/independence evidence; reuse #107 and the same finding scope without inferring native repair.",
+      "completion_conditions": "Satisfied for the investigation: separately classified native initialization/authentication/MCP failures; exact documentation pilot d2b544d18247fa45fcb21074a4fb9ecdaf6f594b1037caafc09893c68c6cdbd3 completed by a fresh tool author and accepted by a fresh independent reviewer; scoped failure/recovery guidance and unchanged gates. Native authentication remains unrepaired."
     },
     {
       "id": "20261114T062504Z-rm84-coordinator-native-backing-comparison",
@@ -6724,6 +6741,51 @@
       "relationships": [],
       "revisit": "As specified in the linked scoped disposition.",
       "completion_conditions": "Existing disposition defines remaining/satisfied conditions."
+    },
+    {
+      "id": "20261114T181615Z-cloud107-coordinator-launch-evidence-levels",
+      "summary": "Native failure and tool-session completion are different evidence",
+      "bucket": "B11",
+      "handling": "no-action",
+      "finding": "CLOUD107-F001",
+      "scope": "Evidence-level distinction only; the successful documentation pilot does not establish native authentication repair or general scientific capability.",
+      "rationale": "Reusable qualification knowledge with no newly diagnosed executable defect; retain the distinct native failure and completed tool-session evidence. The separate RM84-F001 investigation resolution is mapped below and does not replace this no-action scope.",
+      "work_links": [
+        "https://github.com/david-hoffman/simrecon/issues/107",
+        "https://github.com/david-hoffman/simrecon/pull/109",
+        "docs/tasks/cloud-role-launches.md"
+      ],
+      "source_sha256": "91600630f4c42e524fab4ba8e10549c63f608060ba60c823484dd413002e5f98",
+      "disposition": "docs/lessons/dispositions/20261114T181615Z-cloud107-coordinator-record-evidence-limits.md",
+      "evidence": [
+        "docs/lessons/20261114T181615Z-cloud107-coordinator-launch-evidence-levels.md",
+        "docs/lessons/dispositions/20261114T181615Z-cloud107-coordinator-record-evidence-limits.md",
+        "docs/lessons/dispositions/20261114T191207Z-cloud107-coordinator-reconcile-launch-investigation.md",
+        "docs/reports/cloud-role-launches.md",
+        "docs/reports/cloud-role-launches/pilot-levels.md",
+        "docs/reports/lessons-doctor-2026-11-14/integration-109-evidence.json"
+      ],
+      "observation_confidence_original": "confirmed",
+      "reconciliation_basis": "Read the fifth new source and both applicable scoped dispositions from merged PR109. Preserve CLOUD107-F001 knowledge handling and the distinct RM84-F001 completion mapping; no fresh full-backlog mechanism review.",
+      "relationships": [
+        "Related to RM84-F001; its investigation resolution supersedes only the original RM84 tracked completion conditions, not CLOUD107-F001 no-action."
+      ],
+      "revisit": "Coordinator revalidates affected evidence after changed runtime/route controls, native repair evidence or a capability contradiction.",
+      "completion_conditions": "None for the CLOUD107-F001 knowledge observation; native repair and general scientific capability are not asserted.",
+      "additional_claims": [
+        {
+          "finding": "RM84-F001",
+          "handling": "resolved",
+          "scope": "Original investigation completion conditions only; this source supplies repeated native failure classification and the exact successful documentation author/reviewer pilot.",
+          "disposition": "docs/lessons/dispositions/20261114T191207Z-cloud107-coordinator-reconcile-launch-investigation.md",
+          "canonical_source": "20261113T214513Z-rm84-coordinator-cloud-native-role-readiness",
+          "relationships": [
+            "Supersedes 20261113T214513Z-rm84-coordinator-track-cloud-native-role-readiness only for the original investigation conditions.",
+            "Does not supersede 20261114T181615Z-cloud107-coordinator-record-evidence-limits or change CLOUD107-F001 no-action."
+          ],
+          "limits": "Native authentication and the native delivery doctor path remain unrepaired; no scientific-role qualification or retroactive review acceptance follows."
+        }
+      ]
     }
   ],
   "observation_relationships": [
@@ -6748,5 +6810,7 @@
     }
   ],
   "initial_baseline": "4dcc50dd70da2f93b4a3360e0a4160144656b35a",
-  "source_cutoff": "2026-11-14T18:25:11.180430+00:00"
+  "source_cutoff": "2026-11-14T19:45:56.103425+00:00",
+  "previous_baseline": "87163657dd4e43e98adbc64ef8eca268c033084c",
+  "counting_method": "Count each source observation once using its primary handling and bucket. Additional finding scopes are mapped separately and do not add source counts; CLOUD107-F001 no-action and RM84-F001 resolved apply to distinct claims from the new CLOUD107 source."
 }
