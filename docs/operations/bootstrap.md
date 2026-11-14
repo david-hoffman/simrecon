@@ -178,7 +178,13 @@ keep their order and stop-on-failure behavior. Preserve its output/status.
 
 Use [environment diagnosis](environment.md#classifying-a-failed-attempt) for
 failures and [task recovery](task-recovery.md) for saved checkpoints. Preflight
-does not replace the [full verification gate](verification.md): all 13 phases,
+does not replace the [full verification gate](verification.md). On a minimal
+Ubuntu image, full verification additionally needs the distribution's
+`/usr/bin/python3`: an existing verifier regression exercises that native entry
+separately from the managed project interpreter. With package-install authority,
+run `sudo apt-get install --yes python3` before `make verify`; retain managed
+Python 3.13.12 for the project. This is not needed for bootstrap/preflight itself.
+All 13 phases,
 both wheels, audit, native coverage reports and same-run M25 with its
 33,554,432-byte limit remain required. CI repeats Ubuntu 24.04. Missing required
 platform evidence remains a gap; missing optional macOS evidence does not block

@@ -24,7 +24,10 @@ stage and charges below are historical.
 The November 14 PR refresh preserves the readiness behavior and tool pins,
 integrates current main, and updates active platform/launch/stage wording. The
 saved branch no longer exists, so the recovery recipe now fetches the exact
-commit explicitly. Fresh exercise, verification and independent review evidence
+commit explicitly. The fresh minimal-Ubuntu gate also identified the existing
+verifier regression's `/usr/bin/python3` prerequisite; the bootstrap guide now
+documents that additional requirement for full verification, separately from
+its successful managed-Python setup/preflight. Fresh exercise, verification and independent review evidence
 for this refresh are recorded outside the final candidate in the task's local
 evidence and PR appendix; historical results are not relabeled as new runs.
 
