@@ -9,7 +9,7 @@ from typing import Any
 import numpy as np
 
 from ..acquisition.declarations import RawAcquisition
-from ..acquisition.modes import AcquisitionBands
+from ..acquisition.modes import AcquisitionBands, _CompactBands
 from ..models import DatasetInfo
 from .config import _extent, _integer, _scalar
 from .identity import freeze_declarations
@@ -151,7 +151,7 @@ def select_specimen_channel(
     return data.transpose(tuple(axes.index(v) for v in target)), selected_channel, metadata
 
 
-def snapshot_raw_metadata(metadata: Any) -> Any:
+def snapshot_raw_metadata(metadata: Any, *, compact: bool = False) -> Any:
     """Check nominal command values and freeze the previously selected metadata.
 
     The workflow calls this after source geometry and backing-array checks;
@@ -164,7 +164,11 @@ def snapshot_raw_metadata(metadata: Any) -> Any:
         _extent(nominal.shape, nominal.dtype.itemsize)
         if not np.isfinite(nominal).all():
             raise_workflow_error("input", "invalid nominal command metadata")
-    return freeze_declarations(metadata, code="input")
+    return freeze_declarations(
+        metadata,
+        code="input",
+        path="source_declarations.raw_acquisition_metadata" if compact else None,
+    )
 
 
 def select_time_bands(bands: AcquisitionBands, time: int) -> AcquisitionBands:
@@ -204,4 +208,14 @@ def select_time_bands(bands: AcquisitionBands, time: int) -> AcquisitionBands:
         trace=tuple(
             replace(event, time_index=0) for event in bands.trace if event.time_index == time
         ),
+    )
+
+
+def select_compact_time_bands(bands: _CompactBands, time: int) -> _CompactBands:
+    """Select the same live numerical fields without reconstructing diagnostics."""
+    return replace(
+        bands,
+        quadratures=bands.quadratures[time : time + 1],
+        noise_variance_factors=bands.noise_variance_factors[time : time + 1],
+        input_shape=(1, *bands.input_shape[1:]),
     )

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 
@@ -21,10 +21,13 @@ from .drift import (
     signed_frequency_indices,
 )
 from .layout import (
+    _COMPACT_CAPTURE,
     REFERENCE,
     AcquisitionModeError,
     Array,
     ModeEvent,
+    _capture_policy,
+    _finish_owned,
     append,
     array_metadata,
     event,
@@ -35,7 +38,6 @@ from .layout import (
     literal,
     operation,
     output_extents,
-    owned,
     raw_images,
     raw_off,
     real_array,
@@ -88,6 +90,25 @@ class AcquisitionBands:
     lateral_zoom: float
     axial_zoom: int
     resolved_settings: tuple[tuple[str, Any], ...]
+    source_revision: str = "SVN307"
+    reference_sha256: tuple[tuple[str, str], ...] = REFERENCE
+
+
+@dataclass(frozen=True)
+class _CompactBands:
+    """Private computational bands plus already compact preparation evidence."""
+
+    quadratures: Array
+    noise_variance_factors: Array
+    input_shape: tuple[int, ...]
+    input_scale: float
+    acquisition_mode: str
+    dxy_um: float
+    dz_um: float
+    lateral_zoom: float
+    axial_zoom: int
+    preparation: tuple[tuple[str, Any], ...]
+    trace: tuple[ModeEvent, ...]
     source_revision: str = "SVN307"
     reference_sha256: tuple[tuple[str, str], ...] = REFERENCE
 
@@ -516,6 +537,82 @@ def prepare_acquisition_bands(
     docs/architecture/reconstruction-walkthrough.md#selected-acquisition-extensions
     docs/architecture/reconstruction-walkthrough.md#axes-units-and-fourier-conventions
     """
+    with _capture_policy(False):
+        return cast(
+            AcquisitionBands,
+            _prepare_acquisition_bands(
+                images,
+                acquisition_mode=acquisition_mode,
+                dxy_um=dxy_um,
+                dz_um=dz_um,
+                norders=norders,
+                background=background,
+                lateral_zoom=lateral_zoom,
+                axial_zoom=axial_zoom,
+                flatfield_slope=flatfield_slope,
+                exposure_background=exposure_background,
+                phases_rad=phases_rad,
+                phase_steps_rad=phase_steps_rad,
+                edge_pixels=edge_pixels,
+                equalize=equalize,
+                equalize_z=equalize_z,
+                equalize_time=equalize_time,
+                off_exposures=off_exposures,
+                combine_off_orders=combine_off_orders,
+                storage_order=storage_order,
+                drift_between=drift_between,
+                drift_within=drift_within,
+                fit_drift=fit_drift,
+                adjust_phases=adjust_phases,
+                drift_filter_fraction=drift_filter_fraction,
+                wavelength_nm=wavelength_nm,
+                numerical_aperture=numerical_aperture,
+                immersion_index=immersion_index,
+                header_timestamps=header_timestamps,
+                header_phases_rad=header_phases_rad,
+                linespacing_um=linespacing_um,
+                phase_start_angle_rad=phase_start_angle_rad,
+                negative_angle_step=negative_angle_step,
+            ),
+        )
+
+
+def _prepare_acquisition_bands(
+    images: Any,
+    *,
+    acquisition_mode: str,
+    dxy_um: Any,
+    dz_um: Any,
+    norders: Any,
+    background: Any,
+    lateral_zoom: Any,
+    axial_zoom: Any,
+    flatfield_slope: Any = None,
+    exposure_background: Any = None,
+    phases_rad: Any = None,
+    phase_steps_rad: Any = None,
+    edge_pixels: Any = 10,
+    equalize: bool = True,
+    equalize_z: bool = False,
+    equalize_time: bool = False,
+    off_exposures: Any = None,
+    combine_off_orders: Any = None,
+    storage_order: str = "direction-major",
+    drift_between: bool = False,
+    drift_within: bool = False,
+    fit_drift: bool = False,
+    adjust_phases: bool = False,
+    drift_filter_fraction: Any = 0.0,
+    wavelength_nm: Any = None,
+    numerical_aperture: Any = None,
+    immersion_index: Any = None,
+    header_timestamps: Any = None,
+    header_phases_rad: Any = None,
+    linespacing_um: Any = None,
+    phase_start_angle_rad: Any = 1.57193,
+    negative_angle_step: bool = False,
+) -> AcquisitionBands | _CompactBands:
+    """Shared scientific core; the caller chooses only diagnostic capture."""
     with operation():
         images, shape = raw_images(images)
         times, directions, phases, nz, ny, nx = shape
@@ -945,23 +1042,79 @@ def prepare_acquisition_bands(
             negative_angle_step=bool(negative_angle_step),
             n_off_exposures=n,
         )
+        if _COMPACT_CAPTURE.get():
+            # Only quadratures/noise remain live for downstream computation.
+            # Diagnostic-only arrays are checked in the same finish order as
+            # _finish_owned(), then hashed directly instead of copied into snapshots.
+            from ..workflow.summary import project
+
+            q_result = _finish_owned(quadratures, writable=True)
+            noise_result = _finish_owned(noise, writable=True)
+            values = dict(
+                noise_variance_factors=noise_result,
+                separation_matrices=matrices,
+                phase_angles_rad=phase_angles,
+                phase_policies=tuple(policies),
+                frame_sums=sums,
+                equalization_gains=gains,
+                off_frame_sums=off_sums,
+                off_equalization_gains=off_gains,
+                off_quadratures=off_q,
+                background_after=bmap,
+                slope_after=smap,
+                sentinel_frames=tuple(camera.sentinels),
+                between_displacements_pixels=displacements,
+                exposure_displacements_pixels=exposure_displacements,
+                header_timestamps_after=clock,
+                input_shape=shape,
+                input_scale=alpha,
+                acquisition_mode=acquisition_mode,
+                storage_order=order,
+                dxy_um=dxy,
+                dz_um=dz,
+                lateral_zoom=lateral,
+                axial_zoom=axial,
+                resolved_settings=tuple(resolved.items()),
+                source_revision="SVN307",
+                reference_sha256=REFERENCE,
+            )
+            projection = []
+            for name, value in values.items():
+                if isinstance(value, np.ndarray) and name != "noise_variance_factors":
+                    extent(value.shape, value.dtype.itemsize)
+                    finite(value, "result")
+                if name != "off_quadratures":
+                    projection.append((name, project(value, "preparation." + name)))
+            return _CompactBands(
+                q_result,
+                noise_result,
+                shape,
+                alpha,
+                acquisition_mode,
+                dxy,
+                dz,
+                lateral,
+                axial,
+                tuple(projection),
+                tuple(trace),
+            )
         return AcquisitionBands(
-            owned(quadratures, writable=True),
-            owned(noise, writable=True),
-            owned(matrices),
-            owned(phase_angles),
+            _finish_owned(quadratures, writable=True),
+            _finish_owned(noise, writable=True),
+            _finish_owned(matrices),
+            _finish_owned(phase_angles),
             tuple(policies),
-            owned(sums),
-            owned(gains),
-            None if off_sums is None else owned(off_sums),
-            None if off_gains is None else owned(off_gains),
-            None if off_q is None else owned(off_q),
-            owned(bmap),
-            owned(smap),
+            _finish_owned(sums),
+            _finish_owned(gains),
+            None if off_sums is None else _finish_owned(off_sums),
+            None if off_gains is None else _finish_owned(off_gains),
+            None if off_q is None else _finish_owned(off_q),
+            _finish_owned(bmap),
+            _finish_owned(smap),
             tuple(camera.sentinels),
-            owned(displacements),
-            owned(exposure_displacements),
-            None if clock is None else owned(clock),
+            _finish_owned(displacements),
+            _finish_owned(exposure_displacements),
+            None if clock is None else _finish_owned(clock),
             tuple(trace),
             shape,
             alpha,

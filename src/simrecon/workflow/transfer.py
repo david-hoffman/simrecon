@@ -292,6 +292,8 @@ def validate_transfer_inputs(
     optics: dict[str, Any],
     mode: str,
     orders: int,
+    *,
+    compact: bool = False,
 ) -> _TransferInputs:
     """Validate the selected transfer alternative before copies, hashes or stages.
 
@@ -326,7 +328,12 @@ def validate_transfer_inputs(
         settings = _calibration_settings(cal["settings"], raw.shape, optics)
         claim = validate_source_identity(cal["identity"], "calibration.identity", optics)
         return _TransferInputs(
-            "raw-beads", raw, settings, calibration_identity=freeze_declarations(claim)
+            "raw-beads",
+            raw,
+            settings,
+            calibration_identity=freeze_declarations(
+                claim, path="source_declarations.calibration_identity" if compact else None
+            ),
         )
     else:
         if _file_input(transfer):
@@ -354,7 +361,10 @@ def validate_transfer_inputs(
             )
             return replace(
                 _decoded_inputs(transfer, mode, orders),
-                transfer_identity=freeze_declarations(table_identity),
+                transfer_identity=freeze_declarations(
+                    table_identity,
+                    path="source_declarations.transfer_identity" if compact else None,
+                ),
             )
         else:
             raise_workflow_error("input", "invalid transfer value record", "transfer")
@@ -364,7 +374,13 @@ def validate_transfer_inputs(
     if mode == "2d" and k != 1:
         raise_workflow_error("selection", "declared true2d requires transfer K=1", "transfer")
     return _TransferInputs(
-        selection, value, {}, transfer_identity=freeze_declarations(table_identity)
+        selection,
+        value,
+        {},
+        transfer_identity=freeze_declarations(
+            table_identity,
+            path="source_declarations.transfer_identity" if compact else None,
+        ),
     )
 
 
