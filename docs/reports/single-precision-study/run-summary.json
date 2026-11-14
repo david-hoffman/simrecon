@@ -1,0 +1,1388 @@
+[
+  {
+    "manifest_sha256": "0c0224a4ac32b5e8de2f57a373032c1fe87cb8f5a770b0d59d60032ed127b867",
+    "case": "camera",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0033737249998466723,
+      "min": 0.0033733700001903344,
+      "max": 0.003490646000045672
+    },
+    "whole_process_peak_bytes": {
+      "median": 79036416,
+      "min": 79028224,
+      "max": 79392768
+    }
+  },
+  {
+    "manifest_sha256": "0c0224a4ac32b5e8de2f57a373032c1fe87cb8f5a770b0d59d60032ed127b867",
+    "case": "off-combination",
+    "profile": "supplement",
+    "attempts": 1,
+    "outcomes": [
+      {
+        "status": "failed",
+        "count": 1
+      }
+    ],
+    "seconds": {
+      "median": 0.006111972000098831,
+      "min": 0.006111972000098831,
+      "max": 0.006111972000098831
+    },
+    "whole_process_peak_bytes": {
+      "median": 78966784,
+      "min": 78966784,
+      "max": 78966784
+    }
+  },
+  {
+    "manifest_sha256": "0c0224a4ac32b5e8de2f57a373032c1fe87cb8f5a770b0d59d60032ed127b867",
+    "case": "scalar-recombination",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.058944086999872525,
+      "min": 0.05319448700015528,
+      "max": 0.07457373900001585
+    },
+    "whole_process_peak_bytes": {
+      "median": 78254080,
+      "min": 77828096,
+      "max": 78651392
+    }
+  },
+  {
+    "manifest_sha256": "48a52ef5b67abc518ab8065c2a6ca162d5f158f137760655fcbddaec34d2f9a5",
+    "case": "workflow-full",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.011995649000027697,
+      "min": 0.00979568399998243,
+      "max": 0.014948337000078027
+    },
+    "whole_process_peak_bytes": {
+      "median": 79831040,
+      "min": 79622144,
+      "max": 80195584
+    }
+  },
+  {
+    "manifest_sha256": "48a52ef5b67abc518ab8065c2a6ca162d5f158f137760655fcbddaec34d2f9a5",
+    "case": "workflow-summary",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.012998238999898604,
+      "min": 0.00862592799990125,
+      "max": 0.021644026999865673
+    },
+    "whole_process_peak_bytes": {
+      "median": 79638528,
+      "min": 79441920,
+      "max": 80199680
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M01",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.016547135000109847,
+      "min": 0.014699920999873939,
+      "max": 0.02308243700008461
+    },
+    "whole_process_peak_bytes": {
+      "median": 61870080,
+      "min": 61812736,
+      "max": 61972480
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M02-signed",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0014504480000141484,
+      "min": 0.001172537000002194,
+      "max": 0.0014524130001518643
+    },
+    "whole_process_peak_bytes": {
+      "median": 62021632,
+      "min": 61972480,
+      "max": 62144512
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M02-signed",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.001530968999986726,
+      "min": 0.0012125089999699412,
+      "max": 0.0031930430000102206
+    },
+    "whole_process_peak_bytes": {
+      "median": 62132224,
+      "min": 62087168,
+      "max": 62173184
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M02-signed",
+    "profile": "public-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.1772603839999647,
+      "min": 0.15232489699997132,
+      "max": 0.19100073099980364
+    },
+    "whole_process_peak_bytes": {
+      "median": 81063936,
+      "min": 80830464,
+      "max": 81113088
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-carrier-negative",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0011229689998799586,
+      "min": 0.001023826000164263,
+      "max": 0.0011919040000520909
+    },
+    "whole_process_peak_bytes": {
+      "median": 62111744,
+      "min": 61366272,
+      "max": 62353408
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-carrier-negative",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0013267389999782608,
+      "min": 0.0012580739999066282,
+      "max": 0.004486880000058591
+    },
+    "whole_process_peak_bytes": {
+      "median": 62005248,
+      "min": 61878272,
+      "max": 62271488
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-carrier-negative",
+    "profile": "public-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.07582074700007979,
+      "min": 0.06700519499986513,
+      "max": 0.08503412200002458
+    },
+    "whole_process_peak_bytes": {
+      "median": 80932864,
+      "min": 80384000,
+      "max": 81072128
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-carrier-positive",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0012687210000876803,
+      "min": 0.0011424629999510216,
+      "max": 0.0013403569998899911
+    },
+    "whole_process_peak_bytes": {
+      "median": 61992960,
+      "min": 61775872,
+      "max": 62054400
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-carrier-positive",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0011118540001007204,
+      "min": 0.0010434450000502693,
+      "max": 0.0012720699999135832
+    },
+    "whole_process_peak_bytes": {
+      "median": 61804544,
+      "min": 61075456,
+      "max": 62124032
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-carrier-positive",
+    "profile": "public-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.07176896800001487,
+      "min": 0.06556768300015392,
+      "max": 0.11245165600007567
+    },
+    "whole_process_peak_bytes": {
+      "median": 81088512,
+      "min": 80052224,
+      "max": 81260544
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-zero-mod",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0011049150000417285,
+      "min": 0.0010614210000312596,
+      "max": 0.0011394269999982498
+    },
+    "whole_process_peak_bytes": {
+      "median": 61927424,
+      "min": 61923328,
+      "max": 62009344
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-zero-mod",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0010693229999105824,
+      "min": 0.001016495000158102,
+      "max": 0.001152025000010326
+    },
+    "whole_process_peak_bytes": {
+      "median": 62009344,
+      "min": 61747200,
+      "max": 62148608
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M03-zero-mod",
+    "profile": "public-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.07033815699992374,
+      "min": 0.06879977199992027,
+      "max": 0.09889901299993653
+    },
+    "whole_process_peak_bytes": {
+      "median": 80916480,
+      "min": 80101376,
+      "max": 81362944
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M04-directions",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.012054208000108702,
+      "min": 0.011505048999879364,
+      "max": 0.013376956999991307
+    },
+    "whole_process_peak_bytes": {
+      "median": 61939712,
+      "min": 61841408,
+      "max": 62218240
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M04-directions",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.014476367000042956,
+      "min": 0.012506987999813646,
+      "max": 0.01598515899991071
+    },
+    "whole_process_peak_bytes": {
+      "median": 62087168,
+      "min": 61964288,
+      "max": 62152704
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M05-power-100",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.001364127999977427,
+      "min": 0.001076895999858607,
+      "max": 0.0014044590000139578
+    },
+    "whole_process_peak_bytes": {
+      "median": 62005248,
+      "min": 61943808,
+      "max": 62222336
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M05-power-100",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.001506098999925598,
+      "min": 0.001327683999988949,
+      "max": 0.0017085750000660482
+    },
+    "whole_process_peak_bytes": {
+      "median": 62099456,
+      "min": 62087168,
+      "max": 62099456
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M05-power0",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.002090128999952867,
+      "min": 0.0012241080000876536,
+      "max": 0.002221199000132401
+    },
+    "whole_process_peak_bytes": {
+      "median": 61943808,
+      "min": 61374464,
+      "max": 61997056
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M05-power0",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0010676690001218958,
+      "min": 0.001065085999925941,
+      "max": 0.0012695600000824925
+    },
+    "whole_process_peak_bytes": {
+      "median": 62033920,
+      "min": 61808640,
+      "max": 62226432
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M05-power100",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0012584090000018477,
+      "min": 0.0011415030000989645,
+      "max": 0.0012822280000364117
+    },
+    "whole_process_peak_bytes": {
+      "median": 62144512,
+      "min": 62017536,
+      "max": 62214144
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M05-power100",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.001516451000043162,
+      "min": 0.0013132609999502165,
+      "max": 0.004394011000158571
+    },
+    "whole_process_peak_bytes": {
+      "median": 61759488,
+      "min": 61075456,
+      "max": 62087168
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M06-exact-cancel",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0010966439999720023,
+      "min": 0.0010445880000133911,
+      "max": 0.0011970900000051188
+    },
+    "whole_process_peak_bytes": {
+      "median": 62066688,
+      "min": 61882368,
+      "max": 62074880
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M06-exact-cancel",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0010585709999304527,
+      "min": 0.0009450479999486561,
+      "max": 0.0010592160001579032
+    },
+    "whole_process_peak_bytes": {
+      "median": 62144512,
+      "min": 62091264,
+      "max": 62160896
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M06-exact-cancel",
+    "profile": "public-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.06729479599994193,
+      "min": 0.06613454400007868,
+      "max": 0.07332870299978822
+    },
+    "whole_process_peak_bytes": {
+      "median": 81117184,
+      "min": 80928768,
+      "max": 81260544
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M06-near-cancel",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0009337880001112353,
+      "min": 0.0009128419999342441,
+      "max": 0.0009716609999941284
+    },
+    "whole_process_peak_bytes": {
+      "median": 62029824,
+      "min": 61927424,
+      "max": 62218240
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M06-near-cancel",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0009575629999289959,
+      "min": 0.0008666969999922003,
+      "max": 0.0009666680000464112
+    },
+    "whole_process_peak_bytes": {
+      "median": 61976576,
+      "min": 61952000,
+      "max": 62099456
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M06-near-cancel",
+    "profile": "public-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.09446679000006952,
+      "min": 0.06322819299998628,
+      "max": 0.11150228800011064
+    },
+    "whole_process_peak_bytes": {
+      "median": 81018880,
+      "min": 80982016,
+      "max": 81031168
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M07",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0026309290001336194,
+      "min": 0.0009136170001511346,
+      "max": 0.0036281560001043545
+    },
+    "whole_process_peak_bytes": {
+      "median": 62566400,
+      "min": 62509056,
+      "max": 62570496
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M08-M09",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0005950300001131836,
+      "min": 0.0005144360000031156,
+      "max": 0.0006410290000076202
+    },
+    "whole_process_peak_bytes": {
+      "median": 61034496,
+      "min": 60751872,
+      "max": 61345792
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M14-M18",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.00023657899987483688,
+      "min": 0.00021978699987812433,
+      "max": 0.00039596300007360696
+    },
+    "whole_process_peak_bytes": {
+      "median": 60960768,
+      "min": 60846080,
+      "max": 61169664
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M16-times",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.014395990000139136,
+      "min": 0.012966125000048123,
+      "max": 0.016868409000153406
+    },
+    "whole_process_peak_bytes": {
+      "median": 61849600,
+      "min": 61485056,
+      "max": 62140416
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M16-times",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.013879622999866115,
+      "min": 0.012669789000028686,
+      "max": 0.026086494000082894
+    },
+    "whole_process_peak_bytes": {
+      "median": 62107648,
+      "min": 61956096,
+      "max": 62111744
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M19-spatial32",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.013500972999963778,
+      "min": 0.010692451000068104,
+      "max": 0.01688959300008719
+    },
+    "whole_process_peak_bytes": {
+      "median": 63172608,
+      "min": 63004672,
+      "max": 63291392
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M19-spatial32",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.013958217999970657,
+      "min": 0.011633428000095591,
+      "max": 0.026042094000104044
+    },
+    "whole_process_peak_bytes": {
+      "median": 63893504,
+      "min": 63856640,
+      "max": 63926272
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M19-spatial64",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.02204503799998747,
+      "min": 0.015700917000003756,
+      "max": 0.022914140000011685
+    },
+    "whole_process_peak_bytes": {
+      "median": 65921024,
+      "min": 65810432,
+      "max": 66015232
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M19-spatial64",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.020875665000176014,
+      "min": 0.02023316600002545,
+      "max": 0.03768394899998384
+    },
+    "whole_process_peak_bytes": {
+      "median": 68984832,
+      "min": 68771840,
+      "max": 69074944
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M20-direction1",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.003785966999885204,
+      "min": 0.00313531899996633,
+      "max": 0.00414996900008191
+    },
+    "whole_process_peak_bytes": {
+      "median": 62754816,
+      "min": 62689280,
+      "max": 63111168
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M20-direction1",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0045053310000184865,
+      "min": 0.003442321999955311,
+      "max": 0.005408578000015041
+    },
+    "whole_process_peak_bytes": {
+      "median": 63053824,
+      "min": 62988288,
+      "max": 63578112
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M20-native2d",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.007966796000346221,
+      "min": 0.007590775000153371,
+      "max": 0.008905066999886913
+    },
+    "whole_process_peak_bytes": {
+      "median": 62423040,
+      "min": 62009344,
+      "max": 62697472
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M20-native2d",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.008746908999910374,
+      "min": 0.00799988199969448,
+      "max": 0.009237077000307181
+    },
+    "whole_process_peak_bytes": {
+      "median": 62574592,
+      "min": 62410752,
+      "max": 62640128
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M20-times2",
+    "profile": "mixed",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.018100319000041054,
+      "min": 0.017775424000092244,
+      "max": 0.028878284000029453
+    },
+    "whole_process_peak_bytes": {
+      "median": 63590400,
+      "min": 63234048,
+      "max": 63963136
+    }
+  },
+  {
+    "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+    "case": "M20-times2",
+    "profile": "prototype-double",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.02018320399974982,
+      "min": 0.01994780199993329,
+      "max": 0.023348301000169158
+    },
+    "whole_process_peak_bytes": {
+      "median": 65417216,
+      "min": 64860160,
+      "max": 65548288
+    }
+  },
+  {
+    "manifest_sha256": "878ac4d7a21bac1fc5b14f20c4a24a1368b3c9252bc4c9479bfe55c8bd5c4bc8",
+    "case": "cubic",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.012171956000202044,
+      "min": 0.010815144000162036,
+      "max": 0.015061925000054543
+    },
+    "whole_process_peak_bytes": {
+      "median": 81416192,
+      "min": 80965632,
+      "max": 81633280
+    }
+  },
+  {
+    "manifest_sha256": "878ac4d7a21bac1fc5b14f20c4a24a1368b3c9252bc4c9479bfe55c8bd5c4bc8",
+    "case": "off-combination",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.005575613000019075,
+      "min": 0.005250779000107286,
+      "max": 0.007670043999951304
+    },
+    "whole_process_peak_bytes": {
+      "median": 78700544,
+      "min": 78499840,
+      "max": 78811136
+    }
+  },
+  {
+    "manifest_sha256": "878ac4d7a21bac1fc5b14f20c4a24a1368b3c9252bc4c9479bfe55c8bd5c4bc8",
+    "case": "ties-reciprocal",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.012675463000050513,
+      "min": 0.009214842999881512,
+      "max": 0.014168413000106739
+    },
+    "whole_process_peak_bytes": {
+      "median": 79163392,
+      "min": 78827520,
+      "max": 79417344
+    }
+  },
+  {
+    "manifest_sha256": "878ac4d7a21bac1fc5b14f20c4a24a1368b3c9252bc4c9479bfe55c8bd5c4bc8",
+    "case": "workflow-full",
+    "profile": "supplement",
+    "attempts": 1,
+    "outcomes": [
+      {
+        "status": "failed",
+        "count": 1
+      }
+    ],
+    "seconds": {
+      "median": 0.009124307999854864,
+      "min": 0.009124307999854864,
+      "max": 0.009124307999854864
+    },
+    "whole_process_peak_bytes": {
+      "median": 79994880,
+      "min": 79994880,
+      "max": 79994880
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "camera-off",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "failed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.003176043999928879,
+      "min": 0.0019110650000584428,
+      "max": 0.003234459000168499
+    },
+    "whole_process_peak_bytes": {
+      "median": 78229504,
+      "min": 78049280,
+      "max": 78659584
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "cubic",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "failed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.005256615999996939,
+      "min": 0.0027992780001113715,
+      "max": 0.005316800999935367
+    },
+    "whole_process_peak_bytes": {
+      "median": 78753792,
+      "min": 78622720,
+      "max": 78888960
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "fft-interfaces",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.001651550000133284,
+      "min": 0.0015466949998881319,
+      "max": 0.0024863030000688013
+    },
+    "whole_process_peak_bytes": {
+      "median": 79400960,
+      "min": 78696448,
+      "max": 79450112
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "native2d-layouts",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.004008691000080944,
+      "min": 0.002279704000102356,
+      "max": 0.008126554000000397
+    },
+    "whole_process_peak_bytes": {
+      "median": 79355904,
+      "min": 79282176,
+      "max": 79486976
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "phase-designs",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0021652960001574684,
+      "min": 0.0017416580001281545,
+      "max": 0.002504516999806583
+    },
+    "whole_process_peak_bytes": {
+      "median": 79659008,
+      "min": 79405056,
+      "max": 80015360
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "scalar-filter",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.031799494000097184,
+      "min": 0.027431297000021004,
+      "max": 0.032561686000008194
+    },
+    "whole_process_peak_bytes": {
+      "median": 78278656,
+      "min": 78217216,
+      "max": 78422016
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "search-seed0",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.05107549500007735,
+      "min": 0.04367919600008463,
+      "max": 0.07374578600001769
+    },
+    "whole_process_peak_bytes": {
+      "median": 81551360,
+      "min": 80900096,
+      "max": 81600512
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "search-seed3",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.09316294299992478,
+      "min": 0.09221999800001868,
+      "max": 0.09638726299999689
+    },
+    "whole_process_peak_bytes": {
+      "median": 82079744,
+      "min": 81846272,
+      "max": 82317312
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "search-tie",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "failed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.00649928099983299,
+      "min": 0.0037646260000201437,
+      "max": 0.012933607000150005
+    },
+    "whole_process_peak_bytes": {
+      "median": 79560704,
+      "min": 79458304,
+      "max": 79765504
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "transfer",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "completed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.0012176779998753773,
+      "min": 0.0011670279998270416,
+      "max": 0.0012315159999616299
+    },
+    "whole_process_peak_bytes": {
+      "median": 78708736,
+      "min": 78651392,
+      "max": 78888960
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "workflow-full",
+    "profile": "supplement",
+    "attempts": 3,
+    "outcomes": [
+      {
+        "status": "failed",
+        "count": 3
+      }
+    ],
+    "seconds": {
+      "median": 0.00569888599989099,
+      "min": 0.004336979000072461,
+      "max": 0.01479449199996452
+    },
+    "whole_process_peak_bytes": {
+      "median": 78585856,
+      "min": 78422016,
+      "max": 78827520
+    }
+  },
+  {
+    "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+    "case": "workflow-summary",
+    "profile": "supplement",
+    "attempts": 2,
+    "outcomes": [
+      {
+        "status": "failed",
+        "count": 2
+      }
+    ],
+    "seconds": {
+      "median": 0.008695178499920075,
+      "min": 0.0042562629998883494,
+      "max": 0.013134093999951801
+    },
+    "whole_process_peak_bytes": {
+      "median": 78524416,
+      "min": 78508032,
+      "max": 78540800
+    }
+  }
+]

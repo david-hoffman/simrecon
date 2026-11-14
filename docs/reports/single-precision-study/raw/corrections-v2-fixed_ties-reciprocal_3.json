@@ -1,0 +1,532 @@
+{
+  "case": "ties-reciprocal",
+  "repeat": 3,
+  "argv": [
+    "docs/reports/single-precision-study/corrections_v2.py",
+    "run",
+    "--case",
+    "ties-reciprocal",
+    "--repeat",
+    "3"
+  ],
+  "environment": {
+    "executable": "/workspace/work/issue-112/.venv/bin/python",
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "numpy_file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/numpy/__init__.py",
+    "scipy_file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/scipy/__init__.py",
+    "backend": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.34.106.0\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.34.106.0\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.3.0\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-h653xs07/bin/python\n  version: '3.13'\nSIMD Extensions:\n  baseline:\n  - X86_V2\n  found:\n  - X86_V3\n  - X86_V4\n  - AVX512_ICL\n  not found:\n  - AVX512_SPR\n\nBuild Dependencies:\n  blas:\n    cython blas ilp64: false\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.31.dev DYNAMIC_ARCH NO_AFFINITY SkylakeX\n      MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.31.dev\n  lapack:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.31.dev DYNAMIC_ARCH NO_AFFINITY SkylakeX\n      MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.31.dev\n  pybind11:\n    detection method: config-tool\n    include directory: unknown\n    name: pybind11\n    version: 3.0.4\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.9\n  fortran:\n    commands: gfortran\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  pythran:\n    include directory: ../../../tmp/build-env-9z43kfq4/lib/python3.13/site-packages/pythran\n    version: 0.19.0\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  cross-compiled: false\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-9z43kfq4/bin/python\n  version: '3.13'\n\n",
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "allocator": {
+      "LD_PRELOAD": null,
+      "PYTHONMALLOC": null,
+      "MALLOC_ARENA_MAX": null
+    },
+    "host_meminfo": "MemTotal:       18440100 kB\nMemFree:        16989460 kB\nMemAvailable:   17351468 kB\nBuffers:           34956 kB\nCached:           532844 kB\nSwapCached:            0 kB\nActive:           192108 kB\nInactive:         486608 kB\nActive(anon):        264 kB\nInactive(anon):   140716 kB\nActive(file):     191844 kB\nInactive(file):   345892 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:             64880 kB\nWriteback:             0 kB\nAnonPages:        140724 kB\nMapped:           159184 kB\nShmem:               180 kB\nKReclaimable:     176284 kB\nSlab:             231588 kB\nSReclaimable:     176284 kB\nSUnreclaim:        55304 kB\nKernelStack:        3504 kB\nPageTables:         4332 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:    1000196 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5876 kB\nVmallocChunk:          0 kB\nPercpu:             1440 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      159744 kB\nDirectMap2M:     7696384 kB\nDirectMap1G:    36700160 kB\n",
+    "cpu": "processor\t: 0\nvendor_id\t: GenuineIntel\ncpu family\t: 6\nmodel\t\t: 207\nmodel name\t: INTEL(R) XEON(R) PLATINUM 8573C\nstepping\t: 2\nmicrocode\t: 0x1\ncpu MHz\t\t: 2300.000\ncache size\t: 266240 KB\nphysical id\t: 0\nsiblings\t: 5\ncore id\t\t: 0\ncpu cores\t: 5\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 28\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm arch_capabilities\nbugs\t\t: spectre_v1 spectre_v2 spec_store_bypass swapgs taa retbleed bhi spectre_v2_user its\nbogomips\t: 4600.00\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 46 bits physical, 57 bits virtual\npower management:",
+    "cpu_count": 5,
+    "cgroup": {
+      "memory.max": "17179869184\n",
+      "memory.current": "874471424\n",
+      "memory.peak": "1693474816\n",
+      "memory.swap.max": "max\n",
+      "memory.swap.current": "0\n",
+      "cpu.max": "400000 100000\n",
+      "pids.current": "109\n"
+    },
+    "proc_status": "Name:\tpython\nUmask:\t0000\nState:\tR (running)\nTgid:\t5265\nNgid:\t0\nPid:\t5265\nPPid:\t0\nTracerPid:\t0\nUid:\t1000\t1000\t1000\t1000\nGid:\t1000\t1000\t1000\t1000\nFDSize:\t64\nGroups:\t1000 \nNStgid:\t5265\nNSpid:\t5265\nNSpgid:\t5265\nNSsid:\t5265\nKthread:\t0\nVmPeak:\t  243504 kB\nVmSize:\t  243504 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   76004 kB\nVmRSS:\t   76004 kB\nRssAnon:\t   39008 kB\nRssFile:\t   36996 kB\nRssShmem:\t       0 kB\nVmData:\t  110348 kB\nVmStk:\t     132 kB\nVmExe:\t   26340 kB\nVmLib:\t   71976 kB\nVmPTE:\t     328 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/71955\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000001001000\nSigCgt:\t0000000000000002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t00000000a80425fb\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t2\nSeccomp_filters:\t2\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t1f\nCpus_allowed_list:\t0-4\nMems_allowed:\t00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t10\nnonvoluntary_ctxt_switches:\t6\n",
+    "pid": 5265,
+    "git_head": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": 0,
+      "stdout": "b344e41a8b52de76d7cbbf8450319893904c3b8f\n",
+      "stderr": ""
+    },
+    "tree": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "status": 0,
+      "stdout": "01eb11ff48e022469f88fd6553b8cb3771768347\n",
+      "stderr": ""
+    },
+    "dirty": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain=v1"
+      ],
+      "status": 0,
+      "stdout": "?? docs/contracts/single-precision-study-v1.md\n?? docs/packets/precision-112/\n?? docs/reports/single-precision-study/\n?? docs/tasks/single-precision-study.md\n?? work/\n",
+      "stderr": ""
+    },
+    "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lock_sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "uv": {
+      "argv": [
+        "uv",
+        "--version"
+      ],
+      "status": 0,
+      "stdout": "uv 0.12.19 (x86_64-unknown-linux-gnu)\n",
+      "stderr": ""
+    },
+    "shared_interference": "exclusive coordinator window; unrelated host workload unknown",
+    "backend_workspace": "unknown",
+    "allocator_version": [
+      "glibc",
+      "2.39"
+    ],
+    "resource_native": 75944,
+    "rss_native_unit": "Linux KiB",
+    "rss_conversion": 1024
+  },
+  "script_sha256": "bbeb4e3f276d039ff7a514c76240892b1e9c6e8ba1a67cc28f3c68064fd988e7",
+  "manifest_sha256": "878ac4d7a21bac1fc5b14f20c4a24a1368b3c9252bc4c9479bfe55c8bd5c4bc8",
+  "precall_ru_maxrss_KiB": 75944,
+  "status": "completed",
+  "result": [
+    {
+      "profile": "height-one",
+      "coarse": {
+        "overlap_index": 0,
+        "correlation_complex": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              7.999999999999998,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "correlation_power": [
+          [
+            0.0,
+            63.99999999999997,
+            0.0,
+            0.0
+          ]
+        ],
+        "integer_peak_xy": [
+          1,
+          0
+        ],
+        "x_neighbors": [
+          0.0,
+          63.99999999999997,
+          0.0
+        ],
+        "y_neighbors": [
+          63.99999999999997,
+          63.99999999999997,
+          63.99999999999997
+        ],
+        "x_offset": 0.0,
+        "y_offset": 0.0,
+        "x_offset_status": "fitted",
+        "y_offset_status": "zero-curvature",
+        "peak_before_alias_xy": [
+          1.0,
+          0.0
+        ],
+        "alias_decisions": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "peak_after_alias_xy": [
+          1.0,
+          0.0
+        ],
+        "carrier_cyc_um": [
+          0.125,
+          0.0
+        ]
+      },
+      "coarse_power_error_from_exact": 2.842170943040401e-14,
+      "carrier": [
+        [
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "raw_modulation_scaled_2p660": [
+        [
+          [
+            [
+              0.0625,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      ],
+      "brackets": [
+        {
+          "stage": "angle",
+          "branch": "initial",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.0,
+          "amp2": 0.0,
+          "x3": 0.001,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "angle",
+          "branch": "negative-swap",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.001,
+          "amp2": 0.0,
+          "x3": 0.0,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "angle",
+          "branch": "stop",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.001,
+          "amp2": 0.0,
+          "x3": 0.0,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "magnitude",
+          "branch": "initial",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.125,
+          "amp2": 0.0,
+          "x3": 0.15,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "magnitude",
+          "branch": "negative-swap",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.15,
+          "amp2": 0.0,
+          "x3": 0.125,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "magnitude",
+          "branch": "stop",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.15,
+          "amp2": 0.0,
+          "x3": 0.125,
+          "amp3": 0.0,
+          "strict_improvement": false
+        }
+      ],
+      "parabolas": [
+        {
+          "stage": "angle",
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": 0.001,
+          "y2": 0.0,
+          "x3": 0.0,
+          "y3": 0.0,
+          "result": 0.0,
+          "status": "duplicate-coordinate"
+        },
+        {
+          "stage": "magnitude",
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": 0.15,
+          "y2": 0.0,
+          "x3": 0.125,
+          "y3": 0.0,
+          "result": 0.0,
+          "status": "zero-curvature"
+        }
+      ],
+      "objectives": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rounded_input_nonfinite": 2,
+      "rounded_input_nonzero": 2,
+      "qualification": "valid double tie/zero-curvature, single conversion rejects overflow before arithmetic; no c64 search"
+    },
+    {
+      "profile": "coarse-tie",
+      "coarse": {
+        "overlap_index": 0,
+        "correlation_complex": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              7.999999999999998,
+              0.0
+            ],
+            [
+              -7.999999999999998,
+              0.0
+            ]
+          ]
+        ],
+        "correlation_power": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            63.99999999999997,
+            63.99999999999997
+          ]
+        ],
+        "integer_peak_xy": [
+          0,
+          3
+        ],
+        "x_neighbors": [
+          63.99999999999997,
+          63.99999999999997,
+          63.99999999999997
+        ],
+        "y_neighbors": [
+          0.0,
+          63.99999999999997,
+          0.0
+        ],
+        "x_offset": 0.0,
+        "y_offset": 0.0,
+        "x_offset_status": "zero-curvature",
+        "y_offset_status": "fitted",
+        "peak_before_alias_xy": [
+          0.0,
+          3.0
+        ],
+        "alias_decisions": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "peak_after_alias_xy": [
+          0.0,
+          -1.0
+        ],
+        "carrier_cyc_um": [
+          0.0,
+          -0.125
+        ]
+      },
+      "coarse_power_error_from_exact": 2.842170943040401e-14,
+      "carrier": [
+        [
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "raw_modulation_scaled_2p660": [
+        [
+          [
+            [
+              0.125,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      ],
+      "brackets": [
+        {
+          "stage": "angle",
+          "branch": "initial",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": -1.5707963267948966,
+          "amp2": 0.0,
+          "x3": -1.5697963267948967,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "angle",
+          "branch": "negative-swap",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": -1.5697963267948967,
+          "amp2": 0.0,
+          "x3": -1.5707963267948966,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "angle",
+          "branch": "stop",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": -1.5697963267948967,
+          "amp2": 0.0,
+          "x3": -1.5707963267948966,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "magnitude",
+          "branch": "initial",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.125,
+          "amp2": 0.0,
+          "x3": 0.15,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "magnitude",
+          "branch": "negative-swap",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.15,
+          "amp2": 0.0,
+          "x3": 0.125,
+          "amp3": 0.0,
+          "strict_improvement": false
+        },
+        {
+          "stage": "magnitude",
+          "branch": "stop",
+          "x1": 0.0,
+          "amp1": 0.0,
+          "x2": 0.15,
+          "amp2": 0.0,
+          "x3": 0.125,
+          "amp3": 0.0,
+          "strict_improvement": false
+        }
+      ],
+      "parabolas": [
+        {
+          "stage": "angle",
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": -1.5697963267948967,
+          "y2": 0.0,
+          "x3": -1.5707963267948966,
+          "y3": 0.0,
+          "result": 0.0,
+          "status": "zero-curvature"
+        },
+        {
+          "stage": "magnitude",
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": 0.15,
+          "y2": 0.0,
+          "x3": 0.125,
+          "y3": 0.0,
+          "result": 0.0,
+          "status": "zero-curvature"
+        }
+      ],
+      "objectives": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rounded_input_nonfinite": 2,
+      "rounded_input_nonzero": 2,
+      "qualification": "valid double tie/zero-curvature, single conversion rejects overflow before arithmetic; no c64 search"
+    }
+  ],
+  "seconds": 0.012675463000050513,
+  "whole_process_ru_maxrss_KiB": 77556,
+  "whole_process_peak_bytes": 79417344
+}

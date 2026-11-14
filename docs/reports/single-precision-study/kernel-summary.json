@@ -1,0 +1,1864 @@
+[
+  {
+    "case": "M02-signed",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.001172537000002194,
+      "median": 0.0014504480000141484,
+      "max": 0.0014524130001518643
+    },
+    "whole_process_peak_bytes": {
+      "min": 61972480,
+      "median": 62021632,
+      "max": 62144512
+    },
+    "precall_KiB": [
+      59372,
+      59424,
+      59284
+    ],
+    "call_end_KiB": [
+      60164,
+      60156,
+      60100
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 7.152557373046875E-8,
+      "max_abs_error_upper": 7.152557373046875E-8,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 3.9175225496213375E-8,
+      "signal_scale": 0.7166666666666667,
+      "max_error_over_signal_scale": 9.98031261355378E-8,
+      "signed_min": -0.7166666984558105,
+      "signed_max": 0.5500000715255737,
+      "max_sum_abs_terms": 1.0166666666666666,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 7.035302334144467E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M02-signed",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0012125089999699412,
+      "median": 0.001530968999986726,
+      "max": 0.0031930430000102206
+    },
+    "whole_process_peak_bytes": {
+      "min": 62087168,
+      "median": 62132224,
+      "max": 62173184
+    },
+    "precall_KiB": [
+      59240,
+      59348,
+      59348
+    ],
+    "call_end_KiB": [
+      60032,
+      60140,
+      60004
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 4.4408920985006264E-17,
+      "max_abs_error_upper": 4.4408920985006264E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 0.7166666666666667,
+      "max_error_over_signal_scale": 6.196593625814827E-17,
+      "signed_min": -0.7166666666666667,
+      "signed_max": 0.55,
+      "max_sum_abs_terms": 1.0166666666666666,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.3680905886891404E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M02-signed",
+    "profile": "public-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.15232489699997132,
+      "median": 0.1772603839999647,
+      "max": 0.19100073099980364
+    },
+    "whole_process_peak_bytes": {
+      "min": 80830464,
+      "median": 81063936,
+      "max": 81113088
+    },
+    "precall_KiB": [
+      59068,
+      59468,
+      59376
+    ],
+    "call_end_KiB": [
+      78668,
+      79024,
+      78824
+    ],
+    "input_payload": 1152,
+    "result_payload": 1536,
+    "caller_plus_result_payload": 2688,
+    "metrics": {
+      "max_abs_distance_lower": 4.4408920985006264E-17,
+      "max_abs_error_upper": 4.4408920985006264E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 0.7166666666666667,
+      "max_error_over_signal_scale": 6.196593625814827E-17,
+      "signed_min": -0.7166666666666667,
+      "signed_max": 0.55,
+      "max_sum_abs_terms": 1.0166666666666666,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.3680905886891404E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-carrier-negative",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.001023826000164263,
+      "median": 0.0011229689998799586,
+      "max": 0.0011919040000520909
+    },
+    "whole_process_peak_bytes": {
+      "min": 61366272,
+      "median": 62111744,
+      "max": 62353408
+    },
+    "precall_KiB": [
+      59372,
+      58860,
+      59340
+    ],
+    "call_end_KiB": [
+      60300,
+      59532,
+      60076
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 4.5299530029296876E-8,
+      "max_abs_error_upper": 4.5299530029296876E-8,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 2.506025054899441E-8,
+      "signal_scale": 0.7466666666666667,
+      "max_error_over_signal_scale": 6.066901343209403E-8,
+      "signed_min": -0.746666669845581,
+      "signed_max": 0.64000004529953,
+      "max_sum_abs_terms": 1.0866666666666667,
+      "condition_upper": 20.375,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.1686684076040067E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-carrier-negative",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0012580739999066282,
+      "median": 0.0013267389999782608,
+      "max": 0.004486880000058591
+    },
+    "whole_process_peak_bytes": {
+      "min": 61878272,
+      "median": 62005248,
+      "max": 62271488
+    },
+    "precall_KiB": [
+      59292,
+      59424,
+      59160
+    ],
+    "call_end_KiB": [
+      60028,
+      60220,
+      59960
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 9.473903143468003E-17,
+      "max_abs_error_upper": 9.473903143468003E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 5.1518658800561366E-17,
+      "signal_scale": 0.7466666666666667,
+      "max_error_over_signal_scale": 1.2688263138573217E-16,
+      "signed_min": -0.7466666666666666,
+      "signed_max": 0.64,
+      "max_sum_abs_terms": 1.0866666666666667,
+      "condition_upper": 20.375,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 8.718315776197548E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-carrier-negative",
+    "profile": "public-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.06700519499986513,
+      "median": 0.07582074700007979,
+      "max": 0.08503412200002458
+    },
+    "whole_process_peak_bytes": {
+      "min": 80384000,
+      "median": 80932864,
+      "max": 81072128
+    },
+    "precall_KiB": [
+      59236,
+      59052,
+      59120
+    ],
+    "call_end_KiB": [
+      78768,
+      78360,
+      78904
+    ],
+    "input_payload": 1152,
+    "result_payload": 1536,
+    "caller_plus_result_payload": 2688,
+    "metrics": {
+      "max_abs_distance_lower": 9.473903143468003E-17,
+      "max_abs_error_upper": 9.473903143468003E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 5.1518658800561366E-17,
+      "signal_scale": 0.7466666666666667,
+      "max_error_over_signal_scale": 1.2688263138573217E-16,
+      "signed_min": -0.7466666666666666,
+      "signed_max": 0.64,
+      "max_sum_abs_terms": 1.0866666666666667,
+      "condition_upper": 20.375,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 8.718315776197548E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-carrier-positive",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0011424629999510216,
+      "median": 0.0012687210000876803,
+      "max": 0.0013403569998899911
+    },
+    "whole_process_peak_bytes": {
+      "min": 61775872,
+      "median": 61992960,
+      "max": 62054400
+    },
+    "precall_KiB": [
+      59216,
+      59212,
+      59064
+    ],
+    "call_end_KiB": [
+      59944,
+      60004,
+      59924
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 4.5299530029296876E-8,
+      "max_abs_error_upper": 4.5299530029296876E-8,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 2.506025054899441E-8,
+      "signal_scale": 0.7466666666666667,
+      "max_error_over_signal_scale": 6.066901343209403E-8,
+      "signed_min": -0.746666669845581,
+      "signed_max": 0.64000004529953,
+      "max_sum_abs_terms": 1.0866666666666667,
+      "condition_upper": 20.375,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.1686684076040067E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-carrier-positive",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0010434450000502693,
+      "median": 0.0011118540001007204,
+      "max": 0.0012720699999135832
+    },
+    "whole_process_peak_bytes": {
+      "min": 61075456,
+      "median": 61804544,
+      "max": 62124032
+    },
+    "precall_KiB": [
+      58640,
+      59092,
+      59396
+    ],
+    "call_end_KiB": [
+      59376,
+      59824,
+      60128
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 9.473903143468003E-17,
+      "max_abs_error_upper": 9.473903143468003E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 5.685025231188364E-17,
+      "signal_scale": 0.7466666666666667,
+      "max_error_over_signal_scale": 1.2688263138573217E-16,
+      "signed_min": -0.7466666666666666,
+      "signed_max": 0.64,
+      "max_sum_abs_terms": 1.0866666666666667,
+      "condition_upper": 20.375,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 8.718315776197548E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-carrier-positive",
+    "profile": "public-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.06556768300015392,
+      "median": 0.07176896800001487,
+      "max": 0.11245165600007567
+    },
+    "whole_process_peak_bytes": {
+      "min": 80052224,
+      "median": 81088512,
+      "max": 81260544
+    },
+    "precall_KiB": [
+      58688,
+      59384,
+      59352
+    ],
+    "call_end_KiB": [
+      78036,
+      78960,
+      78920
+    ],
+    "input_payload": 1152,
+    "result_payload": 1536,
+    "caller_plus_result_payload": 2688,
+    "metrics": {
+      "max_abs_distance_lower": 9.473903143468003E-17,
+      "max_abs_error_upper": 9.473903143468003E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 5.685025231188364E-17,
+      "signal_scale": 0.7466666666666667,
+      "max_error_over_signal_scale": 1.2688263138573217E-16,
+      "signed_min": -0.7466666666666666,
+      "signed_max": 0.64,
+      "max_sum_abs_terms": 1.0866666666666667,
+      "condition_upper": 20.375,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 8.718315776197548E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-zero-mod",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0010614210000312596,
+      "median": 0.0011049150000417285,
+      "max": 0.0011394269999982498
+    },
+    "whole_process_peak_bytes": {
+      "min": 61923328,
+      "median": 61927424,
+      "max": 62009344
+    },
+    "precall_KiB": [
+      59296,
+      59148,
+      59276
+    ],
+    "call_end_KiB": [
+      60152,
+      59880,
+      60068
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 2.384185791015625E-8,
+      "max_abs_error_upper": 2.384185791015625E-8,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 1.210576059081507E-8,
+      "signal_scale": 1.0,
+      "max_error_over_signal_scale": 2.384185791015625E-8,
+      "signed_min": -1.0,
+      "signed_max": 0.6000000238418579,
+      "max_sum_abs_terms": 1.0,
+      "condition_upper": 5.0,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 2.384185791015625E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-zero-mod",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.001016495000158102,
+      "median": 0.0010693229999105824,
+      "max": 0.001152025000010326
+    },
+    "whole_process_peak_bytes": {
+      "min": 61747200,
+      "median": 62009344,
+      "max": 62148608
+    },
+    "precall_KiB": [
+      59100,
+      59244,
+      59424
+    ],
+    "call_end_KiB": [
+      59892,
+      59960,
+      60092
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 8.881784197001253E-17,
+      "max_abs_error_upper": 8.881784197001253E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 5.551115123125783E-17,
+      "signal_scale": 1.0,
+      "max_error_over_signal_scale": 8.881784197001253E-17,
+      "signed_min": -1.0,
+      "signed_max": 0.6000000000000001,
+      "max_sum_abs_terms": 1.0,
+      "condition_upper": 5.0,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 8.881784197001253E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M03-zero-mod",
+    "profile": "public-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.06879977199992027,
+      "median": 0.07033815699992374,
+      "max": 0.09889901299993653
+    },
+    "whole_process_peak_bytes": {
+      "min": 80101376,
+      "median": 80916480,
+      "max": 81362944
+    },
+    "precall_KiB": [
+      59096,
+      59408,
+      58700
+    ],
+    "call_end_KiB": [
+      78752,
+      79188,
+      78084
+    ],
+    "input_payload": 1152,
+    "result_payload": 1536,
+    "caller_plus_result_payload": 2688,
+    "metrics": {
+      "max_abs_distance_lower": 8.881784197001253E-17,
+      "max_abs_error_upper": 8.881784197001253E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 5.551115123125783E-17,
+      "signal_scale": 1.0,
+      "max_error_over_signal_scale": 8.881784197001253E-17,
+      "signed_min": -1.0,
+      "signed_max": 0.6000000000000001,
+      "max_sum_abs_terms": 1.0,
+      "condition_upper": 5.0,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 8.881784197001253E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M04-directions",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.011505048999879364,
+      "median": 0.012054208000108702,
+      "max": 0.013376956999991307
+    },
+    "whole_process_peak_bytes": {
+      "min": 61841408,
+      "median": 61939712,
+      "max": 62218240
+    },
+    "precall_KiB": [
+      59100,
+      59368,
+      59128
+    ],
+    "call_end_KiB": [
+      60032,
+      60224,
+      59984
+    ],
+    "input_payload": 19200,
+    "result_payload": 20224,
+    "caller_plus_result_payload": 39424,
+    "metrics": {
+      "max_abs_distance_lower": 1.2548346268503289E-8,
+      "max_abs_error_upper": 1.2548346268503289E-8,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 6.329077000480116E-9,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 2.8899221709280304E-8,
+      "signed_min": -0.28947368264198303,
+      "signed_max": 0.43421053886413574,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 1.5605579723011365E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M04-directions",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.012506987999813646,
+      "median": 0.014476367000042956,
+      "max": 0.01598515899991071
+    },
+    "whole_process_peak_bytes": {
+      "min": 61964288,
+      "median": 62087168,
+      "max": 62152704
+    },
+    "precall_KiB": [
+      59052,
+      59280,
+      59108
+    ],
+    "call_end_KiB": [
+      60000,
+      60072,
+      59968
+    ],
+    "input_payload": 38400,
+    "result_payload": 40448,
+    "caller_plus_result_payload": 78848,
+    "metrics": {
+      "max_abs_distance_lower": 3.7981314000334304E-17,
+      "max_abs_error_upper": 3.7981314000334304E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 2.7755575615628914E-17,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 8.7472117091679E-17,
+      "signed_min": -0.2894736842105263,
+      "signed_max": 0.43421052631578944,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.723494322950666E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M05-power-100",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.001076895999858607,
+      "median": 0.001364127999977427,
+      "max": 0.0014044590000139578
+    },
+    "whole_process_peak_bytes": {
+      "min": 61943808,
+      "median": 62005248,
+      "max": 62222336
+    },
+    "precall_KiB": [
+      59352,
+      59536,
+      59100
+    ],
+    "call_end_KiB": [
+      60148,
+      60268,
+      59896
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 5.64237288394698E-38,
+      "max_abs_error_upper": 5.64237288394698E-38,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 3.0903803847180144E-38,
+      "signal_scale": 5.653503154083918E-31,
+      "max_error_over_signal_scale": 9.98031261355378E-8,
+      "signed_min": -5.653503404856046E-31,
+      "signed_max": 4.338735542952853E-31,
+      "max_sum_abs_terms": 8.020085869746953E-31,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 7.035302334144467E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M05-power-100",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.001327683999988949,
+      "median": 0.001506098999925598,
+      "max": 0.0017085750000660482
+    },
+    "whole_process_peak_bytes": {
+      "min": 62087168,
+      "median": 62099456,
+      "max": 62099456
+    },
+    "precall_KiB": [
+      59344,
+      59236,
+      59376
+    ],
+    "call_end_KiB": [
+      60076,
+      60032,
+      60044
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 3.503246160812043E-47,
+      "max_abs_error_upper": 3.503246160812043E-47,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 5.653503154083918E-31,
+      "max_error_over_signal_scale": 6.196593625814827E-17,
+      "signed_min": -5.653503154083918E-31,
+      "signed_max": 4.338734978715565E-31,
+      "max_sum_abs_terms": 8.020085869746953E-31,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.3680905886891404E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M05-power0",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0012241080000876536,
+      "median": 0.002090128999952867,
+      "max": 0.002221199000132401
+    },
+    "whole_process_peak_bytes": {
+      "min": 61374464,
+      "median": 61943808,
+      "max": 61997056
+    },
+    "precall_KiB": [
+      58868,
+      59220,
+      59292
+    ],
+    "call_end_KiB": [
+      59540,
+      59948,
+      60088
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 7.152557373046875E-8,
+      "max_abs_error_upper": 7.152557373046875E-8,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 3.9175225496213375E-8,
+      "signal_scale": 0.7166666666666667,
+      "max_error_over_signal_scale": 9.98031261355378E-8,
+      "signed_min": -0.7166666984558105,
+      "signed_max": 0.5500000715255737,
+      "max_sum_abs_terms": 1.0166666666666666,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 7.035302334144467E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M05-power0",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.001065085999925941,
+      "median": 0.0010676690001218958,
+      "max": 0.0012695600000824925
+    },
+    "whole_process_peak_bytes": {
+      "min": 61808640,
+      "median": 62033920,
+      "max": 62226432
+    },
+    "precall_KiB": [
+      59500,
+      59288,
+      59440
+    ],
+    "call_end_KiB": [
+      60168,
+      59952,
+      60172
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 4.4408920985006264E-17,
+      "max_abs_error_upper": 4.4408920985006264E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 0.7166666666666667,
+      "max_error_over_signal_scale": 6.196593625814827E-17,
+      "signed_min": -0.7166666666666667,
+      "signed_max": 0.55,
+      "max_sum_abs_terms": 1.0166666666666666,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.3680905886891404E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M05-power100",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0011415030000989645,
+      "median": 0.0012584090000018477,
+      "max": 0.0012822280000364117
+    },
+    "whole_process_peak_bytes": {
+      "min": 62017536,
+      "median": 62144512,
+      "max": 62214144
+    },
+    "precall_KiB": [
+      59496,
+      59368,
+      59296
+    ],
+    "call_end_KiB": [
+      60160,
+      60160,
+      60220
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 9.066943647109718E+22,
+      "max_abs_error_upper": 9.066943647109718E+22,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 4.966049811435112E+22,
+      "signal_scale": 9.084829301635644E+29,
+      "max_error_over_signal_scale": 9.98031261355378E-8,
+      "signed_min": -9.084829704610917E+29,
+      "signed_max": 6.972079207949626E+29,
+      "max_sum_abs_terms": 1.2887781102320331E+30,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 7.035302334144467E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M05-power100",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0013132609999502165,
+      "median": 0.001516451000043162,
+      "max": 0.004394011000158571
+    },
+    "whole_process_peak_bytes": {
+      "min": 61075456,
+      "median": 61759488,
+      "max": 62087168
+    },
+    "precall_KiB": [
+      59364,
+      59240,
+      58700
+    ],
+    "call_end_KiB": [
+      60096,
+      59904,
+      59372
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 56294995342131.2,
+      "max_abs_error_upper": 56294995342131.2,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 9.084829301635644E+29,
+      "max_error_over_signal_scale": 6.196593625814827E-17,
+      "signed_min": -9.084829301635644E+29,
+      "signed_max": 6.972078301255262E+29,
+      "max_sum_abs_terms": 1.2887781102320331E+30,
+      "condition_upper": 12.2,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.3680905886891404E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M06-exact-cancel",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0010445880000133911,
+      "median": 0.0010966439999720023,
+      "max": 0.0011970900000051188
+    },
+    "whole_process_peak_bytes": {
+      "min": 61882368,
+      "median": 62066688,
+      "max": 62074880
+    },
+    "precall_KiB": [
+      59352,
+      59168,
+      59396
+    ],
+    "call_end_KiB": [
+      60148,
+      59960,
+      60224
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 0.0,
+      "max_abs_error_upper": 0.0,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 0.0,
+      "max_error_over_signal_scale": null,
+      "signed_min": 0.0,
+      "signed_max": 0.0,
+      "max_sum_abs_terms": 0.6153846153846154,
+      "condition_upper": null,
+      "zero_or_interval_crossing_reference": true,
+      "condition_scaled_absolute_error": 0.0,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M06-exact-cancel",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0009450479999486561,
+      "median": 0.0010585709999304527,
+      "max": 0.0010592160001579032
+    },
+    "whole_process_peak_bytes": {
+      "min": 62091264,
+      "median": 62144512,
+      "max": 62160896
+    },
+    "precall_KiB": [
+      59352,
+      59348,
+      59308
+    ],
+    "call_end_KiB": [
+      60144,
+      60076,
+      60036
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 0.0,
+      "max_abs_error_upper": 0.0,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 0.0,
+      "max_error_over_signal_scale": null,
+      "signed_min": 0.0,
+      "signed_max": 0.0,
+      "max_sum_abs_terms": 0.6153846153846154,
+      "condition_upper": null,
+      "zero_or_interval_crossing_reference": true,
+      "condition_scaled_absolute_error": 0.0,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M06-exact-cancel",
+    "profile": "public-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.06613454400007868,
+      "median": 0.06729479599994193,
+      "max": 0.07332870299978822
+    },
+    "whole_process_peak_bytes": {
+      "min": 80928768,
+      "median": 81117184,
+      "max": 81260544
+    },
+    "precall_KiB": [
+      59236,
+      59412,
+      59196
+    ],
+    "call_end_KiB": [
+      78820,
+      79144,
+      78764
+    ],
+    "input_payload": 1152,
+    "result_payload": 1536,
+    "caller_plus_result_payload": 2688,
+    "metrics": {
+      "max_abs_distance_lower": 0.0,
+      "max_abs_error_upper": 0.0,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 0.0,
+      "signal_scale": 0.0,
+      "max_error_over_signal_scale": null,
+      "signed_min": 0.0,
+      "signed_max": 0.0,
+      "max_sum_abs_terms": 0.6153846153846154,
+      "condition_upper": null,
+      "zero_or_interval_crossing_reference": true,
+      "condition_scaled_absolute_error": 0.0,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M06-near-cancel",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0009128419999342441,
+      "median": 0.0009337880001112353,
+      "max": 0.0009716609999941284
+    },
+    "whole_process_peak_bytes": {
+      "min": 61927424,
+      "median": 62029824,
+      "max": 62218240
+    },
+    "precall_KiB": [
+      59244,
+      59252,
+      59380
+    ],
+    "call_end_KiB": [
+      60016,
+      59980,
+      60160
+    ],
+    "input_payload": 576,
+    "result_payload": 704,
+    "caller_plus_result_payload": 1280,
+    "metrics": {
+      "max_abs_distance_lower": 4.584972675030048E-9,
+      "max_abs_error_upper": 4.584972675030048E-9,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 4.584972675030032E-9,
+      "signal_scale": 2.934382512019231E-7,
+      "max_error_over_signal_scale": 0.015625,
+      "signed_min": 2.980232238769531E-7,
+      "signed_max": 2.980232238769531E-7,
+      "max_sum_abs_terms": 0.6153843219463642,
+      "condition_upper": 2097151.0,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 7.450584149639201E-9,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M06-near-cancel",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.0008666969999922003,
+      "median": 0.0009575629999289959,
+      "max": 0.0009666680000464112
+    },
+    "whole_process_peak_bytes": {
+      "min": 61952000,
+      "median": 61976576,
+      "max": 62099456
+    },
+    "precall_KiB": [
+      59256,
+      59104,
+      59256
+    ],
+    "call_end_KiB": [
+      60044,
+      59900,
+      60116
+    ],
+    "input_payload": 1152,
+    "result_payload": 1408,
+    "caller_plus_result_payload": 2560,
+    "metrics": {
+      "max_abs_distance_lower": 4.270088556250602E-18,
+      "max_abs_error_upper": 4.270088556250602E-18,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 4.2701048453457416E-18,
+      "signal_scale": 2.934382512019231E-7,
+      "max_error_over_signal_scale": 1.4551915228366852E-11,
+      "signed_min": 2.93438251197653E-7,
+      "signed_max": 2.93438251197653E-7,
+      "max_sum_abs_terms": 0.6153843219463642,
+      "condition_upper": 2097151.0,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 6.938897212631256E-18,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M06-near-cancel",
+    "profile": "public-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.06322819299998628,
+      "median": 0.09446679000006952,
+      "max": 0.11150228800011064
+    },
+    "whole_process_peak_bytes": {
+      "min": 80982016,
+      "median": 81018880,
+      "max": 81031168
+    },
+    "precall_KiB": [
+      59244,
+      59320,
+      59324
+    ],
+    "call_end_KiB": [
+      78852,
+      78864,
+      78816
+    ],
+    "input_payload": 1152,
+    "result_payload": 1536,
+    "caller_plus_result_payload": 2688,
+    "metrics": {
+      "max_abs_distance_lower": 4.270088556250602E-18,
+      "max_abs_error_upper": 4.270088556250602E-18,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 4.2701048453457416E-18,
+      "signal_scale": 2.934382512019231E-7,
+      "max_error_over_signal_scale": 1.4551915228366852E-11,
+      "signed_min": 2.93438251197653E-7,
+      "signed_max": 2.93438251197653E-7,
+      "max_sum_abs_terms": 0.6153843219463642,
+      "condition_upper": 2097151.0,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 6.938897212631256E-18,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M16-times",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.012966125000048123,
+      "median": 0.014395990000139136,
+      "max": 0.016868409000153406
+    },
+    "whole_process_peak_bytes": {
+      "min": 61485056,
+      "median": 61849600,
+      "max": 62140416
+    },
+    "precall_KiB": [
+      59432,
+      59140,
+      58848
+    ],
+    "call_end_KiB": [
+      60208,
+      59932,
+      59776
+    ],
+    "input_payload": 38400,
+    "result_payload": 40448,
+    "caller_plus_result_payload": 78848,
+    "metrics": {
+      "max_abs_distance_lower": 1.2548346268503289E-8,
+      "max_abs_error_upper": 1.2548346268503289E-8,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 6.039209086848389E-9,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 2.8899221709280304E-8,
+      "signed_min": -0.28947368264198303,
+      "signed_max": 0.43421053886413574,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 43.5,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 1.5605579723011365E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M16-times",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.012669789000028686,
+      "median": 0.013879622999866115,
+      "max": 0.026086494000082894
+    },
+    "whole_process_peak_bytes": {
+      "min": 61956096,
+      "median": 62107648,
+      "max": 62111744
+    },
+    "precall_KiB": [
+      59520,
+      59304,
+      59136
+    ],
+    "call_end_KiB": [
+      60252,
+      60100,
+      59928
+    ],
+    "input_payload": 76800,
+    "result_payload": 80896,
+    "caller_plus_result_payload": 157696,
+    "metrics": {
+      "max_abs_distance_lower": 3.7981314000334304E-17,
+      "max_abs_error_upper": 3.7981314000334304E-17,
+      "reference_interval_width_max": 0.0,
+      "rms_midpoint": 1.9664450707978083E-17,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 8.7472117091679E-17,
+      "signed_min": -0.2894736842105263,
+      "signed_max": 0.43421052631578944,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 43.5,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.723494322950666E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M19-spatial32",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.010692451000068104,
+      "median": 0.013500972999963778,
+      "max": 0.01688959300008719
+    },
+    "whole_process_peak_bytes": {
+      "min": 63004672,
+      "median": 63172608,
+      "max": 63291392
+    },
+    "precall_KiB": [
+      59432,
+      59712,
+      59704
+    ],
+    "call_end_KiB": [
+      61060,
+      61212,
+      61328
+    ],
+    "input_payload": 261120,
+    "result_payload": 326656,
+    "caller_plus_result_payload": 587776,
+    "metrics": {
+      "max_abs_distance_lower": 1.2548346268503289E-8,
+      "max_abs_error_upper": 1.2548346268503289E-8,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 4.489863871280377E-9,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 2.8899221709280304E-8,
+      "signed_min": -0.28947368264198303,
+      "signed_max": 0.43421053886413574,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 1.5605579723011365E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M19-spatial32",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.011633428000095591,
+      "median": 0.013958217999970657,
+      "max": 0.026042094000104044
+    },
+    "whole_process_peak_bytes": {
+      "min": 63856640,
+      "median": 63893504,
+      "max": 63926272
+    },
+    "precall_KiB": [
+      59980,
+      59852,
+      59920
+    ],
+    "call_end_KiB": [
+      61988,
+      61920,
+      61880
+    ],
+    "input_payload": 522240,
+    "result_payload": 653312,
+    "caller_plus_result_payload": 1175552,
+    "metrics": {
+      "max_abs_distance_lower": 3.7981314000334304E-17,
+      "max_abs_error_upper": 3.7981314000334304E-17,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 2.4037033579794548E-17,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 8.7472117091679E-17,
+      "signed_min": -0.2894736842105263,
+      "signed_max": 0.43421052631578944,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.723494322950666E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M19-spatial64",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.015700917000003756,
+      "median": 0.02204503799998747,
+      "max": 0.022914140000011685
+    },
+    "whole_process_peak_bytes": {
+      "min": 65810432,
+      "median": 65921024,
+      "max": 66015232
+    },
+    "precall_KiB": [
+      60256,
+      60388,
+      60488
+    ],
+    "call_end_KiB": [
+      63800,
+      63876,
+      63968
+    ],
+    "input_payload": 1013760,
+    "result_payload": 1275904,
+    "caller_plus_result_payload": 2289664,
+    "metrics": {
+      "max_abs_distance_lower": 1.2548346268503289E-8,
+      "max_abs_error_upper": 1.2548346268503289E-8,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 4.489863871280377E-9,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 2.8899221709280304E-8,
+      "signed_min": -0.28947368264198303,
+      "signed_max": 0.43421053886413574,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 1.5605579723011365E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M19-spatial64",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.02023316600002545,
+      "median": 0.020875665000176014,
+      "max": 0.03768394899998384
+    },
+    "whole_process_peak_bytes": {
+      "min": 68771840,
+      "median": 68984832,
+      "max": 69074944
+    },
+    "precall_KiB": [
+      61436,
+      61324,
+      61252
+    ],
+    "call_end_KiB": [
+      66920,
+      66752,
+      66832
+    ],
+    "input_payload": 2027520,
+    "result_payload": 2551808,
+    "caller_plus_result_payload": 4579328,
+    "metrics": {
+      "max_abs_distance_lower": 3.7981314000334304E-17,
+      "max_abs_error_upper": 3.7981314000334304E-17,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 2.4037033579794548E-17,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 8.7472117091679E-17,
+      "signed_min": -0.2894736842105263,
+      "signed_max": 0.43421052631578944,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.723494322950666E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M20-direction1",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.00313531899996633,
+      "median": 0.003785966999885204,
+      "max": 0.00414996900008191
+    },
+    "whole_process_peak_bytes": {
+      "min": 62689280,
+      "median": 62754816,
+      "max": 63111168
+    },
+    "precall_KiB": [
+      59156,
+      59568,
+      59188
+    ],
+    "call_end_KiB": [
+      60780,
+      61128,
+      60768
+    ],
+    "input_payload": 87040,
+    "result_payload": 152576,
+    "caller_plus_result_payload": 239616,
+    "metrics": {
+      "max_abs_distance_lower": 6.352317752373435E-11,
+      "max_abs_error_upper": 6.352317752373435E-11,
+      "reference_interval_width_max": 2.3046875E-40,
+      "rms_midpoint": 4.4917676085763043E-11,
+      "signal_scale": 0.421875,
+      "max_error_over_signal_scale": 1.5057345783403696E-10,
+      "signed_min": -0.28125,
+      "signed_max": 0.421875,
+      "max_sum_abs_terms": 0.78125,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 8.130966723037997E-11,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M20-direction1",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.003442321999955311,
+      "median": 0.0045053310000184865,
+      "max": 0.005408578000015041
+    },
+    "whole_process_peak_bytes": {
+      "min": 62988288,
+      "median": 63053824,
+      "max": 63578112
+    },
+    "precall_KiB": [
+      59480,
+      59028,
+      59028
+    ],
+    "call_end_KiB": [
+      61552,
+      61168,
+      61168
+    ],
+    "input_payload": 174080,
+    "result_payload": 305152,
+    "caller_plus_result_payload": 479232,
+    "metrics": {
+      "max_abs_distance_lower": 3.694260900128723E-17,
+      "max_abs_error_upper": 3.694260900128723E-17,
+      "reference_interval_width_max": 2.3046875E-40,
+      "rms_midpoint": 1.3877787807814457E-17,
+      "signal_scale": 0.421875,
+      "max_error_over_signal_scale": 8.7567665780829E-17,
+      "signed_min": -0.28125,
+      "signed_max": 0.421875,
+      "max_sum_abs_terms": 0.78125,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.7286539521647653E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M20-native2d",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.007590775000153371,
+      "median": 0.007966796000346221,
+      "max": 0.008905066999886913
+    },
+    "whole_process_peak_bytes": {
+      "min": 62009344,
+      "median": 62423040,
+      "max": 62697472
+    },
+    "precall_KiB": [
+      59492,
+      59252,
+      58992
+    ],
+    "call_end_KiB": [
+      60608,
+      60428,
+      60044
+    ],
+    "input_payload": 65280,
+    "result_payload": 81664,
+    "caller_plus_result_payload": 146944,
+    "metrics": {
+      "max_abs_distance_lower": 1.2548346268503289E-8,
+      "max_abs_error_upper": 1.2548346268503289E-8,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 4.489863871280377E-9,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 2.8899221709280304E-8,
+      "signed_min": -0.28947368264198303,
+      "signed_max": 0.43421053886413574,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 1.5605579723011365E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M20-native2d",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.00799988199969448,
+      "median": 0.008746908999910374,
+      "max": 0.009237077000307181
+    },
+    "whole_process_peak_bytes": {
+      "min": 62410752,
+      "median": 62574592,
+      "max": 62640128
+    },
+    "precall_KiB": [
+      59460,
+      59648,
+      59424
+    ],
+    "call_end_KiB": [
+      60572,
+      60636,
+      60540
+    ],
+    "input_payload": 130560,
+    "result_payload": 163328,
+    "caller_plus_result_payload": 293888,
+    "metrics": {
+      "max_abs_distance_lower": 3.7981314000334304E-17,
+      "max_abs_error_upper": 3.7981314000334304E-17,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 2.4037033579794548E-17,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 8.7472117091679E-17,
+      "signed_min": -0.2894736842105263,
+      "signed_max": 0.43421052631578944,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 11.11111111111111,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 4.723494322950666E-17,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M20-times2",
+    "profile": "mixed",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.017775424000092244,
+      "median": 0.018100319000041054,
+      "max": 0.028878284000029453
+    },
+    "whole_process_peak_bytes": {
+      "min": 63234048,
+      "median": 63590400,
+      "max": 63963136
+    },
+    "precall_KiB": [
+      59684,
+      59532,
+      59988
+    ],
+    "call_end_KiB": [
+      61472,
+      61060,
+      61728
+    ],
+    "input_payload": 522240,
+    "result_payload": 653312,
+    "caller_plus_result_payload": 1175552,
+    "metrics": {
+      "max_abs_distance_lower": 1.7280925108611703E-8,
+      "max_abs_error_upper": 1.7280925108611703E-8,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 8.639587516407304E-9,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 3.979849418952998E-8,
+      "signed_min": -0.28947368264198303,
+      "signed_max": 0.43421053886413574,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 43.5,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 2.1491186862346188E-8,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  },
+  {
+    "case": "M20-times2",
+    "profile": "prototype-double",
+    "n": 3,
+    "statuses": [
+      "completed",
+      "completed",
+      "completed"
+    ],
+    "seconds": {
+      "min": 0.01994780199993329,
+      "median": 0.02018320399974982,
+      "max": 0.023348301000169158
+    },
+    "whole_process_peak_bytes": {
+      "min": 64860160,
+      "median": 65417216,
+      "max": 65548288
+    },
+    "precall_KiB": [
+      60280,
+      60712,
+      60536
+    ],
+    "call_end_KiB": [
+      62356,
+      62836,
+      62708
+    ],
+    "input_payload": 1044480,
+    "result_payload": 1306624,
+    "caller_plus_result_payload": 2351104,
+    "metrics": {
+      "max_abs_distance_lower": 8.432390507271536E-17,
+      "max_abs_error_upper": 8.432390507271536E-17,
+      "reference_interval_width_max": 2.372076023391813E-40,
+      "rms_midpoint": 4.389398889109717E-17,
+      "signal_scale": 0.4342105263157895,
+      "max_error_over_signal_scale": 1.9420050865231413E-16,
+      "signed_min": -0.2894736842105263,
+      "signed_max": 0.43421052631578944,
+      "max_sum_abs_terms": 0.804093567251462,
+      "condition_upper": 43.5,
+      "zero_or_interval_crossing_reference": false,
+      "condition_scaled_absolute_error": 1.0486827467224964E-16,
+      "input_quantization_error": "exactly zero: all frozen band components are binary32 dyadics",
+      "scalar_reference": "exact rational with checked sqrt2 interval; no double-as-truth"
+    }
+  }
+]

@@ -1,0 +1,695 @@
+{
+  "revision": "sp112-finite-v1",
+  "identities": {
+    "docs/reports/single-precision-study/study.py": "1bce423fbd7f2e20662b2e2a371b7d23ac3f5c5e154ef6303ebab8bd73b38cec",
+    "docs/reports/single-precision-study/preflight.py": "225133ad19f24d6c6c47b25466edefae29b763b6083f74c0bb53225b2f0d8350",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "src/simrecon/reconstruction/known_parameters.py": "34fbc93aa5ac9a1f4eb24b1f39ce576a1bb7770238c62cab72412de120722295",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "docs/contracts/c-equivalence-known-parameters-v1.md": "7959ff71c24ad877460237435a472970feb925d42cc471543d5c9699c850ff34",
+    "docs/contracts/c-equivalence-carrier-modulation-v1.md": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c"
+  },
+  "kernel_rows": [
+    {
+      "name": "M02-signed",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "input_c128_sha256": "e252bdcaeb3e3736e437391710f98db55409a508c5da59d3569a891da7a47aa5",
+      "input_c64_sha256": "8026a61c917de70dbbdc96cf61f75cef2a4dd898fd81630f40d97b0ab84881f9",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "11/20",
+          "hi": "11/20"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double",
+        "public-double"
+      ]
+    },
+    {
+      "name": "M03-zero-mod",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "zero_mod": true,
+      "input_c128_sha256": "e252bdcaeb3e3736e437391710f98db55409a508c5da59d3569a891da7a47aa5",
+      "input_c64_sha256": "8026a61c917de70dbbdc96cf61f75cef2a4dd898fd81630f40d97b0ab84881f9",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "3/5",
+          "hi": "3/5"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double",
+        "public-double"
+      ]
+    },
+    {
+      "name": "M03-carrier-positive",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "carrier": 1,
+      "input_c128_sha256": "e252bdcaeb3e3736e437391710f98db55409a508c5da59d3569a891da7a47aa5",
+      "input_c64_sha256": "8026a61c917de70dbbdc96cf61f75cef2a4dd898fd81630f40d97b0ab84881f9",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "11/50",
+          "hi": "11/50"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double",
+        "public-double"
+      ]
+    },
+    {
+      "name": "M03-carrier-negative",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "carrier": -1,
+      "input_c128_sha256": "e252bdcaeb3e3736e437391710f98db55409a508c5da59d3569a891da7a47aa5",
+      "input_c64_sha256": "8026a61c917de70dbbdc96cf61f75cef2a4dd898fd81630f40d97b0ab84881f9",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "11/50",
+          "hi": "11/50"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double",
+        "public-double"
+      ]
+    },
+    {
+      "name": "M04-directions",
+      "T": 1,
+      "D": 3,
+      "O": 3,
+      "Z": 4,
+      "Y": 8,
+      "X": 8,
+      "L": 1,
+      "A": 1,
+      "input_c128_sha256": "f620a8096e1bd16e403d1961ef12abb1c2596fe35ae205baab4a39cb382c3d8c",
+      "input_c64_sha256": "0d8900c1da8090fe0dcf9df2efe361c6b7ae1af9e8ec968ebf232fec3aa3a959",
+      "shape": [
+        1,
+        3,
+        5,
+        4,
+        8,
+        5
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "33/76",
+          "hi": "33/76"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 19200,
+        "filtered_c64": 19200,
+        "accumulator_f64": 2048,
+        "final_f32": 1024,
+        "three_complex64_workspaces": 6144,
+        "ramp_c64": 64
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M05-power-100",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "power": -100,
+      "input_c128_sha256": "918ea128d74ed01465f9d47481999df01f770793dbd1afc66819a2acbe1627d0",
+      "input_c64_sha256": "b06847c347beb8a7cd6d42ea1daba523be80be9747fa1019b6c4ac9593c88df8",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "11/25353012004564588029934064107520",
+          "hi": "11/25353012004564588029934064107520"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M05-power0",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "power": 0,
+      "input_c128_sha256": "e252bdcaeb3e3736e437391710f98db55409a508c5da59d3569a891da7a47aa5",
+      "input_c64_sha256": "8026a61c917de70dbbdc96cf61f75cef2a4dd898fd81630f40d97b0ab84881f9",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "11/20",
+          "hi": "11/20"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M05-power100",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "power": 100,
+      "input_c128_sha256": "5a10d5e78150ec9a4875dcaaa8cc53f0948172be45ec07f60cd653d1e157b03b",
+      "input_c64_sha256": "a6b2313cc35d43cba5166313348cf9b32ce72e1f6d1e37e541f338afc7f54e45",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "3486039150627630854115933814784/5",
+          "hi": "3486039150627630854115933814784/5"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M06-near-cancel",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "cancel": "near",
+      "input_c128_sha256": "e009e68cb6fd3c594f94da7f6e03496ab34e20591dbd35a395a47c218a98049b",
+      "input_c64_sha256": "b07b4d596d0a3a451b03cedc0cac5b38594d598326c3ac700f3e4f76f44b2b9d",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "1/3407872",
+          "hi": "1/3407872"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double",
+        "public-double"
+      ]
+    },
+    {
+      "name": "M06-exact-cancel",
+      "T": 1,
+      "D": 1,
+      "O": 2,
+      "Z": 2,
+      "Y": 4,
+      "X": 4,
+      "L": 1,
+      "A": 1,
+      "cancel": "exact",
+      "input_c128_sha256": "84282efa71857241b691738c7bb13fe59e99692f323b5ecf044c841365c2face",
+      "input_c64_sha256": "1734b3a0a833a428e052421155d28b47ba71daa4ad0d60246d440cf4f8661641",
+      "shape": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "0",
+          "hi": "0"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 576,
+        "filtered_c64": 576,
+        "accumulator_f64": 256,
+        "final_f32": 128,
+        "three_complex64_workspaces": 768,
+        "ramp_c64": 32
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double",
+        "public-double"
+      ]
+    },
+    {
+      "name": "M16-times",
+      "T": 2,
+      "D": 3,
+      "O": 3,
+      "Z": 4,
+      "Y": 8,
+      "X": 8,
+      "L": 1,
+      "A": 1,
+      "input_c128_sha256": "e4a15f21de760c559be53ed8bf66d42ed945c456375466d877015b41a13ab10f",
+      "input_c64_sha256": "f50d9a7cae8abb202d8518b86ec8a6a32e510642c2782ee76a4f98a18778b2df",
+      "shape": [
+        2,
+        3,
+        5,
+        4,
+        8,
+        5
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "33/76",
+          "hi": "33/76"
+        },
+        {
+          "t": 1,
+          "lo": "143/332",
+          "hi": "143/332"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 38400,
+        "filtered_c64": 38400,
+        "accumulator_f64": 4096,
+        "final_f32": 2048,
+        "three_complex64_workspaces": 6144,
+        "ramp_c64": 64
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M19-spatial32",
+      "T": 1,
+      "D": 3,
+      "O": 3,
+      "Z": 4,
+      "Y": 32,
+      "X": 32,
+      "L": 2,
+      "A": 1,
+      "input_c128_sha256": "52108e0ca0d12d12e3ae10bf2541f1e5061ec8d05b618f9ea88dc48c8b973679",
+      "input_c64_sha256": "b8008b875d23e52e7c0dfebc7f1f08958ff80e1e209f93a5ef3093fcff8f653f",
+      "shape": [
+        1,
+        3,
+        5,
+        4,
+        32,
+        17
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "33/76",
+          "hi": "33/76"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 261120,
+        "filtered_c64": 261120,
+        "accumulator_f64": 131072,
+        "final_f32": 65536,
+        "three_complex64_workspaces": 393216,
+        "ramp_c64": 512
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M19-spatial64",
+      "T": 1,
+      "D": 3,
+      "O": 3,
+      "Z": 4,
+      "Y": 64,
+      "X": 64,
+      "L": 2,
+      "A": 1,
+      "input_c128_sha256": "1b1c40c94398a9ae1ec62dd4065d3ab26288ae66086964c0774e6ea13895c6eb",
+      "input_c64_sha256": "ba445ff980072237304f1a00b95add9a6a1f07f9180b5adb64850225f5f6f238",
+      "shape": [
+        1,
+        3,
+        5,
+        4,
+        64,
+        33
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "33/76",
+          "hi": "33/76"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 1013760,
+        "filtered_c64": 1013760,
+        "accumulator_f64": 524288,
+        "final_f32": 262144,
+        "three_complex64_workspaces": 1572864,
+        "ramp_c64": 1024
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M20-direction1",
+      "T": 1,
+      "D": 1,
+      "O": 3,
+      "Z": 4,
+      "Y": 32,
+      "X": 32,
+      "L": 2,
+      "A": 1,
+      "input_c128_sha256": "395c9c3b7109a935132529472018fb0559892f2d6e693f9f71f5be5da6f5c19a",
+      "input_c64_sha256": "0858ae09cff19265a45ce60ea71635aa3c8ee20ccb0c1d5793009594a2cd575e",
+      "shape": [
+        1,
+        1,
+        5,
+        4,
+        32,
+        17
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "27/64",
+          "hi": "27/64"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 87040,
+        "filtered_c64": 87040,
+        "accumulator_f64": 131072,
+        "final_f32": 65536,
+        "three_complex64_workspaces": 393216,
+        "ramp_c64": 512
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M20-times2",
+      "T": 2,
+      "D": 3,
+      "O": 3,
+      "Z": 4,
+      "Y": 32,
+      "X": 32,
+      "L": 2,
+      "A": 1,
+      "input_c128_sha256": "bfc4598468db85aee367fdd4ba070ac0634813d2ce700a722f657f5252313f75",
+      "input_c64_sha256": "c178cbcbe2d6a3c68cbd99d1f3e8a06f9a30f80477c49e89a8148dce9825acf3",
+      "shape": [
+        2,
+        3,
+        5,
+        4,
+        32,
+        17
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "33/76",
+          "hi": "33/76"
+        },
+        {
+          "t": 1,
+          "lo": "143/332",
+          "hi": "143/332"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 522240,
+        "filtered_c64": 522240,
+        "accumulator_f64": 262144,
+        "final_f32": 131072,
+        "three_complex64_workspaces": 393216,
+        "ramp_c64": 512
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    },
+    {
+      "name": "M20-native2d",
+      "T": 1,
+      "D": 3,
+      "O": 3,
+      "Z": 1,
+      "Y": 32,
+      "X": 32,
+      "L": 2,
+      "A": 1,
+      "input_c128_sha256": "dc8caf953f49c416365d4151b72aa37653b67e1cc6d9c07c5c8ec50c564b974c",
+      "input_c64_sha256": "9fc5e867064a1043cafb6f415adfa648b63b1f6654b94a41759bb8beafaed768",
+      "shape": [
+        1,
+        3,
+        5,
+        1,
+        32,
+        17
+      ],
+      "oracle_samples": [
+        {
+          "t": 0,
+          "lo": "33/76",
+          "hi": "33/76"
+        }
+      ],
+      "planned_payload": {
+        "caller_c64": 65280,
+        "filtered_c64": 65280,
+        "accumulator_f64": 32768,
+        "final_f32": 16384,
+        "three_complex64_workspaces": 98304,
+        "ramp_c64": 512
+      },
+      "profiles": [
+        "mixed",
+        "prototype-double"
+      ]
+    }
+  ],
+  "small_rows": [
+    "M01",
+    "M07",
+    "M08-M09",
+    "M14-M18"
+  ],
+  "repetitions": 3,
+  "formula": "CE04 sparse z0,x0 with coefficients modes(); all omitted bins zero; unit H; w=1/2; dxy=dz=1; R=1/2; no taper/suppression; noise=1+d+t; alpha metadata=1/(X*Y*Z*L^2*D), already consumed in supplied band units",
+  "sqrt2_enclosure": [
+    "1414213562373095048801688724209698078569/1000000000000000000000000000000000000000",
+    "141421356237309504880168872420969807857/100000000000000000000000000000000000000"
+  ],
+  "not_cartesian": true,
+  "random_seed": null,
+  "search_ce06": "separate source/rounded-input probes, not c64 runtime"
+}

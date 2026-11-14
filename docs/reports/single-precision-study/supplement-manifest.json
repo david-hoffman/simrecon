@@ -1,0 +1,176 @@
+{
+  "revision": "sp112-supplement-v1",
+  "identities": {
+    "docs/reports/single-precision-study/study.py": "1bce423fbd7f2e20662b2e2a371b7d23ac3f5c5e154ef6303ebab8bd73b38cec",
+    "docs/reports/single-precision-study/preflight.py": "225133ad19f24d6c6c47b25466edefae29b763b6083f74c0bb53225b2f0d8350",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "src/simrecon/reconstruction/known_parameters.py": "34fbc93aa5ac9a1f4eb24b1f39ce576a1bb7770238c62cab72412de120722295",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "docs/contracts/c-equivalence-known-parameters-v1.md": "7959ff71c24ad877460237435a472970feb925d42cc471543d5c9699c850ff34",
+    "docs/contracts/c-equivalence-carrier-modulation-v1.md": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c"
+  },
+  "additional_source_hashes": {
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/layout.py": "77017f0b894f3aef13d97d6c8b666fdb7c1f5207f5eee3db085b079c24539820",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e"
+  },
+  "script_sha256": "de31f260d91d179b66f450ce79bf88e45c88df880caa3afa5f7a01b6fbee4b03",
+  "cases": [
+    "scalar-filter",
+    "fft-interfaces",
+    "phase-designs",
+    "search-seed0",
+    "search-seed3",
+    "search-tie",
+    "transfer",
+    "camera-off",
+    "cubic",
+    "native2d-layouts",
+    "workflow-full",
+    "workflow-summary"
+  ],
+  "repetitions": 3,
+  "search": [
+    {
+      "seed": 0,
+      "tie": false,
+      "shape": [
+        1,
+        1,
+        5,
+        3,
+        3,
+        4
+      ],
+      "bands_hash": "6d6bce034096f4cc64d5dada708e7ea1cfb8b49089a09a9dca3f490ea0b35c8c",
+      "rounded_bands_hash": "515c06d7f5f161c5a1b0f33822355be57fb4b2b2cea9a1dd4a130acd79ec1e4e",
+      "transfer_hash": "be16d31829ea6be8579febc79737e19cb3e80cb6a4be6d22c88a4efd7511d148",
+      "initial": [
+        [
+          0.06,
+          -0.035
+        ]
+      ],
+      "expected": "complete public double search; no predetermined numeric success/tolerance; inspect frozen overlap and stale bracket state; c64 capture rounding probe only"
+    },
+    {
+      "seed": 3,
+      "tie": false,
+      "shape": [
+        1,
+        1,
+        5,
+        3,
+        3,
+        4
+      ],
+      "bands_hash": "601dd867c57ac9c07f10a0b40804268468887a180b615c6e48e6615fd0332a1c",
+      "rounded_bands_hash": "c3a44d31442c414d81b9533ee46edb4284ff8832d2cca46ea1ffc122ef9b1ca7",
+      "transfer_hash": "be16d31829ea6be8579febc79737e19cb3e80cb6a4be6d22c88a4efd7511d148",
+      "initial": [
+        [
+          0.06,
+          -0.035
+        ]
+      ],
+      "expected": "complete public double search; no predetermined numeric success/tolerance; inspect frozen overlap and stale bracket state; c64 capture rounding probe only"
+    },
+    {
+      "seed": 0,
+      "tie": true,
+      "shape": [
+        1,
+        1,
+        5,
+        2,
+        1,
+        4
+      ],
+      "bands_hash": "70710254ce2e91c938ff850a13b63680d8606088417b7d97e79512d586d4776e",
+      "rounded_bands_hash": "c123c64272c31a09827c66cdcd8d8d5f9b6d53d708df84389049e8460de82844",
+      "transfer_hash": "ef3a3f44f8a2bf131b2a66c4016613ae9bd70b535d89b524c20fb34e66e35c89",
+      "initial": [
+        [
+          0.11,
+          0.0
+        ]
+      ],
+      "expected": "complete public double search; no predetermined numeric success/tolerance; inspect frozen overlap and stale bracket state; c64 capture rounding probe only"
+    }
+  ],
+  "scalar": "independently evaluated binary64 CE04 denominators against exact rational factor reference; c64 rounded +/- coefficients then recombination",
+  "camera": {
+    "shape": [
+      2,
+      1,
+      3,
+      2,
+      2,
+      4
+    ],
+    "raw": "8+t+p+z constant each plane; first on corner sentinel -1",
+    "background": "1 except corner 5",
+    "slope": "1 except corner -2",
+    "alpha": "1/16",
+    "expected_frame_sum": "(7+t+p+z)/2",
+    "equalize_anchor": "t0,d0,p0,z0",
+    "off": "one raw+2 exposure; no sentinel on off; N1 gain one"
+  },
+  "cubic": {
+    "shape": [
+      1,
+      4,
+      3,
+      2,
+      10,
+      64
+    ],
+    "displacements": [
+      0,
+      1,
+      8,
+      27
+    ],
+    "impulse": "64 at (5,5+d^3)",
+    "off": "one identical exposure",
+    "timestamps": "prefix 10+d+(p-3)/10 for d0..3,p0..5 then 24 values arange+100; actual sample prefix no off stride",
+    "expected_coefficients": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  "workflow": {
+    "raw_shape": [
+      1,
+      1,
+      3,
+      2,
+      4,
+      4
+    ],
+    "raw_phase_values": [
+      4,
+      6,
+      2
+    ],
+    "transfer": "unit radial 2x8x8",
+    "carrier": "linespacing10 angle0 searchFalse",
+    "expected": "exact same-environment full-summary image/parameter identity, no physical oracle"
+  },
+  "pi": "No certified transcendental search oracle provided; captures diagnostic-only"
+}

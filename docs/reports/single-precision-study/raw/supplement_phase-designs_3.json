@@ -1,0 +1,272 @@
+{
+  "case": "phase-designs",
+  "repeat": 3,
+  "argv": [
+    "docs/reports/single-precision-study/supplement.py",
+    "run",
+    "--case",
+    "phase-designs",
+    "--repeat",
+    "3"
+  ],
+  "environment": {
+    "executable": "/workspace/work/issue-112/.venv/bin/python",
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "numpy_file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/numpy/__init__.py",
+    "scipy_file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/scipy/__init__.py",
+    "backend": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.34.106.0\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.34.106.0\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.3.0\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-h653xs07/bin/python\n  version: '3.13'\nSIMD Extensions:\n  baseline:\n  - X86_V2\n  found:\n  - X86_V3\n  - X86_V4\n  - AVX512_ICL\n  not found:\n  - AVX512_SPR\n\nBuild Dependencies:\n  blas:\n    cython blas ilp64: false\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.31.dev DYNAMIC_ARCH NO_AFFINITY SkylakeX\n      MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.31.dev\n  lapack:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.31.dev DYNAMIC_ARCH NO_AFFINITY SkylakeX\n      MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.31.dev\n  pybind11:\n    detection method: config-tool\n    include directory: unknown\n    name: pybind11\n    version: 3.0.4\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.9\n  fortran:\n    commands: gfortran\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  pythran:\n    include directory: ../../../tmp/build-env-9z43kfq4/lib/python3.13/site-packages/pythran\n    version: 0.19.0\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  cross-compiled: false\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-9z43kfq4/bin/python\n  version: '3.13'\n\n",
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "allocator": {
+      "LD_PRELOAD": null,
+      "PYTHONMALLOC": null,
+      "MALLOC_ARENA_MAX": null
+    },
+    "host_meminfo": "MemTotal:       18440100 kB\nMemFree:        16962580 kB\nMemAvailable:   17310344 kB\nBuffers:           19928 kB\nCached:           539256 kB\nSwapCached:            0 kB\nActive:            89236 kB\nInactive:         582828 kB\nActive(anon):        388 kB\nInactive(anon):   142556 kB\nActive(file):      88848 kB\nInactive(file):   440272 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:              1188 kB\nWriteback:             0 kB\nAnonPages:        142992 kB\nMapped:           159164 kB\nShmem:               180 kB\nKReclaimable:     169072 kB\nSlab:             221068 kB\nSReclaimable:     169072 kB\nSUnreclaim:        51996 kB\nKernelStack:        3360 kB\nPageTables:         4328 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:     943464 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5716 kB\nVmallocChunk:          0 kB\nPercpu:             1368 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      157696 kB\nDirectMap2M:     7698432 kB\nDirectMap1G:    36700160 kB\n",
+    "cpu": "processor\t: 0\nvendor_id\t: GenuineIntel\ncpu family\t: 6\nmodel\t\t: 207\nmodel name\t: INTEL(R) XEON(R) PLATINUM 8573C\nstepping\t: 2\nmicrocode\t: 0x1\ncpu MHz\t\t: 2300.000\ncache size\t: 266240 KB\nphysical id\t: 0\nsiblings\t: 5\ncore id\t\t: 0\ncpu cores\t: 5\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 28\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm arch_capabilities\nbugs\t\t: spectre_v1 spectre_v2 spec_store_bypass swapgs taa retbleed bhi spectre_v2_user its\nbogomips\t: 4600.00\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 46 bits physical, 57 bits virtual\npower management:",
+    "cpu_count": 5,
+    "cgroup": {
+      "memory.max": "17179869184\n",
+      "memory.current": "855572480\n",
+      "memory.peak": "1693474816\n",
+      "memory.swap.max": "max\n",
+      "memory.swap.current": "0\n",
+      "cpu.max": "400000 100000\n",
+      "pids.current": "101\n"
+    },
+    "proc_status": "Name:\tpython\nUmask:\t0000\nState:\tR (running)\nTgid:\t4284\nNgid:\t0\nPid:\t4284\nPPid:\t0\nTracerPid:\t0\nUid:\t1000\t1000\t1000\t1000\nGid:\t1000\t1000\t1000\t1000\nFDSize:\t64\nGroups:\t1000 \nNStgid:\t4284\nNSpid:\t4284\nNSpgid:\t4284\nNSsid:\t4284\nKthread:\t0\nVmPeak:\t  244144 kB\nVmSize:\t  244144 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   76572 kB\nVmRSS:\t   76572 kB\nRssAnon:\t   39652 kB\nRssFile:\t   36920 kB\nRssShmem:\t       0 kB\nVmData:\t  110988 kB\nVmStk:\t     132 kB\nVmExe:\t   26340 kB\nVmLib:\t   71976 kB\nVmPTE:\t     336 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/71955\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000001001000\nSigCgt:\t0000000000000002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t00000000a80425fb\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t2\nSeccomp_filters:\t2\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t1f\nCpus_allowed_list:\t0-4\nMems_allowed:\t00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t9\nnonvoluntary_ctxt_switches:\t16\n",
+    "pid": 4284,
+    "git_head": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": 0,
+      "stdout": "b344e41a8b52de76d7cbbf8450319893904c3b8f\n",
+      "stderr": ""
+    },
+    "tree": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "status": 0,
+      "stdout": "01eb11ff48e022469f88fd6553b8cb3771768347\n",
+      "stderr": ""
+    },
+    "dirty": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain=v1"
+      ],
+      "status": 0,
+      "stdout": "?? docs/contracts/single-precision-study-v1.md\n?? docs/packets/precision-112/\n?? docs/reports/single-precision-study/\n?? docs/tasks/single-precision-study.md\n?? work/\n",
+      "stderr": ""
+    },
+    "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lock_sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "uv": {
+      "argv": [
+        "uv",
+        "--version"
+      ],
+      "status": 0,
+      "stdout": "uv 0.12.19 (x86_64-unknown-linux-gnu)\n",
+      "stderr": ""
+    },
+    "shared_interference": "exclusive coordinator window; unrelated host workload unknown",
+    "backend_workspace": "unknown",
+    "allocator_version": [
+      "glibc",
+      "2.39"
+    ],
+    "resource_native": 76416,
+    "rss_native_unit": "Linux KiB",
+    "rss_conversion": 1024
+  },
+  "script_sha256": "de31f260d91d179b66f450ce79bf88e45c88df880caa3afa5f7a01b6fbee4b03",
+  "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+  "precall_ru_maxrss_KiB": 76416,
+  "status": "completed",
+  "result": [
+    {
+      "name": "uniform",
+      "angles_rad": [
+        0.0,
+        1.2566370614359172,
+        2.5132741228718345,
+        3.7699111843077517,
+        5.026548245743669
+      ],
+      "storage": "float64",
+      "matrix_sha256": "46aca9030f86c65466f85b76e8efe6acb46e685544a785d301d8a2d7d9219431",
+      "b_sha256": "ae918cfb731b6d5659c2d71b46ca1a52f75ed2f16de9021dee4d0f8fd510ee50",
+      "condition_estimate": 1.4142135623730951,
+      "normalized_residual": 8.363945725147736e-17,
+      "forward_error_from_known_solution": 2.220446049250313e-16,
+      "source_b_quantization_error": 8.326672684688674e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "uniform",
+      "angles_rad": [
+        0.0,
+        1.2566370614359172,
+        2.5132741228718345,
+        3.7699111843077517,
+        5.026548245743669
+      ],
+      "storage": "float32",
+      "matrix_sha256": "56a10ca7bffe611fa75f9081550da9d12b384ffc8487ee76356c21043bd98c7f",
+      "b_sha256": "19f66d488ed152b3547c9294e0021602c2251cfe9cc1287edf5bdbc7ff125bcf",
+      "condition_estimate": 1.4142135623730947,
+      "normalized_residual": 7.475611937382455e-17,
+      "forward_error_from_known_solution": 4.843985235147841e-08,
+      "source_b_quantization_error": 8.326672684688674e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "nonuniform",
+      "angles_rad": [
+        0.0,
+        0.7,
+        2.1,
+        3.5,
+        5.2
+      ],
+      "storage": "float64",
+      "matrix_sha256": "c5bc529b6ec08bb1baec25cb1013ca8c915ce5c1ea17177de60643555dc529a0",
+      "b_sha256": "1b86b7600485e4315def6023490637d023f2da8ee6c414501cbe218adb5d4caf",
+      "condition_estimate": 2.8489178762607104,
+      "normalized_residual": 6.815836400792222e-17,
+      "forward_error_from_known_solution": 2.220446049250313e-16,
+      "source_b_quantization_error": 9.71445146547012e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "nonuniform",
+      "angles_rad": [
+        0.0,
+        0.7,
+        2.1,
+        3.5,
+        5.2
+      ],
+      "storage": "float32",
+      "matrix_sha256": "742be6eeb7ebe3d76b5647ec949b3fa63399944dc51feaf74ec2f5086bcaf60b",
+      "b_sha256": "c23b5cf67988d8fc2607ce5ac09f6155ec29ed440302f916d9ef57600026246a",
+      "condition_estimate": 2.848917843587099,
+      "normalized_residual": 6.518132339368309e-17,
+      "forward_error_from_known_solution": 3.3121731135565824e-08,
+      "source_b_quantization_error": 9.71445146547012e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "near-4",
+      "angles_rad": [
+        0.0,
+        0.0625,
+        0.125,
+        0.1875,
+        0.25
+      ],
+      "storage": "float64",
+      "matrix_sha256": "29df30babf98906b69bde1bb26c875c558e7891989ffba0b40d5e4adb449b1e0",
+      "b_sha256": "11cc2b521047e54c968827b54e9f44da36e61e66b136c73514bf2d2947757683",
+      "condition_estimate": 893993.1075368284,
+      "normalized_residual": 3.0596230013104756e-17,
+      "forward_error_from_known_solution": 4.974021194925626e-12,
+      "source_b_quantization_error": 2.7755575615628914e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "near-4",
+      "angles_rad": [
+        0.0,
+        0.0625,
+        0.125,
+        0.1875,
+        0.25
+      ],
+      "storage": "float32",
+      "matrix_sha256": "23ff26e4c2270bb12ff31b59c14d751b8274542e5de42b5ab152c96815b0a091",
+      "b_sha256": "132ce5ab9b3f05b9eadf1e884f16169b0de322966202a5c122bafbb505044489",
+      "condition_estimate": 895460.8792186707,
+      "normalized_residual": 2.6828910436449993e-17,
+      "forward_error_from_known_solution": 0.0003170264750731455,
+      "source_b_quantization_error": 2.7755575615628914e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "near-12",
+      "angles_rad": [
+        0.0,
+        0.000244140625,
+        0.00048828125,
+        0.000732421875,
+        0.0009765625
+      ],
+      "storage": "float64",
+      "matrix_sha256": "7d9994bb26af738f4f9d5dcdfce11c8798a0e5f936f1d41d2a0938878ab449dd",
+      "b_sha256": "310290885a03fac504a5b9a5673aa282ed63b273998ce5992ffad78d43ece97c",
+      "condition_estimate": 3645533259269232.5,
+      "normalized_residual": 1.513154954247996e-17,
+      "forward_error_from_known_solution": 0.024953548107813583,
+      "source_b_quantization_error": 2.0355895788415346e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "near-12",
+      "angles_rad": [
+        0.0,
+        0.000244140625,
+        0.00048828125,
+        0.000732421875,
+        0.0009765625
+      ],
+      "storage": "float32",
+      "matrix_sha256": "a6db26ba9f787407ae05e14f2663d2e01f5a55504ddeaf0bd7b965b36d88dac8",
+      "b_sha256": "4c371020254d754542a5f4e149e405623f591e62a4421eb1b4a91da669f17d3f",
+      "condition_estimate": 94098057071.68268,
+      "normalized_residual": 3.510169092958824e-17,
+      "forward_error_from_known_solution": 0.9999023437465531,
+      "source_b_quantization_error": 2.0355895788415346e-17,
+      "source": "true phase->f64 trig error not enclosed; exact rational represented-matrix oracle separates b rounding",
+      "status": "solved"
+    },
+    {
+      "name": "near-20",
+      "storage": "float64",
+      "status": "singular represented design",
+      "message": "Singular matrix"
+    },
+    {
+      "name": "near-20",
+      "storage": "float32",
+      "status": "singular represented design",
+      "message": "Singular matrix"
+    }
+  ],
+  "seconds": 0.002504516999806583,
+  "whole_process_ru_maxrss_KiB": 78140,
+  "whole_process_peak_bytes": 80015360
+}

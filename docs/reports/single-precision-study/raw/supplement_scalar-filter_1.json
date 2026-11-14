@@ -1,0 +1,3410 @@
+{
+  "case": "scalar-filter",
+  "repeat": 1,
+  "argv": [
+    "docs/reports/single-precision-study/supplement.py",
+    "run",
+    "--case",
+    "scalar-filter",
+    "--repeat",
+    "1"
+  ],
+  "environment": {
+    "executable": "/workspace/work/issue-112/.venv/bin/python",
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "numpy_file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/numpy/__init__.py",
+    "scipy_file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/scipy/__init__.py",
+    "backend": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.34.106.0\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.34.106.0\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.3.0\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-h653xs07/bin/python\n  version: '3.13'\nSIMD Extensions:\n  baseline:\n  - X86_V2\n  found:\n  - X86_V3\n  - X86_V4\n  - AVX512_ICL\n  not found:\n  - AVX512_SPR\n\nBuild Dependencies:\n  blas:\n    cython blas ilp64: false\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.31.dev DYNAMIC_ARCH NO_AFFINITY SkylakeX\n      MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.31.dev\n  lapack:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.31.dev DYNAMIC_ARCH NO_AFFINITY SkylakeX\n      MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.31.dev\n  pybind11:\n    detection method: config-tool\n    include directory: unknown\n    name: pybind11\n    version: 3.0.4\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.9\n  fortran:\n    commands: gfortran\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  pythran:\n    include directory: ../../../tmp/build-env-9z43kfq4/lib/python3.13/site-packages/pythran\n    version: 0.19.0\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  cross-compiled: false\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-9z43kfq4/bin/python\n  version: '3.13'\n\n",
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "allocator": {
+      "LD_PRELOAD": null,
+      "PYTHONMALLOC": null,
+      "MALLOC_ARENA_MAX": null
+    },
+    "host_meminfo": "MemTotal:       18440100 kB\nMemFree:        17093916 kB\nMemAvailable:   17440444 kB\nBuffers:           19924 kB\nCached:           538152 kB\nSwapCached:            0 kB\nActive:            88892 kB\nInactive:         581700 kB\nActive(anon):        356 kB\nInactive(anon):   142308 kB\nActive(file):      88536 kB\nInactive(file):   439392 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               756 kB\nWriteback:             0 kB\nAnonPages:        142536 kB\nMapped:           158580 kB\nShmem:               264 kB\nKReclaimable:     168980 kB\nSlab:             220896 kB\nSReclaimable:     168980 kB\nSUnreclaim:        51916 kB\nKernelStack:        3408 kB\nPageTables:         4164 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:     943084 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5748 kB\nVmallocChunk:          0 kB\nPercpu:             1368 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      157696 kB\nDirectMap2M:     7698432 kB\nDirectMap1G:    36700160 kB\n",
+    "cpu": "processor\t: 0\nvendor_id\t: GenuineIntel\ncpu family\t: 6\nmodel\t\t: 207\nmodel name\t: INTEL(R) XEON(R) PLATINUM 8573C\nstepping\t: 2\nmicrocode\t: 0x1\ncpu MHz\t\t: 2300.000\ncache size\t: 266240 KB\nphysical id\t: 0\nsiblings\t: 5\ncore id\t\t: 0\ncpu cores\t: 5\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 28\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm arch_capabilities\nbugs\t\t: spectre_v1 spectre_v2 spec_store_bypass swapgs taa retbleed bhi spectre_v2_user its\nbogomips\t: 4600.00\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 46 bits physical, 57 bits virtual\npower management:",
+    "cpu_count": 5,
+    "cgroup": {
+      "memory.max": "17179869184\n",
+      "memory.current": "853360640\n",
+      "memory.peak": "1693474816\n",
+      "memory.swap.max": "max\n",
+      "memory.swap.current": "0\n",
+      "cpu.max": "400000 100000\n",
+      "pids.current": "101\n"
+    },
+    "proc_status": "Name:\tpython\nUmask:\t0000\nState:\tR (running)\nTgid:\t4155\nNgid:\t0\nPid:\t4155\nPPid:\t0\nTracerPid:\t0\nUid:\t1000\t1000\t1000\t1000\nGid:\t1000\t1000\t1000\t1000\nFDSize:\t64\nGroups:\t1000 \nNStgid:\t4155\nNSpid:\t4155\nNSpgid:\t4155\nNSsid:\t4155\nKthread:\t0\nVmPeak:\t  244148 kB\nVmSize:\t  244148 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   76272 kB\nVmRSS:\t   76272 kB\nRssAnon:\t   39652 kB\nRssFile:\t   36620 kB\nRssShmem:\t       0 kB\nVmData:\t  110992 kB\nVmStk:\t     132 kB\nVmExe:\t   26340 kB\nVmLib:\t   71976 kB\nVmPTE:\t     336 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/71955\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000001001000\nSigCgt:\t0000000000000002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t00000000a80425fb\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t2\nSeccomp_filters:\t2\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t1f\nCpus_allowed_list:\t0-4\nMems_allowed:\t00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t10\nnonvoluntary_ctxt_switches:\t31\n",
+    "pid": 4155,
+    "git_head": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": 0,
+      "stdout": "b344e41a8b52de76d7cbbf8450319893904c3b8f\n",
+      "stderr": ""
+    },
+    "tree": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "status": 0,
+      "stdout": "01eb11ff48e022469f88fd6553b8cb3771768347\n",
+      "stderr": ""
+    },
+    "dirty": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain=v1"
+      ],
+      "status": 0,
+      "stdout": "?? docs/contracts/single-precision-study-v1.md\n?? docs/packets/precision-112/\n?? docs/reports/single-precision-study/\n?? docs/tasks/single-precision-study.md\n?? work/\n",
+      "stderr": ""
+    },
+    "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lock_sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "uv": {
+      "argv": [
+        "uv",
+        "--version"
+      ],
+      "status": 0,
+      "stdout": "uv 0.12.19 (x86_64-unknown-linux-gnu)\n",
+      "stderr": ""
+    },
+    "shared_interference": "exclusive coordinator window; unrelated host workload unknown",
+    "backend_workspace": "unknown",
+    "allocator_version": [
+      "glibc",
+      "2.39"
+    ],
+    "resource_native": 76120,
+    "rss_native_unit": "Linux KiB",
+    "rss_conversion": 1024
+  },
+  "script_sha256": "de31f260d91d179b66f450ce79bf88e45c88df880caa3afa5f7a01b6fbee4b03",
+  "manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+  "precall_ru_maxrss_KiB": 76120,
+  "status": "completed",
+  "result": [
+    {
+      "case": "M02-signed",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.953875223795573e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M02-signed",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M02-signed",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M02-signed",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.2351741790771484e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M02-signed",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.2351741790771484e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M02-signed",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.2351741790771484e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-zero-mod",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.25,
+      "scale": [
+        0.8,
+        0.0
+      ],
+      "exact_scale": [
+        "4/5",
+        "0"
+      ],
+      "scale_component_error": 4.4408920985006264e-17,
+      "finite_normal_scalar_envelope": 1.9184653865522908e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.9802322387695314e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-zero-mod",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.25,
+      "scale": [
+        0.8,
+        0.0
+      ],
+      "exact_scale": [
+        "4/5",
+        "0"
+      ],
+      "scale_component_error": 4.4408920985006264e-17,
+      "finite_normal_scalar_envelope": 1.9184653865522908e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.960464477539063e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-zero-mod",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.25,
+      "scale": [
+        0.8,
+        0.0
+      ],
+      "exact_scale": [
+        "4/5",
+        "0"
+      ],
+      "scale_component_error": 4.4408920985006264e-17,
+      "finite_normal_scalar_envelope": 1.9184653865522908e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.960464477539063e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-zero-mod",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.25,
+      "scale": [
+        0.0,
+        0.0
+      ],
+      "exact_scale": [
+        "0",
+        "0"
+      ],
+      "scale_component_error": 0.0,
+      "finite_normal_scalar_envelope": 1.0658141036401616e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 0.0,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-zero-mod",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.25,
+      "scale": [
+        0.0,
+        0.0
+      ],
+      "exact_scale": [
+        "0",
+        "0"
+      ],
+      "scale_component_error": 0.0,
+      "finite_normal_scalar_envelope": 1.0658141036401616e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 0.0,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-zero-mod",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.25,
+      "scale": [
+        0.0,
+        0.0
+      ],
+      "exact_scale": [
+        "0",
+        "0"
+      ],
+      "scale_component_error": 0.0,
+      "finite_normal_scalar_envelope": 1.0658141036401616e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 0.0,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-positive",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.953875223795573e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-positive",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-positive",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-positive",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 2,
+      "denominator_f64": 1.5625,
+      "scale": [
+        0.32,
+        -0.16
+      ],
+      "exact_scale": [
+        "8/25",
+        "-4/25"
+      ],
+      "scale_component_error": 6.661338147750939e-18,
+      "finite_normal_scalar_envelope": 1.0516032489249557e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.940696716308593e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-positive",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 1,
+      "included": 2,
+      "denominator_f64": 1.5625,
+      "scale": [
+        0.32,
+        -0.16
+      ],
+      "exact_scale": [
+        "8/25",
+        "-4/25"
+      ],
+      "scale_component_error": 6.661338147750939e-18,
+      "finite_normal_scalar_envelope": 1.0516032489249557e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.940696716308593e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-positive",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -1,
+      "included": 2,
+      "denominator_f64": 1.5625,
+      "scale": [
+        0.32,
+        -0.16
+      ],
+      "exact_scale": [
+        "8/25",
+        "-4/25"
+      ],
+      "scale_component_error": 6.661338147750939e-18,
+      "finite_normal_scalar_envelope": 1.0516032489249557e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.940696716308593e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-negative",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.953875223795573e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-negative",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-negative",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-negative",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 2,
+      "denominator_f64": 1.5625,
+      "scale": [
+        0.32,
+        -0.16
+      ],
+      "exact_scale": [
+        "8/25",
+        "-4/25"
+      ],
+      "scale_component_error": 6.661338147750939e-18,
+      "finite_normal_scalar_envelope": 1.0516032489249557e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.940696716308593e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-negative",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 1,
+      "included": 2,
+      "denominator_f64": 1.5625,
+      "scale": [
+        0.32,
+        -0.16
+      ],
+      "exact_scale": [
+        "8/25",
+        "-4/25"
+      ],
+      "scale_component_error": 6.661338147750939e-18,
+      "finite_normal_scalar_envelope": 1.0516032489249557e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.940696716308593e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M03-carrier-negative",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -1,
+      "included": 2,
+      "denominator_f64": 1.5625,
+      "scale": [
+        0.32,
+        -0.16
+      ],
+      "exact_scale": [
+        "8/25",
+        "-4/25"
+      ],
+      "scale_component_error": 6.661338147750939e-18,
+      "finite_normal_scalar_envelope": 1.0516032489249557e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.940696716308593e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        0.0
+      ],
+      "exact_scale": [
+        "8/57",
+        "0"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.077010240053813e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.614238805938185e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        0.0
+      ],
+      "exact_scale": [
+        "8/57",
+        "0"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.077010240053813e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.22847761187637e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        0.0
+      ],
+      "exact_scale": [
+        "8/57",
+        "0"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.077010240053813e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.22847761187637e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "4/57",
+        "-2/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.890025309590618e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.535597014845463e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "4/57",
+        "-2/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.890025309590618e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.535597014845463e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "4/57",
+        "-2/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.890025309590618e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.535597014845463e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "8/57",
+        "-2/57"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.263995170517006e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.287458955195912e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "8/57",
+        "-2/57"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.263995170517006e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.71864738798978e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 0,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "8/57",
+        "-2/57"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.263995170517006e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.71864738798978e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        0.0
+      ],
+      "exact_scale": [
+        "4/57",
+        "0"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.703040379127423e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3071194029690926e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        0.0
+      ],
+      "exact_scale": [
+        "4/57",
+        "0"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.703040379127423e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.614238805938185e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        0.0
+      ],
+      "exact_scale": [
+        "4/57",
+        "0"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.703040379127423e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.614238805938185e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.03508771929824561,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-2/57",
+        "-1/57"
+      ],
+      "scale_component_error": 1.947759692324836e-18,
+      "finite_normal_scalar_envelope": 5.609547913895827e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.2677985074227315e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.03508771929824561,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-2/57",
+        "-1/57"
+      ],
+      "scale_component_error": 1.947759692324836e-18,
+      "finite_normal_scalar_envelope": 5.609547913895827e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.2677985074227315e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.03508771929824561,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-2/57",
+        "-1/57"
+      ],
+      "scale_component_error": 1.947759692324836e-18,
+      "finite_normal_scalar_envelope": 5.609547913895827e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.2677985074227315e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.07017543859649122,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-4/57",
+        "-1/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.796532844359021e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.143729477597956e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.07017543859649122,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-4/57",
+        "-1/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.796532844359021e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.85932369399489e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 1,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.07017543859649122,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-4/57",
+        "-1/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.796532844359021e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.85932369399489e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.04678362573099414,
+        0.0
+      ],
+      "exact_scale": [
+        "8/171",
+        "0"
+      ],
+      "scale_component_error": 9.53590682700701e-18,
+      "finite_normal_scalar_envelope": 5.578383758818628e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.714129353127284e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.04678362573099414,
+        0.0
+      ],
+      "exact_scale": [
+        "8/171",
+        "0"
+      ],
+      "scale_component_error": 9.53590682700701e-18,
+      "finite_normal_scalar_envelope": 5.578383758818628e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7428258706254568e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.04678362573099414,
+        0.0
+      ],
+      "exact_scale": [
+        "8/171",
+        "0"
+      ],
+      "scale_component_error": 9.53590682700701e-18,
+      "finite_normal_scalar_envelope": 5.578383758818628e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7428258706254568e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.02339181286549707,
+        -0.011695906432748536
+      ],
+      "exact_scale": [
+        "4/171",
+        "-2/171"
+      ],
+      "scale_component_error": 4.767953413503505e-18,
+      "finite_normal_scalar_envelope": 5.5160554486642294e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.178532338281821e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.02339181286549707,
+        -0.011695906432748536
+      ],
+      "exact_scale": [
+        "4/171",
+        "-2/171"
+      ],
+      "scale_component_error": 4.767953413503505e-18,
+      "finite_normal_scalar_envelope": 5.5160554486642294e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.178532338281821e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.02339181286549707,
+        -0.011695906432748536
+      ],
+      "exact_scale": [
+        "4/171",
+        "-2/171"
+      ],
+      "scale_component_error": 4.767953413503505e-18,
+      "finite_normal_scalar_envelope": 5.5160554486642294e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.178532338281821e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125,
+      "scale": [
+        0.04678362573099415,
+        -0.011695906432748537
+      ],
+      "exact_scale": [
+        "8/171",
+        "-2/171"
+      ],
+      "scale_component_error": 2.5970129230997812e-18,
+      "finite_normal_scalar_envelope": 5.6407120689730256e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 7.624863183986373e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125,
+      "scale": [
+        0.04678362573099415,
+        -0.011695906432748537
+      ],
+      "exact_scale": [
+        "8/171",
+        "-2/171"
+      ],
+      "scale_component_error": 2.5970129230997812e-18,
+      "finite_normal_scalar_envelope": 5.6407120689730256e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.9062157959965933e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M04-directions",
+      "t": 0,
+      "d": 2,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125,
+      "scale": [
+        0.04678362573099415,
+        -0.011695906432748537
+      ],
+      "exact_scale": [
+        "8/171",
+        "-2/171"
+      ],
+      "scale_component_error": 2.5970129230997812e-18,
+      "finite_normal_scalar_envelope": 5.6407120689730256e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.9062157959965933e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power-100",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.485640303837342e-39,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power-100",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.0971280607674684e-38,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power-100",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.0971280607674684e-38,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power-100",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7632415262334312e-39,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power-100",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7632415262334312e-39,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power-100",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7632415262334312e-39,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power0",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.953875223795573e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power0",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power0",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3907750447591146e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power0",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.2351741790771484e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power0",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.2351741790771484e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power0",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.2351741790771484e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power100",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.815084101356671e+21,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power100",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7630168202713342e+22,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power100",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.5333333333333333,
+        0.0
+      ],
+      "exact_scale": [
+        "8/15",
+        "0"
+      ],
+      "scale_component_error": 7.401486830834377e-18,
+      "finite_normal_scalar_envelope": 1.634248292248248e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7630168202713342e+22,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power100",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.833419889721787e+21,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power100",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.833419889721787e+21,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M05-power100",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -1,
+      "included": 3,
+      "denominator_f64": 1.875,
+      "scale": [
+        0.26666666666666666,
+        -0.13333333333333333
+      ],
+      "exact_scale": [
+        "4/15",
+        "-2/15"
+      ],
+      "scale_component_error": 3.7007434154171884e-18,
+      "finite_normal_scalar_envelope": 1.4921397450962262e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.833419889721787e+21,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M06-near-cancel",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 3.25,
+      "scale": [
+        0.3076923076923077,
+        0.0
+      ],
+      "exact_scale": [
+        "4/13",
+        "0"
+      ],
+      "scale_component_error": 1.708035422500241e-17,
+      "finite_normal_scalar_envelope": 1.3937569047602114e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.1462431687575121e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M06-near-cancel",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 3.25,
+      "scale": [
+        0.3076923076923077,
+        0.0
+      ],
+      "exact_scale": [
+        "4/13",
+        "0"
+      ],
+      "scale_component_error": 1.708035422500241e-17,
+      "finite_normal_scalar_envelope": 1.3937569047602114e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.4387295062725362e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M06-exact-cancel",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 3.25,
+      "scale": [
+        0.3076923076923077,
+        0.0
+      ],
+      "exact_scale": [
+        "4/13",
+        "0"
+      ],
+      "scale_component_error": 1.708035422500241e-17,
+      "finite_normal_scalar_envelope": 1.3937569047602114e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.1462431687575121e-08,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M06-exact-cancel",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 3,
+      "denominator_f64": 3.25,
+      "scale": [
+        0.3076923076923077,
+        0.0
+      ],
+      "exact_scale": [
+        "4/13",
+        "0"
+      ],
+      "scale_component_error": 1.708035422500241e-17,
+      "finite_normal_scalar_envelope": 1.3937569047602114e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.7312158437875604e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        0.0
+      ],
+      "exact_scale": [
+        "8/57",
+        "0"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.077010240053813e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.614238805938185e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        0.0
+      ],
+      "exact_scale": [
+        "8/57",
+        "0"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.077010240053813e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.22847761187637e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        0.0
+      ],
+      "exact_scale": [
+        "8/57",
+        "0"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.077010240053813e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.22847761187637e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "4/57",
+        "-2/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.890025309590618e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.535597014845463e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "4/57",
+        "-2/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.890025309590618e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.535597014845463e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "4/57",
+        "-2/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.890025309590618e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 6.535597014845463e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "8/57",
+        "-2/57"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.263995170517006e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.287458955195912e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "8/57",
+        "-2/57"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.263995170517006e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.71864738798978e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 0,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.14035087719298245,
+        -0.03508771929824561
+      ],
+      "exact_scale": [
+        "8/57",
+        "-2/57"
+      ],
+      "scale_component_error": 7.791038769299344e-18,
+      "finite_normal_scalar_envelope": 6.263995170517006e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.71864738798978e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        0.0
+      ],
+      "exact_scale": [
+        "4/57",
+        "0"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.703040379127423e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.3071194029690926e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        0.0
+      ],
+      "exact_scale": [
+        "4/57",
+        "0"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.703040379127423e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.614238805938185e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.07017543859649122,
+        0.0
+      ],
+      "exact_scale": [
+        "4/57",
+        "0"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.703040379127423e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.614238805938185e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.03508771929824561,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-2/57",
+        "-1/57"
+      ],
+      "scale_component_error": 1.947759692324836e-18,
+      "finite_normal_scalar_envelope": 5.609547913895827e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.2677985074227315e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.03508771929824561,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-2/57",
+        "-1/57"
+      ],
+      "scale_component_error": 1.947759692324836e-18,
+      "finite_normal_scalar_envelope": 5.609547913895827e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.2677985074227315e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.03508771929824561,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-2/57",
+        "-1/57"
+      ],
+      "scale_component_error": 1.947759692324836e-18,
+      "finite_normal_scalar_envelope": 5.609547913895827e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.2677985074227315e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.07017543859649122,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-4/57",
+        "-1/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.796532844359021e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.143729477597956e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.07017543859649122,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-4/57",
+        "-1/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.796532844359021e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.85932369399489e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 1,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        -0.07017543859649122,
+        -0.017543859649122806
+      ],
+      "exact_scale": [
+        "-4/57",
+        "-1/57"
+      ],
+      "scale_component_error": 3.895519384649672e-18,
+      "finite_normal_scalar_envelope": 5.796532844359021e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.85932369399489e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.04678362573099414,
+        0.0
+      ],
+      "exact_scale": [
+        "8/171",
+        "0"
+      ],
+      "scale_component_error": 9.53590682700701e-18,
+      "finite_normal_scalar_envelope": 5.578383758818628e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.714129353127284e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.04678362573099414,
+        0.0
+      ],
+      "exact_scale": [
+        "8/171",
+        "0"
+      ],
+      "scale_component_error": 9.53590682700701e-18,
+      "finite_normal_scalar_envelope": 5.578383758818628e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7428258706254568e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.04678362573099414,
+        0.0
+      ],
+      "exact_scale": [
+        "8/171",
+        "0"
+      ],
+      "scale_component_error": 9.53590682700701e-18,
+      "finite_normal_scalar_envelope": 5.578383758818628e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.7428258706254568e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.02339181286549707,
+        -0.011695906432748536
+      ],
+      "exact_scale": [
+        "4/171",
+        "-2/171"
+      ],
+      "scale_component_error": 4.767953413503505e-18,
+      "finite_normal_scalar_envelope": 5.5160554486642294e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.178532338281821e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.02339181286549707,
+        -0.011695906432748536
+      ],
+      "exact_scale": [
+        "4/171",
+        "-2/171"
+      ],
+      "scale_component_error": 4.767953413503505e-18,
+      "finite_normal_scalar_envelope": 5.5160554486642294e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.178532338281821e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125000000000001,
+      "scale": [
+        0.02339181286549707,
+        -0.011695906432748536
+      ],
+      "exact_scale": [
+        "4/171",
+        "-2/171"
+      ],
+      "scale_component_error": 4.767953413503505e-18,
+      "finite_normal_scalar_envelope": 5.5160554486642294e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.178532338281821e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 7.125,
+      "scale": [
+        0.04678362573099415,
+        -0.011695906432748537
+      ],
+      "exact_scale": [
+        "8/171",
+        "-2/171"
+      ],
+      "scale_component_error": 2.5970129230997812e-18,
+      "finite_normal_scalar_envelope": 5.6407120689730256e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 7.624863183986373e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 7.125,
+      "scale": [
+        0.04678362573099415,
+        -0.011695906432748537
+      ],
+      "exact_scale": [
+        "8/171",
+        "-2/171"
+      ],
+      "scale_component_error": 2.5970129230997812e-18,
+      "finite_normal_scalar_envelope": 5.6407120689730256e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.9062157959965933e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 0,
+      "d": 2,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 7.125,
+      "scale": [
+        0.04678362573099415,
+        -0.011695906432748537
+      ],
+      "exact_scale": [
+        "8/171",
+        "-2/171"
+      ],
+      "scale_component_error": 2.5970129230997812e-18,
+      "finite_normal_scalar_envelope": 5.6407120689730256e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.9062157959965933e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.05783132530120483,
+        0.0
+      ],
+      "exact_scale": [
+        "24/415",
+        "0"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.6372577288921796e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.6606715788324196e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.05783132530120483,
+        0.0
+      ],
+      "exact_scale": [
+        "24/415",
+        "0"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.6372577288921796e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.321343157664839e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.05783132530120483,
+        0.0
+      ],
+      "exact_scale": [
+        "24/415",
+        "0"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.6372577288921796e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.321343157664839e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.05783132530120483,
+        -0.014457831325301207
+      ],
+      "exact_scale": [
+        "24/415",
+        "-6/415"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.714304531564965e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.049339259963437e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.05783132530120483,
+        -0.014457831325301207
+      ],
+      "exact_scale": [
+        "24/415",
+        "-6/415"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.714304531564965e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.705554594476539e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.05783132530120483,
+        -0.014457831325301207
+      ],
+      "exact_scale": [
+        "24/415",
+        "-6/415"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.714304531564965e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.705554594476539e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.08674698795180724,
+        -0.014457831325301207
+      ],
+      "exact_scale": [
+        "36/415",
+        "-6/415"
+      ],
+      "scale_component_error": 1.2841133778796992e-17,
+      "finite_normal_scalar_envelope": 5.868398136910537e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.5493552885859847e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.08674698795180724,
+        -0.014457831325301207
+      ],
+      "exact_scale": [
+        "36/415",
+        "-6/415"
+      ],
+      "scale_component_error": 1.2841133778796992e-17,
+      "finite_normal_scalar_envelope": 5.868398136910537e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 4.151678947081049e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 0,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.08674698795180724,
+        -0.014457831325301207
+      ],
+      "exact_scale": [
+        "36/415",
+        "-6/415"
+      ],
+      "scale_component_error": 1.2841133778796992e-17,
+      "finite_normal_scalar_envelope": 5.868398136910537e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 4.151678947081049e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.03855421686746988,
+        0.0
+      ],
+      "exact_scale": [
+        "16/415",
+        "0"
+      ],
+      "scale_component_error": 3.3942059337184756e-18,
+      "finite_normal_scalar_envelope": 5.534528658661798e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.9972941961633155e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.03855421686746988,
+        0.0
+      ],
+      "exact_scale": [
+        "16/415",
+        "0"
+      ],
+      "scale_component_error": 3.3942059337184756e-18,
+      "finite_normal_scalar_envelope": 5.534528658661798e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.994588392326631e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.03855421686746988,
+        0.0
+      ],
+      "exact_scale": [
+        "16/415",
+        "0"
+      ],
+      "scale_component_error": 3.3942059337184756e-18,
+      "finite_normal_scalar_envelope": 5.534528658661798e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 3.994588392326631e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        -0.03855421686746988,
+        -0.00963855421686747
+      ],
+      "exact_scale": [
+        "-16/415",
+        "-4/415"
+      ],
+      "scale_component_error": 3.3942059337184756e-18,
+      "finite_normal_scalar_envelope": 5.585893193776989e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 5.946999572845826e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        -0.03855421686746988,
+        -0.00963855421686747
+      ],
+      "exact_scale": [
+        "-16/415",
+        "-4/415"
+      ],
+      "scale_component_error": 3.3942059337184756e-18,
+      "finite_normal_scalar_envelope": 5.585893193776989e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 4.151678947081049e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        -0.03855421686746988,
+        -0.00963855421686747
+      ],
+      "exact_scale": [
+        "-16/415",
+        "-4/415"
+      ],
+      "scale_component_error": 3.3942059337184756e-18,
+      "finite_normal_scalar_envelope": 5.585893193776989e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 4.151678947081049e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        -0.05783132530120483,
+        -0.00963855421686747
+      ],
+      "exact_scale": [
+        "-24/415",
+        "-4/415"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.688622264007371e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 4.5780675957001837e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        -0.05783132530120483,
+        -0.00963855421686747
+      ],
+      "exact_scale": [
+        "-24/415",
+        "-4/415"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.688622264007371e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 7.686216429055455e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 1,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        -0.05783132530120483,
+        -0.00963855421686747
+      ],
+      "exact_scale": [
+        "-24/415",
+        "-4/415"
+      ],
+      "scale_component_error": 8.560755852531328e-18,
+      "finite_normal_scalar_envelope": 5.688622264007371e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 7.686216429055455e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 0,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.028915662650602414,
+        0.0
+      ],
+      "exact_scale": [
+        "12/415",
+        "0"
+      ],
+      "scale_component_error": 4.280377926265664e-18,
+      "finite_normal_scalar_envelope": 5.4831641235466075e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.303357894162098e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 0,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.028915662650602414,
+        0.0
+      ],
+      "exact_scale": [
+        "12/415",
+        "0"
+      ],
+      "scale_component_error": 4.280377926265664e-18,
+      "finite_normal_scalar_envelope": 5.4831641235466075e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.6606715788324196e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 0,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.028915662650602414,
+        0.0
+      ],
+      "exact_scale": [
+        "12/415",
+        "0"
+      ],
+      "scale_component_error": 4.280377926265664e-18,
+      "finite_normal_scalar_envelope": 5.4831641235466075e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.6606715788324196e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 1,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.028915662650602414,
+        -0.0072289156626506035
+      ],
+      "exact_scale": [
+        "12/415",
+        "-3/415"
+      ],
+      "scale_component_error": 4.280377926265664e-18,
+      "finite_normal_scalar_envelope": 5.521687524883e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.5246696299817187e-10,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 1,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.028915662650602414,
+        -0.0072289156626506035
+      ],
+      "exact_scale": [
+        "12/415",
+        "-3/415"
+      ],
+      "scale_component_error": 4.280377926265664e-18,
+      "finite_normal_scalar_envelope": 5.521687524883e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.527772972382694e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 1,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.028915662650602414,
+        -0.0072289156626506035
+      ],
+      "exact_scale": [
+        "12/415",
+        "-3/415"
+      ],
+      "scale_component_error": 4.280377926265664e-18,
+      "finite_normal_scalar_envelope": 5.521687524883e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 8.527772972382694e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 2,
+      "y": 0,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.04337349397590362,
+        -0.0072289156626506035
+      ],
+      "exact_scale": [
+        "18/415",
+        "-3/415"
+      ],
+      "scale_component_error": 6.420566889398496e-18,
+      "finite_normal_scalar_envelope": 5.598734327555786e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 1.2746776442929923e-09,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 2,
+      "y": 2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.04337349397590362,
+        -0.0072289156626506035
+      ],
+      "exact_scale": [
+        "18/415",
+        "-3/415"
+      ],
+      "scale_component_error": 6.420566889398496e-18,
+      "finite_normal_scalar_envelope": 5.598734327555786e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.0758394735405245e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    },
+    {
+      "case": "M16-times",
+      "t": 1,
+      "d": 2,
+      "m": 2,
+      "y": -2,
+      "included": 15,
+      "denominator_f64": 8.645833333333332,
+      "scale": [
+        0.04337349397590362,
+        -0.0072289156626506035
+      ],
+      "exact_scale": [
+        "18/415",
+        "-3/415"
+      ],
+      "scale_component_error": 6.420566889398496e-18,
+      "finite_normal_scalar_envelope": 5.598734327555786e-14,
+      "envelope_assumptions": "32 operations per eligible positive term; normal arithmetic, no FFT; conservative first-order sum/div bound with gamma<1/2",
+      "within_scalar_envelope": true,
+      "recombination_real_component_error": 2.0758394735405245e-11,
+      "recombined_dtypes": [
+        "complex64",
+        "complex64"
+      ]
+    }
+  ],
+  "seconds": 0.031799494000097184,
+  "whole_process_ru_maxrss_KiB": 76444,
+  "whole_process_peak_bytes": 78278656
+}
