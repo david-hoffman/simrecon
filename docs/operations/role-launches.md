@@ -171,3 +171,32 @@ If safe failure/resume/expiry cases were not exercised, label their handling
 unexercised. A helper, host change or executable repair needs its own demonstrated
 authorized scope; the [doctor scope](../tasks/setup-doctor.md) is no general role
 coordinator. Preserve one Current state, cumulative accounting and unknown values.
+
+## Recoverable launch instructions
+
+Save the reusable instruction with the existing packet/handoff templates and
+[recovery evidence manifest](task-recovery.md), under actual durable-write
+authority. Bind an absolute current worktree, repository/base/candidate commit
+and tree (or explicit unsaved-work identity), exact packet hash, accepted
+test/fixture checkpoint or **none**, named role/ownership, selected model/effort
+and pending gates. A branch name alone cannot bind the recovered stage.
+
+Record command or tool arguments and the selected route's supported controls,
+selected local tool/input identities, bounded wait/deadline and timeout handling,
+start/status evidence, and separate absolute final-message and detailed report
+destinations. For native launches record executable/version/help; mark those
+fields not applicable for a tool-only launch. Follow the supported route and
+adoption boundary above; retain cumulative failed launches and unknown metering
+rather than resetting them on recovery.
+Do not copy native conversation transcripts into shared packets. Re-establish
+material environment inputs before reusing old capability/check evidence.
+
+The coordinator still launches fresh permitted A/B/C/D sessions for high-risk
+scientific work under the applicable route and adoption boundary. Restoring a
+conversation or copying another `.venv` does not supply that freshness.
+Blind A/B receive only their public packet/allowlist and permitted
+sanitized evidence; nonblind recovery reports, raw logs, implementation history
+and implementation-bearing Current state remain excluded. Fresh bounded review
+is likewise independent of author history. Recovering a packet alone supplies
+neither capability nor a verdict. No launch, sign-in, upload or permission change
+is implicit in saving or restoring these instructions.
