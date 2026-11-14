@@ -116,63 +116,74 @@ disposal, preserve uncertain targets and record removed/kept/error facts here.
 
 ## Current state
 
-* Status: **B2 integrated checkpoint accepted/frozen; fresh C pending launch**.
-  High-risk A/B/frozen tests/C/full exact Ubuntu/D route; W01–W18, scenarios18.
-  Actual human numeric limits not set; missing metering unknown. Product remains
-  pre-C red; no C implementation, #115 full gate, D or publication yet.
-* Root integrated accepted #112 parent d9a0ba924817772fdb5550c7d055bf31bcf70388,
-  tree836abd6603e28ea69c611429443c0684ba2f8441, published as PR121. Root reports
-  its full local Ubuntu gate/independent acceptance passed; CI43653094741 was
-  in progress at handoff, not claimed passed. #115 integrated checkpoint
-  290a4e6a834a3de56f7f49b40939e20be159c7cd/tree
-  9aa7945f5915ce81896ee001352d6eea761b3535, rebased own commits67ef000+290a4e6.
-  No coordinator push/restack. Parent scientific source/defaults/lock unchanged.
-* Historical actual A/B1 base b344e41a8b52de76d7cbbf8450319893904c3b8f,
-  accepted test checkpoint9a423fd608ecf6cdb203283674522b8b88b9e080 and previous
-  head8f6b17eb332e7587450e97534bc67bb93658fd6e remain preserved under local
-  refs/campaign/evidence/115-pre-parent. No relabeling of their runs/verdicts.
-* All historical99 frozen files match integrated bytes; new inherited setup
-  test makes100. Integrated manifest
-  [tests-integrated-checkpoint.sha256](../reports/issue-115/tests-integrated-checkpoint.sha256)
-  SHA256 3e4d18a1f9a96ae537eeac12bc126012b1d93c3d4613ed76b72da9b740302528.
-  Historical manifest remains unchanged. Wide contract/interface and six own
-  test digests unchanged. New parent setup test is accepted inherited input,
-  with no active precision/API/default implementation change.
-* Fresh B2 `/root/issue_115/b2_115`, requested gpt-6.1-sol/high, fork_turns=none,
-  reviews whole named public files under self-contained project/coverage/platform/
-  role/test-value facts. PROJECT, mixed-role skills, A/B1 reports, nonblind state,
-  runtime/history/coverage/lessons and unlisted links excluded. No sibling
-  substantive conclusion supplied. B2 independently accepted W01–W18 and exact
-  integrated applicability/added setup-test interaction/retained historical
-  evidence; report SHA25667e9ffbe0efa451b458432ddbf8565c7dc305561a33d4d174fb67bca4c599a7f.
-  No test correction, integrated execution or source exposure. Its explicit
-  caller-wiring/declaration-observer/fault-hook limits remain C/D obligations.
-* Historical [B1 report](../reports/issue-115/b-review-1.md) accepted exact six
-  scientific test files and affected obligations, with explicit proof limits.
-  [A report](../reports/issue-115/a-tests.md) records1099pass/19 valid byte-domain
-  red/16warnings,128.26s. Final exact-six-file Ruff/format/uv-run source-free
-  Pyright passed after cosmetic changes; B1 inspected the complete hash-anchored
-  delta and retained prior-run applicability, without claiming a new run.
-  Four fixed LAPACK lines/stop retained, no source/locals exposure, attribution
-  unproven. B2 receives sanitized facts/delta only and judges independently.
-* Cumulative charges: intake1, A1 plus continuation1, B1 completed full review1,
-  B2 completed review1 (two B reviews total), C0/D0. A semantic corrections0, cosmetic rounds2,
-  environment/invocation diagnosis1, diagnostic stop1, evidence request1 resolved
-  without test change, source exposure0. A check commands10/five nonzero statuses
-  including product-red. Model attribution/tokens/costs/overall elapsed unknown;
- 128.26s is pytest wall only. [Detailed launches](../reports/issue-115/role-launches.md).
-* Next: all100 integrated tests rechecked/frozen after B2; launch fresh restricted
-  C on actual parentd9 with named product/docs ownership and execution hold. Current execution hold:
-  no imports/probes/tests/lint/types/installations/measurements by B2; root117
-  has focused checks. Coordinate C ordinary focused window, no full gate until
-  root schedules exact clean candidate. Known red/missing proof blocks submission.
-* Final receipt/review/publication pointer remains outside tracked candidate
-  bytes `/workspace/work/campaign/evidence/115` and conversation/PR. D writes
-  there after exact full passing Ubuntu gate. Root owns push/PR parent121/CI;
-  no merge/release/manual closure. Prepare all tracked pointers before final gate.
-* Housekeeping: no active own check process/scratch. Earlier unused bootstrap
-  files and empty work/issue-115/work removed with existing rm/rmdir, no errors.
-  Keep durable reports/packets, active checkout, frozen tests and required inputs.
+* Status: **C complete; clean candidate preparation for root full gate, then D**.
+  Authorized W01–W18/high-risk A/B/frozen tests/C/full exact Ubuntu/D route.
+  This tracked state is the prepared pointer: final exact candidate/receipt/D/
+  publication evidence lives outside tracked bytes under
+  `/workspace/work/campaign/evidence/115` and in root conversation/PR. No tracked
+  edit may record a passing head's own hash or mutate it after exact verification.
+* Frozen parent: accepted #112 d9a0ba924817772fdb5550c7d055bf31bcf70388,
+  tree836abd6603e28ea69c611429443c0684ba2f8441, PR121. Root reports full local
+  gate/independent acceptance and exact CI test merge/tree passed. This is
+  parent evidence, not a #115 full-gate or D result. Root owns stack/push/PR/CI.
+* Historical actual A/B1 base/checkpoint b344e41/9a423fd and old8f6b17 lineage
+  remain preserved in refs/campaign/evidence/115-pre-parent. Root integrated
+  own commits onto parentd9, producing290a4e6/tree9aa7945. Fresh B2 accepted
+  that integrated checkpoint without corrections, independently retained prior
+  cosmetic-delta evidence, and assessed inherited setup-test interaction.
+  [B2 report](../reports/issue-115/b-review-2.md) SHA256
+  67e9ffbe0efa451b458432ddbf8565c7dc305561a33d4d174fb67bca4c599a7f.
+* Frozen100-file [manifest](../reports/issue-115/tests-integrated-checkpoint.sha256)
+  SHA2563e4d18a1f9a96ae537eeac12bc126012b1d93c3d4613ed76b72da9b740302528;
+  all match after C. Historical99 manifest unchanged; added inherited setup test
+  is the sole test-set integration delta. C edited no tests/fixtures/config/
+  check policy/dependencies/infrastructure. No hidden source/private ancestry.
+* Fresh C `/root/issue_115/c_115` began clean43ebeb4/tree89d8de2 on parentd9.
+  Changed only known_parameters.py and acquisition/layout.py plus eight named
+  product contracts/usages. Five historical byte expressions/eight guards are
+  dominated by retained checked actual-width native extents; signed element/
+  index/loop checks and original scientific computation/failure/ownership/
+  debug-summary semantics remain. Coordinator separately added PROJECT's
+  contract/task reference and owns this state/accounting/presentation.
+* [C implementation report](../reports/issue-115/c-implementation.md) SHA256
+  f1a16d344f3eb8a390bd351b89631656b12f2e7fbc19b4425eb436ba0aac90c1
+  records real-caller/ordering/aggregate/failure inspection and exact source
+  hashes. Direct known ifftn is an imported alias; the accepted later SciPy
+  monkeypatch can take its positive fallback. No universal backend hook-hit
+  claim; the actual call remains in the unchanged operation wrapper. D must
+  independently assess these concrete proof limits and actual implementation.
+* C focused checks: all1118 passed/16warnings in131.23s; changed-source Ruff,
+  format and locked Pyright all exit0. No runtime edit followed these checks,
+  no corrective code round. Four exact historical DLASCL parameter-4 lines
+  recurred, no new native diagnostic; originating case remains unlocalized,
+  with no blanket harmlessness/backend qualification claim. No target allocation,
+  installation, memory benchmark or full gate run by C. Window released; no
+  active own check/background process/scratch. Diff/frozen100 checks pass.
+* Historical A evidence remains1099passed/19 valid byte-domain reds/16warnings,
+ 128.26s, before implementation and cosmetic-only preparation. Final exact A
+  Ruff/format/uv-run source-free Pyright pass; independent B1/B2 inspected the
+  complete reconstructed/hash-matching cosmetic delta. Historical results are
+  not relabeled as integrated reruns. Source/locals exposure0.
+* Cumulative charges: intake1; A1 plus continuation1; B1 and B2 completed two
+  independent affected reviews; C1; D0. Semantic test corrections0, cosmetic
+  rounds2, environment/invocation diagnosis1, diagnostic stop1, missing-evidence
+  request1 resolved without test change. A check commands10/five nonzero statuses
+  including intended product-red; C four scientific/quality commands all0,
+  three administrative path-navigation misses corrected and disclosed. Full
+  tokens/cost/overall elapsed/served attribution unknown; pytest walls above
+  are individual checks. Actual human numeric limits not set; no default cap.
+  [Cumulative launch detail](../reports/issue-115/role-launches.md).
+* Next: root schedules canonical full Ubuntu make verify on exact clean committed
+  candidate, all13 phases and required same-run coverage/wheel/import/audit/M25
+  evidence. Then fresh independent D writes outside tracked candidate bytes.
+  Known failed/missing gate evidence blocks submission; focused pass is no full
+  gate. No CI-authoritative shortcut, huge allocation or resource trial. Root
+  publishes only after exact full pass plus D, stacked on PR121; no merge/release/
+  manual closure authority.
+* Housekeeping: removed earlier unused coordinator bootstrap and empty scratch
+  directories with rm/rmdir, no errors. C/B created no scratch or background
+  process. Keep active checkout, frozen tests, durable reports/packets and pinned
+  environments/shared dependencies. No custom cleanup helper or extra gate.
 
 ## PR presentation
 

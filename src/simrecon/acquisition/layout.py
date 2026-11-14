@@ -330,21 +330,19 @@ def zoom(value: Any, y: int, x: int) -> float:
 
 
 def output_extents(shape: tuple[int, ...], lateral: float, axial: int) -> None:
-    """Check the selected main workspace/lookup casts and owned array extents."""
+    """Check signed output counts and exact native allocation-byte extents."""
     t, _, _, z, y, x = shape
     oz, oy, ox = axial * z, int(lateral * y), int(lateral * x)
     for name, count in (
         ("output Z", oz),
         ("output plane", ox * oy),
         ("output volume", ox * oy * oz),
-        ("lookup bytes", 4 * ox * oy),
     ):
         signed(count, name)
-    for size in (8 * ox * oy * oz, 4 * ox * oy * oz):
-        if size > 2**32 - 1:
-            raise AcquisitionModeError(
-                "output workspace bytes exceed source unsigned32 representation"
-            )
+    # The actual complex128 volume bounds both historical output byte counts
+    # (8/4 per voxel) and lookup bytes (4 per pixel), since oz>=1. The time-axis
+    # binary64 image independently needs its aggregate native extent. Products
+    # use Python integers, without narrowing or a historical byte-only cap.
     extent((oz, oy, ox), 16)
     extent((t, oz, oy, ox), 8)
 

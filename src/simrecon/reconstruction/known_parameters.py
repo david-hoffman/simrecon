@@ -48,7 +48,6 @@ _F64 = NDArray[np.float64]
 _C128 = NDArray[np.complex128]
 _I64 = NDArray[np.int64]
 _INT_MAX = 2**31 - 1
-_UINT_MAX = 2**32 - 1
 _INTP_MAX = int(np.iinfo(np.intp).max)
 _F32_MAX = float(np.finfo(np.float32).max)
 _REFERENCE = (
@@ -138,6 +137,7 @@ def _positive(value: float, name: str) -> float:
 
 
 def _extent(shape: tuple[int, ...], itemsize: int) -> None:
+    """Check positive native dimensions and exact allocation-byte arithmetic."""
     extent = itemsize
     for dimension in reversed(shape):
         if not 0 < dimension <= _INTP_MAX:
@@ -252,16 +252,13 @@ def _validate_bands(bands: Any) -> tuple[_Grid, _UsedBands | None]:
         ("output Z", oz),
         ("output plane", ox * oy),
         ("output volume", ox * oy * oz),
-        ("signed lookup bytes", ox * oy * 4),
     ):
         _source_extent(count, _INT_MAX, name)
-    for name, count in (
-        ("complex native workspace bytes", x * y * z * 8),
-        ("complex output workspace bytes", ox * oy * oz * 8),
-        ("real output bytes", ox * oy * oz * 4),
-        ("order allocation bytes", orders * 8),
-    ):
-        _source_extent(count, _UINT_MAX, name)
+    # Actual storage widths dominate the five historical allocation expressions:
+    # native/output complex128 use 16 rather than 8 bytes, the image uses 8
+    # rather than 4, the lookup plane uses 16 rather than 4, and orders use 8.
+    # All dimensions/products here are Python integers; no byte-only signed32
+    # or unsigned32 ceiling is needed in addition to these native extent checks.
     for array_shape, itemsize in (
         (q.shape, 16),
         (noise.shape, 8),

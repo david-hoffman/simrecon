@@ -95,7 +95,15 @@ result. Allocation failure and interruption propagate. The arithmetic remains
 float64/complex128, with the existing scientific order and full-debug behavior.
 
 The motivating input `(1,3,5,32,2048,2048)` with lateral zoom 2 and axial zoom 1
-is outside the unchanged source representation domain: its output workspace
-expression equals `2**32` bytes, greater than the unsigned-32 maximum. Saving
-diagnostic memory does not make that shape supported. Smaller-volume measurements
-must not be extrapolated into a promise that this case runs on a 16 GiB machine.
+is representation-valid under the separate
+[wide allocation-byte extension](../contracts/wide-allocation-domain-v1.md)
+on supported 64-bit Ubuntu: its historical output-workspace expression equals
+`2**32` bytes and now fits native `intp`. Signed counts/indices, actual-width
+aggregate extents, declarations, stencils and numerical constraints still bind.
+Known invalid geometry rejects before array-sized copies, hashing, scans or
+backend work, using the same declaration categories as full workflow.
+Historical summary measurements retain their original domain. No target
+allocation or backend execution is qualified: the binary64 image alone is
+4 GiB and a binary64 raw array is 15 GiB, before other storage. Full-volume
+feasibility is unmeasured. Smaller-volume measurements must not be extrapolated
+into a promise that this case runs on a 16 GiB machine.

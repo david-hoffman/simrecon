@@ -921,10 +921,14 @@ error. Finite diagnostics required by the accepted numeric contracts must be
 finite even when the main caller discards their values; undefined printf-only
 reciprocals remain outside numerical acceptance as CE05 specifies.
 
-All CE06 section10 signed32 products/casts/indices, explicit unsigned32 main
-workspace bytes, signed32 lookup bytes and required 64-bit native intp shape/
-stride/byte bounds bind, including new aggregate image/identity/metadata/trace
-representations. Counts are integral, not bool; flags actual bool. Raw values
+All retained CE06 section10 signed32 products/casts/indices and required 64-bit
+native intp shape/stride/byte bounds bind, including aggregate image/identity/
+metadata/trace representations. The [wide allocation-byte extension](wide-allocation-domain-v1.md)
+replaces only the historical unsigned32 main-workspace and signed32 lookup
+byte-only caps with exact positive integer bytes at most native intp maximum;
+actual-width aggregate extents still bind. Reject known invalid geometry from
+metadata before array-sized copies, hashing, scans, broadcasting or backend work.
+Counts are integral, not bool; flags actual bool. Raw values
 are standard integer/float16/32/64 exactly finite-float32 representable. Maps/
 phases/clocks/angles/other mathematical inputs use binary64 within inherited
 source-float magnitude domains. No extended-precision/object/boolean/complex
