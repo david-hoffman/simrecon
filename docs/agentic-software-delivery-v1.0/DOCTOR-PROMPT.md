@@ -1,15 +1,22 @@
 # Doctor prompt
 
-**Version 1.0** This is the procedure for `delivery doctor`, using the existing `review-work` skill in doctor mode. Before the command is implemented, give this prompt to a fresh coding session. It may write a documentation patch; it must not claim a command ran when it did not.
+**Version 1.0** Use [lessons-doctor](../../.agents/skills/lessons-doctor/SKILL.md) as the primary entry in the current cloud or local coordinator/nonblind author session. This procedure also supports the optional legacy native `delivery doctor` launcher through `review-work` doctor mode. The skill requires no native launch or nested authentication. Required independent report review and policy review remain separate fresh sessions without author history; policy review needs no extra native launcher. Never claim a command ran when it did not.
 
 ```text
 Run doctor under docs/agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md section 8.
-Check the working tree and stop
-rather than overwrite unrelated/uncommitted work or interrupt an active delivery task.
+Perform the requested check, report-only triage or named documentation patch directly
+in this authorized nonblind session. Use available repository/remote read tools; a
+failed nested native launch does not block report-only analysis of accessible evidence.
+Record unavailable capabilities without speculative installation or automatic retries.
+Check the working tree and preserve unrelated/uncommitted work and active tasks;
+stop only conflicting edits, not independent authorized inspection.
 Read relevant project instructions, recent lessons and concrete CI/test or repository
 evidence narrowly. For an explicit full-backlog report-only request, inventory every
 baseline observation and applicable disposition instead; state baseline/cutoff and
-access limits. Do not replay sessions or recrawl unrelated sources. Follow section 8:
+access limits. Reuse prior reports/dispositions only with their baseline, scope and
+current applicability recorded. Label incremental reconciliation as incremental;
+claim a full pass only with complete baseline inventory and all claims accounted for.
+Do not replay sessions or recrawl unrelated sources. Follow section 8:
 group semantically, then analyze mechanisms and reconcile current policy/work. Account
 for every baseline lesson exactly once, mapping all claims to zero/one/many findings
 with stable IDs. Useful observations need not be defects. Preserve uncertainty, explicit
@@ -17,7 +24,9 @@ duplicates/supersession, contradictions and scoped completion evidence. No fixes
 triage. Return findings/evidence/work links/completion conditions to intake, which owns
 routes and sanitizes blind packets. Before authorized issue publication search remote
 open/closed issues and tasks by ID/mechanism, inspect/reuse matches and recheck creation;
-record search limits and never equate issue closure with resolution. No external write
+record search limits. Inspect current linked PR diffs, checks and completion evidence
+against each finding's conditions; record material head/merge identities and access
+limits. Issue closure or a PR state alone proves no resolution. No external write
 without actual authority; an explicit publication request suffices without a new loop.
 
 Classify failures under spec section 4: environment/tooling failure, test defect,
@@ -54,7 +63,8 @@ docs/agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md plus directly affect
 instructions. Replace or remove text before adding more. Keep shared operational
 instructions in AGENTS.md and role-specific differences in skills; synchronize their
 generation templates. No new framework, skill swarm, or parallel spec. No gap means
-no change. Explicit report-only triage emits findings without fixes. With --check,
+no change. Explicit report-only triage emits findings without fixes; named report or
+disposition artifacts require actual write authority. With --check semantics,
 write nothing, including reports/dispositions/issues; return the report to the caller.
 A coordinator may capture the returned report separately only under actual write authority.
 
@@ -69,5 +79,5 @@ format guide, linking accepted evidence/commit, stable finding IDs and source le
 Keep observation confidence separate from untriaged/tracked/resolved/no-action/deferred
 handling; conflicting decisions need explicit reconciliation and supersedes links. Migrate in-flight work only with explicit owner authorization, preserving every historical attempt/round/repair/expenditure and actual human-set limit; leave historical records intact.
 All delivery documents stay version 1.0; Git tracks their revisions.
-Honor actual human-set limits; absent limits are not set and missing measurements are unknown. The independent policy reviewer is coordinator-launched, never a nested self-review. No daemon or uncontrolled automatic repair loop; diagnosed in-scope corrections continue without default-quota approval stops. Conditional CI-authoritative eligibility is separate evaluated scope, not a way for this patch to approve its own gate.
+Honor actual human-set limits; absent limits are not set and missing measurements are unknown. Any required independent report review and policy review use separate fresh sessions without author history, never self-review. The optional legacy delivery doctor command requires usable native Codex/authentication and is not the cloud entry; do not run it to satisfy this skill. No daemon or uncontrolled automatic repair loop; diagnosed in-scope corrections continue without default-quota approval stops. Conditional CI-authoritative eligibility is separate evaluated scope, not a way for this patch to approve its own gate.
 ```

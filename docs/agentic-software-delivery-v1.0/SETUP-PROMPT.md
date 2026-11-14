@@ -6,7 +6,7 @@
 Set up the Agentic Software Delivery System described in DELIVERY-SYSTEM-SPEC.md.
 Read that file once. It supersedes the earlier conversation drafts.
 
-Use ONE monorepo, existing coding-harness sessions, four skills, ordinary GitHub
+Use ONE monorepo, existing coding-harness sessions, four role skills with cross-cutting procedures, ordinary GitHub
 Actions, and Git. Do not build a custom controller, separate control repository,
 GitHub App, immutable test store, permission enforcement, or agent swarm.
 Restrictions on editing reviewed tests/workflows and append-only lessons are prompts.
@@ -29,8 +29,8 @@ gate, including any selected global numerical coverage target. Let the owner cho
 including an explicitly larger slice where needed; do not weaken readiness criteria.
 Adapt paths and instructions without creating two live specs or overwriting the
 product README. Create docs/lessons/ with a README.md format guide for one timestamped
-Markdown file per lesson, following specification section 7. Install the four skills in the
-selected harness's supported location, with
+Markdown file per lesson, following specification section 7. Install the four role skills
+and the cross-cutting lessons-doctor skill in the selected harness's supported location, with
 one canonical copy of each. Generate or reconcile AGENTS.md as the single operational
 home for shared instructions; skills contain role-specific differences. Add a thin
 native bridge only when required. Record actual launch/check/wait commands, model/effort choices and calibration status. Candidate cheaper/medium settings are not demonstrated defaults. Check actual interpreter/platform/lock/install/import health before expensive dependent phases; probe reviewer capability only when review is required and valid evidence is missing/stale. Stop dependent work on failed prerequisites; diagnose before authorized retry.
@@ -67,8 +67,20 @@ guards, force impossible internal states or duplicate tests solely for a percent
 preserve required validation, real invariants, ownership, blindness and all prior accounting.
 Use GITHUB-SETUP.md; apply settings only with permission or give exact owner actions.
 
-Implement delivery doctor as a thin invocation of review-work in doctor mode using
-DOCTOR-PROMPT.md. No daemon or scheduled LLM loop. Default behavior writes an evidenced spec/instruction patch on a docs branch. Policy activation requires human-requested scope and fresh independent policy review; --check only reports. Keep every delivery document at version 1.0. Git versions edits.
+Make lessons-doctor the primary doctor entry, using DOCTOR-PROMPT.md directly in the
+current cloud or local coordinator/nonblind author session. It requires no native launch
+or nested authentication. Preserve any existing delivery doctor launcher as an optional
+legacy native-only entry through review-work doctor mode; document its native
+installation/authentication prerequisites without claiming cloud support. No runtime
+change, daemon or scheduled LLM loop follows from installing this skill. Match the
+requested check/report-only/named documentation-patch scope; triage runs no fixes and
+--check writes nothing, including reports. Full-backlog requests need complete baseline
+inventory; reused evidence retains applicability limits and incremental labels. Reconcile
+current remote PR completion evidence beyond issue closure before claiming resolution.
+Policy activation requires human-requested scope and fresh independent policy review;
+required independent report review also uses a separate fresh session without author
+history. Policy review needs no extra native launcher. Preserve intake and sanitized
+blind packets. Keep every delivery document at version 1.0. Git versions edits.
 
 Use spec sections 3–4 for risk routing and named ownership: mechanical one worker;
 bounded worker may own authorized product/tests/infrastructure and needs one fresh
