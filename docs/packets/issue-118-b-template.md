@@ -2,9 +2,13 @@
 
 **Version 1.0.** Standalone sanitized reviewer input; coordinator must complete
 launch/checkpoint fields before use. You are fresh independent blind B; perform
-review here, do not delegate and do not repair your target. Use
-`.agents/skills/review-work/SKILL.md` and only public author/reviewer questions
-from `.agents/skills/test-audit/SKILL.md`; no nonblind discovery sections or links.
+review here, do not delegate and do not repair your target. Read
+`.agents/skills/review-work/SKILL.md`. Apply these public test-audit criteria:
+approved observable obligation, credible wrong outcome, independently specified
+expectation, strongest retained public proof/distinct gap, and real caller
+boundary without a test-only production seam. Product-path agreement alone is
+no numerical oracle. Do not read the mixed-mode
+`.agents/skills/test-audit/SKILL.md` or follow its nonblind procedure links.
 
 ## Contract and scope
 

@@ -1,9 +1,18 @@
 # PH118 — high-risk A public packet
 
 **Version 1.0.** Standalone sanitized public inputs. You are already fresh A;
-perform this role here and do not delegate. Use `.agents/skills/test-work/SKILL.md`
-and only public authoring/review questions from
-`.agents/skills/test-audit/SKILL.md`; no nonblind discovery sections or links.
+perform this role here and do not delegate. Read `.agents/skills/test-work/SKILL.md`.
+The approved public test-audit questions are reproduced below. Do not read the
+mixed-mode `.agents/skills/test-audit/SKILL.md` or follow its links: its full text
+includes excluded nonblind procedures. This packet is the permitted excerpt.
+
+For each proposed test, state the approved observable obligation; the credible
+wrong outcome it distinguishes and independent expected relation/value; the
+strongest existing public-boundary proof and distinct gap; and whether it needs
+a production seam without a real caller. Use public entries and existing
+test-owned observers. Returned fields can prove an approved relation but cannot
+provide independent numerical truth. Initially passing tests are valid; no
+manufactured failure, mandatory mutation or new percentage-driven test follows.
 
 ## Authorized outcome and current execution boundary
 
@@ -39,8 +48,8 @@ Static authored test text proves no passing behavior or harness capability.
 | Controls | no conversation inheritance; optional memory-disable/delegation/read-only controls unavailable separately in exposed tool contract; shared filesystem/parent permissions and prompt-only boundaries disclosed |
 | Tools while held | static allowlisted text reads and static owned-file authoring only; no executable checks |
 | Tool-only CLI/login fields | not applicable; do not run native probes for this route |
-| Detailed report | `/workspace/work/issue-118/docs/reports/issue-118/a.md` |
-| Final message | separate role final channel, retained by coordinator at `/workspace/work/campaign/evidence/118/a-final.txt`; never overwrite detailed report |
+| Detailed report | `/workspace/work/issue-118/docs/reports/issue-118/a2.md` |
+| Final message | separate role final channel, retained by coordinator at `/workspace/work/campaign/evidence/118/a2-final.txt`; never overwrite detailed report |
 | Pending gates | source-free narrow checks after execution grant; fresh B acceptance of exact checkpoint; all later gates unchanged |
 
 Coordinator fills exact fields rather than treating unknown as readiness. One
@@ -53,7 +62,7 @@ attempts/spending. No sign-in, permission repair, helper or launcher installatio
 
 Read only this packet, root `AGENTS.md`, permitted PROJECT architecture/public
 boundary, verification/coverage/platform and role-selection text, the named
-test-work skill and public test-audit questions, PH118, and these approved public
+test-work skill and this packet's public test-audit excerpt, PH118, and these approved public
 references:
 
 - `docs/contracts/c-equivalence-preprocessing-v1.md`: public entry/representation,
