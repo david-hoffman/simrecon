@@ -309,8 +309,8 @@ not the native frequency magnitude. With odd bead phase count P_b, line spacing
 L in µm, orientation θ and slot order m=(slot+1)//2,
 
 $$
-\rho_m=\left\|(k_x,k_y,k_z)+
-\frac{m}{\lfloor P_b/2\rfloor L}(\cos\theta,\sin\theta,0)\right\|.
+\rho_m=\left\lVert(k_x,k_y,k_z)+
+\frac{m}{\lfloor P_b/2\rfloor L}(\cos\theta,\sin\theta,0)\right\rVert.
 $$
 
 For this bead calculation, the lateral components use `k_x=n_x Δk_r,H` and
@@ -418,7 +418,7 @@ For m=0, the modulation conjugate is effectively 1. The sums range e=0…D−1 a
 The radial support limit is
 
 $$
-R=\min\{2\,NA/(\lambda_{nm}/1000),\ 1/(2dxy)\}.
+R=\min\lbrace 2\,NA/(\lambda_{nm}/1000),\ 1/(2dxy)\rbrace.
 $$
 
 Let λe=λnm/(1000nimm), λx=0.88λe, θ=asin(NA/nimm), c̃0=ceil(((1−cosθ)/λe)/Δkz). Intermediate order axial cutoffs truncate `(1+λe/λx)c̃0`; the last order truncates `1.3c̃0`. Each is independently clipped when ≥floor(Z/2) to max(floor(Z/2)−1,0). Below, `c0` and `c1` mean the resulting **clipped** order-zero and order-one cutoffs; the initial ceiling value is only the construction input. For M=2, its only side order is the last-order 1.3 case. [`calculate_native_support`](../../src/simrecon/reconstruction/known_parameters.py#L619).
@@ -476,8 +476,8 @@ With the ordinary `explode_factor=1`, the per-direction sum is
 
 $$
 \Re u_{d0}(\mathbf r)+
-\sum_{m=1}^{M-1}2\Re\left\{u_{dm}(\mathbf r)
- e^{+2\pi i m\mathbf k_d\cdot\mathbf r}\right\}.
+\sum_{m=1}^{M-1}2\Re\left\lbrace u_{dm}(\mathbf r)
+ e^{+2\pi i m\mathbf k_d\cdot\mathbf r}\right\rbrace.
 $$
 
 The factor two supplies the signed harmonic partner. There is no final absolute
@@ -511,8 +511,8 @@ Implementation is `ifftn(..., norm="forward")`, :851–856. Then
 
 $$
 I(h,i,j)=\sum_d\left[\Re u_{d0}(h,i,j)+
-\sum_{m=1}^{M-1}2\Re\left\{u_{dm}(h,i,j)
- e^{+2\pi i\,m\,\mathbf k_d\cdot\mathbf r_{ij}}\right\}\right],
+\sum_{m=1}^{M-1}2\Re\left\lbrace u_{dm}(h,i,j)
+ e^{+2\pi i\,m\,\mathbf k_d\cdot\mathbf r_{ij}}\right\rbrace\right],
 $$
 
 omitting the center term if requested. `explode_factor` multiplies the phase in this last expression only; filter overlap coordinates still use the original carriers. The factor 2 supplies the signed harmonic partner through real-part assembly. **No absolute value, positivity clipping, fitted global gain or final average is applied.** See :858–871.

@@ -54,6 +54,27 @@ The [investigation report](../reports/cloud-role-launches.md) and its sanitized
 probe/pilot artifacts are durable candidate evidence. The coordinator owns these
 files plus a new scoped lesson/disposition; original RM84 records stay immutable.
 
+### Conflict reconciliation and auto-merge follow-up
+
+The owner subsequently instructed **“there's a merge conflict, fix it and then
+set to automerge”**. This supplies explicit auto-merge authority for PR #109;
+it does not authorize a release or bypassing checks/protection. Fresh fetch
+found main `87163657dd4e43e98adbc64ef8eca268c033084c` (PR #110's math-documentation
+correction). A three-way trial and the actual merge both completed without a
+textual conflict; retain the updated main content and this PR's policy/evidence.
+The GitHub snapshot initially still reported the previous base, so the fetched
+Git identities determine the integration baseline.
+
+Complete the previously identified disposition gap through the
+[append-only scoped reconciliation](../lessons/dispositions/20261114T191207Z-cloud107-coordinator-reconcile-launch-investigation.md).
+It resolves RM84-F001's original investigation conditions, records the doctor's
+corroborating recurrence and preserves unresolved native/doctor behavior and
+CLOUD107-F001's existing `no-action` scope. Original observations/dispositions
+are unchanged. Fresh independent policy/disposition review and full verification
+of the new exact candidate precede the PR push; required Ubuntu CI precedes
+completion of auto-merge. Native GitHub auto-merge must honor the configured
+requirements; no protection bypass, forced merge or custom merge loop is added.
+
 ### Observations, dependencies and uncertainty
 
 1. Issue #107 reports two native attempts with Codex CLI 0.167.0-alpha.4:
@@ -241,7 +262,9 @@ distinct; none follows from this intake.
   unrepaired; the fresh host-tool documentation route is demonstrated.
 - **Authorization/base:** `/intake 107` plus “Ok let’s a get a pr up and finish
   the task”; execution base `a66e343857ef64cf6f2207c9a2d53461b4caac1c`.
-  Documentation/policy route, default full-local submission gate, required
+  Reconciliation base `87163657dd4e43e98adbc64ef8eca268c033084c`; explicit
+  auto-merge authority is recorded above. Documentation/policy route, default
+  full-local submission gate, required
   Ubuntu CI. No accepted scientific test checkpoint is claimed.
 - **Evidence:** [report](../reports/cloud-role-launches.md), tracked sanitized
   probes and pilot; `/workspace/cloud107-evidence/intake-record.json` preserves
@@ -264,7 +287,8 @@ distinct; none follows from this intake.
   perform diagnosed corrections through existing ownership. Native authentication
   needs provider/account investigation if native execution is required; tool
   session success does not prove native repair or scientific correctness.
-  New policy use waits for independent acceptance. No merge/release authority.
+  Required review and exact-candidate checks remain binding. Auto-merge is
+  explicitly authorized by the follow-up; release remains outside scope.
 - **Housekeeping:** keep current checkout, tracked evidence, shared environment
   and `/workspace/cloud107-evidence`. No extra worktree/disposable fixture or
   long-lived task process was created; native probes exited. Removed paths:
