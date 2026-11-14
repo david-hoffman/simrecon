@@ -48,8 +48,8 @@ Static authored test text proves no passing behavior or harness capability.
 | Controls | no conversation inheritance; optional memory-disable/delegation/read-only controls unavailable separately in exposed tool contract; shared filesystem/parent permissions and prompt-only boundaries disclosed |
 | Tools while held | static allowlisted text reads and static owned-file authoring only; no executable checks |
 | Tool-only CLI/login fields | not applicable; do not run native probes for this route |
-| Detailed report | `/workspace/work/issue-118/docs/reports/issue-118/a2.md` |
-| Final message | separate role final channel, retained by coordinator at `/workspace/work/campaign/evidence/118/a2-final.txt`; never overwrite detailed report |
+| Detailed report | `/workspace/work/issue-118/docs/reports/issue-118/a3.md` |
+| Final message | separate role final channel, retained by coordinator at `/workspace/work/campaign/evidence/118/a3-final.txt`; never overwrite detailed report |
 | Pending gates | source-free narrow checks after execution grant; fresh B acceptance of exact checkpoint; all later gates unchanged |
 
 Coordinator fills exact fields rather than treating unknown as readiness. One
@@ -60,10 +60,29 @@ attempts/spending. No sign-in, permission repair, helper or launcher installatio
 
 ## Read allowlist and write ownership
 
-Read only this packet, root `AGENTS.md`, permitted PROJECT architecture/public
-boundary, verification/coverage/platform and role-selection text, the named
-test-work skill and this packet's public test-audit excerpt, PH118, and these approved public
-references:
+Read only this packet, the entire root `AGENTS.md`, the entire named test-work
+skill, PH118, and the full named public contract/usage/test/observer files below.
+Section descriptions identify relevance, not partial-file boundaries. Generic
+role-procedure instructions in explicitly allowed AGENTS/test-work are permitted;
+they supply no permission to read their unlisted links or product/history/state.
+Do not read `docs/PROJECT.md`; its approved relevant facts are reproduced here.
+Do not read the mixed-mode test-audit skill; use the excerpt above.
+
+Approved project facts: SIMrecon uses explicit functional Python/NumPy/SciPy
+array/value boundaries; current default science is float64/complex128 with
+locked Python3.13.12/uv0.12.19. Public entries are named below. No product CLI or
+domain extension is commissioned. Ubuntu24.04 is the sole required verification
+platform. Coverage policy is approved behavior with independent risk review;
+no line/statement/branch percentage threshold is selected. Exact native
+Coverage.py statement/branch global/package/file/subprocess reports, including
+never-imported owned Python, remain required in the full gate. Scientific roles
+use the conservative requested Sol/high selection; broader quality calibration
+and actual served attribution remain unknown. Full-local exact clean candidate
+`make verify` remains mandatory before submission, with all 13 phases, strict
+outcomes, two workers, wheel/import/audit and same-run M25 conversion evidence.
+These facts are policy context, not an execution grant or product acceptance.
+
+Approved public files (full text allowed; follow no unlisted links):
 
 - `docs/contracts/c-equivalence-preprocessing-v1.md`: public entry/representation,
   operation order, selected matrices/noise and errors.
@@ -101,7 +120,7 @@ requires disclosure and stopping blind work; clearing context restores nothing.
 
 Write only `tests/test_preparation_harmonic_lifetimes.py` and the detailed A
 report. Keep deterministic fixtures/generators/observers in that new file.
-No edits to the four allowed prior test files, shared fixtures, runtime, checks,
+No edits to any allowed prior test files, shared fixtures, runtime, checks,
 config, policy, delivery tools or packet. No commit/push/restack/publication.
 
 ## Public interfaces and independent test work

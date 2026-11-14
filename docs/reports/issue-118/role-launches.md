@@ -87,3 +87,41 @@ campaign-owned setup evidence and must not be charged here again.
 - Tests initially passing remain permissible; no manufactured red required.
 - Cumulative launches intake=1, A=1, B=0, C=0, D=0. All response/token/cost/time
   measurements unknown unless actually surfaced; human numeric limits not set.
+
+## A 2 — fresh replacement static authoring
+
+- Session `/root/issue_118/a118_static2`; fresh `fork_turns="none"` tool route,
+  requested `gpt-6.1-sol`, high. Actual served attribution and metering unknown.
+- Launch approximately 2026-11-14 23:04 UTC. Clean initial commit
+  `cebb5a753352e24ca96f76a96b7279eb32ecd881`, tree
+  `d235c8000a9369ad7b5fdd436e1261735504ae4b`; accepted tests none.
+- Revised public packet SHA256
+  `f61ded501ed22887ceb76e7e5df1521f573d3364e4a0ef0679ff2aad8c8b7bef`;
+  contract unchanged SHA256
+  `d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5`.
+- Actual tool arguments task_name `a118_static2`, no inherited conversation,
+  explicit model/effort above. Message binds only allowed public packet/contract/
+  start identity, sanitized prior attempt accounting and static hold/write scope.
+  A1 raw report/source/coordinator state remains excluded.
+- Mixed-mode full test-audit skill explicitly excluded; approved public questions
+  reproduced in packet. Fresh role does not restore or erase A1's boundary breach.
+- Named writes: `tests/test_preparation_harmonic_lifetimes.py` and
+  `docs/reports/issue-118/a2.md`; separate final channel. No prior artifacts
+  overwritten. Final retention pointer `/workspace/work/campaign/evidence/118/a2-final.txt`.
+- Same total execution hold and unavailable optional controls as above. No
+  checks/measurements/passing checkpoint. A2 stopped before authoring after
+  reading full PROJECT beyond its section-limited allowlist. Generic procedural,
+  setup and history-pointer text was returned; no links followed and no actual
+  product source/history/task state/coverage/lesson records read was reported.
+  Report `docs/reports/issue-118/a2.md`, SHA256
+  `644e774f25fe8ac96cb449a1bde4e003b3bcf991b7d38509b683c0bc40b659e5`.
+- Recurring diagnosed cause: section-scoped packet permissions did not prevent
+  whole-file reads. Corrected packet entirely excludes PROJECT and mixed audit
+  skill, embeds approved project/audit facts, and explicitly permits full named
+  public files only. Root confirmed this routing. No product defect, gate change,
+  stronger source exposure or reset of A1/A2 is inferred. A3 must be fresh.
+  One additional coordinator atomic patch-match failure (three total) was
+  corrected against the actual text; no partial edit or scientific change.
+- Cumulative launches intake=1, A=2, B=0, C=0, D=0; reviews none. One A1
+  procedural scope breach and A2 whole-file overread/corrections retained. All unexposed usage,
+  cost and times unknown; human numeric limits not set.

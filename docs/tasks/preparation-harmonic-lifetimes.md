@@ -72,7 +72,9 @@
 
 - Status: static intake completed and coordinator inspected; first A stopped
   before authoring after reading excluded mixed-mode procedure text. A fresh
-  replacement receives a corrected excerpt-only packet. High-risk route
+  A2 also stopped before authoring on a whole-PROJECT read exceeding its
+  section-limited allowlist. A3 gets a self-contained packet and only whole-file
+  permissions; PROJECT and mixed-mode audit skill are entirely excluded. High-risk route
   remains incomplete; TOTAL EXECUTION HOLD
   continues for priority112 gate. No installs, Python, probes, lint, types, tests,
   benchmarks, measurements or product edits. No role transition releases hold.
@@ -89,7 +91,10 @@
   `/root/issue_118/a118_static1` after intake, requested Sol/high with no inherited
   conversation; it stopped and will not be reused. No product source, history,
   Current state, coverage or lessons exposure was reported. B/C/D not launched;
-  verdicts/checkpoints none. Launch identities
+  verdicts/checkpoints none. Fresh A2 `/root/issue_118/a118_static2` launched
+  without inherited conversation, requested Sol/high; it also stopped before
+  authoring. No actual product-source/history/record exposure reported in either
+  launch. Launch identities
   and cumulative accounting are in [role launches](../reports/issue-118/role-launches.md).
 - Outside tracked final candidate receipt/review/publication pointer prepared as
   `/workspace/work/campaign/evidence/118`. Root writes exact final identities there;
@@ -103,11 +108,12 @@
 - Baseline behavior status unknown: no observed numerical product failure or
   acceptance inferred. No correction, test defect or product defect adjudicated.
 - Metrics: intake launches 1; prior intake attempts none per supplied packet;
-  Scientific launches A=1 (stopped), B=0, C=0, D=0; completed full/delta reviews none.
+  Scientific launches A=2 (both stopped), B=0, C=0, D=0;
+  completed full/delta reviews none.
   One intake static patch-match failure/correction retained in its report; no
-  scientific repair commissioned. Two coordinator multi-file patch matches failed
+  scientific repair commissioned. Three coordinator multi-file patch matches failed
   atomically and were corrected with matching context; no product/test changes.
-  One A procedural read-scope breach and packet-routing correction are recorded;
+  Two A procedural read-boundary overreads and packet-routing corrections are recorded;
   no product defect inferred. Current-task false findings unknown. Response count,
   input/cached/output tokens, money, elapsed/owner-wait/check time unknown.
   Requested model/effort Sol/high; served attribution unknown. No exposure of
@@ -115,8 +121,8 @@
   Campaign/historical charges remain with root and are not reset or duplicated.
 - Blockers: execution hold; actual-parent freeze/reassessment; unfilled recoverable
   launch bindings; independent A/B checkpoint; implementation/D/full verification
-  and matched measurements. Next launch fresh A2 with the standalone public
-  audit-question excerpt, finish static authoring, and retain hold until root's
+  and matched measurements. Next launch fresh A3 with self-contained public
+  project/audit facts and whole-file public permissions; retain hold until root's
   authorized execution release. Then complete A's narrow source-free checks and
   obtain fresh B before C. Actual-parent117/profile113 reassessment stays binding.
 - Cleanup result: no temporary assets/processes created by intake; no deletions.

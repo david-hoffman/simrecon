@@ -51,9 +51,19 @@ attempts and previous reviews. No sign-in repair, fallback launcher or delegatio
 
 ## Allowed inputs and report-only ownership
 
-Read only this packet, AGENTS, permitted PROJECT architecture/public boundary,
-verification/coverage/platform and role-selection text, exact named reviewer
-skill paths above, PH118, and public contracts CE02 preprocessing (public entry/order/matrices/
+Read only this packet, the entire AGENTS, entire named review-work skill, PH118,
+and the full explicitly named public contract/usage/test/observer files below.
+Section descriptions identify relevance, not partial-file boundaries. Generic
+role instructions in allowed AGENTS/review-work are permitted; follow no
+unlisted links. Do not read PROJECT or mixed-mode test-audit SKILL. Approved
+project context: functional explicit Python/NumPy/SciPy boundaries, default
+float64/complex128, locked Python3.13.12/uv0.12.19, conservative requested Sol/high,
+unknown served attribution/general calibration. Ubuntu24.04 is the sole required
+platform; behavior plus independent risk review, no percentage threshold;
+current native global/package/file/never-imported/subprocess statement/branch
+reports required. Exact full-local make verify preserves all 13 phases, strict
+outcomes, two workers, wheel/import/audit and same-run M25. No execution grant
+or acceptance follows. Full public contracts are CE02 preprocessing (public entry/order/matrices/
 errors), CE04 known parameters (public boundary/support/traversal/assembly/errors),
 CE06 acquisition (§§2–6/9–10/12), CE07 workflow (public/config/identity/order/output/
 errors/independent expectations), RM84 (§§1–5), at their named paths:
