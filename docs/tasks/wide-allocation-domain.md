@@ -116,42 +116,66 @@ disposal, preserve uncertain targets and record removed/kept/error facts here.
 
 ## Current state
 
-* Status: **fresh blind B pending launch**; high-risk route, default full-local exact-candidate gate.
-  Concrete contract and packets settled; A prepared six test files and final quality checks pass; independent B pending; all scientific acceptance pending.
-* Authority: original issue and explicit user-commissioned sequence recorded in
+* Status: **WAITING FOR ROOT PARENT FREEZE; B-accepted tests frozen**. High-risk
+  A/B/frozen tests/C/full exact Ubuntu/D route. Authorized contract W01–W18,
+  scenarios18; equivalent examples/keepers mapped in A/B reports. Actual human
+  numeric limits not set; missing metering unknown. Product remains pre-C red.
+* Authority: [issue](https://github.com/david-hoffman/simrecon/issues/115) and
   [durable intake launch](../packets/wide-allocation-domain-intake-launch.md).
-  Numeric human limits not set. No unresolved material meaning.
-* Baseline: `b344e41a8b52de76d7cbbf8450319893904c3b8f`; parent stack unresolved
-  by coordinator; no B checkpoint/frozen manifest/C candidate/D verdict yet.
-* Scope metrics: scenarios=18, equivalent examples not yet enumerated by A.
-  Models/launches/accounting in
-  [role-launch evidence](../reports/issue-115/role-launches.md). Intake launch 1;
-  coordinator read-only preparation precedes it. A/B/C/D not yet launched in
-  this intake record. Full/delta reviews, repairs, tokens/cost/elapsed and actual
-  served model are unknown unless coordinator evidence supplies them; no
-  invented zero measurement.
-* Checks: intake used only read-only shell/git inspection plus authorized docs
-  writes. No install/import/test/lint/type/measurement run. Coordinator supplied
-  successful isolated Ubuntu preflight. Root granted A/B focused-only resource
-  window after #112 confirmed no active numerical process; A checks in progress. No product-red claim; initially passing tests remain
-  valid and scientific baseline is unmeasured by intake.
-* Correction routing: inherited assertions requiring byte-only rejection need
-  A's approved expectation correction and fresh B review; signed/index/native/
-  stencil rejections remain. No tests changed during intake. No bare coverage
-  finding or new metric threshold is asserted.
-* Evidence: [intake report](../reports/issue-115/intake.md) and authored artifact
-  digests in the intake final message. Final candidate/check results will live
-  outside verified tracked bytes under `/workspace/work/campaign/evidence/115`
-  and in coordinator conversation/PR evidence. D writes its final verdict there;
-  no tracked state update may mutate the passing candidate.
-* Blocker/next action: root resource scheduling blocks execution only. Coordinator
-  classified A evidence and completed preparation. Next launch fresh blind B
-  report-only while #112 owns numerical resources; parent #112 still
-  blocks C/final integration and full verification scheduling. No extra
-  document-approval checkpoint is required.
-* Housekeeping: intake created no scratch files or long-lived processes; durable
-  deliverables retained. Coordinator retains active worktree/environment and
-  handles any separately created scratch.
+  Actual A/B public-main base b344e41a8b52de76d7cbbf8450319893904c3b8f;
+  B-accepted prepared-test checkpoint 9a423fd608ecf6cdb203283674522b8b88b9e080.
+  Root owns integration and requires accepted #112 exact parent before fresh C.
+* Frozen99-file manifest
+  [tests-checkpoint.sha256](../reports/issue-115/tests-checkpoint.sha256), SHA256
+  9fcd3732d4adf47624b13f8aaac1883e30d99ece4cbbaece9cc696d29ff25076.
+  Coordinator rechecked every file after B; all match. B accepted exact six
+  authored files plus named unchanged dependencies, without claiming an audit
+  of every unrelated file. No source changes, C/full gate/D verdict yet.
+* Independent evidence: [B1 acceptance](../reports/issue-115/b-review-1.md),
+  SHA256 85be60fe77a46aa3b6f089554f600fa8109e0fd6255a8afddff6942b993b08cf;
+  [A report](../reports/issue-115/a-tests.md),
+  [intake](../reports/issue-115/intake.md),
+  [launches/accounting](../reports/issue-115/role-launches.md).
+  B independently audited W01–W18/arithmetic/oracles/positive classes/omissions
+  and found no actionable test defect. B retained initial product-red evidence
+  after inspecting [exact cosmetic delta](../reports/issue-115/behavior-to-prepared.diff)
+  and [hash-matching reconstruction evidence](../reports/issue-115/behavior-retention-evidence.md).
+  Reconstructed prior text is not an original archived artifact or a new run.
+* Checks: root first-attempt pinned Ubuntu preflight passed, supplied environment
+  evidence only. A source-free focused pytest exit1:1099passed/19 intended
+  obsolete-byte failures/16warnings,128.26s. Final exact six-file Ruff/format/
+  canonical uv-run source-free Pyright pass after cosmetic-only preparation;
+  no repeated behavioral run was claimed. Four fixed LAPACK messages and the
+  conservative stop were retained/routed narrowly without source exposure;
+  B found no oracle defect from them, attribution remains unproven.
+* Cumulative charges: intake1, A1 plus same-session continuation1, B1 completed
+  full affected review1, C0/D0; A semantic corrections0, style rounds2,
+  environment/invocation diagnosis1, native-diagnostic stop1, B missing-evidence
+  request1 resolved without test change, source exposure0. A check commands10
+  (initial4 plus two rounds of3), failed statuses5 including expected product-red.
+  Full tokens/costs/elapsed/served attribution unknown;128.26s is only pytest wall.
+* Upstream notice: root reports main advanced through merged #106 to
+  64a752b4642709c539df2079cc3c906acf4cc7b8; setup/recovery delta, new
+  check_dev_environment runtime/check and test, appended role-launch guidance,
+  no scientific source/AGENTS/PROJECT/Makefile/lock/dependency changes. This
+  worktree is not restacked. Root will integrate #112 onto that main. Preserve
+  actual A/B baseline/frozen99 history; after parent integration freeze newly
+  inherited tests too and record applicability of unchanged scientific inputs.
+* Blocker/next action: **wait for root to integrate accepted #112 and freeze its
+  exact parent**, then resume this coordinator and launch fresh restricted C
+  with B-accepted tests and exact inherited inputs. No implementation before
+  root freeze, no imports/probes/tests/lint/types while another resource window
+  owns execution, no installs/full gate/target trial. Known red/missing gate
+  blocks submission. Routine continuation needs no new document approval.
+* Final evidence pointer prepared before gate: outside tracked candidate bytes
+  `/workspace/work/campaign/evidence/115` and coordinator conversation/PR.
+  D writes there only after exact full passing Ubuntu verification; no tracked
+  state update may mutate the verified head. Root owns eventual push/PR/CI;
+  no merge/release/manual issue closure authority.
+* Housekeeping: no active A/B-owned process or scratch. Unexecuted coordinator
+  scratch bootstrap files and empty `work/issue-115`/`work` removed with existing
+  rm/rmdir, no errors. Durable reports/packets, current worktree, frozen tests and
+  required shared/environment inputs retained. Active checkout is not disposable.
 
 ## PR presentation
 

@@ -17,7 +17,7 @@ RM84 ancestry used. Coordinator read-only preparation and scratch diagnostic
 harness authoring preceded A. A executed only authorized focused checks; no
 installation/benchmark/full verification has run for this task.
 
-Accounting: intake launches 1; A launches 1; B/C/D launches 0 each; completed B/D reviews 0;
+Accounting: intake launches 1; A launches 1; B launches1; C/D launches0 each; completed B reviews1/D reviews0;
 A semantic test corrections0; style correction rounds2; environment/invocation
 diagnosis1; native-diagnostic stop1 with no source exposure; check commands10
 (initial4 plus two rounds of3), failed command statuses5 including intended
@@ -41,3 +41,13 @@ Intake artifact completion digests: contract d42cf0838e73fcaba1aa78c025c96582d24
 Root supplied first-attempt isolated Ubuntu make preflight success, log /workspace/work/campaign/preflight-115-attempt1.log, Python3.13.12/NumPy2.5.3/SciPy1.18.1. This is environment evidence only, not scientific acceptance.
 
 A final report SHA256 90440d8743220b609787a7c999e9d71beeeebb889d34781daccf19f7ee8a21c0. Initial source-free pytest exit1: 19 intended obsolete-byte failures/1099pass/16warnings in128.26s. The four fixed LAPACK lines and conservative stop were explicitly routed in public addendum acf18993dee44db786f3ec4456b39408f29e5bf09348d9d7779b8d63b16f7fcd; no source/locals exposure. Only constant naming/import order/format changed afterward; fresh B decides evidence applicability. Final Ruff/format/canonical uv-run source-free Pyright passed on exact final files. No active A processes; resource window released.
+
+| Launch | Role | Route/settings | Packet | Session | Result |
+|---|---|---|---|---|---|
+| 3 | Blind B1 | collaboration fresh, fork_turns=none, requested gpt-6.1-sol/high | docs/packets/wide-allocation-domain-b1-launch.md SHA256 4974405c8a9cee75c4192e046e5b04d73d2f1c9a06f9479df389f6adeaa8bdb5 | /root/issue_115/b1_115 | Accepted exact six-file checkpoint/W01–W18; report-only, no executions |
+
+Prepared-test checkpoint commit 9a423fd608ecf6cdb203283674522b8b88b9e080, public-main parent b344e41a8b52de76d7cbbf8450319893904c3b8f. Manifest99 files SHA256 9fcd3732d4adf47624b13f8aaac1883e30d99ece4cbbaece9cc696d29ff25076. Test bytes frozen as candidate for B review, not independently accepted yet. Coordinator removed its now-empty scratch work/issue-115 and work directories via rmdir after listing them; no active writer or error, durable packet/evidence retained.
+
+B1 completed one full affected independent review, accepted exact test commit 9a423fd608ecf6cdb203283674522b8b88b9e080 and six file digests, report SHA256 85be60fe77a46aa3b6f089554f600fa8109e0fd6255a8afddff6942b993b08cf. Missing-evidence request1 was resolved during that initial review by explicitly permitted source-free complete delta 8f9f86c09ad3480a83dad6aff4637863d75bc0516e236376633ef39472dcbb39 and reconstruction report75ca73a3048a485c6ffc4001a1da5338900ea7b8ec337eb2b80717c52ae07701. Reconstructed prior bytes exactly matched pre-existing recorded hashes; no original archive/timestamp or fresh behavioral run is claimed. B independently retained earlier behavior results, found no actionable test defect, and assessed native messages as neither source exposure nor oracle proof; origin remains unproven. No test semantic correction/new B verdict round occurred. All99 manifest entries rechecked after B and match.
+
+Root requires C pause until accepted #112 exact parent freeze. Root reports public main advanced to64a752b4642709c539df2079cc3c906acf4cc7b8 via #106 setup/recovery only; historical A/B baseline and99-file freeze remain actual. Newly inherited upstream tests must be frozen after integration, with material applicability recorded. No coordinator restack/push or C launch.
