@@ -1,0 +1,31 @@
+{
+  "verdict": "accepted",
+  "reviewer": "fresh independent doctor_policy_review",
+  "baseline": "87163657dd4e43e98adbc64ef8eca268c033084c",
+  "manifest_sha256": "5a2f0e93435ac60ba93bfc49f5fee88ce5a198b0666a4af5a0df42e816bae3d4",
+  "files": {
+    ".agents/skills/lessons-doctor/SKILL.md": "00b1f60dce61b2e9797ac16a12a542db119ad5150fa87677f58e47e14c8b573a",
+    ".agents/skills/review-work/SKILL.md": "02ef2debe1e13c24be0801b5d5421b5e1a46ce57f37438e7354f62c81b12e76a",
+    "AGENTS.md": "3251b52814d4d363b1849191bab25e1358804d8720387304ba7784cb96921f5b",
+    "docs/PROJECT.md": "2858940f6b663242c932cbaf10b8bbe5aa1503280a929bb3013473d713b17913",
+    "docs/agentic-software-delivery-v1.0/DELIVERY-SYSTEM-SPEC.md": "93782004329cfcb7cd6a05afc8c2e2da17b47505d31dac744ec37f4cef34a5d6",
+    "docs/agentic-software-delivery-v1.0/DOCTOR-PROMPT.md": "01f04c97458a1a0ee756fee213cb721a001819d293fbcf19231def348ec54ea4",
+    "docs/agentic-software-delivery-v1.0/README.md": "f2826d67b6ffd644de3c83cb2193cd70a8032e3d6c25a24631c2f5501e164600",
+    "docs/agentic-software-delivery-v1.0/SETUP-PROMPT.md": "6200e244a1cd066c2e4fd1cbc69e085bd6bb9da2fd2cc7b9b72a7440da9ffa3c",
+    "docs/agentic-software-delivery-v1.0/templates/AGENTS.md": "7c936f42829df35c07fa88a795fa38c61810c5af5389edf8ad2a81042c1c59cd",
+    "docs/agentic-software-delivery-v1.0/templates/PROJECT.md": "2e83dffeca5333ccd9e0f7151ed831126a7536e7ced972a3c4b8274b8dadf011"
+  },
+  "scope": "Policy before activation; excludes disposition correctness, exercise success and PR readiness.",
+  "checks": [
+    "all local policy Markdown targets resolve",
+    "git diff --check passed",
+    "no runtime/tests/workflow changes"
+  ],
+  "accounting": {
+    "full_policy_reviews": 1,
+    "diagnosed_author_corrections": 1,
+    "independent_delta_reviews": 1,
+    "cost_tokens": "unknown"
+  },
+  "correction": "Check-only step1 explicitly returns metadata in conversation without task-state writes."
+}

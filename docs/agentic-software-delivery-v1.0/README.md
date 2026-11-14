@@ -2,7 +2,7 @@
 
 **Version 1.0** This specifies a delivery process; it does not install tooling, configure GitHub or certify readiness.
 
-> One monorepo, four skills, ordinary continuous integration (CI), and a learning log. Select sessions by risk; preserve independent judgment and full checks.
+> One monorepo, four role skills with cross-cutting procedures, ordinary continuous integration (CI), and a learning log. Select sessions by risk; preserve independent judgment and full checks.
 
 First inventory existing failures, exact coverage, environment problems and unresolved behavior. Separate tooling setup from product remediation/cost. Reuse approved architecture or resolve affected decisions. Installation alone makes no product failing its agreed checks or coverage policy ready.
 
@@ -38,14 +38,15 @@ Use one Current state and concise packets/handoffs. Record cumulative attempts/s
 
 You supply intent, missing material decisions, any actual limits and explicit authority for merge/release or external messages. Routine in-scope checks, transitions, diagnosed repairs and fresh reviews follow your request without repeated permission. Prompted role/file restrictions are not technical barriers or a bug-free guarantee. CI executes repository-controlled checks.
 
-docs/lessons holds immutable timestamped observations and separate append-only dispositions under `docs/lessons/dispositions/`; see [the format guide](../lessons/README.md). Confidence is distinct from scoped handling state, and issue closure proves no resolution. Reports derive from source records, with no authoritative shared mutable index. Ordinary doctor prepares evidenced patches within human-requested docs scope, with fresh independent policy review before activation. An explicit full-backlog report-only request inventories all baseline lessons, groups semantically then analyzes mechanisms and hands stable actionable findings to intake; no fixes run during triage. Remote duplicate checks precede actually authorized issue writes; useful lessons need not produce issues. `--check` writes nothing, including reports; separate coordinator capture needs actual write authority. No new CLI flags or roles are added. Requested in-flight migration applies accepted policy to named tasks and preserves every historical attempt/expenditure; historical records remain intact.
+docs/lessons holds immutable timestamped observations and separate append-only dispositions under `docs/lessons/dispositions/`; see [the format guide](../lessons/README.md). Confidence is distinct from scoped handling state. Issue closure or PR state alone proves no resolution; inspect current linked PR diff/check/completion evidence against the finding's conditions. Reports derive from source records, with no authoritative shared mutable index. Use [lessons-doctor](../../.agents/skills/lessons-doctor/SKILL.md) directly in the current cloud or local coordinator/nonblind author session; no native launch or nested authentication is required. The optional legacy `delivery doctor` command remains native-only. Ordinary doctor prepares evidenced patches within human-requested docs scope, with fresh independent policy review before activation; required independent report review also remains a separate fresh session without author history. An explicit full-backlog report-only request inventories all baseline lessons, groups semantically then analyzes mechanisms and hands stable actionable findings to intake; no fixes run during triage. Reused evidence retains baseline/applicability limits; incremental reconciliation is labeled as such. Remote duplicate checks precede actually authorized issue writes; useful lessons need not produce issues. `--check` writes nothing, including reports; separate coordinator capture needs actual write authority. No new CLI flags or roles are added. Requested in-flight migration applies accepted policy to named tasks and preserves every historical attempt/expenditure; historical records remain intact.
 
 | Entry | Purpose |
 |---|---|
 | [Specification](DELIVERY-SYSTEM-SPEC.md) | Canonical policy/rationale |
 | [Setup](SETUP-PROMPT.md) | Install using approved architecture/tooling scope |
 | [Intake](INTAKE-PROMPT.md) | Define risk/contract/ownership/authorization |
-| [Doctor](DOCTOR-PROMPT.md) | Improve evidenced instruction gaps |
+| [Lessons doctor skill](../../.agents/skills/lessons-doctor/SKILL.md) | Run current-session triage or authorized documentation maintenance |
+| [Doctor procedure](DOCTOR-PROMPT.md) | Shared procedure, including optional legacy native entry |
 | [GitHub setup](GITHUB-SETUP.md) | Native CI/protection configuration and limits |
 | [Examples](WORKFLOW-EXAMPLES.md) | Risk, corrections, evidence and model choices |
 | [Templates](templates/TASK.md) | Task plus public/candidate/handoff/project starters |
