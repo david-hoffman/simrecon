@@ -1,0 +1,41 @@
+{
+  "attempt": "native-probe-02",
+  "start_utc": "2026-11-14T18:11:23.709065+00:00",
+  "end_utc": "2026-11-14T18:11:25.307640+00:00",
+  "command": [
+    "/opt/codex/bin/codex",
+    "exec",
+    "--ignore-user-config",
+    "--disable",
+    "memories",
+    "--disable",
+    "multi_agent",
+    "--ephemeral",
+    "--sandbox",
+    "read-only",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--json",
+    "-C",
+    "<checkout>",
+    "-"
+  ],
+  "outer_sandbox": "approved escalation",
+  "inner_sandbox": "read-only",
+  "exit_status": 1,
+  "timeout": false,
+  "diagnostic_matches": {
+    "read_only_filesystem": false,
+    "app_server_init": false,
+    "http401": true,
+    "token_parse": true,
+    "refresh_failure": true,
+    "mcp451": true,
+    "mcp_no_service": true,
+    "probe_marker": false
+  },
+  "raw_output_retained": false,
+  "verdict": "capability probe only, no review"
+}

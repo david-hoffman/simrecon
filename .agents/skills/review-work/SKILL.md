@@ -5,7 +5,7 @@ description: Review high-risk blind A tests as B, passing candidates as D or bou
 
 # Review work
 
-**Version 1.0.** Follow AGENTS.md and the narrow approved mode. High-risk B/D verdicts use fresh independent native roots. Bounded/policy verdicts use fresh independent sessions with no author history; policy review requires no additional native launcher. Never reuse/fork author history for review. You are already that reviewer; do not launch another role. Assess and hand off; do not fix your review target and approve it. Actual model/effort/calibration status must match packet; green tests never justify weaker oracle reasoning.
+**Version 1.0.** Follow AGENTS.md and the narrow approved mode. High-risk B/D verdicts use fresh independent sessions: native roots until fresh independent CLOUD107 policy acceptance, then new sessions may also use the supported fresh tool-session route under [role-launch guidance](../../../docs/operations/role-launches.md). Bounded/policy verdicts remain fresh without author history. Check the actual route/control/packet and exact artifact evidence; shared filesystem/permissions and unavailable optional controls are disclosed limits, not engineered isolation. Missing required capabilities block that route. No retroactive requalification or blanket active-task migration follows; earlier charges remain. Never reuse/fork author history for review. You are already that reviewer; do not launch another role. Assess and hand off; do not fix your review target and approve it. Actual model/effort/calibration status must match packet; green tests never justify weaker oracle reasoning.
 
 ## B: blind high-risk test review
 
