@@ -145,7 +145,8 @@ Before PR readiness: clean exact `make verify PYTHON=.venv/bin/python` with all
 13 phases, exactly two workers, strict outcomes, current reader, wheel/source/
 RECORD/isolated import/audit and same-run M25 conversion memory increase
 <=33,554,432 bytes. No second M25 solely for measurements. Qualify original
-Ubuntu24.04 and macOS15 artifacts independently, then obtain fresh D acceptance.
+Ubuntu24.04 artifacts under the [current platform policy](../PROJECT.md#required-verification-platform),
+then obtain fresh D acceptance. macOS qualification is optional.
 No merge/release or external messages. Stop at CE08 acceptance or an actual
 material blocker; do not create, dispatch or message a successor.
 

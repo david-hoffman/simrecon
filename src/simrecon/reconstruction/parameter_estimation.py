@@ -18,14 +18,20 @@ from collections.abc import Iterator
 from contextlib import contextmanager
 from dataclasses import dataclass
 from numbers import Integral, Real
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 from numpy.typing import NDArray
 
+from ..acquisition.layout import _COMPACT_CAPTURE, _capture_policy, _scalar_tuple
 from ..acquisition.layout import integer as _acquisition_integer
 from ..acquisition.layout import scalar as _acquisition_scalar
-from ..acquisition.modes import AcquisitionBands, _UsedBands, validate_downstream_bands
+from ..acquisition.modes import (
+    AcquisitionBands,
+    _CompactBands,
+    _UsedBands,
+    validate_downstream_bands,
+)
 from ..acquisition.preparation import _REFERENCE as _BAND_REFERENCE
 from ..acquisition.preparation import PreparedBands
 from ..models import SimreconError
@@ -62,6 +68,25 @@ class _Overlap:
     fourier: _Array
     spatial: _Array
     written: _Array
+
+
+@dataclass(frozen=True)
+class _OverlapDescriptor:
+    index: int
+    time_index: int
+    direction_index: int
+    purpose: str
+    orders: tuple[int, int]
+    carrier_cyc_um: tuple[float, float]
+
+
+@dataclass(frozen=True)
+class _WorkingOverlap:
+    """Only the frozen spatial pair survives until the last fit using it."""
+
+    index: int
+    orders: tuple[int, int]
+    spatial: _Array
 
 
 @dataclass(frozen=True)
@@ -169,6 +194,13 @@ def _owned(value: _Array) -> _Array:
     return result
 
 
+def _finish_owned(value: _Array) -> _Array:
+    """Transfer a final private parameter allocation, retaining extent checks."""
+    _extent(value.shape, value.dtype.itemsize)
+    value.flags.writeable = False
+    return value
+
+
 def _real_array(
     value: Any, name: str, shape: tuple[int, ...], *, require_actual: bool = False
 ) -> _Array:
@@ -206,8 +238,10 @@ class _Grid:
 
 
 def _validate_bands(bands: Any, transfer: _Transfer) -> tuple[_Grid, _UsedBands | None]:
-    if issubclass(type(bands), AcquisitionBands):
-        used = validate_downstream_bands(bands)
+    if issubclass(type(bands), AcquisitionBands) or (
+        _COMPACT_CAPTURE.get() and isinstance(bands, _CompactBands)
+    ):
+        used = validate_downstream_bands(cast(AcquisitionBands, bands))
         shape = used.shape
         z, y, x = shape[3:]
         k = transfer.samples.shape[-1] if transfer.layout == "radial" else transfer.samples.shape[1]
@@ -305,7 +339,7 @@ def _validate_bands(bands: Any, transfer: _Transfer) -> tuple[_Grid, _UsedBands 
 
 
 class _ParameterEstimator:
-    """Keep owned working quadratures and ordered records for one estimation call.
+    """Read stable quadratures and keep ordered records for one estimation call.
 
     Notes
     -----
@@ -323,12 +357,12 @@ class _ParameterEstimator:
         omit: bool,
     ):
         self.grid = grid
-        self.data = np.array(quadratures, copy=True)
+        self.data = quadratures
         self.transfer = transfer
         self.radial = radial
         self.cutoff = cutoff
         self.omit = omit
-        self.overlaps: list[_Overlap] = []
+        self.overlaps: list[_Overlap | _OverlapDescriptor] = []
         self.trace: list[_Event] = []
         self.t = 0
         self.d = 0
@@ -347,10 +381,22 @@ class _ParameterEstimator:
         for name, value in details.items():
             if isinstance(value, np.ndarray):
                 _finite(value, f"{kind} {name}")
-                value = _owned(value)
+                if _COMPACT_CAPTURE.get():
+                    _extent(value.shape, value.dtype.itemsize)
+                    value = (
+                        None
+                        if name in ("correlation_complex", "correlation_power")
+                        else _scalar_tuple(value)
+                    )
+                else:
+                    value = _owned(value)
             elif isinstance(value, (float, complex)):
                 _finite(value, f"{kind} {name}")
-            captured.append((name, value))
+            if not _COMPACT_CAPTURE.get() or name not in (
+                "correlation_complex",
+                "correlation_power",
+            ):
+                captured.append((name, value))
         _append(self.trace, _Event(kind, self.t, self.d, tuple(captured)))
 
     def sample_order_transfer(self, xy: tuple[float, float], z: int, order: int) -> complex:
@@ -416,7 +462,7 @@ class _ParameterEstimator:
 
     def build_order_overlap(
         self, carrier: _Array, order: int, purpose: str, lower: int = 0
-    ) -> _Overlap:
+    ) -> _Overlap | _WorkingOverlap:
         """Construct and record the two transfer-weighted order overlaps.
 
         Parameters
@@ -444,7 +490,8 @@ class _ParameterEstimator:
         """
         _, _, _, nz, ny, nx = self.grid.shape
         fourier = np.zeros((2, nz, ny, nx), dtype=np.complex128)
-        written = np.zeros(fourier.shape, dtype=np.bool_)
+        compact = _COMPACT_CAPTURE.get()
+        written = None if compact else np.zeros(fourier.shape, dtype=np.bool_)
         delta = ((order - lower) * float(carrier[0]), (order - lower) * float(carrier[1]))
         # The selected 3D map weights the higher-order threshold by five;
         # true 2D uses one. These are amplitude tests, not extra band weights.
@@ -486,13 +533,31 @@ class _ParameterEstimator:
                         )
                         _finite(value, "weighted overlap")
                         fourier[side, z % nz, i, j] = value
-                        written[side, z % nz, i, j] = True
+                        if written is not None:
+                            written[side, z % nz, i, j] = True
         # Undo NumPy's inverse normalization to retain the native overlap sum.
         axes = (2, 3) if nz == 1 else (1, 2, 3)
         spatial = np.fft.ifftn(fourier, axes=axes) * (nx * ny * nz)
         _finite(spatial, "overlap inverse transform")
-        for array in (fourier, spatial, written):
+        for array in (fourier, spatial):
             array.flags.writeable = False
+        if compact:
+            _extent(carrier.shape, carrier.dtype.itemsize)
+            index = len(self.overlaps)
+            _append(
+                self.overlaps,
+                _OverlapDescriptor(
+                    index,
+                    self.t,
+                    self.d,
+                    purpose,
+                    (lower, order),
+                    (float(carrier[0]), float(carrier[1])),
+                ),
+            )
+            return _WorkingOverlap(index, (lower, order), spatial)
+        assert written is not None
+        written.flags.writeable = False
         result = _Overlap(
             len(self.overlaps),
             self.t,
@@ -509,7 +574,7 @@ class _ParameterEstimator:
 
     def fit_overlap_modulation(
         self,
-        build: _Overlap,
+        build: _Overlap | _WorkingOverlap,
         carrier: _Array,
         stage: str,
         remake: bool,
@@ -816,6 +881,7 @@ class _ParameterEstimator:
                 factors[order - 1], _ = self.fit_overlap_modulation(
                     other, carrier, "later-order", True, angle, magnitude
                 )
+                del other
         return carrier, factors
 
 
@@ -986,6 +1052,37 @@ def estimate_parameters(
     See ``docs/architecture/reconstruction-walkthrough.md#carrier-and-modulation-estimation``
     and ``#axes-units-and-fourier-conventions`` for equations and conventions.
     """
+    with _capture_policy(False):
+        return _estimate_parameters(
+            bands,
+            transfer,
+            initial_carriers_cyc_um=initial_carriers_cyc_um,
+            wavelength_nm=wavelength_nm,
+            numerical_aperture=numerical_aperture,
+            immersion_index=immersion_index,
+            search_carriers=search_carriers,
+            use_time0_carriers=use_time0_carriers,
+            amplitude_floors=amplitude_floors,
+            fit_all_phases=fit_all_phases,
+            omit_kz0=omit_kz0,
+        )
+
+
+def _estimate_parameters(
+    bands: PreparedBands | AcquisitionBands | _CompactBands,
+    transfer: OpticalTransfer,
+    *,
+    initial_carriers_cyc_um: _Array,
+    wavelength_nm: int,
+    numerical_aperture: float,
+    immersion_index: float,
+    search_carriers: bool = True,
+    use_time0_carriers: bool = True,
+    amplitude_floors: _Array | None = None,
+    fit_all_phases: bool = True,
+    omit_kz0: bool = False,
+) -> EstimatedParameters:
+    """Shared scientific core; the caller chooses only diagnostic capture."""
     with _operation():
         for name, flag in (
             ("search_carriers", search_carriers),
@@ -996,7 +1093,10 @@ def estimate_parameters(
             if type(flag) is not bool:
                 raise ParameterEstimationError(f"{name} must be an actual boolean")
         table = validate_optical_transfer(
-            transfer, require_actual=issubclass(type(bands), AcquisitionBands)
+            transfer,
+            require_actual=(
+                issubclass(type(bands), AcquisitionBands) or isinstance(bands, _CompactBands)
+            ),
         )
         grid, used = _validate_bands(bands, table)
         if search_carriers and grid.orders < (2 if grid.shape[3] == 1 else 3):
@@ -1046,6 +1146,10 @@ def estimate_parameters(
             cutoff = max(z // 2 - 1, 0)
         _signed(z + cutoff, "wrapped axial z+Z")
         quadratures = bands.quadratures if used is None else used.quadratures
+        # Compact preparation owns this read-only source role until all downstream
+        # stages finish. Public/full calls still snapshot writable caller bands.
+        if not (_COMPACT_CAPTURE.get() and isinstance(bands, _CompactBands)):
+            quadratures = np.array(quadratures, copy=True)
         estimator = _ParameterEstimator(quadratures, table, grid, radial, cutoff, omit_kz0)
         carriers = np.empty((times, directions, 2), dtype=np.float64)
         raw = np.empty((times, directions, grid.orders - 1), dtype=np.complex128)
@@ -1072,6 +1176,7 @@ def estimate_parameters(
                         build = estimator.build_order_overlap(carrier, order, "known")
                         factor, _ = estimator.fit_overlap_modulation(build, carrier, "known", True)
                         factors.append(factor)
+                        del build
                 carriers[t, d] = carrier
                 raw[t, d] = factors
                 if grid.shape[3] == 1:
@@ -1153,12 +1258,12 @@ def estimate_parameters(
                 ("acquisition_reference_sha256", used.reference),
             )
         return EstimatedParameters(
-            _owned(carriers),
-            _owned(modulation),
-            _owned(raw),
-            _owned(initial),
+            _finish_owned(carriers),
+            _finish_owned(modulation),
+            _finish_owned(raw),
+            _finish_owned(initial),
             tuple(branches),
-            tuple(estimator.overlaps),
+            cast(Any, tuple(estimator.overlaps)),
             tuple(estimator.trace),
             radial,
             cutoff,

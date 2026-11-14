@@ -16,10 +16,33 @@ from .config import _extent, _optics, _schema
 from .result import _ArrayIdentity, raise_workflow_error
 
 
-def freeze_declarations(value: Any, *, code: str = "config", active: set[int] | None = None) -> Any:
+def freeze_declarations(
+    value: Any,
+    *,
+    code: str = "config",
+    active: set[int] | None = None,
+    path: str | None = None,
+) -> Any:
     """Snapshot supported values recursively, preserving scalar types and bits."""
     if type(value) is np.ndarray:
         _extent(value.shape, value.dtype.itemsize)
+        if path is not None:
+            # Preserve the native sequence-extent checks of the former tolist
+            # snapshot, including the point where an empty axis stops traversal.
+            for dimension in value.shape:
+                _extent((dimension,), 8)
+                if dimension == 0:
+                    break
+            # Numeric/string leaves already have the supported built-in
+            # tolist() types. Other dtypes still undergo the original recursive
+            # metadata admissibility checks, one element at a time, without
+            # constructing an array-sized Python snapshot.
+            if value.dtype.kind not in "biufcSU" or (
+                value.dtype.kind == "c" and value.dtype.itemsize > 16
+            ):
+                for child in value.flat:
+                    freeze_declarations(child.tolist(), code=code, active=active)
+            return array_identity(path, value)
         return freeze_declarations(value.tolist(), code=code, active=active)
     if isinstance(value, np.floating):
         # Admissibility is checked before snapshotting. Even a binary64-width
@@ -41,10 +64,51 @@ def freeze_declarations(value: Any, *, code: str = "config", active: set[int] | 
             if any(type(key) is not str for key in value):
                 raise_workflow_error(code, "metadata mapping keys must be strings")
             return tuple(
-                (key, freeze_declarations(value[key], code=code, active=active))
+                (
+                    key,
+                    freeze_declarations(
+                        value[key],
+                        code=code,
+                        active=active,
+                        path=None if path is None else path + "." + key,
+                    ),
+                )
                 for key in sorted(value)
             )
-        return tuple(freeze_declarations(v, code=code, active=active) for v in value)
+        if (
+            path is not None
+            and value
+            and all(
+                type(pair) is tuple and len(pair) == 2 and type(pair[0]) is str for pair in value
+            )
+        ):
+            named = []
+            for pair in value:
+                if id(pair) in active:
+                    raise_workflow_error(code, "metadata must be acyclic")
+                active.add(id(pair))
+                try:
+                    _extent((len(pair),), 8)
+                    named.append(
+                        (
+                            pair[0],
+                            freeze_declarations(
+                                pair[1], code=code, active=active, path=path + "." + pair[0]
+                            ),
+                        )
+                    )
+                finally:
+                    active.remove(id(pair))
+            return tuple(named)
+        return tuple(
+            freeze_declarations(
+                v,
+                code=code,
+                active=active,
+                path=None if path is None else path + "." + str(i),
+            )
+            for i, v in enumerate(value)
+        )
     finally:
         active.remove(id(value))
 
@@ -134,3 +198,14 @@ def owned_readonly_array(value: Any) -> Any:
     result = np.array(value, copy=True, order="C")
     result.flags.writeable = False
     return result
+
+
+def readonly_private_array(value: Any) -> Any:
+    """Transfer a private C-order allocation after its last write.
+
+    Unlike owned_readonly_array(), this must never receive caller storage or a
+    full-debug field that also remains published in another returned record.
+    """
+    _extent(value.shape, value.dtype.itemsize)
+    value.flags.writeable = False
+    return value

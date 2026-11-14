@@ -3,15 +3,25 @@
 from __future__ import annotations
 
 import math
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 
-from ..acquisition.layout import reinterpret_2d_planes
-from ..acquisition.modes import prepare_acquisition_bands
-from ..reconstruction.known_parameters import reconstruct_known
-from ..reconstruction.parameter_estimation import estimate_parameters
-from .adapters import select_specimen_channel, select_time_bands, snapshot_raw_metadata
+from ..acquisition.layout import _COMPACT_CAPTURE, _capture_policy, reinterpret_2d_planes
+from ..acquisition.modes import (
+    AcquisitionBands,
+    _CompactBands,
+    _prepare_acquisition_bands,
+    prepare_acquisition_bands,
+)
+from ..reconstruction.known_parameters import _reconstruct_known, reconstruct_known
+from ..reconstruction.parameter_estimation import _estimate_parameters, estimate_parameters
+from .adapters import (
+    select_compact_time_bands,
+    select_specimen_channel,
+    select_time_bands,
+    snapshot_raw_metadata,
+)
 from .config import (
     _enum,
     _scalar,
@@ -24,9 +34,11 @@ from .identity import (
     collect_array_identities,
     freeze_declarations,
     owned_readonly_array,
+    readonly_private_array,
     validate_source_identity,
 )
 from .result import WorkflowReconstruction, _WorkflowEvent, raise_workflow_error, workflow_stage
+from .summary import ReconstructionSummary, project
 from .transfer import resolve_optical_transfer, validate_transfer_inputs
 
 
@@ -105,6 +117,51 @@ def reconstruct_workflow(
     with the corresponding parameters and effective Wiener value. Stage
     failures retain their cause and available time/direction context.
     """
+    with _capture_policy(False):
+        return cast(
+            WorkflowReconstruction,
+            _reconstruct_workflow(
+                specimen,
+                acquisition=acquisition,
+                optics=optics,
+                carrier=carrier,
+                filtering=filtering,
+                specimen_identity=specimen_identity,
+                transfer=transfer,
+                calibration=calibration,
+                transfer_identity=transfer_identity,
+                off_exposures=off_exposures,
+                exposure_background=exposure_background,
+                header_timestamps=header_timestamps,
+                header_timestamp_unit=header_timestamp_unit,
+                header_phases_rad=header_phases_rad,
+                channel_index=channel_index,
+                plane_policy=plane_policy,
+            ),
+        )
+
+
+def _reconstruct_workflow(
+    specimen: Any,
+    *,
+    acquisition: Any,
+    optics: Any,
+    carrier: Any,
+    filtering: Any,
+    specimen_identity: Any,
+    transfer: Any = None,
+    calibration: Any = None,
+    transfer_identity: Any = None,
+    off_exposures: Any = None,
+    exposure_background: Any = None,
+    header_timestamps: Any = None,
+    header_timestamp_unit: Any = None,
+    header_phases_rad: Any = None,
+    channel_index: Any = None,
+    plane_policy: str = "native",
+) -> WorkflowReconstruction | ReconstructionSummary:
+    """Shared scientific core; the caller chooses only diagnostic capture."""
+    compact = _COMPACT_CAPTURE.get()
     acquisition_settings, optics_settings, carrier_settings, filtering_settings = (
         resolve_workflow_settings(acquisition, optics, carrier, filtering)
     )
@@ -146,8 +203,9 @@ def reconstruct_workflow(
         optics_settings,
         acquisition_settings["acquisition_mode"],
         acquisition_settings["norders"],
+        compact=compact,
     )
-    raw_metadata = snapshot_raw_metadata(raw_metadata)
+    raw_metadata = snapshot_raw_metadata(raw_metadata, compact=compact)
     times, directions, phases = effective[:3]
     with (
         workflow_stage("declaration"),
@@ -276,7 +334,8 @@ def reconstruct_workflow(
         key: value for key, value in acquisition_settings.items() if key != "phase_policy"
     }
     with workflow_stage("preparation"):
-        bands = prepare_acquisition_bands(
+        prepare = _prepare_acquisition_bands if compact else prepare_acquisition_bands
+        bands = prepare(
             raw,
             **prep_options,
             **optics_settings,
@@ -288,6 +347,9 @@ def reconstruct_workflow(
             phase_start_angle_rad=carrier_settings["phase_start_angle_rad"],
             negative_angle_step=carrier_settings["negative_angle_step"],
         )
+    # Preparation has consumed these private snapshots. Layout records, when
+    # present, keep their own required outputs; native raw snapshots can die.
+    del raw, off_exposures, exposure_background, header_timestamps, header_phases_rad
     identities["prepared_quadratures"] = array_identity("prepared_quadratures", bands.quadratures)
     event(
         "preparation",
@@ -295,7 +357,8 @@ def reconstruct_workflow(
         phase_policy=acquisition_settings["phase_policy"],
     )
     with workflow_stage("estimation"):
-        parameters = estimate_parameters(
+        estimate = _estimate_parameters if compact else cast(Any, estimate_parameters)
+        parameters = estimate(
             bands,
             table,
             initial_carriers_cyc_um=initial,
@@ -308,6 +371,10 @@ def reconstruct_workflow(
         )
     event("estimation", branches=parameters.branches)
     reconstructions = []
+    filtering_projections = []
+    filtering_traces = []
+    images = []
+    coordinates = None
     filter_options = {
         key: value
         for key, value in filtering_settings.items()
@@ -315,8 +382,11 @@ def reconstruct_workflow(
     }
     for time in range(times):
         with workflow_stage("reconstruction", time_index=time):
-            known = reconstruct_known(
-                select_time_bands(bands, time),
+            reconstruct = _reconstruct_known if compact else cast(Any, reconstruct_known)
+            known = reconstruct(
+                select_compact_time_bands(bands, time)
+                if isinstance(bands, _CompactBands)
+                else select_time_bands(bands, time),
                 table,
                 carriers_cyc_um=parameters.carriers_cyc_um[time],
                 modulation=parameters.modulation[time],
@@ -325,23 +395,55 @@ def reconstruct_workflow(
                 wiener=float(schedule[time]),
                 wiener_increment=0.0,
             )
-        reconstructions.append(known)
+        if compact:
+            filtering_projections.append(
+                project(
+                    known,
+                    f"filtering.{time}",
+                    exclude=("image", "filtered_quadratures", "x_um", "y_um", "z_um", "mode_trace"),
+                )
+            )
+            filtering_traces.append(known.mode_trace)
+            images.append(known.image)
+            if coordinates is None:
+                coordinates = tuple(
+                    readonly_private_array(getattr(known, key)) for key in ("x_um", "y_um", "z_um")
+                )
+            del known
+        else:
+            reconstructions.append(known)
         event(
             "reconstruction",
             time,
             effective_wiener=float(schedule[time]),
             parameter_time_index=time,
         )
+    preparation = cast(_CompactBands, bands).preparation if compact else ()
+    preparation_trace = bands.trace
+    if compact:
+        # All filtering is complete; retain only the existing compact metadata.
+        bands = None
     with workflow_stage("result"):
-        image = owned_readonly_array(np.concatenate([r.image for r in reconstructions], axis=0))
-        coordinates = tuple(
-            owned_readonly_array(getattr(reconstructions[0], key))
-            for key in ("x_um", "y_um", "z_um")
+        # Concatenation already owns storage independent of every stage image.
+        image = readonly_private_array(
+            np.concatenate(images if compact else [r.image for r in reconstructions], axis=0)
         )
-        initial, linkage, schedule = (owned_readonly_array(v) for v in (initial, linkage, schedule))
+        images.clear()
+        if not compact:
+            coordinates = tuple(
+                owned_readonly_array(getattr(reconstructions[0], key))
+                for key in ("x_um", "y_um", "z_um")
+            )
+        assert coordinates is not None
+        initial, linkage, schedule = (
+            readonly_private_array(v) for v in (initial, linkage, schedule)
+        )
         sources = tuple(
             dict(
-                specimen_identity=freeze_declarations(specimen_claim),
+                specimen_identity=freeze_declarations(
+                    specimen_claim,
+                    path="source_declarations.specimen_identity" if compact else None,
+                ),
                 transfer_identity=transfer_inputs.transfer_identity,
                 calibration_identity=transfer_inputs.calibration_identity,
                 selected_channel=selected_channel,
@@ -352,11 +454,23 @@ def reconstruct_workflow(
         settings = tuple(
             dict(
                 acquisition=tuple(
-                    (key, freeze_declarations(value)) for key, value in acquisition_settings.items()
+                    (
+                        key,
+                        freeze_declarations(
+                            value, path=f"resolved_settings.acquisition.{key}" if compact else None
+                        ),
+                    )
+                    for key, value in acquisition_settings.items()
                 ),
                 optics=tuple(optics_settings.items()),
                 carrier=tuple(
-                    (key, freeze_declarations(value)) for key, value in carrier_settings.items()
+                    (
+                        key,
+                        freeze_declarations(
+                            value, path=f"resolved_settings.carrier.{key}" if compact else None
+                        ),
+                    )
+                    for key, value in carrier_settings.items()
                 ),
                 filtering=tuple(filtering_settings.items()),
                 plane_policy=plane_policy,
@@ -384,6 +498,47 @@ def reconstruct_workflow(
             if acquisition_settings["dz_um"] == 0:
                 limits.append("true2d-axial-pitch-undeclared")
         event("result", output_shape=image.shape)
+        if compact:
+            return ReconstructionSummary(
+                image=image,
+                x_um=coordinates[0],
+                y_um=coordinates[1],
+                z_um=coordinates[2],
+                intensity_unit=specimen_claim["intensity_unit"],
+                intensity_semantics="C-scaled-camera-corrected-equalized-phase-reconstruction",
+                carriers_cyc_um=readonly_private_array(parameters.carriers_cyc_um),
+                modulation=readonly_private_array(parameters.modulation),
+                raw_modulation=readonly_private_array(parameters.raw_modulation),
+                initial_carriers_cyc_um=initial,
+                phase_linkage_carriers_cyc_um=linkage,
+                effective_wiener=schedule,
+                branches=parameters.branches,
+                input_identities=tuple(identities[key] for key in sorted(identities)),
+                source_declarations=sources,
+                resolved_settings=settings,
+                preparation=preparation,
+                estimation=project(parameters, "estimation", exclude=("overlaps", "trace")),
+                filtering=tuple(filtering_projections),
+                transfer=project(table, "transfer"),
+                calibration=None if prepared is None else project(prepared, "calibration"),
+                layout=None
+                if layout is None
+                else project(
+                    layout,
+                    "layout",
+                    exclude=(
+                        "images",
+                        "off_exposures",
+                        "exposure_background",
+                    ),
+                ),
+                overlap_builds=parameters.overlaps,
+                search_trace=parameters.trace,
+                preparation_trace=preparation_trace,
+                filtering_trace=tuple(filtering_traces),
+                trace=tuple(trace),
+                limitations=tuple(limits),
+            )
         return WorkflowReconstruction(
             image=image,
             x_um=coordinates[0],
@@ -391,7 +546,7 @@ def reconstruct_workflow(
             z_um=coordinates[2],
             intensity_unit=specimen_claim["intensity_unit"],
             intensity_semantics="C-scaled-camera-corrected-equalized-phase-reconstruction",
-            bands=bands,
+            bands=cast(AcquisitionBands, bands),
             parameters=parameters,
             transfer=table,
             calibration=prepared,
@@ -405,4 +560,53 @@ def reconstruct_workflow(
             resolved_settings=settings,
             trace=tuple(trace),
             limitations=tuple(limits),
+        )
+
+
+def reconstruct_summary(
+    specimen: Any,
+    *,
+    acquisition: Any,
+    optics: Any,
+    carrier: Any,
+    filtering: Any,
+    specimen_identity: Any,
+    transfer: Any = None,
+    calibration: Any = None,
+    transfer_identity: Any = None,
+    off_exposures: Any = None,
+    exposure_background: Any = None,
+    header_timestamps: Any = None,
+    header_timestamp_unit: Any = None,
+    header_phases_rad: Any = None,
+    channel_index: Any = None,
+    plane_policy: str = "native",
+) -> ReconstructionSummary:
+    """Run the same scientific stages with compact diagnostic capture.
+
+    Arrays in metadata become content identities. Use reconstruct_workflow when
+    numeric diagnostic histories are required. Validation, arithmetic, units and
+    scientific limitations are identical to that full-debug entry.
+    """
+    with _capture_policy(True):
+        return cast(
+            ReconstructionSummary,
+            _reconstruct_workflow(
+                specimen,
+                acquisition=acquisition,
+                optics=optics,
+                carrier=carrier,
+                filtering=filtering,
+                specimen_identity=specimen_identity,
+                transfer=transfer,
+                calibration=calibration,
+                transfer_identity=transfer_identity,
+                off_exposures=off_exposures,
+                exposure_background=exposure_background,
+                header_timestamps=header_timestamps,
+                header_timestamp_unit=header_timestamp_unit,
+                header_phases_rad=header_phases_rad,
+                channel_index=channel_index,
+                plane_policy=plane_policy,
+            ),
         )

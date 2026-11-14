@@ -57,6 +57,13 @@ and the alternative entry point for a prepared transfer. See the
 [acquisition guide](docs/usage/raw-acquisition-declarations.md) for reading
 and declaring supported microscopy files.
 
+For an image with compact diagnostics, use
+[`reconstruct_summary`](docs/usage/reconstruction-summary.md) with the same
+arguments. It keeps fitted parameters and provenance while avoiding retained
+intermediate histories. `reconstruct_workflow` remains available for complete
+in-memory debugging records. Supported-volume memory use depends on the workload;
+neither entry promises a fixed memory ceiling.
+
 ## Follow the reconstruction
 
 ```mermaid

@@ -57,6 +57,7 @@ PUBLIC_EXPORTS = frozenset(
         "PreparedOtf",
         "RawAcquisition",
         "ReconstructionError",
+        "ReconstructionSummary",
         "SimreconError",
         "WriteReport",
         "WorkflowError",
@@ -71,6 +72,7 @@ PUBLIC_EXPORTS = frozenset(
         "prepare_bead_otf",
         "read",
         "reconstruct_known",
+        "reconstruct_summary",
         "reconstruct_workflow",
         "sample_otf",
         "write",
@@ -89,7 +91,7 @@ def test_approved_module_move_loads_without_compatibility_alias(old: str, new: s
 def test_root_facade_keeps_exact_supported_exports_and_names() -> None:
     """Module loading must not add supported exports or rename API objects."""
     public = importlib.import_module("simrecon")
-    assert len(public.__all__) == len(PUBLIC_EXPORTS) == 36
+    assert len(public.__all__) == len(PUBLIC_EXPORTS) == 38
     assert set(public.__all__) == PUBLIC_EXPORTS
     for name in PUBLIC_EXPORTS:
         assert getattr(public, name).__name__ == name
