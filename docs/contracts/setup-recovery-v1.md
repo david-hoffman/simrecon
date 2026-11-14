@@ -5,6 +5,15 @@
 `/intake 105` on November 12, 2026. This defines future infrastructure work;
 it is not an implemented bootstrap or an acceptance result.
 
+**Applicability update, November 14, 2026:** the current
+[PROJECT platform policy](../PROJECT.md#required-verification-platform)
+supersedes the original Ubuntu/macOS obligations below: Ubuntu 24.04 is required;
+macOS setup instructions and evidence are optional. Current
+[role-launch guidance](../operations/role-launches.md), including its adoption
+boundary, governs permitted fresh sessions. The original native-only #84 stage
+is historical. These already-adopted policies apply to this maintenance refresh;
+the November 12 observations and verdicts retain their original meaning.
+
 ## Purpose and boundaries
 
 Make setup reproducible from repository instructions and recover a task from a

@@ -3,6 +3,11 @@
 **Version 1.0.** Dormant future-entry packet prepared by `/intake 105`.
 When assigned, perform this role directly; do not launch another role.
 
+For the November 14 PR refresh, apply current PROJECT platform policy and
+role-launch guidance, including its adoption boundary. Ubuntu 24.04 evidence is
+required; optional macOS evidence is not an acceptance/submission prerequisite.
+The saved #84 stage is historical and must not be resumed.
+
 Read AGENTS.md, relevant PROJECT context, implement-work skill,
 [task](../tasks/setup-recovery.md), [contract](../contracts/setup-recovery-v1.md),
 environment/reader/role-launch/model-selection/verification operations and existing
@@ -47,8 +52,9 @@ its state; the exercise demonstrates recovery of records, not scientific progres
 Run task-named focused lint/format/types/tests; distinguish environment, test,
 implementation and requirement failures and retain failed attempts. Demonstrate
 fresh setup and recovery rather than merely unit-testing documentation strings.
-If a platform is unavailable, retain a blocking evidence gap and complete
-independent work. Do not weaken support/gates or claim Debian proves Ubuntu/macOS.
+If a required platform is unavailable, retain a blocking evidence gap and complete
+independent work. Record optional macOS limits separately. Do not weaken other
+gates or claim Debian proves Ubuntu qualification.
 
 Before final review/submission, hand coordinator scenario mapping, diff, focused
 evidence, fresh/repeated setup/recovery records, safe durable summary, input/build

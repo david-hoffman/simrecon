@@ -92,7 +92,10 @@ this task references them without resetting or duplicating their counters.
 - Human scenario/review/repair/time/spend limits: **not set**. Diagnose before
   retries; all failures/repairs/reviews and parent historical charges persist.
 
-## Current state
+## November 12 execution record (historical)
+
+The following records the original execution and its then-current blockers.
+The November 14 Current state below supersedes its pending actions and authority.
 
 - **Implementation candidate prepared under “Approved”.** Execution baseline is
   `fdcb0fa76c35a522035b532435f1bc2593eb579f`, tree
@@ -149,10 +152,39 @@ this task references them without resetting or duplicating their counters.
   branches, durable documents/local evidence, shared tools/caches and official
   Ubuntu image (shared-cache ownership uncertain). No #84 Current state was edited.
 
+## Current state
+
+- **November 14 refresh authorized:** the owner said “do it” after the concrete
+  recommendation to fix PR #106. This authorizes the bounded integration,
+  documentation/readiness corrections, checks, fresh review and update of that
+  existing PR. It does not authorize merge/release or resuming #84 science.
+- Integrate main `836ec790aac55fb7fcdff8d51da1547091952b6e` into the original PR
+  head `9ef76ae4b961e7679bc88d7bad99cee25b80cbb6` on
+  `fix/105-setup-recovery` in its own worktree. Preserve current main's scientific
+  changes, Ubuntu-only policy and qualified role-launch guidance. Worker ownership
+  remains the named DEV105 files; no new runtime/lock/gate/policy scope is added.
+- Current PROJECT supersedes the original macOS acceptance obligation. Preserve
+  historical macOS gaps/verdicts; optional macOS setup remains unproven. #84's
+  saved stage is historical after PR #108. Recover its original Git object by
+  SHA because the old branch has been deleted; do not change its current task.
+- Coordinator owns this refresh's implementation and evidence. One read-only
+  helper inventories stale guidance; a new independent bounded reviewer must
+  receive no author history. Use current packet model/effort selection and record
+  requested/exposed attribution and unavailable metering honestly. Prior worker,
+  helper, review, correction and failed-check charges above remain intact.
+- Next: run cheap selected-tool/current-worktree prerequisites, focused tests,
+  fresh/repeated Ubuntu setup and exact-SHA recovery, then canonical full
+  verification of a clean committed candidate and fresh independent review.
+  Fix diagnosed in-scope findings before updating the PR. Exact final identities,
+  commands/statuses, coverage/artifacts/resource results, cumulative new attempts
+  and housekeeping go in local `artifacts/setup-recovery/refresh-20261114/` and
+  the PR appendix, outside verified tracked bytes. That local evidence is not an
+  external durable backup. Human limits remain not set; missing metering unknown.
+
 ## PR presentation
 
-If later authorized, explain the reproducible setup and recoverable checkpoint
-behavior first. A figure adds little to this procedural change and is omitted.
+For the authorized PR refresh, explain the reproducible setup and recoverable
+checkpoint behavior first. A figure adds little to this procedural change and is omitted.
 Use the existing PR template with an appendix for exact identities, fresh/repeated
 setup commands, recovery manifest and missing evidence, independent review,
 coverage, full verification and separate platform limits. Setup does not establish

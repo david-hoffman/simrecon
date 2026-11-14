@@ -3,7 +3,7 @@
 `make sync` first completes the existing locked all-groups uv sync, then runs
 `scripts/prepare_imagej_reader.py`. `make preflight`, `make check` and the existing
 13-phase `make verify` inherit this prerequisite. No verification phase or gate
-is removed. CI uses the existing Ubuntu 24.04 and macOS 15 matrix with Temurin
+is removed. CI uses the required Ubuntu 24.04 platform with Temurin
 21.0.7+6 installed before full verification.
 
 The development readers use these exact upstream artifacts:

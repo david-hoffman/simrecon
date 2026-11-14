@@ -9,6 +9,25 @@ the local `artifacts/setup-recovery/` evidence. That ignored directory is a loca
 working copy, not a durable external backup. This tracked summary can travel with
 the Git history only when publication is authorized.
 
+## Evidence dates and current applicability
+
+The prerequisite, focused, recovery and Ubuntu exercise results below were
+recorded on November 12, 2026. Raw ignored logs from that workspace are not
+assumed available here. Its missing-macOS verdict remains the verdict under the
+then-current policy; it is not rewritten as an acceptance. The November 14
+[PROJECT policy](../PROJECT.md#required-verification-platform) now requires only
+Ubuntu evidence. Current [role-launch guidance](../operations/role-launches.md)
+governs new sessions. #84 completed through
+[PR #108](https://github.com/david-hoffman/simrecon/pull/108); its saved pending
+stage and charges below are historical.
+
+The November 14 PR refresh preserves the readiness behavior and tool pins,
+integrates current main, and updates active platform/launch/stage wording. The
+saved branch no longer exists, so the recovery recipe now fetches the exact
+commit explicitly. Fresh exercise, verification and independent review evidence
+for this refresh are recorded outside the final candidate in the task's local
+evidence and PR appendix; historical results are not relabeled as new runs.
+
 ## Baseline and protected inputs
 
 Implementation baseline: `fdcb0fa76c35a522035b532435f1bc2593eb579f`, tree
@@ -57,9 +76,9 @@ root. No missing artifact was regenerated and attributed to an old attempt.
 Historical green results below are historical-record-only, not reproduced proof.
 The saved task contains no accepted scientific test checkpoint or review verdict.
 
-The recovery exercise leaves #84's Current state untouched. Its next scientific
-stage remains fresh blind A after the coordinator verifies setup/native capability
-under that task's authorization, followed by fresh B, restricted C and fresh D.
+The recovery exercise leaves #84's Current state untouched. At the saved
+checkpoint, its pending scientific stage was fresh blind A after setup/native
+capability, followed by fresh B, restricted C and fresh D.
 No #84 scientific role or sign-in was launched for this infrastructure exercise.
 An exposed coordinator handoff cannot be substituted for A/B's public packet.
 
@@ -191,7 +210,7 @@ it. These are preparation failures, not product defects. Complete details and
 safe logs/scripts/reader identities are in local `ubuntu/REPORT.txt` and adjacent
 evidence. Avoid adding these contained commands again as separate parent totals.
 
-**Remaining platform limit:** no macOS 15 executor was available. macOS fresh/repeat
+**November 12 platform limit:** no macOS 15 executor was available. macOS fresh/repeat
 setup is unproven. This Ubuntu container exercise is bootstrap/preflight evidence,
 not full Ubuntu/macOS CI or scientific acceptance. Missing required platform
 evidence blocks final acceptance/submission; no requirement was waived.

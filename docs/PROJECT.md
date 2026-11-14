@@ -66,12 +66,23 @@ The neutral public functions are `inspect`, `read`, `harmonize`, `write`,
 `declare_acquisition` and `export_imagej`, with their required records/errors.
 The scientific entries are `prepare_bands`, `prepare_bead_otf`, `declare_otf`,
 `sample_otf`, `prepare_acquisition_bands`, `reinterpret_2d_planes`,
-`estimate_parameters`, `reconstruct_known` and `reconstruct_workflow`, with
+`estimate_parameters`, `reconstruct_known`, `reconstruct_workflow` and
+`reconstruct_summary`, with
 their declared records/errors. They remain explicit array/value boundaries.
 Callers may compose neutral reads and declarations before the workflow; the
 workflow adds no file decoder, result writer or reconstruction CLI.
 The neutral CLI remains in the product. The delivery command is installed by
 the local development package during locked all-groups synchronization.
+
+The [RM84 memory contract](contracts/reconstruction-memory-v1.md) adds
+`reconstruct_summary` / `ReconstructionSummary` as an explicit lightweight
+workflow entry with the same inputs and scientific calculation. It retains the
+signed image, coordinates, parameters and compact decisions/identities. Existing
+workflow and direct-stage entries keep their complete debugging records.
+[Summary usage](usage/reconstruction-summary.md) explains the projection and
+compatibility boundary; [RM84 task evidence](tasks/reconstruction-memory.md)
+identifies implementation and measurement status. No fixed memory ceiling,
+disk-backed execution or expansion of source representation limits is implied.
 
 - The [MRC conversion contract](contracts/mrc-conversion-v1.md) defines metadata
   inspection, selected-block reads, pure metadata/layout resolution, streamed
@@ -157,10 +168,25 @@ pinned ImageJ reader; interoperability checks require JDK 21.0.7 and accept
 `SIMRECON_JAVA`. [Reader environment](operations/imagej-reader-environment.md)
 records exact dependencies. Conversion/export itself requires no Java runtime.
 
+### Required verification platform
+
+The owner requested removal of mandatory macOS verification on 2026-11-14.
+Ubuntu 24.04 is the sole required verification platform. Other platform runs are
+optional evidence; missing macOS reports alone do not block acceptance,
+submission or dependent work. This changes qualification scope, not scientific
+behavior, portability handling or the interpretation of known failures.
+
+The [platform-policy migration](tasks/ubuntu-verification-policy.md) applies to
+ongoing and future work, including RM84 and the continuing CE roadmap. It
+supersedes older Ubuntu/macOS qualification clauses in inherited contracts,
+tasks, plans and packets. Their scientific obligations remain unchanged.
+Historical reports, verdicts, platform observations and cumulative charges retain
+their original meaning; they are not retroactively relabeled as acceptance.
+
 Pytest runs under native statement/branch and subprocess coverage. Strict config
 and markers remain; test policy rejects empty discovery, skips, expected failures,
 unexpected passes and collection/internal errors. CI repeats the full suite
-independently on Ubuntu 24.04 and macOS 15. Default submission mode is full-local
+on Ubuntu 24.04. Default submission mode is full-local
 exact-candidate verification: any known check failure, missing required evidence
 or unmet explicitly selected coverage target blocks submission, including draft
 PRs and pushes to an open PR. Conditional CI-authoritative mode is not enabled;
@@ -247,8 +273,9 @@ statement instrument or distinct line target. Report exact covered/total integer
 and unsupported measurements. Native statement/branch reports remain required
 globally, per package (`src/simrecon/`, `scripts/`,
 `devtools/src/simrecon_devtools/`) and per owned file, independently
-on Ubuntu 24.04 and macOS 15, including never-imported files and relevant
-subprocesses. No platform union supplies a platform's missing evidence.
+on Ubuntu 24.04 under the [current platform policy](#required-verification-platform),
+including never-imported files and relevant subprocesses. Optional-platform
+reports do not replace missing required Ubuntu evidence.
 `make verify` requires current JSON/HTML reports and internally consistent exact
 file/package/global counts. Partial or zero execution is valid measurement;
 missing files/reports, malformed/inconsistent counters and unsupported required
@@ -280,15 +307,20 @@ worker; bounded worker plus fresh reviewer; or fresh blind A/B, restricted C and
 fresh D for high risk. Data-loss behavior, even conventional overwrite/truncation
 repair, is high risk. Policy adoption has human-requested documentation scope and
 fresh independent policy review before activation; restating a request needs no
-extra approval checkpoint. Use [native role launches](operations/role-launches.md),
+extra approval checkpoint. Use [role launches](operations/role-launches.md),
 [public A/B packets](agentic-software-delivery-v1.0/templates/PUBLIC-PACKET.md),
 [candidate packets](agentic-software-delivery-v1.0/templates/CANDIDATE-PACKET.md)
 and [handoffs](agentic-software-delivery-v1.0/templates/HANDOFF.md).
 [Model selection/calibration](operations/model-selection.md) records conservative
 defaults, qualified scope and lower-cost/effort candidates still lacking evidence.
 Advisors replace no required independent role. Launched roles do their work
-directly without nested launches. Reviewers never inherit author history; context
-reset restores no blindness. A/B follow their public-input allowlist rather than
+directly without nested launches. The CLOUD107 fresh tool-session proposal applies
+only to new sessions after fresh independent policy acceptance; until then the
+high-risk native-root rule remains in force. Check route capabilities in the
+current environment, disclose shared filesystem/permission and unavailable-control
+limits, and retain every packet/gate/ownership requirement. No retroactive role
+qualification or blanket active-task migration follows; preserve earlier charges.
+Reviewers never inherit author history; context reset restores no blindness. A/B follow their public-input allowlist rather than
 implementation-bearing task/history/coverage/lesson links. Before blind probes,
 arrange [source-free warnings, tracebacks and subprocess diagnostics](operations/role-launches.md)
 that retain categories, messages, locations and failure status. Disclose exposure

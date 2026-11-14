@@ -20,9 +20,11 @@ is a finding, not permission to infer success. Assess before current-task lesson
 Independently challenge:
 
 - Fresh bootstrap actually selects pinned tools without old workspace state,
-  covers seed prerequisites and both supported platforms, and safely repeats
+  covers seed prerequisites and required Ubuntu setup, and safely repeats
   without changing pins/caller data/history. Official downloads/integrity and
   executable selections are concrete; no hidden global profile dependency.
+  Optional macOS instructions retain their unproven setup status without blocking
+  acceptance under current PROJECT policy.
 - Local readiness distinguishes absent/mismatched/wrong-worktree/failed/timed-out
   prerequisites, honors positive explicit selections, avoids setup/network/auth
   side effects, returns meaningful status and reports its untested remote limits.
@@ -36,7 +38,8 @@ Independently challenge:
   resumes no science. Repeated cumulative summaries are not double-counted.
   Changed environment invalidates reuse as appropriate. A document download alone
   does not prove original Git history or complete fresh-workspace recovery.
-- Saved role instructions preserve exact packets, fresh native scientific roots,
+- Saved role instructions preserve exact packets, currently permitted fresh sessions
+  under the role-launch adoption boundary,
   blindness/public allowlists, ownership and separate output destinations. A
   report/probe/recovered handoff is not an acceptance verdict or fresh role.
 - Durable evidence is actually available in its stated authorized location;
@@ -46,7 +49,7 @@ Independently challenge:
 - Tests exercise credible public-command failures and permitted positives rather
   than mirror internals; operational evidence supplies what unit fixtures cannot.
   Requirement/test mapping and concrete missed risks get a short disposition.
-- Full verification, both platform obligations, all native coverage/report
+- Full verification, required Ubuntu qualification, all native coverage/report
   integrity requirements, wheels, audit and same-run M25 remain intact.
   Percentages are advisory; missing proof is not. No setup check replaces science.
 

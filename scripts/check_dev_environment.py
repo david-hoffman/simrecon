@@ -150,7 +150,7 @@ def main() -> int:
         f"architecture={platform.machine()}"
     )
     print(f"checkout: {root}")
-    print("Platform qualification: not checked; verification matrix is Ubuntu 24.04/macOS 15")
+    print("Platform qualification: not checked; required platform is Ubuntu 24.04")
     git = check.probe("Git", ["git", "--version"], "Install Git; see docs/operations/bootstrap.md")
     if git is not None:
         print(f"Git: {git}")

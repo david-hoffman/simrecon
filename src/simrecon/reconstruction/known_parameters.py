@@ -24,10 +24,15 @@ import numpy as np
 from numpy.typing import NDArray
 from scipy.fft import ifftn
 
-from ..acquisition.layout import ModeEvent, event
+from ..acquisition.layout import _COMPACT_CAPTURE, ModeEvent, _capture_policy, event
 from ..acquisition.layout import integer as _acquisition_integer
 from ..acquisition.layout import scalar as _acquisition_scalar
-from ..acquisition.modes import AcquisitionBands, _UsedBands, validate_downstream_bands
+from ..acquisition.modes import (
+    AcquisitionBands,
+    _CompactBands,
+    _UsedBands,
+    validate_downstream_bands,
+)
 from ..acquisition.preparation import _REFERENCE as _BAND_REFERENCE
 from ..acquisition.preparation import PreparedBands
 from ..models import SimreconError
@@ -192,8 +197,10 @@ class _Grid:
 
 
 def _validate_bands(bands: Any) -> tuple[_Grid, _UsedBands | None]:
-    if issubclass(type(bands), AcquisitionBands):
-        used = validate_downstream_bands(bands)
+    if issubclass(type(bands), AcquisitionBands) or (
+        _COMPACT_CAPTURE.get() and isinstance(bands, _CompactBands)
+    ):
+        used = validate_downstream_bands(cast(AcquisitionBands, bands))
         shape = used.shape
         for sh, size in (((shape[1], 2), 8), ((shape[1], used.orders), 16), (shape[3:], 16)):
             _extent(sh, size)
@@ -696,6 +703,14 @@ def filter_native_quadratures(original: _C128, grid: _Grid, filtering: _Filter) 
     ``docs/architecture/reconstruction-walkthrough.md#filtering-and-reconstruction-of-the-quadrature-pair``.
     """
     filtered = original.copy()
+    _filter_native_quadratures_into(original, grid, filtering, filtered)
+    return filtered
+
+
+def _filter_native_quadratures_into(
+    original: _C128, grid: _Grid, filtering: _Filter, filtered: _C128
+) -> None:
+    """Filter into a nonoverlapping destination initialized from the original."""
     tcount, directions, _, zsize, ysize, _ = original.shape
     xsize = grid.shape[-1]
     # This literal range omits one odd-Y row and is empty for Y=1. Preserve the
@@ -748,7 +763,6 @@ def filter_native_quadratures(original: _C128, grid: _Grid, filtering: _Filter) 
                                 filtered[t, d, 2 * m - 1, z % zsize, y % ysize, x] = (p + n) / 2
                                 filtered[t, d, 2 * m, z % zsize, y % ysize, x] = (p - n) / (2j)
     _finite(filtered, "filtered quadrature result")
-    return filtered
 
 
 def signed_fourier_index(index: int, length: int) -> int:
@@ -854,6 +868,8 @@ def assemble_signed_image(
                     spatial[0] = cast(_C128, ifftn(padded[0], norm="forward"))
                 else:
                     spatial = cast(_C128, ifftn(padded, norm="forward"))
+                # Embedding has no further use after the inverse transform.
+                del padded
                 _finite(spatial, "inverse transform result")
                 if m == 0:
                     image[t] += spatial.real
@@ -870,6 +886,7 @@ def assemble_signed_image(
                     _finite(phase, "assembly carrier phase")
                     image[t] += 2 * (spatial * np.exp(1j * phase)).real
                 _finite(image[t], "assembled image result")
+                del spatial
     return image
 
 
@@ -950,6 +967,53 @@ def reconstruct_known(
         For invalid inputs, unsafe actual transfer stencils, representation or
         numerical failures. Allocation/backend failures retain their causes.
     """
+    with _capture_policy(False):
+        return _reconstruct_known(
+            bands,
+            transfer,
+            carriers_cyc_um=carriers_cyc_um,
+            modulation=modulation,
+            wavelength_nm=wavelength_nm,
+            numerical_aperture=numerical_aperture,
+            immersion_index=immersion_index,
+            wiener=wiener,
+            suppress_singularities=suppress_singularities,
+            suppression_radius_bins=suppression_radius_bins,
+            dampen_order0=dampen_order0,
+            omit_order0=omit_order0,
+            omit_kz0=omit_kz0,
+            output_taper=output_taper,
+            wiener_increment=wiener_increment,
+            power_taper_exponent=power_taper_exponent,
+            precise_taper=precise_taper,
+            filter_overlaps=filter_overlaps,
+            explode_factor=explode_factor,
+        )
+
+
+def _reconstruct_known(
+    bands: PreparedBands | AcquisitionBands | _CompactBands,
+    transfer: OpticalTransfer,
+    *,
+    carriers_cyc_um: Any,
+    modulation: Any,
+    wavelength_nm: int,
+    numerical_aperture: float,
+    immersion_index: float,
+    wiener: float,
+    suppress_singularities: bool = True,
+    suppression_radius_bins: float = 10.0,
+    dampen_order0: bool = False,
+    omit_order0: bool = False,
+    omit_kz0: bool = False,
+    output_taper: str = "cosine",
+    wiener_increment: float = 0.0,
+    power_taper_exponent: float | None = None,
+    precise_taper: bool = False,
+    filter_overlaps: bool = True,
+    explode_factor: float = 1.0,
+) -> KnownReconstruction:
+    """Shared scientific core; the caller chooses only diagnostic capture."""
     with _operation():
         grid, used = _validate_bands(bands)
         acquisition = used is not None
@@ -1047,7 +1111,14 @@ def reconstruct_known(
         sr = sr_bins * min(dx, dy)
         _finite(sr, "suppression radius")
         quadratures = bands.quadratures if used is None else used.quadratures
-        original = np.array(quadratures, dtype=np.complex128, copy=True)
+        private_compact = _COMPACT_CAPTURE.get() and isinstance(bands, _CompactBands)
+        # Only private compact preparation storage can serve as the stable source;
+        # full/direct stages retain their independent snapshot of mutable bands.
+        original = (
+            quadratures
+            if private_compact
+            else np.array(quadratures, dtype=np.complex128, copy=True)
+        )
         filtered = np.empty_like(original)
         mode_trace: list[ModeEvent] = []
         effective = []
@@ -1095,7 +1166,17 @@ def reconstruct_known(
                 precise,
                 bool(filter_overlaps),
             )
-            filtered[t : t + 1] = filter_native_quadratures(original[t : t + 1], grid, filtering)
+            if private_compact:
+                # Preserve copied odd-Y/Y1 coefficients and reflected partial writes.
+                destination = filtered[t : t + 1]
+                destination[...] = original[t : t + 1]
+                _filter_native_quadratures_into(original[t : t + 1], grid, filtering, destination)
+            else:
+                filtered[t : t + 1] = filter_native_quadratures(
+                    original[t : t + 1], grid, filtering
+                )
+        # Filtering has finished reading its stable source.
+        del original
         oz, oy, ox = grid.output_shape
         x_um = (np.arange(ox, dtype=np.float64) - ox // 2) * (grid.dxy / grid.lateral)
         y_um = (np.arange(oy, dtype=np.float64) - oy // 2) * (grid.dxy / grid.lateral)

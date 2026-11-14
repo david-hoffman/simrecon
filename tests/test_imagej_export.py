@@ -1040,7 +1040,7 @@ def test_source_change_during_real_export_never_returns_success(
 
 
 def test_real_operation_time_write_failure(tmp_path: Path, api: Callable[..., Any]) -> None:
-    # Both required platforms implement POSIX RLIMIT_FSIZE. Limit only the child,
+    # Linux and Darwin implement POSIX RLIMIT_FSIZE. Limit only the child,
     # ignore SIGXFSZ so a real write returns EFBIG rather than killing pytest.
     # Restore the prior limit after observation so native subprocess coverage can save.
     spec = Acquisition(plane_axes=("z",), plane_shape=(8,), x=64, y=64, extension=b"")

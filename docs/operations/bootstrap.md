@@ -2,8 +2,10 @@
 
 **Version 1.0.** This is explicit operator setup, followed by local readiness and
 the existing preflight. It does not establish scientific acceptance. Keep one
-`.venv` per checkout. The verification targets remain Ubuntu 24.04 and macOS 15;
-Debian or another host can provide local observations, not those platform results.
+`.venv` per checkout. Ubuntu 24.04 is the sole required verification platform
+under [PROJECT policy](../PROJECT.md#required-verification-platform). The macOS 15
+recipe is optional and has not had a fresh/repeated setup exercise. Debian or
+another host can provide local observations, not Ubuntu qualification.
 
 Use a working executor, a POSIX shell, Git, Make, curl, tar/gzip, CA certificates
 and SHA-256 tooling. You need permission to download/install into an owned
@@ -24,9 +26,11 @@ uv installs the exact Python below before the readiness command needs it.
 
 ## Select official platform artifacts
 
-These commands support Ubuntu 24.04 x86_64/aarch64 and macOS 15 x86_64/arm64
-using the upstream artifacts below. Other OS/architecture combinations are not
-covered by this recipe. Record `uname -s` and `uname -m` before selecting a row.
+These recipes select upstream artifacts for Ubuntu 24.04 x86_64/aarch64 and
+macOS 15 x86_64/arm64. The observed fresh/repeated exercise covers Ubuntu x86_64;
+the other rows are installation instructions, not qualification evidence.
+Other OS/architecture combinations are not covered by this recipe. Record
+`uname -s` and `uname -m` before selecting a row.
 
 | Host | `UV_TARGET` | `JDK_ARCH` | `JDK_OS` | `JDK_HOME_SUFFIX` |
 | --- | --- | --- | --- | --- |
@@ -176,5 +180,6 @@ Use [environment diagnosis](environment.md#classifying-a-failed-attempt) for
 failures and [task recovery](task-recovery.md) for saved checkpoints. Preflight
 does not replace the [full verification gate](verification.md): all 13 phases,
 both wheels, audit, native coverage reports and same-run M25 with its
-33,554,432-byte limit remain required. CI repeats Ubuntu 24.04/macOS 15. Missing
-platform evidence remains a gap, not an implied pass.
+33,554,432-byte limit remain required. CI repeats Ubuntu 24.04. Missing required
+platform evidence remains a gap; missing optional macOS evidence does not block
+acceptance or submission. Known failures still require diagnosis.

@@ -82,18 +82,23 @@ binding. Local readiness and preflight supply neither scientific acceptance nor
 current native authentication. A fresh required review keeps its fresh-session
 and blindness requirements.
 
-## Concrete #84 record-recovery exercise
+## Historical #84 record-recovery exercise
 
 Use the original saved checkpoint
 `f8042042ff2b6865ecf501e38f11232de5d36fc9` on
-`docs/84-reconstruction-memory-intake`. In a newly selected disposable directory:
+the former `docs/84-reconstruction-memory-intake` branch. That branch has been
+deleted; retrieve the exact commit instead of depending on the branch name.
+This restores the historical record, not the completed task's current stage
+(see [merged PR #108](https://github.com/david-hoffman/simrecon/pull/108)).
+In a newly selected disposable directory:
 
 ```sh
 set -eu
 RECOVERY_ROOT=/absolute/fresh-recovery-checkout
 SAVED_COMMIT=f8042042ff2b6865ecf501e38f11232de5d36fc9
-git clone --no-checkout --branch docs/84-reconstruction-memory-intake \
+git clone --no-checkout \
   https://github.com/david-hoffman/simrecon.git "$RECOVERY_ROOT"
+git -C "$RECOVERY_ROOT" fetch origin "$SAVED_COMMIT"
 git -C "$RECOVERY_ROOT" cat-file -e "$SAVED_COMMIT^{commit}"
 git -C "$RECOVERY_ROOT" checkout --detach "$SAVED_COMMIT"
 git -C "$RECOVERY_ROOT" rev-parse HEAD 'HEAD^{tree}'
@@ -106,7 +111,8 @@ git -C "$RECOVERY_ROOT" merge-base --is-ancestor \
   9f572e92a24de738932ecdf2bafa84418df5abf7 "$SAVED_COMMIT"
 ```
 
-Stop if the branch/object/ancestor cannot be obtained or does not match. Verify
+Stop if the object/ancestor cannot be obtained or does not match. A saved SHA
+identifies bytes but cannot guarantee the remote retains them forever. Verify
 tree `f230eb3cee1ccf26332050261e0ab1fe0c01a078` and compare the recovered
 task, contract and public/candidate packets with the saved identities. Use the
 [pinned saved task](https://github.com/david-hoffman/simrecon/blob/f8042042ff2b6865ecf501e38f11232de5d36fc9/docs/tasks/reconstruction-memory-intake.md)
@@ -129,8 +135,10 @@ or infer missing aggregate metering. Missing
 `roles/a02-*`, or resume logs remain **unavailable historical evidence**.
 Do not recreate favorable verdicts or change #84's state during the exercise.
 
-The next scientific stage is fresh blind A after current setup and required
-native capability are established under #84's authorization, then fresh B,
-restricted C and fresh D. Showing that next stage requires no scientific launch.
-Current authentication, full verification and Ubuntu/macOS qualification remain
-separate evidence requirements.
+At that saved checkpoint, the pending scientific stage was fresh blind A after
+setup and required native capability, then fresh B, restricted C and fresh D.
+Those are historical stage requirements, not instructions to reopen #84.
+For a live task, use its current state and the currently applicable
+[role-launch route](role-launches.md), including its adoption boundary, rather
+than resuming a historical stage. Current capability, full verification and
+required Ubuntu qualification remain separate evidence requirements.

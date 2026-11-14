@@ -2,10 +2,12 @@
 
 **Version 1.0** Git versions revisions.
 
-You are already the fresh initial root for this role; perform it here without launching another role. A may continue its own correction while blindness holds; B correction verdicts use a fresh independent root. Use the named skill and supported memory/delegation controls. These are prompt boundaries, not access controls.
+You are already the fresh initial session for this role; perform it here without launching another role. A may continue its own correction while blindness holds; B correction verdicts use a fresh independent session. Native roots remain required until fresh independent CLOUD107 policy acceptance; a new tool session after acceptance must meet [role-launch guidance](../../operations/role-launches.md) with no conversation inheritance. Use the named skill and supported memory/delegation controls. These are prompt boundaries, not access controls.
 
 - Role/worktree; authorized public-contract revision/scenario IDs/coverage examples; actual human request reference:
 - High-risk route/reason (data-loss behavior, including settled overwrite/truncation repair, is high risk); model/effort/calibration and diagnosed escalation triggers:
+- Launch route/current capability evidence; sanitized CLOUD107 acceptance reference for a new tool-route session (no nonblind task/report/history input); no conversation inheritance and task/session ID; optional controls available/disabled/unavailable, shared filesystem/permissions and prompt-only limits; requested versus exposed model/effort or unknown:
+- Coordinator-owned packet revision/digest, allowed tools/read-write scope, exact worktree/checkpoint/artifact identities and separate report/final-message destinations; completion and independent substantive verdict evidence:
 - Observable obligations/public interfaces/expected-result sources and paired permitted-positive/error cases:
 - Inherited approved coverage policy reference/permitted text under specification section 5.1; selected metrics/thresholds/scope/reports, advisory metrics and unresolved material choices:
 - Requirement/scenario-to-test mapping, relevant high-risk paths and short independent risk-audit disposition; B audits omissions/plausible wrong outcomes before acceptance:

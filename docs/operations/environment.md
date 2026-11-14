@@ -98,7 +98,7 @@ nonzero status. Do not turn a guessed category into a pass or an automatic retry
 | Observed device-sign-in completion | Completion for that attempt only. Code issuance or waiting without observed completion is not successful sign-in; keep codes private. |
 | Native-service HTTP 401 | Authentication failed for that attempt. It is not a repository defect or permission to erase/replace credentials. |
 | Actual authorized role launch | Capability evidence for that client/model/configuration and environment at that time. Reuse valid evidence; a fabricated review or login-status command cannot replace it. |
-| Required native capability evidence absent/stale | Use the smallest permitted capability probe only when needed. Native client versions are recorded observations, not new pinned dependencies; confirm supported controls. |
+| Required selected-route capability evidence absent/stale | Follow the current [role-launch preflight](role-launches.md#cheap-six-level-preflight); use the smallest permitted probe only when needed. Native executable/login checks apply to the native route, not a compliant tool route. Native client versions are observations, not new pins; confirm supported controls. |
 | Executor unreachable despite running desired/observed state | Platform blocker with unresolved cause. A repository script cannot start/repair it, and a running state does not prove connectivity. Retain the failed shell/status evidence and use platform diagnostics. |
 | Mixed or insufficient diagnostics | Cause unknown. Name the unresolved question and one focused next diagnostic; do not start a retry loop. |
 

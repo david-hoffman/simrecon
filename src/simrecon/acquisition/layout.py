@@ -7,6 +7,7 @@ import struct
 import sys
 from collections.abc import Iterator
 from contextlib import contextmanager
+from contextvars import ContextVar
 from dataclasses import dataclass
 from numbers import Integral, Real
 from typing import Any
@@ -17,6 +18,32 @@ from numpy.typing import NDArray
 from ..models import SimreconError
 from ..optical_transfer import _REFERENCE as _OTF_REFERENCE
 from .preparation import _array_metadata, _raw_samples
+
+# Private, context-local diagnostic policy. Public stage signatures and their
+# default full capture remain unchanged; only the summary composition sets it.
+_COMPACT_CAPTURE: ContextVar[bool] = ContextVar("simrecon_compact_capture", default=False)
+
+
+@contextmanager
+def _capture_policy(compact: bool) -> Iterator[None]:
+    """Select private capture with exception-safe, reentrant token restoration."""
+    token = _COMPACT_CAPTURE.set(compact)
+    try:
+        yield
+    finally:
+        _COMPACT_CAPTURE.reset(token)
+
+
+def _scalar_tuple(value: Any) -> Any:
+    """Freeze an event array without retaining its backing storage."""
+    if isinstance(value, np.ndarray):
+        return _scalar_tuple(value.tolist())
+    if isinstance(value, np.generic):
+        return value.item()
+    if isinstance(value, (tuple, list)):
+        return tuple(_scalar_tuple(v) for v in value)
+    return value
+
 
 Array = NDArray[Any]
 INT_MAX = 2**31 - 1
@@ -137,6 +164,18 @@ def owned(value: Array, *, writable: bool = False) -> Array:
     return result
 
 
+def _finish_owned(value: Array, *, writable: bool = False) -> Array:
+    """Finish a private allocation after its last write, without a snapshot copy.
+
+    Call only for independently allocated stage outputs. Event captures still
+    use owned(), because their source workspaces can be changed later.
+    """
+    extent(value.shape, value.dtype.itemsize)
+    finite(value, "result")
+    value.flags.writeable = writable
+    return value
+
+
 def append(sequence: list[Any], value: Any) -> None:
     """Check the eventual immutable container's native pointer extent."""
     if sys.getsizeof(()) + (len(sequence) + 1) * struct.calcsize("P") > INTP_MAX:
@@ -176,15 +215,47 @@ def event(
     actual time/direction/z/phase context, including failed later-stage routing.
     No diagnostic is synthesized for an unexecuted branch.
     """
+    compact = _COMPACT_CAPTURE.get()
+    omitted = {
+        "between-build": ("centers", "fourier"),
+        "drift-correlation": ("cross_spectrum", "correlation", "absolute_correlation"),
+        "exposure-correction": ("phase_multiplier",),
+        "between-correction": ("phase_multiplier",),
+        "off-combination": ("quadratures_after",),
+    }.get(kind, ())
     captured = []
     for key, value in details.items():
         if isinstance(value, np.ndarray):
-            value = owned(value)
+            if compact:
+                # owned() performs these checks even on captures we omit.
+                extent(value.shape, value.dtype.itemsize)
+                finite(value, "result")
+                value = None if key in omitted else _scalar_tuple(value)
+            else:
+                value = owned(value)
         elif isinstance(value, np.generic):
             value = value.item()
         if isinstance(value, (float, complex)):
             finite(value, f"{kind} {key}")
-        captured.append((key, value))
+        if not compact or key not in omitted:
+            captured.append((key, value))
+    if compact and kind == "precise-query":
+        indices = (t, d, z, p)
+        if (
+            trace
+            and trace[-1].kind == "precise-query-count"
+            and (
+                trace[-1].time_index,
+                trace[-1].direction_index,
+                trace[-1].z_index,
+                trace[-1].phase_index,
+            )
+            == indices
+        ):
+            count = trace[-1].details[0][1] + 1
+            trace[-1] = ModeEvent("precise-query-count", t, d, z, p, (("count", count),))
+            return
+        kind, captured = "precise-query-count", [("count", 1)]
     append(trace, ModeEvent(kind, t, d, z, p, tuple(captured)))
 
 
@@ -379,10 +450,10 @@ def reinterpret_2d_planes(
                     if result_extra is not None and extra is not None:
                         result_extra[time * z + q, direction, :, 0] = extra[time, old_d, :, old_z]
         return TwoDPlaneInputs(
-            owned(result),
-            None if result_off is None else owned(result_off),
-            None if result_extra is None else owned(result_extra),
-            owned(labels),
+            _finish_owned(result),
+            None if result_off is None else _finish_owned(result_off),
+            None if result_extra is None else _finish_owned(result_extra),
+            _finish_owned(labels),
             shape,
             order,
         )
