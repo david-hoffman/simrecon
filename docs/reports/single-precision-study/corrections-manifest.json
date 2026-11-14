@@ -1,0 +1,227 @@
+{
+  "revision": "sp112-corrections-v1",
+  "script_sha256": "6e0156bf85e92077d32212c2706722976ee1a0dcebcada9719331d8967c47eaf",
+  "prior_script_sha256": "de31f260d91d179b66f450ce79bf88e45c88df880caa3afa5f7a01b6fbee4b03",
+  "prior_manifest_sha256": "c0d96fd68092362c97482e99b592d69ee0eed736f32dbdd5f920d6305cf8f2a8",
+  "identities": {
+    "docs/reports/single-precision-study/study.py": "1bce423fbd7f2e20662b2e2a371b7d23ac3f5c5e154ef6303ebab8bd73b38cec",
+    "docs/reports/single-precision-study/preflight.py": "225133ad19f24d6c6c47b25466edefae29b763b6083f74c0bb53225b2f0d8350",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "src/simrecon/reconstruction/known_parameters.py": "34fbc93aa5ac9a1f4eb24b1f39ce576a1bb7770238c62cab72412de120722295",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "docs/contracts/c-equivalence-known-parameters-v1.md": "7959ff71c24ad877460237435a472970feb925d42cc471543d5c9699c850ff34",
+    "docs/contracts/c-equivalence-carrier-modulation-v1.md": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c"
+  },
+  "cases": [
+    "scalar-recombination",
+    "camera",
+    "off-combination",
+    "cubic",
+    "ties-reciprocal",
+    "workflow-full",
+    "workflow-summary"
+  ],
+  "repetitions": 3,
+  "input_hashes": {
+    "camera_raw": {
+      "shape": [
+        2,
+        1,
+        3,
+        2,
+        2,
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "a2dbc3ea94c84f9322a53f974b8fedc8e259039f0562f04ab1893f65c5f097fb"
+    },
+    "camera_off": {
+      "shape": [
+        2,
+        1,
+        3,
+        2,
+        1,
+        2,
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "c999f4906b30ed3580f5e71d41596c56f8e81c856ac359a93f7a2c4beb86a047"
+    },
+    "camera_background": {
+      "shape": [
+        2,
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "2e2aa56db419d61d4d118eb5606317c5d0bb2e9bf34bc837ac4293813dcba7f5"
+    },
+    "camera_slope": {
+      "shape": [
+        2,
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "4fa7dfc088bd4c4345b2a18093f2b1e80bec5fb217134c01084954f34108a36f"
+    },
+    "combo_raw": {
+      "shape": [
+        2,
+        2,
+        3,
+        2,
+        4,
+        6
+      ],
+      "dtype": "float64",
+      "sha256": "20868303603f684f16e0748221c25cd51ee5419fbb53f5af84790238d3482d38"
+    },
+    "combo_off": {
+      "shape": [
+        2,
+        2,
+        3,
+        2,
+        1,
+        4,
+        6
+      ],
+      "dtype": "float64",
+      "sha256": "57541e48b464cdb4e96af5ed63c9d6465404fd1457db2b4ba7c2eaca744b0433"
+    },
+    "cubic_raw": {
+      "shape": [
+        1,
+        4,
+        3,
+        2,
+        10,
+        64
+      ],
+      "dtype": "float64",
+      "sha256": "927357e05764190479df738384bad070269c8e62cdb1573f21162f141199b052"
+    },
+    "cubic_off": {
+      "shape": [
+        1,
+        4,
+        3,
+        2,
+        1,
+        10,
+        64
+      ],
+      "dtype": "float64",
+      "sha256": "927357e05764190479df738384bad070269c8e62cdb1573f21162f141199b052"
+    },
+    "cubic_clock": {
+      "shape": [
+        48
+      ],
+      "dtype": "float64",
+      "sha256": "30e0f8957c91448838fb3b98833fd9d100e0e0c6bc8542a87d9b9a10e5bee2e3"
+    },
+    "cubic_phases": {
+      "shape": [
+        48
+      ],
+      "dtype": "float64",
+      "sha256": "43c5569ba74ec49f9f8127e8bf4b26411b3a7c5a32944e84e7757ed9c8d5f49b"
+    }
+  },
+  "ties": [
+    {
+      "profile": "height-one",
+      "band_hash": "0c28f6d9a06703f140fc35550a1e69837bbebf0740bb6fe912184576c0388e24",
+      "shape": [
+        1,
+        1,
+        5,
+        2,
+        1,
+        4
+      ],
+      "initial": [
+        [
+          -0.05,
+          0.0
+        ]
+      ],
+      "expected_coarse_power": [
+        [
+          0,
+          64,
+          0,
+          0
+        ]
+      ],
+      "expected_first_peak": [
+        1,
+        0
+      ],
+      "expected_final_carrier": [
+        0,
+        0
+      ],
+      "expected_all_objectives": 0,
+      "expected_first_order_modulation": "2^-660/16",
+      "single_input_conversion": "large coefficients overflow, tiny coefficients underflow; unqualified"
+    },
+    {
+      "profile": "coarse-tie",
+      "band_hash": "e5774896889bdac99c6ec6eebc1565076a4697ca6a5f80935f49a1bfea3b7af3",
+      "shape": [
+        1,
+        1,
+        5,
+        2,
+        4,
+        2
+      ],
+      "initial": [
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "expected_coarse_power": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "expected_first_peak": [
+        0,
+        3
+      ],
+      "expected_final_carrier": [
+        0,
+        0
+      ],
+      "expected_all_objectives": 0,
+      "expected_first_order_modulation": "2^-660/8",
+      "single_input_conversion": "large coefficients overflow, tiny coefficients underflow; unqualified"
+    }
+  ],
+  "corrections": {
+    "camera": "int selectors zero; sentinel camera separated from combination to avoid uniform zero-noise witness",
+    "off_combination": "integer selectors [1,1], nonuniform spatial observations, explicit optics",
+    "cubic": "complete header phases alongside clock",
+    "workflow": "transfer_identity optics equal optics; intensity_unit dimensionless-transfer",
+    "ties": "separate valid reciprocal-scaled declared fixture; prior tie input stays actual zero-coarse rejection"
+  }
+}

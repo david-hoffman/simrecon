@@ -1,0 +1,7 @@
+{
+  "status": "frozen",
+  "manifest_sha256": "5df2545e79e3a16d5f319cead3d79a9741e9469ac6eaefe20fa29e6be839650d",
+  "kernel_rows": 16,
+  "kernel_fresh_runs": 114,
+  "small_fresh_runs": 12
+}

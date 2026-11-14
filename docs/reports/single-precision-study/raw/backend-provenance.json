@@ -1,0 +1,62 @@
+{
+  "probe": "one tiny NumPy rfft and SciPy ifftn, source/module provenance only",
+  "rows": [
+    {
+      "module": "numpy.fft._pocketfft",
+      "file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/numpy/fft/_pocketfft.py",
+      "sha256": "c809e89c05cf7b97d75abd73fdda8454403fe67772d4e435aa35bc4ce723eeb6",
+      "loaded": true
+    },
+    {
+      "module": "numpy.fft._pocketfft_umath",
+      "file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/numpy/fft/_pocketfft_umath.cpython-313-x86_64-linux-gnu.so",
+      "sha256": "37eea6cf4de15ba3cc9487e704bbd306de65bf804310b1067f1b11d1e50a9de8",
+      "loaded": true
+    },
+    {
+      "module": "scipy.fft._basic_backend",
+      "file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/scipy/fft/_basic_backend.py",
+      "sha256": "79dd71754fe19520cc4963c9e774bb6bc939795e451624bec104597e335c1b8c",
+      "loaded": true
+    },
+    {
+      "module": "scipy.fft._duccfft",
+      "file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/scipy/fft/_duccfft/__init__.py",
+      "sha256": "2a6f2d9ae3ba21b77fd3d63c45931f6fc6a012858263af9c4f914a452e6ff30b",
+      "loaded": true
+    },
+    {
+      "module": "scipy.fft._duccfft.basic",
+      "file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/scipy/fft/_duccfft/basic.py",
+      "sha256": "ccfc7b2ebc2e47cd0232910230c40bd8d2ecc0e80277183a4af4995882b6b5a7",
+      "loaded": true
+    },
+    {
+      "module": "scipy.fft._duccfft.helper",
+      "file": "/workspace/work/issue-112/.venv/lib/python3.13/site-packages/scipy/fft/_duccfft/helper.py",
+      "sha256": "0d9c409a6dcf9cdb85cbc67aa203f7b80907036b23735f1fdceb7af1268ee9c5",
+      "loaded": true
+    }
+  ],
+  "loaded_fft_modules": [
+    "numpy.fft._helper",
+    "numpy.fft._pocketfft_umath",
+    "numpy.fft._pocketfft",
+    "numpy.fft",
+    "scipy.fft._basic",
+    "scipy.fft._realtransforms",
+    "scipy.fft._fftlog_backend",
+    "scipy.fft._fftlog",
+    "scipy.fft._duccfft.pyduccfft",
+    "scipy.fft._duccfft.helper",
+    "scipy.fft._duccfft.basic",
+    "scipy.fft._duccfft.realtransforms",
+    "scipy.fft._duccfft",
+    "scipy.fft._helper",
+    "scipy.fft._basic_backend",
+    "scipy.fft._realtransforms_backend",
+    "scipy.fft._backend",
+    "scipy.fft"
+  ],
+  "actual_internal_precision_workspace": "unknown"
+}
