@@ -729,3 +729,19 @@ No guardianimplementation/newruntime/newcontainer/probe/signals or116treechange.
 Three exact primary sourceTEXTfetches(Dockerdocs/Tini0.19README/source) allsuccess,
 actualengine-selectedinitversionunknownuntilpostwindowmetadata. Two sourcequeries
 returnedmissingglob/READMEpaths, retained. Unknownmetersandallpriorchargesremain.
+
+Root requested minimal outside fixedcaseDockercontroller source preparation;
+coor authored one unexecuted sourceattempt+staticselfinspection corrections,
+controller efe488871aa9cf5fb217ca904ec86433139c44a452008658a53e9196c35a55bb,
+cases ac875571c76de4be0098a5ee4c98a3b3a1c3d490e534965f89810db90a1a61f8.
+Fivefinitecases only, activationabsent/disabled, no actual AST/import/lint/type/
+runtime/probe/processscan/signal/Dockercommand. MinimaloutsideobserverHOLD retains
+ownedproxy; ROOTcontainerclosure/statusseparation; no customguardian/gateframework.
+Four exact primaryHTTPsourcefailures429/403 anddependentmissingfile/decode/read
+errors retained; rootGitHubconnector suppliedactualLinuxv6.6primary12258B/hash
+2aab5ab4109224883b733f476418acac4d42a0c5b4d7b843757df845a334e7c3,
+sourceinvariant independentlychecked, notactualkernelbinaryauthentication or
+namespaceclosure. Rootconnectorchargecrossrefonce, notduplicatecoorexecution.
+ActualprivatePIDnamespace/PID1reap/engineclosure sufficientbasis; visiblecgroup
+shared/unknown recorded, noemptyOWNcgrouprequirement. Rootsource/config/case/
+runtimefreeze/releasepending. B4waitallpreCcapabilityfacts, no knownholdreviewloop.
