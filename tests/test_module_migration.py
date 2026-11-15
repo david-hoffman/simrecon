@@ -50,10 +50,12 @@ PUBLIC_EXPORTS = frozenset(
         "ImagejSeries",
         "ImagejWriteReport",
         "KnownReconstruction",
+        "KnownReconstruction32",
         "OpticalTransfer",
         "OtfError",
         "ParameterEstimationError",
         "PreparedBands",
+        "PreparedBands32",
         "PreparedOtf",
         "RawAcquisition",
         "ReconstructionError",
@@ -64,6 +66,7 @@ PUBLIC_EXPORTS = frozenset(
         "WorkflowReconstruction",
         "declare_acquisition",
         "declare_otf",
+        "declare_prepared_bands32",
         "estimate_parameters",
         "export_imagej",
         "harmonize",
@@ -89,11 +92,12 @@ def test_approved_module_move_loads_without_compatibility_alias(old: str, new: s
 
 
 def test_root_facade_keeps_exact_supported_exports_and_names() -> None:
-    """Module loading must not add supported exports or rename API objects."""
+    """Keep the 38 original exports and exactly three approved SP113 additions."""
     public = importlib.import_module("simrecon")
-    assert len(public.__all__) == len(PUBLIC_EXPORTS) == 38
+    assert len(public.__all__) == len(PUBLIC_EXPORTS) == 41
     assert set(public.__all__) == PUBLIC_EXPORTS
     for name in PUBLIC_EXPORTS:
+        assert callable(getattr(public, name))
         assert getattr(public, name).__name__ == name
 
 
