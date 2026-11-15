@@ -52,13 +52,17 @@ def command(mode: str, arguments: list[str]) -> list[str]:
 
 
 def environment() -> dict[str, str]:
-    """Make sitecustomize available to this command and Python subprocesses."""
+    """Prepend each diagnostic token once, preserving other inherited entries."""
     result = os.environ.copy()
-    site = Path(__file__).resolve().parent / "source_free_sitecustomize"
+    site = str(Path(__file__).resolve().parent / "source_free_sitecustomize")
     previous = result.get("PYTHONPATH")
-    result["PYTHONPATH"] = str(site) + (os.pathsep + previous if previous else "")
+    paths = previous.split(os.pathsep) if previous else []
+    result["PYTHONPATH"] = os.pathsep.join([site, *(path for path in paths if path != site)])
     plugins = result.get("PYTEST_PLUGINS")
-    result["PYTEST_PLUGINS"] = "pytest_plugin" + ("," + plugins if plugins else "")
+    names = plugins.split(",") if plugins else []
+    result["PYTEST_PLUGINS"] = ",".join(
+        ["pytest_plugin", *(name for name in names if name != "pytest_plugin")]
+    )
     return result
 
 

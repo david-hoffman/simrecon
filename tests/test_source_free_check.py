@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
@@ -449,6 +450,160 @@ def test_existing_pythonpath_remains_available(tmp_path: Path) -> None:
     )
     assert result.returncode == 0
     assert "PYTHONPATH_PRESERVED" in result.stdout
+
+
+@pytest.mark.parametrize("inherited", ["absent", "empty", "prepared", "interspersed"])
+def test_cli_prepares_exact_tokens_and_preserves_other_entries(
+    tmp_path: Path, inherited: str
+) -> None:
+    site = str(HARNESS.parent / "source_free_sitecustomize")
+    path = str(tmp_path)
+    inputs = {
+        "absent": (None, None),
+        "empty": ("", ""),
+        "prepared": (site, "pytest_plugin"),
+        "interspersed": (
+            os.pathsep.join(["", path, site, path, "", site + "/.", site, site + "-other", ""]),
+            ",unrelated_plugin,pytest_plugin,unrelated_plugin,,pytest_plugin.extra,"
+            "pytest_plugin, pytest_plugin,PYTEST_PLUGIN,",
+        ),
+    }
+    expected = {
+        "PYTHONPATH": (
+            os.pathsep.join([site, "", path, path, "", site + "/.", site + "-other", ""])
+            if inherited == "interspersed"
+            else site
+        ),
+        "PYTEST_PLUGINS": (
+            "pytest_plugin,,unrelated_plugin,unrelated_plugin,,pytest_plugin.extra,"
+            " pytest_plugin,PYTEST_PLUGIN,"
+            if inherited == "interspersed"
+            else "pytest_plugin"
+        ),
+        "SOURCE_FREE_SENTINEL": "  unchanged,value::value  ",
+    }
+    caller = {**os.environ, "SOURCE_FREE_SENTINEL": expected["SOURCE_FREE_SENTINEL"]}
+    for name, value in zip(("PYTHONPATH", "PYTEST_PLUGINS"), inputs[inherited], strict=True):
+        if value is None:
+            caller.pop(name, None)
+        else:
+            caller[name] = value
+    source = tmp_path / "environment.py"
+    source.write_text(
+        "import json, os\n"
+        f"print(json.dumps({{name: os.environ[name] for name in {list(expected)!r}}}))\n"
+    )
+    result = subprocess.run(
+        [sys.executable, str(HARNESS), "--timeout", "30", "python", str(source)],
+        env=caller,
+        capture_output=True,
+        text=True,
+        timeout=40,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == expected
+
+
+def test_public_cli_leaves_its_callers_environment_unchanged(tmp_path: Path) -> None:
+    site = str(HARNESS.parent / "source_free_sitecustomize")
+    caller = {
+        **os.environ,
+        "PYTHONPATH": os.pathsep.join([str(tmp_path), site, "", site, ""]),
+        "PYTEST_PLUGINS": "existing_plugin,pytest_plugin,,pytest_plugin,",
+        "SOURCE_FREE_SENTINEL": " caller value ,: ",
+    }
+    wrapper = tmp_path / "in_process_cli.py"
+    wrapper.write_text(
+        "import os, runpy, sys\n"
+        "before = dict(os.environ)\n"
+        f"sys.argv = [{str(HARNESS)!r}, '--timeout', '30', 'python', '-c', "
+        "\"print('CALLER_TARGET_EXECUTED')\"]\n"
+        "try:\n"
+        f"    runpy.run_path({str(HARNESS)!r}, run_name='__main__')\n"
+        "except SystemExit as error:\n"
+        "    print('CALLER_UNCHANGED', dict(os.environ) == before)\n"
+        "    raise SystemExit(error.code)\n"
+    )
+    result = subprocess.run(
+        [sys.executable, str(wrapper)],
+        env=caller,
+        capture_output=True,
+        text=True,
+        timeout=40,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "CALLER_TARGET_EXECUTED" in result.stdout
+    assert "CALLER_UNCHANGED True" in result.stdout
+
+
+def test_nested_cli_is_idempotent_and_keeps_startup_and_target_diagnostics(tmp_path: Path) -> None:
+    site = str(HARNESS.parent / "source_free_sitecustomize")
+    expected = {
+        "PYTHONPATH": os.pathsep.join([site, str(tmp_path)]),
+        "PYTEST_PLUGINS": "pytest_plugin,existing_plugin",
+        "SOURCE_FREE_SENTINEL": " nested value ,: ",
+    }
+    caller = {
+        **os.environ,
+        **expected,
+        "PYTHONPATH": os.pathsep.join([site, str(tmp_path), site]),
+        "PYTEST_PLUGINS": "pytest_plugin,existing_plugin,pytest_plugin",
+    }
+    observer = f"json.dumps({{name: os.environ[name] for name in {list(expected)!r}}})"
+    (tmp_path / "existing_plugin.py").write_text(
+        "def pytest_sessionfinish():\n    print('NESTED_EXISTING_PLUGIN_ACTIVE')\n"
+    )
+    target = tmp_path / "test_nested_environment.py"
+    target.write_text(
+        "import json, os, warnings\n"
+        f"print('TARGET_ENV', {observer}, flush=True)\n"
+        "warnings.warn('TARGET_WARNING_16', UserWarning) # SOURCE_ONLY_TARGET_WARNING_16\n"
+        "try:\n"
+        "    raise ValueError('TARGET_CAUSE_16') # SOURCE_ONLY_TARGET_CAUSE_16\n"
+        "except ValueError as error:\n"
+        "    raise ImportError('TARGET_IMPORT_16') from error # SOURCE_ONLY_TARGET_IMPORT_16\n"
+    )
+    wrapper = tmp_path / "nested_wrapper.py"
+    wrapper.write_text(
+        "import json, os, subprocess, sys, warnings\n"
+        f"print('WRAPPER_ENV', {observer}, flush=True)\n"
+        "warnings.warn('WRAPPER_WARNING_16', UserWarning) # SOURCE_ONLY_WRAPPER_WARNING_16\n"
+        f"result = subprocess.run([sys.executable, {str(HARNESS)!r}, '--timeout', '30', "
+        f"'python', '-m', 'pytest', '-q', '-s', {str(target)!r}])\n"
+        "print('NESTED_STATUS', result.returncode)\n"
+        "sys.exit(result.returncode)\n"
+    )
+    result = subprocess.run(
+        [sys.executable, str(HARNESS), "--timeout", "30", "python", str(wrapper)],
+        cwd=tmp_path,
+        env=caller,
+        capture_output=True,
+        text=True,
+        timeout=40,
+        check=False,
+    )
+    output = result.stdout + result.stderr
+    assert result.returncode == 2, output
+    for label in ("WRAPPER_ENV", "TARGET_ENV"):
+        records = [
+            line.removeprefix(label + " ")
+            for line in result.stdout.splitlines()
+            if line.startswith(label + " ")
+        ]
+        assert len(records) == 1, output
+        assert json.loads(records[0]) == expected
+    assert "NESTED_STATUS 2" in output
+    assert "NESTED_EXISTING_PLUGIN_ACTIVE" in output
+    assert f"{wrapper}:3: UserWarning: WRAPPER_WARNING_16" in output
+    assert f"{target}:3: UserWarning: TARGET_WARNING_16" in output
+    assert "ValueError: TARGET_CAUSE_16" in output
+    assert "ImportError: TARGET_IMPORT_16" in output
+    assert "direct cause" in output
+    assert f'File "{target}", line 5' in output
+    assert f'File "{target}", line 7' in output
+    assert "SOURCE_ONLY_" not in output
 
 
 @pytest.mark.parametrize("entry", ["module", "initial_conftest", "nested_conftest"])
