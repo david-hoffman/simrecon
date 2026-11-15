@@ -590,10 +590,10 @@ def independent_images(bands: Any, transfer: Any, expected: Expected) -> list[An
 def assert_image_oracle(actual: Any, images: list[Any], expected: Expected) -> None:
     wanted = np.concatenate(images, axis=0)
     scale = max(1.0, float(np.max(np.abs(wanted))))
-    # At V<=72, Q<=9, D<=3: finite transforms/dots/positive Wiener=.5
-    # quotients have <4096 elementary operations per output contribution.
-    # gamma_4096 < 4.6e-13; inherited 3e-11 envelope exceeds 64*gamma_4096.
-    # Parameter-coordinate phase sensitivity is propagated separately, never
-    # used for compact/full parity or scalar/discrete comparisons.
+    # The inherited envelope is preserved, but operation count alone does not
+    # qualify it under cancellation. B1-F2 requires the separate conditional
+    # sumabs/product/parabola/filter/assembly ledger before checkpoint acceptance.
+    # This observer must not be described as a completed error proof until that
+    # ledger is independently qualified. Exact retention parity is separate.
     allowance = ATOL + 128 * math.pi * scale * expected.coordinate_budget
     np.testing.assert_allclose(actual, wanted, rtol=RTOL, atol=allowance)

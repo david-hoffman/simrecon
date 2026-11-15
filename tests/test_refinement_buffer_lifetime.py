@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import dataclasses
+import math
 
 import numpy as np
 import pytest
@@ -15,6 +16,8 @@ from c_estimation_fixture import (
     events,
     expected_estimate,
     overlap,
+    search_bands,
+    transfer_record,
 )
 from refinement_buffer_lifetime_fixture import (
     assert_capture_projection,
@@ -189,8 +192,9 @@ def test_searched_later_orders_frozen_final_fit_products_and_no_later_case(mode,
         adjustments=orders > 2,
         dz=0.0 if mode == "2d" else 1.0,
         low_bin=mode == "3d",
+        odd_phase=mode == "3d",
     )
-    _, full, independent, expected = exercise(raw, settings)
+    _, full, independent, expected = exercise(raw, settings, unique_coarse=mode == "3d")
     fitorder = 1 if mode == "2d" else 2
     pairs = [(0, fitorder), (0, fitorder)] + (
         [(b - 1, b) for b in range(2, orders)]
@@ -387,3 +391,52 @@ def test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_st
         )
         exact(raw, before)
     assert signatures[0] == signatures[1]
+
+
+def test_later_binary64_objective_equality_stops_after_strict_improvement():
+    """Reach a later tie by public scaling, without replacing the objective."""
+    bands = search_bands(0)
+    transfer = transfer_record()
+    initial = np.array([[0.06, -0.035]])
+    reference = expected_estimate(bands, transfer, initial)
+    brackets = events(reference, "bracket")
+    direction = next(
+        value for value in brackets
+        if value["stage"] == "angle" and value["branch"] in ("positive", "negative-swap")
+    )
+    shifted = next(value for value in brackets
+                   if value["stage"] == "angle" and value["branch"] == "shift")
+    q2, q3 = direction["amp2"], direction["amp3"]
+    assert 0 < q2 < q3
+    divisor = q2 + q3
+    # Binary64 round-to-nearest maps these independently constructed scores
+    # into distinct rounding cells: first0, improving eta, then a later eta.
+    # This is fixture qualification, never an estimator-domain restriction.
+    assert q2 / divisor < 0.5 < q3 / divisor < 1.5
+    assert 0.5 < shifted["amp3"] / divisor < 1.5
+    cell_margin = min(0.5 - q2 / divisor, q3 / divisor - 0.5,
+                      shifted["amp3"] / divisor - 0.5,
+                      1.5 - shifted["amp3"] / divisor)
+    assert cell_margin > 64 * 3e-11
+    scale = 1 / math.sqrt(divisor)
+    bands.quadratures[:, :, 0] *= math.ldexp(1.0, 268)
+    bands.quadratures[:, :, 1:] *= math.ldexp(scale, -269)
+    # Reciprocal scales keep coarse correlation and SX*SY finite; forward
+    # factors scale by scale*2^-537, so squared scores use eta=2^-1074.
+    actual = estimate(bands, transfer, initial)
+    angle = [value for value in events(actual, "bracket") if value["stage"] == "angle"]
+    assert [value["branch"] for value in angle] == [
+        "initial", direction["branch"], "shift", "stop"
+    ]
+    eta = float.fromhex("0x0.0000000000001p-1022")
+    assert angle[1]["strict_improvement"] is True
+    assert angle[1]["amp2"] == 0.0 and angle[1]["amp3"] == eta
+    assert angle[2]["amp2"] == angle[2]["amp3"] == eta
+    assert angle[2]["strict_improvement"] is False
+    assert angle[3]["strict_improvement"] is False
+    evaluations = events(actual, "evaluation")
+    for value in evaluations:
+        assert value["SX"] > 0 and value["SY"] > 0 and value["SX"] != value["SY"]
+        for name in ("SX", "SY", "cross", "forward", "reverse", "combined",
+                     "correlation", "objective"):
+            assert np.isfinite(value[name])
