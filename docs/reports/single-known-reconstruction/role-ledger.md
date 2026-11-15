@@ -900,3 +900,29 @@ sleep-PID1 route. Source review is no scientific/storage/type acceptance.
 Accepted baseline d3f525 source identity is historical once C's dirty delta exists.
 All prior5B/4nonacceptances,25quality7fails,31finite3fails,prior6historical,
 9ROOTfinitecontrols0unexpected, unknown setup/source costs/meters retained.
+
+### C1 checks2/1failure; same-author source-only correction1 / C2 freeze
+
+ROOT actual AST0 receipt4b01e846…39c9e and Ruff1 receipt aa2cf300…73b18
+fully read/hashchecked. Actual private init/source/material pinned, each oldPID1
+absent/engine143/proxyreaped/pipesclosed; stdout19/328B stderr0. Exactly twoE501
+and oneI001 are product-style defects, ONEfailedcheck despite two HOLD strings.
+Format not run, no product import/types/tests/native/resource evidence.
+
+Same C1 correction packet7142423a…e080 dispatched source-only; report21acf543…1da3
+collected in full, whole delta independently inspected: existing imports sorted
+without changed bindings and two exact error calls wrapped without changed text.
+Two product files changed; no scientific/formula/test/gate change. Revised4copies,
+base8ad/treeed94394/report/diff retained before any revised checks at outside
+c1-source-freeze-2, manifest1cb591416ad7f592799414de73d07c582eb102277a20f955bf71d8a3ca0842ba,
+patchb4a557cbb30e2339863f451670258006e75955af2050646561edc1ae34bdfa7b.
+All27 accepted inputs and copied4hashes independently match. Initial5cc/8ad freeze
+and actual failed receipts retained unchanged. UNVERIFIED C2 commit requested
+by ROOT; rerun3cheapchecks only by later actual ROOT activation.
+
+C author cumulative initial1+correction1,16source-edit operations,47shell+13patch
+through60dispatches; own checks0 and no new exposure/delegation/process/FD.
+ROOT actual checks2/1failure are separately counted. All earlier5B/4nonaccepts,
+25quality7fails,31finite3fails,prior6historical,9ROOTcontrols0unexpected and
+unknown setup/meters remain cumulative. No active child; no coor runtime calls,
+imports/Pyright/tests/hazards/build grants or scientific/readiness claim.

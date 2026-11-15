@@ -23,18 +23,18 @@ from numpy.typing import NDArray
 from ..optical_transfer import (
     OpticalTransfer,
     OtfError,
-    _REFERENCE as _OTF_REFERENCE,
     _Transfer,
     validate_optical_transfer,
 )
+from ..optical_transfer import _REFERENCE as _OTF_REFERENCE
 from .known_parameters import (
-    ReconstructionError,
     _F32_MAX,
-    _Grid,
     _INT_MAX,
     _INTP_MAX,
     _REFERENCE,
+    ReconstructionError,
     _extent,
+    _Grid,
     _integer,
     calculate_native_support,
     signed_fourier_index,
@@ -837,7 +837,8 @@ def _assemble(
                         or spatial.shape != grid.output_shape
                     ):
                         _fail(
-                            "FFT", "requires actual complex64 inverse output with the declared shape"
+                            "FFT",
+                            "requires actual complex64 inverse output with the declared shape",
                         )
                     _finite(spatial, "FFT inverse output")
                 with _operation("phase/product/float64 accumulation"):

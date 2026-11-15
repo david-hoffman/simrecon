@@ -1082,7 +1082,9 @@ def reconstruct_known(
             explode_factor=explode_factor,
         )
     if issubclass(type(bands), single_known.PreparedBands32):
-        raise ReconstructionError("double precision bands require PreparedBands or AcquisitionBands")
+        raise ReconstructionError(
+            "double precision bands require PreparedBands or AcquisitionBands"
+        )
     with _capture_policy(False):
         return _reconstruct_known(
             cast("PreparedBands | AcquisitionBands", bands),
