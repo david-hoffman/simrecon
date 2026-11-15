@@ -15,10 +15,29 @@ import pytest
 import simrecon as sr
 
 from .single_known_fixture import (
-    PROFILE, add, arrays, call, cosine_scale_from_program, empirical_quotients_from_program,
-    empirical_scale_from_program, hypot_transfer_program, conjugate, cq, declare,
-    multiply, owned, rounding_margin32, sqrt_small_interval,
-    recombine, rn32, rn64, rotate, snapshot, to_complex, transfer, unit_scale,
+    PROFILE,
+    add,
+    arrays,
+    call,
+    conjugate,
+    cosine_scale_from_program,
+    cq,
+    declare,
+    empirical_quotients_from_program,
+    empirical_scale_from_program,
+    hypot_transfer_program,
+    multiply,
+    owned,
+    recombine,
+    rn32,
+    rn64,
+    rotate,
+    rounding_margin32,
+    snapshot,
+    sqrt_small_interval,
+    to_complex,
+    transfer,
+    unit_scale,
 )
 from .test_single_known_boundary import rejected
 
@@ -43,7 +62,10 @@ def test_per_time_direction_and_order_noise_and_ordered_overlap() -> None:
                 denominator = rn64(denominator + Fraction(1, 4))
                 expected = rn32(rn64(gs[d][m] / denominator))
                 assert result.filtered_quadratures[t, d, slot, 0, 0, 0] == float(expected)
-    assert result.filtered_quadratures[0, 0, 0, 0, 0, 0] != result.filtered_quadratures[1, 0, 0, 0, 0, 0]
+    assert (
+        result.filtered_quadratures[0, 0, 0, 0, 0, 0]
+        != result.filtered_quadratures[1, 0, 0, 0, 0, 0]
+    )
 
 
 def test_inclusive_self_strict_other_and_positive_zero_writes() -> None:
@@ -155,7 +177,9 @@ def test_affine_complex_transfer_interpolation_remains_c128(layout: str) -> None
     # At kx=1/4, ky=kz=0 both layouts interpolate H=(5/4)*(3+4i).
     # Its exact hypot is25/4 and norm squared625/16. The consumed scale is
     # (15/4-5i)/(3*625/16+1/4)=(60-80i)/1879.
-    expected = complex(float(rn32(rn64(Fraction(60, 1879)))), float(rn32(rn64(Fraction(-80, 1879)))))
+    expected = complex(
+        float(rn32(rn64(Fraction(60, 1879)))), float(rn32(rn64(Fraction(-80, 1879))))
+    )
     assert result.filtered_quadratures[0, 0, 0, 0, 0, 1] == expected
     assert snapshot(otf.samples) == before
 
@@ -195,7 +219,9 @@ def test_empirical_style_non_c64_exact_original_transfer_is_valid_and_preserved(
     # hypot/interpolation witness awaits its explicit scalar enclosure.
 
 
-def test_empirical_source_rounding_boundary_has_independent_conditional_scalar_enclosure(record_property: Any) -> None:
+def test_empirical_source_rounding_boundary_has_independent_conditional_scalar_enclosure(
+    record_property: Any,
+) -> None:
     # G3 applicability remains source/binary/primitive/RNE correspondence, not
     # a guessed ULP allowance. The supplied moderate program is outward-evaluated.
     delta = Fraction(1, 2**30)
@@ -203,14 +229,23 @@ def test_empirical_source_rounding_boundary_has_independent_conditional_scalar_e
     expected = empirical_scale_from_program(delta, a)
     early_table_rounding = empirical_scale_from_program(Fraction(0), a)
     h = hypot_transfer_program(delta)
-    h_reference = sqrt_small_interval((1 + delta)**2 + Fraction(1, 4))
+    h_reference = sqrt_small_interval((1 + delta) ** 2 + Fraction(1, 4))
     quotient = empirical_quotients_from_program(delta, a)
-    margins = [rounding_margin32(component, represented) for component, represented in zip(quotient, expected, strict=True)]
-    reference = (1 + delta) / (((1 + delta)**2 + Fraction(1, 4)) * (1 + 2 * a * a) + Fraction(1, 4))
-    exact_with_library = tuple((1 + delta) / (endpoint * endpoint * (1 + 2 * a * a) + Fraction(1, 4)) for endpoint in h)
+    margins = [
+        rounding_margin32(component, represented)
+        for component, represented in zip(quotient, expected, strict=True)
+    ]
+    reference = (1 + delta) / (
+        ((1 + delta) ** 2 + Fraction(1, 4)) * (1 + 2 * a * a) + Fraction(1, 4)
+    )
+    exact_with_library = tuple(
+        (1 + delta) / (endpoint * endpoint * (1 + 2 * a * a) + Fraction(1, 4)) for endpoint in h
+    )
     library_scale = min(exact_with_library), max(exact_with_library)
     library_bound = max(abs(endpoint - reference) for endpoint in library_scale)
-    scalar_bound = max(abs(quotient[0][0] - library_scale[1]), abs(quotient[0][1] - library_scale[0]))
+    scalar_bound = max(
+        abs(quotient[0][0] - library_scale[1]), abs(quotient[0][1] - library_scale[0])
+    )
     conversion_bound = max(abs(expected[0] - endpoint) for endpoint in quotient[0])
     assert expected[0] == Fraction(1, 4) - Fraction(1, 2**26)
     assert early_table_rounding[0] == Fraction(1, 4)
@@ -224,32 +259,58 @@ def test_empirical_source_rounding_boundary_has_independent_conditional_scalar_e
     assert np.all(result.image == float(expected[0]))
     absolute_error = abs(expected[0] - reference)
     assert absolute_error <= library_bound + scalar_bound + conversion_bound
-    record_property("sp113_empirical_dc_enclosure", {
-        "source_hypot_lower": str(h[0]), "source_hypot_upper": str(h[1]),
-        "hypot_library_error_lower": str(h[0] - h_reference[1]),
-        "hypot_library_error_upper": str(h[1] - h_reference[0]),
-        "input_representation_error": "0", "source_c64_conversion": "not performed", "interpolation_error": "0 (exact node)",
-        "library_image_bound": str(library_bound), "scalar_image_bound": str(scalar_bound),
-        "consumed_scale_image_bound": str(conversion_bound), "minimum_consumed_bin_margin": str(min(margins)),
-        "local_error": "0", "fft_error": "0 (DC)", "f64_accumulation_error": "0", "final_rounding_error": "0",
-        "reference_width": "0", "max_absolute_error": str(absolute_error), "rms_error": str(absolute_error),
-        "interval_distance": str(absolute_error), "far_endpoint_upper_bound": str(absolute_error),
-        "signed_minimum": str(expected[0]), "signed_maximum": str(expected[0]), "signal_scale": "1", "cancellation_condition": "1",
-        "error_over_signal_scale": str(absolute_error),
-        "qualification": "conditional; actual hypot/sqrt/scalar/FFT source/binary/RNE correspondence remains separate",
-    })
+    record_property(
+        "sp113_empirical_dc_enclosure",
+        {
+            "source_hypot_lower": str(h[0]),
+            "source_hypot_upper": str(h[1]),
+            "hypot_library_error_lower": str(h[0] - h_reference[1]),
+            "hypot_library_error_upper": str(h[1] - h_reference[0]),
+            "input_representation_error": "0",
+            "source_c64_conversion": "not performed",
+            "interpolation_error": "0 (exact node)",
+            "library_image_bound": str(library_bound),
+            "scalar_image_bound": str(scalar_bound),
+            "consumed_scale_image_bound": str(conversion_bound),
+            "minimum_consumed_bin_margin": str(min(margins)),
+            "local_error": "0",
+            "fft_error": "0 (DC)",
+            "f64_accumulation_error": "0",
+            "final_rounding_error": "0",
+            "reference_width": "0",
+            "max_absolute_error": str(absolute_error),
+            "rms_error": str(absolute_error),
+            "interval_distance": str(absolute_error),
+            "far_endpoint_upper_bound": str(absolute_error),
+            "signed_minimum": str(expected[0]),
+            "signed_maximum": str(expected[0]),
+            "signal_scale": "1",
+            "cancellation_condition": "1",
+            "error_over_signal_scale": str(absolute_error),
+            "qualification": (
+                "conditional; actual hypot/sqrt/scalar/FFT source/binary/RNE "
+                "correspondence remains separate"
+            ),
+        },
+    )
 
 
 @pytest.mark.parametrize("z,na,cutoff", [(2, 1.0, 0), (6, 1.0, 2)])
-def test_cosine_uses_shifted_object_origin_and_zero_cutoff_lateral_fallback(z: int, na: float, cutoff: int) -> None:
+def test_cosine_uses_shifted_object_origin_and_zero_cutoff_lateral_fallback(
+    z: int, na: float, cutoff: int
+) -> None:
     q, v = arrays(z=z)
     # Positive harmonic1 and independently zero negative harmonic at native x1/4.
     q[0, 0, 1, 0, 0, 1] = 0.5
     q[0, 0, 2, 0, 0, 1] = -0.5j
     s = unit_scale((Fraction(1), Fraction(1)), 1)
     expected_e, expected_o = recombine((s, Fraction(0)), (Fraction(0), Fraction(0)))
-    result = call(declare(q, v), numerical_aperture=na,
-        carriers_cyc_um=np.array([[-0.25, 0.0]]), output_taper="cosine")
+    result = call(
+        declare(q, v),
+        numerical_aperture=na,
+        carriers_cyc_um=np.array([[-0.25, 0.0]]),
+        output_taper="cosine",
+    )
     np.testing.assert_array_equal(result.axial_cutoffs_bins, [cutoff, cutoff])
     # Kxy=0,z0 gives rho0 and exact cos0=1. Using native radius instead of
     # shifted object radius gives rho1/3. At cutoff0 division by Zp is invalid;
@@ -262,15 +323,21 @@ def test_cosine_ellipse_uses_c1_and_rho1_is_not_hard_zero() -> None:
     # Conditional G3 point proof uses the actual source expressions/table boxes;
     # no generic libm error promise or measured discrepancy sets an allowance.
     half_scale = cosine_scale_from_program(
-        (rn64(Fraction(4, 21)), Fraction(0)), Fraction(1, 4),
+        (rn64(Fraction(4, 21)), Fraction(0)),
+        Fraction(1, 4),
     )
     edge_scale = cosine_scale_from_program(
-        (rn64(Fraction(4, 5)), Fraction(0)), Fraction(1, 2),
+        (rn64(Fraction(4, 5)), Fraction(0)),
+        Fraction(1, 2),
     )
     q, v = arrays(o=3, z=20)
     q[0, 0, 3, 4, 0, 1], q[0, 0, 4, 4, 0, 1] = 0.5, -0.5j
-    result = call(declare(q, v, dz_um=0.1), numerical_aperture=1.0,
-        carriers_cyc_um=np.array([[-0.125, 0.0]]), output_taper="cosine")
+    result = call(
+        declare(q, v, dz_um=0.1),
+        numerical_aperture=1.0,
+        carriers_cyc_um=np.array([[-0.125, 0.0]]),
+        output_taper="cosine",
+    )
     np.testing.assert_array_equal(result.axial_cutoffs_bins, [4, 8, 5])
     # Highest m2,z4 uses Zp=c[1]=8, not its own c[2]=5. Shifted Kxy0
     # makes rho1/2 and query PI64/4. The reflected negative harmonic is0.
@@ -286,12 +353,17 @@ def test_cosine_ellipse_uses_c1_and_rho1_is_not_hard_zero() -> None:
 
 def test_cosine_radius_above_one_clips_to_actual_pi64_half_point() -> None:
     edge_scale = cosine_scale_from_program(
-        (rn64(Fraction(4, 5)), Fraction(0)), Fraction(1, 2),
+        (rn64(Fraction(4, 5)), Fraction(0)),
+        Fraction(1, 2),
     )
     q, v = arrays(o=3, z=20)
     q[0, 0, 3, 4, 0, 2] = 1
-    result = call(declare(q, v, dz_um=0.1), numerical_aperture=1.0,
-        carriers_cyc_um=np.array([[0.125, 0.0]]), output_taper="cosine")
+    result = call(
+        declare(q, v, dz_um=0.1),
+        numerical_aperture=1.0,
+        carriers_cyc_um=np.array([[0.125, 0.0]]),
+        output_taper="cosine",
+    )
     # Native r=R1/2 is included. Shifted rabs=Rp3/4 and z/Zp=4/8 give
     # rho²=5/4>1 with a certified margin; other q>=5/8 are all excluded.
     # p is finite edge_scale, while the independently declared opposite z-4
@@ -340,10 +412,17 @@ def test_damping_precedes_omission_then_omit_kz0_overrides() -> None:
     # r/R=1/2,z=0 gives g0=1/4, denominator1/4+2+1/4=5/2.
     assert result.filtered_quadratures[0, 0, 0, 0, 0, 1] == float(rn32(rn64(Fraction(1, 10))))
     assert np.all(result.image == 0)  # Side data zero; final center omission holds.
-    overridden = call(bands, numerical_aperture=0.5, dampen_order0=True, omit_order0=True, omit_kz0=True)
+    overridden = call(
+        bands, numerical_aperture=0.5, dampen_order0=True, omit_order0=True, omit_kz0=True
+    )
     assert overridden.filtered_quadratures[0, 0, 0, 0, 0, 1] == 0
-    for flags in ({}, {"omit_order0": True}, {"omit_kz0": True}, {"omit_order0": True, "omit_kz0": True}):
-        rejected(lambda: call(dampen_order0=True, **flags), (PROFILE, "damp", "cutoff"))
+    for flags in (
+        {},
+        {"omit_order0": True},
+        {"omit_kz0": True},
+        {"omit_order0": True, "omit_kz0": True},
+    ):
+        rejected(lambda flags=flags: call(dampen_order0=True, **flags), (PROFILE, "damp", "cutoff"))
 
 
 def test_order_specific_cutoff_ceil_truncation_and_independent_clip() -> None:
@@ -354,7 +433,9 @@ def test_order_specific_cutoff_ceil_truncation_and_independent_clip() -> None:
     # highest trunc1.3=1. None clips at floor20/2.
     np.testing.assert_array_equal(result.axial_cutoffs_bins, [1, 2, 1])
     q2, v2 = arrays(z=20)
-    np.testing.assert_array_equal(call(declare(q2, v2, dz_um=0.1), numerical_aperture=0.5).axial_cutoffs_bins, [1, 1])
+    np.testing.assert_array_equal(
+        call(declare(q2, v2, dz_um=0.1), numerical_aperture=0.5).axial_cutoffs_bins, [1, 1]
+    )
     np.testing.assert_array_equal(call().axial_cutoffs_bins, [0, 0])
 
 
@@ -379,16 +460,28 @@ def test_suppression_physical_radius_signed_bypass_and_inclusive_condition() -> 
 @pytest.mark.parametrize("layout", ["radial", "full"])
 def test_zero_weight_actual_stencil_failure_retains_cause_and_inputs(layout: str) -> None:
     bands = declare()
-    otf = transfer(radial=1, axial=1) if layout == "radial" else sr.declare_otf(
-        np.ones((2, 1, 1, 1), dtype=np.complex128), layout="full",
-        dkr_cyc_um=1.0, dkz_cyc_um=1.0,
+    otf = (
+        transfer(radial=1, axial=1)
+        if layout == "radial"
+        else sr.declare_otf(
+            np.ones((2, 1, 1, 1), dtype=np.complex128),
+            layout="full",
+            dkr_cyc_um=1.0,
+            dkz_cyc_um=1.0,
+        )
     )
     before = snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples)
-    error = rejected(lambda: call(bands, otf, modulation=np.zeros((1, 1)), omit_order0=True), (PROFILE, "stencil", "transfer", "otf"))
+    error = rejected(
+        lambda: call(bands, otf, modulation=np.zeros((1, 1)), omit_order0=True),
+        (PROFILE, "stencil", "transfer", "otf"),
+    )
     assert isinstance(error.__cause__, sr.OtfError)
     assert snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples) == before
     # Same zero data/modulation is permitted with a safe complete stencil.
-    assert np.all(call(bands, transfer(layout=layout), modulation=np.zeros((1, 1)), omit_order0=True).image == 0)
+    assert np.all(
+        call(bands, transfer(layout=layout), modulation=np.zeros((1, 1)), omit_order0=True).image
+        == 0
+    )
 
 
 def test_one_time_axial_wrapping_rejects_an_actual_unsafe_request() -> None:
@@ -396,7 +489,9 @@ def test_one_time_axial_wrapping_rejects_an_actual_unsafe_request() -> None:
     bands = declare(q, v)
     otf = replace(transfer(), dkz_cyc_um=0.01)
     before = snapshot(bands.quadratures, otf.samples)
-    error = rejected(lambda: call(bands, otf, numerical_aperture=0.5), (PROFILE, "stencil", "transfer", "otf"))
+    error = rejected(
+        lambda: call(bands, otf, numerical_aperture=0.5), (PROFILE, "stencil", "transfer", "otf")
+    )
     assert isinstance(error.__cause__, sr.OtfError)
     assert snapshot(bands.quadratures, otf.samples) == before
 
@@ -404,7 +499,10 @@ def test_one_time_axial_wrapping_rejects_an_actual_unsafe_request() -> None:
 def test_actual_self_sample_precedes_evaluated_singular_damping() -> None:
     # At the first visited origin c0=0. Both an unsafe stencil and damping
     # singularity exist; the self sample must fail first and retain OtfError.
-    error = rejected(lambda: call(otf=transfer(radial=1, axial=1), dampen_order0=True), (PROFILE, "stencil", "transfer", "otf"))
+    error = rejected(
+        lambda: call(otf=transfer(radial=1, axial=1), dampen_order0=True),
+        (PROFILE, "stencil", "transfer", "otf"),
+    )
     assert isinstance(error.__cause__, sr.OtfError)
     rejected(lambda: call(dampen_order0=True), (PROFILE, "damp", "cutoff"))
 
@@ -429,19 +527,37 @@ def test_actual_eligible_other_sample_precedes_its_overflowing_damping_weight() 
         return replace(otf, samples=owned(empirical))
 
     unsafe, safe = source(2), source(3)
-    before = snapshot(bands.quadratures, bands.noise_variance_factors, unsafe.samples, carriers, modulation)
-    options = dict(wavelength_nm=4000, numerical_aperture=1.0, wiener=1.0,
-        dampen_order0=True, carriers_cyc_um=carriers, modulation=modulation)
-    error = rejected(lambda: call(bands, unsafe, **options), (PROFILE, "transfer", "stencil", "otf"))
+    before = snapshot(
+        bands.quadratures, bands.noise_variance_factors, unsafe.samples, carriers, modulation
+    )
+    options = dict(
+        wavelength_nm=4000,
+        numerical_aperture=1.0,
+        wiener=1.0,
+        dampen_order0=True,
+        carriers_cyc_um=carriers,
+        modulation=modulation,
+    )
+    error = rejected(
+        lambda: call(bands, unsafe, **options), (PROFILE, "transfer", "stencil", "otf")
+    )
     assert isinstance(error.__cause__, sr.OtfError)
-    assert snapshot(bands.quadratures, bands.noise_variance_factors, unsafe.samples, carriers, modulation) == before
+    assert (
+        snapshot(
+            bands.quadratures, bands.noise_variance_factors, unsafe.samples, carriers, modulation
+        )
+        == before
+    )
     # c=[2,4,2]. All earlier center queries |z|<=2 have axial vertices below
     # plane15 and finite damping. First m1 self(x0,z-4) is safe at t~1.5.
     # Other n=-2,-1 are excluded (q>=R); n0 is eligible at qx-1/4.
     # Full negative-x reflection makes t~14.5, includes plane15, and Xh2's
     # last lateral vertex aliases flat32 outside its32-element allocation.
     # Only after that sample would g0=2^1023*(1/4+8) overflow.
-    weight_error = rejected(lambda: call(bands, safe, **options), (PROFILE, "weight", "damp", "power", "finite", "overflow"))
+    weight_error = rejected(
+        lambda: call(bands, safe, **options),
+        (PROFILE, "weight", "damp", "power", "finite", "overflow"),
+    )
     assert not isinstance(weight_error.__cause__, sr.OtfError)
     v[...] = 1
     positive = call(declare(q, v, dxy_um=0.5, dz_um=0.25), safe, **options)

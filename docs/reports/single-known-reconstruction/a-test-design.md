@@ -3,9 +3,143 @@
 **STATIC DRAFTS / CHECKS PENDING. No accepted checkpoint.** This is the distinct
 A report, not the collaboration final message or a B verdict. The six new and two
 narrowly changed test/fixture files contain concrete drafts, with blocking omissions and qualification
-limits below. Nothing here claims collection, lint, formatting, type, test,
-numerical, platform, coverage or performance acceptance. C still requires both
+limits below. Continuation2 syntax/style results are recorded separately below;
+nothing here claims collection, type, test, numerical, platform, coverage or
+performance acceptance. C still requires both
 an accepted/frozen A/B test checkpoint and accepted/frozen parent116.
+
+## Continuation2: bounded syntax/style correction, scientific checks pending
+
+This is the same blind A1, continuation2, not a new author or acceptance review.
+The actual public `a1-quality-continuation.md` was read whole and its SHA256
+matched `e9db397edd0a75777844b93f1a57e4841487c1f5f2b2a6a021c6b3129924a4db`.
+Its frozen binding is HEAD`69c28d7788aac18353c0b8af3abdd308b556bdf3`,
+tree`16169e3e0ec0d223aae3fdd9da7e7e71366f40d1`. The prior draft hashes/report
+were preserved at `ea20dadf68921ffb03df3becd37f6fbe3e375ea0`,
+tree`e010b6eddd4e80116b52902407e948dea2258cc4`; no history was inspected.
+
+The later root grant and this packet expressly permit only AST-without-import
+and pinned Ruff syntax/style work on the exact eight owned files. They supersede
+the earlier no-Python/no-lint statements **for these quality operations only**;
+the preserved continuation1 statements describe that earlier authorship. The
+own-report request for B before any checks does not override the root's express
+quality grant. Fresh B still must review the full revised eight-file/report set
+before C, protocol or numerical acceptance. No scientific meaning, assertion,
+tolerance, rule, gate, literal typed-caller import or strict type assertion was
+removed or weakened. M1/I1 bytes remain unchanged.
+
+Additional reads were limited to this packet, allowed owned source/report, and:
+
+| Authorized log | Actual read | SHA256 matched |
+| --- | --- | --- |
+| `/workspace/work/campaign/evidence/113/quality-1-ast.log` | Whole | `410f11f90a5b6c82bffeca270097c4cf90bf99d9b59e058afc269429668db8e0` |
+| `/workspace/work/campaign/evidence/113/quality-1-ruff.log` | Whole | `877cbe893beda7882828c5bd19087d64e3e4f8b6b78e3a5929c84fc123d55435` |
+| `/workspace/work/campaign/evidence/113/quality-1-format.log` | Hash, line count and lines1–220 only | `8e65ad5e72bbe7c9a88dd05acb61446f936a673e5ea14e39871bd70402aa0227` |
+
+The inherited coordinator quality attempts remain preserved: AST exit0 parsed8,
+Ruff exit1 found230, format-check exit1 reported6 would reformat/2 unchanged.
+Packet-reported tool wall seconds were .261077576/.162418312/.209907961. These
+were not A-authored commands or historical A execution claims. No other outside
+report, renderer, checker, source, configuration, history or method-review file
+was read. One later static command misspelled the owned fixture path as
+`tests/test_single_known_fixture.py`: sed returned missing-file exit2 and no
+bytes from that out-of-list path. This failed read attempt is disclosed rather
+than folded into the earlier no-forbidden-attempt statement. There was no source
+exposure and no expanded read scope; the authorized own report read in the same
+command succeeded.
+
+The cosmetic repairs were safe Ruff import sorting/constant-attribute access,
+formatter wrapping, imperative and missing class/magic-method docstrings,
+explicit default bindings for immediately invoked lambdas, and explicit
+`strict=False` for adjacent-pair zips whose shifted second sequence is shorter.
+`suppress(ProcessLookupError)` replaces only the identical killpg try/pass arm;
+other cleanup exceptions still propagate. Long diagnostic strings were split
+using Python's adjacent literal concatenation, preserving their bytes. There
+were no unsafe fixes, suppressions, stubs, numerical evaluations or product/test
+imports. All earlier oracle, branch/bin-margin, primitive/backend applicability,
+wide-child transport and actual-path gaps remain exactly as scientific limits.
+
+Every following attempt printed the eight current SHA256 identities **before**
+the command. Full command/output records are preserved in the tool transcript;
+the attempt table records their chunk identifiers, failures and repairs. No
+separate log/helper/scratch file was created. All attempts used this exact prefix:
+
+```sh
+docker exec --user 1000:1000 -w /workspace/work/issue-113 -e PATH=/workspace/.simrecon-tools/uv-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin -e OMP_NUM_THREADS=1 -e OPENBLAS_NUM_THREADS=1 -e MKL_NUM_THREADS=1 -e BLIS_NUM_THREADS=1 -e NUMEXPR_NUM_THREADS=1 simrecon-campaign-ubuntu uv run --locked --no-sync python -B scripts/source_free_check.py --timeout 300 python -B
+```
+
+Ruff arguments were always the same exact ordered eight-file list printed in
+the manifests (fixture, boundary, filter, assembly, precision, typing, migration,
+installed). AST used the exact packet phase1 `-c` program: stdlib ast/Path,
+literal list of those eight names, `ast.parse(read_text(...),filename=name)`,
+and the final `SP113 AST parsed 8 owned files; no imports` marker. It imported
+no owned module or scientific dependency.
+
+| A attempt | Prehash manifest | Prefix suffix | Exit / complete result | Tool chunk / wall seconds |
+| --- | --- | --- | --- | --- |
+| Q2.1 | S0, continuation1 frozen table below | `-m ruff check --fix --output-format concise` + exact8 | 1;230 total,17 safe fixes,213 remaining; no unsafe fix used | `eaa4ce` / .160308 |
+| Q2.2 | S1 | `-m ruff format` + exact8 | 0;6 reformatted,2 unchanged | `e33b79` / .127184635 |
+| Q2.3 | S2 | `-m ruff check --output-format concise` + exact8 | 1;61 remaining | `22efe5` / .151390015 |
+| Q2.4 | S3, after permitted manual cosmetic repairs | `-m ruff format` + exact8 | 0;3 reformatted,5 unchanged | `860dfc` / .220033069 |
+| Q2.5 | S4 | `-m ruff check --output-format concise` + exact8 | 0;All checks passed! | `f5d0d9` / .186273013 |
+| Q2.6 | S4, freshly printed again | Exact packet phase1 AST program | 0;SP113 AST parsed8 owned files; no imports | `0c2d6f` / .18487541 |
+| Q2.7 | S4, freshly printed again | `-m ruff format --check` + exact8 | 0;8 files already formatted | `e3f8db` / .137945355 |
+
+Q2.1 residual categories were E501, D401, SIM105, D101, D105, B023 and B905.
+Q2.3's complete61 comprised6 fixture findings (D401x2/E501x3/SIM105),6 assembly
+(D101/D105/E501x4),33 boundary (D101x4/D105/B023x26/B905x2),2 filter
+(E501/B023) and14 precision (D101/D105/B023x12). Those diagnostics were corrected
+only by the listed cosmetic changes; no scientific observed result influenced a
+repair. Two A quality commands failed, in addition to the two inherited failing
+quality phases. All failures and cumulative charges remain preserved. The six
+earlier static patch-context failures and earlier truncated read response remain
+in their historical accounting; no new patch-context failure occurred here.
+Unmetered tokens, money, aggregate elapsed/usage and actual served model remain
+unknown, not zero; individual reported tool wall times above are not total cost.
+
+The following manifest columns are fixture / boundary / filter / assembly /
+precision / typing in that order. For **every** S1–S4 set, migration and installed
+retain respectively `a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804`
+and `ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e`.
+
+```text
+S1 (before Q2.2)
+cfa46e450c6fdcf9b29770aa9ffca73b522880896dd109a104df56ebd557b1ae
+5e455dcaf5de64bfc518dc41dccf6d68f68b2d7333f314f46b60582beaf82890
+5c2ac18c1eee02f64b5369111c408c14ee5364c95945f2325ba59f36f15ae640
+2a59953a80e38d48eaad82c7af5edbe7da74cc481a96af708bea854c8a7fc911
+86be24795fec3ef129962fa94f7add74ec7fb870fe36f6bc61a2485c7e6ebd25
+61ad11379de9d4572322df1f90e9c5d339263e93f6420dd2514c43ded2529dc1
+S2 (before Q2.3)
+5ac07fa0b8be8b866dc9db9359746622c703c5014a72b49e3d10bf4efe75114d
+360cc2f7af0aa950e2c6e1ed40b9d4c45f936795530a89358eef678f8caac045
+1ee4a81da9ed53bb3515b45328b45a98acb622610ecd22919731c5f7c527abdd
+7bd950e9a32f05ddb0ffe2fe786f12b0238e275c440061ebb43753c3a3ced220
+cc1e988bedf72eea255d7d0518318c015bfb22a735a1ffcdc393e3f2c94a4fc0
+5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4
+S3 (before Q2.4)
+a133677a20f7deacdf7e9724b9347b20ada2d06c8162cef679a8e0100b0d7fe8
+bce5db5101b64df7f961c63f8f61a5803db17f9eeb9e847f5f1a9f0713fc243c
+559c117fbf177288b4cebd9b8441a86d3508a2ed009dde95494b9422f65353b4
+203a2a5475c842a242ad51318cb560d8475e82295eb777dc9b1218d5fa117cd3
+78edadb95ed7c70247df41092baee8e4ccb53ae50dd6aceaf003ec52bf0c718c
+5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4
+S4 (before each Q2.5, Q2.6, Q2.7; final Python bytes)
+8e338d027729fe0eb43a6cd46594e79f13abb364d3a43132ff75516dd8cb7713
+89155fe4e69803b49be693261da0f84139d69f7f3ab95969a94d6089011e1186
+559c117fbf177288b4cebd9b8441a86d3508a2ed009dde95494b9422f65353b4
+203a2a5475c842a242ad51318cb560d8475e82295eb777dc9b1218d5fa117cd3
+40a0e4efe522f989c2578a6ac27ad4b8fdf1d66e6c0fce71363c1bd67c6d2e30
+5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4
+```
+
+The scientific methods were **not executed**: no Pyright/literal-caller run,
+pytest/collection, constructor/consumer call, bounded child, cardinal/point
+program, numerical probe, primitive qualification, install/build/checker call or
+performance measurement occurred. No delegation, commit or push occurred. No
+new scientific input/method revision was read. G1–G8 dispositions,293 mappings,
+independent references and the source/binary/primitive/RNE/path/transport limits
+in continuation1 remain; quality success supplies no scientific or C acceptance.
 
 ## Continuation1 binding and current disposition
 

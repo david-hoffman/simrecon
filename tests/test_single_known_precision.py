@@ -15,15 +15,32 @@ import scipy.fft
 import simrecon as sr
 
 from .single_known_fixture import (
-    HALF_SUB32, PRECISION_VALUES, PROFILE, U32, arrays, call, declare,
-    assert_public_equal, identities, legacy_acquisition, legacy_known_options,
-    legacy_raw, legacy_transfer, legacy_workflow_options, public_values,
-    rn32, rn64, snapshot, transfer,
+    HALF_SUB32,
+    PRECISION_VALUES,
+    PROFILE,
+    U32,
+    arrays,
+    assert_public_equal,
+    call,
+    declare,
+    identities,
+    legacy_acquisition,
+    legacy_known_options,
+    legacy_raw,
+    legacy_transfer,
+    legacy_workflow_options,
+    public_values,
+    rn32,
+    rn64,
+    snapshot,
+    transfer,
 )
 from .test_single_known_boundary import rejected
 
 
-def test_correlated_dc_exact_and_near_cancellation_with_preregistered_bound(record_property: Any) -> None:
+def test_correlated_dc_exact_and_near_cancellation_with_preregistered_bound(
+    record_property: Any,
+) -> None:
     s = rn32(rn64(Fraction(4, 13)))
     for offset in (Fraction(0), Fraction(1, 2**20)):
         q, v = arrays()
@@ -38,18 +55,23 @@ def test_correlated_dc_exact_and_near_cancellation_with_preregistered_bound(reco
         finite = rn32(s + 2 * side)
         assert np.all(result.image == float(finite))
         absolute_error = abs(finite - mathematical)
-        record_property("sp113_dc_metrics", {
-            "input_representation_error": "0", "reference_width": "0",
-            "max_absolute_error": str(absolute_error),
-            "rms_error": str(absolute_error),
-            "interval_distance": str(absolute_error),
-            "far_endpoint_upper_bound": str(absolute_error),
-            "signal_scale": "4/13",
-            "error_over_signal_scale": str(absolute_error / Fraction(4, 13)),
-            "signed_minimum": str(finite), "signed_maximum": str(finite),
-            "cancellation_condition": str((2 - offset) / offset) if offset else "infinite",
-            "phase_at_zero_amplitude": "undefined",
-        })
+        record_property(
+            "sp113_dc_metrics",
+            {
+                "input_representation_error": "0",
+                "reference_width": "0",
+                "max_absolute_error": str(absolute_error),
+                "rms_error": str(absolute_error),
+                "interval_distance": str(absolute_error),
+                "far_endpoint_upper_bound": str(absolute_error),
+                "signal_scale": "4/13",
+                "error_over_signal_scale": str(absolute_error / Fraction(4, 13)),
+                "signed_minimum": str(finite),
+                "signed_maximum": str(finite),
+                "cancellation_condition": str((2 - offset) / offset) if offset else "infinite",
+                "phase_at_zero_amplitude": "undefined",
+            },
+        )
         if not offset:
             assert finite == mathematical == 0
             assert np.all(result.image == 0)
@@ -57,7 +79,9 @@ def test_correlated_dc_exact_and_near_cancellation_with_preregistered_bound(reco
             # Fixed coefficient/scalar-bin derivation from public context.
             # DC transforms and zero-carrier ramp have zero transform/phase
             # error. f64 adds exact dyadic terms; final rounding is separate.
-            before_final = (Fraction(1, 2**55) + Fraction(1, 2**26)) * (2 - offset) + 2 * Fraction(1, 2**27)
+            before_final = (Fraction(1, 2**55) + Fraction(1, 2**26)) * (2 - offset) + 2 * Fraction(
+                1, 2**27
+            )
             final_round = U32 * abs(s + 2 * side) + HALF_SUB32
             assert abs(finite - mathematical) <= before_final + final_round
             assert mathematical > 0
@@ -93,11 +117,19 @@ def test_profile_schema_and_independent_framed_identities() -> None:
     plus = call(plus_bands, otf)
     assert dict(plus.precision_provenance)["bands_sha256"] != actual["bands_sha256"]
     changed_note = replace(bands, provenance=(("formula", "DC"), ("conversion", "caller c64")))
-    assert dict(call(changed_note, otf).precision_provenance)["bands_sha256"] != actual["bands_sha256"]
+    assert (
+        dict(call(changed_note, otf).precision_provenance)["bands_sha256"] != actual["bands_sha256"]
+    )
     changed_source = transfer(value=1 + 0.5j, empirical_delta=2**-29)
-    assert dict(call(bands, changed_source).precision_provenance)["transfer_sha256"] != actual["transfer_sha256"]
+    assert (
+        dict(call(bands, changed_source).precision_provenance)["transfer_sha256"]
+        != actual["transfer_sha256"]
+    )
     changed_parameter = call(bands, otf, modulation=np.array([[-1 + 0.5j]]))
-    assert dict(changed_parameter.precision_provenance)["parameters_sha256"] != actual["parameters_sha256"]
+    assert (
+        dict(changed_parameter.precision_provenance)["parameters_sha256"]
+        != actual["parameters_sha256"]
+    )
 
 
 def test_subnormal_complete_scale_may_round_finitely_to_zero() -> None:
@@ -113,7 +145,10 @@ def test_subnormal_complete_scale_may_round_finitely_to_zero() -> None:
 
 
 def test_consumed_scale_and_native_addition_overflow_reject_before_hidden_cancellation() -> None:
-    rejected(lambda: call(otf=transfer(value=complex(2**-140, 0)), wiener=2**-140), (PROFILE, "scale", "conversion"))
+    rejected(
+        lambda: call(otf=transfer(value=complex(2**-140, 0)), wiener=2**-140),
+        (PROFILE, "scale", "conversion"),
+    )
     assert call(otf=transfer(value=complex(2**-120, 0)), wiener=2**-120).image.dtype == np.float32
     q, v = arrays()
     maximum = np.finfo(np.float32).max
@@ -121,7 +156,10 @@ def test_consumed_scale_and_native_addition_overflow_reject_before_hidden_cancel
     q[0, 0, 2, 0, 0, 0] = -1j * maximum
     bands = declare(q, v)
     before = snapshot(bands.quadratures, bands.noise_variance_factors)
-    rejected(lambda: call(bands, modulation=np.zeros((1, 1))), (PROFILE, "coefficient", "overflow", "native", "finite"))
+    rejected(
+        lambda: call(bands, modulation=np.zeros((1, 1))),
+        (PROFILE, "coefficient", "overflow", "native", "finite"),
+    )
     assert snapshot(bands.quadratures, bands.noise_variance_factors) == before
     q[0, 0, 2, 0, 0, 0] = 0
     assert np.all(call(declare(q, v), modulation=np.zeros((1, 1))).image == 0)
@@ -130,18 +168,32 @@ def test_consumed_scale_and_native_addition_overflow_reject_before_hidden_cancel
 def test_ordered_power_product_and_recombination_intermediate_overflow() -> None:
     q, v = arrays()
     v[...] = 2**-1000
-    rejected(lambda: call(declare(q, v), modulation=np.array([[2**100]], dtype=np.float64)), (PROFILE, "power", "denominator", "finite", "overflow"))
+    rejected(
+        lambda: call(declare(q, v), modulation=np.array([[2**100]], dtype=np.float64)),
+        (PROFILE, "power", "denominator", "finite", "overflow"),
+    )
     v[...] = 2**-100
-    assert call(declare(q, v), modulation=np.array([[2**100]], dtype=np.float64)).image.dtype == np.float32
+    assert (
+        call(declare(q, v), modulation=np.array([[2**100]], dtype=np.float64)).image.dtype
+        == np.float32
+    )
     maximum = np.finfo(np.float32).max
     q[0, 0, 0, 0, 0, 0] = maximum
-    rejected(lambda: call(declare(q, np.ones_like(v)), transfer(value=complex(2**-120, 0)), wiener=2**-120), (PROFILE, "coefficient", "native", "finite", "overflow"))
+    rejected(
+        lambda: call(
+            declare(q, np.ones_like(v)), transfer(value=complex(2**-120, 0)), wiener=2**-120
+        ),
+        (PROFILE, "coefficient", "native", "finite", "overflow"),
+    )
     q[...] = 0
     q[0, 0, 0, 0, 0, 0] = -maximum
     q[0, 0, 1, 0, 0, 0] = maximum
     # H=1/2,w=1/4 gives scale8/13: p and n are finite, p+n is not.
     # The later factor1/2 must not conceal that required primitive overflow.
-    rejected(lambda: call(declare(q, np.ones_like(v)), transfer(value=0.5), wiener=0.25), (PROFILE, "recombination", "native", "finite", "overflow"))
+    rejected(
+        lambda: call(declare(q, np.ones_like(v)), transfer(value=0.5), wiener=0.25),
+        (PROFILE, "recombination", "native", "finite", "overflow"),
+    )
 
 
 def test_complete_float64_scale_can_overflow_before_consumed_conversion() -> None:
@@ -155,9 +207,14 @@ def test_complete_float64_scale_can_overflow_before_consumed_conversion() -> Non
     v[...] = 2**-1023
     bands = declare(q, v)
     before = snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples)
-    rejected(lambda: call(bands, otf, wiener=2**-537), (PROFILE, "scalar", "filter scale", "float64"))
+    rejected(
+        lambda: call(bands, otf, wiener=2**-537), (PROFILE, "scalar", "filter scale", "float64")
+    )
     assert snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples) == before
-    rejected(lambda: call(declare(q, np.ones_like(v)), otf, wiener=2**-538), (PROFILE, "wiener", "square"))
+    rejected(
+        lambda: call(declare(q, np.ones_like(v)), otf, wiener=2**-538),
+        (PROFILE, "wiener", "square"),
+    )
 
 
 def test_y1_embedding_still_checks_c64_harmonic_addition() -> None:
@@ -182,11 +239,15 @@ def test_final_image_overflow_is_distinct_from_finite_f64_accumulation() -> None
     q[:, :, 0, 0, 0, 0] = np.finfo(np.float32).max
     bands = declare(q, v)
     before = snapshot(bands.quadratures)
-    rejected(lambda: call(bands, modulation=np.zeros((2, 1))), (PROFILE, "image", "final", "float32"))
+    rejected(
+        lambda: call(bands, modulation=np.zeros((2, 1))), (PROFILE, "image", "final", "float32")
+    )
     assert snapshot(bands.quadratures) == before
 
 
 class FailureBackend:
+    """Expose controlled faults through the existing SciPy FFT backend interface."""
+
     __ua_domain__ = "numpy.scipy.fft"
 
     def __init__(self, failure: BaseException | None) -> None:
@@ -194,6 +255,7 @@ class FailureBackend:
         self.calls = 0
 
     def __ua_function__(self, method: Any, args: Any, kwargs: Any) -> Any:
+        """Handle only the declared inverse transform with the selected fault."""
         if method.__name__ != "ifftn":
             return NotImplemented
         self.calls += 1
@@ -217,7 +279,9 @@ def test_backend_exception_cause_nonfinite_result_and_interruption_are_public() 
     for failure in (original, memory):
         backend = FailureBackend(failure)
         with scipy.fft.set_backend(backend, only=True):
-            error = rejected(lambda: call(bands, otf), (PROFILE, "fft", "transform", "allocation", "memory"))
+            error = rejected(
+                lambda: call(bands, otf), (PROFILE, "fft", "transform", "allocation", "memory")
+            )
         assert backend.calls == 1 and error.__cause__ is failure
         assert snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples) == before
     nonfinite = FailureBackend(None)
@@ -243,17 +307,35 @@ def test_omitted_and_explicit_double_are_exact_same_environment_controls() -> No
     # control. It supplies neither a single-mode input nor scientific truth.
     raw = np.zeros((1, 1, 3, 2, 2, 4), dtype=np.float32)
     raw[:, :, :, :, :, :] = 2
-    old = sr.prepare_bands(raw, dxy_um=1.0, dz_um=1.0, norders=2,
-        background=0.0, lateral_zoom=1, axial_zoom=1, edge_pixels=0, equalize=False)
+    old = sr.prepare_bands(
+        raw,
+        dxy_um=1.0,
+        dz_um=1.0,
+        norders=2,
+        background=0.0,
+        lateral_zoom=1,
+        axial_zoom=1,
+        edge_pixels=0,
+        equalize=False,
+    )
     otf = transfer()
-    options: dict[str, Any] = dict(carriers_cyc_um=np.zeros((1, 2)), modulation=np.ones((1, 1)),
-        wavelength_nm=500, numerical_aperture=1.0, immersion_index=1.0,
-        wiener=0.5, suppress_singularities=False, output_taper="none")
+    options: dict[str, Any] = dict(
+        carriers_cyc_um=np.zeros((1, 2)),
+        modulation=np.ones((1, 1)),
+        wavelength_nm=500,
+        numerical_aperture=1.0,
+        immersion_index=1.0,
+        wiener=0.5,
+        suppress_singularities=False,
+        output_taper="none",
+    )
     known: Any = sr.reconstruct_known
     omitted = known(old, otf, **options)
     explicit = known(old, otf, precision="double", **options)
     assert type(omitted) is type(explicit) is sr.KnownReconstruction
-    assert tuple(field.name for field in fields(omitted)) == tuple(field.name for field in fields(explicit))
+    assert tuple(field.name for field in fields(omitted)) == tuple(
+        field.name for field in fields(explicit)
+    )
     for field in fields(omitted):
         left, right = getattr(omitted, field.name), getattr(explicit, field.name)
         if isinstance(left, np.ndarray):
@@ -262,15 +344,26 @@ def test_omitted_and_explicit_double_are_exact_same_environment_controls() -> No
         else:
             assert left == right
     assert not hasattr(omitted, "precision_profile")
-    rejected(lambda: known(old, otf, precision=PROFILE, **options), ("bands", "precision", "PreparedBands32"))
+    rejected(
+        lambda: known(old, otf, precision=PROFILE, **options),
+        ("bands", "precision", "PreparedBands32"),
+    )
     masquerade = replace(old, quadratures=old.quadratures.astype(np.complex64))
-    omitted_error = rejected(lambda: known(masquerade, otf, **options), ("quadrature", "complex128", "dtype"))
-    explicit_error = rejected(lambda: known(masquerade, otf, precision="double", **options), ("quadrature", "complex128", "dtype"))
+    omitted_error = rejected(
+        lambda: known(masquerade, otf, **options), ("quadrature", "complex128", "dtype")
+    )
+    explicit_error = rejected(
+        lambda: known(masquerade, otf, precision="double", **options),
+        ("quadrature", "complex128", "dtype"),
+    )
     assert type(omitted_error) is type(explicit_error) and str(omitted_error) == str(explicit_error)
     extended = options | {
-        "output_taper": "power", "power_taper_exponent": 0.0,
-        "wiener_increment": 0.125, "filter_overlaps": False,
-        "explode_factor": -1.0, "precise_taper": False,
+        "output_taper": "power",
+        "power_taper_exponent": 0.0,
+        "wiener_increment": 0.125,
+        "filter_overlaps": False,
+        "explode_factor": -1.0,
+        "precise_taper": False,
     }
     omitted_extended = known(old, otf, **extended)
     explicit_extended = known(old, otf, precision="double", **extended)
@@ -291,8 +384,13 @@ def test_legacy_acquisition_3d_and_true_2d_keep_double_records_options_and_error
         assert bands.noise_variance_factors.dtype == np.float64
         assert bands.noise_variance_factors.shape == (1, 1, 2)
         assert not hasattr(bands, "precision_profile")
-        before = snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples,
-            options["carriers_cyc_um"], options["modulation"])
+        before = snapshot(
+            bands.quadratures,
+            bands.noise_variance_factors,
+            otf.samples,
+            options["carriers_cyc_um"],
+            options["modulation"],
+        )
         omitted = known(bands, otf, **options)
         explicit = known(bands, otf, precision="double", **options)
         assert type(omitted) is sr.KnownReconstruction
@@ -301,24 +399,57 @@ def test_legacy_acquisition_3d_and_true_2d_keep_double_records_options_and_error
         assert omitted.filtered_quadratures.dtype == np.complex128
         assert not hasattr(omitted, "precision_profile")
         extended = options | {
-            "output_taper": "power", "power_taper_exponent": 0.0,
-            "wiener_increment": 0.125, "filter_overlaps": False,
-            "explode_factor": -1.0, "precise_taper": False,
+            "output_taper": "power",
+            "power_taper_exponent": 0.0,
+            "wiener_increment": 0.125,
+            "filter_overlaps": False,
+            "explode_factor": -1.0,
+            "precise_taper": False,
         }
         assert_public_equal(
             known(bands, otf, **extended),
             known(bands, otf, precision="double", **extended),
         )
-        rejected(lambda: known(bands, otf, precision=PROFILE, **options), ("bands", "precision", "PreparedBands32"))
+        rejected(
+            lambda bands=bands, otf=otf, options=options: known(
+                bands, otf, precision=PROFILE, **options
+            ),
+            ("bands", "precision", "PreparedBands32"),
+        )
         masquerade = replace(bands, quadratures=bands.quadratures.astype(np.complex64))
-        omitted_error = rejected(lambda: known(masquerade, otf, **options), ("quadrature", "complex128", "dtype"))
-        explicit_error = rejected(lambda: known(masquerade, otf, precision="double", **options), ("quadrature", "complex128", "dtype"))
-        assert type(omitted_error) is type(explicit_error) and str(omitted_error) == str(explicit_error)
+        omitted_error = rejected(
+            lambda masquerade=masquerade, otf=otf, options=options: known(
+                masquerade, otf, **options
+            ),
+            ("quadrature", "complex128", "dtype"),
+        )
+        explicit_error = rejected(
+            lambda masquerade=masquerade, otf=otf, options=options: known(
+                masquerade, otf, precision="double", **options
+            ),
+            ("quadrature", "complex128", "dtype"),
+        )
+        assert type(omitted_error) is type(explicit_error) and str(omitted_error) == str(
+            explicit_error
+        )
         # Record/profile compatibility precedes a malformed used c128 field.
-        rejected(lambda: known(masquerade, otf, precision=PROFILE, **options), ("bands", "precision", "PreparedBands32"))
+        rejected(
+            lambda masquerade=masquerade, otf=otf, options=options: known(
+                masquerade, otf, precision=PROFILE, **options
+            ),
+            ("bands", "precision", "PreparedBands32"),
+        )
         assert snapshot(raw) == original_raw
-        assert snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples,
-            options["carriers_cyc_um"], options["modulation"]) == before
+        assert (
+            snapshot(
+                bands.quadratures,
+                bands.noise_variance_factors,
+                otf.samples,
+                options["carriers_cyc_um"],
+                options["modulation"],
+            )
+            == before
+        )
 
 
 def test_existing_full_and_summary_keep_exact_double_projection_and_retention() -> None:
@@ -340,7 +471,13 @@ def test_existing_full_and_summary_keep_exact_double_projection_and_retention() 
     assert summary.image.flags.owndata and not summary.image.flags.writeable
     assert_public_equal(full.intensity_unit, summary.intensity_unit)
     assert_public_equal(full.intensity_semantics, summary.intensity_semantics)
-    for name in ("carriers_cyc_um", "modulation", "raw_modulation", "initial_carriers_cyc_um", "phase_linkage_carriers_cyc_um"):
+    for name in (
+        "carriers_cyc_um",
+        "modulation",
+        "raw_modulation",
+        "initial_carriers_cyc_um",
+        "phase_linkage_carriers_cyc_um",
+    ):
         assert_public_equal(getattr(full.parameters, name), getattr(summary, name))
     assert summary.carriers_cyc_um.dtype == np.float64
     assert summary.modulation.dtype == np.complex128
@@ -351,7 +488,9 @@ def test_existing_full_and_summary_keep_exact_double_projection_and_retention() 
     assert not any(isinstance(value, forbidden_full_records) for value in public_values(summary))
     assert not hasattr(full, "precision_profile") and not hasattr(summary, "precision_profile")
     assert snapshot(raw, otf.samples) == before
-    assert_public_equal(declarations, {key: value for key, value in options.items() if key != "transfer"})
+    assert_public_equal(
+        declarations, {key: value for key, value in options.items() if key != "transfer"}
+    )
     # No precision selector is added to either composed entry.
     workflow: Any = sr.reconstruct_workflow
     compact: Any = sr.reconstruct_summary
