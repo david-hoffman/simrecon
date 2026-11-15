@@ -95,14 +95,15 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — investigator slot/source-method continuation and final #113 parent.**
+- **WAITING — same S1 active on source-only method continuation; final #113 pending.**
   The initial source-only preparation is committed; full study remains unfinished.
   Authorized intake/study route recorded; intake author attempt 1 completed named
   documents. Coordinator source review found the study within the requested scope;
   no independent scientific acceptance or scientific conclusion is claimed.
   Current source baseline remains the committed preparation on public main;
   final commit/tree identities and continuation packet digest are recorded outside
-  tracked bytes. No rebase or source-method implementation occurs in this continuation.
+  tracked bytes. Coordinator dispatched the same S1 author; its source-method
+  implementation is pending, with no rebase or scientific execution.
 - Author launch: fresh tool route, no conversation inheritance, requested Sol/high;
   accepted PR109 policy proposal `b84b178`, integration `be8e447`, as supplied by
   coordinator packet. Session is `/root/issue_114/intake_author`. Actual serving
@@ -145,8 +146,10 @@ returns to intake. This is not formal executable test design.
 - Blockers: **current root source-only hold** permits read-only shell/Git inspection
   and source/document authoring only. Prior narrow syntax/Ruff permission is
   historical; no Python, probes, imports, lint/format/types/tests/install or benchmark
-  is granted in this continuation. At resumed capacity inspection all seven role
-  slots were occupied; no worker was dispatched and no launch failed.
+  is granted in this continuation. The first capacity inspection found all seven
+  slots occupied and deferred dispatch. Root later granted dispatch; coordinator
+  observed five active sessions before resuming the same S1 author, then six active
+  including S1. No author replacement or failed role launch occurred.
   Root reports frozen accepted #112 `d9a0ba924817772fdb5550c7d055bf31bcf70388`
   (PR121) and #115 `ace06c861b974b6251a092567c253ae4eb0f56c8` (PR122), with
   local/fresh acceptance/CI passed. These are contextual root reports, not HP114
@@ -154,8 +157,11 @@ returns to intake. This is not formal executable test design.
   #113 publication parent is not ready; no speculative restack/PR. Numerical
   acceptance remains a study proposal to justify, not a missing human tolerance
   that authorizes guessing. Source/manifest preparation may proceed under hold.
-- Next: once a worker slot is available, root resumes this coordinator for the
-  same S1 investigator under [source-method continuation](../packets/half-precision-study/source-method-continuation.md).
+- Next: same S1 `/root/issue_114/study_investigator` is active under
+  [source-method continuation](../packets/half-precision-study/source-method-continuation.md).
+  Coordinator yields WAITING to preserve capacity; investigator notifies campaign
+  root and coordinator on source-only completion. Root resumes this coordinator
+  to inspect the returned source artifacts and route fresh static method review.
   Complete/freeze standalone matched resource paths, terminal-child versus
   cumulative/sample high-water semantics, bounded observers/status/recovery and
   finite range/cancellation/serialization/FFT controls without executing them.
