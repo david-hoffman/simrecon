@@ -875,3 +875,28 @@ checks pendingrootrelease. B5acceptance/hashreportedROOTBEFOREC, launchactual
 session/head outsidehandoff, requestedSol/highforknone/no delegation. InitialC
 sourceattempt1/checkattempts0, no testpass/readiness claim. All5B/4nonaccepts,
 25quality7fails/31finite3fails/prior6/9rootcases0fails/setupunknown preserved.
+
+### C1 complete source handoff, initial external freeze, no checks
+
+C1 source reportb6c1ec9f…2c1c collected in full; exact4owned source bytes and whole
+tracked/new diffs inspected. Initial source attempt1,14successful mutations,
+check/runtime0;53author dispatches/42shell+11patch and one disclosed out-of-scope
+brief status-metadata read retained. No raw116/source/history followed or used.
+Author complete, no active child/process/FD. Base5cc48c7/tree8900afe unchanged;
+three tracked source modifications plus one new module. Frozen27 all still match.
+Initial bytes/report/base/patches copied and independently hash-verified BEFORE
+any executable check at outside evidence/113/c1-source-freeze-1. Product manifest
+e8d190bba0eed5749f2dcee546a26b51866b581307b4fb1ba42f345c2a9b6409;
+tracked delta68dc799e…7c85/new-module delta221b432c…f799. Exact source hashes
+are in manifest/report; snapshot retains every original byte for corrections.
+
+ROOT192window closed, but113 runtime remains specifically held. Planned exact4
+AST/Ruff/read-only-format commands and later separately held Pyright/focused
+pytest are outside cheap-check-plan.md c0500a70d6f1f9becbbb149529b4c1440635c997d4b1d50fc23de68c5bae47c4.
+No proposal command ran. Actual material/import/VmSize/G1 renewal and qualified
+standard-init/outside ownership precede product/typing/nestedtests. Two hazardous
+wide cases and installed/build remain separate holds; no generic guardian or
+sleep-PID1 route. Source review is no scientific/storage/type acceptance.
+Accepted baseline d3f525 source identity is historical once C's dirty delta exists.
+All prior5B/4nonacceptances,25quality7fails,31finite3fails,prior6historical,
+9ROOTfinitecontrols0unexpected, unknown setup/source costs/meters retained.

@@ -33,6 +33,11 @@ from .reconstruction.parameter_estimation import (
     ParameterEstimationError,
     estimate_parameters,
 )
+from .reconstruction.single_known import (
+    KnownReconstruction32,
+    PreparedBands32,
+    declare_prepared_bands32,
+)
 from .workflow.reconstruct import reconstruct_summary, reconstruct_workflow
 from .workflow.result import WorkflowError, WorkflowReconstruction
 from .workflow.summary import ReconstructionSummary
@@ -50,10 +55,12 @@ __all__ = [
     "ImagejSeries",
     "ImagejWriteReport",
     "KnownReconstruction",
+    "KnownReconstruction32",
     "OpticalTransfer",
     "OtfError",
     "ParameterEstimationError",
     "PreparedBands",
+    "PreparedBands32",
     "PreparedOtf",
     "RawAcquisition",
     "ReconstructionError",
@@ -64,6 +71,7 @@ __all__ = [
     "WorkflowReconstruction",
     "declare_acquisition",
     "declare_otf",
+    "declare_prepared_bands32",
     "estimate_parameters",
     "export_imagej",
     "harmonize",

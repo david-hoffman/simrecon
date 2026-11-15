@@ -1,7 +1,8 @@
 """Known-parameter SVN307 native filtering and sampled real-space assembly.
 
-This evaluates the selected mathematical procedure in binary64. It does not
-estimate parameters or qualify a historical compiled reconstruction runtime.
+The default path evaluates the selected procedure in binary64. Explicit single
+precision dispatches to ``single_known``. Neither path estimates parameters or
+qualifies a historical compiled reconstruction runtime.
 
 Filter native detector frequencies before relocating carriers. Side bands use
 the positive harmonic E+iO and an all-axis conjugate-reflected negative partner.
@@ -18,7 +19,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 from math import asin, atan2, ceil, cos, hypot, isfinite, sin, sqrt, tan, trunc
 from numbers import Integral, Real
-from typing import Any, cast
+from typing import TYPE_CHECKING, Any, Literal, cast, overload
 
 import numpy as np
 from numpy.typing import NDArray
@@ -43,6 +44,9 @@ from ..optical_transfer import (
     _Transfer,
     validate_optical_transfer,
 )
+
+if TYPE_CHECKING:
+    from .single_known import KnownReconstruction32, PreparedBands32
 
 _F64 = NDArray[np.float64]
 _C128 = NDArray[np.complex128]
@@ -895,6 +899,7 @@ def _readonly(array: Any) -> Any:
     return array
 
 
+@overload
 def reconstruct_known(
     bands: PreparedBands | AcquisitionBands,
     transfer: OpticalTransfer,
@@ -916,13 +921,92 @@ def reconstruct_known(
     precise_taper: bool = False,
     filter_overlaps: bool = True,
     explode_factor: float = 1.0,
-) -> KnownReconstruction:
+    precision: Literal["double"] = "double",
+) -> KnownReconstruction: ...
+
+
+@overload
+def reconstruct_known(
+    bands: "PreparedBands32",
+    transfer: OpticalTransfer,
+    *,
+    carriers_cyc_um: Any,
+    modulation: Any,
+    wavelength_nm: int,
+    numerical_aperture: float,
+    immersion_index: float,
+    wiener: float,
+    suppress_singularities: bool = True,
+    suppression_radius_bins: float = 10.0,
+    dampen_order0: bool = False,
+    omit_order0: bool = False,
+    omit_kz0: bool = False,
+    output_taper: str = "cosine",
+    wiener_increment: float = 0.0,
+    power_taper_exponent: float | None = None,
+    precise_taper: bool = False,
+    filter_overlaps: bool = True,
+    explode_factor: float = 1.0,
+    precision: Literal["single-mixed-v1"],
+) -> "KnownReconstruction32": ...
+
+
+@overload
+def reconstruct_known(
+    bands: "PreparedBands | AcquisitionBands | PreparedBands32",
+    transfer: OpticalTransfer,
+    *,
+    carriers_cyc_um: Any,
+    modulation: Any,
+    wavelength_nm: int,
+    numerical_aperture: float,
+    immersion_index: float,
+    wiener: float,
+    suppress_singularities: bool = True,
+    suppression_radius_bins: float = 10.0,
+    dampen_order0: bool = False,
+    omit_order0: bool = False,
+    omit_kz0: bool = False,
+    output_taper: str = "cosine",
+    wiener_increment: float = 0.0,
+    power_taper_exponent: float | None = None,
+    precise_taper: bool = False,
+    filter_overlaps: bool = True,
+    explode_factor: float = 1.0,
+    precision: str,
+) -> "KnownReconstruction | KnownReconstruction32": ...
+
+
+def reconstruct_known(
+    bands: "PreparedBands | AcquisitionBands | PreparedBands32",
+    transfer: OpticalTransfer,
+    *,
+    carriers_cyc_um: Any,
+    modulation: Any,
+    wavelength_nm: int,
+    numerical_aperture: float,
+    immersion_index: float,
+    wiener: float,
+    suppress_singularities: bool = True,
+    suppression_radius_bins: float = 10.0,
+    dampen_order0: bool = False,
+    omit_order0: bool = False,
+    omit_kz0: bool = False,
+    output_taper: str = "cosine",
+    wiener_increment: float = 0.0,
+    power_taper_exponent: float | None = None,
+    precise_taper: bool = False,
+    filter_overlaps: bool = True,
+    explode_factor: float = 1.0,
+    precision: str = "double",
+) -> "KnownReconstruction | KnownReconstruction32":
     """Filter native bands and assemble a signed image with supplied parameters.
 
     Parameters
     ----------
-    bands : PreparedBands or AcquisitionBands
-        At least two orders are required. AcquisitionBands also supports native Z1.
+    bands : PreparedBands, AcquisitionBands or PreparedBands32
+        At least two orders are required. Single requires canonical PreparedBands32;
+        double also supports AcquisitionBands with native Z1.
     transfer : OpticalTransfer
         Complete accepted CE03 radial or full tables shared across directions.
     carriers_cyc_um : numpy.ndarray
@@ -954,10 +1038,13 @@ def reconstruct_known(
         Include all overlaps, or only other center powers for center orders.
     explode_factor : float, optional
         Signed assembly-phase multiplier; filtering uses original carriers.
+    precision : {'double', 'single-mixed-v1'}, optional
+        Explicit arithmetic/storage profile. Omission preserves the double path.
+        Single supports only the stationary 3D default-equivalent CE06 options.
 
     Returns
     -------
-    KnownReconstruction
+    KnownReconstruction or KnownReconstruction32
         Owned read-only image, quadratures, coordinates and exact settings.
 
     Raises
@@ -966,9 +1053,39 @@ def reconstruct_known(
         For invalid inputs, unsafe actual transfer stencils, representation or
         numerical failures. Allocation/backend failures retain their causes.
     """
+    if type(precision) is not str or precision not in ("double", "single-mixed-v1"):
+        raise ReconstructionError("precision must be exactly 'double' or 'single-mixed-v1'")
+    from . import single_known
+
+    if precision == "single-mixed-v1":
+        if not issubclass(type(bands), single_known.PreparedBands32):
+            raise ReconstructionError("single-mixed-v1 bands require a PreparedBands32 record")
+        return single_known._reconstruct_single(
+            cast("single_known.PreparedBands32", bands),
+            transfer,
+            carriers_cyc_um=carriers_cyc_um,
+            modulation=modulation,
+            wavelength_nm=wavelength_nm,
+            numerical_aperture=numerical_aperture,
+            immersion_index=immersion_index,
+            wiener=wiener,
+            suppress_singularities=suppress_singularities,
+            suppression_radius_bins=suppression_radius_bins,
+            dampen_order0=dampen_order0,
+            omit_order0=omit_order0,
+            omit_kz0=omit_kz0,
+            output_taper=output_taper,
+            wiener_increment=wiener_increment,
+            power_taper_exponent=power_taper_exponent,
+            precise_taper=precise_taper,
+            filter_overlaps=filter_overlaps,
+            explode_factor=explode_factor,
+        )
+    if issubclass(type(bands), single_known.PreparedBands32):
+        raise ReconstructionError("double precision bands require PreparedBands or AcquisitionBands")
     with _capture_policy(False):
         return _reconstruct_known(
-            bands,
+            cast("PreparedBands | AcquisitionBands", bands),
             transfer,
             carriers_cyc_um=carriers_cyc_um,
             modulation=modulation,
