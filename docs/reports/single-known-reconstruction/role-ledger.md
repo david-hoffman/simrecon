@@ -546,3 +546,34 @@ No activechild/process, newruntimecall or scientificqualification. Root resumes
 collection/freshaffectedB later; unknowncostmeters and allfailedattempts retained.
 One new coordinator ledger atomicpatch contextmiss corrected withoutpartialwrite;
 separate task prose substitution had already succeeded, no authorbyte touched.
+
+## A4 full collection and fresh complete B2 freeze
+
+Verified fullreportb4fad7dab16181002c32611695a443cce1a309b350e4198300dae3052d309989
+and all8finalcodehashes; savedactualrevisionf2c894dac594dd001590e6b24df19a87884b41c5/
+tree7b24703389512c3739b08bf16254bacc22d3b2af. InspectedactualA3/A4sharedsettings/
+parameters/identity, Dfactor, no-skip allocation observer, directchild cleanup,
+DCorder and conditioning code. No new concrete author defect identified in this
+inspection; not a semantic/qualification acceptance. Full16qualityattempts/6failures
+retained; A4sixprehashedcommands/toolchunks/walltimes inreport, no separate logs,
+no coorrunofgreenchecks. OneA4owntexttruncationrecovered, no newtypo/patchmiss.
+Allpriorcharges/metersunknown remaincumulative, no newnumerical/productcall.
+
+Prepared freshB2complete8file/allshareddependentreview, not narrowdelta and no
+retained B1acceptance. Original13publicinputbytes unchanged and rehashed; added
+one self-contained public finite-dependency/platformfacts file with declared
+fixed inputs/exactnumbers/time-specific RNE/material identities and limitations,
+not rawreports/conclusions or numericaltruth. Compiled/interpreter/libm/libc
+hashes rereadunchanged; thissupportsconditionalisolatedwitnessapplicability,
+not currentproduct/wholefixture/transport acceptance. B2gets only actualpacket,
+14publicwholefiles+8tests hashes, no A/B1/coor/dependency/methodreviewreports,
+history/source/coverage/wholePROJECT/mixedtestaudit. No raw reviewer findings
+or prior repair explanation supplied. Newrecordsalone don'tchoose/widenbounds.
+
+No B2executiongrant: static full8/oracle/positive/error/facade/type/installed/
+allocation/directchildprotocol/risk assessment. Reportonlyoutsideevidence/113/
+b2-review.md; freshforknoneSolhigh, no delegation/fixes. First formalB nonaccept
+preserved; thisis secondformal completeB review. Actuallaunch/head/digest/session
+and pendingstatus recordedoutside afterfreeze. Accepted116/ownB stillblocks
+PhasePC; actual120integration+freshaffectedrenewalbeforeanyintegratedC/resources/
+gates/D/pub. Installed/newAPI/runtime/type/protocolcalls remainunactivated.
