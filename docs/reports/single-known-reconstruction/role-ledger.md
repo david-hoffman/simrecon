@@ -958,3 +958,30 @@ active child/process/FD. ROOT Cchecks4/2fail plus1expected-status1 read-only
 canonical diagnostic remain distinct. UNVERIFIED C3 with Current/ledger follows;
 no command executed by coor/author, all product/type/test/build/runtime holds
 unchanged. Retain prior freezes/check failures/costs/unknown meters.
+
+### C3 staticchecks7/3fail and same-author correction3 / C4 source freeze
+
+ROOT C3 AST0 receipt1d190953…dc20/Ruff0 9b1e52c7…c0c/format1d7c658b9…461d
+fullyread/hashchecked. Source2376 unchanged; actualrootnamespaces/PID1absent/
+engine143/proxiesreaped/pipesclosed, stdout19/19/1893B stderr0. Format reports
+four single_known layouts only, ONEfailedcheck despite duplicateHOLD strings.
+Staticchecks7/3fail plusseparate1expected-status1 canonicaldiff diagnostic.
+SameC1 correction3 packet987491e2…91a7/actualdiagnosticse2a6b985…dfa3, sourceonly;
+fullreport6c100b9e…57e4 collected, wholeminimaldelta independentlyinspected.
+Exactlyfour proposedlayouts, no semantics/formula/tests/gates edits. Revised4
+copies/base2376/report/diff beforeanychecks atoutside c1-source-freeze-4,
+manifest0560f1259883a6c329266cbb2366582a2162d0c441c87b379bea4db3d8151858,
+patch9a2f5593b65a83b0e6883ef3d933ad13279d6ecdc1099dce0d115965d2cac64f.
+New single153ecc10…8ba1f, other3same; all27/copied4match. Authorinitial1+
+corrections3/18productedits,55shell15patch70dispatch, ownchecks0/no newexposure.
+No activechild/coorprocess/FD. Initial3freezes/failedreceipts remain intact.
+
+Source-only next-qualification planb5fd5bb8…e4ae outside c3-next-qualification-plan-1.md
+prepared: unchangedG1normalactualcandidateimports/VmSize/cap first, qualifiedinit
+Pyright/literalcaller/finiteexistingallocator/transfer/cardinalcompositionnodes,
+thenfocused6files/twoworkers+separate2guardedhazards; actualdtype/resource driver
+andIE113 stillseparate/later. Exactmath/27/helpersunaffectedversusactualnewimport/
+RNE/material/binding renewal distinguished. No executions/new framework/sourceedit.
+ROOT preparing256exclusivewindow; ACK ALL execution suspended, privateinitstopped,
+no C4checks until ROOT closure/newrelease. Source-only UNVERIFIEDC4commit allowed.
+All earlier charges/unknownmeters/final120renewal/resource/fullgate/D/pub retained.

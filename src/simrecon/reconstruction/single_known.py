@@ -524,9 +524,7 @@ def _sample_value(table: _Transfer, order: int, x: float, y: float, z: int, dzf:
         j1 = 0 if j == k - 1 else _sample_i32(j + 1)
         lower = _sample_i32(i * k)
         upper = _sample_i32(_sample_i32(i + 1) * k)
-        offsets = tuple(
-            _sample_i32(base + axial) for base in (lower, upper) for axial in (j, j1)
-        )
+        offsets = tuple(_sample_i32(base + axial) for base in (lower, upper) for axial in (j, j1))
         # Every actual vertex is required even when its weight is zero.
         v00, v01, v10, v11 = (_sample_cell(table, order, index) for index in offsets)
         return (1 - a) * ((1 - c) * v00 + c * v01) + a * ((1 - c) * v10 + c * v11)
@@ -601,8 +599,10 @@ class _SingleFilter:
     def weight(self, direction: int, order: int, radius: float, z: int) -> float:
         value = float(self.inverse_noise[self.time, direction, order])
         stage = "native damping weight"
-        if self.suppress and radius <= self.suppression_radius and (
-            order != 0 or (not self.dampen and not self.omit)
+        if (
+            self.suppress
+            and radius <= self.suppression_radius
+            and (order != 0 or (not self.dampen and not self.omit))
         ):
             r2 = _real(radius * radius, stage)
             divisor = _real(r2 + 0.2, stage, positive=True)
@@ -724,9 +724,7 @@ def _filter(original: _C64, grid: _Grid, settings: _SingleFilter) -> _C64:
                                     for slot in slots:
                                         filtered[t, d, slot, z % zsize, row, column] = 0
                             for slot in slots:
-                                filtered[
-                                    t, d, slot, cutoff + 1 : zsize - cutoff, row, column
-                                ] = 0
+                                filtered[t, d, slot, cutoff + 1 : zsize - cutoff, row, column] = 0
                     if plus is not None:
                         for y in ys:
                             for x in range(xsize // 2 + 1):
@@ -884,9 +882,7 @@ def _canonical(value: Any) -> bytes:
     ).encode("utf-8")
 
 
-def _identity(
-    domain: str, metadata: Any, arrays: tuple[tuple[str, NDArray[Any], str], ...]
-) -> str:
+def _identity(domain: str, metadata: Any, arrays: tuple[tuple[str, NDArray[Any], str], ...]) -> str:
     """Hash framed canonical metadata and bounded little-endian C-order bytes."""
     digest = sha256()
 
