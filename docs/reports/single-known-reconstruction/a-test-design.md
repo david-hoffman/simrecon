@@ -1,12 +1,248 @@
 # SP113 A1 static test-design report
 
-**STATIC DRAFTS / CHECKS PENDING. No accepted checkpoint.** This is the distinct
+**STATIC CORRECTION DRAFTS / EXECUTION SUSPENDED. No accepted checkpoint.** This is the distinct
 A report, not the collaboration final message or a B verdict. The six new and two
 narrowly changed test/fixture files contain concrete drafts, with blocking omissions and qualification
 limits below. Continuation2 syntax/style results are recorded separately below;
 nothing here claims collection, type, test, numerical, platform, coverage or
 performance acceptance. C still requires both
 an accepted/frozen A/B test checkpoint and accepted/frozen parent116.
+
+## Continuation3 source-only corrections and current freeze
+
+This is the same blind A1, continuation3. The additional public packet
+`docs/packets/precision-113/a1-source-corrections-3.md` was read whole first and
+matched SHA256`445a1b8f9a13c06065daed750845bf6af8ea38516e70bd22519fb8160026582c`.
+Identity-only status matched HEAD`8a4631f783190be6c6f5c0e813d6a690510daf2f`,
+tree`e747adcd7b8c86cf4685574f62e1aa81ec4c0955`. The packet preserves the earlier
+reviewed snapshot`8ffd43b8c7f5151fb32435988284d794774b86c7`,
+tree`02245d3a1b400f059b32756a09ad0f4610758af9`, and original21hash identities;
+I did not read its history or any review. No accepted checkpoint exists.
+
+Root's absolute execution suspension is active. No Python/JS numeric proof,
+import, AST, Ruff, format, Pyright, pytest, dependency/point/cardinal call,
+bounded child, install/build, probe or measurement was executed in continuation3.
+Prior quality passes apply only to their historical bytes: **the current edited
+revision has not even received syntax/style checks**. No delegation/commit/push
+or support/helper/gate/configuration edit occurred. This section supersedes
+earlier present-tense claims about transport design and the specific gaps below;
+the historical attempts and earlier draft protocols remain preserved.
+
+Actual continuation3 reads were this whole new packet, selected already-public
+context source-free-channel paragraphs, selected already-public SP113 contract
+paragraphs, and named owned fixture/assembly/precision/boundary/report text.
+All13 unchanged original public inputs were hashed, without new content expansion.
+No links, external source, source introspection, reviewer/method/coordinator
+report, ledger, handoff or history was read. Two read commands misspelled the
+owned fixture as the nonexistent `tests/test_single_known_fixture.py`; rg/sed
+reported missing files and disclosed no bytes. One static hash command expanded
+an unavailable orchestration-store value to the nonexistent path `undefined`;
+sha256sum failed without bytes, then an explicit eight-name hash command replaced
+it. These are three new static command failures, not concealed successes or
+scope permissions. Typo-path read failures total three across continuations2/3.
+The earlier six patch misses, truncation,10 quality attempts including4 failures
+and all unmetered charges remain cumulative. No new patch miss or quality attempt
+occurred here. Actual served attribution, tokens, money and aggregate elapsed
+remain unknown, not zero.
+
+### A12: original direction/order, distinct from widening/range
+
+`test_original_direction_order_has_its_own_f64_rounding_control` declares tiny
+D2/O2,Z2,Y1,X2 literal DC bands: direction0 center2^60, E1=1/2; direction1
+center-2^60; other slots0. Input_scale is independently1/4. Public Y1 empty
+filter loops preserve the coefficients. Embedding/inverse DC and zero-carrier
+phase give exact terms2^60,1,-2^60; c64 represents every coefficient and local
+product exactly. Binary64's upward spacing at2^60 is256, so adding1 rounds to
+2^60, then the negative center gives0. Centers-first gives1. The source-authored
+Fraction/RN64 procedure asserts both independently before comparing the image.
+No libm point or nontrivial FFT bound is introduced.
+
+The real sum/reference is1, the required finite-procedure reference0. The
+declared f64 absolute rounding error is1; input/local-f32/DC-FFT/zero-phase/final
+rounding terms are0. The real-reference condition is2^61+1, whereas a condition
+using the finite zero residual is infinite. Max/RMS absolute error to the real
+reference is1, width0, signed extrema0, signal scale2^61+1. This is a sequence
+discriminator, not a changed accuracy tolerance. A5's existing factor2 widening
+and temporary finite-f64 range controls remain unchanged.
+
+### Shared settings/parameter truth: J, P2, B26 and all call dependents
+
+J separates `known_options`, `expected_settings`, `expected_parameters` and
+`assert_result_inputs`. Every successful single helper call now checks all15
+ordered settings, exact pair/key/value kinds, and original parameter conversion
+bytes. The default expected values are500,1.0,1.0,0.5,False,10.0,False,False,
+False,"none", then the supplied band dxy,dz,L,A and independently derived
+alpha=1/(A*Z*L^2*Y*X), with original exact integer dimensions. No returned scale,
+settings or parameter array supplies truth. Original parameter arrays are copied
+before the public reconstruction call, so subsequent mutation cannot redefine
+the expected conversion. Supported integer/floating components use exact integer
+or as_integer_ratio fractions and RN64; explicit zero conversion preserves
+floating signed zero. Source-width uint64 values are not first passed through
+binary64. The final expected storage is f64/c128.
+
+`identities` no longer accepts a result. It frames independently expected
+settings, original converted carriers/modulation and literal PROFILE. P2 retains
+source-width/signed-zero/provenance/source/parameter perturbations, and adds an
+explicit nondefault positive covering Wiener.75, suppression/radius-2, damping,
+omission flags, cosine taper, dxy.5/dz.25/L2/A2, signed-zero/nonzero carrier and
+complex modulation. Every option's expected setting follows its supplied value;
+other existing calls cover wavelength/optics variations. A result reporting
+Wiener1 for supplied.5 fails the ordinary call assertion even if it hashes its
+own wrong settings. The framed hash cannot make that self-consistency pass.
+
+Fresh affected B review includes **all** positive and negative helper-call
+dependents across boundary/filter/assembly/precision, all J serializer and
+precision-identity dependents, plus retained typing/facade/installed scope.
+Expected-parameter component conversion/as_integer_ratio/signed-zero handling
+is source-authored and remains unexecuted; no new empirical conversion theorem
+or acceptance is claimed.
+
+### P13: selected non-FFT allocation observers and unresolved reachability
+
+The new parametrized
+`test_nonfft_allocation_failure_at_reached_external_interfaces` has constructor
+and reconstruction entry cases. All q/v/bands/transfer/carriers/modulation,
+declaration/options dictionaries and original byte snapshots are built before
+fault injection. Tiny positive public calls occur before the context; inside
+the fault context only real `sr.declare_prepared_bands32` or
+`sr.reconstruct_known` is invoked. Convenience `call`/`declare` setup is excluded.
+The external NumPy family is array/empty/zeros/ones/full/copy and their listed
+empty_like/zeros_like/ones_like/full_like names. A reached callable records its
+actual name and raises one preconstructed original MemoryError. After restoring
+bindings, the test requires reconstruction-domain, exact original cause, unchanged
+input bytes and no returned partial record, followed by the same tiny positive.
+An escaped MemoryError or swallowed reached injection fails the actual boundary.
+
+This does not prescribe an allocation API. If no declared binding is reached,
+the test records the empty reachability result and explicitly skips as an
+**observer qualification gap**, never as passing failure evidence or scientific
+product-red. Such an outcome leaves S32.17/S33.3 open and blocks an allocation-
+coverage claim. Imported aliases, ndarray.copy/method paths, native/backend
+allocators and later operation/storage families remain outside this observer.
+An actual future D/execution path inventory must account for them and qualify
+which selected interfaces are reached. No alias was inspected and no universal
+monkeypatch claim is made. Future exact controlled tiny calls must record the
+entry/family actually reached, exact cause/domain, snapshots and restoration;
+no deliberate OOM, huge view or binding-selection requirement is introduced.
+
+### Direct-child transport revision and source-only qualification plan
+
+The earlier nested source-free-wrapper process-group protocol is superseded.
+`run_bounded_declaration_experiment` now launches only its own fixture directly
+with the current interpreter and-B, inheriting the entire root-rendered
+environment. It strips no source-free channels and uses no-I/-S/-E. The required
+precondition is that inherited sitecustomize warning/traceback/subprocess support
+and the selected dependency/backend path remain source-free and create **no
+descendants**. This condition is unqualified; direct-child code alone proves no
+such universal property. If it cannot be independently established, this
+protocol is not releasable and the precise outstanding requirement is existing
+execution-only support for a source-free, entirely owned/reapable child scope.
+No support-source edit or outside adoption scaffold is commissioned to A.
+
+For that single direct owned scope, cleanup is in finally for normal success,
+nonzero exit, EOF, registration/read/timeout/overflow/interruption/launch failure.
+It kills a still-running Popen-owned child and waits at most5s even after an
+already-exited leader, preserves original status, and closes selector/pipes.
+It never signals a process-group identifier after a leader is reaped. Decode,
+JSON/schema/frame/assertion validation occurs **after** direct-child cleanup,
+so those exits already have a reaped child. Cleanup exceptions propagate and
+cannot yield success; original status and bounded UTF-8-replacement diagnostic
+notes accompany transport/cleanup/validation failures. Strict UTF-8 is still
+required for accepted frames. Output/deadline budgets, exact frame assertions,
+post-import measured VmSize/RLIMIT_AS guard, hard/ceiling/headroom inequalities,
+ordinary tiny positive, genuine wide declaration and phase positive/rejection,
+MemoryError-chain rejection and original byte checks are retained.
+
+Remaining conditions include exceptional Popen-launch ownership/cleanup when no
+handle is returned, Popen signal/reap identity behavior and races, all ordinary
+source-free inherited diagnostic channels, bounded failure notes/close behavior,
+selected no-fork/no-detach dependencies and parent liveness through reap. This
+protocol supplies no descendant adoption/reap or abrupt-observer-loss guarantee.
+The public platform fact is PID1=sleep infinity without init/subreaper: **do not
+intentionally launch leader-exit/closed-pipe descendants or observer-abandonment
+qualification under inherited generic grants**. Such scenarios require root's
+concrete release of an independently frozen external ownership/adoption/reap
+scaffold or a qualified equally safe no-orphan protocol. No such scaffold was
+authored or executed by A.
+
+After suspension ends, root/coordinator must freeze exact safe payloads and
+ownership conditions first. Source-only inspection/simulated control-flow should
+cover every exit before any real direct-child qualification. Later authorized
+ordinary direct-child status0/nonzero/timeout/overflow/decode/frame cases must
+demonstrate bounded diagnostics and owned direct reaping without intentional
+orphans; full descendant/observer-loss claims remain held. Actual platform
+measurements, process state, supports and limits remain unobserved here.
+
+### A9 complete declared conditioning and dependent mapping
+
+At the ideal selected eighth turns let r=sqrt(2)/2. Axial values rotate
+1+i/2 through(-1/2+i),(-1-i/2),(1/2-i); signed phase rotations leave magnitudes
+of the two real-product terms equal to r and r/2. Opposing signs give numerator
+3r/2 divided by residual r/2, condition3; matching signs give1. Factor2 cancels
+from the ratio. At0/quarter-turn phases a single nonzero real term remains,
+condition1. No selected ideal A9 point is zero. The maximum declared condition3
+is now recorded alongside its existing separate f64/f32 terms. Other witnesses'
+exact-zero reference conditions remain infinite. No bound/tolerance changed.
+
+| Requirement | New/corrected keeper and dependent scope | Retained limit |
+| --- | --- | --- |
+| S25.2 | A12 original direction/order; A5 widening/range retained | Actual path audit still D; finite procedure differs honestly from real sum |
+| S32.17, S33.3 | P13 two direct public entries, real external interface hit/cause/snapshots/positive; P7 FFT retained | Empty hit list is unresolved observer scope; aliases/families remain D |
+| S34.5 | J full settings truth, B26/P2 and all positive call dependents | Shared conversion/settings code needs fresh B and later checks |
+| S35.4 | J/P2 original parameter/settings framed identity | No returned setting/parameter supplies expected truth; streaming remains D |
+| S36.6 | A9 declared maximum condition3; A12 real and finite-reference conditions | Existing source/binary/primitive/RNE qualifiers unchanged |
+| B23/B31 experiment safety | J direct-child all-exit cleanup and post-reap frame parser | No-descendant/inherited-channel/launch/race qualification held; no orphan experiment grant |
+
+G1–G5/G8 meanings and earlier positive cases remain. G6/G7 now include the P13
+declared allocation family and revised direct-scope plan; neither is actual-path
+or runtime qualification. All previous finite FFT/libm conditions, noncardinal6/20
+and outside-method primitive gaps remain. No new tolerance, physical threshold,
+RAM/speed claim or oracle framework is supplied. Fresh independent affected B
+must assess revised shared dependencies and retained scope; C still waits B and
+accepted116. Exact final artifact/input identities follow in the continuation3
+freeze section; report identity is returned separately.
+
+## Continuation3 exact artifact/input identities
+
+Only the fixture, assembly and precision Python drafts changed in continuation3;
+the other five Python files retain continuation2 bytes. These hashes were
+obtained with permitted static SHA256, not by importing/parsing/executing code.
+The report's final hash is returned separately.
+
+| Owned artifact | Continuation3 SHA256 |
+| --- | --- |
+| `tests/single_known_fixture.py` | `b3a1ae604da50b4f9b69fd155968da610927fe8c04e37b01de6c9df4d90eae16` |
+| `tests/test_single_known_boundary.py` | `89155fe4e69803b49be693261da0f84139d69f7f3ab95969a94d6089011e1186` |
+| `tests/test_single_known_filter.py` | `559c117fbf177288b4cebd9b8441a86d3508a2ed009dde95494b9422f65353b4` |
+| `tests/test_single_known_assembly.py` | `5e500ae20d7ff5ad55ed64489ba5be7b3ef8de7c6d488c8efeee41d70be06b61` |
+| `tests/test_single_known_precision.py` | `7fdac3a3e8a716bbdeafad827062b1945b571ad2ca6106d18586ec1c754fa7b7` |
+| `tests/test_single_known_typing.py` | `5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4` |
+| `tests/test_module_migration.py` | `a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804` |
+| `tests/test_installed_wheels.py` | `ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e` |
+
+All13 prior public inputs were rehashed unchanged in continuation3:
+
+| Public input | SHA256 |
+| --- | --- |
+| `AGENTS.md` | `56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd` |
+| `.agents/skills/test-work/SKILL.md` | `21491a3619a1d21027e17f0a8b1cc330ad377eb381d7aa996006a9152b710cf4` |
+| `docs/contracts/single-known-reconstruction-v1.md` | `2c2b8685e775a9fd8c814502f8f311f1618bd9eb67d282dd722523c68f6c0613` |
+| `docs/contracts/wide-allocation-domain-v1.md` | `d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb` |
+| `docs/contracts/c-equivalence-known-parameters-v1.md` | `3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c` |
+| `docs/contracts/c-equivalence-optical-transfer-v1.md` | `3214afc2766e7bb19bdb3eaf81356dac1ef17630995bb98282fa3d46f0237529` |
+| `docs/contracts/c-equivalence-preprocessing-v1.md` | `8e2a3afe2778d515b14f2e8ede5001042aa8a606b7ded23300f50f178f08ae91` |
+| `docs/packets/precision-113/public-context.md` | `016f70f1efd006ca27c0cb663a0deaefa77a61823c1a8271d034516e10373e36` |
+| `docs/packets/precision-113/a1-static.md` | `4d8d09dc4f295e623afe5ec94ea3841ffd0ab2a6512e9272ec56a164614ae30b` |
+| `docs/packets/precision-113/legacy-compatibility-public.md` | `7a4d0bc0a68a694e11408ec60945ec7f5339a0eb4587ed40c21f18529107919b` |
+| `docs/packets/precision-113/tiny-default-fft-method.md` | `3688bd74526f3435e3dce0e3dad832a8f7e3af132c7fd78f9ad210a70f3377ac` |
+| `docs/packets/precision-113/point-libm-method.md` | `6b8cde309a853bd3bb3fd1ac7233282303e5b814a046f20eb0e3688d95102695` |
+| `docs/packets/precision-113/point-source-clarification.md` | `c34941f68eaeec72304578fc62ab3f32de6bff66eed7b187f9b2223a13d237aa` |
+
+New whole public correction packet SHA256 is
+`445a1b8f9a13c06065daed750845bf6af8ea38516e70bd22519fb8160026582c`.
+Earlier addenda/quality-log input identities remain preserved below; none was
+changed or expanded in this continuation. These are source-only revision
+identities, not an accepted checkpoint or an execution grant.
 
 ## Continuation2: bounded syntax/style correction, scientific checks pending
 
@@ -752,11 +988,13 @@ assertion unless labeled J, controlled backend, implication or retained D.
 | A4/A5/A6 | `side_harmonic_reads_then_complex_product_and_positive_carrier_phase`, `widen_before_side_factor_two_and_accumulate_in_f64`, `zero_and_weak_signed_dc_have_no_energy_floor_or_clipping` | E/O or ramp sign, axial ramp, f32 contribution/accumulation, clipping/floor; full subpixel numerical phase remains an explicit gap. |
 | A7/A8/A9 | `default_cardinal_fft_nontrivial_signed_image_has_stage_separated_envelope`, `default_cardinal_fft_enlarged_positive_nyquist_has_its_own_envelope`, `default_cardinal_axial_mode_with_full_signed_noninteger_carrier_ramp` | Wrong default FFT sign/norm/embedding, mixed-precision arithmetic or complete ramp; frozen source-conditional references/envelopes fill the prior default/nonzero-ramp gap, without claiming actual dependency qualification. |
 | A10/A11 | `native_complex_filter_to_default_fft_and_carrier_is_one_public_composition`, `per_time_noise_reaches_each_public_dc_image_without_time_zero_reuse` | Correct diagnostics paired with wrong internal image spectrum, relocated self sample, or reused time0 image; independent full composite and per-time DC expectations close the stronger public-image gaps. |
+| A12 | `original_direction_order_has_its_own_f64_rounding_control` | Centers-first versus original direction/order gives1 versus0; exact DC terms distinguish accumulation order separately from A5 widening/range. |
 | P1/P2/P3 | `correlated_dc_exact_and_near_cancellation_with_preregistered_bound`, `profile_schema_and_independent_framed_identities`, `subnormal_complete_scale_may_round_finitely_to_zero` | Loose relative masks, missing identity bytes, weak-signal rejection; rational reference/bounds and byte perturbations are independent of candidate outputs. |
 | P4/P5/P6 | `consumed_scale_and_native_addition_overflow_reject_before_hidden_cancellation`, `ordered_power_product_and_recombination_intermediate_overflow`, `final_image_overflow_is_distinct_from_finite_f64_accumulation` | Later cancellation hides required nonfinite primitive or conversion; real tiny public data avoids manufactured internal states. |
 | P7/P8 | `backend_exception_cause_nonfinite_result_and_interruption_are_public`, `omitted_and_explicit_double_are_exact_same_environment_controls` | Cause loss/interruption swallowing or default migration; existing SciPy numerical interface and independent old-schema preparation control, no new production seam. |
 | P9/P10 | `legacy_acquisition_3d_and_true_2d_keep_double_records_options_and_errors`, `existing_full_and_summary_keep_exact_double_projection_and_retention` | Old-schema downcast/default/extended regression or compact projection/ownership loss; valid supplied legacy builders and exact public comparisons supplement single scientific oracles. |
 | P11/P12 | `complete_float64_scale_can_overflow_before_consumed_conversion`, `y1_embedding_still_checks_c64_harmonic_addition` | f64 scalar overflow mistaken for consumed conversion, or Y1 treated as a bypass of assembly finite checks; reachable inputs and finite neighbors retain stage distinctions. |
+| P13 | `nonfft_allocation_failure_at_reached_external_interfaces` | Constructor/reconstruction external allocation hit, original cause and unchanged inputs; an unobserved legitimate binding remains an explicit observer qualification gap. |
 | Y1/Y2/Y3 | `facade_defining_module_identity_and_exact_record_fields`, `exact_keyword_only_public_signatures_and_defaults`, `literal_public_caller_typechecks_with_actual_candidate` | Missing facade identity, annotation union regression, schema/signature drift; the exercised literal typed-public caller retains overload/dtype assertions while the harness itself can collect before new API presence. |
 | M1 | Existing `test_module_migration.py::test_root_facade_keeps_exact_supported_exports_and_names` | Exact41-name independent inventory, count, names and callability; preserves all38 old names and rejects duplicates/missing/unapproved names. Stronger inventory keeper replaces the new typing test's redundant subset check. |
 | I1 | Existing `test_installed_wheels.py::test_installed_product_and_devtools_are_independent` | Updated installed41-export success marker; all wheel/build/CLI/digest/isolation/contamination checks and invocations retained. Installed execution is separately held. |
@@ -847,7 +1085,7 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 | S24.1, S24.2 | A4/DC sign/axial control plus full A9 pointwise signed +/-1/8 ramp; G2/G3 actual applicability |
 | S24.3 | F18 native/relocated diagnostic discriminator plus full independent A10 nonunit filter/default-inverse/carrier image; G2/G3 actual source/binary applicability |
 | S24.4 | A9 complete selected-source and once-consumed-ramp/product proof; G3/D actual conversion/block paths |
-| S25.1, S25.2, S25.3 | A5/A6/P1/P6; D actual dtype path |
+| S25.1, S25.2, S25.3 | A5/A6/P1/P6 plus A12 independent f64 direction/order discriminator; D actual dtype path |
 | S26.1, S26.2 | A2/A3/A4/P7 controlled c64 interface, A7/A8/A9 actual-default value witnesses, B26 output storage; D/X actual default storage/path |
 | S26.3, S26.4, S26.5 | D execution/block/storage audit; G2/G6 unknown internals/workspace |
 | S27.1, S27.2 | A6/P3/P4/P5/P6 |
@@ -868,15 +1106,15 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 | S32.6.1, S32.6.2, S32.6.3, S32.7 | B25/B30 radius/underflow controls, F8/F24 damping, B26 coordinates and finite-coordinate/phase implications |
 | S32.8, S32.9, S32.10, S32.11, S32.12 | P4/P5/P11/P12 power/scalar/conversion/multiply/recombine/embed; positive-denominator implication and D actual checks |
 | S32.13, S32.14, S32.15, S32.16 | P7 FFT nonfinite; A5/P6 contribution/accumulation/final; phase bounds and impossible isolated f64 accumulator implication above; G3/D finite ramp |
-| S32.17 | P7 controlled MemoryError at the real transform fault boundary; G7/D independent buffer/constructor paths remain |
+| S32.17 | P7 controlled MemoryError at the transform boundary; P13 selected actual external constructor/reconstruction interface hit controls; G7/D unobserved bindings and remaining families |
 | S32.18, S32.19, S32.20 | P7/F11 and shared `rejected` observer; G7 actual allocation cause |
-| S33.1, S33.2, S33.3 | B1/B12/B19/B26/F11/F12/P4/P6/P7; G7 allocation-failure no-mutation |
-| S34.1, S34.2, S34.3, S34.4, S34.5, S34.6, S34.7 | B26/Y1/Y3; F9 order-specific metadata |
-| S35.1, S35.2, S35.3, S35.4 | P2/J exact approved suffixes and framed identities; D backend attribution/streaming truth, G6 |
+| S33.1, S33.2, S33.3 | B1/B12/B19/B26/F11/F12/P4/P6/P7/P13 direct allocation hit/cause/snapshots; G7 remaining allocation-family no-mutation |
+| S34.1, S34.2, S34.3, S34.4, S34.5, S34.6, S34.7 | B26/Y1/Y3; J full independent setting values/kinds for all call dependents; F9 order-specific metadata |
+| S35.1, S35.2, S35.3, S35.4 | P2/J approved suffixes and original-input settings/parameter framed identities; D backend attribution/streaming truth, G6 |
 | S35.5 | X/D later failure-report protocol; no fabricated failure precision record |
 | S36.1, S36.2, S36.3, S36.4 | J/F3/F4/F13/F19/F20/F21/F22/P1/P3/A7/A8/A9/A10 exact/direct and source-box references; G3 actual applicability/precise outside-method points |
 | S36.5 | P1/A1/A5/A6 DC, A7/A8 d-level default and A9 exact-intermediate cardinal proofs; G2 actual applicability and noncardinal image gap |
-| S36.6, S36.7, S36.8 | P1/F19/A7/A8/A9/A10 stage-separated signed metrics/bin margins; F2/F6/F9/F21/F22/F23 discrete cases; G2/G3 actual applicability |
+| S36.6, S36.7, S36.8 | P1/F19/A7/A8/A9/A10/A12 stage-separated signed metrics/bin margins, A9 declared condition3 and A12 finite-versus-real rounding; F2/F6/F9/F21/F22/F23 discrete cases; G2/G3 actual applicability |
 | S37.1 | M1 exact41-name checkout inventory/name/callability, I1 installed41 marker, Y1 canonical defining identity/retired attribute absence; installed evidence held |
 | S37.2 | Y3 literal exercised typed old/new/literal/runtime-selection calls, P9 runtime acquisition compatibility |
 | S38.1, S38.2, S38.3, S38.4, S38.5 | X/D coordinator-owned exclusive matched-process protocol, unexecuted; no A performance claim |
@@ -1005,7 +1243,7 @@ distinct eligible-other-sample ordering. Original unbounded integer real declara
 2^2048 additionally reject through public domain errors before f64 conversion;
 this protects against accidental OverflowError escape.
 
-## Bounded declaration protocol and experiment dependencies
+## Historical continuation1 bounded protocol (superseded by continuation3)
 
 The original unbounded wide draft is preserved at unverified0e06d28 and was
 never executed. The safety addendum changes the experiment, not the public

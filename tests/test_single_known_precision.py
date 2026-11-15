@@ -24,6 +24,7 @@ from .single_known_fixture import (
     call,
     declare,
     identities,
+    known_options,
     legacy_acquisition,
     legacy_known_options,
     legacy_raw,
@@ -108,7 +109,7 @@ def test_profile_schema_and_independent_framed_identities() -> None:
             assert actual[key]
     assert actual["scipy_version"] == scipy.__version__
     assert actual["numpy_version"] == np.__version__
-    for key, expected in identities(bands, otf, result).items():
+    for key, expected in identities(bands, otf).items():
         assert actual[key] == expected
         assert len(expected) == 64 and set(expected) <= set("0123456789abcdef")
     q_positive = np.array(q, copy=True)
@@ -130,6 +131,89 @@ def test_profile_schema_and_independent_framed_identities() -> None:
         dict(changed_parameter.precision_provenance)["parameters_sha256"]
         != actual["parameters_sha256"]
     )
+    explicit_bands = declare(q, v, dxy_um=0.5, dz_um=0.25, lateral_zoom=2, axial_zoom=2)
+    explicit_changes: dict[str, Any] = {
+        "wiener": 0.75, "suppress_singularities": True, "suppression_radius_bins": -2.0,
+        "dampen_order0": True, "omit_order0": True, "omit_kz0": True,
+        "output_taper": "cosine", "carriers_cyc_um": np.array([[-0.0, 0.125]]),
+        "modulation": np.array([[-0.5 + 0.25j]]),
+    }
+    explicit = call(explicit_bands, otf, **explicit_changes)
+    explicit_truth = identities(explicit_bands, otf, known_options(explicit_bands, **explicit_changes))
+    assert dict(explicit.precision_provenance)["parameters_sha256"] == explicit_truth["parameters_sha256"]
+    assert explicit_truth["parameters_sha256"] != actual["parameters_sha256"]
+
+
+@pytest.mark.parametrize("entry_kind", ["constructor", "reconstruction"])
+def test_nonfft_allocation_failure_at_reached_external_interfaces(
+    entry_kind: str, monkeypatch: pytest.MonkeyPatch, record_property: Any,
+) -> None:
+    # All convenience setup, transfer and parameter allocations precede injection.
+    q, v = arrays(y=1, x=2)
+    bands = declare(q, v)
+    otf = transfer()
+    options = known_options(bands)
+    declaration = dict(
+        input_shape=(1, 1, 3, 2, 1, 2), dxy_um=1.0, dz_um=1.0,
+        lateral_zoom=1, axial_zoom=1,
+        provenance=(("formula", "literal zero DC allocation control"),),
+    )
+    originals = (q, v, bands.quadratures, bands.noise_variance_factors, otf.samples,
+        options["carriers_cyc_um"], options["modulation"])
+    before = snapshot(*originals)
+
+    def entry() -> Any:
+        if entry_kind == "constructor":
+            return sr.declare_prepared_bands32(q, v, **declaration)
+        return sr.reconstruct_known(bands, otf, **options)
+
+    positive = entry()
+    if entry_kind == "constructor":
+        assert type(positive) is sr.PreparedBands32
+    else:
+        assert type(positive) is sr.KnownReconstruction32 and np.all(positive.image == 0)
+    assert snapshot(*originals) == before
+    failure = MemoryError(f"SP113 controlled non-FFT {entry_kind} allocation")
+    reached: list[str] = []
+    interfaces = (
+        "array", "empty", "zeros", "ones", "full", "copy",
+        "empty_like", "zeros_like", "ones_like", "full_like",
+    )
+
+    def fail_at(name: str) -> Any:
+        def fail(*args: Any, **kwargs: Any) -> Any:
+            reached.append(name)
+            raise failure
+        return fail
+
+    caught: sr.ReconstructionError | None = None
+    escaped: MemoryError | None = None
+    with monkeypatch.context() as context:
+        for name in interfaces:
+            context.setattr(np, name, fail_at(name))
+        try:
+            entry()  # Invoke only the actual public entry inside the fault context.
+        except sr.ReconstructionError as error:
+            caught = error
+        except MemoryError as error:
+            escaped = error
+    assert snapshot(*originals) == before
+    record_property(f"sp113_{entry_kind}_allocation_interfaces", {
+        "declared_interfaces": interfaces, "reached": tuple(reached),
+        "qualification": "existing external NumPy names only; imported aliases and other allocators unqualified",
+    })
+    if not reached:
+        pytest.skip("observer qualification gap: product did not reach a declared allocation binding")
+    assert escaped is None, "reached product allocation escaped without ReconstructionError wrapping"
+    assert caught is not None, "reached allocation failure returned or was silently swallowed"
+    assert caught.code == "reconstruction-domain" and str(caught)
+    assert caught.__cause__ is failure
+    # No returned partial result is used. The identical tiny call still succeeds.
+    restored = entry()
+    assert type(restored) is type(positive)
+    if entry_kind == "reconstruction":
+        assert np.all(restored.image == 0)
+    assert snapshot(*originals) == before
 
 
 def test_subnormal_complete_scale_may_round_finitely_to_zero() -> None:

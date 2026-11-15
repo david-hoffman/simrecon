@@ -210,6 +210,34 @@ def test_side_harmonic_reads_then_complex_product_and_positive_carrier_phase() -
     assert np.any(result.image < 0) and np.any(result.image > 0)
 
 
+def test_original_direction_order_has_its_own_f64_rounding_control(record_property: Any) -> None:
+    q, v = arrays(d=2, y=1, x=2)
+    q[0, 0, 0, 0, 0, 0] = 2**60
+    q[0, 0, 1, 0, 0, 0] = 0.5
+    q[0, 1, 0, 0, 0, 0] = -(2**60)
+    # Empty Y1 filter loops preserve these exact c64 DC coefficients. The
+    # original direction/order terms are2^60,1,-2^60, with exact DC/zero phase.
+    terms = (Fraction(2**60), Fraction(1), Fraction(-(2**60)))
+    finite = Fraction(0)
+    for term in terms:
+        finite = rn64(finite + term)
+    real_sum = sum(terms, Fraction(0))
+    centers_first = rn64(rn64(terms[0] + terms[2]) + terms[1])
+    assert finite == 0 and centers_first == real_sum == 1
+    result = call(declare(q, v))
+    assert np.all(result.image == float(finite))
+    record_property("sp113_direction_order", {
+        "real_reference": "1", "finite_f64_reference": "0", "reference_width": "0",
+        "input_representation_error": "0", "fft_error": "0 (exact DC)",
+        "phase_error": "0 (zero carrier)", "local_f32_error": "0",
+        "f64_accumulation_absolute_error": "1", "final_f32_error": "0",
+        "real_reference_condition": str(2**61 + 1),
+        "finite_zero_reference_condition": "infinite",
+        "max_absolute_error": "1", "rms_error": "1",
+        "signal_scale": str(2**61 + 1), "signed_minimum": "0", "signed_maximum": "0",
+    })
+
+
 def test_widen_before_side_factor_two_and_accumulate_in_f64() -> None:
     maximum = np.finfo(np.float32).max
     q, v = arrays(y=1, x=2)
@@ -528,6 +556,7 @@ def test_default_cardinal_axial_mode_with_full_signed_noninteger_carrier_ramp(
                 "signed_maximum": str(max(actual.values())),
                 "signal_scale": "3",
                 "far_error_over_signal_scale": str(max(far) / 3),
+                "maximum_cancellation_condition": "3",
                 "qualification": (
                     "conditional; actual FFT/cexp/sincos source/binary/RNE "
                     "correspondence remains separate"

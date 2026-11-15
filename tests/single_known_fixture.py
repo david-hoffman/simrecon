@@ -183,11 +183,8 @@ def transfer(
     return result
 
 
-def call(bands: Any = None, otf: Any = None, **changes: Any) -> Any:
-    if bands is None:
-        bands = declare()
-    if otf is None:
-        otf = transfer(orders=bands.noise_variance_factors.shape[-1])
+def known_options(bands: Any, **changes: Any) -> dict[str, Any]:
+    """Build original public call inputs before invoking the candidate."""
     directions = bands.input_shape[1]
     orders = bands.noise_variance_factors.shape[-1]
     options: dict[str, Any] = {
@@ -202,7 +199,90 @@ def call(bands: Any = None, otf: Any = None, **changes: Any) -> Any:
         "precision": PROFILE,
     }
     options.update(changes)
-    return sr.reconstruct_known(bands, otf, **options)
+    return options
+
+
+def expected_settings(bands: Any, options: dict[str, Any]) -> tuple[tuple[str, Any], ...]:
+    """Derive all ordered setting values from the supplied band/call inputs."""
+    _, _, _, z, y, x = bands.input_shape
+    alpha = Fraction(1, bands.axial_zoom * z * bands.lateral_zoom**2 * y * x)
+    values = (
+        int(options["wavelength_nm"]), float(options["numerical_aperture"]),
+        float(options["immersion_index"]), float(options["wiener"]),
+        bool(options["suppress_singularities"]),
+        float(options.get("suppression_radius_bins", 10.0)),
+        bool(options.get("dampen_order0", False)), bool(options.get("omit_order0", False)),
+        bool(options.get("omit_kz0", False)), str(options["output_taper"]),
+        float(bands.dxy_um), float(bands.dz_um), int(bands.lateral_zoom),
+        int(bands.axial_zoom), float(alpha),
+    )
+    return tuple(zip(SETTING_KEYS, values, strict=True))
+
+
+def expected_parameters(
+    bands: Any, options: dict[str, Any],
+) -> tuple[NDArray[np.float64], NDArray[np.complex128]]:
+    """Convert original supported components independently with rational RN64."""
+    directions = bands.input_shape[1]
+    orders = bands.noise_variance_factors.shape[-1]
+    carrier = np.asanyarray(options["carriers_cyc_um"])
+    modulation = np.asanyarray(options["modulation"])
+    assert carrier.shape == (directions, 2) and carrier.dtype.kind in "iuf"
+    assert modulation.shape == (directions, orders - 1) and modulation.dtype.kind in "iufc"
+    assert carrier.dtype.itemsize in (1, 2, 4, 8)
+    assert modulation.dtype.itemsize in (1, 2, 4, 8, 16)
+
+    def component(value: Any) -> float:
+        if value == 0:
+            return float(value)  # Preserve floating signed zero.
+        if isinstance(value, np.integer | int):
+            exact = Fraction(int(value))
+        else:
+            numerator, denominator = value.as_integer_ratio()
+            exact = Fraction(numerator, denominator)
+        return float(rn64(exact))
+
+    expected_carrier = np.empty(carrier.shape, dtype=np.float64)
+    expected_modulation = np.empty(modulation.shape, dtype=np.complex128)
+    for index in np.ndindex(carrier.shape):
+        expected_carrier[index] = component(carrier[index])
+    for index in np.ndindex(modulation.shape):
+        value = modulation[index]
+        expected_modulation[index] = complex(component(value.real), component(value.imag))
+    return expected_carrier, expected_modulation
+
+
+def assert_result_inputs(bands: Any, result: Any, options: dict[str, Any]) -> None:
+    """Check reported settings and converted parameters against original truth."""
+    settings = expected_settings(bands, options)
+    assert type(result.resolved_settings) is tuple and result.resolved_settings == settings
+    assert all(type(pair) is tuple for pair in result.resolved_settings)
+    assert all(
+        type(key) is str and type(value) is type(expected)
+        for (key, value), (_, expected) in zip(result.resolved_settings, settings, strict=True)
+    )
+    carrier, modulation = expected_parameters(bands, options)
+    assert result.carriers_cyc_um.dtype == carrier.dtype
+    assert result.modulation.dtype == modulation.dtype
+    assert result.carriers_cyc_um.shape == carrier.shape
+    assert result.modulation.shape == modulation.shape
+    assert result.carriers_cyc_um.tobytes() == carrier.tobytes()
+    assert result.modulation.tobytes() == modulation.tobytes()
+
+
+def call(bands: Any = None, otf: Any = None, **changes: Any) -> Any:
+    if bands is None:
+        bands = declare()
+    if otf is None:
+        otf = transfer(orders=bands.noise_variance_factors.shape[-1])
+    options = known_options(bands, **changes)
+    truth = dict(options)
+    for name in ("carriers_cyc_um", "modulation"):
+        if isinstance(options[name], np.ndarray):
+            truth[name] = np.array(options[name], copy=True, order="C", subok=False)
+    result = sr.reconstruct_known(bands, otf, **options)
+    assert_result_inputs(bands, result, truth)
+    return result
 
 
 def owned(value: NDArray[Any]) -> NDArray[Any]:
@@ -337,7 +417,10 @@ def framed_identity(
     return digest.hexdigest()
 
 
-def identities(bands: Any, otf: Any, result: Any) -> dict[str, str]:
+def identities(bands: Any, otf: Any, options: dict[str, Any] | None = None) -> dict[str, str]:
+    if options is None:
+        options = known_options(bands)
+    carrier, modulation = expected_parameters(bands, options)
     band_metadata = {
         field.name: getattr(bands, field.name)
         for field in fields(bands)
@@ -373,12 +456,12 @@ def identities(bands: Any, otf: Any, result: Any) -> dict[str, str]:
         "parameters_sha256": framed_identity(
             "parameters",
             {
-                "resolved_settings": result.resolved_settings,
+                "resolved_settings": expected_settings(bands, options),
                 "precision": PROFILE,
             },
             [
-                ("carriers_cyc_um", result.carriers_cyc_um, "<f8"),
-                ("modulation", result.modulation, "<c16"),
+                ("carriers_cyc_um", carrier, "<f8"),
+                ("modulation", modulation, "<c16"),
             ],
         ),
     }
@@ -963,18 +1046,18 @@ def bounded_declaration_child(case: str) -> None:
 
 
 def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
-    """One named child, capped output/deadline and owned process-group cleanup.
+    """Own one direct child with bounded I/O and cleanup on every exit.
 
-    The source-free wrapper and inherited descendants' diagnostic/process-group
-    behavior require explicit root qualification before this protocol executes.
+    Source-only design: release requires inherited source-free warning/traceback/
+    subprocess channels and no descendant creation to be independently qualified.
+    No nested wrapper is launched here. Detached or ordinary descendants and
+    abrupt observer loss remain unsupported; this is not a subreaper scaffold.
     """
     import os
     import selectors
-    import signal
     import subprocess
     import sys
     import time
-    from contextlib import suppress
     from pathlib import Path
 
     root = Path(__file__).resolve().parents[1]
@@ -982,8 +1065,7 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
         raise RuntimeError("unknown bounded declaration case")
     command = [
         sys.executable,
-        str(root / "scripts/source_free_check.py"),
-        "python",
+        "-B",
         str(Path(__file__).resolve()),
         "bounded-declarations",
         case,
@@ -992,36 +1074,43 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
     buffers = {"stdout": bytearray(), "stderr": bytearray()}
     if not __debug__:
         raise RuntimeError("bounded declaration experiment requires active assertions")
-    process = subprocess.Popen(
-        command,
-        cwd=root,
-        stdin=subprocess.DEVNULL,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        start_new_session=True,
-    )
-    deadline = time.monotonic() + timeout
+    # Inherit the entire root-rendered environment, including diagnostic support.
+    # No -I/-S/-E, env stripping, new wrapper or production support seam is used.
+    process: subprocess.Popen[bytes] | None = None
     status: int | None = None
-    stopped = False
 
-    def stop() -> None:
-        nonlocal stopped
-        if stopped:
-            return
-        stopped = True
-        with suppress(ProcessLookupError):
-            os.killpg(process.pid, signal.SIGKILL)
-        process.wait(timeout=5)
+    def diagnostic_note() -> str:
+        return json.dumps({
+            "case": case, "original_status": status,
+            "stdout": bytes(buffers["stdout"]).decode("utf-8", errors="replace"),
+            "stderr": bytes(buffers["stderr"]).decode("utf-8", errors="replace"),
+        }, sort_keys=True)
+
+    def close_direct_child() -> None:
+        if process is None:
+            return  # Popen launch failure supplied no owned process handle.
+        # Always execute this cleanup, even after normal/nonzero leader exit.
+        # Signal only this Popen-owned child; never a recycled process-group ID.
+        # Under the required no-descendant condition, this is the whole scope.
+        if process.poll() is None:
+            process.kill()
+        cleanup_status = process.wait(timeout=5)
+        if status is not None and cleanup_status != status:
+            raise RuntimeError("bounded declaration experiment changed child status during cleanup")
 
     selector = selectors.DefaultSelector()
     try:
+        process = subprocess.Popen(
+            command, cwd=root, stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True,
+        )
+        deadline = time.monotonic() + timeout
         assert process.stdout is not None and process.stderr is not None
         selector.register(process.stdout, selectors.EVENT_READ, "stdout")
         selector.register(process.stderr, selectors.EVENT_READ, "stderr")
         while selector.get_map():
             remaining = deadline - time.monotonic()
             if remaining <= 0:
-                stop()
                 raise AssertionError(
                     "bounded declaration experiment timed out; no product assertion accepted"
                 )
@@ -1032,7 +1121,6 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
                     continue
                 channel = str(key.data)
                 if len(buffers[channel]) + len(chunk) > budget:
-                    stop()
                     raise AssertionError(
                         "bounded declaration experiment diagnostic budget exceeded; "
                         "no assertion accepted"
@@ -1040,26 +1128,46 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
                 buffers[channel].extend(chunk)
         remaining = deadline - time.monotonic()
         if remaining <= 0:
-            stop()
             raise AssertionError("bounded declaration experiment exit timed out")
         try:
             status = process.wait(timeout=remaining)
         except subprocess.TimeoutExpired:
-            stop()
             raise AssertionError("bounded declaration experiment exit timed out") from None
+    except BaseException as error:
+        error.add_note(diagnostic_note())
+        raise
     finally:
-        selector.close()
         try:
-            if process.poll() is None:
-                stop()
+            selector.close()
         finally:
-            if process.stdout is not None:
-                process.stdout.close()
-            if process.stderr is not None:
-                process.stderr.close()
-    stdout = bytes(buffers["stdout"]).decode("utf-8")
-    stderr = bytes(buffers["stderr"]).decode("utf-8")
-    assert status == 0, f"bounded wide child status={status}: {stdout}{stderr}"
+            try:
+                try:
+                    close_direct_child()
+                except BaseException as cleanup_error:
+                    cleanup_error.add_note(diagnostic_note())
+                    raise
+            finally:
+                if process is not None:
+                    if process.stdout is not None:
+                        process.stdout.close()
+                    if process.stderr is not None:
+                        process.stderr.close()
+    try:
+        return decode_declaration_result(
+            case, status, bytes(buffers["stdout"]), bytes(buffers["stderr"]),
+        )
+    except BaseException as error:
+        error.add_note(diagnostic_note())
+        raise
+
+
+def decode_declaration_result(
+    case: str, status: int | None, stdout_bytes: bytes, stderr_bytes: bytes,
+) -> tuple[dict[str, Any], str]:
+    """Validate bounded child evidence only after the owned direct child is reaped."""
+    stdout = stdout_bytes.decode("utf-8")
+    stderr = stderr_bytes.decode("utf-8")
+    assert status == 0, f"bounded {case} child status={status}: {stdout}{stderr}"
     lines = stdout.splitlines()
     frames = [line for line in lines if line.startswith("SP113_DECLARATION_RESULT ")]
     assert len(frames) == 1 and [line for line in lines if line][-1] == frames[0]
