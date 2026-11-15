@@ -1,6 +1,6 @@
 # SP113 A1 static test-design report
 
-**STATIC DRAFTS / SCIENTIFIC CHECKS PENDING. No accepted checkpoint.** This is the distinct
+**STATIC CORRECTION DRAFTS / EXECUTION SUSPENDED. No accepted checkpoint.** This is the distinct
 A report, not the collaboration final message or a B verdict. The six new and two
 narrowly changed test/fixture files contain concrete drafts, with blocking omissions and qualification
 limits below. Continuation2/4/5 syntax/style results are recorded separately below;
@@ -8,7 +8,166 @@ nothing here claims collection, type, test, numerical, platform, coverage or
 performance acceptance. C still requires both
 an accepted/frozen A/B test checkpoint and accepted/frozen parent116.
 
-## Continuation5 taper/count correction, quality freeze and stage routing
+## Continuation6 retained direction/order count: source-only freeze
+
+Same blind A1, continuation6. The actual whole new public packet was read first:
+`docs/packets/precision-113/a1-correction-continuation-6.md`, SHA256
+`fbf51defe1602b7d0e215fc08944ae8f992d283143271919616af43c28a58476`.
+The prior complete eight-file63bc05e checkpoint and all prior attempts are
+preserved by the coordinator; no history or other-role report was read. Static
+identity-only Git observed HEAD`a3df9edc71e692f202a4960160c8efd274692d9a`,
+tree`2546cbbd89e12c7d0de5f37f07b5cccfd9a94b95`. The new permitted packet was
+listed untracked; A did not edit it.
+
+Root then suspended execution for preparation of the116 exclusive retry. A
+immediately ACKed: **no active process and no A6 AST/Ruff/style/import/test/probe/
+numeric/child/API/view execution had occurred**. Only permitted static text/hash
+work continued. No quality attempt was launched before or after suspension.
+The current revision is therefore source-only and unverified even by AST/style;
+earlier quality passes apply to their recorded historical hashes, not these new
+fixture bytes. No delegation/commit/push or support/runtime/helper/gate edit
+occurred. Checks may resume only on root's explicit end-window release and exact
+coordinator routing; the standing early grant is currently inactive.
+
+### B23 constructor and canonical consumer D*O keeper
+
+The existing capped `wide` child case now separately authors both public
+boundaries for T1,D2^30,P3,Z2,Y1,X2,Q3,O2,L1,A1. Every individual positive count
+fits I=2^31-1; Q*P=9, native/output spatial volume4 and half-volume4 fit. The
+retained D*O is2^31=I+1. Logical q shape(1,D,3,2,1,2) has96*D=3*2^35 c64 bytes;
+noise shape(1,D,2) has16*D=2^34 f64 bytes. Each, and their sum, fits native
+M=2^63-1. No signed32 byte admission or absent preparation/frame count is needed.
+The independently consistent alpha is RN64(1/(4*D))=2^-32, exact binary64.
+
+For fixed O2 the greatest arithmetic-admitted D is floor(I/2)=2^30-1, giving
+D*O=I-1; the next structurally reachable product is I+1. Exact I is odd and
+unreachable for O2. This nearest-neighbor arithmetic is asserted independently;
+there is no giant admitted public operation. Genuine tiny D1 and D2 zero-data
+positives remain inside the cap, with alpha1/4 and1/8 respectively. The original
+literal DC/order witnesses and all numerical bounds remain unchanged.
+
+The constructor receives matching ordinary read-only zero-stride q/v views and
+the original exact input_shape, valid sampling/zoom/provenance. Constructor
+strided-input acceptance is public; geometry must reject before copying. The
+consumer record is independently forged from canonical fields, replacing the
+matching q/v views, input_shape/D, L=A1 and alpha2^-32. Valid transfer and scalar
+options are supplied. Carriers(D,2) and modulation(D,1) are also physically backed
+zero-stride views with matching shapes and finite values, so later parameter
+shape/conversion cannot substitute for phase2's retained count. Convenience
+known_options/call is **not** invoked with logical-wide D: options are copied
+from the existing tiny dictionary and only those two views are substituted.
+
+Consumer phase2 checks complete matching kinds/shapes/dtypes, then metadata
+domains/geometry/representation, before ownership/layout, finiteness or positive
+noise. The forged q/v are non-owning views on purpose: the required count error
+must precede that later flag rejection. Both boundaries require the existing
+reconstruction-domain code and geometry/count/representation/direction/signed
+diagnostics (or D*O wording), not a new exact error label. The generic word
+"order" alone is excluded so a later "C order" layout error cannot satisfy the
+observer. Bare or retained MemoryError, missing rejection, cap/timeout/child
+failure or wrong-stage diagnostics fail qualification. No OOM is intended.
+
+### Exact physical backing/address proof and bounded work
+
+Only ordinary `np.broadcast_to` views are authored; no as_strided, unbacked view,
+giant allocation or giant logical snapshot/hash/copy/scan is requested. All view
+creation and hazardous public boundaries occur after the existing measured
+post-import AS installation, hard/headroom checks and tiny ordinary control.
+The q/v/carrier/modulation physical backings total144 bytes (96+16+16+16),
+independently of logical D. Their existing transfer backing remains tiny too.
+Runtime metadata assertions, not logical element iteration, establish:
+
+| View | Non-singleton byte strides | Greatest addressed byte exclusive | Actual backing bytes |
+| --- | --- | --- | --- |
+| q:(1,D,3,2,1,2), c64 | D:0, Q:32, Z:16, Xh:8 | 2*32+1*16+1*8+8=96 | 96 |
+| noise:(1,D,2), f64 | D:0, O:8 | 1*8+8=16 | 16 |
+| carrier:(D,2), f64 | D:0, component:8 | 1*8+8=16 | 16 |
+| modulation:(D,1), c128 | D:0; other axis singleton | 0+16=16 | 16 |
+
+Each view must be an ordinary ndarray, read-only/non-owning; backing must own
+contiguous real storage. View/base start addresses must agree, all byte strides
+must be nonnegative, and sum((shape_i-1)*stride_i)+itemsize must not exceed the
+actual backing nbytes. Thus minimum offset is0 and every legal index, including
+the final logical direction, lies inside actual storage. Singleton-axis strides
+do not contribute. These are source-authored checks/proofs, **not observations**;
+no view was actually constructed by A.
+
+Snapshots cover only tiny actual backings, never q_view/v_view or large parameter
+views. Four fixed-size metadata records preserve view and backing shape/stride/
+dtype/flags/start address. All public non-array record fields and q/v field
+identities must remain unchanged after each boundary. Work authored outside
+the product is fixed-rank/count metadata processing; no loop ranges over D or
+over logical storage. A defective product copy should encounter the cap; a
+defective logical scan can time out. Neither outcome is the intended count pass.
+
+Generic stage messages cannot prove that the actual implementation evaluated
+exactly D*O rather than some incorrect overlapping aggregate expression. Nor do
+these controls prove every actual alias/admission path or the absence of later
+ownership/finiteness scans. Those precise actual-path facts remain D/post-C
+audit obligations. The independent nearest arithmetic, valid metadata and tiny
+positives make the public guard obligation concrete without forcing punctuation
+or a new product seam.
+
+### Changed scopes, stages and exact identities
+
+Only `bounded_declaration_child` gained executable drafts; the boundary file
+adds explanatory B23 comments. The current wide-geometry frame assertion includes
+the retained D*O boundaries as well as the prior volume and Wiener obligations.
+The launcher/decoder function regions remain byte-identical, with the same
+static range convention documented under continuation5:
+
+```text
+run_bounded_declaration_experiment
+a6dfd9c7351e03f254e8158d95251339e4ab68979855814d7d7698231c9dd743
+decode_declaration_result
+6d58347d9b55e33fb4e562da1f8679f8958e694fc7193cb264e0ab48e16b2b9c
+```
+
+This preserves only those exact function scopes for separate qualification; it
+does not qualify changed child assertions, view capability or actual product
+behavior. Fresh affected B must inspect S09.8, constructor-before-copy and
+consumer geometry-before-flags phases, tiny backing/address proofs, no-wide-
+snapshot discipline and dependent frame/report scope. Existing S09.7/S09.31,
+S31 validation ordering and S33 immutability keepers remain. All prior taper,
+settings/identity, arithmetic, library, typing and facade scope is retained.
+
+Pre-C still needs valid executable independent fixtures, justified frozen pure
+certificates/branch/bin/complete-witness enclosures and actual safe harness/tool/
+transport capability. In particular NumPy metadata-view construction/readonly/
+backing behavior and post-import guard/deadline/diagnostic support need explicit
+later safe qualification under the capped ownership route; absent new API cannot
+excuse a genuine fixture/tool defect. No such execution grant or result is
+supplied here. Actual new constructor/consumer count phase, allocator/storage/
+alias/scan behavior and resulting-runtime scientific/type/resource outcomes
+belong to C/fullgate/nonblind evidence/fresh D, not to an invented pre-C API.
+The direct-child no-descendant/source-free/launch/reap conditions and no-orphan/
+abrupt-loss restrictions remain unchanged. Actual116 plus B gate PhaseP; final
+actual120 integration needs separate frozen-material/affected-B renewal.
+
+| Owned Python artifact | Continuation6 SHA256 (source-only, no quality checks) |
+| --- | --- |
+| `tests/single_known_fixture.py` | `6b474c0a9f2e2cb3f08113d8f3b9f5ff2ff0a363ccb2cefb5eec05059d8f3a51` |
+| `tests/test_single_known_boundary.py` | `4d87f905bddd29845dbaab9635c4ad01e982554d567a4beeeb93c3de0b986645` |
+| `tests/test_single_known_filter.py` | `559c117fbf177288b4cebd9b8441a86d3508a2ed009dde95494b9422f65353b4` |
+| `tests/test_single_known_assembly.py` | `cfd137f58fbc65237c70ee26870316d6ab255724716060bd270dec55d6aad0e4` |
+| `tests/test_single_known_precision.py` | `39be3cb37e40a8864cab451b0878ea8c0687d3ea94b2903ca90355a2a1e4beed` |
+| `tests/test_single_known_typing.py` | `5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4` |
+| `tests/test_module_migration.py` | `a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804` |
+| `tests/test_installed_wheels.py` | `ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e` |
+
+Actual A6 commands were permitted whole-packet/selected own text reads, static
+SHA256/function-region hashes, identity/status-only Git and named text patches.
+No other public source was expanded; prior13 input identities and earlier
+routing/method bytes remain unchanged and are rehashed at the static freeze.
+No excluded source/report/history/link was read. No new path typo, truncation,
+failed patch or quality attempt occurred. Counts remain21 quality attempts/7
+failures, with six earlier patch misses, prior truncations/three fixture typos/
+undefined hash failure and all unknown cumulative meters preserved. Current
+syntax/style and all actual logical-wide/API/process behavior remain pending.
+The report hash is returned separately. No accepted checkpoint or C authority
+is claimed; fresh affected independent B is still required.
+
+## Historical continuation5 taper/count correction, quality freeze and stage routing
 
 Same blind A1, continuation5; no replacement, delegation, commit or acceptance.
 The actual whole public packet was read first:
@@ -1284,7 +1443,7 @@ assertion unless labeled J, controlled backend, implication or retained D.
 | B29/B30/B31 | `adjacent_band_metadata_and_structure_value_precedence`, `reachable_source_asin_upper_endpoint_and_positive_taper_radius_neighbor`, `qp_limit_remains_but_absent_preparation_frame_count_does_not_apply` | Wrong subphase/field order, invented endpoint/tiny-positive rejection, or absent preparation count applied to the new declaration; adjacent controls, rational products and guarded real public positives fill those distinct gaps. |
 | B20 | `transfer_record_validation_and_unused_orders` | Invalid unused source accepted, too few orders, forged source metadata; valid extra order control is paired. |
 | B21 | `integer_only_native_admission_has_no_legacy_byte_cap`, `integer_only_native_rejection_uses_exact_aggregate_products` | Fixed-width/float wrapping or old byte ceilings; approved real-caller helper supplies integer boundary proof only. |
-| B22/B23 | `invalid_metadata_with_tiny_backing_never_reaches_large_work`, `wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure` | Large work before known declaration error or obsolete byte rejection; capped B23 also requires signed-volumeI+1 constructor and matching canonical consumer rejection with other inputs valid. |
+| B22/B23 | `invalid_metadata_with_tiny_backing_never_reaches_large_work`, `wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure` | Large work before known declaration error or obsolete byte rejection; capped B23 also requires signed-volumeI+1 and separately retained D*O=I+1 constructor/canonical-consumer rejection with real tiny backing and matching valid metadata. |
 | B32 | `taper_uses_base_content_for_settings_identity_and_rejection` | Overridable str/equality hides true taper content or corrupts canonical settings/identity; misleading/raising subclass positives and unknown-content rejections use independent base-string truth. |
 | B24/B25 | `operation_domains_have_no_tiny_noise_or_wiener_floor`, `derived_sampling_cutoff_and_suppression_domains_are_not_silent_fallbacks` | Arbitrary floor or silent derived fallback; pairs tiny-positive valid declarations with real reachable operation failures. |
 | B26/B27 | `result_schema_values_and_success_immutability`, `signature_binding_stays_python_type_error` | Aliased/promoted/writable outputs, wrong record/settings/source order or Python binding changed to domain error; direct returned ownership/metadata gap. |
@@ -1368,7 +1527,7 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 | S07.29, S07.30.1, S07.30.2, S07.31 | B8; constructor finite-positive scale implication above |
 | S08.1, S08.2, S08.3, S08.4, S08.5, S08.6 | B10 |
 | S08.7, S08.8, S08.9 | B10/B11/B12/B24/A6 |
-| S09.1, S09.2, S09.3, S09.4, S09.5, S09.6, S09.7, S09.8, S09.9 | B21/B22 plus B23 actual tiny-backed A2 volumeI+1 constructor/canonical-consumer guard paired with admitted A1; G6/D remaining paths |
+| S09.1, S09.2, S09.3, S09.4, S09.5, S09.6, S09.7, S09.8, S09.9 | B21/B22 plus B23 actual tiny-backed A2 volumeI+1 and separate physically backed zero-stride D*O=I+1 constructor/canonical-consumer guards, nearest count arithmetic and tiny positives; G6/D remaining actual paths |
 | S09.10, S09.11, S09.12, S09.13 | A2/A3/F9/F11/F12/B22/B25; G6/D actual arithmetic paths |
 | S09.14, S09.15, S09.16, S09.17, S09.18, S09.19, S09.20, S09.21 | B21/B23/B26 plus actual-width implications; G6/D all caller families |
 | S09.22, S09.23 | P2 schema only; D streaming/native/block execution; G6 |

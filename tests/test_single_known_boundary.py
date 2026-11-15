@@ -823,6 +823,8 @@ def test_wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failu
     # before output allocation/FFT. No large successful operation is attempted.
     # The same capped case also rejects A2's volumeI+1 at the constructor and
     # a matching canonical forged-record consumer, with all other inputs valid.
+    # It separately rejects D*O=I+1 with physically backed zero-stride views;
+    # no logical-wide copying, scanning, hashing or successful array is requested.
     report, diagnostics = run_bounded_declaration_experiment("wide")
     record_property("sp113_wide_bounded_child", report)
     record_property("sp113_wide_bounded_child_diagnostics", diagnostics)

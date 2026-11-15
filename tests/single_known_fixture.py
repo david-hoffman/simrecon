@@ -1059,6 +1059,110 @@ def bounded_declaration_child(case: str) -> None:
             else:
                 raise AssertionError(f"signed output-volume guard absent at {boundary}")
             assert snapshot(*volume_inputs) == volume_before
+        # Retained D*O is independent of Q*P and native/output spatial volume.
+        # Only metadata views become logical-wide; all addresses stay in real
+        # tiny backing, and no logical-wide snapshot/hash/scan is requested.
+        directions, orders = 2**30, 2
+        nearest = I32 // orders
+        assert nearest == directions - 1 and nearest * orders == I32 - 1
+        assert directions * orders == I32 + 1
+        assert I32 > 3 * 3 and I32 > 2 * 1 * 2
+        assert 96 * directions < NATIVE_MAX and 16 * directions < NATIVE_MAX
+        positive_q, positive_v = arrays(d=2, y=1, x=2)
+        positive_bands = declare(positive_q, positive_v)
+        assert positive_bands.input_scale == 1 / 8
+        assert np.all(call(positive_bands).image == 0)
+        q_view = np.broadcast_to(q, (1, directions, 3, 2, 1, 2))
+        v_view = np.broadcast_to(v, (1, directions, 2))
+        carrier_back = np.zeros((1, 2), dtype=np.float64)
+        modulation_back = np.ones((1, 1), dtype=np.complex128)
+        carrier_view = np.broadcast_to(carrier_back, (directions, 2))
+        modulation_view = np.broadcast_to(modulation_back, (directions, 1))
+        assert q.nbytes == 96 and v.nbytes == 16
+        assert q_view.nbytes == 96 * directions and v_view.nbytes == 16 * directions
+        assert q_view.strides[1] == v_view.strides[1] == 0
+        assert q_view.strides[2:4] == (32, 16) and q_view.strides[5] == 8
+        assert v_view.strides[2] == 8
+        assert carrier_view.strides == (0, 8)
+        view_backings = (
+            (q_view, q), (v_view, v),
+            (carrier_view, carrier_back), (modulation_view, modulation_back),
+        )
+
+        def logical_view_metadata() -> tuple[Any, ...]:
+            return tuple((
+                view.shape, view.strides, view.dtype.str,
+                view.flags.writeable, view.flags.owndata,
+                view.__array_interface__["data"][0],
+                backing.shape, backing.strides, backing.dtype.str,
+                backing.flags.writeable, backing.flags.owndata,
+                backing.__array_interface__["data"][0],
+            ) for view, backing in view_backings)
+
+        for view, backing in view_backings:
+            assert type(view) is np.ndarray and backing.flags.owndata
+            assert backing.flags.c_contiguous and not view.flags.writeable
+            assert not view.flags.owndata
+            assert view.__array_interface__["data"][0] == backing.__array_interface__["data"][0]
+            assert all(stride >= 0 for stride in view.strides)
+            last_byte = sum((n - 1) * stride for n, stride in zip(
+                view.shape, view.strides, strict=True,
+            )) + view.itemsize
+            assert last_byte <= backing.nbytes
+        # q's largest offset is2*32+1*16+1*8=88, plus8 bytes=96.
+        # Noise/carrier largest offset is8, plus8=16; modulation offset0
+        # plus16=16. D contributes0 to every address, regardless of its size.
+        count_forged = replace(
+            bands, input_shape=(1, directions, 3, 2, 1, 2),
+            quadratures=q_view, noise_variance_factors=v_view,
+            lateral_zoom=1, axial_zoom=1, input_scale=2**-32,
+        )
+        assert count_forged.input_scale == float(Fraction(1, 4 * directions))
+        count_options = dict(wide_options)
+        count_options.update(carriers_cyc_um=carrier_view, modulation=modulation_view)
+        tiny_backings = (q, v, carrier_back, modulation_back, wide_otf.samples)
+        tiny_before = snapshot(*tiny_backings)
+        metadata_before = logical_view_metadata()
+
+        def count_record_metadata() -> tuple[Any, ...]:
+            return tuple(getattr(count_forged, name) for name in BAND_FIELDS if name not in (
+                "quadratures", "noise_variance_factors",
+            ))
+
+        record_before = count_record_metadata()
+        for boundary, action in (
+            ("constructor", lambda: sr.declare_prepared_bands32(
+                q_view, v_view, input_shape=(1, directions, 3, 2, 1, 2),
+                dxy_um=1.0, dz_um=1.0, lateral_zoom=1, axial_zoom=1, provenance=(),
+            )),
+            ("consumer", lambda: sr.reconstruct_known(count_forged, wide_otf, **count_options)),
+        ):
+            try:
+                action()
+            except sr.ReconstructionError as error:
+                assert error.code == "reconstruction-domain"
+                assert any(term in str(error).lower() for term in (
+                    "geometry", "count", "representation", "direction", "d*o", "d * o", "signed",
+                )), boundary
+                pending_count: list[BaseException] = [error]
+                seen_count: set[int] = set()
+                while pending_count:
+                    cause = pending_count.pop()
+                    if id(cause) in seen_count:
+                        continue
+                    seen_count.add(id(cause))
+                    assert not isinstance(cause, MemoryError), boundary
+                    if cause.__cause__ is not None:
+                        pending_count.append(cause.__cause__)
+                    if cause.__context__ is not None:
+                        pending_count.append(cause.__context__)
+            else:
+                raise AssertionError(f"retained direction/order count guard absent at {boundary}")
+            assert snapshot(*tiny_backings) == tiny_before
+            assert logical_view_metadata() == metadata_before
+            assert count_record_metadata() == record_before
+            assert count_forged.quadratures is q_view
+            assert count_forged.noise_variance_factors is v_view
         expected_terms = ("wiener",)
         expected_error = "reconstruction-domain/wiener"
         assertion_names = (
