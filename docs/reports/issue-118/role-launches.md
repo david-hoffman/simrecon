@@ -513,3 +513,41 @@ will be evaluated after A3; it is distinct from scientific test acceptance.
   replacement files created this turn were removed with existing commands;
   active checkout/evidence/environments kept. Final hold head/tree recorded
   outside tracked bytes after commit.
+
+## Joint applicability acceptance and explicit PhaseP application
+
+- Root requested provisional independent unpublished C on public64a with unchanged
+  B2 tests, due incidental116 runtime/113 method/114 study delays; original118
+  dependencies none. No C was launched/source edited/checked before written
+  parent hold reconciliation. Proposal
+  b172e019edb8235d31380553068b706ad883516dfb6c49cc07de0be41241e653 remained
+  inactive until exact fresh joint acceptance plus coordinator application.
+- ONE fresh bounded applicability review owned117, task
+  `/root/issue_117/baseline_applicability`, requested Sol/high/forknone, packet
+  29b4504769659ae6022a7eee8732644a8493677b7791c7d06a7e4f1c7f799767.
+  Report `/workspace/work/campaign/provisional-c-baseline-review.md`, SHA256
+  0ad4312fdc9d8dc60551f06ac75dcfbd98bf008c68d51db416d9d8a18072e34c accepts
+  BOTH exact addenda for task-local execution applicability only. Cross-reference
+  this event; do NOT duplicate117's campaign launch/review/cost or scientific B.
+  Actual serving/meters/cost/time unknown; no source/probes/scientific checks.
+- Coordinator read actual full scope/mandatory conditions and independently
+  rechecked exact proposal/B2/accepted files, unchanged public source and
+  gate/lock identities. Applied exact addendum in task and candidate metadata
+  through `issue-118-provisional-execution-baseline-application.md`, SHA256
+  ccbed1e1becca6c15e275bccb5c3184145ef2a0bad98a74cfc60cf9925124abc.
+  No reviewed contract/test/fixture/adapter/protocol bytes changed. Original
+  accepted117-before-ANY-C scheduling hold now reconciled for PhaseP only;
+  actual accepted117/profile/helper/material reassessment plus renewed affected
+  A/checks/FRESH B before further integrated C/resources/gate/D/publication stays
+  mandatory. Conditional numerical/resource/launch limits and final order unchanged.
+- Fresh C1 packet `docs/packets/issue-118-c-phasep1.md`, SHA256
+  115b1635fb58668fc939260eea350a1755e32d00b43caee86630aefde10c2221:
+  source public64a, B2badf155/frozenmanifest90d5a02f, lock222666a3; only modes.py /
+  known_parameters.py plus C report/logs. Root ordinary Ubuntu/no-sync focused
+  grant revocable before116 exclusive; NO installs/resourceadapter/fullgate.
+  Root117firstC active and parent yielded; actual capacity check precedes118fresh
+  fork-none Sol/high C launch. No activation just from report/application.
+- Status applied, C1 not launched yet. Source/current start commit/tree is bound
+  after metadata commit, not old5fa status head. All prior charges/corrections
+  and unknowns preserved; C0/D0 until actual launch. No independent push/rebase/
+  integration/publication or semantic/project-policy amendment.

@@ -56,10 +56,17 @@
   all phases/reports/strict tests/wheels/import/audit and same-run M25 preserved.
   Matched fresh-process payload/peak/timing repetitions and D acceptance required.
   No CI-authoritative substitution. Commands are future requirements under hold.
-- Before C: root freezes actual parent117 commit/tree, compares inherited
-  profile113/shared helpers and material environment, revalidates baseline and
-  oracles, and renews affected A/B checkpoints. Record unaffected evidence and
-  rationale; do not assume inherited checkpoints apply.
+- Execution-baseline amendment APPLIED for unpublished PhaseP ONLY: exact
+  [accepted addendum](../packets/issue-118-provisional-execution-baseline-addendum.md)
+  and [explicit application](../packets/issue-118-provisional-execution-baseline-application.md)
+  reconcile the original parent117-before-ANY-C hold. PhaseP binds public64a and
+  unchanged B2 checkpoint; fresh restricted C/ordinary checks may proceed after
+  actual launch binding/capacity. Before PhaseI further integrated C repairs,
+  resource qualification/execution, final measures/fullgate/D/publication, root
+  MUST freeze ACTUAL ACCEPTED117 including113/profile/helpers/material inputs,
+  integrate, reassess and renew affected author/check evidence plus FRESH affected
+  B. Retained evidence needs explicit unchanged-material rationale; no old receipt
+  is relabelled, no future parent/profile acceptance or source-scope expansion.
 - Corrections: classify environment, test, product or meaning first. Test changes
   go to blind A and fresh B, with shared oracle/fixture dependencies reviewed and
   B deciding retained evidence. D reviews actual omitted risks independently.
@@ -72,8 +79,8 @@
 
 ## Current state
 
-- **SAFE HOLD — accepted provisional test/design checkpoint; no active child or
-  owned process.** Fresh B2 accepted `badf155abbc2f345e013556be12fd2bc13107fd0`,
+- **PhaseP amendment APPLIED; fresh C launch pending actual capacity; no active
+  child or owned process yet.** Fresh B2 accepted `badf155abbc2f345e013556be12fd2bc13107fd0`,
   tree `6b1bd83d9cc56909eed40964f0bd39b85215f864`, for affected tests and STATIC
   direct resource design only. Durable evidence:
   [accepted checkpoint](../reports/issue-118/accepted-checkpoint.md),
@@ -96,11 +103,22 @@
   completed full affected dependency review; no blanket prior acceptance or
   unlisted bead-branch/neutral-I/O requalification. Conditional numerical premises
   and scoped unused-dependency exclusions are explicit in its ledger.
-- **C BLOCKED:** root must freeze accepted actual parent117, assess inherited
-  profile113/shared helpers/fixtures/obligations/environment and renew affected
-  checkpoint evidence. No implementation, rebase, integration, push or PR here.
-  Root owns scheduling/integration/publication. Existing defaults/compatibility
-  and two-file C ownership remain; no new science/precision/backend/storage/fusion.
+- **Original before-ANY-C hold explicitly amended for PhaseP ONLY:** joint
+  applicability review0ad4312fdc9d8dc60551f06ac75dcfbd98bf008c68d51db416d9d8a18072e34c
+  accepted exact118addendumb172e019edb8235d31380553068b706ad883516dfb6c49cc07de0be41241e653.
+  Coordinator applicationccbed1e1becca6c15e275bccb5c3184145ef2a0bad98a74cfc60cf9925124abc
+  is now operative. This is one joint event/cost owned117, not another118 B review.
+  Provisional source64a752b4642709c539df2079cc3c906acf4cc7b8 is identical to current
+  source treecda612549559974ee4246dec40e049cd8ed158a5; accepted B2 inputs/lock/gates
+  rechecked unchanged. Fresh C only modes.py/known_parameters.py and named report/
+  logs, packet115b1635fb58668fc939260eea350a1755e32d00b43caee86630aefde10c2221.
+  Ordinary pinned Ubuntu/no-sync checks granted, revocable for116 exclusive work;
+  no installs/resources/fullgate.117-firstC is active and its parent yielded;
+  coordinator checks actual capacity before one118C then yields. **PhaseI remains
+  BLOCKED** until actual accepted117/profile113/helper/material renewal and fresh
+  affected B BEFORE further integrated repairs/resources/gate/D/publication.
+  Root alone integrates/rebases/pushes/PRs; no scientific/oracle/ownership/gate
+  change or future-profile assumption is authorized by this scheduling amendment.
 - **Resource execution BLOCKED:** adapter never imported/executed/help/CLI/dry-run
   or measured. Actual accepted parent/candidate, qualified launch/lifecycle route
   and root exclusive grant required. Shared pinned CPython setsid-spawn failure
