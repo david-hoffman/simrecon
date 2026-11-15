@@ -435,3 +435,55 @@ binary/primitive/RNE/noncardinal/transport/witness qualifications stay blocking
 for relevant acceptance; no staticconditionalverdict becomes testcheckpoint.
 No B/C/D/IE113 acceptance, C still requires B plus accepted116. Root standing
 conditional grants retained for actual independently frozen eligible latercalls.
+
+## B1 full nonacceptance collected; source-only same-A continuation3
+
+B1 complete reportSHAf8ffdfef242fc21794a38c9c14f68e747898034293c10d299102962becd0f17a,
+all21reviewed hashes match, firstformal fullreview NOTACCEPTED. Reported32static
+shellinvocations/1reportwrite/2truncatedreadsrecovered, noexecution/targetedit/
+sourceexposure, no accepted checkpoint. Exact8ffd43b draft and5155bf9 launch
+snapshot/manifests retained, no history relabel. All meters/totalcost unknown.
+Coordinator read full report and independently checked public contract and
+frozen test/fixture code. No product implementation/source inspection needed.
+
+Independent public facts: D2/O2/Y1 DC contributions2^60,1,-2^60 produce prescribed
+f64zero versus centersfirstone; settings truth and framed parameter identities
+must derive from independently supplied inputs rather than self-consistent result
+metadata; processleader exit/EOF doesnot establish wholeownedgroup cleanup;
+selected fullramp eighth-turn realproduct condition3 by3r/2 over r/2. Primary
+CPython3.13.12 public docs independently fetched for poll/wait/killpg semantics.
+Actual nonFFT allocation-failure coverage gap accepted, but contract specifies
+no np.array-versus-other allocation binding: source-only controls/plans must
+use actualexistingexternal interfaces with tinypositive/reachability/exactcause/
+immutability, never force arbitrary implementationAPI, unusedpatch pass or seam.
+Any missing alias/family observation remains fixturequalification/Dscope.
+
+Prepared actual a1-source-corrections-3.md supplies only independently derived
+public counterexamples/requirements, no raw B/coordinator/dependency/methodreview
+report/conclusions/lineclues. Same8files/report source-onlyrevision,13existing
+publicinputbytes unchanged, freshaffectedB later covers sharedsettings/identity/
+protocol/allocation fixture dependents and allretained obligations. No tolerance
+weakening, new meaning, removedpositivecase or universaloracle framework.
+
+Execution suspension ACK binding until root explicitly endswindow: no further
+numerical/product/test/import/probe/AST/lint/format/type/install/benchmark or
+dependencyqualification. Root platformfact PID1sleep/noinit/subreaper forbids
+intentional orphan/leaderexit/abruptloss scenarios under genericgrants. Future
+actualdescendantqualification needs exactfrozen separatelyreleased outside
+subreaper/adoption/identity/reap scaffold or safe no-orphan protocol. Not A/C
+support/gate edit authority. Source-only author may revise own transport/propose
+precise interfacegap; directchild/static simulation proves no universalcleanup.
+No newruntime role/grant/acceptance. Actual continuation3 launch/hash/status
+record outside afterpacketfreeze, then yield per rootcapacityreservation.
+
+Prior parallel finite dependency observations were completed BEFORE suspension,
+only outside evidence; exact resultSHA9057fe0456042248eb2f456b25185e5a079c1adc328a91b0bc1ae981e89c0666.
+Two materialonly+two pureFractionproof+two finite targets, all6exit0; optional
+readelftoolabsence retained, no install/framework. Cardinal32error0 within
+pretrialbound; selectedH/5points insidepretrialboxes, actualx87/SSERNE and
+FTZ/DAZfalse before/after. Explicit conditional wheel/source/materialcorrespondence,
+no general6/20/otherpoint/productprimitive/fullfixture/protocol qualification or
+product/Bacceptance. No rawfacts sent B1/A. Any future sanitizeduse renews affected
+B/materialapplicability. All historical/actualunknown charges remain cumulative.
+One new coordinator atomic prose patch failed on an unrelated report context
+before this write, no partialmutation; retained as static editing cost.
