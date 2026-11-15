@@ -858,3 +858,20 @@ Publicguard-metadata-facts5a6e77e45...sanitizedfiniteevidenceONLY, no rawsource/
 roles/reports/historytofreshB5. All8/currentcontract/293unchanged,27wholeinputs
 preparedfreshFULLB5FILE/TEXT/HASH ONLY; noB4resume. ROOTresuspendedALLruntime,
 no coorprocess/FD/role. Actual B5session/packet/manifest/checkpoint outsidehandoff.
+
+B5 COMPLETE ACCEPT exactwhole8TESTcheckpoint, report728b109ff22fa7153503145af290a67d50a4b2b814024d9e52c4e3b20076fb78.
+26staticinvocations/status0/no execution/failure/exposure,2displaytruncations
+recoveredbywholeexplicitrereads. Full27/all293independentreview, noretainoldB.
+AcceptedD2a7bcc/tree1d0d7658/srcd3f525, frozenall27manifest45767afb copied
+b5-accepted-inputs.sha256; descriptor d0dac21f74fade087588ad554ee9114c80ebdc7fddbbe8a2ce8a5e638afbce3b.
+Cooractualhash/clean/115ancestor/sourceidentitychecks complete, rootindependent
+acceptanceconfirmed. No product/types/resource/fullgate/Dacceptance inferred.
+
+FreshrestrictedC SOURCEONLY packetc1-source-only.md a469e0b3d02fb880d09487c03955794d5768f60b8c7ddab5603c2f0ecf60492e
+preparedusingactualimplement-work/CANDIDATE/HANDOFF, exact4productwriteownership
+only+outsideownreport, fixed8/tests/checker/helpers/gates forbidden. Actualfirst
+parent115/final120renewal, allruntimeheld; no compulsoryred-before-edit; focused
+checks pendingrootrelease. B5acceptance/hashreportedROOTBEFOREC, launchactual
+session/head outsidehandoff, requestedSol/highforknone/no delegation. InitialC
+sourceattempt1/checkattempts0, no testpass/readiness claim. All5B/4nonaccepts,
+25quality7fails/31finite3fails/prior6/9rootcases0fails/setupunknown preserved.
