@@ -985,3 +985,38 @@ RNE/material/binding renewal distinguished. No executions/new framework/sourceed
 ROOT preparing256exclusivewindow; ACK ALL execution suspended, privateinitstopped,
 no C4checks until ROOT closure/newrelease. Source-only UNVERIFIEDC4commit allowed.
 All earlier charges/unknownmeters/final120renewal/resource/fullgate/D/pub retained.
+
+### C4 cheap/G1 renewal and first sourcePyright; C5 typing-only freeze
+
+ROOT C4 actual AST/Ruff/format0 summaryf29f6717…3fae, all3namespaces/proxies/
+pipesclosed/externalHEAD/tree/fullstatus/27+4 pre/post. Cumulative static10/3fail,
+separate expected-status1 importdiag. Renewed G1normal target/controller0 receipt
+d4d040c5…9b95/summaryb218f570…6d04: Vm254275584B/cap321384448B/min33554432/
+page4096/soft-hardcap real,48ASTbindings/tiny144B/views/originalfacadepathassert,
+rootnamespace/proxy/pipesclosed. Finite new-import/guardsetup ONLY, no productcalls.
+ROOT first sourcePyright1/7errors0warnings receipt2289125f…8db1/diag9de44f39…1359,
+stdout2530B stderr0/fullclosure/all37+cleanC4post. Onefailedcheck, duplicateHOLD
+strings notdoublecounted. Combined11/4fail=static10/3+Pyright1/1; no typecaller/
+producttests/nativeaccuracy/resource observations.
+
+SameC1 correction4 packet908959bb…c4afc authorizedexactdiagnostic +narrowNumPy
+__init__.pyi andrequestedmultiarray.pyi text reads; actualstub one/multioperand
+constructors share unconditionaltuple-return annotation. Full report83a8580b…aab00
+and minimaldiff independentlyread. Precise type-only aliases/Protocol under
+TYPE_CHECKING and localizedcasts retain singleoperanditerator, original numeric
+parameterdtypes, unconvertedRealmagnitudecomparison, validatedc64FFT output.
+No ignores/suppressions/conversions/broadAny/scientific/test/gate changes, no
+runtimebug diagnosed. Fixedprotocol still needs actualstrided/controlqualification,
+not claimed from stub. Source4/base204f/report/diff copied BEFORE anyC5checks to
+c1-source-freeze-5, manifest8dcc2c24fd99df63d1c0bc4a481f0775c272d52b478eb5ae67a6a27dfc8bca86,
+patch985945bbc668f16bcceafa637009edd18b8985d6ef61ea3c56ca885f2d6b1a8d.
+New single30d20b05…4ff7/other3same; all27/copied4match. OriginalC4/tooling37/
+failedreceipts kept unchanged, no relabel. UNVERIFIED C5commit follows.
+
+Authorinitial1+corrections4/19productmutations,67shell16patch83dispatch and8
+collaborationcalls cumulative incloriginalmetadataexposureonce; ownchecks0,
+no newexposure/delegation/process/FD. All prior A/B/quality/native/init/G1/setup/
+sourcefailurecharges retained, unknownmetersunknown. ROOT remaining256execution
+windowHOLDACK; all checks need ROOT closure/newactivation. FreshIE SOURCEONLY
+maylaunch onlyAFTER cleanC5 freeze/commit, separatechecker+ownreport, no tests/
+scientificCscope; actualinstalledproof/freshDinfra/fullgate/final120renewal remain.

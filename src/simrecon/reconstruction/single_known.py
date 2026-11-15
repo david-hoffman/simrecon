@@ -13,7 +13,7 @@ from dataclasses import dataclass, replace
 from hashlib import sha256
 from math import cos, floor, hypot, isfinite
 from numbers import Real
-from typing import Any, cast
+from typing import TYPE_CHECKING, Any, Protocol, cast
 
 import numpy as np
 import scipy
@@ -39,6 +39,18 @@ from .known_parameters import (
     calculate_native_support,
     signed_fourier_index,
 )
+
+if TYPE_CHECKING:
+    _ParameterArray = NDArray[
+        np.integer[Any] | np.float16 | np.float32 | np.float64 | np.complex64 | np.complex128
+    ]
+
+    class _ComparableMagnitude(Protocol):
+        """Unconverted real magnitude supporting the declared scalar bound."""
+
+        def __le__(self, other: float, /) -> bool | np.bool_:
+            """Compare with the binary64 bound without converting this value."""
+            ...
 
 _C64 = NDArray[np.complex64]
 _C128 = NDArray[np.complex128]
@@ -136,7 +148,9 @@ def _blocks(array: NDArray[Any], dtype: Any = None) -> Iterator[NDArray[Any]]:
         buffersize=_BLOCK,
         **options,
     ) as iterator:
-        for block in iterator:
+        # One ndarray operand yields one ndarray block. NumPy's common nditer
+        # stub describes only the tuple form used for multiple operands.
+        for block in cast("Iterator[NDArray[Any]]", iterator):
             for start in range(0, block.size, _BLOCK):
                 yield block[start : start + _BLOCK]
 
@@ -174,7 +188,7 @@ def _scalar(value: Any, name: str, *, positive: bool = False) -> float:
     original = value.item() if isinstance(value, np.generic) else value
     # This original-value comparison excludes NaN, infinity and excess magnitude
     # without first converting an arbitrary integer or extended real to f64.
-    if not abs(original) <= _F32_MAX:
+    if not cast("_ComparableMagnitude", abs(original)) <= _F32_MAX:
         _fail(name, "original value must be finite and within float32 magnitude")
     if positive and original <= 0:
         _fail(name, "requires a positive original value")
@@ -419,6 +433,9 @@ def _parameter(value: Any, name: str, shape: tuple[int, ...], *, complex_ok: boo
     _finite(original, name)
     bound = np.float64(_F32_MAX)
     for block in _blocks(original):
+        # The original dtype gate above admits only these numeric scalar kinds;
+        # iteration without a requested dtype preserves them, including byte order.
+        block = cast("_ParameterArray", block)
         # Compare original components before conversion; comparisons avoid signed
         # integer abs overflow and preserve the declared standard dtype domain.
         for component in (block.real, block.imag) if complex_ok else (block,):
@@ -839,6 +856,7 @@ def _assemble(
                             "requires actual complex64 inverse output with the declared shape",
                         )
                     _finite(spatial, "FFT inverse output")
+                    spatial = cast(_C64, spatial)
                 with _operation("phase/product/float64 accumulation"):
                     for y in range(oy):
                         for start in range(0, ox, _BLOCK):
