@@ -95,120 +95,79 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — control attempt1 incomplete; wrapper serialization delta2 under review; full science held.**
-  I1 intake and the same S1 investigator completed their owned source-only work.
-  The refined method separates unmatched diagnostic comparisons from proposed
-  one-workload resource children and prepared-band stage pairs, with terminal
-  versus cumulative/sample high-water, bounded observations and finite controls.
-  None of that method has runtime or scientific qualification. Full study unfinished.
-- Candidate identity, exact artifact hashes and check receipts are recorded outside
-  tracked bytes under `/workspace/work/campaign/evidence/114/`; this pointer was
-  prepared before the frozen source-preparation commit. No rebase/push/PR occurred.
-  Final publication parent remains #113, not the provisional public-main baseline.
-- Accounting: I1 launch 1 completed, S1 launch 1 plus continuation activations 2
-  completed; no replacement/delegation/failed role launch. Fresh independent
-  control-method reviews: 1 and 2 completed INCOMPLETE, reviewer2 delta1 scoped ACCEPT;
-  same reviewer2 serialization delta2 is active
-  (neither B/D nor scientific-study acceptance). Scientific report reviews 0,
-  native method-control attempts 1 (renderer exit2/incomplete), focused stdlib
-  serialization checks 1 passed; workflow/resource/lifecycle/scientific trials 0, scientific
-  repairs 0, full-gate attempts 0 and D verdicts 0. Root preflight 1 passed separately.
-  All preparation edits, failed contexts/checks and repairs remain in the
-  [role ledger](../reports/half-precision-study/role-ledger.md) and archived ledgers.
-- Historical first preparation: syntax 1/2 passed; Ruff 1/2 failed (95/60 findings),
-  Ruff 3 passed; format-check 1 failed/2 passed; import-fix 1 and formatting 1/2
-  plus owned manual corrections retained. Those checks apply only to their old bytes.
-  Source-method-v2 preparation: AST/compile 1/2 passed; Ruff 1/2 failed (46/3),
-  Ruff 3 passed; format-check 1 failed/2 passed; import-fix 1 fixed 1/left 45,
-  formatting 1/2 passed and three long strings were manually wrapped unchanged.
-  All new final checks apply to exact study.py hash9daa4744…02c7, without importing
-  or executing it. No source change followed those final checks. This collection
-  ran only read-only source/Git/hash inspection, authorized cp/diff and housekeeping.
-- **Launch blocker:** root reports actual #116 Q1 on the same pinned CPython3.13.12
-  failed with `posix_spawn: setsid unavailable on this platform` before childPID.
-  This is external environment/tool capability context, not HP114 numerical data.
-  Both resource entry points now refuse unconditionally before authorization/raw
-  writes/spawn. Coordinator inspected those source guards; refusal itself remains
-  unexecuted. No fallback/probe/retry or orphan was created. AST/Ruff success does
-  not make launch ready, and fresh method review of a functioning launcher is deferred.
-- Root reports accepted frozen #112 `d9a0ba924817772fdb5550c7d055bf31bcf70388`
-  (PR121) and #115 `ace06c861b974b6251a092567c253ae4eb0f56c8` (PR122), local,
-  independent acceptance/D and CI passed. These are root-reported context, not
-  imported HP114 evidence or ancestry. Root owns final integration and publication.
-  Scientific/product/report/control imports/execution, lifecycle probes, tests,
-  installs and benchmarks remain held; narrow preparation checks are completed.
-- Parallel preparation: root authorized source/primary-math-only independent review
-  of existing `--route controls --row K01 --strategy KERNEL --repetition 1`, before
-  final #113. Exact source349bf30, observer/constants/input slices, dependency
-  source/binary identities and nonauthorizing command/grant are frozen externally
-  under `control-method-inputs1/`. Review1 `aa2d9a28…b8c8` found finite math suitable
-  but exact command INCOMPLETE: broad facade/native import occurs before warning
-  capture/admission, and pre-FFT environment can contain null loaded binary facts.
-  Source inspection found no selected workflow/preparation/reconstruction/resource
-  call; reviewer must independently assess product-facade import effects, finite
-  bounds/admission and absence of reached noise witness; that limitation remains.
-  Root authorized a narrow coordinator-owned stdlib wrapper/admission correction
-  externally under `control-startup-proposal2/`, with immutable study/math unchanged.
-  Proposed wrapper uses existing source-free renderer, pre-import AS/CPU/wall and
-  fresh headroom admission, raw whole-startup stderr, same-PID runpy controls and
-  finally required actual loaded FFT identities. No wrapper check/execution ran.
-  Review2 `fce51436…5b55f` found omitted venv startup-hook materials and possible
-  conditional coverage autostart before wrapper limits; other CM1/CM2 design
-  conclusions are retained by scope. Exact old proposal2v1 and verdict are preserved.
-  Corrected external proposal pins six startup files, empties only the two known
-  coverage autostart triggers before both interpreters, refuses preloaded coverage,
-  and records actual facts. Project hooks/gates and other coverage fields unchanged.
-  Root's separate correction replaces impossible hidden-ancestor certainty with
-  reviewed exposed outer/inner current/max/directory correspondence and actual
-  visible ancestor facts; external ancestors remain `unknown_unobservable`.
-  Context freshness is root-authorized300s after command-ready capture. Scoped
-  delta1 ACCEPT `6bce7288…5c04` was collected and exact proposal frozen; root then
-  captured fresh exposed proof/context and executed the exact bounded case ONCE.
-- Actual attempt1 at candidate6b576c8/tree2fbe: target PID45833 installed AS1114734592B,
-  CPU31/32s/wall90s, no coverage preload. Controls produced run.json c4238fd5…d43a
-  and74arrays+4tinyNPY files, but renderer exited2: optional metadata version was
-  a ModuleType, causing JSON serialization failure, a truncated post sidecar and
-  absent maps. Overall qualification INCOMPLETE; no complete loaded FFT or pass.
-  Both root and coordinator found PID45833/procFD directory absent (read-only
-  checks exit0/no signals); renderer completed, no persistent process/cleanup gap.
-  Full executed inputs/transport/study outputs are preserved under
-  `control-attempt1-preserved/`, all three capture diff checks0. Old bytes untouched.
-- Root authorized only narrow external proposal3 correction: version/path metadata
-  exact str/None plus presence/type/unsupported facts (no arbitrary repr), full
-  JSON serialization before exclusive open, and new fixed attempt2 paths/run-id.
-  No operating-limit/source/vector change or automatic retry. A root-authorized
-  pure-stdlib own-wrapper check passed10attribute/2synthetic-module cases, invalid
-  serialization-before-file and exclusivity; no main/product/native control run.
-  Metadata-only partial attempt1 observations and all78file hashes were inspected,
-  not promoted to complete qualification. Same reviewer2 delta2 now assesses only
-  the exact post-observation correction; attempt2 remains unapproved/unexecuted.
-- Next: root collects this scoped verdict, checks exact applicability and concrete
-  per-case admission before separately granting any tiny controls execution.
-  This does not release W scientific workflows, diagnostic matrix or resource routes.
-  For those, root resumes this coordinator when a diagnosed functioning #116 route and
-  its accepted affected-scope evidence are available. Reconcile the smallest launch,
-  readiness/exec, exact-PID wait/recovery/status correction with same S1 ownership;
-  freeze corrected bytes and route fresh scoped static assessment when appropriate.
-  Do not treat a quarantined route as qualified. Then reconcile actual accepted
-  #113 commit/tree/base/parent, source/lock/manifest/environment and affected tests,
-  obtain explicit root runtime/scientific-resource grants, qualify finite controls/
-  fixtures/independent oracles, complete study and acceptance proposal/recommendation,
-  obtain fresh independent scientific report review, exact integrated clean Ubuntu
-  make verify and fresh external D. No missing tolerance is guessed or positive
-  result forced. Actual storage/speed benefit, native-half arithmetic and precision
-  suitability remain UNMEASURED; no16GiB guarantee exists.
-- Evidence: original `preparation/` and `source-method-v2-before-checks/` archives
-  remain intact. Coordinator captured the exact four current artifacts under
-  `preparation-v2/artifacts/` and both ledgers plus ten logs under
-  `preparation-v2/scratch/`; `diff -qr` against original scratch returned 0.
-  Ledger hash709aa3fc…b65d3 and all four artifact hashes matched S1's return.
-- Housekeeping: S1 reported all synchronous commands exited, no background/numerical
-  worker, fixture or orphan. Only confirmed captured `work/half-precision-study/`
-  and empty `work/` were removed; commands/absence checks passed. Current worktree,
-  tracked sources/docs, all archives and pinned environment remain. No cleanup error.
-- Requested Sol/high and shared-filesystem/prompt-control limitations remain as
-  recorded; unavailable serving attribution/effort/token/cache/cost/time meters
-  are unknown. Actual human numeric limits are not set; every prior charge remains.
+- **SAFE HOLD — exact bounded control2 qualified; full study unfinished.**
+  Completed the method/dependency subset only: controls/K01/KERNEL/rep1 and six
+  raw-generator identity examples, not W preparation/reconstruction/scientific
+  workflows, resource routes, phase/noise qualification or overall precision utility.
+  Source349bf30 study9daa4744…02c7/manifest6ae262ce…604d remain unchanged.
+- Actual qualified execution candidate was clean64edcadb2b042c334b9ff73ea0b2b0aee1f04367,
+  tree1ef51da1655ff2935ea27a1ca1c714799186278f, with wrapperc90997a5 and exact
+  command198794e6. Final source-hold/checkpoint identities stay outside tracked
+  bytes; no rebase/push/PR or final-parent speculation. Root owns integration.
+- Exact scoped qualification receipt:
+  `/workspace/work/campaign/evidence/114/control-attempt2-scoped-qualification.json`
+  and companion `.md`. Actual run038da931…db60b, fullpost e0a1828c…613d and
+  rootexecution receipt e793bfcc…61ce are preserved. This is not B/D/product,
+  full-scientific-report acceptance, memory benefit or an overall task completion.
+- Attempt1 remains INCOMPLETE (renderer2; ModuleType optional version broke JSON,
+  truncated post/maps absent). Inputs/output were preserved, never repaired or
+  relabeled. Root-authorized narrow typed-attribute/pre-serialization correction
+  had one focused pure-stdlib check PASS (10attribute/2synthetic module cases,
+  failure-before-file/exclusivity), followed by independent affected-delta ACCEPT.
+  No operating-limit, study/vector, helper/gate or dependency change.
+- Root executed exact attempt2 ONCE after new reviewed context/proof/once release:
+  renderer/target0, samePID46240, verified AS1114644480B/CPU31,32s/wall90, no
+  alarm/failure/immutable change, empty raw startup stderr and complete91572B maps.
+  All19 recorded warnings match intentional frozen range/product cases. Root
+  exactPID and FD directory checks report absent/no signals, renderer completed.
+- Selected expectations met:7scalar IEEE/7canonical hash/4tiny NPY examples,
+  18unique generator identities,16dyadic energy/cross cases, error/empty/zero/stride
+  rules,16real-half boundary words/32paired components/cancellation witness,
+  2incomplete-record refusals and public NP/SciPy FFT16 dtype/norm/worker diagnostics.
+  All78array files passed hashes/headers; only bounded tiny witnesses were decoded.
+  No array-library load or target/helper rerun in assessment. Actual internal FFT
+  multiplier/accumulator precision remains unknown; no native-half/complex32 claim.
+- Both required actual FFT extension paths/hashes exactly match admitted binaries;
+ 342file-bearing module rows independently rehash correctly. Two raw null-file
+  rows (scipy._external and its packaging_version) have source-supported fileless
+  namespace-container disposition: installed directories lack __init__.py,
+  actual executable descendant is admitted. No file hash invented; runtime loader
+  object was not recorded. Optional module-valued versions remain explicit typed
+  unsupported/null facts, not forged strings.
+- Admission used actual reviewed EXPOSED outer/inner directory/current/max identity
+  correspondence and visible headroom, not hidden-host certainty. External ancestors
+  remain unknown_unobservable. Root context/proof edb65c47…bed6/6e4f14c5…59bf were
+  captured after command-ready and read; actual admission3a41de83…5f23 and grant
+  ba1f0f91 bind the recorded candidate. These case safety limits do not select
+  a product RAM cap, performance budget or16GiB workstation guarantee.
+- Preservation: full executed inputs/transport/study for both attempts under
+  `control-attempt1-preserved/` and `control-attempt2-preserved/`, all capture
+  diff checks0; original archives/proposals/reports/logs retained. Metadata receipt
+  c686d1da, tiny-payload881383e5, loaded-file indexa40182ec and protocol indexe9f50fa8
+  detail independent bounded checks. Inspection-only truncation/source-navigation
+  limitations are disclosed; raw execution evidence was not changed.
+- Accounting: I1/S1 launches1each, S1 continuations2; independent method-review
+  sessions2 with4verdicts (review1/2 INCOMPLETE; same reviewer2 delta1/2 ACCEPT).
+  Native method-control attempts2 (one incomplete/one scoped pass), focused serde
+  check1 PASS. Historical syntax/Ruff failures/repairs retained in detailed
+  [role ledger](../reports/half-precision-study/role-ledger.md). Scientific report
+  reviews/workflow/resource/lifecycle trials/full-gate/D remain0; root preflight1
+  passed separately. Missing serving/effort/token/cache/cost/time meters unknown;
+  no human scientific numeric limits selected. Operational case bounds are separate.
+- Next: await root's accepted113/material reconciliation and qualified116method
+  before full study/runtime-resource grants. Resource parent/internal child remain
+  unconditionally quarantined. Reconcile launch/observer/caller lifetimes, current
+  source/lock/environment, then complete finite scientific W/K study, backend
+  documentation, numerical-acceptance proposal and one next slice or negative
+  outcome; fresh independent scientific review, exact integrated clean Ubuntu
+  make verify and fresh external D remain required. Do not automatically migrate
+  this finite qualification to changed material inputs or force a positive result.
+- No active child/owned process/command; all checks/metadata readers exited. Root's
+  first116window was respected and ended before resumed reads. No additional
+  imports/tests/numerical work/probes/lint/types/install/benchmarks are authorized;
+  remain ready to suspend for the next announced exclusive window. Worktree,
+  tracked sources, environments and durable evidence kept; no new disposable
+  fixture or uncertain cleanup. Earlier captured scratch removal is retained in ledger.
 
 ## PR presentation
 
