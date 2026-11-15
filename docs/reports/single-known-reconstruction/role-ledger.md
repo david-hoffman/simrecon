@@ -406,3 +406,32 @@ Supplied actual same-A a1-quality-continuation.md with owned-output logs only,
 authorizes root-granted syntax/style cosmetics and per-attempt hashes/records;
 no numerical/interface meaning, tolerance, runtime/gate or literal-caller weakening.
 Same A1 continuation2, not a fresh replacement, no new B/C/D/IE113 launch.
+
+## A1 continuation2 collected; full fresh B1 packet frozen
+
+Verified final report9e7876d56cdfc0d4a1919c927736abdcedf0954d7084a9b89f3188f015a4426a
+and all8returned Python hashes. Preserved final revised drafts/report at
+8ffd43b8c7f5151fb32435988284d794774b86c7/tree02245d3a1b400f059b32756a09ad0f4610758af9.
+A reports7hash-prefaced pinned source-free AST/Ruff/style attempts: safe Rufffix
+exit1/213remaining, format0, lint1/61remaining, format0, lint0, AST0, formatcheck0.
+Exact prehash manifests/commands/toolchunks/walltimes are in collected A report;
+no separate A log/helper file exists and coordinator did not rerun green checks.
+Combined coor3+author7=10quality attempts,4failures retained; never scientificR.
+One typo nonexistent out-of-list fixture read exit2/no bytes recorded, no claimed
+source exposure. Six prior A static context failures unchanged. Unknown meters/
+aggregateelapsed remain unknown. No Pyright/runtime/boundedchild/dependency call.
+
+Prepared actual fresh B1 whole public packet b1-static.md, full8file/sharedoracle/
+typedcaller/facade/installedexpectation/protocol risk review at exact frozen
+hashes. All13public whole inputs plus8tests bound in outside b1-inputs.sha256.
+No A report, raw method review/verdict/conclusions, coordinator/investigation,
+112prototype/rawstudy, source/history/coverage/sibling evidence is supplied.
+Packet self-contains sanitized platform/model/coverage/quality/accounting facts
+and explicitly excludes wholePROJECT/mixedtestaudit; no link expansion. First
+B actual session binding recorded outside after launch; freshforknoneSolhigh,
+reportonly evidence/113/b1-review.md, no delegation or target repair. Static
+shell/file/proof assessment only, no new execution grant. Missing actualsource/
+binary/primitive/RNE/noncardinal/transport/witness qualifications stay blocking
+for relevant acceptance; no staticconditionalverdict becomes testcheckpoint.
+No B/C/D/IE113 acceptance, C still requires B plus accepted116. Root standing
+conditional grants retained for actual independently frozen eligible latercalls.
