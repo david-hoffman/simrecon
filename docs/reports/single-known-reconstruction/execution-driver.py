@@ -1194,6 +1194,32 @@ def tiny_archive_array(value):
                     for start in range(0,len(raw),width)),'finite IEEE array components')
 
 
+def archived_accuracy(record):
+    """Check only the fixed formal accuracy representation; retain raw values."""
+    value=record['accuracy']
+    require(type(value) is dict,'accuracy unavailable: accuracy must be an object')
+    require({'qualified','metrics','unqualified_reasons'}<=set(value),'accuracy missing fixed required fields')
+    require(type(value['qualified']) is bool,'accuracy qualified must be an actual boolean')
+    reasons=value['unqualified_reasons']
+    require(type(reasons) is list and all(type(reason) is str and bool(reason) for reason in reasons),
+            'accuracy unqualified_reasons must be a list of nonempty strings')
+    require(value['qualified']==(not reasons),'accuracy qualified/reasons are inconsistent')
+    require(record['case_id'] in CASES and record['mode'] in ('double','single'),'accuracy closed case/mode')
+    require(record['mode']!='double' or value['qualified'] is False,'double accuracy remains unsupported/unqualified')
+    metrics=value['metrics']
+    if record['case_id']=='EE04':
+        require(metrics is None and value['qualified'] is False,'EE04 accuracy remains storage-only with null metrics')
+    else:
+        metric_keys=('reference_width','interval_distance','far_endpoint_upper_bound',
+            'max_absolute_error_lower','max_absolute_error_upper','rms_lower','rms_upper',
+            'signed_minimum','signed_maximum','signal_scale','error_over_signal_scale',
+            'cancellation_condition','phase_at_zero_amplitude')
+        require(type(metrics) is dict,'accuracy metrics unavailable: expected fixed metric object')
+        require(set(metric_keys)<=set(metrics) and all(type(metrics[key]) is str and bool(metrics[key])
+                for key in metric_keys),'accuracy metrics require the thirteen existing nonempty string fields')
+    return value
+
+
 def archived_child(record,spec,spec_sha):
     """Validate direct-known identity/representation; raw failures stay failures."""
     require(type(record) is dict,'child record object')
@@ -1553,6 +1579,8 @@ def assemble(index_path):
                 record=decode(raw_stdout)
                 archived_child(record,spec,digest(raw_spec))
                 observation['record']=record; observation['parse_category']=record['status']
+                if not qualification and record['status']=='complete':
+                    archived_accuracy(record)
             require(receipt_raw is not None,'missing controller receipt')
             controller=decode(receipt_raw); observation['controller']=controller
             require(controller['spec_sha256']==digest(raw_spec) and controller['attempt']==attempt['attempt'],'controller attempt identity')
@@ -1683,18 +1711,45 @@ def render_report(output):
         lines.append(f"| {row['purpose']} / {row['id']} | {row['attempt']} | {row['disposition']} | {row['parse_category']} | {row['runtime_eligible']} |")
     lines.extend(['','| Formal ID / attempt | Accuracy qualified | Reference width | Absolute error upper | RMS enclosure | Signed extrema |',
                   '| --- | --- | --- | --- | --- | --- |'])
+    accuracy_notes=[]
     for row in output['observations']:
-        record=row['record']
-        if row['purpose']!='formal' or record is None or 'accuracy' not in record:
+        if row['purpose']!='formal':
             continue
-        accuracy_record=record['accuracy']; metrics=accuracy_record.get('metrics')
-        if metrics is None:
+        record=row['record']; presentation_reason=None
+        if type(record) is not dict:
+            presentation_reason='accuracy unavailable/unqualified: retained child record missing or not an object'
+        elif record.get('status')!='complete':
+            presentation_reason='accuracy unavailable/unqualified: retained child status is not complete'
+        else:
+            try:
+                accuracy_record=archived_accuracy(record)
+            except (ValueError,KeyError,TypeError,AttributeError,IndexError,OverflowError,RecursionError) as error:
+                # These fixed checks emit only field/kind explanations, never
+                # source/locals or a representation of malformed data values.
+                presentation_reason='accuracy unavailable/unqualified: '+str(error)
+            if presentation_reason is None and row['runtime_eligible'] is not True:
+                presentation_reason='accuracy unavailable/unqualified: attempt runtime eligibility is not established'
+        if presentation_reason is not None:
+            failure=row.get('validation_failure')
+            if type(failure) is not dict and type(record) is dict:
+                failure=record.get('error')
+            if type(failure) is dict and type(failure.get('message')) is str:
+                presentation_reason+='; retained failure: '+failure['message']
+            lines.append(f"| {row['id']} / {row['attempt']} | unavailable / unqualified | unavailable | unavailable | unavailable | unavailable |")
+        elif accuracy_record['metrics'] is None:
             lines.append(f"| {row['id']} / {row['attempt']} | False | storage only or unavailable | unavailable | unavailable | unavailable |")
-            continue
-        lines.append(f"| {row['id']} / {row['attempt']} | {accuracy_record['qualified']} | {metrics['reference_width']} | {metrics['max_absolute_error_upper']} | [{metrics['rms_lower']}, {metrics['rms_upper']}] | [{metrics['signed_minimum']}, {metrics['signed_maximum']}] |")
-        if accuracy_record['unqualified_reasons']:
-            lines.extend(['','Unqualified '+row['id']+' attempt '+str(row['attempt'])+': '+
-                          '; '.join(accuracy_record['unqualified_reasons'])+'.',''])
+            presentation_reason='; '.join(accuracy_record['unqualified_reasons'])
+        else:
+            metrics=accuracy_record['metrics']
+            lines.append(f"| {row['id']} / {row['attempt']} | {accuracy_record['qualified']} | {metrics['reference_width']} | {metrics['max_absolute_error_upper']} | [{metrics['rms_lower']}, {metrics['rms_upper']}] | [{metrics['signed_minimum']}, {metrics['signed_maximum']}] |")
+            if accuracy_record['unqualified_reasons']:
+                presentation_reason='; '.join(accuracy_record['unqualified_reasons'])
+        if presentation_reason is not None:
+            reason=canonical(presentation_reason[:512]).decode('ascii')
+            if len(presentation_reason)>512:
+                reason+=' [retained first 512 of '+str(len(presentation_reason))+' characters; suffix unrecorded: presentation reason bound]'
+            accuracy_notes.extend(['','Unqualified '+row['id']+' attempt '+str(row['attempt'])+': '+reason+'.',''])
+    lines.extend(accuracy_notes)
     lines.extend(['','All actual attempts, raw failures, aborted/material-invalidated/superseded records and explicit missing reasons are in the portable blob table and restore map. Local absolute paths are provenance only.','',
                   'EE04 is storage/dtype only. Each double mode retains its separate unsupported c128 FFT/scalar certificate. Single envelopes remain conditional on actual material and same-child fenv. No universal benefit, physical accuracy, internal FFT precision, pristine cache or isolated algorithm peak is claimed.','',
                   'Common setup retains raw, both q64/q32 declarations, noise, transfer input/seed/original/record, carriers/modulation, legitimate old template and independent new32 record in both modes; result is appended. Original F-order tables can cause legitimate old-double per-order reshape copies. Profiling costs remain in runtime/RSS.','',
