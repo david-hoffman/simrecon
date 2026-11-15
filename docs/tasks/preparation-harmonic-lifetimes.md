@@ -77,17 +77,31 @@
   A2 also stopped before authoring on a whole-PROJECT read exceeding its
   section-limited allowlist. Fresh A3 completed static test/report authoring from
   self-contained context and whole-file public permissions without an excluded
-  overread reported. **UNFINISHED — WAITING** for root's execution window and
-  actual-parent qualification. High-risk route remains incomplete; TOTAL EXECUTION HOLD
-  continues for priority112 gate. No installs, Python, probes, lint, types, tests,
-  benchmarks, measurements or product edits. No role transition releases hold.
+  overread reported. Root authorized same-A3 static proof-gap continuation;
+  A3 completed keeper reassessment and added only direct API S25 fault controls.
+  Root has now explicitly granted sequential ordinary focused checks in pinned
+  Ubuntu issue118 `.venv`, without synchronization/install, benchmarks or C.
+  Same A3 reported26owned passes/1failure; targeted injection confirmed the
+  generic FFT RuntimeError on CE02. Coordinator/root classified the new universal
+  wrapper assertion as a test-scope defect against CE02's narrower guarantees.
+  A3 completed the scoped correction and exact focused validation: owned27passed,
+  keeper groups1/21/49/34passed, Ruff/format/Pyright passed. No wrapper or numerical
+  tolerance change occurred. **UNFINISHED — WAITING** for fresh blind B1 and
+  actual-parent qualification. Passing author evidence is not accepted checkpoint
+  or product readiness; no resources/C/full-gate authority implied.
 - Instruction: `docs/packets/issue-118-intake.md`, supplied SHA256
   `4a959093dee94374d7c74ffdb3add0d711813528ec8bbb54febf03e369350021`.
   No missing material scientific decision identified within preservation scope.
   Baseline/actual-parent mismatch is unresolved qualification, not new authority.
-- Scenarios 26; new static test functions 7 / parametrized examples 18; retained
+- Scenarios 26; current static test functions 8 / parametrized examples 27; retained
   public-example counts not inventoried. A3 maps all 26 rows with explicit proof
-  limits in [its report](../reports/issue-118/a3.md); B has not accepted adequacy.
+  limits in [its original report](../reports/issue-118/a3.md) and
+  [static delta](../reports/issue-118/a3-static-proof-gap-preparation.md);
+  B has not accepted adequacy. Proposed frozen test SHA256
+  `ce63d3b83ba5257d821cf71076a42a745fc636ae8b40450c26527f15a61ac3ca`,
+  public PH118 contract unchanged SHA256
+  `d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5`.
+  A diagnosed author correction must record old/new identities before B review.
   Accepted test/fixture checkpoint none; frozen candidate none; product changes none
   by intake or A. Initial public baseline/branch observed by coordinator; actual
   parent117 remains unfrozen and numerical qualification is unknown.
@@ -112,10 +126,12 @@
 - Intake commands: permitted static document reads and document authoring only.
   Full verification, native coverage counts, resource fixtures/results, parent
   validation, final artifact/version identity and CI evidence unknown/not run.
-- Baseline behavior status unknown: no observed numerical product failure or
-  acceptance inferred. No correction, test defect or product defect adjudicated.
+- Baseline: exact owned scientific/compatibility/fault checks and selected keepers
+  passed on the provisional public runtime after the diagnosed CE02 test defect
+  correction. No product defect or complete scientific acceptance inferred.
 - Metrics: intake launches 1; prior intake attempts none per supplied packet;
-  Scientific launches A=3 (A1/A2 stopped; A3 static complete), B=0, C=0, D=0;
+  Scientific launches A=3 (A1/A2 stopped; A3 initial/static proof-gap continuation
+  complete; same-session focused-check continuation active), B=0, C=0, D=0;
   completed full/delta reviews none.
   One intake static patch-match failure/correction retained in its report; no
   scientific repair commissioned. Three coordinator multi-file patch matches failed
@@ -126,15 +142,38 @@
   Requested model/effort Sol/high; served attribution unknown. No exposure of
   product implementation/history/lessons; approved contracts were read.
   Campaign/historical charges remain with root and are not reset or duplicated.
-- Blockers: execution hold; actual-parent freeze/reassessment; unfilled recoverable
+- Blockers: fresh B1 full-checkpoint oracle/omission review and independent
+  verdict; actual-parent freeze/reassessment; unfilled recoverable
   launch bindings; independent A/B checkpoint; implementation/D/full verification
-  and matched measurements. A3 additionally identifies remaining proof limits:
-  T2 map/prepass composition, complete unsafe/projection variant inventory,
-  direct/summary-specific external fault paths and direct-stage resource observer
-  integration. These are unaccepted proof limits, not product defects or new
-  meaning. Retain hold until root's explicit execution release; then continue
-  the same blind A3 for authorized narrow Ubuntu source-free checks and scoped
-  diagnosed corrections, and obtain fresh B before C. Freeze the meaningful
+  and matched measurements. Stronger public keepers discharge the provisional
+  T2 camera-state/prepass scientific, unsafe/filtering mode, complete compact
+  projection and summary-specific fault visibility gaps at static assertion
+  level. A3 added only conditional direct CE02/CE04/CE06 external fault proof
+  (one function/nine examples), with unchanged tolerances and legitimate
+  no-interception positive alternative. Interception/fixture/bound qualification,
+  individual T2 trace completeness and unlisted decoded fixture body review
+  remain explicit B assessment limits; direct-stage resource observer integration
+  and comparison scheduling remain unresolved. No product defect/new meaning
+  inferred. Same A3 received only
+  source-free public requirements/test mappings in
+  `docs/packets/issue-118-a3-static-proof-gap-continuation.md`, SHA256
+  `bf7a42c5bef937facf420b420f24704098e7d54e1120ee5a91fcf8c66916f26e`.
+  Its original report is preserved unchanged (SHA256
+  `bc0443f17502bafb6d2c56a671057c2caed21af93519246b3eacae5181270ef7`);
+  completed delta report SHA256
+  `6f5099e4b698601fbe4b78b469ee5e2b6eaff1ccaa8fbc768c5eab6fd31ca86c`.
+  No source/history/
+  PROJECT/audit/lesson context is passed; no new meaning or tolerance inflation.
+  Root's ordinary grant is bound by
+  `docs/packets/issue-118-a3-focused-check-grant.md`, SHA256
+  `457dfae9aa275e90893b7e9a3a5e7294c27832250e87d2e7d4ac485d0963ed23`.
+  Pinned Docker + `uv run --locked --no-sync`, unchanged source-free Python/pytest
+  diagnostics, owned-file Ruff/format/Pyright, then selected strongest keeper
+  nodes only. No source exposure accepted or suppressed. Author writes
+  `docs/reports/issue-118/a3-focused-checks.md` plus unique source-free command logs
+  under `docs/reports/issue-118/focused-a3/`; results are author evidence only.
+  Coordinator pauses while child works to reserve root review capacity; root
+  resumes it to collect outcomes or queries. Fresh B required before C. Freeze the meaningful
   feasible resource comparison inventory before C; no measurements are authorized
   by the proposed design. Actual-parent117/profile113 reassessment stays binding.
 - Cleanup result: no temporary assets/processes created by intake; no deletions.

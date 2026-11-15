@@ -10,6 +10,7 @@ from __future__ import annotations
 import dataclasses
 import struct
 from collections.abc import Mapping
+from contextlib import nullcontext
 from typing import Any
 
 import numpy as np
@@ -24,6 +25,7 @@ from c_known_fixture import (
     raw_quadratures,
     table,
 )
+from c_preparation_fixture import expected as preparation_expected
 
 
 def _snapshot(value: Any) -> Any:
@@ -79,24 +81,29 @@ def _raw(z: int, y: int = 3) -> np.ndarray:
     """Dyadic integer multifrequency frames with phase-dependent Nyquist."""
     t, d, p, h, i, j = np.indices((2, 2, 5, z, y, 4))
     return (
-        20 + (3 * t + 5 * d + 7 * p + h + i * j + j * j) % 17
+        20
+        + (3 * t + 5 * d + 7 * p + h + i * j + j * j) % 17
         + (p + 1) * np.where(j % 2 == 0, 1, -1)
     ).astype(np.float64)
 
 
 @pytest.mark.parametrize("z", [2, 3])
 @pytest.mark.parametrize("extended", [False, True])
-def test_completed_sections_preserve_full_z_and_earlier_preparation(
-    z: int, extended: bool
-) -> None:
+def test_completed_sections_preserve_full_z_and_earlier_preparation(z: int, extended: bool) -> None:
     """S01/S02/S19/S21: later section/call storage cannot replace old output."""
     backing = _raw(z)[..., ::-1].copy()
     raw = backing[..., ::-1]
     raw.flags.writeable = False
     original = _snapshot(raw)
     settings: dict[str, Any] = dict(
-        dxy_um=0.5, dz_um=0.3, norders=3, background=0,
-        lateral_zoom=2, axial_zoom=2, edge_pixels=0, equalize=False,
+        dxy_um=0.5,
+        dz_um=0.3,
+        norders=3,
+        background=0,
+        lateral_zoom=2,
+        axial_zoom=2,
+        edge_pixels=0,
+        equalize=False,
     )
     name = "prepare_acquisition_bands" if extended else "prepare_bands"
     if extended:
@@ -168,8 +175,11 @@ def test_sparse_harmonics_zero_successors_and_published_results_are_independent(
     for output in _arrays(first):
         assert output.flags.owndata and not output.flags.writeable
         for caller in (
-            bands.quadratures, bands.noise_variance_factors,
-            carriers, modulation, transfer.samples,
+            bands.quadratures,
+            bands.noise_variance_factors,
+            carriers,
+            modulation,
+            transfer.samples,
         ):
             assert not np.shares_memory(output, caller)
 
@@ -177,12 +187,23 @@ def test_sparse_harmonics_zero_successors_and_published_results_are_independent(
 def test_phase_design_snapshots_survive_caller_and_later_call_mutations() -> None:
     """S19: full per-section debug arrays cannot publish reused phase storage."""
     raw = _raw(3)
-    phases = np.array([[0, np.pi / 2, np.pi, 3 * np.pi / 2, np.pi / 4],
-                       [np.pi / 4, 3 * np.pi / 2, np.pi, np.pi / 2, 0]])
+    phases = np.array(
+        [
+            [0, np.pi / 2, np.pi, 3 * np.pi / 2, np.pi / 4],
+            [np.pi / 4, 3 * np.pi / 2, np.pi, np.pi / 2, 0],
+        ]
+    )
     settings = dict(
-        acquisition_mode="3d", dxy_um=0.5, dz_um=0.3, norders=3,
-        background=0, lateral_zoom=1, axial_zoom=1, edge_pixels=0,
-        equalize=False, phases_rad=phases,
+        acquisition_mode="3d",
+        dxy_um=0.5,
+        dz_um=0.3,
+        norders=3,
+        background=0,
+        lateral_zoom=1,
+        axial_zoom=1,
+        edge_pixels=0,
+        equalize=False,
+        phases_rad=phases,
     )
     first = public("prepare_acquisition_bands")(raw, **settings)
     designs = [event for event in first.trace if event.kind == "phase-design"]
@@ -190,7 +211,7 @@ def test_phase_design_snapshots_survive_caller_and_later_call_mutations() -> Non
     arrays = _arrays(tuple(designs))
     for index, array in enumerate(arrays):
         assert array.flags.owndata and not array.flags.writeable
-        assert not any(np.shares_memory(array, other) for other in arrays[index + 1:])
+        assert not any(np.shares_memory(array, other) for other in arrays[index + 1 :])
         assert not np.shares_memory(array, first.quadratures)
         assert not np.shares_memory(array, first.noise_variance_factors)
     before = _snapshot(tuple(designs))
@@ -206,9 +227,15 @@ def test_fractional_2d_zero_planes_nyquist_and_wiener_preincrement_closed_values
     """S17/S18/S21: real caller-edited bands isolate geometry and schedule."""
     raw = np.zeros((2, 2, 3, 1, 10, 10), dtype=np.float32)
     settings = dict(
-        acquisition_mode="2d", dxy_um=1.0, dz_um=0.0, norders=2,
-        background=0, lateral_zoom=1.5, axial_zoom=3,
-        edge_pixels=0, equalize=False,
+        acquisition_mode="2d",
+        dxy_um=1.0,
+        dz_um=0.0,
+        norders=2,
+        background=0,
+        lateral_zoom=1.5,
+        axial_zoom=3,
+        edge_pixels=0,
+        equalize=False,
     )
     bands = public("prepare_acquisition_bands")(raw, **settings)
     bands.quadratures[:] = 0
@@ -216,15 +243,25 @@ def test_fractional_2d_zero_planes_nyquist_and_wiener_preincrement_closed_values
     bands.quadratures[:, :, 0, 0, 0, 0] = [[1, 2], [3, -1]]
     bands.quadratures[:, 0, 0, 0, 0, 5] = [1, -2]
     transfer = public("declare_otf")(
-        np.ones((2, 8, 1), dtype=np.complex64), layout="radial",
-        dkr_cyc_um=0.25, dkz_cyc_um=0.7,
+        np.ones((2, 8, 1), dtype=np.complex64),
+        layout="radial",
+        dkr_cyc_um=0.25,
+        dkz_cyc_um=0.7,
     )
     before = _snapshot(bands)
     result = known(
-        bands, transfer, carriers_cyc_um=np.zeros((2, 2)), modulation=np.zeros((2, 1)),
-        wavelength_nm=500, numerical_aperture=1, immersion_index=1,
-        wiener=0.2, wiener_increment=0.2, filter_overlaps=False,
-        output_taper="power", power_taper_exponent=0.0,
+        bands,
+        transfer,
+        carriers_cyc_um=np.zeros((2, 2)),
+        modulation=np.zeros((2, 1)),
+        wavelength_nm=500,
+        numerical_aperture=1,
+        immersion_index=1,
+        wiener=0.2,
+        wiener_increment=0.2,
+        filter_overlaps=False,
+        output_taper="power",
+        power_taper_exponent=0.0,
     )
     # Other direction's center power remains at DC even with overlaps off.
     # At native positive Nyquist, strict other support excludes it: self only.
@@ -237,8 +274,9 @@ def test_fractional_2d_zero_planes_nyquist_and_wiener_preincrement_closed_values
     assert_array_equal(result.image[:, 1:], 0)
     assert_array_equal(result.z_um, 0)
     assert_allclose(result.x_um, (np.arange(15) - 7) / 1.5, rtol=2e-12, atol=2e-12)
-    assert_allclose(dict(result.resolved_settings)["effective_wiener"], [0.3, 0.4],
-                    rtol=2e-12, atol=2e-12)
+    assert_allclose(
+        dict(result.resolved_settings)["effective_wiener"], [0.3, 0.4], rtol=2e-12, atol=2e-12
+    )
     assert _snapshot(bands) == before
     with pytest.raises(public("AcquisitionModeError"), match="(?i)zoom|integral|integer|extent"):
         public("prepare_acquisition_bands")(raw, **(settings | {"lateral_zoom": 1.25}))
@@ -255,9 +293,16 @@ def _workflow_case(*, multifrequency: bool) -> dict[str, Any]:
         obj += np.cos(2 * np.pi * (z / 4 + 3 * x / 16))
         spatial = 2 * np.pi * (x * np.cos(d * np.pi / 2) + y * np.sin(d * np.pi / 2)) / 8
         phase = 2 * np.pi * p / 5
-        raw = (obj * (1 + (0.31 + t / 64) * np.cos(spatial + phase)
-                      + (0.13 + t / 128) * np.cos(2 * spatial + 2 * phase + 0.3))
-               + d / 4 + t / 8).astype(np.float32)
+        raw = (
+            obj
+            * (
+                1
+                + (0.31 + t / 64) * np.cos(spatial + phase)
+                + (0.13 + t / 128) * np.cos(2 * spatial + 2 * phase + 0.3)
+            )
+            + d / 4
+            + t / 8
+        ).astype(np.float32)
         m, r, a = np.indices((3, 64, 16))
         samples = 1 + m / 16 + r / 128 + 1j * (m + r + a) / 256
         orders, spacing, lateral, step_r, step_z = 3, 4.0, 2, 0.125, 0.125
@@ -272,27 +317,49 @@ def _workflow_case(*, multifrequency: bool) -> dict[str, Any]:
         orders, spacing, lateral, step_r, step_z = 2, 8.0, 1, 0.25, 0.5
     return dict(
         specimen=raw,
-        acquisition=dict(acquisition_mode="3d", dxy_um=1.0, dz_um=1.0,
-                         norders=orders, background=0.0, lateral_zoom=lateral,
-                         axial_zoom=1, phase_policy="uniform", edge_pixels=0, equalize=False),
+        acquisition=dict(
+            acquisition_mode="3d",
+            dxy_um=1.0,
+            dz_um=1.0,
+            norders=orders,
+            background=0.0,
+            lateral_zoom=lateral,
+            axial_zoom=1,
+            phase_policy="uniform",
+            edge_pixels=0,
+            equalize=False,
+        ),
         optics=optics,
-        carrier=dict(linespacing_um=spacing, phase_start_angle_rad=0.0, search_carriers=False,
-                     use_time0_carriers=True, fit_all_phases=True),
-        filtering=dict(wiener=1.0 if not multifrequency else 0.5,
-                       suppress_singularities=False, output_taper="none"),
+        carrier=dict(
+            linespacing_um=spacing,
+            phase_start_angle_rad=0.0,
+            search_carriers=False,
+            use_time0_carriers=True,
+            fit_all_phases=True,
+        ),
+        filtering=dict(
+            wiener=1.0 if not multifrequency else 0.5,
+            suppress_singularities=False,
+            output_taper="none",
+        ),
         specimen_identity=dict(id="ph118-raw-v1", intensity_unit="camera counts"),
         transfer=public("declare_otf")(
-            samples, layout="radial", dkr_cyc_um=step_r, dkz_cyc_um=step_z,
+            samples,
+            layout="radial",
+            dkr_cyc_um=step_r,
+            dkz_cyc_um=step_z,
         ),
         transfer_identity=dict(
-            id="ph118-table-v1", intensity_unit="dimensionless-transfer", optics=optics.copy(),
+            id="ph118-table-v1",
+            intensity_unit="dimensionless-transfer",
+            optics=optics.copy(),
         ),
     )
 
 
 @pytest.mark.parametrize("multifrequency", [False, True])
 def test_workflow_summary_exact_values_and_full_history_survive_later_calls(
-    multifrequency: bool
+    multifrequency: bool,
 ) -> None:
     """S19/S20: full records survive summary/later full calls and caller writes."""
     case = _workflow_case(multifrequency=multifrequency)
@@ -304,29 +371,46 @@ def test_workflow_summary_exact_values_and_full_history_survive_later_calls(
         mu = (1 + root2 - 1j) / 4
         factor = 3 * (2 - 1j) * mu / (20 * root2)
         x = np.arange(4) - 2
-        image = (
-            12 / (2 + 2.5 * abs(factor) ** 2)
-            + 6 * np.real(np.conj(factor) * np.exp(1j * np.pi * x / 4))
-            / (2 + 3 * abs(factor) ** 2)
-        )
+        image = 12 / (2 + 2.5 * abs(factor) ** 2) + 6 * np.real(
+            np.conj(factor) * np.exp(1j * np.pi * x / 4)
+        ) / (2 + 3 * abs(factor) ** 2)
         assert_allclose(full.parameters.modulation, factor, rtol=2e-10, atol=2e-10)
         # Reuse the retained finite-assembly observer's bounds. Its absolute
         # coefficient budget here is <=6+3*abs(factor)<8, since both h>=2.
-        assert_allclose(full.image, np.broadcast_to(image, (1, 2, 2, 4)),
-                        rtol=3e-10, atol=3e-10 * 8)
+        assert_allclose(
+            full.image, np.broadcast_to(image, (1, 2, 2, 4)), rtol=3e-10, atol=3e-10 * 8
+        )
     before = _snapshot(full)
     summary = public("reconstruct_summary")(**case)
     assert _snapshot(case) == caller_before
-    for name in ("image", "x_um", "y_um", "z_um", "initial_carriers_cyc_um",
-                 "phase_linkage_carriers_cyc_um", "effective_wiener", "input_identities",
-                 "trace", "source_revision", "reference_sha256", "limitations"):
+    for name in (
+        "image",
+        "x_um",
+        "y_um",
+        "z_um",
+        "initial_carriers_cyc_um",
+        "phase_linkage_carriers_cyc_um",
+        "effective_wiener",
+        "input_identities",
+        "trace",
+        "source_revision",
+        "reference_sha256",
+        "limitations",
+    ):
         assert _snapshot(getattr(summary, name)) == _snapshot(getattr(full, name))
     for name in ("carriers_cyc_um", "modulation", "raw_modulation", "branches"):
         assert _snapshot(getattr(summary, name)) == _snapshot(getattr(full.parameters, name))
     assert summary.diagnostics == "summary"
     assert summary.omitted_diagnostics == (
-        "stage-images", "quadratures", "overlap-arrays", "correlation-arrays",
-        "camera-maps", "transfer-samples", "calibration-arrays", "layout-pixels", "precise-query-events",
+        "stage-images",
+        "quadratures",
+        "overlap-arrays",
+        "correlation-arrays",
+        "camera-maps",
+        "transfer-samples",
+        "calibration-arrays",
+        "layout-pixels",
+        "precise-query-events",
     )
     assert "quadratures" not in dict(summary.preparation)
     assert "off_quadratures" not in dict(summary.preparation)
@@ -336,7 +420,7 @@ def test_workflow_summary_exact_values_and_full_history_survive_later_calls(
     arrays = _arrays(summary)
     for index, array in enumerate(arrays):
         assert array.flags.owndata and not array.flags.writeable
-        assert not any(np.shares_memory(array, other) for other in arrays[index + 1:])
+        assert not any(np.shares_memory(array, other) for other in arrays[index + 1 :])
     assert not np.shares_memory(full.image, full.reconstructions[0].image)
     summary_before = _snapshot(summary)
     case["specimen"][:] *= -1
@@ -353,9 +437,18 @@ def test_workflow_summary_exact_values_and_full_history_survive_later_calls(
 def test_superseded_phase_validation_and_full_rank_positive_are_distinct() -> None:
     """S22/S23: validate unused declarations; solve only the selected design."""
     raw = _raw(2, y=2)
-    settings = dict(acquisition_mode="3d", dxy_um=0.5, dz_um=0.3, norders=3,
-                    background=0, lateral_zoom=1, axial_zoom=1, edge_pixels=0,
-                    equalize=False, phase_steps_rad=np.array([0.8, 0.9]))
+    settings = dict(
+        acquisition_mode="3d",
+        dxy_um=0.5,
+        dz_um=0.3,
+        norders=3,
+        background=0,
+        lateral_zoom=1,
+        axial_zoom=1,
+        edge_pixels=0,
+        equalize=False,
+        phase_steps_rad=np.array([0.8, 0.9]),
+    )
     invalid = np.full((2, 5), np.nan)
     before = _snapshot(raw)
     with pytest.raises(public("AcquisitionModeError"), match="(?i)phase|finite"):
@@ -365,22 +458,31 @@ def test_superseded_phase_validation_and_full_rank_positive_are_distinct() -> No
     # distinct phase points and hence a full-rank five-column design.
     actual = public("prepare_acquisition_bands")(raw, phases_rad=np.zeros((2, 5)), **settings)
     for direction, step in enumerate((0.8, 0.9)):
-        assert_allclose(actual.phase_angles_rad[:, direction],
-                        np.broadcast_to(np.arange(5) * step, (2, 2, 5)), rtol=0, atol=0)
+        assert_allclose(
+            actual.phase_angles_rad[:, direction],
+            np.broadcast_to(np.arange(5) * step, (2, 2, 5)),
+            rtol=0,
+            atol=0,
+        )
     with pytest.raises(public("AcquisitionModeError"), match="(?i)rank|singular|matrix|design"):
-        public("prepare_acquisition_bands")(raw, phases_rad=np.zeros((2, 5)),
-                                            **(settings | {"phase_steps_rad": None}))
+        public("prepare_acquisition_bands")(
+            raw, phases_rad=np.zeros((2, 5)), **(settings | {"phase_steps_rad": None})
+        )
 
 
 def test_zero_weight_actual_stencil_rejects_but_empty_traversal_is_valid() -> None:
     """S24: zero signal/modulation cannot remove a reached vertex check."""
     transfer = public("declare_otf")(
-        np.zeros((2, 1, 1), dtype=np.complex64), layout="radial",
-        dkr_cyc_um=1, dkz_cyc_um=1,
+        np.zeros((2, 1, 1), dtype=np.complex64),
+        layout="radial",
+        dkr_cyc_um=1,
+        dkz_cyc_um=1,
     )
     visited = blank(shape=(1, 1, 3, 6, 2, 4))
     before = _snapshot(visited)
-    with pytest.raises(public("ReconstructionError"), match="(?i)stencil|vertex|sample|index|bound|transfer"):
+    with pytest.raises(
+        public("ReconstructionError"), match="(?i)stencil|vertex|sample|index|bound|transfer"
+    ):
         known(visited, transfer, modulation=np.zeros((1, 1)))
     assert _snapshot(visited) == before
     # CE04 Y1 visits no filter/recombination coordinates: this same declaration
@@ -389,3 +491,195 @@ def test_zero_weight_actual_stencil_rejects_but_empty_traversal_is_valid() -> No
     result = known(unvisited, transfer, modulation=np.zeros((1, 1)))
     assert_array_equal(result.image, 0)
     assert_array_equal(result.filtered_quadratures, 0)
+
+
+def _direct_fault_case(
+    name: str, *, factorization: bool = False
+) -> tuple[tuple[Any, ...], dict[str, Any], np.ndarray]:
+    """Make small valid caller inputs before intercepting an external dependency."""
+    settings: dict[str, Any]
+    if name == "reconstruct_known":
+        bands = blank()
+        bands.quadratures[:] = 0
+        bands.quadratures[0, 0, 0, 0, 0, 0] = 1
+        settings = dict(
+            carriers_cyc_um=np.zeros((1, 2)),
+            modulation=np.zeros((1, 1)),
+            wavelength_nm=520,
+            numerical_aperture=0.8,
+            immersion_index=1.33,
+            wiener=0.5,
+            suppress_singularities=False,
+            output_taper="none",
+        )
+        # Unit self term, no other nonzero power: image=1/(1+.5^2)=.8.
+        return (bands, table(constant=True)), settings, np.full((1, 6, 4, 4), 0.8)
+    raw = _raw(2)
+    settings = dict(
+        dxy_um=0.5,
+        dz_um=0.3,
+        norders=3,
+        background=0,
+        lateral_zoom=2,
+        axial_zoom=2,
+        edge_pixels=0,
+        equalize=False,
+    )
+    if name == "prepare_acquisition_bands":
+        settings["acquisition_mode"] = "3d"
+    if factorization:
+        # CE02's valid overdetermined cardinal design. L is the independent
+        # exact left inverse; duplicate pi phases are permitted, not singular.
+        raw = raw[:, :, :4]
+        settings["norders"] = 2
+        settings["phases_rad"] = np.tile([0, np.pi / 2, np.pi, np.pi], (2, 1))
+        rows = np.tile([[[2, 0, 1, 1], [1, 0, -0.5, -0.5], [-1, 2, -0.5, -0.5]]], (2, 1, 1))
+        expected = preparation_expected(raw, rows, **settings)["quadratures"]
+        return (raw,), settings, expected
+    expected = raw_quadratures(raw, 3, 1 / (4 * 3 * 2 * 4 * 2 * 2))
+    return (raw,), settings, expected
+
+
+def _has_cause(error: BaseException, target: BaseException) -> bool:
+    """Check the promised original cause without prescribing wrapper depth."""
+    seen: set[int] = set()
+    current: BaseException | None = error
+    while current is not None and id(current) not in seen:
+        if current is target:
+            return True
+        seen.add(id(current))
+        current = current.__cause__
+    return False
+
+
+@pytest.mark.parametrize(
+    "fault,name",
+    [
+        ("allocation", "prepare_bands"),
+        ("allocation", "prepare_acquisition_bands"),
+        ("allocation", "reconstruct_known"),
+        ("interruption", "prepare_bands"),
+        ("interruption", "prepare_acquisition_bands"),
+        ("interruption", "reconstruct_known"),
+        ("factorization", "prepare_bands"),
+        ("backend", "prepare_acquisition_bands"),
+        ("backend", "reconstruct_known"),
+    ],
+)
+def test_direct_entry_external_failure_semantics(name: str, fault: str, monkeypatch: Any) -> None:
+    """S25: preserve direct-API distinctions without requiring a backend binding.
+
+    A public NumPy/SciPy dependency is unavailable; no product hook or scientific
+    decision is replaced. If a legitimate import/backend avoids interception,
+    assert the independent finite positive and claim no fault-path evidence.
+    """
+    import scipy.fft
+    import scipy.linalg
+
+    function = public(name)
+    args, settings, expected = _direct_fault_case(name, factorization=fault == "factorization")
+    before = _snapshot((args, settings))
+    kind = (
+        MemoryError
+        if fault == "allocation"
+        else KeyboardInterrupt
+        if fault == "interruption"
+        else np.linalg.LinAlgError
+        if fault == "factorization"
+        else RuntimeError
+    )
+    sentinel = kind("PH118 unavailable external array/transform dependency")
+    calls: list[str] = []
+
+    def fail(*args: Any, **kwargs: Any) -> Any:
+        calls.append("external-operation")
+        raise sentinel
+
+    class FailingBackend:
+        """Use SciPy's public FFT backend protocol, including bound dispatchers."""
+
+        __ua_domain__ = "numpy.scipy.fft"
+
+        @staticmethod
+        def __ua_function__(method: Any, args: Any, kwargs: Any) -> Any:
+            return fail()
+
+    outcome: Any = None
+    caught: BaseException | None = None
+    backend_context = (
+        scipy.fft.set_backend(FailingBackend(), only=True) if fault == "backend" else nullcontext()
+    )
+    with monkeypatch.context() as patch, backend_context:
+        if fault == "factorization":
+            # Public dependency operations only. Any legitimate provider or
+            # previously bound alternative may avoid interception and succeed.
+            for module in (np.linalg, scipy.linalg):
+                for method in ("inv", "solve", "lstsq", "pinv", "svd", "qr", "cholesky"):
+                    patch.setattr(module, method, fail)
+            for method in ("lu_factor", "lu_solve", "cho_factor", "cho_solve"):
+                patch.setattr(scipy.linalg, method, fail)
+        elif fault == "backend":
+            for module in (np.fft, scipy.fft):
+                for method in (
+                    "fft",
+                    "ifft",
+                    "fftn",
+                    "ifftn",
+                    "fft2",
+                    "ifft2",
+                    "rfft",
+                    "irfft",
+                    "rfftn",
+                    "irfftn",
+                    "rfft2",
+                    "irfft2",
+                ):
+                    patch.setattr(module, method, fail)
+        else:
+            for method in (
+                "array",
+                "empty",
+                "zeros",
+                "ones",
+                "full",
+                "empty_like",
+                "zeros_like",
+                "ones_like",
+                "copy",
+                "stack",
+                "concatenate",
+            ):
+                patch.setattr(np, method, fail)
+        try:
+            outcome = function(*args, **settings)
+        except BaseException as error:
+            caught = error
+    assert _snapshot((args, settings)) == before
+    print(
+        f"PH118 public dependency control: {name}/{fault}: "
+        f"{'intercepted' if calls else 'valid-alternative'}; calls={len(calls)}"
+    )
+    if calls:
+        assert outcome is None and caught is not None
+        if fault == "interruption":
+            assert isinstance(caught, KeyboardInterrupt)
+        elif fault == "allocation" and name == "prepare_bands":
+            assert isinstance(caught, MemoryError)
+        else:
+            error_name = {
+                "prepare_bands": "SimreconError",
+                "prepare_acquisition_bands": "AcquisitionModeError",
+                "reconstruct_known": "ReconstructionError",
+            }[name]
+            assert isinstance(caught, public(error_name)), (
+                f"{name} {fault}: expected {error_name}; observed {type(caught).__name__}: {caught}"
+            )
+            assert str(caught).strip()
+            if name != "prepare_bands":
+                assert _has_cause(caught, sentinel)
+    else:
+        assert caught is None and outcome is not None
+        if name == "reconstruct_known":
+            assert_allclose(outcome.image, expected, rtol=2e-12, atol=2e-12)
+        else:
+            assert_allclose(outcome.quadratures, expected, rtol=2e-10, atol=2e-10)

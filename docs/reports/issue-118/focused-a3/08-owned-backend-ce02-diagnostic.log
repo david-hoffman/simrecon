@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 1 item
+
+tests/test_preparation_harmonic_lifetimes.py F                           [100%]
+
+=================================== FAILURES ===================================
+E   AssertionError: prepare_bands backend: expected SimreconError; observed RuntimeError: PH118 unavailable external array/transform dependency
+/workspace/work/issue-118/tests/test_preparation_harmonic_lifetimes.py:637: AssertionError: prepare_bands backend: expected SimreconError; observed RuntimeError: PH118 unavailable external array/transform dependency
+=========================== short test summary info ============================
+FAILED tests/test_preparation_harmonic_lifetimes.py::test_direct_entry_external_failure_semantics[backend-prepare_bands]
+============================== 1 failed in 0.47s ===============================
