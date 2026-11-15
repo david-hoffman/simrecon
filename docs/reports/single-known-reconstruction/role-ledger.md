@@ -520,3 +520,29 @@ dispatchcommit8a4631 at2026-11-15T05:17:27Z, final3filemtimes05:21–05:24Z/repo
 05:27Z (lastwrites, notfirstedit/reviewoverlap inference). No testbody/findings
 supplied or proposalapplied unilaterally. Schedulingowner/root must bind original
 snapshot or renew currentmetadata; no scientific/exposure verdict inferred.
+
+## Root-applied final-order task-local scheduling amendment
+
+Root applied exact proposalbe8b50784bff9b276d1f2da4e8037ea8eba2c316a88a93e89bd9ed5b3ca4f2ed
+after jointreviewACCEPT0f7baea692c3590c58e8acf0dbcd63bed05075b40ae99a116a495aea873f130a;
+applicationSHA7cb791b1dd558550d187cb8a9aca3710552d60f3b384f60478ab511bea4820a0
+independently verified. Task-local coordinator-only scheduling amendment and
+future-C/execution metadata name planned main112115116117118119120113114.
+FirstunpublishedPhaseP C stillactualaccepted116+112/inherited115+ownfreshcompleteB/
+frozentests. FINALpublicationparentactualaccepted120; rootintegration/newcandidate
+requires freshaffectedB/material/profile/helper/oracle/native/environment renewal
+BEFORE ANY furtherintegratedC/resources/fullgate/D/pub.114actual113 unchanged.
+No scientific/native/B/protocol/source/Cacceptance, numericalpermission, newrole,
+rebase/push/implementation or scope change.13publicscientificinputs, historical
+B1 and activeA4packet/tests unmodified. Sole Current has operative state separated
+from preserved stagehistory. Onejointreviewaccounted117once/crossreferenceonly,
+distinctpriorPhaseP review; authorizedpostreviewA3drift doesnotcreateBacceptance.
+
+A4 completion notification arrived during amendment: reportb4fad7dab16181002c32611695a443cce1a309b350e4198300dae3052d309989
+hashverified, reportedexact8AST/Ruff/formatpass/6newattempts2failures (cumulative
+16quality/6failures). Fullfinalcode/log/report collection remainsnextphase;
+threePython+report author-owned dirty, notstagedorrewrittenbycoordinatoramendment.
+No activechild/process, newruntimecall or scientificqualification. Root resumes
+collection/freshaffectedB later; unknowncostmeters and allfailedattempts retained.
+One new coordinator ledger atomicpatch contextmiss corrected withoutpartialwrite;
+separate task prose substitution had already succeeded, no authorbyte touched.
