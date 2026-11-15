@@ -54,6 +54,15 @@ lengths. Axial zoom remains a positive integer. With 2D input and axial zoom
 above 1, only output plane zero receives the source 2D inverse; the others are
 zero. This is not axial interpolation.
 
+The [wide allocation-byte rule](../contracts/wide-allocation-domain-v1.md)
+replaces the historical output-workspace and lookup byte-only ceilings with
+exact native `intp` byte validity. Signed output counts and indices remain;
+actual binary64/complex128 extents include aggregate time and diagnostic axes.
+Invalid geometry rejects before reading/copying pixels or numerical work.
+This is representation admission, with no RAM or backend-execution guarantee.
+Allocation/backend failures retain their operation-error causes; interruption
+propagates and caller inputs remain unchanged.
+
 Supply explicit phase rows with `phases_rad`, or direction-specific phase
 increments with `phase_steps_rad`. Steps take precedence after input
 validation. The historical step parser supports at most three directions;

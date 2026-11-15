@@ -173,13 +173,18 @@ references is a precondition for correctness. Concurrent caller mutation during
 an operation gains no new guarantee.
 
 Complete input and structural validation precedes numerical work as in CE07.
-Preserve signed32/unsigned32/native-intp limits and actual transfer-stencil checks,
+Preserve signed32 count/index and native-intp limits and actual transfer-stencil checks,
 including zero-weight vertices. MemoryError and interruption propagate; translated
 backend/operation errors retain their cause and available stage/time/direction
 context. Failure late in any time/direction yields no partial result/trace and
 does not mutate inputs. Do not turn numerical failure into success by disabling
 retention. Allocation-dependent success may differ because the new path needs
 less memory; this does not waive numerical/representation failures.
+The separately authorized [wide allocation-byte extension](wide-allocation-domain-v1.md)
+supersedes the historical unsigned32 workspace and signed32 lookup byte-only
+caps for both full workflow and summary. Exact positive integer bytes must fit
+native intp; actual-width aggregate extents and early geometry rejection remain
+required. This extension changes no summary retention or scientific calculation.
 
 ## 4. Required scenario and qualification inventory
 
@@ -266,12 +271,16 @@ Larger trials require representation preflight and measured smaller cases plus
 current available-memory/cgroup headroom. Stop growth before unsafe allocation;
 do not deliberately OOM a baseline to manufacture failure. Report the largest
 demonstrated case, the unevaluated next size and reason. The historical full target
-`(1,3,5,32,2048,2048)`, L2/A1, is a feasibility reference, not an acceptance gate:
-output `(1,32,4096,4096)` has 536,870,912 voxels and CE06's required
-`8*Xo*Yo*Zo = 4,294,967,296 > 2**32-1`. It is outside the unchanged explicit
-unsigned32 source-workspace domain, irrespective of RAM. Do not run it or relax
-that check under RM84; supporting it needs a separately resolved domain change.
-No crop scaling is a measured full-volume result or a 16 GiB guarantee.
+`(1,3,5,32,2048,2048)`, L2/A1, is a feasibility reference, not an acceptance gate.
+Under RM84's original domain, output `(1,32,4096,4096)` with 536,870,912 voxels
+was excluded because `8*Xo*Yo*Zo = 4,294,967,296 > 2**32-1`. Issue 115's
+separate wide allocation-byte extension now classifies its integer geometry
+as representation-valid on supported 64-bit Ubuntu, subject to all other
+declarations, actual stencils and numerical constraints. Historical RM84 evidence
+retains its original domain. No target allocation or backend trial establishes
+this classification: the binary64 image alone is 4 GiB and a binary64 raw array
+is 15 GiB, before other storage. Full-volume feasibility is unmeasured; no crop
+scaling is a measured full-volume result or a 16 GiB guarantee.
 
 ## 6. Dependent slices and exclusions
 

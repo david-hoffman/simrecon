@@ -458,12 +458,8 @@ def test_unused_finite_diagnostics_are_not_raw_consistency_checks() -> None:
     compare(b, table())
 
 
-@pytest.mark.parametrize(
-    "lateral,axial", [(65536, 1), (6000, 1), (8192, 1), (16777217, 1), (1, 2**31)]
-)
-def test_output_source_integer_unsigned_workspace_and_zoom_representation(
-    lateral: int, axial: int
-) -> None:
+@pytest.mark.parametrize("lateral,axial", [(65536, 1), (16777217, 1), (1, 2**31)])
+def test_output_source_integer_and_zoom_representation(lateral: int, axial: int) -> None:
     b = blank(shape=(1, 1, 3, 2, 2, 4))
     b = changed(
         b, lateral_zoom=lateral, axial_zoom=axial, input_scale=1 / (4 * 2 * 2 * lateral**2 * axial)
@@ -471,6 +467,21 @@ def test_output_source_integer_unsigned_workspace_and_zoom_representation(
     rejects(
         b, table(), ("represent", "size", "integer", "32", "byte", "zoom", "dimension", "overflow")
     )
+
+
+@pytest.mark.parametrize("lateral", [6000, 8192])
+def test_wide_output_bytes_are_not_a_known_representation_rejection(lateral: int) -> None:
+    from wide_allocation_fixture import SIGNED_MAX, M, U, geometry
+
+    shape = (1, 1, 3, 2, 2, 4)
+    counts = geometry(shape, 2, lateral, 1)
+    assert counts["bytes"]["complex_output"] > U
+    assert all(0 < count <= SIGNED_MAX for count in counts["signed"].values())
+    assert all(0 < count <= M for count in counts["native_bytes"].values())
+    # Tiny native preparation is safe; only reconstruction would enlarge it.
+    # Independently invalid Wiener prevents that numerical path.
+    b = blank(shape=shape, lateral_zoom=lateral)
+    rejects(b, table(), ("wiener",), wiener=0)
 
 
 @pytest.mark.parametrize("case", ["phase_product", "volume_product", "direction_order_product"])

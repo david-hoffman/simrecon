@@ -273,9 +273,13 @@ source stencil check, including zero weights; an unsafe request rejects the
 whole operation. Dimensions, output dimensions, signed lifts, source integer
 products/flat offsets and cutoff integers must fit signed32. In particular
 X*Y*Z, (X//2+1)*Y*Z, (L*X)*(L*Y), (L*X)*(L*Y)*(A*Z), D*O and Q*P fit.
-Source allocation expressions converted to unsigned bytes must fit uint32 for
-the complex workspace and real image (8 and 4 source bytes per element), while
-the source lookup allocation's explicit signed-int byte count must fit signed32.
+The [wide allocation-byte extension](wide-allocation-domain-v1.md) supersedes
+the historical byte-only caps: `8*X*Y*Z`, `8*Xo*Yo*Zo`, `4*Xo*Yo*Zo`,
+`8*O` and `4*Xo*Yo` require exact positive integer byte counts at most native
+`intp` maximum, rather than unsigned32/signed32 bytes. The signed element/index
+counts above remain unchanged. Actual-width native array checks may dominate
+these historical expressions: complex128 uses 16 bytes, binary64 uses 8, and
+the actual lookup plane and order storage must also fit.
 Each owned binary64/complex128 output or used copied array must also have shape,
 strides and byte extent representable in platform intp, including aggregate
 record axes. These are representation limits, not empirically measured external
@@ -321,7 +325,7 @@ or historical binary-decision guarantee is claimed.
 | K23 | Invalid used records, arrays, kinds/shapes, nonfinite components and noise reject |
 | K24 | Invalid scalar/integer/flag/taper declarations; caller immersion lower/upper bounds and NA upper bound, with permitted endpoints |
 | K25 | Transfer completeness, extra orders, complex radial/full layouts and actual stencil errors |
-| K26 | Source signed/unsigned and native shape/stride/byte representation limits |
+| K26 | Retained source signed counts/indices and wide native shape/stride/byte representation limits |
 | K27 | Undefined derived domain/overflow, unresolved square/denominator and backend/allocation errors |
 | K28 | Explicit unsupported O1, modes and original retired namespace remain unavailable |
 | K29 | Documentation distinguishes fixed-parameter math, binary agreement, image recovery and resolution |

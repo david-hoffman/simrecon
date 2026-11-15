@@ -478,7 +478,11 @@ def test_source_signed_extents_reject_before_materialization(shape: tuple[int, .
 
 
 @pytest.mark.parametrize("zoom,axial", [(32768.0, 1), (1.0, 2**30)])
-def test_unsigned_workspace_and_signed_lookup_representation(zoom: float, axial: int) -> None:
+def test_signed_output_counts_still_reject(zoom: float, axial: int) -> None:
+    # Y=2, X=4: L=32768 gives output plane 2**33; A=2**30
+    # gives at least volume 2**33. Both exceed signed element counts,
+    # independently of any byte-only ceiling.
+    assert 8 * int(zoom) ** 2 * axial > 2**31 - 1
     reject(raw_pattern(y=2, x=4), lateral_zoom=zoom, axial_zoom=axial)
 
 
@@ -681,26 +685,31 @@ def test_true_2d_requires_k1_in_both_consumers_and_later_wiener_failure() -> Non
                 )
 
 
-def test_complex_workspace_unsigned_limit_is_independently_binding() -> None:
-    # All preceding signed element/lookup counts remain representable.
+def test_complex_workspace_crosses_old_unsigned_limit_without_rejection() -> None:
+    import importlib
+
+    from wide_allocation_fixture import SIGNED_MAX, M, geometry
+
     xo = yo = 16384
     zo = 2
     assert xo * yo * zo == 536870912 < 2**31
     assert 4 * xo * yo == 1073741824 < 2**31
     assert 8 * xo * yo * zo == 2**32
     assert 4 * xo * yo * zo == 2147483648 < 2**32
-    with pytest.raises(
-        api("AcquisitionModeError"), match="(?i)unsigned|uint32|workspace|byte|represent"
-    ) as caught:
-        api("prepare_acquisition_bands")(
-            np.ones((1, 1, 3, 1, 4, 4)), **options(lateral_zoom=4096.0, axial_zoom=2)
+    shape = (1, 1, 3, 1, 4, 4)
+    counts = geometry(shape, 2, 4096, 2)
+    assert all(0 < value <= SIGNED_MAX for value in counts["signed"].values())
+    assert all(0 < value <= M for value in counts["native_bytes"].values())
+    layout = importlib.import_module("simrecon.acquisition.layout")
+    assert layout.output_extents(shape, 4096.0, 2) is None
+    # Use the direct public callable, avoiding this fixture's numerical
+    # observer for a large declaration. An invalid pitch guarantees no large
+    # numerical path; it retains its category after byte admission.
+    module = importlib.import_module("simrecon")
+    with pytest.raises(module.AcquisitionModeError, match="(?i)dxy|pitch"):
+        module.prepare_acquisition_bands(
+            np.ones(shape), **options(lateral_zoom=4096.0, axial_zoom=2, dxy_um=0)
         )
-    cause = caught.value.__cause__
-    while cause is not None:
-        assert not isinstance(cause, MemoryError), (
-            "allocation failure is not early representation rejection"
-        )
-        cause = cause.__cause__
 
 
 @pytest.fixture(params=["estimate", "reconstruct"])

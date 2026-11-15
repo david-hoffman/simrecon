@@ -1186,10 +1186,13 @@ D*Z*P, D*P*(N+1), Q*P, D*O, O table sizes, peak wrap/reflection sums,
 S and middle-section offsets, cubic matrix/RHS extents, rdistcutoff² and
 integer kx²+ky², native/output products and every flattened index.
 Include finite ceil/floor/pow-to-integer cutoff/index conversions BEFORE casts.
-No arbitrary signed32 byte limit is inferred from size_t multiplications.
-Use source unsigned32 byte constraints at explicit unsigned main workspace
-casts and signed32 at the explicit lookup allocation cast, as already CE04:
-8*Xo*Yo*Zo and 4*Xo*Yo*Zo fit unsigned32, lookup 4*Xo*Yo fits signed32.
+The [wide allocation-byte extension](wide-allocation-domain-v1.md) replaces
+the historical unsigned32 output-workspace and signed32 lookup byte-only caps.
+`8*Xo*Yo*Zo`, `4*Xo*Yo*Zo` and `4*Xo*Yo` require exact positive integer
+byte counts at most native `intp` maximum. Actual complex128 output storage
+uses 16 bytes per voxel and therefore also bounds these three expressions
+when Zo>=1; the binary64 image needs its aggregate time-axis extent separately.
+The signed output plane/volume and actual lookup indices remain unchanged.
 All source size_t byte extents must be representable on the declared platform.
 
 Every owned target float64/complex128/bool array, copied used input, diagnostic,
@@ -1319,7 +1322,7 @@ reachability, omissions, oracles and rejected positives.
 | A50 | Fast no-drift same canonical values; fast D>1 drift unsafe, D1 BETWEEN-ONLY initialized-zero bypass; fast within-3D D1 unsafe, fast within-2D D1 separately qualified by active estimator/fit/phase path |
 | A51 | Read-only/strided input ownership/immutability and valid caller-mutated bands; no hidden raw replay; all trace schemas and time slices complete Actual complex128 prepared transfer consumption has no quantization seam; estimator result uses exact CE05 six-file provenance, with input ten-file acquisition tuple retained losslessly in the exact two-key ordered settings suffix. |
 | A52 | All shape/type/finite/scalar/flag/record/source/alpha failures paired with endpoint/negative/zero positives actually allowed Distinguish invalid ten-file input provenance from the successful six-file result; preserve prepared complex128 versus declared exact-complex64 domains and exact resolved_settings keys/value kinds/order.; bead geometry uses X>=8,Y>=10,Y<=X+2 while specimen/prepass fixed10 keeps X>=10 |
-| A53 | Source signed/unsigned/intp representation and actual stencil/address checks, including zero weights and diagnostic extents; allocation/backend operation failure with no partial result |
+| A53 | Retained source signed counts/indices, wide intp byte representation and actual stencil/address checks, including zero weights and diagnostic extents; allocation/backend operation failure with no partial result |
 | A54 | Docs distinguish math/unsafe subdomains/outside-support modes (including otherwise-defined O1 no-search Bessel/two-objective), alternative tools, literal header regrouping/file limits, binary agreement and physical recovery Freeze six-file estimator result versus ten-file input/settings provenance and unchanged original CE05 metadata; require direct empirical-transfer consumption without quantization/rebinding. |
 
 The caller-composition proof for A02/A40/A45/A47 must start at independently

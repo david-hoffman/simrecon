@@ -73,6 +73,14 @@ not waive the stencil checks. Output arrays own read-only storage; inputs stay
 unchanged. An accepted writable band's finite quadratures/noise can be supplied
 without replaying its raw images.
 
+The [wide allocation-byte rule](../contracts/wide-allocation-domain-v1.md)
+admits bytes above the historical unsigned32 workspace and signed32 lookup
+ceilings when exact integer bytes and actual-width aggregate arrays fit native
+`intp`. Signed element counts, indices and actual stencil checks still apply.
+Known invalid geometry rejects before array-sized work. Representation validity
+does not promise available RAM or backend execution; allocation/backend failures
+remain operation errors with their causes, and interruption propagates.
+
 The original profile described here is ordinary stationary single-objective
 three-dimensional data with at least two retained orders, integer zoom and an
 explicit positive Wiener parameter. Its original calls retain their behavior.

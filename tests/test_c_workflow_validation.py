@@ -495,8 +495,9 @@ def workspace_limit_counts(axial_zoom: int) -> dict[str, Any]:
     """Independent nonoverflowing integer provenance for SMALL raw geometry.
 
     This computes no target array and calls no product numerical operation.
-    The accepted source distinguishes signed counts, unsigned workspace bytes,
-    signed lookup bytes and native64 byte/stride representation.
+    Signed counts are separate from historical workspace/lookup bytes and
+    actual native64 byte/stride representation. Issue 115 replaces the
+    byte-only ceilings; the returned historical names describe expressions.
     """
     t, d, p, z, y, x, orders = 1, 1, 3, 2, 2, 4, 2
     xo, yo, zo = x, y, z * axial_zoom
@@ -524,7 +525,7 @@ def workspace_limit_counts(axial_zoom: int) -> dict[str, Any]:
         output_volume=xo * yo * zo,
         output_padded=(xo + 2) * yo * zo,
         output_half=(xo // 2 + 1) * yo * zo,
-        lookup_bytes=4 * xo * yo,
+        output_plane=xo * yo,
     )
     # Actual binary64/complex128 aggregate storage is a native-intp obligation,
     # separate from source's explicit unsigned sizeof(complex_float) cast.
@@ -537,7 +538,7 @@ def workspace_limit_counts(axial_zoom: int) -> dict[str, Any]:
     )
     return dict(
         raw_shape=(t, d, p, z, y, x),
-        signed_counts_and_lookup_bytes=signed,
+        signed_counts=signed,
         unsigned_complex_workspace_bytes=8 * xo * yo * zo,
         unsigned_real_workspace_bytes=4 * xo * yo * zo,
         native64_bytes=native_bytes,
@@ -547,26 +548,32 @@ def workspace_limit_counts(axial_zoom: int) -> dict[str, Any]:
 
 @pytest.mark.parametrize(
     "which",
-    ["fractional-extents", "source-byte-limit", "unsafe-stencil", "unsigned-complex-workspace"],
+    ["fractional-extents", "source-byte-limit", "unsafe-stencil", "wide-complex-workspace"],
 )
 def test_representation_limits_with_real_small_backing(which: str) -> None:
-    if which == "unsigned-complex-workspace":
+    if which == "wide-complex-workspace":
+        import importlib
+
         case = constant_case()
         assert case.raw.shape == (1, 1, 3, 2, 2, 4) and case.raw.nbytes == 384
         case.acquisition["axial_zoom"] = 2**25
         counts = workspace_limit_counts(2**25)
-        assert all(0 < v <= 2**31 - 1 for v in counts["signed_counts_and_lookup_bytes"].values())
+        assert all(0 < v <= 2**31 - 1 for v in counts["signed_counts"].values())
         assert counts["unsigned_complex_workspace_bytes"] == 2**32 > 2**32 - 1
         assert counts["unsigned_real_workspace_bytes"] == 2**31 <= 2**32 - 1
         assert all(0 < v <= 2**63 - 1 for v in counts["native64_bytes"].values())
         assert counts["alpha"] == 2.0**-29
         positive = workspace_limit_counts(1)
         assert positive["unsigned_complex_workspace_bytes"] == 128
-        assert all(v <= 2**31 - 1 for v in positive["signed_counts_and_lookup_bytes"].values())
-        # The small positive is the unchanged algebra-3d-unit whole-entry
-        # control. Huge zoom goes ONLY to validation, never a lower numerical
-        # entry, broadcast, target/workspace allocation or observer image.
-        assert_error("workflow_representation", case.raw, keywords(case))
+        assert all(v <= 2**31 - 1 for v in positive["signed_counts"].values())
+        layout = importlib.import_module("simrecon.acquisition.layout")
+        assert layout.output_extents(case.raw.shape, 1.0, 2**25) is None
+        # The large byte declaration is now admitted. Pair it with a single
+        # independently invalid pitch so the public entry must reject safely
+        # as configuration, never enter the enlarged numerical path.
+        case.acquisition["dxy_um"] = 0.0
+        error = assert_error("workflow_config", case.raw, keywords(case))
+        assert error.stage == "declaration"
         return
     entry()
     case = constant_case()

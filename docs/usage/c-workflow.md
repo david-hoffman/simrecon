@@ -122,6 +122,16 @@ category, stage and known time/direction context. The original cause is retained
 where required. A failed call returns no partial reconstruction or fallback.
 See the contract for exact domains and ordinary argument/allocation exceptions.
 
+Full workflow and [summary](reconstruction-summary.md) use the same
+[wide allocation-byte rule](../contracts/wide-allocation-domain-v1.md).
+Historical workspace/lookup byte-only caps are replaced by exact integer bytes
+that fit native `intp`; signed counts/indices, actual-width aggregate extents
+and stencils still bind. Known invalid geometry raises
+`WorkflowError(code="workflow_representation", stage="declaration")` before
+array-sized copies, hashes, scans or backend work. Representation validity
+does not establish RAM fit or backend execution. `MemoryError` and interruption
+propagate, including allocation causes wrapped by a scientific stage.
+
 Neutral file operations can explicitly read and declare specimen pixels before
 this call. They preserve pixel meaning and do not infer C metadata. The existing
 ImageJ exporter accepts its documented file-source inputs; this workflow adds

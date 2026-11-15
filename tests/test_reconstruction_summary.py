@@ -742,7 +742,7 @@ def test_summary_inherited_structurally_unsafe_paths(
 
 @pytest.mark.parametrize(
     "fault",
-    ["fractional-extents", "source-byte-limit", "unsigned-complex-workspace", "unsafe-stencil"],
+    ["fractional-extents", "source-byte-limit", "wide-complex-workspace", "unsafe-stencil"],
 )
 def test_summary_inherited_representation_limits(
     summary_entry: Any, monkeypatch: Any, fault: str

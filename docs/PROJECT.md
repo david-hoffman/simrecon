@@ -84,6 +84,14 @@ compatibility boundary; [RM84 task evidence](tasks/reconstruction-memory.md)
 identifies implementation and measurement status. No fixed memory ceiling,
 disk-backed execution or expansion of source representation limits is implied.
 
+The separately authorized [wide allocation-byte contract](contracts/wide-allocation-domain-v1.md)
+replaces historical allocation-byte-only ceilings for known reconstruction,
+acquisition, workflow and summary on supported 64-bit Ubuntu. Signed element/index
+limits, actual-width native aggregate extents and actual stencil checks remain.
+Representation validity supplies no allocation/backend execution or RAM-fit
+guarantee. Its [task state](tasks/wide-allocation-domain.md) owns qualification
+and exact-candidate evidence; historical RM84 evidence retains its original scope.
+
 - The [MRC conversion contract](contracts/mrc-conversion-v1.md) defines metadata
   inspection, selected-block reads, pure metadata/layout resolution, streamed
   modern MRC writing and `simrecon inspect` / `simrecon convert`. Explicit
