@@ -754,3 +754,23 @@ checks only, SHAcc6efe9afec035e57fa27369e5047e9cebfbf6f07ce8d976eb77dd93537bf9bf
 Newmethod/disabledexample, sourceonly/noAST/style/runtime/probe. Expectedtextdiff
 exit1 notexecutionfailure. No target/control/type/B/scientificacceptance, no new
 role/B4loop; READY/HOLD, costs retainedunknown. Actual116window/ROOTreleasebind.
+
+Rootbriefprepwindow: SAMEA6quality continuation4actualattempts Q6.1format0
+(.234643749/chunk68eecb),Q6.2Ruffsafe-fixcheck0(.19004452/7df5f2),Q6.3AST0
+(.339816911/fffce0),Q6.4formatcheck0(.192061196/141b8b),all8prehashesbeforeeach.
+Onlyformatterfixturea693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b,
+other7unchanged; reportfc6cbb6eea41c67a7b871c06ae2a45fbb92edbdfa63a80253f7d99cb576aef3e.
+25quality/7failures cumulative, no extraAexecution. Coor fullactualreport/hash/
+regions readback, no rerun; noactiveprocess. All8finalmanifest outsidea6-quality-inputs.sha256.
+
+Independentexactscalar metadata2freeze/activation01b28d07 beforecall,exit0
+(.321679251/chunk8a327f),positivebuilt-inmath/spec/loader/interpreter/libm/libc/
+selectedsymbol/RNE state observed; receiptf5faab230e78fa9c191da6d4f5679febc3ce2c5080a6c7aba3fb67917dfce88a.
+Thenexactnativeactivatione111105f beforeSINGLEprocess exit0(.324496831/f6244b),
+14fixedobservations/3puregroups allinsideprefrozen sourceboxes, sameprocessRNE/
+FTZDAZunchanged; stdoutff10f9ac7fa4f73d673beb58fa23de6825ca0f94852bba11eb56f0fbeea7c3e4,
+stderr183cc140b8ef4e179d611c3bb2f45997891641ee963dc93051ae9c1ed6229741.
+No targetRchoseexpectations/bounds, originalmetadata1failurekept. Newfiniteprocesses
+31/3failures (prior6dependencyprocesseshistorical), finitefacts3sanitizedforfutureB.
+No product/FFT/API/view/AS/allocation/type/test/initcontroller/fullgate. Allprocesses/
+FDsclosedandROOTACKnowreceived; rootresuspendedALLexecution, noactivechild/role.
