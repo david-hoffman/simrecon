@@ -102,6 +102,8 @@ The prospective actual packet may allow only these whole existing public files
 - `docs/packets/precision-113/a1-gap-continuation.md` (same-author G1–G8 routing when explicitly supplied).
 - `docs/packets/precision-113/point-libm-method.md` (selected primitive/argument enclosure method and material conditions when explicitly supplied; no universal libm claim or source/link expansion).
 - `docs/packets/precision-113/a1-g3-method-addendum.md` (actual same-author selected-method update when explicitly supplied).
+- `docs/packets/precision-113/a1-wide-test-safety-addendum.md` (binding-independent bounded experiment protocol for genuine wide metadata; static correction when explicitly supplied).
+- `docs/packets/precision-113/point-source-clarification.md` (selected standalone-sine versus combined-path source facts, supplementing the frozen point method when explicitly supplied).
 
 These are whole-file permissions, not permissions for linked tasks/reports/source.
 The final coordinator packet supplies its own whole public filename/digest and

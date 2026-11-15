@@ -73,6 +73,8 @@ uncovered branch commissions no new meaning.
 
 - Public experiment-safety correction: same A1 must bound the genuine wide-byte admission/invalid-Wiener consumer-order test independently of implementation allocation aliases before final B/C. Actual sanitized instructions are in a1-wide-test-safety-addendum.md; source-free per-child post-import VmSize/RLIMIT_AS is a proposed safe mechanism, with every new helper/transport/dependency reviewed by fresh B. No large successful operation, weakened scalar assertion, product RAM cap, tracked helper, production seam or execution grant follows. Original static draft/charges retained; revised hashes/protocol remain pending, so conditional light checks stay inactive.
 
+- Method-review1 complete: exact outside report hash/scope/three arithmetic attempts and other retained failures recorded in role-ledger and excluded method-investigation; both frozen method targets unchanged. Coordinator independently verified primary standalone-sine versus combined-path facts and supplies only point-source-clarification.md to same A1. Actual source/binary/primitive applicability and complete witness propagation remain BLOCKING, no A/B/D/product acceptance or broad G2/G3 closure. Same A revised hashes/protocol pending, so conditional quality/cardinal/primitive phases remain inactive. Coordinator yields WAITING after routing; C still waits accepted116 plus B.
+
 ## PR presentation (coordinator / permitted candidate context)
 
 Lead with the real optional stage outcome and preserved default behavior. A

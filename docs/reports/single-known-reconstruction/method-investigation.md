@@ -117,3 +117,50 @@ Light-check plan may include a separately frozen finite primitive qualification
 request only after the independent reference boxes/code/input hashes are fixed,
 under explicit root grant; observed values may not select/enlarge those boxes.
 G3 remains unaccepted until actual derivation/applicability/fresh B review.
+
+## Independent method-review1 collection and coordinator assessment
+
+Coordinator-only raw report: /workspace/work/campaign/evidence/113/method-review-1.md,
+SHA256 fe8f23a75a01340f26e57593f5a14d97f397b2ba77d20d7a02604f4056f3406b.
+Report scope is the two frozen public methods, external primary source and named
+installed static metadata, not any actual A fixture, test checkpoint or product.
+No invalid finite enclosure was identified under its explicit assumptions;
+source/binary/primitive applicability and full per-witness propagation remain
+blocking. This finding is not A/B/D acceptance or dependency qualification.
+
+Coordinator inspected the report's full derivation and reproducible arithmetic
+payloads without rerunning them. The finite FFT tree bound follows by counting
+one selected scalar leaf per complex input, N-1 additions, depth sum(log2 ni),
+and bounding (1+u)^d by 1/(1-du), plus propagated absolute underflow terms.
+Exact cancellation does not remove intermediate overflow or material input
+uncertainty obligations. The R64 hull contains both rounded and omitted-rounding
+nodes only for the justified source tree, not arbitrary reassociation. Selected
+isqrt inequalities, Taylor signed next-term bounds and branch/bin calculations
+are coherent conditional checks; no independent reproduction of every reported
+integer endpoint, actual dispatch or complete A witness certificate is claimed.
+
+Independently fetched glibc-2.39 primary s_sin.c lines55-255 and263-310,
+s_sincos.c35-110 and sincostab.c20-44. Exact Git blobs respectively
+ad3175001fad5e1376ff9fc0442b43853b6d6bbe,
+adbc57af2827bb801c3497d6716c41109cb1eafa,
+1459368bc73dcd2bd5cbb53500a992a101076b9d. These verify a compressed source-path
+description: standalone sine uses do_cos(hp0-abs(x),hp1), while cosine/combined
+sincos use the a/da reduction. At selected +/-P/2, both do_cos(0,hp1) and
+do_cos(hp1,0) reach the exact same knot-zero reduced argument hp1, since its
+magnitude is below half-spacing2^-8 at big and the zero-knot table is0,0,1,0.
+The public point-source-clarification.md contains only these independently
+checked primary/math facts; frozen original method targets stay unchanged.
+No raw reviewer conclusion/verdict/interval/report is supplied to A/future B.
+
+Reviewer arithmetic was three pinned Ubuntu source-free stdlib invocations:
+payload54be796e... exited1 before execution on unmatched parenthesis;
+92891012... exited0 in0.230942494 tool seconds; ac70ec94... exited0 in
+0.146492937 tool seconds. Failed invocation tool wall0.169909962 seconds.
+Exact hashes/payloads/prefix/output quantities are in the outside report.
+Also retain one wrong external source404, one no-match ignored-path discovery
+corrected with rg-uuu, and one JavaScript report-construction SyntaxError before
+nested execution/write. No dependency/candidate import/call, measurement,
+install, product numeric red or environment repair. Unknown overall elapsed/
+tokens/cached/output/served model/money remain unknown. Reviewer is complete,
+not relaunched. Same A1 continues; conditional checks require its actual revised
+hashes/reference/source-assumption/input/payload freeze first, and are inactive.

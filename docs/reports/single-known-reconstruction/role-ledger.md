@@ -357,3 +357,25 @@ Same author and scope; no replacement/retry/reset. One coordinator atomic prose
 patch failed on a task-file context match before this correction; no partial
 mutation, product execution or source exposure followed. Exact delivery/hash
 and dirty inventory belong outside tracked bytes.
+
+## Method-review1 complete, limited coordinator assessment
+
+Fresh method reviewer1 completed the original frozen-method scope and wrote
+only outside report evidence/113/method-review-1.md, SHA256
+fe8f23a75a01340f26e57593f5a14d97f397b2ba77d20d7a02604f4056f3406b.
+Two exact stdlib arithmetic successes, one preserved syntax-error invocation;
+one separate pre-evaluation report-construction JavaScript syntax failure and
+one primary-source404 also retained. Unknown meters remain unknown. No product/
+dependency calls or acceptance. Coordinator examined the derivations/payloads,
+independently verified the selected source-path correction in primary glibc
+sources, and recorded limits in excluded method-investigation.md. Both frozen
+method target hashes unchanged. Actual source/binary/primitive applicability
+and complete witness-specific propagation remain BLOCKING; no broad G2/G3 gap
+closure follows. New public point-source-clarification.md contains independently
+checked primary facts only, no raw reviewer report/conclusion/verdict. Same A1
+continues; fresh B still reviews full actual tests/oracles/material assumptions.
+One additional coordinator atomic prose patch failed on public-context context
+matching before this write, no partial mutation; all prior failures retained.
+Standing root conditional quality/cardinal/selected primitive grants await exact
+A returned code/method/input/payload freeze and independent inspection. No
+installed/build or116 scientific authority and no C before accepted116+B.
