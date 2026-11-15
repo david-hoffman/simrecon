@@ -80,8 +80,14 @@ reasoning or controlled direct-child observations.
 
 ## Actual routing holds
 
-First unpublished PhaseP C still requires actual accepted/frozen116, accepted
-scientific112/inherited115 reconciliation and own fresh complete B/frozen tests.
+Root's independently reviewed task-local amendment explicitly supersedes the
+former first-C parent116 clause. First unpublished PhaseP C uses actual accepted/
+frozen115 ace06c861b974b6251a092567c253ae4eb0f56c8,
+tree2247d3909f43bc4764beb5c748caa917aaa1d707, accepted scientific112/inherited115
+reconciliation and own fresh complete B/frozen tests AFTER all actual pre-C
+fixture/reference/process/source-free/tool capabilities qualify. This changes
+no scientific requirement and grants no C launch. Unaccepted116 observations
+cannot supply truth/tolerance/resource conclusions.
 Final publication parent is actual accepted120; root integration/new candidate
 needs fresh affected B/material/profile/helper/oracle/native/environment renewal
 before further integrated C/resources/fullgate/D/publication. No such acceptance

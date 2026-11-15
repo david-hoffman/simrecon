@@ -1,4 +1,4 @@
-# SP113 task-local scheduling amendment: PhaseP116, final PhaseI120
+# SP113 task-local scheduling amendment: PhaseP115, final PhaseI120
 
 **Applied by root. Coordinator/C/execution metadata only; not an A/B scientific
 input or a product/numerical/protocol/role authorization.** This separate amendment
@@ -14,7 +14,14 @@ Authoritative root records, hashes independently checked:
 - /workspace/work/campaign/final-stack-order-application.json:
   7cb791b1dd558550d187cb8a9aca3710552d60f3b384f60478ab511bea4820a0.
 
-Root's amended planned linear order is
+Root additionally applied the independently reviewed first-C baseline amendment:
+proposal5d499384947b5887361c47f4bace46e597975d3335a06121ad9e2eb73b176abc,
+reviewbb21c467d8476f018c122d3f11a3701d525ca31b4b87a0ee1308d541725fb204,
+applicationdbe9ed66d62cd33836c0888ba1dfc659637bcf3cf6795c81b73abac88c301a06.
+It supersedes only former first-C parent116 clauses with accepted115; historical
+bytes/checkpoints remain preserved and the next fresh B receives renewed routing.
+
+Root's unchanged planned final linear order is
 main→112→115→116→117→118→119→120→113→114. The reason is existing117/118 work
 and113/114 qualification blockers, followed by prompt affected working-set
 refresh. Root owns actual parent selection, integration/restacks and publication.
@@ -22,16 +29,22 @@ No independent rebase/push or new followup implementation is authorized here.
 
 ## First unpublished PhaseP C
 
-The first scientific implementation still requires ACTUAL accepted/frozen116,
+The first unpublished implementation uses ACTUAL accepted/frozen115
+ace06c861b974b6251a092567c253ae4eb0f56c8,
+tree2247d3909f43bc4764beb5c748caa917aaa1d707,
 accepted scientific112, reconciled inherited115 representation/material rules,
 and this issue's own fresh complete B acceptance/frozen test/fixture checkpoint.
 None is inferred from scheduling acceptance. Accepted112 is the semantic study
 prerequisite; incidental final stack ancestry is a separate matter. Historical
 intake/study/experiment/checkpoint identities retain their original provenance.
-No actual116 accepted commit/tree or B checkpoint has been supplied to113 yet.
-The current B1 nonacceptance and unfinished corrections supply no C authority.
+No B checkpoint has been accepted; current B3 nonacceptance/A6 drafts and
+pending actual init/tool capabilities supply no C authority. All actual pre-C
+fixture/reference/native/source-free/process/tool qualifications still precede
+fresh complete B4-or-later acceptance and C. Unaccepted116 observations cannot
+supply truth, tolerance or resource conclusions; reliance on its evidence still
+requires actual appropriate acceptance and exact workload/source applicability.
 
-A future PhaseP C packet must bind actual116 commit/tree, complete frozen B
+A future PhaseP C packet must bind actual115 commit/tree, complete frozen B
 checkpoint/public input hashes, exact product-only ownership and inherited
 material reconciliation before launch. C cannot change reviewed tests/fixtures,
 check infrastructure/gates, or evidence-driver assertions. A separate root
@@ -67,11 +80,15 @@ implementations or acceptance decisions.
 
 ## Preservation and accounting
 
-Do not edit the scientific contract,13frozen scientific/public inputs, historical
-B1 packet/checkpoint/manifests, or active A4 packet/test bytes to apply this
-amendment. Current/future C and execution metadata point here explicitly. A/B
-roles do not read this coordinator-only task-local scheduling record. Any later
-material/expectation change follows normal sanitized intake/fresh affected B.
+The earlier final-order amendment preserved contract/public bytes at that time.
+The separately reviewed/applied PhaseP115 amendment now explicitly updates ONLY
+operative routing clauses in contract/public context/stage metadata; all293
+scientific rows/equations and eight tests remain unchanged. Original whole bytes
+and hashes, B1/B2/B3 packets/manifests/checkpoints and A drafts stay historical,
+never silently relabelled. Next fresh complete B receives accurate renewed public
+hashes. Current/future C and execution metadata point here explicitly. A/B roles
+do not read this coordinator-only record. Any material/expectation change still
+follows sanitized intake/fresh affected B.
 
 The single joint final-order applicability review is owned/accounted once under
 117;113 cross-references it without duplicate charges. It is distinct from the

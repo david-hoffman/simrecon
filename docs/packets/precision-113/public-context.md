@@ -7,9 +7,16 @@ scenario IDs/subrows**, fixed outcomes and mapping; there is no scenario cap.
 This file is not the coordinator's actual hashed STATIC A launch packet or an
 accepted test checkpoint. The coordinator supplies that packet, exact identities
 and ownership. A is static-only until root explicitly grants necessary light
-checks. Accepted/frozen116 and material-parent reconciliation remain required
-before C. No missing owner decision, execution grant or runtime qualification
-is implied by public-source readiness.
+checks. Root has applied the independently reviewed task-local first-C routing:
+accepted/frozen115 ace06c861b974b6251a092567c253ae4eb0f56c8,
+tree2247d3909f43bc4764beb5c748caa917aaa1d707 is the first unpublished PhaseP
+product parent. Accepted scientific112/inherited115 material reconciliation,
+ALL actual pre-C capabilities and own fresh complete B/frozen inputs still
+precede C. Final publication parent stays actual accepted120 with fresh affected
+B/material/helper/oracle/native/environment/profile renewal before further
+integrated C/resources/fullgate/D/publication. Unaccepted116 observations supply
+no truth/tolerance/resource conclusion. No missing owner decision, execution
+grant, C launch or runtime qualification is implied by public-source readiness.
 
 ## Public objective and interfaces
 

@@ -268,8 +268,14 @@ not an impossible isolated public case. Never allocate a huge successful fixture
 or run the wide contract's motivating geometry merely to classify it.
 
 Accepted115 representation meaning is reconciled; scientific prerequisite112
-remains independently accepted. **Before C, root must still supply accepted/frozen
-parent116 and reconcile material inherited geometry/interface changes.** Incidental
+remains independently accepted. **The first unpublished PhaseP C product parent
+is accepted/frozen115 ace06c861b974b6251a092567c253ae4eb0f56c8,
+tree2247d3909f43bc4764beb5c748caa917aaa1d707. Before C, complete actual pre-C
+fixture/reference/source-free/process/tool qualifications, fresh complete B
+acceptance/frozen inputs and inherited material reconciliation.** Root explicitly
+applied this task-local routing change after independent review; it supersedes
+the former parent116 prerequisite only for first unpublished C. No unaccepted116
+measurement may supply truth, tolerance or resource conclusions. Incidental
 stack ancestry is not another scientific prerequisite and no owner decision is missing.
 
 ## 3. Inputs, source identity and result schema
@@ -596,8 +602,11 @@ required. Percentages are advisory; missing required evidence is blocking.
 
 No preparation/search/half/disk/native2D/workflow expansion, dependency/backend
 change, gate/policy migration, new memory ceiling, default migration or physical
-accuracy promise follows. Root owns restacks/integration/push/PR and final
-publication parent 116; the issue coordinator may commit authorized static prep.
+accuracy promise follows. Root owns restacks/integration/push/PR and the
+final publication parent actual accepted120. Root integration/new candidate
+requires fresh affected B and material/profile/helper/oracle/native/environment
+renewal BEFORE further integrated C, resources, fullgate, D or publication.
+The issue coordinator may commit authorized static prep.
 This intake author does not commit. These documents need no second authorization checkpoint.
 
 ## 7. Explicit public scenario ledger
