@@ -95,7 +95,7 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — frozen source preparation; resource launch quarantined, final #113 pending.**
+- **WAITING — fresh control-method review 1 active; resource launch quarantined, final #113 pending.**
   I1 intake and the same S1 investigator completed their owned source-only work.
   The refined method separates unmatched diagnostic comparisons from proposed
   one-workload resource children and prepared-band stage pairs, with terminal
@@ -106,8 +106,9 @@ returns to intake. This is not formal executable test design.
   prepared before the frozen source-preparation commit. No rebase/push/PR occurred.
   Final publication parent remains #113, not the provisional public-main baseline.
 - Accounting: I1 launch 1 completed, S1 launch 1 plus continuation activations 2
-  completed; no replacement/delegation/failed role launch. Independent static or
-  scientific reviews 0, HP114 runtime/lifecycle/scientific trials 0, scientific
+  completed; no replacement/delegation/failed role launch. Fresh independent
+  control-method review 1 is active (not B/D or scientific-study acceptance);
+  completed independent/scientific reviews 0, HP114 runtime/lifecycle/scientific trials 0, scientific
   repairs 0, full-gate attempts 0 and D verdicts 0. Root preflight 1 passed separately.
   All preparation edits, failed contexts/checks and repairs remain in the
   [role ledger](../reports/half-precision-study/role-ledger.md) and archived ledgers.
@@ -133,7 +134,20 @@ returns to intake. This is not formal executable test design.
   imported HP114 evidence or ancestry. Root owns final integration and publication.
   Scientific/product/report/control imports/execution, lifecycle probes, tests,
   installs and benchmarks remain held; narrow preparation checks are completed.
-- Next: root resumes this coordinator when a diagnosed functioning #116 route and
+- Parallel preparation: root authorized source/primary-math-only independent review
+  of existing `--route controls --row K01 --strategy KERNEL --repetition 1`, before
+  final #113. Exact source349bf30, observer/constants/input slices, dependency
+  source/binary identities and nonauthorizing command/grant are frozen externally
+  under `control-method-inputs1/`. Fresh `/root/issue_114/control_method_review1`
+  owns only external `control-method-review1.md`; no repairs or execution.
+  Source inspection found no selected workflow/preparation/reconstruction/resource
+  call; reviewer must independently assess product-facade import effects, finite
+  bounds/admission, range/RNE/cancellation/wire/hash/error/FFT validity and absent
+  reached noise witness. No actual controls import/execution grant exists.
+- Next: root collects this scoped verdict, checks exact applicability and concrete
+  per-case admission before separately granting any tiny controls execution.
+  This does not release W scientific workflows, diagnostic matrix or resource routes.
+  For those, root resumes this coordinator when a diagnosed functioning #116 route and
   its accepted affected-scope evidence are available. Reconcile the smallest launch,
   readiness/exec, exact-PID wait/recovery/status correction with same S1 ownership;
   freeze corrected bytes and route fresh scoped static assessment when appropriate.
