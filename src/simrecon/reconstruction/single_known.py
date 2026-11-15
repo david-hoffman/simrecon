@@ -52,6 +52,7 @@ if TYPE_CHECKING:
             """Compare with the binary64 bound without converting this value."""
             ...
 
+
 _C64 = NDArray[np.complex64]
 _C128 = NDArray[np.complex128]
 _F32 = NDArray[np.float32]
