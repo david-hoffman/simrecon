@@ -1143,3 +1143,52 @@ Current/ledgeronly acceptance commit follows, actualhead/treeoutsidebytes.
 SixfreshfullBtotal: fourNOTACCEPT/B5historicalACCEPT/B6currentACCEPT; noreset.
 A7sourceauthorattempt1/check0, allpreviousrole/source/check/setup/metadata/
 collectionfailures andunknownaggregate costs preserved. AllworkerexecutionHOLD.
+
+## EE tracked SOURCE author1 and two corrections (UNVERIFIED)
+
+ROOT commissioned fresh fork-none requestedSol/high ee_driver_source_1,
+no delegation/inventory and source/file/hash-only scope. Exact packet7128aac5,
+44inputmanifest a60a232d/launch87a70444 outside evidence113; only three tracked
+execution files writable. Inputs contain approved plans/contracts/math/fixtures,
+currentB6 eight/public27/C6four/IE and initialROOTsupport3 primary source, not
+author/reviewer/coordinator histories or112prototypes/116 data. Prompt/sharedFS
+restrictions only; optional isolated memory/read-only/delegation controls absent.
+
+Original source driver483d28a3/JSONc9d0873d/report7cec40a1 was frozen outside
+ee-driver-source-freeze-1 before any check. Coor whole-read driver1552 lines,
+JSON69/report39; one unavailable final combined read recovered in narrow spans.
+ROOT independently whole-read same originals, reading record7a5420b4 outside.
+Three diagnosed source issues, not product/native failures: initial archive had
+no portable native receipt bytes despite evidence digest linkage; matched failed
+control dispositions could fill qualification chain; E/L driver-pin interface
+needed explicit compatibility. ROOT authorized exact same-author corrections,
+no scientific/trial/tolerance/target meaning change. Intermediate source2 pins
+eb460164/7a79c2f8/953d8314 preserved before correction2 in freeze2.
+
+Final source3 driver97f7c71dac7640a4698aa0415a0fb7821f8875669787437b5ad2fbc36b982412,
+JSON7a79c2f88f61a7c2c6d833a85270a606511b5cdd6e40c7b79f7d227749ea9bea,
+report72fa3ae5b82515b4f55278793247ffd557d365917af35c616ddb6acebb907087
+frozen outside ee-driver-source-freeze-3; coor read both complete incremental
+driver deltas and whole report/JSON deltas. INLINE prerequisite evidence/support
+has exact existing six-key scope, strict bytes/digests/counts/bounds/restoremap;
+missing bytes remain gaps. Blob membership proves transport only. All16 controls
+require explicit actual driver identity pin; E/L never execute it. Only completed
+current-matched controls fill chain/count; every raw failed/superseded attempt is
+retained. Source JSON/report remain NOT_RUN, all24formal/16controls pending.
+
+Author initial1+two SOURCE correction rounds,31 successful file mutations
+(driver23/JSON2/report6), failed edits0, checks/runtime0, newpaths3. Six truncated
+reads recovered and initial metadata command status2 retained. No stage/commit/
+ownruntimeprocess/FD/delegation by author. Coor one failed handoff prose-patch
+context attempt repaired; no source or evidence loss. Prior external support
+sourcewriter attempt1/19editgroups/4failedtextops and native sourcewriter attempt1/
+two corrections/check0 remain historical, not charged twice by later renewals.
+Actual serving/model-effort/tokens/cache/output/money/elapsed unknown, no reset.
+
+Coor intended UNVERIFIED commit includes only source3 plus Current/this ledger;
+product4/IEtwo/eight/public27 verified unchanged. Actual clean head/tree outside.
+Only then SAME external writers receive narrow current candidate/test/import and
+all-control spec-pin renewal; original sources/diffs preserved. ROOT whole-read,
+fresh implemented-code/protocol review, actual qualification and final120 renewal
+still required. C7 operational bindings are source-only, not runtime authority.
+ALL113 execution remains HOLD during ROOT116 memory; no borrowed116 observations.
