@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 1 item
+
+tests/test_preparation_harmonic_lifetimes.py .                           [100%]
+
+============================== 1 passed in 1.50s ===============================

@@ -17,6 +17,7 @@ import numpy as np
 import pytest
 from numpy.testing import assert_allclose, assert_array_equal
 
+import c_acquisition_fixture as acquisition_observer
 from c_known_fixture import (
     blank,
     compare,
@@ -26,6 +27,7 @@ from c_known_fixture import (
     table,
 )
 from c_preparation_fixture import expected as preparation_expected
+from c_workflow_oracle import OPTICS, control_cases
 
 
 def _snapshot(value: Any) -> Any:
@@ -75,6 +77,166 @@ def _arrays(value: Any) -> list[np.ndarray]:
 
     visit(value)
     return arrays
+
+
+def _array_occurrences(value: Any) -> list[tuple[str, np.ndarray]]:
+    """Keep repeated public field occurrences; reject cycles on the active path."""
+    result: list[tuple[str, np.ndarray]] = []
+    active: set[int] = set()
+
+    def visit(item: Any, path: str) -> None:
+        if isinstance(item, np.ndarray):
+            result.append((path, item))
+            return
+        if dataclasses.is_dataclass(item) and not isinstance(item, type):
+            children = [
+                (field.name, getattr(item, field.name)) for field in dataclasses.fields(item)
+            ]
+        elif isinstance(item, Mapping):
+            children = [(str(key), child) for key, child in item.items()]
+        elif isinstance(item, (tuple, list)):
+            children = [(str(index), child) for index, child in enumerate(item)]
+        else:
+            return
+        assert id(item) not in active, f"cycle in declared public fields: {path}"
+        active.add(id(item))
+        try:
+            for label, child in children:
+                visit(child, f"{path}.{label}")
+        finally:
+            active.remove(id(item))
+
+    visit(value, "result")
+    return result
+
+
+def _enclosed_capture(actual: Any, expected: Any) -> None:
+    """Use the frozen observer/backend enclosure; no fitted numeric tolerance."""
+    bound = float(np.max(expected.error))
+    assert np.isfinite(bound) and bound >= 0
+    assert_allclose(actual, np.asarray(expected), rtol=0, atol=bound)
+
+
+def test_t2_current_camera_first_off_debug_values_and_field_occurrence_lifetimes() -> None:
+    """RC1/S09/S19: independent ordered full-debug truth, then lifetime isolation."""
+    case = control_cases()["between-first-off-and-persistent-sentinel"]
+    raw = case.raw
+    off = case.extras["off_exposures"]
+    initial_background = case.acquisition["background"].copy()
+    current_background = initial_background.copy()
+    current_background[-1, -1] = initial_background[-1, -2]
+    # The sole normal-camera sentinel is t0/d0/z0/p0. Off frames are positive
+    # or -.25/-.5, so none is exactly -1. Prepass repair never updates maps.
+    assert np.count_nonzero(raw[..., -1, -1] == -1) == 1
+    assert not np.any(off[..., -1, -1] == -1)
+    expected = []
+    for time, background in enumerate((initial_background, current_background)):
+        expected.append(
+            acquisition_observer.between_expected(
+                acquisition_observer.as_disc(raw[time]),
+                background=acquisition_observer.as_disc(background),
+                off=acquisition_observer.as_disc(off[time]),
+                dz=1.0,
+                pitch=1.0,
+                highpass=0.2,
+                **OPTICS,
+            )
+        )
+    # Freeze distinguishing margins BEFORE the public call. The stale-camera
+    # error is the fixed10 image of a +3/(Z*Y*X) bottom-right impulse.
+    impulse = acquisition_observer.disc_zeros((10, 12))
+    impulse[-1, -1] = acquisition_observer.as_disc(3.0) / (2 * 10 * 12)
+    camera_difference = acquisition_observer.edge(impulse, 10)
+    center_error = [float(np.max(item["centers"].error)) for item in expected]
+    assert np.max(abs(np.asarray(camera_difference))) > 2 * sum(center_error)
+    assert np.max(abs(np.asarray(expected[1]["centers"] - expected[0]["centers"]))) > (
+        2 * sum(center_error)
+    )
+    for time, item in enumerate(expected):
+        assert np.max(abs(np.asarray(item["centers"]))) > 2 * center_error[time]
+        # Summing the second off exposure would add this independent field.
+        extra = acquisition_observer.as_disc(off[time, :, :, 0, 1]).sum(axis=1) / (5 * 12 * 10 * 2)
+        extra = np.stack([acquisition_observer.edge(plane, 10) for plane in extra])
+        assert np.max(abs(np.asarray(extra))) > 2 * center_error[time]
+        for correlation in item["correlations"]:
+            values = np.sort(np.asarray(correlation["absolute_correlation"]).ravel())
+            error = float(np.max(correlation["absolute_correlation"].error))
+            assert values[-1] > 2 * error
+            assert values[-1] - values[-2] > 2 * error
+    settings = dict(case.acquisition)
+    del settings["phase_policy"]
+    settings.update(case.extras)
+    settings.update(OPTICS)
+    caller_before = _snapshot((raw, settings))
+    first = public("prepare_acquisition_bands")(raw, **settings)
+    assert _snapshot((raw, settings)) == caller_before
+    captures = [
+        event
+        for event in first.trace
+        if event.kind == "between-build"
+        or (event.kind == "drift-correlation" and dict(event.details)["scope"] == "between")
+    ]
+    assert [(event.kind, event.time_index, event.direction_index) for event in captures] == [
+        (kind, time, direction)
+        for time in range(2)
+        for kind, direction in (
+            ("between-build", 0),
+            ("drift-correlation", 1),
+            ("drift-correlation", 2),
+        )
+    ]
+    for time, item in enumerate(expected):
+        build = dict(captures[3 * time].details)
+        assert build["subz"] == 1 and build["first_z"] == 0
+        for field in ("centers", "fourier"):
+            _enclosed_capture(build[field], item[field])
+        for direction, correlation in enumerate(item["correlations"], 1):
+            actual = dict(captures[3 * time + direction].details)
+            assert actual["scope"] == "between" and actual["moving_index"] == direction
+            assert actual["exponent"] == 0.25
+            for field in (
+                "cross_spectrum",
+                "correlation",
+                "absolute_correlation",
+                "neighbors_xyz",
+                "offsets_xyz",
+                "wrapped_displacement_xyz",
+            ):
+                _enclosed_capture(actual[field], correlation[field])
+            assert actual["integer_peak_xyz"] == correlation["integer_peak_xyz"]
+            assert actual["offset_status_xyz"] == correlation["offset_status_xyz"]
+    occurrences = _array_occurrences(first)
+    for index, (path, array) in enumerate(occurrences):
+        assert array.flags.owndata, path
+        assert np.isfinite(array).all(), path
+        if path in {"result.quadratures", "result.noise_variance_factors"}:
+            assert array.flags.writeable, path
+        else:
+            assert not array.flags.writeable, path
+        for other_path, other in occurrences[index + 1 :]:
+            assert not np.shares_memory(array, other), (path, other_path)
+        for _, caller in _array_occurrences((raw, settings)):
+            assert not np.shares_memory(array, caller), path
+    before = _snapshot(first)
+    later_case = control_cases()["between-first-off-and-persistent-sentinel"]
+    later_settings = dict(later_case.acquisition)
+    del later_settings["phase_policy"]
+    later_settings.update(later_case.extras)
+    later_settings.update(OPTICS)
+    later_case.raw[:] += 16
+    later_case.extras["off_exposures"][:] += 4
+    later = public("prepare_acquisition_bands")(later_case.raw, **later_settings)
+    later.quadratures[:] = 0
+    later.noise_variance_factors[:] = 7
+    raw[:] = 0
+    off[:] = 0
+    case.acquisition["background"][:] = 999
+    case.acquisition["flatfield_slope"][:] = 0
+    assert _snapshot(first) == before
+    trace_before = _snapshot(first.trace)
+    first.quadratures[:] = 0
+    first.noise_variance_factors[:] = 9
+    assert _snapshot(first.trace) == trace_before
 
 
 def _raw(z: int, y: int = 3) -> np.ndarray:

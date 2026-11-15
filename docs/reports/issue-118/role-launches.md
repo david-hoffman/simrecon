@@ -331,3 +331,114 @@ will be evaluated after A3; it is distinct from scientific test acceptance.
   root may suspend before116 exclusive work. C blocked; B1 initial full review,
   no prior accepted checkpoint and no numeric default caps. Cumulative intake1,
   A launches3 plus continuations, B launch pending, C/D0; unexposed metering unknown.
+
+## B1 — fresh full independent blind checkpoint review
+
+- Session `/root/issue_118/b118_review1`; actual spawn with task_name
+  `b118_review1`, `fork_turns="none"`, requested `gpt-6.1-sol`, high; no inherited
+  author/coordinator conversation. Actual served attribution/metering unknown.
+- Frozen checkpoint commit4b09c9f61506bc0c72082667138b1343c1feee9d, tree
+  d2bf143194fc4ddac5d95a37f083b1e90fa79475; clean tracked initial state. Local
+  checkpoint commit used per-command hooks disabled; no hook/gate config change,
+  integration/push or full qualification. No runtime/lock/shared fixture changes.
+- Launch packet b9af1939e36c39db368e30c0253bdeed9a8a1d601044ca25b2481819484d4283,
+  whole-public input manifest8d1a7ca1d829e624063d0f7c13e53628060c3ec96dbbda32283857cd7737e9ec,
+  factual evidence04abd1be3b0b42a5a1ac2e8bacca2c9154ebd94a434e7309c41d9318e7421dba.
+  Message contains only packet/checkpoint/input identities, supported route,
+  whole-public boundaries, accounting/ordinary grant/report ownership and final
+  dependency limits. No raw author/coordinator report/diagnosis/verdict/source/
+  history/coverage/lessons or task state. Full initial B scope, no prior acceptance.
+- Report-only `docs/reports/issue-118/b1.md` plus unique own source-free logs
+  `docs/reports/issue-118/b1-evidence/`; separate final channel. Ordinary bounded
+  focused source-free checks allowed as needed, no installs/resource work; root
+  may suspend before116 exclusive window. Entire changed owned test, imported
+  fixtures, fault/snapshot helpers and retained public keeper dependencies in
+  independent risk/oracle review. Resource-plan sufficiency remains review scope,
+  not experiment authority. Actual-parent/profile/helper reassessment remains
+  mandatory and C blocked even if provisional test checkpoint is accepted.
+- Status active; substantive verdict, artifact identities and independent checks
+  pending. Cumulative intake1/A launches3 plus continuations/B1/C0/D0, no completed
+  independent review yet. All historical failures/repairs/unknown costs retained;
+  six coordinator metadata context-match failures total retained separately.
+  No human numeric caps or engineered isolation claim.
+
+## Collected B1 nonacceptance and A3 revision2 continuation
+
+- B1 report `docs/reports/issue-118/b1.md`, SHA256
+  ab037f6e5ee31cc5cc4cbfdbd584e59f4a11853fee8bb520e0532373fbe12bad;
+  source-free rerun log129e24ac77542fa6022596602fd58c7a7c5a5b733d0579347809828fe2ea7b20.
+  Checkpoint4b09c9f is NOT ACCEPTED. Own rerun27pass/all9 actual interceptions;
+  no process/repair/benchmark. Host static metadata-prefix deviation disclosed,
+  no source exposure or host scientific qualification. Full independent review1
+  counted; no acceptance/evidence reset.
+- Coordinator independently assessed both observable gaps using approved tests/
+  observer dispatch/public obligations: current workflow resource CLI has no
+  direct acquisition/known dispatch or exact direct comparison inventory; T2
+  raw-science keeper finite-checks but does not compare later prepass numeric
+  captures. These are specific test/design defects, not a product defect/new
+  requirement/all-mode Cartesian demand. Some large retained observer/budget/
+  fixture dependencies remain unreviewed; B2 must complete every actually relied
+  on affected dependency instead of inheriting blanket acceptance.
+- Sanitized public revision packet `docs/packets/issue-118-a3-public-revision2.md`,
+  SHA256a3ec3c7e49aa9ccf80e1d9f3eb215ed6d37d09855794a90c0ae049f7a036fae2.
+  Raw B/coordinator reports/conclusions/source/history/lessons excluded from A3.
+  S09/S19 require independent ordered current-camera/first-off T2 capture truth,
+  meaningful margins and occurrence-preserving alias/cross-call witnesses.
+  S26 requires exact directCE06/known entry/input/settings/liveness/protocol,
+  separately labelled contextual CE02 and inherited full/summary comparisons.
+- Added named test-owned source-only write scope for direct-stage adapter
+  `tests/preparation_harmonic_memory_benchmark.py` and public
+  `docs/packets/issue-118-direct-resource-protocol.md`; old shared observers/gates/
+  product/dependencies unchanged. No measurement-driver execution/import/CLI/
+  dry-run or benchmark until accepted final parent117 plus rootexclusivegrant.
+  Ordinary source-free owned debug tests/static lint/types remain revocable.
+- Actual inventory immediately before activation:5running including coordinator;
+  root117 coordinator had yielded. SAME A3 followup activated without an eighth
+  launch, preserving reserved root routing capacity. Tool target
+  `/root/issue_118/a118_static3`; requested Sol/high unchanged, actual serving/
+  usage/cost unknown. New report `docs/reports/issue-118/a3-revision2.md` and unique
+  own evidence below revision2-a3; no delegation/commit/integration/push.
+- Status revision active; corrected bytes/protocol/results pending. Coordinator
+  returns WAITING for capacity. Cumulative intake1, A launches3 plus continuations,
+  B1nonaccepted, C0/D0; B2 not launched. All failures/repairs/checks/cost unknowns
+  preserved. Actual-parent/profile/helper reassessment and full gate/resources/D
+  remain future gates, no numeric default cap.
+
+## Collected revision2 and B2 preparation
+
+- A3 revision2 complete; test22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08,
+  static adapterece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59,
+  direct protocol2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc,
+  report2f0e5da68874fa7b71601966d0068b260b18530dc4b50960901d4cc790f1da67.
+  Coordinator independently captured hashes. New targeted debug witness passed;
+  final owned28passed11.56s, all9 fault rows reported calls1. Both owned Python
+  files passed final Ruff/format/Pyright.14 unique logs preserve initial style/
+  docstring failures/repairs and exact checks. No process/source exposure, numeric
+  tolerance inflation, shared fixture/product/tool edit or measurement execution.
+- Proposed corrections: independent BOTH-time build/correlation capture values,
+  pre-call distinguishing margins and occurrence-preserving field aliases plus
+  later-call/caller/band stability; new exact seven-case directCE06/known adapter/
+  liveness/protocol, CE02 contextual. No claim either B1 blocker is independently
+  resolved before B2. Adapter only statically checked, never imported/CLI/dry-run.
+- B2 packet `docs/packets/issue-118-b2.md`, SHA256
+  bcf9ac25560e21a49f8186436519d6d86933cfeb4b916c7a482a1ca547fd379b;
+  facts7e398552451597fa535946ab7ab2f583c1f5e1ae7d49335ea4331bc81b00e359;
+  manifest90d5a02fcb5a83c1b6dae4ff047c37a452c36b9ab6f760915635d910f3eebb5f.
+  Explicit whole public primary/test/fixture/observer/protocol dependencies plus
+  actual factual final logs only; no raw A/B1/coordinator conclusions, diagnoses,
+  history/source/coverage/lesson inputs. B1 incomplete review grants no exemption;
+  B2 must finish every affected dependency actually relied on, not all unused
+  archive code or arbitrary Cartesian combinations. No accepted checkpoint.
+- Root supplied public environment constraint: shared pinned CPython posix_spawn
+  with setsid=True returned NotImplementedError beforePID in separate launch-method
+  qualification. Sanitized fact/pending-method reconciliation in B2 facts, no raw
+  method report/source/conclusion. New adapter does not request that launcher;
+  terminal self-RSS versus external sampled/group RSS scope is explicit. Accepted
+  actual-parent plus rootexclusivegrant and qualified launch route still required
+  before ANY adapter execution/measurement. No support invented.
+- B2 pending fresh Sol/high fork-none activation after actual capacity check and
+  root116 probe priority. Same report-only/shared-filesystem/optional-control
+  limitations as B1; ordinary bounded debug/static source-free checks as needed,
+  no adapter import/CLI/probe/resource execution/install. Root can suspend before
+  exclusive116 work. All prior charges/style failures/repairs preserved; serving/
+  tokens/cost/durations unknown. C blocked on final117/profile material review.

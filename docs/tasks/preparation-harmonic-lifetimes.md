@@ -86,19 +86,29 @@
   wrapper assertion as a test-scope defect against CE02's narrower guarantees.
   A3 completed the scoped correction and exact focused validation: owned27passed,
   keeper groups1/21/49/34passed, Ruff/format/Pyright passed. No wrapper or numerical
-  tolerance change occurred. **UNFINISHED — WAITING** for fresh blind B1 and
+  tolerance change occurred. **UNFINISHED — WAITING** for fresh blind B2 and
   actual-parent qualification. Passing author evidence is not accepted checkpoint
-  or product readiness; no resources/C/full-gate authority implied.
+  or product readiness; no resources/C/full-gate authority implied. Proposed
+  checkpoint frozen in local commit4b09c9f61506bc0c72082667138b1343c1feee9d,
+  tree d2bf143194fc4ddac5d95a37f083b1e90fa79475. Fresh independent blind B1
+  `/root/issue_118/b118_review1` completed NOT ACCEPT: missing frozen direct-stage
+  resource comparison design (S26), and missing independent later-time stateful
+  prepass DEBUG numeric captures (S09/S19). Owned rerun27passed/all9 fault controls
+  intercepted; no product failure or tolerance issue claimed. Same still-blind A3
+  completed revision2:9functions/28examples pass, both owned Python files pass
+  Ruff/format/Pyright. New ordered numeric T2 debug/occurrence witness and exact
+  seven-case direct adapter/protocol are proposed corrections, not independently
+  accepted. Adapter remains NEVER imported/executed/CLI-run/measured. B2 prepared.
 - Instruction: `docs/packets/issue-118-intake.md`, supplied SHA256
   `4a959093dee94374d7c74ffdb3add0d711813528ec8bbb54febf03e369350021`.
   No missing material scientific decision identified within preservation scope.
   Baseline/actual-parent mismatch is unresolved qualification, not new authority.
-- Scenarios 26; current static test functions 8 / parametrized examples 27; retained
+- Scenarios 26; current test functions9 / parametrized examples28; retained
   public-example counts not inventoried. A3 maps all 26 rows with explicit proof
   limits in [its original report](../reports/issue-118/a3.md) and
   [static delta](../reports/issue-118/a3-static-proof-gap-preparation.md);
   B has not accepted adequacy. Proposed frozen test SHA256
-  `ce63d3b83ba5257d821cf71076a42a745fc636ae8b40450c26527f15a61ac3ca`,
+  `22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08`,
   public PH118 contract unchanged SHA256
   `d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5`.
   A diagnosed author correction must record old/new identities before B review.
@@ -110,7 +120,7 @@
   Intake itself launched no scientific roles. Coordinator launched fresh A
   `/root/issue_118/a118_static1` after intake, requested Sol/high with no inherited
   conversation; it stopped and will not be reused. No product source, history,
-  Current state, coverage or lessons exposure was reported. B/C/D not launched;
+  Current state, coverage or lessons exposure was reported. B/C/D were not yet launched;
   verdicts/checkpoints none. Fresh A2 `/root/issue_118/a118_static2` launched
   without inherited conversation, requested Sol/high; it also stopped before
   authoring. No actual product-source/history/record exposure reported in either
@@ -130,8 +140,9 @@
   passed on the provisional public runtime after the diagnosed CE02 test defect
   correction. No product defect or complete scientific acceptance inferred.
 - Metrics: intake launches 1; prior intake attempts none per supplied packet;
-  Scientific launches A=3 (A1/A2 stopped; A3 initial/static proof-gap continuation
-  complete; same-session focused-check continuation active), B=0, C=0, D=0;
+  Scientific launches A=3 (A1/A2 stopped; A3 revision2 continuation active), B=1
+  completed NOT ACCEPT,
+  C=0, D=0;
   completed full/delta reviews none.
   One intake static patch-match failure/correction retained in its report; no
   scientific repair commissioned. Three coordinator multi-file patch matches failed
@@ -142,8 +153,9 @@
   Requested model/effort Sol/high; served attribution unknown. No exposure of
   product implementation/history/lessons; approved contracts were read.
   Campaign/historical charges remain with root and are not reset or duplicated.
-- Blockers: fresh B1 full-checkpoint oracle/omission review and independent
-  verdict; actual-parent freeze/reassessment; unfilled recoverable
+- Blockers: two B1 proof/design findings, incomplete retained dependency/budget
+  assessment, author revision/checks and fresh B2 full affected review;
+  actual-parent freeze/reassessment; unfilled recoverable
   launch bindings; independent A/B checkpoint; implementation/D/full verification
   and matched measurements. Stronger public keepers discharge the provisional
   T2 camera-state/prepass scientific, unsafe/filtering mode, complete compact
