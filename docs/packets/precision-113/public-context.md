@@ -57,6 +57,24 @@ modes explicitly even with zero data. ReconstructionError keeps code
 `reconstruction-domain`, signature errors stay TypeError, causes survive, no
 input mutation or partial result. Failure phase precedence is public behavior.
 
+The facade addition preserves the full existing 38-name set and adds only
+`declare_prepared_bands32`, `PreparedBands32`, `KnownReconstruction32`: exactly
+41 exports in both checkout and installed product. Contract section1 lists the
+complete independent inventory and preserved canonical names/removed aliases,
+installed runtime-only/CLI/product-development separation, digest, contamination
+and strict-check guarantees. No product CLI entry or command changes.
+
+The coordinator's explicit facade-compatibility addendum also gives A whole-file
+read permission and narrow expectation-edit ownership for
+`tests/test_module_migration.py` and `tests/test_installed_wheels.py`.
+Preserve every old name and substantive check; no dynamic expected set, subset,
+cardinality weakening or fixture/CLI/isolation change. Fresh B reviews the whole
+changed expectation set before freeze. The actual checker is separately owned
+infrastructure, not A or scientific C scope. Installed/build execution stays
+held for blind roles, including under a later generic light-check grant; all
+isolation/subprocess diagnostic channels require separate qualification or
+nonblind execution evidence.
+
 No preparation, estimation/search, native2D, fractional-zoom, workflow/summary,
 half/disk/backend/size-domain expansion, default migration, numeric image-accuracy
 requirement, fixed peak-memory ceiling, speed ratio or 16 GiB guarantee is selected.
@@ -76,12 +94,16 @@ The prospective actual packet may allow only these whole existing public files
 - `docs/contracts/c-equivalence-optical-transfer-v1.md` (CE03 accepted transfers and actual stencils).
 - `docs/contracts/c-equivalence-preprocessing-v1.md` (CE02 existing record/normalization compatibility only).
 - `docs/packets/precision-113/public-context.md` (this entire sanitized file).
+- `tests/test_module_migration.py` (whole public compatibility test; narrow facade expectation edits only).
+- `tests/test_installed_wheels.py` (whole public installed test; narrow success-count expectation edit only, no build/install execution grant).
+- `docs/packets/precision-113/a1-facade-addendum.md` (actual coordinator scope update when explicitly supplied).
 
 These are whole-file permissions, not permissions for linked tasks/reports/source.
 The final coordinator packet supplies its own whole public filename/digest and
 exact A test/fixture/report filenames. B additionally gets exact A tests/fixtures,
 their requirement mapping and sanitized evidence only. A may read/edit its named
-new tests/fixture; B reads them and writes only its named report.
+new tests/fixture and the two explicitly named compatibility expectations;
+B reads the complete changed expectation set and writes only its named report.
 
 Explicitly EXCLUDE whole `docs/PROJECT.md` and whole
 `.agents/skills/test-audit/SKILL.md`: relevant approved project facts and public

@@ -182,3 +182,62 @@ Exact packet/public-input digests, launch start commit/tree and returned session
 identifier are recorded in outside-tree evidence after the static freeze commit.
 No native auth/CLI or runtime capability probe is required for this supported
 tool-only route. No A1 completion or B verdict is claimed in this prepared entry.
+
+## Pre-B facade compatibility ownership correction
+
+Root identified a concrete inherited compatibility gap while STATIC A1 remained
+active: the approved constructor/two type exports add 3 names, but exact existing
+checkout/installed expectation inventories still describe 38. Coordinator read
+whole tests/test_module_migration.py, tests/test_installed_wheels.py and the
+actual scripts/check_installed_wheels.py nonblindly. This confirms three
+independent alignment obligations: public test inventory/cardinality, public
+installed-success expectation, and actual installed checker inventory/cardinality/
+success text. No numerical test/run or product defect was observed.
+
+Classification: incomplete intake file ownership for an already approved public
+facade addition, with conventional check-infrastructure alignment. Keep all 38
+old names and add only the declared 3 names for exactly 41; never weaken exact sets,
+canonical names, removed aliases, hierarchy, runtime-only product/devtools
+separation, CLI, wheel/digest/contamination or strict-outcome checks. This does
+not alter scientific meaning, dtype/rounding/error terms, 293 scenario count,
+resource limits or highest-risk A/B/C/full-gate/D route.
+
+Coordinator created public `a1-facade-addendum.md`: whole-file read permission
+and narrow expectation-write ownership for the two public test files, plus
+updated normative contract/context. No raw checker/runtime source, code line
+clue, coverage or nonblind diagnosis is supplied to A. Same A1 may continue its
+coherent public export scope while blindness holds; valid drafts preserved.
+Fresh B must independently review the entire eight-file changed expectation/
+fixture set and shared dependencies before the final checkpoint. Installed/build
+paths remain execution-held for blind roles even under generic light checks;
+source-free inheritance does not establish all isolated subprocess channels.
+
+Prepared bounded infrastructure owner IE113 owns only the actual installed
+checker and infrastructure-exports report. `infra-export-owner.md` supplies the
+narrow candidate ownership, preserving all substantive guards and no C test/tool
+ownership. No IE113 role has launched. Under root's explicit instruction, fresh
+D may provide the independent bounded infrastructure assessment within its exact
+full-passing combined candidate review, explicitly scoped to the independent
+41-name oracle, changed tests/dependencies/checker/guard preservation and real
+installed artifact evidence; otherwise a separate fresh bounded reviewer is
+needed. No extra ceremony is invented, and no acceptance before actual installed
+checks pass. Root owns future capacity/resource scheduling; no numerical grant.
+
+Initial exact input SHA256 before A's compatibility edits:
+
+- tests/test_module_migration.py:
+  d5ebdc8120e0e567622c590da37fdcbbf8165d275bb49d4549a1aef7e56b41c7
+- tests/test_installed_wheels.py:
+  62d36e461fa14d00bafd7b897fd1ea01bf9fc7cce41d1da2caf5d8eb97548ca5
+- scripts/check_installed_wheels.py:
+  4c52720f67cb47d91b7a1b3e59010aafaae0f3ab6b5dc4a3bdba5ec211f82d70
+
+This coordinator had two grouped static patch failures from case/context-
+mismatched prose hunks; exact reads confirmed no partial changes, then scoped
+correct patches succeeded. Count these 2 coordinator static corrections separately
+from 3 intake patch failures; tokens/cost/time unknown, no reset. No role launch
+or retry was attempted under full shared 7-slot capacity; the root-reported 117
+concurrency failure belongs to its original accounting, not another charge here.
+Exact amendment hashes/commit/active child/dirty ownership and delivery evidence
+are recorded outside tracked bytes after commit. A1 remains static; B/C/D and
+IE113 remain unlaunched, no accepted test checkpoint or product/full-gate claim.

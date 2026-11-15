@@ -80,6 +80,55 @@ KnownReconstruction32. A runtime-selected valid string may return their union;
 type tests also exercise facade imports, dataclass fields and old call signatures.
 The single profile is explicit even when bands already have dtype complex64.
 
+### Exact facade and installed-distribution compatibility
+
+The existing 38 public exports remain, and exactly these three approved names
+are added: `declare_prepared_bands32`, `PreparedBands32`, `KnownReconstruction32`.
+The final checkout and installed product wheel expose exactly the same 41-name
+inventory below. This is a set/cardinality contract, not a new ordering rule;
+duplicate, missing, renamed or unapproved exports fail. Every exported object
+remains callable and its `__name__` equals its public name. Existing module-
+migration, removed-alias and exception-hierarchy checks remain substantive.
+
+```text
+AcquisitionBands AcquisitionModeError ModeEvent TwoDPlaneInputs
+prepare_acquisition_bands reinterpret_2d_planes DataBlock DatasetInfo
+EstimatedParameters ImagejSeries ImagejWriteReport KnownReconstruction
+OpticalTransfer OtfError ParameterEstimationError PreparedBands PreparedOtf
+RawAcquisition ReconstructionError ReconstructionSummary SimreconError
+WriteReport WorkflowError WorkflowReconstruction declare_acquisition declare_otf
+estimate_parameters export_imagej harmonize inspect prepare_bands prepare_bead_otf
+read reconstruct_known reconstruct_summary reconstruct_workflow sample_otf write
+declare_prepared_bands32 PreparedBands32 KnownReconstruction32
+```
+
+Installed-product verification continues to prove import from the installed
+runtime-only environment, absence of development/verification packages and
+utility leakage, the sole `simrecon = simrecon.cli:main` console entry, existing
+`inspect`, `convert` and `export-imagej` help commands, and the missing-input
+`inspect` error behavior (status 1, no stdout, JSON code `io_error`). No scientific
+CLI or new console entry is added. Separate product/development wheels, sole-wheel
+and digest checks, development doctor/strict-pytest outcomes and contamination
+rejection retain their existing guarantees. The product success message reports
+`installed product: 41 exports, console CLI, runtime-only environment`; its count
+must agree with the independently declared exact inventory.
+
+Blind A owns only the corresponding approved expectation updates in the whole
+public test files `tests/test_module_migration.py` and
+`tests/test_installed_wheels.py`, in addition to its six new files. Preserve all
+38 original names and every other substantive assertion/fixture/CLI/isolation/
+failure check; no subset/count relaxation, source-derived expected inventory or
+checker repair by A. Fresh B reviews the complete changed expectation set before
+the final test checkpoint. Installed/build tests remain execution-held for blind
+roles unless a separate explicit grant qualifies every diagnostic channel.
+
+The actual installed-wheel checker belongs to a separately named infrastructure
+owner, never scientific C. Its conventional inventory alignment preserves every
+gate and receives explicit independent infrastructure assessment within fresh D
+of the exact full-passing combined candidate, satisfying bounded-review
+requirements; use a separate fresh bounded reviewer only if that assessment
+cannot meet those requirements. Real installed checks must pass before acceptance.
+
 ## 2. PreparedBands32: declaration without preparation
 
 This frozen dataclass has exactly these fields, in order:
@@ -571,8 +620,10 @@ never bypass a real guard or introduce a test-only seam to reach a row.
 Mapping keys: **B**=`tests/test_single_known_boundary.py`,
 **F**=`tests/test_single_known_filter.py`, **A**=`tests/test_single_known_assembly.py`,
 **P**=`tests/test_single_known_precision.py`, **Y**=`tests/test_single_known_typing.py`,
-**J**=`tests/single_known_fixture.py`; **X**=separate nonblind execution evidence,
-reviewed within fresh D. Test author owns only its named tests/fixture. All rows
+**J**=`tests/single_known_fixture.py`; **M**=`tests/test_module_migration.py`,
+**W**=`tests/test_installed_wheels.py` (approved facade expectation updates only);
+**X**=separate nonblind execution evidence, reviewed within fresh D.
+Test author owns only its named tests/fixture. All rows
 require fresh B requirement/oracle/positive-input review; X rows additionally
 require D's independent protocol/observation audit. Rejection rows inherit section5
 category, precedence, cause retention and no-partial/no-mutation guarantees.
@@ -863,7 +914,7 @@ category, precedence, cause retention and no-partial/no-mutation guarantees.
 | S36.6 | f64 accumulation/final f32 rounding and cancellation condition are reported separately | §6; exact/near-zero signed output | J,A,P; B |
 | S36.7 | Discrete support/index decisions need certified enclosure/equality rule; overlap is unresolved | §6; no epsilon tie substitute | J,F; B |
 | S36.8 | Signed metrics/reference width/interval distance use declared nonzero signal scale, never per-pixel masking | §6; negative/near-zero samples | J,P; B/D |
-| S37.1 | Root exports and defining-module names include constructor/new types without retired aliases | §1; public import and __all__ | B,Y |
+| S37.1 | Exact 41-name checkout/installed facade retains all 38 original names plus constructor/new types, canonical object names and no retired aliases | §1; public import, __all__, existing migration/installed expectations | B,Y,M,W; D infrastructure assessment |
 | S37.2 | Overloads preserve omitted/double old-result and literal single new-result typing; runtime string yields union | §1; old/new facade callers | Y; B/D |
 | S38.1 | Real execution records matched3 fresh single-workload processes per mode/case and all failures | §6; raw/median/range | X; D |
 | S38.2 | Identical declared values/setup/retained original inputs prevent asymmetric setup contamination without disclosure | §6; equivalent old-schema comparator setup accounted | X; D |
