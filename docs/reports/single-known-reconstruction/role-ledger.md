@@ -338,3 +338,22 @@ review conclusions/verdict never go to A/future B; coordinator independently
 checks primary math/source before any sanitized normative correction. Fresh B
 still independently assesses actual complete tests/oracles/material assumptions.
 Yield WAITING after dispatch as root requested; no C before frozen116.
+
+## Public wide-declaration test safety correction
+
+Root identified a static experiment hazard in A-owned
+test_wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure:
+invalid Wiener normally guards the permitted wide metadata, but a guard-order
+defect could attempt multi-GiB work. This is a test-experiment safety correction,
+not a new product domain/RAM/accuracy policy. Same A1 receives only the public
+obligation and binding-independent child-limit design in
+docs/packets/precision-113/a1-wide-test-safety-addendum.md. No raw implementation,
+method-reviewer findings or coordinator diagnosis is supplied. Preserve original
+draft and charges, keep genuine wide admission/scalar order, and require bounded
+failure on defective paths. New helper/child/diagnostic/transport dependencies
+must be disclosed and independently reviewed by fresh B. No tracked helper or
+production seam, execution, test acceptance or light-grant activation follows.
+Same author and scope; no replacement/retry/reset. One coordinator atomic prose
+patch failed on a task-file context match before this correction; no partial
+mutation, product execution or source exposure followed. Exact delivery/hash
+and dirty inventory belong outside tracked bytes.
