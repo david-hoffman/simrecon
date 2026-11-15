@@ -241,3 +241,41 @@ concurrency failure belongs to its original accounting, not another charge here.
 Exact amendment hashes/commit/active child/dirty ownership and delivery evidence
 are recorded outside tracked bytes after commit. A1 remains static; B/C/D and
 IE113 remain unlaunched, no accepted test checkpoint or product/full-gate claim.
+
+## A1 static completion and continuation1 routing
+
+Collected `/root/issue_113/a1_static` distinct final STATIC DRAFTS/CHECKS PENDING,
+with all allowed reads/hash identities/facade amendment acknowledged and no
+forbidden reads, execution, delegation, commit or owned persistent process.
+Author reports4 atomic static patch-context failures, no partial edits; preserve
+separately from intake3/coordinator2 prior failures, with all meters unknown.
+The eight Python files plus553-line design report were saved unverified in local
+commit0e06d28399ed4d1268f39b27809e3a799af6268d/tree7922fefb9c21a7d46128bf4c9be442c011413bfd;
+outside a1-static-drafts-v1.sha256 binds them. No accepted checkpoint or check
+pass is implied; no scientific C exists.
+
+The full report explicitly preserves G1–G8. Coordinator diagnosis is in separate
+nonblind method-investigation.md, forbidden to A/B. Public packets instead supply
+new whole self-contained legacy-compatibility-public.md (G1),
+tiny-default-fft-method.md (G2) and a1-gap-continuation.md; updated contract binds
+G8 literal domains bands/transfer/parameters. G4/G5 are scoped same-author
+omissions/strong-keeper work; G6 actual paths remain D/execution duties, G7 public
+FFT MemoryError fault scope and remaining constructor/buffer binding gap explicit.
+G3 still requires selected independent scalar/libm enclosures, no generic ULP
+comment or guessed tolerance. Root approved narrow sourced DUCC cardinal method
+with actual source/binary/RNE/range assumptions and independent B challenge,
+not a universal FFT theorem or waiver. No new owner interview/accuracy requirement.
+
+Prepared same-A continuation1 retains the original eight-file/report scope and
+no installed/build/source execution. New public input hashes/start identity and
+actual followup_task/session evidence belong outside tracked bytes after commit.
+Continuation is not a fresh A launch/review or reset. Root's current capacity
+permits this one child; do not launch other infrastructure/advisor/reviewer.
+Light-check-plan.md is a proposal only: exact revised code/input hashes must be
+frozen and root's actual window granted before source-free syntax/quality/
+ordinary bounded calls, with separate tiny dependency-qualification scope. No
+Python/probe/test/lint/type/install/measurement has run in this task stage.
+All prior failures/static source-lookup diagnostics and unknown costs retained;
+no independent acceptance, full gate, actual installed proof or C grant. Parent116
+remains required before restricted C. No extra advisor absent concrete diagnosed
+reasoning limitation/root scope; no broad general mathematical framework.

@@ -369,7 +369,12 @@ the external execution report retains failed inputs/stage/cause and precision.
 
 For reproducible identities define `H(domain,metadata,arrays)` as SHA256 of framed
 byte strings. Each frame is uint64 little-endian byte length followed by payload.
-First frame is ASCII `sp113-framed-v1/` plus domain. Second is UTF-8 canonical JSON
+First frame is ASCII `sp113-framed-v1/` plus the exact lowercase domain suffix:
+`bands` for bands_sha256, `transfer` for transfer_sha256, `parameters` for
+parameters_sha256. Thus the three complete first-frame payloads are exactly
+`sp113-framed-v1/bands`, `sp113-framed-v1/transfer` and
+`sp113-framed-v1/parameters`, with no trailing separator or NUL. The domain is
+fixed by the identity kind, never caller-selected. Second is UTF-8 canonical JSON
 of metadata (`ensure_ascii=True`, `sort_keys=True`, separators comma/colon,
 `allow_nan=False`); tuples become JSON arrays. For each array in the named order,
 frame canonical JSON `[name,dtype,shape]`, then frame logical C-order little-endian

@@ -97,6 +97,9 @@ The prospective actual packet may allow only these whole existing public files
 - `tests/test_module_migration.py` (whole public compatibility test; narrow facade expectation edits only).
 - `tests/test_installed_wheels.py` (whole public installed test; narrow success-count expectation edit only, no build/install execution grant).
 - `docs/packets/precision-113/a1-facade-addendum.md` (actual coordinator scope update when explicitly supplied).
+- `docs/packets/precision-113/legacy-compatibility-public.md` (narrow existing signatures and tiny compatibility-only builders when explicitly supplied).
+- `docs/packets/precision-113/tiny-default-fft-method.md` (conditional primary-method facts/enclosure for cardinal dimensions only when explicitly supplied; no external source/link expansion).
+- `docs/packets/precision-113/a1-gap-continuation.md` (same-author G1–G8 routing when explicitly supplied).
 
 These are whole-file permissions, not permissions for linked tasks/reports/source.
 The final coordinator packet supplies its own whole public filename/digest and
