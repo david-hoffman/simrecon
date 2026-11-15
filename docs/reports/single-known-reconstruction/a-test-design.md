@@ -1,14 +1,129 @@
 # SP113 A1 static test-design report
 
-**STATIC CORRECTION DRAFTS / EXECUTION SUSPENDED. No accepted checkpoint.** This is the distinct
+**STATIC DRAFTS / SCIENTIFIC CHECKS PENDING. No accepted checkpoint.** This is the distinct
 A report, not the collaboration final message or a B verdict. The six new and two
 narrowly changed test/fixture files contain concrete drafts, with blocking omissions and qualification
-limits below. Continuation2 syntax/style results are recorded separately below;
+limits below. Continuation2/4 syntax/style results are recorded separately below;
 nothing here claims collection, type, test, numerical, platform, coverage or
 performance acceptance. C still requires both
 an accepted/frozen A/B test checkpoint and accepted/frozen parent116.
 
-## Continuation3 source-only corrections and current freeze
+## Continuation4 correction and syntax/style freeze
+
+This is the same blind A1, continuation4. Root explicitly ended the first116
+exclusive window, reactivating only exact-eight-file no-import AST/Ruff/style
+preparation. The actual whole public packet
+`docs/packets/precision-113/a1-quality-continuation-4.md` was read first and
+matched SHA256`3245a6378b43cd4eca310e7936382e405de827f5dde4a9d20679299762762dd2`.
+Identity-only status matched HEAD`60660da9aaf1359e614f8ae47cac05e7d5edb084`,
+tree`a6e98212b15dce4bb174429003bef95339485d6a`. The coordinator preserves A3 at
+`e0183681047c8bef3fbcff90fd50590288479d4a`,
+tree`b3a6b5ab09063b9a086cc6accb1bee8fd05442e1`; no history/review was read.
+No later exclusive-window notice was received while these quality commands ran.
+A new such notice requires immediate stop and acknowledgement.
+
+Two independently reconciled public constraints were corrected before checks:
+
+1. S07.29–31 require alpha=RN64(1/(X*Y*Z*L^2*A*D)). The original integer
+   direction count is now included in J's independent settings/identity oracle.
+   D2/Z2/Y1/X2/L1/A1 gives1/8; D1 gives1/4. Continuation3's omitted-D formula and
+   A12 report value are explicitly corrected below, preserving that prior error
+   in the accounting. Supplied DC coefficients, exact DC transforms, finite
+   direction/order sequence0 versus centers-first1 and all tolerances are unchanged.
+2. P13 no longer skips when the declared external allocation interfaces are not
+   reached. It records its actual reached set and then raises an explicit
+   fixture/observer qualification failure naming the declared interfaces and
+   remaining alias/family limits. That result is a blocker, not scientific
+   product-red, an accepted pass/skip or a requirement for a particular binding.
+   Reached-interface exactcause/domain/byte checks and tiny positives remain.
+
+The first safe Ruff check found four E501 findings and made no safe fix. The
+formatter reformatted only the fixture, assembly and precision drafts. One E501
+remained in a diagnostic string; adjacent string literals now wrap that text
+without changing its bytes. No unsafe fix, suppression, assertion/tolerance
+weakening, typed-caller stub or gate/config/helper change occurred. Final lint,
+AST and format checks pass for the current eight-file bytes. This is syntax/
+style evidence only; no mathematical helper, product module or scientific
+dependency was imported or executed by these payloads.
+
+All attempts printed all8 current hashes before the command and used the exact
+pinned Docker/user/workdir/thread1/uv--locked--no-sync/source-free prefix quoted
+under continuation2, with the same explicit ordered8file list. AST used the
+unchanged exact public phase1 stdlib ast/Path program. Full command/output
+records remain in the tool transcript; no separate log/scratch file was written.
+
+| Attempt | Prehash set | Exact prefix suffix (Ruff followed by ordered8 paths) | Exit/result | Chunk / tool wall seconds |
+| --- | --- | --- | --- | --- |
+| Q4.1 | U0 | `-m ruff check --fix --output-format concise` | 1;4 E501, no fixes | `481d45` / .223138581 |
+| Q4.2 | U0, freshly printed | `-m ruff format` | 0;3 reformatted,5 unchanged | `5aec47` / .188467145 |
+| Q4.3 | U1 | `-m ruff check --output-format concise` | 1;1 E501 | `d6a366` / .149694512 |
+| Q4.4 | U2 after literal wrapping | `-m ruff check --output-format concise` | 0;All checks passed! | `951961` / .196290305 |
+| Q4.5 | U2, freshly printed | Exact public phase1 AST `-c` program | 0;SP113 AST parsed8 owned files; no imports | `344a76` / .229699334 |
+| Q4.6 | U2, freshly printed | `-m ruff format --check` | 0;8 files already formatted | `24f240` / .204102638 |
+
+Complete failing diagnostics were P:142:101 E501(103>100), P:143:101
+E501(106>100), P:203:101 E501(113>100), P:212:101 E501(101>100) in Q4.1;
+P:237:101 E501(117>100) in Q4.3, where P is the owned precision test. No other
+finding or source exposure occurred. U0/U1/U2 fixture/assembly/precision hashes
+are as follows; the other5 retain the final table values in every attempt:
+
+```text
+U0 (before Q4.1 and Q4.2)
+fixture   de110750ff16f86ae09c9e4a29f2f75cc8c7cbbff05232b5e12217432fd90b8f
+assembly  5e500ae20d7ff5ad55ed64489ba5be7b3ef8de7c6d488c8efeee41d70be06b61
+precision c4821211a3c35c4e79aae579fa3994251e0fd487692a216e08137478c7807312
+U1 (before Q4.3)
+fixture   55b7bc2d5cfe611a910ecc5e30901682b3bf1ef917086945836c6828bb520508
+assembly  cfd137f58fbc65237c70ee26870316d6ab255724716060bd270dec55d6aad0e4
+precision 563996bd9911a64eefb20cced748cce1cb5837ee2bb50a5f773d5c90e367d665
+U2 (before each Q4.4/Q4.5/Q4.6; final Python bytes)
+fixture   55b7bc2d5cfe611a910ecc5e30901682b3bf1ef917086945836c6828bb520508
+assembly  cfd137f58fbc65237c70ee26870316d6ab255724716060bd270dec55d6aad0e4
+precision 39be3cb37e40a8864cab451b0878ea8c0687d3ea94b2903ca90355a2a1e4beed
+```
+
+| Final owned Python artifact | Continuation4 SHA256 |
+| --- | --- |
+| `tests/single_known_fixture.py` | `55b7bc2d5cfe611a910ecc5e30901682b3bf1ef917086945836c6828bb520508` |
+| `tests/test_single_known_boundary.py` | `89155fe4e69803b49be693261da0f84139d69f7f3ab95969a94d6089011e1186` |
+| `tests/test_single_known_filter.py` | `559c117fbf177288b4cebd9b8441a86d3508a2ed009dde95494b9422f65353b4` |
+| `tests/test_single_known_assembly.py` | `cfd137f58fbc65237c70ee26870316d6ab255724716060bd270dec55d6aad0e4` |
+| `tests/test_single_known_precision.py` | `39be3cb37e40a8864cab451b0878ea8c0687d3ea94b2903ca90355a2a1e4beed` |
+| `tests/test_single_known_typing.py` | `5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4` |
+| `tests/test_module_migration.py` | `a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804` |
+| `tests/test_installed_wheels.py` | `ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e` |
+
+Additional actual reads were only this whole packet, selected owned fixture/
+precision/report text and allowed hash/status identities. The first broad own-
+text search response was truncated; a narrow own-text search recovered the
+relevant correction statements. No out-of-list path attempt occurred in this
+continuation. All13 public input files were rehashed unchanged, matching the
+complete continuation3 table below; they were neither edited nor expanded.
+No other source/reviewer/coordinator/method/dependency report, link or history
+was read. Report final identity is returned separately.
+
+Quality attempts are now16 cumulative, with6 failures, including inherited
+attempts. Earlier6 patch misses, truncation and typo/undefined-path failures
+remain; this continuation adds the disclosed search-output truncation and two
+quality failures, with no patch miss or new path typo. Source-only alpha and
+strict-outcome corrections are preserved as A draft repairs, not product repairs.
+Unknown meters/served model/tokens/money/aggregate elapsed remain unknown and
+cumulative; individual tool times above are not total accounting.
+
+S07.29–31 and S34.5/S35.4 now share the complete integer denominator in J;
+all positive call/identity dependents require fresh affected B review. P13's
+unreached observer now explicitly blocks S32.17/S33.3 qualification while keeping
+actual binding choice unrestricted. A12 and A9 order/conditioning requirements
+remain unchanged. All current G1–G8 scientific limits, noncardinal6/20 and
+outside-method primitive gaps, actual alias/allocation/path audits and A3 direct-
+child inherited-channel/no-descendant/launch/reap qualifications remain open.
+No Pyright, pytest, product/import/helper/child/dependency/numeric call, install/
+build/checker or benchmark ran. No intentional orphan/abrupt-loss experiment is
+authorized without exact safe ownership/adoption/reap scaffold and root release.
+Fresh affected independent B remains required; no accepted checkpoint or C
+authority follows, and C still waits accepted116 plus B/frozen tests.
+
+## Historical continuation3 source-only corrections and freeze
 
 This is the same blind A1, continuation3. The additional public packet
 `docs/packets/precision-113/a1-source-corrections-3.md` was read whole first and
@@ -22,8 +137,8 @@ I did not read its history or any review. No accepted checkpoint exists.
 Root's absolute execution suspension is active. No Python/JS numeric proof,
 import, AST, Ruff, format, Pyright, pytest, dependency/point/cardinal call,
 bounded child, install/build, probe or measurement was executed in continuation3.
-Prior quality passes apply only to their historical bytes: **the current edited
-revision has not even received syntax/style checks**. No delegation/commit/push
+Prior quality passes applied only to their historical bytes: **that continuation3
+revision had not received syntax/style checks at its freeze**. No delegation/commit/push
 or support/helper/gate/configuration edit occurred. This section supersedes
 earlier present-tense claims about transport design and the specific gaps below;
 the historical attempts and earlier draft protocols remain preserved.
@@ -49,7 +164,8 @@ remain unknown, not zero.
 
 `test_original_direction_order_has_its_own_f64_rounding_control` declares tiny
 D2/O2,Z2,Y1,X2 literal DC bands: direction0 center2^60, E1=1/2; direction1
-center-2^60; other slots0. Input_scale is independently1/4. Public Y1 empty
+center-2^60; other slots0. Input_scale is independently1/8, including D2
+(corrected in continuation4; the prior source-only draft omitted D). Public Y1 empty
 filter loops preserve the coefficients. Embedding/inverse DC and zero-carrier
 phase give exact terms2^60,1,-2^60; c64 represents every coefficient and local
 product exactly. Binary64's upward spacing at2^60 is256, so adding1 rounds to
@@ -72,7 +188,8 @@ J separates `known_options`, `expected_settings`, `expected_parameters` and
 ordered settings, exact pair/key/value kinds, and original parameter conversion
 bytes. The default expected values are500,1.0,1.0,0.5,False,10.0,False,False,
 False,"none", then the supplied band dxy,dz,L,A and independently derived
-alpha=1/(A*Z*L^2*Y*X), with original exact integer dimensions. No returned scale,
+alpha=1/(A*Z*L^2*Y*X*D), with original exact integer dimensions and direction
+count (the omitted D was corrected in continuation4). No returned scale,
 settings or parameter array supplies truth. Original parameter arrays are copied
 before the public reconstruction call, so subsequent mutation cannot redefine
 the expected conversion. Supported integer/floating components use exact integer
@@ -114,9 +231,10 @@ input bytes and no returned partial record, followed by the same tiny positive.
 An escaped MemoryError or swallowed reached injection fails the actual boundary.
 
 This does not prescribe an allocation API. If no declared binding is reached,
-the test records the empty reachability result and explicitly skips as an
-**observer qualification gap**, never as passing failure evidence or scientific
-product-red. Such an outcome leaves S32.17/S33.3 open and blocks an allocation-
+the test records the empty reachability result and explicitly fails as a
+**fixture/observer qualification failure**, never as passing/skipped evidence or
+scientific product-red. The continuation3 skip was corrected in continuation4;
+no particular product binding is forced. Such an outcome leaves S32.17/S33.3 open and blocks an allocation-
 coverage claim. Imported aliases, ndarray.copy/method paths, native/backend
 allocators and later operation/storage families remain outside this observer.
 An actual future D/execution path inventory must account for them and qualify

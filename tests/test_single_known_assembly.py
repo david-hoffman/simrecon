@@ -226,16 +226,27 @@ def test_original_direction_order_has_its_own_f64_rounding_control(record_proper
     assert finite == 0 and centers_first == real_sum == 1
     result = call(declare(q, v))
     assert np.all(result.image == float(finite))
-    record_property("sp113_direction_order", {
-        "real_reference": "1", "finite_f64_reference": "0", "reference_width": "0",
-        "input_representation_error": "0", "fft_error": "0 (exact DC)",
-        "phase_error": "0 (zero carrier)", "local_f32_error": "0",
-        "f64_accumulation_absolute_error": "1", "final_f32_error": "0",
-        "real_reference_condition": str(2**61 + 1),
-        "finite_zero_reference_condition": "infinite",
-        "max_absolute_error": "1", "rms_error": "1",
-        "signal_scale": str(2**61 + 1), "signed_minimum": "0", "signed_maximum": "0",
-    })
+    record_property(
+        "sp113_direction_order",
+        {
+            "real_reference": "1",
+            "finite_f64_reference": "0",
+            "reference_width": "0",
+            "input_representation_error": "0",
+            "fft_error": "0 (exact DC)",
+            "phase_error": "0 (zero carrier)",
+            "local_f32_error": "0",
+            "f64_accumulation_absolute_error": "1",
+            "final_f32_error": "0",
+            "real_reference_condition": str(2**61 + 1),
+            "finite_zero_reference_condition": "infinite",
+            "max_absolute_error": "1",
+            "rms_error": "1",
+            "signal_scale": str(2**61 + 1),
+            "signed_minimum": "0",
+            "signed_maximum": "0",
+        },
+    )
 
 
 def test_widen_before_side_factor_two_and_accumulate_in_f64() -> None:

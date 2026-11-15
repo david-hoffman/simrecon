@@ -204,23 +204,31 @@ def known_options(bands: Any, **changes: Any) -> dict[str, Any]:
 
 def expected_settings(bands: Any, options: dict[str, Any]) -> tuple[tuple[str, Any], ...]:
     """Derive all ordered setting values from the supplied band/call inputs."""
-    _, _, _, z, y, x = bands.input_shape
-    alpha = Fraction(1, bands.axial_zoom * z * bands.lateral_zoom**2 * y * x)
+    _, directions, _, z, y, x = bands.input_shape
+    alpha = Fraction(1, bands.axial_zoom * z * bands.lateral_zoom**2 * y * x * directions)
     values = (
-        int(options["wavelength_nm"]), float(options["numerical_aperture"]),
-        float(options["immersion_index"]), float(options["wiener"]),
+        int(options["wavelength_nm"]),
+        float(options["numerical_aperture"]),
+        float(options["immersion_index"]),
+        float(options["wiener"]),
         bool(options["suppress_singularities"]),
         float(options.get("suppression_radius_bins", 10.0)),
-        bool(options.get("dampen_order0", False)), bool(options.get("omit_order0", False)),
-        bool(options.get("omit_kz0", False)), str(options["output_taper"]),
-        float(bands.dxy_um), float(bands.dz_um), int(bands.lateral_zoom),
-        int(bands.axial_zoom), float(alpha),
+        bool(options.get("dampen_order0", False)),
+        bool(options.get("omit_order0", False)),
+        bool(options.get("omit_kz0", False)),
+        str(options["output_taper"]),
+        float(bands.dxy_um),
+        float(bands.dz_um),
+        int(bands.lateral_zoom),
+        int(bands.axial_zoom),
+        float(alpha),
     )
     return tuple(zip(SETTING_KEYS, values, strict=True))
 
 
 def expected_parameters(
-    bands: Any, options: dict[str, Any],
+    bands: Any,
+    options: dict[str, Any],
 ) -> tuple[NDArray[np.float64], NDArray[np.complex128]]:
     """Convert original supported components independently with rational RN64."""
     directions = bands.input_shape[1]
@@ -1080,11 +1088,15 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
     status: int | None = None
 
     def diagnostic_note() -> str:
-        return json.dumps({
-            "case": case, "original_status": status,
-            "stdout": bytes(buffers["stdout"]).decode("utf-8", errors="replace"),
-            "stderr": bytes(buffers["stderr"]).decode("utf-8", errors="replace"),
-        }, sort_keys=True)
+        return json.dumps(
+            {
+                "case": case,
+                "original_status": status,
+                "stdout": bytes(buffers["stdout"]).decode("utf-8", errors="replace"),
+                "stderr": bytes(buffers["stderr"]).decode("utf-8", errors="replace"),
+            },
+            sort_keys=True,
+        )
 
     def close_direct_child() -> None:
         if process is None:
@@ -1101,8 +1113,12 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
     selector = selectors.DefaultSelector()
     try:
         process = subprocess.Popen(
-            command, cwd=root, stdin=subprocess.DEVNULL,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True,
+            command,
+            cwd=root,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            start_new_session=True,
         )
         deadline = time.monotonic() + timeout
         assert process.stdout is not None and process.stderr is not None
@@ -1154,7 +1170,10 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
                         process.stderr.close()
     try:
         return decode_declaration_result(
-            case, status, bytes(buffers["stdout"]), bytes(buffers["stderr"]),
+            case,
+            status,
+            bytes(buffers["stdout"]),
+            bytes(buffers["stderr"]),
         )
     except BaseException as error:
         error.add_note(diagnostic_note())
@@ -1162,7 +1181,10 @@ def run_bounded_declaration_experiment(case: str) -> tuple[dict[str, Any], str]:
 
 
 def decode_declaration_result(
-    case: str, status: int | None, stdout_bytes: bytes, stderr_bytes: bytes,
+    case: str,
+    status: int | None,
+    stdout_bytes: bytes,
+    stderr_bytes: bytes,
 ) -> tuple[dict[str, Any], str]:
     """Validate bounded child evidence only after the owned direct child is reaped."""
     stdout = stdout_bytes.decode("utf-8")
