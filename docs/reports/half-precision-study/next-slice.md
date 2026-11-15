@@ -24,12 +24,32 @@ changes; K01–K04 range/failure observers; fresh-process timing/RSS/lifetime ev
 full/summary compatibility; backend constraints; independent scientific review.
 The current comparison harness retains wider baseline before candidate and is
 not a matched resource experiment. Its diagnostic peaks/times cannot support a
-storage-benefit or speed claim. A standalone matched resource protocol remains
-to be frozen and implemented before choosing a product slice.
+storage-benefit or speed claim. A separate standalone full WIDER/H1/H1-promoted
+method and prepared-band wider/paired-half stage pair are now source-authored.
+They still require fresh static review, final-parent reconciliation and runtime
+qualification before any resource benefit can support a product slice. Stage
+setup/native high-water and actual caller conversions remain included; corrected,
+filtered and embedded formula replay retain their isolated diagnostic scope.
 If errors, branch instability or conversion lifetime eliminate the benefit,
 recommend no activation with the actual named failing cases and measurements.
 No guessed acceptance cutoff or human-required new tolerance is introduced.
 
+Finite range/cancellation, independent noise/phase, generation equivalence,
+canonical hash, signed-zero/nonfinite serialization, record failure and FFT-policy
+controls are frozen in the source manifest. None has run. Missing terminal usage
+or process ownership blocks reliance and requires root identity-checked recovery;
+zero exit or static method review does not establish scientific success. No
+activation, evidence-backed negative outcome or completed implementation handoff
+is asserted at this preparation stage.
+
 Any future precision/backend product change returns to separately scoped high-risk
 intake with fresh A/B/C/D as applicable. This report-only harness is neither its
 test checkpoint nor authorization to implement it.
+
+Resource launch is now unconditionally quarantined. Campaign root's actual #116
+Q1 in the same interpreter rejected `posix_spawn(..., setsid=True)` before a child
+PID. HP114 did not retry it. Narrow AST/compile/Ruff passes neither repair this
+capability nor justify resource readiness. A later root-supplied diagnosed working
+route needs accepted affected-scope evidence and explicit HP114 launch/wait/status/
+identity/recovery reconciliation. No new launcher or fallback is adopted here.
+PID1 sleep/no-init remains planning context; no abrupt-loss/orphan experiment ran.

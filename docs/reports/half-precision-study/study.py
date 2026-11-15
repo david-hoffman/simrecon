@@ -4,8 +4,9 @@
 SOURCE PREPARATION ONLY: no execution, including syntax/import checks, until the
 coordinator grants the numerical window. See manifest.md for frozen formulas,
 commands, branch qualification, lifecycle accounting and interpretation limits.
-Each invocation executes exactly one row/strategy/repetition in a fresh process.
-There is deliberately no subprocess runner, growth search or environment repair.
+Each invocation selects one diagnostic row or one parent-owned workload child.
+There is no batch/retry runner, growth search or environment repair. Standalone
+resource and finite control methods are unexecuted source preparation v2.
 """
 
 from __future__ import annotations
@@ -18,6 +19,9 @@ import math
 import os
 import platform
 import resource
+import signal
+import struct
+import subprocess
 import sys
 import time
 import traceback
@@ -88,6 +92,20 @@ KEEP = []  # Explicit conservative caller/conversion/result retention for RSS.
 ARRAYS = {}
 TIMINGS = []
 np = scipy = sim = None  # Numerical imports occur only after explicit authorization.
+OBSERVATION_BYTES = 65536  # Per numeric buffer, never a total-scratch ceiling.
+RESOURCE_STRATEGIES = ("WIDER", "H1", "H1_PROMOTED", "PREPARED_WIDER", "PREPARED_HALF")
+RECORD_LIMIT_BYTES = 4 * 1024 * 1024  # Finite JSON admission bound, not a human limit.
+RESOURCE_LAUNCH_HOLD = (
+    "HP114 resource launch is quarantined: campaign root's #116 Q1 in the same "
+    "pinned CPython 3.13.12 raised NotImplementedError: posix_spawn: setsid "
+    "unavailable on this platform, before a child PID. No retry/fallback is "
+    "authorized. Await root's diagnosed accepted launch route and scoped review."
+)
+SNAPSHOT_SCOPES = {
+    "pre_call": "after caller setup/identity; before conversion-inclusive and call clocks",
+    "call_end": "after operation clock; before output observers",
+    "post_observation": "after bounded output observations; before JSON serialization/teardown",
+}
 
 
 def digest(path):
@@ -139,6 +157,62 @@ def authorize(args):
             raise RuntimeError(f"set {key}=1 before launching the fresh interpreter")
     if os.environ.get("SCIPY_ARRAY_API") not in (None, "0"):
         raise RuntimeError("unqualified SciPy array-API backend selection")
+    candidate = receipt.get("candidate", {})
+    if not all(
+        candidate.get(key)
+        for key in ("commit", "tree", "tracked_status", "integration_base", "parent")
+    ):
+        raise RuntimeError("missing actual candidate/base/parent attestation")
+    if getattr(args, "route", "diagnostic") in ("resource", "resource-child"):
+        if args.row not in SHAPES or args.strategy not in RESOURCE_STRATEGIES:
+            raise RuntimeError("resource route is limited to W rows and named matched paths")
+        control = receipt.get("method_control")
+        if receipt.get("route") != "resource":
+            raise RuntimeError("resource route lacks exact root route authorization")
+        if control is None and not receipt.get("qualification_sha256", {}).get(args.row):
+            raise RuntimeError(
+                "resource grant must name reviewed qualification without loading it in child"
+            )
+        if control is not None and (
+            receipt.get("control_release") is not True
+            or control
+            not in (
+                "missing-record",
+                "self-term",
+                "timeout",
+                "timeout-ignore-term",
+                "child-error",
+                "malformed-record",
+                "oversized-record",
+            )
+        ):
+            raise RuntimeError("unknown or unreleased finite lifecycle control")
+        admission = receipt.get("resource_admission", {})
+        if (
+            admission.get("accepted") is not True
+            or not admission.get("rationale")
+            or len(admission.get("evidence_sha256", "")) != 64
+        ):
+            raise RuntimeError("root has not admitted this attempt's current headroom and method")
+        if receipt.get("run_id") != args.run_id or receipt["runs"] != [
+            [args.row, args.strategy, args.repetition]
+        ]:
+            raise RuntimeError(
+                "resource grant must identify exactly one attempt, not a batch/retry"
+            )
+        return receipt
+    if getattr(args, "route", "diagnostic") == "controls":
+        if (
+            receipt.get("route") != "controls"
+            or receipt.get("control_release") is not True
+            or (args.row, args.strategy, args.repetition) != ("K01", "KERNEL", 1)
+        ):
+            raise RuntimeError("finite observer controls require a separate root control grant")
+        return receipt
+    if args.strategy not in STRATEGIES:
+        raise RuntimeError(
+            "prepared-stage resource strategies cannot silently become diagnostic baselines"
+        )
     if args.row in SHAPES:
         if args.strategy in ("KERNEL", "CPU"):
             raise RuntimeError("kernel strategy cannot select a workflow row")
@@ -198,26 +272,100 @@ def encode(value, path="record"):
         return encode(value.item(), path)
     if isinstance(value, complex):
         return {"real": encode(value.real), "imag": encode(value.imag)}
-    if isinstance(value, float) and not math.isfinite(value):
-        return {"nonfinite": repr(value)}
+    if isinstance(value, float) and (not math.isfinite(value) or value == 0):
+        return {"float64_bits_be": struct.pack(">d", value).hex()}
     if isinstance(value, Path):
         return str(value)
     return value
 
 
+def numeric_chunks(a, dtype=None):
+    """Visit C-order values with bounded slices and explicit canonical endian."""
+    a = np.asarray(a)
+    target = a.dtype.newbyteorder("<") if dtype is None else np.dtype(dtype)
+    if target.kind not in "biufc" or target.itemsize > 16:
+        raise ValueError("unsupported numeric observation kind/width")
+    count = max(1, OBSERVATION_BYTES // max(a.dtype.itemsize, target.itemsize))
+    with np.nditer(
+        a,
+        flags=["external_loop", "buffered", "zerosize_ok"],
+        op_flags=["readonly"],
+        op_dtypes=[target],
+        order="C",
+        buffersize=count,
+    ) as iterator:
+        for view in iterator:
+            # External-loop views may exceed buffersize when no buffering is
+            # needed. Slice before any conversion or byte serialization.
+            for offset in range(0, view.size, count):
+                yield np.asarray(view[offset : offset + count], dtype=target)
+
+
+def array_identity(a):
+    """Record shape/dtype/content, preserving signed zeros in canonical bytes."""
+    a = np.asarray(a)
+    h = hashlib.sha256()
+    for values in numeric_chunks(a):
+        h.update(values.tobytes(order="C"))
+    return dict(
+        shape=list(a.shape),
+        canonical_dtype=a.dtype.newbyteorder("<").str,
+        content_sha256=h.hexdigest(),
+    )
+
+
 def array_hash(a):
-    """Hash contiguous logical sample bytes outside call-only timing."""
-    # Hashing conversion is explicit and outside call-only time; contiguous copy
-    # can coexist with the caller. NPY artifact SHA also includes shape/dtype.
-    contiguous = np.ascontiguousarray(a)
-    return hashlib.sha256(memoryview(contiguous).cast("B")).hexdigest()
+    """Hash bounded canonical C-order sample bytes outside call-only timing."""
+    return array_identity(a)["content_sha256"]
+
+
+def paired_chunks(a, b, dtype):
+    """Keep equal-shaped operands aligned even when their strides differ."""
+    target = np.dtype(dtype)
+    count = max(1, OBSERVATION_BYTES // max(a.dtype.itemsize, b.dtype.itemsize, target.itemsize))
+    with np.nditer(
+        [a, b],
+        flags=["external_loop", "buffered", "zerosize_ok"],
+        op_flags=[["readonly"], ["readonly"]],
+        op_dtypes=[target, target],
+        order="C",
+        buffersize=count,
+    ) as iterator:
+        for left, right in iterator:
+            for offset in range(0, left.size, count):
+                yield (
+                    np.asarray(left[offset : offset + count], dtype=target),
+                    np.asarray(right[offset : offset + count], dtype=target),
+                )
 
 
 def scalar_stats(a):
     """Observe signed real components and binary16 range boundaries."""
     a = np.asarray(a)
-    finite = np.isfinite(a)
-    selected = a[finite]
+    counts = dict(
+        nonfinite=0,
+        negative=0,
+        zeros=0,
+        negative_zeros=0,
+        positive_zeros=0,
+        binary16_subnormal_range=0,
+    )
+    minimum = maximum = None
+    for chunk in numeric_chunks(a):
+        finite = np.isfinite(chunk)
+        selected = chunk[finite]
+        counts["nonfinite"] += int((~finite).sum())
+        counts["negative"] += int((chunk < 0).sum())
+        counts["zeros"] += int((chunk == 0).sum())
+        counts["negative_zeros"] += int(((chunk == 0) & np.signbit(chunk)).sum())
+        counts["positive_zeros"] += int(((chunk == 0) & ~np.signbit(chunk)).sum())
+        counts["binary16_subnormal_range"] += int(
+            ((np.abs(chunk) > 0) & (np.abs(chunk) < 2**-14)).sum()
+        )
+        if selected.size:
+            low, high = float(selected.min()), float(selected.max())
+            minimum = low if minimum is None else min(minimum, low)
+            maximum = high if maximum is None else max(maximum, high)
     return dict(
         dtype=a.dtype.str,
         shape=a.shape,
@@ -227,14 +375,10 @@ def scalar_stats(a):
         writeable=bool(a.flags.writeable),
         payload_bytes=a.nbytes,
         sha256=array_hash(a),
-        nonfinite=int((~finite).sum()),
-        minimum=float(selected.min()) if selected.size else None,
-        maximum=float(selected.max()) if selected.size else None,
-        negative=int((a < 0).sum()),
-        zeros=int((a == 0).sum()),
-        negative_zeros=int(((a == 0) & np.signbit(a)).sum()),
-        positive_zeros=int(((a == 0) & ~np.signbit(a)).sum()),
-        binary16_subnormal_range=int(((np.abs(a) > 0) & (np.abs(a) < 2**-14)).sum()),
+        canonical_identity=array_identity(a),
+        minimum=minimum,
+        maximum=maximum,
+        **counts,
     )
 
 
@@ -252,20 +396,35 @@ def error_metrics(reference, candidate):
     a, b = np.asarray(reference), np.asarray(candidate)
     if a.shape != b.shape:
         return {"status": "shape-change", "reference": a.shape, "candidate": b.shape}
-    finite = np.isfinite(a) & np.isfinite(b)
-    if not finite.all():
+    common_dtype = "<c16" if np.iscomplexobj(a) or np.iscomplexobj(b) else "<f8"
+    finite_pairs, energy_parts, squared_parts, maxima = 0, [], [], []
+    nonzero_lost = {"real": 0, "imag": 0}
+    sign_changed = {"real": 0, "imag": 0}
+    for x, y in paired_chunks(a, b, common_dtype):
+        finite = np.isfinite(x) & np.isfinite(y)
+        finite_pairs += int(finite.sum())
+        if not finite.all():
+            continue
+        delta = y - x
+        energy_parts.append(float(np.vdot(x, x).real))
+        squared_parts.append(float(np.vdot(delta, delta).real))
+        maxima.append(float(np.max(np.abs(delta), initial=0)))
+        for name, u, v in (("real", x.real, y.real), ("imag", x.imag, y.imag)):
+            nonzero_lost[name] += int(((u != 0) & (v == 0)).sum())
+            sign_changed[name] += int(
+                ((u != 0) & (v != 0) & (np.signbit(u) != np.signbit(v))).sum()
+            )
+    if finite_pairs != a.size:
         return {
             "status": "nonfinite",
-            "finite_pairs": int(finite.sum()),
+            "finite_pairs": finite_pairs,
             "reference": stats(a),
             "candidate": stats(b),
         }
-    delta = b - a
-    energy = float(np.vdot(a.ravel(), a.ravel()).real)
-    squared = float(np.vdot(delta.ravel(), delta.ravel()).real)
+    energy, squared = math.fsum(energy_parts), math.fsum(squared_parts)
     result = dict(
         status="finite",
-        max_absolute=float(np.max(np.abs(delta), initial=0)),
+        max_absolute=max(maxima, default=0.0),
         rms=math.sqrt(squared / a.size) if a.size else 0.0,
         relative_l2=math.sqrt(squared / energy) if energy else (0.0 if squared == 0 else None),
         zero_reference_rule="0 for both zero; undefined otherwise",
@@ -274,10 +433,8 @@ def error_metrics(reference, candidate):
     )
     for component, x, y in (("real", a.real, b.real), ("imag", a.imag, b.imag)):
         result[component] = dict(
-            nonzero_to_zero=int(((x != 0) & (y == 0)).sum()),
-            sign_changes_nonzero=int(
-                ((x != 0) & (y != 0) & (np.signbit(x) != np.signbit(y))).sum()
-            ),
+            nonzero_to_zero=nonzero_lost[component],
+            sign_changes_nonzero=sign_changed[component],
             reference=scalar_stats(x),
             candidate=scalar_stats(y),
         )
@@ -662,6 +819,22 @@ def oracle_checks(raw, analytic, baseline, row, background):
             - target
         )
         exact = exact_inverse(design)
+
+        def row_energy(rows):
+            return math.fsum(float(v) * float(v) for value in rows for v in value) / p
+
+        independent_noise = (
+            np.array(
+                [row_energy(exact[0:1])]
+                + [row_energy(exact[2 * m - 1 : 2 * m + 1]) for m in range(1, (slots + 1) // 2)]
+            )
+            if row == "W06"
+            else np.ones((slots + 1) // 2)
+        )
+        observed_row_noise = np.array(
+            [row_energy(left[0:1])]
+            + [row_energy(left[2 * m - 1 : 2 * m + 1]) for m in range(1, (slots + 1) // 2)]
+        )
         phase_checks.append(
             dict(
                 direction=d,
@@ -669,6 +842,15 @@ def oracle_checks(raw, analytic, baseline, row, background):
                 finite_sum_left_residual=residual,
                 exact_rational_inverse=exact,
                 source_left_vs_exact=error_metrics(exact, left),
+                independent_noise=independent_noise,
+                observed_row_noise=observed_row_noise,
+                source_noise_error=error_metrics(
+                    independent_noise, bands.noise_variance_factors[0, d]
+                ),
+                noise_scope=(
+                    "uniform contract gives one; supplied squared inverse row sums/P, "
+                    "scalar fsum observer"
+                ),
             )
         )
     # Direct compensated phase/spatial sums, selected signed Fourier coordinates.
@@ -1238,13 +1420,18 @@ def cpu_feasibility():
         result["complex32_dtype"] = failure(error, "unsupported-dtype")
     for backend in (np.fft, scipy.fft):
         label = backend.__name__
-        transformed = backend.rfft(values)
-        inverse = backend.irfft(transformed, n=values.size)
+        transformed = backend.rfft(values, norm="backward")
+        inverse = backend.irfft(transformed, n=values.size, norm="backward")
         result[label] = dict(
             input=stats(values),
             forward=stats(transformed),
             inverse=stats(inverse),
             reconstruction=error_metrics(values, inverse),
+            api="public rfft/irfft",
+            forward_norm="backward",
+            inverse_norm="backward",
+            scipy_effective_workers=scipy.fft.get_workers(),
+            internal_arithmetic_precision="unknown",
         )
         try:
             backend.rfft(values, norm="HP114-unsupported")
@@ -1308,10 +1495,37 @@ def resource_plan(row):
     )
 
 
-def guard_resource(row):
+def standalone_plan(row, strategy):
+    """Describe one caller/result child, including released setup high-water costs."""
+    t, d, p, z, y, x = SHAPES[row]
+    n, v = t * d * p * z * y * x, z * y * x
+    q = t * d * p * z * y * (x // 2 + 1)
+    output = t * z * 2 * y * 2 * x
+    orders = (p + 1) // 2
+    caller = (
+        q * (4 if strategy == "PREPARED_HALF" else 16)
+        if strategy.startswith("PREPARED_")
+        else (n * {"WIDER": 4, "H1": 2, "H1_PROMOTED": 8}[strategy])
+    )
+    return dict(
+        declared_caller=caller,
+        bounded_generator_rows=x * (8 * 12 + 4 + 2),
+        prepared_stage_raw_setup=n * 4 if strategy.startswith("PREPARED_") else 0,
+        camera_preparation_and_public_validation_work=n * (8 * 3 + 4),
+        prepared_transform_filter_sources_and_results=q * 16 * 6,
+        prepared_metadata_and_trace_arrays=t * d * z * (p * p * 8 + p * 8 * 5) * 4,
+        overlap_snapshots=t * d * orders * 66 * v,
+        active_overlap_work=2 * 2 * 16 * v,
+        inverse_phase_and_signed_output=output * (16 * 3 + 8 * 4),
+        transfer_caller_and_declaration=orders * 64 * 64 * (8 + 16) * 2,
+        observation_numeric_buffer_envelope=16 * OBSERVATION_BYTES,
+    )
+
+
+def guard_resource(row, strategy=None):
     """Stop if modeled payload already exhausts known current headroom."""
     state = memory_state()
-    ledger = resource_plan(row)
+    ledger = resource_plan(row) if strategy is None else standalone_plan(row, strategy)
     payload = sum(ledger.values())
     bounds = []
     available = state["physical"].get("MemAvailable_bytes")
@@ -1374,6 +1588,10 @@ def retained_payload():
 
 def environment():
     """Record the provisioned numerical route and material process settings."""
+    binary_modules = {}
+    for name in ("numpy.fft._pocketfft_umath", "scipy.fft._duccfft.pyduccfft"):
+        path = getattr(sys.modules.get(name), "__file__", None)
+        binary_modules[name] = dict(path=path, sha256=digest(path) if path else None)
     return dict(
         python=sys.version,
         executable=sys.executable,
@@ -1382,6 +1600,8 @@ def environment():
         os_release=text_file("/etc/os-release"),
         numpy=np.__version__,
         scipy=scipy.__version__,
+        loaded_fft_binary_modules=binary_modules,
+        internal_fft_arithmetic_precision="unknown",
         numpy_file=np.__file__,
         scipy_file=scipy.__file__,
         scipy_fft_workers=scipy.fft.get_workers(),
@@ -1403,25 +1623,1002 @@ def environment():
     )
 
 
+def resource_snapshot(name):
+    """Observe cumulative self high-water at one named child boundary."""
+    native = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    return dict(
+        monotonic_ns=time.monotonic_ns(),
+        native_ru_maxrss=native,
+        native_units="Linux KiB",
+        multiplier_to_bytes=1024,
+        bytes=int(native) * 1024,
+        scope=SNAPSHOT_SCOPES[name],
+    )
+
+
+def resource_materials():
+    """Hash the explicitly named materials, including the method sources."""
+    paths = list(EXPECTED) + [
+        str(Path(__file__).relative_to(ROOT)),
+        str(Path(__file__).with_name("manifest.md").relative_to(ROOT)),
+    ]
+    return {name: digest(ROOT / name) for name in paths}
+
+
+def resource_git():
+    """Capture actual Git identity only outside the numerical child lifetime."""
+
+    def git(*args):
+        return subprocess.check_output(["git", *args], cwd=ROOT)
+
+    status = git("status", "--porcelain", "--untracked-files=no").decode().strip()
+    return dict(
+        commit=git("rev-parse", "HEAD").decode().strip(),
+        tree=git("rev-parse", "HEAD^{tree}").decode().strip(),
+        parent=git("rev-parse", "HEAD^").decode().strip(),
+        tracked_status=status or "clean",
+        tracked_diff_sha256=hashlib.sha256(git("diff", "--binary", "HEAD")).hexdigest(),
+    )
+
+
+def child_identity(pid):
+    """Preserve PID birth facts without treating a stale PID as ownership."""
+    record = dict(pid=pid, boot_id=text_file("/proc/sys/kernel/random/boot_id"))
+    try:
+        fields = Path(f"/proc/{pid}/stat").read_text().rsplit(")", 1)[1].split()
+        record.update(
+            start_ticks=int(fields[19]),
+            process_group=int(fields[2]),
+            session=int(fields[3]),
+            observed_monotonic_ns=time.monotonic_ns(),
+        )
+    except (OSError, ValueError, IndexError) as error:
+        record["identity_gap"] = type(error).__name__ + ": " + str(error)
+    return record
+
+
+def write_once(path, value):
+    """Persist one small record without overwriting an earlier attempt."""
+    with Path(path).open("x") as stream:
+        json.dump(value, stream, indent=2, allow_nan=False)
+        stream.write("\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def resource_caller(row, strategy):
+    """Generate only the declared raw representation, one bounded x-row at a time."""
+    shape = SHAPES[row]
+    tcount, directions, phases, nz, ny, nx = shape
+    dtype = {"WIDER": np.float32, "H1": np.float16, "H1_PROMOTED": np.float64}.get(
+        strategy, np.float32
+    )
+    raw = np.empty(shape, dtype=dtype)
+    phases_rad = phases_for(row)
+    background = 128.0 if row == "W06" else 256.0
+    x = np.arange(nx, dtype=np.float64)
+    for iz in range(nz):
+        for iy in range(ny):
+            specimen = np.full(nx, 3.0)
+            for kz in range(min(nz, 2)):
+                for ky in range(-3, 4):
+                    for kx in range(4):
+                        if (kz, ky, kx) == (0, 0, 0):
+                            continue
+                        amplitude = 32 / (1 + kx * kx + ky * ky + kz * kz)
+                        offset = (kx + 2 * ky + 3 * kz) * np.pi / 7
+                        angle = 2 * np.pi * (kx * x / nx + ky * iy / ny + kz * iz / nz) + offset
+                        specimen += amplitude * np.cos(angle)
+            if row == "W06":
+                angle = 2 * np.pi * (x / nx + iy / ny)
+                specimen = (
+                    8 * np.cos(angle)
+                    + (-8 + 2**-9) * np.cos(angle + 2**-10)
+                    + 2 * np.cos(2 * np.pi * iy / ny)
+                    + np.sin(2 * np.pi * x / nx)
+                    + 0.25 * np.cos(2 * np.pi * iz / nz)
+                )
+            for t in range(tcount):
+                first, second, shift = (0.55, 0.23, 0.0) if t == 0 else (0.37, 0.16, 0.41)
+                for d in range(directions):
+                    theta_d = d * np.pi / directions
+                    carrier_angle = (
+                        2
+                        * np.pi
+                        * (1.25 * np.cos(theta_d) * x * 0.1 + 1.25 * np.sin(theta_d) * iy * 0.1)
+                    )
+                    for p in range(phases):
+                        theta = carrier_angle + phases_rad[d, p]
+                        illumination = 1 + first * np.cos(theta + shift)
+                        if phases == 5:
+                            illumination = illumination + second * np.cos(
+                                2 * theta + 0.3 + 2 * shift
+                            )
+                        admitted = (background + specimen * illumination).astype(np.float32)
+                        if strategy in ("H1", "H1_PROMOTED"):
+                            admitted = admitted.astype(np.float16)
+                        raw[t, d, p, iz, iy] = admitted
+    # No analytic truth volume, alternate caller or wider reference survives.
+    return raw, background
+
+
+def resource_stage(bands, transfer, carrier, filtering):
+    """Run the explicitly matched prepared-band-to-image stage interval."""
+    d = bands.input_shape[1]
+    angles = [direction * (math.pi / d) for direction in range(d)]
+    initial = np.array(
+        [(1.25 * math.cos(angle), 1.25 * math.sin(angle)) for angle in angles], dtype=np.float64
+    )
+    parameters = sim.estimate_parameters(
+        bands,
+        transfer,
+        initial_carriers_cyc_um=initial,
+        **OPTICS,
+        search_carriers=carrier["search_carriers"],
+        use_time0_carriers=True,
+        amplitude_floors=carrier["amplitude_floors"],
+        fit_all_phases=carrier["fit_all_phases"],
+        omit_kz0=False,
+    )
+    known = [
+        sim.reconstruct_known(
+            one_time(bands, t),
+            transfer,
+            carriers_cyc_um=parameters.carriers_cyc_um[t],
+            modulation=parameters.modulation[t],
+            **OPTICS,
+            **filtering,
+        )
+        for t in range(bands.input_shape[0])
+    ]
+    return dict(
+        image=np.concatenate([value.image for value in known]),
+        parameters=parameters,
+        reconstructions=known,
+    )
+
+
+def refuse_quarantined_resource_launch():
+    """Refuse the known unsupported route without spawning or probing anything."""
+    raise RuntimeError(RESOURCE_LAUNCH_HOLD)
+
+
+def resource_child(args):
+    """Retain one caller and one result, with no numerical reference workflow."""
+    refuse_quarantined_resource_launch()  # Also blocks direct internal-route invocation.
+    grant = authorize(args)  # Unexecuted draft below, retained for affected-scope review.
+    directory = EVIDENCE / args.run_id
+    record = dict(
+        schema="HP114-resource-child-v1",
+        pid=os.getpid(),
+        row=args.row,
+        strategy=args.strategy,
+        repetition=args.repetition,
+        status="child-started",
+        identity=child_identity(os.getpid()),
+        snapshots={},
+        materials_before=resource_materials(),
+    )
+    started = time.monotonic_ns()
+    caught = []
+    global np, scipy, sim
+    try:
+        control = grant.get("method_control")
+        if control is not None:
+            record["method_control"] = control
+            if grant.get("control_release") is not True:
+                raise ValueError("lifecycle control lacks explicit root release")
+            if control == "missing-record":
+                return 3  # finally writes below: explicit deletion is not used.
+            if control == "self-term":
+                os.kill(os.getpid(), signal.SIGTERM)
+            elif control in ("timeout", "timeout-ignore-term"):
+                if control == "timeout-ignore-term":
+                    signal.signal(signal.SIGTERM, signal.SIG_IGN)
+                # Parent should stop earlier. If it disappears, even this
+                # control has a finite fallback lifetime, not an orphan loop.
+                time.sleep(
+                    2 * grant["deadline_seconds"]
+                    + grant["term_grace_seconds"]
+                    + grant["kill_reap_seconds"]
+                )
+                record["status"] = "timeout-control-returned-without-parent-stop"
+                return 3
+            elif control == "child-error":
+                raise ValueError("intentional finite lifecycle-control failure")
+            elif control not in ("malformed-record", "oversized-record"):
+                raise ValueError("unknown lifecycle control")
+            record["status"] = "lifecycle-control-only"
+            return 3
+        import numpy as numpy_module
+        import scipy as scipy_module
+        import scipy.fft
+
+        import simrecon as simrecon_module
+
+        np, scipy, sim = numpy_module, scipy_module, simrecon_module
+        if (np.__version__, scipy.__version__) != ("2.5.3", "1.18.1"):
+            raise RuntimeError("numerical dependency identity changed")
+        if Path(sim.__file__).resolve() != ROOT / "src/simrecon/__init__.py":
+            raise RuntimeError("product import belongs to another checkout")
+        record["environment"] = environment()
+        record["resource_before_setup"] = guard_resource(args.row, args.strategy)
+        with warnings.catch_warnings(record=True) as caught, scipy.fft.set_workers(1):
+            warnings.simplefilter("always")
+            record["environment"]["scipy_fft_workers_during_call"] = scipy.fft.get_workers()
+            caller, background = resource_caller(args.row, args.strategy)
+            acquisition, carrier, filtering = settings(args.row, background)
+            transfer = make_transfer(acquisition["norders"])
+            if args.strategy.startswith("PREPARED_"):
+                prep_options = {k: v for k, v in acquisition.items() if k != "phase_policy"}
+                bands = sim.prepare_acquisition_bands(caller, **prep_options)
+                del caller  # Raw setup caller is not a prepared-stage caller.
+                metadata = dataclasses.replace(bands, quadratures=None)
+                source = bands.quadratures
+                if args.strategy == "PREPARED_HALF":
+                    caller = np.empty((*source.shape, 2), dtype="<f2")
+                    caller[..., 0], caller[..., 1] = source.real, source.imag
+                    del source, bands
+                else:
+                    caller = source
+                    del bands, source
+                record["entry"] = "prepared-band public estimation + per-time known reconstruction"
+                record["setup_scope"] = (
+                    "public preparation and pack are included in cumulative/terminal peak; "
+                    "raw setup released"
+                )
+            else:
+                metadata = None
+                record["entry"] = "reconstruct_workflow full result"
+                record["setup_scope"] = "one declared caller generated with bounded x-row scratch"
+            KEEP.append(caller)
+            if metadata is not None:
+                KEEP.append(metadata)
+            record["caller"] = array_identity(caller)
+            record["caller_stats"] = stats(caller)
+            if record["caller_stats"].get("nonfinite", 0) or any(
+                not np.isfinite(chunk).all() for chunk in numeric_chunks(caller)
+            ):
+                record["status"] = "nonfinite-conversion"
+                raise ValueError("nonfinite caller conversion; no numerical continuation")
+            record["snapshots"]["pre_call"] = resource_snapshot("pre_call")
+            record["conversion_start_ns"] = time.monotonic_ns()
+            if metadata is not None:
+                if args.strategy == "PREPARED_HALF":
+                    working = np.empty(caller.shape[:-1], dtype=np.complex128)
+                    working.real, working.imag = caller[..., 0], caller[..., 1]
+                else:
+                    working = caller
+                bands = dataclasses.replace(metadata, quadratures=working)
+                KEEP.append(bands)  # Packed caller and required promoted work coexist.
+            record["call_start_ns"] = time.monotonic_ns()
+            if metadata is None:
+                result = sim.reconstruct_workflow(
+                    caller,
+                    acquisition=acquisition,
+                    optics=OPTICS,
+                    carrier=carrier,
+                    filtering=filtering,
+                    specimen_identity={
+                        "id": "HP114-analytic-v1",
+                        "intensity_unit": "detector-counts",
+                    },
+                    transfer=transfer,
+                    transfer_identity={
+                        "id": "HP114-constant-complex-v1",
+                        "intensity_unit": "dimensionless-transfer",
+                        "optics": OPTICS,
+                    },
+                )
+            else:
+                result = resource_stage(bands, transfer, carrier, filtering)
+            record["call_end_ns"] = time.monotonic_ns()
+            record["snapshots"]["call_end"] = resource_snapshot("call_end")
+            KEEP.append(result)
+            if metadata is None:
+                parameters = result.parameters
+                outputs = {
+                    name: getattr(result, name) for name in ("image", "x_um", "y_um", "z_um")
+                }
+            else:
+                parameters = result["parameters"]
+                outputs = {"image": result["image"]}
+                outputs.update(
+                    {
+                        name: getattr(result["reconstructions"][0], name)
+                        for name in ("x_um", "y_um", "z_um")
+                    }
+                )
+            outputs.update(
+                {
+                    name: getattr(parameters, name)
+                    for name in ("carriers_cyc_um", "modulation", "raw_modulation")
+                }
+            )
+            record["outputs"] = {
+                name: dict(identity=array_identity(value), statistics=stats(value))
+                for name, value in outputs.items()
+            }
+            record["finite_outputs"] = all(
+                np.isfinite(chunk).all()
+                for value in outputs.values()
+                for chunk in numeric_chunks(value)
+            )
+            record["branches"] = parameters.branches
+            record["retained_payload"] = retained_payload()
+            record["status"] = (
+                "observed-pending-scientific-qualification"
+                if record["finite_outputs"]
+                else "nonfinite-result"
+            )
+    except Exception as error:
+        if record["status"] != "nonfinite-conversion":
+            record["status"] = "child-operation-or-observer-failure"
+        record["failure"] = failure(error, "diagnosis-required")
+        record["traceback"] = traceback.format_exc()
+    finally:
+        record["warnings"] = [
+            dict(category=w.category.__name__, message=str(w.message)) for w in caught
+        ]
+        record["materials_after"] = resource_materials()
+        record["material_identity_matches"] = (
+            record["materials_before"] == record["materials_after"]
+        )
+        record["grant_sha256_after"] = digest(args.grant)
+        record["whole_child_until_json_seconds"] = (time.monotonic_ns() - started) / 1e9
+        record["qualification_receipt_loaded"] = False
+        record["reference_workflow_loaded"] = False
+        if "call_end" in record["snapshots"]:
+            record["call_only_seconds"] = (record["call_end_ns"] - record["call_start_ns"]) / 1e9
+            record["conversion_and_call_seconds"] = (
+                record["call_end_ns"] - record["conversion_start_ns"]
+            ) / 1e9
+            record["snapshots"]["post_observation"] = resource_snapshot("post_observation")
+        # Scalars/identities only: full retained result is not reloaded or copied
+        # into a serialized reference. All JSON work remains in terminal wait4 RSS.
+        control = grant.get("method_control")
+        if control == "missing-record":
+            pass
+        elif control in ("malformed-record", "oversized-record"):
+            # Small fixed protocol controls only; preserve raw bytes for parser
+            # refusal, without modifying scientific sources or prior attempts.
+            with (directory / "child.json").open("x") as stream:
+                stream.write(
+                    "{" if control == "malformed-record" else " " * (RECORD_LIMIT_BYTES + 1)
+                )
+        else:
+            write_once(directory / "child.json", record)
+    return 0 if record["status"] == "observed-pending-scientific-qualification" else 2
+
+
+def validate_resource_record(record, args, pid, materials, grant_hash):
+    """Validate this one finite observation protocol, not scientific success."""
+    required_outputs = {
+        "image",
+        "x_um",
+        "y_um",
+        "z_um",
+        "carriers_cyc_um",
+        "modulation",
+        "raw_modulation",
+    }
+    if (
+        record.get("schema") != "HP114-resource-child-v1"
+        or record.get("pid") != pid
+        or record.get("row") != args.row
+        or record.get("strategy") != args.strategy
+        or record.get("repetition") != args.repetition
+    ):
+        raise ValueError("child record does not identify this exact attempt")
+    if record.get("status") != "observed-pending-scientific-qualification":
+        return record.get("status", "incomplete-child-record")
+    if (
+        record.get("materials_before") != materials
+        or record.get("materials_after") != materials
+        or record.get("grant_sha256_after") != grant_hash
+        or record.get("material_identity_matches") is not True
+    ):
+        raise ValueError("changed child identities")
+    times, peaks = [], []
+    for name, meaning in SNAPSHOT_SCOPES.items():
+        snap = record["snapshots"][name]
+        if (
+            snap["scope"] != meaning
+            or snap["native_units"] != "Linux KiB"
+            or snap["multiplier_to_bytes"] != 1024
+            or type(snap["native_ru_maxrss"]) is not int
+            or snap["native_ru_maxrss"] < 0
+            or snap["bytes"] != 1024 * snap["native_ru_maxrss"]
+            or type(snap["monotonic_ns"]) is not int
+            or snap["monotonic_ns"] <= 0
+        ):
+            raise ValueError("missing/unusable snapshot or mismatched scope/units")
+        times.append(snap["monotonic_ns"])
+        peaks.append(snap["native_ru_maxrss"])
+    if not (
+        times == sorted(times)
+        and peaks == sorted(peaks)
+        and times[0]
+        <= record["conversion_start_ns"]
+        <= record["call_start_ns"]
+        <= record["call_end_ns"]
+        <= times[1]
+        <= times[2]
+    ):
+        raise ValueError("snapshot/call boundaries are inconsistent")
+    if (
+        record.get("finite_outputs") is not True
+        or set(record["outputs"]) != required_outputs
+        or record.get("qualification_receipt_loaded") is not False
+        or record.get("reference_workflow_loaded") is not False
+        or not all(
+            key in record
+            for key in (
+                "caller",
+                "caller_stats",
+                "environment",
+                "retained_payload",
+                "branches",
+                "entry",
+            )
+        )
+    ):
+        raise ValueError("incomplete resource observations")
+    shape = SHAPES[args.row]
+    t, d, p, z, y, x = shape
+    expected_shapes = dict(
+        image=[t, z, 2 * y, 2 * x],
+        x_um=[2 * x],
+        y_um=[2 * y],
+        z_um=[z],
+        carriers_cyc_um=[t, d, 2],
+        modulation=[t, d, (p - 1) // 2],
+        raw_modulation=[t, d, (p - 1) // 2],
+    )
+    caller_shape = list(shape)
+    caller_dtype = {"WIDER": "<f4", "H1": "<f2", "H1_PROMOTED": "<f8"}.get(args.strategy, "<c16")
+    expected_entry = "reconstruct_workflow full result"
+    if args.strategy.startswith("PREPARED_"):
+        caller_shape = [t, d, p, z, y, x // 2 + 1]
+        expected_entry = "prepared-band public estimation + per-time known reconstruction"
+        if args.strategy == "PREPARED_HALF":
+            caller_shape.append(2)
+            caller_dtype = "<f2"
+    if (
+        record["caller"]["shape"] != caller_shape
+        or record["caller"]["canonical_dtype"] != caller_dtype
+        or record["entry"] != expected_entry
+        or record["branches"] != [list(row) for row in expected_branches(args.row)]
+        or record["environment"].get("numpy") != "2.5.3"
+        or record["environment"].get("scipy") != "1.18.1"
+        or record["environment"].get("scipy_fft_workers_during_call") != 1
+    ):
+        raise ValueError("caller/entry/branch/environment shape differs from frozen route")
+    for name, output in record["outputs"].items():
+        identity = output["identity"]
+        if (
+            not isinstance(identity["shape"], list)
+            or len(identity["content_sha256"]) != 64
+            or any(c not in "0123456789abcdef" for c in identity["content_sha256"])
+            or identity["shape"] != expected_shapes[name]
+            or identity["canonical_dtype"]
+            != ("<c16" if name in ("modulation", "raw_modulation") else "<f8")
+        ):
+            raise ValueError("invalid common-output identity")
+    return "observed-pending-independent-scientific-qualification"
+
+
+def resource_parent(args):
+    """Own one exact-PID wait4 lifecycle; never poll/wait with Popen."""
+    refuse_quarantined_resource_launch()  # Unconditional, before raw writes or any spawn.
+    if not EVIDENCE.is_dir():
+        raise RuntimeError("root has not prepared raw destination")
+    directory = EVIDENCE / args.run_id
+    directory.mkdir(exist_ok=False)
+    receipt = dict(
+        schema="HP114-resource-attempt-v1",
+        row=args.row,
+        strategy=args.strategy,
+        repetition=args.repetition,
+        run_id=args.run_id,
+        status="admission-started",
+        terminal=None,
+        attempt_start_ns=time.monotonic_ns(),
+        parent_identity=child_identity(os.getpid()),
+        parent_samples=None,
+        parent_sampling_scope="none; no sampled maximum is substituted for terminal native usage",
+    )
+    pid = None
+    terminal = None
+    wait_lost = False
+    grant = {}
+
+    def collect():
+        nonlocal terminal, wait_lost
+        if terminal is not None:
+            return terminal
+        if wait_lost:
+            raise RuntimeError("exact-PID wait ownership lost")
+        now = time.monotonic_ns()
+        previous = receipt.get("last_wait_poll_ns")
+        if previous is not None:
+            receipt["largest_observed_poll_gap_ns"] = max(
+                receipt.get("largest_observed_poll_gap_ns", 0), now - previous
+            )
+        receipt["last_wait_poll_ns"] = now
+        receipt["wait_poll_count"] = receipt.get("wait_poll_count", 0) + 1
+        try:
+            got, status, usage = os.wait4(pid, os.WNOHANG)
+        except InterruptedError:
+            return None
+        except ChildProcessError:
+            wait_lost = True
+            raise
+        if not got:
+            return None
+        if not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):
+            receipt.setdefault("nonterminal_wait_events", []).append(dict(raw_status=status))
+            return None
+        terminal = dict(
+            pid=got,
+            raw_wait_status=status,
+            exit_code=os.WEXITSTATUS(status) if os.WIFEXITED(status) else None,
+            signal=os.WTERMSIG(status) if os.WIFSIGNALED(status) else None,
+            native_ru_maxrss=usage.ru_maxrss,
+            native_units="Linux KiB",
+            multiplier_to_bytes=1024,
+            terminal_child_peak_bytes=int(usage.ru_maxrss) * 1024,
+            user_seconds=usage.ru_utime,
+            system_seconds=usage.ru_stime,
+            reaped_monotonic_ns=time.monotonic_ns(),
+            scope=(
+                "maximum resident direct-child process size through exit/JSON/teardown; "
+                "excludes external observer; no concurrent tree aggregate"
+            ),
+        )
+        return terminal
+
+    def stop(signum):
+        if collect() is None:
+            try:
+                os.killpg(pid, signum)  # Unreaped exact child, with new session from spawn.
+                delivery = "sent"
+            except ProcessLookupError:
+                delivery = "group-absent-race"
+                collect()  # Preserve terminal usage if exit raced with the signal.
+            receipt.setdefault("signals", []).append(
+                dict(signal=signum, delivery=delivery, monotonic_ns=time.monotonic_ns())
+            )
+
+    def bounded_cleanup():
+        if pid is None or terminal is not None or wait_lost:
+            return
+        stop(signal.SIGTERM)
+        until = time.monotonic() + grant["term_grace_seconds"]
+        while collect() is None and time.monotonic() < until:
+            time.sleep(0.05)
+        if terminal is None:
+            stop(signal.SIGKILL)
+            until = time.monotonic() + grant["kill_reap_seconds"]
+            while collect() is None and time.monotonic() < until:
+                time.sleep(0.05)
+
+    try:
+        if Path(args.grant).stat().st_size > RECORD_LIMIT_BYTES:
+            raise ValueError(
+                "grant exceeds finite parse bound; raw source file retained externally"
+            )
+        with (
+            Path(args.grant).open("rb") as source,
+            (directory / "grant.original.json").open("xb") as target,
+        ):
+            for block in iter(lambda: source.read(OBSERVATION_BYTES), b""):
+                target.write(block)
+        grant = authorize(args)
+        receipt["grant"], receipt["grant_sha256"] = grant, digest(args.grant)
+        receipt["materials_before"] = resource_materials()
+        receipt["git_before"] = resource_git()
+        if any(
+            receipt["git_before"][key] != grant["candidate"].get(key)
+            for key in receipt["git_before"]
+        ):
+            raise ValueError("actual Git candidate differs from grant")
+        if signal.getsignal(signal.SIGCHLD) != signal.SIG_DFL:
+            raise ValueError("nondefault SIGCHLD risks competing/automatic reap")
+        if signal.getsignal(signal.SIGINT) != signal.default_int_handler:
+            raise ValueError(
+                "supported observer cancellation requires Python default SIGINT handler"
+            )
+        for key in ("deadline_seconds", "term_grace_seconds", "kill_reap_seconds"):
+            if (
+                type(grant.get(key)) not in (int, float)
+                or not math.isfinite(grant[key])
+                or grant[key] <= 0
+            ):
+                raise ValueError("root must supply positive finite lifecycle bound: " + key)
+        # This source guard is necessary, not sufficient; root admission must
+        # explain unknown workspaces/ancestor/caller/OS reserves with actual facts.
+        receipt["headroom_before_spawn"] = guard_resource(args.row, args.strategy)
+        receipt["parent_pre_spawn"] = dict(
+            monotonic_ns=time.monotonic_ns(),
+            native_ru_maxrss=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+            native_units="Linux KiB",
+            scope="external observer only; inherited/pre-exec contribution not isolated",
+        )
+        write_once(
+            directory / "spawn-intent.json",
+            dict(
+                parent=receipt["parent_identity"],
+                argv=sys.argv,
+                grant_sha256=receipt["grant_sha256"],
+                monotonic_ns=time.monotonic_ns(),
+            ),
+        )
+        argv = [
+            sys.executable,
+            str(Path(__file__).resolve()),
+            "--route",
+            "resource-child",
+            "--grant",
+            str(directory / "grant.original.json"),
+            "--row",
+            args.row,
+            "--strategy",
+            args.strategy,
+            "--repetition",
+            str(args.repetition),
+            "--run-id",
+            args.run_id,
+        ]
+        actions = [
+            (
+                os.POSIX_SPAWN_OPEN,
+                fd,
+                str(directory / name),
+                os.O_WRONLY | os.O_CREAT | os.O_EXCL,
+                0o600,
+            )
+            for fd, name in ((1, "child.stdout"), (2, "child.stderr"))
+        ]
+        receipt["phase"] = "spawn-requested"
+        receipt["spawn_call_start_ns"] = time.monotonic_ns()
+        pid = os.posix_spawn(
+            sys.executable,
+            argv,
+            dict(os.environ),
+            file_actions=actions,
+            setsid=True,
+            setsigdef=(signal.SIGTERM, signal.SIGINT),
+        )
+        receipt["spawn_return_ns"] = time.monotonic_ns()
+        receipt["phase"] = "child-owned"
+        receipt["owned_child"] = child_identity(pid)
+        write_once(directory / "owned-child.json", receipt["owned_child"])
+        deadline = time.monotonic() + grant["deadline_seconds"]
+        while collect() is None:
+            if time.monotonic() >= deadline:
+                receipt["status"] = "timeout"
+                bounded_cleanup()
+                break
+            # No parent process-RSS sampling is commissioned. This live
+            # headroom check is separate from child native peak observation.
+            receipt["latest_headroom_check"] = guard_resource(args.row, args.strategy)
+            time.sleep(0.05)
+        if receipt["status"] != "timeout":
+            if terminal["signal"] is not None:
+                receipt["status"] = "child-signaled"
+            else:
+                path = directory / "child.json"
+                if not path.is_file():
+                    receipt["status"] = "missing-child-record"
+                elif path.stat().st_size > RECORD_LIMIT_BYTES:
+                    receipt["status"] = "oversized-child-record"
+                else:
+
+                    def invalid_constant(value):
+                        raise ValueError("nonstandard JSON constant: " + value)
+
+                    receipt["phase"] = "read-and-validate-child-record"
+                    record = json.loads(path.read_text(), parse_constant=invalid_constant)
+                    receipt["child_record_sha256"] = digest(path)
+                    if record.get("status") == "observed-pending-scientific-qualification":
+                        owned = receipt["owned_child"]
+                        if any(
+                            owned.get(key) is None
+                            or record.get("identity", {}).get(key) != owned[key]
+                            for key in ("pid", "boot_id", "start_ticks", "process_group", "session")
+                        ):
+                            raise ValueError(
+                                "child birth identity missing or differs from owned marker"
+                            )
+                    receipt["status"] = validate_resource_record(
+                        record, args, pid, receipt["materials_before"], receipt["grant_sha256"]
+                    )
+                    if (
+                        receipt["status"] == "observed-pending-independent-scientific-qualification"
+                        and terminal["native_ru_maxrss"]
+                        < record["snapshots"]["post_observation"]["native_ru_maxrss"]
+                    ):
+                        raise ValueError("terminal native peak is below child cumulative snapshot")
+                    if terminal["exit_code"] != 0:
+                        receipt["status"] = "child-nonzero-exit: " + str(receipt["status"])
+    except BaseException as error:
+        receipt["status"] = (
+            "spawn-failure"
+            if pid is None and receipt.get("phase") == "spawn-requested"
+            else "admission-refused"
+            if pid is None
+            else "malformed-or-incomplete-child-record"
+            if receipt.get("phase") == "read-and-validate-child-record"
+            else "observer-cancelled"
+            if isinstance(error, KeyboardInterrupt)
+            else "observer-or-record-failure"
+        )
+        receipt["failure"] = dict(exception=type(error).__name__, message=str(error))
+    finally:
+        try:
+            bounded_cleanup()
+        except BaseException as error:
+            receipt["cleanup_failure"] = dict(exception=type(error).__name__, message=str(error))
+        receipt["terminal"] = terminal  # None means unknown, never zero RSS.
+        if terminal is not None:
+            receipt["spawn_to_terminal_observed_seconds"] = (
+                terminal["reaped_monotonic_ns"] - receipt["spawn_call_start_ns"]
+            ) / 1e9
+            receipt["terminal_time_scope"] = (
+                "includes spawn, monitoring/scheduling and nominal 50 ms sleeps; "
+                "reap delay is not bounded by sleep interval; not exact child death time"
+            )
+        receipt["wait_ownership_lost"] = wait_lost
+        receipt["coordinator_recovery_required"] = (pid is not None and terminal is None) or (
+            pid is None and receipt.get("phase") == "spawn-requested"
+        )
+        if receipt["coordinator_recovery_required"]:
+            receipt["status"] = "terminal-usage-or-ownership-lost-recovery-required"
+        try:
+            receipt["materials_after"] = resource_materials()
+            receipt["git_after"] = resource_git()  # Child already reaped or explicitly lost.
+            if (
+                receipt.get("materials_before") != receipt["materials_after"]
+                or receipt.get("git_before") != receipt["git_after"]
+                or receipt.get("grant_sha256") != digest(args.grant)
+            ):
+                receipt["identity_changed"] = True
+                if receipt["status"] == "observed-pending-independent-scientific-qualification":
+                    receipt["status"] = "changed-identities"
+        except BaseException as error:
+            receipt["identity_observation_failure"] = type(error).__name__ + ": " + str(error)
+            if receipt["status"] == "observed-pending-independent-scientific-qualification":
+                receipt["status"] = "identity-observer-failure"
+        write_once(directory / "attempt.json", receipt)
+    return 0 if receipt["status"] == "observed-pending-independent-scientific-qualification" else 2
+
+
+def decode_scalar(value):
+    """Decode only the finite scalar wire representation used by these controls."""
+    if isinstance(value, dict) and set(value) == {"float64_bits_be"}:
+        return struct.unpack(">d", bytes.fromhex(value["float64_bits_be"]))[0]
+    if isinstance(value, dict) and set(value) == {"real", "imag"}:
+        return complex(decode_scalar(value["real"]), decode_scalar(value["imag"]))
+    return value
+
+
+def finite_controls(directory):
+    """Prepare concrete finite observer controls; this function is unexecuted."""
+    scalars = [
+        0.0,
+        -0.0,
+        1.25,
+        float("inf"),
+        -float("inf"),
+        float("nan"),
+        complex(-0.0, float("inf")),
+    ]
+    scalar_rows = []
+    for value in scalars:
+        serialized = json.dumps(encode(value), allow_nan=False)
+        roundtrip = decode_scalar(json.loads(serialized))
+        components = (value.real, value.imag) if isinstance(value, complex) else (value,)
+        returned = (
+            (roundtrip.real, roundtrip.imag) if isinstance(roundtrip, complex) else (roundtrip,)
+        )
+        scalar_rows.append(
+            dict(
+                wire=serialized,
+                identical_ieee_components=all(
+                    struct.pack(">d", a) == struct.pack(">d", b)
+                    for a, b in zip(components, returned, strict=True)
+                ),
+            )
+        )
+    values = [0.0, -0.0, 1.0, -2.0]
+    base = np.array(values, dtype="<f8")
+    strided = np.zeros(8, dtype="<f8")
+    strided[::2] = base
+    expected_bytes = b"".join(struct.pack("<d", v) for v in values)
+    expected_sha = hashlib.sha256(expected_bytes).hexdigest()
+    hash_rows = []
+    for name, array in (
+        ("contiguous", base),
+        ("strided", strided[::2]),
+        ("big-endian", base.astype(">f8")),
+        ("reshaped", base.reshape(2, 2)),
+        ("transposed-storage", base.reshape(2, 2).T.copy().T),
+        ("empty", np.empty((0, 2), dtype=">f8")),
+        ("scalar", np.array(-0.0)),
+    ):
+        observed = array_identity(array)
+        expected = (
+            hashlib.sha256(b"").hexdigest()
+            if array.size == 0
+            else (
+                hashlib.sha256(struct.pack("<d", -0.0)).hexdigest()
+                if array.ndim == 0
+                else expected_sha
+            )
+        )
+        hash_rows.append(
+            dict(
+                case=name,
+                identity=observed,
+                expected_content_sha256=expected,
+                content_equal=observed["content_sha256"] == expected,
+                shape_preserved=observed["shape"] == list(array.shape),
+            )
+        )
+    arrays = [
+        base,
+        np.array([0.0, -0.0, float("inf"), float("nan")], dtype=">f4"),
+        np.array([complex(-0.0, 1.0), complex(2.0, -0.0)], dtype=">c16"),
+        np.empty((0, 2), dtype="<f2"),
+    ]
+    array_rows = []
+    for i, array in enumerate(arrays):
+        path = directory / f"control-array-{i}.npy"
+        with path.open("xb") as stream:
+            np.save(stream, array, allow_pickle=False)
+        with path.open("rb") as stream:
+            returned = np.load(stream, allow_pickle=False)
+        array_rows.append(
+            dict(
+                original=array_identity(array),
+                roundtrip=array_identity(returned),
+                dtype_endian_equal=array.dtype.str == returned.dtype.str,
+                shape_content_equal=array_identity(array) == array_identity(returned),
+                file_sha256=digest(path),
+            )
+        )
+    generation = []
+    for row in SHAPES:
+        admitted, analytic, _, _ = generator(row)  # Separate diagnostic process only.
+        for strategy in ("WIDER", "H1", "H1_PROMOTED"):
+            generated, _ = resource_caller(row, strategy)
+            expected = admitted if strategy == "WIDER" else admitted.astype(np.float16)
+            if strategy == "H1_PROMOTED":
+                expected = expected.astype(np.float64)
+            generation.append(
+                dict(
+                    row=row,
+                    strategy=strategy,
+                    expected=array_identity(expected),
+                    observed=array_identity(generated),
+                    identical=array_identity(expected) == array_identity(generated),
+                )
+            )
+        del admitted, analytic  # Diagnostic KEEP intentionally preserves its actual high-water.
+    cancellation = np.array([2048.0, 1.0, -2048.0], dtype=np.float16)
+    half_left = np.add(
+        np.add(cancellation[0], cancellation[1], dtype=np.float16),
+        cancellation[2],
+        dtype=np.float16,
+    )
+    incomplete = []
+    for example in (
+        {"schema": "HP114-resource-child-v1", "status": "child-started"},
+        {
+            "schema": "HP114-resource-child-v1",
+            "pid": 123,
+            "row": "W01",
+            "strategy": "WIDER",
+            "repetition": 1,
+            "status": "observed-pending-scientific-qualification",
+            "materials_before": {},
+            "materials_after": {},
+            "grant_sha256_after": "0" * 64,
+            "material_identity_matches": True,
+            "snapshots": {"pre_call": None},
+        },
+    ):
+        try:
+            observed = validate_resource_record(
+                example,
+                argparse.Namespace(row="W01", strategy="WIDER", repetition=1),
+                123,
+                {},
+                "0" * 64,
+            )
+            incomplete.append(
+                dict(
+                    input=example,
+                    disposition=observed,
+                    wrongly_completed=observed
+                    == "observed-pending-independent-scientific-qualification",
+                )
+            )
+        except (KeyError, TypeError, ValueError) as error:
+            incomplete.append(
+                dict(input=example, disposition="rejected", exception=type(error).__name__)
+            )
+    return dict(
+        status="controls-observed-pending-review",
+        scope="finite method controls attached to existing W/K rows; no product checkpoint",
+        scalar_wire=scalar_rows,
+        canonical_hashes=hash_rows,
+        numpy_serialization=array_rows,
+        raw_generation=generation,
+        K01_range=run_kernel("K01"),
+        K03_products=run_kernel("K03"),
+        K03_cancellation=dict(
+            values=cancellation,
+            exact_dyadic_sum=1,
+            quantized_operands_wider=float(
+                np.sum(cancellation.astype(np.float64), dtype=np.float64)
+            ),
+            explicit_half_left_association=half_left,
+            expected_half_left_association=0,
+        ),
+        error_observer=dict(
+            reference=[1.0, -2.0, 0.0],
+            candidate=[1.5, -1.0, 0.0],
+            expected_max_absolute=1.0,
+            expected_rms=math.sqrt(5 / 12),
+            expected_relative_l2=0.5,
+            observed=error_metrics(np.array([1.0, -2.0, 0.0]), np.array([1.5, -1.0, 0.0])),
+            zero_rule=error_metrics(np.zeros(2), np.zeros(2)),
+            strided_same_values=error_metrics(base, strided[::2]),
+            transposed_storage_same_values=error_metrics(
+                base.reshape(2, 2), base.reshape(2, 2).T.copy().T
+            ),
+            empty_rule=error_metrics(np.empty(0), np.empty(0)),
+        ),
+        K01_fft_policy=cpu_feasibility(),
+        incomplete_record_controls=incomplete,
+        controls_pass_is_not_scientific_qualification=True,
+    )
+
+
 def main():
     """Authorize, execute and retain one future finite numerical attempt."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--grant", required=True)
     parser.add_argument("--row", choices=(*SHAPES, "K01", "K02", "K03", "K04"), required=True)
-    parser.add_argument("--strategy", choices=STRATEGIES, required=True)
+    parser.add_argument(
+        "--strategy",
+        choices=tuple(dict.fromkeys((*STRATEGIES, *RESOURCE_STRATEGIES))),
+        required=True,
+    )
+    parser.add_argument(
+        "--route",
+        choices=("diagnostic", "resource", "resource-child", "controls"),
+        default="diagnostic",
+    )
     parser.add_argument("--repetition", type=int, choices=(1, 2, 3), required=True)
     parser.add_argument("--qualification", default="")
     parser.add_argument("--run-id", required=True)
     args = parser.parse_args()
-    grant = authorize(args)
     if not args.run_id.replace("-", "").replace("_", "").isalnum():
         raise RuntimeError("run id must contain only letters, numbers, hyphens, underscores")
+    if args.route == "resource":
+        return resource_parent(args)
+    if args.route == "resource-child":
+        return resource_child(args)
+    grant = authorize(args)
     if not EVIDENCE.is_dir():
         raise RuntimeError("root has not prepared the external raw evidence destination")
     target = EVIDENCE / args.run_id
     target.mkdir(exist_ok=False)  # Every attempt is retained; no overwrite/retry hiding.
     record = dict(
-        schema="HP114-study-v1",
+        schema="HP114-study-v2-source-method",
         row=args.row,
         strategy=args.strategy,
         repetition=args.repetition,
@@ -1453,17 +2650,20 @@ def main():
         if Path(sim.__file__).resolve() != ROOT / "src/simrecon/__init__.py":
             raise RuntimeError("imported product does not belong to this source checkout")
         record["environment"] = environment()
-        record["resource_preallocation"] = guard_resource(args.row)
+        record["resource_preallocation"] = guard_resource(
+            "W05" if args.route == "controls" else args.row
+        )
         record["pre_call_high_water_rss_kib"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         with warnings.catch_warnings(record=True) as caught, scipy.fft.set_workers(1):
             warnings.simplefilter("always")
-            record["result"] = (
-                run_workflow(args)
-                if args.row in SHAPES
-                else cpu_feasibility()
-                if args.strategy == "CPU"
-                else run_kernel(args.row)
-            )
+            if args.route == "controls":
+                record["result"] = finite_controls(target)
+            elif args.row in SHAPES:
+                record["result"] = run_workflow(args)
+            elif args.strategy == "CPU":
+                record["result"] = cpu_feasibility()
+            else:
+                record["result"] = run_kernel(args.row)
             record["warnings"] = [
                 dict(
                     category=w.category.__name__,

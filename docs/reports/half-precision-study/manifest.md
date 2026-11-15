@@ -1,4 +1,4 @@
-# HP114 frozen study manifest — preparation v1
+# HP114 frozen study manifest — source-method preparation v2
 
 This is a source-prepared experimental protocol, not numerical evidence. All
 scientific cases below are frozen before candidate trials. The standalone
@@ -6,6 +6,25 @@ scientific cases below are frozen before candidate trials. The standalone
 sole execution state; this manifest records reproducibility inputs, not competing
 Current state. Artifact SHA256 values and final identities belong in the root's
 external receipt, avoiding self-referential hashes in tracked bytes.
+
+This continuation follows `source-method-continuation.md`, SHA256
+`558a02160711c50d309d32c3df2d99677b2b5ec9694d8ca24d6cebc9950661f6`.
+Admission was clean `f2d15d38026da4a8b58bd8eca94b798660618608`;
+original source preparation remains at `e42f978b10396fc1f015880c0fe82db786a76011`.
+Coordinator task/ledger commit `135c8403260cd407b59d8f4247fc0ebf1242fa1c`
+changed no scientific source or initial artifact. Original formulas, ten W/K
+rows and repetitions remain. These additions correct method gaps before any
+candidate trial. The source-only continuation initially allowed no Python/checks.
+A later narrow packet, `preparation-checks-launch-hold.md`, SHA256
+`69f7c25e754135f510866f4d5e716462041681a0786bdfc3278b94de8f00c00a`,
+permits only owned-file AST/compile-without-import and pinned Ruff/format via
+Ubuntu `uv run --locked --no-sync`. Those preparation checks now pass after
+preserved style corrections; they execute/import none of this harness or product.
+All report/control/scientific/lifecycle execution remains held. **Resource parent
+and child routes are unconditionally quarantined, not ready for runtime release.**
+Root's actual #116 Q1 challenge established that this interpreter rejects
+`posix_spawn(..., setsid=True)` before returning a child PID. Preparation passes
+do not repair or qualify that capability. No retry/fallback was performed here.
 
 ## Scope and identities
 
@@ -201,9 +220,11 @@ Build scaled phase design with scalar `math.cos/sin`; exactly invert its finite
 binary64 values using Fraction Gauss-Jordan arithmetic, compare source left
 inverse, and record finite-sum residual/condition without a new admission cutoff.
 Uniform and supplied rows both resolve identity against the scaled forward
-design. For supplied source noise, squared row sums/P define the planned observer;
-independent noise-observer implementation remains deferred to the execution-phase
-source review. Raw noise values and wider/candidate deviations are already retained.
+design. For supplied source noise, squared row sums/P define the observer;
+v2 independently computes these from the exact finite-design inverse with scalar
+compensated sums, and records source-noise deviation. Uniform noise is one by
+contract. Source row energy is recorded separately, avoiding confusion between
+legacy uniform declarations and recomputed trigonometric sums.
 The existing binary64 achieved-residual criterion remains unchanged.
 K03 energies use exact Fraction dyadic arithmetic; cross sums have finite closed
 forms. K04 expectations follow the frozen finite formulas above. Formula replay
@@ -232,9 +253,11 @@ Missing metrics remain unknown. No acceptance tolerance is selected here.
 
 ## Run authorization, environment and resource protocol
 
-The preparation grant permits only compiling source bytes and Ruff on this owned
-harness, in pinned Ubuntu. Scientific imports/trials, tests, benchmarks and product
-execution still await root. Root prepares external destination and grants runs
+Original-source checks remain historical. The later preparation-checks packet
+permits only AST/compile and existing Ruff on this owned harness, not its import
+or execution. Resource launch is now quarantined after the known #116 Q1 failure;
+no numerical/control/lifecycle run or independent capability probe is released.
+Root prepares the destination and grants any later runs
 only after pinning candidate/source/harness/manifest and scheduling resources.
 The harness's local JSON grant is an audit receipt, not permission isolation.
 Root can write one receipt containing explicit run triples, then extend it after
@@ -250,6 +273,7 @@ Example receipt fields (placeholders are not valid evidence):
     "commit": "ROOT-PINNED-ACTUAL-HEAD",
     "tree": "ROOT-PINNED-ACTUAL-TREE",
     "tracked_status": "ROOT-RECORDED",
+    "tracked_diff_sha256": "ROOT-PINNED-GIT-DIFF-BINARY-HEAD",
     "integration_base": "ROOT-PINNED-ACTUAL-BASE",
     "parent": "ROOT-PINNED-ACTUAL-PARENT"
   },
@@ -326,10 +350,9 @@ Current comparison runs retain a full baseline before a candidate, while WIDER
 retains only its baseline. Their RSS and warmed candidate times are systematically
 unmatched. They measure diagnostic comparison-harness lifecycle, not actual
 whole-pipeline storage benefit or speed ratio. **Actual benefit is UNMEASURED.**
-A matched standalone resource protocol, with only one workload in each fresh
-process and comparison against saved qualification outside that process, remains
-deferred. It must be frozen/reviewed before any memory/speed recommendation.
-This is a known incomplete preparation detail, not completed contract evidence.
+The distinct v2 standalone method below removes reference/result coexistence.
+It is now source-prepared, but neither statically accepted nor runtime-qualified.
+It supplies no completed resource evidence or memory/speed recommendation.
 
 16 GiB=17,179,869,184 bytes is an objective, not a measured limit or guarantee.
 K02 large metadata alpha is not a crop/full-volume measurement. No full-volume
@@ -340,17 +363,360 @@ restrictions, workspace/GPU memory, driver/toolkit, license/redistribution and
 portability are required before any conditional feasibility recommendation.
 GPU timing/memory and actual native-half execution are unmeasured.
 
+## Standalone matched resource method v2 — unexecuted
+
+**Inactive launch draft.** `resource_parent` and internal `resource_child` both
+call an unconditional refusal before any raw writes, authorization work or spawn.
+Even a valid-looking grant cannot enable these routes. Root reports #116 Q1 in
+the same Ubuntu CPython 3.13.12 raised `NotImplementedError: posix_spawn: setsid
+unavailable on this platform` before any child PID. This is external environment/
+tooling capability context, not HP114 scientific/numerical data. Root cites Q1
+receipt `f1aa18a0…70a`; only that abbreviated identity was supplied here, and this
+role did not rerun or independently inspect it. The exact pre-check four artifacts
+and continuation scratch are preserved at
+`/workspace/work/campaign/evidence/114/source-method-v2-before-checks/`.
+The specification below describes the retained unexecuted method, not a launch
+readiness claim. No new launcher, Popen reaping, interpreter, install or fallback.
+
+The default `--route diagnostic` preserves baseline/candidate comparison and raw
+scientific arrays. Its warmed timings and coexistent peaks remain diagnostic.
+`--route resource` is a stdlib-only parent which spawns exactly one fresh copy of
+this file with internal `--route resource-child`. The child imports the pinned
+numerical stack only after the exact root grant is checked. It generates one
+caller, runs one declared operation, retains one result and caller through exit,
+and never invokes or loads a reference workflow, qualification record, analytic
+truth volume or alternative candidate. Parent qualification is a root-reviewed
+SHA256 attestation; reference comparison/aggregation runs in a separate diagnostic
+process against saved output identities. A resource child does not load those
+reference arrays or JSON. No generic profiling/parser framework or product hook
+is introduced. All routes remain unexecuted under the current hold.
+
+| Resource strategy | Caller at declared start | Exact operation and retained output | Resource scope |
+| --- | --- | --- | --- |
+| WIDER | One float32 raw array | `reconstruct_workflow`, full result | Full public workflow, including actual setup/observation/serialization high-water |
+| H1 | One float16 raw array | Same workflow/settings/full result | Same retention; no needless full promoted duplicate held by harness |
+| H1_PROMOTED | One float64 array containing exactly the half values | Same workflow/settings/full result | Isolates input dtype route with a single declared caller |
+| PREPARED_WIDER | Complex128 quadratures plus required unchanged band metadata | Public `estimate_parameters`, per-time `reconstruct_known`, concatenated image and full parameter/known records | Prepared-band-to-image stage only; public acquisition setup also remains in cumulative/terminal high-water |
+| PREPARED_HALF | Explicit `(...,2)` little-endian real/imag float16 caller plus same metadata | Unpack complex128, then same public stages/output policy | Same stage interval; packed caller plus required unpacked working bands coexist |
+
+These are representations/sites within original W01–W06, not new workload rows
+or a Cartesian extension. Three fresh successful repetitions retain the original
+design. Corrected-frame, filtered and embedded replay have no standalone resource
+claim; they stay diagnostic/isolated. PREPARED_* is rejected on the diagnostic
+route rather than silently becoming a wider baseline. No native half arithmetic
+is inferred from caller packing.
+
+`resource_caller` evaluates the frozen field one x-row at a time and casts through
+float32 admission, then half if selected. H1 retains half only; H1_PROMOTED stores
+that row's half values directly into its sole float64 caller. There is no full
+analytic or alternative-representation volume in the child. X-row coordinate,
+specimen, angle, illumination and cast temporaries coexist during setup; their
+cost remains in cumulative/terminal native high-water. Exact equivalence to the
+original generator is an explicit pre-trial control for every W row, not assumed
+from matching formulas. A mismatch is a generator-method defect to diagnose and
+refreeze, never permission to tune scientific constants to outcomes.
+
+PREPARED_* setup generates one float32 raw acquisition and calls public preparation
+once. It does not estimate/reconstruct a baseline. Raw setup is released. Metadata
+storage temporarily carries `quadratures=None` as an internal storage holder;
+that holder is never passed to a public numerical entry. The wider caller retains
+the prepared quadratures; the half caller retains only packed components after
+source quadratures are released. Metadata/noise/phases remain wider. Unpacking
+constructs a valid public band record before downstream validation. Initial
+carriers derive directly from the frozen magnitude/direction declaration, with no
+baseline result supplying seeds. Public preparation and source+packed coexistence
+during setup can dominate native peak; no peak reset/subtraction hides this.
+Runtime acceptance of these public records and identical seeded branches is pending.
+
+`standalone_plan` describes one caller/result lifecycle, including released setup
+costs, public camera/band/filter work, retained overlap snapshots, inverse/phase/
+signed outputs, transfer callers and observation buffers. These are conservative
+array estimates, not a proof of native allocation/workspace maxima. Unknown
+Python/allocator/backend workspace, external callers, actual cgroup ancestor
+correspondence and OS/background reserve remain explicit. The small source guard
+reads host MemAvailable and exposed `/sys/fs/cgroup` root limits/current, and checks
+whether modeled payload already exhausts known headroom. That exposed root is not
+proof of the process's complete effective ancestor chain. Root's current admission
+must reconcile actual ancestor/host bounds and unknown reserves before any run.
+No hidden ancestor is called absent/unlimited; no hard numeric memory reserve or
+human tolerance is invented. Parent repeats this necessary, insufficient headroom
+check while waiting. Live changes can refuse/stop an attempt; no allocation growth
+or deliberate OOM follows. No 16 GiB or full-volume inference is authorized.
+
+### Grant, provenance and observations
+
+Each standalone grant names one `run_id` and exactly one `[row,strategy,repetition]`.
+It includes the existing identities/template fields plus `route: "resource"`,
+actual `candidate.tracked_diff_sha256`, and:
+
+```json
+{
+  "run_id": "ROOT-UNIQUE-ATTEMPT",
+  "route": "resource",
+  "resource_admission": {
+    "accepted": true,
+    "rationale": "ROOT-CURRENT-HEADROOM-WORKSPACE-RESERVE-AND-SCHEDULING-REVIEW",
+    "evidence_sha256": "ROOT-PINNED-ADMISSION-EVIDENCE"
+  },
+  "deadline_seconds": "ROOT-POSITIVE-FINITE-NUMBER",
+  "term_grace_seconds": "ROOT-POSITIVE-FINITE-NUMBER",
+  "kill_reap_seconds": "ROOT-POSITIVE-FINITE-NUMBER"
+}
+```
+
+Placeholders are invalid runtime values. Lifecycle bounds are root's operational
+parameters for one attempt, not newly selected human resource/scientific limits.
+Normal workloads require the root-reviewed qualification SHA for that row;
+the child never opens it. Resource parent captures actual Git HEAD/tree/first
+parent/tracked status and SHA256 of raw `git diff --binary HEAD` before spawn and
+after the wait/cleanup outcome, comparing to the grant. Integration-base identity
+is root-attested; Git data and named material hashes are distinct. Reconcile all
+scientific/import-bearing inputs after final #113; no unrecorded ignored/untracked
+import input can be silently assumed covered by commit or the named hash set.
+Named material/manifest/harness and grant hashes are checked before/after.
+Untracked raw files are outside the tracked-diff fingerprint. The original grant
+is copied in bounded blocks to each unique attempt before spawning, and that
+captured copy is passed to the child. No attempt overwrite or automatic retry.
+
+Future command: use the same pinned docker/interpreter/thread prefix above, add
+`--route resource`, select one resource strategy and use its one-attempt grant.
+`--qualification` is not passed to a child. Full WIDER/H1/H1_PROMOTED compare only
+with the same full-result retention policy. PREPARED_* compare only with each
+other, separately from full workflow resource results. The child exports bounded
+common-output identities/statistics and branches; it retains the full result but
+does not serialize/reload a full reference. Diagnostic runs retain full NPY arrays
+for scientific comparisons. Root pins external final receipt hashes; no receipt
+hashes itself or mutates an earlier attempt.
+
+Child snapshots are exact named cumulative `RUSAGE_SELF.ru_maxrss` observations,
+each with monotonic timestamp, native Linux KiB, multiplier 1024 and raw bytes:
+
+1. `pre_call`: after setup/caller identity, before conversion-inclusive/call clocks.
+2. `call_end`: immediately after the operation clock, before output observers.
+3. `post_observation`: after output hashes/finite/range/retention and final material
+   observations, before JSON serialization and teardown.
+
+These are cumulative samples, never stage increments or complete-child peak.
+Call-only time excludes input setup, caller hashes, unpacking, output observers and
+serialization. Conversion-inclusive time includes PREPARED_HALF unpacking plus
+the same downstream call; setup packing remains separately scoped setup cost.
+Full workflow modes have identical clock boundaries and no separate promoted
+caller copy. Whole-child time/high-water includes setup and observations.
+Array payload, native RSS and Python/allocator metadata remain separate.
+
+The quarantined stdlib parent draft uses `os.posix_spawn(..., setsid=True)` and one cached
+`os.wait4(exact_pid, WNOHANG)` owner. There is no workload Popen/poll/wait or
+`RUSAGE_CHILDREN` aggregate. Git subprocesses occur only as separate provenance
+work; they are not workload waiters. Terminal rusage covers the direct child's
+process maximum through exit, JSON and teardown; it excludes parent/observer
+memory and is not concurrent process-tree aggregate memory or numerical-only
+allocation. No numerical grandchildren/accelerator are commissioned. Parent
+pre-spawn self high-water is disclosed; inherited/pre-exec contribution is not
+isolated or subtracted. API availability and these Linux semantics are source
+candidates requiring actual runtime qualification, never proven by this draft.
+
+No process-RSS sampling is commissioned, so sampled maxima cannot replace native
+terminal usage. The parent records nominal 50 ms wait sleeps, wait-poll count and
+largest observed polling gap. Scheduling/observer work can extend that gap;
+spawn-to-terminal-observed elapsed is not exact child death time. Native terminal
+peak remains distinct from those observation times.
+
+### Outcomes and identity-checked recovery
+
+Every attempt directory preserves original grant, spawn-intent marker, available
+owned-child marker, stdout/stderr, child JSON and terminal attempt JSON. Files are
+created exclusively. Missing/unparseable grant is an admission refusal; oversized
+grant remains at its original root evidence path and is not read without bound.
+Spawn failures retain phase and marker facts. JSON input size is capped at 4 MiB
+before parsing, with raw oversized output preserved. This is a finite protocol
+parameter, not a scientific resource limit or general parser framework.
+
+Terminal observation retains raw wait status, exit code/signal, native usage and
+reap timestamp independently of child/parse status. Missing native usage is null,
+never zero. Outcomes distinguish admission refusal, spawn failure, child nonzero
+exit/operation or nonfinite conversion/result, signal, timeout, malformed/incomplete
+record, missing/oversized record, observer/cancellation failure, changed identities
+and complete observation **pending independent scientific qualification**.
+Record validation binds exact PID/row/strategy/repetition, marker birth identity,
+material/grant identity, required snapshot values/units/order, caller/output
+shapes/dtypes, declared entry, branches and environment. Terminal high-water cannot
+be below the child's final cumulative sample. A missing/null/structurally invalid
+field cannot become success merely because process exit was zero. Validation
+checks this method's known record, not authenticity against malicious code.
+
+One-shot parent SIGINT is the supported cancellation path, entering bounded cleanup.
+TERM grace then KILL/reap grace use the same wait owner and exact unreaped child
+session; terminal collection is cached before another signal. Repeated interrupts,
+parent SIGTERM/SIGKILL, exceptions during persistence, kernel-unreapable child or
+external reap can still lose terminal evidence/ownership. Source code does not
+claim an infallible cleanup handler. No successful observation follows such a gap.
+
+Before spawn a durable intent records parent boot/PID/start/group, argv and grant
+hash; immediately after returned PID another record captures child boot ID,
+`/proc/PID/stat` start ticks, process group/session and capture timestamp. Spawn to
+marker and abrupt-death/disk-durability gaps remain explicit; intent alone proves
+no child PID. Observer disappearance is never proof of child exit. If terminal
+usage is lost, or spawn returned no safely recorded identity, coordinator must
+inspect retained intent/marker and actual process membership, confirm boot and
+start identity before signaling any PID/group, recover/stop only the matching
+owned work and verify termination before another attempt. A stale PID, absent
+marker or different boot/start identity is not signal authority. Unknown ownership
+requires coordinator process/resource investigation; no blind PID kill, new run
+or fabricated recovered terminal peak. Reaping after the sole observer died cannot
+retroactively supply its lost wait4 usage. Final JSON/marker write failures may
+require this same external recovery; no engineered isolation is claimed.
+
+## Finite method controls — frozen, not run
+
+`--route controls --row K01 --strategy KERNEL --repetition 1` requires a separate
+root `route: "controls", control_release: true` grant with exact materials. It
+runs in its own diagnostic process, never inside a resource child. Its controls
+are bounded examples attached to existing W/K meaning, not new matrix rows or
+product-red tests. They record expected and observed values without introducing
+scientific tolerances or declaring report acceptance:
+
+The controls use the conservative original W05 diagnostic payload envelope for
+admission rather than only a K01 vector ledger, because generation equivalence
+retains the finite W truth/caller arrays in this separate process. This remains
+array accounting with unknown overhead/workspace, requiring root's live admission.
+
+- K01's original binary16 finite/zero/normal/subnormal/underflow/overflow values,
+  original K03's 16 exact-dyadic product/cross/energy variants, plus explicit
+  left-associated half additions of `[2048,1,-2048]`: exact/wider-quantized sum 1,
+  round-to-nearest half first addition loses the unit, final 0. NumPy reduction
+  policy is not silently equated with explicit half left association.
+- Separate analytic R, admitted float32 R, half R and same half promoted R;
+  all six W generators compare canonical identities of each standalone caller
+  against those independently retained diagnostic representations. No favorable
+  replacement if the arithmetic order changes a rounded input bit.
+- Canonical C-order little-endian hash of `[+0,-0,1,-2]` equals a stdlib `struct`
+  byte/hash expectation across contiguous, strided and big-endian storage;
+  reshaping changes recorded shape while preserving ordered bytes. Empty `(0,2)`
+  hashes the empty byte stream but preserves shape/dtype; scalar `-0` has its own
+  zero-sign bytes/shape. Canonicalization does not normalize signed zeros or NaNs.
+- Python binary64 scalar/complex components `+0,-0,1.25,+inf,-inf,nan` and
+  `complex(-0,+inf)` roundtrip JSON via explicit IEEE component bit tags when
+  needed. Tiny NPY roundtrips retain finite/nonfinite/complex values, shape, actual
+  dtype/endian and canonical content identity; `allow_pickle=False`. These tiny
+  serialization examples are not full-volume export-memory measurements.
+- Error observer `[1,-2,0]` to `[1.5,-1,0]` has max absolute 1, RMS `sqrt(5/12)`
+  and relative L2 0.5, with explicit empty and all-zero-reference controls.
+- Incomplete started record and a purported complete record with null pre-call
+  snapshot must never yield complete-observation status. Raw failure/incomplete
+  records and exceptions are retained, not overwritten as successful retries.
+- K01 bounded public NumPy/SciPy `rfft/irfft` explicitly use `norm="backward"`,
+  SciPy workers=1; record actual input/output dtype, unsupported complex32/norm
+  diagnostics, route/source/binary-module paths and hashes. Installed SciPy is
+  `_duccfft`, not pocketfft. Internal multiplier/accumulator/workspace precision
+  stays unknown without specific evidence; CPU promotion is not genuine half.
+  GPU/vendor feasibility stays documentary/unexecuted and no adapter is installed.
+
+Array hash/stat/finite/error observers use 65,536-byte **per numeric buffer**
+parameters. Iteration is C-order, buffered where necessary, sliced before byte
+conversion even when an external-loop view is larger than the iterator buffer.
+Input iterator buffers, canonical conversions, `.tobytes`, masks, selected finite
+values, delta/absolute/squared operations and source arrays can coexist. Each
+declared numeric/byte buffer is bounded, but 64 KiB is not total scratch. Scalar
+hash state, Python metadata, iterator/native workspace and small per-chunk scalar
+accumulators also cost memory. File hashing uses separate 1 MiB blocks. All
+observations remain outside call-only clocks and inside child terminal high-water.
+Diagnostic serialization still exports full arrays; resource children serialize
+scalar observations only. Bounds and equivalence require future runtime controls.
+
+Resource-parent lifecycle controls use the fixed `method_control` names
+`missing-record`, `malformed-record`, `oversized-record`, `child-error`, `self-term`,
+`timeout`, `timeout-ignore-term`, with `control_release: true`. They run no numeric
+imports/workflow, require root resource admission but no prior scientific
+qualification, and remain explicitly labeled method controls. Expectations are
+respectively missing record, parser refusal, size refusal, retained child failure,
+signal status, timeout with TERM, and timeout with KILL/reap. Timeout controls also
+have a finite child fallback sleep derived from granted lifecycle bounds, so an
+observer disappearance does not create an intentional infinite sleeper. The source
+has no automatic retry. Normal accepted observation must later be qualified on
+an actual admitted W row; synthetic controls cannot supply it. Admission refusal,
+spawn/observer failure, SIGINT cleanup, repeated/abrupt interruption, marker gaps,
+lost ownership, changed identities and null/omitted snapshot/identity fields need
+explicit runtime fault controls under a later grant, without modifying product
+science or treating a missing measurement as zero.
+
+Resource-parent lifecycle controls are also quarantined. The source refusal is
+unconditional; `control_release` cannot bypass it. No control, refusal path or
+launcher was exercised by AST/Ruff preparation checks.
+
+## Narrow launch reconciliation boundary — blocked pending root evidence
+
+Root must first supply the diagnosed working #116 route and accepted affected-scope
+evidence, exact source/check/environment identities and applicability to HP114.
+An unaccepted draft or AST/Ruff pass is insufficient. Only a separately scoped
+author correction may then reconcile the launch layer; no replacement is authored
+here. Fresh affected static review must assess launch/readiness/exec errors and
+returned-PID semantics; the sole exact-PID wait4 owner without Popen/fallback
+reaping; terminal-usage/status preservation; PID/boot/start/group/session identity;
+signal-race ownership, marker gaps and bounded cleanup/recovery. No scientific
+constant, oracle, caller/result lifetime or matrix change follows automatically.
+
+Root's PID1-sleep/no-init observation is planning context, not HP114 measurement.
+Do not assume reparenting supplies reliable reaping, observer disappearance proves
+child exit, or lost terminal usage can be reconstructed. No abrupt-loss experiment,
+deliberately unreaped orphan or new-helper probe is authorized. Root must establish
+a safe ownership/recovery plan before any such qualification. Existing source
+markers disclose gaps; they do not solve an absent-init/reaper environment.
+
+## Fresh static method reviewer questions
+
+Review only the unexecuted method and preserved original diagnostic scope. This
+is neither scientific report acceptance nor D readiness. Root supplies exact
+candidate/diff/artifact hashes and a fresh independent reviewer; reviewer repairs
+are outside that role. Concrete challenges:
+
+1. Does any standalone child retain a needless analytic/wider/reference caller or
+   run more than its one declared workflow/stage operation? Are H1/H1_PROMOTED
+   and PREPARED_* boundaries, seeds, output policies and setup high-water honest?
+2. Is there exactly one workload wait owner, including signal races, exceptions,
+   nonterminal notifications and cancellation? Can another waiter or cleanup path
+   erase terminal usage, or can a stale PID/group be signaled after ownership loss?
+3. Can zero exit, null/missing snapshot, malformed/oversized output, changed
+   identities, nonfinite conversion/result or cleanup gap masquerade as complete
+   observation? Is every raw terminal/parse/status fact retained independently?
+4. Do before/call-end/post-observation and terminal native scopes remain distinct,
+   including final hashing/JSON/teardown, pre-exec limits and observer exclusion?
+   Is polling delay represented without an unjustified maximum-gap guarantee?
+5. Do canonical hashes preserve dtype/shape/byte order and signed-zero/nonfinite
+   content with bounded conversions across contiguous/strided/endian/empty/scalar
+   examples? Are separate buffer coexistence, error-observer costs and serialization
+   limits stated without claiming a total 64 KiB ceiling?
+6. Are finite phase/noise, dyadic cancellation, range, wire/NPY and FFT controls
+   independent enough to detect plausible observer defects? Which gap is source
+   defect versus runtime qualification, without adding a scientific cutoff?
+7. Are root admission/ancestor uncertainty, actual Git/base/integration input
+   reconciliation, observer disappearance/marker gaps and recovery obligations
+   sufficient to block reuse or another attempt when evidence is lost?
+
+AST/compile, lint and format preparation checks now pass for the corrected owned
+source, using only pinned Ubuntu `uv run --locked --no-sync`. Ruff check 1 found
+46 findings; import correction fixed one, formatting resolved layout findings,
+and three remaining long strings were wrapped without changing content. Exact
+attempts/statuses remain in the report and scratch. No report/product source or
+control was imported/executed. Launcher capability is blocked by the actual
+root-reported failure; other API/control/serialization/buffer/thread/backend/
+headroom qualification and all science remain unexecuted. Preserve all original
+S1 failed checks/repairs, prior static findings and unavailable meters.
+
 ## Evidence index and remaining preparation limits
 
 - Source-read identities: tables above; root owns exact candidate/role ledger.
-- Preparation syntax/Ruff commands and outcomes: [study report](study.md).
+- Historical original-source and current narrow v2 preparation outcomes:
+  [study report](study.md). Current passes execute/import none of the owned source.
+- Resource parent/child launch: unconditionally quarantined after root's actual
+  #116 Q1 capability failure. No HP114 attempt or independent retry occurred.
 - Numerical environment qualification: pending numerical grant; root preflight
   is separately identified, not reused as an investigator result.
 - W01–W06 qualifications, all W comparisons/repetitions, K01–K04 and H3 CPU:
   pending; no raw run, timing/RSS/error number or successful branch is claimed.
 - Harness syntax checks cannot establish runtime imports, public record validity,
   fixture fitness, numerical observer correctness or report completeness.
-- Full input capture makes trace/disk and retained memory conservative; artifact
-  export duplication is explicit and cannot be sold as storage savings.
+- Full input capture in diagnostic mode makes trace/disk and retained memory
+  conservative; resource children instead retain one result and export scalar
+  observations. Neither unexecuted method is evidence of storage savings.
 - Independent scientific report review, any diagnosed corrections, final exact
   gate and post-gate D review remain coordinator steps.

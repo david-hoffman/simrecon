@@ -95,106 +95,68 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — same S1 active on narrow preparation checks/launch quarantine; final #113 pending.**
-  The initial source-only preparation is committed; full study remains unfinished.
-  Authorized intake/study route recorded; intake author attempt 1 completed named
-  documents. Coordinator source review found the study within the requested scope;
-  no independent scientific acceptance or scientific conclusion is claimed.
-  Current source baseline remains the committed preparation on public main;
-  final commit/tree identities and continuation packet digest are recorded outside
-  tracked bytes. S1 returned four revised source-method artifacts without execution;
-  coordinator captured their exact bytes before the same author's narrow check
-  continuation. No rebase or scientific execution has occurred.
-- Author launch: fresh tool route, no conversation inheritance, requested Sol/high;
-  accepted PR109 policy proposal `b84b178`, integration `be8e447`, as supplied by
-  coordinator packet. Session is `/root/issue_114/intake_author`. Actual serving
-  model/effort, tokens/responses/cached input, money, wall/owner-wait/check time
-  and complete metering are unknown. Detailed launch/accounting lives in the
-  coordinator-owned [role ledger](../reports/half-precision-study/role-ledger.md).
-  Launch I1 was confirmed active at 22:23:06Z; exact start timestamp is unknown.
-  Optional separate memory-disable,
-  delegation-disable and read-only controls are unavailable; shared filesystem
-  and permissions mean prompt-only scope, not engineered isolation. No delegation.
-- Cumulative HP114 attempts: intake author launches 1 completed, intake repairs 0;
-  investigator launches 1 completed source-only preparation; scientific review rounds 0; scientific repair rounds 0;
-  D verdicts 0; full-gate attempts 0; failed role launches 0 known to this packet.
-  Root preparation and campaign-wide earlier charges remain in coordinator records;
-  unknown counters are not zero. #84/#108/#112 historical charges are not reset or
-  recharged as new HP114 measurements. Any subsequent correction updates these
-  cumulative counts with diagnosis/evidence.
-- Investigator S1 completed the tracked standalone harness, frozen source-prepared
-  manifest and pending study/next-slice reports. Syntax attempts 1/2 passed;
-  Ruff checks 1/2 failed with 95/60 findings and check 3 passed; format check 1
-  failed and check 2 passed. Import-fix pass 1 fixed 2/left 93 findings, both
-  formatting passes passed, and owned manual source/style corrections are retained
-  in the detailed ledger. Coordinator's pre-execution method correction identified
-  unmatched baseline/candidate lifetimes; current comparison-harness peaks/times
-  are diagnostic only. Actual whole-pipeline memory/speed benefit is UNMEASURED.
-  Metric-label, phase-comment and actual Git-provenance clarifications were also
-  incorporated before any scientific run. These are preparation corrections,
-  not independent review or scientific trial outcomes.
-- Checks: initial intake used packet SHA256 and source/read-only Git/document
-  inspection, detailed in [author report](../reports/half-precision-study/intake-author.md).
-  Historical investigator syntax/Ruff checks are itemized above; current source-only
-  continuation runs no Python/probe/import/install/lint/format/type/test/benchmark/full gate.
-  Scientific image/error/memory/runtime/coverage results and backend availability
-  are unknown, not zero. No product-red claim or test checkpoint exists.
-- Root independently provisioned the pinned per-worktree environment and reports
-  Ubuntu `make preflight` passed on attempt 1, log
-  `/workspace/work/campaign/preflight-114-attempt1.log`: Python 3.13.12,
-  NumPy 2.5.3, SciPy 1.18.1. This root-owned environment evidence grants no
-  HP114 numerical execution window and is not full verification.
-- Blockers: **scientific-execution hold** remains. Root now narrowly permits only
-  AST/compile-without-import and pinned Ruff lint/format on owned study.py via
-  Ubuntu uv--locked--no-sync. No scientific/product/report/control imports or
-  execution, lifecycle probes, types/tests/install or benchmark is granted.
-  Root's actual116 Q1 found posix_spawn(setsid=True) unavailable before childPID
-  on this pinned interpreter; matching114 route must remain explicitly quarantined
-  pending diagnosed working-route reconciliation, not retried or called ready.
-  This is external capability context, not114 data. The first capacity inspection found all seven
-  slots occupied and deferred dispatch. Root later granted dispatch; coordinator
-  observed five active sessions before resuming the same S1 author, then six active
-  including S1. No author replacement or failed role launch occurred.
-  Root reports frozen accepted #112 `d9a0ba924817772fdb5550c7d055bf31bcf70388`
-  (PR121) and #115 `ace06c861b974b6251a092567c253ae4eb0f56c8` (PR122), with
-  local/fresh acceptance/CI passed. These are contextual root reports, not HP114
-  data or new ancestry; root still owns final integration.
-  #113 publication parent is not ready; no speculative restack/PR. Numerical
-  acceptance remains a study proposal to justify, not a missing human tolerance
-  that authorizes guessing. Source/manifest preparation may proceed under hold.
-- Next: same S1 `/root/issue_114/study_investigator` is active under
-  [narrow preparation checks/launch hold](../packets/half-precision-study/preparation-checks-launch-hold.md).
-  Coordinator yields WAITING to preserve capacity; investigator notifies campaign
-  root and coordinator when the narrowly authorized checks and launch quarantine
-  are complete. Root resumes this coordinator to inspect corrected bytes and route
-  fresh scoped static method assessment when appropriate. Known nonfunctional
-  launch must not be reviewed or presented as runtime-qualified.
-  Complete/freeze standalone matched resource paths, terminal-child versus
-  cumulative/sample high-water semantics, bounded observers/status/recovery and
-  finite range/cancellation/serialization/FFT controls without executing them.
-  #116 drafts are nonblind references only, with no adopted acceptance/data claim.
-  Then obtain fresh source-method assessment and return WAITING. Later root freezes
-  accepted #113 integration and explicitly grants scientific resources. Reconcile actual
-  commit/tree/base/parent and EXPECTED source/manifest hashes, complete runtime
-  fixture/oracle qualification (including independent noise observer), freeze a
-  matched standalone resource protocol, and substantiate vendor backend constraints.
-  Existing S1 author session may continue only within its report-only ownership;
-  all attempts remain. Launch identities and packet digests are in the
-  [role ledger](../reports/half-precision-study/role-ledger.md). Freeze evidence/manifest,
-  complete finite study, launch [fresh scientific reviewer](../packets/half-precision-study/scientific-review.md)
-  with exact digests. Diagnose findings, correct only through named author and
-  obtain fresh re-review. Final root integration/full gate precedes fresh D review.
-- Outside-tree final evidence pointer: `/workspace/work/campaign/evidence/114`;
-  creation and final identities are coordinator responsibilities, not claimed done.
-- Preparation evidence: campaign root archived all eight investigator scratch files
-  with `cp -a` to `/workspace/work/campaign/evidence/114/preparation` and reported
-  `diff -qr` exit 0. This task's evidence subdirectory is explicitly authorized
-  for subsequent raw/check records. Final identities/results remain outside tracked bytes.
-- Housekeeping: I1 created no scratch; S1 synchronous checks exited and no background
-  worker remains. Coordinator removes only the confirmed archived
-  `work/half-precision-study/` and empty `work/`; tracked harness/docs, archive,
-  current worktree and root-provisioned environment are kept for resume.
-  Removal commands succeeded, both paths are absent, and no cleanup errors occurred.
+- **WAITING — frozen source preparation; resource launch quarantined, final #113 pending.**
+  I1 intake and the same S1 investigator completed their owned source-only work.
+  The refined method separates unmatched diagnostic comparisons from proposed
+  one-workload resource children and prepared-band stage pairs, with terminal
+  versus cumulative/sample high-water, bounded observations and finite controls.
+  None of that method has runtime or scientific qualification. Full study unfinished.
+- Candidate identity, exact artifact hashes and check receipts are recorded outside
+  tracked bytes under `/workspace/work/campaign/evidence/114/`; this pointer was
+  prepared before the frozen source-preparation commit. No rebase/push/PR occurred.
+  Final publication parent remains #113, not the provisional public-main baseline.
+- Accounting: I1 launch 1 completed, S1 launch 1 plus continuation activations 2
+  completed; no replacement/delegation/failed role launch. Independent static or
+  scientific reviews 0, HP114 runtime/lifecycle/scientific trials 0, scientific
+  repairs 0, full-gate attempts 0 and D verdicts 0. Root preflight 1 passed separately.
+  All preparation edits, failed contexts/checks and repairs remain in the
+  [role ledger](../reports/half-precision-study/role-ledger.md) and archived ledgers.
+- Historical first preparation: syntax 1/2 passed; Ruff 1/2 failed (95/60 findings),
+  Ruff 3 passed; format-check 1 failed/2 passed; import-fix 1 and formatting 1/2
+  plus owned manual corrections retained. Those checks apply only to their old bytes.
+  Source-method-v2 preparation: AST/compile 1/2 passed; Ruff 1/2 failed (46/3),
+  Ruff 3 passed; format-check 1 failed/2 passed; import-fix 1 fixed 1/left 45,
+  formatting 1/2 passed and three long strings were manually wrapped unchanged.
+  All new final checks apply to exact study.py hash9daa4744…02c7, without importing
+  or executing it. No source change followed those final checks. This collection
+  ran only read-only source/Git/hash inspection, authorized cp/diff and housekeeping.
+- **Launch blocker:** root reports actual #116 Q1 on the same pinned CPython3.13.12
+  failed with `posix_spawn: setsid unavailable on this platform` before childPID.
+  This is external environment/tool capability context, not HP114 numerical data.
+  Both resource entry points now refuse unconditionally before authorization/raw
+  writes/spawn. Coordinator inspected those source guards; refusal itself remains
+  unexecuted. No fallback/probe/retry or orphan was created. AST/Ruff success does
+  not make launch ready, and fresh method review of a functioning launcher is deferred.
+- Root reports accepted frozen #112 `d9a0ba924817772fdb5550c7d055bf31bcf70388`
+  (PR121) and #115 `ace06c861b974b6251a092567c253ae4eb0f56c8` (PR122), local,
+  independent acceptance/D and CI passed. These are root-reported context, not
+  imported HP114 evidence or ancestry. Root owns final integration and publication.
+  Scientific/product/report/control imports/execution, lifecycle probes, tests,
+  installs and benchmarks remain held; narrow preparation checks are completed.
+- Next: root resumes this coordinator when a diagnosed functioning #116 route and
+  its accepted affected-scope evidence are available. Reconcile the smallest launch,
+  readiness/exec, exact-PID wait/recovery/status correction with same S1 ownership;
+  freeze corrected bytes and route fresh scoped static assessment when appropriate.
+  Do not treat a quarantined route as qualified. Then reconcile actual accepted
+  #113 commit/tree/base/parent, source/lock/manifest/environment and affected tests,
+  obtain explicit root runtime/scientific-resource grants, qualify finite controls/
+  fixtures/independent oracles, complete study and acceptance proposal/recommendation,
+  obtain fresh independent scientific report review, exact integrated clean Ubuntu
+  make verify and fresh external D. No missing tolerance is guessed or positive
+  result forced. Actual storage/speed benefit, native-half arithmetic and precision
+  suitability remain UNMEASURED; no16GiB guarantee exists.
+- Evidence: original `preparation/` and `source-method-v2-before-checks/` archives
+  remain intact. Coordinator captured the exact four current artifacts under
+  `preparation-v2/artifacts/` and both ledgers plus ten logs under
+  `preparation-v2/scratch/`; `diff -qr` against original scratch returned 0.
+  Ledger hash709aa3fc…b65d3 and all four artifact hashes matched S1's return.
+- Housekeeping: S1 reported all synchronous commands exited, no background/numerical
+  worker, fixture or orphan. Only confirmed captured `work/half-precision-study/`
+  and empty `work/` were removed; commands/absence checks passed. Current worktree,
+  tracked sources/docs, all archives and pinned environment remain. No cleanup error.
+- Requested Sol/high and shared-filesystem/prompt-control limitations remain as
+  recorded; unavailable serving attribution/effort/token/cache/cost/time meters
+  are unknown. Actual human numeric limits are not set; every prior charge remains.
 
 ## PR presentation
 
