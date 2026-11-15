@@ -1079,24 +1079,38 @@ def child(path):
         # Impossible encoding is distinct from a serializable byte overflow.
         # Keep every individually serializable actual branch/field; unavailable
         # state is explicit, not a fabricated byte encoding or success.
+        def failure_detail(failure):
+            try:
+                return canonical(caught_diagnostic(failure)).decode('ascii')
+            except Exception as diagnostic_error:
+                return ('original category='+type(failure).__name__[:512]+
+                        '; category retained first 512 of '+str(len(type(failure).__name__))+' characters at most'+
+                        '; message/chain/frame locations unavailable: caught_diagnostic raised '+
+                        type(diagnostic_error).__name__[:512]+'; rendering category retained first 512 of '+
+                        str(len(type(diagnostic_error).__name__))+' characters at most; rendering-failure detail unrecorded')
+
         missing=[]
+        details=['whole-record serialization: '+failure_detail(error)]
         for name,value in record['observations'].items():
             try:
                 canonical(value)
-            except (ValueError,TypeError,OverflowError):
+            except (ValueError,TypeError,OverflowError) as field_error:
                 record['observations'][name]=None
                 missing.append('observations.'+name)
+                details.append('observations.'+name+': '+failure_detail(field_error))
         for name in tuple(record):
             if name in ('observations','error'):
                 continue
             try:
                 canonical(record[name])
-            except (ValueError,TypeError,OverflowError):
+            except (ValueError,TypeError,OverflowError) as field_error:
                 record[name]=None
                 missing.append(name)
+                details.append(name+': '+failure_detail(field_error))
         record['status']='observation_failed'
         record['error']={'category':'SerializationImpossible','message':
-            'actual fields unrecorded because JSON encoding failed: '+','.join(missing),
+            'actual fields unrecorded because JSON encoding failed: '+','.join(missing)+
+            '\nBounded original serialization diagnostics:\n'+'\n'.join(details),
             'cause':type(error).__name__}
         raw=canonical(record)+b'\n'
     if len(raw)>1048576:
@@ -1224,7 +1238,9 @@ def archived_child(record,spec,spec_sha):
     if not spec['expected_reconstruction_calls']:
         if control and control.startswith('F'):
             fixture=record['observations']['fixture']
-            require(set(fixture['checks'])==set(FIXTURE_CHECKS) and all(type(v) is bool for v in fixture['checks'].values()),'closed fixture checks')
+            require(type(fixture) is dict,'fixture object')
+            require(type(fixture['checks']) is dict and set(fixture['checks'])==set(FIXTURE_CHECKS) and
+                    all(type(v) is bool for v in fixture['checks'].values()),'closed fixture checks')
             require(fixture['case_id']==spec['case_id'],'fixture identity')
             for value in fixture['arrays'].values():
                 tiny_archive_array(value)
@@ -1583,8 +1599,20 @@ def assemble(index_path):
                         not inner_record.get('stop_reason') and terminal['returncode']==0,'formal runtime eligibility')
                 observation['runtime_eligible']=attempt['disposition']=='completed' and current_matches
                 observation['terminal']=terminal
-        except (ValueError,KeyError,TypeError,UnicodeError) as error:
-            observation['validation_failure']={'category':type(error).__name__,'message':str(error)[:256]}
+        except (ValueError,KeyError,TypeError,UnicodeError,AttributeError,IndexError,OverflowError,RecursionError) as error:
+            observation['runtime_eligible']=False
+            observation['validation_failure']={'category':type(error).__name__[:512],
+                'message':'original validation message/chain/frame locations unavailable: diagnostic rendering pending'}
+            try:
+                diagnostic=caught_diagnostic(error)
+            except Exception as diagnostic_error:
+                observation['validation_failure']['message']=(
+                    'original validation message/chain/frame locations unavailable: caught_diagnostic raised '+
+                    type(diagnostic_error).__name__[:512]+'; rendering category retained first 512 of '+
+                    str(len(type(diagnostic_error).__name__))+' characters at most; original category field retained first 512 of '+
+                    str(len(type(error).__name__))+' characters at most; rendering-failure detail unrecorded')
+            else:
+                observation['validation_failure']={key:diagnostic[key] for key in ('category','message')}
             if observation['parse_category']=='missing' and raw_stdout is not None:
                 observation['parse_category']='malformed_or_unvalidated_raw_child_record'
         observations.append(observation)
