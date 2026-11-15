@@ -1020,3 +1020,33 @@ sourcefailurecharges retained, unknownmetersunknown. ROOT remaining256execution
 windowHOLDACK; all checks need ROOT closure/newactivation. FreshIE SOURCEONLY
 maylaunch onlyAFTER cleanC5 freeze/commit, separatechecker+ownreport, no tests/
 scientificCscope; actualinstalledproof/freshDinfra/fullgate/final120renewal remain.
+
+### Fresh IE113 SOURCEONLY after cleanC5; separate unverified checker checkpoint
+
+Actual fresh /root/issue_113/ie113_source launchedforknone requestedSol/high,
+no delegation; assignmentbceb7c50…6400/input18manifest4f98cde5…f4a3 at clean
+C51f718ef/treec8669e. Optionalcontrols unavailable/sharedpromptlimits disclosed,
+actualmodel/effort/usage/costmetersunknown. WriteONLYchecker+owninfrareport;
+rootapprovedliteral41/nameidentity/oldguard preservation, no source/test/helper/
+gate/command/env/dependency changes/execution. Earlier stale116 sentence expressly
+superseded by actualfirst115/final120/wholeB5, no science borrowing.
+
+Fresh IE sourceattempt1 COMPLETE reportdf093796…2ccc whole-read; fullcheckerdiff
+independentlyinspected4insert/2delete, exactlyold38+approved3literal41/count41/
+message41/directinstalled__name__guard. Every other checkerstatement unchanged.
+Newcheckerfedfcdc2…b6a6; allother17entryinputs, immutable27 andC5four source
+hashes match. Owned2copies/base1f718/report/minimalcheckerdiff frozen BEFOREchecks
+outsideie113-source-freeze-1, manifestba79343a8cfa334087a750e969a8f26ef6828acb3d716ec181921e90eb1a6673,
+patch47ca9dcee898814bbe9968adf26d3733693797eb3aef7b62561dc3015e31340d.
+No runtimechecks0, sourceattempt1/onecheckermutation/onereportcreation; no
+newexposure/processFD/scratch/delegation. One oversizeddisplay recoverednarrowly,
+sourceoverhead/unknownmetersretained. No scientificrolehistory read; lockhashonly.
+
+Coor separateUNVERIFIEDIEcheckpoint follows. ROOTremaining256session active,
+ALLexecutionheld; nextcombinedhead/material/source37/cheap/type/G1/IEproof later
+rootbinds, no relabelC4receipts or old37. SourceC5cast/sourceoperatorassumptions
+stillneedactualfinitequalifier. IE actualinstalledproof/artifacts and independent
+freshDinfraassessment (or separatefreshboundedreviewer ifDcannotmeetrequirements)
+remainblocking, asdofinal120integration/affectedB/resource/fullgate/D/pub.
+CumulativeCchecks11/4fails+separatediag unchanged, C5/IEchecks0. Allcampaign
+A/B/C/finite/native/init/G1/source/setup/review/repairfailures preserved.
