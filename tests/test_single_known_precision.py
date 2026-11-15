@@ -13,8 +13,7 @@ import scipy
 import scipy.fft
 
 import simrecon as sr
-
-from .single_known_fixture import (
+from single_known_fixture import (
     HALF_SUB32,
     PRECISION_VALUES,
     PROFILE,
@@ -36,7 +35,7 @@ from .single_known_fixture import (
     snapshot,
     transfer,
 )
-from .test_single_known_boundary import rejected
+from test_single_known_boundary import rejected
 
 
 def test_correlated_dc_exact_and_near_cancellation_with_preregistered_bound(

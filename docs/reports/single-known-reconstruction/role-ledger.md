@@ -1077,3 +1077,41 @@ driver/source/Current authority; acceptedjointplan/vectorTEXT and independent
 reviews are not code/runtimeacceptance. Separate exactpacket/launch/expanded
 closureprimary inventory outsideevidence113; no source/rolehistory leaks to C.
 No execution/support reviewer/driver author launch follows this metadata update.
+
+ROOTreportsC6sourcequality18/5failed/sourcePyright0errors0warnings, separate
+expected-status1importdiffdiag unchanged. Actual literalcallerpytestattempt1/
+collectionfailure1: defaulttwo-workercommand0items/0bodies, relativeimportwithno
+knownparentpackage; target/controller1, wholeinit/proxy/pipesclosed, exactHEAD/
+tree/FULLstatus40+helpers matched. Receiptb485aeff..., summary8dba7efc410f10ec704fe3f23ea296bc9d2affec3dcdb386fe93cb94d2121f4f.
+Notproductsemanticfailure; no tests/impl mayresume beforefreshcheckpointreview.
+
+NEWfreshblindA7 /root/issue_113/a7_import_integration, forknoneSol/high/nodelegation,
+SOURCEONLY fiveimportblocks/sevenrelativeimports +necessary5blankseparators,
+baselinebarelocal convention/no testpackage/config/helper/command/gate change.
+Whole source report2ec40b66356d171f3eca01cc647d8cbd5f0df14bc3977a456c6fb48e3a023a0f
+collected; coorindependentcompleteimportdiffread/source4+IEunchangedverification.
+Allscientificbodies/reference/oracles/inputs/tolerances/293/helper/facadeassertions
+unchanged, reverse-textbaselinehashproofauthorpreserved. A7attempt1/five-file
+patch/check0/two recoveredtexttruncations/noexposure; unknownmeters retained.
+This is secondfreshblindtestauthorafterA1, not sevenfreshauthors; A1continuations
+andallchargesremainhistorical. Sourcehasno quality/collection pass yet.
+
+BEFOREANYrevisedchecks coorfroze a7-import-checkpoint-1 whole8 snapshots,
+testmanifestf131e29db535cc68c0f4941fdc1742c6722dff8037d76c1c9fac2a51fd47f67e,
+27publicmanifest415e27adc063de9a7d3cb5f368db72789c512a2d8e450ad8d395beb9f2ca53c5,
+patch6211f7da2d9f2253308ee878ce0dac35c1798a19ac6b0ebf54d1c7edf0e21f2b.
+OldB5eight preserved a7-pre-import-checkpoint andoriginalB5records immutable.
+NEWfreshblindB6 mustreviewWHOLE8/293/publicmath/protocol/deps plus actualsanitized
+ROOTquality/coldcollectionfacts, not importdiffonly ormissingruntimepassfiction.
+ExactnewcoorUNVERIFIEDtestcheckpointhead/tree/launchoutside trackedbytes; no C
+testrepair orscientificsemanticnewmeaning. ProductC6four/IEtwo remainunchanged.
+
+Both independentexternal sourcewriters COMPLETE SOURCE UNVERIFIED/check0:
+EEexternal3 manifests01a24e28/handoff0c65eb78/report8ff364c7, sourceattempt1/19edit
+groups/fourfailedtextoperations retained; nativeexternal2 payloadc9ba70fe/controller
+67bed1d4/handoffd0df2535/report41852a82, attempt1/twosourcecorrections/check0.
+NativeROOTexternallock/material-release prerequisiteexplicitnotinvented. Both
+notifiedB5importhashes/relative-namespaceassumptionshistoricalpendingA7/B6,
+no silentfinalization/restart/expansion/runtime; ROOTwhole-read+freshcode/protocol
+review/source+materialrenewalrequired before anycalls. No code reviewer/EEtracked
+author/activations launched. Allpriorcostsunknown/cumulative, no reset.

@@ -11,8 +11,7 @@ import pytest
 
 import simrecon as sr
 from simrecon.reconstruction.known_parameters import _extent
-
-from .single_known_fixture import (
+from single_known_fixture import (
     BAND_FIELDS,
     CE04_SOURCES,
     I32,

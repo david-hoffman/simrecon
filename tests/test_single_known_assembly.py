@@ -14,8 +14,7 @@ import numpy as np
 import scipy.fft
 
 import simrecon as sr
-
-from .single_known_fixture import (
+from single_known_fixture import (
     HALF_SUB32,
     PI64,
     U32,

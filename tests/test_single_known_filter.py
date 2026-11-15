@@ -13,8 +13,7 @@ import numpy as np
 import pytest
 
 import simrecon as sr
-
-from .single_known_fixture import (
+from single_known_fixture import (
     PROFILE,
     add,
     arrays,
@@ -39,7 +38,7 @@ from .single_known_fixture import (
     transfer,
     unit_scale,
 )
-from .test_single_known_boundary import rejected
+from test_single_known_boundary import rejected
 
 
 def test_per_time_direction_and_order_noise_and_ordered_overlap() -> None:

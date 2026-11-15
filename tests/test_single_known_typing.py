@@ -22,8 +22,7 @@ from simrecon.reconstruction.known_parameters import (
     ReconstructionError,
     reconstruct_known,
 )
-
-from .single_known_fixture import BAND_FIELDS, RESULT_FIELDS, call, declare
+from single_known_fixture import BAND_FIELDS, RESULT_FIELDS, call, declare
 
 ROOT = Path(__file__).resolve().parents[1]
 
