@@ -487,3 +487,36 @@ product/Bacceptance. No rawfacts sent B1/A. Any future sanitizeduse renews affec
 B/materialapplicability. All historical/actualunknown charges remain cumulative.
 One new coordinator atomic prose patch failed on an unrelated report context
 before this write, no partialmutation; retained as static editing cost.
+
+## A1 continuation3 collected; root window ended, continuation4 prepared
+
+Verified report11edc4224cf7d6f5c104cf6d14641a0da8755e558c9f0a5edf37a27b2895d5cd
+and all8returned hashes; only fixture/assembly/precision plusreport changed.
+All13originalpublic inputhashes rechecked unchanged. Source-onlydraft saved at
+e0183681047c8bef3fbcff90fd50590288479d4a/treeb3a6b5ab09063b9a086cc6accb1bee8fd05442e1.
+No checks inA3; preserves prior10quality/4failure record. Two new nonexistent
+fixturetypo reads and oneundefinedhashpathfailure retained, no bytes/exposure;
+fixturetypos3cumulative. No new patchmiss/runtime/delegation. B1notaccepted.
+
+Coordinator inspected3file diff and originalpubliccontract without executing.
+Two narrowexistingmeaning corrections beforestyle: independentsettings alpha
+omitted D despite1/(X*Y*Z*L²*A*D); unreachedallocation observer usedskip despite
+strict no-skip policy. Sourcepublic counterexample D2/Z2/Y1/X2/L1/A1 alpha1/8
+versusD1alpha1/4 supplied, literalq/DCordercontrolunchanged. Unreachedinjection
+mustexplicitlyfail fixturequalification, notpass/skip/productred/forcebinding.
+No scientific truth/envelope/tolerance change or production seam commissioned.
+
+Root endedfirst116exclusivewindow; notifiedsameA. Only previously authorized
+exact8file AST/Ruff/style grant reactivated afterper-attempthashes via actual
+a1-quality-continuation-4.md. No Pyright/runtime/import/helper/dependency/child/
+installed/build/benchmark authority. No orphan/abruptobserverloss control without
+separate exactsafeownershipscaffold/rootrelease; new116window requiresfreshACK.
+SameA continuation4 actualtransport afterpacketfreeze recordedoutside, notnewrole.
+New13publicinputbytesstillunchanged; freshaffectedB remains fullsharedscope.
+
+Root117 askedmetadataonly snapshot drift for joint schedulingreview: confirmed
+authorizedpostB1 rootcommission/actualsourceonlyA3, original21snapshotkept;
+dispatchcommit8a4631 at2026-11-15T05:17:27Z, final3filemtimes05:21–05:24Z/report
+05:27Z (lastwrites, notfirstedit/reviewoverlap inference). No testbody/findings
+supplied or proposalapplied unilaterally. Schedulingowner/root must bind original
+snapshot or renew currentmetadata; no scientific/exposure verdict inferred.
