@@ -745,3 +745,12 @@ namespaceclosure. Rootconnectorchargecrossrefonce, notduplicatecoorexecution.
 ActualprivatePIDnamespace/PID1reap/engineclosure sufficientbasis; visiblecgroup
 shared/unknown recorded, noemptyOWNcgrouprequirement. Rootsource/config/case/
 runtimefreeze/releasepending. B4waitallpreCcapabilityfacts, no knownholdreviewloop.
+
+Rootsource-reviewcorrection1 (before anyexecution): typing-valid annotated local3
+can narrowLiteral[3]. Preservedv1all4files; cases2onlyusesgeneralintparameter
+function/assert_type/return, SHA19bf2c10d06bf0308cb7ff864c715d685cdad0fdb7ec8840a0ffd74a85caac47.
+Controller2 fixedpathcases2+ROOTactualouterPythonresolvedpath/hash activation
+checks only, SHAcc6efe9afec035e57fa27369e5047e9cebfbf6f07ce8d976eb77dd93537bf9bf.
+Newmethod/disabledexample, sourceonly/noAST/style/runtime/probe. Expectedtextdiff
+exit1 notexecutionfailure. No target/control/type/B/scientificacceptance, no new
+role/B4loop; READY/HOLD, costs retainedunknown. Actual116window/ROOTreleasebind.
