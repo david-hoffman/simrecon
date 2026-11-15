@@ -699,3 +699,21 @@ ROOT resumed116exclusive preparation hold; coor and A6 ACKed no active processes
 A6 no AST/Ruff/runtime execution this continuation, source-only may continue;
 all imports/tests/probes/lint/types/native/benchmark calls suspended until release.
 No test checkpoint/C/parent acceptance. Source-preparer complete, A6 sole child.
+
+A6 COMPLETE source-only/no execution; report1ef34ca5f1dceea552c436d08d97b12893467dffea46faa64716b7a1090d902e,
+fixture6b474c0a9f2e2cb3f08113d8f3b9f5ff2ff0a363ccb2cefb5eec05059d8f3a51,
+boundary4d87f905bddd29845dbaab9635c4ad01e982554d567a4beeeb93c3de0b986645.
+Coor full source diff/report/address/count/phase inspected, launcher/decoderregions
+independently rehashed unchanged. No newconcrete source issue found, no AST/style/
+semantic acceptance. Quality21/7 unchanged; A6 adds no failedpatch/readtruncation/
+qualityprocess. Frozen source manifest outside a6-source-inputs.sha256; no activechild.
+
+Sanitized whole public finite-qualification-public-facts-2.md authored from actual
+fixed receipts and independently checked inputs; no raw role report/verdict/script
+or nonblind conclusion to A/futureB. Facts preserve all failures/limits/stages and
+unsupported6/20actualproduct applicability. Exact nestedtyping source diagnosis
+reads only own test/committedrenderer/site and installed pyright/node wrapper text;
+no imports/probes/processscans. Outside typing-lifecycle-plan-1.md proposes dedicated
+subreaper/pidfd/ECHILD and explicit no-auto-kill guardian recovery for exacttree,
+requiring root source review/release before anycall. No broadercompilerframework,
+helper/gate ownership or actual orphan control. All116 executionhold retained.
