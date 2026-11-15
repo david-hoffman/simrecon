@@ -38,6 +38,7 @@ from observer import (
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+RSS_TERMINAL_CONFIRM_SECONDS = 0.05
 
 
 def git(*args):
@@ -317,6 +318,213 @@ def cleanup(owner, receipt, seconds):
             "message": str(error),
             "meaning": "wait/signal ownership unresolved; do not start another attempt",
         }
+
+
+def independent_monitor_stop(sample, grant, now, deadline, startup_deadline, ready, parent_cgroup):
+    """Keep non-RSS-absence guards active, before accepting a terminal confirmation."""
+    if sample["child_cgroup"] != parent_cgroup:
+        return "child_cgroup_missing_or_moved"
+    if not ready and now >= startup_deadline:
+        return "startup_readiness_timeout"
+    if now >= deadline:
+        return "timeout"
+    rss = sample.get("VmRSS_bytes")
+    if type(rss) is int and rss >= grant["process_stop_bytes"]:
+        return "process_current_RSS_threshold"
+    if (
+        sample["host_available_bytes"] is None
+        or sample["host_available_bytes"] <= grant["host_min_available_bytes"]
+    ):
+        return "host_headroom_missing_or_deteriorated"
+    if any(
+        value is None or int(value) >= grant["ancestor_stop_bytes"][path]
+        for path, value in sample["ancestor_current_bytes"].items()
+    ):
+        return "cgroup_current_threshold_or_unknown"
+    return None
+
+
+def monitor_sample_decision(
+    owner,
+    sample,
+    grant,
+    receipt,
+    *,
+    deadline,
+    startup_deadline,
+    ready,
+    parent_cgroup,
+    clock=time.monotonic,
+):
+    """Confirm a missing/invalid RSS gap for at most 50ms; never quietly resume."""
+    now = clock()
+    rss = sample.get("VmRSS_bytes")
+    unusable = type(rss) is not int or rss < 0
+    gap = receipt.get("rss_terminal_confirmation")
+    sample_ns = sample.get("monotonic_ns")
+    stamp_error = None
+    if unusable or gap is not None:
+        if type(sample_ns) is not int or sample_ns <= 0:
+            stamp_error = "missing, noninteger or nonpositive actual sample timestamp"
+        elif sample_ns > math.ceil(now * 1e9):
+            stamp_error = "actual sample timestamp is after helper entry"
+        elif (
+            gap is not None
+            and gap["origin_monotonic_ns"] is not None
+            and sample_ns < gap["origin_monotonic_ns"]
+        ):
+            stamp_error = "actual sample timestamp predates immutable gap origin"
+    if unusable and gap is None:
+        origin = sample_ns if stamp_error is None else None
+        gap = {
+            "bound_seconds": RSS_TERMINAL_CONFIRM_SECONDS,
+            "origin_monotonic_ns": origin,
+            "deadline_monotonic_ns": origin + 50_000_000 if origin is not None else None,
+            "first_helper_entry_monotonic": now,
+            "first_sample": dict(sample),
+            "observations": [],
+            "outcome": "pending",
+            "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        }
+        receipt["rss_terminal_confirmation"] = gap
+    if gap is not None and stamp_error is not None:
+        gap.setdefault("timestamp_errors", []).append(
+            {
+                "sample_monotonic_ns": sample_ns,
+                "helper_entry_monotonic": now,
+                "error": stamp_error,
+            }
+        )
+        gap["sample_timestamp_invalid"] = True
+        if gap["outcome"] == "pending":
+            gap["outcome"] = "invalid_sample_timestamp"
+    stop = independent_monitor_stop(
+        sample, grant, now, deadline, startup_deadline, ready, parent_cgroup
+    )
+    if stop is not None:
+        receipt.setdefault("stop_reason", stop)
+        receipt.setdefault("last_sample", sample)
+    if gap is not None:
+        gap["last_sample"] = sample
+    try:
+        terminal = owner.collect()
+    except BaseException as error:
+        if gap is not None:
+            if gap["outcome"] == "pending":
+                gap["outcome"] = "ownership_lost_or_collection_interrupted"
+            gap["collection_error"] = {"type": type(error).__name__, "message": str(error)}
+        raise
+    observed = clock()
+    terminal_ns = terminal["reaped_monotonic_ns"] if terminal is not None else None
+    # Collection itself may cross a deadline. Independent stops keep precedence.
+    stop = stop or independent_monitor_stop(
+        sample, grant, observed, deadline, startup_deadline, ready, parent_cgroup
+    )
+    if gap is not None:
+        gap["observations"].append(
+            {
+                "monotonic": observed,
+                "helper_entry_monotonic": now,
+                "sample_monotonic_ns": sample_ns,
+                "RSS_present": not unusable,
+                "VmRSS_bytes": rss,
+                "terminal_observed": terminal is not None,
+                "terminal_collected_monotonic_ns": terminal_ns,
+                "independent_stop": stop,
+            }
+        )
+        if stop is not None:
+            gap.setdefault("independent_stop", stop)
+        if gap["outcome"] == "pending":
+            if (
+                terminal_ns is not None
+                and gap["origin_monotonic_ns"] <= terminal_ns <= gap["deadline_monotonic_ns"]
+            ):
+                gap.update(
+                    outcome="terminal_confirmed_with_visible_sampling_gap",
+                    terminal_collected_monotonic_ns=terminal_ns,
+                    confirmation_decision_monotonic=observed,
+                )
+            elif math.ceil(observed * 1e9) >= gap["deadline_monotonic_ns"]:
+                gap.update(outcome="strict_required_RSS_failure", bound_reached_monotonic=observed)
+        if gap["outcome"] == "strict_required_RSS_failure" or gap.get("sample_timestamp_invalid"):
+            stop = stop or "required_process_RSS_observation_lost"
+    if stop is not None:
+        receipt.setdefault("stop_reason", stop)
+        receipt.setdefault("last_sample", sample)
+    return stop
+
+
+def stopped_status(reason):
+    """Classify the latched monitor cause without replacing it with a later event."""
+    return (
+        "startup_timeout_stopped"
+        if reason == "startup_readiness_timeout"
+        else "timeout_stopped"
+        if reason == "timeout"
+        else "monitor_stopped"
+    )
+
+
+def observe_session_readiness(receipt, ready, startup_deadline, *, clock=time.monotonic):
+    """Preserve earliest stop and separately record an actual late readiness event."""
+    observed = clock()
+    if observed >= startup_deadline:
+        prior = receipt.get("stop_reason")
+        receipt.setdefault("stop_reason", "startup_readiness_timeout")
+        receipt["late_session_readiness"] = {
+            "observed_monotonic": observed,
+            "startup_deadline_monotonic": startup_deadline,
+            "prior_stop_reason": prior,
+            "primary_stop_reason": receipt["stop_reason"],
+            "readiness": dict(ready),
+        }
+        raise StartupError("session readiness arrived after startup deadline")
+
+
+def observer_exception_status(receipt, error):
+    """Keep an earlier stop primary when a subsequent readiness error unwinds main."""
+    if isinstance(error, KeyboardInterrupt):
+        return "observer_cancelled"
+    if isinstance(error, StartupError) and "stop_reason" in receipt:
+        return stopped_status(receipt["stop_reason"])
+    if receipt.get("stop_reason") == "startup_readiness_timeout":
+        return "startup_timeout_stopped"
+    return {
+        "admission": "admission_refused",
+        "startup_prepare": "startup_fd_prepare_failure",
+        "startup_readiness": "startup_readiness_failure",
+        "spawn": "spawn_failure",
+    }.get(receipt["phase"], "observation_failure")
+
+
+def observed_child_status(receipt, terminal, outcome, identity_matches, boot_error):
+    """Apply the existing final status precedence after actual child parsing."""
+    if boot_error is not None:
+        return "bootstrap_" + boot_error["stage"] + "_failure"
+    if "stop_reason" in receipt:
+        return stopped_status(receipt["stop_reason"])
+    if terminal["signaled"]:
+        return "child_signaled"
+    if outcome in {
+        "missing_child_record",
+        "malformed_child_record",
+        "child_record_exceeds_admitted_parse_bound",
+    }:
+        return outcome
+    if not identity_matches or outcome == "material_identity_failure":
+        return "material_identity_failure"
+    if outcome == "nonfinite_scientific_failure":
+        return "nonfinite_scientific_failure"
+    if outcome == "workflow_exception":
+        return "workflow_exception_unclassified"
+    if outcome == "observation_failure":
+        return "child_observation_failure"
+    if terminal["returncode"] != 0:
+        return "child_nonzero_exit"
+    if outcome != "finite_observation_pending_qualification":
+        return "child_observation_failure"
+    return "complete_child_observed_pending_scientific_qualification"
 
 
 def validate_complete_record(record, pid, spec):
@@ -819,17 +1027,47 @@ def main():
                 if launch.ready is None:
                     ready = launch.drain()  # Drain buffered readiness even after cached exit.
                     if ready is not None:
-                        if time.monotonic() >= startup_deadline:
-                            receipt["stop_reason"] = "startup_readiness_timeout"
-                            raise StartupError("session readiness arrived after startup deadline")
+                        observe_session_readiness(receipt, ready, startup_deadline)
                         write(out / "session-ready.json", ready)
                         receipt["session_ready"] = ready
                         receipt["phase"] = "observation"
                 if terminal is not None:
                     if launch.ready is None:
                         raise StartupError("terminal exit without verified session readiness")
+                    gap = receipt.get("rss_terminal_confirmation")
+                    if gap is not None:
+                        # No post-terminal /proc RSS/cgroup value is invented. Keep
+                        # the last actual child sample, label fresh host/ancestor
+                        # observations separately and check all decision guards.
+                        guard_sample = dict(gap["last_sample"])
+                        guard_sample["host_available_bytes"] = mem_available()
+                        guard_sample["ancestor_current_bytes"] = {
+                            path: read(Path(path) / "memory.current")
+                            for path in grant["ancestor_stop_bytes"]
+                        }
+                        gap["cached_terminal_guard_refresh"] = {
+                            "monotonic_ns": time.monotonic_ns(),
+                            "child_fields": (
+                                "last actual sample, not a new post-terminal observation"
+                            ),
+                            "host_available_bytes": guard_sample["host_available_bytes"],
+                            "ancestor_current_bytes": guard_sample["ancestor_current_bytes"],
+                        }
+                        stop = monitor_sample_decision(
+                            owner,
+                            guard_sample,
+                            grant,
+                            receipt,
+                            deadline=deadline,
+                            startup_deadline=startup_deadline,
+                            ready=launch.ready is not None,
+                            parent_cgroup=read("/proc/self/cgroup"),
+                        )
+                        if stop is not None:
+                            receipt.setdefault("stop_reason", stop)
+                            receipt.setdefault("last_sample", gap["last_sample"])
                     if time.monotonic() >= deadline:
-                        receipt["stop_reason"] = "timeout"
+                        receipt.setdefault("stop_reason", "timeout")
                         receipt["deadline_observed_after_exit"] = True
                     break
                 sample = process_sample(pid)
@@ -841,34 +1079,24 @@ def main():
                 samples.write(json.dumps(sample) + "\n")
                 samples.flush()
                 count += 1
-                if owner.collect() is not None:
-                    continue  # Re-enter drain before accepting a terminal/readiness race.
+                stop = monitor_sample_decision(
+                    owner,
+                    sample,
+                    grant,
+                    receipt,
+                    deadline=deadline,
+                    startup_deadline=startup_deadline,
+                    ready=launch.ready is not None,
+                    parent_cgroup=read("/proc/self/cgroup"),
+                )
                 now = time.monotonic()
-                stop = None
-                if sample["child_cgroup"] != read("/proc/self/cgroup"):
-                    stop = "child_cgroup_missing_or_moved"
-                elif launch.ready is None and now >= startup_deadline:
-                    stop = "startup_readiness_timeout"
-                elif now >= deadline:
-                    stop = "timeout"
-                elif type(sample.get("VmRSS_bytes")) is not int or sample["VmRSS_bytes"] < 0:
-                    stop = "required_process_RSS_observation_lost"
-                elif sample["VmRSS_bytes"] >= grant["process_stop_bytes"]:
-                    stop = "process_current_RSS_threshold"
-                elif (
-                    sample["host_available_bytes"] is None
-                    or sample["host_available_bytes"] <= grant["host_min_available_bytes"]
-                ):
-                    stop = "host_headroom_missing_or_deteriorated"
-                elif any(
-                    value is None or int(value) >= grant["ancestor_stop_bytes"][path]
-                    for path, value in sample["ancestor_current_bytes"].items()
-                ):
-                    stop = "cgroup_current_threshold_or_unknown"
                 if stop and term_at is None:
-                    receipt.update(stop_reason=stop, last_sample=sample)
+                    receipt.setdefault("stop_reason", stop)
+                    receipt["last_sample"] = sample
                     receipt["signals"].append(owner.send(signal.SIGTERM))
                     term_at = now
+                if owner.terminal is not None:
+                    continue  # Drain readiness and finalise any visible gap at loop top.
                 if (
                     term_at is not None
                     and kill_at is None
@@ -896,51 +1124,17 @@ def main():
         boot_error = bootstrap_failure(out / "stderr.log")
         if boot_error is not None:
             receipt["bootstrap_error"] = boot_error
-            receipt["status"] = "bootstrap_" + boot_error["stage"] + "_failure"
-        elif "stop_reason" in receipt:
-            receipt["status"] = (
-                "startup_timeout_stopped"
-                if receipt["stop_reason"] == "startup_readiness_timeout"
-                else "timeout_stopped"
-                if receipt["stop_reason"] == "timeout"
-                else "monitor_stopped"
-            )
-        elif owner.terminal["signaled"]:
-            receipt["status"] = "child_signaled"
-        elif outcome in (
+        receipt["status"] = observed_child_status(
+            receipt, owner.terminal, outcome, identity_matches, boot_error
+        )
+        if receipt["status"] in (
             "missing_child_record",
             "malformed_child_record",
             "child_record_exceeds_admitted_parse_bound",
         ):
-            receipt["status"] = outcome
             receipt["child_parse_diagnostic"] = child_record
-        elif not identity_matches or outcome == "material_identity_failure":
-            receipt["status"] = "material_identity_failure"
-        elif outcome == "nonfinite_scientific_failure":
-            receipt["status"] = "nonfinite_scientific_failure"
-        elif outcome == "workflow_exception":
-            receipt["status"] = "workflow_exception_unclassified"
-        elif outcome == "observation_failure":
-            receipt["status"] = "child_observation_failure"
-        elif owner.terminal["returncode"] != 0:
-            receipt["status"] = "child_nonzero_exit"
-        elif outcome != "finite_observation_pending_qualification":
-            receipt["status"] = "child_observation_failure"
-        else:
-            receipt["status"] = "complete_child_observed_pending_scientific_qualification"
     except BaseException as error:
-        status = (
-            "observer_cancelled"
-            if isinstance(error, KeyboardInterrupt)
-            else "startup_timeout_stopped"
-            if receipt.get("stop_reason") == "startup_readiness_timeout"
-            else {
-                "admission": "admission_refused",
-                "startup_prepare": "startup_fd_prepare_failure",
-                "startup_readiness": "startup_readiness_failure",
-                "spawn": "spawn_failure",
-            }.get(receipt["phase"], "observation_failure")
-        )
+        status = observer_exception_status(receipt, error)
         receipt.update(status=status, error_type=type(error).__name__, error_message=str(error))
     finally:
         if owner is None and launch is not None and launch.pid is not None:

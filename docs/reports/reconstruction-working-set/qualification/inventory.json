@@ -1,8 +1,8 @@
 {
-  "protocol": "WS116-finite-qualification-small-Q5-v1",
+  "protocol": "WS116-method7-sample-origin-readiness-source-v1",
   "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
   "prior_evidence": "integrated method5 Q0/Q1 passed; exact prior driver/inventory/grants/receipts preserved before Q2. Q2 explicitly retains only six unchanged method/bootstrap/old fixture/lock identities from exact Q1; new driver/inventory/new fixture are not relabelled as old success.",
-  "execution_status": "Q5 source preparation unexecuted; exact prior Q0/Q1/fourQ2/Q4 results preserved and mapped only to unchanged relevant inputs, never relabelled new-driver passes",
+  "execution_status": "Review6 old45 pure controls passed only old exact helpers. New68 coherent sample-origin/readiness controls and F1/F2 correction unexecuted, pending exact freeze/pure release and fresh affected review7 before any real retry.",
   "common_bounds": {
     "sample_seconds": 0.01,
     "term_grace_seconds": 0.2,
@@ -92,10 +92,18 @@
       "public_relations": 8,
       "workload_children": 0,
       "imports": "NumPy + stdlib + two named frozen RM84 helper modules only"
+    },
+    {
+      "id": "method6-rss-controls",
+      "requires": [],
+      "vectors": 68,
+      "retained": "New sample-origin/readiness/exception helpers unqualified; old45 control pass remains bound to old inputs, never relabelled. Prior unchanged direct function/input scopes only.",
+      "imports": "stdlib and named report methods only; no NumPy/SciPy/product",
+      "workload_children": 0
     }
   ],
   "lifecycle_target_sha256": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
-  "deferred": "Q3 abrupt observer loss remains explicit unqualified gap; Q6 science held. Q4/Q5 support cases require separate exact release; no workflow.",
+  "deferred": "Pure new68 controls require coor exact inspection/freeze/release. Fresh affected review7, new clean basis and root exclusive per-case window required before any workflow retry. Profile/growth/native/scientific imports held.",
   "q3_held_gap": "PID1 is sleep, not a reaper. No deliberate abrupt-observer-loss/orphan topology is implemented or allowed in this slice. Root permits narrowly scoped Linux subreaper scaffolding if a later exact-owned topology is necessary; unavailable adoption/reaping must hold that case. No claim of general nonparent recovery or original observer terminal usage.",
   "human_total_budget": "not set; these are finite internal design/safety settings, not a human total cap",
   "no_workflows": true,
@@ -128,5 +136,17 @@
     "wall_seconds": 20,
     "reference_iterator_elements": 65536,
     "reference_iterator_capacity_bytes": 1048576
-  }
+  },
+  "method6_bounds": {
+    "fixture_bytes": 65536,
+    "parser_fixture_bytes": 131072,
+    "vector_count": 68,
+    "steps_per_vector": 4,
+    "diagnostic_bytes": 32768,
+    "results_file_bytes": 2097152,
+    "record_bytes": 16384,
+    "wall_seconds": 20,
+    "confirmation_seconds": 0.05
+  },
+  "method6_fixture_sha256": "b588cb166337507737dd2b6ed147eb4f43ec865201409604616199af32a435c0"
 }

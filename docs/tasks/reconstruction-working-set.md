@@ -107,19 +107,22 @@ kept and errors below, without a cleanup helper/test/review project.
 
 ## Current state
 
-- Status: **APPLICABLE FINITE QUALIFICATION PASSED; SCIENTIFIC CORPUS NOT STARTED**.
-  Accepted parent #115 and actual method5 remain unchanged. Fresh static affected
-  method review5 (`510f402d…a485`) accepted its exact12 source targets; original
-  reviews1–4 and failed setsid attempt remain historical evidence. New integrated
-  Q0/Q1, four small Q2 lifecycle cases,151 Q4 parser expectations and33 Q5 tiny
-  array vectors/8 public fingerprint relations have actual scoped passes.
-  Q3 abrupt observer loss, startup-failure variants and exec-transition high-water
-  retention remain explicit gaps; no universal recovery or isolated-workflow
-  peak claim. Source author is on hold after all ownership checks. Next is a
-  clean qualified source checkpoint and one existing corpus condition readiness
-  packet, awaiting root exclusive window and exact per-case release. Scientific
-  measurements, ranked evidence-based handoffs, independent scientific report
-  review, exact full Ubuntu gate and final acceptance remain unfinished.
+- Status: **METHOD7 SUITABLE AND FROZEN; CLEAN BASIS PREPARATION; CORPUS HELD**.
+  Accepted parent #115 remains ace06c861b974b6251a092567c253ae4eb0f56c8.
+  Fresh affected review7 `861075fe…1b5e` independently accepts exact F1/F2
+  corrected runner `2c2358bb…ea1e` and ten-target freeze `6b626cbf…566a`
+  within declared source/integration limits. All68 purefake controls passed;
+  no live-race/native/scientific/gate acceptance follows. Source author held.
+  Original real trial stays monitorFAILED; scientific attempts1/accepted0.
+  Root accepts initial60-row admission design prospectively, executionfalse.
+  External binder continuation prepares complementary context and explicit
+  post-run original-proof/end-domain checks, awaiting coordinator/root full
+  source review and actual physical window/grant. Actual runner validates
+  domain proof at initial admission only; earlier coordinator end-check shorthand
+  was incorrect and is preserved/corrected before any accepted data. No actual
+  retry/profile/growth authorized. Q3 abrupt loss/startup variants and cross-exec
+  high-water retention remain explicit unknowns. Full corpus/report/ranking/fresh
+  scientific review/full Ubuntu gate/final acceptance remain unfinished.
 - Human authority/constraints: report, real reproducible trials, ranked individual
   handoffs, fresh scientific review, exact full Ubuntu verification and stacked
   PR; root owns scheduling/integration/push/PR; no merge/release/manual closure.
@@ -474,6 +477,105 @@ kept and errors below, without a cleanup helper/test/review project.
   capability, science0; preparation11/execution9continuations,total20. Q5 initial
   five lint findings/format-check failure and final granted checks are preserved.
   No source correction, retry or scientific release followed this pass.
+
+- First real attempt `corpus-spatial32-summary-searched-r1-a1` is a preserved
+  monitor failure, receipt `ea1132b9…fee5`, finite child record `c95aa88e…1dd7`.
+  Last required RSS was null; readable process status had no field errors, after
+  valid RSS samples. Current runner already polls wait4 after sampling and again
+  before signaling; exact negative-poll instants were unlogged. Possible exit
+  transition is diagnosis, not proof terminal was available at missing sample.
+  Root sent one direct TERM, child ultimately exited0/reaped; observer46267 and
+  child46287 PID/FDpaths independently absent, no cleanup/postflight/wait gap.
+  Native78820 LinuxKiB/80711680B is failed-trial context only. All rawlisted hashes
+  and candidate/material maps matched; preservation manifest `1d50d08b…22a8`.
+  Root pre-release proof-age refusal50.881s happened before grant/runner/product
+  and is an operational refusal, not another scientific trial. Actual root launch
+  intent proof age4.904119898s. Scientific attempts1/accepted0; qualification
+  remains11attempts=10pass/1failedcapability. Author preparation12/execution9
+  continuations,total21, root-owned real executions1, costsunknown.
+
+- Root confirmed source-only bounded terminal-confirmation correction scope.
+  Same investigator dispatched packet `9768d658…01a0`; choose one explicit short
+  interval, preserve actual null sample, require sole-owner terminal evidence
+  before normal final validation, otherwise strict RSS failure. All other guards
+  and independent-stop precedence remain; no RSS0/quiet resume/general recovery.
+  Finite deterministic controls and exact source go to fresh affected method6
+  before execution/retry. Author preparation13/execution9continuations,total22;
+  no new corpus/qualification execution, all earlier attempts/charges retained.
+
+- Method6 first source handoff (`870b185a…c2c0`) proposes fixed50ms
+  terminal confirmation. Coordinator inspected actual branch/control/status
+  source and declined the unexecuted control command: its generic live admission
+  invoked administrative Git/resource readers, incompatible with root pure-only
+  grant. Same author now prepares a driver-only pure fake-effects entry; original
+  ten targets preserved. Preparation14/execution9continuations,total23.
+  Fresh nonblind Sol/high source admission planner launched with packet
+  `31081e48…ea16`, immutable40-file Git3965 snapshot only and four external
+  outputs; no active author files, task/raw reads or runtime work. It proposes
+  unadmitted corpus/profile/growth/resource/proof-age table and serial check
+  procedure; coordinator/root must still approve exact admission. Planner
+  launches1, actual attribution/cost unknown; corpus retry remains held.
+
+- Pure method6 entry was inspected/frozen (`22ebb141…38b1`) and ran once
+  under root standing conditional grant, coordinator executor. All45 literal
+  expectations matched, receipt `5d7f9670…870d`, rows `c58ecc47…abed`,14current
+  input hashes unchanged and blocked_effects empty. Exact driver46738PID/FDpaths
+  absent. These are fake owner/clock/sample decision/status/parser controls, not
+  a live exit-race/native/resource/scientific qualification or OS sandbox. Fresh
+  affected reviewer6 launched Sol/high/forknone with packet `a8a66190…c00e`;
+  source author held. Qualification12attempts=11pass/1failedcapability, scientific
+  attempts1failedmonitor/accepted0. Prep14/execution9authorcontinuations23 plus
+  coordinator pure execution1; review launches6/completed5, metering unknown.
+  Parallel source planner completed four outputs for60initial/12profile/8growth
+  rows; all UNADMITTED and coordinator full table inspection still pending.
+  No actual workflow retry or gate/newbasis follows these control results.
+
+- Fresh review6 completed NOT SUITABLE (`a36453f4…5e91`), coordinator
+  independently confirmed both findings: F1 gap origin after timestamped sample
+  and delayed logging extends50ms endpoint; F2 late readiness overwrites earlier
+  independent stop, including affected exception/status classification. Original
+  45/45 purecontrols remain valid within exact helper scope and miss these main
+  wiring paths. Same author dispatched narrow correction packet `32a0e2c8…4b56`,
+  explicit sample-origin/late-readiness controls and fresh review7 required;
+  no actual retry. Author preparation15/execution9continuations,total24; static
+  reviews6completed/3nonaccept/3scopedaccept, all charges/results retained.
+  Independent planner full table inspection proceeds separately, still UNADMITTED.
+
+- Independent planner table `0058ccff…b49d` inspected by coordinator:
+  all40 immutableinputs,20exactconditions,60repeat/12profile IDs,20caller/q/image
+  formulas and proposed arithmetic margins checked; actual-source masks/stencils
+  and lifetime families reviewed. Root packet `9bc38021…8665` proposes new32retry
+  as row1 then conditionalremaining59 using the existing runner, fresh<=5s proof
+  per row with explicitly proposed deadline+120s horizon/endvalidation, finite
+  serial stop/ownership/source/hash/event predicates. Profile horizon wording
+  clarified;192/256 alternatives stayheld, full onlyselectedlargest. All operating
+  predictions/unresolved native costs remain unmeasured. All rows UNADMITTED
+  pending corrected methodreview7/newcleanbasis and root table/window/releases.
+
+- Method7 F1/F2 correction exact10targets `6b626cbf…566a` inspected/frozen;
+  68 new coherent sample-origin/readiness controls passed once under root pure
+  conditional grant, receipt `ee45f197…8f52`, rows `84221811…b33a`,129-fileindex
+  `5082061d…e1d9`. All14currentinputs matched, blocked_effects empty, exact
+  driver46951PID/FDpaths absent. Source effects remain fake; no live/native proof.
+  Fresh independent reviewer7 Sol/high/forknone launched packet `0fa73a58…03d5`;
+  prior review6nonaccept/45control evidence remain unchanged. Qualification13
+  attempts=12pass/1failedcapability, coorpure executions2; realcorpus1failed/0accepted.
+  Root designacceptance `0eb41919…2e92` accepts initialtable/prospective proof
+  policy only, execution_authorized=false. Same planner resumes external binder
+  SOURCE continuation1 under `f0918e45…924a`; configfalse and missing physical
+  context become HOLD fields, no new probe/runtime. No data retry/window/gate.
+
+- Review7 fullreport/ten-source/14controlbindings/68literal rows rechecked,
+  SUITABLE exact delta, no blockingfinding (`861075fe…1b5e`); seven reviews
+  completed/3nonaccept/4scopedaccept, no report/gate/runtime grant. Binder v1
+  source completed/hashpreserved then same worker source continuation2 prepares
+  one root-authorized complementary metadata snippet plus scheduler/ownership
+  and<=5s-to-runner definition, configstillfalse. Important source correction:
+  actual old/current runner has initial exposed-domain proof check only. Earlier
+  coordinator admission+end wording confused qualifier with runner; binder must
+  explicitly perform prospective original-proof horizon/hash and fresh end-domain
+  eligibility checks, no nonexistent runner-end attestation. No accepted corpus
+  result relied on that wording. All historicalattempts/charges remain.
 
 ## PR presentation
 

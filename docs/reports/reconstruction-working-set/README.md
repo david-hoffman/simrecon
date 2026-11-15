@@ -1,31 +1,44 @@
-# WS116 source-only experiment preparation
+# WS116 experiment method and preserved preparation
 
 This analysis-only method was first prepared at public main
 `b344e41a8b52de76d7cbbf8450319893904c3b8f` and is now reconciled onto accepted
-#115 `ace06c861b974b6251a092567c253ae4eb0f56c8`. It provides no measured working
-set, runtime qualification, experiment admission or measured ranking. The
+#115 `ace06c861b974b6251a092567c253ae4eb0f56c8`. There is no accepted measured
+working set or ranking. The
 [task](../../tasks/reconstruction-working-set.md) owns Current state. Static
-review 3 accepted the prior exact source-method scope; this actual-parent delta
-requires fresh affected review and separate runtime release.
+earlier source states/reviews remain historical evidence, never new permission.
 
-Method5 source correction now replaces the observed unsupported spawn-setsid
-attribute with one fixed plain-spawn/same-PID setsid/readiness/exec route.
-See [METHOD REVIEW5 input](method-review5-input.md). The selected tiny probe
-succeeded, but these integrated method bytes have not run. Old Q0/Q1/probe
-sources, grants, receipts and all four reviews remain preserved. New four-file
-AST/compile-without-execution and Ruff checks passed; no report/scientific
-module import, new launch/lifecycle case or workflow ran in this correction.
+Method5's fixed spawn/readiness/exec route and the integrated Q1/Q2/Q4/Q5 tiny
+cases have actual scoped passes; their exact receipts and source maps remain
+unchanged. First corpus attempt receipt `ea1132b9…fee5` is a preserved
+`monitor_stopped` failure despite a finite child exit0; it supplies no accepted
+corpus row. The runner already polled after sampling and before signaling;
+the exact negative-poll timing is unknown. No third immediate poll is claimed
+to resolve that event. Method6's45 pure controls passed only their exact old
+helper inputs; fresh review6 found an interval-origin error and a late-readiness
+precedence error, so those source bytes were not suitable for real retry.
+The correction now binds50ms to the immutable actual sample timestamp, rejects
+invalid/missing timing without fallback, and preserves earlier failure through
+the actual late-readiness exception path with separate event evidence.
+See [METHOD REVIEW7 input](method-review7-input.md). New68 coherent timestamp/
+readiness controls are unexecuted. The preserved pure driver may receive a control-only
+release before review after coordinator inspection/freeze, under root's standing
+conditional authority. It uses -I -S -B and file bindings/fake inputs only; no
+generic Git/admission/preflight/context/resource sampling, spawn/signal/OS wait
+or scientific import. Effect attempts fail closed in that process; this is not
+an OS security sandbox. Actual workflow retry still requires fresh affected
+review7, new clean basis and root window/per-case release.
+The root ended the numerical window; workflow/profile/growth/retry remain held.
 
 Files: [fixed corpus](manifest.json), [liveness calculations](analysis/liveness-draft.md),
 [one-attempt runner](run_attempt.py), [child](workload_child.py),
 [observer](observer.py), [handoff hypotheses](handoffs/source-hypotheses.md).
 `raw/` will retain every attempt, grant, preflight, sample stream, output/error and
-receipt. It is currently empty. Under the narrow preparation-check supplement,
+receipt, including the failed first corpus attempt. Under narrow preparation supplements,
 stdlib AST parsing and pinned Ruff lint/format checks passed for the three report
-sources after preserved diagnosed corrections. No report/product/scientific
-imports, lifecycle probes, tests, install, benchmark, numerical workflow or full
-verification ran. See the [qualification plan and check ledger](qualification-plan.md).
-The method needs separately released runtime qualification. Historical
+sources after preserved diagnosed corrections. In the method6 correction only
+two-file AST/compile and Ruff preparation ran; no semantic controls, method/
+product/scientific imports, workflow, test or install. See the
+[qualification plan and check ledger](qualification-plan.md). Historical
 method revision v2 added complete-child wait ownership, bounded array identities,
 explicit snapshot/status scopes and a separate static-method review input. The
 original draft is preserved in Git at `701b56d349adaf5e719510a158b51402876f9c30`;
@@ -167,13 +180,28 @@ Default SIGCHLD is required; unexpected auto-reaping loses terminal evidence and
 does not authorize signaling an unowned/reused PID. TERM grace and KILL-reap periods
 are bounded, including exception cleanup. A still-unreaped kernel task is an
 explicit cleanup gap requiring coordinator resolution before another attempt.
-An inaccessible post-exit /proc sample is not a fabricated stop: terminal wait
-collection is checked again after sampling. For a still-live child, missing or
-unusable required RSS is `required_process_RSS_observation_lost`, never zero:
-the sample/diagnostic is retained and normal monitor TERM/KILL escalation follows.
-A measured integer zero remains a measured zero. The selected tiny normal route
-was observed once; integrated-method startup/exec/malformed/EOF/timeout/cancel/
-cleanup paths and scientific reliance remain to be qualified after review5.
+Missing/unusable required RSS starts one explicit50ms confirmation state across
+ordinary10ms monitor iterations; it is not RSS0 or proof of exit. Original null/
+missing/invalid sample and diagnostics remain visible. Exact sole-owner terminal
+collection in the inclusive actual-sample-origin through origin+50000000ns
+interval may follow ordinary complete-child validation
+with a visible gap. Its actual cached reaped timestamp prevents later host/
+ancestor refresh latency from erasing an already collected terminal event.
+Helper entry/logging/guard delays cannot extend the endpoint. Missing/malformed/
+nonpositive/future/regressed sample timestamps stop honestly without inventing
+a helper-clock origin. Late readiness records actual arrival/deadline/prior and
+primary causes; a subsequent StartupError cannot replace an earlier stop's
+classification in main. On-time readiness and ordinary exception categories stay intact.
+Without terminal evidence by the bound, required-RSS failure is latched even if
+RSS later returns. All other guards continue; any independent stop stays latched
+and cannot become success after a later exit. Post-terminal guard refresh uses
+last actual child fields plus separately labelled fresh host/ancestor facts,
+never an invented new post-terminal RSS/cgroup reading. Ownership loss rejects,
+interrupts propagate to existing bounded cleanup, and reused PIDs are never
+signaled. The fixed interval is a narrow operational policy, not proof of the
+old failure's timing/cause or universal exit recovery. A measured integer zero
+remains a measurement. Corrected method7 semantics have no runtime pass yet; Q3 abrupt
+loss/startup-fault variants and exec-transition accounting remain gaps.
 No experiment may overlap campaign numerical work, installation or verification.
 
 ## Measurement meanings and review

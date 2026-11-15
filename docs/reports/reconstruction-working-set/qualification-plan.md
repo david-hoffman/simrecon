@@ -1,5 +1,110 @@
 # Bounded method qualification proposal — not execution authority
 
+## Method7 F1/F2 source correction after review6 nonacceptance
+
+Review6 NOT SUITABLE on exact22ebb141 source identified two real wiring errors:
+gap origin was delayed helper entry instead of actual first unusable sample,
+and late readiness overwrote an earlier monitor stop (including exception
+classification). Original45/45 pure results remain scoped to their old exact
+helper inputs, not those corrected semantics. Exact ten-source/frozen-source/
+actual attempt/index/review copies remain under evidence116/source-method6-
+review6-before-correction/. The real corpus trial stays monitor_failed/accepted0.
+
+Corrected origin/deadline are immutable integer sample.monotonic_ns and
+origin+50000000ns. Helper entry, owner native collection and decision times are
+separate; logging or guard latency cannot grant another50ms. Missing/malformed/
+nonpositive/future/regressed timestamps are explicit strict failures, no fallback.
+Returning RSS cannot reset an origin or clear expiry. Actual readiness branch
+records separate late event/arrival/deadline/prior/primary evidence and retains
+the first cause; actual main exception helper also preserves that cause on
+subsequent StartupError. No ordinary exception or native launch policy is broadened.
+
+Exactly68 pure vectors use coherent explicit ns stamps on a +1s abstract baseline.
+They include the prior45 examples with new declared clock meaning,15 affected
+sample-origin/invalid-time regressions, and8 actual readiness-helper/exception
+paths (on-time/endpoint/late; prior host/ancestor/cgroup/RSS/deadline, including
+cached terminal). Origin/end and full late-event evidence are literal expectations.
+Source fixture is57166B within unchanged64KiB bound; max4steps,32KiB diagnostic,
+2MiB results,16KiB child record+oneoversize byte,20s soft elapsed, fixed50ms.
+No semantic controls have run on these corrected bytes. See
+qualification/method7-vector-expectations.md and method-review7-input.md.
+
+New unique attempt method7-rss-readiness-controls-a1 and new command/template
+files preserve the old indexed command and all old90 artifact hashes. Pure
+-I-S-B early entry, specific14-file grant/legacy-function binding, denied effects,
+no Git/live admission/context/local_safety/resource/scientific effects remain.
+Conditional pure execution requires coordinator inspection/freeze and explicit
+release; fresh affected review7/new clean basis/root window/per-case grant still
+precede any real retry/profile/growth. Author preparation15/execution9,total24;
+coordinator pure execution1 separate. All prior reviews/failures/charges remain.
+Only allowed two-file AST/Ruff preparation ran: initial4 E501/format-check failure,
+formatter repairs and final checks passed; logs evidence116/method7-preparation-checks.
+
+## Preserved method6 proposal (before review6)
+
+Earlier method5 planning/charges below are preserved history. Exact integrated
+Q1/fourQ2/Q4/Q5 scoped passes exist; none qualifies the changed runner/main as a
+whole. First real corpus attempt remains monitor_stopped, accepted corpus rows0.
+The preserved null RSS sample/finite child/exit0 does not establish when its
+existing negative polls occurred or prove a third immediate poll fixes it.
+
+Method6 proposes fixed50ms terminal confirmation after the first unusable required
+RSS observation. Continue every independent monitor guard; accept a sole-owner
+terminal collection within the interval only through normal final validation
+with a visible sampling-gap record. Otherwise latch strict RSS failure even if
+RSS returns. Preserve first/last samples, null/error fields, decision/collection
+times and independent stops. Use actual owner reaped timestamp for cached
+within-bound evidence; separately labelled later host/ancestor refreshes cannot
+erase it, while independent failures still block success. Never infer RSS0.
+
+One separately releasable method6-rss-controls case has45 finite deterministic
+fake owner/clock/scalar sample vectors. It invokes the actual corrected decision,
+actual extracted final-status helper and unchanged child/bootstrap parsers.
+Coverage: immediate/delayed/boundary/late terminals; persistent null/missing/
+negative/boolean/text RSS; returning RSS; nonterminal notification; wait loss/
+interrupt; deadline/startup/host/ancestor/cgroup/RSS-threshold and latched-stop
+precedence; actual status precedence for finite/nonzero/signal/malformed/missing/
+oversized/material/nonfinite/workflow/observation/bootstrap outcomes. This is
+not a real exit-race reproduction, kernel wait/signal proof or scientific result.
+
+Fixture64KiB, old parser fixture128KiB, exact45 vectors/max4 steps, record16KiB
+(one oversize byte for refusal), per diagnostic32KiB/results2MiB,20s soft elapsed.
+Confirmation50ms is fixed method source, not a grant-adjustable retry knob.
+Pure control path: isolated -I -S -B, exact14 source/fixture file bindings,
+legacy function source, finite bounds and a specific approved pure grant.
+It bypasses generic Git/admission/preflight/context/local_safety; no subprocess,
+signal, OS wait, resource observation or NumPy/SciPy/product/ctypes import.
+Audited/patched effect attempts fail the entire invocation even if caught by a
+negative vector. In-process denial is not an OS security sandbox; coordinator
+must inspect every reachable path. No physical resource admission is performed
+or claimed. The pending template remains approved=false; no semantic execution
+occurs on this source dispatch. Grant64KiB/inventory32KiB are additional file bounds.
+
+Prior applicability is limited to exact unchanged direct functions WaitOwner,
+cleanup, validate_complete_record, child_outcome plus unchanged observer/child/
+manifest/fixtures/lock/frozen value helpers as relevant. The future control
+admission compares those named source segments against exact preserved method5
+source and records old receipts with full_source_receipt_reuse=false. New monitor,
+main integration/final-status extraction and changed qualifier/inventory are
+separately frozen, reviewed and unqualified until released controls run.
+No Q0/Q1/Q2/Q4/Q5 ceremony reruns are proposed solely for source-map changes.
+
+See method-review6-input.md and qualification/method6-vector-expectations.md;
+pending command/grant live in existing qualification directories. Exact old
+sources/Q5 targets and failed raw are copied under evidence116/source-before-
+method6. Root permits these pure stdlib controls BEFORE review only after exact
+coordinator inspection/freeze/control release. Fresh affected method6 acceptance,
+new clean numerical basis/fresh proof/exclusive window/per-case release remain
+mandatory before any workflow retry. Q3 abrupt loss/startup faults/repeated interruption and cross-exec
+high-water accounting remain gaps; no workflow/profile/growth/full target.
+All old attempts/reviews/check failures/charges remain; preparation14/execution9,
+total23 supplied continuations, root scientific attempts1/monitorfailed1/accepted0.
+Initial method6 two-file AST/Ruff and later pure-path qualifier-only AST/Ruff
+preparation are preserved; semantic controls0. Exact ten-target prior proposal
+870b185a was copied to evidence116/source-method6-before-pure-controls before edits.
+
+## Preserved earlier planning and preparation history
+
 Method5 update: Q0-v1 environment facts passed; Q1-v1 failed before PID return.
 One separate fixed tiny bootstrap/exec route passed. Current integrated source
 reuses that route through one helper and direct-PID ownership, with explicit

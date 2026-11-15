@@ -7,6 +7,7 @@ automatic retry/growth or accepted-method edits occur here.
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import json
 import os
@@ -22,6 +23,7 @@ PASS = "case_pass_scoped_only"
 Q2_CASES = ("Q2-default-term", "Q2-ignore-term-kill", "Q2-deadline", "Q2-supported-sigint")
 Q4_CASE = "Q4-parser"
 Q5_CASE = "Q5-tinyhash"
+M6_CASE = "method6-rss-controls"
 Q2_EVIDENCE = (
     (
         "q2-default-term-a1",
@@ -97,12 +99,20 @@ def source_identities(grant, obs):
         required.add(
             "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json"
         )
-    if grant["case"] == Q5_CASE:
+    if grant["case"] in (Q5_CASE, M6_CASE):
         required.update(
             {
                 "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json",
                 "tests/reconstruction_summary_fixture.py",
                 "tests/reconstruction_memory_benchmark.py",
+            }
+        )
+    if grant["case"] == M6_CASE:
+        required.update(
+            {
+                "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt",
+                "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json",
+                "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json",
             }
         )
     require(required <= set(grant["source_sha256"]), "mandatory frozen material identity missing")
@@ -117,6 +127,7 @@ def source_identities(grant, obs):
 
 def admission(args, grant, inventory, obs, method, out):
     """Require exact release, fresh correspondence and conservative case margins."""
+    require(args.case != M6_CASE, "method6 uses only its isolated pure entry path")
     expected_scope = (
         "WS116-Q5-tinyhash-v1"
         if args.case == Q5_CASE
@@ -731,6 +742,520 @@ def tiny_hash_case(out, grant, bounds, obs):
     }
 
 
+def method6_prior_scope(grant, current, obs):
+    """Retain only named unchanged function/input scopes, never whole old receipts."""
+    old_path = Path(grant["legacy_runner_source"]["path"])
+    require(
+        old_path
+        == Path("/workspace/work/campaign/evidence/116/source-before-method6/run_attempt.py")
+        and grant["legacy_runner_source"]["sha256"]
+        == "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61"
+        and obs.digest(old_path) == grant["legacy_runner_source"]["sha256"],
+        "preserved method5 runner source differs",
+    )
+    functions = ("WaitOwner", "cleanup", "child_outcome", "validate_complete_record")
+    texts = []
+    for path in (old_path, HERE / "run_attempt.py"):
+        require(path.stat().st_size <= 131072, "method6 retained source parse bound")
+        source = path.read_text()
+        nodes = ast.parse(source).body
+        texts.append(
+            {
+                node.name: ast.get_source_segment(source, node)
+                for node in nodes
+                if isinstance(node, (ast.FunctionDef, ast.ClassDef)) and node.name in functions
+            }
+        )
+    require(
+        set(texts[0]) == set(functions) and texts[0] == texts[1],
+        "named retained function bytes changed; stop applicability reuse",
+    )
+    evidence = [
+        ("q1-method5-a1", "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce"),
+        *((attempt, receipt_sha) for attempt, receipt_sha, _, _ in Q2_EVIDENCE),
+        ("q4-parser-a1", "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa"),
+        ("q5-tinyhash-a1", "164ecf085b44b51bbc26a01fba523ab7e1ca388e2d8074e94fdf19297e7bcb3d"),
+    ]
+    unchanged_keys = tuple(
+        key
+        for key in current
+        if key
+        not in {
+            "docs/reports/reconstruction-working-set/run_attempt.py",
+            "docs/reports/reconstruction-working-set/method_qualification.py",
+            "docs/reports/reconstruction-working-set/qualification/inventory.json",
+            "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json",
+        }
+    )
+    rows = []
+    for attempt, receipt_sha in evidence:
+        path = QUAL / "attempts" / attempt / "receipt.json"
+        require(obs.digest(path) == receipt_sha, "historical qualified receipt changed")
+        prior = json.loads(path.read_text())
+        require(
+            prior["status"] == PASS and prior["attempt_id"] == attempt,
+            "historical scoped result differs",
+        )
+        keys = [key for key in unchanged_keys if key in prior["source_sha256"]]
+        require(
+            all(prior["source_sha256"][key] == current[key] for key in keys),
+            "historical unchanged input subset differs",
+        )
+        rows.append(
+            {
+                "attempt_id": attempt,
+                "receipt_sha256": receipt_sha,
+                "full_source_receipt_reuse": False,
+                "unchanged_input_sha256": {key: current[key] for key in keys},
+            }
+        )
+    return {
+        "scope": "Q1/Q2 WaitOwner+cleanup/fixed observer launch only; Q4 unchanged parser/"
+        "observer dtype/bootstrap helpers only; Q5 observer array/finite and frozen "
+        "value protocols only. New monitor, main integration and extracted final status "
+        "have no prior full-source pass.",
+        "unchanged_runner_function_sha256": {
+            name: hashlib.sha256(texts[1][name].encode()).hexdigest() for name in functions
+        },
+        "evidence": rows,
+    }
+
+
+class Method6ControlOwner:
+    """Finite fake collection source; no wait, signal, child or native usage exists."""
+
+    def __init__(self, terminal_kind):
+        self.terminal_kind = terminal_kind
+        self.action = "none"
+        self.terminal = None
+        self.wait_lost = False
+        self.nonterminal_wait_events = []
+        self.collect_calls = 0
+        self.collected_at_ns = 0
+
+    def collect(self):
+        """Supply one declared fake event, caching a declared terminal like the real owner."""
+        self.collect_calls += 1
+        if self.terminal is not None:
+            return self.terminal
+        if self.action == "wait_loss":
+            self.wait_lost = True
+            raise RuntimeError("synthetic exact-owner wait loss")
+        if self.action == "interrupt":
+            raise KeyboardInterrupt("synthetic collection interrupt")
+        if self.action == "nonterminal":
+            self.nonterminal_wait_events.append({"synthetic_notification": True})
+        if self.action == "terminal":
+            kind = self.terminal_kind
+            self.terminal = {
+                "pid": 7141,
+                "reaped_monotonic_ns": self.collected_at_ns,
+                "returncode": -9 if kind == "signal" else 3 if kind == "nonzero" else 0,
+                "signaled": kind == "signal",
+                "synthetic_not_native": True,
+            }
+        return self.terminal
+
+
+def method6_controls(out, grant, bounds, obs, method):
+    """Exercise the actual new decision and final-status helpers with finite synthetic inputs."""
+    path = QUAL / "fixtures/method6-rss-controls-v1.json"
+    require(path.stat().st_size <= bounds["fixture_bytes"], "method6 fixture bound")
+    data = json.loads(path.read_text())
+    require(
+        len(data["vectors"]) == bounds["vector_count"]
+        and len({row["id"] for row in data["vectors"]}) == bounds["vector_count"],
+        "method6 exact vector inventory differs",
+    )
+    parser_path = QUAL / "fixtures/parser-vectors-v1.json"
+    require(
+        parser_path.stat().st_size <= bounds["parser_fixture_bytes"], "old parser fixture bound"
+    )
+    parser_fixture = json.loads(parser_path.read_text())
+    directory = out / "method6-vectors"
+    directory.mkdir()
+    started = time.monotonic()
+    with (out / "method6-results.jsonl").open("x") as results:
+        for vector in data["vectors"]:
+            require(
+                time.monotonic() - started < bounds["wall_seconds"], "method6 control soft deadline"
+            )
+            owner = Method6ControlOwner(vector.get("terminal_kind", "normal"))
+            receipt = {}
+            exception = None
+            row = {
+                "id": vector["id"],
+                "expected": vector["expected"],
+                "steps": [],
+                "synthetic_not_process_or_native_observation": True,
+            }
+            diagnostic_path = directory / (vector["id"] + ".json")
+            require(len(vector["steps"]) <= bounds["steps_per_vector"], "method6 step bound")
+            for step in vector["steps"]:
+                sample = json.loads(json.dumps(data["base_sample"]))
+                sample.update(step.get("sample", {}))
+                if step.get("remove_RSS"):
+                    del sample["VmRSS_bytes"]
+                if step.get("remove_sample_timestamp"):
+                    del sample["monotonic_ns"]
+                owner.action = step["owner"]
+                owner.collected_at_ns = step.get("terminal_monotonic_ns", 0)
+                ticks = iter((step["before"], step["after"]))
+                stop = None
+                try:
+                    stop = method.monitor_sample_decision(
+                        owner,
+                        sample,
+                        data["synthetic_grant"],
+                        receipt,
+                        deadline=vector.get("deadline", 1.0),
+                        startup_deadline=vector.get("startup_deadline", 0.5),
+                        ready=vector.get("ready", True),
+                        parent_cgroup="0::/",
+                        clock=lambda ticks=ticks: next(ticks),
+                    )
+                except (RuntimeError, KeyboardInterrupt) as error:
+                    exception = type(error).__name__
+                row["steps"].append(
+                    {
+                        "before": step["before"],
+                        "after": step["after"],
+                        "sample": sample,
+                        "returned_stop": stop,
+                        "exception": exception,
+                        "receipt": json.loads(json.dumps(receipt)),
+                    }
+                )
+                encoded = json.dumps(row) + "\n"
+                require(
+                    len(encoded.encode()) <= bounds["diagnostic_bytes"], "method6 diagnostic bound"
+                )
+                diagnostic_path.write_text(encoded)
+                if exception is not None:
+                    break
+            outcome, parsed = None, None
+            status = None
+            readiness_failed = False
+            if "readiness" in vector and exception is None:
+                event = vector["readiness"]
+                try:
+                    method.observe_session_readiness(
+                        receipt,
+                        event["value"],
+                        event["deadline"],
+                        clock=lambda event=event: event["observed"],
+                    )
+                except method.StartupError as error:
+                    exception = type(error).__name__
+                    readiness_failed = True
+                    status = method.observer_exception_status(receipt, error)
+            if owner.terminal is not None:
+                record = json.loads(json.dumps(parser_fixture["base_record"]))
+                spec = json.loads(json.dumps(record["spec"]))
+                child = vector.get("child", "finite")
+                child_path = directory / (vector["id"] + "-child.json")
+                if child == "malformed":
+                    child_path.write_text("{")
+                elif child == "oversized":
+                    child_path.write_bytes(b"x" * (bounds["record_bytes"] + 1))
+                elif child != "missing":
+                    if child != "finite":
+                        record["status"] = child
+                    encoded = json.dumps(record)
+                    require(
+                        len(encoded.encode()) <= bounds["record_bytes"],
+                        "method6 child record bound",
+                    )
+                    child_path.write_text(encoded)
+                outcome, parsed = method.child_outcome(
+                    child_path, bounds["record_bytes"], 7141, spec
+                )
+                boot_error = None
+                if "bootstrap_stage" in vector:
+                    boot_path = directory / (vector["id"] + "-bootstrap.txt")
+                    boot_path.write_text(
+                        "WS116_BOOTSTRAP_ERROR " + json.dumps({"stage": vector["bootstrap_stage"]})
+                    )
+                    boot_error = obs.bootstrap_failure(boot_path)
+                if not readiness_failed:
+                    status = method.observed_child_status(
+                        receipt,
+                        owner.terminal,
+                        outcome,
+                        vector.get("identity_matches", True),
+                        boot_error,
+                    )
+            observed = {
+                "gap_outcome": receipt.get("rss_terminal_confirmation", {}).get("outcome"),
+                "stop_reason": receipt.get("stop_reason"),
+                "exception": exception,
+                "terminal_present": owner.terminal is not None,
+                "status": status,
+                "wait_ownership_lost": owner.wait_lost,
+                "nonterminal_notifications": len(owner.nonterminal_wait_events),
+                "gap_origin_monotonic_ns": receipt.get("rss_terminal_confirmation", {}).get(
+                    "origin_monotonic_ns"
+                ),
+                "gap_deadline_monotonic_ns": receipt.get("rss_terminal_confirmation", {}).get(
+                    "deadline_monotonic_ns"
+                ),
+                "late_readiness": receipt.get("late_session_readiness"),
+            }
+            row.update(
+                observed=observed,
+                child_outcome=outcome,
+                parse_diagnostic=parsed if outcome == "malformed_child_record" else None,
+                collect_calls=owner.collect_calls,
+                native_wait_calls=0,
+                signals_sent=0,
+                expectation_matches=observed == vector["expected"],
+            )
+            encoded = json.dumps(row) + "\n"
+            require(
+                len(encoded.encode()) <= bounds["diagnostic_bytes"],
+                "method6 final diagnostic bound",
+            )
+            diagnostic_path.write_text(encoded)
+            results.write(encoded)
+            results.flush()
+            require(results.tell() <= bounds["results_file_bytes"], "method6 results file bound")
+            require(
+                row["expectation_matches"],
+                "method6 qualification expectation differs: " + vector["id"],
+            )
+    return {
+        "results_file": "method6-results.jsonl",
+        "vectors_completed": len(data["vectors"]),
+        "confirmation_seconds": method.RSS_TERMINAL_CONFIRM_SECONDS,
+        "workload_children": 0,
+        "scope": "deterministic fake owner/clock/sample + actual decision/status/parser only; "
+        "no live exit-race reproduction, kernel wait4/TERM proof or scientific result",
+    }
+
+
+def pure_method6(args):
+    """Run only file-bound fake controls; no generic admission or live OS observations."""
+    import resource
+    import subprocess
+
+    blocked = []
+
+    def deny(*_args, **_kwargs):
+        blocked.append("forbidden process/signal/wait/resource API")
+        raise RuntimeError(blocked[-1])
+
+    def audit(event, arguments):
+        forbidden = event in {
+            "os.fork",
+            "os.forkpty",
+            "os.posix_spawn",
+            "os.system",
+            "os.exec",
+            "os.kill",
+            "os.killpg",
+            "subprocess.Popen",
+            "signal.pthread_kill",
+            "signal.raise_signal",
+        }
+        if event == "import":
+            forbidden = arguments[0].split(".", 1)[0] in {"numpy", "scipy", "simrecon", "ctypes"}
+        if event == "open" and isinstance(arguments[0], (str, bytes)):
+            name = os.fsdecode(arguments[0])
+            forbidden = name.startswith(("/proc/", "/sys/"))
+        if forbidden:
+            blocked.append("forbidden audited effect: " + event)
+            raise RuntimeError(blocked[-1])
+
+    sys.addaudithook(audit)
+    # Wait functions have no guaranteed audit event. Deny the concrete APIs in
+    # this dedicated process as well; do not restore them and run another case.
+    for name in (
+        "fork",
+        "forkpty",
+        "posix_spawn",
+        "posix_spawnp",
+        "system",
+        "kill",
+        "killpg",
+        "wait",
+        "waitpid",
+        "wait3",
+        "wait4",
+        "execv",
+        "execve",
+        "execvp",
+        "execvpe",
+        "execl",
+        "execle",
+        "execlp",
+        "execlpe",
+        "spawnl",
+        "spawnle",
+        "spawnlp",
+        "spawnlpe",
+        "spawnv",
+        "spawnve",
+        "spawnvp",
+        "spawnvpe",
+    ):
+        if hasattr(os, name):
+            setattr(os, name, deny)
+    for name in ("signal", "raise_signal", "pthread_kill", "alarm", "setitimer"):
+        if hasattr(signal, name):
+            setattr(signal, name, deny)
+    for name in ("getrusage", "getrlimit", "setrlimit", "prlimit"):
+        if hasattr(resource, name):
+            setattr(resource, name, deny)
+    subprocess.Popen = deny
+    if hasattr(subprocess, "_fork_exec"):
+        subprocess._fork_exec = deny
+
+    out = QUAL / "attempts" / args.attempt_id
+    out.mkdir(parents=True, exist_ok=False)
+    receipt = {
+        "protocol": "WS116-method6-pure-controls-v1",
+        "case": args.case,
+        "attempt_id": args.attempt_id,
+        "status": "qualification_failed",
+        "driver_pid": os.getpid(),
+        "argv": sys.argv,
+        "started_monotonic_ns": time.monotonic_ns(),
+        "physical_resource_admission": "not performed or claimed",
+        "not_scientific_evidence": True,
+    }
+    try:
+        require(
+            sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode,
+            "pure method6 command requires -I -S -B",
+        )
+        require(
+            not any(
+                name.split(".", 1)[0] in {"numpy", "scipy", "simrecon", "ctypes"}
+                for name in sys.modules
+            ),
+            "forbidden module already loaded",
+        )
+        with args.grant.open("rb") as stream:
+            payload = stream.read(65537)
+        require(len(payload) <= 65536, "pure grant file exceeds64KiB")
+        (out / "grant.input").write_bytes(payload)
+        grant = json.loads(payload)
+        require(
+            grant["approved"] is True
+            and grant["pure_stdlib_controls_only"] is True
+            and grant["numerical_release"] is False
+            and grant["scope"] == receipt["protocol"]
+            and grant["case"] == M6_CASE
+            and grant["attempt_id"] == args.attempt_id,
+            "no exact pure-stdlib control release",
+        )
+        require(
+            str(Path(sys.executable).resolve()) == grant["python_resolved"],
+            "pure control interpreter differs from pinned source grant",
+        )
+
+        def file_digest(path):
+            with Path(path).open("rb") as stream:
+                return hashlib.file_digest(stream, "sha256").hexdigest()
+
+        require(
+            len(grant["source_sha256"]) == 14
+            and {
+                "docs/reports/reconstruction-working-set/observer.py",
+                "docs/reports/reconstruction-working-set/run_attempt.py",
+                "docs/reports/reconstruction-working-set/method_qualification.py",
+                "docs/reports/reconstruction-working-set/qualification/inventory.json",
+            }
+            <= set(grant["source_sha256"]),
+            "pure fourteen-input map incomplete",
+        )
+        for name, digest in grant["source_sha256"].items():
+            path = (ROOT / name).resolve()
+            require(
+                path.is_relative_to(ROOT) and file_digest(path) == digest,
+                "pure source input identity differs: " + name,
+            )
+        require(
+            "observer" not in sys.modules and "run_attempt" not in sys.modules,
+            "report module unexpectedly preloaded",
+        )
+        sys.path.insert(0, str(HERE))
+        import observer as obs
+        import run_attempt as method
+
+        require(
+            Path(obs.__file__).resolve() == HERE / "observer.py"
+            and Path(method.__file__).resolve() == HERE / "run_attempt.py",
+            "pure report imports resolve outside frozen files",
+        )
+        # Fail immediately if a future edit reaches a generic live-observation
+        # helper. All effect attempts remain fatal even if a negative control
+        # happens to catch their RuntimeError.
+        for module in (obs, method):
+            for name in ("context", "process_sample", "cgroup_ancestors", "mem_available"):
+                if hasattr(module, name):
+                    setattr(module, name, deny)
+        method.git = deny
+        obs.rusage_snapshot = deny
+        identities = source_identities(grant, obs)
+        inventory_path = QUAL / "inventory.json"
+        require(inventory_path.stat().st_size <= 32768, "pure inventory exceeds32KiB")
+        inventory = json.loads(inventory_path.read_text())
+        bounds = inventory["method6_bounds"]
+        require(
+            grant["phase_bounds"] == bounds
+            and bounds["confirmation_seconds"] == method.RSS_TERMINAL_CONFIRM_SECONDS
+            and identities[
+                "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json"
+            ]
+            == inventory["method6_fixture_sha256"],
+            "pure finite bound/fixture mismatch",
+        )
+        receipt.update(
+            source_sha256=identities,
+            grant_sha256=file_digest(out / "grant.input"),
+            interpreter=str(Path(sys.executable).resolve()),
+            isolation_flags={
+                "isolated": sys.flags.isolated,
+                "no_site": sys.flags.no_site,
+                "dont_write_bytecode": sys.dont_write_bytecode,
+            },
+        )
+        write(
+            out / "prior-function-applicability.json", method6_prior_scope(grant, identities, obs)
+        )
+        started = time.monotonic()
+        result = method6_controls(out, grant, bounds, obs, method)
+        require(time.monotonic() - started < bounds["wall_seconds"], "pure controls soft deadline")
+        require(
+            source_identities(grant, obs) == identities and not blocked,
+            "pure control source/effect condition changed",
+        )
+        require(
+            not any(
+                name.split(".", 1)[0] in {"numpy", "scipy", "simrecon", "ctypes"}
+                for name in sys.modules
+            ),
+            "pure import scope expanded",
+        )
+        receipt.update(result=result, status=PASS)
+    except BaseException as error:
+        receipt.update(error_type=type(error).__name__, error_message=str(error))
+    finally:
+        receipt.update(
+            finished_monotonic_ns=time.monotonic_ns(),
+            blocked_effects=blocked,
+            limits="Pure synthetic semantics only; no process/native/resource/science "
+            "qualification. In-process denial is not an OS security sandbox. "
+            "Fresh affected method6 review + new clean basis/root window/per-case "
+            "release still required before any workflow retry.",
+        )
+        if blocked:
+            receipt["status"] = "qualification_failed"
+        write(out / "receipt.json", receipt)
+    return 0 if receipt["status"] == PASS else 1
+
+
 def context_case(out, obs):
     """Observe actual pinned environment/backend facts without a numerical operation."""
     import numpy as np
@@ -1216,7 +1741,9 @@ def main():
     """Run exactly one released readiness case; preserve every failed attempt."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--case", choices=("Q0-context", "Q1-normal", *Q2_CASES, Q4_CASE, Q5_CASE), required=True
+        "--case",
+        choices=("Q0-context", "Q1-normal", *Q2_CASES, Q4_CASE, Q5_CASE, M6_CASE),
+        required=True,
     )
     parser.add_argument("--grant", type=Path, required=True)
     parser.add_argument("--attempt-id", required=True)
@@ -1229,6 +1756,8 @@ def main():
         ),
         "safe unique attempt id required",
     )
+    if args.case == M6_CASE:
+        return pure_method6(args)
     out = QUAL / "attempts" / args.attempt_id
     out.mkdir(parents=True, exist_ok=False)
     receipt = {
