@@ -442,3 +442,74 @@ will be evaluated after A3; it is distinct from scientific test acceptance.
   no adapter import/CLI/probe/resource execution/install. Root can suspend before
   exclusive116 work. All prior charges/style failures/repairs preserved; serving/
   tokens/cost/durations unknown. C blocked on final117/profile material review.
+
+## B2 — fresh independent complete affected review
+
+- Session `/root/issue_118/b118_review2`, actual spawn task_name `b118_review2`,
+  fork_turns none, requested Sol/high; no inherited author/B1/coordinator context.
+  Actual serving/tokens/cost/durations unknown. Clean frozen launch checkpoint
+  badf155abbc2f345e013556be12fd2bc13107fd0/tree
+  6b1bd83d9cc56909eed40964f0bd39b85215f864. Local checkpoint captured all prior
+  source-only artifacts/failures/reviews/logs with per-command hooks disabled,
+  no gate configuration change or integration/push.
+- Packet bcf9ac25560e21a49f8186436519d6d86933cfeb4b916c7a482a1ca547fd379b,
+  facts7e398552451597fa535946ab7ab2f583c1f5e1ae7d49335ea4331bc81b00e359,
+  manifest90d5a02fcb5a83c1b6dae4ff047c37a452c36b9ab6f760915635d910f3eebb5f.
+  Whole explicit public primary/test/fixture/observer/protocol input closure and
+  actual factual final logs only; no raw A/B1/coordinator report/verdict/source/
+  history/coverage/lesson inputs. Actual checkpoint/artifact hashes in launch.
+- Immediately before activation actual inventory5running including coordinator,
+  with root116 investigator already active; activating B2 used sixth slot and
+  preserved one root routing slot. No failed eighth launch or reused B1 session.
+- Complete affected9functions/28examples, all relied-on fixture/oracle/budget and
+  direct observer/protocol dependencies must be independently assessed. B1 partial
+  review/green logs grant no exemptions. Review may distinguish unused unrelated
+  functions from actual dependency closure; no arbitrary count/cap changes scope.
+- Report-only `docs/reports/issue-118/b2.md`, unique own source-free logs under
+  b2-evidence, separate final channel. Ordinary bounded debug/static checks may
+  use existing Docker/no-sync/harness route, no target repair/install. Adapter
+  import/CLI/help/dry-run/resource measurement remains forbidden before accepted
+  parent and exclusive grant; pending external launch-method reconciliation is
+  disclosed independently of workload/terminal-self-RSS protocol definitions.
+- Status active; verdict/current artifact identities/independent checks pending.
+  Source-only task/launch metadata may update after launch; frozen manifest test/
+  fixture/protocol/runtime inputs remain unchanged. Shared-fs/prompt-control
+  limitations unchanged. Cumulative intake1/A launches3+continuations/B2 launches
+  (B1 completed nonaccepted, B2 active), C0/D0. All charges retained; unknowns
+  unknown, no human numeric default cap. Coordinator returns WAITING for capacity.
+
+## Collected B2 acceptance — provisional SAFE HOLD
+
+- B2 accepted exactbadf155abbc2f345e013556be12fd2bc13107fd0/tree
+  6b1bd83d9cc56909eed40964f0bd39b85215f864 for affected tests and frozen STATIC
+  direct resource design. Reportaf6a774faa8caa9e402a43995a8b876158669fe032b0845b3baae375ffb97c66;
+  test22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08,
+  adapterece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59,
+  protocol2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc,
+  PH118d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5.
+  Coordinator independently captured these and rechecked EVERY B2 manifest entry,
+  all matching (sha256sum -c exit0). No source/test/adapter/protocol change.
+- Independent source-free rerun28passed13.08s/all9 direct controls calls1. Own
+  log4957e2813cdef77acd6663e0e0e52241608fa16ff6e72612df67bde0e670cc8c,
+  identity log3f5f571a7f75e8a22e04f82772b86cc8267a43bb070630802b6c4b3992d9cfa0.
+  Full affected used-dependency/oracle/budget/protocol ledger completed, no
+  grandfathering B1. Unlisted bead prediction/boundary branches not relied on,
+  not read/executed or blanket accepted. Conditional arithmetic/backend premises
+  and eventual parent/profile/helper qualification remain limitations.
+- Static adapter NEVER imported/executed/help/CLI/dry-run/measured. Terminal
+  self-RSS final sample precedes JSON construction/serialization/emission; that
+  tail remains unobserved unless reconciled with accepted external method. No
+  sampled/group RSS or accepted setsid launch support is inferred. Root's
+  qualified launch/lifecycle route, accepted parent and exclusive grant remain
+  mandatory before resource execution; no peak benefit/full gate/D evidence.
+- No B2 reviewer process/active child remains. B1/failed bytes/all24+14 A3 logs,
+  all diagnoses/repairs and scoped runtime-capability facts retained. Cumulative
+  intake1; A launches3 plus four continuations; B rounds2 (B1notaccepted,
+  B2accepted affected provisional scope); C0/D0. Costs/tokens/cache/serving/
+  total elapsed/wait/check time unknown; human numeric limits not set.
+- Durable pointer `docs/reports/issue-118/accepted-checkpoint.md`; sole Current
+  state compacted in task. Clean SAFE HOLD commit records acceptance only, no
+  implementation/resource execution/integration/rebase/push. Scratch section-
+  replacement files created this turn were removed with existing commands;
+  active checkout/evidence/environments kept. Final hold head/tree recorded
+  outside tracked bytes after commit.

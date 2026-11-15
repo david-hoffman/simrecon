@@ -72,126 +72,57 @@
 
 ## Current state
 
-- Status: static intake completed and coordinator inspected; first A stopped
-  before authoring after reading excluded mixed-mode procedure text. A fresh
-  A2 also stopped before authoring on a whole-PROJECT read exceeding its
-  section-limited allowlist. Fresh A3 completed static test/report authoring from
-  self-contained context and whole-file public permissions without an excluded
-  overread reported. Root authorized same-A3 static proof-gap continuation;
-  A3 completed keeper reassessment and added only direct API S25 fault controls.
-  Root has now explicitly granted sequential ordinary focused checks in pinned
-  Ubuntu issue118 `.venv`, without synchronization/install, benchmarks or C.
-  Same A3 reported26owned passes/1failure; targeted injection confirmed the
-  generic FFT RuntimeError on CE02. Coordinator/root classified the new universal
-  wrapper assertion as a test-scope defect against CE02's narrower guarantees.
-  A3 completed the scoped correction and exact focused validation: owned27passed,
-  keeper groups1/21/49/34passed, Ruff/format/Pyright passed. No wrapper or numerical
-  tolerance change occurred. **UNFINISHED — WAITING** for fresh blind B2 and
-  actual-parent qualification. Passing author evidence is not accepted checkpoint
-  or product readiness; no resources/C/full-gate authority implied. Proposed
-  checkpoint frozen in local commit4b09c9f61506bc0c72082667138b1343c1feee9d,
-  tree d2bf143194fc4ddac5d95a37f083b1e90fa79475. Fresh independent blind B1
-  `/root/issue_118/b118_review1` completed NOT ACCEPT: missing frozen direct-stage
-  resource comparison design (S26), and missing independent later-time stateful
-  prepass DEBUG numeric captures (S09/S19). Owned rerun27passed/all9 fault controls
-  intercepted; no product failure or tolerance issue claimed. Same still-blind A3
-  completed revision2:9functions/28examples pass, both owned Python files pass
-  Ruff/format/Pyright. New ordered numeric T2 debug/occurrence witness and exact
-  seven-case direct adapter/protocol are proposed corrections, not independently
-  accepted. Adapter remains NEVER imported/executed/CLI-run/measured. B2 prepared.
-- Instruction: `docs/packets/issue-118-intake.md`, supplied SHA256
-  `4a959093dee94374d7c74ffdb3add0d711813528ec8bbb54febf03e369350021`.
-  No missing material scientific decision identified within preservation scope.
-  Baseline/actual-parent mismatch is unresolved qualification, not new authority.
-- Scenarios 26; current test functions9 / parametrized examples28; retained
-  public-example counts not inventoried. A3 maps all 26 rows with explicit proof
-  limits in [its original report](../reports/issue-118/a3.md) and
-  [static delta](../reports/issue-118/a3-static-proof-gap-preparation.md);
-  B has not accepted adequacy. Proposed frozen test SHA256
-  `22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08`,
-  public PH118 contract unchanged SHA256
-  `d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5`.
-  A diagnosed author correction must record old/new identities before B review.
-  Accepted test/fixture checkpoint none; frozen candidate none; product changes none
-  by intake or A. Initial public baseline/branch observed by coordinator; actual
-  parent117 remains unfrozen and numerical qualification is unknown.
-- Intake session `/root/issue_118/intake118`, one launch, no prior intake attempts
-  per packet; detailed evidence [intake report](../reports/issue-118/intake.md).
-  Intake itself launched no scientific roles. Coordinator launched fresh A
-  `/root/issue_118/a118_static1` after intake, requested Sol/high with no inherited
-  conversation; it stopped and will not be reused. No product source, history,
-  Current state, coverage or lessons exposure was reported. B/C/D were not yet launched;
-  verdicts/checkpoints none. Fresh A2 `/root/issue_118/a118_static2` launched
-  without inherited conversation, requested Sol/high; it also stopped before
-  authoring. No actual product-source/history/record exposure reported in either
-  launch. Fresh A3 `/root/issue_118/a118_static3` launched with no inherited
-  conversation, requested Sol/high. Launch identities
-  and cumulative accounting are in [role launches](../reports/issue-118/role-launches.md).
-- Outside tracked final candidate receipt/review/publication pointer prepared as
-  `/workspace/work/campaign/evidence/118`. Root writes exact final identities there;
-  never modify verified tracked bytes to record their own final hash.
-- Parent reports pinned Ubuntu preflight passed first attempt, log
-  `/workspace/work/campaign/preflight-118-attempt1.log`; not read or reproduced by
-  intake, environment evidence only. It lifts no hold and proves no product gate.
-- Intake commands: permitted static document reads and document authoring only.
-  Full verification, native coverage counts, resource fixtures/results, parent
-  validation, final artifact/version identity and CI evidence unknown/not run.
-- Baseline: exact owned scientific/compatibility/fault checks and selected keepers
-  passed on the provisional public runtime after the diagnosed CE02 test defect
-  correction. No product defect or complete scientific acceptance inferred.
-- Metrics: intake launches 1; prior intake attempts none per supplied packet;
-  Scientific launches A=3 (A1/A2 stopped; A3 revision2 continuation active), B=1
-  completed NOT ACCEPT,
-  C=0, D=0;
-  completed full/delta reviews none.
-  One intake static patch-match failure/correction retained in its report; no
-  scientific repair commissioned. Three coordinator multi-file patch matches failed
-  atomically and were corrected with matching context; no product/test changes.
-  Two A procedural read-boundary overreads and packet-routing corrections are recorded;
-  no product defect inferred. Current-task false findings unknown. Response count,
-  input/cached/output tokens, money, elapsed/owner-wait/check time unknown.
-  Requested model/effort Sol/high; served attribution unknown. No exposure of
-  product implementation/history/lessons; approved contracts were read.
-  Campaign/historical charges remain with root and are not reset or duplicated.
-- Blockers: two B1 proof/design findings, incomplete retained dependency/budget
-  assessment, author revision/checks and fresh B2 full affected review;
-  actual-parent freeze/reassessment; unfilled recoverable
-  launch bindings; independent A/B checkpoint; implementation/D/full verification
-  and matched measurements. Stronger public keepers discharge the provisional
-  T2 camera-state/prepass scientific, unsafe/filtering mode, complete compact
-  projection and summary-specific fault visibility gaps at static assertion
-  level. A3 added only conditional direct CE02/CE04/CE06 external fault proof
-  (one function/nine examples), with unchanged tolerances and legitimate
-  no-interception positive alternative. Interception/fixture/bound qualification,
-  individual T2 trace completeness and unlisted decoded fixture body review
-  remain explicit B assessment limits; direct-stage resource observer integration
-  and comparison scheduling remain unresolved. No product defect/new meaning
-  inferred. Same A3 received only
-  source-free public requirements/test mappings in
-  `docs/packets/issue-118-a3-static-proof-gap-continuation.md`, SHA256
-  `bf7a42c5bef937facf420b420f24704098e7d54e1120ee5a91fcf8c66916f26e`.
-  Its original report is preserved unchanged (SHA256
-  `bc0443f17502bafb6d2c56a671057c2caed21af93519246b3eacae5181270ef7`);
-  completed delta report SHA256
-  `6f5099e4b698601fbe4b78b469ee5e2b6eaff1ccaa8fbc768c5eab6fd31ca86c`.
-  No source/history/
-  PROJECT/audit/lesson context is passed; no new meaning or tolerance inflation.
-  Root's ordinary grant is bound by
-  `docs/packets/issue-118-a3-focused-check-grant.md`, SHA256
-  `457dfae9aa275e90893b7e9a3a5e7294c27832250e87d2e7d4ac485d0963ed23`.
-  Pinned Docker + `uv run --locked --no-sync`, unchanged source-free Python/pytest
-  diagnostics, owned-file Ruff/format/Pyright, then selected strongest keeper
-  nodes only. No source exposure accepted or suppressed. Author writes
-  `docs/reports/issue-118/a3-focused-checks.md` plus unique source-free command logs
-  under `docs/reports/issue-118/focused-a3/`; results are author evidence only.
-  Coordinator pauses while child works to reserve root review capacity; root
-  resumes it to collect outcomes or queries. Fresh B required before C. Freeze the meaningful
-  feasible resource comparison inventory before C; no measurements are authorized
-  by the proposed design. Actual-parent117/profile113 reassessment stays binding.
-- Cleanup result: no temporary assets/processes created by intake; no deletions.
-  A3 also reports no scratch/processes; only named durable tests/report created.
-  Worktree, task environments, fixtures and all durable evidence kept. Cleanup
-  outcome for task completion pending.
+- **SAFE HOLD — accepted provisional test/design checkpoint; no active child or
+  owned process.** Fresh B2 accepted `badf155abbc2f345e013556be12fd2bc13107fd0`,
+  tree `6b1bd83d9cc56909eed40964f0bd39b85215f864`, for affected tests and STATIC
+  direct resource design only. Durable evidence:
+  [accepted checkpoint](../reports/issue-118/accepted-checkpoint.md),
+  [B2 verdict](../reports/issue-118/b2.md),
+  [frozen input/dependency hashes](../packets/issue-118-b2-inputs.sha256).
+- Exact frozen bytes: behavior test `22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08`;
+  adapter `ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59`;
+  protocol `2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc`;
+  PH118 `d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5`.
+  Coordinator rechecked all B2 manifest entries; unchanged. Final safe-hold head/
+  tree belongs outside tracked bytes, not inside its own record.
+- Evidence: A3's9functions/28examples and both owned Python files passed owned
+  pytest/Ruff/format/Pyright; selected keepers passed1/21/49/34. Independent B2
+  source-free rerun28passed13.08s/all9 actual provider interceptions. The times
+  are test output, not speed claims. Full Ubuntu13-phase make verify, native
+  coverage/build/wheel/import/audit/M25, matched resources and D have NOT run.
+- B1 returned NOT ACCEPT on missing T2 numeric debug truth and direct-stage
+  resource design; its report,27pass rerun, original failed CE02-FFT expectation,
+  failed bytes,24 initial and14 revision2 A3 logs/repairs remain preserved. B2
+  completed full affected dependency review; no blanket prior acceptance or
+  unlisted bead-branch/neutral-I/O requalification. Conditional numerical premises
+  and scoped unused-dependency exclusions are explicit in its ledger.
+- **C BLOCKED:** root must freeze accepted actual parent117, assess inherited
+  profile113/shared helpers/fixtures/obligations/environment and renew affected
+  checkpoint evidence. No implementation, rebase, integration, push or PR here.
+  Root owns scheduling/integration/publication. Existing defaults/compatibility
+  and two-file C ownership remain; no new science/precision/backend/storage/fusion.
+- **Resource execution BLOCKED:** adapter never imported/executed/help/CLI/dry-run
+  or measured. Actual accepted parent/candidate, qualified launch/lifecycle route
+  and root exclusive grant required. Shared pinned CPython setsid-spawn failure
+  remains recorded; no invented support. Static seven-case direct CE06/known
+  design distinguishes contextual CE02 and separate full/summary series. Terminal
+  self high-water excludes post-sample JSON emission; retain that endpoint limit
+  or reconcile with accepted external observation. No sampled/group RSS, peak
+  benefit, fixed ceiling/latency ratio/tolerance or16GiB guarantee claimed.
+- Accounting: intake1; A launches3 (A1/A2 stopped procedural/pointer overreads
+  before authorship, no actual product/source/history/coverage/lesson exposure
+  reported); A3 plus four authorized continuations; B rounds2 (B1nonaccepted,
+  B2accepted affected scope), C0/D0. All failures/style and CE02 test-scope
+  corrections/repair history retained in [role ledger](../reports/issue-118/role-launches.md).
+  Six coordinator atomic metadata patch mismatches retained separately. Requested
+  roles Sol/high; served attribution/responses/tokens/cache/money/total elapsed/
+  owner-wait/check costs unknown. Human numeric budgets/caps not set.
+- Final receipt/D/publication pointer prepared:
+  `/workspace/work/campaign/evidence/118`; final fresh D only after clean actual-
+  parent gate and writes outside candidate tracked bytes. No current process or
+  active child; root resumes this coordinator after prerequisite release. No
+  disposable scientific fixture/worktree removed. Keep active worktree, shared
+  environments, all evidence and known dependencies; completion cleanup pending.
 
 ## PR presentation (root)
 
