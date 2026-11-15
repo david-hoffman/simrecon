@@ -100,6 +100,8 @@ The prospective actual packet may allow only these whole existing public files
 - `docs/packets/precision-113/legacy-compatibility-public.md` (narrow existing signatures and tiny compatibility-only builders when explicitly supplied).
 - `docs/packets/precision-113/tiny-default-fft-method.md` (conditional primary-method facts/enclosure for cardinal dimensions only when explicitly supplied; no external source/link expansion).
 - `docs/packets/precision-113/a1-gap-continuation.md` (same-author G1–G8 routing when explicitly supplied).
+- `docs/packets/precision-113/point-libm-method.md` (selected primitive/argument enclosure method and material conditions when explicitly supplied; no universal libm claim or source/link expansion).
+- `docs/packets/precision-113/a1-g3-method-addendum.md` (actual same-author selected-method update when explicitly supplied).
 
 These are whole-file permissions, not permissions for linked tasks/reports/source.
 The final coordinator packet supplies its own whole public filename/digest and

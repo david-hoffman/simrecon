@@ -102,3 +102,18 @@ alone establishes none of that. Missing assumptions remain explicit blockers.
 This finite2/4 default qualification does not qualify lengths6/8/20/32/64, custom
 backends, libm ramps/taper or a universal FFT error theorem. Fresh B independently
 challenges the method and actual applicability; D checks implementation/evidence.
+
+## Optional separately specified finite primitive qualification request
+
+After A's exact point-libm reference boxes/helper/input hashes are independently
+checked and frozen, root may additionally grant one tiny nonblind source-free
+process for H=(1+2^-30)+i/2 and arguments0,+/-pi64/4,+/-pi64/2. Compare actual
+selected hypot/cos/unit-complex-exp results only to those a priori source-based
+boxes and independent mathematical references; preserve all failed observations.
+Record the actual Ubuntu glibc build/library/interpreter/NumPy identities and
+selected callable route/RNE facts. This is not installed execution, a benchmark,
+SIMrecon single-runtime result or a global libm theorem. No new helper/gate or
+dependency installation. A dtype/symbol import or observed max alone qualifies
+no error bound. If a result challenges the frozen box, diagnose source/material/
+method assumptions before any change; no candidate-tuned widening. The exact
+payload remains pending returned author method/code/input freeze and root grant.

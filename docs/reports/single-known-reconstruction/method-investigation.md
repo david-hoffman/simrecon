@@ -77,3 +77,43 @@ tokens/cached/output/money/aggregate durations unknown, human numeric caps not
 set. Same blind A continuation preserves its author history, no fresh verdict
 or reset. Root owns resources/capacity and still must supply accepted/frozen116
 before C. Sole Current state remains the task file.
+
+## Selected G3 point method prepared during A1 continuation1
+
+Read-only primary analysis narrowed G3 to one moderate complex-hypot point and
+0/quarter/eighth-turn sin/cos arguments. No numerical function was executed.
+Opened glibc2.39 current hypot kernel and finite compat wrapper, shared sin/cos/
+sincos polynomial/table/constants, cexp template; CPython complex-abs source and
+NumPy2.5.3 complex-exp source. Static readelf of the actual venv interpreter and
+NumPy .so shows imported hypot/cos/sin/cexp symbol versions; this is binary
+provenance input, not proof every actual runtime dispatch corresponds. No host
+Debian numerical qualification inferred; actual selected Ubuntu library identity
+and routes remain to verify under root scope.
+
+Public point-libm-method.md gives independent rational rounding-box/sqrt/Taylor
+reference construction, exact selected source expressions and table bit facts,
+not approximate ULP comments or raw source. Both selected FMA/non-FMA hypot
+paths can be enclosed at H=(1+2^-30)+i/2; table-node bounds/branch margins are
+separate. For P/4, one fixed101/128 knot and short polynomial suffice; for P/2
+the tiny-tail path permits an exact hp1/1 result after a range/ulp proof.
+No general libm theorem, broad oracle framework, precomputed accepted tolerance
+or numerical acceptance is claimed. A/B must recalculate each interval and
+source/binary/RNE/fused-operation applicability. Actual scalar choice must be
+covered or justified separately; a symbol import alone is insufficient.
+
+Additional absent compatibility/source guesses e_hypot_compat.c and
+multiarch/e_hypot-fma.c returned404; actual finite compat wrapper was found and
+verified, and union of source kernel variants avoids guessing CPU selection.
+Cumulative external primary source404 lookups4, separately charged from static
+patch failures; no numerical/probe/install/repair command. Codelet binding full
+source call was also verified: DISPATCH(c128,c64,clong) gives c64 float
+specialization, not merely inferred from a typedef or outputdtype. Primary Git
+blob identities remain in the sanitized method pages. No raw external source,
+SIMrecon implementation or112 experiment material is a blind input.
+
+Prepared A1 G3 method addendum is a public whole-file scope update while the
+same author is active; no new launch/review/authority. All A dirty files preserved.
+Light-check plan may include a separately frozen finite primitive qualification
+request only after the independent reference boxes/code/input hashes are fixed,
+under explicit root grant; observed values may not select/enlarge those boxes.
+G3 remains unaccepted until actual derivation/applicability/fresh B review.

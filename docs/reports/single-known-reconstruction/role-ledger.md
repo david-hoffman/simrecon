@@ -279,3 +279,25 @@ All prior failures/static source-lookup diagnostics and unknown costs retained;
 no independent acceptance, full gate, actual installed proof or C grant. Parent116
 remains required before restricted C. No extra advisor absent concrete diagnosed
 reasoning limitation/root scope; no broad general mathematical framework.
+
+A1 continuation1 was resumed successfully through followup_task on its existing
+session, from clean source-packet e7e315bc4321d17b6434079eaef967becc92b1f4 /
+tree1d404add94dcebfabe60dab63326a25bd24fa228. Exact packet SHA256
+9b3fde9f87bc375ca21d883eb07358c344ff3ab3975e49a4fa00cfd6d31c607e,
+legacy public7a4d0bc0a68a694e11408ec60945ec7f5339a0eb4587ed40c21f18529107919b,
+cardinal method3688bd74526f3435e3dce0e3dad832a8f7e3af132c7fd78f9ad210a70f3377ac,
+contract2c2b8685e775a9fd8c814502f8f311f1618bd9eb67d282dd722523c68f6c0613
+and public-context e5daa3e496d08d2cb19e9d217f84b717d07c27954188057d50e930515b282555
+were supplied in the actual task message. Same requested Sol/high/unknown served
+attribution/unavailable optional controls; no fresh-A launch or review reset.
+
+While A authors, coordinator prepared point-libm-method.md and actual
+A1 G3 addendum, with selected primitive expressions/reference construction and
+explicit source/binary/RNE/branch conditions. No generic ~ULP certificate,
+observed-R tolerance, external-source read permission or scientific acceptance.
+Actual source/binary/method provenance and static primary lookup failures are
+in the excluded method-investigation report; only sanitized public mathematical
+facts go to A. Exact amendment commit/digests/delivery/dirty inventory are in
+outside evidence. A's own eight-file/report scope is unchanged. No extra child,
+advisor, IE113/C/B/D or execution grant/attempt follows; root capacity/resources
+and parent116 gate remain. Every previous charge and missing meter preserved.
