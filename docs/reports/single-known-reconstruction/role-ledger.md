@@ -301,3 +301,40 @@ facts go to A. Exact amendment commit/digests/delivery/dirty inventory are in
 outside evidence. A's own eight-file/report scope is unchanged. No extra child,
 advisor, IE113/C/B/D or execution grant/attempt follows; root capacity/resources
 and parent116 gate remain. Every previous charge and missing meter preserved.
+
+## Root conditional check authority and fresh method-review1 commission
+
+Root read exact light-check-plan.md and supplied a standing CONDITIONAL grant:
+only after A1 returns revised code/method/input hashes and coordinator independently
+inspects/freezes them may the named pinned source-free phases1–5 activate. Exact
+scope remains8-file syntax/Ruff/format/Pyright, runtime only5 new pytest files plus
+test_module_migration.py; no installed/build/checker/sync/install/large-success/
+new-seam path. Preserve failures and classify feature absence versus fixture/
+environment/valid numerical red; no repeated absence reruns or weakened gate.
+The exact32-element cardinal dependency call and selected primitive process have
+separate additional reference/payload/input/source-assumption freeze conditions.
+No phase has activated, no dependency/product acceptance follows. Root's future
+116 exclusive window overrides and requires suspension acknowledgement.
+
+Separately root explicitly authorized useful parallel scientific-method challenge
+while the same A1 continues static work. Prepared fresh report-only method
+reviewer1 packet docs/packets/precision-113/method-review-1.md, target methods
+exact SHA2563688bd74526f3435e3dce0e3dad832a8f7e3af132c7fd78f9ad210a70f3377ac
+and6b8cde309a853bd3bb3fd1ac7233282303e5b814a046f20eb0e3688d95102695,
+both frozen at df77054. No A author/history/report/test/coverage/product source
+is an input. External pinned primary dependency/source/correspondence facts and
+narrow installed metadata allowed; no actual dependency/candidate calls or
+install/benchmark. Tiny exact stdlib Fraction/interval arithmetic in pinned Ubuntu
+is separately root-authorized if needed/recorded, not a dependency qualification.
+Write report only to outside-candidate evidence/113/method-review-1.md, no repair.
+
+This is not A/B/D, no product/test acceptance or extra mandatory final ceremony.
+Fresh fork_turns=none, ordinary requested Sol/high, no author history/delegation,
+unknown served model/meters and unavailable optional engineered controls disclosed.
+Root approved one extra parallel child within actual shared capacity, preserving
+A1; no unsupported launch retry/probe. Actual packet hash/start/session/delivery/
+report status belong in the outside inventory after packet freeze/launch. Raw
+review conclusions/verdict never go to A/future B; coordinator independently
+checks primary math/source before any sanitized normative correction. Fresh B
+still independently assesses actual complete tests/oracles/material assumptions.
+Yield WAITING after dispatch as root requested; no C before frozen116.
