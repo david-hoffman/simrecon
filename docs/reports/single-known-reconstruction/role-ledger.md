@@ -831,3 +831,30 @@ PreparedactualfreshB4file-onlywhole26inputs/all8/sharedoracles/publicrouting+
 finitefacts1..4; no rawA/B3/routingreview/native/controller/source histories.
 No AST/runtime/probe/import/test/type/style/Dockercall bycoor; ROOT upcoming116
 window ACK noactiveprocess/FD. FourthfreshcompleteB actualsession/hash outside.
+
+B4 COMPLETE NOT ACCEPT844b22714f47afeb8736f4e470f243d93581723f0c4624d9a440467eb5f8e81a,
+soleG1actualASguard/viewtoolprerequisite, no productmeaninggap.33successfulstatic
+calls/oneinitialreportwrite+oneowntextcorrection/recoveredcontracttruncation,
+zeroexecution/exposure/delegation;4priorcompleteBnonacceptancesretained.
+Coorfullreportreadback+sourcepreparation outsidefixture/product/frozeninputs.
+G1payloadfcd082dc...169lines/controllerc2c74e0e...228lines/methodb2826b93...
+rootfullreadacceptedprospectivefinitecontrols, noB/productacceptance.
+
+ROOT4G1cases onceeach/0unexpectedfailures/noHOLD,target/controllerall0, summary
+6fb78ccbc51100996ff8f8c1e6355c032055ceb936c0b4eaf19afbebbc196670.
+Coor actual4receipts/closures/materials/bindings independentlyinspected.
+Normalbaseline252592128B/cap319700992B/guardVMsame/page4096/min33554432,
+48selectedoriginalASTbindings/tiny144Brealbackingviewassertions. Realchildsoft
+269365248B/hardunlimited→strictunusableBEFOREinstaller0calls; injectedEPERM
+OSlimitsunchanged[-1,-1]; realcap319696896B+injectedreadback→strictoriginal
+RuntimeError. Faults labellednotplatformfailures. AllprivatePID1gone/engineexit143
+separatetarget/proxiesreaped/pipesclosed, materialsactualpercase/hash16+10165/
+G1fixture/codeunchanged/debugtrueopt0. No product/newAPI/largealloc/logicalscan.
+4newcontrols countdistinctfromprior5ROOTinitand31finite/prior6historical; setup
+totals/metersunknownandallfailurespreserved. Cooroverlargereceipt/bindingread
+truncationsrecoveredbyboundedjqprojections, sourceoverheadretainednotnewcalls.
+
+Publicguard-metadata-facts5a6e77e45...sanitizedfiniteevidenceONLY, no rawsource/
+roles/reports/historytofreshB5. All8/currentcontract/293unchanged,27wholeinputs
+preparedfreshFULLB5FILE/TEXT/HASH ONLY; noB4resume. ROOTresuspendedALLruntime,
+no coorprocess/FD/role. Actual B5session/packet/manifest/checkpoint outsidehandoff.
