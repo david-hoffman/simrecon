@@ -107,7 +107,7 @@ kept and errors below, without a cleanup helper/test/review project.
 
 ## Current state
 
-- Status: **METHOD4 STATICALLY ACCEPTED; Q0–Q5 DRIVER PREPARATION NEXT; SCIENCE HELD**;
+- Status: **METHOD5 STATICALLY ACCEPTED; INTEGRATED Q0/Q1 FREEZE NEXT; SCIENCE HELD**;
   root integration and author reconciliation/admission adjustment are complete.
   Author is on hold; exact checked method/plan/contract bytes are frozen for
   completed fresh affected-scope review4, suitable with no blocking finding.
@@ -161,8 +161,8 @@ kept and errors below, without a cleanup helper/test/review project.
   no-index difference status 1; subsequent collection covered all seven files.
   Missing historical artifact inventory returned 2. Neither is a numerical trial.
   Same-investigator source-only continuations=3 (method refinement and two corrections);
-  static-method reviewer launches/completed reviews/nonacceptances=4/4/2;
-  scoped static acceptances=2 (review3/4), final scientific acceptance=0.
+  static-method reviewer launches/completed reviews/nonacceptances=5/5/2;
+  scoped static acceptances=3 (review3/4/5), final scientific acceptance=0.
   Review 1 source findings F1 (unknown RSS treated as zero), F2 (incomplete success
   record validation) and C1 (parent cancellation/recovery disposition) are routed
   to the original investigator; post-review source correction cycles=2. First
@@ -234,7 +234,105 @@ kept and errors below, without a cleanup helper/test/review project.
   `method_qualification.py`, finite tiny cases, exact commands/grants and cleanup
   bounds. Coordinator inspects/freezes these BEFORE any driver execution and
   requests fresh Q0 outer/Docker correspondence evidence from root. Investigator
-  must stop at source handoff/Q0 readiness until that concrete release; no
+  prepared an early named-driver slice under packet SHA256
+  `2fcb57c1dcc07a4f0de08316f7fb01d65d83deae9b5d0b510c10f0cc2b8cfbc8`.
+  Clean method freeze is `fad8ac2ded6357fbb579e9693c6d0189f251c446`, tree
+  `703785d1731f52ec742e6da2d1e1bdd388083ba1`. No accepted method source changes
+  are authorized for this driver. Same-author preparation continuations total=5
+  (one new driver-source continuation); qualification attempts now2: Q0pass/Q1fail.
+  Coordinator inspected complete Q0/Q1-only code, inventory, tiny body and
+  commands/grants, matched ten-source freeze `fd417331bd5ddb08f2ee45078f48dfa95c78d58f6f07ee785a3a3b82d4ee6ef6`,
+  driver `9bd4ab99d6cd184aa2228ac28df4fb1ac1f91646048da27c07c9d49b66e01442`.
+  Root explicitly released Q0-context then same-source successful-prerequisite
+  Q1-normal attempts1 under packet `1157326775f62240d0d9e7ea0421dced40d241763dfd5a3c3ffb958441f79818`.
+  Fresh proof SHA256 `945b9244e3750111e1d9b2291e13c84f5e84d9ec1415c5060f8ac7875ad08a50`,
+  observed1794707487702496444ns, maximum age300s. Earlier proof retained, not reused.
+  Bounds20s soft/5s child/0.2s TERM/2s reap;256MiB process,64+64MiB allowance,
+  256MiB reserve,4GiB ancestor stop. Actual margins/sources/domain/ownership must
+  still pass; no resource benefit or workflow memory claim. Q0 exited0 with exact
+  pins/source/domain matched; receipt `e20af779dcb9e23dd480293343f906ffb5e7406c68dfffb6b9f3be1741b63fa7`.
+  Q1 exited1 with `NotImplementedError: posix_spawn: setsid unavailable on this platform`,
+  receipt `f1aa18a0cf4f1afe0ec399cc141226330c447dbd59e499b7ec84c70ce340c70a`;
+  its prelaunch proof age288.834143919s was within300s. No PID returned, terminal
+  usage unknown, logs empty; that alone is not general no-spawn proof. Stopped
+  without retry. Classification is pinned build/runtime capability, not product
+  or scientific red. Root authorized read-only build/libc diagnosis (passed,
+  glibc2.39/HAVE_POSIX_SPAWN/HAVE_SETSID=1) and a selected tiny route probe.
+  Matching upstream3.13.12 guard/source shows this exact unsupported-flag error
+  before libc spawn; binary/source reproduction remains limited. Exact-argv and
+  narrow Q1-time orphan inspection found no driver/live match/candidate/unread
+  process; no signals. These support scoped owned disposition, not a universal
+  inference from a missing PID. All detailed digests/commands are in the ledger.
+  Same author prepared only `qualification/launch_route_probe.py`: plain
+  posix_spawn without setsid keyword to same-PID setsid/readiness/exec bootstrap,
+  bounded readiness and sole wait4/direct-PID cleanup. Coordinator inspected all
+  code/FD/action/exit-race/argv/bounds, and corrected only unsupported bootstrap
+  peak-retention wording. Final probe SHA256
+  `8d17265f756e738aaf5c4af501d8479cc087d7f2d3e9a096a9efa9230bd6aaef`,
+  four-artifact freeze `dcf718a4042fe8e0c8f1b509d4ab0d7be3d08816110509ff45fa3076ab0ed548`;
+  original and final exact source copies are preserved externally. Root RELEASED
+  ONE selected probe on fresh proof `563d58f4bc86f8ef31073f3f70f13dc0d69c612c8a3c4ddde104088af21147ed`,
+  observed1794709474795527402ns/300s, grant
+  `e153860374121892b04ceaf06b57b8d88d55b3ea676a2b64d00fde688fc29e71`.
+  One exact probe exited0/pass: returned/bootstrap/target/reaped PID45021,
+  parent45014, PGID/SID45021; nonce/executable/namespace matched; ready222B,
+  target262B, stderr0, no signals/cleanup gap/lost ownership; both PID/FD tables
+  absent. Proof prelaunch age121.818794649s <300s. Coordinator independently read
+  final receipt/markers/inspection/source/proof and matched all artifact hashes.
+  Receipt SHA256 `17b6a0519bdb80437e2652572245ba15142890d968cd3b923a783facc2a99658`,
+  artifact index `5a26ec63cf25ee2c28783e2e4e02fd5d6303e88d3ad0ee3cc8a08ef4b35a61df`.
+  Kernel rusage16568KiB→16965632B is capability context only. Route-details is a
+  fail-closed intermediate snapshot before main final checks, not another failed
+  trial; final receipt is outcome and every byte remains preserved. Terminal wait4 is
+  kernel-reported direct-child usage through final exit; inherited/pre-exec/
+  exec-transition high-water retention remains unknown, never subtracted. No automatic
+  fallback/retry or method rewrite. Functioning route then needs minimal method
+  correction plus fresh affected review5 before broader reliance. Prior method/
+  Q0/Q1 bytes and failures remain unchanged. Preparation continuations total6,
+  execution continuations2 and preparation continuations8, total10; actual
+  alternative probes1/pass. Qualification outcomes total3=Q0pass/Q1fail/probepass;
+  scientific trials0, terminal usage for failed Q1 remains unknown. Root now
+  authorizes minimal SAME-AUTHOR actual method launch/readiness/FD/direct-PID
+  source correction under packet
+  `03ab02dd53d15d04520ca6b0a95c4faf78a2ec52e10dd650154fcfbbe49385cc`.
+  Bootstrap bytes/material/spec/manifest/README/grant/qual-driver meaning must be
+  reconciled; sole exact-PID wait ownership and unknown exec accounting retained.
+  No Popen race, generic launcher or alternative route. Author prepares review5
+  affected input; fresh review5 must accept before broader method reliance.
+  No new cases/imports/probes/AST/lint or workflows are granted during this source
+  correction. Remaining finite Q0–Q5 may be prepared, execution only after review5
+  and concrete coordinator freeze/release/fresh proof as applicable; Q6 held.
+  Root separately granted four-file AST/compile/Ruff preparation; final source
+  checks and embedded bootstrap compile-without-execution passed. Initial45 lint
+  diagnostics/two import fixes/formatting3 files/six long-string fixes remain in
+  method5-preparation-checks, additional to prior137 style findings. Actual helper
+  uses the fixed route, one wait owner and direct-PID signals; target science is
+  unchanged. Coordinator matched all11 author artifacts (manifest
+  `957d9e94e35b18059a84369939ab6d6db1ded6b9f31b7d861c945df9ccbfe710`),
+  reconciled contract§5 terminal/snapshot/exec scope, and froze12 targets:
+  `9319daa1801f670530187943ef6c58ab2f7eead16d40a6b4da8763f250ef087a`.
+  Snapshot: `/workspace/work/campaign/evidence/116/source-method5-review5/`;
+  new bootstrap SHA256 `81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e`
+  differs from the tiny observed probe and is unqualified at runtime. Fresh
+  `/root/issue_116/static_method_review_5` assesses only affected launch/ownership/
+  status/material/scope and retained normal/timing/profile/parser meanings.
+  Author is on hold. Old4 reviews, Q0pass/Q1fail/probe receipts independently
+  rechecked unchanged; no current-source runtime/scientific acceptance inferred.
+  Review5 accepted exact12 source scope with no blocking finding, report
+  `/workspace/work/campaign/evidence/116/static-method-review-5.md`, SHA256
+  `510f402d38b25d54e8c71b486b248d8ca5b7dce3600b5e0ab49ba3200c7fa485`.
+  Coordinator collected full verdict, rechecked all12 source targets and
+  independently inspected the current integrated Q0/Q1 driver/inventory. Scope
+  explicitly retains old-probe versus changed-helper distinction. Next freeze
+  clean method candidate and exact integrated Q0-context/Q1-normal input/grants/
+  commands/bounds, then request fresh proof; Q1 requires NEW same-source Q0,
+  never rewritten old prerequisites. Remaining stop/timeout/cancellation/recovery/
+  parser/hash phases remain unexecuted pending their own concrete freeze/release;
+  Q6/scientific corpus held. No new generic method audit or driver-review loop.
+  Q2–Q5 broader cases and Q6/workflows/scientific corpus remain held. PID1=sleep;
+  no orphan topology is implemented. Actual case counts/results await receipts;
+  initial broad driver remains inert text, prior bytes preserved externally.
+  There is no
   separate prerequisite-review loop solely for the driver.
   Existing `hidden_ancestors_resolved` must not require or claim unobservable
   physical-host ancestor certainty. Root's preliminary observation at

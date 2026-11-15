@@ -121,9 +121,11 @@ def execute(spec, root, record):
     record["phase"] = "observation_complete"
     record["snapshots"]["post_observation"] = rusage_snapshot(SNAPSHOT_SCOPES["post_observation"])
     record["snapshot_limits"] = (
-        "Cumulative child high-water snapshots, not isolated stage allocations or "
-        "complete-child peak. Parent sole wait4 terminal rusage covers subsequent "
-        "JSON/teardown; neither scope is numerical-only."
+        "Cumulative target self high-water snapshots after exec, not isolated allocations. "
+        "Parent terminal wait4 is kernel-reported direct-child usage through final exit. "
+        "Inherited/pre-exec/exec-transition high-water retention is unresolved; same PID does "
+        "not guarantee every bootstrap/startup peak survives exec. "
+        "No subtraction/aggregate/benefit claim."
     )
 
 

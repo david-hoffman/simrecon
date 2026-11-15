@@ -1,0 +1,488 @@
+"""Finite WS116 Q0-Q5 qualifier; SOURCE DRAFT, never run during authoring.
+
+One explicit case per invocation. No workflow, fixture generation, automatic
+retry/growth, orphan topology or changes to the accepted measurement method.
+Coordinator must inspect/freeze source, fixture, command and grant bytes first.
+"""
+from __future__ import annotations
+
+import argparse
+import copy
+import hashlib
+import json
+import os
+from pathlib import Path
+import signal
+import sys
+import time
+import types
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
+QUAL = HERE / "qualification"
+FIXTURES = QUAL / "fixtures"
+FAIL = "qualification_failed"
+PASS = "case_pass_scoped_only"
+
+
+def write(path, value):
+    """Keep qualification metadata distinct from scientific observations."""
+    path.write_text(json.dumps(value, indent=2, default=str) + "\n")
+
+
+def require(condition, message):
+    """Stop this case on an observed prerequisite or outcome mismatch."""
+    if not condition:
+        raise RuntimeError(message)
+
+
+def no_product():
+    """Reject accidental product import; no product path is part of Q0-Q5."""
+    require(not any(name == "simrecon" or name.startswith("simrecon.") for name in sys.modules),
+            "forbidden product module was imported")
+
+
+def sources(grant, obs):
+    """Bind all coordinator-frozen paths, including explicit mandatory fixtures."""
+    required = {
+        "docs/reports/reconstruction-working-set/method_qualification.py",
+        "docs/reports/reconstruction-working-set/observer.py",
+        "docs/reports/reconstruction-working-set/run_attempt.py",
+        "docs/reports/reconstruction-working-set/workload_child.py",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/synthetic-record.json",
+        "tests/reconstruction_summary_fixture.py", "tests/reconstruction_memory_benchmark.py", "uv.lock",
+    }
+    require(required <= set(grant["source_sha256"]), "mandatory frozen material identity missing")
+    actual = {}
+    for name in grant["source_sha256"]:
+        path = (ROOT / name).resolve()
+        require(path.is_relative_to(ROOT), "material identity outside named worktree")
+        actual[name] = obs.digest(path)
+    require(actual == grant["source_sha256"], "qualification source/fixture identity mismatch")
+    return actual
+
+
+def admission(args, grant, inventory, obs, method, out):
+    """Use explicit root release and reviewed exposed-domain conditional checks."""
+    require(grant["approved"] is True and grant["scope"] == "WS116-Q0-Q5-v1", "no exact root qualification release")
+    require(grant["case"] == args.case and grant["attempt_id"] == args.attempt_id, "grant/case/attempt mismatch")
+    require(method.git("rev-parse", "HEAD") == grant["candidate_head"], "candidate HEAD changed")
+    require(str(Path(sys.executable).resolve()) == grant["python_resolved"], "unpinned interpreter")
+    require(all(os.environ.get(name) == "1" for name in obs.THREADS), "thread controls absent before startup")
+    require(signal.getsignal(signal.SIGCHLD) == signal.SIG_DFL, "SIGCHLD ownership unavailable")
+    require(signal.getsignal(signal.SIGINT) is signal.default_int_handler, "supported SIGINT handler unavailable")
+    require(grant["campaign_ownership_resolved"] is True, "unresolved previous process/resource ownership")
+    require(grant["bounds"] == inventory["common_bounds"], "qualification bounds not frozen inventory values")
+    frozen = sources(grant, obs)
+    cg = obs.cgroup_ancestors()
+    require("error" not in cg, "observable cgroup resolution unavailable")
+    bounds = inventory["common_bounds"]
+    for key in ("process_stop_bytes", "host_min_available_bytes"):
+        require(grant[key] == bounds[key], "grant differs from fixed qualification stop setting")
+    domain = grant["resource_domain"]
+    for key in ("predicted_child_peak_bytes", "native_allocator_allowance_bytes", "reserve_bytes"):
+        require(domain[key] == bounds[key], "grant differs from proposed qualification allowance/reserve")
+    rows = cg["visible_ancestors"]
+    require(set(grant["ancestor_stop_bytes"]) == {row["path"] for row in rows}, "visible ancestor threshold missing")
+    for row in rows:
+        stop = grant["ancestor_stop_bytes"][row["path"]]
+        require(type(stop) is int and stop > int(row["memory.current"]), "unusable ancestor stop")
+        require(row["memory.max"] == "max" or stop < int(row["memory.max"]), "ancestor stop leaves no margin")
+    method.exposed_domain_admission(grant, cg)
+    available = obs.mem_available()
+    require(available is not None and available > grant["host_min_available_bytes"], "host headroom insufficient/unknown")
+    case = next(row for row in inventory["cases"] if row["id"] == args.case)
+    require(set(grant["prerequisites"]) == set(case["requires"]), "declared prerequisites missing/extra")
+    for name, evidence in grant["prerequisites"].items():
+        path = Path(evidence["path"])
+        require(obs.digest(path) == evidence["sha256"], "prerequisite receipt bytes changed")
+        prior = json.loads(path.read_text())
+        require(prior["case"] == name and prior["status"] == PASS, "prerequisite failed/held/incomplete")
+        require(prior["source_sha256"] == frozen, "prerequisite material inputs changed")
+        require(prior["exposed_domain"] == domain["expected_exposed"], "prerequisite domain changed")
+    write(out / "preflight.json", obs.context(ROOT))
+    return case, frozen
+
+
+def q0(out, obs):
+    """Collect actual environment facts without any scientific operation."""
+    import numpy as np
+    import scipy
+    import scipy.fft
+    no_product()
+    facts = {"python": sys.version, "executable": sys.executable,
+             "resolved_executable": str(Path(sys.executable).resolve()),
+             "numpy": np.__version__, "scipy": scipy.__version__,
+             "numpy_backend": np.__config__.CONFIG,
+             "scipy_fft_default_workers": scipy.fft.get_workers(),
+             "context": obs.context(ROOT), "scientific_operations": "none",
+             "effective_workers_limit": "unknown beyond declared controls/default FFT setting"}
+    write(out / "environment.json", facts)
+    return {"facts_file": "environment.json", "scope": "actual qualification environment, no workload result"}
+
+
+def verify_marker(marker, pid, obs):
+    """Identify one live direct child without trusting stale PID alone."""
+    now = obs.process_identity(pid)
+    for key in ("pid", "boot_id", "start_ticks", "executable", "ppid", "pgid", "session_id"):
+        require(marker.get(key) is not None and now.get(key) == marker[key], "owned marker identity mismatch/unknown: " + key)
+    require(now["ppid"] == os.getpid() and now["pgid"] == pid and now["session_id"] == pid,
+            "marker does not identify the direct owned session")
+    return now
+
+
+def lifecycle(kind, out, grant, bounds, obs, method):
+    """Exercise one tiny stdlib child while retaining exact direct wait ownership."""
+    require(sys.platform == "linux" and hasattr(os, "posix_spawn") and hasattr(os, "wait4"), "Linux spawn/wait4 unavailable")
+    body = (FIXTURES / "stdlib-child.txt").read_text()
+    mode = "normal" if kind == "normal" else "ignore-term" if kind == "kill" else "hold"
+    argv = [sys.executable, "-c", body, mode]
+    record = {"kind": kind, "body_sha256": obs.digest(FIXTURES / "stdlib-child.txt"),
+              "argv": argv, "signals": [], "scope": "one tiny stdlib direct child; no workflow or numerical envelope"}
+    owner = None
+    error = None
+    injected = False
+    started = time.monotonic()
+    stop_at = bounds["timeout_case_seconds"] if kind == "timeout" else bounds["life_deadline_seconds"]
+    deadline = started + stop_at
+    term_at = None
+    kill_at = None
+    acted = False
+    marker = None
+    write(out / "spawn-intent.json", {"observer": obs.process_identity(os.getpid()), "argv": argv,
+                                     "body_sha256": record["body_sha256"], "intent_only": True})
+    try:
+        with (out / "stdout.json").open("x") as stdout, (out / "stderr.log").open("x") as stderr, (out / "samples.jsonl").open("x") as samples:
+            pid = os.posix_spawn(sys.executable, argv, os.environ.copy(), setsid=True,
+                file_actions=[(os.POSIX_SPAWN_OPEN, 0, "/dev/null", os.O_RDONLY, 0),
+                              (os.POSIX_SPAWN_DUP2, stdout.fileno(), 1),
+                              (os.POSIX_SPAWN_DUP2, stderr.fileno(), 2)])
+            owner = method.WaitOwner(pid)
+            marker = obs.process_identity(pid)
+            write(out / "owned-child.json", {"workload": marker, "observer_pid": os.getpid(), "argv": argv})
+            record["workload_pid"] = pid
+            while owner.collect() is None:
+                now = time.monotonic()
+                sample = obs.process_sample(pid)
+                sample["ancestor_current_bytes"] = {path: obs.read(Path(path) / "memory.current") for path in grant["ancestor_stop_bytes"]}
+                samples.write(json.dumps(sample) + "\n")
+                samples.flush()
+                if owner.collect() is not None:
+                    break
+                required_rss = sample.get("VmRSS_bytes")
+                require(type(required_rss) is int and required_rss >= 0, "required live-child RSS lost")
+                require(required_rss < grant["process_stop_bytes"], "qualification process RSS stop")
+                require(sample["host_available_bytes"] is not None and sample["host_available_bytes"] > grant["host_min_available_bytes"], "qualification host stop")
+                require(all(value is not None and int(value) < grant["ancestor_stop_bytes"][path]
+                            for path, value in sample["ancestor_current_bytes"].items()), "qualification ancestor stop")
+                text = obs.read(out / "stdout.json") or ""
+                ready = None
+                if text:
+                    require(len(text.encode()) <= bounds["max_record_bytes"], "child output exceeds record bound")
+                    ready = json.loads(text)
+                    require(ready.get("ready") is True and ready["pid"] == pid and
+                            ready["pgid"] == pid and ready["session_id"] == pid, "session/handshake mismatch")
+                if ready is not None and not acted:
+                    record["ready"] = ready
+                    acted = True
+                    if kind == "marker-recovery":
+                        stored = json.loads((out / "owned-child.json").read_text())
+                        record["recovered_identity"] = verify_marker(stored["workload"], pid, obs)
+                        record["coverage_limit"] = "original direct wait owner survives; real observer death/nonparent recovery is held"
+                    if kind in ("term", "kill", "marker-recovery"):
+                        record["signals"].append(owner.send(signal.SIGTERM))
+                        term_at = now
+                    elif kind == "signal":
+                        record["signals"].append(owner.send(signal.SIGUSR1))
+                    elif kind == "monitor-exception":
+                        injected = True
+                        raise RuntimeError("WS116-injected-monitor-exception")
+                    elif kind == "sigint":
+                        injected = True
+                        os.kill(os.getpid(), signal.SIGINT)
+                if now >= deadline and term_at is None:
+                    record["stop_reason"] = "timeout"
+                    record["signals"].append(owner.send(signal.SIGTERM))
+                    term_at = now
+                if term_at is not None and kill_at is None and now - term_at >= bounds["term_grace_seconds"]:
+                    record["signals"].append(owner.send(signal.SIGKILL))
+                    kill_at = now
+                if kill_at is not None and now - kill_at >= bounds["kill_reap_seconds"]:
+                    raise TimeoutError("qualification terminal wait4 missing after KILL")
+                time.sleep(bounds["sample_seconds"])
+    except BaseException as caught:
+        error = {"type": type(caught).__name__, "message": str(caught)}
+    finally:
+        method.cleanup(owner, record, bounds["kill_reap_seconds"])
+        record["terminal"] = owner.terminal if owner is not None else None
+        record["error"] = error
+        record["elapsed_seconds"] = time.monotonic() - started
+        write(out / "lifecycle.json", record)
+    require("cleanup_gap" not in record and owner is not None and owner.terminal is not None and not owner.wait_lost,
+            "cleanup/terminal ownership unresolved; halt all dependent cases")
+    terminal = owner.terminal
+    require(owner.collect() is terminal, "terminal wait cache identity changed")
+    if kind in ("monitor-exception", "sigint"):
+        expected = "RuntimeError" if kind == "monitor-exception" else "KeyboardInterrupt"
+        require(injected and error is not None and error["type"] == expected and terminal["term_signal"] == signal.SIGKILL,
+                "injected exception/cancellation cleanup outcome mismatch")
+    else:
+        require(error is None, "unexpected lifecycle observation failure")
+        expected_signal = {"term": signal.SIGTERM, "timeout": signal.SIGTERM, "kill": signal.SIGKILL,
+                           "signal": signal.SIGUSR1, "marker-recovery": signal.SIGTERM}.get(kind)
+        require(terminal["returncode"] == 0 if kind == "normal" else terminal["term_signal"] == expected_signal,
+                "normal/stop/signal terminal outcome mismatch")
+        require(kind != "timeout" or record.get("stop_reason") == "timeout", "deadline route not reached")
+    require(terminal["ru_maxrss_native_units"] == "Linux KiB" and
+            terminal["complete_child_peak_bytes"] == terminal["rusage_native"]["ru_maxrss"] * 1024,
+            "terminal native peak conversion mismatch")
+    return {"lifecycle_file": "lifecycle.json", "terminal": terminal,
+            "coverage_limit": record.get("coverage_limit"), "not_comparative_memory_evidence": True}
+
+
+def synthetic_record(base, times=1, profile=False, layout=False):
+    """Derive only fixed synthetic observation metadata, never a scientific fixture."""
+    result = copy.deepcopy(base)
+    result["spec"]["shape"][0] = times
+    result["spec"]["profile"] = profile
+    result["branches"] = [["known"] for _ in range(times)]
+    if profile:
+        stages = [("declaration", None)] + ([("layout", None)] if layout else [])
+        stages += [("preparation", None), ("estimation", None)]
+        stages += [("reconstruction", t) for t in range(times)] + [("result", None)]
+        result["stages"] = [{"stage": stage, "time_index": index, "edge": edge,
+                             "monotonic_ns": 20 + i, "ru_maxrss_native_KiB": 1}
+                            for i, (stage, index, edge) in enumerate(
+                                (stage, index, edge) for stage, index in stages for edge in ("enter", "exit"))]
+    return result
+
+
+MUTATIONS = (
+    "null-snapshot", "missing-snapshot", "missing-input", "missing-output", "missing-context",
+    "missing-retention", "missing-branches", "missing-timing", "wrong-units", "wrong-bytes",
+    "wrong-scope", "unknown-current", "unknown-max", "dtype-f1", "dtype-b16", "big-identity",
+    "wrong-branch-shape", "wrong-material", "wrong-pid", "wrong-spec", "unknown-status",
+    "single-enter-zero", "truncated-exit", "missing-stage", "reordered-stage", "out-of-call", "wrong-time-index",
+)
+
+
+def mutate(name, record):
+    """Apply exactly one declared malformed-record counterexample."""
+    if name == "null-snapshot": record["snapshots"]["pre_call"] = None
+    elif name == "missing-snapshot": del record["snapshots"]["pre_call"]
+    elif name == "missing-input": del record["input_sha256"]
+    elif name == "missing-output": del record["output_hashes"]
+    elif name == "missing-context": del record["context"]
+    elif name == "missing-retention": del record["result_retained"]
+    elif name == "missing-branches": del record["branches"]
+    elif name == "missing-timing": del record["call_end_monotonic_ns"]
+    elif name == "wrong-units": record["snapshots"]["pre_call"]["ru_maxrss_native_units"] = "unknown"
+    elif name == "wrong-bytes": record["snapshots"]["pre_call"]["cumulative_high_water_bytes"] = 0
+    elif name == "wrong-scope": record["snapshots"]["pre_call"]["scope"] = "unknown"
+    elif name == "unknown-current": record["context"]["cgroup"]["visible_ancestors"][0]["memory.current"] = "unknown"
+    elif name == "unknown-max":
+        record["context"]["cgroup"]["visible_ancestors"][0]["memory.max"] = "unknown"
+        record["spec"]["expected_exposed_domain"]["visible_memory_max"]["/synthetic-visible"] = "unknown"
+    elif name == "dtype-f1": record["output_hashes"]["image"][2] = "<f1"
+    elif name == "dtype-b16": record["output_hashes"]["image"][2] = "|b16"
+    elif name == "big-identity": record["output_hashes"]["image"][2] = ">f8"
+    elif name == "wrong-branch-shape": record["branches"] = []
+    elif name == "wrong-material": record["material_hashes_before"] = {}
+    elif name == "wrong-pid": record["pid"] = 4243
+    elif name == "wrong-spec": record["spec"]["id"] = "MISMATCH"
+    elif name == "unknown-status": record["status"] = "not-a-protocol-status"
+    elif name == "single-enter-zero":
+        record["stages"] = [{"stage":"declaration", "edge":"enter", "time_index":None,
+                             "monotonic_ns":0, "ru_maxrss_native_KiB":0}]
+    elif name == "truncated-exit": record["stages"].pop()
+    elif name == "missing-stage": del record["stages"][2:4]
+    elif name == "reordered-stage": record["stages"][0], record["stages"][1] = record["stages"][1], record["stages"][0]
+    elif name == "out-of-call": record["stages"][0]["monotonic_ns"] = 19
+    elif name == "wrong-time-index": record["stages"][0]["time_index"] = 0
+    else: raise RuntimeError("undeclared mutation")
+
+
+def records(out, bounds, method, obs, deadline):
+    """Run a finite set of labelled synthetic parser records, preserving all bytes."""
+    base = json.loads((FIXTURES / "synthetic-record.json").read_text())
+    require(base["synthetic_protocol_metadata"] is True, "synthetic fixture label missing")
+    results = []
+    def check(name, record, expected, expected_spec=None, raw=None, limit=None):
+        require(time.monotonic() < deadline, "Q4 soft deadline")
+        path = out / (name + ".json")
+        if raw is not None: path.write_text(raw)
+        elif record is not None: write(path, record)
+        require(not path.exists() or path.stat().st_size <= bounds["max_record_bytes"], "synthetic artifact size bound")
+        spec = expected_spec if expected_spec is not None else record["spec"] if record is not None else base["spec"]
+        actual, parsed = method.child_outcome(path, limit or bounds["parser_record_bound_bytes"], 4242, spec)
+        item = {"id":name, "synthetic_only":True, "expected":expected, "actual":actual,
+                "raw_sha256":obs.digest(path) if path.exists() else None,
+                "parse_diagnostic":parsed if actual == "malformed_child_record" else None}
+        results.append(item)
+        write(out / "parser-results.json", results)
+        require(actual == expected, "synthetic parser outcome mismatch: " + name)
+    for times in (1, 2, 4):
+        for profile, layout in ((False, False), (True, False), (True, True)):
+            name = f"valid-T{times}-profile{int(profile)}-layout{int(layout)}"
+            check(name, synthetic_record(base, times, profile, layout), "finite_observation_pending_qualification")
+    finite = synthetic_record(base)
+    finite["context"]["cgroup"]["visible_ancestors"][0]["memory.max"] = "1024"
+    finite["spec"]["expected_exposed_domain"]["visible_memory_max"]["/synthetic-visible"] = "1024"
+    check("valid-finite-limit", finite, "finite_observation_pending_qualification")
+    retained = synthetic_record(base)
+    retained["result_retained"]["arrays"][0]["dtype"] = ">f8"
+    check("valid-retained-big-endian", retained, "finite_observation_pending_qualification")
+    optional = synthetic_record(base)
+    optional["context"]["cgroup"]["visible_ancestors"][0]["memory.peak"] = "unknown"
+    check("valid-optional-unknown", optional, "finite_observation_pending_qualification")
+    for status in ("nonfinite_scientific_failure", "workflow_exception", "observation_failure", "material_identity_failure"):
+        record = synthetic_record(base)
+        record["status"] = status
+        check("status-" + status, record, status)
+    for name in MUTATIONS:
+        record = synthetic_record(base, profile=name in MUTATIONS[-6:])
+        spec = copy.deepcopy(record["spec"])
+        mutate(name, record)
+        if name == "unknown-max": spec = copy.deepcopy(record["spec"])
+        check("invalid-" + name, record, "malformed_child_record", spec)
+    check("missing-record", None, "missing_child_record")
+    check("malformed-json", None, "malformed_child_record", raw="{")
+    check("oversized-before-parse", None, "child_record_exceeds_admitted_parse_bound", raw="x" * 65, limit=64)
+    return {"synthetic_records": len(results), "results_file":"parser-results.json",
+            "scope":"schema/status parser only; no workflow or terminal-routing qualification"}
+
+
+def rss_samples(out, obs):
+    """Exercise the actual reader with tiny synthetic status text, never fake RSS data."""
+    cases = (("unreadable", None, None), ("missing", "Name: synthetic\n", None),
+             ("bad", "VmRSS: nope kB\n", None), ("wrong-unit", "VmRSS: 1 bytes\n", None),
+             ("negative", "VmRSS: -1 kB\n", None), ("zero", "VmRSS: 0 kB\n", 0),
+             ("nonzero", "VmRSS: 7 kB\n", 7168))
+    results = []
+    original = obs.read
+    try:
+        for name, text, expected in cases:
+            def synthetic_read(path, content=text):
+                return content if str(path).endswith("/status") else original(path)
+            obs.read = synthetic_read
+            sample = obs.process_sample(4242)
+            results.append({"id":name, "synthetic_status_text":text, "expected_bytes":expected, "sample":sample})
+            write(out / "synthetic-rss.json", results)
+            require(sample["VmRSS_bytes"] == expected, "RSS reader synthetic outcome mismatch: " + name)
+            require((type(sample["VmRSS_bytes"]) is int and sample["VmRSS_bytes"] >= 0) == (expected is not None),
+                    "zero/unknown guard predicate mismatch")
+    finally:
+        obs.read = original
+    return {"synthetic_status_cases":len(results), "scope":"reader and required-RSS predicate; full runner workflow routing unexercised"}
+
+
+def frozen_module(name, path):
+    """Load exactly frozen helper source, avoiding a mutable bytecode-cache identity."""
+    module = types.ModuleType(name)
+    module.__file__ = str(path)
+    sys.modules[name] = module
+    exec(compile(path.read_text(), str(path), "exec"), module.__dict__)
+    return module
+
+
+def hashes(out, inventory, obs, deadline):
+    """Compare tiny array identities and the frozen public-value fingerprint protocol."""
+    import numpy as np
+    fixture = frozen_module("ws116_qual_fixture", ROOT / "tests/reconstruction_summary_fixture.py")
+    benchmark = frozen_module("ws116_qual_benchmark", ROOT / "tests/reconstruction_memory_benchmark.py")
+    no_product()
+    bounds = inventory["common_bounds"]
+    observations = []
+    for encoding in inventory["q5_dtypes"]:
+        dtype = np.dtype(encoding)
+        base = np.arange(12, dtype=np.float64).reshape(3, 4) / 8
+        if dtype.kind == "c": base = base + 1j * (base + 0.125)
+        array = base.astype(dtype)
+        for form in inventory["q5_forms"]:
+            require(time.monotonic() < deadline, "Q5 soft deadline")
+            if form == "scalar": value = np.array(array[0, 0])
+            elif form == "contiguous": value = array
+            elif form == "transposed": value = array.T
+            elif form == "strided": value = array[:, ::2]
+            elif form == "negative-stride": value = array[::-1, ::-1]
+            elif form == "big-endian": value = array.astype(dtype.newbyteorder(">"))
+            elif form == "empty": value = array[:0]
+            else: raise RuntimeError("undeclared array form")
+            require(value.size <= bounds["max_array_elements"] and value.nbytes <= bounds["max_array_payload_bytes"], "tiny array bound exceeded")
+            expected = fixture.identity(value, "qualification")
+            actual = [obs.array_identity(value, "qualification", chunk_bytes=chunk) for chunk in bounds["array_chunks_bytes"]]
+            copied = np.array(value, copy=True, order="C")
+            fingerprint = benchmark.public_value_sha256(value)
+            item = {"encoding":encoding, "actual_dtype":value.dtype.str, "form":form,
+                    "shape":value.shape, "payload_bytes":value.nbytes, "frozen_identity":expected,
+                    "new_identities":actual, "public_value_protocol":"RM84-public-values-v1",
+                    "public_value_sha256":fingerprint,
+                    "copy_public_value_sha256":benchmark.public_value_sha256(copied)}
+            observations.append(item)
+            write(out / "hash-results.json", observations)
+            require(all(result == expected for result in actual), "canonical identity mismatch: " + encoding + "/" + form)
+            require(item["public_value_sha256"] == item["copy_public_value_sha256"], "public-value fingerprint copy mismatch")
+            no_product()
+    require(len(observations) == inventory["q5_max_array_observations"], "finite array inventory count mismatch")
+    return {"array_observations":len(observations), "numpy":np.__version__,
+            "scope":"tiny identity protocol only, no reconstruction or memory-benefit result",
+            "scratch_limit":"conversion buffer and tobytes chunk may coexist; no total scratch ceiling"}
+
+
+def main():
+    """Execute one frozen released case only; preserve failures and stop dependents."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--case", required=True)
+    parser.add_argument("--grant", type=Path, required=True)
+    parser.add_argument("--attempt-id", required=True)
+    args = parser.parse_args()
+    require(args.attempt_id and all(c in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_" for c in args.attempt_id), "safe unique attempt id required")
+    out = QUAL / "attempts" / args.attempt_id
+    out.mkdir(parents=True, exist_ok=False)
+    receipt = {"protocol":"WS116-qualification-v1", "case":args.case, "attempt_id":args.attempt_id,
+               "status":FAIL, "driver_pid":os.getpid(), "argv":sys.argv,
+               "started_monotonic_ns":time.monotonic_ns(), "not_scientific_evidence":True}
+    obs = None
+    try:
+        (out / "grant.input").write_bytes(args.grant.read_bytes())
+        grant = json.loads((out / "grant.input").read_text())
+        inventory = json.loads((QUAL / "inventory.json").read_text())
+        sys.path.insert(0, str(HERE))
+        import observer as obs
+        import run_attempt as method
+        no_product()
+        receipt["grant_sha256"] = obs.digest(out / "grant.input")
+        case, before = admission(args, grant, inventory, obs, method, out)
+        receipt.update(source_sha256=before, exposed_domain=grant["resource_domain"]["expected_exposed"],
+                       resource_domain=grant["resource_domain"], driver_identity=obs.process_identity(os.getpid()))
+        deadline = time.monotonic() + inventory["common_bounds"]["soft_deadline_seconds"]
+        kind = case["kind"]
+        if kind == "context": result = q0(out, obs)
+        elif kind == "records": result = records(out, inventory["common_bounds"], method, obs, deadline)
+        elif kind == "rss-samples": result = rss_samples(out, obs)
+        elif kind == "hashes": result = hashes(out, inventory, obs, deadline)
+        else: result = lifecycle(kind, out, grant, inventory["common_bounds"], obs, method)
+        require(time.monotonic() <= deadline, "case exceeded declared soft deadline")
+        no_product()
+        require(sources(grant, obs) == before, "qualification material identities changed during case")
+        receipt.update(status=PASS, result=result)
+    except BaseException as error:
+        receipt.update(error_type=type(error).__name__, error_message=str(error))
+    finally:
+        receipt["finished_monotonic_ns"] = time.monotonic_ns()
+        if obs is not None:
+            try: receipt["postflight"] = obs.context(ROOT)
+            except BaseException as error: receipt["postflight_error"] = str(error)
+        receipt["files_before_receipt"] = {path.name:{"logical_bytes":path.stat().st_size,
+            "allocated_bytes":path.stat().st_blocks * 512} for path in out.iterdir() if path.is_file()}
+        receipt["limits"] = ("Qualification is not a scientific memory envelope. Receipt excludes its own disk bytes. "
+            "Actual observer death/nonparent recovery is unexercised; no orphan scenario. "
+            "A cleanup/ownership gap blocks later cases. No retry/growth or product workflow.")
+        write(out / "receipt.json", receipt)
+    return 0 if receipt["status"] == PASS else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

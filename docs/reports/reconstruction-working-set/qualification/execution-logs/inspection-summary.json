@@ -1,0 +1,10 @@
+{
+  "scope":"released Q0-context then conditional Q1-normal, attempts1 only",
+  "Q0":{"exit":0,"status":"case_pass_scoped_only","receipt_sha256":"e20af779dcb9e23dd480293343f906ffb5e7406c68dfffb6b9f3be1741b63fa7","environment_sha256":"e2cbd41373a4073b8cddf3d88148bbc8652e2ab4402723217440dadc942d9fb0","python":"3.13.12","numpy":"2.5.3","scipy":"1.18.1","fft_default_workers":1,"ten_source_hashes_matched":true,"exposed_domain_matched":true,"four_requested_thread_controls":"1","driver_pid":44566,"driver_pid_absent_after_exit":true,"workload_child":"none"},
+  "Q1_binding":{"changed_only":["case","attempt_id","prerequisites"],"grant_sha256":"5529072ca96e86a5a12f408fa0ece888067dd1720e6b3bd4d5216d1bbe854750","prelaunch_proof_age_ns":288834143919,"proof_limit_ns":300000000000},
+  "Q1":{"exit":1,"status":"qualification_failed","receipt_sha256":"f1aa18a0cf4f1afe0ec399cc141226330c447dbd59e499b7ec84c70ce340c70a","lifecycle_sha256":"d32051734211e5823ca0505904c8f4b10e3afdfdcdd27b0e1e7997d0bf377b5e","error_type":"NotImplementedError","error_message":"posix_spawn: setsid unavailable on this platform","driver_pid":44579,"driver_pid_absent_after_exit":true,"workload_pid_returned":false,"owned_child_marker_present":false,"terminal":null,"stdout_stderr_samples_bytes":0},
+  "classification":"pinned runtime capability failure; scientific/product numerical behavior not exercised",
+  "freeze_after_attempts":"all ten hashes matched",
+  "actions_after_failure":"read-only receipts/source-hash/known-driver ownership inspection only; no retry, repair, fallback probe or broader qualification",
+  "limits":"No numerical workflow, comparative RSS or resource-benefit claim. No child terminal rusage is available; unknown is not zero. Effective library worker limits remain unknown beyond recorded controls/default FFT setting."
+}

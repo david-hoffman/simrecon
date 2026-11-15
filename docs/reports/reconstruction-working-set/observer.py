@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 import contextlib
+import fcntl
 import hashlib
 import importlib
+import json
 import os
 import platform
 import resource
+import sys
 import time
 from pathlib import Path
 
@@ -22,6 +25,195 @@ SNAPSHOT_SCOPES = {
 }
 ONE_BYTE_DTYPES = frozenset(("|b1", "|i1", "|u1"))
 MULTIBYTE_KIND_SIZES = {"i": (2, 4, 8), "u": (2, 4, 8), "f": (2, 4, 8, 16), "c": (8, 16)}
+SESSION_BOOTSTRAP = r"""import json
+import os
+import sys
+
+fd = int(sys.argv[1])
+nonce = sys.argv[2]
+stage = "arguments"
+try:
+    target = json.loads(sys.argv[3])
+    stage = "setsid"
+    os.setsid()
+    stage = "readiness"
+    message = json.dumps({"role":"bootstrap", "pid":os.getpid(), "ppid":os.getppid(),
+        "pgid":os.getpgrp(), "session_id":os.getsid(0), "nonce":nonce,
+        "executable":os.readlink("/proc/self/exe")}).encode() + b"\n"
+    if len(message) > 512 or os.write(fd, message) != len(message):
+        raise RuntimeError("invalid/incomplete bounded readiness write")
+    os.close(fd)
+    fd = -1
+    stage = "exec"
+    os.execve(target[0], target, os.environ.copy())
+except BaseException as error:
+    if fd >= 0:
+        os.close(fd)
+    detail = {"stage":stage, "type":type(error).__name__, "message":str(error)[:160]}
+    os.write(2, ("WS116_BOOTSTRAP_ERROR " + json.dumps(detail) + "\n").encode())
+    raise SystemExit(125 if stage == "exec" else 124)
+"""
+SESSION_BOOTSTRAP_SHA256 = hashlib.sha256(SESSION_BOOTSTRAP.encode()).hexdigest()
+
+
+class StartupError(RuntimeError):
+    """Fixed-route preparation/readiness failure, separate from numerical failure."""
+
+
+class FixedSessionLaunch:
+    """One plain-spawn/same-PID setsid/readiness/exec route; never reaps or signals.
+
+    Caller creates one exact-PID wait owner immediately after spawn returns and
+    uses direct-PID cleanup throughout the declared no-descendant workload.
+    """
+
+    def __init__(self, target_argv, env, nonce, stdout_fd, stderr_fd, pipe_bytes=1024):
+        self.target_argv = list(target_argv)
+        self.env = env
+        self.nonce = nonce
+        self.pipe_bytes = pipe_bytes
+        self.pid = None
+        self.ready = None
+        self.eof = False
+        self.data = bytearray()
+        self.opened = set()
+        self.fd_plan = {}
+        if (
+            not self.target_argv
+            or self.target_argv[0] != sys.executable
+            or not isinstance(nonce, str)
+            or not 0 < len(nonce) <= 64
+            or any(
+                c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
+                for c in nonce
+            )
+            or pipe_bytes != 1024
+        ):
+            raise StartupError("fixed pinned argv/nonce/readiness bound invalid")
+        try:
+            raw_read, raw_write = os.pipe2(os.O_CLOEXEC)
+            self.opened.update((raw_read, raw_write))
+            self.read_fd, write_fd = self._reserve(raw_read), self._reserve(raw_write)
+            self._close(raw_read)
+            self._close(raw_write)
+            out_src, err_src = self._reserve(stdout_fd), self._reserve(stderr_fd)
+            ready_dst = self._reserve(write_fd)
+            self.parent_writers = (write_fd, ready_dst, out_src, err_src)
+            os.set_blocking(self.read_fd, False)
+            self.argv = [
+                sys.executable,
+                "-c",
+                SESSION_BOOTSTRAP,
+                str(ready_dst),
+                nonce,
+                json.dumps(self.target_argv),
+            ]
+            self.actions = [
+                (os.POSIX_SPAWN_OPEN, 0, "/dev/null", os.O_RDONLY, 0),
+                (os.POSIX_SPAWN_DUP2, out_src, 1),
+                (os.POSIX_SPAWN_DUP2, err_src, 2),
+                (os.POSIX_SPAWN_DUP2, write_fd, ready_dst),
+                (os.POSIX_SPAWN_CLOSE, self.read_fd),
+                (os.POSIX_SPAWN_CLOSE, write_fd),
+                (os.POSIX_SPAWN_CLOSE, out_src),
+                (os.POSIX_SPAWN_CLOSE, err_src),
+            ]
+            self.fd_plan = {
+                "read": self.read_fd,
+                "write_source": write_fd,
+                "ready_destination": ready_dst,
+                "stdout_source": out_src,
+                "stderr_source": err_src,
+            }
+        except BaseException:
+            self.close()
+            raise
+
+    def _reserve(self, fd):
+        copied = fcntl.fcntl(fd, fcntl.F_DUPFD_CLOEXEC, 64)
+        self.opened.add(copied)
+        return copied
+
+    def _close(self, fd):
+        if fd in self.opened:
+            os.close(fd)
+            self.opened.remove(fd)
+
+    def spawn(self):
+        """Return one kernel PID; there is no unsupported setsid spawn attribute."""
+        self.pid = os.posix_spawn(sys.executable, self.argv, self.env, file_actions=self.actions)
+        return self.pid
+
+    def release_parent_writers(self):
+        """Close aliases only after the caller has constructed its exact wait owner."""
+        for fd in self.parent_writers:
+            self._close(fd)
+
+    def drain(self):
+        """Drain bounded bytes even after cached terminal exit; validate one message."""
+        if self.ready is not None:
+            return self.ready
+        for _ in range(8):
+            if self.eof:
+                break
+            try:
+                chunk = os.read(self.read_fd, 256)
+            except BlockingIOError:
+                break
+            if not chunk:
+                self.eof = True
+                break
+            if len(self.data) + len(chunk) > self.pipe_bytes:
+                raise StartupError("readiness byte bound exceeded")
+            self.data.extend(chunk)
+        if b"\n" in self.data:
+            if self.data.count(b"\n") != 1 or not self.data.endswith(b"\n"):
+                raise StartupError("malformed/multiple readiness messages")
+            try:
+                value = json.loads(self.data.decode())
+            except (ValueError, UnicodeError) as error:
+                raise StartupError("malformed readiness JSON") from error
+            if (
+                not isinstance(value, dict)
+                or value.get("role") != "bootstrap"
+                or value.get("pid") != self.pid
+                or value.get("ppid") != os.getpid()
+                or value.get("pgid") != self.pid
+                or value.get("session_id") != self.pid
+                or value.get("nonce") != self.nonce
+                or value.get("executable") != str(Path(sys.executable).resolve())
+            ):
+                raise StartupError("unverified same-PID/session/nonce readiness")
+            self.ready = value
+            self.close()
+        elif self.eof:
+            raise StartupError("readiness EOF without a valid message")
+        return self.ready
+
+    def close(self):
+        """Close retained parent descriptors; no process ownership action occurs."""
+        for fd in tuple(self.opened):
+            self._close(fd)
+
+
+def bootstrap_failure(path):
+    """Read only a bounded fixed bootstrap-error prefix after child termination."""
+    try:
+        with Path(path).open("rb") as stream:
+            first = stream.read(4096).split(b"\n", 1)[0]
+        prefix = b"WS116_BOOTSTRAP_ERROR "
+        if first.startswith(prefix):
+            value = json.loads(first[len(prefix) :])
+            if isinstance(value, dict) and value.get("stage") in (
+                "arguments",
+                "setsid",
+                "readiness",
+                "exec",
+            ):
+                return value
+    except (OSError, ValueError, UnicodeError):
+        pass
+    return None
 
 
 def legal_numeric_dtype(value, *, canonical):

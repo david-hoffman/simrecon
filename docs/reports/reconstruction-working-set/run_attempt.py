@@ -19,8 +19,12 @@ import time
 from pathlib import Path
 
 from observer import (
+    SESSION_BOOTSTRAP_SHA256,
     SNAPSHOT_SCOPES,
     THREADS,
+    FixedSessionLaunch,
+    StartupError,
+    bootstrap_failure,
     cgroup_ancestors,
     context,
     digest,
@@ -149,6 +153,23 @@ def admit(grant):
     if actual != grant["candidate"] or material_hashes(ROOT) != grant["material_hashes"]:
         raise ValueError("candidate or material input identities changed")
     manifest = json.loads((HERE / "manifest.json").read_text())
+    if (
+        manifest["launch"]["bootstrap_sha256"] != SESSION_BOOTSTRAP_SHA256
+        or grant["startup_timeout_seconds"] != manifest["launch"]["startup_timeout_seconds"]
+        or type(grant["startup_pipe_bytes"]) is not int
+        or grant["startup_pipe_bytes"] != manifest["launch"]["startup_pipe_bytes"]
+    ):
+        raise ValueError("fixed bootstrap identity/startup bounds differ from manifest")
+    nonce = grant["launch_nonce"]
+    if (
+        not isinstance(nonce, str)
+        or not 0 < len(nonce) <= 64
+        or any(
+            c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
+            for c in nonce
+        )
+    ):
+        raise ValueError("bounded fixed-route nonce required")
     candidates = manifest["initial_conditions"] + grant.get("declared_growth_conditions", [])
     condition = next(row for row in candidates if row["id"] == grant["condition_id"])
     if condition not in manifest["initial_conditions"] and (
@@ -235,27 +256,32 @@ class WaitOwner:
             },
             "ru_maxrss_native_units": "Linux KiB",
             "ru_maxrss_multiplier_to_bytes": 1024,
-            "complete_child_peak_bytes": int(usage.ru_maxrss) * 1024,
+            "kernel_reported_direct_child_high_water_bytes": int(usage.ru_maxrss) * 1024,
             "scope": (
-                "wait4 exact direct child through exit, including JSON/teardown; "
-                "maximum resident process size, not concurrent aggregate or numerical-only memory"
+                "kernel-reported direct-child usage through final exit; inherited/pre-exec/"
+                "exec-transition high-water retention unresolved; same PID does not guarantee "
+                "every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim"
             ),
         }
         return self.terminal
 
     def send(self, signum):
-        """Signal only a still-owned child session after collecting any terminal race."""
+        """Signal only the still-owned direct PID, before or after session readiness."""
         # An unreaped direct child cannot have its PID recycled. Always collect
         # first; if another reaper invalidated ownership, do not signal a reused PID.
         if self.collect() is not None:
             return {"signal": signum, "delivery": "already_terminal"}
         try:
-            os.killpg(self.pid, signum)
-            return {"signal": signum, "delivery": "sent", "monotonic_ns": time.monotonic_ns()}
+            os.kill(self.pid, signum)
+            return {
+                "signal": signum,
+                "delivery": "direct_pid_sent",
+                "monotonic_ns": time.monotonic_ns(),
+            }
         except ProcessLookupError:
             return {
                 "signal": signum,
-                "delivery": "group_absent_race",
+                "delivery": "direct_pid_absent_race",
                 "monotonic_ns": time.monotonic_ns(),
             }
 
@@ -630,7 +656,7 @@ def main():
     out = HERE / "raw" / args.attempt_id
     out.mkdir(parents=True, exist_ok=False)
     receipt = {
-        "protocol": "WS116-attempt-v2",
+        "protocol": "WS116-attempt-v3",
         "status": "admission_started",
         "phase": "admission",
         "observer_pid": os.getpid(),
@@ -638,6 +664,7 @@ def main():
         "signals": [],
     }
     owner = None
+    launch = None
     grant = {}
     spec = None
     try:
@@ -671,13 +698,28 @@ def main():
         hashes_before = material_hashes(ROOT)
         spec["expected_material_hashes"] = hashes_before
         spec["expected_exposed_domain"] = grant["resource_domain"]["expected_exposed"]
+        target_argv = [
+            sys.executable,
+            str(HERE / "workload_child.py"),
+            str(out / "spec.json"),
+            str(ROOT),
+        ]
+        spec["launch"] = {
+            "route": "plain-spawn/same-pid-setsid/execve",
+            "bootstrap_sha256": SESSION_BOOTSTRAP_SHA256,
+            "nonce": grant["launch_nonce"],
+            "startup_timeout_seconds": grant["startup_timeout_seconds"],
+            "startup_pipe_bytes": grant["startup_pipe_bytes"],
+            "target_argv": target_argv,
+        }
         write(out / "spec.json", spec)
         receipt.update(
             candidate_before=identity,
             material_hashes_before=hashes_before,
             resource_domain_admission=grant["resource_domain"],
             wait_owner="single os.wait4(exact_pid,WNOHANG), no waitpid/Popen/aggregate waits",
-            spawn_route="os.posix_spawn executable with setsid=True; runtime support not assumed",
+            spawn_route="plain posix_spawn; fixed same-PID setsid/readiness/execve bootstrap",
+            launch=spec["launch"],
             interpreter={
                 "executable": sys.executable,
                 "resolved": str(Path(sys.executable).resolve()),
@@ -700,7 +742,7 @@ def main():
                 "MALLOC_ARENA_MAX",
             )
         }
-        receipt["phase"] = "spawn"
+        receipt["phase"] = "startup_prepare"
         # chdir is parent-only before spawn, avoiding preexec_fn or another child.
         os.chdir(ROOT)
         with (
@@ -711,18 +753,24 @@ def main():
             receipt["observer_pre_spawn_snapshot"] = __import__("observer").rusage_snapshot(
                 "parent before posix_spawn; not subtracted from child peak"
             )
-            argv = [
-                sys.executable,
-                str(HERE / "workload_child.py"),
-                str(out / "spec.json"),
-                str(ROOT),
-            ]
+            launch = FixedSessionLaunch(
+                target_argv,
+                env,
+                grant["launch_nonce"],
+                stdout.fileno(),
+                stderr.fileno(),
+                grant["startup_pipe_bytes"],
+            )
             write(
                 out / "spawn-intent.json",
                 {
                     "attempt_id": args.attempt_id,
                     "observer_identity": process_identity(os.getpid()),
-                    "argv": argv,
+                    "target_argv": target_argv,
+                    "bootstrap_argv": launch.argv,
+                    "file_actions": launch.actions,
+                    "fd_plan": launch.fd_plan,
+                    "bootstrap_sha256": SESSION_BOOTSTRAP_SHA256,
                     "spec_sha256": digest(out / "spec.json"),
                     "grant_sha256": receipt["grant_sha256"],
                     "scope": (
@@ -732,18 +780,10 @@ def main():
                 },
             )
             receipt["spawn_start_monotonic_ns"] = time.monotonic_ns()
-            pid = os.posix_spawn(
-                sys.executable,
-                argv,
-                env,
-                file_actions=[
-                    (os.POSIX_SPAWN_OPEN, 0, "/dev/null", os.O_RDONLY, 0),
-                    (os.POSIX_SPAWN_DUP2, stdout.fileno(), 1),
-                    (os.POSIX_SPAWN_DUP2, stderr.fileno(), 2),
-                ],
-                setsid=True,
-            )
+            receipt["phase"] = "spawn"
+            pid = launch.spawn()
             owner = WaitOwner(pid)
+            launch.release_parent_writers()
             write(
                 out / "owned-child.json",
                 {
@@ -751,8 +791,9 @@ def main():
                     "observer_pid": os.getpid(),
                     "workload_pid": pid,
                     "child_identity": process_identity(pid),
-                    "expected_pgid_and_session_id": pid,
-                    "argv": argv,
+                    "session_status": "unverified until bounded readiness",
+                    "target_argv": target_argv,
+                    "bootstrap_argv": launch.argv,
                     "spec_sha256": digest(out / "spec.json"),
                     "grant_sha256": receipt["grant_sha256"],
                     "scope": (
@@ -762,13 +803,35 @@ def main():
                 },
             )
             receipt.update(
-                workload_pid=pid, phase="observation", spawn_return_monotonic_ns=time.monotonic_ns()
+                workload_pid=pid,
+                phase="startup_readiness",
+                spawn_return_monotonic_ns=time.monotonic_ns(),
             )
             deadline = receipt["spawn_start_monotonic_ns"] / 1e9 + grant["deadline_seconds"]
+            startup_deadline = (
+                receipt["spawn_start_monotonic_ns"] / 1e9 + grant["startup_timeout_seconds"]
+            )
             term_at = None
             kill_at = None
             count = 0
-            while owner.collect() is None:
+            while True:
+                terminal = owner.collect()
+                if launch.ready is None:
+                    ready = launch.drain()  # Drain buffered readiness even after cached exit.
+                    if ready is not None:
+                        if time.monotonic() >= startup_deadline:
+                            receipt["stop_reason"] = "startup_readiness_timeout"
+                            raise StartupError("session readiness arrived after startup deadline")
+                        write(out / "session-ready.json", ready)
+                        receipt["session_ready"] = ready
+                        receipt["phase"] = "observation"
+                if terminal is not None:
+                    if launch.ready is None:
+                        raise StartupError("terminal exit without verified session readiness")
+                    if time.monotonic() >= deadline:
+                        receipt["stop_reason"] = "timeout"
+                        receipt["deadline_observed_after_exit"] = True
+                    break
                 sample = process_sample(pid)
                 sample["child_cgroup"] = read(f"/proc/{pid}/cgroup")
                 sample["ancestor_current_bytes"] = {
@@ -779,11 +842,13 @@ def main():
                 samples.flush()
                 count += 1
                 if owner.collect() is not None:
-                    break  # Exit raced /proc observation; do not invent a stop.
+                    continue  # Re-enter drain before accepting a terminal/readiness race.
                 now = time.monotonic()
                 stop = None
                 if sample["child_cgroup"] != read("/proc/self/cgroup"):
                     stop = "child_cgroup_missing_or_moved"
+                elif launch.ready is None and now >= startup_deadline:
+                    stop = "startup_readiness_timeout"
                 elif now >= deadline:
                     stop = "timeout"
                 elif type(sample.get("VmRSS_bytes")) is not int or sample["VmRSS_bytes"] < 0:
@@ -828,9 +893,17 @@ def main():
             and receipt["material_hashes_after"] == receipt["material_hashes_before"]
         )
         receipt["material_identity_matches"] = identity_matches
-        if "stop_reason" in receipt:
+        boot_error = bootstrap_failure(out / "stderr.log")
+        if boot_error is not None:
+            receipt["bootstrap_error"] = boot_error
+            receipt["status"] = "bootstrap_" + boot_error["stage"] + "_failure"
+        elif "stop_reason" in receipt:
             receipt["status"] = (
-                "timeout_stopped" if receipt["stop_reason"] == "timeout" else "monitor_stopped"
+                "startup_timeout_stopped"
+                if receipt["stop_reason"] == "startup_readiness_timeout"
+                else "timeout_stopped"
+                if receipt["stop_reason"] == "timeout"
+                else "monitor_stopped"
             )
         elif owner.terminal["signaled"]:
             receipt["status"] = "child_signaled"
@@ -859,13 +932,34 @@ def main():
         status = (
             "observer_cancelled"
             if isinstance(error, KeyboardInterrupt)
-            else {"admission": "admission_refused", "spawn": "spawn_failure"}.get(
-                receipt["phase"], "observation_failure"
-            )
+            else "startup_timeout_stopped"
+            if receipt.get("stop_reason") == "startup_readiness_timeout"
+            else {
+                "admission": "admission_refused",
+                "startup_prepare": "startup_fd_prepare_failure",
+                "startup_readiness": "startup_readiness_failure",
+                "spawn": "spawn_failure",
+            }.get(receipt["phase"], "observation_failure")
         )
         receipt.update(status=status, error_type=type(error).__name__, error_message=str(error))
     finally:
+        if owner is None and launch is not None and launch.pid is not None:
+            owner = WaitOwner(
+                launch.pid
+            )  # First owner after a returned-PID interruption, not a second reaper.
+            receipt["returned_pid_cleanup_owner_created"] = True
         cleanup(owner, receipt, grant.get("kill_reap_seconds", 1) if isinstance(grant, dict) else 1)
+        if launch is not None:
+            launch.close()
+            (out / "startup-readiness.bin").write_bytes(launch.data)
+            receipt["startup_fd_plan"] = launch.fd_plan
+            receipt["startup_eof_observed"] = launch.eof
+            receipt["startup_parent_fds_closed"] = not launch.opened
+            boot_error = bootstrap_failure(out / "stderr.log")
+            if boot_error is not None:
+                receipt["bootstrap_error"] = boot_error
+                if receipt["status"] == "startup_readiness_failure":
+                    receipt["status"] = "bootstrap_" + boot_error["stage"] + "_failure"
         if owner is not None:
             receipt["terminal"] = owner.terminal
             receipt["wait_ownership_lost"] = owner.wait_lost
@@ -899,10 +993,13 @@ def main():
             if receipt["status"] == "complete_child_observed_pending_scientific_qualification":
                 receipt["status"] = "complete_child_observation_incomplete"
         receipt["limits"] = (
-            "wait4 peak is a maximum process RSS, not parent+child aggregate or "
-            "numerical-only allocation. No numerical grandchildren commissioned. "
-            "Inherited/pre-exec high-water, native allocator/FFT semantics and spawn support "
-            "require actual runtime qualification. Sampling/stops can overshoot. "
+            "Terminal wait4 is kernel-reported direct-child usage through final exit. "
+            "Inherited/pre-exec/exec-transition high-water retention remains unresolved; same PID "
+            "does not guarantee every bootstrap/startup peak survives exec. No subtraction/"
+            "aggregate/benefit claim. Target self snapshots are separate; "
+            "no numerical descendants. Direct-PID cleanup only. PID1 is not a general reaper; "
+            "abrupt-parent/spawn-marker gaps "
+            "remain. Sampling/stops can overshoot. "
             "File inventory excludes receipt itself; coordinator collects final disk sizes/hash "
             "externally. No retry."
         )

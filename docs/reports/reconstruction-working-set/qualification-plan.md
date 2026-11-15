@@ -1,5 +1,14 @@
 # Bounded method qualification proposal — not execution authority
 
+Method5 update: Q0-v1 environment facts passed; Q1-v1 failed before PID return.
+One separate fixed tiny bootstrap/exec route passed. Current integrated source
+reuses that route through one helper and direct-PID ownership, with explicit
+startup error states and unresolved exec high-water retention. It has only new
+AST/Ruff evidence, not runtime qualification. Old source-matched prerequisites
+are not rewritten; refresh Q0/Q1 on current bytes before dependent cases.
+Real abrupt-parent/orphan recovery remains held under PID1=sleep. The table's
+remaining phases are proposals, not new grants; see METHOD REVIEW5 input.
+
 This plan proposes the next separately released phase after fresh actual-parent
 scope review. It is not the scientific corpus, a product gate, a numerical
 result, or an already granted runtime probe. No scripts/cases below ran. The
@@ -19,12 +28,12 @@ its dependent phase until diagnosis, with no implicit retry.
 | Phase | Exact proposed interface and bounded check | Required evidence / hard stop |
 | --- | --- | --- |
 | Q0 actual environment/domain | Inside `simrecon-campaign-ubuntu`, use the granted pinned uv/worktree Python. Record interpreter/platform/lock/backend/thread identities and actual-time namespace/membership/mount/visible ancestor limits/current/events/swap/rlimits. Root separately captures Docker/outer correspondence proof including private cgroup namespace and any requested limits. | All required observable facts and durable proof hash/age match the exposed-domain grant. External physical-host ancestors remain unknown. Missing bound/correspondence, competing campaign work or unresolved ownership stops. No preliminary record relabelled as actual-time proof. |
-| Q1 normal lifecycle | Tiny stdlib-only child, `os.posix_spawn(...setsid=True)` with exact recorded argv/file actions; sole `os.wait4(exact_pid,WNOHANG)` collects normal exit and terminal rusage. Confirm PID/session/group and native units/context. | Exactly one terminal collection; cached rereads do not reap again. No Popen workload reaper or aggregate wait. Record inherent/pre-exec high-water limitations. No report/product/scientific workflow yet. |
+| Q1 normal lifecycle | Plain spawn of fixed same-PID setsid/readiness/exec bootstrap with exact argv/body/FD actions; sole `os.wait4(exact_pid,WNOHANG)`. Confirm PID/session/nonce, FD closure, normal exit and kernel native units. | One terminal collection; cached rereads do not reap again. No Popen/aggregate reaper. Inherited/pre-exec/exec-transition high-water retention stays unresolved; same PID gives no guarantee of startup-peak preservation. No workflow. |
 | Q2 stop/cleanup | Separate tiny stdlib children for TERM exit, TERM-ignoring KILL escalation, deadline timeout, external child signal, and monitor exception. Send signals only after exact ownership check; use bounded waits and no deliberately uninterruptible/OOM child. | Raw wait status/exit/signal, requested/delivered TERM/KILL, timestamps, terminal rusage or explicit missing/unreaped state. Ownership loss remains a stop, never success or permission to signal a reused PID. Unreaped or resource-uncertain child blocks subsequent work. |
-| Q3 cancellation/recovery | One supported observer SIGINT enters bounded cleanup; separately declared tiny-child scenario exercises observer TERM/abrupt loss and marker-guided coordinator recovery. Match boot/start/PID/PGID/session/executable/argv/spec, act only on verified owned group. | Preserve intent/child markers and partial logs. Spawn-to-marker, repeated interrupt, host death and nonparent wait4-loss gaps stay explicit. No universal crash-proof journal claim. Never infer child exit from observer exit. Recovery uncertainty blocks the window. |
+| Q3 cancellation/recovery | Propose one supported observer SIGINT and direct-parent marker recovery, matching boot/start/PID/session/argv/spec. Real abrupt-parent loss is held unless a separately inspected exact-owned subreaper/adoptive-reap topology is safe; no deliberate orphan under PID1=sleep. | Preserve markers/partial logs; only verified owned direct PIDs may be signaled. No general recovery, original nonparent wait4 restoration or crash-proof journal claim. Unresolved ownership/reaping blocks the window. |
 | Q4 protocol parsing | Later named standalone qualification driver may import the report parser only under that grant. Use tiny scalar JSON records for a normal complete unprofiled record, complete T1/T2/T4 profile masks with/without layout, each terminal/nonfinite/failure disposition, and missing/malformed/oversized output. | Include review counterexamples: null/omitted snapshots, lone declaration-enter/timestamp zero, incomplete/unpaired/reordered/time-misaligned stages or indices, unusable required current/max/scope, illegal `<f1`/`|b16` and identity/material/PID/spec mismatch. Legitimate `max`, optional nulls, big-endian retained metadata and unprofiled empty stages remain valid. These are observer protocol checks, not new science or product tests. |
 | Q5 bounded hash observation | Under a separate explicit scientific-import allowance, tiny arrays only: scalar, contiguous, strided/negative-stride, endian and empty forms across supported legal kinds/widths. Compare new identity tuple with frozen RM84 meaning and public-value fingerprint protocol. | No reconstruction/reference pair. Record actual dtypes/endian/shape/hash agreement, conversion/finite-check cost and limitation that chunks/buffers coexist. Mismatch stops dependent resource trials. No whole-volume hash copy or low-precision scientific claim. |
-| Q6 initial real-call readiness | After Q0–Q5 acceptance and exact per-case release, run the smallest declared meaningful workflow/summary conditions with callers retained, actual branch/finite results and material hashes; keep profile controls separate. | A matched normal process must produce complete-child peak through exit plus named snapshots, correct common identities/branches and declared resource facts. This becomes new WS116 evidence, not a reuse of #112 observations. Any failure is classified before progression. |
+| Q6 initial real-call readiness | After Q0–Q5 acceptance and exact per-case release, run the smallest declared meaningful workflow/summary conditions with callers retained, actual branch/finite results and material hashes; keep profile controls separate. | Record kernel-reported direct-child terminal high-water, separate target snapshots and explicit exec-retention limits, correct common identities/branches/resource facts. New WS116 evidence never reuses #112 data. Any failure is classified before progression. |
 
 Actual qualification commands/scripts and safety numbers must be concrete in the
 later release packet; this table does not authorize their execution or a hidden
@@ -68,3 +77,30 @@ These checks establish source syntax/style only. They create no memory result,
 capability/lifecycle proof, imported-product health or scientific qualification.
 Final checked source bytes go to the fresh affected-scope reviewer. No runtime
 module or product import is inferred from AST success.
+
+## Method5 preparation checks and remaining release boundary
+
+Root's explicit supplement authorized only AST/compile-without-import and pinned
+Ruff for observer.py, run_attempt.py, workload_child.py and method_qualification.py.
+Exact commands/time/status/output are preserved under
+`/workspace/work/campaign/evidence/116/method5-preparation-checks/`.
+AST attempts1/2 passed on Python3.13.12; attempt3 also compiled the embedded
+bootstrap literal without executing it or any source module. Initial lint
+returned1 with45 findings; safe fix returned1 (two import-order fixes,43 left),
+format returned0 (three files reformatted). Lint attempt2 returned1 with six long-
+string findings. Equivalent string splitting preserved emitted text. Format
+attempt2 returned0 (four unchanged). Final lint attempt3 and format-check
+attempt2 returned0. The current four checked source hashes are recorded externally.
+No runtime/report/product/scientific import, new probe, lifecycle, test, install
+or workflow occurred during method5 correction. No old failure was retried.
+
+After fresh METHOD REVIEW5, concrete coordinator-frozen code/commands/grants/
+bounds and fresh root proof are still required. Refresh Q0 with current source
+maps, then Q1 against its actual successful receipt using the integrated helper.
+Q2 should check normal TERM, TERM-ignoring KILL, startup timeout, bounded EOF/
+malformed readiness and invalid-argv exec failure (for example a declared NUL
+argument) using tiny stdlib targets only. Q3 remains scoped as above. Q4 retains
+prior null/missing/unit/dtype/stage counterexamples and must add launch metadata,
+readiness/terminal race and native-field/status cases. Q5 keeps tiny canonical
+hash/fingerprint comparisons; no product generation/reference workflow. All
+are pending exact finite implementation/inspection/release, not commands to run.

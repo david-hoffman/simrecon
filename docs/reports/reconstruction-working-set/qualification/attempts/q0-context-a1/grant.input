@@ -1,0 +1,36 @@
+{
+  "approved": true,
+  "scope": "WS116-Q0-Q1-v1",
+  "case": "Q0-context",
+  "attempt_id": "q0-context-a1",
+  "candidate_head": "fad8ac2ded6357fbb579e9693c6d0189f251c446",
+  "python_resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "campaign_ownership_resolved": true,
+  "source_sha256": {
+    "docs/reports/reconstruction-working-set/method_qualification.py": "9bd4ab99d6cd184aa2228ac28df4fb1ac1f91646048da27c07c9d49b66e01442",
+    "docs/reports/reconstruction-working-set/observer.py": "94fec42631c642b2bd5121bfe5e696032895bcda5120c07a92d68f6d82e66ed2",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "238fc597801a6871493db189e1c7eb5acb5af1115d30fc79e1c6a2dfc9ef3cde",
+    "docs/reports/reconstruction-working-set/workload_child.py": "d062c6290dc7ed5bb757ccc8ac0dccaf8dd1e54d0274eb9947ea1dfa2efa0c21",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "docs/reports/reconstruction-working-set/qualification/inventory.json": "d2a311141412dce5bd7bec4345cca8d0398901c3ad1689f01c66217ec4f3402f",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "docs/reports/reconstruction-working-set/qualification/README.md": "6af19c7a0ca9116f527631842ab38e190d2bd39cc5d05cf9cce14a2f8a4d8b56",
+    "docs/reports/reconstruction-working-set/qualification/grants/Q0-template.json": "0a51ce3da7ef3dec9da3a0e212992bdf0125b08bae7b00d1afb860c7f8abfd26",
+    "docs/reports/reconstruction-working-set/qualification/grants/Q1-template.json": "2f6ea5e0d4731a5edae84ec43df9e5ab327bef1e03bb529120ba1fab8b50a6e5"
+  },
+  "bounds": {"sample_seconds":0.01,"term_grace_seconds":0.2,"kill_reap_seconds":2.0,"soft_deadline_seconds":20.0,"life_deadline_seconds":5.0,"max_record_bytes":1048576,"process_stop_bytes":268435456,"host_min_available_bytes":536870912,"predicted_child_peak_bytes":67108864,"native_allocator_allowance_bytes":67108864,"reserve_bytes":268435456},
+  "process_stop_bytes": 268435456,
+  "host_min_available_bytes": 536870912,
+  "ancestor_stop_bytes": {"/sys/fs/cgroup":4294967296},
+  "prerequisites": {},
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "Root explicitly released only Q0-context then same-source Q1-normal. Fresh outer/Docker proof maps identical exposed cgroup file device/inodes across differing namespaces with finite16GiB bound, no requested Docker sublimit or active swap. Actual admission rereads current/host/namespace/limits. Source-only predicted64MiB plus64MiB native allowance fits256MiB process stop;256MiB extra reserve and4GiB ancestor stop leave large margin below16GiB. Ordinary117 checks may overlap; stale proof or changed margins/identity refuses. External ancestors remain unknown; no zero-OOM, workflow envelope or RSS-benefit claim.",
+    "correspondence_evidence": {"path":"/workspace/work/campaign/evidence/116/resource-domain/1794707487702496444.json","sha256":"945b9244e3750111e1d9b2291e13c84f5e84d9ec1415c5060f8ac7875ad08a50","observed_at_unix_ns":1794707487702496444,"maximum_age_seconds":300},
+    "expected_exposed": {"membership":"/","mount_root":"/","mount":"/sys/fs/cgroup","namespace":"cgroup:[4026532294]","visible_memory_max":{"/sys/fs/cgroup":"17179869184"}},
+    "predicted_child_peak_bytes":67108864,
+    "native_allocator_allowance_bytes":67108864,
+    "reserve_bytes":268435456
+  }
+}

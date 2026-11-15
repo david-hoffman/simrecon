@@ -139,13 +139,30 @@ and unsupported controls. No child numerical workers or image export are part
 of a workload. The external observer is identified separately from the measured
 process; its own memory/CPU/disk use is not attributed to reconstruction RSS.
 
-Record native `resource.getrusage(RUSAGE_SELF).ru_maxrss`, Linux KiB × 1024
-conversion, pre-call high-water, call-only monotonic seconds and final raw peak
-bytes including imports, generation, hashing, caller inputs, numerical/backend
-workspaces, result and observer work inside the process. Peak minus pre-call
-high-water is not an isolated workflow peak. Preserve raw integer observations,
-not rounded chart values alone. Include retained reachable NumPy backing bytes
-counted once and separately labelled incomplete Python-metadata estimates.
+Record separate native `resource.getrusage(RUSAGE_SELF).ru_maxrss` snapshots at
+pre-call, call-end and post-observation, with their cumulative scopes/timestamps,
+Linux KiB × 1024 conversion and call-only monotonic seconds. Imports, generation,
+hashing, caller inputs, numerical/backend workspaces, result and in-process
+observation costs belong to the relevant cumulative query. The external sole
+exact-PID `wait4` owner separately records kernel-reported direct-child usage
+through final exit, including final-target JSON/teardown as the kernel reports
+it. It is a maximum-process observation, not concurrent process-tree aggregation.
+Inherited/pre-exec/exec-transition high-water retention remains unresolved; the
+same PID does not guarantee that every bootstrap/startup peak survives exec.
+Never subtract a baseline/bootstrap or relabel a self snapshot as terminal usage.
+Preserve raw integers, not rounded chart values alone. Include retained reachable
+NumPy backing bytes counted once and incomplete Python-metadata estimates.
+
+On the pinned build, the unsupported spawn `setsid` attribute is replaced only
+by the observed fixed route: plain spawn, same-PID `setsid`, bounded session-ready
+pipe and exec of the pinned target. Bootstrap bytes/argv/nonce/bounds belong to
+material bindings. One exact-PID wait owner persists across exec. Startup/FD/
+readiness/exec failures are distinguished from numerical failures; direct-PID
+cleanup applies throughout the declared no-descendant workload, including before
+verified session readiness. Cached terminal races must not discard buffered
+readiness. Unresolved ownership blocks another attempt; parent-death/marker gaps
+and nonparent terminal-usage loss remain explicit. No generic fallback, orphan-
+reaping guarantee or new scientific behavior follows from the tiny route probe.
 
 Use existing `workflow_stage` boundaries (declaration, optional layout,
 preparation, estimation, per-time reconstruction, result) as the initial stage

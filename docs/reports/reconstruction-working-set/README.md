@@ -8,6 +8,14 @@ set, runtime qualification, experiment admission or measured ranking. The
 review 3 accepted the prior exact source-method scope; this actual-parent delta
 requires fresh affected review and separate runtime release.
 
+Method5 source correction now replaces the observed unsupported spawn-setsid
+attribute with one fixed plain-spawn/same-PID setsid/readiness/exec route.
+See [METHOD REVIEW5 input](method-review5-input.md). The selected tiny probe
+succeeded, but these integrated method bytes have not run. Old Q0/Q1/probe
+sources, grants, receipts and all four reviews remain preserved. New four-file
+AST/compile-without-execution and Ruff checks passed; no report/scientific
+module import, new launch/lifecycle case or workflow ran in this correction.
+
 Files: [fixed corpus](manifest.json), [liveness calculations](analysis/liveness-draft.md),
 [one-attempt runner](run_attempt.py), [child](workload_child.py),
 [observer](observer.py), [handoff hypotheses](handoffs/source-hypotheses.md).
@@ -119,6 +127,12 @@ For each single attempt the coordinator supplies one JSON grant. Required fields
   conservative current-memory threshold strictly between current and finite max
   where a finite max exists. No numbers are supplied by this draft because actual
   admitted headroom is unknown.
+- `launch_nonce`: a frozen nonempty ASCII alphanumeric/underscore/hyphen value
+  of at most64 characters; `startup_timeout_seconds:5.0` and
+  `startup_pipe_bytes:1024` must match manifest. The manifest pins exact
+  `observer.py::SESSION_BOOTSTRAP` bytes/digest. Target argv, nonce, FD actions,
+  returned PID and verified session readiness are recorded separately. New
+  grants must bind the changed source/material map; old grants are not reusable.
 - For growth only: explicit `declared_growth_conditions`,
   `growth_separate_admission:true` and `smaller_measured_evidence`; only primary
   `(1,3,8,192,192)` then `(1,3,8,256,256)` are supported by this draft. Summary
@@ -135,16 +149,20 @@ Example later command, **not executed and not currently authorized**:
 
 No batch CLI, implicit growth or retry exists. One invocation launches one child,
 sets all four declared thread controls to 1 before startup, captures stdout/stderr,
-records preflight and samples, and stops the owned process group on a deadline,
+records preflight and samples, and stops the owned direct PID on a deadline,
 process RSS threshold, ancestor current-memory threshold or host-headroom loss.
 Every attempt directory is new; reuse is refused. A stopped/failed attempt needs
 classification/diagnosis before another grant. No deliberate OOM or swap rescue.
 The external monitor can race or overshoot and cannot guarantee zero OOM risk.
-The source uses `os.posix_spawn(..., setsid=True)` to avoid creating a `Popen`
-object with destructor or signal-helper reaping paths. The only workload wait
+The source uses plain `os.posix_spawn` with no setsid attribute, followed by a
+fixed pinned-Python bootstrap calling `os.setsid`, bounded pipe readiness and
+`os.execve` of the target in the same PID. Collision-safe high descriptors and
+close order are carried from the observed tiny route into one fixed helper;
+bootstrap closes its readiness writer before target exec. The only workload wait
 owner calls `os.wait4(exact_pid, WNOHANG)` and caches one terminal status/rusage.
 There is no `Popen.poll/wait/communicate/send_signal`, aggregate wait or numerical
-grandchild. Signals use `os.killpg` after checking cached/terminal ownership.
+descendant. Signals use exact direct `os.kill(pid, signal)` before and after
+verified readiness, after checking cached/terminal ownership; no group signaling.
 Default SIGCHLD is required; unexpected auto-reaping loses terminal evidence and
 does not authorize signaling an unowned/reused PID. TERM grace and KILL-reap periods
 are bounded, including exception cleanup. A still-unreaped kernel task is an
@@ -153,26 +171,27 @@ An inaccessible post-exit /proc sample is not a fabricated stop: terminal wait
 collection is checked again after sampling. For a still-live child, missing or
 unusable required RSS is `required_process_RSS_observation_lost`, never zero:
 the sample/diagnostic is retained and normal monitor TERM/KILL escalation follows.
-A measured integer zero remains a measured zero. Exact spawn/setsid/wait4/units and
-signal behavior remain runtime validation questions; no capability probe ran.
+A measured integer zero remains a measured zero. The selected tiny normal route
+was observed once; integrated-method startup/exec/malformed/EOF/timeout/cancel/
+cleanup paths and scientific reliance remain to be qualified after review5.
 No experiment may overlap campaign numerical work, installation or verification.
 
 ## Measurement meanings and review
 
 The parent records Linux wait4 terminal native `ru_maxrss` in KiB and multiplies
-by 1024 for `terminal.complete_child_peak_bytes`. This describes the awaited
-direct child through exit, including JSON serialization and teardown. It is a
-maximum resident process size, not a sum of concurrent child/thread/observer
-memory, numerical-only allocation, or a guarantee of a new workstation envelope.
-No numerical grandchildren are commissioned. Inherited/pre-exec high-water and
-kernel/libc accounting limits remain explicit qualification questions; never
-subtract the parent or baseline to invent an isolated numerical peak.
+by 1024 for `terminal.kernel_reported_direct_child_high_water_bytes`. Terminal
+wait4 is kernel-reported direct-child usage through final exit. Inherited/pre-
+exec/exec-transition high-water retention remains unresolved; same PID does not
+guarantee every bootstrap/startup peak survives exec. No subtraction/aggregate/
+benefit claim follows. No numerical descendants are commissioned; this is no
+workstation envelope or numerical-only allocation measure.
 
 Child `snapshots.pre_call`, `snapshots.call_end` and
 `snapshots.post_observation` retain native values, converted cumulative bytes,
 monotonic timestamps and scope. They include work through their query only.
 Post-observation covers hashing/finite/retention/context/identity collection,
-but excludes subsequent JSON/teardown, covered separately by terminal wait4.
+and excludes subsequent observation-record/JSON/teardown work. Terminal wait4
+is a separate kernel observation, with the exec-retention limit above.
 Sampled RSS/HWM and these cumulative snapshots are distinct observations.
 Call time brackets only the workflow invocation; profiled brackets include stage
 observer work inside the call. Never subtract pre-call high-water and call it
@@ -291,7 +310,7 @@ at a later time; missing fields remain unknown.
 For supported cancellation, verify the observer identity is still the launched
 process, send it **one SIGINT**, and allow its recorded bounded cleanup to run.
 Python KeyboardInterrupt is classified `observer_cancelled`; existing exception
-cleanup requests KILL only for the still-owned child group, collects terminal
+cleanup requests KILL only for the still-owned direct child PID, collects terminal
 wait4 where possible, and writes its receipt. Do not send repeated SIGINT while
 cleanup/receipt work is running. Verify terminal receipt, workload identity gone/
 terminal state and resource release before considering another attempt. Elapsed
@@ -307,12 +326,17 @@ PPID lineage where still applicable, and PGID/session before identifying any liv
 owned workload. A reused PID or a stale marker authorizes no signal.
 
 If verified live ownership is established, the coordinator may terminate only
-that owned session/process group with TERM, use the grant's grace/deadline for
+that verified owned direct PID with TERM, use the grant's grace/deadline for
 inspection, then KILL if still verified live, and confirm termination/resource
 release. If the observer died, a new nonparent coordinator cannot recover the
 original wait4 terminal rusage; mark the attempt interrupted/incomplete rather
 than reconstructing a peak or success. Preserve cancellation/recovery evidence
 externally without rewriting old raw files.
+
+PID1 is sleep rather than a general reaper. Real abrupt-parent-loss/adoptive
+reaping is unqualified; signal/exit observations alone prove no reaping
+disposition. Any such case remains held until a concrete safe recovery topology
+is separately inspected/released. No deliberate orphan scenario is authorized.
 
 A spawn can occur before `owned-child.json` is complete. `spawn-intent.json`
 therefore means neither definitely spawned nor definitely absent. For an intent-
