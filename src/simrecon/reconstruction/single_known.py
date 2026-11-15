@@ -20,13 +20,13 @@ import scipy
 import scipy.fft
 from numpy.typing import NDArray
 
+from ..optical_transfer import _REFERENCE as _OTF_REFERENCE
 from ..optical_transfer import (
     OpticalTransfer,
     OtfError,
     _Transfer,
     validate_optical_transfer,
 )
-from ..optical_transfer import _REFERENCE as _OTF_REFERENCE
 from .known_parameters import (
     _F32_MAX,
     _INT_MAX,

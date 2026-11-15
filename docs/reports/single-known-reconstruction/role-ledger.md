@@ -926,3 +926,35 @@ ROOT actual checks2/1failure are separately counted. All earlier5B/4nonaccepts,
 25quality7fails,31finite3fails,prior6historical,9ROOTcontrols0unexpected and
 unknown setup/meters remain cumulative. No active child; no coor runtime calls,
 imports/Pyright/tests/hazards/build grants or scientific/readiness claim.
+
+### C2 checks and canonical import diagnostic; source-only correction2
+
+ROOT C2 AST0d3a6dc56…a662 and Ruff1 9f8ed567…7811 independentlywhole-read/
+hashchecked. Remaining single I001 only; actual source unchanged. Both ROOT
+private-init workloads fullyclosed/PID1absent/engine143/proxyreaped/pipesclosed,
+stdout19/154B stderr0. Static Cchecks4/2failures, formatnotrun. ROOT separately
+ran one read-only canonical Ruff import diff, record47142aca…0015b actualstatus1
+expectedproposal, sourceunchanged; separate standard-init closure read/engine143.
+This is a diagnostic attempt, not a third candidate-check failure or productpass.
+Coor initially guessed absent c2 receipt names; plain read failures retained,
+then recovered exact c1-ast-a2/c1-ruff-check-a2 filenames narrowly, no runtime.
+
+Exact canonical one-statement alias import move belowgroup→immediatelyabovegroup
+routed to SAME C1 under packetd64908d7…9805, SOURCEONLY/no command execution.
+Existing accepted known_parameters import sorting remains untouched; no further
+manual guessing. Preservea8e/freeze2/all failed checks, whole8/frozen27 gates and
+originalsource. Futureactual ROOT checks require new frozen4/cleanC3/material.
+
+SameC1 correction2 COMPLETE report92cc64f0…038d whole-read. Coordinator whole
+minimal diff confirms EXACT canonical alias-statement move, no other source edit.
+Revised4copies/basea8e/report/diff frozen before any checks at c1-source-freeze-3:
+manifest463ab5a1f91f4ba8774f63c62b2fd129aeae503226cceb14cdf0c4df1dd9a3ba,
+patch78eed8bc698ca9ecb4e4f4fd2150b66bcfb34b503fc2b51f4df398f81dc45ddd.
+New single_known02426470…94e4, other3 unchanged; all27/copied4 match. Author
+saw concurrent coor-owned ledger modification in status only, neither read nor
+edited it; no scope/exposure issue inferred. Own author cumulative51shell14patch
+65dispatch/17productmutations/initial1+corrections2/check0, no new exposure or
+active child/process/FD. ROOT Cchecks4/2fail plus1expected-status1 read-only
+canonical diagnostic remain distinct. UNVERIFIED C3 with Current/ledger follows;
+no command executed by coor/author, all product/type/test/build/runtime holds
+unchanged. Retain prior freezes/check failures/costs/unknown meters.
