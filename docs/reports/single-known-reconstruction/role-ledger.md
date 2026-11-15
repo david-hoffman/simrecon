@@ -812,3 +812,22 @@ typing/view-AS facts; no B4untilallactualcapabilitiescomplete. ROOTownsactual
 runtimecases/release, coorranNONE. Source/outputtruncations retained/recovered
 bytargetedtextreads; onecoorcombinedpatchcontextmiss/no partialwrite corrected
 withscopedpatch. Allunknowncosts andpriorfailures preserved.
+
+ROOT5fixedinitcontrols COMPLETE onceeach/0casefailures/controllerall0/noHOLD,
+actualexec0/7/0/0/1; root summaryb29bb12192bdc96c740bb6b237ec3634d3c4b848f008d23aefbf2cbc77e05d18.
+Coor actual5receipts/closure/initidentity/adoptionleaf/typingJSON/materialmetadata
+read independently, no rootcasecalls. Exactleaf30/start4786029 absentbeforeclose;
+alloldPID1absent/engineexited/namespaceclosed/proxyreaped/pipesclosed/anchor143
+distincttarget. Inodereuseobserved, freshlifecyclebound; selected10165tool+16hashes
+equal eachcase.4proxyvaluechanges+unmonitoredtraffic disclosedwithoutvalues.
+Setup/preflightmetadatafailures retained (envserialization/normalization and
+unavailableprocchild/guessedstatpaths), notcase/productfailures. Totalsbeyond5
+actualcasesunknown; rootcostonce, doNOTsumcasecountasallprocesses/elapsed.
+
+Sanitized wholepublicinit-tool-public-facts-4.md124f3727988eae591342c589411fba0bf7b055259aab5f36e158d8c391b29f2d,
+no rawrole/coor/report/script toB. Onecoorjqprojection assumednetwork_context
+objectbutactualstring; failedsourcequerypreserved/corrected, no inputchange.
+PreparedactualfreshB4file-onlywhole26inputs/all8/sharedoracles/publicrouting+
+finitefacts1..4; no rawA/B3/routingreview/native/controller/source histories.
+No AST/runtime/probe/import/test/type/style/Dockercall bycoor; ROOT upcoming116
+window ACK noactiveprocess/FD. FourthfreshcompleteB actualsession/hash outside.
