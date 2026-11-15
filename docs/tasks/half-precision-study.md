@@ -95,7 +95,7 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — fresh control-method delta review 2 active; resource launch quarantined, final #113 pending.**
+- **WAITING — reviewer2 affected delta1 active; resource launch quarantined, final #113 pending.**
   I1 intake and the same S1 investigator completed their owned source-only work.
   The refined method separates unmatched diagnostic comparisons from proposed
   one-workload resource children and prepared-band stage pairs, with terminal
@@ -107,7 +107,7 @@ returns to intake. This is not formal executable test design.
   Final publication parent remains #113, not the provisional public-main baseline.
 - Accounting: I1 launch 1 completed, S1 launch 1 plus continuation activations 2
   completed; no replacement/delegation/failed role launch. Fresh independent
-  control-method reviews: 1 completed INCOMPLETE, fresh delta review 2 active
+  control-method reviews: 1 and 2 completed INCOMPLETE, reviewer2 affected delta1 active
   (neither B/D nor scientific-study acceptance). Scientific report reviews 0,
   HP114 runtime/lifecycle/scientific trials 0, scientific
   repairs 0, full-gate attempts 0 and D verdicts 0. Root preflight 1 passed separately.
@@ -150,8 +150,19 @@ returns to intake. This is not formal executable test design.
   Proposed wrapper uses existing source-free renderer, pre-import AS/CPU/wall and
   fresh headroom admission, raw whole-startup stderr, same-PID runpy controls and
   finally required actual loaded FFT identities. No wrapper check/execution ran.
-  Fresh `/root/issue_114/control_method_review2` owns only external review2 report;
-  all proposed/approved execution receipts remain false or absent.
+  Review2 `fce51436…5b55f` found omitted venv startup-hook materials and possible
+  conditional coverage autostart before wrapper limits; other CM1/CM2 design
+  conclusions are retained by scope. Exact old proposal2v1 and verdict are preserved.
+  Corrected external proposal pins six startup files, empties only the two known
+  coverage autostart triggers before both interpreters, refuses preloaded coverage,
+  and records actual facts. Project hooks/gates and other coverage fields unchanged.
+  Root's separate correction replaces impossible hidden-ancestor certainty with
+  reviewed exposed outer/inner current/max/directory correspondence and actual
+  visible ancestor facts; external ancestors remain `unknown_unobservable`.
+  Context freshness is root-authorized300s after command-ready capture. Same
+  independent reviewer2 now reviews only that affected delta to a new external
+  `control-method-review2-delta1.md`; old reports are immutable. No execution
+  approval or source check/import exists; approved receipts remain false/absent.
 - Next: root collects this scoped verdict, checks exact applicability and concrete
   per-case admission before separately granting any tiny controls execution.
   This does not release W scientific workflows, diagnostic matrix or resource routes.
