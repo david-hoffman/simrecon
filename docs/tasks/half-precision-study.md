@@ -95,12 +95,14 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — source-only preparation complete; full study unfinished.**
+- **WAITING — investigator slot/source-method continuation and final #113 parent.**
+  The initial source-only preparation is committed; full study remains unfinished.
   Authorized intake/study route recorded; intake author attempt 1 completed named
   documents. Coordinator source review found the study within the requested scope;
   no independent scientific acceptance or scientific conclusion is claimed.
-  Candidate HEAD/base is the public baseline above plus the coordinator packet and
-  these owned uncommitted documents; coordinator records exact output digests.
+  Current source baseline remains the committed preparation on public main;
+  final commit/tree identities and continuation packet digest are recorded outside
+  tracked bytes. No rebase or source-method implementation occurs in this continuation.
 - Author launch: fresh tool route, no conversation inheritance, requested Sol/high;
   accepted PR109 policy proposal `b84b178`, integration `be8e447`, as supplied by
   coordinator packet. Session is `/root/issue_114/intake_author`. Actual serving
@@ -129,9 +131,10 @@ returns to intake. This is not formal executable test design.
   Metric-label, phase-comment and actual Git-provenance clarifications were also
   incorporated before any scientific run. These are preparation corrections,
   not independent review or scientific trial outcomes.
-- Checks: packet SHA256 verified; source/read-only Git/document checks only, detailed
-  in [author report](../reports/half-precision-study/intake-author.md). No Python,
-  import/probe/install/lint/type/test/benchmark/measurement/full gate was run here.
+- Checks: initial intake used packet SHA256 and source/read-only Git/document
+  inspection, detailed in [author report](../reports/half-precision-study/intake-author.md).
+  Historical investigator syntax/Ruff checks are itemized above; current source-only
+  continuation runs no Python/probe/import/install/lint/format/type/test/benchmark/full gate.
   Scientific image/error/memory/runtime/coverage results and backend availability
   are unknown, not zero. No product-red claim or test checkpoint exists.
 - Root independently provisioned the pinned per-worktree environment and reports
@@ -139,16 +142,26 @@ returns to intake. This is not formal executable test design.
   `/workspace/work/campaign/preflight-114-attempt1.log`: Python 3.13.12,
   NumPy 2.5.3, SciPy 1.18.1. This root-owned environment evidence grants no
   HP114 numerical execution window and is not full verification.
-- Blockers: **root scientific-execution hold** remains; #112 released its numerical
-  window. Root subsequently granted narrow pinned-Ubuntu syntax/lint/format checks
-  of the owned study harness/manifest only, with no installation, product probes,
-  numerical trial, benchmark or test. Investigator received this scoped grant;
-  it does not permit running/importing the study or product. Root provisioned the environment.
+- Blockers: **current root source-only hold** permits read-only shell/Git inspection
+  and source/document authoring only. Prior narrow syntax/Ruff permission is
+  historical; no Python, probes, imports, lint/format/types/tests/install or benchmark
+  is granted in this continuation. At resumed capacity inspection all seven role
+  slots were occupied; no worker was dispatched and no launch failed.
+  Root reports frozen accepted #112 `d9a0ba924817772fdb5550c7d055bf31bcf70388`
+  (PR121) and #115 `ace06c861b974b6251a092567c253ae4eb0f56c8` (PR122), with
+  local/fresh acceptance/CI passed. These are contextual root reports, not HP114
+  data or new ancestry; root still owns final integration.
   #113 publication parent is not ready; no speculative restack/PR. Numerical
   acceptance remains a study proposal to justify, not a missing human tolerance
   that authorizes guessing. Source/manifest preparation may proceed under hold.
-- Next: campaign root resumes this same issue coordinator after frozen accepted
-  #113 integration and explicit scientific-resource grant. Reconcile actual
+- Next: once a worker slot is available, root resumes this coordinator for the
+  same S1 investigator under [source-method continuation](../packets/half-precision-study/source-method-continuation.md).
+  Complete/freeze standalone matched resource paths, terminal-child versus
+  cumulative/sample high-water semantics, bounded observers/status/recovery and
+  finite range/cancellation/serialization/FFT controls without executing them.
+  #116 drafts are nonblind references only, with no adopted acceptance/data claim.
+  Then obtain fresh source-method assessment and return WAITING. Later root freezes
+  accepted #113 integration and explicitly grants scientific resources. Reconcile actual
   commit/tree/base/parent and EXPECTED source/manifest hashes, complete runtime
   fixture/oracle qualification (including independent noise observer), freeze a
   matched standalone resource protocol, and substantiate vendor backend constraints.
