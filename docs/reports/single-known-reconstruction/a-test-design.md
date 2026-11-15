@@ -7,6 +7,57 @@ limits below. Nothing here claims collection, lint, formatting, type, test,
 numerical, platform, coverage or performance acceptance. C still requires both
 an accepted/frozen A/B test checkpoint and accepted/frozen parent116.
 
+## Continuation1 binding and current disposition
+
+This is the **same blind A1, continuation1**, not a fresh role or review. The
+original drafts/report were preserved by the coordinator as **UNVERIFIED**
+checkpoint `0e06d28399ed4d1268f39b27809e3a799af6268d`; that checkpoint supplied no
+B acceptance, numerical run or C authority. Continuation started clean at
+`e7e315bc4321d17b6434079eaef967becc92b1f4`, tree
+`1d404add94dcebfabe60dab63326a25bd24fa228`, same branch/worktree. Identity-only Git
+matched that binding. Later permitted documentation checkpoints observed were
+`df77054284c87098b5eddebf17863238126cef69` /
+`ea170056430afada58d26deb0db51d144494871d`, then
+`d6003aa211f985336eb73354bf4011e8cb6962bf` /
+`50c2774b0529640d6e638bfd251df956f20bf74e`. No history/diff/source was read.
+The last clarification checkpoint observed was
+`22eefb767b48b82e4c0e541fe46afe15874f8217` /
+`8ca937d488d7af4df1b65b6fed1da035980ea612`.
+
+The original read inventory and historical hashes below remain preserved. These
+additional/updated public inputs were actually read in this continuation; every
+listed hash matched. The whole updated contract was read in bounded sections,
+and both updated whole public-context revisions were read. No primary URL or
+other link was expanded.
+
+| Additional or updated public input | SHA256 |
+| --- | --- |
+| `docs/packets/precision-113/a1-gap-continuation.md` | `9b3fde9f87bc375ca21d883eb07358c344ff3ab3975e49a4fa00cfd6d31c607e` |
+| `docs/packets/precision-113/legacy-compatibility-public.md` | `7a4d0bc0a68a694e11408ec60945ec7f5339a0eb4587ed40c21f18529107919b` |
+| `docs/packets/precision-113/tiny-default-fft-method.md` | `3688bd74526f3435e3dce0e3dad832a8f7e3af132c7fd78f9ad210a70f3377ac` |
+| `docs/contracts/single-known-reconstruction-v1.md` | `2c2b8685e775a9fd8c814502f8f311f1618bd9eb67d282dd722523c68f6c0613` |
+| `docs/packets/precision-113/public-context.md` at continuation start | `e5daa3e496d08d2cb19e9d217f84b717d07c27954188057d50e930515b282555` |
+| `docs/packets/precision-113/a1-g3-method-addendum.md` | `c98e0d3ca3aacf49bd939767121480918f9f0541b42ccd46898e2072227374e8` |
+| `docs/packets/precision-113/point-libm-method.md` | `6b8cde309a853bd3bb3fd1ac7233282303e5b814a046f20eb0e3688d95102695` |
+| `docs/packets/precision-113/public-context.md` after selected-method addition | `ade2b47abde268a28253ba6f3032a927618b33d464c8320283adefb9240f33c1` |
+| `docs/packets/precision-113/a1-wide-test-safety-addendum.md` | `eebafb3534c79016a0715478514ffa0edddd05de32c6fb22a1995460c1154508` |
+| `docs/packets/precision-113/point-source-clarification.md` | `c34941f68eaeec72304578fc62ab3f32de6bff66eed7b187f9b2223a13d237aa` |
+| final `docs/packets/precision-113/public-context.md` (hash and amended permission section read) | `016f70f1efd006ca27c0cb663a0deaefa77a61823c1a8271d034516e10373e36` |
+
+Own named outputs were read/searched/edited as needed. Unrelated dirty filenames
+visible only through status were preserved without opening their content. No
+forbidden read or source exposure occurred. No Python, import, syntax check,
+lint, format, type checker, test, dependency operation, numerical helper,
+measurement or benchmark was executed. No new tracked helper, commit or
+delegation occurred. All Python below remains unexecuted authored text.
+
+Current G1–G8 disposition is given later; it supersedes the initial draft's
+open-gap conclusions. In particular G1/G4/G5 now have concrete additional
+keepers, G8 is explicitly settled, G2/G3 have conditional finite source-method
+derivations, and G6/G7 retain named actual-path limits. **Source/binary/primitive/
+RNE and new subprocess/diagnostic transport applicability remain unqualified.**
+No test/checkpoint/scientific/runtime/physical acceptance follows from this work.
+
 ## Binding, scope and actual reads
 
 Launch worktree: `/workspace/work/issue-113`; branch:
@@ -17,7 +68,7 @@ The initial `git status --short` output was empty. No source/history/diff was
 read. Approved product ancestry accepted115 is supplied packet evidence only;
 I did not inspect ancestry. The accepted test checkpoint at launch was none.
 
-Actual existing-file read inventory is exactly:
+The initial A1 existing-file read inventory was:
 
 | Whole permitted file | Observed SHA256 |
 | --- | --- |
@@ -75,11 +126,15 @@ Exact new artifacts:
 - `tests/test_single_known_filter.py`: returned native diagnostics, per-time noise,
   complex interpolation/scales/partners, literal rows, support, damping and stencils.
 - `tests/test_single_known_assembly.py`: narrow actual DC witnesses and controlled
-  exact-transform public assembly semantics.
+  exact-transform public assembly semantics, plus conditional actual-default
+  cardinal FFT and selected signed/noninteger ramp witnesses.
 - `tests/test_single_known_precision.py`: cancellation/rounding, identities,
-  subnormal/overflow, existing FFT-interface failures and old double control.
+  subnormal/overflow, existing FFT-interface faults including MemoryError, and
+  old PreparedBands/AcquisitionBands/full-summary compatibility controls.
 - `tests/test_single_known_typing.py`: facade identity, signatures, dataclass fields
-  and TYPE_CHECKING return/dtype assertions.
+  and an exercised literal typed-public-caller fixture. New imports occur inside
+  their own runtime tests/caller; legacy collection is not blocked by a missing
+  pre-C new module. There is no skip/xfail/importorskip or passing absence fallback.
 - This report, `docs/reports/single-known-reconstruction/a-test-design.md`.
 
 The two additional narrowly changed artifacts are
@@ -221,6 +276,273 @@ mode-difference accuracy test, weak-signal floor or physical-recovery threshold.
 No candidate numerical result or input hash has been observed. Fixture byte hashes
 are future check outputs, not fabricated static measurements.
 
+## Continuation1 independent finite derivations
+
+These are symbolic/exact-program derivations frozen before any trial. Evaluating
+the owned Fraction programs later is a check still requiring root's grant; no
+decimal output, branch/bin assertion, measured maximum or passing result has
+been observed. The public method documents are primary algorithm inputs, not
+preaccepted reviewer conclusions. Their external sources were not opened by A.
+
+### Actual default cardinal transforms: A7/A8
+
+The supplied source facts give0/1/2 add-subtract levels for length1/2/4, exact
+quarter rotations, factor1 and axis-order-independent total depth d. For one
+real/imaginary output, each input component's coefficient travels at most d
+rounded nodes. Expanding products of(1+delta) with |delta|<=u32 gives
+`(1+u32)^d-1<=d*u32/(1-d*u32)`. There are at most N-1 additive half-subnormal
+terms in its tree; their remaining amplification is at most
+`(1+u32)^d<=1/(1-d*u32)`. Thus
+
+`E(S) = (d*u32*S + (N-1)*2^-150)/(1-d*u32)`.
+
+This derives from the stated cardinal plans, not a generic FFT operation count.
+Both nontrivial witnesses have N16,d4, so the denominator is1-2^-22>0 and
+`E(S)=(2^-22*S+15*2^-150)/(1-2^-22)`. Sbar is a fixed pretrial bound on the
+actual represented spectrum. Even their worst independently bounded intermediate
+is below128, vastly below f32 overflow; zero/subnormal additions are covered by
+the absolute term rather than a normal-only relative assumption.
+
+A7 uses center coefficients
+`a=(1+2^-23)+i*(2-2^-22)`,
+`b=(-13/4+2^-22)+i*(4+2^-21)` and their explicit all-axis reflected conjugates.
+Their L1 component sum is20.5+2^-22<21. Side quadratures at native(z1,x1) are
+`E=(1+2^-23)-3i/4`, `O=-1/2+i*2^-25`. Exact positive/negative harmonic real
+components are1+3*2^-25 and1+5*2^-25; RN32 makes both1+2^-23. Their summed
+coefficient L1 error is exactly2^-24, distinct from input representation error0.
+The represented side L1 sum is3.5+2^-22<4. These inequalities fix S0=21,S1=4.
+Independent sparse quarter-root DFTs retain exact rational reference values,
+never an already-rounded DFT or product output.
+
+Set `E0=E(21)`, `E1=E(4)`, `Bpre=E0+2*(2^-24+E1)`,
+`A=29+E0+2*E1`,
+`Bacc=gamma(2,u64)*A+2*2^-1075`,
+`Bfinal=u32*(A+Bacc)+2^-150`.
+The complete image enclosure is `Bpre+Bacc+Bfinal`. The zero carrier gives the
+exact consumed ramp1 and exact c64 unit product. The f64 side factor2 is exact;
+the two image additions have the separately stated f64 bound, and final RN32
+has its own bound. Input/scalar-filter/reference-width terms are0 because Y1
+preserves directly specified exact c64 bands. No double reconstruction is used.
+The signed signal scale29 is the declared absolute-term bound, not a per-pixel
+normalizer. Metrics retain exact reference width/distance/far-endpoint error,
+outward RMS, extrema and cancellation condition, infinite at exact cancellation.
+
+A8 uses output(2,2,4), one DC-1/2 and a single positive embedded Nyquist i at
+(1,0,1), fixing Sbar3/2 and boundE(3/2). Coefficient/phase errors are0. A center
+FFT real component is already f32: widening, adding to0 and final return to f32
+are exact; all zero side transforms/products remain exact0. Hence the image
+arithmetic bound is this fixture's FFT bound alone. Reference extrema are
+-3/2,+1/2 and maximum cancellation condition3. It separately records max/RMS,
+reference width0, interval distance, upper endpoint error and relative-to3/2
+signal scale. This actually invokes default SciPy without a test backend.
+
+Default source/wheel/binary/c64-plan/RNE applicability is still required. The
+controlled ExactBackend tests remain mapping proofs, not substitutes for A7/A8.
+The method cannot be reused for F's size6/20 returned images. Those noncardinal
+calls remain as real public diagnostic controls with that explicit image gap.
+
+### Selected hypot and once-consumed scalar: F19
+
+The source point is the exact c128 node `r=1+2^-30,b=1/2`. The independently
+enclosed reference is sqrt(r²+b²), using integer k with
+`(k/2^160)^2<=r²+b²<((k+1)/2^160)^2`. Squared inequalities certify this reference;
+160 bits alone or agreement on two precisions does not. Every source
+node uses `R64(I)=hull(I,RN64(endpoints(I)))`, retaining exact/unrounded values
+and both rounded endpoints. Outward add/subtract/product and positive-denominator
+division enclose the supplied grouped expressions and possible fused omissions
+of an intermediate round; no unsafe reassociation is assumed.
+
+For the FMA branch t1=1<r by exactly2^-30. For the non-FMA branch h0>1=2b,
+with squared norm>5/4, so its stated Newton correction branch is unambiguous.
+All moderate operands are normal, root arguments positive and below4, and the
+correction denominator exceeds2. The helper evaluates the union of both source
+variants, compares it with the independent sqrt interval and additionally
+certifies its error interval lies inside(-2^-40,2^-40). That loose inequality
+is a derived auxiliary fact about these boxes, not an assumed actual-libm
+allowance. The exact boxes, not that auxiliary constant, feed the scalar oracle.
+The delta0 early-rounding alternative takes the exact equality branch and is
+enclosed separately; there is no epsilon tie.
+
+Choose the real side modulation
+`a=RN64(1+1/(5*2^23))-2^-38` before trials. The actual complete denominator is
+initialized with the self hypot power, adds the two side powers in signed order
+using RN64(a²), then1/4. Strict RN64 interval arithmetic encloses each product,
+sum and component quotient before the single RN32 conversion. The interval must
+map to one c64 component and have positive distance from each rounding-cell
+edge. J calculates those exact margins; unresolved intervals assert before any
+candidate call, never pass.
+
+The source r perturbation is not downcast. The center real consumed scale is
+`1/4-2^-26`; the independently computed early-table-rounding alternative is1/4.
+To see the pretrial separation, the delta0 quotient near a1 has derivative
+-5/16 in a; `1/(5*2^23)` places it near midpoint1/4-2^-27, while subtracting
+2^-38 gives a controlled positive margin. The source delta2^-30 moves the true
+quotient below that midpoint, with much larger separation than the source-box
+width. Exact Fraction endpoints/bin-margin assertions certify this claim under
+the stated program assumptions, without an observed discrepancy.
+
+F19 records the signed hypot-library interval; exact-node interpolation and
+original-source-conversion errors are0. It propagates the source program interval
+through a corresponding exact quotient to bound the library contribution, then
+separately bounds strict scalar RN64 operations and once-consumed RN32 conversion.
+Declared coefficient1, DC transform, zero carrier, f64 accumulation and final
+conversion each have zero additional error for this witness. The resulting image
+is checked against the independent consumed point and against the exact rational
+real-procedure reference; max/RMS, reference width0, signed extrema, global
+signal scale1 and cancellation condition1 are retained. Neither source acceptance
+nor a precision identity hash supplies the scientific expected value.
+
+### Selected sine/cosine, taper and full carrier ramp: F20–F22/A9
+
+P is the exact rational value of binary64 0x1.921fb54442d18p+1. At P/4,
+`201/256<P/4<203/256` certifies the unique knot101/128 for big=3*2^44. The
+reduced t=P/4-101/128 is strictly inside(-1/256,1/256) and exactly f64
+representable. Literal table bit words are independently decoded to rationals;
+the supplied decimal coefficients include their nearest-even conversion through
+R64 hulls. Every grouped polynomial node is outward evaluated. Library error is
+the resulting source-program interval minus an independent alternating rational
+Taylor interval with its analytic next-term remainder, not a source ULP comment.
+
+At +/-P/2, hp1 is the exact word0x3c91a62633145c07. Cosine/combined sincos have
+y0,a=hp1,da0; **standalone sine instead calls do_cos(0,hp1)**. As the clarification
+requires, do_cos(hp1,0) and do_cos(0,hp1) are different source sequences. Both
+select knot0 because hp1<2^-8, the half spacing at big; their reduced argument is
+exactly hp1 with table(0,0,1,0). The tiny polynomial corrections are bounded by
+hp1³ for sine and hp1² for cosine, far below half-spacing2^-107 at hp1 and the
+lower half-spacing2^-54 at1. Their selected final rounded values are therefore
+cos(+/-P/2)=hp1>0 and sin(+/-P/2)=+/-1. This proves a selected-point equality,
+not identical source arithmetic or a general trig guarantee. At exact0 the
+source identities cos0=1,sin0=0 are used. Actual primitive/dispatch correspondence
+is a separate unqualified condition for all these statements.
+
+F20 declares E1/2,O-i/2 so positive harmonic1 and opposite0 are formed from
+different declared reads. Native x1/4 with carrier-1/4 gives shifted Kxy0:
+rho0 makes the scale exactly RN32(RN64(4/13)), including c1=0 lateral fallback.
+The positive-cutoff pair has c1=2. A mistaken native-radius taper instead has
+rho1/3 and cannot use the independent exact-origin expectation.
+
+F21/F22 retain a noncardinal Z20 call. At NA1,dz1/10 and the selected theta=P/2,
+strict f64 arithmetic gives c=[4,8,5]: 1-hp1 rounds1-2^-53, so the c0 argument
+is4-2^-51 before ceil4; remaining truncations are safely inside their integer
+bins. Highest m2,z4 with Kxy0 must use c[1]=8, so rho1/2 and cosine(P/4), not
+its own cutoff5 or zero cutoff4. The base scale is RN64(4/21). The rho1 control
+has baseRN64(4/5), actual cosine hp1, and a nonzero c64 coefficient. F22's
+shifted lateral ratio1 and axial ratio1/2 give rho²5/4>1 with a certified margin;
+clipping uses the same actual hp1, never an ideal hard zero. Every evaluated
+opposite/taper remains required even when the independently supplied opposite
+coefficient is0. RN64 scalar multiplication and one RN32 conversion have explicit
+positive cell margins. Their filtered diagnostic expectations do not qualify
+the size20 image FFT.
+
+A9 adds full quantitative signed/noninteger carriers +/-1/8, not a sign-only
+test. One native side coefficient1+i/2 at axial bin1, x0 has independent inverse
+values a,i*a,-a,-i*a. Under the supplied cardinal plan, each intermediate is0
+or one such quarter rotation with half-integer components, so every arithmetic
+node is exactly representable: N16,d4,Sbar3/2 and FFT error0 for this fixture.
+Centered x labels(-2,-1,0,1) make actual f64 phase arguments among
+{-P/2,-P/4,0,P/4,P/2}; dyadic products have no phase-evaluation round error.
+Each source-program sine/cosine interval collapses to one consumed c64 component
+with an explicit positive bin margin. The full c64 product is independently
+rounded componentwise, widened before side factor2, and finally returned as a
+still exactly representable f32 value. All pixels, both carrier signs and axial
+rotations are compared with this finite-procedure oracle.
+
+Ideal-pi reference ramps use exact cardinal values or an integer-sqrt enclosure
+of sqrt(2)/2. Machin's `pi=16*atan(1/5)-4*atan(1/239)` is enclosed by rational
+alternating sums through term64 and the next term131. The actual P-to-pi argument
+error is separately bounded by |multiplier|*max|P-pi interval|; sine/cosine's
+unit Lipschitz bound propagates it. The source/Taylor library interval, consumed
+ramp conversion and exact local-product roundoff are separate signed-weighted
+terms. f64 accumulation and final rounding are exact here. Metrics retain
+reference width, interval distance/far endpoint error, outward RMS, signed
+extrema, nonzero global scale3 and the component bin margins. Phase accuracy is
+not assigned to zero-amplitude quantities. No observed maximum sets any bound.
+
+A10 closes the composition gap beyond separately correct filtered diagnostics
+and a unit-transfer ramp. Native positive x1/4 with carrier-1/8 has shifted K1/8.
+The affine complex table supplies Hself=(5/4)*(3+4i), other(-1) H at0 and other0
+H at1/8. Their exact powers are625/16,25,2025/64; adding Wiener1/4 gives6141/64.
+The independent scalar reference is `(240-320i)/6141`. Self sampling at the
+relocated1/8 instead would give `(108-144i)/2833`, a distinct wrong result.
+E1/2,O-i/2 produce positive harmonic1 and opposite0; half/rotation recombination
+and subsequent assembly recover exactly the independently consumed p32. The
+actual default inverse has one coefficient and only exact quarter rotations
+(shape2,2,4; N16,d4; Sbar=|Re p32|+|Im p32|), so the selected-source FFT term is0.
+Every image sample, not a candidate diagnostic supplied as an oracle, is compared
+with p32*i**x times the selected consumed carrier ramp.
+
+The A10 reference uses the unrounded rational scalar and ideal-pi ramps. Scalar
+RN64 quotient and consumed-scale RN32 errors are separate, each propagated with
+the absolute side factor2. Program-library, pi/phase, ramp conversion and c64
+product errors are then bounded with the actual independently predicted p32
+weights. f64 zero-center/side accumulation and final conversion are exact. The
+global signal scale1, maximum cancellation condition7, signed extrema,
+reference width, max-error interval and RMS interval are retained. Its
+Pythagorean/zero-axis hypot values (5,45/8,25/4 and the actual support queries)
+still need actual primitive/source-path qualification; the moderate nonexact-H
+method is not silently extended to those pairs. A11 additionally sends distinct
+T2 rational noise through complete public DC images, with independently consumed
+per-time scales, guarding assembly time-zero reuse beyond F1's diagnostics.
+
+### Reachable derived failures, endpoints and precedences
+
+For B30 at wavelength1000/immersion1, le1 and lx=RN64(.88). The exact rational
+oracle sets b=RN64(2/lx) and certifies RN64(RN64(b*lx)/2)=1; its next representable
+neighbor b+2^-51 gives an argument>1. A zero-band Y1 call admits the endpoint,
+then rejects the neighbor. Beta's lower -1 is unreachable because b,lx>=0.
+With a valid beta argument in[0,1], betamin=beta_arg-0.1*sin(theta) stays above
+-0.101 and at most1 under the physical nonnegative sine range; an isolated
+betamin-outside-domain failure therefore cannot be fabricated from other-valid
+fields. D still audits the retained actual checks. At NA minimum positive f64,
+wavelength1000 gives R2^-1073>0; wavelength32767 rounds R to0, and b0 gives an
+invalid required Rp. This pairs a legitimate tiny positive with its derived
+underflow failure, without a new NA floor.
+
+P11 supplies prepared-style c128 H2^-1073, w2^-537, so |H|² rounds0 while
+w²=2^-1074 remains positive. With v1, scalar quotient2 is finite. With
+v2^-1023, g2^1023 makes numerator2^-50 and quotient2^1024: a true f64 complete-
+scale overflow before c64 conversion, with the same original H. The neighboring
+w2^-538 has invalid square0. P12 uses Y1's untouched E=max,O=-i*max to expose
+embedding E+iO overflow. Its two-direction DC cancellation sets each center to
+-max and the second side E to-max: incorrectly promoted embedding would permit
+the finite final sum -max+4*max-max-2*max=0, so a late final-image overflow cannot
+substitute for the required c64 addition failure. Removing the first O and second
+E supplies the finite zero-image positive. P5 likewise adds a finite negative
+center to its p+n overflow case so promoted recombination could have a finite
+final image. No impossible f64 accumulator overflow is forced.
+
+F23 has actual geometry Z20,Y2,X2,dxy1/2,dz1/4, NA1,wavelength4000 and
+c=[2,4,2]. Native nonzero lateral bins1 exceed R1/2, leaving only the origin
+inside self support. Carrier-1/4 makes first m1 self(x0,z-4) safe. Signed
+others -2/-1 have q3/4 and1/2, respectively, and are excluded; other0 at qx-1/4
+is eligible. Full-table dkz is independently rounded so its ratio to native dkz
+lies strictly in(3.6,3.65): earlier center |z|<=2 vertices avoid last plane15,
+the self z-4 wraps near1.5, and the negative-x-reflected other z+4 lies near14.5.
+With table Xh2,Yh1,K16, the required zero-weight last lateral vertex at plane15
+is flat32, outside the32-element order. That OtfError must occur before
+g0=2^1023*(1/4+8) overflows. Table Xh3 makes the stencil safe and reaches the
+weight error instead; unit noise supplies a valid zero-data positive. Tiny
+prepared-style H0=2^-1000 keeps all earlier center powers/scales finite. The
+test snapshots all supplied arrays/parameters and requires the actual OtfError
+cause only for the actual stencil failure. It invents no private invalid state.
+
+B29 checks adjacent band-domain fields and structural-before-value, metadata-
+before-ownership and q-finite-before-positive-noise outcomes. B28's adjacent
+signature fields similarly cover a transitive fixed order. B19 now pairs complete
+transfer failure with invalid scalar, carrier original NaN with bad modulation,
+and valid-but-unsafe sampling geometry with bad modulation. No all-pairs quota
+or validator seam is needed for equivalent outcomes. A transfer metadata domain
+error may directly name transfer without a generated OtfError; its unobservable
+within-field sequencing remains an actual-path D obligation, not an invented
+cause/vocabulary assertion. A static draft that overrequired that cause was
+removed before any execution.
+
+After finite nonnegative powers and positive finite w², the last denominator
+addition cannot produce zero or negative. Thus that isolated failure is
+unreachable. Coordinates and phase arguments retain the earlier finite bounds;
+proper bounded trig/unit-ramp values cannot overflow c64. D checks the actual
+guards/promotion paths; no forced internal corruption commissions another test.
+
 ## Representation implications and safe public ordering
 
 I=2^31-1, M=2^63-1. Native half-volume is <= native full-volume for even X>=2;
@@ -256,7 +578,7 @@ is unreachable; square underflow-to-zero remains reachable and tested. Positive
 scale computed from signed geometry has denominator no larger than2^155 under
 the loose individual bounds, hence remains positive finite in f64; forged
 zero/nonfinite/false consumer scales are still tested. Coordinates are bounded
-by about2^159 and phase products by about2^321 under declared counts, pitches,
+by about2^159 and phase products by about2^322 under declared counts, pitches,
 carrier/modulation magnitudes; this supplies no universal libm accuracy proof.
 Derived spacing can overflow at tiny positive pitch and is separately rejected.
 
@@ -277,6 +599,7 @@ assertion unless labeled J, controlled backend, implication or retained D.
 | B17/B18 | `parameter_original_domains`, `parameter_complex_rules_and_permitted_subclasses_strides_and_byte_orders` | New band restrictions accidentally applied to parameters; direct public valid subclass/byte-order/complex/signed positives distinguish it. |
 | B19 | `phase_precedence_and_failure_immutability` | Later error masks earlier phase, mutation before failure; no private validation seam. |
 | B28 | `scalar_signature_order_precedence_even_for_unsupported_values` | A later scalar/support decision masks an earlier one; adjacent multi-invalid fields cover the whole fixed scalar signature order. |
+| B29/B30/B31 | `adjacent_band_metadata_and_structure_value_precedence`, `reachable_source_asin_upper_endpoint_and_positive_taper_radius_neighbor`, `qp_limit_remains_but_absent_preparation_frame_count_does_not_apply` | Wrong subphase/field order, invented endpoint/tiny-positive rejection, or absent preparation count applied to the new declaration; adjacent controls, rational products and guarded real public positives fill those distinct gaps. |
 | B20 | `transfer_record_validation_and_unused_orders` | Invalid unused source accepted, too few orders, forged source metadata; valid extra order control is paired. |
 | B21 | `integer_only_native_admission_has_no_legacy_byte_cap`, `integer_only_native_rejection_uses_exact_aggregate_products` | Fixed-width/float wrapping or old byte ceilings; approved real-caller helper supplies integer boundary proof only. |
 | B22/B23 | `invalid_metadata_with_tiny_backing_never_reaches_large_work`, `wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure` | Large work before known declaration error or obsolete byte rejection; safe public metadata path supplements B21. |
@@ -287,13 +610,20 @@ assertion unless labeled J, controlled backend, implication or retained D.
 | F6/F7 | `odd_y_literal_untouched_and_partial_reflected_zero_rows`, `y1_has_empty_filter_and_recombination_even_with_singular_damping_request` | Global odd-row filtering/zeroing or invented Y1 damping/stencil; literal bytes and tiny allowed positive expose traversal gaps. |
 | F8/F9/F10 | `damping_precedes_omission_then_omit_kz0_overrides`, `order_specific_cutoff_ceil_truncation_and_independent_clip`, `suppression_physical_radius_signed_bypass_and_inclusive_condition` | Wrong branch order, common/O2 cutoff, bin radius; independent rational formulas isolate native diagnostic consequences. |
 | F15/F16/F17 | `direction_major_order_is_visible_at_a_consumed_scale_rounding_boundary`, `other_power_has_no_own_axial_cutoff`, `omit_kz0_changes_only_center_z0_weight_and_overlap_power` | Wrong positive summation order, applying other axial support, or global center/side zeroing; crafted independent rational discriminators survive RN32. |
+| F18/F19 | `nonunit_transfer_is_sampled_natively_before_carrier_relocation`, `empirical_source_rounding_boundary_has_independent_conditional_scalar_enclosure` | Relocated self sampling, premature c64 source-table rounding or wrong once-consumed scalar; distinct rational/native and conditional selected-source enclosures supply no candidate oracle. |
+| F20/F21/F22 | `cosine_uses_shifted_object_origin_and_zero_cutoff_lateral_fallback`, `cosine_ellipse_uses_c1_and_rho1_is_not_hard_zero`, `cosine_radius_above_one_clips_to_actual_pi64_half_point` | Native-radius taper, zero-cutoff division, wrong order cutoff, hard zero or missing upper clip; independent exact-origin/source-program point expectations preserve actual nonzero cosine. |
+| F23/F24 | `actual_eligible_other_sample_precedes_its_overflowing_damping_weight`, `actual_self_sample_precedes_evaluated_singular_damping` | Weight/singularity before required actual sample, zero-weight skip or lost cause; unsafe/safe/finite public pairs expose order without a new production seam. |
 | F11/F12/F13/F14 | `zero_weight_actual_stencil_failure_retains_cause_and_inputs`, `one_time_axial_wrapping_rejects_an_actual_unsafe_request`, `full_negative_x_reflects_axial_and_lateral_coordinates_and_conjugates`, `invalid_complete_extra_order_cannot_hide_behind_no_signal` | Skip zero-weight/data sample, modulo/clamp repair, partial reflection or unused-order bypass; safe samples and unchanged bytes distinguish legitimate alternatives. |
 | A1/A2/A3 | `dc_units_unnormalized_inverse_and_no_phase_or_direction_reaverage`, `positive_nyquist_zero_padding_and_centered_labels_with_controlled_transform`, `all_axis_half_reflection_and_positive_axial_nyquist_with_controlled_transform` | Extra alpha/P/D, normalized inverse, split/negative Nyquist, shifted inverse; controlled exact spectra isolate assembly from unresolved backend accuracy. |
 | A4/A5/A6 | `side_harmonic_reads_then_complex_product_and_positive_carrier_phase`, `widen_before_side_factor_two_and_accumulate_in_f64`, `zero_and_weak_signed_dc_have_no_energy_floor_or_clipping` | E/O or ramp sign, axial ramp, f32 contribution/accumulation, clipping/floor; full subpixel numerical phase remains an explicit gap. |
+| A7/A8/A9 | `default_cardinal_fft_nontrivial_signed_image_has_stage_separated_envelope`, `default_cardinal_fft_enlarged_positive_nyquist_has_its_own_envelope`, `default_cardinal_axial_mode_with_full_signed_noninteger_carrier_ramp` | Wrong default FFT sign/norm/embedding, mixed-precision arithmetic or complete ramp; frozen source-conditional references/envelopes fill the prior default/nonzero-ramp gap, without claiming actual dependency qualification. |
+| A10/A11 | `native_complex_filter_to_default_fft_and_carrier_is_one_public_composition`, `per_time_noise_reaches_each_public_dc_image_without_time_zero_reuse` | Correct diagnostics paired with wrong internal image spectrum, relocated self sample, or reused time0 image; independent full composite and per-time DC expectations close the stronger public-image gaps. |
 | P1/P2/P3 | `correlated_dc_exact_and_near_cancellation_with_preregistered_bound`, `profile_schema_and_independent_framed_identities`, `subnormal_complete_scale_may_round_finitely_to_zero` | Loose relative masks, missing identity bytes, weak-signal rejection; rational reference/bounds and byte perturbations are independent of candidate outputs. |
 | P4/P5/P6 | `consumed_scale_and_native_addition_overflow_reject_before_hidden_cancellation`, `ordered_power_product_and_recombination_intermediate_overflow`, `final_image_overflow_is_distinct_from_finite_f64_accumulation` | Later cancellation hides required nonfinite primitive or conversion; real tiny public data avoids manufactured internal states. |
 | P7/P8 | `backend_exception_cause_nonfinite_result_and_interruption_are_public`, `omitted_and_explicit_double_are_exact_same_environment_controls` | Cause loss/interruption swallowing or default migration; existing SciPy numerical interface and independent old-schema preparation control, no new production seam. |
-| Y1/Y2/Y3 | `facade_defining_module_identity_and_exact_record_fields`, `exact_keyword_only_public_signatures_and_defaults`, TYPE_CHECKING `public_return_types` | Missing facade identity, annotation union regression, schema/signature drift; runtime values alone cannot prove static overload selection. |
+| P9/P10 | `legacy_acquisition_3d_and_true_2d_keep_double_records_options_and_errors`, `existing_full_and_summary_keep_exact_double_projection_and_retention` | Old-schema downcast/default/extended regression or compact projection/ownership loss; valid supplied legacy builders and exact public comparisons supplement single scientific oracles. |
+| P11/P12 | `complete_float64_scale_can_overflow_before_consumed_conversion`, `y1_embedding_still_checks_c64_harmonic_addition` | f64 scalar overflow mistaken for consumed conversion, or Y1 treated as a bypass of assembly finite checks; reachable inputs and finite neighbors retain stage distinctions. |
+| Y1/Y2/Y3 | `facade_defining_module_identity_and_exact_record_fields`, `exact_keyword_only_public_signatures_and_defaults`, `literal_public_caller_typechecks_with_actual_candidate` | Missing facade identity, annotation union regression, schema/signature drift; the exercised literal typed-public caller retains overload/dtype assertions while the harness itself can collect before new API presence. |
 | M1 | Existing `test_module_migration.py::test_root_facade_keeps_exact_supported_exports_and_names` | Exact41-name independent inventory, count, names and callability; preserves all38 old names and rejects duplicates/missing/unapproved names. Stronger inventory keeper replaces the new typing test's redundant subset check. |
 | I1 | Existing `test_installed_wheels.py::test_installed_product_and_devtools_are_independent` | Updated installed41-export success marker; all wheel/build/CLI/digest/isolation/contamination checks and invocations retained. Installed execution is separately held. |
 
@@ -334,13 +664,13 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 
 | Normative IDs | Keeper / disposition |
 | --- | --- |
-| S01.1, S01.2 | P8/Y3 for PreparedBands; G1 for AcquisitionBands/extended calls |
-| S01.3 | P8 PreparedBands c64 masquerade; G1 AcquisitionBands |
-| S01.4 | Inherited guarantee retained; G1 and later D composition audit |
+| S01.1, S01.2 | P8/P9/Y3 old Prepared/Acquisition omitted/double and extended controls |
+| S01.3 | P8/P9 both c64 masquerades |
+| S01.4 | P10 exact full/summary projections/ownership plus inherited D composition/retention audit |
 | S02.1, S02.2 | B1/B3/B26/Y1/J |
 | S03.1, S03.2 | B2 |
 | S04.1, S04.2 | B3/P8/Y3 |
-| S04.3 | Y3 old accepted typing only; G1 runtime incompatible acquisition |
+| S04.3 | P9 actual3D/true2D old acquisition rejects single; Y3 typing |
 | S04.4 | B3 |
 | S05.1, S05.2, S05.3, S05.4 | B1 |
 | S06.1, S06.2, S06.3, S06.4, S06.5, S06.6 | B4/B5 at both boundaries |
@@ -358,33 +688,33 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 | S09.14, S09.15, S09.16, S09.17, S09.18, S09.19, S09.20, S09.21 | B21/B23/B26 plus actual-width implications; G6/D all caller families |
 | S09.22, S09.23 | P2 schema only; D streaming/native/block execution; G6 |
 | S09.24, S09.25, S09.26, S09.27, S09.28 | B21/B23 and historical-byte/order implications; D remaining native byte guards |
-| S09.29, S09.30 | B21 integer aggregate positives and contract implication, G6/D actual admission absence |
+| S09.29, S09.30 | B21 integer aggregate positives, B31 guarded Q*P/absent D*P*Z public positive and count rejection, G6/D remaining actual admission paths |
 | S09.31 | B22/B23/P7 static-before-FFT; G6/D complete copy/hash/scan/allocation ordering |
 | S09.32, S09.33, S09.34 | B21/B22/B23, no-huge-success process record; G6/D real caller and backend resource limits |
-| S10.1, S10.2 | F1 |
+| S10.1, S10.2 | F1 diagnostic matrix, A11 complete per-time DC images |
 | S11.1, S11.2, S11.3.1, S11.3.2, S11.3.3, S11.3.4, S11.3.5, S11.3.6, S11.4 | B19/B20/F5/F14, including malformed original increments and writable/shared/empty source storage |
-| S11.5, S11.6, S11.7 | F3/F4/F5/F13/P2; G3 empirical arithmetic qualification |
+| S11.5, S11.6, S11.7 | F3/F4/F5/F13/F19/P2; G3 actual primitive/source/binary qualification remains |
 | S11.8.1, S11.8.2, S11.8.3, S11.8.4 | Retained CE03 requirements, G6/D no source-width widening |
 | S12.1, S12.2, S12.3, S12.4, S12.5 | F4/F7/F11/F12/F13 |
 | S13.1, S13.2 | F2/F6 |
 | S14.1, S14.2, S14.3 | F1/F2/F15 exact addition-order discriminator |
 | S14.4 | F16 |
 | S15.1, S15.2, S15.3, S15.4, S15.5 | F7/F8/F9 |
-| S16.1, S16.2, S16.3, S16.4, S16.5 | F1/F2/F3/F4/F13/F15/P1, including a3+4i and0; G3 broader nonexact empirical scale qualification |
+| S16.1, S16.2, S16.3, S16.4, S16.5 | F1/F2/F3/F4/F13/F15/F18/F19/P1, including a3+4i/0 and selected c128-to-consumed-scale bin discriminator; G3 actual applicability |
 | S17.1, S17.2 | F10 |
 | S17.3 | F10 suppression on/off and center default-condition branch, F8 damping precedence |
 | S18.1, S18.2, S18.3, S18.4 | F8/F17/P4 |
-| S19.1, S19.2, S19.3 | G3/G4 nonzero cosine/shifted ellipse/c[1] fallback/rho1 numerical witnesses |
+| S19.1, S19.2, S19.3 | F20/F21/F22 exact-origin and selected conditional source-program cosine controls; G3 actual applicability |
 | S19.4 | F1/F3 none; B13/B15/B16 valid/invalid taper |
 | S20.1, S20.2, S20.3, S20.4 | F3/F13/P4/P5; A3/A4 controlled mapping |
 | S21.1, S21.2, S21.3, S21.4 | F2/F6/F7/P2 |
-| S22.1, S22.2, S22.3 | A2/A3/A4 plus `positive_lateral_y_nyquist_is_embedded_once_at_positive_lift`, controlled exact DFT semantics; G2 default backend nontrivial accuracy |
-| S23.1, S23.2 | A1/A2/A3/P1; controlled-DFT limitation G2 |
-| S24.1, S24.2 | A4 plus `centered_positive_carrier_phase_sign_and_axial_invariance_on_dc`; G3 full nonzero-phase numerical accuracy |
-| S24.3 | F3/F4 plus `nonunit_transfer_is_sampled_natively_before_carrier_relocation` (native vs relocated self samples and strict shifted other support); G2/G3 image accuracy |
-| S24.4 | A4 partial phase observation; G3/D conversion/block evidence |
+| S22.1, S22.2, S22.3 | A2/A3/A4 plus y-Nyquist controlled semantics; A7/A8 actual-default conditional bounds; G2 actual source/binary applicability |
+| S23.1, S23.2 | A1/A2/A3/A7/A8/P1; G2 actual default applicability |
+| S24.1, S24.2 | A4/DC sign/axial control plus full A9 pointwise signed +/-1/8 ramp; G2/G3 actual applicability |
+| S24.3 | F18 native/relocated diagnostic discriminator plus full independent A10 nonunit filter/default-inverse/carrier image; G2/G3 actual source/binary applicability |
+| S24.4 | A9 complete selected-source and once-consumed-ramp/product proof; G3/D actual conversion/block paths |
 | S25.1, S25.2, S25.3 | A5/A6/P1/P6; D actual dtype path |
-| S26.1, S26.2 | A2/A3/A4/P7 controlled c64 interface; B26 output storage; D default path and G2 |
+| S26.1, S26.2 | A2/A3/A4/P7 controlled c64 interface, A7/A8/A9 actual-default value witnesses, B26 output storage; D/X actual default storage/path |
 | S26.3, S26.4, S26.5 | D execution/block/storage audit; G2/G6 unknown internals/workspace |
 | S27.1, S27.2 | A6/P3/P4/P5/P6 |
 | S28.1.1, S28.1.2, S28.1.3, S28.2.1, S28.2.2 | B17/B18 all standard real widths, subclass/stride/read-only/foreign-byte-order positives |
@@ -398,90 +728,135 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 | S28.19.1, S28.19.2, S28.19.3, S28.20, S28.21, S28.22.1, S28.22.2, S28.22.3 | B13/B14/B15/B16 |
 | S29.1, S29.2, S29.3, S29.4, S29.5 | B16; B26 exact settings lacks CE06 additions |
 | S30.1, S30.2, S30.3, S30.4, S30.5, S30.6 | B15 |
-| S30.7 | B6 Z1/zoom/acquisition kind rejection subset; Y2 exact signature; G1/D unqualified other entries |
-| S31.1, S31.2, S31.3, S31.4, S31.5, S31.6, S31.7, S31.8 | B2/B3/B19/B27/B28/P7/F11/P4; G5 complete bands/transfer within-phase and local sample-before-g precedence |
-| S32.1, S32.2, S32.3, S32.4, S32.5 | B24/B25/F12; w² overflow implication above; G5 valid asin endpoint and derived boundary controls |
-| S32.6.1, S32.6.2, S32.6.3, S32.7 | B25 radius-overflow/F8 damping, B26 coordinate values; G5 taper-radius underflow case, coordinate/phase implications above |
-| S32.8, S32.9, S32.10, S32.11, S32.12 | P4/P5 conversion/power/multiply/recombine; G5 finite complete-scale reachability analysis; embedded finiteness inherited after validated local finite coefficients, D checks no later corrupting operation |
+| S30.7 | B6 Z1/zoom, P9 old true2D/acquisition rejects single, P10 workflow/summary signature stays double, Y2 exact known signature; D remaining unsupported-path audit |
+| S31.1, S31.2, S31.3, S31.4, S31.5, S31.6, S31.7, S31.8 | B2/B3/B19/B27/B28/B29/P7/F11/F23/F24/P4; G5 observable controls and stated D-only indistinguishable ordering |
+| S32.1, S32.2, S32.3, S32.4, S32.5 | B24/B25/B30/F12/P11; w² overflow/betamin isolated-failure implications |
+| S32.6.1, S32.6.2, S32.6.3, S32.7 | B25/B30 radius/underflow controls, F8/F24 damping, B26 coordinates and finite-coordinate/phase implications |
+| S32.8, S32.9, S32.10, S32.11, S32.12 | P4/P5/P11/P12 power/scalar/conversion/multiply/recombine/embed; positive-denominator implication and D actual checks |
 | S32.13, S32.14, S32.15, S32.16 | P7 FFT nonfinite; A5/P6 contribution/accumulation/final; phase bounds and impossible isolated f64 accumulator implication above; G3/D finite ramp |
-| S32.17 | G7/D controlled actual tiny allocation failure still needed |
+| S32.17 | P7 controlled MemoryError at the real transform fault boundary; G7/D independent buffer/constructor paths remain |
 | S32.18, S32.19, S32.20 | P7/F11 and shared `rejected` observer; G7 actual allocation cause |
 | S33.1, S33.2, S33.3 | B1/B12/B19/B26/F11/F12/P4/P6/P7; G7 allocation-failure no-mutation |
 | S34.1, S34.2, S34.3, S34.4, S34.5, S34.6, S34.7 | B26/Y1/Y3; F9 order-specific metadata |
-| S35.1, S35.2, S35.3, S35.4 | P2/J; G8 literal domain-frame suffix clarification pending, D backend attribution/streaming truth, G6 |
+| S35.1, S35.2, S35.3, S35.4 | P2/J exact approved suffixes and framed identities; D backend attribution/streaming truth, G6 |
 | S35.5 | X/D later failure-report protocol; no fabricated failure precision record |
-| S36.1, S36.2, S36.3, S36.4 | J/F3/F4/F13/P1/P3, A2/A3 controlled exact roots; G3 broader empirical/transcendental interval qualification |
-| S36.5 | Narrow actual DC justification P1/A1/A5/A6; G2 unresolved default nontrivial FFT envelope |
-| S36.6, S36.7, S36.8 | P1 exact constant metrics and independent finite rounding; F2/F6/F9 certified discrete cases; G3/G4 wider witnesses |
+| S36.1, S36.2, S36.3, S36.4 | J/F3/F4/F13/F19/F20/F21/F22/P1/P3/A7/A8/A9/A10 exact/direct and source-box references; G3 actual applicability/precise outside-method points |
+| S36.5 | P1/A1/A5/A6 DC, A7/A8 d-level default and A9 exact-intermediate cardinal proofs; G2 actual applicability and noncardinal image gap |
+| S36.6, S36.7, S36.8 | P1/F19/A7/A8/A9/A10 stage-separated signed metrics/bin margins; F2/F6/F9/F21/F22/F23 discrete cases; G2/G3 actual applicability |
 | S37.1 | M1 exact41-name checkout inventory/name/callability, I1 installed41 marker, Y1 canonical defining identity/retired attribute absence; installed evidence held |
-| S37.2 | Y3 typed old/new/literal/runtime-selection calls; G1 acquisition runtime subset |
+| S37.2 | Y3 literal exercised typed old/new/literal/runtime-selection calls, P9 runtime acquisition compatibility |
 | S38.1, S38.2, S38.3, S38.4, S38.5 | X/D coordinator-owned exclusive matched-process protocol, unexecuted; no A performance claim |
 | S39.1, S39.2 | This report's limits, Y1/Y2/B15; D product/documentation audit, no physical/binary/resource/default-migration claim |
 
-### Concrete blocking gaps and next scoped authoring work
+### Current G1–G8 evidence and remaining qualification
 
-- **G1, old routes/composition:** The allowed packet supplies CE02 preparation and
-  the old schemas' compatibility obligations, but no AcquisitionBands constructor
-  or existing full/summary/extended-entry signatures. The draft has an actual
-  PreparedBands control and acquisition typing, not runtime AcquisitionBands or
-  full/summary/extended double controls. A narrow sanitized public interface packet
-  can supply these builders/signatures without exposing source. No new meaning
-  is sought; do not infer completion from Y3.
-- **G2, default FFT qualification:** No independently justified fixture-specific
-  default-backend error envelope for nontrivial FFT input has been supplied or
-  derived here. Quarter-root exact DFT substitution proves assembly semantics
-  under a controlled existing backend; it cannot qualify the default backend's
-  numerical behavior. Default FFT accuracy, internal accumulators and workspace
-  remain unknown. Do not replace this gap with gamma(N,u), measured maxima,
-  mode agreement or a guessed multiplier. This blocks broader intended numerical
-  qualification until an applicable analytical/backend justification exists.
-- **G3, nonexact/libm intervals:** Prepared-style `1+2^-30+0.5i` is currently a
-  valid-input/identity/source-preservation witness only. A certified outward
-  scalar/interpolation/hypot enclosure and once-rounded conversion separation are
-  still needed for its arithmetic, for nontrivial cosine taper and for full
-  nonzero subpixel carrier/ramp accuracy. Merely doubling Decimal precision would
-  not resolve this. Current rational/Pythagorean cases avoid that uncertainty.
-- **G4, missing distinguishing numerical cases:** Add real public controls for
-  shifted ellipse/c[1]0/rho1 cosine behavior. Native-first filtering now has an
-  independent shifted-support/nonunit-transfer discriminator in returned native
-  diagnostics: positive native x1/4 uses scale(60-80i)/629, its opposite uses
-  (30-40i)/827, while sampling at relocated x1/2 would give(9-12i)/113.
-  y-Nyquist embedding and actual DC carrier sign/axial invariance also have
-  explicit keepers. Current neighboring cosine
-  assertions are useful but not substitutes. These remain test-author omissions,
-  not unresolved public meaning or a scenario cap.
-- **G5, precedence/derived completeness:** Current multi-invalid tests cover phase
-  boundaries and adjacent scalar signature fields, not every bands/transfer
-  within-phase field pair or local self/other-sample-before-g
-  edge. Additional safe public witnesses/implication proofs are needed for those,
-  valid asin endpoints, taper-radius underflow and finite complete-scale failure
-  reachability. Do not manufacture an impossible isolated internal state.
-- **G6, representation/storage path limits:** Integer `_extent`, exact implications
-  and tiny public wide declaration do not prove every retained guard, aggregate
-  admission, pre-copy/hash/scan order, streamed identity or bounded actual scratch.
-  D must audit actual real-caller paths; separate coordinator execution observation
-  must verify the live c64 transition/block claims. Additional safe metadata cases
-  can be authored where a real distinguishing public path exists.
-- **G7, actual allocation failure:** No public NumPy allocation-failure interposer
-  is drafted because no source-free binding-independent allocation hook is named
-  here. D/nonblind external allocation observation can establish an existing real
-  interface; a sanitized approved observation boundary can then support a tiny
-  controlled failure without requiring a new production seam. P7 already covers
-  actual SciPy transform-interface exceptions/nonfinite output/interruption.
+- **G1, author controls supplied:** P8 now also compares old PreparedBands
+  extended omission/double calls. P9 builds actual AcquisitionBands through the
+  supplied3D and true2D public recipe, compares all public record fields/arrays
+  recursively for omission/double and valid extended options, checks original
+  c128/noise schema, rejects single and c64 masquerading, and preserves original
+  raw/used-array/parameter bytes. P10 compares actual full/summary image and
+  coordinate bytes, supplied parameter projections, intensity semantics, signed
+  f64/c128 types and image ownership, excludes full band/reconstruction history
+  records from summary, and checks declarations/inputs unchanged. It checks that
+  no workflow/summary precision argument was added. These are compatibility
+  controls only; none supplies a single input, scientific image oracle or
+  physical-accuracy threshold. The missing-signature blocker is resolved;
+  collection/runtime results remain unobserved.
+- **G2, conditional finite default method derived:** A7 and A8 use actual default
+  calls, not backend substitution, with shapes(4,1,4) and(2,2,4), each N16,d4.
+  Independent rational DFT references and stage-separated enclosures are frozen
+  below. A9's sole dyadic axial mode has a separately proved exact-intermediate
+  zero FFT term under the same actual cardinal plan facts. A10 separately proves
+  exact cardinal intermediates for its single native complex Fourier mode,
+  coupled to nonunit transfer filtering and a consumed noninteger carrier ramp.
+  A11 retains exact DC transforms with distinct per-time scales. Source/wheel/binary/
+  namespace, c64 dispatch, norm1, workers1, RNE/normal-or-gradual-underflow and
+  absence of unsafe reassociation are still unqualified. The source method is
+  not applicable to lengths6/20 used in F8/F9/F13/F16/F21/F22/F23 diagnostic
+  controls; their returned image accuracy remains explicitly unqualified. The
+  nonzero cosine ellipse at Z20 is a retained required noncardinal/default call:
+  its filtered coefficients have a selected scalar oracle, while its image
+  needs a distinct size20 FFT justification before an image-accuracy claim.
+  No arbitrary6/8/20/32/64 envelope, backend workspace/accumulator claim or mode-
+  agreement tolerance is introduced.
+- **G3, selected point derivations supplied; applicability held:** J now evaluates
+  the supplied finite hypot program union and0/P4/P2 sin/cos source expressions
+  with exact rational R64 boxes, integer-sqrt intervals, Taylor tails and explicit
+  RN32 bin margins. F19 uses H=(1+2^-30)+i/2 at an exact node and a pretrial
+  scalar-bin discriminator. F21/F22 use the actual cosine P4/P2 points. A9 checks
+  the complete signed/noninteger carrier ramp pointwise and separates ideal-pi,
+  primitive, once-consumed conversion, local product, FFT, accumulation and final
+  terms. A10 propagates the independently derived native complex filter scale
+  through that complete default inverse/ramp composition, rather than taking
+  returned diagnostics as the image oracle. No guessed ULP allowance remains in
+  these helpers. Actual glibc/CPython/
+  NumPy/SciPy binaries, IFUNC/cexp-versus-fallback/standalone-versus-combined paths,
+  IEEE sqrt/RNE and source correspondence remain blocking material conditions.
+  Ordinary zero-axis/Pythagorean hypot controls and the tiny/subnormal zero-axis
+  paths in P11/F23 also require their actual primitive behavior to be qualified;
+  the selected moderate transfer proof is not a theorem for every hypot pair.
+  Existing NA1/2 cutoff controls F8/F9/F13/F16 still need an applicable bound on
+  cos(asin(1/2)) for their discrete decisions (for example a certified range
+  strictly within[0.866,0.867] suffices at the selected margins). That precise
+  primitive point is outside the supplied0/P4/P2 formulas. Arbitrary carrier
+  phases and arbitrary table/query/hypot points are not called qualified.
+- **G4, missing author cases now present:** F20 checks shifted-object origin with
+  exact cos0, both c1=0 lateral fallback and positive-cutoff control. F21 uses
+  unequal cutoffs[4,8,5], highest order z4 and Kxy0, so rho1/2 must use c[1]=8
+  rather than c[2]=5 or c[0]=4. F21 also retains a genuine rho1 non-hard-zero
+  coefficient; F22 certifies rho²5/4>1 and clips to the same actual cosine point.
+  These are selected scalar/diagnostic witnesses, subject to G3. The earlier
+  native-first filter discriminator F18, y-Nyquist embedding and full A9 ramp
+  remain. No required positive taper/transfer/carrier mode was dropped to fit a
+  cardinal FFT or exact-zero shortcut.
+- **G5, observable controls/implications completed:** B19 adds complete-transfer
+  versus scalar, carrier-original-value versus modulation, and invalid modulation
+  versus a valid-but-unsafe sampling table. B28/B29 use adjacent fixed field
+  controls within the documented subphases; transitivity covers equivalent
+  all-pairs outcomes without a combinatorial matrix. F24 preserves self-sample
+  before singular damping; F23 supplies a genuine other-sample-before-overflowing-
+  g pair with an OtfError cause, safe-table weight failure and unit-noise positive.
+  B30 has a certified valid beta upper endpoint and neighboring invalid product,
+  plus a positive versus underflowed required Rp. P11 reaches a true f64 complete-
+  scale overflow; P12 reaches Y1 embedding overflow, with finite positive pairs.
+  A direct ReconstructionError for invalid transfer metadata need not invent an
+  OtfError cause. B20's field negatives and B19's phase boundary are the stronger
+  permitted public proof; transfer-internal first-field ordering can be
+  observationally indistinguishable when the allowed diagnostic only names
+  transfer. D must audit that actual order without a new validator seam or an
+  incidental-message contract. Redundant/impossible failures are discharged by
+  the explicit implications below rather than fabricated internal states.
+- **G6, combined path evidence remains:** `_extent`, actual-width implications,
+  B23's genuine wide declaration/invalid-Wiener child and B31's tiny Q*P/absent-
+  frame positive are A evidence. They do not establish every caller's retained
+  count/stride/byte checks, pre-copy/hash/scan order, aggregate T/D/Q/O storage,
+  streaming or bounded live c128/f64 blocks. D/source and separate actual
+  execution observation still own those path/promotion claims. No huge success
+  or workstation volume is invoked. The formerly unbounded B23 experiment is
+  now protected independently of production allocation aliases; its transport/
+  limit/dependency applicability is held as described below.
+- **G7, real selected fault boundary covered; broader allocation audit retained:**
+  P7 now raises both RuntimeError and controlled MemoryError through the existing
+  SciPy backend interface, checks exact retained causes/input bytes and a valid
+  post-context call, and retains nonfinite-output/interruption controls. Its
+  imaginary-only infinite first center transform would disappear on an unchecked
+  real projection; requiring rejection after exactly one transform distinguishes
+  this fault boundary from a later image check. This is
+  a real operation fault at that transform boundary, not an OOM experiment or
+  proof of every independent NumPy allocation binding. D/nonblind observation
+  must still assess independent buffer/constructor failure paths. No production
+  seam or private alias discovery was added.
+- **G8, resolved by public contract:** Exact first frames are ASCII
+  `sp113-framed-v1/bands`, `sp113-framed-v1/transfer`,
+  `sp113-framed-v1/parameters`, no trailing separator/NUL. J already uses these
+  approved bindings. P2 is no longer provisional for suffix meaning; fresh B must
+  review the serializer and all identity dependents. Runtime hash correctness
+  and production streaming are unexecuted/unproved by this static authorship.
 
-The intended scientific meaning is fixed. G1/G7 need
-narrow public interface facts, G2/G3 need scientific qualification, G4/G5 need
-further authorized A design/corrections and G6 needs the prescribed combined A/D
-proof. These static drafts should not be handed to C as frozen accepted tests.
-
-- **G8, identity domain binding question:** Section3 defines the first identity
-  frame as `sp113-framed-v1/` plus domain, but I did not find explicit literal
-  suffix bindings for the three identities. J currently uses `bands`, `transfer`
-  and `parameters`; I returned that exact proposed binding to the coordinator
-  for public clarification. All other metadata/dtype/frame/order terms are
-  explicit. This is a concrete reproducibility term to clarify, not permission
-  for A to choose new identity meaning. P2's exact hash assertions remain
-  provisional pending that answer. No scientific candidate supplied those strings.
+The public meaning is fixed and no new owner interview is needed. Remaining
+blockers are independent B/quality checks and actual material/transport/path
+qualification, not permission for C to treat unverified drafts as frozen tests.
 
 An additional representation implication is that output-volume validity gives
 `4*L**2*A<=I` at the smallest native spatial volume4; hence L<=23170 for every
@@ -491,10 +866,131 @@ inside the other valid geometry constraints; B22's nonexact large-L rejection
 does not isolate it. The valid wide L2^14 constructor is a genuine positive.
 The actual-self-sample-before-singular-damping test pairs unsafe R1/K1 and c0=0:
 OtfError must survive as cause before damping is evaluated; a safe transfer with
-the same c0/flag instead reaches the damping rejection. Other eligible-sample
-local precedence remains within G5. Original unbounded integer real declarations
+the same c0/flag instead reaches the damping rejection. F23 now covers the
+distinct eligible-other-sample ordering. Original unbounded integer real declarations
 2^2048 additionally reject through public domain errors before f64 conversion;
 this protects against accidental OverflowError escape.
+
+## Bounded declaration protocol and experiment dependencies
+
+The original unbounded wide draft is preserved at unverified0e06d28 and was
+never executed. The safety addendum changes the experiment, not the public
+geometry, error rule, product admission domain or user resource budget. J now
+owns exactly two named child cases, `wide` and `phase`; B23/B31 invoke them
+through the existing execution-only source-free wrapper. No production allocator
+seam, private alias discovery or NumPy allocation monkeypatch is involved.
+
+The proposed command shape is the current pinned Python executing
+`scripts/source_free_check.py python <absolute-owned-single_known_fixture.py>
+bounded-declarations <wide|phase>`. Environment and diagnostic inheritance are
+preserved; no -I/-S/-E, preexec_fn, environment stripping, install, build or
+installed checker occurs. This exact wrapper/child form and every descendant
+output/warning/traceback/status channel still require independent inspection
+and explicit root activation. Neither the helper text nor an outer pytest
+renderer proves that transport is qualified.
+
+The child imports its ordinary dependencies first, including NumPy, simrecon,
+SciPy FFT and the stdlib helpers. It rejects disabled assertions. It reads its
+own Linux `/proc/self/status` VmSize, requires the reported `kB` unit and converts
+that unit as1024 bytes, then rounds upward to `os.sysconf(SC_PAGE_SIZE)` bytes.
+The requested reserve is64MiB rounded upward; the minimum usable reserve is
+32MiB similarly rounded. It takes the minimum of baseline+reserve, an explicit
+1GiB **experiment** ceiling and existing finite soft/hard RLIMIT_AS, then rounds
+down to a page. An unusable baseline/hard limit or failed installation is an
+experiment/environment failure, never an intended product pass. Both child
+soft and hard RLIMIT_AS become that cap and are read back before either any
+constructor or any consumer call. A second VmSize read after installation is
+recorded as guard_vm_bytes; the remaining cap-minus-guard headroom must still
+exceed the minimum reserve before any product declaration or consumer. The
+total1GiB ceiling prevents a huge existing
+address reservation from silently defeating the guard; this is not a product
+memory ceiling or a guarantee about resident RAM/backend workspace.
+
+A tiny positive declaration/reconstruction is required under the cap first.
+In `wide`, native(2,1,2), L2^14,A1 still produces the genuine output declaration
+(2,16384,32768), plane2^29, volume2^30. Historical8*volume=2^33,
+4*volume=2^32 and4*plane=2^31 cross the old byte caps while signed/native bounds
+fit. Tiny q/v storage is unchanged. The consumer must raise the actual
+reconstruction-domain Wiener error before enlarged work; bare MemoryError,
+wrapped/context MemoryError, wrong exception, wrong argument or missing rejection
+does not pass. Input bytes and the normalization2^-30 are checked. The cap binds
+even an incorrect path that attempts a2/4/8GiB target using an unanticipated
+allocation alias.
+
+In `phase`, all actual spatial arrays remain tiny at Z4,Y2,X4. Q3 and
+P=floor(I/3)=715827882 give Q*P=I-1 while D*P*Z>I. Declaration and a tiny zero-data
+consumer call must succeed because no preparation/frame/phase-design storage is
+selected. P+1 gives Q*P=I+2 and must reject. This case is also isolated under the
+same guard so an erroneous hidden preparation allocation cannot exhaust the
+shared machine. It adds no huge logical array or successful large target.
+
+Parent transport uses a fresh POSIX session/process group, selectors and4096-byte
+reads, retaining at most16KiB per stdout/stderr channel. A30s post-launch deadline
+and a single owned-group SIGKILL plus at-most5s cleanup wait bound ordinary timeout
+and overflow paths; there is no Popen context-manager unbounded exit wait or retry.
+Pipes are closed in finally. The root must qualify wrapper descendant group
+inheritance/no detached child, ordinary process launch/termination and diagnostic
+behavior. A pathological unkillable kernel process or unsupported transport is
+an experiment failure requiring coordinator cleanup, never an accepted result.
+
+Success requires return status0 and one final nonempty
+`SP113_DECLARATION_RESULT ` frame, with the exact case/status/assertion/error
+schema, positive integer baseline/guard/page/cap/reserve metadata, previous limits and
+the checked cap inequalities. The frame is printed only after the tiny control,
+case-specific positive/rejection and no-memory-cause/input-byte assertions.
+Other bounded stdout/stderr is retained in test properties, not silently discarded.
+Killed/nonzero/timeout children, diagnostic overflow, malformed/missing/duplicate
+frames or absent assertions all fail. A wholly swallowed allocation exception
+with no observable cause could evade an outcome-only ordering assertion; the
+experiment remains memory-bounded and D must still audit actual pre-work paths.
+The helper does not purport to observe every allocator attempt.
+
+Dependencies newly relevant to B are stdlib resource/RLIMIT_AS, Linux procfs,
+page-size metadata, subprocess/session/process-group signals, selectors/pipe I/O,
+monotonic clock, bounded UTF-8/JSON transport, the source-free wrapper/inherited
+support and the existing scientific import/backend environment. No support
+source was read or edited. VmSize/caps/status/diagnostics are all **unmeasured**
+at this static checkpoint. A too-small reserve for the legitimate tiny control
+is an experiment/environment issue to diagnose before scientific acceptance,
+not an invented product memory rule or a passing Wiener assertion.
+
+Y3 separately authors a literal public caller in future pytest tmp_path and runs
+the documented source-free Pyright form on that exact file, requiring status0,
+at least one file analyzed and zero errors. It preserves real facade imports,
+literal old/new return `assert_type` and field dtype assertions without Any or
+stubs in the caller. New module imports occur inside their own runtime tests;
+none of the harness modules imports the absent new defining module at collection.
+Legacy controls can therefore collect independently. New API absence remains a
+failure of the corresponding obligation, not a skip, expected failure or fallback.
+This caller/child subprocess and diagnostics also await the explicit root grant.
+
+## Continuation1 frozen static artifact identities
+
+The following eight Python file hashes were obtained by static SHA256 only after
+the continuation's last code edit. M1/I1 already belong to the preserved draft
+checkpoint and were not changed again in continuation1. These are draft byte
+identities, not an accepted test checkpoint or runtime evidence. Fresh B must
+inspect the complete eight-file expectation/fixture set and this report before
+any conditional light-check protocol is activated. The report's own final hash
+is returned separately to avoid a self-referential identity.
+
+| Owned Python artifact | SHA256 |
+| --- | --- |
+| `tests/single_known_fixture.py` | `51c35fe8db9b254ec1c8aff75c3c562a8d2e3e546bc6f421e458e0a079b62df4` |
+| `tests/test_single_known_boundary.py` | `e9fee0cd292f5d7910c9450bf64470d392520d0fb163bd3fd7666cac96d06c84` |
+| `tests/test_single_known_filter.py` | `78d435b9a603ac5f2afe691649bc843136a7b1c40bb56d8497e4bf9520262f2d` |
+| `tests/test_single_known_assembly.py` | `eb9e93a0b78f2200821a9a4b2c53e2d4ee56fb526f44976c6a52697cf28725bc` |
+| `tests/test_single_known_precision.py` | `f19c130835e321b0afbfe98b3c0c26dd8e6e2cb12bcfc860ea150a7d40d5d90d` |
+| `tests/test_single_known_typing.py` | `9c0549fa440de7dcb1ebcbee355ab883f93a092c26847fcddefc1b5ecb97874c` |
+| `tests/test_module_migration.py` | `a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804` |
+| `tests/test_installed_wheels.py` | `ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e` |
+
+The last static status/identity observation was HEAD
+`22eefb767b48b82e4c0e541fe46afe15874f8217`, tree
+`8ca937d488d7af4df1b65b6fed1da035980ea612`; only the six continuation-owned
+Python drafts and this report were dirty. No commit or test acceptance follows
+from that observation. No C authority or accepted116 reconciliation is supplied
+by A1.
 
 ## Checks, exposure, risk and accounting
 
@@ -541,9 +1037,12 @@ used for numerical experiments.
 
 Preserve the supplied prior accounting: one intake author with one continuation,
 no prior A/B/C/D or accepted tests and no product/test repairs before this A1.
-This is one A1 static authoring attempt, including the narrow facade amendment,
-with in-session text corrections and four failed static apply_patch context
-matches (no partial content change), no
+This is one A1 static authoring attempt followed by continuation1, including the
+narrow facade amendment and public method/safety/wording addenda. In-session text
+corrections include four initial and two continuation failed static apply_patch
+context matches (six cumulative, no partial content change). One continuation
+allowed-file read response exceeded the available tool output context and was
+truncated; targeted allowed-file reads replaced it. There were no
 execution checks or diagnoses based on candidate output. Static tooling/intake
 charges and this A1's charges are cumulative and unknown where unmetered. No
 human numerical scenario/review/repair/execution cap is set. No hidden retry,

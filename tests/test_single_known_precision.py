@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from copy import deepcopy
 from dataclasses import fields, replace
 from fractions import Fraction
 from typing import Any
@@ -15,7 +16,9 @@ import simrecon as sr
 
 from .single_known_fixture import (
     HALF_SUB32, PRECISION_VALUES, PROFILE, U32, arrays, call, declare,
-    identities, rn32, rn64, snapshot, transfer,
+    assert_public_equal, identities, legacy_acquisition, legacy_known_options,
+    legacy_raw, legacy_transfer, legacy_workflow_options, public_values,
+    rn32, rn64, snapshot, transfer,
 )
 from .test_single_known_boundary import rejected
 
@@ -134,10 +137,44 @@ def test_ordered_power_product_and_recombination_intermediate_overflow() -> None
     q[0, 0, 0, 0, 0, 0] = maximum
     rejected(lambda: call(declare(q, np.ones_like(v)), transfer(value=complex(2**-120, 0)), wiener=2**-120), (PROFILE, "coefficient", "native", "finite", "overflow"))
     q[...] = 0
+    q[0, 0, 0, 0, 0, 0] = -maximum
     q[0, 0, 1, 0, 0, 0] = maximum
     # H=1/2,w=1/4 gives scale8/13: p and n are finite, p+n is not.
     # The later factor1/2 must not conceal that required primitive overflow.
     rejected(lambda: call(declare(q, np.ones_like(v)), transfer(value=0.5), wiener=0.25), (PROFILE, "recombination", "native", "finite", "overflow"))
+
+
+def test_complete_float64_scale_can_overflow_before_consumed_conversion() -> None:
+    q, v = arrays()
+    # Valid prepared-style c128 source2^-1073, below the c64 component range.
+    # Its squared magnitude rounds0; w²=2^-1074 is the smallest positive f64.
+    # With v1, quotient2 is finite. With v2^-1023, inverse noise2^1023
+    # makes numerator2^-50, so division by2^-1074 overflows at2^1024.
+    otf = transfer(value=0j, empirical_delta=2**-1073)
+    assert np.all(call(declare(q, v), otf, wiener=2**-537).image == 0)
+    v[...] = 2**-1023
+    bands = declare(q, v)
+    before = snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples)
+    rejected(lambda: call(bands, otf, wiener=2**-537), (PROFILE, "scalar", "filter scale", "float64"))
+    assert snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples) == before
+    rejected(lambda: call(declare(q, np.ones_like(v)), otf, wiener=2**-538), (PROFILE, "wiener", "square"))
+
+
+def test_y1_embedding_still_checks_c64_harmonic_addition() -> None:
+    q, v = arrays(d=2, y=1, x=2)
+    maximum = np.finfo(np.float32).max
+    q[0, 0, 0, 0, 0, 0] = -maximum
+    q[0, 0, 1, 0, 0, 0] = maximum
+    q[0, 0, 2, 0, 0, 0] = -1j * maximum
+    q[0, 1, 0, 0, 0, 0] = -maximum
+    q[0, 1, 1, 0, 0, 0] = -maximum
+    bands = declare(q, v)
+    before = snapshot(bands.quadratures)
+    rejected(lambda: call(bands), (PROFILE, "embed", "coefficient", "native", "harmonic", "finite"))
+    assert snapshot(bands.quadratures) == before
+    q[0, 0, 2, 0, 0, 0] = 0
+    q[0, 1, 1, 0, 0, 0] = 0
+    assert np.all(call(declare(q, v)).image == 0)
 
 
 def test_final_image_overflow_is_distinct_from_finite_f64_accumulation() -> None:
@@ -165,17 +202,24 @@ class FailureBackend:
         assert kwargs.get("norm") == "forward" and kwargs.get("workers") == 1
         if self.failure is not None:
             raise self.failure
-        return np.full(args[0].shape, complex(np.inf, 0), dtype=np.complex64)
+        if self.calls == 1:
+            # Imaginary-only nonfinite center output could otherwise disappear
+            # when center assembly consumes its real part. Later FFTs are0.
+            return np.full(args[0].shape, complex(0, np.inf), dtype=np.complex64)
+        return np.zeros(args[0].shape, dtype=np.complex64)
 
 
 def test_backend_exception_cause_nonfinite_result_and_interruption_are_public() -> None:
     bands, otf = declare(), transfer()
     before = snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples)
     original = RuntimeError("SP113 controlled existing FFT interface failure")
-    backend = FailureBackend(original)
-    with scipy.fft.set_backend(backend, only=True):
-        error = rejected(lambda: call(bands, otf), (PROFILE, "fft", "transform"))
-    assert backend.calls == 1 and error.__cause__ is original
+    memory = MemoryError("SP113 controlled FFT-boundary allocation failure")
+    for failure in (original, memory):
+        backend = FailureBackend(failure)
+        with scipy.fft.set_backend(backend, only=True):
+            error = rejected(lambda: call(bands, otf), (PROFILE, "fft", "transform", "allocation", "memory"))
+        assert backend.calls == 1 and error.__cause__ is failure
+        assert snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples) == before
     nonfinite = FailureBackend(None)
     with scipy.fft.set_backend(nonfinite, only=True):
         rejected(lambda: call(bands, otf), (PROFILE, "fft", "transform", "finite"))
@@ -191,6 +235,7 @@ def test_backend_exception_cause_nonfinite_result_and_interruption_are_public() 
     with scipy.fft.set_backend(untouched, only=True):
         rejected(lambda: call(bands, otf, wavelength_nm=0), "wavelength")
     assert untouched.calls == 0
+    assert np.all(call(bands, otf).image == 0)
 
 
 def test_omitted_and_explicit_double_are_exact_same_environment_controls() -> None:
@@ -204,8 +249,9 @@ def test_omitted_and_explicit_double_are_exact_same_environment_controls() -> No
     options: dict[str, Any] = dict(carriers_cyc_um=np.zeros((1, 2)), modulation=np.ones((1, 1)),
         wavelength_nm=500, numerical_aperture=1.0, immersion_index=1.0,
         wiener=0.5, suppress_singularities=False, output_taper="none")
-    omitted = sr.reconstruct_known(old, otf, **options)
-    explicit = sr.reconstruct_known(old, otf, precision="double", **options)
+    known: Any = sr.reconstruct_known
+    omitted = known(old, otf, **options)
+    explicit = known(old, otf, precision="double", **options)
     assert type(omitted) is type(explicit) is sr.KnownReconstruction
     assert tuple(field.name for field in fields(omitted)) == tuple(field.name for field in fields(explicit))
     for field in fields(omitted):
@@ -216,6 +262,100 @@ def test_omitted_and_explicit_double_are_exact_same_environment_controls() -> No
         else:
             assert left == right
     assert not hasattr(omitted, "precision_profile")
-    rejected(lambda: sr.reconstruct_known(old, otf, precision=PROFILE, **options), ("bands", "precision", "PreparedBands32"))
+    rejected(lambda: known(old, otf, precision=PROFILE, **options), ("bands", "precision", "PreparedBands32"))
     masquerade = replace(old, quadratures=old.quadratures.astype(np.complex64))
-    rejected(lambda: sr.reconstruct_known(masquerade, otf, **options), ("quadrature", "complex128", "dtype"))
+    omitted_error = rejected(lambda: known(masquerade, otf, **options), ("quadrature", "complex128", "dtype"))
+    explicit_error = rejected(lambda: known(masquerade, otf, precision="double", **options), ("quadrature", "complex128", "dtype"))
+    assert type(omitted_error) is type(explicit_error) and str(omitted_error) == str(explicit_error)
+    extended = options | {
+        "output_taper": "power", "power_taper_exponent": 0.0,
+        "wiener_increment": 0.125, "filter_overlaps": False,
+        "explode_factor": -1.0, "precise_taper": False,
+    }
+    omitted_extended = known(old, otf, **extended)
+    explicit_extended = known(old, otf, precision="double", **extended)
+    assert_public_equal(omitted_extended, explicit_extended)
+    assert dict(omitted_extended.resolved_settings)["output_taper"] == "power"
+
+
+def test_legacy_acquisition_3d_and_true_2d_keep_double_records_options_and_errors() -> None:
+    known: Any = sr.reconstruct_known
+    for two_dimensional in (False, True):
+        raw = legacy_raw(two_dimensional=two_dimensional)
+        original_raw = snapshot(raw)
+        bands = legacy_acquisition(raw, two_dimensional=two_dimensional)
+        otf = legacy_transfer(two_dimensional=two_dimensional)
+        options = legacy_known_options()
+        assert type(bands) is sr.AcquisitionBands
+        assert bands.quadratures.dtype == np.complex128
+        assert bands.noise_variance_factors.dtype == np.float64
+        assert bands.noise_variance_factors.shape == (1, 1, 2)
+        assert not hasattr(bands, "precision_profile")
+        before = snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples,
+            options["carriers_cyc_um"], options["modulation"])
+        omitted = known(bands, otf, **options)
+        explicit = known(bands, otf, precision="double", **options)
+        assert type(omitted) is sr.KnownReconstruction
+        assert_public_equal(omitted, explicit)
+        assert omitted.image.dtype == np.float64
+        assert omitted.filtered_quadratures.dtype == np.complex128
+        assert not hasattr(omitted, "precision_profile")
+        extended = options | {
+            "output_taper": "power", "power_taper_exponent": 0.0,
+            "wiener_increment": 0.125, "filter_overlaps": False,
+            "explode_factor": -1.0, "precise_taper": False,
+        }
+        assert_public_equal(
+            known(bands, otf, **extended),
+            known(bands, otf, precision="double", **extended),
+        )
+        rejected(lambda: known(bands, otf, precision=PROFILE, **options), ("bands", "precision", "PreparedBands32"))
+        masquerade = replace(bands, quadratures=bands.quadratures.astype(np.complex64))
+        omitted_error = rejected(lambda: known(masquerade, otf, **options), ("quadrature", "complex128", "dtype"))
+        explicit_error = rejected(lambda: known(masquerade, otf, precision="double", **options), ("quadrature", "complex128", "dtype"))
+        assert type(omitted_error) is type(explicit_error) and str(omitted_error) == str(explicit_error)
+        # Record/profile compatibility precedes a malformed used c128 field.
+        rejected(lambda: known(masquerade, otf, precision=PROFILE, **options), ("bands", "precision", "PreparedBands32"))
+        assert snapshot(raw) == original_raw
+        assert snapshot(bands.quadratures, bands.noise_variance_factors, otf.samples,
+            options["carriers_cyc_um"], options["modulation"]) == before
+
+
+def test_existing_full_and_summary_keep_exact_double_projection_and_retention() -> None:
+    raw, otf = legacy_raw(), legacy_transfer()
+    options = legacy_workflow_options(otf)
+    declarations = {key: deepcopy(value) for key, value in options.items() if key != "transfer"}
+    before = snapshot(raw, otf.samples)
+    full = sr.reconstruct_workflow(raw, **options)
+    summary = sr.reconstruct_summary(raw, **options)
+    assert type(full) is sr.WorkflowReconstruction
+    assert type(summary) is sr.ReconstructionSummary
+    assert summary.diagnostics == "summary"
+    for name in ("image", "x_um", "y_um", "z_um"):
+        full_array, summary_array = getattr(full, name), getattr(summary, name)
+        assert full_array.dtype == summary_array.dtype == np.float64
+        assert_public_equal(full_array, summary_array)
+        assert not np.shares_memory(full_array, summary_array)
+        assert not np.shares_memory(summary_array, raw)
+    assert summary.image.flags.owndata and not summary.image.flags.writeable
+    assert_public_equal(full.intensity_unit, summary.intensity_unit)
+    assert_public_equal(full.intensity_semantics, summary.intensity_semantics)
+    for name in ("carriers_cyc_um", "modulation", "raw_modulation", "initial_carriers_cyc_um", "phase_linkage_carriers_cyc_um"):
+        assert_public_equal(getattr(full.parameters, name), getattr(summary, name))
+    assert summary.carriers_cyc_um.dtype == np.float64
+    assert summary.modulation.dtype == np.complex128
+    for reconstruction in full.reconstructions:
+        assert type(reconstruction) is sr.KnownReconstruction
+        assert reconstruction.filtered_quadratures.dtype == np.complex128
+    forbidden_full_records = (sr.PreparedBands, sr.AcquisitionBands, sr.KnownReconstruction)
+    assert not any(isinstance(value, forbidden_full_records) for value in public_values(summary))
+    assert not hasattr(full, "precision_profile") and not hasattr(summary, "precision_profile")
+    assert snapshot(raw, otf.samples) == before
+    assert_public_equal(declarations, {key: value for key, value in options.items() if key != "transfer"})
+    # No precision selector is added to either composed entry.
+    workflow: Any = sr.reconstruct_workflow
+    compact: Any = sr.reconstruct_summary
+    with pytest.raises(TypeError):
+        workflow(raw, precision=PROFILE, **options)
+    with pytest.raises(TypeError):
+        compact(raw, precision=PROFILE, **options)

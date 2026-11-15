@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError, fields, replace
+from fractions import Fraction
 from typing import Any
 
 import numpy as np
@@ -13,7 +14,8 @@ from simrecon.reconstruction.known_parameters import _extent
 
 from .single_known_fixture import (
     BAND_FIELDS, CE04_SOURCES, I32, NATIVE_MAX, PROFILE, RESULT_FIELDS,
-    SETTING_KEYS, arrays, assert_owned, call, declare, owned, snapshot, transfer,
+    SETTING_KEYS, arrays, assert_owned, call, declare, owned, rn64,
+    run_bounded_declaration_experiment, snapshot, transfer,
 )
 
 
@@ -84,13 +86,12 @@ def test_constructor_snapshot_direct_record_and_subclass() -> None:
     assert snapshot(bands.quadratures, bands.noise_variance_factors) == before
     with pytest.raises(FrozenInstanceError):
         bands.input_scale = 1.0
-    direct = sr.PreparedBands32(**{field.name: getattr(bands, field.name) for field in fields(bands)})
+    new_type = getattr(sr, "PreparedBands32")
+    direct = new_type(**{field.name: getattr(bands, field.name) for field in fields(bands)})
     assert call(direct).precision_profile == PROFILE
 
-    class Derived(sr.PreparedBands32):
-        pass
-
-    subclass = Derived(**{field.name: getattr(bands, field.name) for field in fields(bands)})
+    derived = type("Derived", (new_type,), {})
+    subclass = derived(**{field.name: getattr(bands, field.name) for field in fields(bands)})
     assert call(subclass).precision_profile == PROFILE
 
 
@@ -105,7 +106,7 @@ def test_precision_rejects_before_record_or_domain(precision: Any) -> None:
 def test_explicit_selection_and_incompatible_records() -> None:
     reconstruction: Any = sr.reconstruct_known
     bands = declare()
-    assert type(call(bands)) is sr.KnownReconstruction32
+    assert type(call(bands)) is getattr(sr, "KnownReconstruction32")
     for precision in ("double",):
         rejected(lambda: call(bands, precision=precision), ("bands", "precision", "PreparedBands"))
     options: dict[str, Any] = dict(carriers_cyc_um=np.zeros((1, 2)), modulation=np.ones((1, 1)),
@@ -222,7 +223,8 @@ def test_shape_consistency(which: str) -> None:
     # Direct public constructor avoids the fixture's convenience shape unpack.
     base: dict[str, Any] = dict(input_shape=(1, 1, 3, 2, 2, 4), dxy_um=1.0, dz_um=1.0, lateral_zoom=1, axial_zoom=1)
     base.update(options)
-    rejected(lambda: sr.declare_prepared_bands32(q, v, **base), ("shape", "quadrature", "noise", "order", "Q"))
+    constructor = getattr(sr, "declare_prepared_bands32")
+    rejected(lambda: constructor(q, v, **base), ("shape", "quadrature", "noise", "order", "Q"))
 
 
 @pytest.mark.parametrize("field", ["quadratures", "noise_variance_factors"])
@@ -370,6 +372,11 @@ def test_parameter_complex_rules_and_permitted_subclasses_strides_and_byte_order
         np.testing.assert_array_equal(result.modulation, values)
     rejected(lambda: call(modulation=np.ones((1, 1), dtype=np.clongdouble)), "modulation")
     rejected(lambda: call(modulation=np.array([[complex(0, -np.inf)]])), "modulation")
+    integer_modulation = np.array([[2**53 + 1]], dtype=np.uint64)
+    before_integer = snapshot(integer_modulation)
+    converted = call(modulation=integer_modulation)
+    assert converted.modulation[0, 0] == complex(2**53, 0)
+    assert snapshot(integer_modulation) == before_integer
 
 
 def test_phase_precedence_and_failure_immutability() -> None:
@@ -379,10 +386,13 @@ def test_phase_precedence_and_failure_immutability() -> None:
     bad_bands = replace(bands, quadratures=owned(q_bad))
     rejected(lambda: call(bad_bands, object(), wiener=0), "quadrature")
     rejected(lambda: call(bands, object(), wiener=0), ("transfer", "OpticalTransfer"))
+    rejected(lambda: call(bands, replace(otf, source_revision="wrong"), wiener=0), ("transfer", "otf", "revision"))
     rejected(lambda: call(bands, otf, wavelength_nm=0, numerical_aperture=0,
         carriers_cyc_um=None), "wavelength")
     rejected(lambda: call(bands, otf, wiener=0, carriers_cyc_um=None), "wiener")
     rejected(lambda: call(bands, otf, carriers_cyc_um=None, modulation=None), "carrier")
+    rejected(lambda: call(bands, otf, carriers_cyc_um=np.array([[np.nan, 0.0]]), modulation=np.ones((2, 2))), "carrier")
+    rejected(lambda: call(bands, transfer(radial=1, axial=1), modulation=np.ones((2, 2))), "modulation")
     sources = (bands.quadratures, bands.noise_variance_factors, otf.samples)
     before = snapshot(*sources)
     rejected(lambda: call(bands, otf, modulation=np.ones((2, 2))), "modulation")
@@ -406,6 +416,27 @@ def test_scalar_signature_order_precedence_even_for_unsupported_values() -> None
 def test_original_unbounded_integer_reals_reject_before_binary64_conversion() -> None:
     for field in ("numerical_aperture", "immersion_index", "wiener", "suppression_radius_bins", "wiener_increment", "explode_factor"):
         rejected(lambda: call(**{field: 2**2048}), field)
+
+
+def test_adjacent_band_metadata_and_structure_value_precedence() -> None:
+    bands = declare()
+    ordered_invalid: tuple[tuple[str, Any], ...] = (
+        ("input_shape", (1, 1, 3, 2, 2)), ("input_scale", 0.0),
+        ("dxy_um", 0.0), ("dz_um", 0.0), ("lateral_zoom", 0),
+        ("axial_zoom", 0), ("mapping_revision", "wrong"),
+        ("precision_profile", "wrong"), ("provenance", (("dup", "one"), ("dup", "two"))),
+    )
+    for (first, bad_first), (second, bad_second) in zip(ordered_invalid, ordered_invalid[1:]):
+        rejected(lambda: call(replace(bands, **{first: bad_first, second: bad_second})), (first, "shape" if first == "input_shape" else first))
+    bad_q = np.array(bands.quadratures, copy=True)
+    bad_q.flat[0] = np.nan
+    # Complete array structure/dtype checks precede original-value scans.
+    rejected(lambda: call(replace(bands, quadratures=owned(bad_q), noise_variance_factors=owned(bands.noise_variance_factors.astype(np.float32)))), "noise")
+    # Metadata domains precede ownership flags; original q finite scans precede
+    # positive-noise scans. They are different public fields, not message aliases.
+    writable = np.array(bands.quadratures, copy=True)
+    rejected(lambda: call(replace(bands, dxy_um=0.0, quadratures=writable)), "dxy")
+    rejected(lambda: call(replace(bands, quadratures=owned(bad_q), noise_variance_factors=owned(np.zeros((1, 1, 2))))), "quadrature")
 
 
 def test_transfer_record_validation_and_unused_orders() -> None:
@@ -461,15 +492,22 @@ def test_invalid_metadata_with_tiny_backing_never_reaches_large_work(changes: di
     rejected(lambda: declare(**changes), ("shape", "dimension", "extent", "zoom", "representation", "phase", "Q"))
 
 
-def test_wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure() -> None:
-    q, v = arrays(y=1, x=2)
+def test_wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure(record_property: Any) -> None:
     # Output(2,16384,32768) has2**30 elements, 8*volume=2**33 bytes,
     # and4*plane=2**31 bytes. Signed counts and native extents still fit.
     # Declaration copies only tiny q/v; invalid Wiener stops the consumer
     # before output allocation/FFT. No large successful operation is attempted.
-    bands = declare(q, v, lateral_zoom=2**14)
-    assert bands.input_scale == 2**-30
-    rejected(lambda: call(bands, wiener=0.0), "wiener")
+    report, diagnostics = run_bounded_declaration_experiment("wide")
+    record_property("sp113_wide_bounded_child", report)
+    record_property("sp113_wide_bounded_child_diagnostics", diagnostics)
+
+
+def test_qp_limit_remains_but_absent_preparation_frame_count_does_not_apply(record_property: Any) -> None:
+    # Q3*P=I-1 fits; D*P*Z exceeds I but no frame/preparation storage exists.
+    # All actual arrays and all native/output spatial volumes remain tiny.
+    report, diagnostics = run_bounded_declaration_experiment("phase")
+    record_property("sp113_phase_bounded_child", report)
+    record_property("sp113_phase_bounded_child_diagnostics", diagnostics)
 
 
 def test_operation_domains_have_no_tiny_noise_or_wiener_floor() -> None:
@@ -490,6 +528,26 @@ def test_derived_sampling_cutoff_and_suppression_domains_are_not_silent_fallback
         rejected(lambda: call(declare(q, v, **{field: 2**-1074})), (PROFILE, "sampling", "spacing", "finite", "frequency"))
     rejected(lambda: call(declare(dz_um=2**100)), (PROFILE, "cutoff", "representation", "integer"))
     rejected(lambda: call(declare(dxy_um=2**-1000), suppression_radius_bins=2**100), (PROFILE, "radius", "suppression", "finite"))
+
+
+def test_reachable_source_asin_upper_endpoint_and_positive_taper_radius_neighbor() -> None:
+    q, v = arrays(y=1, x=2)
+    # wavelength1000,immersion1 give le1 and lx=the binary64 literal.88.
+    # The oracle resolves the exact rounded carrier product before any call.
+    lx = Fraction(0.88)
+    endpoint = rn64(Fraction(2) / lx)
+    outside = endpoint + Fraction(1, 2**51)
+    assert rn64(rn64(endpoint * lx) / 2) == 1
+    assert rn64(rn64(outside * lx) / 2) > 1
+    bands = declare(q, v)
+    valid = call(bands, carriers_cyc_um=np.array([[float(endpoint), 0.0]]), wavelength_nm=1000)
+    assert np.all(valid.image == 0)
+    rejected(lambda: call(bands, carriers_cyc_um=np.array([[float(outside), 0.0]]), wavelength_nm=1000), (PROFILE, "asin", "beta", "carrier"))
+    # NA min-subnormal permits zero intermediate sin/theta factors but no NA
+    # floor. At wavelength1000 R=2^-1073 remains positive; at32767 it rounds0,
+    # so b0 gives invalid required Rp0. Y1 still requires other domains defined.
+    assert np.all(call(bands, numerical_aperture=2**-1074, wavelength_nm=1000, output_taper="cosine").image == 0)
+    rejected(lambda: call(bands, numerical_aperture=2**-1074, wavelength_nm=32767, output_taper="cosine"), (PROFILE, "radius", "cutoff", "taper", "support"))
 
 
 def test_result_schema_values_and_success_immutability() -> None:
@@ -532,7 +590,7 @@ def test_result_schema_values_and_success_immutability() -> None:
 
 def test_signature_binding_stays_python_type_error() -> None:
     reconstruction: Any = sr.reconstruct_known
-    declaration: Any = sr.declare_prepared_bands32
+    declaration = getattr(sr, "declare_prepared_bands32")
     with pytest.raises(TypeError):
         reconstruction(declare(), transfer())
     with pytest.raises(TypeError):
