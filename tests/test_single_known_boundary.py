@@ -24,6 +24,8 @@ from .single_known_fixture import (
     assert_owned,
     call,
     declare,
+    identities,
+    known_options,
     owned,
     rn64,
     run_bounded_declaration_experiment,
@@ -50,6 +52,22 @@ class IntSubclass(int):
     """Exercise integer scalar subclass handling."""
 
     pass
+
+
+class MisleadingTaper(StringSubclass):
+    """Misrepresent supported and unsupported underlying taper contents."""
+
+    def __str__(self) -> str:
+        """Return the opposite support class without changing string contents."""
+        return "none" if str.__str__(self) == "unknown" else "power"
+
+
+class RaisingTaper(StringSubclass):
+    """Expose an incorrectly invoked overridable taper conversion."""
+
+    def __str__(self) -> str:
+        """Reject invocation of the subclass conversion hook."""
+        raise RuntimeError("SP113 taper subclass __str__ must not be invoked")
 
 
 class FloatSubclass(float):
@@ -492,6 +510,22 @@ def test_valid_scalar_flag_taper_and_option_equivalents() -> None:
     rejected(lambda: call(output_taper=StringSubclass("unknown")), "taper")
 
 
+@pytest.mark.parametrize("taper_type", [MisleadingTaper, RaisingTaper])
+def test_taper_uses_base_content_for_settings_identity_and_rejection(taper_type: type[str]) -> None:
+    q, v = arrays(y=1, x=2)
+    bands, otf = declare(q, v), transfer()
+    for underlying in ("none", "cosine"):
+        supplied = taper_type(underlying)
+        assert type(str.__str__(supplied)) is str
+        options = known_options(bands, output_taper=supplied)
+        result = call(bands, otf, output_taper=supplied)
+        canonical = dict(result.resolved_settings)["output_taper"]
+        assert type(canonical) is str and canonical == underlying
+        expected_id = identities(bands, otf, options)["parameters_sha256"]
+        assert dict(result.precision_provenance)["parameters_sha256"] == expected_id
+    rejected(lambda: call(bands, otf, output_taper=taper_type("unknown")), "taper")
+
+
 @pytest.mark.parametrize("field,shape", [("carriers_cyc_um", (1, 2)), ("modulation", (1, 1))])
 @pytest.mark.parametrize(
     "fault", ["list", "shape", "bool", "object", "string", "extended", "nan", "inf", "range"]
@@ -787,6 +821,8 @@ def test_wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failu
     # and4*plane=2**31 bytes. Signed counts and native extents still fit.
     # Declaration copies only tiny q/v; invalid Wiener stops the consumer
     # before output allocation/FFT. No large successful operation is attempted.
+    # The same capped case also rejects A2's volumeI+1 at the constructor and
+    # a matching canonical forged-record consumer, with all other inputs valid.
     report, diagnostics = run_bounded_declaration_experiment("wide")
     record_property("sp113_wide_bounded_child", report)
     record_property("sp113_wide_bounded_child_diagnostics", diagnostics)

@@ -216,7 +216,7 @@ def expected_settings(bands: Any, options: dict[str, Any]) -> tuple[tuple[str, A
         bool(options.get("dampen_order0", False)),
         bool(options.get("omit_order0", False)),
         bool(options.get("omit_kz0", False)),
-        str(options["output_taper"]),
+        str.__str__(options["output_taper"]),
         float(bands.dxy_um),
         float(bands.dz_um),
         int(bands.lateral_zoom),
@@ -986,6 +986,79 @@ def bounded_declaration_child(case: str) -> None:
         assert plane == 2**29 and volume == 2**30
         assert 8 * volume == 2**33 and 4 * volume == 2**32 and 4 * plane == 2**31
         assert bands.input_scale == 2**-30
+        # A2 is the adjacent signed-volume failure, not an old byte-cap failure.
+        # Both public boundaries remain inside the installed AS cap.
+        bad_shape = (4, 16384, 32768)
+        bad_volume = bad_shape[0] * bad_shape[1] * bad_shape[2]
+        half_volume = bad_shape[0] * bad_shape[1] * (bad_shape[2] // 2 + 1)
+        assert bad_volume == I32 + 1 == 2**31 and half_volume < I32
+        assert all(dimension <= I32 for dimension in bad_shape)
+        assert 8 * bad_volume < NATIVE_MAX and float(np.float32(2**14)) == 2**14
+        assert q.shape == (1, 1, 3, 2, 1, 2) and I32 > 3 * 3 and I32 > 1 * 2
+        forged = replace(bands, axial_zoom=2, input_scale=2**-31)
+        assert forged.input_shape == (1, 1, 3, 2, 1, 2)
+        assert type(forged.axial_zoom) is int and type(forged.input_scale) is float
+        assert forged.axial_zoom == 2 and forged.input_scale == 2**-31
+        wide_otf = transfer()
+        wide_options = known_options(forged)
+        volume_inputs = (
+            q,
+            v,
+            bands.quadratures,
+            bands.noise_variance_factors,
+            forged.quadratures,
+            forged.noise_variance_factors,
+            wide_otf.samples,
+            wide_options["carriers_cyc_um"],
+            wide_options["modulation"],
+        )
+        volume_before = snapshot(*volume_inputs)
+        for boundary, action in (
+            (
+                "constructor",
+                lambda: sr.declare_prepared_bands32(
+                    q,
+                    v,
+                    input_shape=(1, 1, 3, 2, 1, 2),
+                    dxy_um=1.0,
+                    dz_um=1.0,
+                    lateral_zoom=2**14,
+                    axial_zoom=2,
+                    provenance=(),
+                ),
+            ),
+            ("consumer", lambda: sr.reconstruct_known(forged, wide_otf, **wide_options)),
+        ):
+            try:
+                action()
+            except sr.ReconstructionError as error:
+                assert error.code == "reconstruction-domain"
+                assert any(
+                    term in str(error).lower()
+                    for term in (
+                        "output",
+                        "volume",
+                        "geometry",
+                        "count",
+                        "representation",
+                        "signed",
+                    )
+                ), boundary
+                pending_volume: list[BaseException] = [error]
+                seen_volume: set[int] = set()
+                while pending_volume:
+                    cause = pending_volume.pop()
+                    if id(cause) in seen_volume:
+                        continue
+                    seen_volume.add(id(cause))
+                    assert not isinstance(cause, MemoryError), boundary
+                    if cause.__cause__ is not None:
+                        pending_volume.append(cause.__cause__)
+                    if cause.__context__ is not None:
+                        pending_volume.append(cause.__context__)
+            else:
+                raise AssertionError(f"signed output-volume guard absent at {boundary}")
+            assert snapshot(*volume_inputs) == volume_before
         expected_terms = ("wiener",)
         expected_error = "reconstruction-domain/wiener"
         assertion_names = (

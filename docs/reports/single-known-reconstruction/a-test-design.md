@@ -3,12 +3,206 @@
 **STATIC DRAFTS / SCIENTIFIC CHECKS PENDING. No accepted checkpoint.** This is the distinct
 A report, not the collaboration final message or a B verdict. The six new and two
 narrowly changed test/fixture files contain concrete drafts, with blocking omissions and qualification
-limits below. Continuation2/4 syntax/style results are recorded separately below;
+limits below. Continuation2/4/5 syntax/style results are recorded separately below;
 nothing here claims collection, type, test, numerical, platform, coverage or
 performance acceptance. C still requires both
 an accepted/frozen A/B test checkpoint and accepted/frozen parent116.
 
-## Continuation4 correction and syntax/style freeze
+## Continuation5 taper/count correction, quality freeze and stage routing
+
+Same blind A1, continuation5; no replacement, delegation, commit or acceptance.
+The actual whole public packet was read first:
+`docs/packets/precision-113/a1-correction-continuation-5.md`, SHA256
+`949bf73c9fd9fa566189ac89d04ec47a6ab03b7881b35b7e1222dc3d99cff578`.
+The newly allowed whole `docs/packets/precision-113/acceptance-stage-routing-v1.md`
+was then read and matched
+`8998f012bc6e9cf28353f7a898126613eb580d5ef115356b16f608ed5b3aa20d`.
+Identity-only Git matched HEAD`a24f04154f8d25dd192484ef36221c00bca177d6`,
+tree`046a4df6be124658508477604f58986cf8bb7111`. The prior complete draft/hash
+checkpoint f2c894d is preserved by the coordinator; no history was inspected.
+The ordinary preparation grant remained open during these exact quality calls;
+no exclusive-window notice was received. Any new notice requires immediate ACK
+and stop. Product/reference/helper/dependency/child/Pyright/pytest/installed/build
+or numerical/benchmark execution is still not granted to A.
+
+### Taper content truth: J and B32
+
+S28.18.1 prescribes the base-string operation. J's independent expected setting
+now uses `str.__str__(options["output_taper"])`, preserving the underlying content
+and producing ordinary str rather than invoking an overridable subclass hook.
+The new keeper
+`test_taper_uses_base_content_for_settings_identity_and_rejection` pairs both
+allowed underlying values none/cosine with unsupported unknown, for two classes.
+MisleadingTaper lies about equality and returns power for allowed underlying
+contents, but none for unknown. RaisingTaper lies about equality and raises if
+its conversion hook is invoked. Both allowed contents must succeed, report an
+ordinary canonical setting and match the independently framed original-input
+parameter identity. Unknown must reject in the taper domain for either class.
+The existing StringSubclass/array/scalar positives and exact-str precision rule
+are retained. This is content dispatch truth, not a new numeric allowance.
+
+The shared expected-settings correction affects every successful call helper
+and parameter identity. Fresh affected B must inspect J/B32 plus all existing
+settings/identity, boundary, filter, assembly, precision and retained facade/type/
+installed dependents. No result setting or overridable conversion supplies truth.
+
+### B23 extended signed-volume boundary, with tiny backing
+
+The existing capped child `wide` now checks both real public boundaries for
+tiny input(T,D,P,Z,Y,X)=(1,1,3,2,1,2), O2/Q3, L16384,A2. Output dimensions are
+(4,16384,32768), plane2^29 and volume2^31=I+1. Each individual dimension fits I;
+half-volume is4*16384*16385=2^30+2^16<I. Native/half/Q*P/D*O counts fit, L is
+exactf32 and even8*volume=2^34 fits the required native64 byte domain. The
+consistent alpha from the original integer denominator including D1 is2^-31.
+Thus this is the retained signed output-volume failure, with all other inputs
+valid; no obsolete signed-byte cap or preparation count is needed.
+
+The constructor is invoked directly with those actual tiny q/v arrays and valid
+shape/sampling/zoom/provenance. The matching consumer record uses the admitted
+A1 record's canonical fields/owned tiny arrays, changing only axial_zoom to2
+and alpha to2^-31, with a valid transfer and ordinary Wiener.5/carrier0/modulation1
+options. Both must raise reconstruction-domain geometry/count failure, retain
+all input bytes and have no MemoryError anywhere in cause/context chains. A
+returned record or actual allocation failure cannot satisfy the intended guard.
+Independent direct-record construction meaning is preserved. Both operations
+are authored after the same post-import VmSize/AS/headroom/hard-limit guard and
+ordinary tiny positive. The existing A1 admitted declaration has volume2^30 and
+alpha2^-30; its later invalid-Wiener consumer control remains, ruling out obsolete
+byte-cap rejection as a substitute. No large successful consumer, huge backing,
+view, deliberate OOM, allocator-alias safety assumption or product seam is added.
+
+Only `bounded_declaration_child` gained these assertions. The final frame's
+existing wide-geometry assertion now includes both signed-volume boundaries;
+no new case/decoder schema was needed. The current child body/assertions and
+actual new-product outcomes require fresh affected B and later execution routing.
+The existing `run_bounded_declaration_experiment` and `decode_declaration_result`
+regions remained byte-identical before/after all edits and formatting, so their
+separate qualification can retain its own exact scope; no result is assumed.
+For reproducibility, static sed ranges begin at each `def`, exclude the next
+def/if-main line and include the intervening blank lines. SHA256 values are:
+
+```text
+run_bounded_declaration_experiment
+a6dfd9c7351e03f254e8158d95251339e4ab68979855814d7d7698231c9dd743
+decode_declaration_result
+6d58347d9b55e33fb4e562da1f8679f8958e694fc7193cb264e0ab48e16b2b9c
+```
+
+### Actual continuation5 syntax/style attempts and identities
+
+All5 attempts printed all8 current SHA256 identities before the exact pinned
+Docker/user/workdir/thread1/uv--locked--no-sync/source-free prefix already quoted
+under continuation2. Ruff always received the explicit ordered8 paths, not a
+directory/glob. AST used the unchanged exact public stdlib ast/Path payload and
+imported no owned/scientific/product module. Full commands/outputs remain in the
+tool transcript; no separate log/helper/scratch file was created.
+
+| Attempt | Prehash set | Exact prefix suffix | Exit/result | Chunk / tool wall seconds |
+| --- | --- | --- | --- | --- |
+| Q5.1 | V0 | `-m ruff format` + ordered8 | 0;1 reformatted,7 unchanged | `7e4c43` / .232243411 |
+| Q5.2 | V1 | `-m ruff check --output-format concise` + ordered8 | 1;3 SIM300 findings | `47138b` / .141771594 |
+| Q5.3 | V1, freshly printed | `-m ruff check --fix --output-format concise` + ordered8 | 0;3 safe fixes,0 remaining | `0a1ea4` / .172169249 |
+| Q5.4 | V2 | Exact public phase1 AST program | 0;SP113 AST parsed8 owned files; no imports | `ec8d90` / .234815987 |
+| Q5.5 | V2, freshly printed | `-m ruff format --check` + ordered8 | 0;8 files already formatted | `dbd1b7` / .11351491 |
+
+Q5.2's complete diagnostics were fixture:996:48,997:50,997:66 SIM300, comparison
+operand style only. Safe fixes reversed equality/inequality operands without
+changing any assertion. No unsafe fix, suppression, stub or tolerance/rule change
+was used. The formatter changed only the fixture; the boundary draft already
+matched formatting. Final lint has zero remaining findings; AST/format pass.
+For every V set, the boundary hash is
+`a0327f6cd018ea977ce2980b2fc9f2bcbd9de27047b4e099a9b6011224c94093`, and the
+other6 unchanged files retain the final table below. Fixture prehashes were:
+
+```text
+V0 before Q5.1
+527285f6fbfbaaff03873e70d0e27abb3d02907e9af45a6297d2019b2d9a784f
+V1 before each Q5.2/Q5.3
+dc1212096b4ddcc381d33da7164fd29f39166705f8e2980a85fd92cc4ab0dad3
+V2 before each Q5.4/Q5.5; final bytes
+43ed060016ed4ecb56d39a36141e7886788114451aef88a835e9b3487dcf3e74
+```
+
+| Final owned Python artifact | Continuation5 SHA256 |
+| --- | --- |
+| `tests/single_known_fixture.py` | `43ed060016ed4ecb56d39a36141e7886788114451aef88a835e9b3487dcf3e74` |
+| `tests/test_single_known_boundary.py` | `a0327f6cd018ea977ce2980b2fc9f2bcbd9de27047b4e099a9b6011224c94093` |
+| `tests/test_single_known_filter.py` | `559c117fbf177288b4cebd9b8441a86d3508a2ed009dde95494b9422f65353b4` |
+| `tests/test_single_known_assembly.py` | `cfd137f58fbc65237c70ee26870316d6ab255724716060bd270dec55d6aad0e4` |
+| `tests/test_single_known_precision.py` | `39be3cb37e40a8864cab451b0878ea8c0687d3ea94b2903ca90355a2a1e4beed` |
+| `tests/test_single_known_typing.py` | `5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4` |
+| `tests/test_module_migration.py` | `a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804` |
+| `tests/test_installed_wheels.py` | `ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e` |
+
+### Pre-C checkpoint capabilities versus final resulting-runtime evidence
+
+The approved routing clarification separates stages and supersedes any earlier
+reading of this report that demanded nonexistent C behavior before B could
+accept independent executable tests. B still needs a complete valid independent
+test checkpoint; it does not accept product readiness. Target API absence is
+distinct from harness/proof/tool failure and cannot justify stubs, Any weakening,
+xfail/skip, altered truth or gates. Source-only authorship and quality checks do
+not close the following actual pre-C capability requirements:
+
+- Independently inspect/freeze fixture declarations and exact metadata, all J
+  rational/source-box algorithms and current full witnesses. Later specifically
+  granted pure certificate payloads must evaluate F19's hypot/scale boxes and
+  bin discriminator, F21/F22 selected cosine cells/branch margins, A7/A8 cardinal
+  reference/envelope terms, A9's signed full-ramp cells/phase/local propagation,
+  A10's scalar/filter/default-inverse/ramp composition, A12's finite f64 sequence,
+  and all associated interval widths, finite cells and stated applicability
+  conditions. No input/reference certificate was evaluated by A in this phase.
+- Establish necessary test-harness/native fixture tooling and strict real public
+  caller checking under later exact authorization. Genuine absent new APIs are
+  target absence; unrelated fixture/type/protocol defects still require repair.
+  The literal caller remains strict. Current syntax/style success alone is not
+  proof that these capabilities work.
+- Qualify actually exercised safe source-free diagnostic and direct-child
+  ownership/AS/decode channels before relying on them. Changed child assertions
+  need independent review, while unchanged launcher/decoder qualifications retain
+  only their demonstrated scope. No intentional orphan/leader-exit/abrupt-loss
+  control is allowed under generic grants; PID1sleep/noinit/subreaper still
+  requires exact independently frozen outside ownership/adoption/reap scaffold
+  and root release, or a qualified safe no-orphan protocol.
+
+Actual new implementation choices are after C: primitive/cexp-versus-sincos paths,
+default FFT dispatch/storage/promotion/streaming, allocation bindings and original
+error causes, record/provenance behavior, passing public overload/type behavior,
+and complete resulting-runtime scientific/resource/retention outcomes. C/fullgate/
+nonblind evidence/fresh D must establish actual material/source/RNE/enclosure
+applicability and renew it on change. A standalone finite method or metadata
+cannot establish these. No universal allocator patch or particular numpy import
+binding is a pre-C product requirement. P13's actually unreached family remains
+an observer qualification blocker, not product-red; actual aliases/families need
+post-C path evidence, and any fixture repair returns to A/affected B.
+
+The existing noncardinal6/20 whole-image bounds and outside-method primitive
+points remain precise gaps wherever required. Diagnostic coefficient usefulness
+does not qualify their full images. A necessary independent enclosure/certificate
+or safe harness capability is not automatically deferred merely because C is
+absent; it must be resolved or explicitly judged by fresh B for the approved
+checkpoint scope. None was waived by the stage clarification. No numerical
+truth/tolerance, physical recovery or RAM/speed threshold was selected from R.
+First PhaseP C still waits actual accepted/frozen116, scientific112/inherited115
+reconciliation and own fresh B/frozen tests; final publication parent is actual
+accepted120, with integrated material/profile/helper/environment renewal as
+applicable. All13 Ubuntu phases/native/installed/scientific/fresh-D final gates
+remain; this report supplies no acceptance or additional execution permission.
+
+Actual reads were only the two new whole public inputs, selected owned fixture/
+boundary/report text and permitted function-region/file/status hashes. No other
+role/coordinator/dependency/method report, source, history or link was expanded.
+Earlier13 public input hashes remain unchanged as recorded below; final static
+rehash is recorded with this report freeze. No new path typo, truncation or patch
+miss occurred in this continuation. Quality accounting is now21 attempts/7
+failures cumulatively, preserving prior16/6, all six patch misses, earlier
+truncations/three fixture-path typos/undefined hash failure and unknown cumulative
+meters. No product/reference/helper/child/primitive/dependency/Pyright/pytest/
+installed/build/benchmark call, delegation, commit or push occurred. Fresh
+affected independent B remains required; no accepted checkpoint or C authority
+is claimed. The report's final hash is returned separately.
+
+## Historical continuation4 correction and syntax/style freeze
 
 This is the same blind A1, continuation4. Root explicitly ended the first116
 exclusive window, reactivating only exact-eight-file no-import AST/Ruff/style
@@ -1090,7 +1284,8 @@ assertion unless labeled J, controlled backend, implication or retained D.
 | B29/B30/B31 | `adjacent_band_metadata_and_structure_value_precedence`, `reachable_source_asin_upper_endpoint_and_positive_taper_radius_neighbor`, `qp_limit_remains_but_absent_preparation_frame_count_does_not_apply` | Wrong subphase/field order, invented endpoint/tiny-positive rejection, or absent preparation count applied to the new declaration; adjacent controls, rational products and guarded real public positives fill those distinct gaps. |
 | B20 | `transfer_record_validation_and_unused_orders` | Invalid unused source accepted, too few orders, forged source metadata; valid extra order control is paired. |
 | B21 | `integer_only_native_admission_has_no_legacy_byte_cap`, `integer_only_native_rejection_uses_exact_aggregate_products` | Fixed-width/float wrapping or old byte ceilings; approved real-caller helper supplies integer boundary proof only. |
-| B22/B23 | `invalid_metadata_with_tiny_backing_never_reaches_large_work`, `wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure` | Large work before known declaration error or obsolete byte rejection; safe public metadata path supplements B21. |
+| B22/B23 | `invalid_metadata_with_tiny_backing_never_reaches_large_work`, `wide_output_and_lookup_bytes_admit_tiny_declaration_before_scalar_failure` | Large work before known declaration error or obsolete byte rejection; capped B23 also requires signed-volumeI+1 constructor and matching canonical consumer rejection with other inputs valid. |
+| B32 | `taper_uses_base_content_for_settings_identity_and_rejection` | Overridable str/equality hides true taper content or corrupts canonical settings/identity; misleading/raising subclass positives and unknown-content rejections use independent base-string truth. |
 | B24/B25 | `operation_domains_have_no_tiny_noise_or_wiener_floor`, `derived_sampling_cutoff_and_suppression_domains_are_not_silent_fallbacks` | Arbitrary floor or silent derived fallback; pairs tiny-positive valid declarations with real reachable operation failures. |
 | B26/B27 | `result_schema_values_and_success_immutability`, `signature_binding_stays_python_type_error` | Aliased/promoted/writable outputs, wrong record/settings/source order or Python binding changed to domain error; direct returned ownership/metadata gap. |
 | F1/F2 | `per_time_direction_and_order_noise_and_ordered_overlap`, `inclusive_self_strict_other_and_positive_zero_writes` | Time-zero noise reuse, wrong signed power or support equality; actual returned diagnostic quantities avoid FFT allowance. |
@@ -1173,7 +1368,7 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 | S07.29, S07.30.1, S07.30.2, S07.31 | B8; constructor finite-positive scale implication above |
 | S08.1, S08.2, S08.3, S08.4, S08.5, S08.6 | B10 |
 | S08.7, S08.8, S08.9 | B10/B11/B12/B24/A6 |
-| S09.1, S09.2, S09.3, S09.4, S09.5, S09.6, S09.7, S09.8, S09.9 | B21/B22, signed/half/plane/order implications; G6 remaining public guard discrimination and D |
+| S09.1, S09.2, S09.3, S09.4, S09.5, S09.6, S09.7, S09.8, S09.9 | B21/B22 plus B23 actual tiny-backed A2 volumeI+1 constructor/canonical-consumer guard paired with admitted A1; G6/D remaining paths |
 | S09.10, S09.11, S09.12, S09.13 | A2/A3/F9/F11/F12/B22/B25; G6/D actual arithmetic paths |
 | S09.14, S09.15, S09.16, S09.17, S09.18, S09.19, S09.20, S09.21 | B21/B23/B26 plus actual-width implications; G6/D all caller families |
 | S09.22, S09.23 | P2 schema only; D streaming/native/block execution; G6 |
@@ -1214,7 +1409,7 @@ An entry with G remains unfulfilled; broad neighboring coverage does not erase i
 | S28.9.1, S28.9.2, S28.9.3, S28.10 | B13/B16; immersion magnitude redundant with<=2 |
 | S28.11.1, S28.11.2, S28.11.3, S28.12 | B13/B16/B24 |
 | S28.13, S28.14.1, S28.14.2, S28.14.3, S28.15, S28.16, S28.17 | B13/B14/B16/F10 |
-| S28.18.1, S28.18.2 | B13/B15/B16 |
+| S28.18.1, S28.18.2 | B13/B15/B16 plus J/B32 prescribed base-string content, ordinary canonical setting and original-input identity |
 | S28.19.1, S28.19.2, S28.19.3, S28.20, S28.21, S28.22.1, S28.22.2, S28.22.3 | B13/B14/B15/B16 |
 | S29.1, S29.2, S29.3, S29.4, S29.5 | B16; B26 exact settings lacks CE06 additions |
 | S30.1, S30.2, S30.3, S30.4, S30.5, S30.6 | B15 |
