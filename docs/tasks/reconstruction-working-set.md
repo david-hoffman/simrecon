@@ -107,9 +107,11 @@ kept and errors below, without a cleanup helper/test/review project.
 
 ## Current state
 
-- Status: **WAITING FOR ACCEPTED #115**; intake and source-only observer/liveness
-  preparation complete; scientific execution waiting for
-  coordinator resource release and accepted #112 → #115 baseline. Route is
+- Status: **SAFE HOLD FOR ROOT PARENT INTEGRATION; NO RUNTIME GRANT**;
+  source method v4 is statically accepted in review3's exact scope. Author and
+  reviewers are complete/on hold, with no writes or execution pending.
+  Scientific execution awaits root integration of
+  accepted #112 → #115, material reconciliation and explicit resource release. Route is
   report-only scientific investigator plus fresh independent reviewer; default
   exact-candidate full-local gate applies. No executed experiment or acceptance
   is claimed by intake.
@@ -125,7 +127,9 @@ kept and errors below, without a cleanup helper/test/review project.
 - Roles/evidence: fresh intake author `/root/issue_116/intake_author` completed
   its four documents. Source-only investigator `/root/issue_116/investigator`
   launched fresh with explicit Sol/high and no conversation inheritance;
-  scientific reviewer has not launched. [Launch/accounting evidence](../reports/reconstruction-working-set/launches.json)
+  final scientific reviewer has not launched. Fresh diagnostic method reviewers
+  `/root/issue_116/static_method_review_1`, `_2` and `_3` are separate sessions.
+  [Launch/accounting evidence](../reports/reconstruction-working-set/launches.json)
   records packet/artifact digests, unavailable controls and metering. Investigator
   [Source-only drafts](../reports/reconstruction-working-set/README.md) are
   complete and explicitly unexecuted. Scientific output and fresh reviewer
@@ -147,6 +151,42 @@ kept and errors below, without a cleanup helper/test/review project.
   One initial combined whitespace-check collection stopped at the ordinary
   no-index difference status 1; subsequent collection covered all seven files.
   Missing historical artifact inventory returned 2. Neither is a numerical trial.
+  Same-investigator source-only continuations=3 (method refinement and two corrections);
+  static-method reviewer launches/completed reviews/nonacceptances=3/3/2;
+  scoped static acceptance=1 (review3), final scientific acceptance=0.
+  Review 1 source findings F1 (unknown RSS treated as zero), F2 (incomplete success
+  record validation) and C1 (parent cancellation/recovery disposition) are routed
+  to the original investigator; post-review source correction cycles=2. First
+  correction delivered; review 2 confirms F1 corrected and C1 sufficient but F2
+  still accepts truncated stage streams, unusable resource text/scope labels and
+  impossible dtype encodings. Diagnosis: nonempty/type checks were insufficient
+  for the declared known protocol. A narrow second F2 correction is delivered,
+  preserving intentional unknowns and valid profiled/unprofiled cases; no generic
+  schema framework or scientific tolerance is commissioned.
+  Three correction patches cumulatively failed atomically on context mismatch
+  and were repaired (one in cycle 1, two in cycle 2);
+  no changed product or numerical attempt followed that tool failure.
+  Independent method review 1 at
+  `/workspace/work/campaign/evidence/116/static-method-review-1.md` is external
+  diagnostic evidence, not scientific report or runtime acceptance.
+  Its SHA256 is `9a4452afddd4e4d53e47f2b4990f0a268bd3f7c3216e60ae54a739ed99b4b81c`.
+  Six exact pre-correction v2 source/doc files are preserved at
+  `/workspace/work/campaign/evidence/116/source-method-v2-review1/`, with all
+  review-1 hashes matched independently; original v1 remains in Git `701b56d`.
+  Exact corrected-review2 bytes are independently preserved in
+  `/workspace/work/campaign/evidence/116/source-method-v2-corrected-review2/`.
+  Review 2 is at `/workspace/work/campaign/evidence/116/static-method-review-2.md`,
+  SHA256 `f339a8853d16a28f1c2682a6ccc23a8c612fc1a24e9e85a0045da855c5dfa5e0`.
+  It retains unchanged child/hash/wait/lifetime static conclusions with all
+  runtime capability, scientific qualification and final acceptance still absent.
+  Corrected-review3 exact files are preserved under
+  `/workspace/work/campaign/evidence/116/source-method-v2-corrected-review3/`.
+  Review3 found F2a/b/c statically corrected and affected normal paths coherent;
+  retained F1/C1/wait/hash/lifetime/scope static conclusions remain limited and
+  all runtime/data claims absent. Exact accepted v4 bytes remain in that snapshot.
+  Report: `/workspace/work/campaign/evidence/116/static-method-review-3.md`,
+  SHA256 `8fd16ca2de36cc69cf8718213569dc1a07f2a3629553e941eda5e97800061be6`.
+  No broader parser framework or new scientific oracle was requested.
 - Checks: intake read authoritative issue, AGENTS/PROJECT/intake skill and actual
   templates, role/model guidance, RM84 §5/task and relevant public-main source/
   frozen harness. Documentation diff/link checks are reported in author handoff.
@@ -159,19 +199,57 @@ kept and errors below, without a cleanup helper/test/review project.
 - Exact final candidate/check results: recorded by coordinator outside tracked
   candidate bytes in conversation/PR and durable verification receipts. This
   pointer is prepared before the gate. No duplicate status file is commissioned.
-- Blockers/next action: root pins accepted #112 → #115 integration and provides
-  scheduling release; pinned Ubuntu `.venv` preflight already passed. Resume
+- Blockers/next action: root integrates the clean source-prep commit onto accepted
+  #115. Then same author reconciles actual accepted-parent material inputs/stage
+  mask/dtypes/domain, and narrowly adjusts exposed-domain admission criteria;
+  a fresh affected-scope method reviewer assesses that actual integrated baseline.
+  Existing `hidden_ancestors_resolved` must not require or claim unobservable
+  physical-host ancestor certainty. Root's preliminary observation at
+  `/workspace/work/campaign/evidence/116/resource-domain-preliminary.md` shows
+  exposed outer/Ubuntu membership `0::/`, visible 17,179,869,184-byte limit,
+  approximately 0.8 GB current usage and no active swap/events; it is not
+  admission or a numerical result. External-host ancestors remain unknown.
+  Separate exposed-domain correspondence/evidence and conservative per-case
+  reserve/monitor/conditional decision from those unknowns, without an impossible
+  certainty gate or fabricated host facts. Preserve v4 before this adjustment.
+  Only after affected-scope acceptance will root grant cheap bounded actual
+  spawn/setsid/wait4/normal-malformed-timeout-recovery qualification, then an
+  explicit exclusive scientific trial window. Root provides release; pinned
+  Ubuntu `.venv` preflight already passed, with actual-time reconciliation and
+  bounded method qualification still required. Resume
   `/root/issue_116/investigator` through this coordinator after checking scope and
   all material inputs, validate/correct the draft tooling and freeze the actual
   manifest before running. Fresh reviewer independently checks completed evidence and
   final post-gate readiness. No material scientific repair decision is delegated.
-- Staged handoff: **WAITING FOR ACCEPTED #115**. A source-only investigator may
+- Staged handoff: **SOURCE-ONLY METHOD REVIEW; NO NUMERICAL GRANT**. A source-only investigator may
   prepare observer/liveness/manifest drafts now; no numerical grant follows.
   Coordinator then yields a concise unfinished handoff, frees role slots and
   resumes this same task with all charges when accepted baseline/window arrive.
   Pinned Ubuntu preflight attempt 1 is coordinator-reported at
   `/workspace/work/campaign/preflight-116-attempt1.log`; it is setup evidence,
-  not benchmark admission. #112 currently holds the exclusive numerical window.
+  not benchmark admission. Root subsequently reports #112 independently accepted
+  and published as PR121 at head prefix `d9a0ba9`, with local and CI checks passed.
+  Root now reports #115 accepted/published PR122 at frozen parent
+  `ace06c861b974b6251a092567c253ae4eb0f56c8`, tree
+  `2247d3909f43bc4764beb5c748caa917aaa1d707`: full Ubuntu 13-phase gate with
+  3444 tests passed plus fresh D acceptance. Root subsequently confirms CI122
+  passed 3444/47 on the matching test-merge tree.
+  This worktree has not integrated that parent; root holds integration until a
+  clean source-prep commit and safe author/reviewer hold. No numerical/probe
+  release follows those contextual prerequisite results.
+  Same investigator resumed once for source-only method refinement on preparation
+  commit `701b56d`; no rebase, new role launch or data execution. The refinement
+  addresses complete-child wait4 rusage versus three native snapshots, bounded
+  hashing, terminal/observation/scientific statuses and cleanup ownership before
+  any first-data freeze. Static method review may precede released validation;
+  final report review and full gate remain pending. All prior charges persist.
+  Root requested the coordinator yield after dispatching the precise F1/F2/C1
+  correction packet while the same author works, freeing a coordinator slot.
+  Author was not interrupted. Root resumed this coordinator, collected the
+  corrected handoff and authorized fresh delta static reviewers 2 then 3.
+  Review3 accepted exact source scope; same author and review3 are explicitly on
+  hold. Root will integrate only after clean source handoff; no numerical release
+  follows the accepted #115 prerequisite or this diagnostic static acceptance.
   Later #117/#118 revisions require separately commissioned narrow refresh before
   #119/#120 design relies on affected measurements; preserve original trials.
 - Exposure/scratch/process facts: intake is nonblind and read permitted source;

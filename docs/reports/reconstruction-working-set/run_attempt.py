@@ -8,15 +8,18 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
+import re
 from pathlib import Path
 import signal
 import subprocess
 import sys
 import time
 
-from observer import (THREADS, cgroup_ancestors, context, digest, material_hashes,
-                      mem_available, process_sample, read)
+from observer import (SNAPSHOT_SCOPES, THREADS, cgroup_ancestors, context, digest,
+                      legal_numeric_dtype, material_hashes, mem_available,
+                      process_identity, process_sample, read)
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -38,7 +41,7 @@ def admit(grant):
     if not grant["headroom_evidence"] or not grant["hidden_ancestors_resolved"]:
         raise ValueError("conservative headroom/native allowance or ancestor resolution missing")
     for key in ("deadline_seconds", "process_stop_bytes", "host_min_available_bytes", "terminate_grace_seconds"):
-        if not isinstance(grant[key], (int, float)) or grant[key] <= 0:
+        if type(grant[key]) not in (int, float) or not math.isfinite(grant[key]) or grant[key] <= 0:
             raise ValueError("positive explicit safety setting required: " + key)
     if grant["sample_interval_seconds"] != 0.01:
         raise ValueError("observer interval differs from manifest; revise manifest before execution")
@@ -67,12 +70,233 @@ def admit(grant):
         if row["memory.current"] is None or row["memory.max"] is None:
             raise ValueError("ancestor current/max unknown")
         threshold = grant["ancestor_stop_bytes"][row["path"]]
+        if type(threshold) is not int or threshold <= 0:
+            raise ValueError("ancestor threshold must be positive integer bytes")
         if threshold <= int(row["memory.current"]) or (row["memory.max"] != "max" and threshold >= int(row["memory.max"])):
             raise ValueError("ancestor threshold does not leave declared current/limit margin")
     available = mem_available()
     if available is None or available <= grant["host_min_available_bytes"]:
         raise ValueError("host available memory does not satisfy admission")
     return {**condition, "profile": grant["profile"], "repetition": grant["repetition"]}, actual
+
+
+class WaitOwner:
+    """Only this object calls wait4 for this exact PID; no Popen object exists."""
+    def __init__(self, pid):
+        self.pid = pid
+        self.terminal = None
+        self.wait_lost = False
+        self.nonterminal_wait_events = []
+
+    def collect(self):
+        if self.terminal is not None:
+            return self.terminal
+        if self.wait_lost:
+            raise RuntimeError("wait ownership lost; terminal usage unavailable")
+        try:
+            pid, status, usage = os.wait4(self.pid, os.WNOHANG)
+        except InterruptedError:
+            return None
+        except ChildProcessError:
+            self.wait_lost = True
+            raise RuntimeError("child reaped elsewhere or auto-reaped; never infer peak")
+        if pid == 0:
+            return None
+        if not (os.WIFEXITED(status) or os.WIFSIGNALED(status)):
+            self.nonterminal_wait_events.append({"wait_status_raw": status, "pid": pid,
+                "observed_monotonic_ns": time.monotonic_ns(),
+                "stopped": os.WIFSTOPPED(status),
+                "stop_signal": os.WSTOPSIG(status) if os.WIFSTOPPED(status) else None})
+            return None  # A traced/stopped notification is not complete-child usage.
+        self.terminal = {
+            "pid": pid, "wait_status_raw": status, "returncode": os.waitstatus_to_exitcode(status),
+            "exited": os.WIFEXITED(status), "signaled": os.WIFSIGNALED(status),
+            "exit_code": os.WEXITSTATUS(status) if os.WIFEXITED(status) else None,
+            "term_signal": os.WTERMSIG(status) if os.WIFSIGNALED(status) else None,
+            "core_dumped": os.WCOREDUMP(status) if hasattr(os, "WCOREDUMP") else None,
+            "reaped_monotonic_ns": time.monotonic_ns(),
+            "rusage_native": {key: getattr(usage, key) for key in dir(usage) if key.startswith("ru_")},
+            "ru_maxrss_native_units": "Linux KiB", "ru_maxrss_multiplier_to_bytes": 1024,
+            "complete_child_peak_bytes": int(usage.ru_maxrss) * 1024,
+            "scope": "wait4 exact direct child through exit, including JSON/teardown; maximum resident process size, not concurrent aggregate or numerical-only memory"}
+        return self.terminal
+
+    def send(self, signum):
+        # An unreaped direct child cannot have its PID recycled. Always collect
+        # first; if another reaper invalidated ownership, do not signal a reused PID.
+        if self.collect() is not None:
+            return {"signal": signum, "delivery": "already_terminal"}
+        try:
+            os.killpg(self.pid, signum)
+            return {"signal": signum, "delivery": "sent", "monotonic_ns": time.monotonic_ns()}
+        except ProcessLookupError:
+            return {"signal": signum, "delivery": "group_absent_race", "monotonic_ns": time.monotonic_ns()}
+
+
+def candidate_identity():
+    return {"head": git("rev-parse", "HEAD"), "tree": git("rev-parse", "HEAD^{tree}"),
+            "tracked_diff_sha256": hashlib.sha256(subprocess.check_output(
+                ["git", "diff", "--binary", "HEAD"], cwd=ROOT)).hexdigest()}
+
+
+def cleanup(owner, receipt, seconds):
+    """Best-effort bounded kill/reap; an unreapable kernel task is an explicit gap."""
+    if owner is None or owner.terminal is not None:
+        return
+    try:
+        receipt.setdefault("signals", []).append(owner.send(signal.SIGKILL))
+        until = time.monotonic() + seconds
+        while owner.collect() is None and time.monotonic() < until:
+            time.sleep(0.01)
+        if owner.terminal is None:
+            receipt["cleanup_gap"] = "SIGKILL requested but terminal wait4 unavailable by cleanup deadline; coordinator must resolve owned PID before another attempt"
+    except BaseException as error:
+        receipt["cleanup_gap"] = {"type": type(error).__name__, "message": str(error),
+                                  "meaning": "wait/signal ownership unresolved; do not start another attempt"}
+
+
+def validate_complete_record(record, pid, spec):
+    """Small explicit completeness checks for WS116-child-v2, not a science oracle."""
+    def require(ok, name):
+        if not ok:
+            raise ValueError("incomplete child observation: " + name)
+
+    def integer(value):
+        return type(value) is int and value >= 0
+
+    def number(value):
+        return type(value) in (int, float) and math.isfinite(value) and value >= 0
+
+    def text(value):
+        return isinstance(value, str) and bool(value.strip())
+
+    def sha(value):
+        return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None
+
+    def shape(value):
+        return isinstance(value, list) and all(integer(n) for n in value)
+
+    def identity(value, name):
+        require(isinstance(value, list) and len(value) == 4, "array identity tuple: " + name)
+        require(value[0] == name and shape(value[1]) and legal_numeric_dtype(value[2], canonical=True) and sha(value[3]),
+                "array identity fields: " + name)
+
+    require(record.get("finite_common_fields") is True and record.get("material_identity_matches") is True,
+            "finite/identity booleans")
+    require(record.get("material_hashes_before") == spec["expected_material_hashes"] and
+            record.get("material_hashes_after") == spec["expected_material_hashes"], "material maps")
+    snapshots = record.get("snapshots")
+    require(isinstance(snapshots, dict) and set(snapshots) == {"pre_call", "call_end", "post_observation"}, "snapshot names")
+    for name, sample in snapshots.items():
+        require(isinstance(sample, dict), "non-null snapshot: " + name)
+        require(integer(sample.get("ru_maxrss_native")) and sample.get("ru_maxrss_native_units") == "Linux KiB",
+                "snapshot native value/units: " + name)
+        require(integer(sample.get("cumulative_high_water_bytes")) and
+                sample["cumulative_high_water_bytes"] == sample["ru_maxrss_native"] * 1024,
+                "snapshot byte conversion: " + name)
+        require(integer(sample.get("monotonic_ns")) and sample["monotonic_ns"] > 0 and sample.get("scope") == SNAPSHOT_SCOPES[name],
+                "snapshot timestamp/scope: " + name)
+        require(all(integer(sample.get(key)) for key in ("ru_minflt", "ru_majflt", "ru_nswap", "ru_inblock", "ru_oublock")) and
+                all(number(sample.get(key)) for key in ("ru_utime_seconds", "ru_stime_seconds")), "snapshot counters: " + name)
+    start, end, elapsed = (record.get(key) for key in ("call_start_monotonic_ns", "call_end_monotonic_ns", "elapsed_call_seconds"))
+    require(integer(start) and integer(end) and number(elapsed), "call timing values")
+    require(snapshots["pre_call"]["monotonic_ns"] <= start <= end <= snapshots["call_end"]["monotonic_ns"] <=
+            snapshots["post_observation"]["monotonic_ns"] and elapsed == (end - start) / 1e9, "call timing order/derived duration")
+    require(snapshots["pre_call"]["ru_maxrss_native"] <= snapshots["call_end"]["ru_maxrss_native"] <=
+            snapshots["post_observation"]["ru_maxrss_native"], "cumulative snapshot ordering")
+    require(all(sha(record.get(key)) for key in ("input_sha256", "common_output_sha256", "public_result_sha256")), "value fingerprints")
+    inputs = record.get("input_arrays")
+    require(isinstance(inputs, dict) and set(inputs) == {"specimen", "transfer"}, "input array identities")
+    identity(inputs["specimen"], "specimen")
+    identity(inputs["transfer"], "transfer.samples")
+    outputs = record.get("output_hashes")
+    names = {"image", "x_um", "y_um", "z_um", "carriers_cyc_um", "modulation", "raw_modulation"}
+    require(isinstance(outputs, dict) and set(outputs) == names, "output array identities")
+    for name in names:
+        identity(outputs[name], name)
+    branches = record.get("branches")
+    require(isinstance(branches, list) and len(branches) == spec["shape"][0], "branch time structure")
+    require(all(isinstance(row, list) and len(row) == spec["shape"][1] and
+                all(isinstance(value, str) and value in {"known", "searched", "time0-reused"} for value in row) for row in branches), "branch direction/label structure")
+    for key in ("python", "executable", "numpy", "scipy", "effective_worker_limits", "product_module", "snapshot_limits"):
+        require(text(record.get(key)), "environment/scope field: " + key)
+    require(isinstance(record.get("numpy_backend"), dict) and bool(record["numpy_backend"]) and
+            type(record.get("scipy_fft_default_workers")) is int and record["scipy_fft_default_workers"] > 0, "backend/FFT observations")
+    ctx = record.get("context")
+    require(isinstance(ctx, dict) and ctx.get("system") == "Linux" and ctx.get("pid") == pid, "child context/PID")
+    require(all(text(ctx.get(key)) for key in ("kernel", "machine", "meminfo")) and sha(ctx.get("host_id_sha256")) and
+            integer(ctx.get("disk_available_bytes")), "host/resource observations")
+    require(ctx.get("threads") == {key: "1" for key in THREADS}, "declared startup thread controls")
+    require(isinstance(ctx.get("allocator"), dict) and set(ctx["allocator"]) == {"PYTHONMALLOC", "MALLOC_ARENA_MAX"} and
+            all(value is None or isinstance(value, str) for value in ctx["allocator"].values()), "allocator observations")
+    limits = ctx.get("rlimits")
+    require(isinstance(limits, dict) and set(limits) == {"RLIMIT_AS", "RLIMIT_DATA", "RLIMIT_RSS", "RLIMIT_CPU", "RLIMIT_FSIZE", "RLIMIT_NOFILE"} and
+            all(isinstance(pair, list) and len(pair) == 2 and all(type(n) is int for n in pair) for pair in limits.values()), "rlimit observations")
+    cg = ctx.get("cgroup")
+    require(isinstance(cg, dict) and all(text(cg.get(key)) for key in ("membership", "mount_root", "mount", "hidden_ancestors")), "cgroup resolution")
+    rows = cg.get("visible_ancestors")
+    require(isinstance(rows, list) and bool(rows), "visible ancestor observations")
+    for row in rows:
+        require(isinstance(row, dict) and text(row.get("path")), "ancestor path")
+        current, maximum = row.get("memory.current"), row.get("memory.max")
+        decimal = lambda value: isinstance(value, str) and re.fullmatch(r"[0-9]+", value) is not None
+        require(decimal(current) and (maximum == "max" or decimal(maximum)), "usable native ancestor current/limit")
+        require(all(key in row and (row[key] is None or isinstance(row[key], str)) for key in
+                    ("memory.peak", "memory.events", "memory.swap.max", "memory.swap.current")), "explicit optional ancestor observations")
+    for key in ("caller_retained", "result_retained"):
+        payload = record.get(key)
+        require(isinstance(payload, dict) and all(integer(payload.get(name)) for name in
+                    ("array_payload_bytes", "unique_backings", "python_metadata_estimate_bytes")) and text(payload.get("metadata_limit")), key)
+        arrays = payload.get("arrays")
+        require(isinstance(arrays, list) and bool(arrays), key + " nonempty array observations")
+        for array in arrays:
+            require(isinstance(array, dict) and text(array.get("path")) and shape(array.get("shape")) and
+                    legal_numeric_dtype(array.get("dtype"), canonical=False) and integer(array.get("bytes")), key + " array metadata")
+    stages = record.get("stages")
+    require(isinstance(stages, list) and (bool(stages) if spec["profile"] else not stages), "profile stage observations")
+    for event in stages:
+        require(isinstance(event, dict) and isinstance(event.get("stage"), str) and event["stage"] in {"declaration", "layout", "preparation", "estimation", "reconstruction", "result"} and
+                isinstance(event.get("edge"), str) and event["edge"] in {"enter", "exit"} and integer(event.get("monotonic_ns")) and
+                event["monotonic_ns"] > 0 and start <= event["monotonic_ns"] <= end and
+                integer(event.get("ru_maxrss_native_KiB")) and
+                "time_index" in event and (event["time_index"] is None or integer(event["time_index"])), "stage scalar fields")
+    if spec["profile"]:
+        # Current workflow module mask is flat: one declaration, optional layout,
+        # preparation, estimation, reconstruction for each time, and result.
+        expected_stages = [("declaration", None)]
+        if any(event["stage"] == "layout" for event in stages):
+            expected_stages.append(("layout", None))
+        expected_stages += [("preparation", None), ("estimation", None)]
+        expected_stages += [("reconstruction", t) for t in range(spec["shape"][0])]
+        expected_stages.append(("result", None))
+        expected = [(stage, index, edge) for stage, index in expected_stages for edge in ("enter", "exit")]
+        require([(event["stage"], event["time_index"], event["edge"]) for event in stages] == expected,
+                "complete ordered paired workflow stage mask/time coverage")
+        require(all(left["monotonic_ns"] <= right["monotonic_ns"] for left, right in zip(stages, stages[1:])),
+                "ordered stage timestamps")
+        high_waters = [snapshots["pre_call"]["ru_maxrss_native"]] + [event["ru_maxrss_native_KiB"] for event in stages] + [snapshots["call_end"]["ru_maxrss_native"]]
+        require(all(left <= right for left, right in zip(high_waters, high_waters[1:])), "cumulative stage high-water consistency")
+
+
+def child_outcome(path, max_bytes, pid, spec):
+    if not path.exists() or path.stat().st_size == 0:
+        return "missing_child_record", None
+    if path.stat().st_size > max_bytes:
+        return "child_record_exceeds_admitted_parse_bound", None
+    try:
+        record = json.loads(path.read_text())
+        if not isinstance(record, dict) or record.get("protocol") != "WS116-child-v2":
+            raise ValueError("wrong protocol/object")
+        if record.get("pid") != pid or record.get("spec") != spec:
+            raise ValueError("child PID/spec does not match admitted process")
+        if record.get("status") == "finite_observation_pending_qualification":
+            validate_complete_record(record, pid, spec)
+        if record.get("status") not in {"finite_observation_pending_qualification", "material_identity_failure",
+                "nonfinite_scientific_failure", "workflow_exception", "observation_failure"}:
+            raise ValueError("unknown child outcome status")
+        return record.get("status", "malformed_child_record"), record
+    except (ValueError, UnicodeError, OSError) as error:
+        return "malformed_child_record", {"parse_type": type(error).__name__, "message": str(error)}
 
 
 def main():
@@ -83,71 +307,171 @@ def main():
     if not args.attempt_id or any(c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_" for c in args.attempt_id):
         raise ValueError("safe unique attempt id required")
     out = HERE / "raw" / args.attempt_id
-    out.mkdir(parents=True, exist_ok=False)  # Preserve every prior attempt.
-    grant = json.loads(args.grant.read_text())
-    write(out / "grant.json", grant)
-    receipt = {"status": "preflight_started", "grant_sha256": digest(args.grant),
-               "observer_pid": os.getpid(), "started_monotonic_ns": time.monotonic_ns()}
-    process = None
+    out.mkdir(parents=True, exist_ok=False)
+    receipt = {"protocol": "WS116-attempt-v2", "status": "admission_started", "phase": "admission",
+               "observer_pid": os.getpid(), "started_monotonic_ns": time.monotonic_ns(), "signals": []}
+    owner = None
+    grant = {}
+    spec = None
     try:
+        # Preserve exact grant bytes even if JSON/admission is invalid.
+        import shutil
+        shutil.copyfile(args.grant, out / "grant.input")
+        receipt["grant_sha256"] = digest(out / "grant.input")
+        grant = json.loads((out / "grant.input").read_text())
         write(out / "preflight.json", context(ROOT))
+        if sys.platform != "linux" or not hasattr(os, "wait4") or not hasattr(os, "posix_spawn"):
+            raise ValueError("Linux stdlib wait4/posix_spawn route unavailable")
+        if signal.getsignal(signal.SIGCHLD) != signal.SIG_DFL:
+            raise ValueError("default SIGCHLD required; no handler/auto-reaper allowed")
+        if signal.getsignal(signal.SIGINT) is not signal.default_int_handler:
+            raise ValueError("default Python SIGINT handler required for supported one-shot cancellation")
+        for key in ("kill_reap_seconds", "max_child_record_bytes"):
+            if type(grant[key]) not in (int, float) or not math.isfinite(grant[key]) or grant[key] <= 0:
+                raise ValueError("positive explicit method safety setting required: " + key)
+        if type(grant["max_child_record_bytes"]) is not int:
+            raise ValueError("child JSON parse bound must be integer bytes")
+        receipt["candidate_pre_admission"] = candidate_identity()
+        receipt["material_hashes_pre_admission"] = material_hashes(ROOT)
         spec, identity = admit(grant)
+        hashes_before = material_hashes(ROOT)
+        spec["expected_material_hashes"] = hashes_before
         write(out / "spec.json", spec)
-        receipt.update(candidate=identity, material_hashes=material_hashes(ROOT))
+        receipt.update(candidate_before=identity, material_hashes_before=hashes_before,
+                       wait_owner="single os.wait4(exact_pid,WNOHANG), no waitpid/Popen/aggregate waits",
+                       spawn_route="os.posix_spawn executable with setsid=True; runtime support not assumed",
+                       interpreter={"executable": sys.executable, "resolved": str(Path(sys.executable).resolve()),
+                                    "version": sys.version},
+                       sigchld_handler="SIG_DFL", effective_cwd=str(ROOT))
         env = os.environ.copy()
         env.update({key: "1" for key in THREADS})
         env["PYTHONPATH"] = str(ROOT / "src")
         env["PYTHONDONTWRITEBYTECODE"] = "1"
+        receipt["child_environment_controls"] = {key: env.get(key) for key in (*THREADS, "PYTHONPATH", "PYTHONDONTWRITEBYTECODE", "PYTHONMALLOC", "MALLOC_ARENA_MAX")}
+        receipt["phase"] = "spawn"
+        # chdir is parent-only before spawn, avoiding preexec_fn or another child.
+        os.chdir(ROOT)
         with (out / "stdout.json").open("x") as stdout, (out / "stderr.log").open("x") as stderr, (out / "samples.jsonl").open("x") as samples:
-            process = subprocess.Popen([sys.executable, str(HERE / "workload_child.py"), str(out / "spec.json"), str(ROOT)],
-                                       cwd=ROOT, env=env, stdout=stdout, stderr=stderr, start_new_session=True)
-            receipt["workload_pid"] = process.pid
-            receipt["child_cgroup"] = read(f"/proc/{process.pid}/cgroup")
-            if receipt["child_cgroup"] != read("/proc/self/cgroup"):
-                raise ValueError("workload moved outside observer's admitted cgroup")
-            started = time.monotonic()
-            stop = None
-            while process.poll() is None:
-                sample = process_sample(process.pid)
+            receipt["observer_pre_spawn_snapshot"] = __import__("observer").rusage_snapshot("parent before posix_spawn; not subtracted from child peak")
+            argv = [sys.executable, str(HERE / "workload_child.py"), str(out / "spec.json"), str(ROOT)]
+            write(out / "spawn-intent.json", {"attempt_id": args.attempt_id,
+                "observer_identity": process_identity(os.getpid()), "argv": argv,
+                "spec_sha256": digest(out / "spec.json"), "grant_sha256": receipt["grant_sha256"],
+                "scope": "intent only, not proof whether spawn occurred; coordinator resolves any marker gap"})
+            receipt["spawn_start_monotonic_ns"] = time.monotonic_ns()
+            pid = os.posix_spawn(sys.executable, argv, env,
+                file_actions=[(os.POSIX_SPAWN_OPEN, 0, "/dev/null", os.O_RDONLY, 0),
+                              (os.POSIX_SPAWN_DUP2, stdout.fileno(), 1),
+                              (os.POSIX_SPAWN_DUP2, stderr.fileno(), 2)], setsid=True)
+            owner = WaitOwner(pid)
+            write(out / "owned-child.json", {"attempt_id": args.attempt_id,
+                "observer_pid": os.getpid(), "workload_pid": pid, "child_identity": process_identity(pid),
+                "expected_pgid_and_session_id": pid, "argv": argv,
+                "spec_sha256": digest(out / "spec.json"), "grant_sha256": receipt["grant_sha256"],
+                "scope": "owned child marker, not terminal receipt; missing identity fields require coordinator discovery"})
+            receipt.update(workload_pid=pid, phase="observation", spawn_return_monotonic_ns=time.monotonic_ns())
+            deadline = receipt["spawn_start_monotonic_ns"] / 1e9 + grant["deadline_seconds"]
+            term_at = None
+            kill_at = None
+            count = 0
+            while owner.collect() is None:
+                sample = process_sample(pid)
+                sample["child_cgroup"] = read(f"/proc/{pid}/cgroup")
                 sample["ancestor_current_bytes"] = {path: read(Path(path) / "memory.current") for path in grant["ancestor_stop_bytes"]}
                 samples.write(json.dumps(sample) + "\n")
                 samples.flush()
-                if time.monotonic() - started >= grant["deadline_seconds"]:
-                    stop = "deadline"
-                elif sample.get("VmRSS_bytes", 0) >= grant["process_stop_bytes"]:
+                count += 1
+                if owner.collect() is not None:
+                    break  # Exit raced /proc observation; do not invent a stop.
+                now = time.monotonic()
+                stop = None
+                if sample["child_cgroup"] != read("/proc/self/cgroup"):
+                    stop = "child_cgroup_missing_or_moved"
+                elif now >= deadline:
+                    stop = "timeout"
+                elif type(sample.get("VmRSS_bytes")) is not int or sample["VmRSS_bytes"] < 0:
+                    stop = "required_process_RSS_observation_lost"
+                elif sample["VmRSS_bytes"] >= grant["process_stop_bytes"]:
                     stop = "process_current_RSS_threshold"
                 elif sample["host_available_bytes"] is None or sample["host_available_bytes"] <= grant["host_min_available_bytes"]:
                     stop = "host_headroom_missing_or_deteriorated"
                 elif any(value is None or int(value) >= grant["ancestor_stop_bytes"][path] for path, value in sample["ancestor_current_bytes"].items()):
                     stop = "cgroup_current_threshold_or_unknown"
-                if stop:
-                    receipt.update(stop_reason=stop, last_sample=sample, signal="SIGTERM")
-                    os.killpg(process.pid, signal.SIGTERM)
-                    try:
-                        process.wait(timeout=grant["terminate_grace_seconds"])
-                    except subprocess.TimeoutExpired:
-                        os.killpg(process.pid, signal.SIGKILL)
-                        receipt["escalated_signal"] = "SIGKILL"
-                        process.wait()
-                    break
+                if stop and term_at is None:
+                    receipt.update(stop_reason=stop, last_sample=sample)
+                    receipt["signals"].append(owner.send(signal.SIGTERM))
+                    term_at = now
+                if term_at is not None and kill_at is None and now - term_at >= grant["terminate_grace_seconds"]:
+                    receipt["signals"].append(owner.send(signal.SIGKILL))
+                    kill_at = now
+                if kill_at is not None and now - kill_at >= grant["kill_reap_seconds"]:
+                    raise TimeoutError("terminal wait4 missing after KILL reap deadline")
                 time.sleep(grant["sample_interval_seconds"])
-            receipt["returncode"] = process.wait()
-            receipt["status"] = "stopped" if stop else "child_complete_pending_scientific_review"
+            receipt["sample_count"] = count
+        receipt["terminal"] = owner.terminal
+        outcome, child_record = child_outcome(out / "stdout.json", grant["max_child_record_bytes"], owner.pid, spec)
+        receipt["child_outcome"] = outcome
+        receipt["child_record_sha256"] = digest(out / "stdout.json")
+        receipt["candidate_after"] = candidate_identity()
+        receipt["material_hashes_after"] = material_hashes(ROOT)
+        identity_matches = (receipt["candidate_after"] == receipt["candidate_before"] and
+                            receipt["material_hashes_after"] == receipt["material_hashes_before"])
+        receipt["material_identity_matches"] = identity_matches
+        if "stop_reason" in receipt:
+            receipt["status"] = "timeout_stopped" if receipt["stop_reason"] == "timeout" else "monitor_stopped"
+        elif owner.terminal["signaled"]:
+            receipt["status"] = "child_signaled"
+        elif outcome in ("missing_child_record", "malformed_child_record", "child_record_exceeds_admitted_parse_bound"):
+            receipt["status"] = outcome
+            receipt["child_parse_diagnostic"] = child_record
+        elif not identity_matches or outcome == "material_identity_failure":
+            receipt["status"] = "material_identity_failure"
+        elif outcome == "nonfinite_scientific_failure":
+            receipt["status"] = "nonfinite_scientific_failure"
+        elif outcome == "workflow_exception":
+            receipt["status"] = "workflow_exception_unclassified"
+        elif outcome == "observation_failure":
+            receipt["status"] = "child_observation_failure"
+        elif owner.terminal["returncode"] != 0:
+            receipt["status"] = "child_nonzero_exit"
+        elif outcome != "finite_observation_pending_qualification":
+            receipt["status"] = "child_observation_failure"
+        else:
+            receipt["status"] = "complete_child_observed_pending_scientific_qualification"
     except BaseException as error:
-        receipt.update(status="refused_or_failed", type=type(error).__name__, message=str(error))
-        if process is not None and process.poll() is None:
-            os.killpg(process.pid, signal.SIGKILL)
-            process.wait()
-            receipt.update(signal="SIGKILL", returncode=process.returncode)
+        status = ("observer_cancelled" if isinstance(error, KeyboardInterrupt) else
+                  {"admission": "admission_refused", "spawn": "spawn_failure"}.get(receipt["phase"], "observation_failure"))
+        receipt.update(status=status, error_type=type(error).__name__, error_message=str(error))
     finally:
+        cleanup(owner, receipt, grant.get("kill_reap_seconds", 1) if isinstance(grant, dict) else 1)
+        if owner is not None:
+            receipt["terminal"] = owner.terminal
+            receipt["wait_ownership_lost"] = owner.wait_lost
+            receipt["nonterminal_wait_events"] = owner.nonterminal_wait_events
         receipt["finished_monotonic_ns"] = time.monotonic_ns()
-        receipt["postflight"] = context(ROOT)
-        receipt["observer_ru_maxrss_units"] = "Linux KiB; observer excluded from child RSS"
-        receipt["monitor_limits"] = "Sampling can miss short peaks; threshold/time stop may overshoot; monitor cannot guarantee no OOM. No automatic retry."
-        receipt["files"] = {p.name: {"logical_bytes": p.stat().st_size,
-                                    "allocated_bytes": p.stat().st_blocks * 512} for p in out.iterdir() if p.is_file()}
+        try:
+            receipt["candidate_final"] = candidate_identity()
+            receipt["material_hashes_final"] = material_hashes(ROOT)
+            if "candidate_before" in receipt and (receipt["candidate_final"] != receipt["candidate_before"] or
+                    receipt["material_hashes_final"] != receipt["material_hashes_before"]):
+                receipt["material_identity_matches"] = False
+                if receipt["status"] == "complete_child_observed_pending_scientific_qualification":
+                    receipt["status"] = "material_identity_failure"
+            receipt["postflight"] = context(ROOT)
+            receipt["observer_self_snapshot"] = __import__("observer").rusage_snapshot("parent after child/cleanup, excludes receipt serialization")
+            receipt["files_before_receipt"] = {p.name: {"sha256": digest(p), "logical_bytes": p.stat().st_size,
+                "allocated_bytes": p.stat().st_blocks * 512} for p in out.iterdir() if p.is_file()}
+        except BaseException as error:
+            receipt["postflight_gap"] = {"type": type(error).__name__, "message": str(error)}
+            if receipt["status"] == "complete_child_observed_pending_scientific_qualification":
+                receipt["status"] = "complete_child_observation_incomplete"
+        receipt["limits"] = (
+            "wait4 peak is a maximum process RSS, not parent+child aggregate or numerical-only allocation. "
+            "No numerical grandchildren commissioned. Inherited/pre-exec high-water, native allocator/FFT "
+            "semantics and spawn support require actual runtime qualification. Sampling/stops can overshoot. "
+            "File inventory excludes receipt itself; coordinator collects final disk sizes/hash externally. No retry.")
         write(out / "receipt.json", receipt)
-    return 0 if receipt["status"] == "child_complete_pending_scientific_review" and receipt["returncode"] == 0 else 1
+    return 0 if receipt["status"] == "complete_child_observed_pending_scientific_qualification" and "cleanup_gap" not in receipt else 1
 
 
 if __name__ == "__main__":

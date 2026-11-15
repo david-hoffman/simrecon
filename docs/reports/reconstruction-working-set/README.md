@@ -1,11 +1,11 @@
 # WS116 source-only experiment preparation
 
-These are **unexecuted analysis drafts**, prepared at provisional public-main
+These are **unexecuted analysis drafts**, initially prepared at provisional public-main
 `b344e41a8b52de76d7cbbf8450319893904c3b8f`. They provide no measured working set,
 successful qualification, experiment admission, ranking, independent acceptance
 or passing check claim. The [task](../../tasks/reconstruction-working-set.md)
-owns Current state; this report does not create another status store. #112 holds
-the numerical window, and accepted #115 plus coordinator release are prerequisites.
+owns Current state; this report does not create another status store. Accepted
+#115 plus coordinator release are prerequisites for numerical work.
 
 Files: [fixed corpus](manifest.json), [liveness calculations](analysis/liveness-draft.md),
 [one-attempt runner](run_attempt.py), [child](workload_child.py),
@@ -13,8 +13,29 @@ Files: [fixed corpus](manifest.json), [liveness calculations](analysis/liveness-
 `raw/` will retain every attempt, grant, preflight, sample stream, output/error and
 receipt. It is currently empty. No Python, imports, lint, types, tests, numerical
 experiment, benchmark, install or full verification was executed in preparation.
-The runner is not yet parsed, validated or reviewed and must not be treated as a
-ready experiment tool until the later released session diagnoses it.
+The runner is not yet parsed or runtime validated. Static review 1 requested
+corrections, and fresh delta review is pending; it must not be treated as a ready
+experiment tool until later released qualification. Source-only
+method revision v2 added complete-child wait ownership, bounded array identities,
+explicit snapshot/status scopes and a separate static-method review input. The
+original draft is preserved in Git at `701b56d349adaf5e719510a158b51402876f9c30`;
+no prior attempt, charge or correction is reset. This method refinement remains
+on that source-preparation baseline; root's reports about #112/#115 do not bind
+an accepted experiment baseline or release numerical work.
+
+Source correction v3 addresses independent static review 1 F1/F2/C1. All six
+exact v2 reviewed files were hash-verified before any correction and preserved
+by the coordinator under
+`/workspace/work/campaign/evidence/116/source-method-v2-review1/`. Original review,
+drafts and charges remain evidence. Fresh delta static review is pending; no
+runtime counterexample or qualification was executed.
+
+Source correction v4 responds only to review 2's remaining F2a/b/c structural
+findings. The exact review-2 sources remain preserved by the coordinator at
+`/workspace/work/campaign/evidence/116/source-method-v2-corrected-review2/`.
+Review 2 found F1 statically corrected and C1's operational disposition sufficient
+for this source-only purpose. Their mechanisms are retained. Neither static
+finding disposition nor accepted-parent context supplies runtime qualification.
 
 ## Fixed workload and generator meaning
 
@@ -85,7 +106,8 @@ For each single attempt the coordinator supplies one JSON grant. Required fields
   resolution evidence. Root cgroup files alone are insufficient. A missing or
   unsupported cgroup interface is a refusal requiring a declared observer revision.
 - Positive `deadline_seconds`, `process_stop_bytes`, `host_min_available_bytes`,
-  `terminate_grace_seconds`; `sample_interval_seconds:0.01`; and
+  `terminate_grace_seconds`, `kill_reap_seconds`, and integer
+  `max_child_record_bytes`; `sample_interval_seconds:0.01`; and
   `ancestor_stop_bytes` mapping **every visible ancestor absolute path** to a
   conservative current-memory threshold strictly between current and finite max
   where a finite max exists. No numbers are supplied by this draft because actual
@@ -111,23 +133,90 @@ process RSS threshold, ancestor current-memory threshold or host-headroom loss.
 Every attempt directory is new; reuse is refused. A stopped/failed attempt needs
 classification/diagnosis before another grant. No deliberate OOM or swap rescue.
 The external monitor can race or overshoot and cannot guarantee zero OOM risk.
+The source uses `os.posix_spawn(..., setsid=True)` to avoid creating a `Popen`
+object with destructor or signal-helper reaping paths. The only workload wait
+owner calls `os.wait4(exact_pid, WNOHANG)` and caches one terminal status/rusage.
+There is no `Popen.poll/wait/communicate/send_signal`, aggregate wait or numerical
+grandchild. Signals use `os.killpg` after checking cached/terminal ownership.
+Default SIGCHLD is required; unexpected auto-reaping loses terminal evidence and
+does not authorize signaling an unowned/reused PID. TERM grace and KILL-reap periods
+are bounded, including exception cleanup. A still-unreaped kernel task is an
+explicit cleanup gap requiring coordinator resolution before another attempt.
+An inaccessible post-exit /proc sample is not a fabricated stop: terminal wait
+collection is checked again after sampling. For a still-live child, missing or
+unusable required RSS is `required_process_RSS_observation_lost`, never zero:
+the sample/diagnostic is retained and normal monitor TERM/KILL escalation follows.
+A measured integer zero remains a measured zero. Exact spawn/setsid/wait4/units and
+signal behavior remain runtime validation questions; no capability probe ran.
 No experiment may overlap campaign numerical work, installation or verification.
 
 ## Measurement meanings and review
 
-The child records Linux native `ru_maxrss` in KiB and multiplies by 1024 for bytes.
-This cumulative process high-water includes imports, fixture generation, callers,
-input hashing, call, result hashing and retained-payload traversal **through the
-explicit `after` snapshot**. Context-record construction, JSON serialization and
-interpreter teardown occur later and are not covered by that snapshot; external
-sampled HWM can add observations but does not establish the exact terminal peak.
+The parent records Linux wait4 terminal native `ru_maxrss` in KiB and multiplies
+by 1024 for `terminal.complete_child_peak_bytes`. This describes the awaited
+direct child through exit, including JSON serialization and teardown. It is a
+maximum resident process size, not a sum of concurrent child/thread/observer
+memory, numerical-only allocation, or a guarantee of a new workstation envelope.
+No numerical grandchildren are commissioned. Inherited/pre-exec high-water and
+kernel/libc accounting limits remain explicit qualification questions; never
+subtract the parent or baseline to invent an isolated numerical peak.
+
+Child `snapshots.pre_call`, `snapshots.call_end` and
+`snapshots.post_observation` retain native values, converted cumulative bytes,
+monotonic timestamps and scope. They include work through their query only.
+Post-observation covers hashing/finite/retention/context/identity collection,
+but excludes subsequent JSON/teardown, covered separately by terminal wait4.
+Sampled RSS/HWM and these cumulative snapshots are distinct observations.
 Call time brackets only the workflow invocation; profiled brackets include stage
 observer work inside the call. Never subtract pre-call high-water and call it
 isolated workflow memory. Page faults/swap/block-I/O are context, not allocation
 ownership. Parent observer memory/CPU is outside child RSS but consumes headroom.
-Receipt disk counts cover files existing before receipt serialization and exclude
-its own bytes. Post-run directory disk accounting remains a separate required
+Receipt disk counts/hashes cover files existing before receipt serialization and
+exclude its own bytes. Post-run directory disk accounting remains a separate required
 collection, using both logical and allocated bytes without mutating old evidence.
+
+Array identities preserve frozen RM84 name/shape/little-endian dtype/content
+meaning while streaming C-order bytes in bounded chunks; the child never calls
+the frozen fixture's whole-array `identity(...tobytes())`. Contiguous arrays use
+zero-copy memoryview chunks. Conversion buffers and each explicit tobytes chunk
+are separately bounded by the 1 MiB chunk parameter and may coexist; finite-check
+boolean chunks and allocator/iterator/hash metadata add their own costs. This is
+not a 1 MiB total-scratch ceiling. The frozen `public_value_sha256` uses direct memoryview content
+without a contiguous copy or buffered 65536-element conversion for noncontiguous/
+endian data; those protocol meanings remain unchanged. It hashes declarations,
+caller input and one result, never launches a baseline/reference workflow. Hashing,
+finite checks, retained-array metadata and provenance still consume memory/time
+and contribute to the corresponding snapshots and complete-child high-water.
+
+Receipts separate `admission_refused`, `spawn_failure`, `observation_failure`,
+`observer_cancelled`,
+`timeout_stopped`, `monitor_stopped`, `child_signaled`, missing/malformed/oversized
+child records, nonfinite outcomes, workflow exceptions, identity changes and
+nonzero child exits. A well-formed finite child plus exit zero, terminal rusage
+and matched before/after material identities yields only
+`complete_child_observed_pending_scientific_qualification`. Exit status is raw
+process evidence; it never establishes searched/witness meaning or report
+acceptance. Raw wait status, decoded normal exit/signal and actual-time context
+are retained. The explicit child-v2 complete-record checks require non-null
+snapshot measurements/native units/byte conversion/timestamps/scopes/counters,
+input/output identities, branch shape/labels, ordered call timing/derived duration,
+environment/resource/retention observations and the declared stage stream.
+Null snapshots or omitted fields are malformed evidence even with exit zero.
+These structural checks add no scientific tolerance or recovery oracle.
+Named snapshot scopes are the shared exact protocol strings. Required ancestor
+`memory.current` must be a nonnegative decimal string and `memory.max` a
+nonnegative decimal string or legitimate `max`; arbitrary `unknown` text is
+unusable there. Explicitly optional peak/events/swap nulls remain distinguishable
+unknowns. Canonical numeric dtype metadata admits only byteorder-independent
+`|b1/|i1/|u1` or little-endian integer widths 2/4/8, float widths 2/4/8/16 and
+complex widths 8/16. Retention metadata separately preserves legal actual big-
+endian backings. These are identity encodings, not an end-to-end precision policy.
+JSON/spec/PID and required success snapshots are checked; invalid
+stdout is preserved without treating a guessed value as a missing measurement.
+Grant bytes survive admission failure. Identity capture before admission, before
+spawn and after observation binds source/tooling bytes without self-hashing the
+receipt or silently editing the frozen manifest. Runtime failure classifications
+remain pending diagnosis by their named owners.
 
 Profile runs patch only `simrecon.workflow.reconstruct`'s imported
 `workflow_stage` context manager: declaration, optional layout, preparation,
@@ -180,3 +269,63 @@ created in this stage; read-only shell commands have completed. No commit/push/
 publication. Actual model/effort, tokens, cost, CPU/wall usage and host accounting
 are unknown except where the coordinator/host records them. No human numeric cap
 is set; the three-repeat design is not such a cap.
+
+## Supported observer cancellation and coordinator recovery (C1)
+
+This is the concrete procedure required before later execution; it has not been
+exercised. The coordinator retains the exact attempt directory and observer PID/
+boot/start identity. The runner requires Python's default SIGINT handler and
+writes `spawn-intent.json` before spawn and `owned-child.json` immediately after
+obtaining the PID, before a terminal receipt. Markers record expected argv/spec/
+grant identity and available boot/start/PID/PPID/PGID/session/executable facts.
+They are discovery evidence, not proof of liveness, termination or PID ownership
+at a later time; missing fields remain unknown.
+
+For supported cancellation, verify the observer identity is still the launched
+process, send it **one SIGINT**, and allow its recorded bounded cleanup to run.
+Python KeyboardInterrupt is classified `observer_cancelled`; existing exception
+cleanup requests KILL only for the still-owned child group, collects terminal
+wait4 where possible, and writes its receipt. Do not send repeated SIGINT while
+cleanup/receipt work is running. Verify terminal receipt, workload identity gone/
+terminal state and resource release before considering another attempt. Elapsed
+loops do not hard-bound every filesystem operation or scheduler stall.
+
+Direct observer SIGTERM, repeated interruptions, SIGKILL, host death and abrupt
+interpreter failure can bypass finally or interrupt receipt writing. The child
+has its own session, so observer disappearance alone proves no child exit.
+The coordinator must then freeze the numerical window and preserve existing
+markers, partial receipt, stdout/stderr and samples. Correlate the marker's boot
+ID and start ticks with current `/proc` facts, expected executable/argv/spec,
+PPID lineage where still applicable, and PGID/session before identifying any live
+owned workload. A reused PID or a stale marker authorizes no signal.
+
+If verified live ownership is established, the coordinator may terminate only
+that owned session/process group with TERM, use the grant's grace/deadline for
+inspection, then KILL if still verified live, and confirm termination/resource
+release. If the observer died, a new nonparent coordinator cannot recover the
+original wait4 terminal rusage; mark the attempt interrupted/incomplete rather
+than reconstructing a peak or success. Preserve cancellation/recovery evidence
+externally without rewriting old raw files.
+
+A spawn can occur before `owned-child.json` is complete. `spawn-intent.json`
+therefore means neither definitely spawned nor definitely absent. For an intent-
+only, missing or malformed marker, the coordinator uses the exact attempt spec/
+argv and contemporaneous process/session records to discover candidates cautiously;
+no blanket pkill, automatic orphan killer or unrelated-process authority follows.
+If identity or termination cannot be resolved, retain the uncertainty and block
+another trial until ownership/resource disposition is established. No global
+daemon, lock or recovery controller is introduced. Actual cancellation, marker
+races and recovery behavior remain bounded qualification obligations after release.
+
+Profile-stream completeness in method v4 is specific to the current workflow
+module mask: declaration enter/exit, an optional single layout enter/exit,
+preparation enter/exit, estimation enter/exit, reconstruction enter/exit for
+`time_index=0..T-1` in order, then result enter/exit. All non-reconstruction
+indices are null. Each timestamp is positive, within call start/end and
+nondecreasing; native cumulative stage high-water values agree with surrounding
+pre-call/call-end snapshots. A truncated, reordered, nested or unpaired stream
+is incomplete. An unprofiled call instead has exactly an empty stage list.
+This is a declared observation protocol, not a generic call graph or scientific
+oracle. Reconcile this exact stage mask against the later accepted integrated
+source before freezing material identities or collecting data; preserve optional
+layout support rather than inferring a new acquisition/scientific requirement.

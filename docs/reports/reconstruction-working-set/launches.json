@@ -67,10 +67,130 @@
       "elapsed_seconds": "unknown"
     }
   ],
+  "continuations": [
+    {
+      "role": "same report-only investigator, source-only method refinement",
+      "session": "/root/issue_116/investigator",
+      "packet": "docs/reports/reconstruction-working-set/method-refinement-packet.md",
+      "packet_sha256": "51f2169b7f6977e77c3616f6d5db1a7083f62aa1329ee2fd71a4a9d25ff504e7",
+      "requested_model_effort": "same Sol/high session",
+      "actual_served_model_effort_tokens_money": "unknown",
+      "scope": "source-only complete-child peak/wait ownership, snapshot labels, bounded hashes, status/termination/identity protocol and method-review input",
+      "release": "no rebase; no Python/probes/lint/types/tests/installs/benchmarks/numerical work; root115 gate exclusive",
+      "status": "source refinement complete; no runtime capability/data claim and not a new role launch",
+      "report_destination": "named report sources/docs; separate collaboration final message",
+      "output_sha256": {
+        "README.md": "2fa2b6627c3c9ad607a2515b066d45bdaed4929f48abaf1e51de9e1a3d9e8164",
+        "manifest.json": "c45124ee37d82417b2defb69ae66ca87b7b0f1cb40a3eb78ccaa13d8d6941c6c",
+        "observer.py": "3c5549b773e44206587876d9d8dac0e9aada6cdd5471e968b55caeb8fd2795e3",
+        "workload_child.py": "349f5d687f4fa94363a041d72b86c89199db28018b23c6c0802946a837747531",
+        "run_attempt.py": "35293a17ce74f61ff0b3b8b39cb7bcfe02843960288dc7a73edd5a1cd2a37ad6",
+        "method-review-input.md": "7759d4c70bdef519b4011c6be62fca4f7d738f0ca800275b0009064f7949f44e"
+      },
+      "checks": "packet digest/HEAD and shell source searches; git diff --check=0, new-file no-index whitespace check=1 difference with no diagnostics; no runtime parsing/execution"
+    },
+    {
+      "role": "same investigator source correction after static method review 1",
+      "session": "/root/issue_116/investigator",
+      "packet": "/workspace/work/campaign/evidence/116/static-method-correction-packet-1.md",
+      "packet_sha256": "5ea52473b8d472fe0746e7b084c70d45b080eea3c4aae4d8c85d1894c5d47825",
+      "scope": "F1 unknown RSS, F2 complete child-record validation, C1 parent cancellation/recovery disposition; source only",
+      "status": "source correction complete; no new launch or numerical attempt",
+      "requested_actual_metering": "same Sol/high requested; actual served attribution/tokens/money unknown",
+      "output_sha256": {
+        "README.md": "42eaf8fc9267aa58463e5958316460feeace0ff0fa4f1fb748eb1a4171b6ff5c",
+        "manifest.json": "af618fc22fe231f7ea881446e717fbca5804d1c0ac14c10770664efda709d629",
+        "observer.py": "678e37cde5e8be514277c188dcd1332bb2c64a706a836e8a9dab652461741c3a",
+        "run_attempt.py": "1d8a10f8a6a8fc7571b15a1ea6d1e50aa6df9e2ff665629ef315c8845d885020",
+        "method-review-input.md": "139922ffb145130351847e4b34e69e3a1d8a34ca842dc90324527998b30a421a",
+        "workload_child.py": "349f5d687f4fa94363a041d72b86c89199db28018b23c6c0802946a837747531"
+      },
+      "checks": "packet/report digests and original six-file hashes matched; tracked diff-check=0; new input no-index difference=1 without whitespace diagnostics; one atomic context-mismatch patch corrected; no runtime execution"
+    },
+    {
+      "role": "same investigator narrow F2 correction after static method review 2",
+      "session": "/root/issue_116/investigator",
+      "packet": "/workspace/work/campaign/evidence/116/static-method-correction-packet-2.md",
+      "packet_sha256": "54cb1e0a4ddfeef8c5ccbb8d99c09d6f857afeeaab986d45fda2cc64caba740d",
+      "scope": "F2a paired/time-aligned known profile stream; F2b usable resource values and exact scopes; F2c legal canonical dtype encodings",
+      "diagnosis": "prior minimum schema still used nonempty/type checks where the declared known protocol requires usable structured values; no new scientific oracle",
+      "status": "source correction delivered; no new launch or numerical attempt",
+      "requested_actual_metering": "same Sol/high requested; actual served attribution/tokens/money unknown",
+      "output_sha256": {
+        "README.md": "96c4aa2e02432b5f7fa80eb3f01b2c8929fe047b5451428f21ff70434d126cf0",
+        "manifest.json": "963730e99afcfa97d31d5db26b7cbe58d558ceae832c8e1caddbb2943cfb22a0",
+        "observer.py": "285a1ed5b3acd7681ff2eb266a89a8251303c6589ada506109eef355892fc85d",
+        "workload_child.py": "ec74264709a8106fd593bbf7a1f2b08915bce15eebda23d4975431239f059c1f",
+        "run_attempt.py": "e1cab132f19503d9751da917dc10e00d2957124bd06eda7f07b7f30fa3c0836c",
+        "method-review-input.md": "bab3a8f9392f80efbedea5c3751070c4c7b55eb6543b8a473ed0f48bc64148da"
+      },
+      "checks": "packet/report digests matched; tracked whitespace=0, no-index input whitespace/difference=1 no diagnostics; snapshot diff=1 expected; two atomic context-only patch failures corrected; no runtime execution"
+    }
+  ],
+  "static_method_reviews": [
+    {
+      "session": "/root/issue_116/static_method_review_1",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "fork_turns": "none",
+      "packet": "/workspace/work/campaign/evidence/116/static-method-review-packet.md",
+      "packet_sha256": "fbd7909556eaffcfb7bf874bf4cb2388991353ef706e00da01230469fcb6913b",
+      "report_destination": "/workspace/work/campaign/evidence/116/static-method-review-1.md",
+      "final_message_destination": "separate collaboration parent mailbox",
+      "scope": "unexecuted source method diagnostic only; no final report/gate/runtime acceptance",
+      "status": "completed: source corrections requested, no runtime/report acceptance",
+      "report_sha256": "9a4452afddd4e4d53e47f2b4990f0a268bd3f7c3216e60ae54a739ed99b4b81c",
+      "exact_reviewed_source_snapshot": "/workspace/work/campaign/evidence/116/source-method-v2-review1/; six copied files independently match the six review1 hashes",
+      "findings": "F1 missing RSS treated as zero; F2 incomplete child-record fields can pass; C1 explicit parent cancellation/recovery disposition required",
+      "checks": "HEAD and six file digests matched unchanged; read-only source/hash commands; one absent campaign packet read status1 corrected to report-directory path",
+      "actual_served_model_effort_tokens_money": "unknown"
+    },
+    {
+      "session": "/root/issue_116/static_method_review_2",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "fork_turns": "none",
+      "packet": "/workspace/work/campaign/evidence/116/static-method-review-packet-2.md",
+      "packet_sha256": "7fb98d36ec7be6591579613dca6aa6fc4d7472ca770f222c99c270665b13f9df",
+      "report_destination": "/workspace/work/campaign/evidence/116/static-method-review-2.md",
+      "exact_source_snapshot": "/workspace/work/campaign/evidence/116/source-method-v2-corrected-review2/",
+      "final_message_destination": "separate collaboration parent mailbox",
+      "scope": "fresh affected-method delta/retained-evidence static review; no runtime/report/gate acceptance",
+      "status": "completed: further narrow F2 source correction requested; F1 statically corrected and C1 sufficiently dispositioned",
+      "report_sha256": "f339a8853d16a28f1c2682a6ccc23a8c612fc1a24e9e85a0045da855c5dfa5e0",
+      "findings": "F2a truncated profile stages; F2b unusable resource text/snapshot scopes; F2c impossible dtype encoding",
+      "retained_limits": "unchanged child/hash/lifetime/wait scope static conclusions retained, never runtime qualification",
+      "actual_served_model_effort_tokens_money": "unknown"
+    },
+    {
+      "session": "/root/issue_116/static_method_review_3",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "fork_turns": "none",
+      "packet": "/workspace/work/campaign/evidence/116/static-method-review-packet-3.md",
+      "packet_sha256": "b67c2ec77e346f317ada2522be5006b3a13905a6034b0d6c842b31e0a267d70b",
+      "report_destination": "/workspace/work/campaign/evidence/116/static-method-review-3.md",
+      "exact_source_snapshot": "/workspace/work/campaign/evidence/116/source-method-v2-corrected-review3/",
+      "final_message_destination": "separate collaboration parent mailbox",
+      "scope": "fresh narrow F2a/b/c static review and normal paths/retained F1/C1 scope; no generic framework/runtime/report/gate acceptance",
+      "status": "completed: statically suitable for scheduled runtime qualification within exact source scope; no further concrete source finding",
+      "report_sha256": "8fd16ca2de36cc69cf8718213569dc1a07f2a3629553e941eda5e97800061be6",
+      "retained_limits": "F2a/b/c corrected, affected normal paths coherent; F1/C1 and wait/hash/lifetime/scope static conclusions retained; all runtime/data/qualification/gate acceptance absent",
+      "checks": "six snapshots/working hashes and prior reports matched; source/hash/diff only; one expected diff=1 initially skipped manifest diff, rerun separately; filenames from other worktrees exposed by search but contents unread",
+      "hold": "completed; no further writes/execution; changed admission scope will use another fresh reviewer",
+      "actual_served_model_effort_tokens_money": "unknown"
+    }
+  ],
   "accounting": {
     "intake_author_launches": 1,
     "investigator_launches": 1,
+    "investigator_source_only_continuations": 3,
     "independent_scientific_reviewer_launches": 0,
+    "independent_static_method_reviewer_launches": 3,
+    "completed_static_method_reviews": 3,
+    "static_method_review_nonacceptances": 2,
+    "static_method_review_scope_acceptances": 1,
+    "post_review_source_correction_cycles": 2,
     "root_owned_preflight_attempts": 1,
     "root_owned_preflight_evidence": "/workspace/work/campaign/preflight-116-attempt1.log",
     "measurement_trials": 0,

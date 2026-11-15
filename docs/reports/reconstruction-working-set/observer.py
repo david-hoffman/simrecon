@@ -11,6 +11,29 @@ import resource
 import time
 
 THREADS = ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS")
+SNAPSHOT_SCOPES = {
+    "pre_call": "after input hashes/retention, before call timestamp",
+    "call_end": "after call/end timestamp, before result observations",
+    "post_observation": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown",
+}
+ONE_BYTE_DTYPES = frozenset(("|b1", "|i1", "|u1"))
+MULTIBYTE_KIND_SIZES = {"i": (2, 4, 8), "u": (2, 4, 8), "f": (2, 4, 8, 16), "c": (8, 16)}
+
+
+def legal_numeric_dtype(value, *, canonical):
+    """Supported dtype.str encodings; canonical identities are little endian.
+
+    Retention metadata preserves actual big-endian backings where present.
+    One-byte encodings are byteorder-independent. No NumPy import is needed.
+    """
+    if not isinstance(value, str):
+        return False
+    if value in ONE_BYTE_DTYPES:
+        return True
+    if len(value) < 3 or value[0] not in ("<" if canonical else "<>"):
+        return False
+    return any(value == value[0] + kind + str(size)
+               for kind, sizes in MULTIBYTE_KIND_SIZES.items() for size in sizes)
 
 
 def read(path):
@@ -21,7 +44,11 @@ def read(path):
 
 
 def digest(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    hasher = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1048576), b""):
+            hasher.update(chunk)
+    return hasher.hexdigest()
 
 
 def material_hashes(root):
@@ -96,13 +123,42 @@ def context(root):
 
 def process_sample(pid):
     status = read(f"/proc/{pid}/status")
-    values = {}
+    values = {"VmRSS_bytes": None}
+    errors = {}
     for line in (status or "").splitlines():
         name, _, value = line.partition(":")
         if name in ("VmRSS", "VmHWM", "VmSwap"):
-            values[name + "_bytes"] = int(value.split()[0]) * 1024
+            try:
+                parts = value.split()
+                if len(parts) != 2 or parts[1] != "kB" or int(parts[0]) < 0:
+                    raise ValueError("unusable native process-memory field")
+                values[name + "_bytes"] = int(parts[0]) * 1024
+            except (ValueError, IndexError) as error:
+                values[name + "_bytes"] = None
+                errors[name] = str(error)
     return {"monotonic_ns": time.monotonic_ns(), "pid": pid, **values,
+            "process_status_readable": status is not None, "field_errors": errors,
             "host_available_bytes": mem_available()}
+
+
+def process_identity(pid):
+    """Read-only recovery marker facts; missing fields never prove process exit."""
+    stat = read(f"/proc/{pid}/stat")
+    result = {"pid": pid, "observed_monotonic_ns": time.monotonic_ns(),
+              "boot_id": read("/proc/sys/kernel/random/boot_id"),
+              "start_ticks": None, "ppid": None, "pgid": None, "session_id": None}
+    if stat is not None:
+        try:
+            tail = stat.rsplit(")", 1)[1].split()  # fields 3 onward
+            result.update(ppid=int(tail[1]), pgid=int(tail[2]), session_id=int(tail[3]),
+                          start_ticks=int(tail[19]))
+        except (ValueError, IndexError):
+            result["stat_identity_error"] = "unusable process stat"
+    try:
+        result["executable"] = os.readlink(f"/proc/{pid}/exe")
+    except OSError:
+        result["executable"] = None
+    return result
 
 
 @contextlib.contextmanager
@@ -133,3 +189,62 @@ def stage_observer(events):
         yield
     finally:
         module.workflow_stage = original
+
+
+def rusage_snapshot(scope):
+    """Scalar cumulative self sample; terminal observation belongs to wait4."""
+    usage = resource.getrusage(resource.RUSAGE_SELF)
+    return {"scope": scope, "monotonic_ns": time.monotonic_ns(),
+            "ru_maxrss_native": usage.ru_maxrss, "ru_maxrss_native_units": "Linux KiB",
+            "cumulative_high_water_bytes": int(usage.ru_maxrss) * 1024,
+            "ru_minflt": usage.ru_minflt, "ru_majflt": usage.ru_majflt,
+            "ru_nswap": usage.ru_nswap, "ru_inblock": usage.ru_inblock,
+            "ru_oublock": usage.ru_oublock, "ru_utime_seconds": usage.ru_utime,
+            "ru_stime_seconds": usage.ru_stime}
+
+
+def array_identity(array, name, chunk_bytes=1048576):
+    """RM84 array identity values with bounded C-order little-endian streaming.
+
+    No fixture.identity/tobytes of an entire volume. Content digest excludes the
+    name/shape/dtype just as frozen fixture.identity does; all four are recorded.
+    Conversion buffers and each tobytes chunk are separately <= chunk_bytes
+    (for supported <=16-byte numeric items) and can coexist. This parameter is
+    not a total-scratch ceiling; metadata/allocator/hash state also consumes memory.
+    """
+    import numpy as np
+    array = np.asarray(array)
+    if array.dtype.kind not in "biufc" or array.dtype.itemsize > 16:
+        raise ValueError("unsupported identity dtype")
+    target = array.dtype.newbyteorder("<")
+    if not legal_numeric_dtype(target.str, canonical=True):
+        raise ValueError("unsupported canonical numeric dtype encoding")
+    hasher = hashlib.sha256()
+    if array.size:
+        if array.flags.c_contiguous and (array.dtype.byteorder in ("<", "|") or
+                                        (array.dtype.isnative and __import__("sys").byteorder == "little")):
+            view = memoryview(array).cast("B")
+            for offset in range(0, array.nbytes, chunk_bytes):
+                hasher.update(view[offset:offset + chunk_bytes])
+        else:
+            for chunk in np.nditer(array, flags=["external_loop", "buffered", "zerosize_ok"],
+                                   op_flags=["readonly"], op_dtypes=[target], order="C",
+                                   buffersize=max(1, chunk_bytes // max(1, array.dtype.itemsize))):
+                count = max(1, chunk_bytes // max(1, array.dtype.itemsize))
+                for offset in range(0, chunk.size, count):
+                    hasher.update(chunk[offset:offset + count].tobytes(order="C"))
+    return name, tuple(array.shape), target.str, hasher.hexdigest()
+
+
+def bounded_finite(array, chunk_bytes=1048576):
+    """Bound finite-check boolean temporaries; the check still costs memory/time."""
+    import numpy as np
+    array = np.asarray(array)
+    for chunk in np.nditer(array, flags=["external_loop", "buffered", "zerosize_ok"],
+                           op_flags=["readonly"], order="C",
+                           buffersize=max(1, chunk_bytes // max(1, array.dtype.itemsize))):
+        count = max(1, chunk_bytes // max(1, array.dtype.itemsize))
+        for offset in range(0, chunk.size, count):
+            if not bool(np.isfinite(chunk[offset:offset + count]).all()):
+                return False
+    return True
