@@ -631,3 +631,28 @@ will be evaluated after A3; it is distinct from scientific test acceptance.
   notaccepted/B2accepted affected provisional scope; C1complete/D0. Joint bounded
   applicability review owned117 once, not another118 campaign charge. All serving/
   token/cache/money/total elapsed/wait/check costs unknown, no human numeric caps.
+
+## Final-order successor application — metadata only
+
+- Root applied exact proposalbe8b50784bff9b276d1f2da4e8037ea8eba2c316a88a93e89bd9ed5b3ca4f2ed
+  after fresh joint schedulingACCEPT0f7baea692c3590c58e8acf0dbcd63bed05075b40ae99a116a495aea873f130a
+  /final056bfea66a0683f07a0fd970d625c16d91546db9d832d418957fd3af82ed826e.
+  Actual root application SHA2567cb791b1dd558550d187cb8a9aca3710552d60f3b384f60478ab511bea4820a0.
+  Coordinator read full actual review/conditions and checked identities. Combined
+  static reads truncated and were reread individually; an initial rg referenced
+  nonexistent docs/candidates (exit2), corrected by rg --files docs. No runtime.
+- Live successor `docs/packets/issue-118-final-order-application.md` and held
+  integration/C/resource packet `issue-118-integrated-routing-hold.md` apply
+  main→112→115→116→117→118→119→120→113→114.118 final parent remains ACTUAL
+  ACCEPTED117, requiring actual inherited115-wide/double/shared-helper renewal;
+  113 single is ABSENT. No116/117 acceptance supplied. Actual parent integration,
+  fresh affected B/material/applicability and affected evidence renewal remain
+  BEFORE ANY integrated C/resources/finaldata/fullgate/D/publication.
+- No source/test/helper/frozen B2/addendum/application/C1 receipt changed. Old
+  receipt manifest binds historical task/ledger bytes at cdbf1d8; live metadata
+  changes do not rewrite that snapshot or relabel old public64a checks. No child,
+  runtime/probe/test/lint/type/install/gate/resource/integration/rebase/push.
+- ONE new joint final-order review owned117 only, cross-referenced118 without
+  duplicate cost, distinct from previous PhaseP joint event also charged117 once.
+  All earlier launches/failures/corrections retained; no new118 role; C1complete,
+  D0. Unavailable served/token/cache/money/elapsed/wait/check metrics unknown.

@@ -63,10 +63,16 @@
   unchanged B2 checkpoint; fresh restricted C/ordinary checks may proceed after
   actual launch binding/capacity. Before PhaseI further integrated C repairs,
   resource qualification/execution, final measures/fullgate/D/publication, root
-  MUST freeze ACTUAL ACCEPTED117 including113/profile/helpers/material inputs,
+  MUST freeze ACTUAL ACCEPTED117 and actual115-wide/double/helper/material inputs,
   integrate, reassess and renew affected author/check evidence plus FRESH affected
   B. Retained evidence needs explicit unchanged-material rationale; no old receipt
   is relabelled, no future parent/profile acceptance or source-scope expansion.
+- Final-order successor APPLIED after exact joint scheduling acceptance and root
+  application: [live successor](../packets/issue-118-final-order-application.md),
+  [operative held route](../packets/issue-118-integrated-routing-hold.md).
+  Final order main→112→115→116→117→118→119→120→113→114;118 still requires actual
+  accepted117. Qualify actual inherited115-wide/double/shared-helper material;
+  113 single is absent. Historical PhaseP/B2/C1 documents remain unchanged.
 - Corrections: classify environment, test, product or meaning first. Test changes
   go to blind A and fresh B, with shared oracle/fixture dependencies reviewed and
   B deciding retained evidence. D reviews actual omitted risks independently.
@@ -79,7 +85,7 @@
 
 ## Current state
 
-- **SAFE HOLD — unpublished PhaseP C1 complete; no active child/owned process.**
+- **SAFE HOLD — final-order metadata applied; PhaseP C1 complete; no active child/process.**
   Actual runtime baseline PUBLIC64a752b4642709c539df2079cc3c906acf4cc7b8;
   clean C launch87feeb5a93f4e2bcba73b3229329eb7ee115bf6e/tree
   4650b31e10466101ab4e11a06247e6e218045ff9. Final local provisional head/tree is
@@ -107,10 +113,14 @@
   B1 nonacceptance, original failures/bytes, all24+14 A3 logs and repairs retained.
 - PhaseP was explicitly authorized/applied BEFORE C by exact accepted local
   addendumb172e019… and applicationccbed1e1…, joint review0ad4312f… owned117 once.
-  Scientific meaning/oracles/ownership/gates/final order unchanged. No actual117
-  acceptance or future113/profile/helper qualification inferred. No integration,
+  Scientific meaning/oracles/ownership/gates unchanged. New final-order successor
+  applied after root7cb791b1…/jointACCEPT0f7baea6…; historical final-order/profile
+  wording is superseded only as specified there. Final stack112/115/116/117/118/
+  119/120/113/114. Actual accepted117 remains final parent; actual inherited115
+  wide/double/shared-helper material must be qualified;113 single ABSENT, no
+  inherited113 qualification claimed. No116/117 acceptance inferred. No integration,
   rebase, push or PR by this coordinator; root owns publication/scheduling.
-- **PhaseI BLOCKED:** root freezes ACTUAL ACCEPTED117 including113/profile/helpers/
+- **PhaseI BLOCKED:** root freezes ACTUAL ACCEPTED117 with115-wide/double/helpers/
   real material environment, integrates provisional source and records conflicts,
   reassesses contracts/interfaces/source/tests/fixtures/oracles/budgets/observers/
   profiles/helpers/versions/locks/tools/environment, renews affected author/check
@@ -127,7 +137,8 @@
 - Accounting: intake1; A launches3 (two pre-author procedural overreads stopped,
   no actual product-source/history/coverage/lessons exposure reported); A3+four
   continuations; B rounds2 (B1notaccepted/B2accepted affected scope); C1complete,
-  D0. One joint applicability event cross-referenced, charged117 once. All failed
+  D0. Two distinct joint scheduling applicability events cross-referenced, each
+  charged117 once (prior PhaseP and new final order); no new118 role/review. All failed
   checks/style/test-scope/path corrections and six coordinator metadata patch
   mismatches preserved in [role ledger](../reports/issue-118/role-launches.md).
   Requested roles Sol/high; served/tokens/cache/money/total elapsed/owner-wait/
