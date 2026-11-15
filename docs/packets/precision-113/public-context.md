@@ -1,14 +1,15 @@
 # SP113: permitted public preparation for blind A/B
 
-**Version 1.0. NOT LAUNCH-READY.** This is source-free preparation, not an A/B
-launch packet or accepted test checkpoint. No formal A may start until the
-coordinator reconciles accepted 115 representation rules into the complete
-public contract and replaces its pending paragraph. Accepted/frozen 116 is also
-required before C. Before A the coordinator also freezes explicit scenario IDs/
-subrows for every validation/mode/failure decision; the behavior-family source
-inventory is not the final scenario ledger. Tests cannot choose missing meaning. The
-coordinator authors the final actual PUBLIC-PACKET with exact identities,
-requested role, write scope, diagnostic commands and resource grant.
+**Version 1.0. MATERIAL MEANING SETTLED / PUBLIC-SOURCE PREP READY.** Accepted
+wide-allocation rules are reconciled. The single normative public ledger is
+section7 of `docs/contracts/single-known-reconstruction-v1.md`, with **293 explicit
+scenario IDs/subrows**, fixed outcomes and mapping; there is no scenario cap.
+This file is not the coordinator's actual hashed STATIC A launch packet or an
+accepted test checkpoint. The coordinator supplies that packet, exact identities
+and ownership. A is static-only until root explicitly grants necessary light
+checks. Accepted/frozen116 and material-parent reconciliation remain required
+before C. No missing owner decision, execution grant or runtime qualification
+is implied by public-source readiness.
 
 ## Public objective and interfaces
 
@@ -18,16 +19,25 @@ calculations/coordinates/image accumulation, f32 signed image and c64 filtered
 diagnostics. The selected parameters are supplied, never fitted. The public
 contract is `docs/contracts/single-known-reconstruction-v1.md`: its settled
 signature, selection, record, rounding, validation, failure and provenance terms
-are binding after the representation reconciliation. It requires
+are fixed, including the effective representation rules. It requires
 `declare_prepared_bands32`, PreparedBands32, KnownReconstruction32 and
 `reconstruct_known(..., precision="single-mixed-v1")`. Default precision is
 exactly `"double"`; all old calls/records retain exact same-environment behavior.
 Only new bands work with single; only old supported bands work with double.
-No workflow/summary precision entry or implicit adapter is authorized.
+No workflow/summary precision entry or implicit adapter is authorized. Flag kinds
+are exactly bool/np.bool_, canonical Python bool; taper accepts str/subclasses
+with underlying content resolved to Python str, while precision requires exact
+built-in str. Constructor stored tuple/int/str/float kinds are explicitly exact
+built-ins. Parameter arrays retain CE04 ndarray-subclass/standard-numeric/either-
+byte-order acceptance; new native/ordinary-array restrictions apply only to the
+new quadrature/noise schema. The complete contract fixes all such domains;
+A does not choose subclass/positive/error meaning.
 
 Independent fixtures declare every half-spectrum coefficient directly in slots
 0,E1,O1,..., positive per-time noise and exact CE alpha units. Preparation is
-unnecessary and may not supply expected arrays. Use existing valid complex128
+unnecessary and may not supply expected arrays. Separate old-schema double
+preparation is permitted solely for omitted-versus-explicit-double compatibility
+controls; it supplies neither single inputs nor scientific expectations. Use existing valid complex128
 transfers, preserving original empirical information until complete f64/c128
 sampling/filter evaluation; round consumed scale once to c64. Preserve literal
 CE04 native traversal/odd-Y/Y1 behavior, signed positive Nyquist, conjugate
@@ -60,7 +70,8 @@ The prospective actual packet may allow only these whole existing public files
 
 - `AGENTS.md`.
 - A: `.agents/skills/test-work/SKILL.md`; B: `.agents/skills/review-work/SKILL.md` (use B mode only).
-- `docs/contracts/single-known-reconstruction-v1.md`, after complete representation reconciliation.
+- `docs/contracts/single-known-reconstruction-v1.md` (complete normative interface/math/representation/scenario ledger).
+- `docs/contracts/wide-allocation-domain-v1.md` (accepted byte-domain rules and safe evidence limits only; no linked tasks/reports/role packets).
 - `docs/contracts/c-equivalence-known-parameters-v1.md` (CE04 finite equations/interfaces).
 - `docs/contracts/c-equivalence-optical-transfer-v1.md` (CE03 accepted transfers and actual stencils).
 - `docs/contracts/c-equivalence-preprocessing-v1.md` (CE02 existing record/normalization compatibility only).
@@ -84,6 +95,18 @@ no study-report access or linked material is needed. Do not follow links from
 AGENTS, selected role skill or allowed contracts into excluded files. If a selected
 skill points to test-audit, use only the questions copied here.
 
+The only additional approved integer-only production-interface import is
+`simrecon.reconstruction.known_parameters._extent(shape: tuple[int, ...],
+itemsize: int) -> None`, for positive Python-integer dimensions and positive
+integer itemsize. It checks the exact native positive-shape/stride/byte rule,
+creates no target array and must remain used by a real production caller.
+The signature/domain copied here grants no internal reading or permission for
+other helpers; the broad115 interface excerpt is not part of this allowlist.
+Its eventual execution, like all product imports, requires the renderer and a
+root grant. Combine integer-only boundary proof with tiny genuine public calls
+and D's actual-path audit; the validator alone proves no public ordering or
+absence of every legacy guard. No new test-only seam or huge successful fixture.
+
 `source_free_check.py` and its inherited warning/traceback/subprocess renderer are
 permitted **execution-only**, not internal reading: `scripts/source_free_check.py`
 and its existing `scripts/source_free_sitecustomize/` support package. No source
@@ -95,6 +118,27 @@ channel, disclose it and stop blind work for coordinator routing. Pytest --tb=no
 alone is insufficient. Clearing context or a later clean run restores no blindness.
 
 ## Approved architecture, platform and verification facts
+
+The new schema uses exact Python-integer geometry/byte arithmetic on native64
+Ubuntu (I=2**31-1, M=2**63-1). Retain genuine signed32 dimensions/counts/output
+extents, native and half native volumes, output plane/volume, D*O, Q*P, signed
+lifts/loops/cutoffs/flat offsets; retain exact f32 integer L and integral L/A
+enlargement. The five byte expressions `8*X*Y*Z`, `8*Xo*Yo*Zo`,
+`4*Xo*Yo*Zo`, `8*O`, `4*Xo*Yo` use exact positive <=M bytes: all obsolete32-bit
+byte caps are gone, including signed lookup bytes. Every actual c64/f64/f32/
+c128/int64 array still needs actual-width native shape/contiguous-stride/byte
+checks including T/D/Q/O aggregate axes before copy/hash/finite scan/broadcast/
+numerical work. The contract lists each allocation family. Source transfer and
+parameter bounds stay their accepted ones. No extra signed aggregate T*D*Q or
+T*D*O storage cap is invented; native bytes still bind. Absent camera/preparation/
+off/drift storage adds no admission rule, while inherited Q*P/D*O remain.
+
+Integer classification proves no RAM/backend success or16GiB fit. Never run a
+huge successful fixture to demonstrate wide-byte admission. Redundant constraints
+or unreachable finite failures may be proved by mathematical implication plus
+tiny public controls and D audit, without fabricated internal states. In
+particular finite c64 contributions and D*O<=I cannot overflow an f64 accumulator;
+its required finite outcome does not commission an impossible failure test.
 
 SIMrecon is a functional Python/NumPy/SciPy library with explicit array/value
 boundaries. Owned runtime is `src/simrecon/`; owned verification tools are
@@ -247,8 +291,8 @@ they do not qualify missing scenarios by themselves.
 benchmark or measurement until the coordinator grants the pinned environment/
 resource window. The shared-resource grant must come from root; the issue
 coordinator may relay that grant but cannot invent one. Shell permitted-file reads/search and named edits are
-not an environment grant. No A now; the coordinator supplies the complete public
-contract and actual packet only after representation reconciliation.
+not an environment grant. Fresh STATIC A may begin only with the coordinator's
+actual hashed packet; public readiness authorizes no import/check/measurement.
 
 After grant, the eventual packet may name the following existing source-free
 forms, with the exact six owned test/fixture files listed explicitly. These

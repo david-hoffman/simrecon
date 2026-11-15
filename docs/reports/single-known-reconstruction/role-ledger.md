@@ -106,3 +106,79 @@ Locked uv-run supplies task `.venv` PATH for source-free Pyright. Use the commit
 source-free harness before all future blind imports/probes/checks; no direct
 source-revealing diagnostic channel. Preflight success waives no freeze/review/full
 Ubuntu gate or unknown FFT-internal limitation.
+
+## Intake author1 continuation1 — accepted115 reconciliation
+
+Root resumed this issue on 2026-11-15 after accepted/published115 PR122 and
+replaced only its ancestry: frozen115 parent
+`ace06c861b974b6251a092567c253ae4eb0f56c8`, tree
+`2247d3909f43bc4764beb5c748caa917aaa1d707`; rebased113 start
+`f6f1ee2f9ab426397395a3968c3745439ac18179`, tree
+`f6b7530bc39c1d3b94656d2b54e0ac73d2314fcd`. Root verified clean start and
+preserved original local evidence ref `refs/campaign/evidence/113-pre-parent`.
+Actual original d9/95 intake/check evidence above remains historical; no trial
+is relabeled as a rerun on the new ancestry. Root reports115 full Ubuntu13 phases,
+3444 passing tests and freshD acceptance; PR122 CI run43658204041 was IN_PROGRESS,
+not passed. Parent121 CI passed per root. These are supplied parent facts, not
+new113 scientific evidence.
+
+- Existing author session `/root/issue_113/intake113` resumed via followup_task;
+  same author/role history, not a new intake launch or independent review.
+- Continuation packet `docs/packets/precision-113/intake-reconciliation.md`, SHA256
+  `6c0bb5921007da3fe5f4c0d70477feca38210b1f72b09f9b0bd801cac3b3e003`.
+  Exact tool task names this absolute packet/digest/new commit/tree, static-only
+  scope, original four output files and distinct final/report destinations.
+- Requested settings remain gpt-6.1-sol/high; actual served attribution/metering
+  unknown. Same unavailable optional controls/shared-filesystem prompt limits.
+- Purpose: finish effective wide-byte/native/signed-index rules and explicit
+  intake scenario subrows, then coordinator review/freeze before any formal A.
+  Author is nonblind and cannot act as A/B. No runtime/test/config/gate edits.
+- Still no Python/imports/probes/tests/lint/types/install/benchmark/measurements
+  authorized to113 roles. Root's existing environment preflight is not a current
+  scientific resource grant. C additionally waits accepted/frozen116.
+- Completion: same author delivered four revised artifacts and a distinct final
+  message. Static continuation preserves all prior read/patch failures,
+  costs/unknown measurements and original identities.
+
+### Completed continuation1 artifact identities and coordinator freeze
+
+Coordinator verified the author's exact four SHA256 values:
+
+| Artifact | Author-completed SHA256 |
+| --- | --- |
+| contract | `2bd7e0647b88f493728fc2d898a0bd6d98cf87dba032fc74a6e7dc2f59ef70a5` |
+| task | `8fdf1687260377af0355bcfc79d43a065ab8c7c66661c11d740b0503e31c44f0` |
+| public context | `8dc6aa81afd87586b66df541e4ffcb2d6917c9092b6b6c295dc944a24b7c134e` |
+| intake report | `251691c5189849d2d7c0fd7febdb4513475dd761a2f93e60a835017f92cf97b3` |
+
+The issue coordinator reviewed the reconciled exact wide-byte/native/signed
+representation, explicit kind domains, public-file exclusions and mathematical
+claim limits. Static anchored row counting found 293 scenario IDs with no duplicate
+IDs; the first broader pattern also matched a non-scenario allocation row and
+was narrowed to digit-bearing S IDs, not treated as another scenario. These are
+metadata/document checks, not scientific execution. Git diff whitespace check
+passed. Material meaning is frozen for fresh STATIC A1; no A/B test checkpoint
+or scientific implementation qualification follows from this source freeze.
+
+Continuation1 reported one further failed atomic patch/no-op hunk and corrected
+it; cumulative intake static patch failures=3, initial wrong-path reads retained.
+One intake launch/one continuation/two completed substantive responses; missing
+actual model/tokens/cached-input/output/money/elapsed still unknown. No test,
+product repair or scientific check occurred. This author remains nonblind.
+
+## Prepared fresh STATIC A1 packet
+
+Coordinator-owned actual packet `docs/packets/precision-113/a1-static.md` names
+the exact whole public inputs, six new test/fixture files and separate
+`docs/reports/single-known-reconstruction/a-test-design.md`; no existing tests,
+source/history/nonblind state/PROJECT/mixed audit skill/link expansion is allowed.
+The public production `_extent` exception is signature/domain only, no source.
+All product/test/helper execution, probes, quality checks, installs and numerical
+or resource experiments remain held until an explicit root resource grant.
+
+Fresh launch uses fork_turns=none, requested gpt-6.1-sol/high, no delegation and
+the disclosed unavailable optional controls/shared filesystem prompt limits.
+Exact packet/public-input digests, launch start commit/tree and returned session
+identifier are recorded in outside-tree evidence after the static freeze commit.
+No native auth/CLI or runtime capability probe is required for this supported
+tool-only route. No A1 completion or B verdict is claimed in this prepared entry.

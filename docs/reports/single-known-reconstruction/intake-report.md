@@ -1,5 +1,165 @@
 # SP113 intake-author report
 
+## Continuation1: accepted115 reconciliation (2026-11-15)
+
+This is the same nonblind intake author `/root/issue_113/intake113`, not a fresh
+launch. Performed the exact continuation packet directly, static docs only,
+without delegation/commit/execution. Packet
+`docs/packets/precision-113/intake-reconciliation.md` SHA256 was verified as
+`6c0bb5921007da3fe5f4c0d70477feca38210b1f72b09f9b0bd801cac3b3e003`.
+Observed clean tracked start HEAD/tree
+`f6f1ee2f9ab426397395a3968c3745439ac18179` /
+`f6b7530bc39c1d3b94656d2b54e0ac73d2314fcd`; only the continuation packet was
+initially untracked. Root supplied accepted115 parent
+`ace06c861b974b6251a092567c253ae4eb0f56c8`, tree
+`2247d3909f43bc4764beb5c748caa917aaa1d707`, and says it rebased static prep.
+Historical actual initial d9a0ba9 identity/tree below remains its original trial.
+Historical static source-prep commit `95aa73e74d5a8a34b3d19ced9554cf0cee4ee4e8`
+was resolved with permitted `git rev-parse`, not source/history inspection.
+None of the old commands/observations is relabeled as a new run.
+
+Edited only the same four authorized files:
+
+- Contract: replaced representation placeholder with exact accepted115 rules;
+  retained settled signatures/schemas/settings/provenance/rounding order and
+  froze the complete single public scenario ledger in section7.
+- Task: retained actual TASK fields, indexed that ledger rather than creating a
+  second normative copy, and updated the sole Current state with distinct
+  historical/current identities, continuation accounting and static-A readiness.
+- Public-context: sanitized representation and exact approved metadata-interface
+  facts, whole-file public allowlist/exclusions, settled kind/positive/error
+  rules and static-only scheduling; it is still not the actual hashed A packet.
+- This report: records continuation evidence here; the original initial report
+  below is explicitly historical and retained with its original limitations,
+  failures/accounting/WAITING disposition.
+
+### Concrete representation decisions and scenario count
+
+All geometry/count/byte math is exact Python integer arithmetic on native64
+Ubuntu. Native shape/stride/actual-byte limit M=2**63-1 replaces all five byte-only
+32-bit caps, including signed lookup bytes; signed element/count/index limits
+remain I=2**31-1. Explicit CE04 products retained: native X*Y*Z,
+(X//2+1)*Y*Z, output Xo*Yo, output Xo*Yo*Zo, D*O and Q*P. Retain positive
+signed dimensions/counts/zooms/output dimensions, signed lifts/wrap/loops,
+cutoff conversion/flat addresses, exact f32 integer L and integral enlargement.
+No new signed aggregate T*D*Q/T*D*O storage bound is invented.
+
+Actual8-byte c64 band snapshots/filter/native/padded/inverse buffers,8-byte f64
+per-time noise/accumulator/coordinates/carriers,4-byte f32 final image,16-byte
+c128 modulation/transfer/permitted blocks,8-byte int64 cutoffs and any actual
+lookup/identity/other temporary families have independent native extents,
+including aggregate T/D/Q/O axes. Known invalid geometry rejects before
+array-sized copy/hash/finite scan/broadcast/numerics/allocation. Absent
+preparation-only padded-camera/frame/solve/off/drift operations add no admission
+rule, while explicit inherited Q*P/D*O remain. Original transfer/parameter/old
+double routes keep their accepted domains and actual widths.
+
+Integer-only proof permission is deliberately narrow: existing production
+`simrecon.reconstruction.known_parameters._extent(shape: tuple[int, ...],
+itemsize: int) -> None`, positive Python-integer dimensions and itemsize,
+with a real production caller. The public-context copies only this exact approved
+signature/domain; it does not allowlist the broad115 interface file or module
+source. Pair with tiny genuine public calls for ordering/categories and D's
+actual-path audit. No new helper/seam, huge successful fixture, inferred16GiB
+fit or unverified backend size limit. Redundant/unreachable bounds and finite
+failures permit mathematical implication evidence; no fabricated f64-accumulator
+overflow test when finite c64 contributions and D*O<=I preclude that overflow.
+
+The normative contract now contains **293 distinct explicit scenario IDs/subrows**,
+replacing the historical39 grouped behavior families. Each row fixes an outcome,
+expectation source/equivalent examples and planned owner-boundary mapping.
+The task maps every S01–S39 subrow set to that single public source. A supplies
+fixture/assertion mapping and independent envelopes, not missing meaning.
+The count is a concrete inventory, not a test/assertion/review quota. Static awk
+row counting and duplicate-ID inspection are document checks only.
+
+Kinds previously described only as “actual boolean/valid scalar” are explicit:
+single flags accept exact bool and np.bool_, canonical Python bool; taper accepts
+str/subclasses with underlying canonical content, precision exact built-in str.
+Constructor stored tuple/int/str/float metadata kinds are exact built-ins;
+constructor scalar input uses inherited nonboolean numbers.Real, wavelength
+numbers.Integral, valid NumPy scalar kinds included. Parameter arrays keep
+CE04 standard dtype/subclass/strided/read-only/either-byte-order acceptance;
+new ordinary/native-array requirements belong to quadratures/noise only.
+New-record subclasses satisfying all canonical checks remain valid. Separate
+public old-schema preparation may build double compatibility controls, but never
+single inputs or scientific expectations. No accuracy/default/mode expansion.
+
+### Actual additional sources and exposure
+
+Read complete continuation packet, complete
+`docs/contracts/wide-allocation-domain-v1.md` and complete
+`docs/packets/wide-allocation-domain-interfaces.md`. Also read the current CE04
+representation section, applicable CE02 public validation/representation and
+CE03 signed/native transfer constraints. Re-read the four owned documents as
+needed. A large grouped output truncated later material and was followed by
+targeted excerpt rereads; no truncated result is represented as a complete read.
+
+Permitted nonblind current product inspection was narrow:
+`src/simrecon/reconstruction/known_parameters.py` existing _extent and applicable
+band/geometry guard excerpts; `src/simrecon/acquisition/layout.py` existing
+extent/scalar/integer/array-metadata excerpts and function/caller searches.
+These settled current guard/interface applicability; no implementation advice,
+source text, history/line clues or sibling role conclusions entered public-context.
+No115 raw report/review conclusions, tests/fixtures, source history,116 material,
+coverage maps/lessons/archives or credentials were read. Initial role source
+exposure remains; this same session cannot be blind A/B.
+
+Public files may include the complete accepted wide contract in addition to the
+prior named public contracts. Whole PROJECT and mixed test-audit SKILL remain
+excluded, with needed architecture/platform/coverage/model/public-audit facts
+copied. No link expansion,115 nonblind task/role packets/raw reports,112
+prototypes or coordinator conclusions are allowed. The exact production
+metadata-interface exception is named; all execution still requires the existing
+source-free renderer and a later root grant. No scientific/probe execution now.
+
+### Parent facts, scheduling, accounting and checks
+
+Root reports accepted/published115 PR122, all13 Ubuntu phases/3444 tests and
+fresh D at the accepted parent. CI43658204041 was IN_PROGRESS in this packet,
+not passed; parent121 CI passed per root. These are supplied parent facts, not
+independently inspected here and not SP113 execution. Historical root preflight1
+pass remains historical environment evidence, not a new trial or a renewed
+post-rebase grant. Scientific prerequisite112 remains satisfied. No missing
+owner decision; accepted/frozen116 is still required before C with revalidation
+of any material inherited geometry/interface changes.
+
+Material meaning/public-source preparation is ready for issue-coordinator
+review/freeze/commit and actual hashed STATIC A launch packet. A remains
+static-only until root explicitly grants necessary light checks. Root owns
+stack/integration/restack/push/PR; this author made no commit. Coordinator then
+returns WAITING while preserving active child's scope/dirty ownership. No
+scientific runtime qualification, actual test checkpoint, full gate or measurement
+is claimed. Planned A/B/C/fullgate/D route and separate evidence author remain.
+
+Launches remain1; this is continuation1, not a new intake launch. Initial completed
+substantive response1 and continuation response1 at handoff; A/B/C/D launches/
+reviews0 at this role's stage, product/test repairs0. Requested Sol/high remains;
+served model/effort, tokens/input/cached/output, verified money, elapsed/check/
+wait time and full inherited totals remain unknown, never zero. All initial
+static failed reads/two failed patches and prior charges below remain; this
+continuation had one further atomic failed apply_patch from an unmatched no-op
+hunk, then the corrected patch succeeded. Cumulative failed static patches3;
+no failed test/probe/launch or hidden execution. Shared permissions/allowlists
+are prompt controls; optional separate memory-disable/read-only/delegation
+controls remain unavailable. No nested delegation.
+
+Executed only permitted shell reads/search, SHA256/git identity/status, document
+edits, static awk scenario counting/ID inspection and whitespace/diff checks.
+No Python/import/probe/test/lint/type/install/benchmark/measurement. No new
+scratch/helper/fixture/environment or persistent owned process, deletion or
+commit. The coordinator's sibling role-ledger is outside my write/read scope and
+left untouched. All original inputs/durable evidence remain. Final four-file
+hashes and exact static-check results are supplied outside tracked bytes at
+handoff; final message and this report remain separate artifacts.
+
+## Historical initial intake record — d9a0ba9 / source-prep95aa73e
+
+Everything below retains its original initial-stage meaning, including the old
+representation-dependent status and WAITING disposition; it is not the current
+execution state. Continuation evidence is above, and the sole Current state is
+the task file. No initial command or source exposure is retroactively relabeled.
+
 **Documentation-only, nonblind source preparation.** This report is detailed
 role evidence, not a second Current state. The sole Current state is
 `docs/tasks/single-known-reconstruction.md`. No runtime qualification, scientific
