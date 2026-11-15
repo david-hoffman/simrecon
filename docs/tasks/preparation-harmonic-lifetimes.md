@@ -79,68 +79,65 @@
 
 ## Current state
 
-- **PhaseP amendment APPLIED; fresh C launch pending actual capacity; no active
-  child or owned process yet.** Fresh B2 accepted `badf155abbc2f345e013556be12fd2bc13107fd0`,
-  tree `6b1bd83d9cc56909eed40964f0bd39b85215f864`, for affected tests and STATIC
-  direct resource design only. Durable evidence:
-  [accepted checkpoint](../reports/issue-118/accepted-checkpoint.md),
-  [B2 verdict](../reports/issue-118/b2.md),
-  [frozen input/dependency hashes](../packets/issue-118-b2-inputs.sha256).
-- Exact frozen bytes: behavior test `22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08`;
-  adapter `ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59`;
-  protocol `2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc`;
-  PH118 `d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5`.
-  Coordinator rechecked all B2 manifest entries; unchanged. Final safe-hold head/
-  tree belongs outside tracked bytes, not inside its own record.
-- Evidence: A3's9functions/28examples and both owned Python files passed owned
-  pytest/Ruff/format/Pyright; selected keepers passed1/21/49/34. Independent B2
-  source-free rerun28passed13.08s/all9 actual provider interceptions. The times
-  are test output, not speed claims. Full Ubuntu13-phase make verify, native
-  coverage/build/wheel/import/audit/M25, matched resources and D have NOT run.
-- B1 returned NOT ACCEPT on missing T2 numeric debug truth and direct-stage
-  resource design; its report,27pass rerun, original failed CE02-FFT expectation,
-  failed bytes,24 initial and14 revision2 A3 logs/repairs remain preserved. B2
-  completed full affected dependency review; no blanket prior acceptance or
-  unlisted bead-branch/neutral-I/O requalification. Conditional numerical premises
-  and scoped unused-dependency exclusions are explicit in its ledger.
-- **Original before-ANY-C hold explicitly amended for PhaseP ONLY:** joint
-  applicability review0ad4312fdc9d8dc60551f06ac75dcfbd98bf008c68d51db416d9d8a18072e34c
-  accepted exact118addendumb172e019edb8235d31380553068b706ad883516dfb6c49cc07de0be41241e653.
-  Coordinator applicationccbed1e1becca6c15e275bccb5c3184145ef2a0bad98a74cfc60cf9925124abc
-  is now operative. This is one joint event/cost owned117, not another118 B review.
-  Provisional source64a752b4642709c539df2079cc3c906acf4cc7b8 is identical to current
-  source treecda612549559974ee4246dec40e049cd8ed158a5; accepted B2 inputs/lock/gates
-  rechecked unchanged. Fresh C only modes.py/known_parameters.py and named report/
-  logs, packet115b1635fb58668fc939260eea350a1755e32d00b43caee86630aefde10c2221.
-  Ordinary pinned Ubuntu/no-sync checks granted, revocable for116 exclusive work;
-  no installs/resources/fullgate.117-firstC is active and its parent yielded;
-  coordinator checks actual capacity before one118C then yields. **PhaseI remains
-  BLOCKED** until actual accepted117/profile113/helper/material renewal and fresh
-  affected B BEFORE further integrated repairs/resources/gate/D/publication.
-  Root alone integrates/rebases/pushes/PRs; no scientific/oracle/ownership/gate
-  change or future-profile assumption is authorized by this scheduling amendment.
-- **Resource execution BLOCKED:** adapter never imported/executed/help/CLI/dry-run
-  or measured. Actual accepted parent/candidate, qualified launch/lifecycle route
-  and root exclusive grant required. Shared pinned CPython setsid-spawn failure
-  remains recorded; no invented support. Static seven-case direct CE06/known
-  design distinguishes contextual CE02 and separate full/summary series. Terminal
-  self high-water excludes post-sample JSON emission; retain that endpoint limit
-  or reconcile with accepted external observation. No sampled/group RSS, peak
-  benefit, fixed ceiling/latency ratio/tolerance or16GiB guarantee claimed.
-- Accounting: intake1; A launches3 (A1/A2 stopped procedural/pointer overreads
-  before authorship, no actual product/source/history/coverage/lesson exposure
-  reported); A3 plus four authorized continuations; B rounds2 (B1nonaccepted,
-  B2accepted affected scope), C0/D0. All failures/style and CE02 test-scope
-  corrections/repair history retained in [role ledger](../reports/issue-118/role-launches.md).
-  Six coordinator atomic metadata patch mismatches retained separately. Requested
-  roles Sol/high; served attribution/responses/tokens/cache/money/total elapsed/
-  owner-wait/check costs unknown. Human numeric budgets/caps not set.
-- Final receipt/D/publication pointer prepared:
-  `/workspace/work/campaign/evidence/118`; final fresh D only after clean actual-
-  parent gate and writes outside candidate tracked bytes. No current process or
-  active child; root resumes this coordinator after prerequisite release. No
-  disposable scientific fixture/worktree removed. Keep active worktree, shared
-  environments, all evidence and known dependencies; completion cleanup pending.
+- **SAFE HOLD — unpublished PhaseP C1 complete; no active child/owned process.**
+  Actual runtime baseline PUBLIC64a752b4642709c539df2079cc3c906acf4cc7b8;
+  clean C launch87feeb5a93f4e2bcba73b3229329eb7ee115bf6e/tree
+  4650b31e10466101ab4e11a06247e6e218045ff9. Final local provisional head/tree is
+  recorded outside its own tracked bytes. Durable
+  [implementation handoff](../reports/issue-118/provisional-implementation-handoff.md),
+  [C1 last-use/check report](../reports/issue-118/c1-phasep.md).
+- Scope: exactly6 added source lines (four del statements/two comments), only
+  modes.py and known_parameters.py. Completed section frames end after FFT reads,
+  per-z spectra after separation/Nyquist/off writes, plus after recombination.
+  No arithmetic/capture/finite/failure/state/loop/backend/precision change or
+  buffer reuse. Coordinator independently checked scope/last uses/capture owners.
+  Sources SHA256: modes85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178;
+  known46de99f88782c8b96215d9699fcdd1fe9f1ed5edfabf2426416fc2ae1e0bd0fd.
+- All8 ordinary checks passed: Ruff/format/Pyright and five source-free pytest
+  groups28/139/69/49/28=313items. Two intentional frozen-observer selected-zero-
+  divisor warnings preserved; no suppression/repair. Exact commands, baseline,
+  environment and all10 logs retained; no coordinator rerun or performance claim.
+  One static project-path read correction recorded; no qualification failure,
+  C source repair, timeout or suspension.
+- B2 accepted provisional affected test/static design checkpointbadf155…/tree
+  6b1bd83d…; [durable accepted pointer](../reports/issue-118/accepted-checkpoint.md),
+  reportaf6a774f…, frozen manifest90d5a02f…. Coordinator rechecked every member,
+  all unchanged. Behavior22bd0543…, adapterece8f0c6…, protocol2ce88a33…,
+  PH118d217c186… remain frozen; C changed no tests/fixtures/gates/dependencies.
+  B1 nonacceptance, original failures/bytes, all24+14 A3 logs and repairs retained.
+- PhaseP was explicitly authorized/applied BEFORE C by exact accepted local
+  addendumb172e019… and applicationccbed1e1…, joint review0ad4312f… owned117 once.
+  Scientific meaning/oracles/ownership/gates/final order unchanged. No actual117
+  acceptance or future113/profile/helper qualification inferred. No integration,
+  rebase, push or PR by this coordinator; root owns publication/scheduling.
+- **PhaseI BLOCKED:** root freezes ACTUAL ACCEPTED117 including113/profile/helpers/
+  real material environment, integrates provisional source and records conflicts,
+  reassesses contracts/interfaces/source/tests/fixtures/oracles/budgets/observers/
+  profiles/helpers/versions/locks/tools/environment, renews affected author/check
+  evidence and obtains FRESH affected B BEFORE further integrated C repairs,
+  resource qualification/execution, final measurements/fullgate/D/publication.
+  Unchanged evidence needs explicit material rationale; old checks retain64a labels.
+- **Resource/full-gate/D BLOCKED:** adapter never imported/help/CLI/dry-run/measured.
+  Actual accepted parent/candidate, qualified launch/lifecycle route and root
+  exclusive grant required. Known setsid-spawn failure, terminal-self/sample/group
+  RSS distinction and unobserved JSON-emission tail remain. No observed peak/
+  timing benefit,16GiB guarantee or threshold. Final clean integrated Ubuntu13-
+  phase make verify/native coverage/two workers/both wheels/import/audit/M25,
+  matched repeated resources/fingerprints and fresh external D all pending.
+- Accounting: intake1; A launches3 (two pre-author procedural overreads stopped,
+  no actual product-source/history/coverage/lessons exposure reported); A3+four
+  continuations; B rounds2 (B1notaccepted/B2accepted affected scope); C1complete,
+  D0. One joint applicability event cross-referenced, charged117 once. All failed
+  checks/style/test-scope/path corrections and six coordinator metadata patch
+  mismatches preserved in [role ledger](../reports/issue-118/role-launches.md).
+  Requested roles Sol/high; served/tokens/cache/money/total elapsed/owner-wait/
+  check costs unknown, human numeric caps not set.
+- Root resumes this coordinator after prerequisites. Existing C1 session may be
+  reused later for its own scope only AFTER proper renewal; no new role now.
+  Final receipt/D/publication pointer `/workspace/work/campaign/evidence/118`;
+  final D after clean actual-parent gate writes externally. No scientific fixture,
+  active worktree, evidence or shared environment removed; completion cleanup
+  pending, known dependencies retained.
 
 ## PR presentation (root)
 

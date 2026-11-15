@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 28 items
+
+tests/test_reconstruction_summary.py ............................        [100%]
+
+==================================== PASSES ====================================
+======================== 28 passed in 110.25s (0:01:50) ========================

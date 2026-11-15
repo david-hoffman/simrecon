@@ -551,3 +551,83 @@ will be evaluated after A3; it is distinct from scientific test acceptance.
   after metadata commit, not old5fa status head. All prior charges/corrections
   and unknowns preserved; C0/D0 until actual launch. No independent push/rebase/
   integration/publication or semantic/project-policy amendment.
+
+## C1 — fresh restricted unpublished PhaseP implementation
+
+- Session `/root/issue_118/c118_phasep1`, actual spawn task_name `c118_phasep1`,
+  fork_turns none, requested gpt-6.1-sol/high; no author/coordinator conversation
+  inherited, no delegation. Actual served attribution/tokens/cache/cost/time unknown.
+- Clean launch commit87feeb5a93f4e2bcba73b3229329eb7ee115bf6e/tree
+  4650b31e10466101ab4e11a06247e6e218045ff9. Source cda612549559974ee4246dec40e049cd8ed158a5
+  exactly public64a, frozen acceptedB2badf155/manifest90d5a02f unchanged. All accepted
+  input hashes independently rechecked after metadata commit; no runtime before C.
+- Exact packet115b1635fb58668fc939260eea350a1755e32d00b43caee86630aefde10c2221,
+  explicit applied applicationccbed1e1 / acceptedaddendumb172e019, joint reviewer
+  report0ad4312f. Task and root-owned campaign index applied/mirrored BEFORE launch;
+  root explicitly confirmed condition.117firstC active and parent yielded before
+  actual inventory check5active, then this C activation sixth (one routing slot
+  remains). No failed extra launch/second joint review charge.
+- Writes only modes.py, known_parameters.py and named c1-phasep report/evidence
+  logs. Named source reads/public contracts/current tests/accepted review only;
+  no private history/legacy archive/coordinator implementation plans. No reviewed
+  tests/fixtures/adapter/protocol/contract/gate/config/deps/precision/helper edits.
+  Independently establish all owners/last use/compact retention/full captures,
+  exact arithmetic/state/finite/failure/exception preservation; no measuredpeak claim.
+- Ordinary sequential Docker issue118 .venv + uv --locked --no-sync focused
+  checks allowed; no installs/resourceadapter import/CLI/dry-run/benchmarks/full
+  gate. Root suspension before116 exclusive stops new checks; source text may
+  continue. Current baseline labels remain provisional, no final readiness.
+- Before integrated-lineage further C repairs/resources/finalgate/D/publication,
+  root freezes ACTUAL ACCEPTED117 and inherited113/helpers/material inputs,
+  integrates, renews affected author/check evidence plus FRESH affected B, then
+  rebinds needed C ownership. No silent future profile coverage/helper edit.
+- Status active, source edits/last-use report/check outcomes pending collection.
+  Detailed report `docs/reports/issue-118/c1-phasep.md`, unique source-free logs
+  c1-phasep-evidence; final separate. No commit/rebase/integration/push/PR/cleanup.
+  Coordinator now yields for capacity. Cumulative intake1/A launches3+B rounds2,
+  C1active/D0; one joint review owned117 only, all old failures/repairs preserved.
+
+## C1 collection — provisional implementation SAFE HOLD
+
+- C1 completed; no active child or owned process remains. Report
+  `c1-phasep.md` SHA256
+  6f2e18df4049e8e0b41dac3d369f85b4b5a25d940c32dc8b485dd1415863ef6b;
+  all ten uniquely named evidence logs retained. Coordinator read the full report,
+  all eight qualification outputs and exact commands, inspected source diff and
+  last uses/capture owners, and independently rechecked all B2 manifest members.
+  No coordinator test rerun or new scientific/review acceptance is represented.
+- Exactly six added product lines in the two owned files: four del statements
+  and two comments. Final modes.py SHA256
+  85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178;
+  known_parameters.py SHA256
+  46de99f88782c8b96215d9699fcdd1fe9f1ed5edfabf2426416fc2ae1e0bd0fd.
+  No reviewed tests/fixtures/adapter/protocol/contract/gate/dependency/helper edits.
+  Explicit local lifetime ends changed; arithmetic/stage/finite/failure/state/
+  capture ordering and fresh scratch allocation remain unchanged.
+- All eight ordinary pinned Ubuntu/no-sync checks passed: Ruff/format/Pyright
+  plus source-free pytest groups28/139/69/49/28, total313 passing items. All nine
+  owned dependency controls intercepted/calls1. Two frozen selected-zero-divisor
+  fixture divide warnings retained, no suppression or repair. C's initial static
+  PROJECT.md path read failed, corrected to docs/PROJECT.md; no qualification
+  failure/source repair/timeout/suspension. Exact observed times are test output,
+  not comparative timing or process-peak evidence.
+- B2 manifest90d5a02f, tests22bd0543, adapterece8f0c6 and protocol2ce88a33
+  unchanged. No adapter import/help/CLI/dry-run/resource execution, installs,
+  full gate, integration/rebase/push/PR or new provisional review. All old
+  failures/repairs/attempts and conditional launch/numerical/RSS-tail limits kept.
+- Clean local provisional commit contains this collection, C product/report/log
+  bytes and compact sole Current state; its own head/tree is reported externally.
+  Durable handoff `provisional-implementation-handoff.md`, receipt manifest
+  `provisional-implementation-files.sha256`. This is unpublished public64a PhaseP,
+  not final acceptance or qualification of future117/113 profiles/shared helpers.
+- PhaseI remains blocked until root freezes ACTUAL ACCEPTED117/materials,
+  integrates and renews affected author/check evidence plus FRESH affected B
+  BEFORE further integrated C repairs/resources/final measurements/fullgate/D/
+  publication. Reuse same C session later only after proper renewal. No new role.
+  Resource execution additionally needs accepted launch/lifecycle qualification
+  and root exclusive grant. Final clean actual-parent full Ubuntu gate and fresh
+  external D remain mandatory; no peak/speed/16GiB claim.
+- Cumulative intake1; A launches3 plus four A3 continuations; B rounds2 with B1
+  notaccepted/B2accepted affected provisional scope; C1complete/D0. Joint bounded
+  applicability review owned117 once, not another118 campaign charge. All serving/
+  token/cache/money/total elapsed/wait/check costs unknown, no human numeric caps.
