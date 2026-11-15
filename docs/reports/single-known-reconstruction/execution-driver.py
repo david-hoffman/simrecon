@@ -92,6 +92,91 @@ def digest(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
+def caught_diagnostic(error):
+    """Bound caught-path messages/causal frames without consulting source or locals."""
+    parts=[]
+    used=0
+    detail_full=True
+
+    def text(value):
+        try:
+            value=str(value)
+        except BaseException as rendering_error:
+            return ('[text unavailable: str raised '+canonical(type(rendering_error).__name__[:512]).decode('ascii')+
+                    '; rendering-error category retained first 512 of '+str(len(type(rendering_error).__name__))+
+                    ' characters at most; rendering-error message not inspected]')
+        prefix=canonical(value[:512]).decode('ascii')
+        return prefix+(' [retained first 512 of '+str(len(value))+
+                       ' characters; suffix unrecorded: text bound]' if len(value)>512 else '')
+
+    def add(scope,value):
+        nonlocal used,detail_full
+        line=scope+'='+value
+        if used+len(line)+1>7168:
+            detail_full=False
+            parts.append('diagnostic_suffix_unrecorded_from='+scope+
+                         '; reason=7168-ASCII-character detail bound; remaining text/frames/chain not inspected')
+            return False
+        parts.append(line)
+        used+=len(line)+1
+        return True
+
+    current=error
+    seen=set()
+    add('outer_field_scope','category/cause retain first 512 characters; actual category characters='+
+        str(len(type(error).__name__))+'; actual immediate-cause category characters='+
+        (str(len(type(error.__cause__).__name__)) if error.__cause__ is not None else 'null'))
+    for index in range(4):
+        if id(current) in seen:
+            add('chain_suffix_unrecorded','cycle at exception '+str(index)+'; repeated exception not rendered again')
+            break
+        seen.add(id(current))
+        scope='exception['+str(index)+']'
+        # SyntaxError.msg excludes its source-text attribute, matching the
+        # existing source-free convention. Never read text, args or locals.
+        message=current.msg if isinstance(current,SyntaxError) else current
+        if not add(scope+'.category',text(type(current).__name__)) or not add(scope+'.message',text(message)):
+            break
+        if isinstance(current,SyntaxError):
+            if not add(scope+'.syntax_location',text(current.filename)+':'+text(current.lineno)):
+                break
+        tb=current.__traceback__
+        for frame_index in range(8):
+            if tb is None:
+                break
+            code=tb.tb_frame.f_code
+            if not add(scope+'.frame['+str(frame_index)+']',
+                       text(code.co_filename)+':'+str(tb.tb_lineno)+':'+text(code.co_name)):
+                break
+            tb=tb.tb_next
+        else:
+            if tb is not None and not add(scope+'.frame_suffix_unrecorded',
+                    'first 8 frames retained; remaining count unobserved: frame bound'):
+                break
+        if not detail_full:
+            break
+        # Notes/group members are outside this small causal-frame renderer;
+        # say so rather than imply a complete default traceback rendering.
+        if not add(scope+'.other_diagnostic_scope',
+                   'exception notes/group members unrecorded: caught-path category/message/causal-frame scope'):
+            break
+        following=current.__cause__
+        relation='cause'
+        if following is None and not current.__suppress_context__:
+            following=current.__context__
+            relation='context'
+        if following is None:
+            add(scope+'.chain_end','no selected cause or unsuppressed context')
+            break
+        if not add(scope+'.next',relation):
+            break
+        current=following
+    else:
+        add('chain_suffix_unrecorded','first 4 exceptions retained; remaining count unobserved: chain bound')
+    return {'category':type(error).__name__[:512], 'message':'\n'.join(parts),
+            'cause':type(error.__cause__).__name__[:512] if error.__cause__ is not None else None}
+
+
 def ordinary(path):
     path = Path(path)
     require(path.is_absolute() and '..' not in path.parts and path.resolve(strict=True) == path,
@@ -982,9 +1067,7 @@ def child(path):
         record['status']='complete'
     except Exception as error:
         record['status']={'setup':'setup_failed','call':'call_failed','observation':'observation_failed'}[phase]
-        record['error']={'category':type(error).__name__,
-                         'message':'EE113 '+phase+' failed; bounded category/cause retained; no array/source diagnostic',
-                         'cause':type(error.__cause__).__name__ if error.__cause__ else None}
+        record['error']=caught_diagnostic(error)
         if ledger is not None:
             record['observations']['interfaces']=ledger
         if not qualification:
@@ -1612,11 +1695,12 @@ if __name__=='__main__':
         exit_status=main()
     except Exception as error:
         # Invalid/unreadable pre-record input cannot supply a valid child
-        # identity. Preserve bounded category in the existing stderr stream;
+        # identity. Preserve bounded source-free detail in existing stderr;
         # parent retains missing/malformed stdout as failure, never completion.
+        diagnostic=caught_diagnostic(error)
         sys.stderr.buffer.write(canonical({'schema':'EE113-pre-record-failure-v1',
-            'status':'failed','category':type(error).__name__,
-            'message':'fixed EE113 input/assembly operation failed; no source/array diagnostic'})+b'\n')
+            'status':'failed','category':diagnostic['category'],
+            'message':diagnostic['message']})+b'\n')
         sys.stderr.buffer.flush()
         exit_status=1
     raise SystemExit(exit_status)
