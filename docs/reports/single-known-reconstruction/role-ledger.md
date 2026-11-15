@@ -717,3 +717,15 @@ no imports/probes/processscans. Outside typing-lifecycle-plan-1.md proposes dedi
 subreaper/pidfd/ECHILD and explicit no-auto-kill guardian recovery for exacttree,
 requiring root source review/release before anycall. No broadercompilerframework,
 helper/gate ownership or actual orphan control. All116 executionhold retained.
+
+Root requested standard Docker--init comparison BEFORE anycustomguardian authoring.
+Source-only outside typing-init-runtime-plan-2.md SHAab465e2dca05c05097608dc6d45203390043ff4ca8c4ad8a583b7ad18631fc51:
+prefer fresh dedicated init/private PIDnamespace/ownedcontainerclosure, rootretains
+container+execproxy/noautoKill. Exactpreparedrootfs gap documented: recorded base
+image predates installedpackages; newactualimage/material/mountfreeze required.
+Init reaps but notoutputcap/deadline/toolstatus; postwindow finite controls and
+exacttypingcapability remain, possible narrowAtransportcorrection/freshB ifneeded.
+No guardianimplementation/newruntime/newcontainer/probe/signals or116treechange.
+Three exact primary sourceTEXTfetches(Dockerdocs/Tini0.19README/source) allsuccess,
+actualengine-selectedinitversionunknownuntilpostwindowmetadata. Two sourcequeries
+returnedmissingglob/READMEpaths, retained. Unknownmetersandallpriorchargesremain.
