@@ -379,3 +379,30 @@ matching before this write, no partial mutation; all prior failures retained.
 Standing root conditional quality/cardinal/selected primitive grants await exact
 A returned code/method/input/payload freeze and independent inspection. No
 installed/build or116 scientific authority and no C before accepted116+B.
+
+## A1 continuation1 frozen; ordinary syntax/style activation1
+
+Collected final A1 report SHA256d0358e13b1d9cae553efb6d4f009c5da7666052a9589e8a42414c076a2087f30;
+verified all8returned Python hashes and preserved revised static drafts at local
+ea20dadf68921ffb03df3becd37f6fbe3e375ea0/treee010b6eddd4e80116b52902407e948dea2258cc4.
+No test acceptance. Exact standing-root-granted AST/Ruff/format commands frozen
+BEFORE execution in outside quality-activation-1.md; all8hashes unchanged across
+three commands. AST parsed8/exit0/toolwall.261077576; Ruff230findings/exit1/.162418312;
+format6would-reformat+2already/exit1/.209907961. Own-only format diff output, no
+product/dependency source exposure observed. Logs and hashes preserved outside.
+Classified ordinary author lint/style defects, no scientific red/numerical R,
+imports of owned code, Pyright/product pytest/dependency calls/install/build.
+Early root syntax/style permission arrived after A ended; these3commands belong
+to coordinator activation, not retroactively A's static record. Unknown meters/
+overall elapsed remain unknown, every previous charge preserved.
+
+Inspected bounded-child code/protocol before any runtime: measured post-import
+VmSize,64MiB added reserve,32MiB minimum headroom, prior soft/hard limits and
+1GiB experiment-only ceiling, actual limit equality, tiny positive before wide/
+phase declarations, strict exit/final frame/cause checks,16KiB/channel30s/group
+cleanup. No child run. Actual source-free wrapper descendant/diagnostic/limit
+qualification and fresh independent B protocol/full8file review still pending.
+Supplied actual same-A a1-quality-continuation.md with owned-output logs only,
+authorizes root-granted syntax/style cosmetics and per-attempt hashes/records;
+no numerical/interface meaning, tolerance, runtime/gate or literal-caller weakening.
+Same A1 continuation2, not a fresh replacement, no new B/C/D/IE113 launch.

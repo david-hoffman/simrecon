@@ -75,6 +75,8 @@ uncovered branch commissions no new meaning.
 
 - Method-review1 complete: exact outside report hash/scope/three arithmetic attempts and other retained failures recorded in role-ledger and excluded method-investigation; both frozen method targets unchanged. Coordinator independently verified primary standalone-sine versus combined-path facts and supplies only point-source-clarification.md to same A1. Actual source/binary/primitive applicability and complete witness propagation remain BLOCKING, no A/B/D/product acceptance or broad G2/G3 closure. Same A revised hashes/protocol pending, so conditional quality/cardinal/primitive phases remain inactive. Coordinator yields WAITING after routing; C still waits accepted116 plus B.
 
+- A1 continuation1 complete/frozen static at ea20dad; report d0358e13 and all8Python hashes verified. Coordinator activated only root-granted AST/Ruff/format (exact outside quality-activation-1.md): AST passes8; Ruff230lint findings and format6files fail, all preserved as author mechanical defects. Same A1 continuation2 packet a1-quality-continuation.md routes cosmetics/per-attempt hashes/checks; no product/numerical acceptance or Pyright/runtime/cardinal/point/installed/build activation. Bounded-child protocol inspected but unexecuted/unqualified; fresh B must review complete8file/oracle/protocol dependencies. Original frozen methods unchanged, applicability/full witness blockers retained; C116+B hold remains.
+
 ## PR presentation (coordinator / permitted candidate context)
 
 Lead with the real optional stage outcome and preserved default behavior. A
