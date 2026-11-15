@@ -1,6 +1,6 @@
 # SP113 A1 static test-design report
 
-**STATIC CORRECTION DRAFTS / EXECUTION SUSPENDED. No accepted checkpoint.** This is the distinct
+**STATIC DRAFTS / SCIENTIFIC CHECKS PENDING. No accepted checkpoint.** This is the distinct
 A report, not the collaboration final message or a B verdict. The six new and two
 narrowly changed test/fixture files contain concrete drafts, with blocking omissions and qualification
 limits below. Continuation2/4/5 syntax/style results are recorded separately below;
@@ -8,7 +8,73 @@ nothing here claims collection, type, test, numerical, platform, coverage or
 performance acceptance. C still requires both
 an accepted/frozen A/B test checkpoint and accepted/frozen parent116.
 
-## Continuation6 retained direction/order count: source-only freeze
+## Same A6 quick quality continuation after root release
+
+Root explicitly ended the116 window and the coordinator relayed a brief grant
+for only the original exact-eight-file no-import AST/Ruff/format preparation.
+The source checkpoint afece85 remains preserved; coordinator reported current
+head14e7c7e. No history or additional public/role/source report was read. This is
+the same A6, not a new role, review or scientific grant. The four quality commands
+below completed before any new suspension notice; **no active process remains**.
+Any new root window still requires immediate ACK/stop.
+
+Every attempt printed all8 current SHA256 hashes first, then used exactly the
+previously quoted pinned Ubuntu Docker/user/workdir/thread1/uv--locked--no-sync/
+source-free prefix. Ruff received the exact ordered8file list; AST used the
+unchanged public stdlib ast/Path parse-only program. No owned/product/scientific
+module was imported by those payloads. Full commands/results are preserved in
+the tool transcript; no separate log/helper/scratch file was written.
+
+| Attempt | Prehash set | Exact prefix suffix | Exit / complete result | Chunk / tool wall seconds |
+| --- | --- | --- | --- | --- |
+| Q6.1 | Source-only A6 table below, fixture6b474c... | `-m ruff format` + ordered8 | 0;1 file reformatted,7 unchanged | `68eecb` / .234643749 |
+| Q6.2 | Final table below, freshly printed | `-m ruff check --fix --output-format concise` + ordered8 | 0;All checks passed! No fix findings | `7df5f2` / .19004452 |
+| Q6.3 | Final table, freshly printed | Exact public phase1 AST `-c` program | 0;SP113 AST parsed8 owned files; no imports | `fffce0` / .339816911 |
+| Q6.4 | Final table, freshly printed | `-m ruff format --check` + ordered8 | 0;8 files already formatted | `141b8b` / .192061196 |
+
+Only formatter wrapping/layout in the owned fixture changed; there was no manual
+semantic/math/tolerance change or unsafe fix/suppression/stub/rule weakening.
+The other7 Python hashes remained unchanged throughout all four attempts. The
+pre-Q6.1 fixture hash was
+`6b474c0a9f2e2cb3f08113d8f3b9f5ff2ff0a363ccb2cefb5eec05059d8f3a51`;
+before each subsequent attempt it was the final fixture hash below. Thus the
+complete prehash for every attempt is reconstructible with the unchanged7
+table entries, and each actual full manifest was printed in its command output.
+
+| Final owned Python artifact | Same-A6 quality SHA256 |
+| --- | --- |
+| `tests/single_known_fixture.py` | `a693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b` |
+| `tests/test_single_known_boundary.py` | `4d87f905bddd29845dbaab9635c4ad01e982554d567a4beeeb93c3de0b986645` |
+| `tests/test_single_known_filter.py` | `559c117fbf177288b4cebd9b8441a86d3508a2ed009dde95494b9422f65353b4` |
+| `tests/test_single_known_assembly.py` | `cfd137f58fbc65237c70ee26870316d6ab255724716060bd270dec55d6aad0e4` |
+| `tests/test_single_known_precision.py` | `39be3cb37e40a8864cab451b0878ea8c0687d3ea94b2903ca90355a2a1e4beed` |
+| `tests/test_single_known_typing.py` | `5ec372b022c8c56d4cd36a2142ac789ff9cc1be406864229a310c7e969768ad4` |
+| `tests/test_module_migration.py` | `a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804` |
+| `tests/test_installed_wheels.py` | `ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e` |
+
+The report's final hash is returned separately. All public input bytes remain
+unchanged. Actual reads stayed within own report/static identity scope; the
+quality tools parsed the exact allowed8 Python files. No raw role/coordinator/
+native/dependency/method report, link, implementation or helper source was read.
+The unchanged launcher/decoder region hashes are confirmed at this static close
+with the same documented sed boundary convention.
+
+Accounting is now25 quality attempts/7 failures cumulatively; these four added
+no failure. Earlier attempts, six static patch misses, prior truncations/three
+fixture-path typos/undefined hash failure and unknown cumulative model/token/
+money/aggregate-time meters remain preserved. Individual tool times above do
+not replace total accounting. No new path typo, truncation or failed patch
+occurred during this quick quality continuation.
+
+This supersedes only the historical A6 no-syntax/style-check status. No logical-
+wide view, API, mathematical reference/certificate, primitive, child, dependency,
+Pyright, pytest, native/scientific probe, installed/build or benchmark execution
+occurred. Independent count/address/phase derivations and all pre-C proof/tool/
+transport versus post-C resulting-runtime limits below remain. Fresh affected B
+and actual116/parent/publication holds are unchanged; no accepted checkpoint,
+scientific qualification or C authority follows. No delegation/commit occurred.
+
+## Historical continuation6 retained direction/order count: source-only freeze
 
 Same blind A1, continuation6. The actual whole new public packet was read first:
 `docs/packets/precision-113/a1-correction-continuation-6.md`, SHA256

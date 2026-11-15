@@ -1085,19 +1085,30 @@ def bounded_declaration_child(case: str) -> None:
         assert v_view.strides[2] == 8
         assert carrier_view.strides == (0, 8)
         view_backings = (
-            (q_view, q), (v_view, v),
-            (carrier_view, carrier_back), (modulation_view, modulation_back),
+            (q_view, q),
+            (v_view, v),
+            (carrier_view, carrier_back),
+            (modulation_view, modulation_back),
         )
 
         def logical_view_metadata() -> tuple[Any, ...]:
-            return tuple((
-                view.shape, view.strides, view.dtype.str,
-                view.flags.writeable, view.flags.owndata,
-                view.__array_interface__["data"][0],
-                backing.shape, backing.strides, backing.dtype.str,
-                backing.flags.writeable, backing.flags.owndata,
-                backing.__array_interface__["data"][0],
-            ) for view, backing in view_backings)
+            return tuple(
+                (
+                    view.shape,
+                    view.strides,
+                    view.dtype.str,
+                    view.flags.writeable,
+                    view.flags.owndata,
+                    view.__array_interface__["data"][0],
+                    backing.shape,
+                    backing.strides,
+                    backing.dtype.str,
+                    backing.flags.writeable,
+                    backing.flags.owndata,
+                    backing.__array_interface__["data"][0],
+                )
+                for view, backing in view_backings
+            )
 
         for view, backing in view_backings:
             assert type(view) is np.ndarray and backing.flags.owndata
@@ -1105,17 +1116,29 @@ def bounded_declaration_child(case: str) -> None:
             assert not view.flags.owndata
             assert view.__array_interface__["data"][0] == backing.__array_interface__["data"][0]
             assert all(stride >= 0 for stride in view.strides)
-            last_byte = sum((n - 1) * stride for n, stride in zip(
-                view.shape, view.strides, strict=True,
-            )) + view.itemsize
+            last_byte = (
+                sum(
+                    (n - 1) * stride
+                    for n, stride in zip(
+                        view.shape,
+                        view.strides,
+                        strict=True,
+                    )
+                )
+                + view.itemsize
+            )
             assert last_byte <= backing.nbytes
         # q's largest offset is2*32+1*16+1*8=88, plus8 bytes=96.
         # Noise/carrier largest offset is8, plus8=16; modulation offset0
         # plus16=16. D contributes0 to every address, regardless of its size.
         count_forged = replace(
-            bands, input_shape=(1, directions, 3, 2, 1, 2),
-            quadratures=q_view, noise_variance_factors=v_view,
-            lateral_zoom=1, axial_zoom=1, input_scale=2**-32,
+            bands,
+            input_shape=(1, directions, 3, 2, 1, 2),
+            quadratures=q_view,
+            noise_variance_factors=v_view,
+            lateral_zoom=1,
+            axial_zoom=1,
+            input_scale=2**-32,
         )
         assert count_forged.input_scale == float(Fraction(1, 4 * directions))
         count_options = dict(wide_options)
@@ -1125,25 +1148,49 @@ def bounded_declaration_child(case: str) -> None:
         metadata_before = logical_view_metadata()
 
         def count_record_metadata() -> tuple[Any, ...]:
-            return tuple(getattr(count_forged, name) for name in BAND_FIELDS if name not in (
-                "quadratures", "noise_variance_factors",
-            ))
+            return tuple(
+                getattr(count_forged, name)
+                for name in BAND_FIELDS
+                if name
+                not in (
+                    "quadratures",
+                    "noise_variance_factors",
+                )
+            )
 
         record_before = count_record_metadata()
         for boundary, action in (
-            ("constructor", lambda: sr.declare_prepared_bands32(
-                q_view, v_view, input_shape=(1, directions, 3, 2, 1, 2),
-                dxy_um=1.0, dz_um=1.0, lateral_zoom=1, axial_zoom=1, provenance=(),
-            )),
+            (
+                "constructor",
+                lambda: sr.declare_prepared_bands32(
+                    q_view,
+                    v_view,
+                    input_shape=(1, directions, 3, 2, 1, 2),
+                    dxy_um=1.0,
+                    dz_um=1.0,
+                    lateral_zoom=1,
+                    axial_zoom=1,
+                    provenance=(),
+                ),
+            ),
             ("consumer", lambda: sr.reconstruct_known(count_forged, wide_otf, **count_options)),
         ):
             try:
                 action()
             except sr.ReconstructionError as error:
                 assert error.code == "reconstruction-domain"
-                assert any(term in str(error).lower() for term in (
-                    "geometry", "count", "representation", "direction", "d*o", "d * o", "signed",
-                )), boundary
+                assert any(
+                    term in str(error).lower()
+                    for term in (
+                        "geometry",
+                        "count",
+                        "representation",
+                        "direction",
+                        "d*o",
+                        "d * o",
+                        "signed",
+                    )
+                ), boundary
                 pending_count: list[BaseException] = [error]
                 seen_count: set[int] = set()
                 while pending_count:
