@@ -1,0 +1,19 @@
+{
+  "workload": {
+    "pid": 45549,
+    "observed_monotonic_ns": 19943555522049,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 1994355,
+    "ppid": 45542,
+    "pgid": 45542,
+    "session_id": 45542,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "observer_pid": 45542,
+  "argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nif sys.argv[1] != \"normal\":\n    raise SystemExit(2)\nprint(json.dumps({\"ready\": True, \"pid\": os.getpid(), \"ppid\": os.getppid(),\n                  \"pgid\": os.getpgrp(), \"session_id\": os.getsid(0), \"mode\": \"normal\"}), flush=True)\nraise SystemExit(0)\n",
+    "normal"
+  ]
+}

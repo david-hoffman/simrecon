@@ -171,9 +171,20 @@
     "scope": "finite Q0-5 driver/fixtures/commands/bounds source prep; coordinator inspect/freeze BEFORE execution, root fresh proof at Q0 readiness",
     "root_grant": "standing conditional Q0-5 after exact method acceptance; no installations, product workflows or scientific corpus; driver/results reviewed with later scientific report",
     "status": "Q0 passed, Q1 failed capability before PID return; no retry or broader execution",
-    "Q0_result": {"exit":0,"receipt_sha256":"e20af779dcb9e23dd480293343f906ffb5e7406c68dfffb6b9f3be1741b63fa7","scope":"pinned environment/domain facts only"},
-    "Q1_result": {"exit":1,"receipt_sha256":"f1aa18a0cf4f1afe0ec399cc141226330c447dbd59e499b7ec84c70ce340c70a","grant_sha256":"5529072ca96e86a5a12f408fa0ece888067dd1720e6b3bd4d5216d1bbe854750","proof_prelaunch_age_seconds":288.834143919,"error":"NotImplementedError: posix_spawn: setsid unavailable on this platform","terminal_rusage":"unknown; PID not returned"},
-    "inspection_summary_sha256":"1963d3eecb0b580a5be50d436859a3977ef85d2599fbc00388d246cd35672485",
+    "Q0_result": {
+      "exit": 0,
+      "receipt_sha256": "e20af779dcb9e23dd480293343f906ffb5e7406c68dfffb6b9f3be1741b63fa7",
+      "scope": "pinned environment/domain facts only"
+    },
+    "Q1_result": {
+      "exit": 1,
+      "receipt_sha256": "f1aa18a0cf4f1afe0ec399cc141226330c447dbd59e499b7ec84c70ce340c70a",
+      "grant_sha256": "5529072ca96e86a5a12f408fa0ece888067dd1720e6b3bd4d5216d1bbe854750",
+      "proof_prelaunch_age_seconds": 288.834143919,
+      "error": "NotImplementedError: posix_spawn: setsid unavailable on this platform",
+      "terminal_rusage": "unknown; PID not returned"
+    },
+    "inspection_summary_sha256": "1963d3eecb0b580a5be50d436859a3977ef85d2599fbc00388d246cd35672485",
     "driver_sha256": "9bd4ab99d6cd184aa2228ac28df4fb1ac1f91646048da27c07c9d49b66e01442",
     "source_freeze_sha256": "fd417331bd5ddb08f2ee45078f48dfa95c78d58f6f07ee785a3a3b82d4ee6ef6",
     "source_snapshot": "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/",
@@ -234,6 +245,84 @@
     "checks": "four-source AST/compile and embedded bootstrap compile without execution passed; final Ruff lint/format passed after initial45 diagnostics/two import fixes/formatting3 files/six long-string fixes",
     "logs": "/workspace/work/campaign/evidence/116/method5-preparation-checks/",
     "preservation": "coordinator matched all11 author artifacts; Q0pass/Q1fail/probe receipt hashes unchanged; prior4 reviews/source snapshots preserved"
+  },
+  "integrated_method5_Q0_Q1_release": {
+    "session": "/root/issue_116/investigator",
+    "candidate": "86c81b8e68be1e49b8ea2d432cf8659ad81f2538",
+    "tree": "180fe00e16a45d99d5cfda43a137078b3be483e0",
+    "release_packet_sha256": "8bc9a599d29a43f77b26fb28498ab29d1236e8870041d9300917ec70e0185b9d",
+    "Q0_grant_sha256": "8e0f58cf44d4fe840afd058be269f056226b9e9b097914bc28e28220e7e0eb26",
+    "proof_sha256": "9da725a8d945da8a79f5d2bc21bc2bb16332cc733b25bb55be77d88826e20e20",
+    "proof_observed_unix_ns": 1794713252367736398,
+    "scope": "exact integrated Q0-context then mechanically late-bound NEW same-source Q1-normal; source/commands/bounds inspected, root explicitly released",
+    "status": "Q0/Q1 both passed once; coordinator independently assessed raw/inspection/artifact/source/ownership evidence; no broader execution",
+    "Q0_receipt_sha256": "055048597eb084341aac3d16e50e6bfec5814587b54d2a01f75b3420016b33b0",
+    "Q1_receipt_sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce",
+    "artifact_index_sha256": "d635754474366e8f4f25a8b859fc3308bd121690784f853c0c1952ffd4c79954",
+    "Q1_grant_sha256": "69b90426ba1831fc9a758d77edc92bcac1badec72b1f87745d5861e6f23e1f6b",
+    "actual": "Q0 pins/source8/domain/threads matched; Q1 PID45549/parent45542/PGID-SID45549, ready221B/target99B/stderr0, no signals/gap, FDs closed, PID/FD tables absent",
+    "proof_ages_seconds": [
+      140.745704262,
+      201.097298731
+    ],
+    "native_scope": "16708LinuxKiB=17108992B direct-child kernel usage context only; exec retention unknown, not scientific envelope",
+    "served_attribution_tokens_money": "unknown"
+  },
+  "Q2_small_source_preparation": {
+    "session": "/root/issue_116/investigator",
+    "packet": "/workspace/work/campaign/evidence/116/Q2-small-phase-author-packet.md",
+    "packet_sha256": "d432c91ba627d3c948385e7814b1334b1235f8cb6b0121b8fe67c34cb3af371f",
+    "scope": "only qualifier/finite fixtures: TERM, ignoreTERM-to-KILL, deadline and supported owned one-SIGINT; exact accepted method unchanged",
+    "status": "all four frozen-driver Q2 cases ran once under root releases and passed scoped handling; coordinator read real receipts/lifecycles/source identities, exact PID/FD absence confirmed; no scientific claim",
+    "source_manifest_sha256": "411df70dc0ab3273f27ff2e72d9879e3597f841a0aad27b9f0d5847d840831dc",
+    "grant_sha256": "3f33519864c9156d5a15df976733a4ed80dbe5d057c361db5a6336d339efc420",
+    "proof_sha256": "93d15e6d0362f215e1380565905013877032654b47b7a522efd4296bc41aa786",
+    "proof_observed_unix_ns": 1794716985568889821,
+    "inspection_limit": "historical v1 source-freeze applied mistakenly produced expected6 changed checksums; actualQ2 manifest and six unchanged-method hashes then passed; no subject failure or source change",
+    "served_attribution_tokens_money": "unknown",
+    "case_results": [
+      {
+        "case": "Q2-default-term",
+        "receipt_sha256": "04adceb4b0362c55902889d01738beb582850655604dfe478ef8a2c27edba68f",
+        "lifecycle_sha256": "3db07d01c27eebb4b7ff5698f1b13be00da4e973f11544d4069fa7175050d0ed",
+        "expected_signal": 15,
+        "driver_pid": 45752,
+        "child_pid": 45759,
+        "proof_age_seconds": 150.966041774,
+        "owned_PID_and_FD_tables_absent": true
+      },
+      {
+        "case": "Q2-ignore-term-kill",
+        "receipt_sha256": "14945d428577e75365b5c3202d31c265577520a5ee8e8018c84d60b868a1bc8d",
+        "lifecycle_sha256": "770881e6f83e0e8bdd03f12154724dcdb76d21898690ecb85a70bba2bb8a2396",
+        "expected_signal": 9,
+        "driver_pid": 45772,
+        "child_pid": 45779,
+        "proof_age_seconds": 56.301871768,
+        "owned_PID_and_FD_tables_absent": true
+      },
+      {
+        "case": "Q2-deadline",
+        "receipt_sha256": "ab9589156df4668b0109317776a52a314b131a35ed541be86bb9ccd5cede0733",
+        "lifecycle_sha256": "5d44e75d98d30cde5eeb5fef59829e7d440c734e6146ceb673d175149d06140c",
+        "expected_signal": 15,
+        "driver_pid": 45792,
+        "child_pid": 45799,
+        "proof_age_seconds": 59.09099918,
+        "owned_PID_and_FD_tables_absent": true
+      },
+      {
+        "case": "Q2-supported-sigint",
+        "receipt_sha256": "6d8d320f5649c1440f53811623a820e28363a8b0d400894fb1bfac1135d9b946",
+        "lifecycle_sha256": "91d9219f68482219ed385fb2b57b397c407067cfaae86279e181736d593d8c63",
+        "expected_signal": 9,
+        "driver_pid": 45806,
+        "child_pid": 45813,
+        "proof_age_seconds": 134.851810292,
+        "owned_PID_and_FD_tables_absent": true
+      }
+    ],
+    "limits": "qualification only; abrupt observer loss, startup-failure variants and exec high-water retention remain unqualified; native rusage context not benefit or aggregate/workflow peak"
   },
   "static_method_reviews": [
     {
@@ -333,16 +422,22 @@
     "investigator_integrated_preparation_continuations": 1,
     "investigator_qualification_driver_preparation_continuations": 1,
     "investigator_selected_probe_source_continuations": 1,
-    "investigator_qualification_execution_continuations": 2,
+    "investigator_qualification_execution_continuations": 9,
     "investigator_probe_scope_clarification_continuations": 1,
     "investigator_capability_method_correction_continuations": 1,
-    "investigator_total_preparation_continuations": 8,
-    "investigator_total_continuations_including_execution": 10,
-    "qualification_cases_attempted": 3,
-    "qualification_cases_passed": 2,
+    "investigator_Q2_source_continuations": 1,
+    "investigator_total_preparation_continuations": 11,
+    "investigator_total_continuations_including_execution": 20,
+    "qualification_cases_attempted": 11,
+    "qualification_cases_passed": 10,
     "qualification_cases_failed": 1,
     "capability_method_correction_cycles": 1,
-    "preparation_initial_lint_diagnostics": {"method4":137,"method5":45},
+    "preparation_initial_lint_diagnostics": {
+      "method4": 137,
+      "method5": 45,
+      "Q4": 41,
+      "Q5": 5
+    },
     "coordinator_read_only_diagnostic_commands": 2,
     "independent_scientific_reviewer_launches": 0,
     "independent_static_method_reviewer_launches": 5,
@@ -355,6 +450,60 @@
     "measurement_trials": 0,
     "full_verification_attempts": 0,
     "human_numeric_cap": "not set",
-    "tokens_money_total_elapsed": "unknown; do not sum overlapping role durations or root campaign counters"
+    "tokens_money_total_elapsed": "unknown; do not sum overlapping role durations or root campaign counters",
+    "investigator_Q4_Q5_source_continuations": 1,
+    "investigator_Q5_source_continuations": 1
+  },
+  "Q4_Q5_small_source_preparation": {
+    "session": "/root/issue_116/investigator",
+    "packet": "/workspace/work/campaign/evidence/116/Q4-Q5-small-phase-author-packet.md",
+    "packet_sha256": "0670fa59f96282a5083cd95219bf8d1431255260fc6abcb92fe13079fdf20cc9",
+    "scope": "named qualifier driver/inventory/finite parser and tiny-array fixtures, grants/commands/proposal only; accepted measuring method immutable",
+    "status": "Q4 and Q5 actual scoped passes; coordinator inspected real receipts/rows/source bindings; source author on hold, no science release",
+    "served_attribution_tokens_money": "unknown",
+    "source_manifest_sha256": "f25428c71ad96b4cbd3c9eab6953cd4db08ba880e63d40cde4ba52c2ddf4a5ce",
+    "pending_grant_sha256": "e0e9b2001cdc9f197b729f35e208ab3bcbe8f3c1c3e1998539bf0b3228b298a7",
+    "vector_scope": {
+      "child_outcome": 74,
+      "bootstrap_failure": 10,
+      "legal_numeric_dtype": 67,
+      "full_main_status_ladder": "not exercised"
+    },
+    "preparation_checks": "allowed AST/Ruff final passed; initial41 E501 and format-check failure retained, formatter40 plus one equivalent string split; no parser/hash/scientific execution",
+    "coordinator_checks": "seven frozen targets and ten template source hashes match; actual interfaces/admission/retained mapping/vector expectations read; no method changes; diff-check0; initial overlong diff output truncated then targeted code rereads completed",
+    "Q4_actual": {
+      "receipt_sha256": "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa",
+      "rows_sha256": "b4075111d60219184356bc235e7f81d0a6ccbb8c4ac1b4d9e5ffe243d0a4228a",
+      "driver_exit": 0,
+      "rows": 151,
+      "expectations_matched": 151,
+      "expected_protocol_refusals": 63,
+      "fixture_output_bytes": 378698,
+      "spawned_children": 0,
+      "actual_driver_PID_and_FD_table_absent": 45985,
+      "proof_age_seconds": 50.361201877,
+      "postcheck_correction": "first read-only absentPID45824 check invalid as ownership evidence; corrected exact actual45985PID/FD check exit0, no signals or subject rerun"
+    },
+    "Q5": "source preparation same packet, no execution/release; preserve Q4 snapshot first",
+    "Q5_actual": {
+      "source_manifest_sha256": "de512b24af66b2840e38ad0be63afeb123cdc838ecbc4a61bcafb70f66f0fbf1",
+      "receipt_sha256": "164ecf085b44b51bbc26a01fba523ab7e1ca388e2d8074e94fdf19297e7bcb3d",
+      "rows_sha256": "fc97688ceaff95431bfd8facfc1dcca6ca03e1dd14fb86529ab03891d8b8983b",
+      "relations_sha256": "89ada74d7aa7d961f9df2bf3bc77058c7936f34f5ffa1c12a5e7fc9b302d5704",
+      "artifact_index_sha256": "3dc1a4d224a80c538bf95230c7134805ebc6a041ab3eabd6fa2b59e5d6e73448",
+      "driver_exit": 0,
+      "vectors_matched": 33,
+      "stream_identity_and_finite_observations": 99,
+      "public_relations_matched": 8,
+      "actual_max_array_and_backing_bytes": 48,
+      "expected_nonfinite_vectors": 5,
+      "numpy": "2.5.3",
+      "no_product_SciPy_workflow": true,
+      "actual_driver_PID_and_FD_table_absent": 46215,
+      "proof_age_seconds": 53.462085414,
+      "source_checks": "all13 actual input hashes and seven-source frozen targets match",
+      "preparation": "initial4E501+1I001+formatcheck failure retained; final granted AST/lint/format pass",
+      "limits": "tiny semantics only; no workflow/reference pair, peak benefit or exec-transition retention proof"
+    }
   }
 }

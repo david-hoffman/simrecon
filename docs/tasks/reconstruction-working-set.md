@@ -107,17 +107,19 @@ kept and errors below, without a cleanup helper/test/review project.
 
 ## Current state
 
-- Status: **METHOD5 STATICALLY ACCEPTED; INTEGRATED Q0/Q1 FREEZE NEXT; SCIENCE HELD**;
-  root integration and author reconciliation/admission adjustment are complete.
-  Author is on hold; exact checked method/plan/contract bytes are frozen for
-  completed fresh affected-scope review4, suitable with no blocking finding.
-  Its SHA256 is `12a177729d95a030ecea998e76d76ede2023aeccba450249d6ef25674b14ac2c`,
-  at `/workspace/work/campaign/evidence/116/static-method-review-4.md`.
-  Coordinator rechecked all12 target hashes. Source v4's prior scoped acceptance is historical,
-  not acceptance of changed methods or a data grant. Route is
-  report-only scientific investigator plus fresh independent reviewer; default
-  exact-candidate full-local gate applies. No executed experiment or acceptance
-  is claimed by intake.
+- Status: **APPLICABLE FINITE QUALIFICATION PASSED; SCIENTIFIC CORPUS NOT STARTED**.
+  Accepted parent #115 and actual method5 remain unchanged. Fresh static affected
+  method review5 (`510f402d…a485`) accepted its exact12 source targets; original
+  reviews1–4 and failed setsid attempt remain historical evidence. New integrated
+  Q0/Q1, four small Q2 lifecycle cases,151 Q4 parser expectations and33 Q5 tiny
+  array vectors/8 public fingerprint relations have actual scoped passes.
+  Q3 abrupt observer loss, startup-failure variants and exec-transition high-water
+  retention remain explicit gaps; no universal recovery or isolated-workflow
+  peak claim. Source author is on hold after all ownership checks. Next is a
+  clean qualified source checkpoint and one existing corpus condition readiness
+  packet, awaiting root exclusive window and exact per-case release. Scientific
+  measurements, ranked evidence-based handoffs, independent scientific report
+  review, exact full Ubuntu gate and final acceptance remain unfinished.
 - Human authority/constraints: report, real reproducible trials, ranked individual
   handoffs, fresh scientific review, exact full Ubuntu verification and stacked
   PR; root owns scheduling/integration/push/PR; no merge/release/manual closure.
@@ -329,6 +331,43 @@ kept and errors below, without a cleanup helper/test/review project.
   never rewritten old prerequisites. Remaining stop/timeout/cancellation/recovery/
   parser/hash phases remain unexecuted pending their own concrete freeze/release;
   Q6/scientific corpus held. No new generic method audit or driver-review loop.
+  Clean integrated method/status/evidence candidate committed
+  `86c81b8e68be1e49b8ea2d432cf8659ad81f2538`, tree
+  `180fe00e16a45d99d5cfda43a137078b3be483e0`; no full-gate claim, local hooks
+  suppressed for preparation commit. Root explicitly released inspected current
+  Q0-context→NEW same-source Q1-normal, IDsq0-method5-a1/q1-method5-a1, under
+  packet `8bc9a599d29a43f77b26fb28498ab29d1236e8870041d9300917ec70e0185b9d`.
+  Fresh proof `9da725a8d945da8a79f5d2bc21bc2bb16332cc733b25bb55be77d88826e20e20`,
+  observed1794713252367736398ns/max300s; Q0 grant
+  `8e0f58cf44d4fe840afd058be269f056226b9e9b097914bc28e28220e7e0eb26`.
+  Same frozen20s/5s startup+child/.2s/2s/resource margins and actual checks apply.
+  Author executing once per case; Q1 only late-binds newly validated Q0 receipt.
+  Actual results pending; any failure stops dependents. Old3 case results remain
+  historical, not matching current helper. Q2–Q6 and scientific workflows held.
+  Integrated Q0/Q1 each exited0/case_pass_scoped_only. Coordinator read actual
+  Q0receipt/Q1lifecycle and inspection/status logs, matched all artifact/current
+  source hashes and accepted scoped qualification. Q0 receipt
+  `055048597eb084341aac3d16e50e6bfec5814587b54d2a01f75b3420016b33b0`,
+  Q1 receipt `23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce`;
+  source8/domain/pins matched, PID45549/parent45542/PGID-SID45549, ready221B,
+  target99B/stderr0, no signals/gap, parent FDs closed/PID tables absent.
+  Proof ages140.745704262/201.097298731s; kernel16708KiB is context only.
+  Aggregate qualification5attempts=4pass/1failed unsupported-setsid, science0;
+  preparation continuations9/execution3,total12. Old failure/probe unchanged.
+  Root standing Q2–Q5 permits phased source preparation: same author now prepares
+  only four small Q2 cases TERM/default, ignoreTERM→KILL, deadline and supported
+  one-shot SIGINT after ownership/bootstrap/target-ready. Accepted method source
+  unchanged; coor must inspect/freeze exact new qualifier/fixture/commands/bounds/
+  applicability/grants before fresh proof and execution. Packet SHA256
+  `d432c91ba627d3c948385e7814b1334b1235f8cb6b0121b8fe67c34cb3af371f`.
+  Q3 abrupt loss/orphan held without scoped subreaper hygiene, Q4parser/Q5tinyhash
+  remain necessary later; no Q6/workflow or scientific corpus granted.
+  Coor read/checked all new Q2 paths/fixture/explicit retained-Q1 mapping and
+  froze five-artifact manifest411df70d…831dc. Root released ONLY q2-default-term-a1
+  on fresh proof93d15e6d…aa786 observed1794716985568889821ns/max300s, bound grant
+  `3f33519864c9156d5a15df976733a4ed80dbe5d057c361db5a6336d339efc420`.
+  Same author dispatched exact UID1000/pinned command, with pre-invocation age
+  check/refusal of known-expired proof; no retry or other case. Result pending.
   Q2–Q5 broader cases and Q6/workflows/scientific corpus remain held. PID1=sleep;
   no orphan topology is implemented. Actual case counts/results await receipts;
   initial broad driver remains inert text, prior bytes preserved externally.
@@ -401,6 +440,40 @@ kept and errors below, without a cleanup helper/test/review project.
   not deleted by this task; preserve any originals supplied later. Two optional
   coordinator source reads used nonexistent skill/helper names, diagnosed by
   `rg` inventory and corrected; no dependent numerical work followed them.
+
+- Small Q2 aggregate: all four once-only cases passed under unchanged driver
+  `add67acf…4ce4` / five-source freeze `411df70d…31dc`: default TERM/reap15,
+  observed ignored TERM through0.207125251s then KILL/reap9, one-second target
+  deadline cause then TERM/reap15, and supported one-SIGINT finally KILL/reap9.
+  Coordinator independently read actual receipts/lifecycles and frozen sources;
+  each exact parent/child PID and FD table was absent afterward. Full hashes and
+  actual proof ages are retained in launches.json and per-case raw evidence.
+  Qualification total9 attempts=8pass/1unsupported-setsid failure, scientific0.
+  Same-author preparation10/execution7 continuations,total17; metering unknown.
+  Same author now prepares finite Q4 parser and Q5 tiny-array source under packet
+  `0670fa59…0cc9`; no runtime release yet. Q3 abrupt observer loss, startup-failure
+  variants and exec-transition high-water retention remain explicit gaps.
+  No generic recovery framework or ceremonial old-case reruns.
+
+- Q4 once-only parser check passed151/151 explicit expectations, including63
+  expected protocol refusals; exactreceipt `9e58d30b…d7aa`, resultrows
+  `b4075111…228a`, unchanged10inputs and seven-source freeze verified. No child
+  or scientific import. Correct actual driver45985PID/FDabsence confirmed; first
+  mistaken read-only absent45824 check is preserved and supplies no ownership
+  evidence. Qualification10attempts=9pass/1failed capability; science0.
+  Same-author preparation11/execution8continuations,total19, metering unknown.
+  Q5 source preparation is dispatched under the same finite packet; no runtime
+  grant. Q3 abrupt-loss and exec-retention limits remain explicit.
+
+- Q5 once-only tiny semantic check passed33/33 vectors,99 identity/finite
+  observations and8/8 public relations; receipt `164ecf08…cb3d`, rows
+  `fc97688c…983b`, relations `89ada74d…5704`. All13 source bindings and seven
+  frozen targets matched; five expected nonfinite cases retained exact bits.
+  Actual maximum array/backing48B, NumPy2.5.3, no product/SciPy/workflow. Exact
+  driver46215PID/FDabsence confirmed. Qualification11attempts=10pass/1failed
+  capability, science0; preparation11/execution9continuations,total20. Q5 initial
+  five lint findings/format-check failure and final granted checks are preserved.
+  No source correction, retry or scientific release followed this pass.
 
 ## PR presentation
 

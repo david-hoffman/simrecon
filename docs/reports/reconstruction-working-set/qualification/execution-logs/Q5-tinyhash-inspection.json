@@ -1,0 +1,41 @@
+{
+  "status": "case_pass_scoped_only",
+  "attempt_id": "q5-tinyhash-a1",
+  "driver_exit": 0,
+  "execution_count": 1,
+  "prelaunch_epoch_ns": "1794719119770567406",
+  "proof_observed_epoch_ns": "1794719066308481992",
+  "proof_age_ns": "53462085414",
+  "driver_pid": 46215,
+  "vectors_completed": 33,
+  "identity_observations": 99,
+  "finite_observations": 99,
+  "frozen_identity_observations": 33,
+  "public_fingerprint_observations": 66,
+  "public_relations": 8,
+  "all_identity_and_finite_values_match_expected": true,
+  "all_public_values_match_literal_reference": true,
+  "all_public_relations_match": true,
+  "expected_nonfinite_vectors": [
+    "nan",
+    "positive-infinity",
+    "negative-infinity",
+    "complex-nan",
+    "complex-infinity"
+  ],
+  "actual_max_array_bytes": 48,
+  "actual_max_backing_bytes": 48,
+  "numpy": "2.5.3",
+  "workload_children": 0,
+  "known_process_disposition": {
+    "pid": 46215,
+    "proc_absent": true,
+    "fd_table_absent": true,
+    "exact_read_only_check_exit": 0
+  },
+  "receipt_sha256": "164ecf085b44b51bbc26a01fba523ab7e1ca388e2d8074e94fdf19297e7bcb3d",
+  "rows_sha256": "fc97688ceaff95431bfd8facfc1dcca6ca03e1dd14fb86529ab03891d8b8983b",
+  "relations_sha256": "89ada74d7aa7d961f9df2bf3bc77058c7936f34f5ffa1c12a5e7fc9b302d5704",
+  "scope": "Tiny canonical/value/finite qualification only under exact frozen inputs and retained unchanged Q1/Q2/Q4 applicability. Tiny reference copies and frozen public helper buffer capacity are disclosed. No science/workflow/reference pair, aggregate/native peak benefit, exec-transition high-water retention, Q3 recovery or Q6 claim.",
+  "disposition": "HOLD; no retry/source change/further case."
+}

@@ -1,0 +1,73 @@
+{
+  "status": "case_pass_scoped_only",
+  "attempt_id": "q2-deadline-a1",
+  "driver_exit": 0,
+  "execution_count": 1,
+  "prelaunch_epoch_ns": "1794717574864268662",
+  "proof_observed_epoch_ns": "1794717515773269482",
+  "proof_age_ns": "59090999180",
+  "driver_pid": 45792,
+  "workload_pid": 45799,
+  "term_handler_native": 0,
+  "target_ready_monotonic_ns": 24064994422838,
+  "target_deadline_monotonic_ns": 24065994804270,
+  "deadline_decision_monotonic_ns": 24065994989308,
+  "ready_to_deadline_decision_seconds": 1.00056647,
+  "stop_reason": "declared_target_deadline",
+  "signals": [
+    {
+      "signal": 15,
+      "delivery": "direct_pid_sent",
+      "monotonic_ns": 24065995413874
+    }
+  ],
+  "terminal": {
+    "pid": 45799,
+    "wait_status_raw": 15,
+    "returncode": -15,
+    "exited": false,
+    "signaled": true,
+    "exit_code": null,
+    "term_signal": 15,
+    "core_dumped": false,
+    "reaped_monotonic_ns": 24066005681513,
+    "rusage_native": {
+      "ru_idrss": 0,
+      "ru_inblock": 0,
+      "ru_isrss": 0,
+      "ru_ixrss": 0,
+      "ru_majflt": 0,
+      "ru_maxrss": 17564,
+      "ru_minflt": 3921,
+      "ru_msgrcv": 0,
+      "ru_msgsnd": 0,
+      "ru_nivcsw": 0,
+      "ru_nsignals": 0,
+      "ru_nswap": 0,
+      "ru_nvcsw": 52,
+      "ru_oublock": 8,
+      "ru_stime": 0.022504,
+      "ru_utime": 0.037277
+    },
+    "ru_maxrss_native_units": "Linux KiB",
+    "ru_maxrss_multiplier_to_bytes": 1024,
+    "kernel_reported_direct_child_high_water_bytes": 17985536,
+    "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim"
+  },
+  "startup_parent_fds_closed": true,
+  "startup_eof_observed": true,
+  "wait_ownership_lost": false,
+  "error": null,
+  "known_process_disposition": {
+    "check_exit": 0,
+    "driver_proc_absent": true,
+    "driver_fd_table_absent": true,
+    "workload_proc_absent": true,
+    "workload_fd_table_absent": true,
+    "scope": "Read-only checks of exact known /proc/45792 and /proc/45799 paths and their fd paths after terminal receipt; no signal/aggregate scan/further workload."
+  },
+  "receipt_sha256": "ab9589156df4668b0109317776a52a314b131a35ed541be86bb9ccd5cede0733",
+  "lifecycle_sha256": "5d44e75d98d30cde5eeb5fef59829e7d440c734e6146ceb673d175149d06140c",
+  "scope": "Tiny stdlib deadline/reaping qualification only. Terminal wait4 is kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention remains unresolved; same PID does not guarantee every bootstrap/startup peak survives exec. No subtraction/aggregate/benefit/scientific-memory claim.",
+  "disposition": "HOLD; other cases require explicit dispatch."
+}
