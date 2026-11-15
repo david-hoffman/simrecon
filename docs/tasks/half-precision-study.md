@@ -95,7 +95,7 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — reviewer2 affected delta1 active; resource launch quarantined, final #113 pending.**
+- **WAITING — control attempt1 incomplete; wrapper serialization delta2 under review; full science held.**
   I1 intake and the same S1 investigator completed their owned source-only work.
   The refined method separates unmatched diagnostic comparisons from proposed
   one-workload resource children and prepared-band stage pairs, with terminal
@@ -107,9 +107,11 @@ returns to intake. This is not formal executable test design.
   Final publication parent remains #113, not the provisional public-main baseline.
 - Accounting: I1 launch 1 completed, S1 launch 1 plus continuation activations 2
   completed; no replacement/delegation/failed role launch. Fresh independent
-  control-method reviews: 1 and 2 completed INCOMPLETE, reviewer2 affected delta1 active
+  control-method reviews: 1 and 2 completed INCOMPLETE, reviewer2 delta1 scoped ACCEPT;
+  same reviewer2 serialization delta2 is active
   (neither B/D nor scientific-study acceptance). Scientific report reviews 0,
-  HP114 runtime/lifecycle/scientific trials 0, scientific
+  native method-control attempts 1 (renderer exit2/incomplete), focused stdlib
+  serialization checks 1 passed; workflow/resource/lifecycle/scientific trials 0, scientific
   repairs 0, full-gate attempts 0 and D verdicts 0. Root preflight 1 passed separately.
   All preparation edits, failed contexts/checks and repairs remain in the
   [role ledger](../reports/half-precision-study/role-ledger.md) and archived ledgers.
@@ -159,10 +161,27 @@ returns to intake. This is not formal executable test design.
   Root's separate correction replaces impossible hidden-ancestor certainty with
   reviewed exposed outer/inner current/max/directory correspondence and actual
   visible ancestor facts; external ancestors remain `unknown_unobservable`.
-  Context freshness is root-authorized300s after command-ready capture. Same
-  independent reviewer2 now reviews only that affected delta to a new external
-  `control-method-review2-delta1.md`; old reports are immutable. No execution
-  approval or source check/import exists; approved receipts remain false/absent.
+  Context freshness is root-authorized300s after command-ready capture. Scoped
+  delta1 ACCEPT `6bce7288…5c04` was collected and exact proposal frozen; root then
+  captured fresh exposed proof/context and executed the exact bounded case ONCE.
+- Actual attempt1 at candidate6b576c8/tree2fbe: target PID45833 installed AS1114734592B,
+  CPU31/32s/wall90s, no coverage preload. Controls produced run.json c4238fd5…d43a
+  and74arrays+4tinyNPY files, but renderer exited2: optional metadata version was
+  a ModuleType, causing JSON serialization failure, a truncated post sidecar and
+  absent maps. Overall qualification INCOMPLETE; no complete loaded FFT or pass.
+  Both root and coordinator found PID45833/procFD directory absent (read-only
+  checks exit0/no signals); renderer completed, no persistent process/cleanup gap.
+  Full executed inputs/transport/study outputs are preserved under
+  `control-attempt1-preserved/`, all three capture diff checks0. Old bytes untouched.
+- Root authorized only narrow external proposal3 correction: version/path metadata
+  exact str/None plus presence/type/unsupported facts (no arbitrary repr), full
+  JSON serialization before exclusive open, and new fixed attempt2 paths/run-id.
+  No operating-limit/source/vector change or automatic retry. A root-authorized
+  pure-stdlib own-wrapper check passed10attribute/2synthetic-module cases, invalid
+  serialization-before-file and exclusivity; no main/product/native control run.
+  Metadata-only partial attempt1 observations and all78file hashes were inspected,
+  not promoted to complete qualification. Same reviewer2 delta2 now assesses only
+  the exact post-observation correction; attempt2 remains unapproved/unexecuted.
 - Next: root collects this scoped verdict, checks exact applicability and concrete
   per-case admission before separately granting any tiny controls execution.
   This does not release W scientific workflows, diagnostic matrix or resource routes.
