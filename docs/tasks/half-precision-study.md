@@ -144,10 +144,14 @@ returns to intake. This is not formal executable test design.
   `/workspace/work/campaign/preflight-114-attempt1.log`: Python 3.13.12,
   NumPy 2.5.3, SciPy 1.18.1. This root-owned environment evidence grants no
   HP114 numerical execution window and is not full verification.
-- Blockers: **current root source-only hold** permits read-only shell/Git inspection
-  and source/document authoring only. Prior narrow syntax/Ruff permission is
-  historical; no Python, probes, imports, lint/format/types/tests/install or benchmark
-  is granted in this continuation. The first capacity inspection found all seven
+- Blockers: **scientific-execution hold** remains. Root now narrowly permits only
+  AST/compile-without-import and pinned Ruff lint/format on owned study.py via
+  Ubuntu uv--locked--no-sync. No scientific/product/report/control imports or
+  execution, lifecycle probes, types/tests/install or benchmark is granted.
+  Root's actual116 Q1 found posix_spawn(setsid=True) unavailable before childPID
+  on this pinned interpreter; matching114 route must remain explicitly quarantined
+  pending diagnosed working-route reconciliation, not retried or called ready.
+  This is external capability context, not114 data. The first capacity inspection found all seven
   slots occupied and deferred dispatch. Root later granted dispatch; coordinator
   observed five active sessions before resuming the same S1 author, then six active
   including S1. No author replacement or failed role launch occurred.
