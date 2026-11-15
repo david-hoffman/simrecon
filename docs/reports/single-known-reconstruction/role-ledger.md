@@ -774,3 +774,22 @@ No targetRchoseexpectations/bounds, originalmetadata1failurekept. Newfiniteproce
 31/3failures (prior6dependencyprocesseshistorical), finitefacts3sanitizedforfutureB.
 No product/FFT/API/view/AS/allocation/type/test/initcontroller/fullgate. Allprocesses/
 FDsclosedandROOTACKnowreceived; rootresuspendedALLexecution, noactivechild/role.
+
+Root authorized NEW task-local PhaseP115 routing/material review, freshforkNONE
+Sol/high nohistory; packetc0f9cc51/12inputmanifest580262fa frozenon31ce199.
+Reviewer /root/issue_113/phasep115_routing_review_1 COMPLETE ACCEPT exactproposal
+5d499384947b5887361c47f4bace46e597975d3335a06121ad9e2eb73b176abc,
+reportbb21c467d8476f018c122d3f11a3701d525ca31b4b87a0ee1308d541725fb204.
+14wholeinputs/33successfulshellcommands/1truncation+2rereads/no prohibitedexposure/
+runtime/delegation; actualmodel/metersunknown. Coorfullreportreadback/inventory
+completionrecoveredonecoorcombinedreadtruncation; all12inputhashesunchanged.
+Reviewcost113once, notB4/D/joint117. No actualapplication/C/scienceacceptance.
+
+ROOT actualinitcontainercreated/preflightongoing, no testcases yet atsourcepacket.
+ROOT reportedVFS7.1GBcopy/cachepressure nonmeasurementsetup. Coor SOURCEonly
+addendumtyping-init-runtime-reuse-addendum-1.md SHAf70a3fe78a654f09a1c96fbed151ee3cd55df10c9efc23dd84da7299d4352c72
+allows sameCIDrootfs proposal with completeprivatePID1closureeverycase then
+manualstart/freshactualidentities/material/env/activation+emptycaseevidence and
+priorcontroller/proxy/FD terminal first. No reset/cache/runtime/performance claim,
+all4source/controller/methodhashesunchanged, no actualcalls/sourcecasechange.
+ROOT reviewBEFOREcases; allruntimeholds retained, no role/process active.
