@@ -655,3 +655,47 @@ No retainedprioracceptance; thirdformalcompleteB. SourcepreparerandB3 actual
 sessions/digests/launchesrecordoutside. Stageconditionexplicitlytestcheckpoint
 beforeC/preCcapabilitiesversuspostCactualbinding/type/storage/primitive/fullgate/D,
 no circularimplementationproof orstubs/waivers. Critical116capacityreserved.
+
+## B3 collection and actual finite qualifier attempts
+
+B3 full report SHA86403e72580e6a6c0f3c7ed32a6d37db98e5fa712ff5c7031477a12388cab229,
+NOT ACCEPTED; actual32staticcalls/2writes/2reads/2recoveredtruncations/0execution.
+Public contract independently supplies D*O<=I and geometry-before-ownership;
+source-only sameA continuation6 packetfbf51defe1602b7d0e215fc08944ae8f992d283143271919616af43c28a58476
+routes count/address-safe keeper, no raw review/conclusion passed. Existing8/report
+ownership only; fresh affected B required, original checkpoint retained.
+
+Source math preparer initial+source-only correction1 completed outside4+2files;
+35prior exact primary curl requests retained, no added native/execution by author.
+Coordinator independently inspected and froze helper1 then actualexit1 before
+cases: all missing in purityallowlist. Same-preparer2 only adds all; actualexit0
+(.481721122/chunk94b7ca),8conditionalpurecertificate groups, outputSHAe70db2b6b53f941ab687a2b74e13f7c39c7aaf3c5b4407bb9b659227f7cc4e72.
+Scalarpure1 independently inspected/frozen, actualexit0(.202872518/chunk53d2f4),
+3conditionalgroups, outputSHA97dccac90f295e42ad8246d4e307b4c38c526a2da7ea2cdb6218eed5309e7c10.
+No native target data/tolerance change/product acceptance. Coor added2exact
+primary source fetches e_asin/asincos.tbl, hashes match; exact branch/constants
+checked, both files retained as needed qualification inputs, no source archive.
+
+Transport finite actual25processattempts: metadata1fail BEFORE child/FD/control;
+metadata2typedlibc2.39pidfd binding/selfprobe pass; all23controls pass sequential,
+11actualdirectchildren all alreadyreaped/PIDabsent/pipes+pidfdclosed/FDbaseline.
+Two tool polls resume SAME timeout/EOF processes, not new attempts. Complete
+outside transport-results-2.md SHA c94ee42a4ae1f0014aea1845f07ad3d9e260cec678b7036940b0e505176907f7
+and logmanifest58469ec63ced3b157c47e525de46c09fb82542e25a5e0601243bf8164abfa974.
+One atomic bookkeepingpatch failed/no partialwrite; new recordversion preserved
+without rerun. No actualAS/declaration/Node/orphan/observerdeath/product claim.
+
+Scalar metadata1 actualexit1(.601183524/chunk25a5da) before native target:
+math.__file__ absent; log58bc0363d1075732c3ae2356b906a40b83d1a3415596e100b341002911cf98e7.
+Environment assumption defect, not oracle/native/productred. Outside v2 source
+93a11334b81e54eed0d13ea1cf526414bac8af9c9de82ef544602dbfea593401 handles
+positively checked built-in spec/loader or hashed extension; UNEXECUTED.
+Total new29finiteprocessattempts excludes earlier6historicaldependencies; 3failures
+retained, no native scalar target call. Coor pathquery errors/recovered truncations
+(including overlarge exact-rational log read, repaired by bounded jq projections)
+retained as source/report overhead. All missingmetersunknown/notzero.
+
+ROOT resumed116exclusive preparation hold; coor and A6 ACKed no active processes.
+A6 no AST/Ruff/runtime execution this continuation, source-only may continue;
+all imports/tests/probes/lint/types/native/benchmark calls suspended until release.
+No test checkpoint/C/parent acceptance. Source-preparer complete, A6 sole child.
