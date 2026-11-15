@@ -95,15 +95,16 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **WAITING — same S1 active on source-only method continuation; final #113 pending.**
+- **WAITING — same S1 active on narrow preparation checks/launch quarantine; final #113 pending.**
   The initial source-only preparation is committed; full study remains unfinished.
   Authorized intake/study route recorded; intake author attempt 1 completed named
   documents. Coordinator source review found the study within the requested scope;
   no independent scientific acceptance or scientific conclusion is claimed.
   Current source baseline remains the committed preparation on public main;
   final commit/tree identities and continuation packet digest are recorded outside
-  tracked bytes. Coordinator dispatched the same S1 author; its source-method
-  implementation is pending, with no rebase or scientific execution.
+  tracked bytes. S1 returned four revised source-method artifacts without execution;
+  coordinator captured their exact bytes before the same author's narrow check
+  continuation. No rebase or scientific execution has occurred.
 - Author launch: fresh tool route, no conversation inheritance, requested Sol/high;
   accepted PR109 policy proposal `b84b178`, integration `be8e447`, as supplied by
   coordinator packet. Session is `/root/issue_114/intake_author`. Actual serving
@@ -158,10 +159,12 @@ returns to intake. This is not formal executable test design.
   acceptance remains a study proposal to justify, not a missing human tolerance
   that authorizes guessing. Source/manifest preparation may proceed under hold.
 - Next: same S1 `/root/issue_114/study_investigator` is active under
-  [source-method continuation](../packets/half-precision-study/source-method-continuation.md).
+  [narrow preparation checks/launch hold](../packets/half-precision-study/preparation-checks-launch-hold.md).
   Coordinator yields WAITING to preserve capacity; investigator notifies campaign
-  root and coordinator on source-only completion. Root resumes this coordinator
-  to inspect the returned source artifacts and route fresh static method review.
+  root and coordinator when the narrowly authorized checks and launch quarantine
+  are complete. Root resumes this coordinator to inspect corrected bytes and route
+  fresh scoped static method assessment when appropriate. Known nonfunctional
+  launch must not be reviewed or presented as runtime-qualified.
   Complete/freeze standalone matched resource paths, terminal-child versus
   cumulative/sample high-water semantics, bounded observers/status/recovery and
   finite range/cancellation/serialization/FFT controls without executing them.
