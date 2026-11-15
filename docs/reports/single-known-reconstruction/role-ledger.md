@@ -577,3 +577,48 @@ preserved; thisis secondformal completeB review. Actuallaunch/head/digest/sessio
 and pendingstatus recordedoutside afterfreeze. Accepted116/ownB stillblocks
 PhasePC; actual120integration+freshaffectedrenewalbeforeanyintegratedC/resources/
 gates/D/pub. Installed/newAPI/runtime/type/protocolcalls remainunactivated.
+
+## B2 nonacceptance collected; same-A continuation5 and stage separation
+
+FullB2reportSHA1a82d001d39a71b79437e7ada9e901dd0e431b94d2909ca955949a6558c75ff4
+collected, all22frozenhashes rechecked unchanged. SecondformalcompleteBreview,
+noacceptedcheckpoint;29totalstaticshellcallsincluding2reportwrites/2rereads,
+3truncationsrecovered, noexecution/targetedit/exposure/statusfailure. Allprior
+costs/unknownmeters retained; no productred or Cauthority.
+
+Coordinator independentlychecked contract§1str.__str__ and S28.18.1 plus
+S09.7outputvolume arithmetic. Sanitized public facts: allowed underlyingtaper
+must ignore overriddenstr()/equality, unsupportedunderlyingcontentrejects;
+tiny native2,1,2/L2^14/A2 givesoutput4,16384,32768/plane2^29/volumeI+1,
+otherdimension/count/nativeboundsfit, alpha2^-31. Matchingcanonicalforgedconsumer
+and constructor need genuineunmaskedoriginalcountguard, capped before either
+hazard. No rawB2/coor/finite/methodreviewreport/conclusions/lineclues toA.
+Actual a1-correction-continuation-5.md routes onlythese facts, allowedsource
+correction+prehashed8fileAST/Ruff/style, no otherexecution/newmeaning/tolerance.
+FrozenB2testcheckpointf2c894d/launch34150fb+22manifest preserved; futurefresh
+affectedBstillfullsharedscope. SameA5actualsession/hash recordedoutsideafterlaunch.
+
+Stageprecisionrecord acceptance-stage-routing-v1.md derives §6beforeacceptance
+resultingruntime phrase with §6afterfrozenB,Cfocusedchecks/fullgate/freshD. This
+is finalscientificproductacceptance, not proving nonexistentCbeforeB. Root explicitly
+endorses thisstage separation. No circularscientific requirement ororacle waiver
+found when clausesreadtogether, so13originalscientificinputbytes unchanged.
+Bmustaccept scientificallyvalid/executableindependenttestcheckpoint with needed
+pureproof/fixture/tool/transport capabilities qualifiedpreC; actualnewCprimitive/
+storage/allocatorbinding/newtypebehavior observedafterC/fullgate/D. No stubs,
+skip, universalpatch/wholecompilerproof, forcedbinding or relaxedgates. Actual
+Cspecificunknowns remainexplicitlatergates, notassumedpasses orpreCdeadlock.
+
+Root separatelyconditionallygrants parallel exactshared-helper proof-only
+certificates and exactunchangedreviewedtransport/decoder externalcontrolledPopen
+qualification afterindependentcode/case/input/env/ownershipfreeze, activation
+record BEFOREcalls. Single boundedstdlibdirectchildren only, originalargv/env/
+oneownedPID/start/session/status/reap/FDabsence,30s+5scleanup/16KiBchannels,
+selfexitbackstop, no descendants/fork/detach/observerdeath/newAPI/widehazards.
+Changedbodiesneedexplicitunchangedapplicability/freshaffectedBfirst; duplicate
+JSONkeyspolicy ownedproducer exclusion oractualrejection, no generaladversarial
+JSONclaim. NewfiniteoutsideHpointscope scalarcalls requirepoint-specificsource/
+independentboxes/margins/inputbits/material/RNEfreezebeforeR; unresolvedboxBLOCKED,
+no R-selected/widenedbounds/newFFTbackend/lengths/genericframework. No calls
+activatedthishandoff, future116exclusivewindowtemporarilysuspendsagain. Root
+orphancontrolhold/exactexternaladoption/reapscaffoldrelease unchanged.
