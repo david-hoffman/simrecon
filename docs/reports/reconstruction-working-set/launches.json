@@ -10,6 +10,19 @@
     "isolation": "shared filesystem/parent permissions; named ownership is prompt-only",
     "scientific_calibration": "no quality claim from documentation pilot"
   },
+  "integrations": [
+    {
+      "owner": "root coordinator",
+      "previous_head": "a644eb93cd3ad987d4fa694eb48bc4d6574eb099",
+      "preserved_reference": "refs/campaign/evidence/116-pre-parent",
+      "accepted_parent": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+      "accepted_parent_tree": "2247d3909f43bc4764beb5c748caa917aaa1d707",
+      "integrated_head": "33df4e4e72787db9ab7d81b54ef26cfb328bf345",
+      "integrated_tree": "d22019c57744427fc92101e38241921a1418c493",
+      "result": "root rebased two own commits cleanly; coordinator independently matched all six exact accepted-v4 method hashes; no remote116 push",
+      "scope": "prerequisite integration, no runtime or scientific evidence"
+    }
+  ],
   "roles": [
     {
       "role": "fresh intake author",
@@ -127,6 +140,27 @@
       "checks": "packet/report digests matched; tracked whitespace=0, no-index input whitespace/difference=1 no diagnostics; snapshot diff=1 expected; two atomic context-only patch failures corrected; no runtime execution"
     }
   ],
+  "integrated_preparation": [
+    {
+      "session": "/root/issue_116/investigator",
+      "requested_model_effort": "same Sol/high session",
+      "actual_served_attribution_tokens_money": "unknown",
+      "packet": "/workspace/work/campaign/evidence/116/integrated-parent-admission-author-packet.md",
+      "packet_sha256": "b4e97c125e1e6761d3ebcfcd666cfb6d52bdbdba63d1c0a3c57ad323f21ae291",
+      "check_supplement": "/workspace/work/campaign/evidence/116/preparation-check-supplement.md",
+      "check_supplement_sha256": "a2c33fb08b55b01db8c917281806452a7e2946f622b0d0cff92aefd15f00fc62",
+      "scope": "actual-parent material/domain/liveness/fixture/stage reconciliation, narrow exposed-domain conditional admission, qualification plan",
+      "narrow_execution_grant": "stdlib AST/syntax and existing pinned Ruff only on observer.py/run_attempt.py/workload_child.py in Ubuntu worktree .venv via uv --locked --no-sync",
+      "held": "scientific/report/product imports, tests, lifecycle/capability probes, installation, benchmark, memory trials and rebase",
+      "status": "author complete/on hold; exact post-check bytes frozen for fresh method review4",
+      "artifact_manifest": "/workspace/work/campaign/evidence/116/preparation-checks/final-artifacts.sha256",
+      "artifact_manifest_sha256": "e58c9fdb396550510162ba58ea1bdaccba859c33f68a1112ffe41364e0ee700b",
+      "checks": "AST1/2 passed; Ruff0.16.9 initial lint137 findings and format-check3 files failed; six safe fixes, format1, lint2 with35 remaining style findings; diagnosed manual corrections, format2 passed; lint3 and format-check2 passed; no scientific imports or lifecycle qualification",
+      "logs": "/workspace/work/campaign/evidence/116/preparation-checks/; exact commands/times/statuses and initial failures preserved",
+      "coordinator_contract": "contract section6/source-calculated target wording reconciled; sha a811347cee5194b8023dde656079e25a86fb8412d5bbae8aeedd4b6c42370566",
+      "checks_limits": "syntax/style only;137 lint diagnostics are not137 scientific/product defects; metering unknown"
+    }
+  ],
   "static_method_reviews": [
     {
       "session": "/root/issue_116/static_method_review_1",
@@ -179,17 +213,38 @@
       "checks": "six snapshots/working hashes and prior reports matched; source/hash/diff only; one expected diff=1 initially skipped manifest diff, rerun separately; filenames from other worktrees exposed by search but contents unread",
       "hold": "completed; no further writes/execution; changed admission scope will use another fresh reviewer",
       "actual_served_model_effort_tokens_money": "unknown"
+    },
+    {
+      "session": "/root/issue_116/static_method_review_4",
+      "requested_model": "gpt-6.1-sol",
+      "requested_effort": "high",
+      "fork_turns": "none",
+      "packet": "/workspace/work/campaign/evidence/116/static-method-review-packet-4.md",
+      "packet_sha256": "85d942f6aec6b7ed89a88e1b76529b5ddd4523617b1ce2e2d955780d9149efbe",
+      "target_manifest": "/workspace/work/campaign/evidence/116/review4-targets.sha256",
+      "target_manifest_sha256": "bb1eeae84603ea63ba82267dff4cc2fd06a75c408140a1a80ebbbcdf55bccac1",
+      "exact_source_snapshot": "/workspace/work/campaign/evidence/116/source-method-v5-review4/",
+      "report_destination": "/workspace/work/campaign/evidence/116/static-method-review-4.md",
+      "final_message_destination": "separate collaboration parent mailbox",
+      "scope": "actual-parent exposed-domain/reconciliation/qualification-plan/preparation cleanup and contract6 affected review only",
+      "status": "completed: statically suitable in exact actual-parent affected scope; no blocking finding",
+      "report_sha256": "12a177729d95a030ecea998e76d76ede2023aeccba450249d6ef25674b14ac2c",
+      "retained_limits": "12 exact hashes matched; conditional admission/reconciliation/cleanup/contract6/Q0-5 plan coherent; runtime/data/report/gate acceptance absent",
+      "checks": "read-only target/snapshot/material hashes and ancestry/diffs; one absent root PROJECT.md read corrected to docs/PROJECT; no subject execution",
+      "actual_served_model_effort_tokens_money": "unknown"
     }
   ],
   "accounting": {
     "intake_author_launches": 1,
     "investigator_launches": 1,
     "investigator_source_only_continuations": 3,
+    "investigator_integrated_preparation_continuations": 1,
+    "investigator_total_preparation_continuations": 4,
     "independent_scientific_reviewer_launches": 0,
-    "independent_static_method_reviewer_launches": 3,
-    "completed_static_method_reviews": 3,
+    "independent_static_method_reviewer_launches": 4,
+    "completed_static_method_reviews": 4,
     "static_method_review_nonacceptances": 2,
-    "static_method_review_scope_acceptances": 1,
+    "static_method_review_scope_acceptances": 2,
     "post_review_source_correction_cycles": 2,
     "root_owned_preflight_attempts": 1,
     "root_owned_preflight_evidence": "/workspace/work/campaign/preflight-116-attempt1.log",

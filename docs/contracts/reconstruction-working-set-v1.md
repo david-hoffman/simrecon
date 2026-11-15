@@ -207,19 +207,27 @@ an environment outside the coordinator's setup authority.
 
 Before each workload or growth step:
 
-1. Check all declared dimensions, signed32/unsigned32/native-intp constraints,
-   output products and actual transfer stencils against the accepted size-domain
-   contract using integer calculations without allocating the proposed volume.
-2. Record host physical/available RAM, resolved effective cgroup path and ancestor
-   limits/current/peak/events where exposed, swap limits/current, process rlimits,
-   disk space, current competing tasks and intended observer/workload process IDs.
-   A missing file is unknown, not unlimited; do not assume cgroup root is effective.
+1. Check declared dimensions, retained element/index/count and native-intp extents,
+   output products and actual transfer stencils against the accepted
+   [wide allocation domain](wide-allocation-domain-v1.md), using integer
+   calculations without allocating the proposed volume. Its superseded
+   signed32/unsigned32 allocation-byte-only caps do not apply.
+2. Record actual-time host/exposed-machine memory and every visible effective
+   cgroup ancestor, namespace/membership/limit correspondence for the workload,
+   swap, rlimits, competing tasks, disk context and intended observer/workload
+   process IDs. Missing observable bounds or correspondence blocks admission.
+   Ancestors outside the exposed machine that cannot be observed remain explicitly
+   unknown, never absent or unlimited; root-looking paths alone prove no mapping.
 3. Produce a conservative co-live payload estimate, measured smaller-case RSS
    envelope and explicit allowance for unresolved native/allocator work plus
    caller/OS/observer headroom. Record the chosen available budget, reserve and
-   evidence. This is an experiment-specific safety decision, not a product cap or
-   human-set numeric limit. If no defensible allowance fits current headroom,
-   mark the case unmeasured and do not launch it.
+   evidence. Conditional admission requires fresh correspondence evidence, a finite
+   observable bound, quantified native/allocator allowance and caller/OS/observer
+   reserve, monitored stop margins and coordinator rationale accepting residual
+   external-ancestor uncertainty. This is an experiment-specific safety decision,
+   not a product cap or human-set numeric limit. If no defensible allowance fits
+   current headroom, mark the case unmeasured and do not launch it. No monitor
+   guarantees zero OOM risk.
 4. Obtain coordinator scheduling release for that exact case. Run at most one
    numerical experiment at a time in the shared resource domain; do not overlap
    full verification, installs or other campaign numerical work.
@@ -236,13 +244,18 @@ allocation is a useful boundary observation, not measured execution at that size
 Report largest demonstrated case per mode/search, next proposed unmeasured case
 and exact stop reason. No crop extrapolation is full-volume evidence.
 
-The original target `(T,D,P,Z,Y,X)=(1,3,5,32,2048,2048)`, L2/A1,
-remains blocked until separate size-domain acceptance and a subsequent safe
-preflight. Its output `(1,32,4096,4096)` has 536,870,912 voxels; the historical
-unsigned32 source-workspace check sees `8*Xo*Yo*Zo=4,294,967,296`, greater than
-`2**32-1`. If accepted #115 changes that representation boundary, it removes
-only that refusal. It supplies no safe-allocation inference or requirement to run
-the target. Do not relax checks or promise completion on 16 GiB under this task.
+Accepted #115 removes the old allocation-byte-only refusal for the original
+`(T,D,P,Z,Y,X)=(1,3,5,32,2048,2048)`, L2/A1 geometry on the supported 64-bit
+platform. Retained signed/native/stencil and scientific constraints still apply.
+Its output `(1,32,4096,4096)` has 536,870,912 voxels; the historical
+`8*Xo*Yo*Zo=4,294,967,296` byte expression is no longer an unsigned32 ceiling.
+Representation validity supplies no safe-allocation inference or execution
+requirement. [Source-derived liveness](../reports/reconstruction-working-set/analysis/integrated-parent-reconciliation.md)
+calculates 32,227,983,360 bytes co-live for a hypothetical float32 caller, its
+owned snapshot and complex128 prepared bands alone. This logical payload lower
+bound exceeds the previously observed exposed 16 GiB bound; it is not measured
+RSS or actual-time admission evidence. The target remains unmeasured and not
+allocation-admitted. Do not relax checks or promise completion on 16 GiB.
 
 ## 7. Report, ranking and acceptance
 

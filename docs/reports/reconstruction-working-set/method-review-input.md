@@ -1,5 +1,11 @@
 # WS116 narrow static-method review input
 
+Historical inputs and correction mappings for static reviews 1–3 follow. Their
+old baseline/exclusive-window language describes those stages. Current actual-
+parent/exposed-domain review uses [affected-review-input.md](affected-review-input.md).
+The narrow author AST/Ruff exception and actual check ledger are documented in
+[qualification-plan.md](qualification-plan.md); it grants no runtime qualification.
+
 Review the unexecuted source method only. This is not scientific report acceptance,
 experiment admission, accepted #115 verification, gate readiness or evidence of
 runtime capability. The coordinator launches a fresh reviewer sequentially, with

@@ -1,33 +1,36 @@
 # WS116 source-only experiment preparation
 
-These are **unexecuted analysis drafts**, initially prepared at provisional public-main
-`b344e41a8b52de76d7cbbf8450319893904c3b8f`. They provide no measured working set,
-successful qualification, experiment admission, ranking, independent acceptance
-or passing check claim. The [task](../../tasks/reconstruction-working-set.md)
-owns Current state; this report does not create another status store. Accepted
-#115 plus coordinator release are prerequisites for numerical work.
+This analysis-only method was first prepared at public main
+`b344e41a8b52de76d7cbbf8450319893904c3b8f` and is now reconciled onto accepted
+#115 `ace06c861b974b6251a092567c253ae4eb0f56c8`. It provides no measured working
+set, runtime qualification, experiment admission or measured ranking. The
+[task](../../tasks/reconstruction-working-set.md) owns Current state. Static
+review 3 accepted the prior exact source-method scope; this actual-parent delta
+requires fresh affected review and separate runtime release.
 
 Files: [fixed corpus](manifest.json), [liveness calculations](analysis/liveness-draft.md),
 [one-attempt runner](run_attempt.py), [child](workload_child.py),
 [observer](observer.py), [handoff hypotheses](handoffs/source-hypotheses.md).
 `raw/` will retain every attempt, grant, preflight, sample stream, output/error and
-receipt. It is currently empty. No Python, imports, lint, types, tests, numerical
-experiment, benchmark, install or full verification was executed in preparation.
-The runner is not yet parsed or runtime validated. Static review 1 requested
-corrections, and fresh delta review is pending; it must not be treated as a ready
-experiment tool until later released qualification. Source-only
+receipt. It is currently empty. Under the narrow preparation-check supplement,
+stdlib AST parsing and pinned Ruff lint/format checks passed for the three report
+sources after preserved diagnosed corrections. No report/product/scientific
+imports, lifecycle probes, tests, install, benchmark, numerical workflow or full
+verification ran. See the [qualification plan and check ledger](qualification-plan.md).
+The method needs separately released runtime qualification. Historical
 method revision v2 added complete-child wait ownership, bounded array identities,
 explicit snapshot/status scopes and a separate static-method review input. The
 original draft is preserved in Git at `701b56d349adaf5e719510a158b51402876f9c30`;
-no prior attempt, charge or correction is reset. This method refinement remains
-on that source-preparation baseline; root's reports about #112/#115 do not bind
-an accepted experiment baseline or release numerical work.
+no prior attempt, charge or correction is reset. Prior source states and reviews
+remain evidence; [actual-parent reconciliation](analysis/integrated-parent-reconciliation.md)
+binds the new source/domain context without relabelling old evidence. Final
+experiment identities remain external coordinator records; no execution release follows.
 
 Source correction v3 addresses independent static review 1 F1/F2/C1. All six
 exact v2 reviewed files were hash-verified before any correction and preserved
 by the coordinator under
 `/workspace/work/campaign/evidence/116/source-method-v2-review1/`. Original review,
-drafts and charges remain evidence. Fresh delta static review is pending; no
+drafts and charges remain evidence. Subsequent static reviews are preserved; no
 runtime counterexample or qualification was executed.
 
 Source correction v4 responds only to review 2's remaining F2a/b/c structural
@@ -97,14 +100,18 @@ For each single attempt the coordinator supplies one JSON grant. Required fields
   material hashes. Raw grant/preflight files therefore cannot invalidate every
   subsequent match merely by existing.
 - `representation_preflight: {accepted:true,evidence:...}` with actual accepted
-  signed32/unsigned32/native-intp products, output extents and transfer stencils
+  retained signed-count/native-intp products, output extents and transfer stencils
   calculated without allocating a proposed volume; accepted representation is
   separate from allocation safety.
-- `headroom_evidence`: smaller measured envelopes, conservative co-live estimate,
-  native/allocator allowance, host/caller/observer reserve and budget rationale;
-  `hidden_ancestors_resolved:true` only with effective host/namespace ancestor
-  resolution evidence. Root cgroup files alone are insufficient. A missing or
-  unsupported cgroup interface is a refusal requiring a declared observer revision.
+- `headroom_evidence`: conservative co-live/smaller-case envelope, quantified
+  native/allocator allowance and caller/OS/observer reserve, competing work and
+  conditional rationale. `resource_domain` uses the explicit exposed-domain
+  schema in the [reconciliation](analysis/integrated-parent-reconciliation.md):
+  fresh hashed correspondence evidence, exact exposed membership/namespace/
+  visible limits, finite observable bound and conservative per-case margins.
+  External unobservable ancestors remain unknown, never absent or unlimited.
+  The obsolete `hidden_ancestors_resolved` flag is rejected. Missing observable
+  bounds/correspondence still refuses admission; no physical-host certainty is invented.
 - Positive `deadline_seconds`, `process_stop_bytes`, `host_min_available_bytes`,
   `terminate_grace_seconds`, `kill_reap_seconds`, and integer
   `max_child_record_bytes`; `sample_interval_seconds:0.01`; and
@@ -251,7 +258,7 @@ failure. Preserve any originals later supplied with their original candidate/inp
 meaning. No largest demonstrated case or measured next-size boundary exists yet.
 
 W01: manifest and source identity plan prepared, actual receipts pending.
-W02: provisional calculated liveness prepared, observed attribution pending.
+W02: calculated liveness reconciled to accepted parent, observed attribution pending.
 W03/W04: finite contrasts and witnesses declared, all executions/qualification pending.
 W05: scalar stage observer and separate control plan drafted, perturbation unknown.
 W06: explicit per-attempt preflight/stop design, no case admitted.

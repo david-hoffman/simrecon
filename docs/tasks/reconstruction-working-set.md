@@ -107,11 +107,14 @@ kept and errors below, without a cleanup helper/test/review project.
 
 ## Current state
 
-- Status: **SAFE HOLD FOR ROOT PARENT INTEGRATION; NO RUNTIME GRANT**;
-  source method v4 is statically accepted in review3's exact scope. Author and
-  reviewers are complete/on hold, with no writes or execution pending.
-  Scientific execution awaits root integration of
-  accepted #112 → #115, material reconciliation and explicit resource release. Route is
+- Status: **METHOD4 STATICALLY ACCEPTED; Q0–Q5 DRIVER PREPARATION NEXT; SCIENCE HELD**;
+  root integration and author reconciliation/admission adjustment are complete.
+  Author is on hold; exact checked method/plan/contract bytes are frozen for
+  completed fresh affected-scope review4, suitable with no blocking finding.
+  Its SHA256 is `12a177729d95a030ecea998e76d76ede2023aeccba450249d6ef25674b14ac2c`,
+  at `/workspace/work/campaign/evidence/116/static-method-review-4.md`.
+  Coordinator rechecked all12 target hashes. Source v4's prior scoped acceptance is historical,
+  not acceptance of changed methods or a data grant. Route is
   report-only scientific investigator plus fresh independent reviewer; default
   exact-candidate full-local gate applies. No executed experiment or acceptance
   is claimed by intake.
@@ -121,8 +124,14 @@ kept and errors below, without a cleanup helper/test/review project.
   No numeric human cap is set. Original full target remains conditionally blocked.
 - Requirements: W01–W09 (9 distinct outcomes); parameter examples are the
   contract's declared workload rows and witness definitions, not extra semantics.
-  Provisional base is the public-main hash above; final accepted dependency and
-  experiment checkpoint identities are pending coordinator binding. Existing
+  Provisional intake base is the public-main hash above. Root integrated accepted
+  parent `ace06c861b974b6251a092567c253ae4eb0f56c8`, tree
+  `2247d3909f43bc4764beb5c748caa917aaa1d707`; reconciliation starts from head
+  `33df4e4e72787db9ab7d81b54ef26cfb328bf345`, tree
+  `d22019c57744427fc92101e38241921a1418c493`. Old a644eb9 remains at
+  `refs/campaign/evidence/116-pre-parent`. All six exact accepted-v4 method bytes
+  independently survived rebase unchanged. Final experiment identities remain
+  pending reconciliation/freeze. Existing
   product tests/fixtures and original RM84 evidence remain unchanged.
 - Roles/evidence: fresh intake author `/root/issue_116/intake_author` completed
   its four documents. Source-only investigator `/root/issue_116/investigator`
@@ -152,8 +161,8 @@ kept and errors below, without a cleanup helper/test/review project.
   no-index difference status 1; subsequent collection covered all seven files.
   Missing historical artifact inventory returned 2. Neither is a numerical trial.
   Same-investigator source-only continuations=3 (method refinement and two corrections);
-  static-method reviewer launches/completed reviews/nonacceptances=3/3/2;
-  scoped static acceptance=1 (review3), final scientific acceptance=0.
+  static-method reviewer launches/completed reviews/nonacceptances=4/4/2;
+  scoped static acceptances=2 (review3/4), final scientific acceptance=0.
   Review 1 source findings F1 (unknown RSS treated as zero), F2 (incomplete success
   record validation) and C1 (parent cancellation/recovery disposition) are routed
   to the original investigator; post-review source correction cycles=2. First
@@ -187,22 +196,46 @@ kept and errors below, without a cleanup helper/test/review project.
   Report: `/workspace/work/campaign/evidence/116/static-method-review-3.md`,
   SHA256 `8fd16ca2de36cc69cf8718213569dc1a07f2a3629553e941eda5e97800061be6`.
   No broader parser framework or new scientific oracle was requested.
+  Same-author preparation continuations total=4: three prior strict-source
+  continuations plus one actual-parent preparation. Root additionally granted
+  stdlib AST/syntax and pinned Ruff lint/format/check only for observer.py,
+  run_attempt.py and workload_child.py in Ubuntu worktree `.venv`, using
+  `uv --locked --no-sync`. AST1/2 passed. Ruff0.16.9 initial lint137 diagnostics
+  and initial format-check3 files failed; six safe fixes and format1 left35 lint
+  findings in attempt2. Diagnosed style corrections and format2 followed; final
+  lint3/format-check2 passed. Logs preserve exact commands/times/statuses under
+  `/workspace/work/campaign/evidence/116/preparation-checks/`. These are syntax/
+  style findings, not scientific/product defect counts. Coordinator matched all11
+  final artifact hashes, manifest SHA256
+  `e58c9fdb396550510162ba58ea1bdaccba859c33f68a1112ffe41364e0ee700b`.
+  Reconciled contract§6 adds target12; frozen manifest SHA256
+  `bb1eeae84603ea63ba82267dff4cc2fd06a75c408140a1a80ebbbcdf55bccac1`,
+  exact snapshots under `/workspace/work/campaign/evidence/116/source-method-v5-review4/`.
+  No scientific/report/product imports, tests, lifecycle/capability probes,
+  installs, benchmarks or memory results are granted. Final checked bytes receive
+  fresh review. Two coordinator status patches failed atomically on unmatched
+  context and was corrected without affecting author source.
 - Checks: intake read authoritative issue, AGENTS/PROJECT/intake skill and actual
   templates, role/model guidance, RM84 §5/task and relevant public-main source/
   frozen harness. Documentation diff/link checks are reported in author handoff.
   No install, test, numerical experiment, benchmark or `make verify` run by intake.
   No bug-red claim, test correction or selected-coverage conflict is asserted.
   Source-only investigator checked packet hashes, branch/HEAD and all seven new
-  files for whitespace; no diagnostics. Draft Python was not parsed, imported,
-  linted, typed, executed or independently reviewed. Actual whole-process terminal
+  files for whitespace; no diagnostics. At initial preparation Python was not
+  parsed/imported/linted/typed/executed; later static reviews are recorded above.
+  Narrow AST/Ruff preparation checks passed after retained failures/repairs above.
+  Actual whole-process terminal
   peak scope, fixture qualification, perturbation and ranking remain unresolved.
 - Exact final candidate/check results: recorded by coordinator outside tracked
   candidate bytes in conversation/PR and durable verification receipts. This
   pointer is prepared before the gate. No duplicate status file is commissioned.
-- Blockers/next action: root integrates the clean source-prep commit onto accepted
-  #115. Then same author reconciles actual accepted-parent material inputs/stage
-  mask/dtypes/domain, and narrowly adjusts exposed-domain admission criteria;
-  a fresh affected-scope method reviewer assesses that actual integrated baseline.
+- Blockers/next action: actual-parent affected method review4 accepted exact scope.
+  Freeze clean method/status candidate; same investigator prepares only named
+  `method_qualification.py`, finite tiny cases, exact commands/grants and cleanup
+  bounds. Coordinator inspects/freezes these BEFORE any driver execution and
+  requests fresh Q0 outer/Docker correspondence evidence from root. Investigator
+  must stop at source handoff/Q0 readiness until that concrete release; no
+  separate prerequisite-review loop solely for the driver.
   Existing `hidden_ancestors_resolved` must not require or claim unobservable
   physical-host ancestor certainty. Root's preliminary observation at
   `/workspace/work/campaign/evidence/116/resource-domain-preliminary.md` shows
@@ -212,9 +245,18 @@ kept and errors below, without a cleanup helper/test/review project.
   Separate exposed-domain correspondence/evidence and conservative per-case
   reserve/monitor/conditional decision from those unknowns, without an impossible
   certainty gate or fabricated host facts. Preserve v4 before this adjustment.
-  Only after affected-scope acceptance will root grant cheap bounded actual
-  spawn/setsid/wait4/normal-malformed-timeout-recovery qualification, then an
-  explicit exclusive scientific trial window. Root provides release; pinned
+  Root conditionally grants Q0–Q5 AFTER fresh final-method affected acceptance:
+  one named analysis-only `method_qualification.py`, coordinator-inspected with
+  digest/concrete command/finite tiny fixtures/timeouts/cleanup frozen before
+  execution; existing pinned Ubuntu env, no installs. Owned stdlib lifecycle and
+  tiny NumPy hash imports are permitted only then. Request fresh outer/Docker
+  correspondence for Q0; preliminary records cannot be relabelled. Preserve each
+  failed qualification and stop dependent cases pending diagnosis. Driver/results
+  receive independent assessment with the later scientific report, without an
+  endless prerequisite-review loop. This is scheduling authority, no human cap
+  or report acceptance. Ordinary #117/#118 checks may overlap Q0–Q5; Q6/product
+  workflows/scientific corpus remain UNGRANTED pending root exclusive window and
+  per-case release. Root provides those releases; pinned
   Ubuntu `.venv` preflight already passed, with actual-time reconciliation and
   bounded method qualification still required. Resume
   `/root/issue_116/investigator` through this coordinator after checking scope and

@@ -1,8 +1,13 @@
-# Source-derived liveness, provisional baseline
+# Source-derived liveness, reconciled accepted parent
 
 This is calculation and source interpretation, not measured memory or a ranking.
-Baseline: public main `b344e41a8b52de76d7cbbf8450319893904c3b8f`.
-Accepted #112 → #115 must be reread before freezing the experiment. Shapes and
+Original derivation: public main `b344e41a8b52de76d7cbbf8450319893904c3b8f`.
+Reconciled accepted parent: `ace06c861b974b6251a092567c253ae4eb0f56c8`, inspected
+at report checkpoint `33df4e4e72787db9ab7d81b54ef26cfb328bf345`. Only allocation-
+byte guards changed; the numerical liveness/dtypes below are unchanged. Original
+line hints refer to the derivation; function names and the reconciled source
+hashes identify actual inputs. See [domain/material reconciliation](integrated-parent-reconciliation.md)
+for the representation-valid but allocation-unadmitted original target. Shapes and
 bytes below describe current actual float64/complex128 operations, independent of
 float32 detector input. Hypothetical half-sized float32/complex64 payloads remain
 predictions; downcasting a returned image proves no end-to-end precision path.
