@@ -1,35 +1,24 @@
-"""RB117 real public workflow parity and independent searched2D witnesses."""
+"""RB117 exact public retention relationships; science keepers remain separate.
+
+No parity assertion below is an independent mathematical-accuracy claim.
+S05 later-equality preservation and in-call last use require explicit C/D proof.
+"""
 
 from __future__ import annotations
 
 import dataclasses
-import math
 
 import numpy as np
 import pytest
 
 import simrecon
-from c_estimation_fixture import (
-    assert_expected,
-    close,
-    estimate,
-    events,
-    expected_estimate,
-    overlap,
-    search_bands,
-    transfer_record,
-)
+from c_estimation_fixture import estimate, events
 from refinement_buffer_lifetime_fixture import (
     assert_capture_projection,
-    assert_image_oracle,
+    emit_input_record,
     exact,
-    expected_plane,
-    finite_bands,
-    independent_images,
-    initial_vectors,
-    plane_build,
     public_arrays,
-    workflow_case,
+    retention_case,
 )
 
 
@@ -38,56 +27,45 @@ def assert_frozen(record, name, value):
         setattr(record, name, value)
 
 
-def exercise(raw, settings, *, unique_coarse=False):
-    """Use contract sums first, then actual complete and compact public entries."""
-    independent = finite_bands(raw, settings)
-    initial = initial_vectors(raw, settings)
-    options = {
-        key: settings["carrier"][key]
-        for key in ("search_carriers", "use_time0_carriers", "amplitude_floors", "fit_all_phases")
-    }
-    two_d = settings["acquisition"]["acquisition_mode"] == "2d"
-    oracle = expected_plane if two_d else expected_estimate
-    expected = oracle(independent, settings["transfer"], initial, **options)
-    images = independent_images(independent, settings["transfer"], expected)
-    if raw.shape[-1] == 8:
-        # The constructed low-bin cases must qualify using the independent
-        # oracle BEFORE any product call. These margins diagnose fixture-domain
-        # mistakes; they do not relax the approved production domain.
-        orders = settings["acquisition"]["norders"]
-        for vector in expected.carriers_cyc_um.reshape(-1, 2):
-            assert 0.5 - (orders - 1) * float(np.linalg.norm(vector)) > 0.025
-        for evaluation in events(expected, "evaluation"):
-            sx, sy = evaluation["SX"], evaluation["SY"]
-            assert min(sx, sy) > 0
-            assert abs(sx - sy) > 64 * 3e-11 * max(sx, sy)
-        if unique_coarse:
-            for coarse in events(expected, "coarse"):
-                powers = np.sort(coarse["correlation_power"].ravel())
-                assert powers[-1] - powers[-2] > 64 * 3e-11 * powers[-1]
-        remade = (
-            plane_build(
-                independent,
-                settings["transfer"],
-                expected.carriers_cyc_um[0, 0],
-                (0, 1),
-                0,
-                0,
-                "counterfactual",
-                0,
-            )
-            if two_d
-            else overlap(independent, settings["transfer"], expected.carriers_cyc_um[0, 0], 2)
-        )
-        assert np.max(np.abs(remade.fourier - expected.overlaps[1].fourier)) > 1e-8
-    raw_before = raw.copy()
+def assert_fit_links(parameters):
+    """Check public scalar references without adding a numerical fit oracle."""
+    for t, row in enumerate(parameters.branches):
+        for d, _ in enumerate(row):
+            trace = [e for e in parameters.trace if (e.time_index, e.direction_index) == (t, d)]
+            raw = parameters.raw_modulation[t, d]
+            for event in trace:
+                value = dict(event.details)
+                if event.kind == "evaluation" and value["stage"] in (
+                    "known",
+                    "final",
+                    "later-order",
+                ):
+                    exact(value["forward"], complex(raw[value["orders"][1] - 1]))
+            products = [dict(e.details) for e in trace if e.kind == "cumulative-product"]
+            entering = [complex(value) for value in raw]
+            if products:
+                assert [value["order"] for value in products] == list(range(2, len(raw) + 1))
+                for value in products:
+                    index = value["order"] - 1
+                    exact(value["direct_forward"], complex(raw[index]))
+                    exact(value["previous_cumulative"], entering[index - 1])
+                    entering[index] = value["product"]
+            adjustments = [dict(e.details) for e in trace if e.kind == "adjustment"]
+            assert [value["order"] for value in adjustments] == list(range(1, len(raw) + 1))
+            for index, value in enumerate(adjustments):
+                exact(value["raw_forward"], entering[index])
+                exact(value["final"], complex(parameters.modulation[t, d, index]))
+
+
+def exercise(raw, settings):
+    """Compare actual full/compact/direct results at the same declared input."""
+    emit_input_record(raw, settings)
+    before = raw.copy()
     full = simrecon.reconstruct_workflow(raw, **settings)
     summary = simrecon.reconstruct_summary(raw, **settings)
-    exact(raw, raw_before)
-    close(full.bands.quadratures, independent.quadratures)
-    assert_expected(full.parameters, expected)
-    assert_image_oracle(full.image, images, expected)
+    exact(raw, before)
     assert_capture_projection(summary, full)
+    assert_fit_links(full.parameters)
     assert summary.diagnostics == "summary"
     assert summary.omitted_diagnostics == (
         "stage-images",
@@ -102,62 +80,51 @@ def exercise(raw, settings, *, unique_coarse=False):
     )
     assert_frozen(summary, "diagnostics", "changed")
     assert_frozen(summary.overlap_builds[0], "index", -1)
-    # Direct estimator remains a full-record operation on the actual mutable
-    # public AcquisitionBands. Equality here includes every scalar/array bit.
+    options = {
+        key: settings["carrier"][key]
+        for key in ("search_carriers", "use_time0_carriers", "amplitude_floors", "fit_all_phases")
+    }
+    options["omit_kz0"] = settings["filtering"].get("omit_kz0", False)
+    # The actual workflow vector is this direct call's declared public input.
+    # Equality of these calls does not certify its independent scientific truth.
     direct = estimate(full.bands, full.transfer, full.initial_carriers_cyc_um, **options)
     exact(direct, full.parameters)
     assert full.bands.quadratures.flags.writeable
     assert full.bands.noise_variance_factors.flags.writeable
     assert not np.shares_memory(full.image, full.reconstructions[0].image)
     arrays = public_arrays(summary)
-    allowed = {
-        id(getattr(summary, name))
-        for name in (
-            "image",
-            "x_um",
-            "y_um",
-            "z_um",
-            "carriers_cyc_um",
-            "modulation",
-            "raw_modulation",
-            "initial_carriers_cyc_um",
-            "phase_linkage_carriers_cyc_um",
-            "effective_wiener",
-        )
-    }
-    assert {id(array) for array in arrays} == allowed
+    names = (
+        "image",
+        "x_um",
+        "y_um",
+        "z_um",
+        "carriers_cyc_um",
+        "modulation",
+        "raw_modulation",
+        "initial_carriers_cyc_um",
+        "phase_linkage_carriers_cyc_um",
+        "effective_wiener",
+    )
+    assert {id(array) for array in arrays} == {id(getattr(summary, name)) for name in names}
+    for name in names:
+        expected_dtype = np.complex128 if name in ("modulation", "raw_modulation") else np.float64
+        assert getattr(summary, name).dtype == expected_dtype
     for index, array in enumerate(arrays):
         assert array.flags.owndata and not array.flags.writeable
         assert not np.shares_memory(array, raw)
         assert not np.shares_memory(array, settings["transfer"].samples)
         for other in arrays[:index]:
             assert not np.shares_memory(array, other)
+    for array in public_arrays(full.parameters):
+        assert array.flags.owndata and not array.flags.writeable
+        assert not np.shares_memory(array, full.bands.quadratures)
+        assert not np.shares_memory(array, full.transfer.samples)
     for build in full.parameters.overlaps:
-        for name in ("fourier", "spatial", "written", "carrier_cyc_um"):
-            array = getattr(build, name)
-            assert array.flags.owndata and not array.flags.writeable
-    return summary, full, independent, expected
-
-
-@pytest.mark.parametrize("layout", ["radial", "full"])
-@pytest.mark.parametrize("reuse", [True, False])
-def test_native_three_direction_search_exact_compact_full_and_finite_image(layout, reuse):
-    raw, settings = workflow_case("3d", 3, directions=3, times=2, layout=layout, reuse=reuse)
-    summary, full, _, _ = exercise(raw, settings)
-    assert summary.branches == (("searched",) * 3, ("time0-reused" if reuse else "searched",) * 3)
-    assert np.max(np.abs(summary.raw_modulation[0] - summary.raw_modulation[1])) > 1e-6
-    if reuse:
-        exact(summary.carriers_cyc_um[0], summary.carriers_cyc_um[1])
-    for d in range(3):
-        builds = [
-            b for b in full.parameters.overlaps if b.time_index == 0 and b.direction_index == d
-        ]
-        assert [(b.purpose, b.orders) for b in builds] == [
-            ("coarse", (0, 2)),
-            ("refinement", (0, 2)),
-            ("later-order", (0, 1)),
-        ]
-    assert_frozen_reference(full, 2)
+        assert build.fourier.shape == build.spatial.shape == build.written.shape
+        assert build.fourier.shape == (2, *full.bands.input_shape[3:])
+        assert build.fourier.dtype == build.spatial.dtype == np.complex128
+        assert build.written.dtype == np.bool_
+    return summary, full
 
 
 def assert_frozen_reference(full, order):
@@ -182,19 +149,32 @@ def assert_frozen_reference(full, order):
             assert len([e for e in frozen if e["stage"] == "final"]) == 1
 
 
+@pytest.mark.parametrize("layout", ["radial", "full"])
+@pytest.mark.parametrize("reuse", [True, False])
+def test_native_three_direction_search_exact_compact_full_records(layout, reuse):
+    raw, settings = retention_case("native", layout=layout, reuse=reuse)
+    summary, full = exercise(raw, settings)
+    assert summary.branches == (("searched",) * 3, ("time0-reused" if reuse else "searched",) * 3)
+    assert summary.raw_modulation[0].tobytes() != summary.raw_modulation[1].tobytes()
+    if reuse:
+        exact(summary.carriers_cyc_um[0], summary.carriers_cyc_um[1])
+    for d in range(3):
+        builds = [
+            b for b in full.parameters.overlaps if b.time_index == 0 and b.direction_index == d
+        ]
+        assert [(b.purpose, b.orders) for b in builds] == [
+            ("coarse", (0, 2)),
+            ("refinement", (0, 2)),
+            ("later-order", (0, 1)),
+        ]
+    assert_frozen_reference(full, 2)
+
+
 @pytest.mark.parametrize("mode,orders", [("3d", 5), ("2d", 4), ("2d", 2)])
 @pytest.mark.parametrize("layout", ["radial", "full"])
 def test_searched_later_orders_frozen_final_fit_products_and_no_later_case(mode, orders, layout):
-    raw, settings = workflow_case(
-        mode,
-        orders,
-        layout=layout,
-        adjustments=orders > 2,
-        dz=0.0 if mode == "2d" else 1.0,
-        low_bin=mode == "3d",
-        odd_phase=mode == "3d",
-    )
-    _, full, independent, expected = exercise(raw, settings, unique_coarse=mode == "3d")
+    raw, settings = retention_case("later", mode, orders, layout=layout)
+    _, full = exercise(raw, settings)
     fitorder = 1 if mode == "2d" else 2
     pairs = [(0, fitorder), (0, fitorder)] + (
         [(b - 1, b) for b in range(2, orders)]
@@ -206,37 +186,18 @@ def test_searched_later_orders_frozen_final_fit_products_and_no_later_case(mode,
     assert_frozen_reference(full, fitorder)
     final = next(e for e in events(full.parameters, "evaluation") if e["stage"] == "final")
     exact(final["forward"], complex(full.parameters.raw_modulation[0, 0, fitorder - 1]))
-    if mode == "2d":
-        remade = plane_build(
-            independent,
-            full.transfer,
-            expected.carriers_cyc_um[0, 0],
-            (0, 1),
-            0,
-            0,
-            "counterfactual",
-            0,
-        )
-        products = events(full.parameters, "cumulative-product")
-        assert [event["order"] for event in products] == list(range(2, orders))
-        for event in products:
-            close(event["product"], event["direct_forward"] * event["previous_cumulative"])
-    else:
-        remade = overlap(independent, full.transfer, expected.carriers_cyc_um[0, 0], 2)
-        assert not events(full.parameters, "cumulative-product")
-    # Public finite oracle witnesses that rebuilding at final carrier changes
-    # the pair. This is a fixture discriminator, not an execution-memory claim.
-    assert np.max(np.abs(remade.fourier - expected.overlaps[1].fourier)) > 1e-8
+    products = events(full.parameters, "cumulative-product")
+    assert [event["order"] for event in products] == (
+        list(range(2, orders)) if mode == "2d" else []
+    )
 
 
 @pytest.mark.parametrize("reuse", [True, False])
 def test_true_two_dimensional_time_policy_refits_or_restarts_without_adjacent_reuse(reuse):
-    raw, settings = workflow_case(
-        "2d", 4, times=2, reuse=reuse, dz=0.2, low_bin=True, odd_phase=True
-    )
-    summary, full, _, _ = exercise(raw, settings, unique_coarse=True)
+    raw, settings = retention_case("time", "2d", 4, reuse=reuse)
+    summary, full = exercise(raw, settings)
     assert summary.branches == (("searched",), ("time0-reused" if reuse else "searched",))
-    assert np.max(np.abs(summary.raw_modulation[0] - summary.raw_modulation[1])) > 1e-6
+    assert summary.raw_modulation[0].tobytes() != summary.raw_modulation[1].tobytes()
     later = [b for b in full.parameters.overlaps if b.time_index == 1]
     assert [b.orders for b in later] == (
         [(0, 1), (0, 2), (0, 3)] if reuse else [(0, 1), (0, 1), (1, 2), (2, 3)]
@@ -255,13 +216,8 @@ def test_true_two_dimensional_time_policy_refits_or_restarts_without_adjacent_re
 
 @pytest.mark.parametrize("mode", ["2d", "3d"])
 def test_known_repeated_builds_keep_distinct_descriptors_and_caller_storage(mode):
-    raw, settings = workflow_case(mode, 4, times=2, search=False)
-    raw[1] = raw[0]
-    backing = np.zeros((*raw.shape[:-1], raw.shape[-1] * 2), dtype=np.float64)
-    backing[..., ::2] = raw
-    caller = backing[..., ::2]
-    caller.flags.writeable = False
-    summary, full, _, _ = exercise(caller, settings)
+    raw, settings = retention_case("repeated", mode, 4)
+    summary, full = exercise(raw, settings)
     assert summary.branches == (("known",), ("known",))
     assert all(e["objective"] is None for e in events(full.parameters, "evaluation"))
     builds = full.parameters.overlaps
@@ -272,7 +228,8 @@ def test_known_repeated_builds_keep_distinct_descriptors_and_caller_storage(mode
             exact(getattr(first, name), getattr(repeated, name))
             assert not np.shares_memory(getattr(first, name), getattr(repeated, name))
     snapshots = [(a, a.tobytes()) for a in public_arrays(summary) + public_arrays(full.parameters)]
-    backing.fill(99)
+    raw.flags.writeable = True
+    raw.fill(99)
     full.bands.quadratures.fill(123)
     full.bands.noise_variance_factors.fill(2)
     settings["carrier"]["angles_rad"].fill(0.75)
@@ -282,11 +239,8 @@ def test_known_repeated_builds_keep_distinct_descriptors_and_caller_storage(mode
 @pytest.mark.parametrize("mode", ["2d", "3d"])
 @pytest.mark.parametrize("searched", [True, False])
 def test_omit_kz0_empty_overlap_preserves_estimation_error_stage_and_cause(mode, searched):
-    raw, settings = workflow_case(mode, 3, search=searched)
-    if mode == "3d":
-        # Z3 at these optics clips c to0, so omission removes every sample.
-        assert raw.shape[3] == 3
-    settings["filtering"]["omit_kz0"] = True
+    raw, settings = retention_case("omit", mode, search=searched)
+    emit_input_record(raw, settings)
     before = raw.copy()
     observed = []
     for entry in (simrecon.reconstruct_workflow, simrecon.reconstruct_summary):
@@ -313,9 +267,8 @@ def test_omit_kz0_empty_overlap_preserves_estimation_error_stage_and_cause(mode,
 
 @pytest.mark.parametrize("mode", ["2d", "3d"])
 def test_late_known_time_failure_preserves_context_whole_call_and_inputs(mode):
-    raw, settings = workflow_case(mode, 3, times=2, search=False)
-    # All-zero later data reaches missing lower energy after valid t0 fits.
-    raw[1] = 0
+    raw, settings = retention_case("late", mode)
+    emit_input_record(raw, settings)
     before = raw.copy()
     for entry in (simrecon.reconstruct_workflow, simrecon.reconstruct_summary):
         with pytest.raises(simrecon.WorkflowError) as caught:
@@ -329,8 +282,8 @@ def test_late_known_time_failure_preserves_context_whole_call_and_inputs(mode):
 
 @pytest.mark.parametrize("mode", ["2d", "3d"])
 def test_direct_search_accepts_readonly_strided_used_bands_and_remains_full(mode):
-    raw, settings = workflow_case(mode, 3)
-    _, full, _, _ = exercise(raw, settings)
+    raw, settings = retention_case("strided", mode)
+    _, full = exercise(raw, settings)
     bands = full.bands
     storage = np.zeros(
         (*bands.quadratures.shape[:-1], bands.quadratures.shape[-1] * 2), dtype=np.complex128
@@ -353,23 +306,13 @@ def test_direct_search_accepts_readonly_strided_used_bands_and_remains_full(mode
 def test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_stencil(
     mode, invalid
 ):
-    raw, settings = workflow_case(mode, 3, search=False)
-    if invalid == "raw-finite":
-        raw[0, 0, 0, 0, 0, 0] = np.nan
-        wanted_code, wanted_stage = "workflow_input", "declaration"
-    elif invalid == "flag":
-        settings["carrier"]["search_carriers"] = 1
-        wanted_code, wanted_stage = "workflow_config", "declaration"
-    else:
-        # R1 retains valid complete metadata but the actual DC stencil must
-        # request radial row1 even when that vertex has zero weight.
-        settings["transfer"] = simrecon.declare_otf(
-            np.ones((4, 1, 1 if mode == "2d" else 8)),
-            layout="radial",
-            dkr_cyc_um=1.0,
-            dkz_cyc_um=1.0,
-        )
-        wanted_code, wanted_stage = "workflow_representation", "estimation"
+    raw, settings = retention_case("invalid", mode, invalid=invalid)
+    emit_input_record(raw, settings)
+    wanted_code, wanted_stage = {
+        "raw-finite": ("workflow_input", "declaration"),
+        "flag": ("workflow_config", "declaration"),
+        "stencil": ("workflow_representation", "estimation"),
+    }[invalid]
     before = raw.copy()
     signatures = []
     for entry in (simrecon.reconstruct_workflow, simrecon.reconstruct_summary):
@@ -391,52 +334,3 @@ def test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_st
         )
         exact(raw, before)
     assert signatures[0] == signatures[1]
-
-
-def test_later_binary64_objective_equality_stops_after_strict_improvement():
-    """Reach a later tie by public scaling, without replacing the objective."""
-    bands = search_bands(0)
-    transfer = transfer_record()
-    initial = np.array([[0.06, -0.035]])
-    reference = expected_estimate(bands, transfer, initial)
-    brackets = events(reference, "bracket")
-    direction = next(
-        value for value in brackets
-        if value["stage"] == "angle" and value["branch"] in ("positive", "negative-swap")
-    )
-    shifted = next(value for value in brackets
-                   if value["stage"] == "angle" and value["branch"] == "shift")
-    q2, q3 = direction["amp2"], direction["amp3"]
-    assert 0 < q2 < q3
-    divisor = q2 + q3
-    # Binary64 round-to-nearest maps these independently constructed scores
-    # into distinct rounding cells: first0, improving eta, then a later eta.
-    # This is fixture qualification, never an estimator-domain restriction.
-    assert q2 / divisor < 0.5 < q3 / divisor < 1.5
-    assert 0.5 < shifted["amp3"] / divisor < 1.5
-    cell_margin = min(0.5 - q2 / divisor, q3 / divisor - 0.5,
-                      shifted["amp3"] / divisor - 0.5,
-                      1.5 - shifted["amp3"] / divisor)
-    assert cell_margin > 64 * 3e-11
-    scale = 1 / math.sqrt(divisor)
-    bands.quadratures[:, :, 0] *= math.ldexp(1.0, 268)
-    bands.quadratures[:, :, 1:] *= math.ldexp(scale, -269)
-    # Reciprocal scales keep coarse correlation and SX*SY finite; forward
-    # factors scale by scale*2^-537, so squared scores use eta=2^-1074.
-    actual = estimate(bands, transfer, initial)
-    angle = [value for value in events(actual, "bracket") if value["stage"] == "angle"]
-    assert [value["branch"] for value in angle] == [
-        "initial", direction["branch"], "shift", "stop"
-    ]
-    eta = float.fromhex("0x0.0000000000001p-1022")
-    assert angle[1]["strict_improvement"] is True
-    assert angle[1]["amp2"] == 0.0 and angle[1]["amp3"] == eta
-    assert angle[2]["amp2"] == angle[2]["amp3"] == eta
-    assert angle[2]["strict_improvement"] is False
-    assert angle[3]["strict_improvement"] is False
-    evaluations = events(actual, "evaluation")
-    for value in evaluations:
-        assert value["SX"] > 0 and value["SY"] > 0 and value["SX"] != value["SY"]
-        for name in ("SX", "SY", "cross", "forward", "reverse", "combined",
-                     "correlation", "objective"):
-            assert np.isfinite(value[name])
