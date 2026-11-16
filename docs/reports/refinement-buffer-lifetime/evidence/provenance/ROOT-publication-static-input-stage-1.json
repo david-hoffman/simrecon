@@ -1,0 +1,203 @@
+{
+  "scope": "Only fixed source/protocol/review byte copies staged externally during profile window. No product/root/source/method edit, compression, new workload or acceptance. Later actualraw/qualifiedreport/SCI collection required.",
+  "copies": [
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source/observer.py",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/measurement-source/observer.py",
+      "sha256": "eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745",
+      "bytes": 20762
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source/run_attempt.py",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/measurement-source/run_attempt.py",
+      "sha256": "6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f",
+      "bytes": 53466
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/measurement-source/workload_child.py",
+      "sha256": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "bytes": 6470
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source/method_qualification.py",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/measurement-source/method_qualification.py",
+      "sha256": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21",
+      "bytes": 80198
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source/manifest.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/measurement-source/manifest.json",
+      "sha256": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+      "bytes": 7865
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-qualification-source/method_qualification.py",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/qualification-source/method_qualification.py",
+      "sha256": "65b41d34c5a740548a2156ff5bafb20230aab78418eb556d23ab04df24b58cae",
+      "bytes": 84438
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-qualification-source/source-delta.patch",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/qualification-source/source-delta.patch",
+      "sha256": "695c29110df3d5e5610bebb0ecfb6174ac36447fd966953e7681d0e4fa859e6f",
+      "bytes": 22896
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-qualification-source/source-report.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/qualification-source/source-report.md",
+      "sha256": "f0302f06a1b746a8d0425ba9478d3302d144eaac399fbf52e21072454ca56609",
+      "bytes": 14452
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-qualification-source/source-handoff.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/qualification-source/source-handoff.md",
+      "sha256": "6bc106ebacd085186e0d622591b86d8f51e9a4d37f015d77a65686fa6587eb9b",
+      "bytes": 4995
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-qualification-source/source-manifest.sha256",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/qualification-source/source-manifest.sha256",
+      "sha256": "7510c6795ab52964f821d2443d065e8312bee0c4754a624ccf6f4fef7b82f3d5",
+      "bytes": 4306
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-qualification-source/control-invocations-PENDING.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/qualification-source/control-invocations-PENDING.md",
+      "sha256": "e56cecdd4410efdc1cf3b70dd22472c8c88ff9db1820830cd74d55d0564655e1",
+      "bytes": 13640
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-protocol-parent1587-BOUND-PENDING.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-protocol-parent1587-BOUND-PENDING.md",
+      "sha256": "5f393ddace3edaf62c414dbe41295a2cf4989eebb6d9de2c93043e5ba3a89954",
+      "bytes": 10526
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-conditions-parent1587-PROPOSED.tsv",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-conditions-parent1587-PROPOSED.tsv",
+      "sha256": "e9ae81c06a862414cfb830f7ae4e339ddba631aa01b6e06d1d6092d485bcad73",
+      "bytes": 1301
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-measured-candidate-freeze.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-measured-candidate-freeze.json",
+      "sha256": "8fb2a367c4105780f196277a256af36ed9fe731071f19b7f681b0116d763e0dd",
+      "bytes": 3027
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-reuse-and-remaining-sequence-freeze.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-reuse-and-remaining-sequence-freeze.md",
+      "sha256": "cbc9da13f32dbe4c1e83faee4b7c434a392111a45aebc24f5d456da6ca6a960b",
+      "bytes": 3975
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-tiny2d-input-schema-value-declaration.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-tiny2d-input-schema-value-declaration.md",
+      "sha256": "2f2d13932322be013ed058d8ba9d0fc198cb730a0c3764ef2d507fb45d155ec1",
+      "bytes": 8703
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-central64-summary-series-declaration-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/ROOT-central64-summary-series-declaration-1.json",
+      "sha256": "595592531b39fc08470843b468f12ba3b99292710ec7b0851e4fec6a18cf71c3",
+      "bytes": 3466
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-central64-summary-series-declaration-2.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/ROOT-central64-summary-series-declaration-2.json",
+      "sha256": "5ec038fb114c58734fe67aab13f6b0bc9a99c9f2ac0e364c48130e14d7408bb1",
+      "bytes": 4807
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-central64-full-series-declaration-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/ROOT-central64-full-series-declaration-1.json",
+      "sha256": "2de9b35d0ff1fb9fc2d7d6d768f47592284b4d950cd66ef33ece7754e832347a",
+      "bytes": 5320
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-tiny2d-remaining-r2r3-declaration-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/ROOT-tiny2d-remaining-r2r3-declaration-1.json",
+      "sha256": "2a7f6a5bc0888bf0592c1fccc957162c2cddd7b085e540752e2948581506e27d",
+      "bytes": 3111
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-central64-profiles-declaration-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/ROOT-central64-profiles-declaration-1.json",
+      "sha256": "05e56a1dc43ee856795b1b8f318b8c68e2bed1c7e8f57deaafffa09b510dbf79",
+      "bytes": 7624
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-central64-profiles-controls-release-binding-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/ROOT-central64-profiles-controls-release-binding-1.json",
+      "sha256": "bcd85196f453ad27bf3ee0ea2f537ea11c68facb1e591bb7a09c561bc9f239fd",
+      "bytes": 1186
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-central64-summary-attempt1-timeout-diagnosis.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-central64-summary-attempt1-timeout-diagnosis.md",
+      "sha256": "be5ae13faea6f95297cecc185664a3e0141c44d6b81ee41819e5d2c061ca55d7",
+      "bytes": 10519
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-native256-admission-worksheet-PENDING.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-native256-admission-worksheet-PENDING.md",
+      "sha256": "162c2cfed50f9d8d892abf121227226af554b74c1110a71736005e025bec3ff9",
+      "bytes": 11947
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-protocol-largest-disposition-proposal-1.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-protocol-largest-disposition-proposal-1.md",
+      "sha256": "086f4ee8d19ca593174dee3351c968c3e0cd0c1db77109c10e401bf22d0a1710",
+      "bytes": 4067
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-largest-disposition-application-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/ROOT-largest-disposition-application-1.json",
+      "sha256": "d1f9d2b07205afc82951f22f598c87bafa75337bf85bee30a2e9e04fc56ef0c1",
+      "bytes": 3228
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source-review1.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/method-review/resource-method-source-review1.md",
+      "sha256": "287b42d86b33032c4fb5b0273472c31b642f55de6d727a754adfba255917cbcc",
+      "bytes": 32955
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source-review1-final.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/method-review/resource-method-source-review1-final.md",
+      "sha256": "b0e47a6590ce1813a1436d6eb61441239196be829e0c00017c8bd6b96355c95d",
+      "bytes": 4492
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source-review2.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/method-review/resource-method-source-review2.md",
+      "sha256": "9fab586ead7da9a0f36956fbc784fed6d6e7f6f6245ab23db5cfa06573405805",
+      "bytes": 38247
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-source-review2-final.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/method-review/resource-method-source-review2-final.md",
+      "sha256": "0fc918fd32a8b04a4e6f7cc2bb7e1a43afc832579ce906e07298ca696f7162dd",
+      "bytes": 5906
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-largest-disposition-independent-review-1.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/method-review/resource-largest-disposition-independent-review-1.md",
+      "sha256": "b5c5badfddbac2de2e240a00e7bc05253733a4c3dd16bfe6203c8e3ae8206ed3",
+      "bytes": 22947
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-largest-disposition-independent-review-1-final.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/method-review/resource-largest-disposition-independent-review-1-final.md",
+      "sha256": "3739b904a0391f8facf8f60e97580cfbe67c64ec143426c90d618a852fe5a12b",
+      "bytes": 1945
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-minimum-six-record-applicability-assessment.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/method-review/resource-minimum-six-record-applicability-assessment.md",
+      "sha256": "dd47eed81ce8dc9f6846bd6615d54ba3c7c57ea6f8ff6f17d7abd6e2a5f1911a",
+      "bytes": 9329
+    }
+  ]
+}

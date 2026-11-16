@@ -1,0 +1,28 @@
+2026-11-16T07:08:29Z
+unchanged accepted-start refinement: HEAD790-874 equals candidate814-898
+refinement_cmp_status=0
+unchanged accepted-start later block: HEAD875-885 equals candidate793-803
+later_cmp_status=0
+cdf5894e916c9445a1627da9e654d853b8f772fba9f376cee80680fed9701564  scripts/source_free_check.py
+222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b  uv.lock
+96a30134cc00103853913cfccaf673373b97760549467035082e71532c245abb  pyproject.toml
+d747ad6e5f5c0b83d13e1867864ac28c06c465fdfa22ee679ee0c302e8ca7bea  Makefile
+6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e  src/simrecon/acquisition/layout.py
+4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1  src/simrecon/acquisition/modes.py
+edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645  src/simrecon/reconstruction/known_parameters.py
+430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0  src/simrecon/workflow/config.py
+6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6  src/simrecon/workflow/result.py
+name = "numpy"
+version = "2.5.3"
+name = "pyright"
+version = "1.1.414"
+name = "pytest"
+version = "9.1.1"
+name = "ruff"
+version = "0.16.9"
+name = "scipy"
+version = "1.18.1"
+ .../reconstruction/parameter_estimation.py         | 36 +++++++++++++++-------
+ 1 file changed, 25 insertions(+), 11 deletions(-)
+diff_check_status=0
+2026-11-16T07:08:29Z

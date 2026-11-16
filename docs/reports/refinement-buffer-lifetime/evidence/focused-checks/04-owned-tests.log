@@ -1,0 +1,45 @@
+2026-11-16T07:07:40Z
+527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38  src/simrecon/reconstruction/parameter_estimation.py
++ docker exec --user 1000:1000 -w /workspace/work/issue-117 11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b /usr/bin/env -u PYTHONOPTIMIZE -u PYTEST_ADDOPTS -u PYTEST_PLUGINS PYTHONPATH=/workspace/work/issue-117/src OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 BLIS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /workspace/.simrecon-tools/uv-env/bin/uv run --locked --no-sync python scripts/source_free_check.py --timeout 300 pytest -s tests/test_refinement_buffer_lifetime.py
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-117
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 28 items
+
+tests/test_refinement_buffer_lifetime.py RB117_INPUT 024ed3fde00740d1f13ecdfdffbae338aec82e4097be5d76c9cc0d2c7864753a
+.RB117_INPUT e315bd8d3621801eeed049141bd0329878bed4a21aa3492012747d2b77b73c13
+.RB117_INPUT c0acf25e02d1468622fa6f258285be008713c11cb3dc2e0ba14e4f5e03f09119
+.RB117_INPUT 9baaf963a10faf31e009a68686d64ce6bb8c051d7e8220619f42aad2bf1df1dc
+.RB117_INPUT c551a5c816571c1550a1bd67e9dde9dabea1f835bbf2ace09fc35b067e15d76b
+.RB117_INPUT 67e1f12e4deb9a07c9f739e9d4eb53f00e843679d268c425698b4b14559724e2
+.RB117_INPUT 622f03276b797d45a03bd2042b681f539f88cc4ebd8d26fcdcdbe54192797449
+.RB117_INPUT ab096acd4c999073ee5421a6083f1f2bc96782705d70d9f0a489c23b7c74f413
+.RB117_INPUT a4debc6fd074d5bd944d8698220e3c39ce70d7c2bdc4566a8a3a871005bc667c
+.RB117_INPUT 54bded02862872ea688d0358426c45fee4e1adf315b4bdde3599ccc6ecd1241f
+.RB117_INPUT e4c8f458f465eb1dada52ae92c37ecaeb2271ffb06337ba2c2bb0e7d05ef7683
+.RB117_INPUT a9c7cf579b4ff3166847c55184b36f363518be29a79d37abf4259de3ce4a9469
+.RB117_INPUT 0e128dfa4146c208910cf4ee2d492dc4b34ca19b7cf8159b388ad17cab19a32e
+.RB117_INPUT 7e26b9ed3f6870527f92129127dcb618d6e6238c1f9ae9cc194ed568e1e05c32
+.RB117_INPUT 4181b8f5f1b84cc0e40e06a9dc0af516481977eadb6840830ee6a9c6f5ad01c1
+.RB117_INPUT f46b9b7cdff1a37f3a6cf8a98b2f66f6f2401998db39a99a2f55b8f2b27c821a
+.RB117_INPUT 257c708ce88c8693ed4aa250b15c7f210d99207b8c0a949e358f9d25b2d80cbd
+.RB117_INPUT 93686934dda72919d8665e161f53dda80f3c4c3df5c7441b0dd0fc1979be6069
+.RB117_INPUT 1feec70a5bd54cc4b9e01b0ba9e1c110de0aab6b00982296483dab71006d0156
+.RB117_INPUT ea0c8dc14fa645715f0817078247f9c7c60ace8b01ef098654b1beb469ab7e45
+.RB117_INPUT 97e1571756e2cffdb4c1260941e18ecda1f69065019e4f1adec3bc0ac7c1f4a0
+.RB117_INPUT cd7ec55329f9c79c26d787efb4c78f059e5ba611c56c5666863d7f10daf3fac6
+.RB117_INPUT db8ec468cc628b8efb62482b638597bfb1fb9893b7bb082525bebd4aeba93e37
+.RB117_INPUT 35cfa0c7081e69b180beeb2bd9152ae5dabaff3b50fa423c8c3bfc39dddc190f
+.RB117_INPUT 91ab59f71861a6fb5a7cfffb736c0ef9b038d7ceee245268404795413ce50c00
+.RB117_INPUT 621802da0be13d94c11539bab449960fc2855ed701cd41e68de9539607cb4922
+.RB117_INPUT c7614da6e9309c8dd962eb5788fca66e1b38c0d41e5e6f3e4a990bc6a6ade055
+.RB117_INPUT e6627785e09843afc20db006367e12b05882b406fd7e3dc1e4c245c9f6d262c3
+.
+
+============================= 28 passed in 39.61s ==============================
++ check_status=0
++ set +x
+exit_status=0
+2026-11-16T07:08:32Z

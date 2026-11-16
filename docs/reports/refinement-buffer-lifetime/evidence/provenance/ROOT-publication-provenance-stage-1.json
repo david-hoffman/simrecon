@@ -1,0 +1,71 @@
+{
+  "scope": "Exact source-review/closure/command-tool/staging provenance copies, no new interpretation/execution/acceptance; earlierpartialstatussnapshot remainshistorical",
+  "copies": [
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-review1-packet.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/resource-method-review1-packet.md",
+      "sha256": "9065d8fcb480f16d286875d08485e8a62d49e67c4f218d9d761259c2ac3010c2",
+      "bytes": 9060
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-review1-inputs.sha256",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/resource-method-review1-inputs.sha256",
+      "sha256": "6d01ef8f307fd92f2527934e46764599dcc6a7a3efa8c3411cdd62f85cf8048a",
+      "bytes": 5790
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-review2-packet.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/resource-method-review2-packet.md",
+      "sha256": "3e3773d0dae37cfff9b8b2af5b47fab19b50f224eae7334e1ad9a9db744584fb",
+      "bytes": 10879
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-method-review2-inputs.sha256",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/resource-method-review2-inputs.sha256",
+      "sha256": "f001ca45dded2164dcf836a88703778e3cdfb387beb04441f51d0cf0c5479482",
+      "bytes": 7702
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-largest-disposition-review-packet.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/resource-largest-disposition-review-packet.md",
+      "sha256": "fbc989ded6c5ed13c4a46a2284bf5bfbbe799b229fe8334c36a5561712464e84",
+      "bytes": 9244
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-largest-disposition-review-inputs.sha256",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/resource-largest-disposition-review-inputs.sha256",
+      "sha256": "a22c292127ae8d59e0b640d207c25513240cf00c62832a3bed716cb3e4a0ea82",
+      "bytes": 20517
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-resource36-window-closed-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/ROOT-resource36-window-closed-1.json",
+      "sha256": "980d74f194f4d597f04d1b13f977572e40dfce460eb9726af4447cc6d18eb4c4",
+      "bytes": 17227
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-resource-later-command-tools-CLOSED-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/ROOT-resource-later-command-tools-CLOSED-1.json",
+      "sha256": "34671ddd4fc66b3ad2b2784ed2ad82cd3558058c064c71cc046ca125629ced46",
+      "bytes": 42848
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-publication-static-input-stage-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/ROOT-publication-static-input-stage-1.json",
+      "sha256": "b0d16a2e819f4f9b91cbc679798b3bce903fb48a989dd30c704dd39d07a6af41",
+      "bytes": 12109
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-publication-actual-raw-stage-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/ROOT-publication-actual-raw-stage-1.json",
+      "sha256": "173942608dda69b702919a0e1ef4c13bec19a6a1f81551660485bb9046d25a16",
+      "bytes": 560
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-publication-focused-proof-stage-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/ROOT-publication-focused-proof-stage-1.json",
+      "sha256": "61dfed3fb94f1d2df32d93ea15764fbe8e39a7de8ad11974fc47e2ba74a5bf60",
+      "bytes": 7328
+    }
+  ]
+}

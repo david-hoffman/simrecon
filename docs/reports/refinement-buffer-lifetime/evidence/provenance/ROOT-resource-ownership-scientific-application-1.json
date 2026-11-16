@@ -1,0 +1,30 @@
+{
+  "schema": "ROOT-RB117-preintegration-scientific-application-v1",
+  "at_unix_ns": 1794823977694131077,
+  "scope": "Apply exact bounded resource/ownershipSCI verdict, not D/readiness/merge/publication",
+  "inputs": {
+    "resource-ownership-scientific-review-1.md": "d8d56f30d8af8fc5f407aa6cd7590b0a2e1996c187fc6ec29fd71c08cbbaf7bf",
+    "resource-ownership-scientific-review-1-final.md": "3876899508025efb291a19d4c9b82e5c3cdf5dfcc089b2d8a72ea90a24542fd1",
+    "resource-final-factual-manuscript.md": "67202ac520ae9f311d2984a23d3bec0a12d5786d21018846fc17595accd8022a"
+  },
+  "ROOT_read": "Whole111line detailedreport and distinctfinal collected and rehashed; no required correction found. Reviewer formed own primary judgment before manuscript/opinions, all36actual observations and12profiles with120stageevents assessed at disclosedscope.",
+  "measured_parent": "158776ade28079276304d49a6b973eccbf4109c9",
+  "measured_candidate": "e6945817850cfdaa3ebbfe21e7a23784964208d6",
+  "decision": "ACCEPT boundedpreintegration sourceownership/compatibility/descriptiveresource account and preserve exactreviewedtargets",
+  "actual_workflows": {
+    "successful": 36,
+    "timeout_preserved": 1,
+    "Q0_separate": 2,
+    "visible_terminal_confirmed_sampling_gaps": 19
+  },
+  "benefit": "Terminalnativepeak saving andcausal/general speedup NOTestablished; sourcepayload32V notRSS",
+  "largest": "All4new256groups NOT_ADMITTED/UNMEASURED, original60proposalfrozen; d1/b5limitedscope holds/currentlargeattribution/scaling/ranking/16GiB absent",
+  "downstream": "Freshpost118SCI actualchangedsource/material/direct+matched observations and explicit119120premise dispositions mandatory; large-dependentpremises held",
+  "integration": "ROOT copies exactdurableevidence, source/publiccheckpoint/toolversionmapping checked separately; finalcandidate/tree/base andgate/D remain outsideverifiedtrackedbytes",
+  "pending": [
+    "exactcleanfinalcandidateUbuntu13makeverify/nativecoverage/M25/wheels/installed/audit",
+    "freshpostgateD",
+    "ROOTleasechecks/push/PR/observedCI"
+  ],
+  "costs": "Allpriorroles/failures/repair/runtimechargesretained; missingmodel/tokens/cache/money/elapsedUNKNOWN"
+}

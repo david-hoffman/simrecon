@@ -1,0 +1,136 @@
+{
+  "scope": "ROOT pre-call fixed group1 central64 summary three matched pairs; no other group/growth release",
+  "parent": {
+    "root": "/workspace/work/issue-116",
+    "head": "158776ade28079276304d49a6b973eccbf4109c9",
+    "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c"
+  },
+  "candidate": {
+    "root": "/workspace/work/issue-117",
+    "head": "e6945817850cfdaa3ebbfe21e7a23784964208d6",
+    "tree": "cd637c9b568e2cbe35119193804b36105ec54500"
+  },
+  "method_manifest_sha256": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+  "source_review2_sha256": "9fab586ead7da9a0f36956fbc784fed6d6e7f6f6245ab23db5cfa06573405805",
+  "minimum_six_assessment_sha256": "dd47eed81ce8dc9f6846bd6615d54ba3c7c57ea6f8ff6f17d7abd6e2a5f1911a",
+  "sequence_freeze_sha256": "cbc9da13f32dbe4c1e83faee4b7c434a392111a45aebc24f5d456da6ca6a960b",
+  "condition_id": "central64-summary-searched",
+  "recipe": {
+    "producer": "unchanged tests/reconstruction_summary_fixture.py::workload((1,3,8,64,64), search=True)",
+    "fixture_sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "shape_TDZYX": [
+      1,
+      3,
+      8,
+      64,
+      64
+    ],
+    "specimen_shape_TDPZYX": [
+      1,
+      3,
+      5,
+      8,
+      64,
+      64
+    ],
+    "specimen_dtype": "<f4",
+    "P": 5,
+    "O": 3,
+    "lateral_zoom": 2,
+    "axial_zoom": 1,
+    "search": true,
+    "mode": "summary",
+    "profile": false,
+    "stages": [],
+    "branches": [
+      [
+        "searched",
+        "searched",
+        "searched"
+      ]
+    ]
+  },
+  "expected_common_fields": {
+    "image": {
+      "shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "dtype": "<f8"
+    },
+    "x_um": {
+      "shape": [
+        128
+      ],
+      "dtype": "<f8"
+    },
+    "y_um": {
+      "shape": [
+        128
+      ],
+      "dtype": "<f8"
+    },
+    "z_um": {
+      "shape": [
+        8
+      ],
+      "dtype": "<f8"
+    },
+    "carriers_cyc_um": {
+      "shape": [
+        1,
+        3,
+        2
+      ],
+      "dtype": "<f8"
+    },
+    "modulation": {
+      "shape": [
+        1,
+        3,
+        2
+      ],
+      "dtype": "<c16"
+    },
+    "raw_modulation": {
+      "shape": [
+        1,
+        3,
+        2
+      ],
+      "dtype": "<c16"
+    }
+  },
+  "ordered_rows": [
+    [
+      "parent",
+      1
+    ],
+    [
+      "candidate",
+      1
+    ],
+    [
+      "candidate",
+      2
+    ],
+    [
+      "parent",
+      2
+    ],
+    [
+      "parent",
+      3
+    ],
+    [
+      "candidate",
+      3
+    ]
+  ],
+  "comparison": "All six same input/array/common/public-result fingerprints and predeclared branches/shapes; finite compatibility only, no independent physics/tolerance/peak target",
+  "per_row_admission": "Fresh actual source/material/clean identities, domain/context evidence/thresholds/reserve before each call; explicit conservative predicted256MiB+native128MiB <=512MiB process stop,512MiB reserve,hostminimum1GiB,ancestorstop1GiB below actual finite max. Root operating choices for this declared case, not human/product limits; all uncertainty and sample-gap limits preserved.",
+  "execution": "Six exact listed one-call fresh processes, sequential, stop on any unexpected failure/discrepancy/ownership gap; no retry or automatic other-group/growth progression",
+  "row_reuse": "The original four tiny2d r1 rows remain untouched; later independent D/post118 SCI decides applicability. This group does not duplicate those calls."
+}

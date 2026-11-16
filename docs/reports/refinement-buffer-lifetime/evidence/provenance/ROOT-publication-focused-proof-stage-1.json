@@ -1,0 +1,131 @@
+{
+  "scope": "Exact21focused publiccheckpoint/source/check/protocol byte copies, no runtime/acceptance; saved sources/opinions do not enter SCI phase1 excludedinputset",
+  "copies": [
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/00-start-frozen.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/00-start-frozen.log",
+      "sha256": "68e4b19ca03a247176b94c8ed68bc195c89b2ec8000ec018cf3badb4bef2f6e5",
+      "bytes": 2046
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/01-ruff.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/01-ruff.log",
+      "sha256": "04e6d3b6b1425ec36347d590eba30b7852b314dc45f1ebec1bd37839c1ff2167",
+      "bytes": 739
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/02-format.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/02-format.log",
+      "sha256": "76ef967e6df319470da69f0eb175b380017fdd5302d498e0c4de268cfdd27345",
+      "bytes": 754
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/03-pyright.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/03-pyright.log",
+      "sha256": "5cc619a6afe258a9fc5d45394da1b8efd0827706ea53609cd7a47a75ff68da16",
+      "bytes": 754
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/04-owned-tests.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/04-owned-tests.log",
+      "sha256": "3adac4a9cc7edc95a70d21e3d18348f664786d4767ea96295b612f75df565d73",
+      "bytes": 3272
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/05-estimator-tests.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/05-estimator-tests.log",
+      "sha256": "47538cd426f6288523299288ad00176e3993c2ee64439e548bd0e1a24fbd6979",
+      "bytes": 1627
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/06-acquisition-tests.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/06-acquisition-tests.log",
+      "sha256": "00a6cb75890afaf0811431042fbfc196401f5ade761b8bb4294592fc4fb034ba",
+      "bytes": 1233
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/07-wide-tests.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/07-wide-tests.log",
+      "sha256": "ad12832f5e4131d5bfb8b2741e29234a137385eb37509cb9b7b50e5de993b8eb",
+      "bytes": 1199
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/08-static-proof.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/08-static-proof.log",
+      "sha256": "2e0f6dd256e5de44a2fb8e8926de2c73ae96a398047b8ebcaf22e4aa273ffc2f",
+      "bytes": 1390
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/09-source.diff",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/09-source.diff",
+      "sha256": "f52aed2b580a134af3fce3a81fe54a13b5811de46ddaabdee921f73abc3eb050",
+      "bytes": 2790
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/10-input-manifest.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/10-input-manifest.log",
+      "sha256": "24b93e42253663fbb4a3b13353031e14f7364475ac9f965729cce050564007cd",
+      "bytes": 310
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/11-final-identities.log",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/11-final-identities.log",
+      "sha256": "b4b49b3fabfea824701d5ff3268109f9badd03d05c96afd68d3eea0cd7d8cfb6",
+      "bytes": 2010
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-checks/12-log-digests.sha256",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/focused-checks/12-log-digests.sha256",
+      "sha256": "ea3e1aa5d0ed828b084a0bedf9db15e76d120ce3ae4b2d264c08b2d2883e4944",
+      "bytes": 1715
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/b3-report.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/controls-and-proof/b3-report.md",
+      "sha256": "8fb3d5a3301ae5db9db3e13cbca05bdab5b4c55265282ef801e75511cd0a4769",
+      "bytes": 21307
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/b3-final.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/controls-and-proof/b3-final.md",
+      "sha256": "57595d503de6eee9c00765dbff7f333ec3834f3280b72fbd9fc85d15ecce1c78",
+      "bytes": 2204
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/b3-public-packet.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/controls-and-proof/b3-public-packet.md",
+      "sha256": "6439fd3f24a0a2e8981e85347142f34a59398f49cee34b9883ca5084b6c809bd",
+      "bytes": 8681
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/b3-accepted-test-checkpoint.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/controls-and-proof/b3-accepted-test-checkpoint.md",
+      "sha256": "f41a980c9bf052198de7d3933be61180998673318ebd5521d998e142d48052cd",
+      "bytes": 1991
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-packet-ACTIVE.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/controls-and-proof/c-parent1587-packet-ACTIVE.md",
+      "sha256": "a2855197ed30e88898525a90c545bfaa786c1495cb367ff5fab84111cb819b35",
+      "bytes": 10140
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/c-parent1587-final.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/controls-and-proof/c-parent1587-final.md",
+      "sha256": "9b3b6c29984fb2ead51de1902cb0944cbf760a615fffdbfe01de8944b29a6dbf",
+      "bytes": 3479
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-actual116-environment-preflight-1.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/controls-and-proof/ROOT-actual116-environment-preflight-1.json",
+      "sha256": "dd2285aaeced271e9ca7ab13c79691082ccf8353bd97a49da7ecc4224b27fb90",
+      "bytes": 2791
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-protocol-parent1587-PROPOSED.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/protocol/resource-protocol-parent1587-PROPOSED.md",
+      "sha256": "742106e826c1387c3819306b7c1c447ec74743991e5dcba88286df998fe17980",
+      "bytes": 10085
+    }
+  ]
+}

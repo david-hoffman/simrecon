@@ -1,0 +1,29 @@
+# RB117 accepted actual-parent affected B3 checkpoint
+
+Fresh blind B3 ACCEPT:0041267248411472335732757110c0b4de389b49,
+tree24f745d08e13d0fc4d2082f9b7f48c63138ebfd1,
+actual accepted116 parent158776ade28079276304d49a6b973eccbf4109c9/
+tree23530ae22e7e1a64f8171dbbedfea81d1b00174c, PR123 requiredCI43815921420PASS.
+Closed29 manifest3414e1259a0cd76bc92fee6bfe3e23cfcf9287f2fb1fdf0a9b619165cf1781ea;
+publicaddendumf3f5a114ed3ed9d4c2daf2c82ae1581b09f3c352b2fea1b46aa2cb0ccd633169.
+Actual publicpacket6439fd3f24a0a2e8981e85347142f34a59398f49cee34b9883ca5084b6c809bd.
+
+Report8fb3d5a3301ae5db9db3e13cbca05bdab5b4c55265282ef801e75511cd0a4769;
+separatefinal57595d503de6eee9c00765dbff7f333ec3834f3280b72fbd9fc85d15ecce1c78.
+Coordinator collected/read fullactualreport/final, rehashedboth andall29members,
+confirmedthen-cleanexactcheckpoint. No testcorrection or newmeaning. R/S/115
+representation/helper/oracle/positive/error/dependencyreview complete; original
+finite models/conditionalfaultpositive limits preserved. Initialtiesarenotlater-
+equality witness; strict literalpredicate/operand/carry/state, hiddenowners/
+temporalrelease/fullcaptures/errororder remain C/Dsourceproof. Resource/method/
+matchedobservations/fullUbuntu/freshD/finalreadiness NOTacceptedbyB3. No newly
+observed testpass; no excludedread/runtime/edit/delegation/process. Transport-
+truncatedreads were recovered beforeverdict perreviewer, no sourceexposure.
+
+CompletedfullB reviews3, allpastintake/A/B/C/advisor/admission/repair/checkcharges
+retained. RequestedSol/high/forknone; actualserved/metering/cost/elapsedunknown,
+optionalcontrols unavailable/sharedFS promptlimits. ParentCIpass+thisBacceptance
+alone is not a numerical/resourcewindow. Rootseparatelyreleased exactC1source
+continuation/sevenordinarychecks on metadata-onlycleanstart ea5c18c/treee5aa9a2,
+all29 unchanged. CurrentexecutingCsource maydiffer; thisreceiptbindsTESTcheckpoint
+0041267 only. No post-C/finalgate/measurementrelabelling. Old64a receiptsstayold.

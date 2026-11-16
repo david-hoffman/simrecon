@@ -1,0 +1,362 @@
+--- original/observer.py
++++ external/observer.py
+@@ -254,18 +254,33 @@
+ 
+ def material_hashes(root):
+     """Identify the declared product, fixture, dependency and method source bytes."""
++    if root not in (Path("/workspace/work/issue-116"), Path("/workspace/work/issue-117")) or (
++        root.resolve() != root
++    ):
++        raise ValueError("product root differs from fixed RB117 revision mapping")
+     paths = sorted((root / "src/simrecon").rglob("*.py"))
+     paths += [
+         root / "uv.lock",
+         root / "tests/reconstruction_summary_fixture.py",
+         root / "tests/reconstruction_memory_benchmark.py",
+     ]
+-    report = root / "docs/reports/reconstruction-working-set"
+-    paths += [
+-        report / name
+-        for name in ("manifest.json", "observer.py", "run_attempt.py", "workload_child.py")
+-    ]
+-    return {str(p.relative_to(root)): digest(p) for p in paths}
++    material = {str(p.relative_to(root)): digest(p) for p in paths}
++    report = Path(__file__).resolve().parent
++    if report != Path("/workspace/work/campaign/evidence/117/resource-method-source"):
++        raise ValueError("method source differs from fixed RB117 external tooling directory")
++    material.update(
++        {
++            "external_method:" + str(report / name): digest(report / name)
++            for name in (
++                "manifest.json",
++                "observer.py",
++                "run_attempt.py",
++                "workload_child.py",
++                "method_qualification.py",
++            )
++        }
++    )
++    return material
+ 
+ 
+ def cgroup_ancestors():
+--- original/run_attempt.py
++++ external/run_attempt.py
+@@ -37,13 +37,17 @@
+ )
+ 
+ HERE = Path(__file__).resolve().parent
+-ROOT = HERE.parents[2]
++ROOTS = {
++    "parent": Path("/workspace/work/issue-116"),
++    "candidate": Path("/workspace/work/issue-117"),
++}
++OUTPUTS = {"parent": HERE / "raw-parent", "candidate": HERE / "raw-candidate"}
+ RSS_TERMINAL_CONFIRM_SECONDS = 0.05
+ 
+ 
+-def git(*args):
++def git(root, *args):
+     """Read exact Git provenance without changing the worktree."""
+-    return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
++    return subprocess.check_output(["git", *args], cwd=root, text=True).strip()
+ 
+ 
+ def write(path, record):
+@@ -119,7 +123,7 @@
+         raise ValueError("no finite observable exposed-domain memory bound")
+ 
+ 
+-def admit(grant):
++def admit(grant, root):
+     """Validate exact-case release, applicability and conditional resource admission."""
+     if grant["numerical_release"] is not True or grant["accepted_112_then_115"] is not True:
+         raise ValueError("accepted dependency and exact numerical release required")
+@@ -145,13 +149,13 @@
+     if str(Path(sys.executable).resolve()) != grant["python_resolved"]:
+         raise ValueError("interpreter differs from pinned grant")
+     actual = {
+-        "head": git("rev-parse", "HEAD"),
+-        "tree": git("rev-parse", "HEAD^{tree}"),
++        "head": git(root, "rev-parse", "HEAD"),
++        "tree": git(root, "rev-parse", "HEAD^{tree}"),
+         "tracked_diff_sha256": hashlib.sha256(
+-            subprocess.check_output(["git", "diff", "--binary", "HEAD"], cwd=ROOT)
++            subprocess.check_output(["git", "diff", "--binary", "HEAD"], cwd=root)
+         ).hexdigest(),
+     }
+-    if actual != grant["candidate"] or material_hashes(ROOT) != grant["material_hashes"]:
++    if actual != grant["candidate"] or material_hashes(root) != grant["material_hashes"]:
+         raise ValueError("candidate or material input identities changed")
+     manifest = json.loads((HERE / "manifest.json").read_text())
+     if (
+@@ -171,19 +175,27 @@
+         )
+     ):
+         raise ValueError("bounded fixed-route nonce required")
+-    candidates = manifest["initial_conditions"] + grant.get("declared_growth_conditions", [])
++    declared_growth = grant.get("declared_growth_conditions", [])
++    if any(row not in manifest["growth"]["conditions"] for row in declared_growth):
++        raise ValueError("growth condition differs from fixed RB117 task manifest")
++    candidates = manifest["initial_conditions"] + declared_growth
+     condition = next(row for row in candidates if row["id"] == grant["condition_id"])
+     if condition not in manifest["initial_conditions"] and (
+         not grant.get("growth_separate_admission")
+         or not grant.get("smaller_measured_evidence")
+         or "case" in condition
+-        or condition["shape"] not in ([1, 3, 8, 192, 192], [1, 3, 8, 256, 256])
++        or condition["shape"] != [1, 3, 8, 256, 256]
+     ):
+         raise ValueError(
+-            "growth needs declared 192 or 256 shape, smaller evidence and separate admission"
++            "growth needs declared 256 shape, smaller evidence and separate admission"
+         )
+     if grant["repetition"] not in manifest["repetitions"] or type(grant["profile"]) is not bool:
+         raise ValueError("undeclared repetition/profile")
++    if not any(
++        row["condition_id"] == condition["id"] and row["profile"] is grant["profile"]
++        for row in manifest["condition_profile_groups"]
++    ):
++        raise ValueError("condition/profile differs from fixed RB117 task manifest")
+     cg = cgroup_ancestors()
+     if "error" in cg:
+         raise ValueError(cg["error"])
+@@ -287,13 +299,13 @@
+             }
+ 
+ 
+-def candidate_identity():
++def candidate_identity(root):
+     """Capture HEAD, tree and tracked-patch identities separately from raw outputs."""
+     return {
+-        "head": git("rev-parse", "HEAD"),
+-        "tree": git("rev-parse", "HEAD^{tree}"),
++        "head": git(root, "rev-parse", "HEAD"),
++        "tree": git(root, "rev-parse", "HEAD^{tree}"),
+         "tracked_diff_sha256": hashlib.sha256(
+-            subprocess.check_output(["git", "diff", "--binary", "HEAD"], cwd=ROOT)
++            subprocess.check_output(["git", "diff", "--binary", "HEAD"], cwd=root)
+         ).hexdigest(),
+     }
+ 
+@@ -855,13 +867,19 @@
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--grant", type=Path, required=True)
+     parser.add_argument("--attempt-id", required=True)
++    parser.add_argument("--revision", choices=("parent", "candidate"), required=True)
+     args = parser.parse_args()
++    if HERE != Path("/workspace/work/campaign/evidence/117/resource-method-source"):
++        raise ValueError("method source differs from fixed RB117 external tooling directory")
++    root = ROOTS[args.revision]
++    if root.resolve() != root:
++        raise ValueError("product root differs from fixed RB117 resolved revision mapping")
+     if not args.attempt_id or any(
+         c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
+         for c in args.attempt_id
+     ):
+         raise ValueError("safe unique attempt id required")
+-    out = HERE / "raw" / args.attempt_id
++    out = OUTPUTS[args.revision] / args.attempt_id
+     out.mkdir(parents=True, exist_ok=False)
+     receipt = {
+         "protocol": "WS116-attempt-v3",
+@@ -870,6 +888,9 @@
+         "observer_pid": os.getpid(),
+         "started_monotonic_ns": time.monotonic_ns(),
+         "signals": [],
++        "revision_selector": args.revision,
++        "product_root": str(root),
++        "external_method_root": str(HERE),
+     }
+     owner = None
+     launch = None
+@@ -882,7 +903,7 @@
+         shutil.copyfile(args.grant, out / "grant.input")
+         receipt["grant_sha256"] = digest(out / "grant.input")
+         grant = json.loads((out / "grant.input").read_text())
+-        write(out / "preflight.json", context(ROOT))
++        write(out / "preflight.json", context(root))
+         if sys.platform != "linux" or not hasattr(os, "wait4") or not hasattr(os, "posix_spawn"):
+             raise ValueError("Linux stdlib wait4/posix_spawn route unavailable")
+         if signal.getsignal(signal.SIGCHLD) != signal.SIG_DFL:
+@@ -900,17 +921,17 @@
+                 raise ValueError("positive explicit method safety setting required: " + key)
+         if type(grant["max_child_record_bytes"]) is not int:
+             raise ValueError("child JSON parse bound must be integer bytes")
+-        receipt["candidate_pre_admission"] = candidate_identity()
+-        receipt["material_hashes_pre_admission"] = material_hashes(ROOT)
+-        spec, identity = admit(grant)
+-        hashes_before = material_hashes(ROOT)
++        receipt["candidate_pre_admission"] = candidate_identity(root)
++        receipt["material_hashes_pre_admission"] = material_hashes(root)
++        spec, identity = admit(grant, root)
++        hashes_before = material_hashes(root)
+         spec["expected_material_hashes"] = hashes_before
+         spec["expected_exposed_domain"] = grant["resource_domain"]["expected_exposed"]
+         target_argv = [
+             sys.executable,
+             str(HERE / "workload_child.py"),
+             str(out / "spec.json"),
+-            str(ROOT),
++            str(root),
+         ]
+         spec["launch"] = {
+             "route": "plain-spawn/same-pid-setsid/execve",
+@@ -934,11 +955,11 @@
+                 "version": sys.version,
+             },
+             sigchld_handler="SIG_DFL",
+-            effective_cwd=str(ROOT),
++            effective_cwd=str(root),
+         )
+         env = os.environ.copy()
+         env.update({key: "1" for key in THREADS})
+-        env["PYTHONPATH"] = str(ROOT / "src")
++        env["PYTHONPATH"] = str(root / "src")
+         env["PYTHONDONTWRITEBYTECODE"] = "1"
+         receipt["child_environment_controls"] = {
+             key: env.get(key)
+@@ -952,7 +973,7 @@
+         }
+         receipt["phase"] = "startup_prepare"
+         # chdir is parent-only before spawn, avoiding preexec_fn or another child.
+-        os.chdir(ROOT)
++        os.chdir(root)
+         with (
+             (out / "stdout.json").open("x") as stdout,
+             (out / "stderr.log").open("x") as stderr,
+@@ -1114,8 +1135,8 @@
+         )
+         receipt["child_outcome"] = outcome
+         receipt["child_record_sha256"] = digest(out / "stdout.json")
+-        receipt["candidate_after"] = candidate_identity()
+-        receipt["material_hashes_after"] = material_hashes(ROOT)
++        receipt["candidate_after"] = candidate_identity(root)
++        receipt["material_hashes_after"] = material_hashes(root)
+         identity_matches = (
+             receipt["candidate_after"] == receipt["candidate_before"]
+             and receipt["material_hashes_after"] == receipt["material_hashes_before"]
+@@ -1160,8 +1181,8 @@
+             receipt["nonterminal_wait_events"] = owner.nonterminal_wait_events
+         receipt["finished_monotonic_ns"] = time.monotonic_ns()
+         try:
+-            receipt["candidate_final"] = candidate_identity()
+-            receipt["material_hashes_final"] = material_hashes(ROOT)
++            receipt["candidate_final"] = candidate_identity(root)
++            receipt["material_hashes_final"] = material_hashes(root)
+             if "candidate_before" in receipt and (
+                 receipt["candidate_final"] != receipt["candidate_before"]
+                 or receipt["material_hashes_final"] != receipt["material_hashes_before"]
+@@ -1169,7 +1190,7 @@
+                 receipt["material_identity_matches"] = False
+                 if receipt["status"] == "complete_child_observed_pending_scientific_qualification":
+                     receipt["status"] = "material_identity_failure"
+-            receipt["postflight"] = context(ROOT)
++            receipt["postflight"] = context(root)
+             receipt["observer_self_snapshot"] = __import__("observer").rusage_snapshot(
+                 "parent after child/cleanup, excludes receipt serialization"
+             )
+--- original/manifest.json
++++ external/manifest.json
+@@ -1,50 +1,60 @@
+ {
+-  "protocol": "WS116-source-draft-v6-method5",
+-  "method_revision": "source-only method5 correction after one observed tiny selected route; fixed bootstrap/readiness/exec and direct-PID ownership; current bytes await fresh affected review and qualification",
++  "protocol": "RB117-fixed-external-method7-source-only-v1",
++  "method_revision": "fixed external root/material/manifest/output binding of inherited method7; no runtime or suitability acceptance",
+   "launch": {"route":"plain-posix-spawn/same-pid-setsid/execve", "bootstrap_source":"observer.py::SESSION_BOOTSTRAP", "bootstrap_sha256":"81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e", "startup_timeout_seconds":5.0, "startup_pipe_bytes":1024, "ready_message_bytes":512, "signals":"exact owned direct PID only; no numerical descendants", "native_scope":"kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim"},
+-  "preserved_review3_sources": "/workspace/work/campaign/evidence/116/source-method-v2-corrected-review3/; exact statically accepted v4 bytes retained unchanged",
+-  "preserved_review2_sources": "/workspace/work/campaign/evidence/116/source-method-v2-corrected-review2/; coordinator-preserved six exact prior reviewed files, retained unchanged",
+-  "preserved_review1_sources": "/workspace/work/campaign/evidence/116/source-method-v2-review1/; all six original reviewed digests verified before correction",
+-  "previous_source_draft": "701b56d349adaf5e719510a158b51402876f9c30; history preserved, no numerical attempts",
+-  "execution_status": "not_run",
+-  "baseline": {"provisional": "b344e41a8b52de76d7cbbf8450319893904c3b8f", "accepted_112_then_115": "ace06c861b974b6251a092567c253ae4eb0f56c8", "accepted_parent_tree": "2247d3909f43bc4764beb5c748caa917aaa1d707", "source_reconciliation_checkpoint": "33df4e4e72787db9ab7d81b54ef26cfb328bf345", "candidate_identity": "final experiment candidate bound externally by coordinator, not inferred from this historical source checkpoint"},
++  "execution_status": "not_run_no_grant_or_admission_created",
++  "revision_mapping": {
++    "parent": {"root":"/workspace/work/issue-116", "source":"158776ade28079276304d49a6b973eccbf4109c9", "tree":"23530ae22e7e1a64f8171dbbedfea81d1b00174c", "setup_status":"ROOT_confirmed_clean_fixed_accepted_parent_root_and_source_resource_qualification_and_per_run_setup_admission_pending"},
++    "candidate": {"root":"/workspace/work/issue-117", "source":"e6945817850cfdaa3ebbfe21e7a23784964208d6", "tree":"cd637c9b568e2cbe35119193804b36105ec54500", "setup_status":"ROOT_confirmed_clean_fixed_root_and_source_resource_qualification_and_admission_pending"}
++  },
++  "external_method_root": "/workspace/work/campaign/evidence/117/resource-method-source",
++  "output_roots": {"parent":"/workspace/work/campaign/evidence/117/resource-method-source/raw-parent", "candidate":"/workspace/work/campaign/evidence/117/resource-method-source/raw-candidate"},
+   "repetitions": [1, 2, 3],
+-  "all_declared_attempts_status": "source-preparation history only: all not_run; future statuses go to raw receipts, never mutate a frozen manifest",
++  "paired_revision_order": {"1":["parent","candidate"], "2":["candidate","parent"], "3":["parent","candidate"]},
++  "scope_counts": {"condition_profile_groups":10, "core_calls":24, "central_profile_calls":12, "largest_unprofiled_calls":12, "largest_profile_calls":12, "total_proposed_calls":60},
++  "initial_attempt_count": 24,
++  "all_declared_attempts_status": "proposed only; exact individual root release required; no automatic execution, retry or growth; raw receipts never mutate this frozen manifest",
+   "actual_input_output_hashes": "pending execution; never inferred from source",
+-  "qualification": "pending actual finite completion, branch and scientific-output matching",
++  "qualification": "pending fresh independent source review and root-routed finite qualification/applicability decisions",
+   "primary_shape_order": ["T", "D", "Z", "Y", "X"],
+-  "primary_constants": {"P": 5, "O": 3, "Q": 5, "lateral_zoom": 2, "axial_zoom": 1, "use_time0_carriers": true},
+-  "generator": {"file": "tests/reconstruction_summary_fixture.py", "function": "workload or scenario", "revision": "frozen RM84 public-main definitions, read-only", "formulas": "See fixture workload/declared_transfer/scenario and README. The report calls the same pure generator for 192/256 only after admission; no RM84 allowlist is edited."},
++  "primary_constants": {"P":5, "O":3, "Q":5, "lateral_zoom":2, "axial_zoom":1, "use_time0_carriers":true},
++  "generator": {"file":"tests/reconstruction_summary_fixture.py", "function":"workload or scenario", "revision":"actual declared-root bytes bound by material_hashes; no fixture edits", "formulas":"unchanged fixture workload/declared_transfer/scenario; native conditions omit case; exact true2D uses case=2d-search"},
+   "initial_conditions": [
+-    {"id":"central64-full-supplied","shape":[1,3,8,64,64],"mode":"full","search":false},
+-    {"id":"central64-full-searched","shape":[1,3,8,64,64],"mode":"full","search":true},
+-    {"id":"central64-summary-supplied","shape":[1,3,8,64,64],"mode":"summary","search":false},
+-    {"id":"central64-summary-searched","shape":[1,3,8,64,64],"mode":"summary","search":true},
+-    {"id":"spatial32-summary-searched","shape":[1,3,8,32,32],"mode":"summary","search":true},
+-    {"id":"frozen128-full-supplied","shape":[1,3,8,128,128],"mode":"full","search":false},
+-    {"id":"frozen128-full-searched","shape":[1,3,8,128,128],"mode":"full","search":true},
+-    {"id":"frozen128-summary-supplied","shape":[1,3,8,128,128],"mode":"summary","search":false},
+-    {"id":"frozen128-summary-searched","shape":[1,3,8,128,128],"mode":"summary","search":true},
+-    {"id":"direction1-summary-searched","shape":[1,1,8,64,64],"mode":"summary","search":true},
+-    {"id":"time2-summary-searched","shape":[2,3,8,64,64],"mode":"summary","search":true},
+-    {"id":"time4-summary-supplied","shape":[4,3,8,64,64],"mode":"summary","search":false},
+-    {"id":"time4-summary-searched","shape":[4,3,8,64,64],"mode":"summary","search":true},
+-    {"id":"2d-summary","case":"2d","shape":[2,2,1,12,16],"mode":"summary","search":false},
+-    {"id":"off1-summary","case":"off1","shape":[2,3,4,16,16],"mode":"summary","search":false},
+-    {"id":"off2-summary","case":"off2","shape":[2,3,4,16,16],"mode":"summary","search":false},
+-    {"id":"between-summary","case":"between","shape":[2,3,4,12,12],"mode":"summary","search":false},
+-    {"id":"within-summary","case":"within","shape":[2,4,4,12,12],"mode":"summary","search":false},
+-    {"id":"off2-full","case":"off2","shape":[2,3,4,16,16],"mode":"full","search":false},
+-    {"id":"within-full","case":"within","shape":[2,4,4,12,12],"mode":"full","search":false}
++    {"id":"central64-summary-searched", "shape":[1,3,8,64,64], "mode":"summary", "search":true},
++    {"id":"central64-full-searched", "shape":[1,3,8,64,64], "mode":"full", "search":true},
++    {"id":"rb117-2d-search-summary", "case":"2d-search", "shape":[2,2,1,12,16], "mode":"summary", "search":true},
++    {"id":"rb117-2d-search-full", "case":"2d-search", "shape":[2,2,1,12,16], "mode":"full", "search":true}
+   ],
+-  "initial_attempt_count": 60,
+-  "profile_controls": {"status":"not_run", "conditions":["central64-summary-searched","central64-full-searched"], "repetitions":[1,2,3], "largest_safe_searched":"declare exact full/summary conditions after growth envelope is known; reuse unchanged unprofiled trials, run separate matched profile trials", "sample_interval_seconds":0.01},
+-  "growth": {"status":"not_run_not_admitted", "lateral_sizes":[192,256], "shape_template":[1,3,8,"N","N"], "order":["summary supplied","summary searched"], "full_at_largest":"separate admission per supplied/searched condition", "no_automatic_growth":true},
+-  "original_target": {"shape_TDPZYX":[1,3,5,32,2048,2048], "status":"geometry representation-valid under accepted115 on supported64bit; other declarations/stencils still apply; unmeasured and not allocation-admitted, source co-live bound exceeds preliminary exposed16GiB"},
+-  "tooling": {"runner":"run_attempt.py", "child":"workload_child.py", "observer":"observer.py", "liveness":"analysis/liveness-draft.md", "instructions":"README.md", "static_method_review_input":"method-review-input.md", "affected_review_input":"affected-review-input.md", "method_review5_input":"method-review5-input.md", "reconciliation":"analysis/integrated-parent-reconciliation.md", "source_identities":"analysis/integrated-parent-materials.sha256", "qualification_plan":"qualification-plan.md", "code_validation":"method5 four-source AST/compile-without-execution and Ruff passed after preserved style corrections; no current integrated runtime/import/lifecycle/numerical qualification"},
+-  "thread_controls": {"OMP_NUM_THREADS":"1","OPENBLAS_NUM_THREADS":"1","MKL_NUM_THREADS":"1","NUMEXPR_NUM_THREADS":"1"},
+-  "material_inputs": ["accepted parent/candidate commit/tree/dirty and dependency integrations", "all src/simrecon Python source bytes", "uv.lock", "tests/reconstruction_summary_fixture.py", "tests/reconstruction_memory_benchmark.py", "manifest and all report tooling bytes", "fixed bootstrap bytes/digest/target argv/nonce/startup bounds/FD/session metadata", "generator/constants/optics/transfer/mode/search/reuse/shapes/dtypes/input hashes", "interpreter/NumPy/SciPy/backend/FFT/allocator/thread settings", "host/cgroup ancestors/rlimits/swap/headroom", "per-attempt grant/preflight/monitor settings", "timing/hash/traversal scope"],
+-  "revision_refresh": "After accepted #117/#118, retain original trials, identify affected allocation families and contrasts, commission narrow reruns/observer controls and independent review before #119/#120 reliance. Never relabel old measurements as a newer baseline.",
++  "condition_profile_groups": [
++    {"order":1, "group":"core", "condition_id":"central64-summary-searched", "profile":false, "individual_release":"PENDING"},
++    {"order":2, "group":"core", "condition_id":"central64-full-searched", "profile":false, "individual_release":"PENDING"},
++    {"order":3, "group":"core", "condition_id":"rb117-2d-search-summary", "profile":false, "individual_release":"PENDING"},
++    {"order":4, "group":"core", "condition_id":"rb117-2d-search-full", "profile":false, "individual_release":"PENDING"},
++    {"order":5, "group":"central_profile", "condition_id":"central64-summary-searched", "profile":true, "individual_release":"PENDING", "unprofiled_control_group":1},
++    {"order":6, "group":"central_profile", "condition_id":"central64-full-searched", "profile":true, "individual_release":"PENDING", "unprofiled_control_group":2},
++    {"order":7, "group":"largest_control", "condition_id":"growth256-summary-searched", "profile":false, "individual_release":"PENDING_NEW_256_ADMISSION"},
++    {"order":8, "group":"largest_control", "condition_id":"growth256-full-searched", "profile":false, "individual_release":"PENDING_NEW_256_ADMISSION"},
++    {"order":9, "group":"largest_profile", "condition_id":"growth256-summary-searched", "profile":true, "individual_release":"PENDING_NEW_256_ADMISSION", "unprofiled_control_group":7},
++    {"order":10, "group":"largest_profile", "condition_id":"growth256-full-searched", "profile":true, "individual_release":"PENDING_NEW_256_ADMISSION", "unprofiled_control_group":8}
++  ],
++  "profile_controls": {"status":"not_run", "conditions":["central64-summary-searched","central64-full-searched"], "repetitions":[1,2,3], "largest_safe_searched":"growth256 full/summary only after new separate admission for each revision/mode/profile; unmeasured/incomplete otherwise", "reuse_controls":"central profiles reuse groups1/2; largest profiles reuse groups7/8; no duplicate unprofiled series", "sample_interval_seconds":0.01},
++  "growth": {
++    "status":"not_run_not_admitted_pending_new_256_admission_on_both_revisions",
++    "lateral_sizes":[256],
++    "shape_template":[1,3,8,"N","N"],
++    "conditions":[
++      {"id":"growth256-summary-searched", "shape":[1,3,8,256,256], "mode":"summary", "search":true},
++      {"id":"growth256-full-searched", "shape":[1,3,8,256,256], "mode":"full", "search":true}
++    ],
++    "order":["summary searched","full searched"],
++    "full_at_largest":"separate admission per exact searched condition and profile flag",
++    "required":"existing growth_separate_admission and smaller_measured_evidence for every largest group; old116 admission and caps do not transfer",
++    "no_automatic_growth":true
++  },
++  "tooling": {"runner":"run_attempt.py", "child":"workload_child.py", "observer":"observer.py", "task_manifest":"manifest.json", "preserved_control_source":"method_qualification.py", "qualification_driver_status":"byte-identical inherited control source only; original HERE/ROOT/QUAL and inventory assumptions require separate root routing before any use"},
++  "thread_controls": {"OMP_NUM_THREADS":"1", "OPENBLAS_NUM_THREADS":"1", "MKL_NUM_THREADS":"1", "NUMEXPR_NUM_THREADS":"1"},
++  "material_inputs": ["actual declared-root commit/tree/tracked diff/version and product import origin", "all actual src/simrecon Python source bytes", "actual uv.lock", "actual tests/reconstruction_summary_fixture.py", "actual tests/reconstruction_memory_benchmark.py", "same active fixed external observer/runner/child/task-manifest/preserved-control-source bytes under explicit absolute external_method keys", "unchanged bootstrap bytes/digest/target argv/nonce/startup bounds/FD/session metadata", "generator/constants/optics/transfer/mode/search/reuse/shapes/dtypes/input hashes", "interpreter/NumPy/SciPy/backend/FFT/allocator/thread settings", "host/cgroup ancestors/rlimits/swap/headroom", "per-attempt grant/preflight/monitor settings", "timing/hash/traversal scope"],
++  "source_proposals": {"conditions":"/workspace/work/campaign/evidence/117/resource-conditions-parent1587-PROPOSED.tsv", "conditions_sha256":"e9ae81c06a862414cfb830f7ae4e339ddba631aa01b6e06d1d6092d485bcad73", "protocol":"/workspace/work/campaign/evidence/117/resource-protocol-parent1587-PROPOSED.md", "protocol_sha256":"742106e826c1387c3819306b7c1c447ec74743991e5dcba88286df998fe17980"},
+   "human_numeric_cap": null,
+-  "measurements_usage_cost": "unknown; no numerical attempts in source-only preparation"
++  "measurements_usage_cost": "unknown; source-only authoring runs no numerical or qualification attempts"
+ }

@@ -1,0 +1,39 @@
+2026-11-16T07:06:45Z
+ea5c18cc477b32a7e0959cd6c170e02d9398ac27
+e5aa9a2c09def285e5ad6d1b7bb02c12e72decc8
+22683afa5876cf2298d85b51494a0456cd1cc029
+f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8  src/simrecon/reconstruction/parameter_estimation.py
+a2855197ed30e88898525a90c545bfaa786c1495cb367ff5fab84111cb819b35  /workspace/work/campaign/evidence/117/c-parent1587-packet-ACTIVE.md
+3414e1259a0cd76bc92fee6bfe3e23cfcf9287f2fb1fdf0a9b619165cf1781ea  /workspace/work/campaign/evidence/117/b3-parent-inputs.sha256
+f3f5a114ed3ed9d4c2daf2c82ae1581b09f3c352b2fea1b46aa2cb0ccd633169  /workspace/work/campaign/evidence/117/b3-parent-public-material.md
+f52aed2b580a134af3fce3a81fe54a13b5811de46ddaabdee921f73abc3eb050  /workspace/work/campaign/evidence/117/c1-checks/09-source.diff
+AGENTS.md: OK
+.agents/skills/review-work/SKILL.md: OK
+docs/contracts/refinement-buffer-lifetime-v1.md: OK
+docs/contracts/c-equivalence-common-v1.md: OK
+docs/contracts/c-equivalence-preprocessing-v1.md: OK
+docs/contracts/c-equivalence-optical-transfer-v1.md: OK
+docs/contracts/c-equivalence-known-parameters-v1.md: OK
+docs/contracts/c-equivalence-carrier-modulation-v1.md: OK
+docs/contracts/c-equivalence-acquisition-modes-v1.md: OK
+docs/contracts/c-equivalence-workflow-v1.md: OK
+docs/contracts/reconstruction-memory-v1.md: OK
+tests/test_refinement_buffer_lifetime.py: OK
+tests/refinement_buffer_lifetime_fixture.py: OK
+tests/c_estimation_fixture.py: OK
+tests/test_c_estimation_search.py: OK
+tests/test_c_estimation_overlap.py: OK
+tests/test_c_estimation_boundary.py: OK
+tests/test_c_estimation_composition.py: OK
+tests/c_acquisition_fixture.py: OK
+tests/test_c_acquisition_2d.py: OK
+tests/test_c_acquisition_composition.py: OK
+docs/contracts/wide-allocation-domain-v1.md: OK
+docs/packets/wide-allocation-domain-interfaces.md: OK
+tests/test_wide_allocation_domain.py: OK
+tests/wide_allocation_fixture.py: OK
+tests/c_known_fixture.py: OK
+tests/reconstruction_summary_fixture.py: OK
+tests/c_workflow_oracle.py: OK
+tests/c_workflow_support.py: OK
+frozen_status=0

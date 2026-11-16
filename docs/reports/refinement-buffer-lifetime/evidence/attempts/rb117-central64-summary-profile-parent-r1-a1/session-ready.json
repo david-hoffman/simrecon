@@ -1,0 +1,9 @@
+{
+  "role": "bootstrap",
+  "pid": 75035,
+  "ppid": 74999,
+  "pgid": 75035,
+  "session_id": 75035,
+  "nonce": "rb117-central64-summary-profile-parent-r1-a1",
+  "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+}

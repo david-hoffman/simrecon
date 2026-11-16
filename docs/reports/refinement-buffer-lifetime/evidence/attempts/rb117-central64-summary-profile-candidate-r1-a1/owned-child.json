@@ -1,0 +1,33 @@
+{
+  "attempt_id": "rb117-central64-summary-profile-candidate-r1-a1",
+  "observer_pid": 75101,
+  "workload_pid": 75137,
+  "child_identity": {
+    "pid": 75137,
+    "observed_monotonic_ns": 127970076687824,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 12797007,
+    "ppid": 75101,
+    "pgid": 75101,
+    "session_id": 75101,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "session_status": "unverified until bounded readiness",
+  "target_argv": [
+    "/workspace/work/issue-117/.venv/bin/python",
+    "/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py",
+    "/workspace/work/campaign/evidence/117/resource-method-source/raw-candidate/rb117-central64-summary-profile-candidate-r1-a1/spec.json",
+    "/workspace/work/issue-117"
+  ],
+  "bootstrap_argv": [
+    "/workspace/work/issue-117/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nstage = \"arguments\"\ntry:\n    target = json.loads(sys.argv[3])\n    stage = \"setsid\"\n    os.setsid()\n    stage = \"readiness\"\n    message = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n        \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n        \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\n    if len(message) > 512 or os.write(fd, message) != len(message):\n        raise RuntimeError(\"invalid/incomplete bounded readiness write\")\n    os.close(fd)\n    fd = -1\n    stage = \"exec\"\n    os.execve(target[0], target, os.environ.copy())\nexcept BaseException as error:\n    if fd >= 0:\n        os.close(fd)\n    detail = {\"stage\":stage, \"type\":type(error).__name__, \"message\":str(error)[:160]}\n    os.write(2, (\"WS116_BOOTSTRAP_ERROR \" + json.dumps(detail) + \"\\n\").encode())\n    raise SystemExit(125 if stage == \"exec\" else 124)\n",
+    "68",
+    "rb117-central64-summary-profile-candidate-r1-a1",
+    "[\"/workspace/work/issue-117/.venv/bin/python\", \"/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py\", \"/workspace/work/campaign/evidence/117/resource-method-source/raw-candidate/rb117-central64-summary-profile-candidate-r1-a1/spec.json\", \"/workspace/work/issue-117\"]"
+  ],
+  "spec_sha256": "64837ebcbe9258a53d744b5fd5aed19813eae6c484b53f669228860aa4a27868",
+  "grant_sha256": "3df76352a1098414cb0fae49a75ba8c29e7c75ff3df1ef840cc95d712dd280c3",
+  "scope": "owned child marker, not terminal receipt; missing identity fields require coordinator discovery"
+}

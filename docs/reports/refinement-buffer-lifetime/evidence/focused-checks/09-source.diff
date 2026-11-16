@@ -1,0 +1,54 @@
+diff --git a/src/simrecon/reconstruction/parameter_estimation.py b/src/simrecon/reconstruction/parameter_estimation.py
+index dc07d29..5559dac 100644
+--- a/src/simrecon/reconstruction/parameter_estimation.py
++++ b/src/simrecon/reconstruction/parameter_estimation.py
+@@ -787,6 +787,30 @@ class _ParameterEstimator:
+         angle0 = math.pi if cy == 0 and cx < 0 else math.atan2(cy, cx)
+         _finite((mag0, angle0), "coarse polar conversion")
+         pair_order = 1 if self.grid.shape[3] == 1 else 2
++        carrier, factor, angle, magnitude = self._refine_frozen_pair(
++            coarse, pair_order, angle0, mag0
++        )
++        factors = [0j] * (self.grid.orders - 1)
++        factors[pair_order - 1] = factor
++        for order in range(1, self.grid.orders):
++            if order != pair_order:
++                lower = order - 1 if self.grid.shape[3] == 1 else 0
++                other = self.build_order_overlap(carrier, order, "later-order", lower)
++                factors[order - 1], _ = self.fit_overlap_modulation(
++                    other, carrier, "later-order", True, angle, magnitude
++                )
++                del other
++        return carrier, factors
++
++    def _refine_frozen_pair(
++        self, coarse: _Array, pair_order: int, angle0: float, mag0: float
++    ) -> tuple[_Array, complex, float, float]:
++        """Keep the frozen pair and search closures within the final fit's scope.
++
++        Only the fitted carrier and scalars leave this scope. Full capture keeps
++        its overlap record in ``self.overlaps``; compact capture keeps only its
++        descriptor, so the working spatial pair ends before later-order builds.
++        """
+         build = self.build_order_overlap(coarse, pair_order, "refinement")
+         # These bracket values carry across the angle and magnitude stages.
+         x1, amp1 = 0.0, 0.0
+@@ -872,17 +896,7 @@ class _ParameterEstimator:
+                 magnitude = fitted
+         carrier = _carrier_from_polar(angle, magnitude)
+         factor, _ = self.fit_overlap_modulation(build, carrier, "final", False, angle, magnitude)
+-        factors = [0j] * (self.grid.orders - 1)
+-        factors[pair_order - 1] = factor
+-        for order in range(1, self.grid.orders):
+-            if order != pair_order:
+-                lower = order - 1 if self.grid.shape[3] == 1 else 0
+-                other = self.build_order_overlap(carrier, order, "later-order", lower)
+-                factors[order - 1], _ = self.fit_overlap_modulation(
+-                    other, carrier, "later-order", True, angle, magnitude
+-                )
+-                del other
+-        return carrier, factors
++        return carrier, factor, angle, magnitude
+ 
+ 
+ def _carrier_from_polar(angle: float, magnitude: float) -> _Array:

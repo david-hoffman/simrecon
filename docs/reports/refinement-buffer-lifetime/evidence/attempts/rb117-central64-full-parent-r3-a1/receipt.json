@@ -1,0 +1,444 @@
+{
+  "protocol": "WS116-attempt-v3",
+  "status": "complete_child_observed_pending_scientific_qualification",
+  "phase": "observation",
+  "observer_pid": 73977,
+  "started_monotonic_ns": 127547019333200,
+  "signals": [],
+  "revision_selector": "parent",
+  "product_root": "/workspace/work/issue-116",
+  "external_method_root": "/workspace/work/campaign/evidence/117/resource-method-source",
+  "grant_sha256": "c666691fd96e4aa3f85f9f890b641630fe73e464808c6d18b5eb69db7c51c9c6",
+  "candidate_pre_admission": {
+    "head": "158776ade28079276304d49a6b973eccbf4109c9",
+    "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_hashes_pre_admission": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/manifest.json": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/observer.py": "eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/run_attempt.py": "6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/method_qualification.py": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21"
+  },
+  "candidate_before": {
+    "head": "158776ade28079276304d49a6b973eccbf4109c9",
+    "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_hashes_before": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/manifest.json": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/observer.py": "eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/run_attempt.py": "6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/method_qualification.py": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21"
+  },
+  "resource_domain_admission": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "ROOT individual release of this exact predeclared central64-full-searched paired observation only. Source/syntax/two-root Q0 pass and frozen fixture/schema declaration precede call. Native64 caller1966080B/output image1048576B/private refinement pair1048576B are source payloads, not RSS; conservative predicted256MiB plus128MiB native allowance fit512MiB process stop with512MiB reserve, host minimum1GiB and all ancestor stops1GiB below actual finite max. These are current operating admissions, not human/product budgets or backend/RAM guarantees. Shared/hidden ancestors/outside actors remain unknown; guards reobserve; no competing campaign-controlled numeric/test/install/benchmark window active.",
+    "correspondence_evidence": {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-central64-full-series-attempts-1/rb117-central64-full-parent-r3-a1-context.json",
+      "sha256": "0ab023f016f6cc77ecf485d0cfe68ba3e1a87f29a0421aa2bcfb04b450fd0e4d",
+      "observed_at_unix_ns": 1794821056926792579,
+      "maximum_age_seconds": 300
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "predicted_child_peak_bytes": 268435456,
+    "native_allocator_allowance_bytes": 134217728,
+    "reserve_bytes": 536870912
+  },
+  "wait_owner": "single os.wait4(exact_pid,WNOHANG), no waitpid/Popen/aggregate waits",
+  "spawn_route": "plain posix_spawn; fixed same-PID setsid/readiness/execve bootstrap",
+  "launch": {
+    "route": "plain-spawn/same-pid-setsid/execve",
+    "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+    "nonce": "rb117-central64-full-parent-r3-a1",
+    "startup_timeout_seconds": 5.0,
+    "startup_pipe_bytes": 1024,
+    "target_argv": [
+      "/workspace/work/issue-116/.venv/bin/python",
+      "/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py",
+      "/workspace/work/campaign/evidence/117/resource-method-source/raw-parent/rb117-central64-full-parent-r3-a1/spec.json",
+      "/workspace/work/issue-116"
+    ]
+  },
+  "interpreter": {
+    "executable": "/workspace/work/issue-116/.venv/bin/python",
+    "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+    "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]"
+  },
+  "sigchld_handler": "SIG_DFL",
+  "effective_cwd": "/workspace/work/issue-116",
+  "child_environment_controls": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "PYTHONPATH": "/workspace/work/issue-116/src",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONMALLOC": null,
+    "MALLOC_ARENA_MAX": null
+  },
+  "observer_pre_spawn_snapshot": {
+    "scope": "parent before posix_spawn; not subtracted from child peak",
+    "monotonic_ns": 127547058490956,
+    "ru_maxrss_native": 16756,
+    "ru_maxrss_native_units": "Linux KiB",
+    "cumulative_high_water_bytes": 17158144,
+    "ru_minflt": 4749,
+    "ru_majflt": 0,
+    "ru_nswap": 0,
+    "ru_inblock": 0,
+    "ru_oublock": 72,
+    "ru_utime_seconds": 0.07196999999999999,
+    "ru_stime_seconds": 0.028065
+  },
+  "spawn_start_monotonic_ns": 127547058811867,
+  "workload_pid": 74013,
+  "spawn_return_monotonic_ns": 127547059283665,
+  "session_ready": {
+    "role": "bootstrap",
+    "pid": 74013,
+    "ppid": 73977,
+    "pgid": 74013,
+    "session_id": 74013,
+    "nonce": "rb117-central64-full-parent-r3-a1",
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "sample_count": 9485,
+  "terminal": {
+    "pid": 74013,
+    "wait_status_raw": 0,
+    "returncode": 0,
+    "exited": true,
+    "signaled": false,
+    "exit_code": 0,
+    "term_signal": null,
+    "core_dumped": false,
+    "reaped_monotonic_ns": 127646478369423,
+    "rusage_native": {
+      "ru_idrss": 0,
+      "ru_inblock": 0,
+      "ru_isrss": 0,
+      "ru_ixrss": 0,
+      "ru_majflt": 0,
+      "ru_maxrss": 110808,
+      "ru_minflt": 26386,
+      "ru_msgrcv": 0,
+      "ru_msgsnd": 0,
+      "ru_nivcsw": 624,
+      "ru_nsignals": 0,
+      "ru_nswap": 0,
+      "ru_nvcsw": 3,
+      "ru_oublock": 80,
+      "ru_stime": 0.154444,
+      "ru_utime": 99.11076
+    },
+    "ru_maxrss_native_units": "Linux KiB",
+    "ru_maxrss_multiplier_to_bytes": 1024,
+    "kernel_reported_direct_child_high_water_bytes": 113467392,
+    "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim"
+  },
+  "child_outcome": "finite_observation_pending_qualification",
+  "child_record_sha256": "01c05c7f9b0f5b785a52ee3d768ee3666ff7cbcb77831953890924a299cdf17b",
+  "candidate_after": {
+    "head": "158776ade28079276304d49a6b973eccbf4109c9",
+    "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_hashes_after": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/manifest.json": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/observer.py": "eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/run_attempt.py": "6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/method_qualification.py": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21"
+  },
+  "material_identity_matches": true,
+  "startup_fd_plan": {
+    "read": 64,
+    "write_source": 65,
+    "ready_destination": 68,
+    "stdout_source": 66,
+    "stderr_source": 67
+  },
+  "startup_eof_observed": true,
+  "startup_parent_fds_closed": true,
+  "wait_ownership_lost": false,
+  "nonterminal_wait_events": [],
+  "finished_monotonic_ns": 127646515848262,
+  "candidate_final": {
+    "head": "158776ade28079276304d49a6b973eccbf4109c9",
+    "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_hashes_final": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/manifest.json": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/observer.py": "eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/run_attempt.py": "6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/method_qualification.py": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21"
+  },
+  "postflight": {
+    "system": "Linux",
+    "kernel": "6.18.57",
+    "machine": "x86_64",
+    "host_id_sha256": "45e7e2ee03331e7e0fb4ce44fe07c21d6c90885f5dc786874f8e86fd70c2ee33",
+    "pid": 73977,
+    "meminfo": "MemTotal:       18440100 kB\nMemFree:        14131712 kB\nMemAvailable:   17323608 kB\nBuffers:           94880 kB\nCached:          2839580 kB\nSwapCached:            0 kB\nActive:           746792 kB\nInactive:        2307484 kB\nActive(anon):        464 kB\nInactive(anon):   149792 kB\nActive(file):     746328 kB\nInactive(file):  2157692 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:              3132 kB\nWriteback:             0 kB\nAnonPages:        150120 kB\nMapped:           137128 kB\nShmem:               304 kB\nKReclaimable:     684944 kB\nSlab:             777780 kB\nSReclaimable:     684944 kB\nSUnreclaim:        92836 kB\nKernelStack:        3452 kB\nPageTables:         5668 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:     963760 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5844 kB\nVmallocChunk:          0 kB\nPercpu:             1440 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:    593920 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      323584 kB\nDirectMap2M:    14872576 kB\nDirectMap1G:    29360128 kB",
+    "cgroup": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_ancestors": [
+        {
+          "path": "/sys/fs/cgroup",
+          "memory.max": "17179869184",
+          "memory.current": "3812921344",
+          "memory.peak": "17179873280",
+          "memory.events": "low 0\nhigh 0\nmax 50340\noom 0\noom_kill 0\noom_group_kill 0",
+          "memory.swap.max": "max",
+          "memory.swap.current": "0"
+        }
+      ],
+      "hidden_ancestors": "unknown: ancestors outside the exposed domain are unobserved; no absence or unlimited claim"
+    },
+    "rlimits": {
+      "RLIMIT_AS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_DATA": [
+        -1,
+        -1
+      ],
+      "RLIMIT_RSS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_CPU": [
+        -1,
+        -1
+      ],
+      "RLIMIT_FSIZE": [
+        -1,
+        -1
+      ],
+      "RLIMIT_NOFILE": [
+        1024,
+        16384
+      ]
+    },
+    "disk_available_bytes": 43859304448,
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "allocator": {
+      "PYTHONMALLOC": null,
+      "MALLOC_ARENA_MAX": null
+    }
+  },
+  "observer_self_snapshot": {
+    "scope": "parent after child/cleanup, excludes receipt serialization",
+    "monotonic_ns": 127646543551435,
+    "ru_maxrss_native": 17508,
+    "ru_maxrss_native_units": "Linux KiB",
+    "cumulative_high_water_bytes": 17928192,
+    "ru_minflt": 5004,
+    "ru_majflt": 0,
+    "ru_nswap": 0,
+    "ru_inblock": 0,
+    "ru_oublock": 5560,
+    "ru_utime_seconds": 2.399513,
+    "ru_stime_seconds": 0.8222919999999999
+  },
+  "files_before_receipt": {
+    "spec.json": {
+      "sha256": "a642a1604594662d5a88518815bd2fe4f76208c740804d46e452ab9844e04d93",
+      "logical_bytes": 5222,
+      "allocated_bytes": 8192
+    },
+    "startup-readiness.bin": {
+      "sha256": "28b992f5b2402422ba94c5d1c58b8790cfb04b774f21c691d1f3e96a078d7368",
+      "logical_bytes": 232,
+      "allocated_bytes": 4096
+    },
+    "samples.jsonl": {
+      "sha256": "34b3f5fdfe1f68c1754dc26ae5fa10b921cd85fbe47e4d9d0c9e48841de62b4e",
+      "logical_bytes": 2775989,
+      "allocated_bytes": 2777088
+    },
+    "session-ready.json": {
+      "sha256": "6dc30a796113f1a5cc69842d6fe90f001ba244728080b67b1b5504cf171e1a24",
+      "logical_bytes": 248,
+      "allocated_bytes": 4096
+    },
+    "preflight.json": {
+      "sha256": "cd31760097776799274015bc895ae34ae8e85ca9f6e1a2e9d9bb89f980f28ae7",
+      "logical_bytes": 2861,
+      "allocated_bytes": 4096
+    },
+    "spawn-intent.json": {
+      "sha256": "a7be3c5c63a31e6320aebc1e23480414454daea536697738401dc52f7d4cc5a7",
+      "logical_bytes": 3006,
+      "allocated_bytes": 4096
+    },
+    "grant.input": {
+      "sha256": "c666691fd96e4aa3f85f9f890b641630fe73e464808c6d18b5eb69db7c51c9c6",
+      "logical_bytes": 7408,
+      "allocated_bytes": 8192
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "logical_bytes": 0,
+      "allocated_bytes": 0
+    },
+    "owned-child.json": {
+      "sha256": "544d72d2866f40b8dab54866c7634e771f9e7ad46fa21b6b3977b3d74f842610",
+      "logical_bytes": 2564,
+      "allocated_bytes": 4096
+    },
+    "stdout.json": {
+      "sha256": "01c05c7f9b0f5b785a52ee3d768ee3666ff7cbcb77831953890924a299cdf17b",
+      "logical_bytes": 40077,
+      "allocated_bytes": 40960
+    }
+  },
+  "limits": "Terminal wait4 is kernel-reported direct-child usage through final exit. Inherited/pre-exec/exec-transition high-water retention remains unresolved; same PID does not guarantee every bootstrap/startup peak survives exec. No subtraction/aggregate/benefit claim. Target self snapshots are separate; no numerical descendants. Direct-PID cleanup only. PID1 is not a general reaper; abrupt-parent/spawn-marker gaps remain. Sampling/stops can overshoot. File inventory excludes receipt itself; coordinator collects final disk sizes/hash externally. No retry."
+}

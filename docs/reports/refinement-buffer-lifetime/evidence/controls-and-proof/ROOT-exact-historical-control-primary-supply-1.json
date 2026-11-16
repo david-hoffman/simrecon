@@ -1,0 +1,47 @@
+{
+  "root_scope": "exact7 reviewer-named control sources/payloads; direct content-addressed paths and original named attempt paths only; no global scan",
+  "records": [
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/objects/add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4/method_qualification.py",
+      "sha256": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4",
+      "bytes": 33556,
+      "scope": "exact reviewer-named original method control primary, not numerical corpus/opinion/operating grant"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/objects/d079e099605efb8a98e85ee1143eabf82c968342ef4d8c379654f723688f76d7/method_qualification.py",
+      "sha256": "d079e099605efb8a98e85ee1143eabf82c968342ef4d8c379654f723688f76d7",
+      "bytes": 46810,
+      "scope": "exact reviewer-named original method control primary, not numerical corpus/opinion/operating grant"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/objects/fa0ad84441e272a918a3306b461cf3b8f1947fdfe9a453627bed861d6e99cc34/method_qualification.py",
+      "sha256": "fa0ad84441e272a918a3306b461cf3b8f1947fdfe9a453627bed861d6e99cc34",
+      "bytes": 57755,
+      "scope": "exact reviewer-named original method control primary, not numerical corpus/opinion/operating grant"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-default-term-a1/small-lifecycle.json",
+      "sha256": "3db07d01c27eebb4b7ff5698f1b13be00da4e973f11544d4069fa7175050d0ed",
+      "bytes": 5999,
+      "scope": "exact reviewer-named original method control primary, not numerical corpus/opinion/operating grant"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-ignore-term-kill-a1/small-lifecycle.json",
+      "sha256": "770881e6f83e0e8bdd03f12154724dcdb76d21898690ecb85a70bba2bb8a2396",
+      "bytes": 6205,
+      "scope": "exact reviewer-named original method control primary, not numerical corpus/opinion/operating grant"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-deadline-a1/small-lifecycle.json",
+      "sha256": "5d44e75d98d30cde5eeb5fef59829e7d440c734e6146ceb673d175149d06140c",
+      "bytes": 6122,
+      "scope": "exact reviewer-named original method control primary, not numerical corpus/opinion/operating grant"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-supported-sigint-a1/small-lifecycle.json",
+      "sha256": "91d9219f68482219ed385fb2b57b397c407067cfaae86279e181736d593d8c63",
+      "bytes": 6111,
+      "scope": "exact reviewer-named original method control primary, not numerical corpus/opinion/operating grant"
+    }
+  ]
+}

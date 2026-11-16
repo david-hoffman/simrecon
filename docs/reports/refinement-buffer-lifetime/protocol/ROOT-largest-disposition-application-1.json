@@ -1,0 +1,42 @@
+{
+  "schema": "ROOT-RB117-accepted-bounded-pre-largest-protocol-application-v1",
+  "at_unix_ns": 1794822057427989525,
+  "authority": "Original owner issue117 and bounded representative contract; reviewed protocol amendment, no new human cap or gate waiver",
+  "inputs": {
+    "resource-protocol-largest-disposition-proposal-1.md": "086f4ee8d19ca593174dee3351c968c3e0cd0c1db77109c10e401bf22d0a1710",
+    "resource-largest-disposition-independent-review-1.md": "b5c5badfddbac2de2e240a00e7bc05253733a4c3dd16bfe6203c8e3ae8206ed3",
+    "resource-largest-disposition-independent-review-1-final.md": "3739b904a0391f8facf8f60e97580cfbe67c64ec143426c90d618a852fe5a12b"
+  },
+  "ROOT_reads": "Whole77line detailedreport and separatefinal plus originalproposal/actualworksheet; fresh independent review accepted precise bounded amendment",
+  "decision": "APPLY exact086f proposal for narrow117 only",
+  "required_groups": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "required_successful_workflow_observations": 36,
+  "actual_completed_core_successes": 24,
+  "actual_profile_status": "12exact profiles ACTIVE session99200; no final acceptance inferred",
+  "preserved_failed_workflows": 1,
+  "Q0_separate": 2,
+  "groups7_to10": "NOT_ADMITTED / UNMEASURED; no new256workflow exists, not replaced by64 or EA historical rows",
+  "historical_protocol": "Original ten-group60proposal/manifest/sequence immutable. Never claim60passed. No data/tolerance/source/tool/pair/repetition/profile selection changes",
+  "narrow_claims": [
+    "Source helper ends one proven compact spatialpair/closure owner interval before laterorder work",
+    "Exact finite scientific compatibility still requires frozen publictests/final scientific ownership review/fullgate/freshD",
+    "All36 representative fresh matched successes/variation/runtime/nativeunits/self/terminal/sampling distinctions and every failure/gap must be independently assessed; no observed peak saving presumed"
+  ],
+  "continuing_holds": [
+    "No refreshed currentlargest256 peak/profile association, scaling, contributorranking or16GiB/originaltarget feasibility",
+    "No118acceptance or universal resource claim",
+    "Freshpost118SCI must explicitlydispose actual changedsource/material/direct/matched observations and each119/120 design premise before reliance; any premise needing currentlarge attribution/margin/rank remains held until necessary actualadmittedmeasurements",
+    "Source arithmetic logicalpayload remains separate from actual residentmemory/allocator/nativeworkspaces"
+  ],
+  "later_if_required": "Summary256 currentstage/observerattribution needsgroups7+9; full256 needs8+10, eachactualthreeparent/candidatepairs withfreshmode-specific admission. Barewholeprocessdescription needsitsactualunprofiledgrouponly, no profile inference. These are dependency mappings, not grants.",
+  "pending_publication_gates": "Allgroups1\u20136 complete/independentresource/ownership acceptance, exactclean integratedUbuntu13makeverify, freshD and ROOTpublication/CI",
+  "tracked_candidate_change": "NONE; product/source/tests/fixtures/methodfiveinputs remain fixed during measurement",
+  "costs": "Allpriorcharges retained; serving/tokens/cache/money/elapsedUNKNOWN; no reset"
+}

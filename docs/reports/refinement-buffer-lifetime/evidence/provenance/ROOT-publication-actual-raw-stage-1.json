@@ -1,0 +1,11 @@
+{
+  "archive_manifest": "/workspace/work/campaign/evidence/117/publication-staging/docs/reports/refinement-buffer-lifetime/evidence/archive-manifest.json",
+  "sha256": "e5c65b5468c96f1872be3dfb613dfcf4596204867074caa5c40a7efc9f0c00fa",
+  "actual_attempts": 39,
+  "raw_byte_copies": 519,
+  "sample_transports": 37,
+  "original_sample_bytes": 64050989,
+  "gzip_bytes": 1900359,
+  "originals_unchanged": true,
+  "scope": "ROOT mechanical lossless collection after exclusive numericalwindowCLOSED; no product/numerical/check execution or trackedcandidatechange"
+}

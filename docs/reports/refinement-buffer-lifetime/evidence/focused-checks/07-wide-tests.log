@@ -1,0 +1,18 @@
+2026-11-16T07:14:37Z
+527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38  src/simrecon/reconstruction/parameter_estimation.py
++ docker exec --user 1000:1000 -w /workspace/work/issue-117 11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b /usr/bin/env -u PYTHONOPTIMIZE -u PYTEST_ADDOPTS -u PYTEST_PLUGINS PYTHONPATH=/workspace/work/issue-117/src OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 BLIS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /workspace/.simrecon-tools/uv-env/bin/uv run --locked --no-sync python scripts/source_free_check.py --timeout 300 pytest tests/test_wide_allocation_domain.py
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-117
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 54 items
+
+tests/test_wide_allocation_domain.py ................................... [ 64%]
+...................                                                      [100%]
+
+============================== 54 passed in 0.50s ==============================
++ check_status=0
++ set +x
+exit_status=0
+2026-11-16T07:14:38Z

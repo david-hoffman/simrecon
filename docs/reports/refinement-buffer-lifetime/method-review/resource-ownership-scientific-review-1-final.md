@@ -1,0 +1,15 @@
+# Issue 117 — resource/ownership scientific decision
+
+**ACCEPT, bounded pre-integration scientific scope.** This is the single final independent nonblind resource/ownership SCI verdict after both immutable input phases and all 36 actual successful records, including all 12 profiles. It is not D or readiness acceptance.
+
+Detailed report: `resource-ownership-scientific-review-1.md`, SHA256 `d8d56f30d8af8fc5f407aa6cd7590b0a2e1996c187fc6ec29fd71c08cbbaf7bf`.
+
+Reviewed parent `158776ade28079276304d49a6b973eccbf4109c9` → candidate `e6945817850cfdaa3ebbfe21e7a23784964208d6`; final factual manuscript SHA256 `67202ac520ae9f311d2984a23d3bec0a12d5786d21018846fc17595accd8022a`. Stage1/2 manifests SHA256 `5ce1c7e4df9dd61166f83d1f66505d1e65827c6598b84c79a69c4f01cb25a4b9` / `a610c8a31de8958066aa138ccc83412af6e7c3e7eba9059ca94d543ed0933f34` verified. Exact whole/partial source, contract, oracle, method, raw-field and archival read limits are in the detailed report.
+
+Source inspection supports successful compact refinement-pair last use after the unchanged final fit and before later-order construction. The closure/owner graph has no escaping compact spatial edge or cycle; full capture intentionally retains its complete published owners. Frozen-pair/literal strict-state/order/error and scientific public compatibility obligations are preserved within the reviewed source and finite witnesses. Held exception tracebacks can retain the pair; no failure-frame release promise is made.
+
+No concrete product, frozen-test, measurement-meaning or manuscript correction was found in this scope. All unprofiled candidate terminal peaks exceed their paired parents; profile/runtime variation supplies no terminal-native saving or causal speedup. Source payload arithmetic, returned-graph payloads, independent scientific witnesses, exact fingerprints and process high-waters remain distinct evidence. Nineteen visible terminal-confirmed RSS gaps, all negative results, the original 60 s parent timeout, later fresh parent retry and exact outer assertion are retained. Two Q0 are separate from 37 workflow attempts (36 success, one failure).
+
+Groups7–10/current256 remain NOT_ADMITTED/UNMEASURED under exact scope application `d1f9d2b07205afc82951f22f598c87bafa75337bf85bee30a2e9e04fc56ef0c1`. There is no refreshed largest peak/profile/scaling/ranking/16 GiB or original-target feasibility claim. Fresh post118 source/material/matched-observation review and explicit119/120 premise dispositions remain required; largest-dependent association/margin/rank premises stay held. ROOT durable/portable integration, exact clean Ubuntu full verification and fresh D remain mandatory. This verdict grants no runtime, merge, publication or downstream readiness.
+
+This reviewer performed no runtime, numerical scripts, imports, AST, tests, probes, process scans, delegation, repairs or target edits. Only the two assigned reports were written. Requested Sol/high/forknone; actual serving/effort/tokens/cache/money/elapsed are unknown. Shared-filesystem prompt limits are not engineered isolation, and all earlier campaign costs/failures remain cumulative.

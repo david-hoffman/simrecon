@@ -1,0 +1,390 @@
+{
+  "scope": "ROOT actual39attempts closure after36successful+1diagnosedtimeout workflow and2separateQ0. No globalprocessscan/newruntime or grant; next gate onlyafterdocintegration/requiredSCI.",
+  "at_unix_ns": 1794822828135328945,
+  "successful_workflows": 36,
+  "preserved_failed_workflows": 1,
+  "Q0_separate": 2,
+  "workflow_processes": [
+    {
+      "attempt_id": "rb117-tiny2d-summary-parent-r1-a1",
+      "receipt_sha256": "703d3c7294499b930f2c40396aa5227a5b4a434212ed99732bf95d240eddbc74",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 72483,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-summary-candidate-r1-a1",
+      "receipt_sha256": "720010c3c2166e792f8779750621355ea1f945ee5180853fdfab01792f1a8291",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 72585,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-full-parent-r1-a1",
+      "receipt_sha256": "6f18b0e364c663c4de0b0187fe4cd81660ae57e526ceff77d13dad8b303774d5",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 72687,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-full-candidate-r1-a1",
+      "receipt_sha256": "6ff19bb822b943af2f68cbf19e4f93b2b13c1865a890ea0b37a1e5511326b85f",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 72789,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-parent-r1-a1",
+      "receipt_sha256": "d7d97df493d61a402c7ad58de64bf1343975a4f8b483e90c540037f58100f58b",
+      "status": "timeout_stopped",
+      "pid": 72891,
+      "terminal_returncode": -15,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-parent-r1-a2",
+      "receipt_sha256": "d70dedb2fa95cf8cae370780d8e1c4e5da02a58b5d9547aef9d458458020f15d",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 72993,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-candidate-r1-a1",
+      "receipt_sha256": "11a4c2c1f4edae2abd7f2b95caf5a70d82268d101daad6017f6bb12249e739a6",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73095,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-candidate-r2-a1",
+      "receipt_sha256": "4e91ef4a46f142a61191a475650a0efc6003722231e2fb85802571a55858b551",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73197,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-parent-r2-a1",
+      "receipt_sha256": "e57833681fcce183009f090a1c3e775ad63dbafeeb8b722ce8e9ef467c5c6f2b",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73299,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-parent-r3-a1",
+      "receipt_sha256": "11904fd0b40a948179242681eace223525ca580c05b71928216dfdd60deea6a4",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73401,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-candidate-r3-a1",
+      "receipt_sha256": "2aa2758894dcc099d69731b527628a21c44b7664904851451e2011f5a0b0cb08",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73503,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-parent-r1-a1",
+      "receipt_sha256": "a5767cb5f42194319839db685a30e590e6397c0d6e8ccfce8be98ea5138a394d",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73605,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-candidate-r1-a1",
+      "receipt_sha256": "25ce104bb3adac2d8cd6055e13bd2da191a309bc9fe68354853448f034c3a406",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73707,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-candidate-r2-a1",
+      "receipt_sha256": "b98142f7f3aeb6af920abed0756c1fd44940c2e5f7053f94f1fcb9b230e927c9",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73809,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-parent-r2-a1",
+      "receipt_sha256": "8fbd19602abafafbad2c1faef636f9183b69015ffac98d2202407890bb9a2d49",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 73911,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-parent-r3-a1",
+      "receipt_sha256": "721a94a171b63f438ece8bd18471acbd63a00a575594059fabf61495dcb3aea4",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74013,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-candidate-r3-a1",
+      "receipt_sha256": "f2cf897766823b459be0dbfad1d0df58585ed6f8eec5880c2d05ea32f1dd7563",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74115,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-summary-candidate-r2-a1",
+      "receipt_sha256": "a7511c0028215d8a59cdc4011feeff7fd8b83812fab01925608bcd0a9d1f940e",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74217,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-summary-parent-r2-a1",
+      "receipt_sha256": "62c183b9b904da5b70d04096ffc7b99dd1032396c3d84a8dbcd4ed602a16c667",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74320,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-summary-parent-r3-a1",
+      "receipt_sha256": "bf06d082b35411c79d11f3eb77823cec7f1504ae16e765394f01a2c2bf4332fc",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74422,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-summary-candidate-r3-a1",
+      "receipt_sha256": "b9e6c2e620a7ee8486e8fd9fc6b0bc9d1415f8282c2835d55d2c4f02046ae43b",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74524,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-full-candidate-r2-a1",
+      "receipt_sha256": "7fd234cd8d8c20fe61219d2dbabbff6ae52ced245175fc973f8d9a30d554138c",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74626,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-full-parent-r2-a1",
+      "receipt_sha256": "16c7a7f3aa92c2353eaeaad1a6f1eb48e127c1fcac46a5f2d49f637a1fb72163",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74728,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-full-parent-r3-a1",
+      "receipt_sha256": "e058e0609038ffa5517ec5e51748fbee242e2f517c5b178ddb68b3778660a495",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74830,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-tiny2d-full-candidate-r3-a1",
+      "receipt_sha256": "6e2cc12f81208baa00054fbb0990da028d6b40b0ecfa79c17f6f7a3f9d504ca1",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 74932,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-profile-parent-r1-a1",
+      "receipt_sha256": "0fc2d5c74a9a45ccd437e33e9706fa42b3bfca2b25ff3a51935537174faecd4a",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75035,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-profile-candidate-r1-a1",
+      "receipt_sha256": "91dc08f8c02f9448c046aacf5e199b71e0bdd7f25a970cbe148d058349f1667b",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75137,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-profile-candidate-r2-a1",
+      "receipt_sha256": "c69028247654db413cf2266531fd78bbf7cfa82c45ca8d5296ceca4d1050eecd",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75240,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-profile-parent-r2-a1",
+      "receipt_sha256": "e90a439c8c7d3d9962736e797b5f12910c2e7108f17528d4f4835733719220e6",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75342,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-profile-parent-r3-a1",
+      "receipt_sha256": "cc6c5ad945a0fc97fbe58cc76b76f2f68461183249a58e4f0c656bea8f5cf948",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75444,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-summary-profile-candidate-r3-a1",
+      "receipt_sha256": "ec52ea846942de7110b696da62781b5bfac9e60d454470b0bd4f252b2f0229d4",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75546,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-profile-parent-r1-a1",
+      "receipt_sha256": "5abd70fc7990ce2e626c4edbc46c3550e4ad5067bb72b570677ab37c2f90bb1d",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75648,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-profile-candidate-r1-a1",
+      "receipt_sha256": "cf2303755fe8fcebc36bfc82c0f6712d0d5584c926b1aaae07f2ffbae6d3e709",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75750,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-profile-candidate-r2-a1",
+      "receipt_sha256": "77bda56f83e32ed9fdf397ed1a79d076d08bcaba7547c260c476d20f752213ac",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75852,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-profile-parent-r2-a1",
+      "receipt_sha256": "b736e747817408575b9615cccbdba21b10f18333aaf0d10282c3f795f70207e9",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 75954,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-profile-parent-r3-a1",
+      "receipt_sha256": "077a8560dd996f229c27bc10889ed438d2bfde357b436bafc4473d21f9ffab95",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 76056,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    },
+    {
+      "attempt_id": "rb117-central64-full-profile-candidate-r3-a1",
+      "receipt_sha256": "b9e8eda61d09a4c9efa510b439963c91066eee25ec95a6b749c93e4d40918285",
+      "status": "complete_child_observed_pending_scientific_qualification",
+      "pid": 76158,
+      "terminal_returncode": 0,
+      "startup_parent_fds_closed": true,
+      "wait_ownership_loss_or_cleanup_gap": false
+    }
+  ],
+  "indices": [
+    {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-tiny2d-integration-attempts-1/ROOT-result-index.json",
+      "sha256": "33f6d35335fcf91b3d6e02ee779b57f911b4d4c4763ffa3ad619e1875f557866"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-central64-summary-series-attempts-1/ROOT-result-index.json",
+      "sha256": "7bd0d2b53bc65852b044831a50eac1ac74834d5a7e6cf1384d57b8fd7cc6c610"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-central64-summary-series-attempts-2/ROOT-result-index.json",
+      "sha256": "1238729d00199c8dfb07af9b765868b793e7ac6b5026834545279620d93dc97b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-central64-full-series-attempts-1/ROOT-result-index.json",
+      "sha256": "40aae594ac49c91b24a20824ab0fc3aed4c7f073c79b0131b0c386f2165f519b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-tiny2d-remaining-r2r3-attempts-1/ROOT-result-index.json",
+      "sha256": "99465457fb847f317d385e0cd3328cc6c1c2dd9ab44cd682309e53c6e86fde10"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-central64-profiles-series-attempts-1/ROOT-result-index.json",
+      "sha256": "a32575965c919766d3eba4f3967d1f714da293c6eababd4f1160a3da1a48a487"
+    }
+  ],
+  "source_states": [
+    {
+      "role": "parent",
+      "head": "158776ade28079276304d49a6b973eccbf4109c9",
+      "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+      "FULL_status": "",
+      "all36_material_inputs_unchanged": true
+    },
+    {
+      "role": "candidate",
+      "head": "e6945817850cfdaa3ebbfe21e7a23784964208d6",
+      "tree": "cd637c9b568e2cbe35119193804b36105ec54500",
+      "FULL_status": "",
+      "all36_material_inputs_unchanged": true
+    }
+  ],
+  "root_controlled_window": "CLOSED. Everyactual numerical PID has its recorded exactterminal and reaped/FDclosed/no waitloss/cleanupgap. No nextworkload automatically released. Unrelated actors/hiddenancestors remain unknown.",
+  "largest_disposition_application_sha256": "d1f9d2b07205afc82951f22f598c87bafa75337bf85bee30a2e9e04fc56ef0c1",
+  "largest256": "NOT_ADMITTED/UNMEASURED; original60proposal preserved; allcurrentlargeattribution/scaling/ranking/16GiBpremises held forlaterpost118SCI",
+  "archive_stage_sha256": "e5c65b5468c96f1872be3dfb613dfcf4596204867074caa5c40a7efc9f0c00fa",
+  "claims": "Finite exact compatibility/profilecontrol identities andsourceownership mustretainindependentSCI/fullgate/freshD; theseclosurefacts grantno scientific/resourcebenefit/readiness verdict",
+  "costs": "Everyoriginalfailure/repair/attempt retained; unavailablemetersUNKNOWN"
+}
