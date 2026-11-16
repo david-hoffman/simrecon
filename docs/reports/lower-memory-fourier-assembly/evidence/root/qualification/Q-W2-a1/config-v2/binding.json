@@ -1,0 +1,31 @@
+{
+  "status": "PREPARED_CONFIGURATION_NOT_RUNTIME_AUTHORITY",
+  "condition": "W2",
+  "attempt": "Q-W2-a1",
+  "actual119_parent": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+  "candidate": {
+    "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+    "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+    "integration_base": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+    "immediate_git_parent": "e7f187173065d66c8025e0f4c49f15339716f901",
+    "full_clean_precondition": true
+  },
+  "environment": {
+    "actual_metadata_sha256": "1973618d090598a8e31217aafe6a31cce7093c7b1f928e3b766632c45f24551d",
+    "actual_preflight_result_sha256": "a6c81771502452eca46eccabc645511dc40024a84f7982084347106ef68760f5",
+    "primitive_native_bounds": "UNQUALIFIED",
+    "matching_actual_command_controls": "fourthreads1,BLISabsent,bytecodeoff,sourcefreediag:tests,pytest_plugin,ownPython3.13.12; exactargvrecordedproposal3"
+  },
+  "source_material": {
+    "path": "/workspace/work/campaign/evidence/120/qualification/Q-W2-a1/config-v2/source-material.json",
+    "sha256": "e5a904daa5d7322d765f0f117e59ff2084e78c642845531018c57ec491f11f17"
+  },
+  "grant_id": "FA120-Q-W2-a1-20261116",
+  "outputs": {
+    "stdout": "/workspace/work/campaign/evidence/120/qualification/Q-W2-a1/stdout.jsonl",
+    "stderr": "/workspace/work/campaign/evidence/120/qualification/Q-W2-a1/stderr.log",
+    "capture_exclusive_create": true
+  },
+  "authority": "OnlyseparateROOTexactgrant authorizesexecution. Thisfile/sourceHOLDremoval/metadata is not grant.",
+  "scientific_limits": "Finitearithmetic/public-byte/caller qualification only, no memorycomparison/runtimeimplementation/accuracytheorem/peak/handoffacceptance."
+}

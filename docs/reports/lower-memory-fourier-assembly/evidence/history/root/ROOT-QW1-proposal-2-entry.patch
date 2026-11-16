@@ -1,0 +1,12 @@
+--- proposal1one-entrytext
++++ proposal2one-entrytext
+@@ -7,6 +7,9 @@
+ assert Path(q.__file__).resolve()==math_root/"qualification.py"
+ assert Path(q.study.__file__).resolve()==math_root/"experimental_child.py"
+ assert Path(sys.modules["c_known_fixture"].__file__).resolve()==Path("/workspace/work/issue-120/tests/c_known_fixture.py")
++assert hashlib.sha256(Path(sys.modules["c_known_fixture"].__file__).read_bytes()).hexdigest()=="5e80aafb44b59ae9d45592181b72d62ce03dd7f49f146313294a16c73a2d89a6"
++assert Path(sys.modules["reconstruction_summary_fixture"].__file__).resolve()==Path("/workspace/work/issue-120/tests/reconstruction_summary_fixture.py")
++assert hashlib.sha256(Path(sys.modules["reconstruction_summary_fixture"].__file__).read_bytes()).hexdigest()=="271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+ assert Path(q.kp.__file__).resolve()==Path("/workspace/work/issue-120/src/simrecon/reconstruction/known_parameters.py")
+ assert hashlib.sha256(Path(q.__file__).read_bytes()).hexdigest()=="c022cc1e49ab3280ef1766dfe088f0543ced91a7ee290e6ecd005d3f44cccc4a"
+ assert hashlib.sha256(Path(q.study.__file__).read_bytes()).hexdigest()=="5175b8877bccd2b614bcc84bf1739c199c464eab7786218ad3f2246f03e34ea8"

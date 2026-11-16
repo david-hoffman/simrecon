@@ -1,0 +1,69 @@
+def validate_optical_transfer(transfer: Any, *, require_actual: bool = False) -> _Transfer:
+    """Validate a transfer record without copying or quantizing its samples.
+
+    Parameters
+    ----------
+    transfer : OpticalTransfer
+        Complete finite, owned, read-only complex128 tables and source metadata.
+        Unlike declaration input, computed samples need not be complex64-exact.
+    require_actual : bool, optional
+        Use actual Python/NumPy types and base descriptors when validating
+        acquisition/workflow inputs rather than trusting advertised attributes.
+
+    Returns
+    -------
+    OpticalTransfer or _CheckedTransfer
+        The original record, or checked metadata borrowing the same sample
+        storage. Neither path changes the caller's arrays or normalizes values.
+
+    Raises
+    ------
+    OtfError
+        If layout, finite values, ownership, counts, increments or provenance
+        violate the accepted record domain.
+
+    Notes
+    -----
+    This shared implementation helper does not add a supported package export.
+    See
+    docs/architecture/reconstruction-walkthrough.md#optical-transfer-explicit-tables-or-bead-calibration.
+    """
+    transfer_type_valid = (
+        issubclass(type(transfer), OpticalTransfer)
+        if require_actual
+        else isinstance(transfer, OpticalTransfer)
+    )
+    if not transfer_type_valid:
+        raise OtfError("transfer must be an OpticalTransfer record")
+    array = transfer.samples
+    array_type_valid = (
+        issubclass(type(array), np.ndarray) if require_actual else isinstance(array, np.ndarray)
+    )
+    if not array_type_valid:
+        raise OtfError("transfer samples must be an owned complex128 array")
+    layout = transfer.layout
+    if require_actual:
+        if not issubclass(type(layout), str):
+            raise OtfError("unsupported transfer layout; use radial or full")
+        layout = str.__str__(layout)
+    samples = np.asarray(array) if require_actual else array
+    _table_shape(samples, layout, describe_layout_mismatch=require_actual)
+    flags = np.ndarray.flags.__get__(array) if require_actual else array.flags
+    if samples.dtype != np.complex128 or flags.writeable or not flags.owndata:
+        raise OtfError("transfer samples must be owned, read-only complex128")
+    _finite(samples, "transfer samples")
+    dkr = _scalar(transfer.dkr_cyc_um, "transfer dkr", positive=True, require_actual=require_actual)
+    dkz = _scalar(transfer.dkz_cyc_um, "transfer dkz", positive=True, require_actual=require_actual)
+    norders = _integer(transfer.norders, "norders", 1, require_actual=require_actual)
+    if norders != samples.shape[0]:
+        raise OtfError("transfer norders disagrees with samples")
+    revision = transfer.source_revision
+    if require_actual:
+        if not issubclass(type(revision), str) or str.__str__(revision) != "SVN307":
+            raise OtfError("invalid transfer source identity: source_revision")
+        if not _matches_transfer_reference(transfer.reference_sha256):
+            raise OtfError("invalid transfer source identity: reference_sha256")
+        return _CheckedTransfer(samples, layout, dkr, dkz, norders)
+    if revision != "SVN307":
+        raise OtfError("invalid transfer source identity")
+    reference = transfer.reference_sha256

@@ -1,0 +1,11 @@
+--- /workspace/work/issue-120-sourceprep/actual120-activation-source-1/originals/public_fixture_qualification.py	2026-11-16 04:16:03.472997965 -0800
++++ /workspace/work/issue-120-sourceprep/actual120-activation-source-1/public_fixture_qualification.py	2026-11-16 10:01:01.258963811 -0800
+@@ -5,7 +5,7 @@
+ No argument, environment variable or grant can enable this source revision.
+ """
+ 
+-raise SystemExit("FA120 UNCONDITIONAL EXECUTION HOLD: PUBLIC FIXTURE SOURCE ONLY")
++# ROOT-authorized event7: top HOLD removed in this NEW source copy; NO runtime grant.
+ 
+ import hashlib
+ import json

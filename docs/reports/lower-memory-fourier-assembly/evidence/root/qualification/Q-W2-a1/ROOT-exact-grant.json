@@ -1,0 +1,26 @@
+{
+  "approved": true,
+  "release": "EXACTLY_ONE_EXISTING_W2_QUALIFICATION_ENTRY",
+  "grant_id": "FA120-Q-W2-a1-20261116",
+  "condition": "W2",
+  "attempt": "Q-W2-a1",
+  "utc": "2026-11-16T18:51:04.828054+00:00",
+  "start_by_unix_ns": 1794855363844120641,
+  "candidate": {
+    "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+    "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+    "integration_base": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+    "immediate_git_parent": "e7f187173065d66c8025e0f4c49f15339716f901",
+    "full_clean_precondition": true
+  },
+  "binding_path": "/workspace/work/campaign/evidence/120/qualification/Q-W2-a1/config-v2/binding.json",
+  "binding_sha256": "016a31cba93b52458cb3d3d989b1efac51ab13544db4a1b6a819b6d6d940c35c",
+  "source_material_path": "/workspace/work/campaign/evidence/120/qualification/Q-W2-a1/config-v2/source-material.json",
+  "source_material_sha256": "e5a904daa5d7322d765f0f117e59ff2084e78c642845531018c57ec491f11f17",
+  "all55_before_match": true,
+  "command_capture_freeze_sha256": "d3cdef8d116f2109514db376bd689a85caeda4f23a18e969a703bc5a85299c9b",
+  "physical_admission_sha256": "c99072008f99f73d5b45cd66eb2d70c2ee666517d7e863b094544993a70c3b14",
+  "source_application_sha256": "83b150ee634e9bcbb3c3f035f7bb41230b2d1e884ab142feef83d7fa41880a03",
+  "exclusive_window": "ROOT solelocalnumericentry; otherrolesFILEonly; close terminal+sourcepostcheck orHOLD beforeanynext",
+  "limits": "No automaticnextentry/writer/27/12workflow/retry/growth/runtimeAPI/precisionactivation/peak/memory/16GiB claim. Allfailures/partials retained."
+}

@@ -1,0 +1,98 @@
+{
+  "schema": "FA120-ROOT-integration-placement-v4",
+  "status": "ROOT_SCOPED_SCIENCE_AND_PORTABILITY_ACCEPTED_FOR_EXACT_CORRECTED_ARTIFACTS",
+  "final_tracked_head": "Recorded only in ROOT external final-evidence record and PR",
+  "source_head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "source_tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "accepted119_ancestor": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+  "immediate_git_parent": "e7f187173065d66c8025e0f4c49f15339716f901",
+  "corrected_stage": {
+    "files": 337,
+    "freeze_sha256": "50feb04f3dc9310d15b2bfb9fe9273f9334f8357083cc9b2ea0df9d60fd61637",
+    "decomposition": "332copies+4authoredreportartifacts+1separate smallnativeidentitymanifest",
+    "entries": 820,
+    "class_counts": {
+      "COPY_EXACT": 332,
+      "GIT_REFERENCE": 485,
+      "EXTERNAL_NATIVE_IDENTITY_ONLY": 3
+    },
+    "git_origins": {
+      "accepted1192393": 484,
+      "owned_FA120intake_f3db": 1
+    },
+    "native_bytes_bundled": false,
+    "native_restoration": "NOT_SUPPLIED; identities/recorded provisioning association only"
+  },
+  "preserved_author_artifact": {
+    "logical_source": "report-author-staging-portability-correction-2/README.md",
+    "reviewed_name": "README.md",
+    "root_delivery_name": "author-manuscript.md",
+    "sha256": "8b98a69d50eeb7b2b8823ecefbe58349a6785a269c6ee63c59faa45e29721364",
+    "transformation": "NONE; exact same-level byte copy preserves relativelinks"
+  },
+  "support": {
+    "ledger_sha256": "31e0d33a92e0f22334f02f86f36a4f4454ea54c5fc1867b0bd245c1bacaba178",
+    "accounting_sha256": "f348b59484f77e153d2bab1312309a28c275c511eba309ade1c33b495ee84b5e",
+    "locations_sha256": "7c7c9edd627e15013a27227dce7e2a9c117350060ce5e8327e58c6d8aee4ebfa",
+    "native_manifest_sha256": "77a4bff590883bc8ffd5d2f048c14b8d8385971e55bec2a134026b07292ae767"
+  },
+  "root_wrapper": {
+    "destination": "README.md",
+    "prepared_source": "integration-source-preparation-v4/README-wrapper-draft-v4.md",
+    "sha256": "2642414c6145b83dcb149ff2bf2e2acd9c2dbaf10ea1d748c76323e3f8c73b64",
+    "purpose": "Factual delivery wrapper, no new science"
+  },
+  "history_preserved": {
+    "original330freeze": "a827dc3ecab19a80f7317fea4ec5ce8b64f7183c7c3d0db32329394f87a1f394",
+    "original_authorREADME": "93fbff47cfb8d78cc6d1b3ad632d1588c2682be00710c7bf1f6f86f5d1a75398",
+    "original_locations": "ad28ac9b84725f041e9716029324f2d64ea76ffeb4b9180104f780cf76332124",
+    "interrupted_partial337": "c7d0190a48391dd410572629f4ddd4f649ab1fcb4c032a2aaed2e06e7c960231",
+    "originalSCI3report": "7b50bc789dd8bb3d9aa64f159d1a868d14e62021315d643bbc7010a19bc7b51a",
+    "originalSCI3final": "f552bbdb4bacfedeef2331fbc9577be5b9a6a6d157eaed7692e231828ed2b745",
+    "applicability": "Original science retained; old false494 publicref assurance superseded, no SCI3 retroactive correctedpackaging acceptance"
+  },
+  "affected_SCI4": {
+    "status": "ACCEPT_NO_MATERIAL_ACTIONABLE_FINDING",
+    "scope": "Exact corrected337 metadata/Git/copy/native classification and retained unchanged scientific applicability; no whole-no-go proof or390streamsemantic reaudit",
+    "report_source": "/workspace/work/campaign/evidence/120/ROOT-final-manuscript-verdicts-1/corrected-SCI4-report.md",
+    "report_destination": "evidence/review/portability-scientific-review4/report.md",
+    "report_sha256": "457b5c07d259814a4004dc10da24dbc563dbcfa7ffb5220ed1c5b36b3dea6285",
+    "distinct_final_source": "/workspace/work/campaign/evidence/120/ROOT-final-manuscript-verdicts-1/corrected-SCI4-final.txt",
+    "distinct_final_destination": "evidence/review/portability-scientific-review4/final.txt",
+    "distinct_final_sha256": "7ab4eeb8c55216592bddc7a3cb75d63df863a4935fb813fe45089533a6b1803a"
+  },
+  "ROOT_proofs_required": [
+    "332exactcopies destinationSHA/length and original326 scientificcopy identity preservation",
+    "485declaredGit REV:path/OID/blobSHA/length with4842393+1f3db split",
+    "3nativeidentity source/resolved/hash/bytes/version/provisioning, binaries not bundled",
+    "corrected8b98 siblingSHA/Gitblob and same-level links",
+    "correctedmap7c7c/accountingf348/ledger31e0/nativemanifest77a4 unchanged",
+    "exactSCI4 artifacts+ROOTwhole-readapplication/placement applicability",
+    "actual finalclean candidate/base full13Ubuntu, freshD, PR+CI externally recorded"
+  ],
+  "ROOT_application": {
+    "source": "/workspace/work/campaign/evidence/120/ROOT-final-scientific-and-portability-acceptance-1.json",
+    "destination": "evidence/review/ROOT-final-scientific-and-portability-acceptance-1.json",
+    "sha256": "9b807fd84fd12e5fedd37b1fd8579394c8780f88e03aad383f230ddd05a2f5b5",
+    "verdict": "ACCEPT_ORIGINAL_RETAINED_SCIENCE_AND_CORRECTED_PORTABILITY_WITH_EXPLICIT_SCOPES"
+  },
+  "ROOT_independent_closure": {
+    "source": "/workspace/work/campaign/evidence/120/ROOT-corrected-portable-Git-blob-proof-1.json",
+    "destination": "evidence/review/ROOT-corrected-portable-Git-blob-proof-1.json",
+    "sha256": "8ad71ced219b0fe52612ecc52cd506f1403b8613d75f6071e3c51a6dba1a4f70",
+    "scope": "485directGitblobs,332copywholeSHA+length,3externalnativeidentity/nonbundle,337stage"
+  },
+  "original_SCI3": {
+    "report_destination": "evidence/review/original-manuscript-scientific-review3/report.md",
+    "report_sha256": "7b50bc789dd8bb3d9aa64f159d1a868d14e62021315d643bbc7010a19bc7b51a",
+    "distinct_final_destination": "evidence/review/original-manuscript-scientific-review3/final.txt",
+    "distinct_final_sha256": "f552bbdb4bacfedeef2331fbc9577be5b9a6a6d157eaed7692e231828ed2b745",
+    "scope": "Original330 scientific assessment retained for exact unchanged science/source/data/ledger; old494filesystemref assurance superseded, not corrected337acceptance"
+  },
+  "external_delivery_record": {
+    "path": "/workspace/work/campaign/evidence/120/final-evidence.json",
+    "owner": "ROOT",
+    "purpose": "Actual final tracked head/tree/base, Gitindex/attribute/placement proof, full13Ubuntu, freshD, PR/actualCI; kept outside their own candidatebytes",
+    "boundary": "No finalhead/gate/D/PR/CI readiness inferred from this scientific/portability application"
+  }
+}

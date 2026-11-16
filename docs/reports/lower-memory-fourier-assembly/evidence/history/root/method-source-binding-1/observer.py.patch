@@ -1,0 +1,10 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/observer.py
++++ /workspace/work/campaign/evidence/120/method-source-binding-1/observer.py
+@@ -1,6 +1,6 @@
+ """WS116 analysis-only observer. Source draft, never executed during preparation."""
+ 
+-raise SystemExit("FA120 UNCONDITIONAL HOLD: APPARATUS SOURCE PREPARATION ONLY")
++# ROOT source binding: execution still requires independent review and exact-case grant.
+ 
+ import contextlib
+ import fcntl

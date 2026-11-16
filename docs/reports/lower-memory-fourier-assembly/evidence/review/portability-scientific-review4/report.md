@@ -1,0 +1,76 @@
+# SCI4 independent affected manuscript/portability review
+
+## INITIAL AFFECTED PRIMARY ASSESSMENT
+
+Recorded before opening prior SCI3/SCI2, manuscript prose, author handoff or opinion bodies. I independently find that the corrected structured transport model remedies the concrete nine ignored-venv Git-membership error. This is an initial metadata assessment, not yet the final manuscript verdict.
+
+The launch packet SHA256 is 86dd941b3efe9794b224cc41cf86bf58ca055c3d686014a8cac882c72e62ab3f. The corrected337 freeze SHA256 is 50feb04f3dc9310d15b2bfb9fe9273f9334f8357083cc9b2ea0df9d60fd61637; `sha256sum --check --quiet` over all337 listed leaves returned0. Original330 inventory a827dc3ecab19a80f7317fea4ec5ce8b64f7183c7c3d0db32329394f87a1f394 and interrupted337 inventory c7d0190a48391dd410572629f4ddd4f649ab1fcb4c032a2aaed2e06e7c960231 were separately bound, not relabelled.
+
+I read the allowed issue, FA120 contract, AGENTS, PROJECT, review-work skill, role-launch guidance, ROOT-origin clarification0ed55245a2172660ebcf2b4295bcb162bb0bffccd2613ab45ea1c26d80f4cbd8, original/corrected map metadata, native manifest, provenance2, preflight result and W1/W2 source-material records. Native/source association was established from archived records and current hash/stat/readlink only. No interpreter, imports, AST, runtime, numerical workloads, tests, probes, process/environment inspection, source edits or delegation were used.
+
+Independent complete checks:
+
+- All485 GIT_REFERENCE entries: actual exact REV:path `rev-parse --verify`, `ls-tree` membership, `cat-file -t` blob type, `cat-file blob | sha256sum`, and uncompressed `cat-file -s` matched each declared OID/SHA256/length and original identity fields;485 checked,0 failures. There are484 ACCEPTED_119 records at2393e4a8473a4741902aca2aaa70b589bb33353a and one OWNED_INTAKE contract atf3db41747423786a7a49aadc428eaec0d03fdd5d. This establishes exact local Git-object closure; it does not claim the owned intake is already published at2393.
+- All332 COPY_EXACT entries: both literal recorded source and staged destination SHA256 and `stat -L` lengths matched the map;332 checked,0 failures. Six small startup/config records are exact copies, not alleged Git references.
+- All3 EXTERNAL_NATIVE_IDENTITY_ONLY entries: hash, length and `readlink -f` matched literal sources/resolved paths;3 checked,0 failures. All3 map records join exactly to the separately authored4077-byte native manifest and have no destination. Native bytes are explicitly unbundled, with no transport/archive/restoration claim. Python29357680 bytes, NumPy10633113 bytes and SciPy DUCC2389392 bytes identify these three files only.
+- Both archived W1 and W2 source-material lists contain the same nine venv identities (6 startup/config plus3 natives), all with matching SHA256/bytes. Provenance2 independently associates recorded Python3.13.12, NumPy2.5.3 and SciPy1.18.1 with the literal origins and Python resolved path. Separate DUCC package version is not recorded. The preflight record is historical metadata-only evidence; no new provisioning/version/ABI/precision/workspace proof follows.
+
+The classification sum is332+485+3=820 original identities. The337 staged leaves count332 copies+4 authored report artifacts+1 separately authored native-identity manifest. A native manifest is not a native archive or an additional original primary entry. Source worktree at this check is clean, HEADf3db41747423786a7a49aadc428eaec0d03fdd5d/tree288349217928b975ae16dd66ee13c7c93f4c892e.
+
+This primary assessment supports proceeding to the manuscript/accounting/link diff and retained scientific-byte applicability check. It does not supply a new no-go proof,390-stream semantic audit, publication execution, full-local gate, D review, PR or CI acceptance.
+
+## Final affected-scope verdict
+
+**ACCEPT the exact corrected337 external manuscript/portability package and retained scientific applicability. No material actionable correction was found within this narrow review.** This is fresh SCI4 launch1/review round1, distinct from the original author, fresh corrective author2 and original SCI3. It accepts corrected metadata/Git closure/copy identity/native classification plus the unchanged scientific manuscript's applicability, not a new whole no-go proof or390-stream semantic audit.
+
+The initial-only report SHA256 before this append was d41cb3ce65358324d619f41131184636412107b73dfbc59195285deb92e13ebb. Only after that initial section was written did I open the original/corrected README/accounting diff, corrected manuscript prose, author-result/final, original SCI3 report/final, archived SCI2 final and ROOT SCI2 application. Those secondary conclusions were review targets rather than premises for my initial transport assessment.
+
+### Exact accepted artifacts
+
+All paths below are relative to `/workspace/work/issue-120-sourceprep/final-report-preparation-1/report-author-staging-portability-correction-2/`.
+
+| Artifact | SHA256 |
+| --- | --- |
+| README.md | 8b98a69d50eeb7b2b8823ecefbe58349a6785a269c6ee63c59faa45e29721364 |
+| accounting.md | f348b59484f77e153d2bab1312309a28c275c511eba309ade1c33b495ee84b5e |
+| evidence/locations.json | 7c7c9edd627e15013a27227dce7e2a9c117350060ce5e8327e58c6d8aee4ebfa |
+| study-disposition.tsv | 31e0d33a92e0f22334f02f86f36a4f4454ea54c5fc1867b0bd245c1bacaba178 |
+| evidence/environment/external-native-identities.json | 77a4bff590883bc8ffd5d2f048c14b8d8385971e55bec2a134026b07292ae767 |
+
+This verdict additionally binds all332 exact copies in freeze50feb04f3dc9310d15b2bfb9fe9273f9334f8357083cc9b2ea0df9d60fd61637, and the485 exact declared Git references against clean sourcef3db/tree288349. It does not bind an uncreated tracked publication head. Corrective author handoff SHA256d09c69fcd1ca1c53974738979508a3182571d02f70ab06879e174baabdc7c77f and final07662a370f4ffde6940e55d3a81ab6aa905bb76623e12e85699c8065a01dcb90 were verified; they are authorship records, not independent evidence.
+
+### Independent retained-byte and manuscript assessment
+
+The original and corrected maps each have820 unique sources in identical order. Comparing source/SHA256/bytes/logical SHA/historical original path/attempt ID/origin family yields no differences. All326 original COPY_EXACT records are fully unchanged JSON records. Independently checking both old and corrected files against each original record's hash/length gives326 checks,0 failures. This includes original source, raw observations, archived review/provenance/history and source-material copies. The ledger is exactly31e0 in both stages,12117 bytes; no row/disposition semantics can change while those bytes are identical.
+
+All485 former existing-ancestor records now labelled GIT_REFERENCE preserve every original field other than the mode and add exact Git keys; the old-key comparison returns an empty difference list. Their destination equals git_path and path_base is REPOSITORY_ROOT in every case. Six former ancestor entries become startup copies and three become honest unbundled native identities. There are332 unique copy destinations and no native record has a destination, transport or Git revision. All9 venv paths are absent from actual2393 ls-tree, as is the owned FA120 contract; the contract's positive f3db blob verification is recorded above. None of the3 native SHA256s occurs among337 frozen delivered leaves. All337 frozen leaves are regular files without symlinks, including four legitimate empty historical stderr/provenance leaves. No extra native payload or restoration fiction was introduced in the reviewed freeze.
+
+The full `diff -u` of README shows only the status paragraph, final ROOT-ownership/status paragraph and appended portability section changed. Direct `cmp` of the opening scientific conclusion (lines1–3) and complete retained scientific body/reproduction section (lines6–103) separately returns0. The correction adds no new numerical proposition requiring a broader scientific review. Logical/Gzip provenance and historical actor identities retain the original byte applicability; no decompression or new losslessness proof was performed or needed for this packaging delta.
+
+Original SCI3 report7b50bc789dd8bb3d9aa64f159d1a868d14e62021315d643bbc7010a19bc7b51a/finalf552bbdb4bacfedeef2331fbc9577be5b9a6a6d157eaed7692e231828ed2b745 explicitly assessed the original330 freeze. Its independent scientific assessment remains applicable to unchanged source/data/ledger/scientific prose. Its filesystem-only494-reference assurance did not establish Git membership and does not become corrected337 acceptance. This report supplies the new actual Git-object assessment; the old verdict remains immutable historical evidence. Both original330 and interruptedpartial337 inventories still pass all their file hashes, separately from corrected337.
+
+The retained scientific meaning remains one tested candidate's exact-byte rejection: finite W1/W2a–c positives coexist with W2d baseline/candidate complete-byte failure in literal and public-derived lanes. Baseline/control agreement is matching complete-output canonical identity. The conjunction short-circuits on candidate failure, so no separately executed direct baseline/control pair comparison is inferred. Six matching selected samples do not restore full-array identity. Full arrays are unarchived; mismatch location/count/magnitude/signed-zero content/native mechanism remain unclassified. SCI4 does not re-derive or numerically re-audit those retained observations.
+
+The manuscript and accounting retain stopped W3–W6/writer work,27 kernel rows and12 workflow coordinates as unexecuted, SOURCE8 as incomplete and actual workflow IDs as unfinalized. Resident floor, memory saving, repeat variation, retained-control resource effect, latency, backend workspace/internal precision, ownership/general failure and current-large/scaling evidence remain unmeasured. H1 prevents kernel-only results or masked/noisy RSS from establishing workflow/known128 benefit or resource no-go. No16GiB/full-volume fit, out-of-core necessity, generic overwrite impossibility, tolerance/backend/order/default/API/precision change or new implementation handoff is asserted.
+
+### Requirement and risk disposition
+
+| Requirement/risk | Disposition |
+| --- | --- |
+| False published-ancestor membership | Corrected:9 venv nonmembers independently verified;6 exact small public copies and3 native identities replace false reference claims. |
+|485 reference closure and revision ambiguity | Satisfied locally by actual exact Git blob verification;484 at2393 and1 explicitly owned atf3db. The map does not claim all485 were published at2393 or equate a mutable filesystem Current with a versioned origin. Publication itself remains ROOT-owned. |
+|820/337 accounting and native archive confusion | Correct:332+485+3 original identities;337 frozen leaves=332 copies+4 report artifacts+1 separate support manifest. Native files remain unbundled and manifest support is not a native archive or821st primary entry. |
+| Version/provisioning association | Exact archived W1/W2/provenance/preflight associations retained; current hash/stat/readlink agrees. No bit-complete restoration, full provisioning/native closure/ABI/dispatch/internal-precision/workspace or present/future execution applicability is established. Separate DUCC package version remains unknown. |
+| Scientific-source/raw/ledger applicability | Retained by complete original326 copy identity, unchanged source/history/logical tuples, exact ledger and precise README byte/diff proof. Original SCI3 scientific scope remains applicable; no new scientific claim or390-stream re-audit is introduced. |
+| Links/reproduction/publication limits | All36 unique README/accounting Markdown target paths pass. Stage-relative files exist; external links normalize at intended repository report placement to exact declared Git references already verified. Original commands retain historical absolute paths; future reproduction requires fresh bindings, outputs and ROOT authority. |
+| Cumulative history and independence | Corrected accounting preserves original source events/corrections, SOURCE8 partial, apparatus/METHOD1, failed probe/binding correction, SCI1 source/W1 and interrupted/error W2, SCI2, original author and SCI3. Adds original-author interrupted correction1 and separate fresh correctiveauthor2 launch1; no restart or erased charge is inferred. Own SCI4 launch1/round1 is separate here. |
+
+### Commands, read limits and own charges
+
+Relevant successful commands were named-file `cat`/`sed`/`rg`/`wc`, `diff -u`, `cmp` over bounded prose projections, JSON field joins/comparisons with `jq`, `sha256sum` for all three inventories and source/copy/native identities, `stat`, `readlink -f`, path-only `realpath -m`, and read-only Git `status`, `rev-parse`, `ls-tree`, `cat-file`. Material checks report485 Git/332 copies/3 native/326 retained copies/36 links/337 regular frozen leaves with0 failures; source tuple and old-field difference arrays are empty. Opening conclusion/body cmp statuses are0. Original330, interrupted337 and corrected337 hash checks returned0; corrected337 was checked again after review, still0. Source status remained empty atf3db/tree288349 at completion.
+
+Some broad displays exceeded the output budget; I reread the material source/provenance/manuscript/review and author summary portions in bounded outputs and make no unseen-content claim. One jq summary initially had an unparenthesized object equality and returned a compile error; the corrected query passed. An initial file-type summary treated `regular empty file` as different from `regular file`; the corrected regular-file/no-symlink predicate passed all337, preserving legitimate empty historical records. These are reviewer file-query/display events, not scientific failures, target repairs or additional review rounds. The first detailed transition projection was overly verbose; its bounded rerun supplied all counts and identity-difference results. Normal diff status1 denoted the expected metadata changes.
+
+Applied `.agents/skills/review-work/SKILL.md` to this specialized report-only role under ROOT's narrower packet. Own cumulative record: fresh SCI4 launch1/review1,0 interpreter/runtime/scientific/test/probe/process/environment operations,0 delegation,0 target repairs,0 tracked edits. Only the two authorized independent-review report/final files were written; no scratch, numerical fixtures, long-lived owned process, cleanup or new helper platform was introduced. Requested Sol/high/fork none is launch intent; actual serving/model/effort/tokens/cost/complete elapsed and critical-path meters remain UNKNOWN unless independently exposed. Shared filesystem and unavailable optional memory-disable/per-role-read-only controls are prompt restrictions, not engineered isolation. Earlier roles' charges remain intact and are not summed twice.
+
+ROOT's whole-read/application, attribute/Gitblob proof at integration, versioned Current/wrapper metadata, exact clean Ubuntu full13, fresh D, PR and actual CI association remain separate required stages. This acceptance neither executes publication nor supplies their readiness evidence. No further author work is requested absent a concrete later finding or changed scope.

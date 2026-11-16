@@ -1,0 +1,5 @@
+20ac0ba761765482a33d774f7bf34d08e4ab51e5b81ec528195b065670a57dab  /workspace/work/campaign/evidence/120/ROOT-actual-study-candidate-freeze-1.json
+4c655f84bed427579c0e45d94600a640708517c4751c6b6340d44aabdcd0f1be  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/experimental_child.py
+298f98c49511959db70b5e8f9dc65d10887a4c32757c0a0139b2e83affa9af96  /workspace/work/issue-120-sourceprep/study-source-preparation/public_fixture_qualification.py
+165eae5393e9b6643c0a45b5957e0f8f8d36d1f4aa4e8582ecca9ade69d6e35b  /workspace/work/issue-120-sourceprep/qualification-source-preparation/qualification.py
+930e917d9f2334ca96f4e693ad2bf812cb96ef090b699aa8622df4454d5ebeaa  /workspace/work/issue-120-sourceprep/study-source-preparation/independent-witnesses.md

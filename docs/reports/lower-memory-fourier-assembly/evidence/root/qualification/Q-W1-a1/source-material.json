@@ -1,0 +1,281 @@
+{
+  "definition": "Exact named source/startup/native/interface/proposal inputs for finiteW1. Excludes binding.json and grant (separately bound externally), physicalcontext and futureoutputs. Not a universal loadedABI/fullthirdpartyclosure certificate.",
+  "candidate": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "inputs": [
+    {
+      "path": "/workspace/work/campaign/evidence/120/ROOT-QW1-literal-command-proposal-3.json",
+      "sha256": "023c622e46590df3e1d474de256ec021c08c4893b08f864e768b50bd8882f8df",
+      "bytes": 5100
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/120/ROOT-metadata-import-provenance-2.json",
+      "sha256": "1973618d090598a8e31217aafe6a31cce7093c7b1f928e3b766632c45f24551d",
+      "bytes": 11126
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/120/method-source-binding-2/observer.py",
+      "sha256": "dba11667e4b79428eef50965e5fa42bd9ec22acf71ccf543ee65c4009cd7a5bf",
+      "bytes": 20207
+    },
+    {
+      "path": "/workspace/work/issue-120/.python-version",
+      "sha256": "40411dc2c2726b4c7024d38318dd8df45c528b49491efb45939dd4a829847d94",
+      "bytes": 8
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/bin/python",
+      "sha256": "fed567fcbdacc14612dddd5f29a3203fbe5c93f50b926f15e7a926cf668822a5",
+      "bytes": 29357680
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/_editable_impl_simrecon.pth",
+      "sha256": "3dc8baadc2acfee72e3894dc3e84025994c821bb62ab907a43b06f85ba46e9e3",
+      "bytes": 29
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/_editable_impl_simrecon_devtools.pth",
+      "sha256": "cd7f767ada9710bedd51ac4c87b1ecd279bb25ed857b672f522294be3550cc4a",
+      "bytes": 38
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/_virtualenv.pth",
+      "sha256": "69ac3d8f27e679c81b94ab30b3b56e9cd138219b1ba94a1fa3606d5a76a1433d",
+      "bytes": 18
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/_virtualenv.py",
+      "sha256": "cfb3db86aaa53bb62b5ff764970bec2d71c9228590a0ebec57f6ec926cc0bf1a",
+      "bytes": 5246
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/a1_coverage.pth",
+      "sha256": "ef2ed06d19867ec669c09a804060666a9cd5e383af0a9d11aa2de79b77d448e8",
+      "bytes": 205
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/numpy/_core/_multiarray_umath.cpython-313-x86_64-linux-gnu.so",
+      "sha256": "097e10f2baaf99d5a4655e549a6c76b139e3931681af39068f79c7b3abddadac",
+      "bytes": 10633113
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/scipy/fft/_duccfft/pyduccfft.cpython-313-x86_64-linux-gnu.so",
+      "sha256": "f02b18219f6f4da027e3badebb3b6891c3cda415130f02b9e2583f0f69fb013e",
+      "bytes": 2389392
+    },
+    {
+      "path": "/workspace/work/issue-120/.venv/pyvenv.cfg",
+      "sha256": "8c2d64a16c1c00f511f810a208a920a0f16d882d2bfbf5df904f52086a2579fa",
+      "bytes": 194
+    },
+    {
+      "path": "/workspace/work/issue-120/docs/contracts/c-equivalence-acquisition-modes-v1.md",
+      "sha256": "5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e",
+      "bytes": 99508
+    },
+    {
+      "path": "/workspace/work/issue-120/docs/contracts/c-equivalence-known-parameters-v1.md",
+      "sha256": "3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c",
+      "bytes": 24315
+    },
+    {
+      "path": "/workspace/work/issue-120/docs/contracts/lower-memory-fourier-assembly-study-v1.md",
+      "sha256": "7e0ee0e576237883c8ba9c7c99e244df1e1fd962fef830b57937bd3b09cdab1c",
+      "bytes": 10363
+    },
+    {
+      "path": "/workspace/work/issue-120/docs/contracts/reconstruction-memory-v1.md",
+      "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+      "bytes": 22621
+    },
+    {
+      "path": "/workspace/work/issue-120/docs/contracts/wide-allocation-domain-v1.md",
+      "sha256": "d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb",
+      "bytes": 14444
+    },
+    {
+      "path": "/workspace/work/issue-120/pyproject.toml",
+      "sha256": "96a30134cc00103853913cfccaf673373b97760549467035082e71532c245abb",
+      "bytes": 1829
+    },
+    {
+      "path": "/workspace/work/issue-120/scripts/source_free_check.py",
+      "sha256": "cdf5894e916c9445a1627da9e654d853b8f772fba9f376cee80680fed9701564",
+      "bytes": 3257
+    },
+    {
+      "path": "/workspace/work/issue-120/scripts/source_free_sitecustomize/pytest_plugin.py",
+      "sha256": "d0c962f75b396169fb30288990dc6e12443b6b7f3f877c977101c3b402a3e3bf",
+      "bytes": 2534
+    },
+    {
+      "path": "/workspace/work/issue-120/scripts/source_free_sitecustomize/sitecustomize.py",
+      "sha256": "5c2992da3a882201fb15e5e8cc2a9cdbbbab6f2d6ea7a3db8a4eda4d5d73fc6f",
+      "bytes": 8566
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/__init__.py",
+      "sha256": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "bytes": 2165
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/acquisition/__init__.py",
+      "sha256": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "bytes": 69
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/acquisition/declarations.py",
+      "sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "bytes": 14777
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/acquisition/drift.py",
+      "sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "bytes": 14491
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/acquisition/layout.py",
+      "sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "bytes": 17861
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/acquisition/modes.py",
+      "sha256": "85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178",
+      "bytes": 49006
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/acquisition/preparation.py",
+      "sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "bytes": 21606
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/cli.py",
+      "sha256": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "bytes": 3631
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/io/__init__.py",
+      "sha256": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "bytes": 76
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/io/imagej.py",
+      "sha256": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "bytes": 7418
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/io/imagej_metadata.py",
+      "sha256": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "bytes": 7913
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/io/metadata.py",
+      "sha256": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "bytes": 9268
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/io/mrc_writer.py",
+      "sha256": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "bytes": 7878
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/io/pixels.py",
+      "sha256": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "bytes": 3269
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/io/priism.py",
+      "sha256": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "bytes": 5328
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/models.py",
+      "sha256": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "bytes": 1634
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/optical_transfer.py",
+      "sha256": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "bytes": 60333
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/reconstruction/__init__.py",
+      "sha256": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "bytes": 79
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/reconstruction/known_parameters.py",
+      "sha256": "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c",
+      "bytes": 50680
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/reconstruction/parameter_estimation.py",
+      "sha256": "527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38",
+      "bytes": 50978
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/workflow/__init__.py",
+      "sha256": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "bytes": 56
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/workflow/adapters.py",
+      "sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "bytes": 9763
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/workflow/identity.py",
+      "sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "bytes": 9347
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/workflow/reconstruct.py",
+      "sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "bytes": 24509
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/workflow/result.py",
+      "sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "bytes": 4759
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/workflow/summary.py",
+      "sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "bytes": 3244
+    },
+    {
+      "path": "/workspace/work/issue-120/src/simrecon/workflow/transfer.py",
+      "sha256": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "bytes": 17925
+    },
+    {
+      "path": "/workspace/work/issue-120/tests/c_known_fixture.py",
+      "sha256": "5e80aafb44b59ae9d45592181b72d62ce03dd7f49f146313294a16c73a2d89a6",
+      "bytes": 13650
+    },
+    {
+      "path": "/workspace/work/issue-120/tests/reconstruction_summary_fixture.py",
+      "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "bytes": 14106
+    },
+    {
+      "path": "/workspace/work/issue-120/uv.lock",
+      "sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+      "bytes": 45523
+    },
+    {
+      "path": "/workspace/work/issue-120-sourceprep/actual120-activation-source-1/experimental_child.py",
+      "sha256": "5175b8877bccd2b614bcc84bf1739c199c464eab7786218ad3f2246f03e34ea8",
+      "bytes": 14896
+    },
+    {
+      "path": "/workspace/work/issue-120-sourceprep/actual120-activation-source-1/public_fixture_qualification.py",
+      "sha256": "69cd605d0ba53ac257c16a8ccfd7628b22d4a4f11cc81fa73320513d74200b1e",
+      "bytes": 10784
+    },
+    {
+      "path": "/workspace/work/issue-120-sourceprep/actual120-activation-source-1/qualification.py",
+      "sha256": "c022cc1e49ab3280ef1766dfe088f0543ced91a7ee290e6ecd005d3f44cccc4a",
+      "bytes": 18683
+    }
+  ]
+}

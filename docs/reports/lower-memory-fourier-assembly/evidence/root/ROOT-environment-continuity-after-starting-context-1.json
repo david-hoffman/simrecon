@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-16T19:00:15.187077+00:00",
+  "event": "Selectedenvironment brieflyreportedSTARTING thenavailable; actualhostrestartnotestablished",
+  "candidate": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "retained_QW2_stdout_sha256": "ee189122e37ff0bc5aeb5e82bb3a2fb324853ecb5573a30b8836480953873fae",
+  "retained_QW2_close_sha256": "849a01d93873604628ed03a6d926147df6710a981f6b1c0ac7b214854674fd31",
+  "owned_science_container": {
+    "id": "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "observed_status": "running",
+    "host_PID": 1497,
+    "image": "sha256:7da97f743f397971f35dd21cd2d19a7da070a150e0cfa3eda559e71891ec7533"
+  },
+  "scope": "Readonlycontinuitychecks only,noPython/FFTtarget/import/test/install. W1+W2closedbeforetransition, no ownednumericaltargetactive, no scientificrepeat/relabel. SourceSCIsessioninterruptedthenresumedownfile-onlyreview. Futureenvironmentapplicability/gatesmustbeactualcurrent,notassumedfrommatchingfiles.",
+  "HOLD": "NoW3\u20136/27kernel/12workflowtargets. QW2d bytecompatibilitycounterexampleawaitsindependentSCI/classification. Source8pausedartifactsretained."
+}

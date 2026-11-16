@@ -1,0 +1,42 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/historical-event1-pre-identity-correction/source/direct_binding.py	2026-11-16 06:00:41.903161304 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/direct_binding.py	2026-11-16 06:03:41.635332909 -0800
+@@ -267,6 +267,18 @@
+     def number(value):
+         return type(value) in (int, float) and math.isfinite(value) and value >= 0
+ 
++    def array_identity(value, name):
++        # reconstruction_summary_fixture.identity's tuple becomes a JSON LIST:
++        # [name, [shape...], canonical dtype.str, canonical complete-byte SHA256].
++        dtype = "<c16" if name == "filtered" else "<f8"
++        return (
++            isinstance(value, list) and len(value) == 4 and value[0] == name
++            and isinstance(value[1], list)
++            and all(type(size) is int and size >= 0 for size in value[1])
++            and value[2] == dtype and isinstance(value[3], str)
++            and re.fullmatch(r"[0-9a-f]{64}", value[3]) is not None
++        )
++
+     require(set(record) == PAYLOAD_KEYS, "exact frozen child payload fields")
+     require(type(pid) is int and pid > 0 and record["pid"] == pid and type(record["pid"]) is int, "exact owned child PID")
+     require(record["ppid"] == spec["expected_observer_pid"] and type(record["ppid"]) is int, "actual observer PPID")
+@@ -278,14 +290,18 @@
+     fixture = spec["fixture_binding"]
+     require(record["fixture_directory"] == fixture["directory"] and record["fixture_file_hashes"] == fixture["files"], "exact qualified five fixture files")
+     before, after = record["input_identities_before"], record["input_identities_after"]
+-    require(isinstance(before, dict) and set(before) == {"filtered", "carriers", "x_um", "y_um"}, "four kernel callers")
++    require(isinstance(before, dict) and isinstance(after, dict) and set(before) == set(after) == {"filtered", "carriers", "x_um", "y_um"}, "four kernel callers before/after")
++    require(all(array_identity(values[name], name) for values in (before, after) for name in ("filtered", "carriers", "x_um", "y_um")), "four-field JSON-list caller identities before/after")
+     require(before == after == fixture["expected_loaded_input_identities"], "fixed unchanged loaded caller identities")
+-    require(isinstance(record["output_identity"], dict) and record["output_identity"] == fixture["expected_output_identity"], "predeclared public image identity; separate full byte comparison still required")
++    output_identity = record["output_identity"]
++    require(array_identity(output_identity, "image") and output_identity == fixture["expected_output_identity"], "four-field JSON-list public image identity; separate full byte comparison still required")
++    require(output_identity[1] == spec["output_shape"] and output_identity[2] == "<f8", "canonical output identity shape/dtype")
+     require(record["output_complete_little_endian_bytes_path"] == spec["output_image_path"], "complete raw little-endian image path")
+     require(record["output_shape"] == spec["output_shape"] and record["output_dtype"] == "<f8" and record["output_strides"] == spec["output_strides"], "output shape/dtype/strides")
+     require(record["output_owns_data"] is True and record["output_writeable"] is True, "kernel output flags")
+     image = Path(spec["output_image_path"])
+     require(image.is_file() and image.stat().st_size == spec["output_bytes"], "complete archived raw image byte count")
++    require(digest(image) == output_identity[3], "complete raw artifact digest matches declared canonical output identity")
+     require(record["native_high_water_units"] == "Linux KiB" and record["native_high_water_multiplier_to_bytes"] == 1024, "Linux native cumulative units")
+     highs = [record[name] for name in ("pre_call_high_water_native", "call_end_high_water_native", "post_observation_high_water_native")]
+     require(all(integer(value) for value in highs) and highs == sorted(highs), "cumulative high-water order; no subtraction")

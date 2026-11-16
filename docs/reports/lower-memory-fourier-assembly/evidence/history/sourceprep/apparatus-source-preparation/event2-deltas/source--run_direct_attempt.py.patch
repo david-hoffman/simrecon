@@ -1,0 +1,11 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/historical-event1-pre-identity-correction/source/run_direct_attempt.py	2026-11-16 06:00:41.902840610 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/run_direct_attempt.py	2026-11-16 06:04:29.354756987 -0800
+@@ -22,7 +22,7 @@
+ _SOURCE_DIR = Path(__file__).resolve().parent
+ for _name, _expected in {
+     "observer.py": "ffcffac66f9959d0954231222b520fe65ab31a7203a8c6998aec092ee2e1df2f",
+-    "direct_binding.py": "fb3c11e5d5cfce27921aa7b727feeb427dadb7447a2660ca3e19b9572cc8ae8b",
++    "direct_binding.py": "64a5c76fbbe6cf8a42b977ad292ace6226bfc4e0a19e606831bfe4b57b634205",
+ }.items():
+     if hashlib.sha256((_SOURCE_DIR / _name).read_bytes()).hexdigest() != _expected:
+         raise ValueError("fixed external method import source identity changed: " + _name)

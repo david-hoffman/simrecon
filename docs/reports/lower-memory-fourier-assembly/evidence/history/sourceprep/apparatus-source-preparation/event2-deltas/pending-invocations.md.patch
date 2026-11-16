@@ -1,0 +1,16 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/historical-event1-pre-identity-correction/pending-invocations.md	2026-11-16 06:00:41.908921322 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/pending-invocations.md	2026-11-16 06:03:20.299588261 -0800
+@@ -20,6 +20,13 @@
+ stderr, samples, spec, grant, startup markers and receipt files. Existing-file,
+ exception, parse, wait, monitor and partial-output failures remain evidence.
+ 
++Each declared array identity is a four-field JSON list
++[name, [shape...], canonical dtype.str, SHA256], including the VALUES inside
++the input_identities_before/after dictionaries. Source correction1/event2 fixes
++that schema and checks the raw artifact's byte digest against output_identity's
++SHA256 slot. Qualified public-image identity equality remains required; complete
++baseline/public-reference byte comparison remains separate qualification.
++
+ PENDING schedule is exactly the initial_conditions array in source/manifest.json:
+ Ksmall then Kmedium then K2D; r1 baseline/candidate/retained-control;
+ r2 candidate/retained-control/baseline; r3 retained-control/baseline/candidate.

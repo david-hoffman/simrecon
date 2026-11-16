@@ -1,0 +1,13 @@
+4c655f84bed427579c0e45d94600a640708517c4751c6b6340d44aabdcd0f1be  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/originals/experimental_child.py
+298f98c49511959db70b5e8f9dc65d10887a4c32757c0a0139b2e83affa9af96  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/originals/public_fixture_qualification.py
+165eae5393e9b6643c0a45b5957e0f8f8d36d1f4aa4e8582ecca9ade69d6e35b  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/originals/qualification.py
+5175b8877bccd2b614bcc84bf1739c199c464eab7786218ad3f2246f03e34ea8  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/experimental_child.py
+69cd605d0ba53ac257c16a8ccfd7628b22d4a4f11cc81fa73320513d74200b1e  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/public_fixture_qualification.py
+c022cc1e49ab3280ef1766dfe088f0543ced91a7ee290e6ecd005d3f44cccc4a  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/qualification.py
+e9e03e79b7800a567527e19f01579d7c5d876438ca10044419e749c34cd65176  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/deltas/experimental_child.py.patch
+125cd1ca2f5ba235b491cfb5557c2c59b1e15724d94ac2ebea00f8c2ab52f563  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/deltas/public_fixture_qualification.py.patch
+d10d99b86eb6c520e3b0a4277498ad9a427cba301119b7886079937ed6b29da9  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/deltas/qualification.py.patch
+20ac0ba761765482a33d774f7bf34d08e4ab51e5b81ec528195b065670a57dab  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/ROOT-actual-study-candidate-freeze-1.json
+53b92067c93a63a0561b66e2ad9599e3cc9ca23851851b4e8584708bf1a3fdd1  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/external-field-invocation-map.md
+b1254e8da07b2d24022d03bf4fce277396afd7f170ded7f7f92c4984448c8ee9  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/read-input-sha256.txt
+44e62c5b4de287409f4f347c59eabf2796db51d0bead23573275cb21a1c825a6  /workspace/work/issue-120-sourceprep/actual120-activation-source-1/source-handoff.md

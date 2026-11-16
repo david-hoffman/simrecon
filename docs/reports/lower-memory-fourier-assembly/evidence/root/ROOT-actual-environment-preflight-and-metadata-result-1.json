@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-16T18:08:20.621919+00:00",
+  "status": "ACTUAL120_ENVIRONMENT_PREFLIGHT_AND_METADATA_IMPORT_PASS",
+  "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "parent119_CI": "PASSED",
+  "make_preflight_exit": 0,
+  "make_preflight_log": {
+    "path": "/workspace/work/campaign/evidence/120/ROOT-actual-preflight-1.log",
+    "sha256": "5c56c3cbec9026b949b9d780efd68c1a6b8a37d8235138bace587f6687da0794"
+  },
+  "metadata_probe_attempt": 2,
+  "metadata_probe_exit": 0,
+  "metadata_provenance": {
+    "path": "/workspace/work/campaign/evidence/120/ROOT-metadata-import-provenance-2.json",
+    "sha256": "1973618d090598a8e31217aafe6a31cce7093c7b1f928e3b766632c45f24551d"
+  },
+  "failed_probe1": "PreservedModuleNotFoundErrorfromwrongpocketfftliteral, diagnosedactualduccsourcepath, one-literalprobe2correction only. No FFT/backend/dependencychange.",
+  "candidate_full_clean": true,
+  "limits": "No FFT/arrayworkload/W1\u20136/control/qualification/scientificmeasurement. Actualfile/interface/startupmetadata only, no ABI/internalprecision/workspace/dispatch/nativeerrorbound/zeroallocation claim. No numericalgrant."
+}

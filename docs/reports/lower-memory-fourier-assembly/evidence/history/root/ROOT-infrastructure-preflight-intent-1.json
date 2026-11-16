@@ -1,0 +1,11 @@
+{
+  "cmd": "/usr/local/bin/docker exec --user 1000:1000 -w /workspace/work/issue-120 -e PATH=/workspace/.simrecon-tools/uv-env/bin:/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin -e SIMRECON_JAVA=/workspace/.simrecon-tools/jdk-21.0.7+6/bin/java -e SIMRECON_PROTOCOLS_EVIDENCE=/workspace/work/campaign/protocol-120-infrastructure-preparation-1 11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b /usr/bin/make preflight UV=/workspace/.simrecon-tools/uv-env/bin/uv PYTHON=/workspace/work/issue-120/.venv/bin/python",
+  "head": "c962ccfff03ca78de31e6a0af746ec091e822989",
+  "status": "PREPARENT_INFRASTRUCTURE_ONLY",
+  "inputs": {
+    "pyproject": "96a30134cc00103853913cfccaf673373b97760549467035082e71532c245abb",
+    "lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "python_version": "40411dc2c2726b4c7024d38318dd8df45c528b49491efb45939dd4a829847d94"
+  },
+  "scope": "Own120venv documentedpreflight/setup; no numerical study, scientific or accepted-parent evidence. A09parentexists/nolock manipulation. Otherrolesfileonly."
+}

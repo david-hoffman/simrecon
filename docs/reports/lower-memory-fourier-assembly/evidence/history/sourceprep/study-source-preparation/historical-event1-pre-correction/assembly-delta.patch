@@ -1,0 +1,19 @@
+This is a descriptive literal candidate delta, NOT an applied product patch.
+Reference: known_parameters.py at 158776ade28079276304d49a6b973eccbf4109c9
+SHA256 edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645.
+No phase/product/real, embedding, finite or accumulation edits are proposed.
+
+@@ inverse storage only in assemble_signed_image @@
+                 if zsize == 1:
+-                    spatial = np.zeros_like(padded)
+-                    spatial[0] = cast(_C128, ifftn(padded[0], norm="forward"))
++                    spatial = padded
++                    spatial[0] = cast(_C128, ifftn(padded[0], norm="forward", overwrite_x=True))
+                 else:
+-                    spatial = cast(_C128, ifftn(padded, norm="forward"))
++                    spatial = cast(_C128, ifftn(padded, norm="forward", overwrite_x=True))
+                 del padded
+
+Native2D later planes remain initialized zeros. The returned plane can retain a
+parent; name deletion is no proof of memory release. Same pointer/shares_memory
+is no proof of zero backend workspace. This one strategy requires exact results.

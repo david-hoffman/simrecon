@@ -1,0 +1,21 @@
+{
+  "status": "PREPARED_NOT_GRANTED",
+  "condition": "Q-W2-a1",
+  "route": "Exactproposal3Dockerexec\u2192GNUtimeout9.4foreground\u2192onePythonW2entry; no numericaldescendants declared by inspected callgraph",
+  "capture": "ROOTexclusivecreate stdout/stderr thenexistingtools.exec_command shell usesalreadyownedFD redirection; outerUNIFIEDsessionreturn/poll ownsproxy. Do notoverwriteexistingattemptoutputs. Capture first+terminaltoolresults externally.",
+  "bounds": {
+    "GNU_TERM_seconds": 60,
+    "GNU_KILL_after_TERM_seconds": 5,
+    "ROOT_outer_observation_seconds": 120,
+    "recovery_policy": "Outerexpiry/cancellation/missingmarker/lostterminal: HOLD,no next target; keepownedtool/PIDhandles, inspectmarkerPID withbirthticks+fullargv+container identitybefore anyexistingTERM/KILL/wait recovery; current/ambiguousunmatchedPID never signalled."
+  },
+  "interpretation": {
+    "0": "NeedbothJSONlines/exactmarker/resultsamePID+case,outputsparse,sourcebeforeaftermatch,Pythonmetadata/debug checked; then normalqualificationclosed, not scientificacceptance. GNUexit0 mapsPythonexit0, Docker/toolproxyreturned0 separatelyrecorded.",
+    "124": "DeadlineINCOMPLETE regardlesspartialresult, preserveevidence/ownedprocessclosure orHOLD",
+    "137": "KILLINCOMPLETE, preserveevidence and terminal/birthidentityrecoverybeforeanynext",
+    "other_nonzero": "Failed/incomplete; preserveexactstdoutstderr/status anddiagnosebeforecontinuation",
+    "missing_marker_or_outer_loss": "No inventedPID, exactownedDockerexec/Python recovery viaexistingtools, unresolvedHOLD/no next"
+  },
+  "physical_admission": "FreshROOTexistingobserver.context immediatelybeforegrant; minimumavailable1GiB,reserve512MiB,conservative512MiBchildallowance,allvisibleancestorcurrent+allowance+reserve<max\u22121GiB anddisk2GiB. Theseareconditionaloperatingchoices,not enforcedRSSceilings or measuredpredictionguarantees. Hiddenactors/ancestorsunknown.",
+  "exclusive_window": "ROOT solelocalnumericwindow; otherrolesFILE/GIT/HASHonly, no tests/install/benchmark. Begins onlywhenactualROOTgrantwritten."
+}

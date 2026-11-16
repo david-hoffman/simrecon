@@ -1,0 +1,27 @@
+{
+  "approved": true,
+  "release": "EXACTLY_ONE_EXISTING_W1_QUALIFICATION_ENTRY",
+  "grant_id": "FA120-Q-W1-a1-20261116",
+  "condition": "W1",
+  "attempt": "Q-W1-a1",
+  "utc": "2026-11-16T18:35:45.481162+00:00",
+  "start_by_unix_ns": 1794854272005913731,
+  "candidate": {
+    "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+    "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+    "integration_base": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+    "full_clean": true
+  },
+  "binding_sha256": "90ed36c23c1c82b708d8b01e153533ee185ddf9b7b9596f6965ad0c79aafddde",
+  "source_material_sha256": "0833a7790fa5071095eff668df1543ff78bcccfb710091394aa98e1598174c21",
+  "all55_current_hashes_match": true,
+  "command_capture_freeze_sha256": "eaeb98b3237577c7adf12b655d37ab6a7fff253ad7426ab7d2ed9303d0da64e4",
+  "physical_admission": {
+    "path": "/workspace/work/campaign/evidence/120/qualification/Q-W1-a1/ROOT-conditional-physical-admission-1.json",
+    "sha256": "f9beccc408d40cd7745e6a1feafc6aa029e7b17cecf7182c55a39a775053f738",
+    "context_age_seconds_at_freeze": 173.256113641
+  },
+  "source_application_sha256": "088da75e9d507914fa0313e6462e621e3c5631827adbbe16151c8c7debdf71c5",
+  "exclusive_window": "ROOTsolelocalnumericalentry; otherrolesFILEonly, no concurrenttests/install/benchmark/othernumeric. Closesonlyonobservedterminal+sourcepostcheck orremainsHOLD.",
+  "limits": "No automaticW2\u20136/writer/27matrix/retry/growth/handoff/runtimeAPI/precisionactivation or memory/latency/16GiB claim. Nativeprimitiveboundsunqualified. ExactcaseGNUwalltimeonly, hiddenancestors/actorsunknown. All failures/partialsevidencepreserved."
+}

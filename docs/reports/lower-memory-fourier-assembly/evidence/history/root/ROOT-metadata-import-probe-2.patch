@@ -1,0 +1,11 @@
+--- /workspace/work/campaign/evidence/120/ROOT-metadata-import-probe-1.py
++++ /workspace/work/campaign/evidence/120/ROOT-metadata-import-probe-2.py
+@@ -12,7 +12,7 @@
+ assert sys.version_info[:3]==(3,13,12) and __debug__ and sys.flags.optimize==0
+ assert Path(sys.prefix).resolve()==root/".venv"
+ assert Path(simrecon.__file__).resolve()==root/"src/simrecon/__init__.py"
+-mods=[importlib.import_module(n) for n in ("numpy._core._multiarray_umath","scipy.fft._pocketfft.pypocketfft","sitecustomize")]
++mods=[importlib.import_module(n) for n in ("numpy._core._multiarray_umath","scipy.fft._duccfft.pyduccfft","sitecustomize")]
+ paths=[sys.executable,str(root/".venv/pyvenv.cfg"),kp.__file__,str(root/"uv.lock"),str(root/"pyproject.toml")]
+ paths += [m.__file__ for m in mods]
+ paths += [str(p) for p in sorted((Path(sys.prefix)/"lib/python3.13/site-packages").glob("*.pth"))]

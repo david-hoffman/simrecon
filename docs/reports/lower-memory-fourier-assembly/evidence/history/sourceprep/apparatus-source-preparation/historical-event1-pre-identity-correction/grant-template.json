@@ -1,0 +1,122 @@
+{
+  "protocol": "FA120-direct-grant-v1",
+  "approved": false,
+  "numerical_release": false,
+  "accepted_actual119_and_affected118": false,
+  "window": "W120",
+  "grant_id": "UNBOUND",
+  "attempt_id": "UNBOUND",
+  "condition_id": "UNBOUND",
+  "repetition": "UNBOUND",
+  "profile": false,
+  "candidate": {
+    "head": "UNBOUND",
+    "tree": "UNBOUND",
+    "tracked_diff_sha256": "UNBOUND"
+  },
+  "subject": {
+    "actual119_parent": "UNBOUND",
+    "worktree": "UNBOUND",
+    "python": "UNBOUND",
+    "module_root": "UNBOUND",
+    "revision": "UNBOUND",
+    "tree": "UNBOUND",
+    "dirty": "UNBOUND",
+    "expected_child_fields": {
+      "actual119_parent": "UNBOUND",
+      "candidate": "UNBOUND",
+      "environment": "UNBOUND",
+      "grant": "UNBOUND"
+    },
+    "diagnostic_environment": {
+      "inherited_pythonpath": "UNBOUND",
+      "inherited_pytest_plugins": "UNBOUND",
+      "PYTHONPATH": "UNBOUND",
+      "PYTEST_PLUGINS": "UNBOUND"
+    }
+  },
+  "proofs": {
+    "actual119_reconciliation": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "affected118_scientific_disposition": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "fresh_method_source_review": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "fresh_scientific_source_review": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "finite_method_qualification": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "public_fixture_qualification": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "diagnostic_route_qualification": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "metadata_git_abort_ownership": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "exclusive_window": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "environment_binding": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "individual_admission": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    }
+  },
+  "row_config": {
+    "path": "UNBOUND",
+    "sha256": "UNBOUND"
+  },
+  "material_hashes": "UNBOUND",
+  "representation_preflight": {
+    "accepted": false,
+    "evidence": "UNBOUND"
+  },
+  "headroom_evidence": "UNBOUND",
+  "python_resolved": "UNBOUND",
+  "launch_nonce": "UNBOUND",
+  "startup_timeout_seconds": "UNBOUND",
+  "startup_pipe_bytes": 1024,
+  "sample_interval_seconds": 0.01,
+  "deadline_seconds": "UNBOUND",
+  "process_stop_bytes": "UNBOUND",
+  "host_min_available_bytes": "UNBOUND",
+  "ancestor_stop_bytes": "UNBOUND",
+  "terminate_grace_seconds": "UNBOUND",
+  "kill_reap_seconds": "UNBOUND",
+  "max_child_record_bytes": "UNBOUND",
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "UNBOUND",
+    "correspondence_evidence": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND",
+      "observed_at_unix_ns": "UNBOUND",
+      "maximum_age_seconds": "UNBOUND"
+    },
+    "expected_exposed": "UNBOUND",
+    "predicted_child_peak_bytes": "UNBOUND",
+    "native_allocator_allowance_bytes": "UNBOUND",
+    "reserve_bytes": "UNBOUND"
+  },
+  "status": "PENDING_DESCRIPTION_ONLY_NO_EXECUTABLE_AUTHORITY"
+}

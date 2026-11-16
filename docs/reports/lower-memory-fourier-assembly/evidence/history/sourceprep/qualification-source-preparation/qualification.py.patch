@@ -1,0 +1,339 @@
+--- /dev/null	2026-11-14 13:58:30.631570372 -0800
++++ /workspace/work/issue-120-sourceprep/qualification-source-preparation/qualification.py	2026-11-16 09:17:50.897980971 -0800
+@@ -0,0 +1,336 @@
++"""FA120 finite W1–W6 qualification SOURCE only; no release or accuracy verdict.
++
++All runtime/material/parent bindings and primitive/native error bounds remain
++UNBOUND. No threshold is inferred from existing tests or measured residuals.
++"""
++
++raise SystemExit("FA120 UNCONDITIONAL HOLD: QUALIFICATION SOURCE PREPARATION ONLY")
++
++import inspect
++from dataclasses import replace
++from fractions import Fraction as F
++from types import SimpleNamespace
++
++import numpy as np
++from scipy.fft import ifftn
++
++from simrecon import ReconstructionError, declare_otf, prepare_acquisition_bands
++from simrecon.reconstruction import known_parameters as kp
++from c_known_fixture import assemble, blank, known, table
++from reconstruction_summary_fixture import identity
++import experimental_child as study
++
++
++SOURCE_REFERENCE = "2393e4a8473a4741902aca2aaa70b589bb33353a"
++ACTUAL_ACCEPTED_119 = "UNBOUND"
++ACTUAL_120_MATERIAL_ENVIRONMENT_GRANT_OUTPUT = "UNBOUND"
++PRIMITIVE_AND_NATIVE_ERROR_BOUNDS = "UNBOUND"
++
++
++def _same(a, b):
++    return a.shape == b.shape and a.dtype == b.dtype and a.tobytes() == b.tobytes()
++
++
++def _residual(value, reference):
++    """Exact rational residual or one of the TWO fixed algebraic-reference brackets."""
++    observed = F.from_float(float(value))
++    if reference in ("1+2sqrt3","-1+2sqrt3"):
++        lower,upper = (F(13,3),F(9,2)) if reference=="1+2sqrt3" else (F(7,3),F(5,2))
++        lo,hi = observed-upper,observed-lower
++        if lo >= 0:
++            alo,ahi,left_closed = lo,hi,False
++        elif hi <= 0:
++            alo,ahi,left_closed = -hi,-lo,False
++        else:
++            alo,ahi,left_closed = F(0),max(-lo,hi),True
++        return {"observed_exact_dyadic":str(observed),"observed_hex":float(value).hex(),
++            "reference":reference,"reference_open_bracket":[str(lower),str(upper)],
++            "signed_error_interval":{"lower":str(lo),"upper":str(hi),
++                                     "lower_closed":False,"upper_closed":False},
++            "absolute_error_interval":{"lower":str(alo),"upper":str(ahi),
++                                       "lower_closed":left_closed,"upper_closed":False},
++            "meaning":"FIXED_REFERENCE_ENCLOSURE_NOT_AN_ERROR_ALLOWANCE"}
++    error = observed-reference
++    return {"observed_exact_dyadic":str(observed),"observed_hex":float(value).hex(),
++            "reference":str(reference),
++            "signed_error_interval":{"lower":str(error),"upper":str(error),
++                                     "lower_closed":True,"upper_closed":True},
++            "absolute_error_interval":{"lower":str(abs(error)),"upper":str(abs(error)),
++                                       "lower_closed":True,"upper_closed":True},
++            "meaning":"EXACT_POINTWISE_ERROR_NOT_AN_ERROR_ALLOWANCE"}
++
++
++def _observe(label, q, bands, carriers, samples, *, omit=False, explode=1.0,
++             transfer=None):
++    """Fixed-case observations; no generic oracle/interval or acceptance engine."""
++    orders = (q.shape[2]+1)//2
++    grid = kp._Grid(bands.input_shape, orders, bands.lateral_zoom, bands.axial_zoom,
++                    bands.dxy_um, bands.dz_um, bands.input_scale,
++                    getattr(bands, "acquisition_mode", "3d"))
++    oz, oy, ox = grid.output_shape
++    x = (np.arange(ox, dtype=np.float64)-ox//2)*(bands.dxy_um/bands.lateral_zoom)
++    y = (np.arange(oy, dtype=np.float64)-oy//2)*(bands.dxy_um/bands.lateral_zoom)
++    before = identity(q, "filtered")
++    images = []
++    # LANE1 ALWAYS runs the fixed literal930e input through actual kernels.
++    # Instrumented qualification may retain comparisons; NEVER a measured child.
++    for operation in (kp.assemble_signed_image, study.candidate, study.retained_control):
++        with kp._operation():
++            images.append(operation(q, grid, carriers, omit, x, y, explode))
++    sampling = SimpleNamespace(lateral_zoom=int(bands.lateral_zoom),
++        axial_zoom=1 if q.shape[3]==1 else bands.axial_zoom,dxy_um=bands.dxy_um)
++    if q.shape[3] == 1:
++        # CE04 helper is a full3D sum. Use its A1 plane only for native2D;
++        # CE06 independently requires initialized later zeros, not replication.
++        plane, budget = assemble(q, sampling, carriers*explode, omit)
++        direct = np.zeros((q.shape[0], oz, oy, ox), np.float64)
++        direct[:, 0] = plane[:, 0]
++    else:
++        direct, budget = assemble(q, sampling, carriers*explode, omit)
++    observations = []
++    for index, reference in samples:
++        observations.append({"index": index, "reference": str(reference),
++            "variants": [_residual(image[index],reference) for image in images],
++            "independent_helper": _residual(direct[index], reference)})
++    # LANE2 independently reuses the legitimate PUBLIC result's actual inputs.
++    # It never replaces lane1 or treats different public inputs as the sparse ideal.
++    result = known(bands, transfer, carriers_cyc_um=carriers,
++                   modulation=np.zeros((q.shape[1], orders-1), np.complex128),
++                   omit_order0=omit, explode_factor=explode)
++    settings = dict(result.resolved_settings)
++    public_grid = kp._Grid(bands.input_shape,orders,settings["lateral_zoom"],settings["axial_zoom"],
++        settings["dxy_um"],settings["dz_um"],settings["input_scale"],settings.get("acquisition_mode",grid.mode))
++    kernel_input = result.filtered_quadratures
++    kernel_before = identity(kernel_input,"public.kernel.filtered")
++    public_images = []
++    for operation in (kp.assemble_signed_image,study.candidate,study.retained_control):
++        with kp._operation():
++            public_images.append(operation(kernel_input,public_grid,result.carriers_cyc_um,
++                                 omit,result.x_um,result.y_um,explode))
++    metadata_equal = all(getattr(public_grid,name)==getattr(grid,name)
++        for name in ("shape","orders","lateral","axial","dxy","dz","scale","mode"))
++    applicable = bool(np.array_equal(kernel_input,q) and metadata_equal
++        and np.array_equal(result.carriers_cyc_um,carriers)
++        and np.array_equal(result.x_um,x) and np.array_equal(result.y_um,y))
++    public_samples = [{"index":index,"variants":[_residual(image[index],reference) if applicable
++        else {"status":"NOT_APPLICABLE_PUBLIC_INPUT_OR_METADATA_DIFFERS_FROM_LITERAL"}
++        for image in public_images]} for index,reference in samples]
++    return {"case": label, "status": "OBSERVATION_ONLY_NOT_ACCEPTANCE",
++            "literal_lane":{"lifetime_complete_byte_equality":all(_same(images[0],a) for a in images[1:]),
++                "caller_unchanged":before==identity(q,"filtered"),
++                "output_identities":[identity(a,"image") for a in images],"samples":observations},
++            "public_lane":{"lifetime_complete_byte_equality":all(_same(public_images[0],a) for a in public_images[1:]),
++                "public_image_complete_bytes_equal_all_variants":all(_same(result.image,a) for a in public_images),
++                "filtered_exact_literal_bytes":_same(kernel_input,q),
++                "filtered_values_equal_literal":bool(np.array_equal(kernel_input,q)),
++                "metadata_equal_literal":metadata_equal,"literal_reference_applicable":applicable,
++                "actual_kernel_input_unchanged":kernel_before==identity(kernel_input,"public.kernel.filtered"),
++                "output_identities":[identity(a,"image") for a in public_images],"samples":public_samples},
++            "helper_existing_amplitude_budget_not_error_bound": float(budget),
++            "native_fft_error_bound":"UNQUALIFIED",
++            "sample_error_interpretation":"THRESHOLD_FREE_POINTWISE_INTERVALS_NOT_ALLOWANCES",
++            "computed_accuracy_acceptance":"NOT_PREDECLARED_FRESH_SCI_JUDGES_SUFFICIENCY",
++            "scope": "finite qualification only, not27 measured rows or workflow peak"}
++
++
++def qualify_w1():
++    b = blank(3, shape=(1, 1, 5, 4, 1, 4), lateral_zoom=2, axial_zoom=1)
++    tr = table(3)
++    s = [(0, 0, 0), (0, 0, 2), (0, 1, 4), (0, 1, 6), (3, 1, 2)]
++    records = []
++    for label in ("W1a", "W1b", "W1c"):
++        b.quadratures[...] = 0
++        if label == "W1a":
++            b.quadratures[0, 0, 0, 0, 0, 0] = 1.5
++            values = [F(3, 2)]*5
++        elif label == "W1b":
++            b.quadratures[0, 0, 0, 0, 0, 1] = 0.5+0.25j
++            values = [F(1), F(-1, 2), F(-1), F(1, 2), F(-1, 2)]
++        else:
++            values = [F(0)]*5
++        records.append(_observe(label, b.quadratures, b, np.zeros((1, 2)),
++                        [((0, *p), v) for p, v in zip(s, values)], transfer=tr))
++    return records
++
++
++def qualify_w2():
++    records = []
++    b = blank(2, shape=(1, 1, 3, 2, 1, 4), lateral_zoom=2, axial_zoom=2)
++    b.quadratures[...] = 0
++    b.quadratures[0, 0, 0, 1, 0, 1] = 1+2j
++    b.quadratures[0, 0, 0, 0, 0, 2] = 3+1j
++    s = [(0,0,0),(0,0,2),(0,1,4),(0,1,6),(1,0,0),(1,1,1),(2,0,0),(2,1,2),(3,1,6)]
++    records.append(_observe("W2a", b.quadratures, b, np.zeros((1,2)),
++        [((0,*p), F(v)) for p,v in zip(s,[5,-7,1,1,3,-1,1,1,-3])], transfer=table(2,constant=True)))
++    b.quadratures[...] = 0
++    b.quadratures[0,0,1,1,0,2] = 1j
++    s = [(0,0,0),(1,0,0),(0,1,1),(1,1,1),(2,0,1),(3,1,0)]
++    records.append(_observe("W2b", b.quadratures, b, np.zeros((1,2)),
++        [((0,*p), F(v)) for p,v in zip(s,[0,-2,-2,0,2,2])], transfer=table(2,constant=True)))
++    b = blank(2, shape=(1,1,3,4,1,4), lateral_zoom=2, axial_zoom=2)
++    b.quadratures[...] = 0
++    b.quadratures[0,0,1,1,0,1] = 0.5+0.25j
++    b.quadratures[0,0,2,1,0,1] = 0.25-0.5j
++    s = [(0,0,0),(1,0,1),(3,1,1),(5,0,1),(7,1,1)]
++    records.append(_observe("W2c", b.quadratures, b, np.array([[1.,0.]]),
++        [((0,*p), F(v)) for p,v in zip(s,[2,-2,1,2,-1])], transfer=table(2)))
++    b = blank(2, shape=(1,1,3,4,3,4), lateral_zoom=2, axial_zoom=2)
++    b.quadratures[...] = 0
++    b.quadratures[0,0,0,1,2,1] = 1+2j
++    s = [(0,0,0),(2,0,0),(4,0,0),(6,0,0),(0,1,0),(0,2,0)]
++    values = [F(2),F(-4),F(-2),F(4),"1+2sqrt3","-1+2sqrt3"]
++    records.append(_observe("W2d", b.quadratures, b, np.zeros((1,2)),
++        [((0,*p),v) for p,v in zip(s,values)], transfer=table(2,constant=True)))
++    return records
++
++
++def qualify_w3():
++    b = blank(3, shape=(2,2,5,4,1,4), lateral_zoom=2, axial_zoom=2)
++    b.quadratures[...] = 0
++    b.quadratures[:,:,0,0,0,0] = [[1.5,-0.5],[-0.75,0.25]]
++    b.quadratures[:,:,1,0,0,0] = [[0.5,-0.5],[0.25,-0.125]]
++    b.quadratures[:,:,3,0,0,0] = [[0.125,-0.25],[-0.5,0.25]]
++    b.quadratures[0,0,1,1,0,1] = 0.5+0.25j
++    b.quadratures[0,0,2,1,0,1] = 0.25-0.5j
++    s = [(0,1,4),(0,1,2),(2,1,2),(0,0,4)]
++    # Pair entries are exact (t0,t1), centers omitted, frozen930e values.
++    values = (
++        ((F(-9,4),F(-1,4)),(F(-5,4),F(-1,4)),(F(-9,4),F(-1,4)),(F(-9,4),F(-1,4))),
++        ((F(-9,4),F(-1,4)),(F(-5,4),F(-5,4)),(F(-1,4),F(-5,4)),(F(-1,4),F(1,4))),
++        ((F(-9,4),F(-1,4)),(F(1,4),F(5,4)),(F(-11,4),F(5,4)),(F(-1,4),F(-1))),
++    )
++    records = []
++    for e, row in zip((0.,-1.,0.5), values):
++        for omit in (True,False):
++            samples = [((t,*p), pair[t]+(F(0) if omit else (F(1) if t==0 else F(-1,2))))
++                       for p,pair in zip(s,row) for t in (0,1)]
++            records.append(_observe("W3", b.quadratures,b,np.array([[1.,0.],[0.,2.]]),
++                           samples,omit=omit,explode=e,transfer=table(3)))
++    return records
++
++
++def qualify_w4():
++    records = []
++    for mode,z,axial in (("2d",1,1),("2d",1,2),("3d",2,1)):
++        raw = np.zeros((2,2,5,z,12,16),np.float32)
++        b = prepare_acquisition_bands(raw,acquisition_mode=mode,dxy_um=1.,dz_um=1.,
++            norders=3,background=0.,lateral_zoom=2,axial_zoom=axial,edge_pixels=0,equalize=False)
++        q = np.zeros(b.quadratures.shape,np.complex128)
++        q[0,0,0,0,0,0] = 1.5
++        q[0,0,0,0,0,1] = 0.5+0.25j
++        q[0,0,1,0,0,1] = 0.5+0.25j
++        q[0,0,2,0,0,1] = 0.25-0.5j
++        samples = []
++        for h in range(axial*z):
++            for i,j,v in ((0,0,F(9,2)),(7,8,F(0)),(12,16,F(-3,2)),(23,24,F(3))):
++                samples.extend([((0,h,i,j),F(0) if mode=="2d" and h>0 else v),
++                                ((1,h,i,j),F(0))])
++        tr = table(3,constant=True) if mode=="3d" else declare_otf(
++            np.ones((3,32,1),np.complex64),layout="radial",dkr_cyc_um=0.25,dkz_cyc_um=0.25)
++        records.append(_observe("W4-"+mode+"-A"+str(axial),q,b,np.zeros((2,2)),samples,transfer=tr))
++    return records
++
++
++def qualify_w5():
++    """Required instrumented ownership/capability ONLY; no measured child/peak."""
++    public_records = []
++    for domain in ("PreparedY1","Acquisition2DA2"):
++        if domain == "PreparedY1":
++            b = blank(2,shape=(1,1,3,2,1,4),lateral_zoom=2,axial_zoom=2)
++            tr,orders,directions = table(2,constant=True),2,1
++        else:
++            b = prepare_acquisition_bands(np.zeros((2,2,5,1,12,16),np.float32),
++                acquisition_mode="2d",dxy_um=1.,dz_um=1.,norders=3,background=0.,
++                lateral_zoom=2,axial_zoom=2,edge_pixels=0,equalize=False)
++            tr = declare_otf(np.ones((3,32,1),np.complex64),layout="radial",
++                             dkr_cyc_um=0.25,dkz_cyc_um=0.25)
++            orders,directions = 3,2
++        qback = np.zeros((*b.quadratures.shape[:-1],2*b.quadratures.shape[-1]),np.complex128)
++        q = qback[...,::2]
++        q[...] = b.quadratures
++        nback = np.ones((*b.noise_variance_factors.shape[:-1],2*orders),np.float64)
++        noise = nback[...,::2]
++        noise[...] = b.noise_variance_factors
++        cback = np.zeros((directions,4),np.float64)
++        mback = np.zeros((directions,2*(orders-1)),np.complex128)
++        carriers,mods = cback[:,::2],mback[:,::2]
++        for a in (q,noise,carriers,mods):
++            a.setflags(write=False)
++        b = replace(b,quadratures=q,noise_variance_factors=noise)
++        # OpticalTransfer MUST stay an actual owned/read-only public table.
++        callers = (q,noise,tr.samples,carriers,mods)
++        before = [identity(a,"caller"+str(i)) for i,a in enumerate(callers)]
++        result = known(b,tr,carriers_cyc_um=carriers,modulation=mods)
++        outputs = (result.image,result.filtered_quadratures,result.x_um,result.y_um,
++                   result.z_um,result.carriers_cyc_um,result.modulation,result.axial_cutoffs_bins)
++        frozen = [a.tobytes() for a in outputs]
++        unchanged = before == [identity(a,"caller"+str(i)) for i,a in enumerate(callers)]
++        independent = all(not np.shares_memory(a,c) for a in outputs for c in callers)
++        distinct = all(not np.shares_memory(a,c) for i,a in enumerate(outputs) for c in outputs[i+1:])
++        for backing in (qback,nback,cback,mback):
++            backing[...] = 17
++        public_records.append({"domain":domain,"caller_before_after_equal":unchanged,
++            "output_disjoint_from_callers":independent,"outputs_pairwise_disjoint":distinct,
++            "output_owned_readonly":[bool(a.flags.owndata and not a.flags.writeable) for a in outputs],
++            "result_stable_after_caller_backing_mutation":all(v==a.tobytes() for v,a in zip(frozen,outputs))})
++    capability = []
++    for shape,plane_only in (((4,2,8),False),((2,24,32),True)):
++        padded = np.zeros(shape,np.complex128)
++        padded[0,0,0] = 1+0.5j
++        padded[0,0,1] = 0.25-0.125j
++        original = padded.tobytes()
++        # Last legitimate spectrum read is complete before disposable overwrite.
++        expected = ifftn(padded[0].copy() if plane_only else padded.copy(),norm="forward")
++        if plane_only:
++            returned = ifftn(padded[0],norm="forward",overwrite_x=True)
++            spatial = padded
++            spatial[0] = returned
++        else:
++            returned = ifftn(padded,norm="forward",overwrite_x=True)
++            spatial = returned
++        chain = []
++        current = returned
++        while isinstance(current,np.ndarray):
++            chain.append({"shape":current.shape,"strides":current.strides,
++                "pointer":int(current.ctypes.data),"owns":bool(current.flags.owndata)})
++            current = current.base
++        capability.append({"shape":shape,"plane0_only":plane_only,
++            "signature":str(inspect.signature(ifftn)),"dtype":str(returned.dtype),
++            "input_changed":original!=padded.tobytes(),"same_pointer":returned.ctypes.data==padded.ctypes.data,
++            "shares_private_padding":bool(np.shares_memory(returned,padded)),"base_chain":chain,
++            "complete_default_overwrite_bytes_equal":_same(expected,returned),
++            "later_planes_untouched":bool(np.all(spatial[1:]==0)) if plane_only else None,
++            "private_padding_c_contiguous_writable":bool(padded.flags.c_contiguous and padded.flags.writeable),
++            "padding_disjoint_from_public_callers":all(not np.shares_memory(padded,c) for c in callers),
++            "workspace_internal_precision": "UNKNOWN_POINTER_AND_DTYPE_DO_NOT_ESTABLISH_THEM"})
++        del spatial,padded
++        capability[-1]["returned_usable_after_owner_names_deleted"] = _same(expected,returned)
++    return {"status":"OBSERVATION_ONLY_NOT_ACCEPTANCE","public":public_records,
++            "private_capability":capability,"scope":"instrumented qualification separate from27 rows"}
++
++
++def qualify_w6():
++    """Legitimate public derived-domain pair; NEVER an inverse/backend fault seam."""
++    b = blank(2,shape=(1,1,3,2,1,4))
++    tr = table(2,constant=True)
++    carriers,mods = np.zeros((1,2)),np.zeros((1,1),np.complex128)
++    callers = (b.quadratures,b.noise_variance_factors,tr.samples,carriers,mods)
++    before = [identity(a,"caller"+str(i)) for i,a in enumerate(callers)]
++    positive = known(b,tr,wiener=float.fromhex("0x1p-500"),carriers_cyc_um=carriers,modulation=mods)
++    negative = {"status":"UNEXPECTED_SUCCESS"}
++    try:
++        known(b,tr,wiener=float.fromhex("0x1p-600"),carriers_cyc_um=carriers,modulation=mods)
++    except ReconstructionError as error:
++        negative = {"type":type(error).__name__,"code":error.code,"message":str(error),
++            "cause_type":None if error.__cause__ is None else type(error.__cause__).__name__,
++            "expected_stage_observed":"wiener square" in str(error),
++            "expected_source_cause_none":error.__cause__ is None}
++    return {"status":"OBSERVATION_ONLY_NOT_ACCEPTANCE",
++        "positive_zero_image":bool(np.all(positive.image==0)),"negative":negative,
++        "caller_before_after_equal":before==[identity(a,"caller"+str(i)) for i,a in enumerate(callers)],
++        "expected_first_stage":"effective Wiener square after valid setup, before filter/inverse",
++        "inverse_assembly_backend_failure_evidence":"NOT_ESTABLISHED"}
++
++
++# No CLI/main/driver/retry/measurement matrix. ROOT later freezes ONE named
++# existing-apparatus entry with actual source/material/env/grant bindings.

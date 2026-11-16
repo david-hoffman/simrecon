@@ -1,0 +1,36 @@
+{
+  "time_utc": "2026-11-16T16:06:21.996653+00:00",
+  "disposition": "APPLIED_ACCEPT_EXACT_LOCAL_PUBLICATION_READINESS",
+  "candidate": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+  "tree": "28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a",
+  "base": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "ROOT_whole_read": {
+    "report_lines": 85,
+    "distinct_final_lines": 20,
+    "initial_final_filename_lookup": "ROOT looked forfinal.md but actual exact file isdistinctfinal.md; recovered wholeactualfile, no artifactchange."
+  },
+  "D_files": {
+    "report.md": {
+      "path": "/workspace/work/campaign/evidence/118/postgate-readiness-review-1/report.md",
+      "sha256": "25ac01437f5e433049fb15b9202bc6710cb1ce028881fcbf72d09c96d90e6f95"
+    },
+    "distinctfinal.md": {
+      "path": "/workspace/work/campaign/evidence/118/postgate-readiness-review-1/distinctfinal.md",
+      "sha256": "24bcb499cd87b7af8cb74b7ef79b47ae7098ecf143117717102cd864f88ef5d6"
+    },
+    "read-inventory.md": {
+      "path": "/workspace/work/campaign/evidence/118/postgate-readiness-review-1/read-inventory.md",
+      "sha256": "25d2c29c07a38231cdc896925884548618ef919cf9385312434479720d25c46e"
+    },
+    "own-assessment-before-opinions.md": {
+      "path": "/workspace/work/campaign/evidence/118/postgate-readiness-review-1/own-assessment-before-opinions.md",
+      "sha256": "8b156dfc5507f67c9a999bf95b4fd4c0257a3df16945484fed1be65769830eae"
+    }
+  },
+  "D_input_before_after_sha256": "b207af64bc16375838b62a23f74c88879d9ab44c17657a6767667be5ec6320f6",
+  "D_inputs_rechecked": 1739,
+  "disclosed_public53_boundary_accepted": "50direct+2archived+1externalprocedurehash-bound6161B/e505, verbatimPRcontext independentlyverified",
+  "limits": "Finite SCI scope/no generalpeak/speed/currentlarge/16GiB or119120/113qualification transferred; no merge/release/manualclosure",
+  "remaining": "ROOT explicitremotehead/leasepush/PR and actualCI",
+  "tracked_postgate_edits": "NONE"
+}

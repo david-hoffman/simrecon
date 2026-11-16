@@ -1,0 +1,99 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/originals/run_direct_attempt.py	2026-11-16 05:47:22.012219700 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/run_direct_attempt.py	2026-11-16 06:04:29.354756987 -0800
+@@ -1,11 +1,11 @@
+-"""PH118 external fixed-direct SOURCE binding of accepted116 method7.
++"""FA120 external finite SOURCE binding of the exact current118 direct apparatus.
+ 
+ UNAPPROVED / UNRELEASED / NEVER EXECUTED. No retries, growth or workflow dispatch.
+ Original method7 launch/wait/guard/RSS logic is unchanged in this external copy.
+ A future root-authored exact-case grant is evidence, not access control.
+ """
+ 
+-from __future__ import annotations
++raise SystemExit("FA120 UNCONDITIONAL HOLD: APPARATUS SOURCE PREPARATION ONLY")
+ 
+ import argparse
+ import hashlib
+@@ -21,8 +21,8 @@
+ 
+ _SOURCE_DIR = Path(__file__).resolve().parent
+ for _name, _expected in {
+-    "observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+-    "direct_binding.py": "7822b13257761fb535867b197eacd836e15607ff0a64754d0b2adc62bc4a1c87",
++    "observer.py": "ffcffac66f9959d0954231222b520fe65ab31a7203a8c6998aec092ee2e1df2f",
++    "direct_binding.py": "64a5c76fbbe6cf8a42b977ad292ace6226bfc4e0a19e606831bfe4b57b634205",
+ }.items():
+     if hashlib.sha256((_SOURCE_DIR / _name).read_bytes()).hexdigest() != _expected:
+         raise ValueError("fixed external method import source identity changed: " + _name)
+@@ -51,7 +51,7 @@
+         raise ValueError("external method import resolved outside frozen source directory")
+ 
+ HERE = Path(__file__).resolve().parent
+-ROOT = None  # Required literal --subject-root; no prospective117/118 default.
++ROOT = None  # Required actual119-integrated120 --subject-root; no default.
+ RSS_TERMINAL_CONFIRM_SECONDS = 0.05
+ 
+ 
+@@ -135,7 +135,7 @@
+ 
+ def admit(grant):
+     """Validate exact-case release, applicability and conditional resource admission."""
+-    if grant["numerical_release"] is not True or grant["accepted_112_then_115"] is not True:
++    if grant["numerical_release"] is not True or grant["accepted_actual119_and_affected118"] is not True:
+         raise ValueError("accepted dependency and exact numerical release required")
+     if (
+         not grant["representation_preflight"]["accepted"]
+@@ -546,10 +546,10 @@
+         for c in args.attempt_id
+     ):
+         raise ValueError("safe unique attempt id required")
+-    out = HERE / "raw" / args.attempt_id
++    out = Path(direct_binding.manifest()["attempt_output_root"]) / args.attempt_id
+     out.mkdir(parents=True, exist_ok=False)
+     receipt = {
+-        "protocol": "PH118-direct-attempt-SOURCE-v1",
++        "protocol": "FA120-direct-attempt-SOURCE-v1",
+         "status": "admission_started",
+         "phase": "admission",
+         "observer_pid": os.getpid(),
+@@ -567,6 +567,8 @@
+         shutil.copyfile(args.grant, out / "grant.input")
+         receipt["grant_sha256"] = digest(out / "grant.input")
+         grant = json.loads((out / "grant.input").read_text())
++        if grant["attempt_id"] != args.attempt_id:
++            raise ValueError("FA120 literal grant/attempt output identity differs")
+         direct_binding.check_release(grant, ROOT)
+         write(out / "preflight.json", context(ROOT))
+         if sys.platform != "linux" or not hasattr(os, "wait4") or not hasattr(os, "posix_spawn"):
+@@ -618,11 +620,11 @@
+             sigchld_handler="SIG_DFL",
+             effective_cwd=str(ROOT),
+             direct_record_binding={
+-                "protocol": "PH118-direct-v1",
++                "protocol": "FA120-fixed-child-payload-v1-proposed-cli-amendment-required",
+                 "stdout": "exclusive redirected FD of exact owned bootstrap/exec PID",
+-                "self_pid_nonce_spec": "absent in unchanged adapter; not fabricated",
++                "self_pid_nonce_spec": "child pid/ppid present; no nonce/spec echo fabricated",
+                 "metadata_git_abort_ownership": "future reviewed proof required; no current qualification",
+-                "self_snapshot_scope": "pre_target/target_return/final_whole_process; last is before JSON/teardown",
++                "self_snapshot_scope": "pre_call/call_end/post_observation cumulative snapshots with child monotonic timestamps; last before JSON/teardown",
+             },
+         )
+         env = os.environ.copy()
+@@ -802,6 +804,16 @@
+             out / "stdout.json", grant["max_child_record_bytes"], owner.pid, spec
+         )
+         receipt["child_outcome"] = outcome
++        if outcome == "finite_observation_pending_qualification":
++            image_path = Path(spec["output_image_path"])
++            receipt["output_image_artifact"] = {
++                "path": str(image_path),
++                "sha256": digest(image_path),
++                "bytes": image_path.stat().st_size,
++                "format": "complete raw canonical little-endian image bytes; no NPY/content parsing",
++                "comparison": "complete byte comparison remains separate scientific qualification",
++            }
++            receipt["public_fixture_provenance"] = spec["fixture_binding"]["provenance"]
+         receipt["child_record_sha256"] = digest(out / "stdout.json")
+         receipt["candidate_after"] = candidate_identity()
+         receipt["material_hashes_after"] = material_hashes(ROOT)

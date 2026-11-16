@@ -1,0 +1,539 @@
+{
+  "issue": 116,
+  "status": "published_independently_accepted_local_and_ci_passed_open_unmerged",
+  "candidate": {
+    "commit": "158776ade28079276304d49a6b973eccbf4109c9",
+    "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+    "dirty": false,
+    "untracked": [],
+    "identity_scope": "Exactlocalgatebefore/aftercompleteinputmanifest andpostgatefreshacceptance; read-onlyHEAD/tree/FULLstatusconfirmedwhilewritingthisoutside-treebookkeeping."
+  },
+  "parent": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+  "parent_pr": 122,
+  "branch": "chore/116-working-set-report",
+  "context": {
+    "contract": "WS116",
+    "reviewed_tests": null,
+    "integration_base": "ace06c861b974b6251a092567c253ae4eb0f56c8"
+  },
+  "verification": {
+    "attempt": 1,
+    "result": "passed",
+    "problems": [],
+    "phases": [
+      {
+        "name": "sync",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-clean",
+        "returncode": 0
+      },
+      {
+        "name": "lint",
+        "returncode": 0
+      },
+      {
+        "name": "format",
+        "returncode": 0
+      },
+      {
+        "name": "types",
+        "returncode": 0
+      },
+      {
+        "name": "tests",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-combine",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-json",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-html",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-report",
+        "returncode": 0
+      },
+      {
+        "name": "wheel",
+        "returncode": 0
+      },
+      {
+        "name": "wheel-import",
+        "returncode": 0
+      },
+      {
+        "name": "audit",
+        "returncode": 0
+      }
+    ],
+    "started_at": "2026-11-16T05:34:48.736234+00:00",
+    "finished_at": "2026-11-16T05:53:53.380103+00:00",
+    "elapsed_seconds": 1144.643869,
+    "elapsed_scope": "Exactreceiptstart-to-finish; no newrun",
+    "platform": "Ubuntu24.04.5LTS",
+    "python": "3.13.12",
+    "fixed_test_workers": 2,
+    "tests_passed": 3444,
+    "warnings": 47,
+    "test_seconds": 1000.15,
+    "receipt": "verify-attempt1/verification/receipt.json",
+    "receipt_sha256": "3497ac680dde6cf90af11f851f8cbd3608823eb953503fca2f0a9a78b5dd35db",
+    "manifest_unchanged": true,
+    "manifest_entries": 6222,
+    "index": {
+      "path": "/workspace/work/campaign/evidence/116/verify-attempt1/ROOT-postgate-evidence-index.json",
+      "sha256": "a0d1ba8d4d438102bf1e7bde444862ece255459ca16812fd91dd05196f282206"
+    },
+    "launch": {
+      "path": "/workspace/work/campaign/evidence/116/verify-attempt1/ROOT-launch-intent.json",
+      "sha256": "ecf42e3a7249523a20e1faaffca756ac62b026d5e2d743926b61b144615aab0a"
+    },
+    "terminal": {
+      "logical_bytes": 105,
+      "path": "/workspace/work/campaign/evidence/116/verify-attempt1/ROOT-exact-gate-terminal-tool.json",
+      "sha256": "51bd3cf4f3b4f78db434530c345a57ebf9014f0e0a1505557489c60bca2325db"
+    },
+    "environment_preflight": {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-fullgate-environment-preflight-tool.json",
+      "sha256": "a8336d2a9a524938aaf1f62a6db0dc159e4decf8561909554bba046059740df5"
+    },
+    "environment_provenance": "Existing sameCID11bb9 ROOTpreflightobservedUbuntu24.04.5LTS/Python3.13.12, rawreceipseparatelyLinux6.18/glibc2.39; suppliedsource/build/runtime fingerprints selective, not an exhaustiveauthenticatedgraph.",
+    "external_inputs": {
+      "ws116-external-samples": {
+        "after": {
+          "sha256": "0604a06dc7c3ab2f28ffeaf44536a4419e4e5138b8aae949461bc01d261255e5",
+          "size_bytes": 90174
+        },
+        "before": {
+          "sha256": "0604a06dc7c3ab2f28ffeaf44536a4419e4e5138b8aae949461bc01d261255e5",
+          "size_bytes": 90174
+        }
+      }
+    }
+  },
+  "coverage": {
+    "global": {
+      "branches": {
+        "covered": 1949,
+        "total": 2074
+      },
+      "statements": {
+        "covered": 5157,
+        "total": 5322
+      }
+    },
+    "packages": {
+      "scripts": {
+        "branches": {
+          "covered": 350,
+          "total": 358
+        },
+        "statements": {
+          "covered": 916,
+          "total": 925
+        }
+      },
+      "simrecon": {
+        "branches": {
+          "covered": 1591,
+          "total": 1708
+        },
+        "statements": {
+          "covered": 4202,
+          "total": 4358
+        }
+      },
+      "simrecon_devtools": {
+        "branches": {
+          "covered": 8,
+          "total": 8
+        },
+        "statements": {
+          "covered": 39,
+          "total": 39
+        }
+      }
+    },
+    "files": 38,
+    "json": {
+      "logical_bytes": 396781,
+      "path": "/workspace/work/campaign/evidence/116/verify-attempt1/coverage/coverage.json",
+      "sha256": "d126d638ad8a487e9f79919e131e2f99cafdb651db08a781c77395cb1b1b62fd"
+    },
+    "html_index": {
+      "logical_bytes": 30951,
+      "path": "/workspace/work/campaign/evidence/116/verify-attempt1/coverage/html/index.html",
+      "sha256": "ec98c03a546f2efe25ab898254e155c5837731995298461b906db35d5a4a3c1f"
+    },
+    "native_database": {
+      "logical_bytes": 425984,
+      "path": "/workspace/work/campaign/evidence/116/verify-attempt1/native-coverage/.coverage",
+      "sha256": "895b43cdfec86029cc441bace44aaa31727eda7d8d6459234205cb082f1998da"
+    },
+    "zero_covered_nonempty_statement_files": [],
+    "percentages": "advisory; no selected100%/inventedthreshold",
+    "scope": "Current same-run native executable-source statements/branches; exactglobal/package/file JSON/HTML/receipt consistency, never-imported and relevantsubprocess enumeration; study/archivalprograms outside installedruntime ownership."
+  },
+  "product": {
+    "path": "dist/simrecon-0.1.0-py3-none-any.whl",
+    "size_bytes": 126857,
+    "sha256": "2c3b1f1123d232bde0cd17144b636288a2d5839bcb35dd8476fb394ea3e19de1",
+    "version": "0.1.0"
+  },
+  "devtools": {
+    "version": "0.1.0",
+    "path": "/workspace/work/campaign/evidence/116/verify-attempt1/devtools-wheels/simrecon_devtools-0.1.0-py3-none-any.whl",
+    "sha256": "177054cef0020008805abe3de9d8bbcd97b78eb26a449ca66a04b2aa4c3c21bd",
+    "size_bytes": 3923,
+    "installed_checks": "passed"
+  },
+  "measurements": {
+    "schema": "org.simrecon.measurements",
+    "version": 1,
+    "run_id": "3282ae44-205d-42fa-b935-89ca6fc7be4c",
+    "measurements": {
+      "M25": {
+        "baseline": 126408,
+        "peak": 126408,
+        "increment_bytes": 0,
+        "limit_bytes": 33554432,
+        "units": "KiB"
+      }
+    },
+    "path": "artifacts/verification/measurements.json",
+    "sha256": "c8e3f591957ad8b4365c18c7fa596a46300805dff4d49e1e6b5ec50c02b04370"
+  },
+  "review": {
+    "route": "Scientificreport-only investigation, completedindependentscientificreport assessment plusgenuinelyfresh exactpostgate delivery/readiness; no fabricatedproduct-redtests or productimplementation.",
+    "integrated_scientific_assessment": {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/integrated-scientific-assessment.md",
+      "sha256": "03bea10bbded4290112d10602ba6cdb2ce055daad1979944d20954df1f719790"
+    },
+    "integrated_assessed_snapshot": {
+      "head": "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2",
+      "tree": "24d9dbedb9773dc55006f627de10083411adeeae",
+      "final_application": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/final-assessment-application.json",
+        "sha256": "cf0640a2bb9d023fd1cb97db8400542597ac9d08d4b404df69c57413f7f3ae3b"
+      },
+      "scope": "Final14doc/provenance/Current changes only; all79reviewedprimaries and35scientificmaterials unchanged."
+    },
+    "postgate": {
+      "verdict": "accepted",
+      "report": "postgate-scientific-readiness-review-1/review.md",
+      "sha256": "97de33015bacf36a6b5f3954de537f7afb37335e5056ada8c96925e84f721b90",
+      "candidate": "158776ade28079276304d49a6b973eccbf4109c9",
+      "receipt_sha256": "3497ac680dde6cf90af11f851f8cbd3608823eb953503fca2f0a9a78b5dd35db",
+      "launch": {
+        "fork_turns": "none",
+        "requested_model": "gpt-6.1-sol",
+        "requested_effort": "high",
+        "author_history": false,
+        "delegation": false
+      },
+      "collection": {
+        "path": "/workspace/work/campaign/evidence/116/postgate-scientific-readiness-review-1/coordinator-collected.json",
+        "sha256": "8295f59eb00329118e2d060af534098c1501a2b6da174d3a848af110695bfb53"
+      }
+    },
+    "scope": "Finite independent ownprimary/source/scalar/risk checks, exactgate/deliveryapplication and W01-W09 disposition. ROOTbulkcopy/91stream/completeownership/prefixfacts labelledattestations, not duplicatedall90/all4007/everyquery proof. Prior03bea inspectedafterownprimaryjudgment, not scientificoracle.",
+    "controls": "AcceptedPR109fresh-toolroute; optionalmemorydisable/per-role readonlyunavailable; sharedFS/promptrestrictionsnotengineeredisolation. Actualserving/usage/costUNKNOWN."
+  },
+  "report": {
+    "measured_candidate": {
+      "head": "ea9117d3efe2d8de273402d643e732140138e496",
+      "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+      "material35_basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c"
+    },
+    "publication_material_transition": {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/material-transition.json",
+      "sha256": "792102c4aa13aa13de110b950e41b390636380bad0ea7cd4532b4b43343a5554"
+    },
+    "material_scope": "35measurementinputs unchanged: productmath/publicworkflow, observer/runner/child/manifest, frozenfixture/valuebenchmark andlock. No product/test/scripts/gate/dependency/policychangefromaccepted115.",
+    "scientific_observations": {
+      "eligible": 90,
+      "unprofiled": 78,
+      "profiled": 12,
+      "exact_three_repeat_groups": 30,
+      "older_failed_workflow_excluded": 1,
+      "completed_total_with_historical_failed": 91,
+      "process_ownership_scope": "182historicalscientificobserver/workloadbirth-FD identities closed by recordedROOTfacts; qualifier/gate/otherissueowners separate."
+    },
+    "geometry_scope": "Declaredfiniteinitial20conditions×3 plus192/256summarysupplied/searchedtriples, selected256fullsupplied/searchedtriples, separatecentral64/largest256searchedsummary/fullprofilesandcontrols. LargestCOMPLETEDTESTEDlateral256 in T1D3Z8 family; no generalmaxsize.",
+    "data_scope": "Onefreshdirectchildperattempt/publiccall, callerretained; matchedinput/common/branches andsame-modepublicgraphs; cross-modecommononly. Float32detectorstorage,float64/complex128numericalpath. Kernelterminalwait4LinuxKiB×1024directchildhighwater, notaggregate-tree/isolatedworkflow. Inheritedpre-exec/execpeakaccounting unresolved; self/stagehighwaters cumulative andsampleRSS/call/collectiondistinct. No baseline subtraction/causalprofilingcost.",
+    "canonical_sets": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/initial60/summary.json",
+        "sha256": "04fff3ea2045ceb3c5d4a0acb6b4109d37b200d6e1b68c6ab57f7fe28c9fbe4b"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/summary.json",
+        "sha256": "f7afbc0635dbe1689e7b66104e985678e117c6ad58457631266f10edbfef941a"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/summary.json",
+        "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/summary.json",
+        "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/summary.json",
+        "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/summary.json",
+        "sha256": "d3d9367d87a8184c6fe5e99091fc9ba49d8c5828aedcdcfc261df1ce0cc23f54"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/summary.json",
+        "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6"
+      }
+    ],
+    "ranked_handoffs": [
+      {
+        "rank": 1,
+        "mechanism": "phase/expression lifetime",
+        "confidence": "mediumopportunity; nomeasuredsaving",
+        "evidence": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/phase-expression-lifetime.md",
+          "sha256": "da2de3e08d14bc29e6c7b5b148b7f59a2ed9a33058423f1404dd4f6e17893220"
+        }
+      },
+      {
+        "rank": 2,
+        "mechanism": "native harmonic scratch",
+        "confidence": "mediumlifetime/lowRSSbenefit",
+        "evidence": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/native-harmonic-scratch.md",
+          "sha256": "78e425a3dd42be346676058ff57f1456b1bea8674d1cf79a60434f0f865e7b3e"
+        }
+      },
+      {
+        "rank": 3,
+        "mechanism": "compact overlap working lifetime",
+        "confidence": "lowpeakbenefit",
+        "evidence": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/compact-overlap-working-lifetime.md",
+          "sha256": "7c69be6da139d93c980a5958df33e67f683f3102e7caacc35873dbc106d64d1c"
+        }
+      },
+      {
+        "rank": 4,
+        "mechanism": "time aggregation",
+        "confidence": "lowpeaklocalization",
+        "evidence": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/time-aggregation.md",
+          "sha256": "69f1dc5065d8025adae38d6d2aa590704ef7bf2bdfe86b73a893cabec4330258"
+        }
+      },
+      {
+        "rank": 5,
+        "mechanism": "full diagnostic retention/ownership",
+        "confidence": "deferredunderpublicindependentownershipcontract",
+        "evidence": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/full-diagnostic-retention-ownership.md",
+          "sha256": "d12f629306ef56d7080c5f22606f3639f92a7c5aea1553d84109ada84dca907f"
+        }
+      }
+    ],
+    "liveness_corrections": "F01sameprivate_finish_ownedbackingversusindependentownedeventcopies; F04compactoff_qpreparation-localnormalreturnversusfullretainedoff_q. Corrected117/118/119/120routing integrated. EndingreferencesisnotimmediateRSSrelease; exceptions/allocator/nativeunknowns remain.",
+    "portable_evidence": {
+      "location_map": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/location-map.json",
+        "sha256": "828b2dad7ad52d5ed1ff1c87b5f76afc1f5592955e9fc8daa6597a17d9eb6ec5"
+      },
+      "README": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/README.md",
+        "sha256": "847a5c0a400e4ba447ec25939df34be107cfd53fea14d920ee323ebfa111e786"
+      },
+      "restoration_table": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/sample-restoration.tsv",
+        "sha256": "6930c22469b449af61b6ea52041fa8e8eb8510a028cd903ec1d80b37258c196c"
+      },
+      "mapped_closed_identities": 4007,
+      "ROOT_lossless_transports": 91,
+      "original_bytes": 1165320415,
+      "gzip_bytes": 33310820,
+      "scope": "ROOT91streamedgzip-decompression SHA/bytecountverified; originalstreamsretained, gzipoutside rawdirs, restoreexact11originalnames. OriginalSHA/size distinctfromgzip; physicalallocatedblocksoriginalrunfactsnotcloneconstraints. Installedtools/stdlib/binaries fingerprintsnotvendored. Twoearlyintakedrafts unavailablewithinedexaminedbasis, oldRM84numericalreceiptsunknown; nosilentglobalabsence/privatebaseline reconstruction."
+    },
+    "future_reuse": "Later117/118 materialchangesrequireaffectedrevision-specificliveness/matchedmeasurement/observerrefreshandfreshreviewbefore119/120 reliance. No restack/relabelcertificate."
+  },
+  "publication": {
+    "status": "PR open",
+    "number": 123,
+    "url": "https://github.com/david-hoffman/simrecon/pull/123",
+    "title": "chore(memory): Measure the remaining reconstruction working set",
+    "head": "158776ade28079276304d49a6b973eccbf4109c9",
+    "parent": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "parent_branch": "feat/115-wide-allocation-domain",
+    "base_branch": "feat/115-wide-allocation-domain",
+    "merged": false,
+    "merged_at": null,
+    "default_branch_delivery": "NOT_CLAIMED; immediateaccepted115stackbaseonly",
+    "issue_closure": "No manualissueclosureperformed; no merge/releaseauthorisedbythisrecord",
+    "observed_metadata_updated_at": "2026-11-16T06:41:22Z",
+    "body_update": {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-PR123-CI-passed-body-update.json",
+      "sha256": "9edafadc1a7138a382a50d28ed1d2795a008696135c65bf2ecf9a29e5ca5a2d4"
+    },
+    "body_source": {
+      "path": "/workspace/work/campaign/evidence/116/PR-body-final-CI-passed.md",
+      "sha256": "1aecf50b4a552011ce8479865b9d8d9e2a0685c2eccbff79fb533dcd5877f017"
+    },
+    "body_returned_text_sha256": "1f51451d3dce7a3cf240843b4a357c77057613eebef253c53d31744074f806d8",
+    "body_normalization": "Savedresponsebodydiffersonlyonefinalblanklinefromsavedsource; bothidentitiesretained. No scientificclaimdifference.",
+    "ci": "passed",
+    "ci_run_id": 43815921420,
+    "ci_job_id": 133127826495,
+    "ci_run": {
+      "id": 43815921420,
+      "name": "Verify",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 348,
+      "jobs_url": "https://api.github.com/repos/david-hoffman/simrecon/actions/runs/43815921420/jobs",
+      "logs_url": "https://api.github.com/repos/david-hoffman/simrecon/actions/runs/43815921420/logs",
+      "workflow_id": 371537589
+    },
+    "ci_job": {
+      "id": 133127826495,
+      "name": "Verify (ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "source": {
+        "path": "/workspace/work/campaign/evidence/116/ROOT-PR123-CI-jobs-001.json",
+        "sha256": "718b6bc975487e224da4ec1e8289882cbfad622714108036de2a323a8cce760a"
+      }
+    },
+    "ci_test_merge": "070da4e6fd0090fe434ad7dd3d2ce4e149db30e6",
+    "ci_tree_matches_candidate": true,
+    "ci_merge_binding": {
+      "fetched_local_ref": "refs/campaign/116-ci-merge",
+      "commit": "070da4e6fd0090fe434ad7dd3d2ce4e149db30e6",
+      "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+      "parents": [
+        "ace06c861b974b6251a092567c253ae4eb0f56c8",
+        "158776ade28079276304d49a6b973eccbf4109c9"
+      ],
+      "actual_readonly_command": [
+        "git",
+        "show",
+        "-s",
+        "--format=%H %T %P",
+        "refs/campaign/116-ci-merge"
+      ],
+      "returncode": 0,
+      "scope": "LocallyreadalreadyfetchedPUBLICPRtestmergeobjectmetadata; no API/fetch/newruntime. Testmergecommit differsfromheadbuttreeequalscandidate; not defaultbranchmerge/delivery."
+    },
+    "ci_raw": {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-PR123-completed-CI-raw.json",
+      "sha256": "de98687e6738fb81844558b8ba17507c71fbaf91a946478d1678995874877e99"
+    },
+    "ci_job_log": {
+      "path": "/workspace/work/campaign/evidence/116/CI-job-133127826495.log",
+      "sha256": "f3f155096ecf89536c5db4f79e65a6868bd567785d3b070d06b4e64383a3483d"
+    },
+    "ci_log_facts": {
+      "runner": "Ubuntu24.04.5LTS/ubuntu-24.04image",
+      "checkout_commit": "070da4e6fd0090fe434ad7dd3d2ce4e149db30e6",
+      "command": "SIMRECON_JAVA=... make verify; scripts/verify.py --measurements-required",
+      "tests_passed": 3444,
+      "warnings": 47,
+      "test_seconds": 529.61,
+      "scope": "Savedlog+completedrun/jobmetadata; not importedCIreceipt."
+    },
+    "ci_artifacts": [
+      {
+        "id": 14203221086,
+        "name": "verification-ubuntu-24.04",
+        "size_in_bytes": 1622176,
+        "url": "https://api.github.com/repos/david-hoffman/simrecon/actions/artifacts/14203221086",
+        "archive_download_url": "https://api.github.com/repos/david-hoffman/simrecon/actions/artifacts/14203221086/zip",
+        "expired": false,
+        "created_at": "2026-11-16T06:29:59Z",
+        "expires_at": "2027-02-14T06:19:05Z",
+        "updated_at": "2026-11-16T06:29:59Z",
+        "digest": "sha256:30e4cc3c6e79b7cdda8375104587a208a23b337ea800691598ceb9147b2bb92b",
+        "workflow_run": {
+          "id": 43815921420,
+          "repository_id": 1398550280,
+          "head_repository_id": 1398550280,
+          "head_branch": "chore/116-working-set-report",
+          "head_sha": "158776ade28079276304d49a6b973eccbf4109c9"
+        }
+      }
+    ],
+    "ci_artifact_archive_downloaded_or_imported": false,
+    "ci_archive_scope": "Metadata/uploadlog/digestonly; no ZIPdownload/import/unpacking/rawCIreceipt/nativeJSON/wheelarchivecontents claim. Authoritativeexactlocalgate3497andfresh97deacceptanceseparatelypreserved."
+  },
+  "limits": {
+    "original_target": "Unmeasured andallocation-unadmitted; float32caller+same-dtypeownedsnapshot+complex128qlogicalpayload32227983360B issource-onlylowerbound beforeotherworkspaces, notmeasuredRSS.",
+    "RAM_fit_or_backend_success": "No16GiB/workstation/generalmaxsize/recoveryguarantee; exposed16GiB/domaincontrols recordedpercase, externalphysicalancestorsunknown_unobservable/outsideactorsunknown_not_scanned.",
+    "native_and_observer": "FFT/ufunc/allocator/shared-page/OS effects and exacttransient releaseunclosed; requested10msRSSsamplingmaymisspeaks; terminal-confirmednullgapcauseunknown; Q3abruptobserverlossunqualified/noengineereduniversalrecovery.",
+    "contexts": "Initial60eventmax0 vs later50340 afterDockerVFSsetup, otherOOMevents0/swap0inthedeclaredtrials; physical/cachecomparabilityuncontrolled, no causalcontrast.",
+    "M25": "Actualsame-runMRCconversionincrement0Bunder32MiBcriterion only; notzeroallocation/totalRSS/reconstructionmeasurement.",
+    "historical": "OriginalRM84trackedpublicsourcespreserved; oldnumericalreceiptsunavailableHERE/unknown, notregeneratedorpooled. EarlyH02/H03task/reviewdrafts unavailablewithinscopedownancestry/namedsnapshots;9otherpins exactGitblob/planneraliases.",
+    "human_numeric_limits": "notset; protocolresource/stopping/timevaluesoperatingadmissionsnotinventedhumanbudget",
+    "unknown_metering": "Actualservingattribution/complete tokens/cache/billing/unrecordedelapsedUNKNOWN, notzero."
+  },
+  "prior_attempts": {
+    "preservation": "ALLrole/qualification/method/sourcecorrection/review/experiment/gate/publication/CIattempts andcharges preserved; no branchrename/restack/sessionreset eraseshistory. Externalfinalrecord changesnoverifiedtrackedbytes.",
+    "attempt_ledger": {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/attempt-ledger.json",
+      "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7"
+    },
+    "historical_resolution": {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-historical-ledger-resolution.json",
+      "sha256": "5eba28ccb2c67f09f8cdfe68a47ca10000b4cc6fe7924d0ad405593270559139"
+    },
+    "science_failed": "Original3965monitor-stoppedfinitechild remains excluded; methodfix/newbasis/newadmission acceptedbeforeactualEArow1, no retrospective receipt relabel.",
+    "other_failures": "Unsupportedposix_spawnsetsid qualification; diagnosedselectedroute; method6failedreview/correctionandmethod7actualcontrols; syntheticguardsa1/a2initfailuresthen95a3; prelaunchfreshness/Markdown-JSON/authorityrefrefusals; fullsuppliedfileanalysisattempt1rootomissionthenconfig-onlyattempt2; root/coorpostchecker/projection/source-style/render1clipping/MPLcachediagnostics allretainedandclassified, no product-red fabrication.",
+    "exposures_and_review_stops": "SCI1operational-onlylist_agents status exposure stopped/routed/retained, noSCIopinionbody; laternameddactualauditgiantreadtransportstop18cb boundedROOT-authorisedcontinuationc3ed ->completed03bea. Fresh97deownprimaryjudgmentbefore03bea; permittedprimaryprojection/truncation/JQcontextmistakes disclosed, no forbiddenopinionexposure ortargetrepair.",
+    "accounting": {
+      "investigator": {
+        "preparations": 46,
+        "executions": 9,
+        "total_role_events": 55,
+        "original_launches": 1
+      },
+      "integrated_SCI1": "oneoriginallaunch/allstagedphasesandstopsretained",
+      "fresh_postgate_reviewer_launches": 1,
+      "curator_launches": 1,
+      "other_roles": "Originalledgers/bindingspreserved, no double-countingcumulativecounterupdates or mixingoperationalcheckswithscientifictrials",
+      "actual_serving": null,
+      "tokens": null,
+      "cost": null
+    }
+  },
+  "bookkeeping": {
+    "mode": "Authorizedoutside-treefinalevidenceonly, analogous115schema. Existingfile/hash/read-onlyGitmetadata; no runtime/tests/probes/API/copy/compression/targetedits ornewreviewcriteria.",
+    "actual_local_identity_read": {
+      "head": "158776ade28079276304d49a6b973eccbf4109c9",
+      "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+      "full_porcelain": "",
+      "returncodes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "diagnostics": "OnejqkeysprojectionappliedtostringCIlog failedread-only andwasreplacedbyscopedtypedmetadata; broadfilenameprojectioncontainedpreflightnamesandtruncated, notusedasidentityproof. PRbodydiffexit1expectedonefinalblanklineonly. Priorartifactsunchanged.",
+    "factual_gaps": [
+      "NoCIartifactZIPimport; onlysavedrun/job/log/artifactmetadata asserted, no exactCIreceipt/M25internalvalues beyondsuccessworkflowclaim.",
+      "Twoearlyhistoricaldraftbyteidentities unavailablewithinexaminedbasis; originalledgers/pinsretained.",
+      "OldRM84numericalreceipts andunrecordedmodel/costdata remainUNKNOWN.",
+      "No merged/default-branch delivery ormanualissueclosure claimed."
+    ]
+  }
+}
+

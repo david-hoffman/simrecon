@@ -1,0 +1,1178 @@
+{
+  "protocol": "FA120-direct-method-SOURCE-v1",
+  "approved": false,
+  "numerical_release": false,
+  "execution_status": "HOLD_SOURCE_ONLY",
+  "planned_window": "W120",
+  "attempt_output_root": "UNBOUND",
+  "actual119_parent": "UNBOUND",
+  "subject": {
+    "root": "UNBOUND",
+    "python": "UNBOUND",
+    "module_root": "UNBOUND",
+    "identity": {
+      "head": "UNBOUND",
+      "tree": "UNBOUND",
+      "tracked_diff_sha256": "UNBOUND"
+    },
+    "dirty": "UNBOUND"
+  },
+  "launch": {
+    "route": "plain-posix-spawn/same-pid-setsid/execve",
+    "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+    "startup_timeout_seconds": "UNBOUND",
+    "startup_pipe_bytes": 1024,
+    "ready_message_bytes": 512
+  },
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "sample_interval_seconds": 0.01,
+  "math_reference_ONLY": {
+    "experimental_child_sha256": "d2d6ec94e963b7169fb473b06c5d1ad367756285eefe920fe3c7d8fe72f504a8",
+    "writer_sha256": "298f98c49511959db70b5e8f9dc65d10887a4c32757c0a0139b2e83affa9af96",
+    "witnesses_sha256": "930e917d9f2334ca96f4e693ad2bf812cb96ef090b699aa8622df4454d5ebeaa",
+    "closed_manifest_sha256": "40f18e0692ef5840e42e2907adb68ded4c9d3e523b2732605930a6354c6468e4",
+    "limit": "Frozen source references, not actual119/runtime qualification or executable amended child identity"
+  },
+  "math_materials": {
+    "child": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND",
+      "interface": "PROPOSED_UNAPPLIED --fa120-config only"
+    },
+    "writer": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "witnesses": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    },
+    "closed_manifest": {
+      "path": "UNBOUND",
+      "sha256": "UNBOUND"
+    }
+  },
+  "subject_material_paths": [
+    ".python-version",
+    "docs/contracts/c-equivalence-acquisition-modes-v1.md",
+    "docs/contracts/c-equivalence-known-parameters-v1.md",
+    "docs/contracts/lower-memory-fourier-assembly-study-v1.md",
+    "docs/contracts/reconstruction-memory-v1.md",
+    "docs/contracts/wide-allocation-domain-v1.md",
+    "pyproject.toml",
+    "scripts/source_free_check.py",
+    "scripts/source_free_sitecustomize/pytest_plugin.py",
+    "scripts/source_free_sitecustomize/sitecustomize.py",
+    "src/simrecon/__init__.py",
+    "src/simrecon/acquisition/__init__.py",
+    "src/simrecon/acquisition/declarations.py",
+    "src/simrecon/acquisition/drift.py",
+    "src/simrecon/acquisition/layout.py",
+    "src/simrecon/acquisition/modes.py",
+    "src/simrecon/acquisition/preparation.py",
+    "src/simrecon/cli.py",
+    "src/simrecon/io/__init__.py",
+    "src/simrecon/io/imagej.py",
+    "src/simrecon/io/imagej_metadata.py",
+    "src/simrecon/io/metadata.py",
+    "src/simrecon/io/mrc_writer.py",
+    "src/simrecon/io/pixels.py",
+    "src/simrecon/io/priism.py",
+    "src/simrecon/models.py",
+    "src/simrecon/optical_transfer.py",
+    "src/simrecon/reconstruction/__init__.py",
+    "src/simrecon/reconstruction/known_parameters.py",
+    "src/simrecon/reconstruction/parameter_estimation.py",
+    "src/simrecon/workflow/__init__.py",
+    "src/simrecon/workflow/adapters.py",
+    "src/simrecon/workflow/identity.py",
+    "src/simrecon/workflow/reconstruct.py",
+    "src/simrecon/workflow/result.py",
+    "src/simrecon/workflow/summary.py",
+    "src/simrecon/workflow/transfer.py",
+    "tests/reconstruction_summary_fixture.py",
+    "uv.lock"
+  ],
+  "fixtures": {
+    "Ksmall": {
+      "directory": "UNBOUND",
+      "files": {
+        "filtered.npy": "UNBOUND",
+        "carriers.npy": "UNBOUND",
+        "x_um.npy": "UNBOUND",
+        "y_um.npy": "UNBOUND",
+        "grid.json": "UNBOUND"
+      },
+      "expected_loaded_input_identities": "UNBOUND",
+      "expected_output_identity": "UNBOUND",
+      "public_image": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND",
+        "format": "complete public_image.npy; separate qualification process only"
+      },
+      "provenance": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND",
+        "format": "complete provenance.json; separate qualification process only"
+      }
+    },
+    "Kmedium": {
+      "directory": "UNBOUND",
+      "files": {
+        "filtered.npy": "UNBOUND",
+        "carriers.npy": "UNBOUND",
+        "x_um.npy": "UNBOUND",
+        "y_um.npy": "UNBOUND",
+        "grid.json": "UNBOUND"
+      },
+      "expected_loaded_input_identities": "UNBOUND",
+      "expected_output_identity": "UNBOUND",
+      "public_image": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND",
+        "format": "complete public_image.npy; separate qualification process only"
+      },
+      "provenance": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND",
+        "format": "complete provenance.json; separate qualification process only"
+      }
+    },
+    "K2D": {
+      "directory": "UNBOUND",
+      "files": {
+        "filtered.npy": "UNBOUND",
+        "carriers.npy": "UNBOUND",
+        "x_um.npy": "UNBOUND",
+        "y_um.npy": "UNBOUND",
+        "grid.json": "UNBOUND"
+      },
+      "expected_loaded_input_identities": "UNBOUND",
+      "expected_output_identity": "UNBOUND",
+      "public_image": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND",
+        "format": "complete public_image.npy; separate qualification process only"
+      },
+      "provenance": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND",
+        "format": "complete provenance.json; separate qualification process only"
+      }
+    }
+  },
+  "initial_conditions": [
+    {
+      "id": "Ksmall-r1-baseline",
+      "condition": "Ksmall",
+      "variant": "baseline",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r1-candidate",
+      "condition": "Ksmall",
+      "variant": "candidate",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r1-retained-control",
+      "condition": "Ksmall",
+      "variant": "retained-control",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r2-candidate",
+      "condition": "Ksmall",
+      "variant": "candidate",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r2-retained-control",
+      "condition": "Ksmall",
+      "variant": "retained-control",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r2-baseline",
+      "condition": "Ksmall",
+      "variant": "baseline",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r3-retained-control",
+      "condition": "Ksmall",
+      "variant": "retained-control",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r3-baseline",
+      "condition": "Ksmall",
+      "variant": "baseline",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Ksmall-r3-candidate",
+      "condition": "Ksmall",
+      "variant": "candidate",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        8,
+        64,
+        64
+      ],
+      "output_strides": [
+        262144,
+        32768,
+        512,
+        8
+      ],
+      "output_bytes": 262144,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r1-baseline",
+      "condition": "Kmedium",
+      "variant": "baseline",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r1-candidate",
+      "condition": "Kmedium",
+      "variant": "candidate",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r1-retained-control",
+      "condition": "Kmedium",
+      "variant": "retained-control",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r2-candidate",
+      "condition": "Kmedium",
+      "variant": "candidate",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r2-retained-control",
+      "condition": "Kmedium",
+      "variant": "retained-control",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r2-baseline",
+      "condition": "Kmedium",
+      "variant": "baseline",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r3-retained-control",
+      "condition": "Kmedium",
+      "variant": "retained-control",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r3-baseline",
+      "condition": "Kmedium",
+      "variant": "baseline",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "Kmedium-r3-candidate",
+      "condition": "Kmedium",
+      "variant": "candidate",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "output_shape": [
+        1,
+        8,
+        128,
+        128
+      ],
+      "output_strides": [
+        1048576,
+        131072,
+        1024,
+        8
+      ],
+      "output_bytes": 1048576,
+      "mode": "3d",
+      "axial_zoom": 1,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r1-baseline",
+      "condition": "K2D",
+      "variant": "baseline",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r1-candidate",
+      "condition": "K2D",
+      "variant": "candidate",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r1-retained-control",
+      "condition": "K2D",
+      "variant": "retained-control",
+      "repetition": 1,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r2-candidate",
+      "condition": "K2D",
+      "variant": "candidate",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r2-retained-control",
+      "condition": "K2D",
+      "variant": "retained-control",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r2-baseline",
+      "condition": "K2D",
+      "variant": "baseline",
+      "repetition": 2,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r3-retained-control",
+      "condition": "K2D",
+      "variant": "retained-control",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r3-baseline",
+      "condition": "K2D",
+      "variant": "baseline",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    },
+    {
+      "id": "K2D-r3-candidate",
+      "condition": "K2D",
+      "variant": "candidate",
+      "repetition": 3,
+      "entry": "child",
+      "record": "FA120-fixed-child-payload-v1",
+      "state": "PENDING",
+      "native_TDZYX": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "output_shape": [
+        2,
+        2,
+        24,
+        32
+      ],
+      "output_strides": [
+        12288,
+        6144,
+        256,
+        8
+      ],
+      "output_bytes": 24576,
+      "mode": "2d",
+      "axial_zoom": 2,
+      "config": {
+        "path": "UNBOUND",
+        "sha256": "UNBOUND"
+      },
+      "output_image_path": "UNBOUND"
+    }
+  ],
+  "paired_revision_order": {
+    "1": [
+      "baseline",
+      "candidate",
+      "retained-control"
+    ],
+    "2": [
+      "candidate",
+      "retained-control",
+      "baseline"
+    ],
+    "3": [
+      "retained-control",
+      "baseline",
+      "candidate"
+    ]
+  },
+  "operational_bindings": {
+    "approved": false,
+    "numerical_release": false,
+    "environment": "UNBOUND",
+    "grant": "UNBOUND",
+    "host": "UNBOUND",
+    "cgroup": "UNBOUND",
+    "current_headroom": "UNBOUND",
+    "process_stop_bytes": "UNBOUND",
+    "host_min_available_bytes": "UNBOUND",
+    "ancestor_stop_bytes": "UNBOUND",
+    "deadline_seconds": "UNBOUND",
+    "terminate_grace_seconds": "UNBOUND",
+    "kill_reap_seconds": "UNBOUND",
+    "outer_ownership_envelope": "UNBOUND",
+    "max_child_record_bytes": "UNBOUND",
+    "startup_timeout_seconds": "UNBOUND"
+  },
+  "scope": "ONLY 27 named primary rows. One assembly per measured child. No public setup, baseline/reference result or reference image in measured child. All PENDING; no auto driver/retry/growth/workflow. All current entrypoints unconditionally held before imports; later amended child hash UNBOUND. Actual-parent reconcile, fresh method AND science review, finite ROOT qualification and EACH admission mandatory."
+}

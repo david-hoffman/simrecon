@@ -1,0 +1,11 @@
+--- /workspace/work/issue-120-sourceprep/actual120-activation-source-1/originals/qualification.py	2026-11-16 09:17:50.897980971 -0800
++++ /workspace/work/issue-120-sourceprep/actual120-activation-source-1/qualification.py	2026-11-16 10:01:01.466961335 -0800
+@@ -4,7 +4,7 @@
+ UNBOUND. No threshold is inferred from existing tests or measured residuals.
+ """
+ 
+-raise SystemExit("FA120 UNCONDITIONAL HOLD: QUALIFICATION SOURCE PREPARATION ONLY")
++# ROOT-authorized event7: top HOLD removed in this NEW source copy; NO runtime grant.
+ 
+ import inspect
+ from dataclasses import replace

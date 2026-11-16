@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/work/campaign/evidence/120/ROOT-metadata-import-probe-1.py", line 15, in <module>
+  File "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/importlib/__init__.py", line 88, in import_module
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scipy.fft._pocketfft'

@@ -1,0 +1,33 @@
+{
+  "utc": "2026-11-16T18:33:12.731349+00:00",
+  "status": "CONDITIONAL_PHYSICAL_ADMISSION_ONLY_NOT_NUMERICAL_GRANT",
+  "context_observed_unix_ns": 1794853972005913731,
+  "max_age_seconds": 300,
+  "context_sha256": "8acded1d4d6034896a158a2a56dc7dc55e6049ffb7212047be67242012ea33a7",
+  "context_exit": 0,
+  "stderr_bytes": 0,
+  "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "full_clean": true,
+  "all55_source_inputs_unchanged": true,
+  "source_material_sha256": "0833a7790fa5071095eff668df1543ff78bcccfb710091394aa98e1598174c21",
+  "available_bytes": 17771614208,
+  "minimum_available_bytes": 1073741824,
+  "conservative_child_allowance_bytes": 536870912,
+  "reserve_bytes": 536870912,
+  "disk_available_bytes": 42663575552,
+  "disk_min_bytes": 2147483648,
+  "visible_ancestors": [
+    {
+      "path": "/sys/fs/cgroup",
+      "current_bytes": 4256272384,
+      "max_bytes": 17179869184,
+      "stop_bytes": 16106127360,
+      "admitted": true
+    }
+  ],
+  "exposed_namespace": "cgroup:[4026532294]",
+  "exposed_membership": "/",
+  "hidden_ancestors": "UNKNOWN_UNOBSERVABLE\u2014notabsence/unlimitedclaim",
+  "limits": "Protocolallowance/reserve areconditionaloperatingchoices,not measuredpeakprediction/RSSceiling/guarantee. GNUtimeout enforceswalltimeonly. No concurrentcontrolledtests/install/bench/numericwindow; reviewerfileworkonly/uncontrolledactorsunknown. Allscientificobservationsstill0. ExactROOTgrant mustfollow sourcereviewacceptance andagecheck."
+}

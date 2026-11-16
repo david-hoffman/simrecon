@@ -1,0 +1,5 @@
+{
+  "command": "/usr/local/bin/docker exec --user 1000:1000 -w /workspace/work/issue-120 -e OMP_NUM_THREADS=1 -e OPENBLAS_NUM_THREADS=1 -e MKL_NUM_THREADS=1 -e NUMEXPR_NUM_THREADS=1 -e PYTHONDONTWRITEBYTECODE=1 -e PYTHONPATH=/workspace/work/issue-120/scripts/source_free_sitecustomize:/workspace/work/issue-120/tests -e PYTEST_PLUGINS=pytest_plugin 11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b /workspace/work/issue-120/.venv/bin/python -B /workspace/work/campaign/evidence/120/ROOT-metadata-import-probe-1.py",
+  "scope": "One metadata/import-only provenance after actualf3dbmakepreflightPASS0; no FFT/arrayworkload/targetqualification/sourceModuleimport. Sameplannedfourthreads1/diagprepend/testhelpers, actualscriptargv separately recorded from future child. Not a grant.",
+  "parentCI": "PASS"
+}

@@ -1,0 +1,35 @@
+{
+  "time_utc": "2026-11-16T17:23:49.649911+00:00",
+  "scope": "ROOT hoststdlib AST syntax ONLY, no targetimport/compile/execute/scientificAPI/control/qualification. NotrequiredUbuntu3.13syntax/capability/SCI oractualparentacceptance.",
+  "host_python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "flags": {
+    "isolated": 1,
+    "no_site": 1,
+    "dont_write_bytecode": 1
+  },
+  "rows": [
+    {
+      "path": "/workspace/work/issue-120-sourceprep/math-interface-source-amendment/experimental_child.py",
+      "sha256": "4c655f84bed427579c0e45d94600a640708517c4751c6b6340d44aabdcd0f1be",
+      "AST_parse": "PASS",
+      "first_executable_node": "Raise, unconditionalHOLDbeforeimports",
+      "target_execution": false
+    },
+    {
+      "path": "/workspace/work/issue-120-sourceprep/study-source-preparation/public_fixture_qualification.py",
+      "sha256": "298f98c49511959db70b5e8f9dc65d10887a4c32757c0a0139b2e83affa9af96",
+      "AST_parse": "PASS",
+      "first_executable_node": "Raise, unconditionalHOLDbeforeimports",
+      "target_execution": false
+    },
+    {
+      "path": "/workspace/work/issue-120-sourceprep/qualification-source-preparation/qualification.py",
+      "sha256": "165eae5393e9b6643c0a45b5957e0f8f8d36d1f4aa4e8582ecca9ade69d6e35b",
+      "AST_parse": "PASS",
+      "first_executable_node": "Raise, unconditionalHOLDbeforeimports",
+      "target_execution": false
+    }
+  ],
+  "all_target_hashes_unchanged": true,
+  "119_window": "Hostfile/sourceanalysis only, no worktree119 code/env/cache/testdata mutation"
+}

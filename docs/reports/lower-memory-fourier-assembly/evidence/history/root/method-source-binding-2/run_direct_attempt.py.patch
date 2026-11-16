@@ -1,0 +1,13 @@
+--- /workspace/work/campaign/evidence/120/method-source-binding-1/run_direct_attempt.py
++++ /workspace/work/campaign/evidence/120/method-source-binding-2/run_direct_attempt.py
+@@ -21,8 +21,8 @@
+ 
+ _SOURCE_DIR = Path(__file__).resolve().parent
+ for _name, _expected in {
+-    "observer.py": "ffcffac66f9959d0954231222b520fe65ab31a7203a8c6998aec092ee2e1df2f",
+-    "direct_binding.py": "64a5c76fbbe6cf8a42b977ad292ace6226bfc4e0a19e606831bfe4b57b634205",
++    "observer.py": "dba11667e4b79428eef50965e5fa42bd9ec22acf71ccf543ee65c4009cd7a5bf",
++    "direct_binding.py": "7e9eb5e72fa8c5ba37716d6ee3e15a249a29dfa94dd3da04d5813fff00211ec5",
+ }.items():
+     if hashlib.sha256((_SOURCE_DIR / _name).read_bytes()).hexdigest() != _expected:
+         raise ValueError("fixed external method import source identity changed: " + _name)

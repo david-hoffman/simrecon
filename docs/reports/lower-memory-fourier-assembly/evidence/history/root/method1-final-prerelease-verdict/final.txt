@@ -1,0 +1,136 @@
+FA120 METHOD1 — ACCEPT inspected SOURCE suitability only.
+
+Launch1 / ownround1 completed independently. Initial assessment was saved before
+author handoffs/maps; no current SCI-source1 opinion or author conversation read.
+No diagnosed source correction required. No runtime/numerical grant, actual
+qualification, measured-design acceptance, final D or PR readiness follows.
+
+Report: /workspace/work/issue-120-sourceprep/source-reviews/method1/report.md
+Report SHA256: 65dbc6c11babf2e0bb744b2cad76b94730697703388b932847ddd3da62e4a954
+Original105-file map SHA256:
+37d7f289e2adec270e4e885d87a41922830f7c999bae6120b2f6f5e715d1bdda
+All105 named files and three ROOT-authorized exact supplements hash-verified.
+
+Reviewed actual source identities:
+runner882e02f09d219fa33a3dcef5e88ea64d274844cb60e4be7edf8d054db969e3ba
+observerdba11667e4b79428eef50965e5fa42bd9ec22acf71ccf543ee65c4009cd7a5bf
+binding7e9eb5e72fa8c5ba37716d6ee3e15a249a29dfa94dd3da04d5813fff00211ec5
+manifest6ba73ce038317da06e35d4db889c0b7042ab9a8dcf73c1e8334bd96e1f5cee3b
+child5175b8877bccd2b614bcc84bf1739c199c464eab7786218ad3f2246f03e34ea8
+writer69cd605d0ba53ac257c16a8ccfd7628b22d4a4f11cc81fa73320513d74200b1e
+qualificationc022cc1e49ab3280ef1766dfe088f0543ced91a7ee290e6ecd005d3f44cccc4a
+Subject f3db41747423786a7a49aadc428eaec0d03fdd5d,
+tree288349217928b975ae16dd66ee13c7c93f4c892e, accepted integration ancestor2393.
+
+Retained exact-PID bootstrap/FD/readiness/wait-owner/guard/RSS/status core and its
+limits are supported by source/diffs. Pin closure, ten-field one-call child,
+27 rotated rows, five fixtures, separate public references, JSON-LIST identities,
+PID/PPID/provenance/path correspondence and raw SHA binding are source-suitable.
+Writer and W1–W6 differ from originals only in top HOLD removal; child also has
+two explicit reference-constant changes. Runtime flags remain false/UNBOUND.
+
+Existing Docker/tool capture + GNU timeout is suitable IN PRINCIPLE for one
+separately frozen/released fixed qualification entry: explicit foreground/direct
+child TERM/KILL/reap route, early PID/condition marker, exclusive outputs,
+preserved partial evidence and external interruption recovery. A default group
+KILL/timeout status alone does not prove reaping. No new launcher/monitor needed;
+no resource peak claim. Exact invocation and physical admission remain ROOT's
+next release. Do not route fixture-generating qualifiers through27 future-proof
+checks. Then bind actual fixtures/configs/manifest/external grants and reviewer
+supplements before each measurement;27 rows must use reviewed runner/observer.
+
+Actual environment/preflight and imported DUCC provenance are supplied, without
+dispatch/native-precision/workspace/overwrite/accuracy qualification. Scientific
+whole-byte and W1–W6 observations remain separate and pending. No blanket replay
+of historical68 controls is required by this source delta.
+
+File/Git/hash work only; no target execution, interpreter/import/AST/test/probe,
+numeric/control/process work, target repair or delegation. One ENOENT read-path
+typo disclosed; no content exposed. SharedFS scopes are prompt restrictions,
+not engineered isolation. Actual model/usage/optional controls/cost/tokens/time
+remain unknown; historical math/apparatus/ROOT/campaign charges preserved.
+
+SAME-EVENT SUPPLEMENT1 — Q-W1 LITERAL COMMAND, FILE-ONLY
+Original final above preserved verbatim; original file SHA256
+6211f5db51a63941bf5703944319e8f60a4c44b72af6450c227319deef84e469.
+Original report content also preserved, original SHA65dbc6c11babf2e0bb744b2cad76b94730697703388b932847ddd3da62e4a954.
+Updated report SHA256:
+17dfec555f0e3b537f61cc3ab1cfc65145513e6ab7806da145435d2f73fae87f
+
+New exact reviewed leaves, both hash-verified:
+ROOT-QW1-literal-command-proposal-1.json
+df716402a62c0bf2c55a9b5e996b00d9eefa9fed80040b058b5193768b7879d7
+ROOT-standard-timeout-identity-1.json
+752323848cc1d9a3fd21a9be059094685b61169c755320025f69c107754651a0
+
+Verdict: SUITABLE IN PRINCIPLE literal route/source correspondence for one
+separate fixed W1 qualification; original SOURCE ACCEPT unchanged. Not yet
+release-complete, not run/granted. Foreground GNU timeout TERM60/KILLafter5,
+early actual PID/PPID/PGID/SID before mathimports, exact q/study hashes/origins,
+one q.qualify_w1 and observation-only two-line result fit the separate route.
+Source-material digest excluding binding/grant plus external full grant is acyclic.
+
+Concrete prerelease bindings: actual reconstruction_summary_fixture loaded origin
+(not checked in literal body) and exact bytes of BOTH helpers; final binding.json,
+external source-material/grant/environment/full tree+clean proof and debug state;
+timeout identity's actual Docker/container association; exclusive stdout/stderr,
+outer deadline/capture owner, separate statuses and birth-safe recovery/terminal
+proof; actual current physical admission/exclusive window. Body changes need new
+exact proposal review. A PID/timeout status alone proves neither safe recovery nor
+reaping. No new launcher/monitor or blanket68 controls required.27 measurements
+remain on reviewed runner/observer with each admission; no source repair found.
+
+Read only two authorized leaves with cat/sha256sum; no command/interpreter/import,
+Docker/timeout/test/probe/numeric/process execution, peer opinions or delegation.
+Same launch1/ownround1 event; all previous accounting/unknown meters preserved.
+
+SUPPLEMENT1 UPDATE — CURRENT PROPOSAL2 ACCEPTED AS SOURCE ROUTE
+Current proposal2 SHA51bf108c8db94aaec17f1f3ab7980c9311927022a404af718847be612c0bf979.
+Minimal entry patch SHAec47a08d1169e583bd270c4610bc3258904e4bcdb3540a759a3946137b038066.
+Timeout command association SHA34ea526b4bad37f4c5118a4dba1f80d4ad4136047be104594d1f0a43d720d158.
+All three exact leaves independently hash-verified/read, no execution.
+
+Proposal2's three added assertions close BOTH helper actual-origin/byte checks.
+Timeout association closes the metadata command/container association gap.
+ACCEPT current proposal2 literal SOURCE route/correspondence for one fixed W1;
+no further command-source change diagnosed. Proposal1 disposition and original
+SOURCE verdict remain preserved. No math/witness change or runtime grant.
+
+Still forthcoming before release: actual binding/source-material/external grant,
+full candidate/environment/debug-state binding; exclusive capture/outer bound,
+status separation/birth-safe recovery/terminal ownership; physical admission and
+exclusive interval. Those nonexistent bytes have not been accepted. No27 fixture
+checks or new launcher/monitor required for the separate W1 qualification route.
+
+Current complete report SHA256:
+dee64f150218449f9fb1098fd005584e16a220ba88fc68adc88820bcc03d900e
+Same source-review event/round; original content and all charges/limits preserved.
+
+SAME-EVENT SUPPLEMENT2 — PROPOSAL3/FILLED W1 BINDINGS
+ACCEPT current proposal3 + filled binding/source/capture records for SOURCE
+prerelease suitability. No further math/command-source change diagnosed.
+Proposal3 explicit non-assert debug/optimize guard and actual procstat field22
+birthticks close earlier entry prerequisites; helper assertions remain intact.
+All55 explicitly authorized source-material paths hash-match. Binding/material
+exclude their own determining hashes and future grant/context/output; final
+external grant binds separately. Capture/recovery plan fits existing tool route,
+foreground timeout, exclusive evidence, distinct statuses and birth-safe HOLD.
+
+Exact supplements:
+proposal3 SHA023c622e46590df3e1d474de256ec021c08c4893b08f864e768b50bd8882f8df
+patch SHA23c0e1dc32f2fc7b7e7ec71df0eb594a8cb40875e5214793f6293fd81f9fd2f5
+binding SHA90ed36c23c1c82b708d8b01e153533ee185ddf9b7b9596f6965ad0c79aafddde
+source-material SHA0833a7790fa5071095eff668df1543ff78bcccfb710091394aa98e1598174c21
+capture-plan SHAb61f30c4f84725665a689af1d5b59367709c5bea486eebe23354b3956c0b3923
+
+Remaining before release: final external freeze associates literal loginfalse/
+noclobber/exclusive quoted shell exec + tool/capture/outer-owner arguments with
+proposal3 argv; immediately fresh physical context/conditional admission,
+candidate/environment/material applicability and separate ROOT grant. No runtime
+grant, actual control result, native/internal precision/workspace/peak claim or
+scientific acceptance follows. No27 fixture checks needed for this W1 route.
+
+Complete report SHA256:
+3981b2181f16e6631a556622a06a15e721da09af075726b779c36acb5986d3a5
+Prior reportdee64/final1d2e and all earlier contents preserved. Same launch1/
+ownround1, file/Git/hash only, no target execution/repair/peer SCI/delegation.

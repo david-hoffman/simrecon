@@ -1,0 +1,14 @@
+{
+  "utc": "2026-11-16T18:00:53.607048+00:00",
+  "status": "SOURCE_ONLY_UNREVIEWED_UNEXECUTED",
+  "diagnosis": "ROOTphase1 removedtopHOLDscopybut missedrunner literal import pins. Coordinator120 caught mismatch bysourceonly beforeanyinterpreter/import/qualification. Sourcebindingcorrection1, oldphase1immutable.",
+  "change": "Onlytwo pre-import expectedsourceSHA literals updated in runner; observer/binding/manifest byte-identicalphase1. No wait/guard/monitor/parser/bootstrap/math behavior change.",
+  "candidate": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "oldrunner": "89256f14039b5f23f6f5a4a5eb0f44b1a4e9e0e62a205c729bcca343f1ce5b74",
+  "newrunner": "882e02f09d219fa33a3dcef5e88ea64d274844cb60e4be7edf8d054db969e3ba",
+  "inputs": {
+    "ffcffac66f9959d0954231222b520fe65ab31a7203a8c6998aec092ee2e1df2f": "dba11667e4b79428eef50965e5fa42bd9ec22acf71ccf543ee65c4009cd7a5bf",
+    "64a5c76fbbe6cf8a42b977ad292ace6226bfc4e0a19e606831bfe4b57b634205": "7e9eb5e72fa8c5ba37716d6ee3e15a249a29dfa94dd3da04d5813fff00211ec5"
+  },
+  "holds": "Manifest remains approvedfalse/numerical_releasefalse/HOLD_SOURCE_ONLY; futuremath/env/fixtures/config/proofs UNBOUND. FreshsourceMETHOD+SCI+ROOTrelease beforequalification; CI126 notassumedpassed."
+}

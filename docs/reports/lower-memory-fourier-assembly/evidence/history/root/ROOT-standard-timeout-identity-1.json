@@ -1,0 +1,19 @@
+{
+  "scope": "Metadata-only standard command identity; no workload/process lifecycle qualification",
+  "results": [
+    {
+      "chunk_id": "3ba228",
+      "wall_time_seconds": 0.087530968,
+      "exit_code": 0,
+      "original_token_count": 77,
+      "output": "timeout (GNU coreutils) 9.4\nCopyright (C) 2023 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Padraig Brady.\n"
+    },
+    {
+      "chunk_id": "c251ce",
+      "wall_time_seconds": 0.104875844,
+      "exit_code": 0,
+      "original_token_count": 21,
+      "output": "12690a043dfd555a6c14ccc1564f5649c18f1762c0d6ff66729948130898ec52  /usr/bin/timeout\n"
+    }
+  ]
+}

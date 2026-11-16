@@ -1,0 +1,106 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/historical-event1-pre-identity-correction/source-handoff.md	2026-11-16 06:00:41.909081206 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source-handoff.md	2026-11-16 06:04:53.334464730 -0800
+@@ -1,11 +1,56 @@
+ # FA120 APPARATUS SOURCE handoff — finite code, unconditional HOLD
+ 
+-Fresh nonblind apparatus SOURCE worker, launch1/source-preparation event1;
+-own scientific runs0. Supplied task date2026-11-16. ROOT's narrow source-only
++Same nonblind apparatus SOURCE worker, launch1/source-preparation events2,
++source correction1; own scientific runs0. Supplied task date2026-11-16. ROOT's narrow source-only
+ exception during118 exclusivity authorizes these external source writes only.
+ This is not Current state, method qualification, scientific acceptance, a
+ resource grant or a numerical release. No independent review was requested/run.
+ 
++## Event2 diagnosis, preserved event1 and narrow correction
++
++ROOT identified an event1 fixed-schema defect: output_identity was required to
++be a dictionary, but the actual identity(image,"image") tuple serializes as a
++four-field JSON LIST. By source inspection that predicate rejects every valid
++current math payload; no parser execution was used to diagnose or repair it.
++
++FIRST preserved all available event1 sources/originals/configs/deltas/docs/
++handoff/hash listings in historical-event1-pre-identity-correction/. Preserved
++handoff SHA256 is 7ba17fc978ca5736d5f0d80483e216a0f32f76f1c1e0d256be28e478fb81074c;
++listing SHA256 is f7e5d9887f682d0b644b5dc1595d74297db6449c367d584639dbbff7b0832502.
++Both identities were confirmed before edits. preserved-copy.sha256 binds all
++copied event1 files; the old listing retains then-current absolute paths and is
++historical, not a checksum instruction against newly corrected current files.
++The preserved-copy listing SHA256 is
++1b63c6045e0dbbf77b851f5f0e3246da67e1fb16f93d3e883e5877a9f1bf3483.
++ROOT's coordinator-launch-record.md remains untouched.
++
++Narrow additional TEXT read: tests/reconstruction_summary_fixture.py lines76–81
++ONLY. The existing identity helper returns (name,array.shape,dtype.str,SHA256)
++after canonical little-endian conversion; JSON therefore emits
++[name,[shape...],dtype.str,SHA256]. No generator or other source body was read.
++The exact permitted six-line slice is retained/hashed as identity-definition.txt.
++Its SHA256 is c31e15e9cbcc015806b4c6b553dc13e59d27984c907821bb5b99f2122c41c94a.
++
++Corrected direct_binding.py requires the actual four-field list for output and
++all four before/after caller values, with name/canonical dtype/shape metadata
++and lowercase SHA256 form. Caller containers remain dictionaries. Exact
++qualified expected-identity equality remains required. Manifest templates now
++show those finite list shapes/dtypes with every actual SHA256 UNBOUND, including
++the public-image expected list. Existing output_shape/dtype/strides checks remain.
++
++The same fixed schema now connects digest(raw image file) to output_identity[3]
++using the existing digest helper, after the existing complete-byte-count check.
++It does not parse numerical content or replace separate COMPLETE baseline/
++candidate/control/public-reference byte comparison. This closes event1's
++independent archived-raw-hash correspondence gap; no observation occurred.
++
++Observer and runner lifecycle/guards/status core,27 rows/order, all27 configs,
++grant template, math proposal and frozen math package remain unchanged. Only
++the runner's local direct_binding import pin changes for this correction.
++All approvals remain false and all runtime bindings/HOLDs remain unchanged.
++Full original→current deltas and separate event1→event2 source/text deltas are
++retained; no new role, validation, runtime or scientific result follows.
++
+ ## Delivered finite bindings
+ 
+ All authored files are beneath this directory. `source/` contains the proposed
+@@ -28,7 +73,8 @@
+ grid.json. The public writer's complete public_image.npy and provenance.json
+ are separately bound reference artifacts and never measured-child inputs.
+ Per-condition actual file bytes/hashes, loaded input identities and public-image
+-identity are UNBOUND. Apparatus hashes fixed material files and checks the child
++identity SHA256 values are UNBOUND. Every identity's fixed list schema is explicit
++in the manifest. Apparatus hashes fixed material files and checks the child
+ payload's fixed metadata; it imports no NumPy and parses no numerical content.
+ 
+ Each proposed measured child makes exactly ONE math assembly call, retaining
+@@ -37,7 +83,8 @@
+ math child's complete canonical output is RAW little-endian image bytes, not
+ NPY. A future bound row writes output-image.le.bin in its own fresh attempt
+ directory; stdout is the separate complete child provenance/observation record.
+-The existing receipt records raw-file hash/count and the separate public
++The fixed schema checks raw-file digest equals the declared output identity's
++canonical SHA256. The existing receipt records raw-file hash/count and the separate public
+ provenance reference; its existing file inventory also includes the raw image.
+ Hashes/metadata are not a complete byte comparison or a scientific oracle.
+ 
+@@ -143,9 +190,9 @@
+ | File | SHA256 |
+ | --- | --- |
+ | source/observer.py | ffcffac66f9959d0954231222b520fe65ab31a7203a8c6998aec092ee2e1df2f |
+-| source/run_direct_attempt.py | 5b044bae6642f4e3605952d9c984baf94cad2e772cca8ea8552525a4c5364734 |
+-| source/direct_binding.py | fb3c11e5d5cfce27921aa7b727feeb427dadb7447a2660ca3e19b9572cc8ae8b |
+-| source/manifest.json | de88e997ebca4287cb8afee93bc2f8badcae85c86577e1203a1f913ecd59f4f8 |
++| source/run_direct_attempt.py | 9ea0a24ab5870d3acde19b7a8a6d8735699efa5dffe95f34ef081ba8a710aab9 |
++| source/direct_binding.py | 64a5c76fbbe6cf8a42b977ad292ace6226bfc4e0a19e606831bfe4b57b634205 |
++| source/manifest.json | 8c6bf42bb477dce5d1e79e1bb60b26e7d4a82fa079583a4a3385e2e4b30662e9 |
+ | math-interface-proposal/experimental_child.py | 4c655f84bed427579c0e45d94600a640708517c4751c6b6340d44aabdcd0f1be |
+ | grant-template.json | 1b47f77f44c8689d676e2dae17313deb209c70d2bc7fb3575b438f9dcddbb01e |
+ 
+@@ -180,7 +227,10 @@
+ process, cleanup or active/uncertain-data removal occurred. No numerical files
+ were generated. All retained external source artifacts are needed handoff inputs.
+ 
+-New apparatus worker launch1/sourceprep event1/scientificruns0. Preserve math
++Apparatus worker cumulative launch1/sourceprep events2/sourcecorrection1/
++scientificruns0. Event1 and all charges remain. Event2 had two inert multi-file
++text-patch context mismatches, then exact-context reapplications; no partial
++source mutation or execution occurred. Preserve math
+ author launch1/events4/completions-or-corrections3 and every earlier campaign/
+ role charge by reference to its frozen handoff; do not add those counters again
+ or erase them. Requested Sol/high/forknone is packet-supplied. Actual serving

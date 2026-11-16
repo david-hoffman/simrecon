@@ -1,0 +1,18 @@
+{
+  "condition": "Kmedium",
+  "variant": "baseline",
+  "repetition": 2,
+  "actual119_parent": "UNBOUND",
+  "candidate": "UNBOUND",
+  "environment": "UNBOUND",
+  "grant": "UNBOUND",
+  "fixture_root": "UNBOUND",
+  "fixture_file_hashes": {
+    "filtered.npy": "UNBOUND",
+    "carriers.npy": "UNBOUND",
+    "x_um.npy": "UNBOUND",
+    "y_um.npy": "UNBOUND",
+    "grid.json": "UNBOUND"
+  },
+  "output_image_path": "UNBOUND"
+}
