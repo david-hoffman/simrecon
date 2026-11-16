@@ -1351,7 +1351,7 @@ def assemble(index_path):
             if qualification:
                 require(row['qid']==CONTROLS[row['control_id']][0],'qualification QID/control linkage')
             require((row['not_run_reason'] is None)==bool(row['attempts']) and
-                    (bool(row['attempts']) or (type(row['not_run_reason']) is str and bool(row['not_run_reason'])),'NOT_RUN explicit reason')
+                    (bool(row['attempts']) or (type(row['not_run_reason']) is str and bool(row['not_run_reason']))),'NOT_RUN explicit reason')
             numbers=[]
             for attempt in row['attempts']:
                 require(set(attempt)=={'attempt','superseded','superseded_reason','disposition','reason','artifacts'},'attempt fields')
