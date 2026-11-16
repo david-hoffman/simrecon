@@ -1,0 +1,36 @@
+rb117-tiny2d-summary-parent-r1-a1	parent	rb117-2d-search-summary	summary	false	1	72483	0.521300606	71092	72516	72772	74380	76165120	74833920	0	114		
+rb117-tiny2d-summary-candidate-r1-a1	candidate	rb117-2d-search-summary	summary	false	1	72585	0.531840808	71500	73420	73548	75244	77049856	75567104	1	99		
+rb117-tiny2d-full-parent-r1-a1	parent	rb117-2d-search-full	full	false	1	72687	0.564356438	71116	72996	73124	74744	76537856	75259904	0	106		
+rb117-tiny2d-full-candidate-r1-a1	candidate	rb117-2d-search-full	full	false	1	72789	0.557833593	71764	73280	73408	75388	77197312	75739136	0	102		
+rb117-central64-summary-parent-r1-a2	parent	central64-summary-searched	summary	false	1	72993	88.986285993	75488	90364	90364	90364	92532736	90206208	0	8379		
+rb117-central64-summary-candidate-r1-a1	candidate	central64-summary-searched	summary	false	1	73095	87.773583731	76100	90620	90620	90620	92794880	91918336	1	8314		
+rb117-central64-summary-candidate-r2-a1	candidate	central64-summary-searched	summary	false	2	73197	89.095874139	75812	90824	90824	90824	93003776	92848128	1	8407		
+rb117-central64-summary-parent-r2-a1	parent	central64-summary-searched	summary	false	2	73299	95.752653586	75660	90152	90152	90152	92315648	92323840	1	8673		
+rb117-central64-summary-parent-r3-a1	parent	central64-summary-searched	summary	false	3	73401	94.256785084	75348	89720	89720	89720	91873280	91000832	0	9010		
+rb117-central64-summary-candidate-r3-a1	candidate	central64-summary-searched	summary	false	3	73503	88.597365169	75816	90740	90740	90740	92917760	92598272	1	8489		
+rb117-central64-full-parent-r1-a1	parent	central64-full-searched	full	false	1	73605	93.320906483	75392	110832	110960	110960	113623040	114049024	1	8925		
+rb117-central64-full-candidate-r1-a1	candidate	central64-full-searched	full	false	1	73707	102.523623154	75824	111308	111564	111564	114241536	114630656	1	9157		
+rb117-central64-full-candidate-r2-a1	candidate	central64-full-searched	full	false	2	73809	88.767316255	75860	110984	111240	111240	113909760	114135040	0	8522		
+rb117-central64-full-parent-r2-a1	parent	central64-full-searched	full	false	2	73911	95.487004874	75384	111088	111216	111216	113885184	114196480	1	8956		
+rb117-central64-full-parent-r3-a1	parent	central64-full-searched	full	false	3	74013	98.810432202	75108	110680	110808	110808	113467392	113819648	0	9485		
+rb117-central64-full-candidate-r3-a1	candidate	central64-full-searched	full	false	3	74115	111.45935003	75708	110924	111052	111052	113717248	114126848	1	10360		
+rb117-tiny2d-summary-candidate-r2-a1	candidate	rb117-2d-search-summary	summary	false	2	74217	0.66785409	71772	73220	73348	74800	76595200	76038144	0	140		
+rb117-tiny2d-summary-parent-r2-a1	parent	rb117-2d-search-summary	summary	false	2	74320	0.828464296	71332	72812	72940	74556	76345344	75034624	1	149		
+rb117-tiny2d-summary-parent-r3-a1	parent	rb117-2d-search-summary	summary	false	3	74422	0.523988107	71292	72880	73008	74884	76681216	75157504	0	95		
+rb117-tiny2d-summary-candidate-r3-a1	candidate	rb117-2d-search-summary	summary	false	3	74524	0.539532072	72136	73504	73632	75592	77406208	75857920	0	95		
+rb117-tiny2d-full-candidate-r2-a1	candidate	rb117-2d-search-full	full	false	2	74626	0.65036444	72052	73596	73724	75392	77201408	76230656	0	113		
+rb117-tiny2d-full-parent-r2-a1	parent	rb117-2d-search-full	full	false	2	74728	0.618861407	71152	72720	72976	74696	76488704	74911744	1	112		
+rb117-tiny2d-full-parent-r3-a1	parent	rb117-2d-search-full	full	false	3	74830	0.594306049	71188	72852	72980	74512	76300288	75087872	0	106		
+rb117-tiny2d-full-candidate-r3-a1	candidate	rb117-2d-search-full	full	false	3	74932	0.605812219	71800	73324	73452	75248	77053952	75444224	1	104		
+rb117-central64-summary-profile-parent-r1-a1	parent	central64-summary-searched	summary	true	1	75035	91.640074171	75576	89716	89716	89716	91869184	90476544	0	8713	82248	89716
+rb117-central64-summary-profile-candidate-r1-a1	candidate	central64-summary-searched	summary	true	1	75137	90.440556689	75728	90744	90744	90744	92921856	90243072	1	8655	82232	90744
+rb117-central64-summary-profile-candidate-r2-a1	candidate	central64-summary-searched	summary	true	2	75240	91.426572933	75748	90996	90996	90996	93179904	91717632	1	8706	82552	90996
+rb117-central64-summary-profile-parent-r2-a1	parent	central64-summary-searched	summary	true	2	75342	89.572205317	75436	90356	90356	90356	92524544	90284032	0	8578	83168	90356
+rb117-central64-summary-profile-parent-r3-a1	parent	central64-summary-searched	summary	true	3	75444	92.276678989	75616	89980	89980	89980	92139520	91455488	1	8906	83276	89980
+rb117-central64-summary-profile-candidate-r3-a1	candidate	central64-summary-searched	summary	true	3	75546	94.847628097	76028	90636	90636	90636	92811264	92585984	1	8967	82360	90636
+rb117-central64-full-profile-parent-r1-a1	parent	central64-full-searched	full	true	1	75648	93.413942649	75536	111356	111484	111484	114159616	114348032	1	8919	102924	111356
+rb117-central64-full-profile-candidate-r1-a1	candidate	central64-full-searched	full	true	1	75750	95.900578289	76060	110888	111144	111144	113811456	114380800	0	8923	102612	110888
+rb117-central64-full-profile-candidate-r2-a1	candidate	central64-full-searched	full	true	2	75852	97.584972815	75800	110996	111252	111252	113922048	114208768	0	9083	102760	110996
+rb117-central64-full-profile-parent-r2-a1	parent	central64-full-searched	full	true	2	75954	100.471780865	75264	110876	111132	111132	113799168	114049024	1	9379	102552	110876
+rb117-central64-full-profile-parent-r3-a1	parent	central64-full-searched	full	true	3	76056	88.019525558	75260	111196	111324	111324	113995776	114245632	1	8399	102552	111196
+rb117-central64-full-profile-candidate-r3-a1	candidate	central64-full-searched	full	true	3	76158	90.412911265	75700	111228	111484	111484	114159616	114364416	0	8546	102980	111228

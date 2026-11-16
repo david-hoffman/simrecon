@@ -1,0 +1,73 @@
+{
+  "approved": true,
+  "scope": "WS116-Q0-Q1-method5-v1",
+  "case": "Q0-context",
+  "attempt_id": "rb117-parent-q0-a1",
+  "candidate_head": "158776ade28079276304d49a6b973eccbf4109c9",
+  "python_resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "source_sha256": {
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/observer.py": "eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/run_attempt.py": "6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/manifest.json": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+    "external_method:/workspace/work/campaign/evidence/117/resource-method-source/method_qualification.py": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21",
+    "external_qualifier:/workspace/work/campaign/evidence/117/resource-method-qualification-source/method_qualification.py": "65b41d34c5a740548a2156ff5bafb20230aab78418eb556d23ab04df24b58cae",
+    "readonly_control:/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/inventory.json": "a9991bb1468e9ea45164e6a263068cf3ac7c4a0af3267bddd5b860ed81e2106e",
+    "readonly_control:/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "readonly_control:/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+    "readonly_control:/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed",
+    "readonly_control:/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json": "38f32d39f93e15ecdcbb8528914e9190c3af626390b661e2962d0e4b9ee58750",
+    "readonly_control:/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json": "b588cb166337507737dd2b6ed147eb4f43ec865201409604616199af32a435c0"
+  },
+  "campaign_ownership_resolved": true,
+  "bounds": {
+    "sample_seconds": 0.01,
+    "term_grace_seconds": 0.2,
+    "kill_reap_seconds": 2,
+    "soft_deadline_seconds": 20,
+    "life_deadline_seconds": 5,
+    "startup_timeout_seconds": 5,
+    "startup_pipe_bytes": 1024,
+    "max_record_bytes": 1048576,
+    "target_ready_bytes": 2048,
+    "target_self_exit_seconds": 12,
+    "deadline_after_target_ready_seconds": 1,
+    "process_stop_bytes": 268435456,
+    "host_min_available_bytes": 536870912,
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  },
+  "process_stop_bytes": 268435456,
+  "host_min_available_bytes": 536870912,
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "ROOT individually authorizes only this Q0 environment/import/Git/source-resolver binding call, no product or numerical operation. Actual free host/exposed ancestor margins exceed fixed tiny control allowances;256MiB stop/256MiB reserve and64+64MiB prediction/native allowance are accepted operating settings for this no-workflow control now, not user/product budgets. Unknown outside actors/hidden ancestors/cache and overshoot remain explicit. No other campaign-controlled runtime window active.",
+    "correspondence_evidence": {
+      "path": "/workspace/work/campaign/evidence/117/ROOT-Q0-binding-attempts-1/parent-metadata-tool.json",
+      "sha256": "c83a037721fe40bd29acc67e25cd66560c0e47f0335d0758c8381ed403043620",
+      "observed_at_unix_ns": 1794818053753557292,
+      "maximum_age_seconds": 300
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  },
+  "ancestor_stop_bytes": {
+    "/sys/fs/cgroup": 16106127360
+  },
+  "prerequisites": {}
+}

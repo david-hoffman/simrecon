@@ -1,0 +1,80 @@
+{
+  "scope": "ROOT pre-call exact groups3/4 remaining r2/r3 eight calls, after group2 closure only; no growth/profile/other grant",
+  "parent_head": "158776ade28079276304d49a6b973eccbf4109c9",
+  "candidate_head": "e6945817850cfdaa3ebbfe21e7a23784964208d6",
+  "method_manifest_sha256": "1854f8760dd9ede607b2611f2d9640e1e3a7056e054ae564211fdea90ef7d4ed",
+  "source_review2_sha256": "9fab586ead7da9a0f36956fbc784fed6d6e7f6f6245ab23db5cfa06573405805",
+  "fixture_schema_value_declaration_sha256": "2f2d13932322be013ed058d8ba9d0fc198cb730a0c3764ef2d507fb45d155ec1",
+  "reuse_sequence_freeze_sha256": "cbc9da13f32dbe4c1e83faee4b7c434a392111a45aebc24f5d456da6ca6a960b",
+  "original_r1_index_sha256": "33f6d35335fcf91b3d6e02ee779b57f911b4d4c4763ffa3ad619e1875f557866",
+  "ordered_rows": [
+    [
+      "candidate",
+      "summary",
+      2
+    ],
+    [
+      "parent",
+      "summary",
+      2
+    ],
+    [
+      "parent",
+      "summary",
+      3
+    ],
+    [
+      "candidate",
+      "summary",
+      3
+    ],
+    [
+      "candidate",
+      "full",
+      2
+    ],
+    [
+      "parent",
+      "full",
+      2
+    ],
+    [
+      "parent",
+      "full",
+      3
+    ],
+    [
+      "candidate",
+      "full",
+      3
+    ]
+  ],
+  "ordered_attempt_ids": [
+    "rb117-tiny2d-summary-candidate-r2-a1",
+    "rb117-tiny2d-summary-parent-r2-a1",
+    "rb117-tiny2d-summary-parent-r3-a1",
+    "rb117-tiny2d-summary-candidate-r3-a1",
+    "rb117-tiny2d-full-candidate-r2-a1",
+    "rb117-tiny2d-full-parent-r2-a1",
+    "rb117-tiny2d-full-parent-r3-a1",
+    "rb117-tiny2d-full-candidate-r3-a1"
+  ],
+  "profile": false,
+  "conditions": [
+    "rb117-2d-search-summary",
+    "rb117-2d-search-full"
+  ],
+  "values": "Unchanged exact2f2 fixture2d-search/schema/branches/formulas. New eight plus original four r1 must share input/common seven identities; same-mode complete public identities across all six. Crossmode complete graphs intentionally distinct. No tolerance or separate reference reconstruction. Preserve all r1 rows including terminal-confirmed visible sampling gap, no relabelling. Responsible later independent review decides reuse applicability.",
+  "operating_bounds": {
+    "deadline_seconds": 60,
+    "outer_proxy_timeout_seconds": 100,
+    "process_stop_bytes": 536870912,
+    "reserve_bytes": 536870912,
+    "predicted_child_peak_bytes": 268435456,
+    "native_allocator_allowance_bytes": 134217728,
+    "host_min_available_bytes": 1073741824,
+    "ancestor_stop_below_finite_max_bytes": 1073741824,
+    "source_payload_rationale": "Same caller18432B/summary13144B/full241384B and source obligations; initial four successful whole calls.52\u2013.57seconds. Existing512MiB stop with256+128MiB envelope/reserve is a current ROOT operating choice, not user/product budget or scaling/RAM guarantee. Fresh context/material/domain and allguard thresholds for each row, no concurrent numerical work."
+  },
+  "execution": "Exactly eight sequential fresh ROOT grants only after group2 closed; stop unexpected failure/ownership gap/discrepancy, no automatic retry/nextgroup. JSON here is declaration, not runnable admission."
+}

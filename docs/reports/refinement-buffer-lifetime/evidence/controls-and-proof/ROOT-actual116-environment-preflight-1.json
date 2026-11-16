@@ -1,0 +1,16 @@
+{
+  "stage": "ROOT cheap actual integrated117 interpreter/import preflight; no tests/measurement/C acceptance",
+  "candidate": "0041267248411472335732757110c0b4de389b49",
+  "accepted_parent": "158776ade28079276304d49a6b973eccbf4109c9",
+  "command": "docker exec --user 1000:1000 -w /workspace/work/issue-117 11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b /usr/bin/env -u PYTHONOPTIMIZE -u PYTEST_ADDOPTS -u PYTEST_PLUGINS PYTHONPATH=/workspace/work/issue-117/src OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 BLIS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /workspace/work/issue-117/.venv/bin/python -c 'import sys,platform,json,hashlib,pathlib,numpy,scipy,simrecon; print(json.dumps({\"python\":sys.version,\"executable\":sys.executable,\"resolved\":str(pathlib.Path(sys.executable).resolve()),\"executable_sha256\":hashlib.sha256(pathlib.Path(sys.executable).read_bytes()).hexdigest(),\"prefix\":sys.prefix,\"debug\":__debug__,\"optimize\":sys.flags.optimize,\"os_release\":platform.freedesktop_os_release(),\"numpy\":numpy.__version__,\"scipy\":scipy.__version__,\"public_exports\":len(simrecon.__all__),\"lock_sha256\":hashlib.sha256(pathlib.Path(\"uv.lock\").read_bytes()).hexdigest()},sort_keys=True)); assert __debug__ and sys.flags.optimize==0 and sys.version_info[:3]==(3,13,12)'",
+  "tool": {
+    "chunk_id": "23efbd",
+    "wall_time_seconds": 0.968132234,
+    "exit_code": 0,
+    "original_token_count": 253,
+    "output": "{\"debug\": true, \"executable\": \"/workspace/work/issue-117/.venv/bin/python\", \"executable_sha256\": \"fed567fcbdacc14612dddd5f29a3203fbe5c93f50b926f15e7a926cf668822a5\", \"lock_sha256\": \"222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b\", \"numpy\": \"2.5.3\", \"optimize\": 0, \"os_release\": {\"BUG_REPORT_URL\": \"https://bugs.launchpad.net/ubuntu/\", \"HOME_URL\": \"https://www.ubuntu.com/\", \"ID\": \"ubuntu\", \"ID_LIKE\": \"debian\", \"LOGO\": \"ubuntu-logo\", \"NAME\": \"Ubuntu\", \"PRETTY_NAME\": \"Ubuntu 24.04.5 LTS\", \"PRIVACY_POLICY_URL\": \"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\", \"SUPPORT_URL\": \"https://help.ubuntu.com/\", \"UBUNTU_CODENAME\": \"noble\", \"VERSION\": \"24.04.5 LTS (Noble Numbat)\", \"VERSION_CODENAME\": \"noble\", \"VERSION_ID\": \"24.04\"}, \"prefix\": \"/workspace/work/issue-117/.venv\", \"public_exports\": 38, \"python\": \"3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]\", \"resolved\": \"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13\", \"scipy\": \"1.18.1\"}\n"
+  },
+  "result": "PASS",
+  "exclusive_schedule": "No numerical/controller/measurement/install/test workload active; concurrent roles SOURCE/static only",
+  "resource_grant": "This one preflight only; no automatic next checks"
+}

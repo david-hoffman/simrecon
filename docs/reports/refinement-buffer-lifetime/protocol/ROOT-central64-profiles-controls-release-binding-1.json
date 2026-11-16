@@ -1,0 +1,13 @@
+{
+  "scope": "ROOT exact pre-profile source/control release binding; all preceding groups1\u20134 complete/closed. No largest or final SCI/D acceptance. Each listed profile row still needs fresh actual grant.",
+  "declaration_sha256": "05e56a1dc43ee856795b1b8f318b8c68e2bed1c7e8f57deaafffa09b510dbf79",
+  "actual_completed_indices": {
+    "ROOT-central64-summary-series-attempts-2/ROOT-result-index.json": "1238729d00199c8dfb07af9b765868b793e7ac6b5026834545279620d93dc97b",
+    "ROOT-central64-full-series-attempts-1/ROOT-result-index.json": "40aae594ac49c91b24a20824ab0fc3aed4c7f073c79b0131b0c386f2165f519b",
+    "ROOT-tiny2d-remaining-r2r3-attempts-1/ROOT-result-index.json": "99465457fb847f317d385e0cd3328cc6c1c2dd9ab44cd682309e53c6e86fde10"
+  },
+  "parent_head": "158776ade28079276304d49a6b973eccbf4109c9",
+  "candidate_head": "e6945817850cfdaa3ebbfe21e7a23784964208d6",
+  "counts": "24 successful unique core calls (12native64+12tiny2d including4originalr1),1native64 originaltimeout;2Q0 separate;12profile calls proposed/currentindividualROOTreleaseonly",
+  "largest_disposition": "PENDING independent086fproposal; no native256grant, no current256observations/no copiedlimits."
+}

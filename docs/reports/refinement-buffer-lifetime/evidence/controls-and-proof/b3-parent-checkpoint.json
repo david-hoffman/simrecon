@@ -1,0 +1,31 @@
+{
+  "status": "integrated_pre_C_frozen_for_fresh_affected_B3_not_yet_accepted",
+  "at_utc": "2026-11-16T06:49:11.132528+00:00",
+  "worktree": "/workspace/work/issue-117",
+  "branch": "perf/117-refinement-buffer-lifetime",
+  "commit": "0041267248411472335732757110c0b4de389b49",
+  "tree": "24f745d08e13d0fc4d2082f9b7f48c63138ebfd1",
+  "full_status": "clean",
+  "accepted_parent": "158776ade28079276304d49a6b973eccbf4109c9",
+  "accepted_parent_tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c",
+  "parent_pr": 123,
+  "parent_ci_run": 43815921420,
+  "parent_ci": "passed",
+  "manifest": {
+    "path": "/workspace/work/campaign/evidence/117/b3-parent-inputs.sha256",
+    "files": 29,
+    "sha256": "3414e1259a0cd76bc92fee6bfe3e23cfcf9287f2fb1fdf0a9b619165cf1781ea"
+  },
+  "public_addendum": {
+    "path": "/workspace/work/campaign/evidence/117/b3-parent-public-material.md",
+    "sha256": "f3f5a114ed3ed9d4c2daf2c82ae1581b09f3c352b2fea1b46aa2cb0ccd633169"
+  },
+  "protected_owned_tests": {
+    "tests/test_refinement_buffer_lifetime.py": "81249c03ca5a4b420ebda8dc01071a1dcfd70147f1d3f34a0d938a8d3e3c8512",
+    "tests/refinement_buffer_lifetime_fixture.py": "a3f043bf089537b0815045bb6dc1b481efd00adca297a3290487ca3e211f3737"
+  },
+  "production_source_sha256": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+  "preserved_provisional_C1_ref": "refs/campaign/117-provisional-C1-before-parent1587",
+  "runtime_grant": "none",
+  "historical_receipts": "retained original applicability; no relabelling"
+}

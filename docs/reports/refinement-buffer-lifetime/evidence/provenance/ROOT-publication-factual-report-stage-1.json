@@ -1,0 +1,41 @@
+{
+  "scope": "Six byte-exact frozen factual data/primary copies, source manuscript was prepared before SCI and retains historical pending label; eventualresponsibleSCI/finalREADMEseparate, no newruntime/acceptance",
+  "copies": [
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-final-factual-manuscript.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/analysis/resource-final-factual-manuscript.md",
+      "sha256": "67202ac520ae9f311d2984a23d3bec0a12d5786d21018846fc17595accd8022a",
+      "bytes": 15852
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-actual-36-rows.tsv",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/analysis/resource-actual-36-rows.tsv",
+      "sha256": "2319522b145f6ba28a3a15220754334ac630cb6c3475207f58d57a72379ee90b",
+      "bytes": 5776
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-actual-group-summaries.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/analysis/resource-actual-group-summaries.json",
+      "sha256": "de48b2e6eacc88f857215dacf2e1c7189872a6e8e0e2e846022d5834da526995",
+      "bytes": 7639
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-cumulative-file-assessment.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/analysis/resource-cumulative-file-assessment.md",
+      "sha256": "57755f1b6221a71d472038c811df14059d483bc7f5533ed87d508cf2c16b26fe",
+      "bytes": 20543
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/resource-cumulative-file-assessment-through-group1.md",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/analysis/resource-cumulative-file-assessment-through-group1.md",
+      "sha256": "c09c0350b7b63423569990b4d74a6dca67a246a779bfbf8ec839a8fc5629260b",
+      "bytes": 9129
+    },
+    {
+      "original_path": "/workspace/work/campaign/evidence/117/ROOT-central64-summary-attempt1-outer-assertion-actual-tool.json",
+      "publication_relative_path": "docs/reports/refinement-buffer-lifetime/evidence/provenance/ROOT-central64-summary-attempt1-outer-assertion-actual-tool.json",
+      "sha256": "435ed05588a6e9fd1fbedf9c14999bd7d26e347a6730219e64d6118092b086ea",
+      "bytes": 11346
+    }
+  ]
+}

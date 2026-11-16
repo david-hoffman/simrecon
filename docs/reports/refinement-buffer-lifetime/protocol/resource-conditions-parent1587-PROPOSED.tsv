@@ -1,0 +1,11 @@
+order	group	condition_id	shape_T_D_Z_Y_X	case_binding	mode	search	profile	paired_repetitions	individual_release
+1	core	central64-summary-searched	1,3,8,64,64	workload_omit_case	summary	true	false	1:A/B;2:B/A;3:A/B	PENDING
+2	core	central64-full-searched	1,3,8,64,64	workload_omit_case	full	true	false	1:A/B;2:B/A;3:A/B	PENDING
+3	core	rb117-2d-search-summary	2,2,1,12,16	2d-search	summary	true	false	1:A/B;2:B/A;3:A/B	PENDING
+4	core	rb117-2d-search-full	2,2,1,12,16	2d-search	full	true	false	1:A/B;2:B/A;3:A/B	PENDING
+5	central_profile	central64-summary-searched	1,3,8,64,64	workload_omit_case	summary	true	true	1:A/B;2:B/A;3:A/B	PENDING
+6	central_profile	central64-full-searched	1,3,8,64,64	workload_omit_case	full	true	true	1:A/B;2:B/A;3:A/B	PENDING
+7	largest_control	growth256-summary-searched	1,3,8,256,256	workload_omit_case	summary	true	false	1:A/B;2:B/A;3:A/B	PENDING_NEW_256_ADMISSION
+8	largest_control	growth256-full-searched	1,3,8,256,256	workload_omit_case	full	true	false	1:A/B;2:B/A;3:A/B	PENDING_NEW_256_ADMISSION
+9	largest_profile	growth256-summary-searched	1,3,8,256,256	workload_omit_case	summary	true	true	1:A/B;2:B/A;3:A/B	PENDING_NEW_256_ADMISSION
+10	largest_profile	growth256-full-searched	1,3,8,256,256	workload_omit_case	full	true	true	1:A/B;2:B/A;3:A/B	PENDING_NEW_256_ADMISSION

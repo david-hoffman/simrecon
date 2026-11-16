@@ -1,0 +1,27 @@
+{
+  "scope": "ROOT Ubuntu3.13 five-file AST+compile-without-execution only, separate from SOURCE reviews and runtimecontrols",
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-117",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/usr/bin/env",
+    "-u",
+    "PYTHONOPTIMIZE",
+    "-u",
+    "PYTEST_ADDOPTS",
+    "-u",
+    "PYTEST_PLUGINS",
+    "PYTHONPATH=/workspace/work/issue-117/src",
+    "/workspace/work/issue-117/.venv/bin/python",
+    "-B",
+    "-c",
+    "from pathlib import Path\nimport ast,json,hashlib,sys\nbase=Path('/workspace/work/campaign/evidence/117')\nexpected={base/'resource-method-source/observer.py':'eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745',base/'resource-method-source/run_attempt.py':'6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f',base/'resource-method-source/workload_child.py':'5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459',base/'resource-method-source/method_qualification.py':'56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21',base/'resource-method-qualification-source/method_qualification.py':'65b41d34c5a740548a2156ff5bafb20230aab78418eb556d23ab04df24b58cae'}\nassert __debug__ and sys.flags.optimize==0 and sys.version_info[:3]==(3,13,12)\nrecords=[]\nfor p,h in expected.items():\n raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==h,p\n ast.parse(raw,filename=str(p));compile(raw,str(p),'exec',dont_inherit=True,optimize=0)\n assert p.read_bytes()==raw\n records.append({'path':str(p),'before_sha256':h,'after_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'ast':'PASS','compile_without_execution':'PASS','bytes':len(raw)})\nprint(json.dumps({'python':sys.version,'executable':sys.executable,'resolved':str(Path(sys.executable).resolve()),'executable_sha256':hashlib.sha256(Path(sys.executable).read_bytes()).hexdigest(),'debug':__debug__,'optimize':sys.flags.optimize,'records':records,'target_imports':False,'target_execution':False,'qualification_or_resource_acceptance':False},sort_keys=True))"
+  ],
+  "returncode": 0,
+  "stdout": "{\"debug\": true, \"executable\": \"/workspace/work/issue-117/.venv/bin/python\", \"executable_sha256\": \"fed567fcbdacc14612dddd5f29a3203fbe5c93f50b926f15e7a926cf668822a5\", \"optimize\": 0, \"python\": \"3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]\", \"qualification_or_resource_acceptance\": false, \"records\": [{\"after_sha256\": \"eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745\", \"ast\": \"PASS\", \"before_sha256\": \"eacf24b70cd67f12e403906cf92bb7cb1bb1a7632645335a8b8f3bfbc4225745\", \"bytes\": 20762, \"compile_without_execution\": \"PASS\", \"path\": \"/workspace/work/campaign/evidence/117/resource-method-source/observer.py\"}, {\"after_sha256\": \"6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f\", \"ast\": \"PASS\", \"before_sha256\": \"6f34617bb59c060eeceeeb6a06a6180755448f3310481202f96df5e5dd1fe14f\", \"bytes\": 53466, \"compile_without_execution\": \"PASS\", \"path\": \"/workspace/work/campaign/evidence/117/resource-method-source/run_attempt.py\"}, {\"after_sha256\": \"5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459\", \"ast\": \"PASS\", \"before_sha256\": \"5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459\", \"bytes\": 6470, \"compile_without_execution\": \"PASS\", \"path\": \"/workspace/work/campaign/evidence/117/resource-method-source/workload_child.py\"}, {\"after_sha256\": \"56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21\", \"ast\": \"PASS\", \"before_sha256\": \"56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21\", \"bytes\": 80198, \"compile_without_execution\": \"PASS\", \"path\": \"/workspace/work/campaign/evidence/117/resource-method-source/method_qualification.py\"}, {\"after_sha256\": \"65b41d34c5a740548a2156ff5bafb20230aab78418eb556d23ab04df24b58cae\", \"ast\": \"PASS\", \"before_sha256\": \"65b41d34c5a740548a2156ff5bafb20230aab78418eb556d23ab04df24b58cae\", \"bytes\": 84438, \"compile_without_execution\": \"PASS\", \"path\": \"/workspace/work/campaign/evidence/117/resource-method-qualification-source/method_qualification.py\"}], \"resolved\": \"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13\", \"target_execution\": false, \"target_imports\": false}\n",
+  "stderr": ""
+}
