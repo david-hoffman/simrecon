@@ -214,6 +214,8 @@ def test_exact_array_dtypes_at_both_boundaries(field: str, dtype: Any) -> None:
 @pytest.mark.parametrize("field", ["quadratures", "noise_variance_factors"])
 def test_arrays_require_ordinary_ndarray(field: str) -> None:
     q, v = arrays()
+    bands, otf = declare(q, v), transfer()
+    options = known_options(bands)
     original = q if field == "quadratures" else v
     for bad in (original.tolist(), original.view(ArraySubclass)):
         rejected(
@@ -223,7 +225,12 @@ def test_arrays_require_ordinary_ndarray(field: str) -> None:
             ),
             field,
         )
-        rejected(lambda bad=bad: call(replace(declare(), **{field: bad})), field)
+        # Form valid call metadata before forging the array kind: convenience
+        # helpers must not inspect the malformed field before its consumer.
+        rejected(
+            lambda bad=bad: sr.reconstruct_known(replace(bands, **{field: bad}), otf, **options),
+            field,
+        )
 
 
 @pytest.mark.parametrize(

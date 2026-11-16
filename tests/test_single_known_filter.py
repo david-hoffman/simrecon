@@ -78,7 +78,12 @@ def test_inclusive_self_strict_other_and_positive_zero_writes() -> None:
     # r=R=1/2 exactly, self is included, every other q=R is excluded.
     assert result.filtered_quadratures[0, 0, 0, 0, 0, 2].real == -float(edge)
     outside = result.filtered_quadratures[0, 0, :, 0, 1, 1:]
-    assert outside.tobytes() == bytes(outside.nbytes)
+    # Explicit writes and the full side workspace start at +0+0j. Later
+    # n=conj(F(-k)) is +0-0j; RN32(p-n) is +0+0j, so rotating by -i/2
+    # gives O=+0-0j. E remains +0+0j. Recombination does not rewrite z1.
+    expected_outside = np.zeros((3, 2), dtype=np.complex64)
+    expected_outside[2] = complex(0.0, -0.0)
+    assert outside.tobytes() == expected_outside.tobytes()
     axial = result.filtered_quadratures[0, 0, :, 1]
     assert axial.tobytes() == bytes(axial.nbytes)
 

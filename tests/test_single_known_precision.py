@@ -604,9 +604,11 @@ def test_existing_full_and_summary_keep_exact_double_projection_and_retention() 
         "modulation",
         "raw_modulation",
         "initial_carriers_cyc_um",
-        "phase_linkage_carriers_cyc_um",
     ):
         assert_public_equal(getattr(full.parameters, name), getattr(summary, name))
+    # CE07 owns the distinct phase-linkage guess; it is not a CE05 estimate.
+    assert_public_equal(full.phase_linkage_carriers_cyc_um, summary.phase_linkage_carriers_cyc_um)
+    assert_public_equal(full.initial_carriers_cyc_um, summary.initial_carriers_cyc_um)
     assert summary.carriers_cyc_um.dtype == np.float64
     assert summary.modulation.dtype == np.complex128
     for reconstruction in full.reconstructions:
