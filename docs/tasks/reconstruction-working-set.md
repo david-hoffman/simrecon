@@ -111,7 +111,7 @@ kept and errors below, without a cleanup helper/test/review project.
   [Report](../reports/reconstruction-working-set/README.md),
   [ledger](../reports/reconstruction-working-set/analysis/attempt-ledger.json),
   [portable map](../reports/reconstruction-working-set/evidence/location-map.json)
-  and [scientific assessment](../reports/reconstruction-working-set/independent-scientific-review.md)
+  and [integrated scientific assessment](../reports/reconstruction-working-set/integrated-scientific-assessment.md)
   are the deliverable. Exact final candidate/tree/base, clean status, full Ubuntu
   receipt, independent post-gate acceptance, PR and actual CI are recorded in the
   external campaign index/PR, outside candidate bytes. This pointer claims no
@@ -139,7 +139,10 @@ kept and errors below, without a cleanup helper/test/review project.
   ledger/immutable evidence. Fresh F01/F04 affected reviewers, same SCI1 phases and
   curator 1 launch are separate. Actual serving attribution, tokens, money and
   unavailable elapsed measurements remain UNKNOWN. No human numeric cap was set.
-- Root owns final integrated application review, unchanged 13-phase Ubuntu
+- Integrated substantive applicability is established for the reviewed snapshot;
+  the later final freeze and passing gate are separate. The named-inventory
+  transport incident and ROOT-routed bounded continuation remain in the report.
+- Root owns unchanged 13-phase Ubuntu
   `make verify`, fresh post-gate acceptance and linear PR publication targeting
   #115; no merge/release/manual issue closure. Gate includes strict outcomes,
   fixed two workers, native coverage, installed wheels/imports/audit and same-run

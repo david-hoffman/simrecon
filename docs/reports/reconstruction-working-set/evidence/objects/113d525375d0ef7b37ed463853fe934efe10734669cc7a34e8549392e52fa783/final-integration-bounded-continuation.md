@@ -1,0 +1,15 @@
+# SAME SCI1 — ROOT incident routing and bounded continuation
+
+ROOT has explicitly authorised SAME NONBLIND SCI1 continuation. Read ONLY two new exact primary inputs:
+- /workspace/work/campaign/evidence/116/publication-staging/ROOT-review-integration-transport-routing.json SHA256c3ed74f3b95107da8fd9e3659c35d632b598f12acdb7fb42511df48940fdf0ce
+- /workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit-bounded-projection.json SHA256b73254b0a527406d7cdd492a105b5c94240c2afdd9bd0d4133ea4e924735f0ff
+
+ROOT independently inspected the entire named factual audit and classified the stopped incident as read-transport discipline/partial read, not author-opinion contamination: inventory rows contain only path/SHA/size, raw rows ID/filenames, ls-files filename metadata; no author/sibling SCI opinion body embedded. This is authority for continuation, not a scientific oracle or your own self-requalification. Preserve actual18cb stopped report and83e7 substantive assessment, all prior exposure/stops/charges; no restored blindness/new freshness/reset.
+
+The existing exact79file binding a8ef77a6 and integration addendum998b0b03 remain scope. Candidate d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2/tree24d9dbedb9773dc55006f627de10083411adeeae/baseACE unchanged. NO new review criterion, numerical run, restore experiment, exhaustiveall4483/all90 or new role. Finish the previously commissioned finite integrated applicability from actual active prose, material35, representative portable mapping/restoration facts, canonical/output hashes, final figure and five handoffs. Reuse your own earlier source/data assessment for unchanged canonical/source inputs.
+
+Never cat/dump entire huge factual audit, location map, file-audit or inventories. Whole-file SHA is identity only. Measure shape/size first. Small active prose may be read whole. Explicitly permit existing inert jq JSON projections on named files, only bounded scalar/count/required-key or finite exact-row selections after sizing, never whole-object arrays/ls-files stdout. The supplied bounded163line projection avoids the huge audit. Do not let a small output-token cap substitute for bounded source selection. No other original tool/runtime restrictions change; no interpreter/scripts/imports/AST/calculator/tests/Git/Docker/metadata/capture/PIDFD/resource/scientific execution, conversations/role inventory/discovery/delegation/target repair/bulk samples or opinion body follow.
+
+Write only existing foundation-assessment.md, retaining incident history and ROOT routing applicability. Return completed concrete integrated assessment or a specific genuine finding/missing named fact, with exact final SHA and candidate. ROOT awaits this before copying completed assessment and final freeze/full gate. Full116 gate is NOT RUN; final gate/postgate acceptance remains held. Do not imply d767 certifies your own later integrated review document or grant publication. Distinct final message required. Actual usage/serving/cost UNKNOWN/cumulative.
+
+

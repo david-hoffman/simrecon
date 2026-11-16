@@ -1,0 +1,163 @@
+{
+  "active_links": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-final-active-link-and-input-check.json",
+    "sha256": "c606601c892fa8817f88285ccb2e3891494fee5e42ba089d6ed1a7ff38e1ffd4"
+  },
+  "actual_git_commands": [
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "24d9dbedb9773dc55006f627de10083411adeeae\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "merge-base",
+        "--is-ancestor",
+        "ace06c861b974b6251a092567c253ae4eb0f56c8",
+        "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "merge-base",
+        "--is-ancestor",
+        "ea9117d3efe2d8de273402d643e732140138e496",
+        "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "diff",
+        "--name-only",
+        "ace06c861b974b6251a092567c253ae4eb0f56c8",
+        "--",
+        "src",
+        "tests",
+        "scripts",
+        "Makefile",
+        "pyproject.toml",
+        "uv.lock",
+        ".github",
+        "devtools",
+        ".agents",
+        "AGENTS.md"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "ls-files",
+        "-z",
+        "docs/reports/reconstruction-working-set",
+        "docs/tasks/reconstruction-working-set.md"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout_representation": {
+        "UTF8_bytes": 582922,
+        "UTF8_sha256": "5c5647c1a265d1a61d7ea0862e463f2c42a50e1319abfbffaf9a8be1d5a1fd6f",
+        "kind": "OMITTED_FILENAME_ONLY_LIST",
+        "nul_delimited_paths": 4483
+      }
+    }
+  ],
+  "all4007_current_closed_rows": true,
+  "all_source35_still_unchanged": true,
+  "base": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+  "candidate_head": "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2",
+  "candidate_tree": "24d9dbedb9773dc55006f627de10083411adeeae",
+  "checker_first_diagnostic": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-audit-first-diagnostic.json",
+    "sha256": "3f339524f2e350a8d556b534b0a66227af9753babf18a88f6b89967a11db2f15"
+  },
+  "costs": "UNKNOWN",
+  "direct_and_transport_mappings": {
+    "canonical_files": 48,
+    "closed_identity_rows": 4007,
+    "direct_supplied_rows": 3911,
+    "environment_fingerprints": 6,
+    "gzip_transports": 91,
+    "historical_exact_resolutions": 9,
+    "historical_unavailable_drafts": 2,
+    "transport_only_originals": 90
+  },
+  "external_samples": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-explicit-local-sample-inputs.json",
+    "sha256": "0604a06dc7c3ab2f28ffeaf44536a4419e4e5138b8aae949461bc01d261255e5"
+  },
+  "full_verify": "NOT_RUN_ON_THIS_SNAPSHOT",
+  "gate_product_test_dependency_files_unchanged_from_accepted115": true,
+  "literal_copy_receipt": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-literal-publication-copy-receipt.json",
+    "sha256": "1fd7c8a42f0244bfc320653a4d67e0717edf9a8da48be54a83c812b69b28c6d8"
+  },
+  "observed_at_unix_ns": 1794804541682866461,
+  "optional_whitespace_diagnostic": {
+    "actual_returncode": 2,
+    "classified_path_count": 36,
+    "no_byte_normalization_or_gate_config_change": true,
+    "source": "Original named ROOT actor diagnostic, not independent scientific truth"
+  },
+  "original_complete_artifact": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json",
+    "sha256": "aaccf876bed3dc6286ef4052a87fd51d9c194ce66ee4e82c12701f7779bd5bb3"
+  },
+  "projection_policy": "Literal named complete-audit fields. Filename inventory/whitespace detail omitted explicitly; original unchanged and hashed, accessible only through bounded field projections.",
+  "raw91_inventory_count": 91,
+  "raw_each_exact11": true,
+  "schema": "ROOT-116-factual-audit-bounded-projection-v1",
+  "scope": "Actual file/identity/inventory/application facts, not scientific acceptance/full verify",
+  "tracked_inventory_count": 4483
+}

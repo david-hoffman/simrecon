@@ -1,0 +1,66 @@
+{
+  "schema": "WS116-SCI1-completed-integrated-application-collected-v1",
+  "role": "same independent scientific_review_1",
+  "candidate": {
+    "head": "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2",
+    "tree": "24d9dbedb9773dc55006f627de10083411adeeae",
+    "base": "ace06c861b974b6251a092567c253ae4eb0f56c8"
+  },
+  "assessment": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment.md",
+    "sha256": "03bea10bbded4290112d10602ba6cdb2ce055daad1979944d20954df1f719790",
+    "lines": 368
+  },
+  "immutable_completed_copy": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-completed-integrated-application.md",
+    "sha256": "03bea10bbded4290112d10602ba6cdb2ce055daad1979944d20954df1f719790"
+  },
+  "verdict": "INTEGRATED_SUBSTANTIVE_APPLICABILITY_ESTABLISHED_FOR_D767; NO_OPEN_SUBSTANTIVE_FINDING_IN_INSPECTED_SCOPE; FINAL_READINESS_HELD",
+  "coordinator_read_scope": "Whole newly added integrated application lines299-368 in bounded nontruncated spans, earlier83e7 substance and18cb incident already read/preserved. Current exactSHA checked and completed368line artifact preserved. No repeatedgiantinventory read or target/source runtime.",
+  "resolved_claims": [
+    "F01 no-copy finishing/eventcopy distinction integrated337a",
+    "F04 compactoff_q normalreturn versusfullretainedoff_q integratedactualREADME7586",
+    "rank3routing117/118/119/120 exactmeaning integrated",
+    "fivehandoff changes link-only, canonicalCSV/outputmaps/figure5 identical",
+    "material35 measured-publication equivalence with representative directhashes and labelledROOTfullscopeattestation",
+    "representative portable original/raw/sourceversion/gzip/restoration checks adequate fordeclaredsupplied/historical/environment scope"
+  ],
+  "explicit_scope_limits": [
+    "91stream/4007copy/4483trackedinventory facts ROOTattested, not bulkduplicated byreviewer",
+    "twoearlyintake drafts unavailable within examinedbasis, notglobalabsence/currentSCIprereq",
+    "no installedruntime/fullyrunnableclone/physicalrecovery/16GiBguarantee orisolatedprofilingcost",
+    "thisreviewdoesnot certifyownlatertrackedcopy/futureHEAD"
+  ],
+  "incidents_preserved": {
+    "original_operational_exposure": "in83e7/history, notreset",
+    "integration_transport_stop": {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-integration-transport-stop.md",
+      "sha256": "18cb314a3017388b62e3ed57e6cdabe963840082e66d11aad6c6be0549d4e402"
+    },
+    "ROOT_continuation_authority": {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-review-integration-transport-routing.json",
+      "sha256": "c3ed74f3b95107da8fd9e3659c35d632b598f12acdb7fb42511df48940fdf0ce"
+    },
+    "bounded_projection": {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit-bounded-projection.json",
+      "sha256": "b73254b0a527406d7cdd492a105b5c94240c2afdd9bd0d4133ea4e924735f0ff"
+    },
+    "later_read_diagnostics": "Twojqkeys-on-scalar projections failed read-only then type-aware boundedfollowups; no furthergiantdump, no evidence/source defect ornewexposure."
+  },
+  "ROOT_next": [
+    "integrate completedassessment/pointeradditions beforefinalfreeze",
+    "bindactualfinalHEADtree/base/status/materialtransition",
+    "actualunchangedUbuntu24.04makeverify13phases/twoworkers/strict/nativecoverage/wheel/isolatedimports/audit/same-runconversionM25",
+    "requiredfreshapplicablepostgateindependentacceptance outsidecandidate",
+    "ROOTalonepushstackedPR/CIafterexactgate+acceptance"
+  ],
+  "gate": "NOT_RUN_OR_SUPPLIED; prior112/115norD767review substitute",
+  "process": "Revieweronlyexternalprose, nocandidate/currentedits, no runtime/scientificprogram/Git/capture/PID/bulkSamples/delegation; no ownscratch/persistentprocess.",
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  },
+  "charges": "Originalonelaunch/allphases/exposurestops/ROOTcontinuations/corrections cumulative, no reset ornewfreshnessclaim."
+}
+
