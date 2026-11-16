@@ -1,0 +1,42 @@
+{
+  "time_utc": "2026-11-16T16:08:42.796270+00:00",
+  "authority": "User nine-issue campaign; ROOT owns scheduling/accepted-parent freeze",
+  "scope": "Accepted exact118 localcandidate/artifacts for119 SOURCE+independentSCI reliance only; no119 runtime/integration/fullgate/publication until125CIpasses",
+  "candidate": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+  "tree": "28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a",
+  "base": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "PR": {
+    "number": 125,
+    "url": "https://github.com/david-hoffman/simrecon/pull/125",
+    "head_base_and_verbatim_body_confirmed": true
+  },
+  "SCI_application": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-whole-post118-SCI-application-1.json",
+    "sha256": "75660480dd6d06f0f04fcc15193dfaad1c0e11202e1f8fee8202451775a00390"
+  },
+  "source_equivalence": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-final-exact-candidate-before-gate-1.json",
+    "sha256": "2a22bbb66fcbae0c20f7ad85a2716ba7bcf32b7ecdba18463c8447788f7eb91b",
+    "measured75fc_to_final61f": "All38 measured+53protected originals unchanged; docs/status/archive-only final1573 paths; static0.1.0"
+  },
+  "fullgate": {
+    "receipt": "/workspace/work/campaign/evidence/118/verify-attempt1/receipt.json",
+    "sha256": "bb293ed49e0eca4a29f774bc98a8c33cb8dca2df7ebe692a036ee79c40d7c482",
+    "all13": "PASS",
+    "tests": "3500passed/47warnings/1146.07s"
+  },
+  "D_application": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-final-D-acceptance-application-1.json",
+    "sha256": "dbd65a216cbc0cfba7da503f6a5d87a5a9b9c535a86537af3e7ceeaac2210da4",
+    "report_sha256": "25ac01437f5e433049fb15b9202bc6710cb1ce028881fcbf72d09c96d90e6f95",
+    "final_sha256": "24bcb499cd87b7af8cb74b7ef79b47ae7098ecf143117717102cd864f88ef5d6"
+  },
+  "CI": {
+    "run": 43903983166,
+    "state": "in_progress",
+    "conclusion": null,
+    "not_claimed_passed": true
+  },
+  "limits": "Exactfinite78/source-only downstream premise dispositions accepted, not119design or120backend/113qualification. Currentlarge/256attribution/rank/scaling/margin/16GiB held; no blanketnew256forstructuraldesign. AnypertinentCIfailureorchangedmaterialstopsaffecteddependentwork.",
+  "SCI_release119": "FreshSol/high/forknone nonblind report/design SCI1 now; closedliteralpacket/used21source map, current-sourceorder/identity/failure/ownership andR1\u2013R9/conditionalR9criterion independently judged. No runtime/sourceedit/newexperiment/roledelegation or issuewrite byreviewer."
+}

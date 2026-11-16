@@ -1,0 +1,1921 @@
+{
+  "scope": "PB119 finite author45/SCI49 plus explicitly named source/coordinator history; no raw118 corpus duplication; source_path+logical_sha256 version keys",
+  "entries": [
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/ROOT-accepted-parent61-for-119-SCI-only-1.json",
+      "logical_sha256": "1f8f7e19f1fa098de6b6d1d680ac1dd049186962868ed7cfc141794cda6ef0db",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/campaign/evidence/118/ROOT-accepted-parent61-for-119-SCI-only-1.json",
+          "transport": "exact-copy",
+          "transport_sha256": "1f8f7e19f1fa098de6b6d1d680ac1dd049186962868ed7cfc141794cda6ef0db",
+          "logical_bytes": 2521,
+          "transport_bytes": 2521,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/ROOT-final-D-acceptance-application-1.json",
+      "logical_sha256": "dbd65a216cbc0cfba7da503f6a5d87a5a9b9c535a86537af3e7ceeaac2210da4",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/campaign/evidence/118/ROOT-final-D-acceptance-application-1.json",
+          "transport": "exact-copy",
+          "transport_sha256": "dbd65a216cbc0cfba7da503f6a5d87a5a9b9c535a86537af3e7ceeaac2210da4",
+          "logical_bytes": 1950,
+          "transport_bytes": 1950,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/ROOT-final-exact-candidate-before-gate-1.json",
+      "logical_sha256": "2a22bbb66fcbae0c20f7ad85a2716ba7bcf32b7ecdba18463c8447788f7eb91b",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/campaign/evidence/118/ROOT-final-exact-candidate-before-gate-1.json",
+          "transport": "exact-copy",
+          "transport_sha256": "2a22bbb66fcbae0c20f7ad85a2716ba7bcf32b7ecdba18463c8447788f7eb91b",
+          "logical_bytes": 15036,
+          "transport_bytes": 15036,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/ROOT-whole-post118-SCI-application-1.json",
+      "logical_sha256": "75660480dd6d06f0f04fcc15193dfaad1c0e11202e1f8fee8202451775a00390",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/preparation-harmonic-lifetimes/evidence/provenance/ROOT-whole-post118-SCI-application-1.json",
+          "transport": "exact-copy",
+          "transport_sha256": "75660480dd6d06f0f04fcc15193dfaad1c0e11202e1f8fee8202451775a00390",
+          "logical_bytes": 3003,
+          "transport_bytes": 3003,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "coordinator-finite-review-history-archive",
+            "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/reports/preparation-harmonic-lifetimes/evidence/portable-source-map-versioned.json",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "exact finite review/history snapshot",
+            "inherited118-same-byte-mapping"
+          ],
+          "reviewed_pre_activation_sha256": [],
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/post118-scientific-review-1/final.md",
+      "logical_sha256": "4cf8a965801410e63fdd6b006668f79872ffad219436b8a69dfb4f421ae45ca9",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/preparation-harmonic-lifetimes/evidence/reviews/post118-scientific-review-1/final.md",
+          "transport": "exact-copy",
+          "transport_sha256": "4cf8a965801410e63fdd6b006668f79872ffad219436b8a69dfb4f421ae45ca9",
+          "logical_bytes": 7213,
+          "transport_bytes": 7213,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "coordinator-finite-review-history-archive",
+            "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/reports/preparation-harmonic-lifetimes/evidence/portable-source-map-versioned.json",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "exact finite review/history snapshot",
+            "inherited118-same-byte-mapping"
+          ],
+          "reviewed_pre_activation_sha256": [],
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/post118-scientific-review-1/report.md",
+      "logical_sha256": "9014f99d24c65a8062b604be52a554cae70aa87c388f6b1909104f8e75b35d86",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/preparation-harmonic-lifetimes/evidence/reviews/post118-scientific-review-1/report.md",
+          "transport": "exact-copy",
+          "transport_sha256": "9014f99d24c65a8062b604be52a554cae70aa87c388f6b1909104f8e75b35d86",
+          "logical_bytes": 49123,
+          "transport_bytes": 49123,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "coordinator-finite-review-history-archive",
+            "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/reports/preparation-harmonic-lifetimes/evidence/portable-source-map-versioned.json",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "exact finite review/history snapshot",
+            "inherited118-same-byte-mapping"
+          ],
+          "reviewed_pre_activation_sha256": [],
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/resource-report-final78-1/dispositions.md",
+      "logical_sha256": "d190f6bcf8386ead70cb34c6035e57d96a8234c0b63738d1128014e5168f4574",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/preparation-harmonic-lifetimes/author-report/dispositions.md",
+          "transport": "exact-copy",
+          "transport_sha256": "d190f6bcf8386ead70cb34c6035e57d96a8234c0b63738d1128014e5168f4574",
+          "logical_bytes": 3591,
+          "transport_bytes": 3591,
+          "originating_maps": [
+            "/workspace/work/campaign/evidence/118/ROOT-final78-proof-and-analysis-staging-1.json",
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/reports/preparation-harmonic-lifetimes/evidence/portable-source-map-versioned.json",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "exactcopy",
+            "inherited118-same-byte-mapping"
+          ],
+          "reviewed_pre_activation_sha256": [],
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/resource-report-final78-1/manuscript.md",
+      "logical_sha256": "09d6944991e1c33eb62e8a7d67a204f353ce8e957020ead7bcb04113c463d6cd",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/preparation-harmonic-lifetimes/author-report/manuscript.md",
+          "transport": "exact-copy",
+          "transport_sha256": "09d6944991e1c33eb62e8a7d67a204f353ce8e957020ead7bcb04113c463d6cd",
+          "logical_bytes": 31390,
+          "transport_bytes": 31390,
+          "originating_maps": [
+            "/workspace/work/campaign/evidence/118/ROOT-final78-proof-and-analysis-staging-1.json",
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/reports/preparation-harmonic-lifetimes/evidence/portable-source-map-versioned.json",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "exactcopy",
+            "inherited118-same-byte-mapping"
+          ],
+          "reviewed_pre_activation_sha256": [],
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/verify-attempt1/receipt.json",
+      "logical_sha256": "bb293ed49e0eca4a29f774bc98a8c33cb8dca2df7ebe692a036ee79c40d7c482",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/campaign/evidence/118/verify-attempt1/receipt.json",
+          "transport": "exact-copy",
+          "transport_sha256": "bb293ed49e0eca4a29f774bc98a8c33cb8dca2df7ebe692a036ee79c40d7c482",
+          "logical_bytes": 3281177,
+          "transport_bytes": 3281177,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/campaign/issue-119.md",
+      "logical_sha256": "434b688a3b1b09528b3bc53bf55f31c7327654a3fb192ce07e78e5dfeebd9370",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/campaign/issue-119.md",
+          "transport": "exact-copy",
+          "transport_sha256": "434b688a3b1b09528b3bc53bf55f31c7327654a3fb192ce07e78e5dfeebd9370",
+          "logical_bytes": 3473,
+          "transport_bytes": 3473,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/ROOT-followup-dedup-readonly-1.json",
+      "logical_sha256": "97edd796ac4ded44b538f798e6a9da7e5feaa093e7e936fce81565f7e93b292e",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/ROOT-followup-dedup-readonly-1.json",
+          "transport": "exact-copy",
+          "transport_sha256": "97edd796ac4ded44b538f798e6a9da7e5feaa093e7e936fce81565f7e93b292e",
+          "logical_bytes": 60120,
+          "transport_bytes": 60120,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-reconciliation-1/ROOT-SOURCE-READY.md",
+      "logical_sha256": "9e8abc22b1d5bb550daeef2909ed4c02d3e2ac3c435907531eddc1362bc450a7",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-reconciliation-1/ROOT-SOURCE-READY.md",
+          "transport": "exact-copy",
+          "transport_sha256": "9e8abc22b1d5bb550daeef2909ed4c02d3e2ac3c435907531eddc1362bc450a7",
+          "logical_bytes": 4670,
+          "transport_bytes": 4670,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-reconciliation-1/author-packet.md",
+      "logical_sha256": "5c6e984f85fa9b016bba932b213d0fcb3d7fe5ecc806118907422dc28952c7a4",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-reconciliation-1/author-packet.md",
+          "transport": "exact-copy",
+          "transport_sha256": "5c6e984f85fa9b016bba932b213d0fcb3d7fe5ecc806118907422dc28952c7a4",
+          "logical_bytes": 6097,
+          "transport_bytes": 6097,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-reconciliation-1/coordinator-launch-record.md",
+      "logical_sha256": "e52e8eb0735460c1dffa573f9bf745837c954a46b6629f78775700b7658738a5",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-reconciliation-1/coordinator-launch-record.md",
+          "transport": "exact-copy",
+          "transport_sha256": "e52e8eb0735460c1dffa573f9bf745837c954a46b6629f78775700b7658738a5",
+          "logical_bytes": 2822,
+          "transport_bytes": 2822,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-reconciliation-1/final.md",
+      "logical_sha256": "4de23df452398c9b0fc6f5a99bf83672b8044526605847da654311b15953488b",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-reconciliation-1/final.md",
+          "transport": "exact-copy",
+          "transport_sha256": "4de23df452398c9b0fc6f5a99bf83672b8044526605847da654311b15953488b",
+          "logical_bytes": 4806,
+          "transport_bytes": 4806,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-reconciliation-1/reviewer-inputs.sha256",
+      "logical_sha256": "ebbbf9c49596d3350bcdca178be0e08168eec1944ee1138e070eabfe66dd97b0",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-reconciliation-1/reviewer-inputs.sha256",
+          "transport": "exact-copy",
+          "transport_sha256": "ebbbf9c49596d3350bcdca178be0e08168eec1944ee1138e070eabfe66dd97b0",
+          "logical_bytes": 6384,
+          "transport_bytes": 6384,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-reconciliation-1/scientific-review-packet.md",
+      "logical_sha256": "052dba7a21a72e96b435682ab3bfccf4758691518ca5f5204dcc635159bea554",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-reconciliation-1/scientific-review-packet.md",
+          "transport": "exact-copy",
+          "transport_sha256": "052dba7a21a72e96b435682ab3bfccf4758691518ca5f5204dcc635159bea554",
+          "logical_bytes": 8565,
+          "transport_bytes": 8565,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-scientific-review-1/inputs.sha256",
+      "logical_sha256": "ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256",
+          "transport": "exact-copy",
+          "transport_sha256": "ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+          "logical_bytes": 7147,
+          "transport_bytes": 7147,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-scientific-review-1/launch.md",
+      "logical_sha256": "7224aad7fa200142c62fe15f09f5358a120015387cdfbec95ede15eeb4c16a12",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/launch.md",
+          "transport": "exact-copy",
+          "transport_sha256": "7224aad7fa200142c62fe15f09f5358a120015387cdfbec95ede15eeb4c16a12",
+          "logical_bytes": 2485,
+          "transport_bytes": 2485,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/actual118-scientific-review-1/packet.md",
+      "logical_sha256": "bcc9bb2c2023b145ad07db70b5649f9e4e453b74ad7a70f7f0c5542e5c291e77",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/packet.md",
+          "transport": "exact-copy",
+          "transport_sha256": "bcc9bb2c2023b145ad07db70b5649f9e4e453b74ad7a70f7f0c5542e5c291e77",
+          "logical_bytes": 7897,
+          "transport_bytes": 7897,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/ROOT-BINDING-READY.md",
+      "logical_sha256": "946ab7c43e21a824865830c4a5b64a8072deb608431cf732ae4b6d56e79fb90d",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/final61-binding-preparation-1/ROOT-BINDING-READY.md",
+          "transport": "exact-copy",
+          "transport_sha256": "946ab7c43e21a824865830c4a5b64a8072deb608431cf732ae4b6d56e79fb90d",
+          "logical_bytes": 2909,
+          "transport_bytes": 2909,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/accounting.md",
+      "logical_sha256": "7f2ed0f55784b1f94b1d0ea2afad1e6b6f1128643208988590a25a445d0fb902",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/accounting.md",
+          "transport": "exact-copy",
+          "transport_sha256": "7f2ed0f55784b1f94b1d0ea2afad1e6b6f1128643208988590a25a445d0fb902",
+          "logical_bytes": 4877,
+          "transport_bytes": 4877,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/design.md",
+      "logical_sha256": "7f07b194efc4522838ebc9d0d9ee5fe86509af68f03d573067cead50769a5987",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/design.md",
+          "transport": "exact-copy",
+          "transport_sha256": "7f07b194efc4522838ebc9d0d9ee5fe86509af68f03d573067cead50769a5987",
+          "logical_bytes": 17329,
+          "transport_bytes": 17329,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/final61-used-source.sha256",
+      "logical_sha256": "342732051819637c9fabfedc46b9574d14e1958791c38fded46381f7c1096955",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/final61-binding-preparation-1/final61-used-source.sha256",
+          "transport": "exact-copy",
+          "transport_sha256": "342732051819637c9fabfedc46b9574d14e1958791c38fded46381f7c1096955",
+          "logical_bytes": 3208,
+          "transport_bytes": 3208,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/implementation-handoff.md",
+      "logical_sha256": "650bc78a713c0e2f72e8be5232fbd2491f72395cd01bd3cd55238a335824ca87",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/implementation-handoff.md",
+          "transport": "exact-copy",
+          "transport_sha256": "650bc78a713c0e2f72e8be5232fbd2491f72395cd01bd3cd55238a335824ca87",
+          "logical_bytes": 15333,
+          "transport_bytes": 15333,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/input-source.sha256",
+      "logical_sha256": "ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/input-source.sha256",
+          "transport": "exact-copy",
+          "transport_sha256": "ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+          "logical_bytes": 6494,
+          "transport_bytes": 6494,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/lifetime-map.md",
+      "logical_sha256": "042a831343b89e037fbecacc831fd86bc148bbe2753170cf0788e28c1b99b706",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/lifetime-map.md",
+          "transport": "exact-copy",
+          "transport_sha256": "042a831343b89e037fbecacc831fd86bc148bbe2753170cf0788e28c1b99b706",
+          "logical_bytes": 18280,
+          "transport_bytes": 18280,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/read-inventory.md",
+      "logical_sha256": "07c8a7d1acef634cf9e954da27f57b04ceea7c5ea70c32020e879fcfafd0ef97",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/read-inventory.md",
+          "transport": "exact-copy",
+          "transport_sha256": "07c8a7d1acef634cf9e954da27f57b04ceea7c5ea70c32020e879fcfafd0ef97",
+          "logical_bytes": 8692,
+          "transport_bytes": 8692,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/reviewer-inputs.sha256",
+      "logical_sha256": "88d5ffe97ecfd01d37c939b3575c071ff7f40c64ef785b1b0185d83136c801f5",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/final61-binding-preparation-1/reviewer-inputs.sha256",
+          "transport": "exact-copy",
+          "transport_sha256": "88d5ffe97ecfd01d37c939b3575c071ff7f40c64ef785b1b0185d83136c801f5",
+          "logical_bytes": 6716,
+          "transport_bytes": 6716,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/scientific-review-packet.md",
+      "logical_sha256": "337b071b545a682e6953a22fd54abed2fd17982e444c3746aa9364b192d5b37b",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/final61-binding-preparation-1/scientific-review-packet.md",
+          "transport": "exact-copy",
+          "transport_sha256": "337b071b545a682e6953a22fd54abed2fd17982e444c3746aa9364b192d5b37b",
+          "logical_bytes": 9486,
+          "transport_bytes": 9486,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/final61-binding-preparation-1/source-evidence-manifest.md",
+      "logical_sha256": "3159ea6d10c638d612fbf9c907f23321402d0e2d2d9e1270d41fe61d690de633",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/source-evidence-manifest.md",
+          "transport": "exact-copy",
+          "transport_sha256": "3159ea6d10c638d612fbf9c907f23321402d0e2d2d9e1270d41fe61d690de633",
+          "logical_bytes": 12997,
+          "transport_bytes": 12997,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/finalization-checklist.md",
+      "logical_sha256": "93e4d9c91e975cb93acfecd949a3c00d3ef4bdcd138b8888d9112a51c94b896d",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/finalization-checklist.md",
+          "transport": "exact-copy",
+          "transport_sha256": "93e4d9c91e975cb93acfecd949a3c00d3ef4bdcd138b8888d9112a51c94b896d",
+          "logical_bytes": 9528,
+          "transport_bytes": 9528,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/provisional-design/design.md",
+      "logical_sha256": "f25f2024f6485eb09fe9ac2cca178e5eb09b42a3b088c8af3166cf1297736800",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/provisional-design/design.md",
+          "transport": "exact-copy",
+          "transport_sha256": "f25f2024f6485eb09fe9ac2cca178e5eb09b42a3b088c8af3166cf1297736800",
+          "logical_bytes": 10332,
+          "transport_bytes": 10332,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/provisional-design/implementation-handoff.md",
+      "logical_sha256": "d71a6e9f6ace836efbff30772c87a0a5947686f99f884989d75980cb4984b1e8",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/provisional-design/implementation-handoff.md",
+          "transport": "exact-copy",
+          "transport_sha256": "d71a6e9f6ace836efbff30772c87a0a5947686f99f884989d75980cb4984b1e8",
+          "logical_bytes": 15437,
+          "transport_bytes": 15437,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/provisional-design/lifetime-map.md",
+      "logical_sha256": "54ae05bdd54bc58e391e6c26f3df0abfbedf2bb82959770b6d8c999389f2d4a3",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/provisional-design/lifetime-map.md",
+          "transport": "exact-copy",
+          "transport_sha256": "54ae05bdd54bc58e391e6c26f3df0abfbedf2bb82959770b6d8c999389f2d4a3",
+          "logical_bytes": 10256,
+          "transport_bytes": 10256,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/provisional-design/source-evidence-manifest.md",
+      "logical_sha256": "8a201d4a9b4a26c2735671aafd2b3895c4893c51f1283c363cf77e08e85aac16",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/provisional-design/source-evidence-manifest.md",
+          "transport": "exact-copy",
+          "transport_sha256": "8a201d4a9b4a26c2735671aafd2b3895c4893c51f1283c363cf77e08e85aac16",
+          "logical_bytes": 8158,
+          "transport_bytes": 8158,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/source-investigation/launch-packet.md",
+      "logical_sha256": "28347baa4d591a98a56c4458c8386f58199e042052858a8912f6ac6847bbb8cd",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/source-investigation/launch-packet.md",
+          "transport": "exact-copy",
+          "transport_sha256": "28347baa4d591a98a56c4458c8386f58199e042052858a8912f6ac6847bbb8cd",
+          "logical_bytes": 5300,
+          "transport_bytes": 5300,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/source-investigation/launch-record.md",
+      "logical_sha256": "3364c24501504b5c53a958b23abe24d8cdf070e1888cc0747e1e999c1b539c7e",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/source-investigation/launch-record.md",
+          "transport": "exact-copy",
+          "transport_sha256": "3364c24501504b5c53a958b23abe24d8cdf070e1888cc0747e1e999c1b539c7e",
+          "logical_bytes": 4552,
+          "transport_bytes": 4552,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/source-investigation/lifetime-map.md",
+      "logical_sha256": "d782fc1bf0592c840e161d41b404e562e95ee75981ccb0f9391dd8eacedd6ae0",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/source-investigation/lifetime-map.md",
+          "transport": "exact-copy",
+          "transport_sha256": "d782fc1bf0592c840e161d41b404e562e95ee75981ccb0f9391dd8eacedd6ae0",
+          "logical_bytes": 17294,
+          "transport_bytes": 17294,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119-preparation/source-investigation/source-evidence-notes.md",
+      "logical_sha256": "2be8aa95caa6d880ad01fbf43e3ca7326be361c36df904b96722f28fd59265a7",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/source-investigation/source-evidence-notes.md",
+          "transport": "exact-copy",
+          "transport_sha256": "2be8aa95caa6d880ad01fbf43e3ca7326be361c36df904b96722f28fd59265a7",
+          "logical_bytes": 17736,
+          "transport_bytes": 17736,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/.agents/skills/implement-work/SKILL.md",
+      "logical_sha256": "3dd402828a1de66bed570de455daf1492ce3120f7174b2386eef330f4e02c23c",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119/.agents/skills/implement-work/SKILL.md",
+          "transport": "exact-copy",
+          "transport_sha256": "3dd402828a1de66bed570de455daf1492ce3120f7174b2386eef330f4e02c23c",
+          "logical_bytes": 6681,
+          "transport_bytes": 6681,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/.agents/skills/review-work/SKILL.md",
+      "logical_sha256": "e069e1be50587974d46ffca2a8c38b865e7133881aa39aaf0bf45934c6ae0160",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119/.agents/skills/review-work/SKILL.md",
+          "transport": "exact-copy",
+          "transport_sha256": "e069e1be50587974d46ffca2a8c38b865e7133881aa39aaf0bf45934c6ae0160",
+          "logical_bytes": 12308,
+          "transport_bytes": 12308,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/AGENTS.md",
+      "logical_sha256": "56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119/AGENTS.md",
+          "transport": "exact-copy",
+          "transport_sha256": "56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd",
+          "logical_bytes": 19464,
+          "transport_bytes": 19464,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/docs/PROJECT.md",
+      "logical_sha256": "530e72dbc3b9e73756687c3893bef2803cb775080a12539681020916c59b9fee",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119/docs/PROJECT.md",
+          "transport": "exact-copy",
+          "transport_sha256": "530e72dbc3b9e73756687c3893bef2803cb775080a12539681020916c59b9fee",
+          "logical_bytes": 25666,
+          "transport_bytes": 25666,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/docs/contracts/prepared-band-storage-design-v1.md",
+      "logical_sha256": "80afb7a7169dacc9213ee6d60ac84935adec1e54ba94aeb5329fe5045b5e0655",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/preparation-harmonic-lifetimes/evidence/source-snapshots/issue-119/docs/contracts/prepared-band-storage-design-v1.md",
+          "transport": "exact-copy",
+          "transport_sha256": "80afb7a7169dacc9213ee6d60ac84935adec1e54ba94aeb5329fe5045b5e0655",
+          "logical_bytes": 8449,
+          "transport_bytes": 8449,
+          "originating_maps": [
+            "/workspace/work/campaign/evidence/118/ROOT-final78-proof-and-analysis-staging-1.json",
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/reports/preparation-harmonic-lifetimes/evidence/portable-source-map-versioned.json",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "exactcopy",
+            "inherited118-same-byte-mapping"
+          ],
+          "reviewed_pre_activation_sha256": [],
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/docs/operations/model-selection.md",
+      "logical_sha256": "35de89ef9c96efbb6751fc3e9fcfd3418e46d6e2a1e15ad11f0cf25b4e961635",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119/docs/operations/model-selection.md",
+          "transport": "exact-copy",
+          "transport_sha256": "35de89ef9c96efbb6751fc3e9fcfd3418e46d6e2a1e15ad11f0cf25b4e961635",
+          "logical_bytes": 7212,
+          "transport_bytes": 7212,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/docs/operations/role-launches.md",
+      "logical_sha256": "45e10323d7c97146eeff7681fdf0a3bdfa8833453a565b583ba8bb1f28c5b1c9",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119/docs/operations/role-launches.md",
+          "transport": "exact-copy",
+          "transport_sha256": "45e10323d7c97146eeff7681fdf0a3bdfa8833453a565b583ba8bb1f28c5b1c9",
+          "logical_bytes": 13406,
+          "transport_bytes": 13406,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/work/issue-119/docs/tasks/prepared-band-storage.md",
+      "logical_sha256": "ffcb305a8aeaac966c3e0f6e0963fc4e87e51eddca95cfe2ca98a41b2f63e044",
+      "mappings": [
+        {
+          "repo_path": "docs/reports/prepared-band-storage-design/evidence/history/issue-119/docs/tasks/prepared-band-storage.md",
+          "transport": "exact-copy",
+          "transport_sha256": "ffcb305a8aeaac966c3e0f6e0963fc4e87e51eddca95cfe2ca98a41b2f63e044",
+          "logical_bytes": 11440,
+          "transport_bytes": 11440,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "119-external-staging-exact-copy"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:2cb73d7a8352d88a16477e5e802852b4948c62cd:src/simrecon/acquisition/modes.py",
+      "logical_sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/modes.py",
+          "revision": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+          "transport": "git-blob",
+          "transport_sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+          "logical_bytes": 48828,
+          "transport_bytes": 48828,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:2cb73d7a8352d88a16477e5e802852b4948c62cd:src/simrecon/reconstruction/known_parameters.py",
+      "logical_sha256": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/reconstruction/known_parameters.py",
+          "revision": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+          "transport": "git-blob",
+          "transport_sha256": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+          "logical_bytes": 50572,
+          "transport_bytes": 50572,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/c-equivalence-acquisition-modes-v1.md",
+      "logical_sha256": "5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-acquisition-modes-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e",
+          "logical_bytes": 99508,
+          "transport_bytes": 99508,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/c-equivalence-carrier-modulation-v1.md",
+      "logical_sha256": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-carrier-modulation-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c",
+          "logical_bytes": 38580,
+          "transport_bytes": 38580,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/c-equivalence-known-parameters-v1.md",
+      "logical_sha256": "3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-known-parameters-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c",
+          "logical_bytes": 24315,
+          "transport_bytes": 24315,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/c-equivalence-optical-transfer-v1.md",
+      "logical_sha256": "3214afc2766e7bb19bdb3eaf81356dac1ef17630995bb98282fa3d46f0237529",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-optical-transfer-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "3214afc2766e7bb19bdb3eaf81356dac1ef17630995bb98282fa3d46f0237529",
+          "logical_bytes": 25775,
+          "transport_bytes": 25775,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/c-equivalence-preprocessing-v1.md",
+      "logical_sha256": "8e2a3afe2778d515b14f2e8ede5001042aa8a606b7ded23300f50f178f08ae91",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-preprocessing-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "8e2a3afe2778d515b14f2e8ede5001042aa8a606b7ded23300f50f178f08ae91",
+          "logical_bytes": 23643,
+          "transport_bytes": 23643,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/c-equivalence-workflow-v1.md",
+      "logical_sha256": "00b80613c1ff417b4d5bdd782cf25e1aed32a9c62ccf44d68cce77c643b9adef",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-workflow-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "00b80613c1ff417b4d5bdd782cf25e1aed32a9c62ccf44d68cce77c643b9adef",
+          "logical_bytes": 71147,
+          "transport_bytes": 71147,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/reconstruction-memory-v1.md",
+      "logical_sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/reconstruction-memory-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+          "logical_bytes": 22621,
+          "transport_bytes": 22621,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:docs/contracts/wide-allocation-domain-v1.md",
+      "logical_sha256": "d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/wide-allocation-domain-v1.md",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb",
+          "logical_bytes": 14444,
+          "transport_bytes": 14444,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/acquisition/declarations.py",
+      "logical_sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/declarations.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+          "logical_bytes": 14777,
+          "transport_bytes": 14777,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/acquisition/drift.py",
+      "logical_sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/drift.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+          "logical_bytes": 14491,
+          "transport_bytes": 14491,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/acquisition/layout.py",
+      "logical_sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/layout.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+          "logical_bytes": 17861,
+          "transport_bytes": 17861,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/acquisition/modes.py",
+      "logical_sha256": "85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/modes.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178",
+          "logical_bytes": 49006,
+          "transport_bytes": 49006,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/acquisition/preparation.py",
+      "logical_sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/preparation.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+          "logical_bytes": 21606,
+          "transport_bytes": 21606,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/reconstruction/known_parameters.py",
+      "logical_sha256": "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/reconstruction/known_parameters.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c",
+          "logical_bytes": 50680,
+          "transport_bytes": 50680,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/reconstruction/parameter_estimation.py",
+      "logical_sha256": "527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/reconstruction/parameter_estimation.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38",
+          "logical_bytes": 50978,
+          "transport_bytes": 50978,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/workflow/adapters.py",
+      "logical_sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/adapters.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+          "logical_bytes": 9763,
+          "transport_bytes": 9763,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/workflow/config.py",
+      "logical_sha256": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/config.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+          "logical_bytes": 18323,
+          "transport_bytes": 18323,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/workflow/identity.py",
+      "logical_sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/identity.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+          "logical_bytes": 9347,
+          "transport_bytes": 9347,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/workflow/reconstruct.py",
+      "logical_sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/reconstruct.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+          "logical_bytes": 24509,
+          "transport_bytes": 24509,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/workflow/result.py",
+      "logical_sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/result.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+          "logical_bytes": 4759,
+          "transport_bytes": 4759,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03:src/simrecon/workflow/summary.py",
+      "logical_sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/summary.py",
+          "revision": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+          "transport": "git-blob",
+          "transport_sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+          "logical_bytes": 3244,
+          "transport_bytes": 3244,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/evidence/history/issue-119-preparation/actual118-scientific-review-1/inputs.sha256@ce5df2346f3d4f27318f0d646f520cef6bfc0a21bbd0ed01500a3d6936fa6060",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/c-equivalence-acquisition-modes-v1.md",
+      "logical_sha256": "5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-acquisition-modes-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e",
+          "logical_bytes": 99508,
+          "transport_bytes": 99508,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/c-equivalence-carrier-modulation-v1.md",
+      "logical_sha256": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-carrier-modulation-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c",
+          "logical_bytes": 38580,
+          "transport_bytes": 38580,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/c-equivalence-known-parameters-v1.md",
+      "logical_sha256": "3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-known-parameters-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c",
+          "logical_bytes": 24315,
+          "transport_bytes": 24315,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/c-equivalence-optical-transfer-v1.md",
+      "logical_sha256": "3214afc2766e7bb19bdb3eaf81356dac1ef17630995bb98282fa3d46f0237529",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-optical-transfer-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "3214afc2766e7bb19bdb3eaf81356dac1ef17630995bb98282fa3d46f0237529",
+          "logical_bytes": 25775,
+          "transport_bytes": 25775,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/c-equivalence-preprocessing-v1.md",
+      "logical_sha256": "8e2a3afe2778d515b14f2e8ede5001042aa8a606b7ded23300f50f178f08ae91",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-preprocessing-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "8e2a3afe2778d515b14f2e8ede5001042aa8a606b7ded23300f50f178f08ae91",
+          "logical_bytes": 23643,
+          "transport_bytes": 23643,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/c-equivalence-workflow-v1.md",
+      "logical_sha256": "00b80613c1ff417b4d5bdd782cf25e1aed32a9c62ccf44d68cce77c643b9adef",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/c-equivalence-workflow-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "00b80613c1ff417b4d5bdd782cf25e1aed32a9c62ccf44d68cce77c643b9adef",
+          "logical_bytes": 71147,
+          "transport_bytes": 71147,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/reconstruction-memory-v1.md",
+      "logical_sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/reconstruction-memory-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+          "logical_bytes": 22621,
+          "transport_bytes": 22621,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:docs/contracts/wide-allocation-domain-v1.md",
+      "logical_sha256": "d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb",
+      "mappings": [
+        {
+          "repo_path": "docs/contracts/wide-allocation-domain-v1.md",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb",
+          "logical_bytes": 14444,
+          "transport_bytes": 14444,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/acquisition/declarations.py",
+      "logical_sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/declarations.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+          "logical_bytes": 14777,
+          "transport_bytes": 14777,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/acquisition/drift.py",
+      "logical_sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/drift.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+          "logical_bytes": 14491,
+          "transport_bytes": 14491,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/acquisition/layout.py",
+      "logical_sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/layout.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+          "logical_bytes": 17861,
+          "transport_bytes": 17861,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/acquisition/modes.py",
+      "logical_sha256": "85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/modes.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178",
+          "logical_bytes": 49006,
+          "transport_bytes": 49006,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/acquisition/preparation.py",
+      "logical_sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/acquisition/preparation.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+          "logical_bytes": 21606,
+          "transport_bytes": 21606,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/reconstruction/known_parameters.py",
+      "logical_sha256": "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/reconstruction/known_parameters.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c",
+          "logical_bytes": 50680,
+          "transport_bytes": 50680,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/reconstruction/parameter_estimation.py",
+      "logical_sha256": "527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/reconstruction/parameter_estimation.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38",
+          "logical_bytes": 50978,
+          "transport_bytes": 50978,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/workflow/adapters.py",
+      "logical_sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/adapters.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+          "logical_bytes": 9763,
+          "transport_bytes": 9763,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/workflow/config.py",
+      "logical_sha256": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/config.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+          "logical_bytes": 18323,
+          "transport_bytes": 18323,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/workflow/identity.py",
+      "logical_sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/identity.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+          "logical_bytes": 9347,
+          "transport_bytes": 9347,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/workflow/reconstruct.py",
+      "logical_sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/reconstruct.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+          "logical_bytes": 24509,
+          "transport_bytes": 24509,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/workflow/result.py",
+      "logical_sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/result.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+          "logical_bytes": 4759,
+          "transport_bytes": 4759,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    },
+    {
+      "source_path": "git:75fce7e1ea424127f1b875aaa395d8b3ea29ecaa:src/simrecon/workflow/summary.py",
+      "logical_sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "mappings": [
+        {
+          "repo_path": "src/simrecon/workflow/summary.py",
+          "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+          "transport": "git-blob",
+          "transport_sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+          "logical_bytes": 3244,
+          "transport_bytes": 3244,
+          "originating_maps": [
+            "docs/reports/prepared-band-storage-design/input-source.sha256@ab0efe87c4ffe75ba101fafa9df132b3ef68fd9d2b532bcd6c343376f0eb9e33",
+            "docs/reports/prepared-band-storage-design/evidence/source-inputs-before-SCI1.sha256@422d90936063f0a6e3554627b0ffe2903ca45750ddb25c953fed3153303aab07"
+          ],
+          "resolutions": [
+            "published-ancestor-git-object"
+          ]
+        }
+      ]
+    }
+  ]
+}

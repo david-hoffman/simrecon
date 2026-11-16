@@ -1,0 +1,12 @@
+{
+  "time_utc": "2026-11-16T16:32:37.632882+00:00",
+  "scope": "ROOT actualGit indexed/ancestor blob proof before119commit, notjustworktree",
+  "versionkeys": 96,
+  "actual_blobs_checked": 96,
+  "all_SHA256_lengths_match": true,
+  "inherited_source38_and_public53_unchanged": true,
+  "normative_contract80afb_unchanged": true,
+  "staged_documentation_paths": 58,
+  "source_test_lock_gate_edits": false,
+  "runtime_executed": false
+}

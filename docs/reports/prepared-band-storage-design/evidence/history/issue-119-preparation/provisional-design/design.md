@@ -1,0 +1,51 @@
+# PROVISIONAL PB119: private independently owned prepared-band blocks
+
+**PROVISIONAL AUTHOR PROPOSAL. Not an accepted design, actual #118 assessment, measured benefit or implementation grant.** This same-session continuation uses accepted #116 `158776ade28079276304d49a6b973eccbf4109c9` / tree `23530ae22e7e1a64f8171dbbedfea81d1b00174c`, plus only prospective #117's parameter-estimation helper delta at `e6945817850cfdaa3ebbfe21e7a23784964208d6` / tree `cd637c9b568e2cbe35119193804b36105ec54500`. Actual accepted #118, independently reviewed affected #116 refresh and independent scientific review (SCI) remain pending. The #119 contract is staging context at `48339c8cb7d28312d3653c1d0f86f1fc67f1f0ad`. See [source manifest](source-evidence-manifest.md) for exact frozen evidence and read limits.
+
+## Preliminary choice and alternatives
+
+Recommend **private independent owners for each (time,direction)**, subject to actual-parent source, target and SCI reconciliation. This choice addresses the observed source mechanism: current compact time views retain one complete q backing, while successful filtering reads prepared coefficients for one direction at a time. Keep the public/full representation unchanged. This is a retention opportunity, not a claim that this mechanism controls the target peak.
+
+Let `Q=2*O-1`, `H=Z*Y*(X//2+1)` and `Bq=16*T*D*Q*H` bytes. These symbolic payloads exclude Python metadata, backend workspaces, temporary expressions, allocator retention and caller storage.
+
+| Private representation | Independently removable payload after its consumers | T>1 implication | T=1,D>1 implication |
+| --- | --- | --- | --- |
+| Existing complete q ndarray | Only the complete Bq root | Time slices retain all-T backing until bands is dropped | All directions share that backing |
+| Independent time owners | `16*D*Q*H` per time | A completed time can leave the source container; simplest adaptation at the known-call return boundary | No earlier source release from fragmentation alone |
+| **Independent (t,d) owners: preliminary recommendation** | `16*Q*H` per pair | Remove completed directions inside each current time; remove empty time containers afterward | Prepared directions can leave after native filtering, while later directions still need their coefficients |
+
+Independent time owners are the simpler fallback if actual-parent reconciliation makes direction-local consumption materially unsafe or the reviewed target establishes that time-only release is sufficient. Per-(t,d) ownership costs additional containers and changed private consumer interfaces; it must retain global direction metadata and parameter tables. Do not choose it merely from its smaller unit size.
+
+Neither alternative changes preparation-before-estimation-before-reconstruction. **All prepared q blocks still coexist during preparation and estimation.** Caller inputs and workflow private raw snapshots coexist with all q before preparation returns; optional off q also remains there. Fragmentation alone cannot solve a peak imposed by that earlier interval. No 16 GiB feasibility, latency, resident-memory or total-peak promise follows. That unresolved target question may justify the single bounded contract-follow-up draft in [implementation handoff](implementation-handoff.md), not immediate disk implementation.
+
+## Concrete private representation boundary
+
+Proposed names below describe a future interface; no classes/helpers are created here.
+
+- A private `PreparedBandBlocks` value carries immutable logical metadata, aggregate noise `(T,D,O)`, existing compact preparation projection/trace and an owning table indexed by t,d. Each live slot owns one independently allocated C-order complex128 ndarray `(Q,Z,Y,X//2+1)`. No slot is a slice of another block or a concealed full q root. No public export, new public argument or ndarray impersonation/implicit `__array__` conversion is proposed.
+- The logical q shape remains `(T,D,Q,Z,Y,X//2+1)` and global D remains unchanged in alpha, modes, geometry, cutoffs, denominators and identity metadata. Storage ownership does not reinterpret D as one.
+- Allocate all q block roots before the existing preparation traversal, preserving its scientific stage schedule. Existing computations write the selected block, retaining separation/Nyquist handling, same shaped per-direction axial transform, drift correction and t,d,z,p/e order. No raw replay or preparation/estimation interleaving.
+- Leave noise, preparation diagnostics, off q and their capture policies unchanged in the first implementation slice. In particular, do not attempt early off release. Final global q/noise and diagnostic finite/extent barriers retain their order before downstream processing. Do not use array concatenation to satisfy those barriers.
+- A private validated view describes the complete logical collection and retains its owner table, rather than a complete q ndarray. It may expose a temporary block borrow. It must not cache arrays in a second all-block tuple or keep completed blocks through a hidden closure. Released slots are absent, not successful zero arrays. Only trusted internal sequencing can consume/release them; malformed public inputs still enter existing validators.
+- Private estimator access selects the current t,d block. The estimator keeps every block through estimation because filtering still needs them. Time-zero reuse retains fitted carriers, and later-time modulation is freshly fitted from current-time q. Preserve the prospective #117 helper lifetime if that exact delta survives acceptance; it does not supply q fragmentation.
+- A private one-time adapter borrows the current owner's live direction slots and retains global D, whole-time geometry and all-direction parameters. Existing public `AcquisitionBands` slicing/full paths continue unchanged. No public record is reconstructed by stacking blocks.
+
+## Consumer and release protocol
+
+Preserve the existing filter's arithmetic and traversal. For the private block path only, obtain each direction's original block and a corresponding view into the independently allocated **whole-time filtered destination**. Initialize that destination region from the original before its filtering reads, preserving odd-Y/Y1 untouched coefficients and reflected partial writes. Evaluate native filtering in unchanged d,m,y,x,z order using global direction d for parameter lookup. Other-direction denominator terms read parameters/transfer, not other directions' prepared coefficients (`known_parameters.py:573–598,711–762`).
+
+When all native coefficient reads for d finish successfully, end the temporary borrow and clear every local/validated cache of that original block, then remove its owning slot. The filtered destination remains. The existing final all-filtered finite check stays after the complete filter traversal, and assembly starts only after all filtering succeeds. Assembly reads the whole filtered result in unchanged direction/order order. This proposal does **not** fuse direction filtering with assembly or change assembly algorithms. A narrower implementation that can release only after known reconstruction returns still supports time-level release but does not establish the intended direction-level opportunity.
+
+Actual release requires that preparation locals have returned, identity streaming has ended, estimator/source borrows have ended, adapters/validated values retain no second array collection, and no temporary block borrow remains. Clearing one `original` name is insufficient; existing `bands`, `_UsedBands`, `quadratures` and workflow references explain why (`known_parameters.py:1104–1176`, `reconstruct.py:383–425`). A returned exception/cause can retain frames and failed-current-block aliases; no immediate failure-path deallocation or RSS behavior is guaranteed.
+
+## Validation, identity and compatibility gates
+
+Retain exact logical aggregate signed/native checks and global normalization before any allocation-sized work, scan/hash/copy or backend operation. Preserve downstream validation order: logical shape/count/mode and q type/dtype/shape, noise type/dtype/shape, sampling/zoom/scale/source metadata, signed/global products and native extents, then q finite, noise finite and noise positivity. Preparation has its separate finish order: q first, noise second, then existing diagnostic finishes. Preserve valid noncontiguous/read-only public inputs. Block validity alone never discharges aggregate T/D/off/header/output/identity extents. Keep existing direct PreparedBands `(D,O)` noise compatibility separate from AcquisitionBands `(T,D,O)`.
+
+Compute `prepared_quadratures` as one streaming SHA256 in logical t,d,q,z,y,half-x order, after preparation writes/checks and before estimation. Retain aggregate shape, normalized little-endian dtype and the same identity name. Hash only element bytes, preserving signed zero and complex real/imaginary component order. Chunk boundaries introduce no bytes; direction owners spanning T must interleave by logical t,d. Use bounded C-order endian-normalized chunks for strided or non-little-endian storage, without concatenating/stacking q or creating a whole normalized duplicate. This is a future equivalence obligation; no hash helper or proof experiment is supplied here. [Lifetime map](lifetime-map.md) records the exact field/failure barriers.
+
+Full/direct APIs retain signatures, owned writable preparation q/noise, independent public snapshots, complete diagnostic records and existing valid caller modifications. Caller backings are never cleared/transferred or required to be deleted. Existing compact result fields, projection names/order, metadata and no-hidden-q guarantee remain. No new finite check, per-block failure label/index, condition cutoff, precision, tolerance, memory admission cap or invalid-input priority is introduced.
+
+## Decision still pending
+
+Actual #118 may alter filter, scratch, assembly or aggregation lifetimes. ROOT must bind that parent and reviewed refresh, reconcile every affected reference/check/identity, and obtain fresh independent SCI before adopting this preliminary choice. A concrete implementation still requires separate intake, fresh blind A/B, restricted C and fresh D. No source-only conclusion substitutes for resource evidence or an independent scientific oracle.

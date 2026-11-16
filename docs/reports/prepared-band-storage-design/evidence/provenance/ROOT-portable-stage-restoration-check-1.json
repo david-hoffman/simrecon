@@ -1,0 +1,17 @@
+{
+  "time_utc": "2026-11-16T16:28:01.435445+00:00",
+  "scope": "ROOT strict finite119stage/ancestorbyte+length restoration beforeintegration, no runtime/science",
+  "map_SHA256": "a545182951c93ebae7a46ab1f05d20dc9eae0702368641c53ee19eb80aec54f1",
+  "versionkeys": 96,
+  "mapping_counts": {
+    "exact-copy": 52,
+    "git-blob": 44
+  },
+  "logical_bytes": 5184087,
+  "stage_files_checked": 52,
+  "all_hashes_lengths_match": true,
+  "all_git_revisions_ancestors_of_actual_parent61": true,
+  "normative_contract_unchanged_SHA256": "80afb7a7169dacc9213ee6d60ac84935adec1e54ba94aeb5329fe5045b5e0655",
+  "candidate_base": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+  "limits": "StagechecknotfinalGitblobproof/fullgate/readiness; no source/test edits."
+}
