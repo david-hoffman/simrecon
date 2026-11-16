@@ -97,7 +97,7 @@ examples under a decision, not substitutes for distinct success/error meaning.
 | S10 | Direct estimator and complete workflow retain full records and schemas | Fourier/spatial/written arrays, coarse images, all evaluations and snapshots; no mutation by later fits |
 | S11 | Caller ownership and accepted record mutability preserved | Read-only/strided callers, writable bands/noise, post-return mutation; no caller deletion/GC precondition |
 | S12 | Invalid used records/declarations reject before numerical work | Shape/kind/finite/provenance/flags/optics/floors; pair meaningful permitted positives with rejection classes |
-| S13 | Representation and actual stencil boundaries unchanged | Safe/unsafe vertices including zero-weight requests; source signed32/unsigned32 and native intp limits, checked without large allocation |
+| S13 | Retained representation and actual stencil boundaries | Safe/unsafe vertices including zero-weight requests; source signed32 count/index/cutoff and native intp shape/stride/byte limits; accepted wide-allocation-domain-v1 supersedes only inherited CE04/CE06/CE07/summary allocation-byte-only caps, without changing CE05 estimator constraints; checked without large allocation |
 | S14 | Missing lower energy rejects at the reached operation | Valid small positive unequal energies as paired positives |
 | S15 | Missing higher energy rejects at the reached operation | Distinct from lower-energy error; no invented minimum signal |
 | S16 | Equal-energy combined-fit singularity rejects | Positive unequal-energy fits; no regularization |
