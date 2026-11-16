@@ -1,0 +1,7 @@
+{
+  "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "parent119_CI": "PASSED",
+  "cmd": "/usr/local/bin/docker exec --user 1000:1000 -w /workspace/work/issue-120 -e PATH=/workspace/.simrecon-tools/uv-env/bin:/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin -e SIMRECON_JAVA=/workspace/.simrecon-tools/jdk-21.0.7+6/bin/java -e SIMRECON_PROTOCOLS_EVIDENCE=/workspace/work/campaign/protocol-120-actual-preflight-1 11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b /usr/bin/make preflight UV=/workspace/.simrecon-tools/uv-env/bin/uv PYTHON=/workspace/work/issue-120/.venv/bin/python",
+  "scope": "DocumentedactualheadownenvironmentpreflightONLY, no transforms/study/controls/tests. No concurrentlocalnumeric/test/installwindow, allrolesfileonly. Rootenvironmentrelease8d4d0c."
+}

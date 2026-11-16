@@ -1,0 +1,10 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/originals/observer.py	2026-11-16 05:47:22.012075936 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/observer.py	2026-11-16 05:49:26.277727682 -0800
+@@ -1,6 +1,6 @@
+ """WS116 analysis-only observer. Source draft, never executed during preparation."""
+ 
+-from __future__ import annotations
++raise SystemExit("FA120 UNCONDITIONAL HOLD: APPARATUS SOURCE PREPARATION ONLY")
+ 
+ import contextlib
+ import fcntl

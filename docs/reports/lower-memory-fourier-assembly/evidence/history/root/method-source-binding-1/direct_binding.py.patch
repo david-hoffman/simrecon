@@ -1,0 +1,11 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/direct_binding.py
++++ /workspace/work/campaign/evidence/120/method-source-binding-1/direct_binding.py
+@@ -6,7 +6,7 @@
+ unapplied amendment for its owner. Actual amended child identity is UNBOUND.
+ """
+ 
+-raise SystemExit("FA120 UNCONDITIONAL HOLD: APPARATUS SOURCE PREPARATION ONLY")
++# ROOT source binding: execution still requires independent review and exact-case grant.
+ 
+ import hashlib
+ import json

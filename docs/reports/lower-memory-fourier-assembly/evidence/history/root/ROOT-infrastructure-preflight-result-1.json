@@ -1,0 +1,21 @@
+{
+  "status": "PASS_INFRASTRUCTURE_ONLY",
+  "exit_code": 0,
+  "utc": "2026-11-16T17:47:07.204154+00:00",
+  "head": "c962ccfff03ca78de31e6a0af746ec091e822989",
+  "tracked_state": "",
+  "log": {
+    "path": "/workspace/work/campaign/evidence/120/ROOT-infrastructure-preflight-1.log",
+    "sha256": "9fc15963d2ec314fda2d9034e5ff9b65cd8506bc2e11c3ddfcdb26d308f4c2c0",
+    "bytes": 3946
+  },
+  "observed": [
+    "Own120.venv created by locked all-groups sync",
+    "Readerprovision0",
+    "CPython3.13.12 own.venv and sourceimports",
+    "uv0.12.19",
+    "NumPy2.5.3/h5py3.16.0",
+    "isolated hatchling1.32.4 outside own.venv"
+  ],
+  "limits": "Preparent intakec962 only. No actual-parent120 scientific/method/numeric/fullgate or acceptance grant. A09parentexisting only, no lockremoved. No unrelated concurrentnumerical/test/benchmark window."
+}

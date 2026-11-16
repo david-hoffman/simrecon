@@ -1,0 +1,7 @@
+16192414b09fee80b980a161f252bdd89fc32b2eb2fe1396c1dbe2fdefb0c481  /workspace/work/issue-120-sourceprep/study-source-preparation/experimental_child.py
+512e354707e699a21134f369e3baf498ffede0a73039b8e38debd3d414e95c64  /workspace/work/issue-120-sourceprep/study-source-preparation/assembly-delta.patch
+6843d91a7b8ad85a5c470fea8b225c7068b7f5f259965083bc0fc9b3640a2b82  /workspace/work/issue-120-sourceprep/study-source-preparation/closed-inputs-and-manifest.md
+d99bc39e86afc9194ddefc0fa9e240c26ab4fb7cd8ba4e059e25624968b276f8  /workspace/work/issue-120-sourceprep/study-source-preparation/independent-witnesses.md
+262a1e425ff4f689f27b9f76819e96ac4c03edda3a74f8e97868685f3a47c455  /workspace/work/issue-120-sourceprep/study-source-preparation/pending-invocation-report.md
+84e82ab1f9a1c1d00493cd87c435d741eb8cb87fe4a14b8b419587b9e49852c9  /workspace/work/issue-120-sourceprep/study-source-preparation/read-input-sha256.txt
+f0979aecab7117d4e963bc824f81b49c9503594cce4be8abcd1b7307c719cd4f  /workspace/work/issue-120-sourceprep/study-source-preparation/source-handoff.md

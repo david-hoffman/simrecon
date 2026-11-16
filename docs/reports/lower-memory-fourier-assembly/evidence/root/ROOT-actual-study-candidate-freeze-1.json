@@ -1,0 +1,23 @@
+{
+  "utc": "2026-11-16T17:56:25.726254+00:00",
+  "issue": 120,
+  "status": "CLEAN_ACTUAL_PARENT_STUDY_SOURCE_FREEZE; NUMERICAL_HELD",
+  "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "base": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+  "parent_PR": 126,
+  "parent_CI": "PENDING_IN_PROGRESS",
+  "current_sha256": "87928ca14bf4260891b587c8736878086a34a75168245c73ad679140a3126382",
+  "diff_paths": [
+    "docs/contracts/lower-memory-fourier-assembly-study-v1.md",
+    "docs/packets/fourier-120/handoff.md",
+    "docs/packets/fourier-120/public.md",
+    "docs/packets/fourier-120/scientific-review.md",
+    "docs/packets/fourier-120/study-author.md",
+    "docs/tasks/fourier-assembly-design.md"
+  ],
+  "full_clean": true,
+  "runtime_parent_equivalence": true,
+  "source_activation": "Nextmathsameowner event7+apparatusROOTbindingcopies external; no existingheldsource rewritten. Freshmethod+SCI source acceptance beforefinitequalification; no experimentsbefore119CIpass.",
+  "scientific_claims": "NONE yet; no new runtime/API/precision/backend/default. Frozen27proposed, qualificationsseparate."
+}

@@ -1,0 +1,16 @@
+{
+  "scope": "ONEW1SOURCEQUALIFICATIONONLY; overall120peak/matrix/handoffSCI remainsactive",
+  "METHOD": {
+    "report_sha256": "3981b2181f16e6631a556622a06a15e721da09af075726b779c36acb5986d3a5",
+    "distinct_final_sha256": "07035ebbf37cdb43253d30010f7b3387a036c32a334e3d566ec93a38b59ada3b",
+    "frozen_root_copy": "/workspace/work/campaign/evidence/120/method1-final-prerelease-verdict",
+    "ROOT_consumption": "Fulloriginalreport+distinctfinal whole-read; prefixchecks+eachunchangedprefix/newappendconsumed throughproposal3; no concrete sourceblocker; exactcaptureassociation nowfilled externally."
+  },
+  "SCI": {
+    "snapshot_path": "/workspace/work/campaign/evidence/120/SCI-source1-before-peak-supplement.md",
+    "snapshot_sha256": "8b495a7b8ba74c60fe174fec8778999e9668c271ec0fda85d472ec4ba3079575",
+    "ROOT_consumption": "Whole173lines includingrecoveredtruncatedmiddle; explicitW1\u20136SOURCEsuitability accepted andreviewerROOTDIRECTconfirmed narrowapplicability. Overallpeak/matrix/handoffreview ACTIVE; not final SCI, no27grant/no recommendation."
+  },
+  "public_parent119": "SCI/full13/D/CIpassed2393, PR126",
+  "runtime_acceptance": "NONE YET; onequalificationproducesobservations forsubsequentreview, notpredeterminedpass"
+}

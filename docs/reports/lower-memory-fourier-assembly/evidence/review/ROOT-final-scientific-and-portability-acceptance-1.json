@@ -1,0 +1,61 @@
+{
+  "schema": "FA120-ROOT-scoped-final-manuscript-application-v1",
+  "time_utc": "2026-11-16T20:03:04.684144+00:00",
+  "root_whole_read": {
+    "original_SCI3_report_and_distinct_final": true,
+    "SCI4_report_and_distinct_final": true,
+    "corrected_README_complete_prose_delta": true
+  },
+  "verdict": "ACCEPT_ORIGINAL_RETAINED_SCIENCE_AND_CORRECTED_PORTABILITY_WITH_EXPLICIT_SCOPES",
+  "review_artifacts": [
+    {
+      "path": "/workspace/work/campaign/evidence/120/ROOT-final-manuscript-verdicts-1/original-SCI3-report.md",
+      "sha256": "7b50bc789dd8bb3d9aa64f159d1a868d14e62021315d643bbc7010a19bc7b51a",
+      "bytes": 21615
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/120/ROOT-final-manuscript-verdicts-1/original-SCI3-final.txt",
+      "sha256": "f552bbdb4bacfedeef2331fbc9577be5b9a6a6d157eaed7692e231828ed2b745",
+      "bytes": 2228
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/120/ROOT-final-manuscript-verdicts-1/corrected-SCI4-report.md",
+      "sha256": "457b5c07d259814a4004dc10da24dbc563dbcfa7ffb5220ed1c5b36b3dea6285",
+      "bytes": 15276
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/120/ROOT-final-manuscript-verdicts-1/corrected-SCI4-final.txt",
+      "sha256": "7ab4eeb8c55216592bddc7a3cb75d63df863a4935fb813fe45089533a6b1803a",
+      "bytes": 2116
+    }
+  ],
+  "corrected_freeze_sha256": "50feb04f3dc9310d15b2bfb9fe9273f9334f8357083cc9b2ea0df9d60fd61637",
+  "accepted_corrected_artifacts": {
+    "README.md": "8b98a69d50eeb7b2b8823ecefbe58349a6785a269c6ee63c59faa45e29721364",
+    "accounting.md": "f348b59484f77e153d2bab1312309a28c275c511eba309ade1c33b495ee84b5e",
+    "study-disposition.tsv": "31e0d33a92e0f22334f02f86f36a4f4454ea54c5fc1867b0bd245c1bacaba178",
+    "evidence/locations.json": "7c7c9edd627e15013a27227dce7e2a9c117350060ce5e8327e58c6d8aee4ebfa",
+    "evidence/environment/external-native-identities.json": "77a4bff590883bc8ffd5d2f048c14b8d8385971e55bec2a134026b07292ae767"
+  },
+  "scope_disposition": {
+    "SCI2": "Accepted finite exact-byte counterexample; ROOT application4d63e873 remains applicable.",
+    "SCI3": "Original330 scientific assessment retained only for unchanged scientific prose, original326copies/source/data/ledger. Original494-reference filesystem-only assurance was insufficient and is superseded. Not retroactive correction2 acceptance.",
+    "SCI4": "Fresh affected independent corrected337 transport/Git/native metadata and retained applicability acceptance; own primary assessment precedes prior opinions. No new whole-no-go proof or390stream semantic audit.",
+    "root_independent_closure": {
+      "path": "/workspace/work/campaign/evidence/120/ROOT-corrected-portable-Git-blob-proof-1.json",
+      "sha256": "8ad71ced219b0fe52612ecc52cd506f1403b8613d75f6071e3c51a6dba1a4f70",
+      "copy_exact": 332,
+      "actual_git_blobs": 485,
+      "git_accepted2393": 484,
+      "git_owned_intake_f3db": 1,
+      "external_native_identity_only": 3
+    }
+  },
+  "precise_science": "Reject only tested disposable-padding overwrite inverse under exact-result contract. Finite positive witnesses remain. Full arrays unarchived; unknown mismatch location/count/magnitude/signed-zero/backend cause. Baseline/control matching digests do not establish a separately executed direct pair predicate after conjunction short-circuit.",
+  "stopped": "W3-W6/writer27kernels12optionalworkflow NOT_EXECUTED_AFTER_COMPATIBILITY_PREREQUISITE_FAILED. Memory/latency/repeats/workspace/current-large/full-volume/16GiB/out-of-core necessity remain unmeasured or unqualified.",
+  "native_boundary": "Six startup/config files exactly copied; Python/NumPy/DUCC native files identity-only unbundled. No bit-complete environment restoration, provisioning/native dependency/ABI/dispatch/internal precision/workspace or future execution applicability proof.",
+  "history_preserved": "Original330/SCI3, incomplete correction1 partial337, all prior scientific/author/reviewer/source/error attempts remain immutable; fresh correctiveauthor2/SCI4 charges retained. No relabelled verdict or deleted history.",
+  "authorized_next": "ROOT integrates exact accepted337 with unchanged author README at same-level author-manuscript.md, factual wrapper/Current and separate integration placement manifest; verifies actual Git index/blob identities; final exact clean Ubuntu all13; fresh D; leasechecked publication and actualCI.",
+  "publication_readiness": "NOT_YET: final integration/gate/D/PR/CI are separate and pending",
+  "model_cost_time": "Actual serving/effort/token/cache/money/complete elapsed UNKNOWN; human numeric quotas not set."
+}

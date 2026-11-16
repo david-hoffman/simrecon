@@ -1,0 +1,12 @@
+d2d6ec94e963b7169fb473b06c5d1ad367756285eefe920fe3c7d8fe72f504a8  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/originals/experimental_child.py
+298f98c49511959db70b5e8f9dc65d10887a4c32757c0a0139b2e83affa9af96  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/originals/public_fixture_qualification.py
+930e917d9f2334ca96f4e693ad2bf812cb96ef090b699aa8622df4454d5ebeaa  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/originals/independent-witnesses.md
+4c655f84bed427579c0e45d94600a640708517c4751c6b6340d44aabdcd0f1be  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/experimental_child.py
+d0d08bb06d8eb4653fec2119387b56d68005b8fcb604275b31051ee772b417b8  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/experimental_child.py.patch
+3a964454d3c3b74a89392bf349c3e0f926ad80116f2e4843b30ea3568ba3a513  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/supplied-interface-amendment.md
+0e4a4c9b4dca66b1a7234fd7fa52310256d2136f2eb4c2abff8743690469fea8  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/references/apparatus-source-handoff.md
+eafa32442a76a58fe8da3c7abb10f791f22a292393dd4aede4fd0dea0be817a7  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/references/apparatus-source-artifact-sha256.txt
+64a5c76fbbe6cf8a42b977ad292ace6226bfc4e0a19e606831bfe4b57b634205  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/references/direct_binding.py
+79b62583814c619b061c633014d8bd17239dbe0f2808e4a52e58b27c29faad31  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/closed-field-map.md
+a027b53c9ee693a6ba46396fe592be54f4671d538bcea40d1d495e0e2f7f7bf8  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/read-input-sha256.txt
+c4002ace64c926dcd91a8886791d5b71aa910a730c936c2b502969b639969fe4  /workspace/work/issue-120-sourceprep/math-interface-source-amendment/source-handoff.md

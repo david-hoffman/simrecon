@@ -1,0 +1,61 @@
+{
+  "schema": "FA120-external-native-identities-portability-correction-2",
+  "scope": "SEPARATELY_AUTHORED_SUPPORT_MANIFEST_NOT_AN_EXTRA_PRIMARY_INVENTORY_ENTRY",
+  "native_bytes_bundled": false,
+  "limits": "Identity-only records are not a native archive, Git blob reference, transport, reconstruction or restoration proof. Bit-complete native environment restoration is not supplied. Complete provisioning reproducibility, all transitive native dependencies, ABI/dispatch/internal precision/workspace and future-run applicability remain unproved.",
+  "recorded_versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ducc_separate_package_version": "UNKNOWN_NOT_RECORDED; recorded module belongs to SciPy1.18.1"
+  },
+  "provenance_association": {
+    "path": "evidence/root/ROOT-metadata-import-provenance-2.json",
+    "sha256": "1973618d090598a8e31217aafe6a31cce7093c7b1f928e3b766632c45f24551d",
+    "preflight_path": "evidence/root/ROOT-actual-environment-preflight-and-metadata-result-1.json",
+    "preflight_sha256": "a6c81771502452eca46eccabc645511dc40024a84f7982084347106ef68760f5",
+    "source_material_paths": [
+      "evidence/root/qualification/Q-W1-a1/source-material.json",
+      "evidence/root/qualification/Q-W2-a1/config-v2/source-material.json"
+    ],
+    "source_material_sha256": [
+      "0833a7790fa5071095eff668df1543ff78bcccfb710091394aa98e1598174c21",
+      "e5a904daa5d7322d765f0f117e59ff2084e78c642845531018c57ec491f11f17"
+    ],
+    "association": "Historical recorded own venv Python3.13.12 and NumPy/SciPy/DUCC origins/identities. This correction only hash/stat/readlink verifies named files; it performs no new provisioning/import/version probe."
+  },
+  "entries": [
+    {
+      "source": "/workspace/work/issue-120/.venv/bin/python",
+      "resolved_path": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+      "sha256": "fed567fcbdacc14612dddd5f29a3203fbe5c93f50b926f15e7a926cf668822a5",
+      "bytes": 29357680,
+      "mode": "EXTERNAL_NATIVE_IDENTITY_ONLY",
+      "native_bytes_bundled": false,
+      "verification": "FILE_HASH_LENGTH_READLINK_ONLY_NO_EXECUTION_OR_LOAD",
+      "version_association": "Recorded Python3.13.12 (main, Mar 24 2026, 22:49:35) [Clang22.1.1]; executable/resolved identity in provenance2"
+    },
+    {
+      "source": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/numpy/_core/_multiarray_umath.cpython-313-x86_64-linux-gnu.so",
+      "resolved_path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/numpy/_core/_multiarray_umath.cpython-313-x86_64-linux-gnu.so",
+      "sha256": "097e10f2baaf99d5a4655e549a6c76b139e3931681af39068f79c7b3abddadac",
+      "bytes": 10633113,
+      "mode": "EXTERNAL_NATIVE_IDENTITY_ONLY",
+      "native_bytes_bundled": false,
+      "verification": "FILE_HASH_LENGTH_READLINK_ONLY_NO_EXECUTION_OR_LOAD",
+      "version_association": "Recorded NumPy2.5.3; numpy._core._multiarray_umath module origin in provenance2"
+    },
+    {
+      "source": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/scipy/fft/_duccfft/pyduccfft.cpython-313-x86_64-linux-gnu.so",
+      "resolved_path": "/workspace/work/issue-120/.venv/lib/python3.13/site-packages/scipy/fft/_duccfft/pyduccfft.cpython-313-x86_64-linux-gnu.so",
+      "sha256": "f02b18219f6f4da027e3badebb3b6891c3cda415130f02b9e2583f0f69fb013e",
+      "bytes": 2389392,
+      "mode": "EXTERNAL_NATIVE_IDENTITY_ONLY",
+      "native_bytes_bundled": false,
+      "verification": "FILE_HASH_LENGTH_READLINK_ONLY_NO_EXECUTION_OR_LOAD",
+      "version_association": "Recorded SciPy1.18.1; scipy.fft._duccfft.pyduccfft module origin in provenance2; separate DUCC package version UNKNOWN_NOT_RECORDED"
+    }
+  ],
+  "verification_actor": "FRESH_CORRECTIVE_REPORT_AUTHOR2_FILE_HASH_STAT_READLINK_ONLY",
+  "verification_scope": "Metadata correction2; historical version/provisioning association retained from exact archived records, not newly probed. Native bytes not copied, loaded or executed."
+}

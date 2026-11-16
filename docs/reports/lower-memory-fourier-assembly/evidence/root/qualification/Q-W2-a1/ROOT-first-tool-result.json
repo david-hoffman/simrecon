@@ -1,0 +1,12 @@
+{
+  "case": "Q-W2-a1",
+  "started_UTC": "2026-11-16T18:51:04.888Z",
+  "grant_sha256": "f86534b5778e967259dd667f884a5c0fcabb09ff55a1757db8627ae7953d8c45",
+  "result": {
+    "chunk_id": "bad409",
+    "wall_time_seconds": 0.982959984,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": ""
+  }
+}

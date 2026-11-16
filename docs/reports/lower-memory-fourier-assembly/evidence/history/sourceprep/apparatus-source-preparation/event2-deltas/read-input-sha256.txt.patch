@@ -1,0 +1,7 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/historical-event1-pre-identity-correction/read-input-sha256.txt	2026-11-16 06:00:41.909015559 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/read-input-sha256.txt	2026-11-16 06:03:20.771582552 -0800
+@@ -21,3 +21,4 @@
+ aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13  /workspace/work/campaign/evidence/118/method-source-review-1/report.md
+ 22e3fa79829483006847d224fd1e4450b5b1a47de8c24b6c1072e2da620e6f75  /workspace/work/campaign/evidence/118/ROOT-source-review-application-and-startup-qualification-1.json
+ 4c63ee6bb4186458ad09ec548b86ff600d754cc1b743638a8bd734e0225dbf7c  /workspace/work/campaign/evidence/118/ROOT-retained-method-qualification-map-1-collection-note.md
++c31e15e9cbcc015806b4c6b553dc13e59d27984c907821bb5b99f2122c41c94a  /workspace/work/issue-120-sourceprep/apparatus-source-preparation/identity-definition.txt

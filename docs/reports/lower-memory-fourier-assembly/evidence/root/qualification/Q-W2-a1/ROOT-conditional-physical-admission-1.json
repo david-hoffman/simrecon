@@ -1,0 +1,25 @@
+{
+  "status": "CONDITIONAL_PHYSICAL_ADMISSION",
+  "case": "Q-W2-a1",
+  "context_sha256": "ec841411109e0f45bfe586e01f88fb25c7cd5a4e8062a903be979fab28bbb566",
+  "observed_unix_ns": 1794855063844120641,
+  "max_age_seconds": 300,
+  "available_bytes": 17760800768,
+  "child_allowance_bytes": 536870912,
+  "reserve_bytes": 536870912,
+  "min_available_bytes": 1073741824,
+  "disk_available_bytes": 42662858752,
+  "disk_min_bytes": 2147483648,
+  "visible_ancestors": [
+    {
+      "path": "/sys/fs/cgroup",
+      "current_bytes": 4208676864,
+      "max_bytes": 17179869184,
+      "stop_bytes": 16106127360
+    }
+  ],
+  "membership": "/",
+  "namespace": "cgroup:[4026532294]",
+  "hidden_ancestors_actors": "UNKNOWN_UNOBSERVABLE; conditional admission, no absence/unlimited/guarantee",
+  "limits": "GNUwalltimeonly, no enforcedRSSceiling or measuredpredictedpeak. Reviewer/sourcefilework only; no othercontrollednumeric/test/install/benchmark."
+}

@@ -1,0 +1,71 @@
+{
+  "utc": "2026-11-16T18:37:57.446136+00:00",
+  "status": "CLOSED_NORMAL_OBSERVATIONS_ONLY_PENDING_FINITE_SCI_ASSESSMENT",
+  "condition": "W1",
+  "attempt": "Q-W1-a1",
+  "grant_sha256": "a1ce1bbf4a801966c17f6a4e20a0b65d6c092ad35d2169b64e5297ebe1fbc10e",
+  "actual_python_pid": 164051,
+  "actual_python_birth_ticks": 16066384,
+  "GNU_timeout_parent_pid": 164045,
+  "startup_marker": {
+    "event": "FA120-QUALIFICATION-START",
+    "condition": "W1",
+    "attempt": "Q-W1-a1",
+    "pid": 164051,
+    "ppid": 164045,
+    "pgid": 164045,
+    "sid": 164045,
+    "monotonic_ns": 160663913133099,
+    "birth_ticks": 16066384,
+    "debug": true,
+    "optimize": 0,
+    "executable": "/workspace/work/issue-120/.venv/bin/python",
+    "prefix": "/workspace/work/issue-120/.venv"
+  },
+  "normal_status_association": "ExistingtoolreportsDockerexec0; GNUforegroundtimeout normal0 maps directPython0; start/resultsamePID+case andfullresultJSON. Standardroute,no nativewait4usageexport or universalreaperclaim. No signal/deadline/outerexpiry/marker gap observed.",
+  "source_before_after55equal": true,
+  "candidate_full_clean": true,
+  "checks": [
+    {
+      "case": "W1a",
+      "literal_complete_bytes_equal": true,
+      "literal_caller_unchanged": true,
+      "public_complete_image_bytes_equal_all_variants": true,
+      "public_complete_variant_bytes_equal": true,
+      "public_kernel_input_unchanged": true,
+      "fixed_samples": 5
+    },
+    {
+      "case": "W1b",
+      "literal_complete_bytes_equal": true,
+      "literal_caller_unchanged": true,
+      "public_complete_image_bytes_equal_all_variants": true,
+      "public_complete_variant_bytes_equal": true,
+      "public_kernel_input_unchanged": true,
+      "fixed_samples": 5
+    },
+    {
+      "case": "W1c",
+      "literal_complete_bytes_equal": true,
+      "literal_caller_unchanged": true,
+      "public_complete_image_bytes_equal_all_variants": true,
+      "public_complete_variant_bytes_equal": true,
+      "public_kernel_input_unchanged": true,
+      "fixed_samples": 5
+    }
+  ],
+  "stdout": {
+    "path": "/workspace/work/campaign/evidence/120/qualification/Q-W1-a1/stdout.jsonl",
+    "bytes": 45124,
+    "sha256": "15a3e22980dc87484a9a6aa352ea284b11fed35ebb69b09cafd57eac4956e136",
+    "json_records": 2
+  },
+  "stderr": {
+    "path": "/workspace/work/campaign/evidence/120/qualification/Q-W1-a1/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "interpretation": "All3literal/public variantcompletebyte predicates andcaller preservation observedtrue; independentpointwiseexacterrors retainedraw forSCI, no blanketaccuracy/nativebound. Not27measurementrows, no processpeak/latency/RAM/16GiB/capability/no-go/handoff claim. No automaticnextentrygrant.",
+  "window": "CLOSEDafterobservedterminal0andsourcepostcheck; allotherrolesfile-only, no otherlocalnumericactive.",
+  "counts": "ROOTscientificqualificationentryattempt1/closed1, measuredrows0; mathauthorownrunsstill0/events7/corrections6, separatechargesunchanged."
+}

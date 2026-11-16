@@ -1,0 +1,11 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/run_direct_attempt.py
++++ /workspace/work/campaign/evidence/120/method-source-binding-1/run_direct_attempt.py
+@@ -5,7 +5,7 @@
+ A future root-authored exact-case grant is evidence, not access control.
+ """
+ 
+-raise SystemExit("FA120 UNCONDITIONAL HOLD: APPARATUS SOURCE PREPARATION ONLY")
++# ROOT source binding: execution still requires independent review and exact-case grant.
+ 
+ import argparse
+ import hashlib

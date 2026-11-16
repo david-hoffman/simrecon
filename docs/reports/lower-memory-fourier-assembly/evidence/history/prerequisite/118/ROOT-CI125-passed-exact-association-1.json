@@ -1,0 +1,50 @@
+{
+  "time_utc": "2026-11-16T16:24:38.665548+00:00",
+  "result": "PASSED",
+  "PR": 125,
+  "run_id": 43903983166,
+  "job_id": 133427761353,
+  "url": "https://github.com/david-hoffman/simrecon/actions/runs/43903983166/job/133427761353",
+  "job_all_steps": "success",
+  "tests": {
+    "passed": 3500,
+    "warnings": 47,
+    "seconds": 585.45
+  },
+  "head": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+  "integration_commit": "49ea6a5de587e262ce0e36c86fdbe68510963b1c",
+  "integration_parents": [
+    "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+    "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+  ],
+  "tree": "28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a",
+  "checkout_log_contains_exact_integration_commit": true,
+  "fetched_merge_tree_matches_verified_candidate": true,
+  "decoded_tool_log_export": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-CI-job133427761353.log",
+    "sha256": "ecb55dd0173e08fe2b7f7bbe45125bdd882a5eec390ce72ff81f873508e9ec48",
+    "bytes": 55239,
+    "scope": "Decoded tool text export with final newline; no raw ZIP/network-byte identity claim."
+  },
+  "artifact_metadata_only": {
+    "id": 14244394143,
+    "name": "verification-ubuntu-24.04",
+    "size_in_bytes": 1822054,
+    "url": "https://api.github.com/repos/david-hoffman/simrecon/actions/artifacts/14244394143",
+    "archive_download_url": "https://api.github.com/repos/david-hoffman/simrecon/actions/artifacts/14244394143/zip",
+    "expired": false,
+    "created_at": "2026-11-16T16:20:31Z",
+    "expires_at": "2027-02-14T16:07:31Z",
+    "updated_at": "2026-11-16T16:20:31Z",
+    "digest": "sha256:e132428023b5f17197a4826f49a9a7e23b3da235b7e5155c77bb6846818bbc15",
+    "workflow_run": {
+      "id": 43903983166,
+      "repository_id": 1398550280,
+      "head_repository_id": 1398550280,
+      "head_branch": "perf/118-preparation-harmonic-lifetimes",
+      "head_sha": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+    }
+  },
+  "artifact_downloaded": false,
+  "local_candidate_or_receipt_changed": false
+}

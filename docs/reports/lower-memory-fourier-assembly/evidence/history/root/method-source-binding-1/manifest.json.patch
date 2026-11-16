@@ -1,0 +1,250 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/manifest.json
++++ /workspace/work/campaign/evidence/120/method-source-binding-1/manifest.json
+@@ -4,23 +4,23 @@
+   "numerical_release": false,
+   "execution_status": "HOLD_SOURCE_ONLY",
+   "planned_window": "W120",
+-  "attempt_output_root": "UNBOUND",
+-  "actual119_parent": "UNBOUND",
++  "attempt_output_root": "/workspace/work/campaign/evidence/120/study-attempts",
++  "actual119_parent": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+   "subject": {
+-    "root": "UNBOUND",
+-    "python": "UNBOUND",
+-    "module_root": "UNBOUND",
++    "root": "/workspace/work/issue-120",
++    "python": "/workspace/work/issue-120/.venv/bin/python",
++    "module_root": "/workspace/work/issue-120/src/simrecon",
+     "identity": {
+-      "head": "UNBOUND",
+-      "tree": "UNBOUND",
+-      "tracked_diff_sha256": "UNBOUND"
+-    },
+-    "dirty": "UNBOUND"
++      "head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
++      "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
++      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "dirty": false
+   },
+   "launch": {
+     "route": "plain-posix-spawn/same-pid-setsid/execve",
+     "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+-    "startup_timeout_seconds": "UNBOUND",
++    "startup_timeout_seconds": 2.0,
+     "startup_pipe_bytes": 1024,
+     "ready_message_bytes": 512
+   },
+@@ -108,12 +108,56 @@
+         "grid.json": "UNBOUND"
+       },
+       "expected_loaded_input_identities": {
+-        "filtered": ["filtered", [1, 3, 5, 8, 32, 17], "<c16", "UNBOUND"],
+-        "carriers": ["carriers", [3, 2], "<f8", "UNBOUND"],
+-        "x_um": ["x_um", [64], "<f8", "UNBOUND"],
+-        "y_um": ["y_um", [64], "<f8", "UNBOUND"]
+-      },
+-      "expected_output_identity": ["image", [1, 8, 64, 64], "<f8", "UNBOUND"],
++        "filtered": [
++          "filtered",
++          [
++            1,
++            3,
++            5,
++            8,
++            32,
++            17
++          ],
++          "<c16",
++          "UNBOUND"
++        ],
++        "carriers": [
++          "carriers",
++          [
++            3,
++            2
++          ],
++          "<f8",
++          "UNBOUND"
++        ],
++        "x_um": [
++          "x_um",
++          [
++            64
++          ],
++          "<f8",
++          "UNBOUND"
++        ],
++        "y_um": [
++          "y_um",
++          [
++            64
++          ],
++          "<f8",
++          "UNBOUND"
++        ]
++      },
++      "expected_output_identity": [
++        "image",
++        [
++          1,
++          8,
++          64,
++          64
++        ],
++        "<f8",
++        "UNBOUND"
++      ],
+       "public_image": {
+         "path": "UNBOUND",
+         "sha256": "UNBOUND",
+@@ -135,12 +179,56 @@
+         "grid.json": "UNBOUND"
+       },
+       "expected_loaded_input_identities": {
+-        "filtered": ["filtered", [1, 3, 5, 8, 64, 33], "<c16", "UNBOUND"],
+-        "carriers": ["carriers", [3, 2], "<f8", "UNBOUND"],
+-        "x_um": ["x_um", [128], "<f8", "UNBOUND"],
+-        "y_um": ["y_um", [128], "<f8", "UNBOUND"]
+-      },
+-      "expected_output_identity": ["image", [1, 8, 128, 128], "<f8", "UNBOUND"],
++        "filtered": [
++          "filtered",
++          [
++            1,
++            3,
++            5,
++            8,
++            64,
++            33
++          ],
++          "<c16",
++          "UNBOUND"
++        ],
++        "carriers": [
++          "carriers",
++          [
++            3,
++            2
++          ],
++          "<f8",
++          "UNBOUND"
++        ],
++        "x_um": [
++          "x_um",
++          [
++            128
++          ],
++          "<f8",
++          "UNBOUND"
++        ],
++        "y_um": [
++          "y_um",
++          [
++            128
++          ],
++          "<f8",
++          "UNBOUND"
++        ]
++      },
++      "expected_output_identity": [
++        "image",
++        [
++          1,
++          8,
++          128,
++          128
++        ],
++        "<f8",
++        "UNBOUND"
++      ],
+       "public_image": {
+         "path": "UNBOUND",
+         "sha256": "UNBOUND",
+@@ -162,12 +250,56 @@
+         "grid.json": "UNBOUND"
+       },
+       "expected_loaded_input_identities": {
+-        "filtered": ["filtered", [2, 2, 5, 1, 12, 9], "<c16", "UNBOUND"],
+-        "carriers": ["carriers", [2, 2], "<f8", "UNBOUND"],
+-        "x_um": ["x_um", [32], "<f8", "UNBOUND"],
+-        "y_um": ["y_um", [24], "<f8", "UNBOUND"]
+-      },
+-      "expected_output_identity": ["image", [2, 2, 24, 32], "<f8", "UNBOUND"],
++        "filtered": [
++          "filtered",
++          [
++            2,
++            2,
++            5,
++            1,
++            12,
++            9
++          ],
++          "<c16",
++          "UNBOUND"
++        ],
++        "carriers": [
++          "carriers",
++          [
++            2,
++            2
++          ],
++          "<f8",
++          "UNBOUND"
++        ],
++        "x_um": [
++          "x_um",
++          [
++            32
++          ],
++          "<f8",
++          "UNBOUND"
++        ],
++        "y_um": [
++          "y_um",
++          [
++            24
++          ],
++          "<f8",
++          "UNBOUND"
++        ]
++      },
++      "expected_output_identity": [
++        "image",
++        [
++          2,
++          2,
++          24,
++          32
++        ],
++        "<f8",
++        "UNBOUND"
++      ],
+       "public_image": {
+         "path": "UNBOUND",
+         "sha256": "UNBOUND",
+@@ -1179,15 +1311,15 @@
+     "host": "UNBOUND",
+     "cgroup": "UNBOUND",
+     "current_headroom": "UNBOUND",
+-    "process_stop_bytes": "UNBOUND",
+-    "host_min_available_bytes": "UNBOUND",
++    "process_stop_bytes": 536870912,
++    "host_min_available_bytes": 1073741824,
+     "ancestor_stop_bytes": "UNBOUND",
+-    "deadline_seconds": "UNBOUND",
+-    "terminate_grace_seconds": "UNBOUND",
+-    "kill_reap_seconds": "UNBOUND",
+-    "outer_ownership_envelope": "UNBOUND",
+-    "max_child_record_bytes": "UNBOUND",
+-    "startup_timeout_seconds": "UNBOUND"
++    "deadline_seconds": 60.0,
++    "terminate_grace_seconds": 1.0,
++    "kill_reap_seconds": 5.0,
++    "outer_ownership_envelope": 120.0,
++    "max_child_record_bytes": 1048576,
++    "startup_timeout_seconds": 2.0
+   },
+   "scope": "ONLY 27 named primary rows. One assembly per measured child. No public setup, baseline/reference result or reference image in measured child. All PENDING; no auto driver/retry/growth/workflow. All current entrypoints unconditionally held before imports; later amended child hash UNBOUND. Actual-parent reconcile, fresh method AND science review, finite ROOT qualification and EACH admission mandatory."
+ }

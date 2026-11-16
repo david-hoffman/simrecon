@@ -1,0 +1,28 @@
+{
+  "utc": "2026-11-16T19:16:51.050782+00:00",
+  "decision": "ACCEPT_PRECISE_EXACT_COMPATIBILITY_NO_GO_GROUND_AND_RELEASE_REPORT_AUTHOR_ONLY",
+  "head_measured": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "accepted_stack_base": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+  "SCI2": {
+    "role": "/root/issue_120_final/counterexample_sci2",
+    "report_path": "/workspace/work/campaign/evidence/120/SCI2-final-counterexample-verdict/report.md",
+    "report_sha256": "47ce09c6103f34b33d38e933f56f67c421df773ab97118b0a641655df23a0f1f",
+    "distinct_final_path": "/workspace/work/campaign/evidence/120/SCI2-final-counterexample-verdict/final.txt",
+    "distinct_final_sha256": "8ff615e9c57610011c38e3757a7df9051c77c37d7280f2b7aab8494db7cf5550",
+    "ROOT_consumption": "Detailedreport andseparatefinal whole-read withouttruncation. Freshprimaryassessmentbeforesecondary preserveda7d4; primary71/secondary15 maps+source55hashpassed. No concrete gap requiringcapture/rerun. Accept scopedcounterexample\u2014not finalmanuscript/gate/D/PRacceptance."
+  },
+  "observed": "Q-W2-a1 validCE04oddY3centerretention PreparedBands, literal+realpubliclane bytepredicatesfalse; baseline/control0740041a versuscandidate390efa25 same[1,8,6,8]f8, callersandfilteredcorrespondenceunchanged, normal0/stderr0/source55stable. Differing deterministicdigests corroborate directfullbytepredicate. Fixedsampleagreementdoesnotestablishwholebyteequality.",
+  "classification": "Experimentalstrategy exactcompatibilityfailure; no productbug/environment/tool/testfailure; no numericalaccuracytheorem or magnitude/location/zero-sign/backendmechanismclaim. Rawarraysnotarchived.",
+  "authority": "CurrentGitHubissue120unchanged e313readback +FA1207e0e explicitno-go validwhenchangesexactresults; coorconditional699 interpretation independentlyconfirmedSCI2. No tolerance/backend/algorithm/contractrelaxation or human decision needed.",
+  "remaining_scientific_rows": "NOT_EXECUTED_AFTER_COMPATIBILITY_PREREQUISITE_FAILED: W3\u2013W6,writers,27kernelrows,12workflowrows. No positivequalification/performancecriterion completion, no memoryfloor/saving/repeat/latency/workspace/generaloverwrite/outofcore/16GiBclaim. W1andW2a\u2013cremainfinitepositives. Source8pausedincompletepreserved.",
+  "allowed_now": "Freshreportauthor toprepareoneprecisenogomanuscript,requirement/rowdispositions,portableexactevidence andcumulativeaccounting; thenfreshindependentfinalmanuscriptscientist. No runtime/targets/Sourcefix. ROOTlaterfinalintegration+fullUbuntu13+freshD+PR/CI mandatory.",
+  "SCI1_history": {
+    "exact_W1_report": "/workspace/work/campaign/evidence/120/SCI1-exact-W1-verdict/report.md",
+    "W1_report_sha256": "50a91547a3f1aeb24b85a0535b680278c18b8f8640d9892c85ff575693495fd9",
+    "W1_final_sha256": "b31aad4bd278aeb90fa3bbc0a25d5a44899c52031646b389bc551df481599963",
+    "interrupted_W2_partial_path": "/workspace/work/campaign/evidence/120/SCI1-interrupted-W2-partial-report.md",
+    "partial_sha256": "b76bbc1c7f5c6f85dd537f5a1ac60b4ef57cfdc03cc9bca73b1436fc2a191cd1",
+    "status": "W1exactprefixrestoredbyknown50aSHA fromcurrentreportb76; W2primaryonlypartialnotfinal. OwncontinuationinterruptedthenHTTP400unsupportedrequest_country, replacedfreshSCI2withoutinheritedauthorhistory. Preserveallcharges; no retroqualification/reset."
+  }
+}

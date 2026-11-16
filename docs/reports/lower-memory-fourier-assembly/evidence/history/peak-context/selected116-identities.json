@@ -1,0 +1,1586 @@
+[
+  {
+    "attempt_id": "ws116-central64-full-supplied-r1-u",
+    "condition_id": "central64-full-supplied",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 17606,
+        "sha256": "79a51568f60d9e0bc6cd6df9db0d4d6cfe18bff78427e3555cb5415287cc66ef"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30261,
+        "sha256": "82d25938fb2e600cfdfa7bcc08ae9776db183196244615e64582e75d4c989183"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2109440,
+        "logical_bytes": 2107736,
+        "sha256": "63cec79a15fd240cd5ae52c6303b2a84847d918e84d3b26a97351f9e8b9263fa"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4902,
+        "sha256": "61d50530b96b9af7148437175f23d792685e5f79ff74cd1a454f46ee5919e522"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33120,
+        "sha256": "f1340ee787b8698bb86f1b62ac8feb5b31f782853b0e5bcbd6dc681e1667377f"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-full-supplied-r2-u",
+    "condition_id": "central64-full-supplied",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 19152,
+        "sha256": "4770e070acc8ff9c4e725b99a622b8a6dc7d6c1829f7d3b699b0fc0cc7b2d74b"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30271,
+        "sha256": "05e77a6dcceb4ba1a924d3a84c319fa5b7f4e50e1f2d681c022f2d60127dd87e"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2420736,
+        "logical_bytes": 2418828,
+        "sha256": "8477a134387911dfc856f5fb017de1b60ea588306281a8a89e9833297b65a539"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4902,
+        "sha256": "2bbde7664aad241e43d3c0408e245a938b92878f08fa032713b2f871c86cfad2"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33113,
+        "sha256": "d79089cbee485fb798878fc02656f634130bdbd7817d3e4bf4483ebf74256dc7"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-full-supplied-r3-u",
+    "condition_id": "central64-full-supplied",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 20698,
+        "sha256": "f15ebce7feed02a104d3128bf02d7c3392f3392a7af51003f3be7c3ab38cb65a"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28133,
+        "sha256": "57cfdc6e9e07888f5a3fca2db665ac9b66275593349e046ab6d91321a173b8f7"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2424832,
+        "logical_bytes": 2424590,
+        "sha256": "5cb7d74ad26af425534f156f0ebffbf39a4c1eb29f650ffffeaef86afd0a7daf"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4902,
+        "sha256": "96b79f7f1034af2805145fbb8b848b923401d94efd9f025fcb0863991118ce90"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33130,
+        "sha256": "3486a270034c93a641c8c29ae617c248d31fd95d3e45fd6eb01b63e47f32a3c6"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-full-searched-r1-u",
+    "condition_id": "central64-full-searched",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 22244,
+        "sha256": "44a582e894973c8b37852e4fe3c46a2ef573bb018a0a8336e8901ff65448bb38"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30257,
+        "sha256": "cfbccc9672e73bf563beadae3320ef159032e329d0895cb96ee128ade2bbfa17"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2560000,
+        "logical_bytes": 2557260,
+        "sha256": "535939c3cda38a8fe45b872cb83c738096b4d36000515fc806aeef47264c7e36"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4901,
+        "sha256": "60d16358ade3654605ec53ec0e547dc6db2a91c7633743e5fbfffd31db399d9b"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39141,
+        "sha256": "ab4d28e44fe8cc79b14d1d3a7da1f2f63700872be1747cb9dc8b4373638dfb49"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-full-searched-r2-u",
+    "condition_id": "central64-full-searched",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 23790,
+        "sha256": "f10f9e5d2d56d17a685c9b34a26b08ae5e9e7f9174522de998f92f731274fd44"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30240,
+        "sha256": "170ea11545f6da9593c06f9e77c4b99f85a5464ca78d4d5413559285afffc467"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2351104,
+        "logical_bytes": 2350312,
+        "sha256": "b31f2d5ced1f80577b34f69513c6ea60c90854783e4cc09687faf461932aad96"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4901,
+        "sha256": "ffe9bc6102bfc6d3b6d4aba9b7957caa609e851747b41e3d15efd7395e45fb92"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39116,
+        "sha256": "bf24513e9fdd5c26095e8ee48bfe7c0267c8ea67d108c848a459c86c9d1a190d"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-full-searched-r3-u",
+    "condition_id": "central64-full-searched",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 25336,
+        "sha256": "e4e2e8129ba08e7a56b10a149c7d963dde23bfba16a2a29a30e89383aa6148a4"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28146,
+        "sha256": "41a91d9e275b792f52209d1b782af59628d61764da64bcf6f541bbe7af9ff6b3"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2338816,
+        "logical_bytes": 2336385,
+        "sha256": "b96dc0250792a317acbe0867ca947aa0a263a79b0c0359449392a841c015899b"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4901,
+        "sha256": "3c2131ca535ba9b0de6bf605de6402260ca270f16994fb66d31e460bddef042c"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39120,
+        "sha256": "2a37c7a882a6a0e0f327216dff2c992f0556614e4476be20d226db01cca0e755"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-summary-supplied-r1-u",
+    "condition_id": "central64-summary-supplied",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 26894,
+        "sha256": "fe64e1860bde2370b401a888a271480144c4fa815a1de2bb612fa30abbff6994"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28135,
+        "sha256": "024901df9c763c4bd8d1dd7b0dd92f95d9526f171eed756f44bd39dc7c115f79"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2248704,
+        "logical_bytes": 2247254,
+        "sha256": "1cd9aaa2938c4da663be5f27eb142254955f4e3ba13a396b2c852e5d767adc18"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4914,
+        "sha256": "3fa321b0d21a38a715a5108d7edaf7589e5dce4e45a5f6fab4b4eb0b92ee1778"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21462,
+        "sha256": "3e1b554f802645f75b7e4877a6f28e15f0b71ac16939356955485aed503a2263"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-summary-supplied-r2-u",
+    "condition_id": "central64-summary-supplied",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28440,
+        "sha256": "dbd0b3a09a9af6506670f4128c3f2085422e0f86be10628f1aea83a2afc34a5d"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30263,
+        "sha256": "f08e9ab8e7e36ab9a7e37c83acb66033d773577f7943362c4ab25a5b9a58d554"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2404352,
+        "logical_bytes": 2400663,
+        "sha256": "fd55bf38a95a7aa48f53d08d0695093b61b0ea1777a03779652e1c40091cda53"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4914,
+        "sha256": "0cfdcf1848d9c44d3025d2e9352b7992b37ec75637f4d402839ae618e00a2b3b"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21480,
+        "sha256": "e57884d4452c7658e324f6e7e7eeb53e93a4cd0f40bb5e98b983c7b7b375ffef"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-summary-supplied-r3-u",
+    "condition_id": "central64-summary-supplied",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29986,
+        "sha256": "334a44904c0b31972f581c8e4b9db68b8ff5a144d540d26ab5fbd247a25825e4"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28152,
+        "sha256": "6b506bbe0ae24bf4c770217b24a021491d98a59fe9b4e64eb2dba1814f6e9df7"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2252800,
+        "logical_bytes": 2249566,
+        "sha256": "84a23aee2148fde32cb188e4fe291c9b11cd53e490a3775c95e10c4a7ba85a70"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4914,
+        "sha256": "cef6ee59aabfcadea2061a2d10a85c65c1a0199e4d30a0710aa901e5c65dfd90"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21436,
+        "sha256": "b0523a3d8ea15247a00cc6154ec5d5c6de9600c768e81196f60f740e07c3b387"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-summary-searched-r1-u",
+    "condition_id": "central64-summary-searched",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 31532,
+        "sha256": "fc8b5255569713e71f3240c5a27b2a127d1511115d80af2c0199af072f34d62f"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28178,
+        "sha256": "64c6adbd58d38c9992ad3eacb669eb9524050e9fdbb78735cd51556035764754"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2793472,
+        "logical_bytes": 2792882,
+        "sha256": "d88597da39ab7166a539ce11b31aada15fe4c5678c8bee779fb5e76618d72f76"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4913,
+        "sha256": "5b43147087b4cbbd3dda8fe4a8b6f207aaac16f7f907492e63b0b4aae9600701"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21498,
+        "sha256": "de5755c60d77e69b710376c967f10e99a59bfb4197c671887baa8944a52e7391"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-summary-searched-r2-u",
+    "condition_id": "central64-summary-searched",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33078,
+        "sha256": "d478c642c12693824fc8ae1dd27c2c2f08044c3df9829f25fa1ff0421769147c"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30274,
+        "sha256": "0454dc1087b1e1d0d2c66bde3c4589dcc3b701a0479ffc5cfa7c865dd4a032fa"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2678784,
+        "logical_bytes": 2677523,
+        "sha256": "6977dbc26a9abddc514f7259b902d2bd0e45a12e6fdbd238a65314c0de132d43"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4913,
+        "sha256": "5b430967e4444c67e92f8b1cd8ed559e3e7d646e055dd187fb76250c91c44906"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21481,
+        "sha256": "8d4edeb514ce4045d8de10412039bcc71e52d52020006264859d3d549260c5d0"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-central64-summary-searched-r3-u",
+    "condition_id": "central64-summary-searched",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 34624,
+        "sha256": "7ad16b803721210d73ccf8a0c71dae1b462cfa08c190b8d9fda8c99deb50ad97"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30272,
+        "sha256": "0db629a766840da5474cc97ccd43bd03c1f28b29575c23ffd76d53335d7b41cf"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2740224,
+        "logical_bytes": 2736479,
+        "sha256": "77c94f90bd2306a3f6b3a51a3882469da6cf7913565df24ac236da71ed1cd5a5"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4913,
+        "sha256": "8a9cb939ca781ec296e7e9b6b5bd6e639c7e58302279fda4804da2e0dcf96ddc"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21465,
+        "sha256": "70a4ad5551f7ed765198ee3bdddecff29e113deec0c994653265cc79724037ee"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-full-supplied-r1-u",
+    "condition_id": "frozen128-full-supplied",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 36164,
+        "sha256": "a3928d0cedaa00acf3864f945f4e0672cb1d6a244e1048ea0ec3570362125f8a"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28155,
+        "sha256": "fd0cbf93e9bc5bedeeabd0c15cfbdbb47362050f0e8e834ae83d6aba0a1beec0"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 9551872,
+        "logical_bytes": 9548151,
+        "sha256": "c9afa42534fc76c03052fb710a1c051caad9e1bfdb8254dcb882ee845579052e"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4904,
+        "sha256": "38df1861bbdd292d9f2c1a0897e5c81e1e6fc825318820a4ac271492d7da06bb"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33208,
+        "sha256": "e5ce255820fa9bfee81373eb6dea30fde8332b6ea8862f09bc506455b4912059"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-full-supplied-r2-u",
+    "condition_id": "frozen128-full-supplied",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 37710,
+        "sha256": "07d88f0422a47883f7cbbe7077cc539045d5842ff36776a22e70cbde601a32c9"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30287,
+        "sha256": "75923b97a041d38c81f37352d634464f8f94c695ff81db25eafe6d85aedb7704"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 9682944,
+        "logical_bytes": 9681051,
+        "sha256": "a877cdf3cddde4e4bbb1b510e2aaa5634a4a4be74bd8d3d68e90ab53f23de96c"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4904,
+        "sha256": "cd2711d7a46391fe7a60c5c5dabfdaaf115524174e82dd10d2f46c1d91539aba"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33196,
+        "sha256": "2de8a191335c15e5908d55128bd31f83fc0a2b5d9ddf01ebbd95e7ac30ecf467"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-full-supplied-r3-u",
+    "condition_id": "frozen128-full-supplied",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39256,
+        "sha256": "b1244522cd8b65f85507c5025103f87161ba6781acdc512a8aa162cbb1d1326e"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30249,
+        "sha256": "5f7d85dbc81413ce1a902155dc469b863bc1bccc723129419c0a65107eeb5627"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 8966144,
+        "logical_bytes": 8965762,
+        "sha256": "8d0d2359fb631565c839e0cfae1f390a4b439580c73c2b631a42a2d81f2f607f"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4904,
+        "sha256": "bfcfaf9760489329c0e2f96a79a97255dc4d60e6e0b2bfd73c07e88d97d39b99"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33195,
+        "sha256": "359d6a9bbecee91507dc4c101ef9cbea3f2e85fa3d389279b4cf3761b48924b5"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-full-searched-r1-u",
+    "condition_id": "frozen128-full-searched",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 40802,
+        "sha256": "482a4ce6c83f62c11e042af81545cca68edb50592aff410a6ecee78e6444c365"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30264,
+        "sha256": "30329e0a8dfb207014ac1777a830f5534422ff6fee7733e67a20b708521c67dd"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 10158080,
+        "logical_bytes": 10156292,
+        "sha256": "da36ca65c81d373ead26bd0c866fa124d4c17a189987620d6e2dd1dc5623e958"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4903,
+        "sha256": "fa16325f83b5aaab20012c4d5a34c977a697d7cf6690cdcc0fc0081bad1694a2"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39130,
+        "sha256": "6dbb2f1403c92475301654c9366a4f02e0fc3a77751960f62d0a706a05128927"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-full-searched-r2-u",
+    "condition_id": "frozen128-full-searched",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 45056,
+        "logical_bytes": 42348,
+        "sha256": "927fc6359ca412e31d248068f6717ccc48fe9b514e7226b8eb95c1f70dede831"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30265,
+        "sha256": "264478266419fb5c5399a214af03f4ef340385004284677a68c5f628c8ef644a"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 10821632,
+        "logical_bytes": 10818314,
+        "sha256": "f1f80d023617e283fe4175a8c3b0542c827b5a88e3291bbf38e5e19a2cef1fc6"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4903,
+        "sha256": "297798055d5e60c3be062d64e21baf7791b0430dca1bc7f0e47c64a1704893e5"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39138,
+        "sha256": "7744549b97f9c5e600758de0042fbd0e2bd1f9564ef66d3db6ec2670daaa7e9b"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-full-searched-r3-u",
+    "condition_id": "frozen128-full-searched",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 45056,
+        "logical_bytes": 43894,
+        "sha256": "39a1add0e36cf314ca9166112467ef87a9260bd03868ef0190c798144bd99aa7"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30264,
+        "sha256": "e49ceffe619c54e32958963e3ee813ca02759e3917ddffc08feb50f1550cc365"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 9670656,
+        "logical_bytes": 9667987,
+        "sha256": "773eecae60a174dcc1e71cd7c460ec7a520ab3c3bb0bed58fa6099ee773a1329"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4903,
+        "sha256": "f6588dc4222efde6910dbefec8cf777ab7a9bbc98b5436b275ae46d838fb4d1d"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39141,
+        "sha256": "f42fa085eacffad485334797b97b3251a3a20cc025e49b490e7441d6135acf0c"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-summary-supplied-r1-u",
+    "condition_id": "frozen128-summary-supplied",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 49152,
+        "logical_bytes": 45452,
+        "sha256": "08f213dd062b18aa3c9d878c9a1116a0c2253099af2874db7232d457bcfc9074"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28154,
+        "sha256": "ca0a350812ff9f570ba049650ec3f022078f600956a1a21f3cc17735cc7afe3a"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 8577024,
+        "logical_bytes": 8576210,
+        "sha256": "00555581c712b28afb39c9be7411d0becbf6155c032f1afc35937bfd13ca6a41"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4916,
+        "sha256": "21607ab4c714fa184b3bf0c247527effa842a18341afa0bafd86990aae68f096"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21469,
+        "sha256": "8c7d7ff048c56a76a297ba335f9e2da9439fac8955074a08706f084370e46935"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-summary-supplied-r2-u",
+    "condition_id": "frozen128-summary-supplied",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 49152,
+        "logical_bytes": 46998,
+        "sha256": "a2ee7a97b0139f398219af8ed62c9e7739c158c38fbef34823b078dc61dadb09"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28165,
+        "sha256": "b9eec7a5841b73a3b6ce03c4718a1e0de48658cd9ff88d889b04e13fc61183ca"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 9252864,
+        "logical_bytes": 9251322,
+        "sha256": "8d7750df55dc3fa07db0336fd7b47fe636113009af3a5d3f9b00417f5bca3693"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4916,
+        "sha256": "fea7bc09151b5d89f8eb697d1bd772cf747440d3a0d6d24562947c9b3b718306"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21464,
+        "sha256": "37a352fe844301ffe9dfbea4fb395df95acb17c7d878b826fc468ad40713d1e5"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-summary-supplied-r3-u",
+    "condition_id": "frozen128-summary-supplied",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 49152,
+        "logical_bytes": 48544,
+        "sha256": "8f6da4249fabe7d6a8cf7bb13e32ff4e4fb7af2ae3414b8f6d37dcecdb43c677"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28153,
+        "sha256": "bc7f6909698a30775ac031df59d24757e21a3fc3d023ebb5d9683049af039b9c"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 9355264,
+        "logical_bytes": 9352290,
+        "sha256": "a8760d2f5491d1f4cc8e7737fdd8c2c969f92875184d2ad36e0cd9ede2657ef3"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4916,
+        "sha256": "047584a521f2c1930ee22c29292320a2ccf27b8346a1567772620a1fdc7725b1"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21486,
+        "sha256": "77adffec9873f74ba3120375d5c3cac92f8ad1dbf993c15402c509f4a3b43584"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-summary-searched-r1-u",
+    "condition_id": "frozen128-summary-searched",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 53248,
+        "logical_bytes": 50090,
+        "sha256": "920b066c3890876af65179f44f04668b70f0dd8c121f379c0f97136bdbfaae89"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28152,
+        "sha256": "bca67840ef724a52bed6590b344248af71ad3dbc6f6637681196e22a86d314fb"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 9998336,
+        "logical_bytes": 9995115,
+        "sha256": "0036806358f54df97ca0d9bc668c58974d25548ceb4e3ec30e09d044f13c6089"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4915,
+        "sha256": "10904e3f0acdd61592be7e3cc3fa47291aff2175c995731b4b8663d767999575"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21469,
+        "sha256": "809004b611690686b7922b803683e8fca6cf7c30e7d5fe2f5388760cbd4b2791"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-summary-searched-r2-u",
+    "condition_id": "frozen128-summary-searched",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 53248,
+        "logical_bytes": 51636,
+        "sha256": "67b2233f1eb2a9defe74125710bfff2895053edeea26de84eac6a99be2404f68"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30271,
+        "sha256": "c3e684d06c2d34d7e0d87d6ea56150d45b405911ebe513e18855c4d35edd48a9"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 10121216,
+        "logical_bytes": 10121066,
+        "sha256": "20923da84c4e70ea0e996470eee387a4d391ed96ab77c2a1163ba1e5265a272b"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4915,
+        "sha256": "d15dde8036d25f903b0245c2d73fa9eef7819ec862d9fdd3554b0bdf868818e7"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21499,
+        "sha256": "33688c7736b7de3d6b179a2e868e86657f7704ab6b7b942bb40c55a2ad297ef1"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-frozen128-summary-searched-r3-u",
+    "condition_id": "frozen128-summary-searched",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 53248,
+        "logical_bytes": 53182,
+        "sha256": "fd023bea2f9c2b4609e09d0fe3f23883822178fac8ab663388d08751c8507861"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28148,
+        "sha256": "db7b6dc28f0142ed3076b3211efd7eccaf84972fe782ba9b4efa0cbbe3d41975"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 10772480,
+        "logical_bytes": 10771193,
+        "sha256": "87cf7872fc4a6cd14ab2471be41ae239c80a7e627f6488e3b538530125299245"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4915,
+        "sha256": "5ba5c33a82f4466fc59576f7825a415834d602920303a538deeda386cf422f99"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21505,
+        "sha256": "c13cbf37d5dcf24a7408ccd829e6608899d80b49c66c2e5c4daf5fd028ccfb8d"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-g256-summary-supplied-r1-u",
+    "condition_id": "growth256-summary-supplied",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 12288,
+        "logical_bytes": 12176,
+        "sha256": "2b144b834255bf02bbd79f657d2ce0fd227409a9c358cf47683e715c927efe6f"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29862,
+        "sha256": "af5c866673b34d53e5ab2a6e432649f2612445f1d1358b902468bfd9788f41b4"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 45903872,
+        "logical_bytes": 45902870,
+        "sha256": "7fb20f6c0f41edbfee42c06afb3f60c4a0359a5fced38c79dad8682557f165fb"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4912,
+        "sha256": "863ba598a94dcafd1e6fd05df3da8a5fd4d788dd4f519ab35abb91a3443d0354"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21480,
+        "sha256": "5dc6bda724ef6dbdcbcee5f2382e7fd60a76a736f063071c1344e77e5a2f983a"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-g256-summary-supplied-r2-u",
+    "condition_id": "growth256-summary-supplied",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 13762,
+        "sha256": "5f75cfd640de82ab039ed360028bfc9a7bea614c6b3f752040d7364a02b2e439"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29884,
+        "sha256": "88e9df57a094d19edbf805d503f5a901907940d21fa0ce23395f13ead3b25c9d"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 43466752,
+        "logical_bytes": 43465426,
+        "sha256": "0e7651950dffd593d21dfacbb5e3e8bcc9d1effb3cc56f994dfc48354e619715"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4912,
+        "sha256": "0e026f1ff8c525282f205d51e56b9365e151d7d878390c7364152fbb3b19ae7e"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21479,
+        "sha256": "bb695cfe1775cc92e96f8334b433e6568970761528f1b5a7ef83e05dcd9f9397"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-g256-summary-supplied-r3-u",
+    "condition_id": "growth256-summary-supplied",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 15308,
+        "sha256": "1d1ae765ca480b0fa347bdb25bd6f1070f55e8cab53517dba21fce9997333a9c"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27762,
+        "sha256": "9d837e70c9521add67863992c68e17d4fa699215deecbb4bb7b03e7877ea867e"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 43687936,
+        "logical_bytes": 43687118,
+        "sha256": "128b3e20a07f9a110f9a449ea603f86d62459de9cddf2f4c9b80df499d119cc6"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4912,
+        "sha256": "38fbcf056427840e53fc32130f869f14dab1035bcfe291f91ad0cba51bd13ff7"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21473,
+        "sha256": "01dc761896ab53b3f2a713e3d47d68c74b1b60fcdb23f22a23ee49e54e4fef4a"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-g256-summary-searched-r1-u",
+    "condition_id": "growth256-summary-searched",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 16854,
+        "sha256": "5d6470c6f19e5e97363bc50042b60efe6ab98b556a571c60784e050c677dc35f"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29873,
+        "sha256": "570683e48e3824958cddd4d3db299398fb4fa2556e44693601ddb378f277cbdd"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 49168384,
+        "logical_bytes": 49167294,
+        "sha256": "04923f3a3e34863ed6b9fc73e7e3f9d24cc97510f98c5be6693631eeca7a4f72"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4911,
+        "sha256": "356dad3737f803088de48b919dfbac5149fe87497c0c6ad00b42e658afaa63d9"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21495,
+        "sha256": "e15bd09af24a78d49925642aef83ffdb5c3268e69b5cc075294beb7cb60f3552"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-g256-summary-searched-r2-u",
+    "condition_id": "growth256-summary-searched",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 18400,
+        "sha256": "d5f6f63db09d61b12f21cef012f3c53403fb427a728fab495d3ddcfe603a4d41"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27763,
+        "sha256": "bbd86feb56fd4f19396207b90ac60b597392f6901c62e3c5a6807d536652a5e5"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 47308800,
+        "logical_bytes": 47308484,
+        "sha256": "603ae8e395ea9d818567ea4685db3c93f4c5b443143fbc06db291de2543be639"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4911,
+        "sha256": "acad9c187081ffdd0e0781124748fa3fd1a29040888e22aff1874281680fca4f"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21491,
+        "sha256": "8df933d78d42ba4a0930d9c0345823470dcb46ab4f95c157a35373e864020672"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-g256-summary-searched-r3-u",
+    "condition_id": "growth256-summary-searched",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 19946,
+        "sha256": "5924026f2bad7d829e5ee9bae49eda34e17e2350b23823e3f8ee3daab5565a33"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29895,
+        "sha256": "00a79d177f18e24cabdec9280a9832e9df1a254913d70c0b7fc2aac76dc1840d"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 49815552,
+        "logical_bytes": 49814956,
+        "sha256": "77c0ebccfeee14a55e10c40a96e8d8c8b2c6b3a1ec83bc3a8404a33db304efc3"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4911,
+        "sha256": "391811a256a73c8bdcf6d4ba6b4e471337b989d001d0dc38a77bd09cce6595c3"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21481,
+        "sha256": "5a090236f82b7f763793bb02b4c1aae8c5f4e3252045fd7c0a984b276ee6f1b9"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+    "condition_id": "growth256-full-supplied",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 12288,
+        "logical_bytes": 12210,
+        "sha256": "9fa12e19b52888292cff9492096abb1fc5c5b1c0d282236df54b64be29c5f4ab"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27680,
+        "sha256": "de4f1e41576b99f2bd2ad2708581f0cfe2e28b35702c5b5fefed51d2b8f13e2a"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 38633472,
+        "logical_bytes": 38633153,
+        "sha256": "2f8f09e7e8510932a679eeabf96de700398db1584d626249d0823743607a405f"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4900,
+        "sha256": "c17e9bbbbf11c8cdd343b316dcd8eba722e0e55729892e4f3c27da5875bb5459"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33240,
+        "sha256": "b86cc1eb9e969c25f8601a51badc37bbfad78e166e7b83f9bf008afff9b927df"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+    "condition_id": "growth256-full-supplied",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 13816,
+        "sha256": "66857bd98bc243b4ad984ed486f542fe479de71afb52055c5de1b360816989f5"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27696,
+        "sha256": "6cebe9c135046d88ee664ff4bdc929af956a39ab2ced5f8e5ba6b4247708b82d"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 39456768,
+        "logical_bytes": 39452811,
+        "sha256": "fe8683dc1c7d6dc73c33f9642f418ec2434a4b3729d52588c035406c0072c369"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4900,
+        "sha256": "d51b7cc42424b393b6ffcf73d7dbd91eeab02f54357830e17bd3d0a0f8fb7dc1"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33227,
+        "sha256": "a7abe15be4a681bf7e81f079093d95c73d857ddc41aa19894c8ffce806848517"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+    "condition_id": "growth256-full-supplied",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 15362,
+        "sha256": "d2785355c0303e2ae70ddd6c6cf8df45fd3390464c763e4dfd67760367324d46"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29836,
+        "sha256": "da0f23ea7f77b3f8510fbaea585f843295d9182f24204ad1a0897172c82246f4"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 39059456,
+        "logical_bytes": 39059417,
+        "sha256": "bcf98c3e2ede8c2751fe450545229a43df66f80a7c4e30d32ea4a33eab27045c"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4900,
+        "sha256": "02952e8db15c41b360be3082f19c716d563837529f36b4fd204693effacf8d27"
+      },
+      "stdout.json": {
+        "allocated_bytes": 36864,
+        "logical_bytes": 33217,
+        "sha256": "48375702d12981da7c62bd812eeca5b97c3f1f085cbd4a9002a1c861cacaad02"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+    "condition_id": "growth256-full-searched",
+    "repetition": 1,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 12588,
+        "sha256": "06c0805bef527f357013a124a5dbb3bc21f7794794999e9e5e022558858a5697"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29945,
+        "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 42450944,
+        "logical_bytes": 42448908,
+        "sha256": "0b30909ba22e0aecb513af0108acf5753e09455aa1b31d167c7e455ea729fa73"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4899,
+        "sha256": "0ab93ff865c61543bba5fe0be2b2366210afbeab8ac67efa6f12b4bdb6fbe4ba"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 38636,
+        "sha256": "a4578861b73cab4385b6b644e541294125802da70d0a6f878c2dfdbecba72811"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-searched-r2-u",
+    "condition_id": "growth256-full-searched",
+    "repetition": 2,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 14196,
+        "sha256": "412dacd8cb1abf7b6a919e59ab000b6fa8bf75b0cedb59616ce125a583626ab3"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27839,
+        "sha256": "59e4e5e5aea7c20edfdb84edffbf7301297603b7f9b419287470c5a27fe8092d"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 41099264,
+        "logical_bytes": 41095861,
+        "sha256": "036f4848989d37abeff23ce8c706d5e0236fd37e436112e9f556620087ab68b9"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4899,
+        "sha256": "3104458f51efb17c0aaf8b0fefdf9232daaae7b8542d4615269cd0172a564edf"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 38616,
+        "sha256": "0ffa5d456019362eda0e44632a1d71799b1a953489a45159ffcbbb27dd2dc184"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-searched-r3-u",
+    "condition_id": "growth256-full-searched",
+    "repetition": 3,
+    "profile": false,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 15742,
+        "sha256": "7f4755c344d453ec27443f5de5535738701d8973f166956c5d91801b68d901d5"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27839,
+        "sha256": "036e71637afb47dca849b894e28a9e41550e80a678e5e1e744eab61b2bfc119a"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 42000384,
+        "logical_bytes": 41999912,
+        "sha256": "9a81ec93c4e5a939196a829e59305d804de11bcc1b9382d952ccd4e337134492"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4899,
+        "sha256": "1e1918960417606ddd11646c9d6b561e85581afef696df79bc675c04b4e4bfcd"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 38603,
+        "sha256": "03e3e9385ad4b1cd2782b1beff5c280b52d3b78646a0cdc8eb460ff01c85a976"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+    "condition_id": "central64-summary-searched",
+    "repetition": 1,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 12288,
+        "logical_bytes": 11129,
+        "sha256": "b4125ec37aecd00fcd70e3fe4a2220e6a41348366301d65977444851184c43fa"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 29980,
+        "sha256": "c3e70b283c41a822f8e56e4db2bc87f54ff774473bef8168033845b5a6dd5b52"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2777088,
+        "logical_bytes": 2773786,
+        "sha256": "836dc5f69e009bc9aac0698bd5176ea86f6ae80b863b8a658e9de14bf6043b22"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4906,
+        "sha256": "d05c38872c4e432c95730fa9b02abc6dbdda3a1d95fca6397252ad4fa0231458"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 22722,
+        "sha256": "d69800a1d48c294e8c6f9f231999b5eb563096970eb350cee484ff0c1486e9ac"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+    "condition_id": "central64-summary-searched",
+    "repetition": 2,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 12861,
+        "sha256": "6cccffbe43441140b371e0fdc47769c2b9013c67fad6b3bb5c1bd26f2b34d99b"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27937,
+        "sha256": "a7bfc6c95e355aab9fac3f31873aceb8722d4d20d932a0c393f991da5895bd66"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2396160,
+        "logical_bytes": 2393936,
+        "sha256": "41d57a8b269f5397c09e7d10c253ff172f66f370784bad4be4ac6b79fae709c5"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4906,
+        "sha256": "9552b8c62092f7fbef056bc10d5f1147e93f82eadbdf272f6abdc8c131b1ad87"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 22711,
+        "sha256": "33385befc995ac4d61694f94d4cd55e5a80a4aafe7812c566891642ba438b4af"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+    "condition_id": "central64-summary-searched",
+    "repetition": 3,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 14407,
+        "sha256": "f1a8f1dea957937cef68f02b603281381b7d2a5cd6800fa1d8352964e2e47fd7"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30043,
+        "sha256": "7e128a6311d957603b0a13c688b0a4d6cd6dcdd85e18c42337c4573836bd02b0"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2355200,
+        "logical_bytes": 2353000,
+        "sha256": "ff0a4912686fc0e8fa966f620faf85b5b8ccc530be6f6b48a912c9a9b0ebd237"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4906,
+        "sha256": "8e27423b38f39f186aee2e60e0ab0b0256c7d90133f12a28e71bc099e900d2a6"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 22724,
+        "sha256": "5616aba57dc2c0f3a41101748ff17f5cb69990e2c8b1935e99ced969fb4f7362"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+    "condition_id": "central64-full-searched",
+    "repetition": 1,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 15941,
+        "sha256": "563e3283a79fd3769ed9507f3dc0cd27e9f7fb75901b150bb6418592a6b03694"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 27941,
+        "sha256": "ad3d24019fe6591b45129cc382a612b2f0af5ad89dbe4fcc5d45aa671d473743"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2371584,
+        "logical_bytes": 2371337,
+        "sha256": "7c6d61a4e2f514f7aa15f458a5a1610b4185352bcc473a52ca45abe6838b612e"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4894,
+        "sha256": "b952fa7e94ec6ceeeda767c028d6b997cc44a2a5d5811651bb6ca093f27f1a44"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 40371,
+        "sha256": "7117216f396dc0676c9b67829c098f02ddd0bf8418df34447401e3f77e9fe71e"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+    "condition_id": "central64-full-searched",
+    "repetition": 2,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 17487,
+        "sha256": "bbecd284db98fd12d3233cbd589bca59d310f5bd295b9d732bf1b0a76d4288ec"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30061,
+        "sha256": "88d5a09f07d383cf21b5e293865e5ee53518d391aa643972dd6e66c653629922"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2457600,
+        "logical_bytes": 2456051,
+        "sha256": "1cb2a4d368797bb874741ad388b931455a35de24c313a657103263565eb6b466"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4894,
+        "sha256": "d3f5ce163ebda6a62ddf913e33bb92a2fcc2b59b65b2355a3468e4645edd81d0"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 40368,
+        "sha256": "172a63743de2f0c1b1be3fcc4df7f98a9a9e8b97e2ab9358ee002907f5cd779c"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+    "condition_id": "central64-full-searched",
+    "repetition": 3,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 19033,
+        "sha256": "a2254554d76b6943790885aa52040a41ee9f242a1414a0d548e4762738e2a4bd"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30073,
+        "sha256": "a317da360646082f2f224bf05592dea30abd48c58f81777f8933a7191588999d"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 2363392,
+        "logical_bytes": 2362170,
+        "sha256": "377782fbfc8921d6f2a835d9da30a9274a18ae4e60e27670b17f5a244aaa65c9"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4894,
+        "sha256": "dc18e8f41316d75a3a99325bc0d76cb8a0b3196e360e45062cc2e766ec5edeba"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 40383,
+        "sha256": "41e28e2465d59337c5aafbaee4ac7b643a70c23f20fe2e2859221c42b4e24990"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+    "condition_id": "growth256-summary-searched",
+    "repetition": 1,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 13375,
+        "sha256": "4c983aff1199cc37980eb75a42c90e4ff54310319d2e2b54b799597841f072d6"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28007,
+        "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 36933632,
+        "logical_bytes": 36930786,
+        "sha256": "8639e8776225a4df701fc2d9c91d50be6cd70793dbe45aef2f4ce17cbcb895db"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4910,
+        "sha256": "7b1317a531bbe4cade12ad73eed6a8176f7fe9933715fd9f4f84dc10e8a950a8"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 22764,
+        "sha256": "3298fa910b600306c06e2e9b1d69f523b523cca7a5c0311260e4509ba661c53c"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+    "condition_id": "growth256-summary-searched",
+    "repetition": 2,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 16384,
+        "logical_bytes": 15147,
+        "sha256": "6ba55b729dfe83e04fb603f027a19ccfbf132fcbd30e4645481f38e8469d8f23"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28154,
+        "sha256": "f4a71cb23926836c59e5c02a73ab43990c6c4bf791826286a30a36bd0724e0be"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 40419328,
+        "logical_bytes": 40418116,
+        "sha256": "babefabf668d8e9066faded0c3a7b52a655b1b85f1198b28cc54b80522d01a12"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4910,
+        "sha256": "40c27ccb346cfcfc5cf8df93bccd3fd2eb10bfd81a6c83250704cd550ac060c4"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 22735,
+        "sha256": "2e219d7c86384e7619863bb7f0568e35588a3bd91d7b3555571da932de779a57"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+    "condition_id": "growth256-summary-searched",
+    "repetition": 3,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 16693,
+        "sha256": "81d42ca0c2d35e882f47335c2e6952527e2e80f4734ac217f3867e2b0920234b"
+      },
+      "receipt.json": {
+        "allocated_bytes": 28672,
+        "logical_bytes": 28166,
+        "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 41525248,
+        "logical_bytes": 41522252,
+        "sha256": "e30185acab1ef04609698a3a76f40230d636360dc69cb928cfd2c932255aaca9"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4910,
+        "sha256": "46eb9c0989ae0a1fa6d671b654bfec6214e51d1332c15aca21132aca6c5f9eb2"
+      },
+      "stdout.json": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 22744,
+        "sha256": "de9879aab7b4e9e51827c33e593d5f607c6d5d7faea273686f51b54d33fafae8"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+    "condition_id": "growth256-full-searched",
+    "repetition": 1,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 18229,
+        "sha256": "1d91a608ff68ebbbd7fc1e385b297acc408e4db8baec54f038de3420976e2b4e"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30280,
+        "sha256": "607aceefeefc3b7d631cd8dcfc49efb88312154e829fa8d4838a7ca04c72718d"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 39600128,
+        "logical_bytes": 39597411,
+        "sha256": "2af2242f7991a6d3522e0f0d0bfb71ca722de5b0ade2e1c106292fe5c30202b4"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4898,
+        "sha256": "fd764c3e152a133acc4c59a05ac1985b5ead3e160be66be2e242a1a00ff86172"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39868,
+        "sha256": "d49bac4ace421e23025707f9e4515988b3c48ee6559f9560b462e757a5e83f56"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+    "condition_id": "growth256-full-searched",
+    "repetition": 2,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 20480,
+        "logical_bytes": 19775,
+        "sha256": "7dc362403dc377fe654d6fa2c6ad42adab3c4dd057ea2e2cfde595193e6598ec"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30311,
+        "sha256": "1b28474f90b04345f5cd188651bf06cbbd4b2a67d224c373fbf6fd643061bc41"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 46632960,
+        "logical_bytes": 46630418,
+        "sha256": "4a698f89cfae1496fd5f77ae4ba922dc3cb999ed927b0d4a0cb7df0dd3447cec"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4898,
+        "sha256": "52ebc32e7862c056409018b779ed037fabea1a3325485fc8c1572bd58833dce8"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39868,
+        "sha256": "4e6046b6913012535757b19a886139824b46f81d2f3a814ab3c3b07d72b49cc8"
+      }
+    }
+  },
+  {
+    "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+    "condition_id": "growth256-full-searched",
+    "repetition": 3,
+    "profile": true,
+    "raw_files": {
+      "grant.input": {
+        "allocated_bytes": 24576,
+        "logical_bytes": 21323,
+        "sha256": "37e8a23cad6d6b087bab8b6e33dc64a93251bf77cf770001b154c40ad24c9c5b"
+      },
+      "receipt.json": {
+        "allocated_bytes": 32768,
+        "logical_bytes": 30287,
+        "sha256": "15b5ad034916a2717dc42ff3002b11c62a6a827d3022d9a27f8e2c1767a8cbcb"
+      },
+      "samples.jsonl": {
+        "allocated_bytes": 47382528,
+        "logical_bytes": 47379052,
+        "sha256": "8936b941fdf665be1d5d581d1c2e0742601917848eb52917dec62da864c01ff9"
+      },
+      "spec.json": {
+        "allocated_bytes": 8192,
+        "logical_bytes": 4898,
+        "sha256": "8fd14dac0edc5706629d2f21ebc393f2da754eeab1d094b722c4e493d2ab076a"
+      },
+      "stdout.json": {
+        "allocated_bytes": 40960,
+        "logical_bytes": 39886,
+        "sha256": "b186527b04353deb90135df03a3fa7db175631ed70c9c777541e574ca661de0a"
+      }
+    }
+  }
+]

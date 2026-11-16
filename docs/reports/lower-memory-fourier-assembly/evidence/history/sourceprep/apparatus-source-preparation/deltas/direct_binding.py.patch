@@ -1,0 +1,470 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/originals/direct_binding.py	2026-11-16 05:47:22.012320211 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/source/direct_binding.py	2026-11-16 06:03:41.635332909 -0800
+@@ -1,10 +1,12 @@
+-"""PH118 fixed direct-target SOURCE binding; UNAPPROVED and NEVER EXECUTED.
++"""FA120 fixed 27-row SOURCE binding; never an execution grant.
+ 
+-No launcher, waiter, signal owner, RSS parser or scientific fixture is defined here.
+-The accompanying copied method7 runner owns that unchanged lifecycle.
++The copied current118 runner owns launch/wait/guards/RSS/status unchanged.
++No numerical content loader, monitor, reaper, registry or scientific fixture.
++The frozen d2d6 child has no CLI: math-interface-proposal/ is a separate,
++unapplied amendment for its owner. Actual amended child identity is UNBOUND.
+ """
+ 
+-from __future__ import annotations
++raise SystemExit("FA120 UNCONDITIONAL HOLD: APPARATUS SOURCE PREPARATION ONLY")
+ 
+ import hashlib
+ import json
+@@ -15,24 +17,43 @@
+ from pathlib import Path
+ 
+ HERE = Path(__file__).resolve().parent
+-CASE_IDS = (
+-    "acquisition-64", "acquisition-128", "acquisition-off", "acquisition-drift",
+-    "known-64", "known-128", "preparation-context-64",
++CONDITIONS = ("Ksmall", "Kmedium", "K2D")
++VARIANT_ORDER = {
++    1: ("baseline", "candidate", "retained-control"),
++    2: ("candidate", "retained-control", "baseline"),
++    3: ("retained-control", "baseline", "candidate"),
++}
++CASE_IDS = tuple(
++    condition + "-r" + str(repetition) + "-" + variant
++    for condition in CONDITIONS
++    for repetition in (1, 2, 3)
++    for variant in VARIANT_ORDER[repetition]
+ )
+ METHOD_FILES = ("observer.py", "run_direct_attempt.py", "direct_binding.py", "manifest.json")
+-ADAPTER = "tests/preparation_harmonic_memory_benchmark.py"
+-SHARED = "tests/reconstruction_memory_benchmark.py"
+-PROTOCOL = "docs/packets/issue-118-direct-resource-protocol.md"
++FIXTURE_FILES = ("filtered.npy", "carriers.npy", "x_um.npy", "y_um.npy", "grid.json")
++FIXTURE = "tests/reconstruction_summary_fixture.py"
+ DIAGNOSTICS = (
+     "scripts/source_free_check.py",
+     "scripts/source_free_sitecustomize/sitecustomize.py",
+     "scripts/source_free_sitecustomize/pytest_plugin.py",
+ )
+-ROOTS = {
+-    "parent": Path("/workspace/work/issue-117"),
+-    "candidate": Path("/workspace/work/issue-118"),
++ROW_CONFIG_KEYS = {
++    "condition", "variant", "repetition", "actual119_parent", "candidate",
++    "environment", "grant", "fixture_root", "fixture_file_hashes", "output_image_path",
++}
++PAYLOAD_KEYS = {
++    "status", "condition", "variant", "repetition", "pid", "ppid",
++    "actual119_parent", "candidate", "environment", "grant", "fixture_directory",
++    "fixture_file_hashes", "fixture_loading_started_ns", "fixture_loading_ended_ns",
++    "fixture_loading_seconds", "input_identities_before", "input_identities_after",
++    "output_identity", "output_complete_little_endian_bytes_path", "output_shape",
++    "output_dtype", "output_strides", "output_owns_data", "output_writeable",
++    "native_high_water_units", "native_high_water_multiplier_to_bytes",
++    "pre_call_high_water_native", "call_end_high_water_native",
++    "post_observation_high_water_native", "pre_call_snapshot_ns", "kernel_started_ns",
++    "kernel_ended_ns", "call_end_snapshot_ns", "post_observation_snapshot_ns",
++    "kernel_seconds", "terminal_direct_child_usage", "sampled_current_rss", "limits",
+ }
+-FIXTURE = "tests/reconstruction_summary_fixture.py"
+ 
+ 
+ def digest(path):
+@@ -48,18 +69,15 @@
+ 
+ 
+ def material_hashes(root):
+-    """Hash an explicit closed subject list plus every local executable method file.
+-
+-    No product glob, mutable sibling import or historical116 product map is used.
+-    The supplied draft has no final subject closure and therefore fails closed.
+-    """
++    """Closed product/method/math/config/five-file/provenance paths only."""
+     root = Path(root).resolve()
+-    paths = manifest()["subject_material_paths"]
++    frozen = manifest()
++    paths = frozen["subject_material_paths"]
+     if not isinstance(paths, list) or not paths or paths != sorted(set(paths)):
+         raise ValueError("final explicit sorted subject material closure is unbound")
+-    required = {ADAPTER, SHARED, FIXTURE, PROTOCOL, "uv.lock", *DIAGNOSTICS}
++    required = {FIXTURE, "uv.lock", *DIAGNOSTICS}
+     if not required.issubset(paths) or not any(p.startswith("src/simrecon/") for p in paths):
+-        raise ValueError("direct/protocol/diagnostic/product closure incomplete")
++        raise ValueError("FA120 subject/diagnostic/product closure incomplete")
+     result = {}
+     for name in paths:
+         path = Path(name)
+@@ -68,63 +86,123 @@
+         result["subject:" + name] = digest(root / path)
+     for name in METHOD_FILES:
+         result["method:" + name] = digest(HERE / name)
++    # Explicit math files; no mutable sibling import or command registry.
++    for name in ("child", "writer", "witnesses", "closed_manifest"):
++        entry = frozen["math_materials"][name]
++        if digest(entry["path"]) != entry["sha256"]:
++            raise ValueError("changed bound math material: " + name)
++        result["math:" + name] = entry["sha256"]
++    for condition in CONDITIONS:
++        fixture = frozen["fixtures"][condition]
++        if set(fixture["files"]) != set(FIXTURE_FILES):
++            raise ValueError("exactly five measured fixture files required")
++        for name in FIXTURE_FILES:
++            path = Path(fixture["directory"]) / name
++            value = digest(path)
++            if value != fixture["files"][name]:
++                raise ValueError("changed qualified five-file fixture")
++            result["fixture:" + condition + ":" + name] = value
++        for name in ("public_image", "provenance"):
++            entry = fixture[name]
++            value = digest(entry["path"])
++            if value != entry["sha256"]:
++                raise ValueError("changed separate public reference/provenance")
++            result["reference:" + condition + ":" + name] = value
++    for row in frozen["initial_conditions"]:
++        entry = row["config"]
++        value = digest(entry["path"])
++        if value != entry["sha256"]:
++            raise ValueError("changed fixed row config")
++        result["config:" + row["id"]] = value
+     return result
+ 
+ 
+ def check_release(grant, root):
+-    """Require future root-owned exact bindings; this source artifact grants none."""
++    """Future ROOT bindings only; current source unconditionally holds above."""
+     frozen = manifest()
+     if frozen["approved"] is not True or frozen["execution_status"] != "released_exact_case":
+-        raise ValueError("PH118 direct method is SOURCE ONLY / UNAPPROVED / HOLD")
++        raise ValueError("FA120 SOURCE ONLY / HOLD")
++    if frozen["numerical_release"] is not True or grant.get("approved") is not True:
++        raise ValueError("no FA120 numerical/exact-case approval")
++    if grant.get("protocol") != "FA120-direct-grant-v1" or grant["window"] != "W120":
++        raise ValueError("FA120 exact grant and literal W120 required")
++    if grant["window"] != frozen["planned_window"]:
++        raise ValueError("planned exclusive window differs")
+     timeout = frozen["launch"]["startup_timeout_seconds"]
+     if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0:
+-        raise ValueError("final positive PH118 startup bound remains unbound")
+-    if grant.get("approved") is not True or grant.get("protocol") != "PH118-direct-grant-v1":
+-        raise ValueError("unapproved or wrong direct grant")
++        raise ValueError("final positive startup bound remains unbound")
+     subject = grant["subject"]
+-    if subject.get("role") not in ROOTS or root != ROOTS[subject["role"]] or root.resolve() != root:
+-        raise ValueError("fixed parentW117/candidateW118 direct root differs")
+-    if grant["candidate"] != frozen["subjects"][subject["role"]]["identity"]:
+-        raise ValueError("actual reviewed parent/post-C candidate source identity differs")
+-    required_proofs = (
+-        "actual_accepted117", "integrated118", "affected_review", "method_qualification",
++    selected = frozen["subject"]
++    if str(root) != selected["root"] or root.resolve() != root:
++        raise ValueError("actual119-integrated120 root differs")
++    if grant["candidate"] != selected["identity"]:
++        raise ValueError("actual120 candidate head/tree/patch differs")
++    if subject["actual119_parent"] != frozen["actual119_parent"]:
++        raise ValueError("actual119 parent differs")
++    for key in (
++        "actual119_reconciliation", "affected118_scientific_disposition",
++        "fresh_method_source_review", "fresh_scientific_source_review",
++        "finite_method_qualification", "public_fixture_qualification",
+         "diagnostic_route_qualification", "metadata_git_abort_ownership",
+-        "exclusive_window", "environment_binding",
+-    )
+-    if subject["role"] == "candidate":
+-        required_proofs += ("parent_case_qualification",)
+-    for key in required_proofs:
++        "exclusive_window", "environment_binding", "individual_admission",
++    ):
+         proof = grant["proofs"][key]
+         if not isinstance(proof, dict) or set(proof) != {"path", "sha256"}:
+             raise ValueError("unbound reviewed proof: " + key)
+         if not re.fullmatch(r"[0-9a-f]{64}", proof["sha256"]) or digest(proof["path"]) != proof["sha256"]:
+             raise ValueError("changed reviewed proof: " + key)
+     if subject["worktree"] != str(root) or subject["python"] != sys.executable:
+-        raise ValueError("literal root/interpreter binding differs")
+-    if subject["role"] not in ("parent", "candidate") or type(subject["dirty"]) is not bool:
+-        raise ValueError("exact direct subject role/dirty binding required")
+-    if subject["module_root"] != str(root / "src/simrecon"):
+-        raise ValueError("fixed selected product module root differs")
+-    if (subject["revision"], subject["tree"]) != (
+-        grant["candidate"]["head"], grant["candidate"]["tree"],
+-    ):
+-        raise ValueError("target argv and observer subject identities differ")
+-    if subject["hashes"] != frozen["adapter_hashes"]:
+-        raise ValueError("adapter/shared/lock bindings differ from frozen manifest")
++        raise ValueError("literal root/interpreter differs")
++    if subject["python"] != selected["python"] or subject["module_root"] != str(root / "src/simrecon"):
++        raise ValueError("fixed selected product origin differs")
++    if subject["dirty"] is not False or subject["module_root"] != selected["module_root"]:
++        raise ValueError("actual clean product/material binding required")
++    if (subject["revision"], subject["tree"]) != (grant["candidate"]["head"], grant["candidate"]["tree"]):
++        raise ValueError("target and observer subject identities differ")
+     if tuple(row["id"] for row in frozen["initial_conditions"]) != CASE_IDS:
+-        raise ValueError("fixed seven direct condition IDs changed")
++        raise ValueError("exact 27 IDs/rotated order changed")
++    rows = frozen["initial_conditions"]
++    if len({row["output_image_path"] for row in rows}) != 27 or len({row["config"]["path"] for row in rows}) != 27:
++        raise ValueError("27 distinct ROOT-bound output/config paths required")
++    if not Path(frozen["attempt_output_root"]).is_absolute():
++        raise ValueError("actual attempt output root remains unbound")
+     if any(key in grant for key in ("declared_growth_conditions", "growth_separate_admission")):
+-        raise ValueError("growth dispatch is absent from this fixed direct binding")
+-    if grant["profile"] is not False or type(grant["repetition"]) is not int:
+-        raise ValueError("no workflow profiling; integer direct repetition required")
+-    for name, expected in subject["hashes"].items():
+-        relative = {"adapter": ADAPTER, "shared_observer": SHARED, "lock": "uv.lock"}[name]
+-        if digest(root / relative) != expected:
+-            raise ValueError("changed direct target input: " + name)
++        raise ValueError("growth dispatch absent")
++    row = next(row for row in frozen["initial_conditions"] if row["id"] == grant["condition_id"])
++    if grant["profile"] is not False or type(grant["repetition"]) is not int or grant["repetition"] != row["repetition"]:
++        raise ValueError("one fixed unprofiled row/repetition required")
++    config_entry = row["config"]
++    if grant["row_config"] != config_entry or digest(config_entry["path"]) != config_entry["sha256"]:
++        raise ValueError("exact future mathowner row config differs")
++    with Path(config_entry["path"]).open("rb") as stream:
++        config = json.load(stream, object_pairs_hook=_object, parse_constant=_constant)
++    _finite_json(config)
++    if set(config) != ROW_CONFIG_KEYS:
++        raise ValueError("fixed FA120 config fields differ")
++    if type(config["repetition"]) is not int or (config["condition"], config["variant"], config["repetition"]) != (row["condition"], row["variant"], row["repetition"]):
++        raise ValueError("fixed config row differs")
++    fixture = frozen["fixtures"][row["condition"]]
++    if str(Path(config["fixture_root"]) / row["condition"]) != fixture["directory"]:
++        raise ValueError("qualified condition fixture directory differs")
++    if config["fixture_file_hashes"] != fixture["files"]:
++        raise ValueError("qualified five-file identities differ")
++    if config["output_image_path"] != row["output_image_path"]:
++        raise ValueError("unique complete raw output artifact path differs")
++    expected_image = Path(frozen["attempt_output_root"]) / grant["attempt_id"] / "output-image.le.bin"
++    if Path(config["output_image_path"]) != expected_image:
++        raise ValueError("raw output image must share this exact attempt evidence directory")
++    for key in ("actual119_parent", "candidate", "environment", "grant"):
++        if config[key] != subject["expected_child_fields"][key]:
++            raise ValueError("fixed child provenance differs: " + key)
++    if config["actual119_parent"] != frozen["actual119_parent"] or config["candidate"] != grant["candidate"]:
++        raise ValueError("config parent/candidate provenance differs")
++    if config["grant"] != grant["grant_id"]:
++        raise ValueError("noncircular ROOT grant ID differs; receipt separately hashes grant bytes")
++    if Path(config["output_image_path"]).exists():
++        raise ValueError("unique output image path already exists")
+     if material_hashes(root) != grant["material_hashes"]:
+-        raise ValueError("closed direct subject/method material differs")
+-    # Identity of this environment must be externally frozen/qualified before startup;
+-    # sitecustomize necessarily executes before this module can inspect its bytes.
++        raise ValueError("closed FA120 subject/method/fixture material differs")
++    # Preserve current118 diagnostic prepend/inheritance; no -I/-S/-E route.
+     diagnostic = str(root / "scripts/source_free_sitecustomize")
+     inherited = subject["diagnostic_environment"]
+     previous_path = inherited["inherited_pythonpath"]
+@@ -134,33 +212,22 @@
+     expected_path = diagnostic + (os.pathsep + previous_path if previous_path else "")
+     expected_plugins = "pytest_plugin" + ("," + previous_plugins if previous_plugins else "")
+     if inherited["PYTHONPATH"] != expected_path or inherited["PYTEST_PLUGINS"] != expected_plugins:
+-        raise ValueError("diagnostic environment differs from committed prepend/inheritance behavior")
++        raise ValueError("diagnostic prepend/inheritance differs")
+     if os.environ.get("PYTHONPATH") != expected_path or os.environ.get("PYTEST_PLUGINS") != expected_plugins:
+-        raise ValueError("actual startup diagnostic path/plugin inheritance differs")
+-    if not isinstance(subject["expected_provenance"], dict) or not isinstance(subject["expected_environment"], dict):
+-        raise ValueError("final actual provenance/environment records unbound")
++        raise ValueError("actual startup diagnostic path/plugin differs")
+ 
+ 
+ def target_argv(grant, spec, root):
+-    """One direct interpreter/adapter process, never the source_free_check wrapper."""
+-    subject = grant["subject"]
+-    values = (
+-        ("case", spec["id"]), ("role", subject["role"]),
+-        ("repetition", str(spec["repetition"])), ("worktree", str(root)),
+-        ("expected-python", sys.executable), ("expected-module-root", subject["module_root"]),
+-        ("revision", subject["revision"]), ("tree", subject["tree"]),
+-        ("dirty", "true" if subject["dirty"] else "false"),
+-        ("adapter-sha256", subject["hashes"]["adapter"]),
+-        ("shared-observer-sha256", subject["hashes"]["shared_observer"]),
+-        ("lock-sha256", subject["hashes"]["lock"]),
+-    )
+-    return [sys.executable, str(root / ADAPTER), *[part for key, value in values for part in ("--" + key, value)]]
++    """Exactly one future amended child CLI; current d2d6 cannot accept it."""
++    return [sys.executable, manifest()["math_materials"]["child"]["path"], "--fa120-config", spec["config"]["path"]]
+ 
+ 
+ def prepare_spec(grant, spec):
+-    """External correspondence fields, never injected into adapter scientific JSON."""
++    """External correspondence/provenance, never injected scientific values."""
+     spec["direct_subject"] = grant["subject"]
+     spec["expected_material_hashes"] = grant["material_hashes"]
++    spec["expected_observer_pid"] = os.getpid()
++    spec["fixture_binding"] = manifest()["fixtures"][spec["condition"]]
+     return spec
+ 
+ 
+@@ -189,26 +256,10 @@
+ 
+ 
+ def validate_complete_record(record, pid, spec):
+-    """Check the unchanged direct record, without fabricating WS116-child fields.
+-
+-    pid links the exclusive inherited stdout descriptor to the exact wait owner.
+-    PH118-direct-v1 has no child PID/nonce/spec/timestamp fields; it is not an
+-    independently self-authenticating process receipt. Readiness is pre-exec only.
+-    """
+-    # The runner pins/imports this local observer before calling this function.
+-    # A mutable bare module name alone is not an executable dependency closure.
+-    observer = sys.modules.get("observer")
+-    if (
+-        observer is None
+-        or Path(observer.__file__).resolve() != HERE / "observer.py"
+-        or digest(HERE / "observer.py") != "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e"
+-    ):
+-        raise ValueError("fixed direct observer source/origin differs")
+-    legal_numeric_dtype = observer.legal_numeric_dtype
+-
++    """Fixed math payload metadata only; never parse NPY/image content here."""
+     def require(ok, name):
+         if not ok:
+-            raise ValueError("incomplete direct observation: " + name)
++            raise ValueError("incomplete FA120 observation: " + name)
+ 
+     def integer(value):
+         return type(value) is int and value >= 0
+@@ -216,79 +267,56 @@
+     def number(value):
+         return type(value) in (int, float) and math.isfinite(value) and value >= 0
+ 
+-    def sha(value):
+-        return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None
+-
++    def array_identity(value, name):
++        # reconstruction_summary_fixture.identity's tuple becomes a JSON LIST:
++        # [name, [shape...], canonical dtype.str, canonical complete-byte SHA256].
++        dtype = "<c16" if name == "filtered" else "<f8"
++        return (
++            isinstance(value, list) and len(value) == 4 and value[0] == name
++            and isinstance(value[1], list)
++            and all(type(size) is int and size >= 0 for size in value[1])
++            and value[2] == dtype and isinstance(value[3], str)
++            and re.fullmatch(r"[0-9a-f]{64}", value[3]) is not None
++        )
++
++    require(set(record) == PAYLOAD_KEYS, "exact frozen child payload fields")
++    require(type(pid) is int and pid > 0 and record["pid"] == pid and type(record["pid"]) is int, "exact owned child PID")
++    require(record["ppid"] == spec["expected_observer_pid"] and type(record["ppid"]) is int, "actual observer PPID")
++    require(record["status"] == "OBSERVATION_ONLY_NOT_ACCEPTANCE", "observation status")
++    require((record["condition"], record["variant"], record["repetition"]) == (spec["condition"], spec["variant"], spec["repetition"]) and type(record["repetition"]) is int, "exact finite row")
+     subject = spec["direct_subject"]
+-    require(type(pid) is int and pid > 0, "exact owned direct PID")
+-    require(record.get("protocol") == "PH118-direct-v1" and record.get("status") == "pass", "direct protocol/status")
+-    require(
+-        (record.get("case"), record.get("role"), record.get("repetition"), record.get("entry"))
+-        == (spec["id"], subject["role"], spec["repetition"], spec["entry"])
+-        and type(record.get("repetition")) is int,
+-        "exact direct case/role/repetition/entry",
+-    )
+-    provenance = record.get("provenance")
+-    require(isinstance(provenance, dict) and provenance == subject["expected_provenance"], "complete frozen actual provenance")
+-    require(
+-        provenance.get("worktree") == subject["worktree"]
+-        and provenance.get("interpreter") == subject["python"]
+-        and provenance.get("revision") == subject["revision"]
+-        and provenance.get("tree") == subject["tree"]
+-        and provenance.get("dirty") is subject["dirty"]
+-        and provenance.get("hashes") == subject["hashes"]
+-        and provenance.get("product_tracked_clean") is True,
+-        "selected subject provenance",
+-    )
+-    require(
+-        {key: record.get(key) for key in ("versions", "backend", "scipy_fft_default_workers")}
+-        == subject["expected_environment"], "pinned package/backend/FFT environment",
+-    )
+-    context = record.get("context")
+-    require(isinstance(context, dict) and context.get("system") == "Linux", "Linux direct context")
+-    require(context.get("threads") == {key: "1" for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS")}, "four startup thread controls")
+-    require(context.get("pointer_bits") == 64, "64-bit direct context")
+-    fingerprints = record.get("public_fingerprints")
+-    require(isinstance(fingerprints, dict) and fingerprints.get("protocol") == "RM84-public-values-v1", "public value protocol")
+-    require(all(sha(fingerprints.get(key)) for key in ("inputs", "inputs_after", "result")), "public fingerprints")
+-    require(fingerprints["inputs"] == fingerprints["inputs_after"], "retained callers unchanged")
+-    for name in ("caller_payload", "result_payload", "union_payload"):
+-        payload = record.get(name)
+-        require(isinstance(payload, dict), name)
+-        require(all(integer(payload.get(key)) for key in ("array_payload_bytes", "unique_backings", "python_metadata_estimate_bytes")), name + " counters")
+-        require(isinstance(payload.get("metadata_limit"), str) and bool(payload["metadata_limit"]), name + " scope")
+-        arrays = payload.get("arrays")
+-        require(isinstance(arrays, list) and bool(arrays), name + " arrays")
+-        for array in arrays:
+-            require(
+-                isinstance(array, dict) and isinstance(array.get("path"), str)
+-                and isinstance(array.get("shape"), list) and all(integer(n) for n in array["shape"])
+-                and legal_numeric_dtype(array.get("dtype"), canonical=False)
+-                and integer(array.get("bytes")), name + " array metadata",
+-            )
+-    snapshots, byte_values = record.get("ru_maxrss_native"), record.get("high_water_bytes")
+-    names = ("pre_target", "target_return", "final_whole_process")
+-    require(record.get("ru_maxrss_native_units") == "KiB", "Linux snapshot native units")
+-    require(isinstance(snapshots, dict) and set(snapshots) == set(names), "snapshot names")
+-    require(isinstance(byte_values, dict) and set(byte_values) == set(names), "snapshot byte names")
+-    require(all(integer(snapshots[key]) and integer(byte_values[key]) and byte_values[key] == snapshots[key] * 1024 for key in names), "snapshot native/byte conversion")
+-    require(snapshots[names[0]] <= snapshots[names[1]] <= snapshots[names[2]], "cumulative snapshot order")
+-    require(number(record.get("elapsed_target_seconds")), "call-only monotonic elapsed seconds")
+-    for group, keys in (
+-        ("page_faults", ("before_minor", "before_major", "after_minor", "after_major")),
+-        ("swaps_native", ("before", "after")), ("block_io_native", ("inblock", "outblock")),
+-    ):
+-        values = record.get(group)
+-        require(isinstance(values, dict) and all(integer(values.get(key)) for key in keys), group)
+-    witness = record.get("witness")
+-    require(isinstance(witness, dict) and witness.get("record") == spec["record"], "frozen public record class witness")
+-    require(record.get("disk_array_bytes") == 0 and isinstance(record.get("limits"), str) and bool(record["limits"]), "no disk arrays / explicit limits")
+-    # Witness values, numeric correctness and exact paired result matching remain
+-    # separately reviewed obligations; this structural check supplies no science verdict.
++    for key in ("actual119_parent", "candidate", "environment", "grant"):
++        require(record[key] == subject["expected_child_fields"][key], "bound child provenance " + key)
++    fixture = spec["fixture_binding"]
++    require(record["fixture_directory"] == fixture["directory"] and record["fixture_file_hashes"] == fixture["files"], "exact qualified five fixture files")
++    before, after = record["input_identities_before"], record["input_identities_after"]
++    require(isinstance(before, dict) and isinstance(after, dict) and set(before) == set(after) == {"filtered", "carriers", "x_um", "y_um"}, "four kernel callers before/after")
++    require(all(array_identity(values[name], name) for values in (before, after) for name in ("filtered", "carriers", "x_um", "y_um")), "four-field JSON-list caller identities before/after")
++    require(before == after == fixture["expected_loaded_input_identities"], "fixed unchanged loaded caller identities")
++    output_identity = record["output_identity"]
++    require(array_identity(output_identity, "image") and output_identity == fixture["expected_output_identity"], "four-field JSON-list public image identity; separate full byte comparison still required")
++    require(output_identity[1] == spec["output_shape"] and output_identity[2] == "<f8", "canonical output identity shape/dtype")
++    require(record["output_complete_little_endian_bytes_path"] == spec["output_image_path"], "complete raw little-endian image path")
++    require(record["output_shape"] == spec["output_shape"] and record["output_dtype"] == "<f8" and record["output_strides"] == spec["output_strides"], "output shape/dtype/strides")
++    require(record["output_owns_data"] is True and record["output_writeable"] is True, "kernel output flags")
++    image = Path(spec["output_image_path"])
++    require(image.is_file() and image.stat().st_size == spec["output_bytes"], "complete archived raw image byte count")
++    require(digest(image) == output_identity[3], "complete raw artifact digest matches declared canonical output identity")
++    require(record["native_high_water_units"] == "Linux KiB" and record["native_high_water_multiplier_to_bytes"] == 1024, "Linux native cumulative units")
++    highs = [record[name] for name in ("pre_call_high_water_native", "call_end_high_water_native", "post_observation_high_water_native")]
++    require(all(integer(value) for value in highs) and highs == sorted(highs), "cumulative high-water order; no subtraction")
++    stamps = [record[name] for name in ("fixture_loading_started_ns", "fixture_loading_ended_ns", "pre_call_snapshot_ns", "kernel_started_ns", "kernel_ended_ns", "call_end_snapshot_ns", "post_observation_snapshot_ns")]
++    require(all(type(value) is int and value > 0 for value in stamps) and stamps == sorted(stamps), "actual monotonic child timestamps")
++    require(number(record["fixture_loading_seconds"]) and record["fixture_loading_seconds"] == (stamps[1] - stamps[0]) / 1_000_000_000, "separate fixture load duration")
++    require(number(record["kernel_seconds"]) and record["kernel_seconds"] == (stamps[4] - stamps[3]) / 1_000_000_000, "one assembly call duration")
++    require(record["terminal_direct_child_usage"] == "EXTERNAL_EXISTING_WAIT_OWNER_REQUIRED", "external terminal ownership placeholder")
++    require(record["sampled_current_rss"] == "EXTERNAL_EXISTING_OBSERVER_REQUIRED", "external sampled RSS placeholder")
++    require(isinstance(record["limits"], str) and bool(record["limits"]), "explicit observation limits")
++    # Metadata/hash equality is no scientific verdict or complete byte comparison.
+ 
+ 
+ def child_outcome(path, max_bytes, pid, spec):
+-    """One bounded complete JSON value; logs/multiple records/nonfinite values fail."""
++    """Inherited bounded strict JSON core; fixed FA120 record correspondence."""
+     if not path.exists() or path.stat().st_size == 0:
+         return "missing_child_record", None
+     if path.stat().st_size > max_bytes:
+@@ -302,14 +330,6 @@
+         _finite_json(record)
+         if not isinstance(record, dict):
+             raise ValueError("direct child record must be one JSON object")
+-        if (record.get("case"), record.get("role"), record.get("repetition")) != (
+-            spec["id"], spec["direct_subject"]["role"], spec["repetition"],
+-        ) or type(record.get("repetition")) is not int:
+-            raise ValueError("direct child condition/subject/repetition mismatch")
+-        if record.get("status") == "failure":
+-            if not all(isinstance(record.get(key), str) for key in ("type", "message")):
+-                raise ValueError("incomplete direct adapter failure record")
+-            return "direct_adapter_exception", record
+         validate_complete_record(record, pid, spec)
+         return "finite_observation_pending_qualification", record
+     except (ValueError, UnicodeError, OSError, TypeError, KeyError) as error:

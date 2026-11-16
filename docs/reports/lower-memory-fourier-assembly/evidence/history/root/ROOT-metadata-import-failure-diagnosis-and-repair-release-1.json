@@ -1,0 +1,12 @@
+{
+  "utc": "2026-11-16T18:08:03.050906+00:00",
+  "classification": "ROOT_METADATA_PROBE_PATH_ASSUMPTION_DEFECT_NOT_PRODUCT_OR_TEST_DEFECT",
+  "failed_attempt": 1,
+  "exit": 1,
+  "failure": "ModuleNotFoundError scipy.fft._pocketfft before metadata export/no transform",
+  "diagnosis": "Actual installed SciPy1.18.1 _basic_backend imports _duccfft; explicit -uu file inventory contains scipy/fft/_duccfft/pyduccfft.cpython-313-x86_64-linux-gnu.so. Product/preflight imports remain healthy. Earlier113/114 also identified DUCC; no dependency/FFT backend was changed.",
+  "repair": "Newprobe2 changes ONLY exact imported backend module string to installedduccfft. Preservefailed1/stdout/stderr/source. No targetcode/dependencies/tests/helpers/lock/gates touched.",
+  "probe2_sha256": "07c198b9d82560cc591b343b068d7ce662e32f1ac25e00b10c515fc74ad80367",
+  "release": "Onefreshmetadata-only probe2 on sameclean120f3db, sameenvironment/argvcontrols. No FFT/numeric/control/sourcequalification/experiment grant.",
+  "attempt_accounting": "ROOTmetadataimportprobeattempt1failed, sourcecorrection1; native/scientificrunsstill0."
+}

@@ -1,0 +1,79 @@
+{
+  "utc": "2026-11-16T18:52:06.532267+00:00",
+  "status": "CLOSED_NORMAL_WITH_EXACT_DISCREPANCY_HOLD_DEPENDENTS",
+  "case": "Q-W2-a1",
+  "condition": "W2",
+  "actual_python_pid": 164066,
+  "birth_ticks": 16155496,
+  "startup_marker": {
+    "event": "FA120-QUALIFICATION-START",
+    "condition": "W2",
+    "attempt": "Q-W2-a1",
+    "pid": 164066,
+    "ppid": 164060,
+    "pgid": 164060,
+    "sid": 164060,
+    "monotonic_ns": 161555008912296,
+    "birth_ticks": 16155496,
+    "debug": true,
+    "optimize": 0,
+    "executable": "/workspace/work/issue-120/.venv/bin/python",
+    "prefix": "/workspace/work/issue-120/.venv"
+  },
+  "normal_status_association": "ToolDockerexec0; GNUforegroundtimeout0 mapsPython0; bothrecords samePID+case; standardnormalroute, no signal/deadline/outerexpiry observed. No nativewait4usageexport/universalreaperclaim.",
+  "source_before_after55equal": true,
+  "candidate_full_clean": true,
+  "stdout": {
+    "path": "/workspace/work/campaign/evidence/120/qualification/Q-W2-a1/stdout.jsonl",
+    "sha256": "ee189122e37ff0bc5aeb5e82bb3a2fb324853ecb5573a30b8836480953873fae",
+    "bytes": 81695,
+    "json_records": 2
+  },
+  "stderr": {
+    "path": "/workspace/work/campaign/evidence/120/qualification/Q-W2-a1/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "grant_sha256": "f86534b5778e967259dd667f884a5c0fcabb09ff55a1757db8627ae7953d8c45",
+  "checks": [
+    {
+      "case": "W2a",
+      "literal_bytes_equal": true,
+      "caller_unchanged": true,
+      "public_bytes_equal": true,
+      "public_variants_equal": true,
+      "public_input_unchanged": true,
+      "samples": 9
+    },
+    {
+      "case": "W2b",
+      "literal_bytes_equal": true,
+      "caller_unchanged": true,
+      "public_bytes_equal": true,
+      "public_variants_equal": true,
+      "public_input_unchanged": true,
+      "samples": 6
+    },
+    {
+      "case": "W2c",
+      "literal_bytes_equal": true,
+      "caller_unchanged": true,
+      "public_bytes_equal": true,
+      "public_variants_equal": true,
+      "public_input_unchanged": true,
+      "samples": 5
+    },
+    {
+      "case": "W2d",
+      "literal_bytes_equal": false,
+      "caller_unchanged": true,
+      "public_bytes_equal": false,
+      "public_variants_equal": false,
+      "public_input_unchanged": true,
+      "samples": 6
+    }
+  ],
+  "exact_discrepancy_observed": true,
+  "limits": "Observedfinitequalificationonly, pendingSCI. No memorycomparison/27row/nativeerrorbound/runtimeimplementation/generalaccuracy/16GiB/handoffclaim. Sharing/pointer arecapabilityobservationsnotzero-workspaceproof.",
+  "window": "CLOSEDafterobservedterminal0andsourcepostcheck; noautomaticnextentrygrant. Allpartials/actualrevisions/counts retained."
+}

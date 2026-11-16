@@ -1,0 +1,962 @@
+[
+  {
+    "ordinal": 43,
+    "route": "direct",
+    "role": "parent",
+    "condition": "known-128",
+    "mode": "direct-full",
+    "profile": false,
+    "repetition": 1,
+    "attempt_id": "ph118-D-known-128-parent-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r1-a1/receipt.json",
+        "sha256": "d998313877646f416e8f276d38dea844ba052b6bc37c9513ca5a3e0d1a5b03ac"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r1-a1/stdout.json",
+        "sha256": "c6624891ea796b380c743b66106414e4f7fa852804e3b32e59c02c872116ec7a"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r1-a1/samples.jsonl",
+        "sha256": "565c188018638e639193c756d7b3d79be52a3ad8388e3bf208f066608989bb91"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r1-a1/spec.json",
+        "sha256": "3b7e508479f258ffffac6a483fa497b57e2175db5bc2982b8496dd59fec34011"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r1-a1/grant.input",
+        "sha256": "cdb856f1a9808cce86cb435dbd23e1a09e8f09dda687efe0cd77fd31af6cce72"
+      }
+    }
+  },
+  {
+    "ordinal": 44,
+    "route": "direct",
+    "role": "candidate",
+    "condition": "known-128",
+    "mode": "direct-full",
+    "profile": false,
+    "repetition": 1,
+    "attempt_id": "ph118-D-known-128-candidate-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r1-a1/receipt.json",
+        "sha256": "62265029694a0b1c627834a8a4f0b39eadc5486063d22b5a670ebeb6c78cf5ea"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r1-a1/stdout.json",
+        "sha256": "9c1e7efe2b79d57a78e9b41da4593fb9d8ce98ae3c6e5628d8630b556f55a815"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r1-a1/samples.jsonl",
+        "sha256": "108656619118459e399e5e1bfb83a605f844709969aa18ca77b50a287b804963"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r1-a1/spec.json",
+        "sha256": "dd318a5236ad4475c7aac9be3e74916eff1a3da118e4ea5500023f8a82e03ace"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r1-a1/grant.input",
+        "sha256": "1c3ad520264f06116344bb8e90b13cf188fb21d3170fe81c22980c36db52e71f"
+      }
+    }
+  },
+  {
+    "ordinal": 45,
+    "route": "direct",
+    "role": "candidate",
+    "condition": "known-128",
+    "mode": "direct-full",
+    "profile": false,
+    "repetition": 2,
+    "attempt_id": "ph118-D-known-128-candidate-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r2-a1/receipt.json",
+        "sha256": "e260f19e6b8e5456e4e381abb4c6ac6c5acfb7fa92860bbdbf5f50eeb001a83e"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r2-a1/stdout.json",
+        "sha256": "ebccc03f31be7ad5ea22d9e90fb7737a6f8f6cc686f6a8e96e659d0f55bbfb29"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r2-a1/samples.jsonl",
+        "sha256": "3a138935511055817731592d120ea753889b14187ce61abc146d023933078cc5"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r2-a1/spec.json",
+        "sha256": "3fdaeb69b3fb6ece483d44553478577a3d0abe80fef1ccd52fa5e4422410cb2c"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r2-a1/grant.input",
+        "sha256": "9e89621dfed16c98c655ac0482ab9a0badf5f35a128330c5c1bacd24c6bb5fc2"
+      }
+    }
+  },
+  {
+    "ordinal": 46,
+    "route": "direct",
+    "role": "parent",
+    "condition": "known-128",
+    "mode": "direct-full",
+    "profile": false,
+    "repetition": 2,
+    "attempt_id": "ph118-D-known-128-parent-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r2-a1/receipt.json",
+        "sha256": "6df14f3d452ac8cca0515fc3b4eaff33a3ff4befb0ded146619c5785e6da3196"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r2-a1/stdout.json",
+        "sha256": "99a31551a64e12517434922e4e416c6aea1ee0b42badd7bff2b1b51c6ffbf6fa"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r2-a1/samples.jsonl",
+        "sha256": "6c49d09255e13da7fee73a9f9deb3513a7d382deeada122337813a5f0b5cad6d"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r2-a1/spec.json",
+        "sha256": "42d7de6dd0f7f0a9583ca22769f96f31757cc20b9ad1b25561dc546b3d4958e9"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r2-a1/grant.input",
+        "sha256": "00b29d6becf681e696a199129a026961d92906cfa98734055500af0b40bbf91f"
+      }
+    }
+  },
+  {
+    "ordinal": 47,
+    "route": "direct",
+    "role": "parent",
+    "condition": "known-128",
+    "mode": "direct-full",
+    "profile": false,
+    "repetition": 3,
+    "attempt_id": "ph118-D-known-128-parent-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r3-a1/receipt.json",
+        "sha256": "8c2c09daf9b0ffb9c836e8fdd7b6b3f964b8e6769aa9681ae1f96883c900e0ae"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r3-a1/stdout.json",
+        "sha256": "be6691edd9995887608d9898ba8f7cbb05ccd0708d157f89f7339f189bab66b7"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r3-a1/samples.jsonl",
+        "sha256": "bed561b53be18c51f8f6fc94d09626e980af391187b44ad3a81b9b2e50aa1a08"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r3-a1/spec.json",
+        "sha256": "69a70959a46574ab1d95a2f294d0a5046e0fa9523a41c83d2131545a10afb6a2"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r3-a1/grant.input",
+        "sha256": "0344d80802b58bd4b10c9dc740f85eb18b6871755794ff65c23b2ddb74c3392a"
+      }
+    }
+  },
+  {
+    "ordinal": 48,
+    "route": "direct",
+    "role": "candidate",
+    "condition": "known-128",
+    "mode": "direct-full",
+    "profile": false,
+    "repetition": 3,
+    "attempt_id": "ph118-D-known-128-candidate-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r3-a1/receipt.json",
+        "sha256": "fdb86ff8333be75da154ec4150cebd7dfcd56d0c626f8ca7f5843a0dbc27a8dd"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r3-a1/stdout.json",
+        "sha256": "5b86f256c9088a664e8932072d57c80ea875ab715fe9175486dcf189a85c3503"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r3-a1/samples.jsonl",
+        "sha256": "18f964b95de543d1f430ea75a32b87395d167e913acf21ca8afbfea25c87daf8"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r3-a1/spec.json",
+        "sha256": "c609c15c47237e0aa9e6ce6931c869c4d2ac8cf3be11d2df65fe9dc3f6269476"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-candidate-r3-a1/grant.input",
+        "sha256": "2ae517d092ff187b906dfa2d71e3817fb56754917a5cf11d6469c3d420bcf286"
+      }
+    }
+  },
+  {
+    "ordinal": 55,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": false,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g1-parent-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r1-a1/receipt.json",
+        "sha256": "f29307f1fc4c34a86dbbef076792cf080620007f8b89ca509e4b70d6f61177eb"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r1-a1/stdout.json",
+        "sha256": "503633f2d46fa9b1c8d39854ad873b4cb8ac03a23295ee33ca966d391c166fbb"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r1-a1/samples.jsonl",
+        "sha256": "d3e14d92d141692c7d7b9d68045473ebe4988bd54e8b5b8ad48ed18613b62f78"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r1-a1/spec.json",
+        "sha256": "4076c41ec6d4388cc39956f21f36e6c3dc54ae4c4e4c9b06020f0532f642c7c1"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r1-a1/grant.input",
+        "sha256": "2d9d56936f8950a4d519e9f68a1444f007d2ca042ba9a1075dd936bc74d13c48"
+      }
+    }
+  },
+  {
+    "ordinal": 56,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": false,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g1-candidate-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r1-a1/receipt.json",
+        "sha256": "f511eff88b1e5c39d035e8ba964e49307f13083fa4cc509db02faeff863a7883"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r1-a1/stdout.json",
+        "sha256": "6b4c6ad7f73b316c6bcd9cd6dcd1a0e553dae8552a11e9218170b1fcebe6b53e"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r1-a1/samples.jsonl",
+        "sha256": "a68b634ac2c81c259e33dc18243bf0adefe1ad6bf2abd22dac2825382a239667"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r1-a1/spec.json",
+        "sha256": "2fd9b851908a9593bc860d3af39fc7dcc28f376e29394c73c0610aef366653dd"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r1-a1/grant.input",
+        "sha256": "b6ba856524725c90823922642af8bc9c408ebf2d0c5ff18e296cb2874f3bef18"
+      }
+    }
+  },
+  {
+    "ordinal": 57,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": false,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g1-candidate-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r2-a1/receipt.json",
+        "sha256": "05f82fa469cf24c7af855c5c0611b82f87fdef220ba335fc805ad3c54922f17d"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r2-a1/stdout.json",
+        "sha256": "db1cf50f37449bd921e56f6d924d61b307d863c84484e12195d890fde74d1ccb"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r2-a1/samples.jsonl",
+        "sha256": "6d0f819a53833fb58e0cf989c29a116da834cd9d4de0126ab1425409041bdcd3"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r2-a1/spec.json",
+        "sha256": "d639844a0be096f0db6f5a228cd2f864f4cc3162dd366ff672a2caa2e55996bc"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r2-a1/grant.input",
+        "sha256": "f53f8f93fcdde7f65d3f70e92e10e7a9ac2be3932d660a6ed57c3ba23cf45035"
+      }
+    }
+  },
+  {
+    "ordinal": 58,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": false,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g1-parent-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r2-a1/receipt.json",
+        "sha256": "767620054f6a2297163550e205846ba9865bc9507322e2f448fff12cbb1f6700"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r2-a1/stdout.json",
+        "sha256": "69e9f4a840b14f181248f60a66ce94fcc6654e3a16ae7c22fb4cc1725cf39860"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r2-a1/samples.jsonl",
+        "sha256": "cc05695059ac03e810e6f6fdf2ba18fe4d94d0151bc84e6ac45eb1da7a663847"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r2-a1/spec.json",
+        "sha256": "217dea2cca7839d869a30b397ff5aa52be90ec1f99afb95b25d026b81eb37ef6"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r2-a1/grant.input",
+        "sha256": "406db3ad154e7173b0b7553a2fb7cc388323436b2308584c66af32d6e2d212db"
+      }
+    }
+  },
+  {
+    "ordinal": 59,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": false,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g1-parent-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r3-a1/receipt.json",
+        "sha256": "2e4c74cb22e1442023bfc05a23c42b51036b7b34489bf15505bfd43b4e0b2de7"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r3-a1/stdout.json",
+        "sha256": "cff905f085774aeda6b88e42b06f44520edd2500004f53dad28699008d9dc4c1"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r3-a1/samples.jsonl",
+        "sha256": "80a8b016fa8773798ed334366707030eb17b72956b901363de38307b0bc72bab"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r3-a1/spec.json",
+        "sha256": "c8a0954c40849fbbdd72efef1e70b5b798de25b749a5792b43d94dab272625fe"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r3-a1/grant.input",
+        "sha256": "005da8448f61b1e04dfa9ee0939fa7ca93458ea2cce261639e74bbf157f8f650"
+      }
+    }
+  },
+  {
+    "ordinal": 60,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": false,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g1-candidate-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r3-a1/receipt.json",
+        "sha256": "df7e2bb8395654c8c69ea58bc42f23aac9bc21ced97bf02a6163d80b05e59194"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r3-a1/stdout.json",
+        "sha256": "1da5226b095b76b6c62ae6dd8d9ab54808aad79dbcdad0d3a2a279be1314d132"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r3-a1/samples.jsonl",
+        "sha256": "d8ef36ca5842c1c4119c16ef913f1f9b852be083d5bee14b958800c63992093b"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r3-a1/spec.json",
+        "sha256": "ab9ca290a8d6b70afd2e80dadd0e88db5c171c6911cae0619a07965d2f69ce93"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r3-a1/grant.input",
+        "sha256": "f209d79bfee7ebd0b8cf60bac9ef0bf724735af26590e4ffe444327c03cfbbdb"
+      }
+    }
+  },
+  {
+    "ordinal": 61,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "full",
+    "profile": false,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g2-parent-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r1-a1/receipt.json",
+        "sha256": "c05e3f2b3afd4a142f72b83eb7dad71a1cdbfee5a3eae3c8cd1f1d20bc019b20"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r1-a1/stdout.json",
+        "sha256": "94fb0328d6758a5c03f4f6bc01b5f2dfc222845bd77d3d4c81352481311706d8"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r1-a1/samples.jsonl",
+        "sha256": "c0464e5f98df5a575ceaf02d81d74af8eefdf1af41763f705cc36a8bdfc14aea"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r1-a1/spec.json",
+        "sha256": "e1207b0e977477478c1b8528fd478ff3a2ebb918ee097696c242afb691dc09fa"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r1-a1/grant.input",
+        "sha256": "4d39b225b599966de4c71f1d53f8a8752ff74032b547297064ecaca15c280a22"
+      }
+    }
+  },
+  {
+    "ordinal": 62,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "full",
+    "profile": false,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g2-candidate-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r1-a1/receipt.json",
+        "sha256": "fc512995b4ae36448c22fd062f028bbef28b97a040c3d443718e48817efc63a4"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r1-a1/stdout.json",
+        "sha256": "2057abeaeedaa40118bb1e30202ca7cb2f0c24adb42cc73a8723cb41ceaf7ce9"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r1-a1/samples.jsonl",
+        "sha256": "07579b1c0dc0c7c868e30b9c72dd353e64efa65eb12cba7f98ca46f7ee740e96"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r1-a1/spec.json",
+        "sha256": "0e81e88b7335ba1caf8fb87c2e1a0fbadca8eac20b4f981bbfed7a5f20f175b4"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r1-a1/grant.input",
+        "sha256": "46bed3dd224e40e71ebd768fc7e3ebb0ec0cec1e14ed8c4aa1752ab220ac7b2a"
+      }
+    }
+  },
+  {
+    "ordinal": 63,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "full",
+    "profile": false,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g2-candidate-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r2-a1/receipt.json",
+        "sha256": "770713074768371833e722e5ced6d68404631b6d02a9b03a091289d74e55b41c"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r2-a1/stdout.json",
+        "sha256": "292c78d44f0a8188be021182b9db5b175a335780fa00290ec3d7fc4ab9c36d06"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r2-a1/samples.jsonl",
+        "sha256": "8336475b4682f93d90adfd60dd0bf85ba8f1d3707a15bbdc68004197771b5356"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r2-a1/spec.json",
+        "sha256": "ae73b76bf46b43bddd857e58e9bd1141d4f5f6a68e0a96561f8f0e6cbef02e70"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r2-a1/grant.input",
+        "sha256": "7337fbe9fa80bc906f7b3fb2d79fca09e18770aee549554859500af5d10c97bb"
+      }
+    }
+  },
+  {
+    "ordinal": 64,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "full",
+    "profile": false,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g2-parent-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r2-a1/receipt.json",
+        "sha256": "c3a6857c10685c2189bebad3622c580cd81eb54f3dcc68bac88d4f755b95723d"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r2-a1/stdout.json",
+        "sha256": "7dd4a43e2b602990b8884c9a1241f5c24968a309e000ffef3197c6f0224ef06a"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r2-a1/samples.jsonl",
+        "sha256": "a5b5757fc3bac5a0e04dddf286972456e6291358f1e49fa63a495bc003702c70"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r2-a1/spec.json",
+        "sha256": "6b9b31e4a1c733f48789e813aa9185f127ac06e05de44d579164b8cbb5cc166f"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r2-a1/grant.input",
+        "sha256": "1b661617060a6aed5011a57d0a74f8aced8a02476da08ae449a248cc5b03e9e3"
+      }
+    }
+  },
+  {
+    "ordinal": 65,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "full",
+    "profile": false,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g2-parent-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r3-a1/receipt.json",
+        "sha256": "563a70529dca1a258cb78fe880c4bccf12f903b008559c8557036db1be7c0426"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r3-a1/stdout.json",
+        "sha256": "638145cb3880fd9ef87f4ace2fbf0ed87ef4f7009a5d30dc3770521580a37081"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r3-a1/samples.jsonl",
+        "sha256": "b29a78e36875ac060c0871bc6c4a21856579a42857e0eb00826aaac6008d73e5"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r3-a1/spec.json",
+        "sha256": "6cd27d25bb62c960639fe3613ed2210638941e07703a1a1caaae27ae3a8ebb5e"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g2-parent-r3-a1/grant.input",
+        "sha256": "df80227febb5717a4fb2caede32e7dfb68caa331701bcd2f67c3d874b92359d2"
+      }
+    }
+  },
+  {
+    "ordinal": 66,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "full",
+    "profile": false,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g2-candidate-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r3-a1/receipt.json",
+        "sha256": "2b2c7b09a46c14692fc6894d4d94e80c78746471f32659c25d18503385b375ab"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r3-a1/stdout.json",
+        "sha256": "96a50bc40071ec9a88c1a3eb38225bc9d1e6e7206c6f01bb76f22744891dffd0"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r3-a1/samples.jsonl",
+        "sha256": "112673dd48f5ffa8bc1014b39f6ff651d7f0113800384e5d102becd917e8ed63"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r3-a1/spec.json",
+        "sha256": "7be4ab9b1f3dbe3b4605c5c654be626942057c4f688f66493a17de374d78df1c"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g2-candidate-r3-a1/grant.input",
+        "sha256": "3b0ae7298ebb98d4c0440fe7169d9726e8fe49a4f1f846d10972671cfb4d6f11"
+      }
+    }
+  },
+  {
+    "ordinal": 67,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": true,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g5-parent-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r1-a1/receipt.json",
+        "sha256": "3cdb06e01d7372bef6aaa91d87a7369a601aeab523c7b68aa011437f2ee32b4d"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r1-a1/stdout.json",
+        "sha256": "717a4a9901fb9787b553b83c35bddfe638cb005f01e444a28460e40e099ee9a9"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r1-a1/samples.jsonl",
+        "sha256": "a8ffb60536aabf8af3f209b531e4139d8b3d0475c3ba029859e79d578c11115c"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r1-a1/spec.json",
+        "sha256": "d854927036cae75858705f7dd4ac83ca2e632b7ec70b893204ecee53ef8860a9"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r1-a1/grant.input",
+        "sha256": "03f44ddf7f304bdea3642850de326e4bdfcf9b4f6e951a5231a4884f7e4b7433"
+      }
+    }
+  },
+  {
+    "ordinal": 68,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": true,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g5-candidate-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r1-a1/receipt.json",
+        "sha256": "1424116fd198c079e5a54c3b7385b777e09a66b7f0c229590e3a7e9d911c4a9b"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r1-a1/stdout.json",
+        "sha256": "b709561d33f6c941271bb54231d197980120052aeb9886d445a0df20001e0e3c"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r1-a1/samples.jsonl",
+        "sha256": "b28bcb59d4a7c5d9263f7936aba681775a503f773218c6cbe0aa0bcd29e6fff9"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r1-a1/spec.json",
+        "sha256": "19e6fe13b75f8ae5953a2bc0f38a8ee13420583bdcc405fb0333f3fd3758299e"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r1-a1/grant.input",
+        "sha256": "a2a24f31adab8936f2602fdfbd7f3eef6d8342f99e7457d5b0439abb44ac8e62"
+      }
+    }
+  },
+  {
+    "ordinal": 69,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": true,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g5-candidate-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r2-a1/receipt.json",
+        "sha256": "07d8237b70b4af7e6131d1db533612f6c01105203a72a5c93110f9e17a6e7645"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r2-a1/stdout.json",
+        "sha256": "64a4bd92ad6914edc3293cd0540a37662f650c9cce164faa80dc578314eafeac"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r2-a1/samples.jsonl",
+        "sha256": "70e087658d763c57215778fff8ddbcbd2ff6151dd978bbdf99b60e772c8c3451"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r2-a1/spec.json",
+        "sha256": "8e42707ee6b0d1a9b18eaa4e4e395925b4d69a44bf0b165034c70290fc80562e"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r2-a1/grant.input",
+        "sha256": "7022fd89cdf5d8c25e85323436c80cb6853f3e3d269d044baea44bec68964e91"
+      }
+    }
+  },
+  {
+    "ordinal": 70,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": true,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g5-parent-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r2-a1/receipt.json",
+        "sha256": "921103f977c2707535e777582eeb1c512ae5d643802a6ef1d938f086712120e0"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r2-a1/stdout.json",
+        "sha256": "c940dfb6bf33e260304baac5cfd3343b12f4997baed2fe28fe072d2697e3ea84"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r2-a1/samples.jsonl",
+        "sha256": "8e095e22d9f481fea11b4e4774a42e03f37ce8b13374eda71d72e394b1db8368"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r2-a1/spec.json",
+        "sha256": "91d2a93378275c42beb0ad37cef47d7471dfe58f7ccbcb6ac61da1446e024d72"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r2-a1/grant.input",
+        "sha256": "bac0a07066672316b902827510b3c77723e8f3d38db264c6838ff02704780877"
+      }
+    }
+  },
+  {
+    "ordinal": 71,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": true,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g5-parent-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r3-a1/receipt.json",
+        "sha256": "1d1a88aeb0ff2d73ab1738420d298fcd774e16f2232857d7ab906515f8e944c2"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r3-a1/stdout.json",
+        "sha256": "24c24041d209f11a48b79c077e6f0e9f9e879cd1be7a88ccd3b7b0325609fd31"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r3-a1/samples.jsonl",
+        "sha256": "3b415b07427c3c626478ac756824e6e69f0eb62ff036e468f8a811471cd264a8"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r3-a1/spec.json",
+        "sha256": "2d149c05f7ae1403aaa554718b6fb4b1b40da8f52cd4a6069d0a832c0402afc5"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r3-a1/grant.input",
+        "sha256": "7a9da06389e8e4dcbe3fbd776d1976e01872491a709d62103f9c0c0d965a8cf3"
+      }
+    }
+  },
+  {
+    "ordinal": 72,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "summary",
+    "profile": true,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g5-candidate-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r3-a1/receipt.json",
+        "sha256": "c293536c18de4a606cb249e8c23fa7e43f6b185b8741bc2070383daa4544ea85"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r3-a1/stdout.json",
+        "sha256": "2294f96e9076d46d8e448c63a49ebbdac288011f6bb9bebb33a0a615f0573c94"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r3-a1/samples.jsonl",
+        "sha256": "ae4b45fc9946db81a07d8056367da20c41b6be6e40f5b515b4e0369663f1c2b2"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r3-a1/spec.json",
+        "sha256": "33e5ae6966b8c8954f8b4e6dfec9d90339491a0aaa27539f4b2757d632a35c87"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g5-candidate-r3-a1/grant.input",
+        "sha256": "46d9d542e6b7a64dd838a416a0c5bdceeb4faf2ee95115bc40e1c4ccbc28fba4"
+      }
+    }
+  },
+  {
+    "ordinal": 73,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "full",
+    "profile": true,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g6-parent-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r1-a1/receipt.json",
+        "sha256": "fe429022f62b886fb296a87473d06fab5fc702fbcd79c7e6b8796a8600087c69"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r1-a1/stdout.json",
+        "sha256": "bef264295c9ce06fd674beed36fcd52dab406261428ae2fc26116a9936081342"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r1-a1/samples.jsonl",
+        "sha256": "001496bc0c54cd9d1619015483e7afd9475bec58bee5b1041f0ad2657ab4c2cf"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r1-a1/spec.json",
+        "sha256": "5c25d6975a6fcfb42b202502a004eb4705862a70e3924336c7d64cb95f4ba84c"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r1-a1/grant.input",
+        "sha256": "b914dba54ae4b15bc63230aee99ab80d8e2e002169cd02cbae4a489076a9e476"
+      }
+    }
+  },
+  {
+    "ordinal": 74,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "full",
+    "profile": true,
+    "repetition": 1,
+    "attempt_id": "ph118-W-g6-candidate-r1-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r1-a1/receipt.json",
+        "sha256": "3a480a8ebe861f861b5e9e5972acca81f7f0bec3317c2989a7eb35d3af91b44e"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r1-a1/stdout.json",
+        "sha256": "b5eab5092278fadce515b58a623064f37d1d6304b697f65a4891f8e87470fcf9"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r1-a1/samples.jsonl",
+        "sha256": "925ec4996e4bdd7f122b80d72b5746c5b9d693400dee2e2af08cc7be47677621"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r1-a1/spec.json",
+        "sha256": "1533c1cd706ddadedda345fd394d9be743453bdc81a0156908c6bb7af9a70c4e"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r1-a1/grant.input",
+        "sha256": "634a806fc1d57cb41b2db00f6a10e6bf93468b07749e45390a4215d65f230dce"
+      }
+    }
+  },
+  {
+    "ordinal": 75,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "full",
+    "profile": true,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g6-candidate-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r2-a1/receipt.json",
+        "sha256": "d8b01e7dd796b0d47d348514a835dec0949c582825698f8a567a6c63c793f7e4"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r2-a1/stdout.json",
+        "sha256": "64f91e4705b61ee6f8cb841c69db4ba96632fca3a60a74db0c01eea02b6a8824"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r2-a1/samples.jsonl",
+        "sha256": "7960a45bb32cbbd6cbdc8e3a2ae35604949a71c79fc245dee9ae5a5412f4662a"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r2-a1/spec.json",
+        "sha256": "78a39b22066afa91f5a5c7dc9ef38f4747690431530677bc603214456277d6e1"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r2-a1/grant.input",
+        "sha256": "45d35d9084b3acb8eb0dca1198f3a6b839d8acf26f415091334afbcd5b22f730"
+      }
+    }
+  },
+  {
+    "ordinal": 76,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "full",
+    "profile": true,
+    "repetition": 2,
+    "attempt_id": "ph118-W-g6-parent-r2-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r2-a1/receipt.json",
+        "sha256": "d8aada9de0b8a9276197ebf622ca1f56d325e26bc6de3a3f463059a7b8c0331d"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r2-a1/stdout.json",
+        "sha256": "9ff8076e90cdc38624b9f6f53831957e119a811518a846896562fffbe21d227e"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r2-a1/samples.jsonl",
+        "sha256": "5bd30d0278e96cc651fe4f6fcaa06557c56c1fba663535b9a0f1eecd946ca4c1"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r2-a1/spec.json",
+        "sha256": "933c56dad6e6835dafad8a4b1a2d7b2bf4a9a5acccfbe620aad92571b876850b"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r2-a1/grant.input",
+        "sha256": "e70aa8a579e557502206f7b7e916014bb0c52fdfcd04663636e50c848eb74e77"
+      }
+    }
+  },
+  {
+    "ordinal": 77,
+    "route": "workflow",
+    "role": "parent",
+    "condition": "central64",
+    "mode": "full",
+    "profile": true,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g6-parent-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r3-a1/receipt.json",
+        "sha256": "4a4373bd3c48f74dc413236257d4151d1ab0fb5ab7af46b1ecbb6b93e22f1449"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r3-a1/stdout.json",
+        "sha256": "2e6d942de25d5e3b02f4e4335722a3027b06fe3f4766750c867f68540db80a9d"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r3-a1/samples.jsonl",
+        "sha256": "d0b26858752e70db5fa94b8dd0575ae1672a5ffbe6b3b47f6ef13f125d9efe1c"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r3-a1/spec.json",
+        "sha256": "5de54fa09af87d21db38f4b3dd8a41a0cceb2008d11c904ce19d3af56b8657f6"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g6-parent-r3-a1/grant.input",
+        "sha256": "2c9ecf4f0639160154d40121a62786186ac14f3b6a426607ea9e478a42b0f932"
+      }
+    }
+  },
+  {
+    "ordinal": 78,
+    "route": "workflow",
+    "role": "candidate",
+    "condition": "central64",
+    "mode": "full",
+    "profile": true,
+    "repetition": 3,
+    "attempt_id": "ph118-W-g6-candidate-r3-a1",
+    "source_files": {
+      "receipt.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r3-a1/receipt.json",
+        "sha256": "a8d958bee60525304dd2bbf42a58d75d55f9943e471949f45251b14c8dbaa2d6"
+      },
+      "stdout.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r3-a1/stdout.json",
+        "sha256": "b7398591007515aece819fa3ad3e2a1d20b54598635205b49663849926800af8"
+      },
+      "samples.jsonl": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r3-a1/samples.jsonl",
+        "sha256": "c61c4a1d7d10dfc894ef26c0fcb2e87d7ff84e6d317d362dc74dddfc5ba206bf"
+      },
+      "spec.json": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r3-a1/spec.json",
+        "sha256": "cc38dd425145b9f7d356e12565a7c5a8fe856641707de94d65d8463d97988e14"
+      },
+      "grant.input": {
+        "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g6-candidate-r3-a1/grant.input",
+        "sha256": "e0e407ef37d69cc8fbf3b8b0793538a7edc32642f9983e3d24db6710b2c830a3"
+      }
+    }
+  }
+]

@@ -1,0 +1,66 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/math-interface-proposal/original-experimental_child.py	2026-11-16 05:54:16.425906525 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/math-interface-proposal/experimental_child.py	2026-11-16 05:53:07.707093984 -0800
+@@ -11,6 +11,7 @@
+ import json
+ import os
+ import resource
++import sys
+ import time
+ from pathlib import Path
+ from typing import cast
+@@ -30,6 +31,7 @@
+ ACTUAL_GRANT = "UNBOUND"
+ OUTPUT_IMAGE_PATH = "UNBOUND"
+ FIXTURE_ROOT = "UNBOUND"
++FIXTURE_FILE_HASHES = "UNBOUND"
+ CONDITIONS = {
+     "Ksmall": ((1, 3, 8, 32, 32), "3d", 1),
+     "Kmedium": ((1, 3, 8, 64, 64), "3d", 1),
+@@ -245,7 +247,7 @@
+         "environment": ACTUAL_ENVIRONMENT,
+         "grant": ACTUAL_GRANT,
+         "fixture_directory": str(fixture_directory),
+-        "fixture_file_hashes": "UNBOUND_EXTERNAL_QUALIFICATION_AND_PER_ROW_BINDING",
++        "fixture_file_hashes": FIXTURE_FILE_HASHES,
+         "fixture_loading_started_ns": load_started_ns,
+         "fixture_loading_ended_ns": load_ended_ns,
+         "fixture_loading_seconds": (load_ended_ns - load_started_ns) / 1_000_000_000,
+@@ -277,5 +279,36 @@
+     return None
+ 
+ 
+-# No __main__ runner: no default row, argv parser, launcher or resource authority.
+-# PENDING existing-apparatus target: import this exact module; child(closed row).
++def _fixed_cli():
++    """UNAPPLIED owner proposal: one exact config and one child call, no driver.
++
++    The unconditional module HOLD remains before imports. Actual executable
++    child source identity is UNBOUND; this held proposal is not that revision.
++    Existing apparatus hashes/reconciles the one ROOT-frozen config and fixture
++    files externally. This fixed entry does not supply resource authority.
++    """
++    global ACTUAL_119_PARENT, ACTUAL_CANDIDATE, ACTUAL_ENVIRONMENT, ACTUAL_GRANT
++    global FIXTURE_ROOT, FIXTURE_FILE_HASHES, OUTPUT_IMAGE_PATH
++    if len(sys.argv) != 3 or sys.argv[1] != "--fa120-config":
++        raise ValueError("one literal --fa120-config path required")
++    with open(sys.argv[2], encoding="utf-8") as source:
++        config = json.load(source)
++    if set(config) != {
++        "condition", "variant", "repetition", "actual119_parent", "candidate",
++        "environment", "grant", "fixture_root", "fixture_file_hashes", "output_image_path",
++    }:
++        raise ValueError("exact fixed FA120 config fields required")
++    if type(config["repetition"]) is not int:
++        raise ValueError("integer fixed repetition required")
++    ACTUAL_119_PARENT = config["actual119_parent"]
++    ACTUAL_CANDIDATE = config["candidate"]
++    ACTUAL_ENVIRONMENT = config["environment"]
++    ACTUAL_GRANT = config["grant"]
++    FIXTURE_ROOT = config["fixture_root"]
++    FIXTURE_FILE_HASHES = config["fixture_file_hashes"]
++    OUTPUT_IMAGE_PATH = config["output_image_path"]
++    child(config["condition"], config["variant"], config["repetition"])
++
++
++if __name__ == "__main__":
++    _fixed_cli()

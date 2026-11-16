@@ -1,0 +1,6 @@
+def identity(array: np.ndarray, name: str) -> tuple[str, tuple[int, ...], str, str]:
+    """Implement CE07 byte identity independently, including endian and signed zero."""
+    dtype = array.dtype.newbyteorder("<")
+    value = np.ascontiguousarray(array, dtype=dtype)
+    return name, array.shape, dtype.str, hashlib.sha256(value.tobytes()).hexdigest()
+

@@ -1,0 +1,44 @@
+class AcquisitionBands:
+    """Owned native bands and immutable acquisition-stage diagnostics.
+
+    Quadratures and scalar noise factors own writable storage. Other arrays
+    are independent read-only snapshots. Displacements use detector pixels
+    and native axial sections; sampling pitches are in micrometres.
+    Quadratures are complex128 (T,D,Q,Z,Y,X//2+1), Q=2*norders-1, with slots
+    0,E1,O1,E2,O2,... and negative-sign unnormalized forward transforms. The x
+    Nyquist column keeps raw phase-slot identity. Scalar variance factors are
+    float64 (T,D,norders); separators (T,D,Z,Q,P) and phases (T,D,Z,P) retain
+    section-specific designs, but noise records the last section of each t/d.
+    Frame sums/gains use (T,D,P,Z); exposure shifts use (T,D,Z,P,2) x/y pixels.
+    Off quadratures retain lateral transforms only, with no axial FFT.
+    """
+
+    quadratures: Array
+    noise_variance_factors: Array
+    separation_matrices: Array
+    phase_angles_rad: Array
+    phase_policies: tuple[tuple[tuple[str, ...], ...], ...]
+    frame_sums: Array
+    equalization_gains: Array
+    off_frame_sums: Array | None
+    off_equalization_gains: Array | None
+    off_quadratures: Array | None
+    background_after: Array
+    slope_after: Array
+    sentinel_frames: tuple[tuple[int, int, int, int, int], ...]
+    between_displacements_pixels: Array
+    exposure_displacements_pixels: Array
+    header_timestamps_after: Array | None
+    trace: tuple[ModeEvent, ...]
+    input_shape: tuple[int, ...]
+    input_scale: float
+    acquisition_mode: str
+    storage_order: str
+    dxy_um: float
+    dz_um: float
+    lateral_zoom: float
+    axial_zoom: int
+    resolved_settings: tuple[tuple[str, Any], ...]
+    source_revision: str = "SVN307"
+    reference_sha256: tuple[tuple[str, str], ...] = REFERENCE
+

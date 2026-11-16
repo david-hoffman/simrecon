@@ -1,0 +1,51 @@
+FA120 METHOD1 — ACCEPT inspected SOURCE suitability only.
+
+Launch1 / ownround1 completed independently. Initial assessment was saved before
+author handoffs/maps; no current SCI-source1 opinion or author conversation read.
+No diagnosed source correction required. No runtime/numerical grant, actual
+qualification, measured-design acceptance, final D or PR readiness follows.
+
+Report: /workspace/work/issue-120-sourceprep/source-reviews/method1/report.md
+Report SHA256: 65dbc6c11babf2e0bb744b2cad76b94730697703388b932847ddd3da62e4a954
+Original105-file map SHA256:
+37d7f289e2adec270e4e885d87a41922830f7c999bae6120b2f6f5e715d1bdda
+All105 named files and three ROOT-authorized exact supplements hash-verified.
+
+Reviewed actual source identities:
+runner882e02f09d219fa33a3dcef5e88ea64d274844cb60e4be7edf8d054db969e3ba
+observerdba11667e4b79428eef50965e5fa42bd9ec22acf71ccf543ee65c4009cd7a5bf
+binding7e9eb5e72fa8c5ba37716d6ee3e15a249a29dfa94dd3da04d5813fff00211ec5
+manifest6ba73ce038317da06e35d4db889c0b7042ab9a8dcf73c1e8334bd96e1f5cee3b
+child5175b8877bccd2b614bcc84bf1739c199c464eab7786218ad3f2246f03e34ea8
+writer69cd605d0ba53ac257c16a8ccfd7628b22d4a4f11cc81fa73320513d74200b1e
+qualificationc022cc1e49ab3280ef1766dfe088f0543ced91a7ee290e6ecd005d3f44cccc4a
+Subject f3db41747423786a7a49aadc428eaec0d03fdd5d,
+tree288349217928b975ae16dd66ee13c7c93f4c892e, accepted integration ancestor2393.
+
+Retained exact-PID bootstrap/FD/readiness/wait-owner/guard/RSS/status core and its
+limits are supported by source/diffs. Pin closure, ten-field one-call child,
+27 rotated rows, five fixtures, separate public references, JSON-LIST identities,
+PID/PPID/provenance/path correspondence and raw SHA binding are source-suitable.
+Writer and W1–W6 differ from originals only in top HOLD removal; child also has
+two explicit reference-constant changes. Runtime flags remain false/UNBOUND.
+
+Existing Docker/tool capture + GNU timeout is suitable IN PRINCIPLE for one
+separately frozen/released fixed qualification entry: explicit foreground/direct
+child TERM/KILL/reap route, early PID/condition marker, exclusive outputs,
+preserved partial evidence and external interruption recovery. A default group
+KILL/timeout status alone does not prove reaping. No new launcher/monitor needed;
+no resource peak claim. Exact invocation and physical admission remain ROOT's
+next release. Do not route fixture-generating qualifiers through27 future-proof
+checks. Then bind actual fixtures/configs/manifest/external grants and reviewer
+supplements before each measurement;27 rows must use reviewed runner/observer.
+
+Actual environment/preflight and imported DUCC provenance are supplied, without
+dispatch/native-precision/workspace/overwrite/accuracy qualification. Scientific
+whole-byte and W1–W6 observations remain separate and pending. No blanket replay
+of historical68 controls is required by this source delta.
+
+File/Git/hash work only; no target execution, interpreter/import/AST/test/probe,
+numeric/control/process work, target repair or delegation. One ENOENT read-path
+typo disclosed; no content exposed. SharedFS scopes are prompt restrictions,
+not engineered isolation. Actual model/usage/optional controls/cost/tokens/time
+remain unknown; historical math/apparatus/ROOT/campaign charges preserved.

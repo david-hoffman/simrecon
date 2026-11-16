@@ -1,0 +1,22 @@
+--- /workspace/work/issue-120-sourceprep/actual120-activation-source-1/originals/experimental_child.py	2026-11-16 05:53:07.707093984 -0800
++++ /workspace/work/issue-120-sourceprep/actual120-activation-source-1/experimental_child.py	2026-11-16 10:01:01.062966145 -0800
+@@ -6,7 +6,7 @@
+ disable it. This file creates no descendants, monitor, parser or admission API.
+ """
+ 
+-raise SystemExit("FA120 UNCONDITIONAL EXECUTION HOLD: SOURCE PREPARATION ONLY")
++# ROOT-authorized event7: top HOLD removed in this NEW source copy; NO runtime grant.
+ 
+ import json
+ import os
+@@ -23,8 +23,8 @@
+ from reconstruction_summary_fixture import identity
+ 
+ 
+-SOURCE_REFERENCE = "158776ade28079276304d49a6b973eccbf4109c9"
+-SOURCE_SHA256 = "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645"
++SOURCE_REFERENCE = "2393e4a8473a4741902aca2aaa70b589bb33353a"
++SOURCE_SHA256 = "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c"
+ ACTUAL_119_PARENT = "UNBOUND"
+ ACTUAL_CANDIDATE = "UNBOUND"
+ ACTUAL_ENVIRONMENT = "UNBOUND"

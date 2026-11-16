@@ -1,0 +1,32 @@
+{
+  "utc": "2026-11-16T17:58:08.466878+00:00",
+  "status": "SOURCE_BINDING_ONLY_NOT_EXECUTED_NOT_REVIEWED",
+  "owner": "ROOT operational deterministiccopy/configuration",
+  "source_deltas": [
+    {
+      "file": "observer.py",
+      "old_sha256": "ffcffac66f9959d0954231222b520fe65ab31a7203a8c6998aec092ee2e1df2f",
+      "new_sha256": "dba11667e4b79428eef50965e5fa42bd9ec22acf71ccf543ee65c4009cd7a5bf",
+      "change": "Only top unconditionalhold replacedby comment; no function/import/bootstrap/guard/wait/monitor/parser/finite logic change. Neverexecuted."
+    },
+    {
+      "file": "run_direct_attempt.py",
+      "old_sha256": "9ea0a24ab5870d3acde19b7a8a6d8735699efa5dffe95f34ef081ba8a710aab9",
+      "new_sha256": "89256f14039b5f23f6f5a4a5eb0f44b1a4e9e0e62a205c729bcca343f1ce5b74",
+      "change": "Only top unconditionalhold replacedby comment; no function/import/bootstrap/guard/wait/monitor/parser/finite logic change. Neverexecuted."
+    },
+    {
+      "file": "direct_binding.py",
+      "old_sha256": "64a5c76fbbe6cf8a42b977ad292ace6226bfc4e0a19e606831bfe4b57b634205",
+      "new_sha256": "7e9eb5e72fa8c5ba37716d6ee3e15a249a29dfa94dd3da04d5813fff00211ec5",
+      "change": "Only top unconditionalhold replacedby comment; no function/import/bootstrap/guard/wait/monitor/parser/finite logic change. Neverexecuted."
+    }
+  ],
+  "manifest_old_sha256": "8c6bf42bb477dce5d1e79e1bb60b26e7d4a82fa079583a4a3385e2e4b30662e9",
+  "manifest_new_sha256": "6ba73ce038317da06e35d4db889c0b7042ab9a8dcf73c1e8334bd96e1f5cee3b",
+  "candidate": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "parent": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+  "parent_CI": "IN_PROGRESS_NOT_PASSED",
+  "protocol_choices": "Proposed2sready/60sinner/1sTERM/5sKILLreap/120souter/1MiBrecord/512MiBprocessstop/1GiBminavailable; not measuredguarantees. Fresh physical admission/visibleancestors/reserve percasebefore each target. No author hold removal implies grant.",
+  "staging": "Math actualsource/environment/qualificationproof/fixture hashes/27configs material externalgrants remainUNBOUND. Fresh method+SCI source review thenROOTfinitequalgrant, actualfixturedata bindings reviewedbefore27measurementgrants. No circular selfhash embedded."
+}

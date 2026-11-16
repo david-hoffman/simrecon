@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-120",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "-e",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "-e",
+    "PYTHONPATH=/workspace/work/issue-120/scripts/source_free_sitecustomize:/workspace/work/issue-120/tests",
+    "-e",
+    "PYTEST_PLUGINS=pytest_plugin",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/workspace/work/issue-120/.venv/bin/python",
+    "-B",
+    "-c",
+    "import sys,json,time,hashlib\nfrom pathlib import Path\np=Path(\"/workspace/work/campaign/evidence/120/method-source-binding-2\")\nsys.path.insert(0,str(p))\nimport observer as o\nif not __debug__ or sys.flags.optimize !=0: raise RuntimeError(\"debug/optimize precondition\")\nif Path(o.__file__).resolve()!=p/\"observer.py\": raise RuntimeError(\"observer origin\")\nif hashlib.sha256(Path(o.__file__).read_bytes()).hexdigest()!=\"dba11667e4b79428eef50965e5fa42bd9ec22acf71ccf543ee65c4009cd7a5bf\": raise RuntimeError(\"observer bytes\")\nprint(json.dumps({\"scope\":\"ONE_QW1_FRESH_METADATA_ADMISSION_ONLY_NO_WORKLOAD\",\"observed_unix_ns\":time.time_ns(),\"executable\":sys.executable,\"prefix\":sys.prefix,\"debug\":__debug__,\"optimize\":sys.flags.optimize,\"context\":o.context(\"/workspace/work/issue-120\")},indent=2))\n"
+  ],
+  "scope": "Existingreviewedobserver.context metadata only, ROOTenvironmentrelease8d4, no science/FFT/measurement grant."
+}

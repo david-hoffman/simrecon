@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-16T17:52:02.872220+00:00",
+  "scope": "ROOTintegration/sourceprepONLY; no numerical/control/test/import grant until119CIpass+actual120bindings/sourceMethodSCI acceptance",
+  "actual_119": {
+    "head": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+    "tree": "7b42883aaad07076308eb6be26c5ea611fda6c81",
+    "PR": 126,
+    "SCI_application": "8a7cb33a081d8fa1c01a5c580d3bd8c89216d6affc529170dc7ae432c40a714b",
+    "fullgate2": "c06cf29a2c7c64510a716945e278c390657fe4e16c6935ef40a511b077c28c17",
+    "D_application": "d252077d66d447feabb63992fd94662d4fb78ba1792a0e1b1946de5bee8c0cc9",
+    "CI_run": 43922720381,
+    "CI": "QUEUED/PENDING\u2014notpassed"
+  },
+  "intake_before": "c962ccfff03ca78de31e6a0af746ec091e822989 0cfe1849fa1153ddb16f6ce99b402f8ecb474f55 ace06c861b974b6251a092567c253ae4eb0f56c8",
+  "method": "Preserveintakebycampaignref, rebaseonesoleownedintakecommitontolocallyacceptedactual119. RecordfactualCurrent/sourcepreparationbeforeactualstudyfreeze. Scopeunchanged, no runtimeproductimplementation."
+}

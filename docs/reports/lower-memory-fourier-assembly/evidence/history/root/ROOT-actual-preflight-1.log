@@ -1,0 +1,14 @@
+"/workspace/.simrecon-tools/uv-env/bin/uv" sync --locked --all-groups
+Resolved 30 packages in 3ms
+Checked 29 packages in 17ms
+"/workspace/.simrecon-tools/uv-env/bin/uv" run --locked --no-sync python scripts/prepare_imagej_reader.py
+/workspace/work/issue-120/artifacts/imagej-reader/inputs.json
+preflight: uv executable /workspace/.simrecon-tools/uv-env/bin/uv
+"/workspace/.simrecon-tools/uv-env/bin/uv" --version
+uv 0.12.19 (x86_64-unknown-linux-gnu)
+"/workspace/.simrecon-tools/uv-env/bin/uv" run --locked --no-sync python -c "import sys, platform; from pathlib import Path; from importlib.metadata import distribution; print('preflight: python', sys.executable, platform.python_version(), platform.platform(), 'prefix', sys.prefix, flush=True); sys.version_info[:3] == (3, 13, 12) or sys.exit('preflight: expected Python 3.13.12'); Path(sys.prefix).resolve() == (Path.cwd() / '.venv').resolve() or sys.exit('preflight: expected current-worktree .venv'); import simrecon, numpy, h5py; print('preflight: imports', [(m.__name__, distribution(m.__name__).version, str(distribution(m.__name__).locate_file('')), m.__file__) for m in (simrecon, numpy, h5py)], flush=True); Path(simrecon.__file__).resolve() == (Path.cwd() / 'src/simrecon/__init__.py').resolve() or sys.exit('preflight: simrecon import is outside current-worktree src/simrecon')"
+preflight: python /workspace/work/issue-120/.venv/bin/python 3.13.12 Linux-6.18.57-x86_64-with-glibc2.39 prefix /workspace/work/issue-120/.venv
+preflight: imports [('simrecon', '0.1.0', '/workspace/work/issue-120/.venv/lib/python3.13/site-packages', '/workspace/work/issue-120/src/simrecon/__init__.py'), ('numpy', '2.5.3', '/workspace/work/issue-120/.venv/lib/python3.13/site-packages', '/workspace/work/issue-120/.venv/lib/python3.13/site-packages/numpy/__init__.py'), ('h5py', '3.16.0', '/workspace/work/issue-120/.venv/lib/python3.13/site-packages', '/workspace/work/issue-120/.venv/lib/python3.13/site-packages/h5py/__init__.py')]
+"/workspace/.simrecon-tools/uv-env/bin/uv" run --no-project --with hatchling==1.32.4 python -c "import sys, platform; from pathlib import Path; from importlib.metadata import version; print('preflight: isolated python', sys.executable, platform.python_version(), 'prefix', sys.prefix, flush=True); Path(sys.prefix).resolve() != (Path.cwd() / '.venv').resolve() or sys.exit('preflight: build dependency environment is not isolated'); import hatchling; print('preflight: hatchling', version('hatchling'), hatchling.__file__, flush=True); version('hatchling') == '1.32.4' or sys.exit('preflight: expected hatchling 1.32.4')"
+preflight: isolated python /workspace/.simrecon-tools/uv-cache/builds-v0/.tmpZOQpmv/bin/python 3.13.12 prefix /workspace/.simrecon-tools/uv-cache/builds-v0/.tmpZOQpmv
+preflight: hatchling 1.32.4 /workspace/.simrecon-tools/uv-cache/archive-v0/RankBEGGsBuO5olT/lib/python3.13/site-packages/hatchling/__init__.py

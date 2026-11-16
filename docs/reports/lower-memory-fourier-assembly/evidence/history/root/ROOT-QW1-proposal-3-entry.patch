@@ -1,0 +1,14 @@
+--- proposal2entry
++++ proposal3entry
+@@ -1,6 +1,10 @@
+ import json, os, sys, time, hashlib
+ from pathlib import Path
+-print(json.dumps({"event":"FA120-QUALIFICATION-START","condition":"W1","attempt":"Q-W1-a1","pid":os.getpid(),"ppid":os.getppid(),"pgid":os.getpgrp(),"sid":os.getsid(0),"monotonic_ns":time.monotonic_ns()}),flush=True)
++if not __debug__ or sys.flags.optimize != 0:
++    raise RuntimeError("W1 requires enabled debug assertions and optimize0")
++raw_stat=Path("/proc/self/stat").read_text()
++birth_ticks=int(raw_stat[raw_stat.rfind(")")+2:].split()[19])
++print(json.dumps({"event":"FA120-QUALIFICATION-START","condition":"W1","attempt":"Q-W1-a1","pid":os.getpid(),"ppid":os.getppid(),"pgid":os.getpgrp(),"sid":os.getsid(0),"monotonic_ns":time.monotonic_ns(),"birth_ticks":birth_ticks,"debug":__debug__,"optimize":sys.flags.optimize,"executable":sys.executable,"prefix":sys.prefix}),flush=True)
+ math_root=Path("/workspace/work/issue-120-sourceprep/actual120-activation-source-1")
+ sys.path.insert(0,str(math_root))
+ import qualification as q

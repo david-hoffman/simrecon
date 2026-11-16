@@ -1,0 +1,14 @@
+{
+  "utc": "2026-11-16T18:05:27.028741+00:00",
+  "status": "ACTUAL_PARENT119_SCI_FULL_GATE_D_AND_CI_PASSED",
+  "head119": "2393e4a8473a4741902aca2aaa70b589bb33353a",
+  "tree119": "7b42883aaad07076308eb6be26c5ea611fda6c81",
+  "PR119": 126,
+  "CI_run": 43922720381,
+  "CI_job": 133493946397,
+  "CI_proof_sha256": "64b126e758f68ba7bcaa00717627bd396e0cb7a026a39ca77d91b60369283b5f",
+  "actual120_head": "f3db41747423786a7a49aadc428eaec0d03fdd5d",
+  "actual120_tree": "288349217928b975ae16dd66ee13c7c93f4c892e",
+  "allowed_now": "ROOTactual120documentedpreflight + cheap metadata-only environment/FFT interface/backend import provenance before expensive dependentwork; freshfile-onlyMethod/SCIreview. No transforms/tests/qualification/science/measurements untilfreshsourceacceptance+ROOTexactgrant. Allotherrolesfileonly; no overlappinglocalnumericwindow.",
+  "no_product_scope_change": true
+}

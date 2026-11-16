@@ -1,0 +1,13 @@
+# R3/H1 workflow extension decision — SOURCE preparation
+
+ROOT elects the already proposed optional12 whole-workflow observations before kernel measurement outcomes, responding to the concrete mismatch between kernel-only retained inputs/parameters and the accepted-source public searched workflow. This adds relevance evidence, not a promised benefit or predetermined no-go. The previous27 kernel rows and retained-padding control remain unchanged.
+
+Fixed scope is current f3db source, searched central64 `(T,D,Z,Y,X)=(1,3,8,64,64)`, summary/full, baseline/candidate, three fresh repetitions each. Per mode order is B/C,C/B,B/C; summary precedes full. The same existing public fixture and complete public graph are retained. Each measured child calls one actual public workflow, selecting only the private assembly function and restoring the baseline pointer. Only separate compatibility qualification may hold both reference/results; it makes no memory claim.
+
+Math source author launch1 resumes event8, without delegation. New code stays external in this folder under unconditional HOLD; source math and old studies remain unchanged. Deliverables: minimal118-child adapter/delta, separate literal complete-public-array/caller/discrete compatibility qualification, exact12 schedule/protocol, source/material/invocation requirements and cumulative handoff. ROOT separately owns apparatus binding/activation.
+
+Sequence: finite source handoff → fresh independent METHOD+SCI source acceptance → ROOT exact source/env/invocation/material activation and finite public compatibility qualification grant → review actual qualification/applicability → ROOT individual physical admission/grant for each of12 workflow observations alongside the unchanged kernel study → independent scientific assessment of all evidence and scoped recommendation/no-go/unknown → exact final gate/freshD/publication. No step grants the next automatically; no source fixture-hash circularity or self-hash embedding.
+
+H1 remains: even these central64 workflow observations cannot establish current256/known128 peak benefit, global scaling,16GiB feasibility or broad no-go from noisy/masked RSS. Setup, imports, caller/result retention, whole child terminal/self/discrete RSS and target call time stay distinct; no pre-call subtraction or contributor rank is inferred. Native workspace/overwrite capability and mathematical truth retain their independent qualification lanes.
+
+No product/tracked edits, runtime or scientific acceptance occur in this preparation. All prior role/repair/execution costs remain cumulative; unknown serving/token/cost meters remain unknown. Sole tracked Current stays frozen at f3db during study; this file is an evidence plan, not another Current state.

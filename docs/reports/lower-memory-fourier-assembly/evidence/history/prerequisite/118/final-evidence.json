@@ -1,0 +1,160 @@
+{
+  "issue": 118,
+  "status": "PUBLISHED_ACCEPTED_LOCAL_AND_CI_PASSED_OPEN_UNMERGED",
+  "measured_source_head": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+  "measured_source_tree": "275e0d94ff94dc1283f5da80815d6bb383c68c86",
+  "base": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "final_candidate": {
+    "head": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+    "tree": "28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a",
+    "base": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+    "freeze_path": "/workspace/work/campaign/evidence/118/ROOT-final-exact-candidate-before-gate-1.json",
+    "freeze_sha256": "2a22bbb66fcbae0c20f7ad85a2716ba7bcf32b7ecdba18463c8447788f7eb91b"
+  },
+  "ROOT_SCI_application": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-whole-post118-SCI-application-1.json",
+    "sha256": "75660480dd6d06f0f04fcc15193dfaad1c0e11202e1f8fee8202451775a00390"
+  },
+  "gate": {
+    "attempt": 1,
+    "status": "PASSED",
+    "session_id": null,
+    "receipt": "/workspace/work/campaign/evidence/118/verify-attempt1/receipt.json",
+    "preflight_SHA256": "d4eea189c1cbb1f69455bc87af8bc67363c7cac545a803270329c39a5ecd86d1",
+    "intent": "/workspace/work/campaign/evidence/118/verify-attempt1/ROOT-launch-intent.json",
+    "receipt_sha256": "bb293ed49e0eca4a29f774bc98a8c33cb8dca2df7ebe692a036ee79c40d7c482",
+    "postgate_index": "/workspace/work/campaign/evidence/118/verify-attempt1/ROOT-postgate-evidence-index.json",
+    "postgate_index_sha256": "5e151b17f972328edda7770eea159c8f955ae2abb9488277a307db8afb16c3cc",
+    "tests": {
+      "passed": 3500,
+      "warnings": 47,
+      "seconds": 1146.07,
+      "same_run_log": {
+        "path": "/workspace/work/campaign/evidence/118/verify-attempt1/verification/logs/tests.log",
+        "sha256": "9c698497ef52f89c3b6e5186df9141583bf0be54b0ff9fad91aab4e57dac8f2f",
+        "bytes": 10309
+      }
+    },
+    "coverage_global": {
+      "statements": {
+        "covered": 5164,
+        "total": 5329
+      },
+      "branches": {
+        "covered": 1949,
+        "total": 2074
+      }
+    },
+    "coverage_packages": {
+      "simrecon": {
+        "statements": {
+          "covered": 4209,
+          "total": 4365
+        },
+        "branches": {
+          "covered": 1591,
+          "total": 1708
+        }
+      },
+      "simrecon_devtools": {
+        "statements": {
+          "covered": 39,
+          "total": 39
+        },
+        "branches": {
+          "covered": 8,
+          "total": 8
+        }
+      },
+      "scripts": {
+        "statements": {
+          "covered": 916,
+          "total": 925
+        },
+        "branches": {
+          "covered": 350,
+          "total": 358
+        }
+      }
+    }
+  },
+  "readiness_D": {
+    "status": "ACCEPT",
+    "role": "/root/issue_118/postgate_readiness_review1",
+    "packet": "/workspace/work/campaign/evidence/118/D-packet-ACTIVE.md",
+    "packet_sha256": "12bf812271c6b621bdfb6107287e0c83d8119afb963cc0de1a6b926118e92559",
+    "launch_receipt_sha256": "aefa809534dad288464d291e1343e4a45757eb15c10ca2253264444b1a7ee6ee",
+    "primary1733_sha256": "feaa94523adc3f7229b743c135c007ff7990a1e47900aae3ffa4a1de418e8f81",
+    "initial_hash_and_clean_checks": "PASS, no verdictyet",
+    "report_sha256": "25ac01437f5e433049fb15b9202bc6710cb1ce028881fcbf72d09c96d90e6f95",
+    "distinct_final_sha256": "24bcb499cd87b7af8cb74b7ef79b47ae7098ecf143117717102cd864f88ef5d6",
+    "application": "/workspace/work/campaign/evidence/118/ROOT-final-D-acceptance-application-1.json",
+    "application_sha256": "dbd65a216cbc0cfba7da503f6a5d87a5a9b9c535a86537af3e7ceeaac2210da4",
+    "inputs1739before_after_sha256": "b207af64bc16375838b62a23f74c88879d9ab44c17657a6767667be5ec6320f6"
+  },
+  "PR": {
+    "number": 125,
+    "url": "https://github.com/david-hoffman/simrecon/pull/125",
+    "head": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+    "base": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+    "branch": "perf/118-preparation-harmonic-lifetimes",
+    "parent_branch": "perf/117-refinement-buffer-lifetime",
+    "published_body_exact": true,
+    "body_context_e505": true,
+    "body_CI_passed_sha256": "8d6dc26090a7be8e210c43d8bb7b6d0bfcb46935396ac4776c75d1756e115de5",
+    "final_body_and_head_fresh_API_confirmed": true
+  },
+  "CI": {
+    "time_utc": "2026-11-16T16:24:38.665548+00:00",
+    "result": "PASSED",
+    "PR": 125,
+    "run_id": 43903983166,
+    "job_id": 133427761353,
+    "url": "https://github.com/david-hoffman/simrecon/actions/runs/43903983166/job/133427761353",
+    "job_all_steps": "success",
+    "tests": {
+      "passed": 3500,
+      "warnings": 47,
+      "seconds": 585.45
+    },
+    "head": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+    "integration_commit": "49ea6a5de587e262ce0e36c86fdbe68510963b1c",
+    "integration_parents": [
+      "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+      "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+    ],
+    "tree": "28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a",
+    "checkout_log_contains_exact_integration_commit": true,
+    "fetched_merge_tree_matches_verified_candidate": true,
+    "decoded_tool_log_export": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-CI-job133427761353.log",
+      "sha256": "ecb55dd0173e08fe2b7f7bbe45125bdd882a5eec390ce72ff81f873508e9ec48",
+      "bytes": 55239,
+      "scope": "Decoded tool text export with final newline; no raw ZIP/network-byte identity claim."
+    },
+    "artifact_metadata_only": {
+      "id": 14244394143,
+      "name": "verification-ubuntu-24.04",
+      "size_in_bytes": 1822054,
+      "url": "https://api.github.com/repos/david-hoffman/simrecon/actions/artifacts/14244394143",
+      "archive_download_url": "https://api.github.com/repos/david-hoffman/simrecon/actions/artifacts/14244394143/zip",
+      "expired": false,
+      "created_at": "2026-11-16T16:20:31Z",
+      "expires_at": "2027-02-14T16:07:31Z",
+      "updated_at": "2026-11-16T16:20:31Z",
+      "digest": "sha256:e132428023b5f17197a4826f49a9a7e23b3da235b7e5155c77bb6846818bbc15",
+      "workflow_run": {
+        "id": 43903983166,
+        "repository_id": 1398550280,
+        "head_repository_id": 1398550280,
+        "head_branch": "perf/118-preparation-harmonic-lifetimes",
+        "head_sha": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03"
+      }
+    },
+    "artifact_downloaded": false,
+    "local_candidate_or_receipt_changed": false
+  },
+  "limits": "Finite78 descriptive scope; no general peak/speed/16GiB claim, currentlarge and downstream design qualification held.",
+  "cumulative_accounting": "Preserved in sole Current/role ledger/immutable role and operation histories; actual serving/tokens/cache/money/time unknown.",
+  "completion_limits": "Scoped118delivered; source75fc/final61 distinct, no generalpeak/speed/currentlarge/16GiB ordownstreamdesign/precisionclaim. No merge/release/manualissueclose. Exact2disposableparentmethodcopiesremoved, allrequiredworktrees/environments/evidencekept."
+}

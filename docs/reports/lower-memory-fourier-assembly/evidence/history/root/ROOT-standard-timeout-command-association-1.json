@@ -1,0 +1,37 @@
+{
+  "utc": "2026-11-16T18:24:53.469294+00:00",
+  "scope": "Metadataactualcommand association, not lifecycle qualification",
+  "container": "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+  "cwd": "/workspace/work/issue-120",
+  "user": "1000:1000",
+  "actual_commands": [
+    [
+      "/usr/local/bin/docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "-w",
+      "/workspace/work/issue-120",
+      "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+      "/usr/bin/timeout",
+      "--version"
+    ],
+    [
+      "/usr/local/bin/docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "-w",
+      "/workspace/work/issue-120",
+      "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+      "/usr/bin/sha256sum",
+      "/usr/bin/timeout"
+    ]
+  ],
+  "actual_results_file": {
+    "path": "/workspace/work/campaign/evidence/120/ROOT-standard-timeout-identity-1.json",
+    "sha256": "752323848cc1d9a3fd21a9be059094685b61169c755320025f69c107754651a0"
+  },
+  "result": "Bothactualexec0, standardGNUtimeout9.4,pathSHA12690a043dfd555a6c14ccc1564f5649c18f1762c0d6ff66729948130898ec52",
+  "limits": "Not a lifecycle/nativeusage/reaper/earlymarker/outerinterruption certificate. Concrete qualgrant/currentphysicaladmission/source-binding/outerowner still future."
+}

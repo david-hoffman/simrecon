@@ -1,0 +1,43 @@
+56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd  /workspace/work/issue-120/AGENTS.md
+530e72dbc3b9e73756687c3893bef2803cb775080a12539681020916c59b9fee  /workspace/work/issue-120/docs/PROJECT.md
+3dd402828a1de66bed570de455daf1492ce3120f7174b2386eef330f4e02c23c  /workspace/work/issue-120/.agents/skills/implement-work/SKILL.md
+45e10323d7c97146eeff7681fdf0a3bdfa8833453a565b583ba8bb1f28c5b1c9  /workspace/work/issue-120/docs/operations/role-launches.md
+d3b70bb7c96efb7b733b7133134fc45779013ad5ee23c384d49781743f59d756  /workspace/work/campaign/issue-120.md
+7e0ee0e576237883c8ba9c7c99e244df1e1fd962fef830b57937bd3b09cdab1c  /workspace/work/issue-120/docs/contracts/lower-memory-fourier-assembly-study-v1.md
+2805798e5afda2cb1f208ab41b55f2fd5877a41c2d1980feb56687e3e9076490  /workspace/work/issue-120-sourceprep/integration-evidence-plan.md
+3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c  /workspace/work/issue-120/docs/contracts/c-equivalence-known-parameters-v1.md
+5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e  /workspace/work/issue-120/docs/contracts/c-equivalence-acquisition-modes-v1.md
+3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a  /workspace/work/issue-120/docs/contracts/reconstruction-memory-v1.md
+d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb  /workspace/work/issue-120/docs/contracts/wide-allocation-domain-v1.md
+271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f  /workspace/work/issue-120/tests/reconstruction_summary_fixture.py
+929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f  /workspace/work/issue-120/tests/reconstruction_memory_benchmark.py
+# Source correction1/event2: historical event1 artifact identity-only reads; original inputs above unchanged.
+16192414b09fee80b980a161f252bdd89fc32b2eb2fe1396c1dbe2fdefb0c481  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/experimental_child.py
+512e354707e699a21134f369e3baf498ffede0a73039b8e38debd3d414e95c64  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/assembly-delta.patch
+6843d91a7b8ad85a5c470fea8b225c7068b7f5f259965083bc0fc9b3640a2b82  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/closed-inputs-and-manifest.md
+d99bc39e86afc9194ddefc0fa9e240c26ab4fb7cd8ba4e059e25624968b276f8  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/independent-witnesses.md
+262a1e425ff4f689f27b9f76819e96ac4c03edda3a74f8e97868685f3a47c455  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/pending-invocation-report.md
+84e82ab1f9a1c1d00493cd87c435d741eb8cb87fe4a14b8b419587b9e49852c9  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/read-input-sha256.txt
+f0979aecab7117d4e963bc824f81b49c9503594cce4be8abcd1b7307c719cd4f  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/source-handoff.md
+6503c852ce4f33ef89b2079bf63e37c8cde149eb6605b740ab814cb6db34c720  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event1-pre-correction/source-artifact-sha256.txt
+# Source-preparation event3 / witness-text closure1: added explicit CE04 source/test read allowlist; text/hash only.
+5e80aafb44b59ae9d45592181b72d62ce03dd7f49f146313294a16c73a2d89a6  /workspace/work/issue-120/tests/c_known_fixture.py
+dbe21e7535088b773d0bf0bb5d92319843868bf3b35ef6b304b3081d6d753a55  /workspace/work/issue-120/tests/test_c_known_assembly.py
+d2d6ec94e963b7169fb473b06c5d1ad367756285eefe920fe3c7d8fe72f504a8  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/experimental_child.py
+cabb298b76d6265c2b08c9fdb98f7fe025d74a2bd092431a7413616233870904  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/assembly-delta.patch
+859b21f364ea08cfaafb47d104227eeb89f232ded3d81f63442697a9eedc9676  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/closed-inputs-and-manifest.md
+263927ec24ade7ef2f967bac06467d00210bf9ea07153b54e6a595ee944a759f  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/independent-witnesses.md
+56303df69438d74dcbd5dfc3e48641caf94ef8dcb34682caf61e4551db31763e  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/pending-invocation-report.md
+fca078afb3cf496ad742d337eb5b9d337da163fe5dfc195c63a25501e2b67d7b  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/read-input-sha256.txt
+db37c79663590f3ee6773231449b1c60e9a4625674c1dd67632b303a6774112b  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/source-handoff.md
+a839b7e01f9a66b67c05bfa7ccabdb25c1c40013e81f8c33f78b38faf7960389  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event2-pre-witness-closure/source-artifact-sha256.txt
+# Source-preparation event4 / public-fixture-writer closure1: narrow public AcquisitionBands field/return/source-scale and CE06 table reads; historical event1 exact setup read.
+4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1  /workspace/work/issue-120/src/simrecon/acquisition/modes.py
+d2d6ec94e963b7169fb473b06c5d1ad367756285eefe920fe3c7d8fe72f504a8  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/experimental_child.py
+cabb298b76d6265c2b08c9fdb98f7fe025d74a2bd092431a7413616233870904  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/assembly-delta.patch
+8a8b529c39b3541d13570d3d22586c3e8748d3f8d2bb89bc29960390a9187915  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/closed-inputs-and-manifest.md
+930e917d9f2334ca96f4e693ad2bf812cb96ef090b699aa8622df4454d5ebeaa  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/independent-witnesses.md
+0d62c9755330dba7d4bc828b15d3b698d2a24bdeab1c10c1f0c12054fd962d8f  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/pending-invocation-report.md
+b12af2d21917038c297c62a0697fa4b4e3cd6721940b0400a59d0f1527552acd  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/read-input-sha256.txt
+72eaf80136e624e158e24b33d5ebb148b759d027f94906c5aa1118fb77528ef2  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/source-handoff.md
+78360fee5b77205f8ff2ceec3caf120807daaefd4af2c2535ebb79e5c13c1fc0  /workspace/work/issue-120-sourceprep/study-source-preparation/historical-event3-pre-fixture-writer/source-artifact-sha256.txt

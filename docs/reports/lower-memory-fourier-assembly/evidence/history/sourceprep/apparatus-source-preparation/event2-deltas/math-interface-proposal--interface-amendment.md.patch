@@ -1,0 +1,25 @@
+--- /workspace/work/issue-120-sourceprep/apparatus-source-preparation/historical-event1-pre-identity-correction/math-interface-proposal/interface-amendment.md	2026-11-16 06:00:41.908694686 -0800
++++ /workspace/work/issue-120-sourceprep/apparatus-source-preparation/math-interface-proposal/interface-amendment.md	2026-11-16 06:03:20.067591068 -0800
+@@ -42,12 +42,21 @@
+ launch and checked externally by existing material correspondence; child
+ identity observations remain supplemental. There is no new child validator.
+ 
++SOURCE correction1/event2 clarifies the existing helper's exact serialized
++representation: each identity is [name, [shape...], canonical dtype.str, SHA256].
++The before/after caller containers remain dictionaries keyed filtered/carriers/
++x_um/y_um, whose VALUES are those four-field lists. Output identity is the same
++list form with name image. Apparatus now binds the raw image digest to that
++list's SHA256 slot, using its existing byte-digest helper. This changes no math
++source, proposal, caller body, fixture, row or numerical content handling.
++
+ The writer's separate complete public_image.npy and provenance.json stay in
+ reference storage. The measured child's complete canonical image is RAW little-
+ endian bytes at output-image.le.bin, with its stdout payload as the row's
+ provenance/observation record. The apparatus checks fixed metadata/file byte
+ count and archives a raw-file hash; it never parses numerical file content.
+-Full raw/public-image byte comparison is separate scientific qualification.
++Full raw/public-image byte comparison is separate scientific qualification;
++raw-artifact-to-declared-identity digest correspondence does not replace it.
+ 
+ ROOT must authorize the math owner to reconcile/apply any amendment against
+ actual119, preserve the d2d6 source identity, supply a new actual source path/hash,
