@@ -1,0 +1,8 @@
+{
+  "status": "AUTHORING_ONLY_ASSERTION_FAILED_BEFORE_HELPER_WRITE",
+  "cause": "Inline literal-port writer asserted three occurrences of newcontroller88772 after already changing attestation filename separately. Actualexpectedcount is four; no helper/source output or target call occurred, empty ownedsource directory only.",
+  "repair": "Correct coordinator expectedsourcecount to four; unchangedsource semantics, no actualscience or helper retry. Failedtool command/trace preserved.",
+  "active_data_reads": false,
+  "target_executions": 0,
+  "costs": "UNKNOWN"
+}

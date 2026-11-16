@@ -1,0 +1,346 @@
+{
+  "schema": "WS116-fullsupplied256-canonical940-attempt1-file-root-diagnosis-v1",
+  "status": "DIAGNOSED_CONFIG_ONLY_NESTED_ADMISSION_READ_ROOT_OMISSION",
+  "actual_failed_command": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt1-command.json",
+    "sha256": "398c34fd4584867888bc4df521e9c2ebac07a57fe390cd34dc5f4811f693eb65"
+  },
+  "actual_config_SHA": "84e84ff24d87ae0d315cc1433ebbdcbe8d29c4e2f130434d9eaf43be18012e25",
+  "source_unchanged": true,
+  "actual_result": {
+    "returncode": 1,
+    "elapsed_seconds": 1.141561381999054,
+    "stage_rows_audited_successfully": 0,
+    "stage_rows_excluded_audit_failure": 3,
+    "controls_successful": 3,
+    "summary_success": false,
+    "all7outputs_preserved": true
+  },
+  "first_failure_sequence": "audit_selection -> boundary_for -> audit_stage_context -> Files.read(admission.prior_data_refs[0],as_json=True) -> path outside explicit roots before full row audit. Third prior_data_ref is a second missing path, not yet reached by original failed rows.",
+  "source_read_locations": [
+    "aggregate_stage_observations.py:195 stage admission JSON",
+    "209 each prior_data_refs JSON",
+    "211 optional descriptive_report_applicability_reference hash-only",
+    "215-241 stored prior closures/terminal/boundary/lastmetadata",
+    "263 prefix boundary",
+    "273-324 config/method/sourcebasis/authority/environment/scheduler/ledger/helper",
+    "357 support records",
+    "383 resource pointers",
+    "462-470 raw receipt/child/spec/markers/readiness",
+    "707 excluded evidence hash-only"
+  ],
+  "actual_nested_admission_reads": [
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r1-u",
+      "read_kind": "stage_admission",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-full-stage-admission.json",
+        "sha256": "c66480fe821ac6734c2e3ef2adf560e28a67679dacf2e26acfbf40eab29ee78f"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+        "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+      },
+      "inside_original_actual_read_roots": false
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-independent-scalar.json",
+        "sha256": "f4b4366c0af105801f1606686d31c8da3c6a0dd591df20d7b0eb4bfc566d5008"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/coordinator-actual256-analysis-output-review.json",
+        "sha256": "0cb03d5b65ca57e75f137a22233361730a30dcd5765f85e1ab12f292f66c5b9e"
+      },
+      "inside_original_actual_read_roots": false
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+        "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+        "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r2-u",
+      "read_kind": "stage_admission",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-full-stage-admission.json",
+        "sha256": "c66480fe821ac6734c2e3ef2adf560e28a67679dacf2e26acfbf40eab29ee78f"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+        "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+      },
+      "inside_original_actual_read_roots": false
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-independent-scalar.json",
+        "sha256": "f4b4366c0af105801f1606686d31c8da3c6a0dd591df20d7b0eb4bfc566d5008"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/coordinator-actual256-analysis-output-review.json",
+        "sha256": "0cb03d5b65ca57e75f137a22233361730a30dcd5765f85e1ab12f292f66c5b9e"
+      },
+      "inside_original_actual_read_roots": false
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+        "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+        "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r3-u",
+      "read_kind": "stage_admission",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-full-stage-admission.json",
+        "sha256": "c66480fe821ac6734c2e3ef2adf560e28a67679dacf2e26acfbf40eab29ee78f"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+        "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+      },
+      "inside_original_actual_read_roots": false
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-independent-scalar.json",
+        "sha256": "f4b4366c0af105801f1606686d31c8da3c6a0dd591df20d7b0eb4bfc566d5008"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/coordinator-actual256-analysis-output-review.json",
+        "sha256": "0cb03d5b65ca57e75f137a22233361730a30dcd5765f85e1ab12f292f66c5b9e"
+      },
+      "inside_original_actual_read_roots": false
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+        "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-l256-full-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+        "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r1-u",
+      "read_kind": "stage_admission",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json",
+        "sha256": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json",
+        "sha256": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-closed-file-scalar-review.json",
+        "sha256": "311eabff259e07e35f1b3890d9ffdb7603d526cfc9ecbdd0584fe22eaa64a6ab"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r1-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+        "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r2-u",
+      "read_kind": "stage_admission",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json",
+        "sha256": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json",
+        "sha256": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-closed-file-scalar-review.json",
+        "sha256": "311eabff259e07e35f1b3890d9ffdb7603d526cfc9ecbdd0584fe22eaa64a6ab"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r2-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+        "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r3-u",
+      "read_kind": "stage_admission",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json",
+        "sha256": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json",
+        "sha256": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-closed-file-scalar-review.json",
+        "sha256": "311eabff259e07e35f1b3890d9ffdb7603d526cfc9ecbdd0584fe22eaa64a6ab"
+      },
+      "inside_original_actual_read_roots": true
+    },
+    {
+      "selected_attempt": "ws116-gp-g256-summary-supplied-r3-u",
+      "read_kind": "prior_data_refs",
+      "reference": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+        "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+      },
+      "inside_original_actual_read_roots": true
+    }
+  ],
+  "missing_exact_file_permissions": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/coordinator-actual256-analysis-output-review.json",
+      "sha256": "0cb03d5b65ca57e75f137a22233361730a30dcd5765f85e1ab12f292f66c5b9e"
+    }
+  ],
+  "optional_descriptive_refs": "No such optional field present in these actual admissions; source supports hash-only if present, not JSON decoding.",
+  "all6output_identity_hashes_verified": {
+    "per-process.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "unprofiled-controls.json": "50fdb9c143e8ac9cbaba16a1cf5c0ad06efba8d50510ed364a2eaacdb86608fc",
+    "excluded-records.json": "a87c236548dcc1ea7e1de42be7cb3ac60f699f6c7655e7ddecaa2005a6868bb6",
+    "summary.json": "6359c0575569239bce4e83b53d67852083e8940bba7997e82d43a4c59fb1bc58",
+    "file-audit.json": "7c47f6deb2754042ac6488952539e33c9960deb059bdbad55451d7782cafb12f",
+    "three-repeat-summary.csv": "8aeddd3b26d2a5e15ad5a6ec88d4abba6bc2319eec66f3d0e89cdb84dfbf40e4"
+  },
+  "underlying_raw_science_and_independent8triplets": "Unchanged/eligible separately; failure is closed-file analysis config/read-root omission, no product/numerical/source/rawscalar defect.",
+  "prior_root_coverage_claim_limit": "ROOT/coordinator explicit-entry coverage checks omitted nested stage-admission prior data reads; prior claims remain preserved with this correction.",
+  "proposed_correction": "Exact2 missing FILE allowpaths only; source/data/selection/control/metric identity unchanged. Add failedanalysis diagnostics as nonpooled history with exact file allowpaths, output-attempt2 unique, approvalflagsfalse. No rerun authorized.",
+  "failure_outputs": {
+    "summary.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/summary.json",
+      "sha256": "6359c0575569239bce4e83b53d67852083e8940bba7997e82d43a4c59fb1bc58"
+    },
+    "excluded-records.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "a87c236548dcc1ea7e1de42be7cb3ac60f699f6c7655e7ddecaa2005a6868bb6"
+    },
+    "file-audit.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "7c47f6deb2754042ac6488952539e33c9960deb059bdbad55451d7782cafb12f"
+    },
+    "output-identities.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "5c0f13efc7d4ce161947ff728449d41039f80a26645a2cbcaac04abbb1c95f68"
+    }
+  },
+  "next_science_or_analysis_authorized": false,
+  "all_prior_attempts_costs_preserved": true
+}

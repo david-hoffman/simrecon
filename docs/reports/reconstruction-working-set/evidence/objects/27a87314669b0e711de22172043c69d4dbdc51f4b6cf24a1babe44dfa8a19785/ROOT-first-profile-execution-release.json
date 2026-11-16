@@ -1,0 +1,57 @@
+{
+  "NEW_ROOT_stage_decision": {
+    "path": "/workspace/work/campaign/evidence/116/ROOT-central64-profiles-first-stage-decision.json",
+    "sha256": "429d1022e401590ff97ea41af1c504805d367a1ee541fbb2d8ec1e8d5db7d7ab"
+  },
+  "ROOT_packet_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/ROOT-actual-prepared-packet-review.json",
+    "sha256": "636bf563c6b1dfff930bb5a53f8f4e12851cda16c78d292ea45de89981cac238"
+  },
+  "ROOT_searched_descriptive_acceptance": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-fullsearched256-analysis-acceptance.json",
+    "sha256": "f0911ebe23c8da0a706cad0f5ccd2845e2de36fdf96f4274ed553d64a4416564"
+  },
+  "actual_preparation_command": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/ROOT-actual-preparation-command.json",
+    "sha256": "456232ef100d2997559732fece32414cfcc125c611b029a68b4357dfd3799ec0"
+  },
+  "allowed_attempt_ids": [
+    "ws116-gp-c64-summary-searched-r1-p"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "binder": {
+    "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+    "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7"
+  },
+  "coordinator_packet_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/coordinator-actual-prepared-packet-audit.json",
+    "sha256": "2f3aff4a4a96d56040875b91c5b2dc6946ba41635b12744470520118c2f0f2e6"
+  },
+  "grant_binds_ROOTauthority_notACK": true,
+  "known_other_runtime_suspended": true,
+  "no_automatic_retry_remaining5_largestprofile_or_nextstage": true,
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-PREPARED.json",
+    "sha256": "45b4d4a64bc51b6f97535497c37c58f132290361462511e9ceaca829ed1b3dd5"
+  },
+  "released_at_unix_ns": 1794781848737141529,
+  "schema": "ROOT-WS116-first-central-profile-exact-execution-release-v1",
+  "scope": "ONE exact firstcentral64summarysearchedPROFILE R1; existing8190 owns actualperrow remainingdeadline/source/metadata/capture/originalproof/end/owner guards. All modecaps/960-1080-803209216 proposals unchanged, selectedNone/growth[]. ROOT owns actualcontroller/proxy throughwholeclosure/eligible audit. No profile-overhead/attribution/scientificbenefit acceptance.",
+  "selected_largest_size": null,
+  "source35_core28_tool6_method_env_and6controls_unchanged": true,
+  "stage_id": "central64-profiles",
+  "window": {
+    "ends_unix_ns": 1794788840916089907,
+    "starts_unix_ns": 1794781640916089907
+  }
+}

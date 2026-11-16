@@ -1,0 +1,102 @@
+{
+  "schema": "WS116-coordinator-central64-profile-remaining5-preparer-source-review-v1",
+  "status": "SOURCE_SUITABLE_UNEXECUTED_HOLD",
+  "findings": [],
+  "artifacts": {
+    "root-prepare-remaining5-central-profiles.py": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/root-prepare-remaining5-central-profiles.py",
+      "sha256": "818eac071408569fcb43bd81a63437c4e3526cbca099686eb1775c230e4330da"
+    },
+    "source-manifest.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/source-manifest.json",
+      "sha256": "7f6171c8f7b936baaf3d654738520570c0c11ed05d435559a399480cd9bc0d40"
+    },
+    "ROOT-preparation-inputs-DISABLED.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "6ced627d7f875a6d164f92ede9160eff0706bdc3a87e131f453a0cb05a9ecdd3"
+    },
+    "README.md": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/README.md",
+      "sha256": "d4d40327b1a73f43297e5c6aa89d2a76420e81c1ccd691e33ec69cb093540a4b"
+    },
+    "source-handoff.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/source-handoff.json",
+      "sha256": "13fc27790f624f7c6c779d7ce230706f1ea2dffb31415a0f632aa62c3d7735fc"
+    }
+  },
+  "read_scope": "Whole358linehelper/108README/104templates/69handoff visuallyread. Manifest1852JSON parsed/all repeatedmaps(runtime/prior/control/evidence/proposals) compared immutable56a/94d/closedR1.26immutablepins/12controlsmallpins checked. Notclaimedwhole1852linevisual; no helperimport/AST/runtime/sourceQA.",
+  "minimal_delta": "Accepted8f164 continuation+e4a profileflow port: centralpaths/schema/globalindices2-6/None/growth[], immutable56a localnormalizedfalse, same94d/aad1/sixcontrols/prior5;63755/58cc/73a/c7exactschemas; profile960/1080/803209216 dualmode margins;1fixedmetadata exact2owners+1capture/2sourcechecks/13outputs/configfalse/ROOTAUTHneverACK.",
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json",
+    "sha256": "94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece"
+  },
+  "closed_R1_boundary": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/eligible-boundary.json",
+    "sha256": "aad1f16b2f5bfb46f8b4b6d9edfba5fee2132f570750e47de370f6ea22d4e9c2"
+  },
+  "closed_R1_evidence": {
+    "ROOT_eligibility_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-eligibility.json",
+      "sha256": "58cc70bae28800777587b584708ded4d7f5fa14af06041a23e31020e331801bc"
+    },
+    "ROOT_window_closure_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-window-closed.json",
+      "sha256": "73a95551735a2250906c6d01103a5bb73e822dbf44915f3268106bbd27d9bd12"
+    },
+    "ROOT_controller_terminal_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-controller63755-tool-terminal.json",
+      "sha256": "c7d3765ffaa7edbaae36966b6ec9c2a4ce399e5f41e458b19055849ae9ebf840"
+    }
+  },
+  "stored_R1_birthFDs": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52283,
+      "start_ticks": 8835053
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52303,
+      "start_ticks": 8835070
+    }
+  ],
+  "scope_guards": [
+    "OnlysummaryprofileR2/R3 thenfullprofileR1/R2/R3 exactindices2\u20136; source6stage/controlsame-mode public+common retained; noR1rerun/newstage.",
+    "FuturefreshROOTauth/currentcampaignsuspension/prereqactualexpectedbodyhashes remain disabled/null; proposed3h reservation and retainedfinite<=6h sourcebound, ROOTchoosesactual3h. Frozenperrow960+120remainingwindowguard unchanged.",
+    "Bothmode margins futurecaptured: summarystop1/reserve1/ancestor8/host>2GiB, fullstop1.5/reserve1/ancestor8/host>2.5GiB. All960deadline/1080horizon/disk803209216; no cap/fixture/tolerance/workerchange.",
+    "Exacttwo birthFD identities derived pinnedR1receipt/markers/postmetadata andROOTeligibleexpected. Onefuturefixedmetadata proves currentexactabsence; historicalclosurealone cannot. Priorstageowners never refreshed.",
+    "Exclusive13namedoutputs/3snapshotcopies/1metadata+1capture/2sourcepasses; nooverwrite/retry/recapture/caprelax/grant/intent/binder/productcall. Topconfigfalse and grantROOTAUTHORITY pathSHA neverACK; separateactualpacket/ROOTexactrelease."
+  ],
+  "limitations": [
+    "Syntax/runtimeUNVALIDATED; prompt/sourcebounds notengineeredFSisolation.",
+    "Futurefreshsource35/tool6/git/context/ownership/resourcefacts requireROOTinvocation; none claimedobservednow.",
+    "No rawsamplecontents/activeprocess/resource/proof read; no currentFS/PIDprobe. No newmeasurementmethod/scientificreportacceptance or profile release."
+  ],
+  "coordinator_manifest_shape_assumption_diagnostic": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/coordinator-source-audit-manifest-shape-diagnostic.json",
+    "sha256": "e22c944fd737c5d75a0f0b58052208464edd963212892889f7adf1399763d82a"
+  },
+  "accounting": {
+    "investigator_preparations": 35,
+    "execution_continuations": 9,
+    "total": 44,
+    "original_launch": 1,
+    "costs": "UNKNOWN",
+    "all_prior_bytes_errors_charges_preserved": true
+  },
+  "target_or_QA_executions_by_coordinator": 0
+}

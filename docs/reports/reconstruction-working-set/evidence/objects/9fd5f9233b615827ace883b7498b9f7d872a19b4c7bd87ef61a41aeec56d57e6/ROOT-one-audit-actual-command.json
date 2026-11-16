@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/root-close-growth256-stage.py",
+    "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-execution-release.json",
+    "c5a57ac1b39bb543e603d748c3e3f8985d0abac3a506e0da5402e17d35ecb9ce"
+  ],
+  "actual_tool_result": {
+    "chunk_id": "00e9f1",
+    "wall_time_seconds": 1.900411909,
+    "exit_code": 0,
+    "original_token_count": 50,
+    "output": "{\"closure\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json\", \"sha256\": \"79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa\"}}\n"
+  },
+  "scope": "ONE actual fixed closure audit; no automatic retry"
+}

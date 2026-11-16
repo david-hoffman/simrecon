@@ -1,0 +1,11 @@
+{
+  "id": "G06-V25-input-tuple-name",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "input array identity mismatch"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "input array identity mismatch"
+}

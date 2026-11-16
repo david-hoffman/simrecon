@@ -1,0 +1,78 @@
+{
+  "ROOT_packet_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-actual-prepared-packet-review.json",
+    "sha256": "00cdcfe8ad77fd22255c7633c9e3737c78b17f25290e474fb33253d9f6dd06b0"
+  },
+  "ROOTauthority_notACK_grant_chain": true,
+  "actual_preparation_command": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-actual-preparation-command.json",
+    "sha256": "bbf663a1550348411909bd128650912c0d02ee8ad8409dab3f7909679fdecce0"
+  },
+  "allowed_attempt_ids": [
+    "ws116-gp-c64-summary-searched-r2-p",
+    "ws116-gp-c64-summary-searched-r3-p",
+    "ws116-gp-c64-full-searched-r1-p",
+    "ws116-gp-c64-full-searched-r2-p",
+    "ws116-gp-c64-full-searched-r3-p"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "binder": {
+    "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+    "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-central-profiles-remaining5-AUTHORIZED.json",
+    "sha256": "676cf336524d39e5f546aaebb951471b59794fbf17a8b2803b178a7cb5229a7e"
+  },
+  "coordinator_packet_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/coordinator-actual-prepared-packet-audit.json",
+    "sha256": "cdae1a691e81d5786cb74bdf72e275fff8850eea6259eac03cd2ce1284895486"
+  },
+  "first_R1_eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-eligibility.json",
+    "sha256": "58cc70bae28800777587b584708ded4d7f5fa14af06041a23e31020e331801bc"
+  },
+  "first_window_closed": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-window-closed.json",
+    "sha256": "73a95551735a2250906c6d01103a5bb73e822dbf44915f3268106bbd27d9bd12"
+  },
+  "global_indices": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "known_other_runtime_suspended": true,
+  "no_automatic_R1_retry_largestprofile_or_nextstage": true,
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/config-remaining5-PREPARED.json",
+    "sha256": "86bd24bbdfe6dc343db37a169781074e83f1ac7d70a6e56b8cacc44fc71ce173"
+  },
+  "released_at_unix_ns": 1794783467209908525,
+  "retained_first_R1_prefix": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "aad1f16b2f5bfb46f8b4b6d9edfba5fee2132f570750e47de370f6ea22d4e9c2"
+    }
+  ],
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json",
+    "sha256": "94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece"
+  },
+  "schema": "ROOT-WS116-remaining5-central-profile-exact-execution-release-v1",
+  "scope": "ONE fixed8190 continuation through fiveexact remainingcentral64profile rows, summaryR2/R3 thenfullR1/R2/R3. Everyrowfreshsource/metadata/capture/deadline/originalproof/end/owner guards, modecaps/profile960-1080-disk803209216 unchanged. No firstR1repeat/largestprofile/otherstage. ROOT ownscontroller/proxy throughwholebatchterminal andall12birthFDclosure beforeanalysis. No observedcost/attribution/benefit/finalscientificacceptance.",
+  "selected_largest_size": null,
+  "source35_core28_tool6_method_environment_6controls_5priorclosures_same": true,
+  "stage_id": "central64-profiles",
+  "window": {
+    "ends_unix_ns": 1794794071931319232,
+    "starts_unix_ns": 1794783271931319232
+  }
+}

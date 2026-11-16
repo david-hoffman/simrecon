@@ -1,0 +1,22 @@
+{
+  "HOLD": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a1/HOLD.json",
+    "sha256": "9687ad8ac168872772a246f5551ba552eee05d0f9aacaa2ea028e48bad475651"
+  },
+  "actual_exit_status": 1,
+  "actual_reason": "grant window authority differs",
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED.json",
+    "c2100939bd89b831c9cd1bb95cd31f699c3341352d300ea98cbbb607dab55cc3"
+  ],
+  "batch_attempt_dir_actual_files": [],
+  "no_metadata_capture_grant_intent_or_scientific_raw_created": true,
+  "no_observer_or_workload_commissioned": true,
+  "not_scientific_repetition_or_pool_entry": true,
+  "root_correction_required": "grant reference, unique new external progress directory+matchingFSkey, explicit separate release. No binder/threshold/method/source changes.",
+  "schema": "ROOT-WS116-growth256-prelaunch-refusal-v1",
+  "source_boundary": "stage_batch_binder.py:494, exact grant.exclusive_window must point root_authority, but ROOT packet incorrectly pointed scheduler_ACK"
+}

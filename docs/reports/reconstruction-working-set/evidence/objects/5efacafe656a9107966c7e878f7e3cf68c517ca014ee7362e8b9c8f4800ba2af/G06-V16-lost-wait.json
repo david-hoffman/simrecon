@@ -1,0 +1,11 @@
+{
+  "id": "G06-V16-lost-wait",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "ownership/FD evidence incomplete"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "ownership/FD evidence incomplete"
+}

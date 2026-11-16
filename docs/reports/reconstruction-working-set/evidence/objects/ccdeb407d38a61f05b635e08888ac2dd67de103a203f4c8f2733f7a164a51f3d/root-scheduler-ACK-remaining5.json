@@ -1,0 +1,65 @@
+{
+  "campaign_work_suspended": true,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "C4threecheap/G1normal/Pyright runtimes and privateinit/proxies/pipes closed. C1author SOURCE-only correction; no runtime/import/tests/lint/types/build/install.",
+    "114_117_118": "Only source plans completed; no runtime/owners.",
+    "116": "First256r1 bothowners/FDs closed; a3guard+192actualanalysis ended0; metadata/capture just returned. EAunchanged.",
+    "119_120": "Intake-only waiting; no runtime.",
+    "root": "Only finite packet/file/operationalmetadata work; all unrelated numerical/gate/build/install/test work suspended."
+  },
+  "observed_at_unix_ns": 1794755006976531092,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "scope": "Known campaign schedule only; outsideactors notscanned; ACK is not grantauthority. Source-only authoring permitted.",
+  "stage_id": "growth256-summary",
+  "stored_row1_closure_references": {
+    "base_config": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+      "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3"
+    },
+    "coordinator_row1_review": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-row1-closed-file-review.json",
+      "sha256": "9c09923e7c167f97840534dee163f8baa617bd0b6d4d8dea27423dedb4eb960c"
+    },
+    "row1_boundary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86"
+    },
+    "row1_early_window_closed": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-window-closed-for-checks.json",
+      "sha256": "f367dfdbb9f81bddaa18dbbc926e49da8fb0c7c172ccae96a03b843b926e3c28"
+    },
+    "row1_eligibility": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-data-eligibility.json",
+      "sha256": "107412590bb0da1e0c7a48edb64a70bd2c718314169b676c79275a716035d88e"
+    },
+    "row1_post_metadata": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata.json",
+      "sha256": "51bf1a1703ebef6748b81bf5137afa09c4619c41a3a918f9d2cf32bd84348e2e"
+    },
+    "row1_receipt": {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/receipt.json",
+      "sha256": "af5c866673b34d53e5ab2a6e432649f2612445f1d1358b902468bfd9788f41b4"
+    },
+    "same_stage_admission": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json",
+      "sha256": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d"
+    }
+  },
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794776606976531092,
+    "starts_unix_ns": 1794755006976531092
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "main_after": "75862602a0889da909a866bb22cf70b9cd818155f951c8fb982fc5aed37cad6e",
+  "main_before": "e3d17f3a0e63e430f58a97634ac30d8d42cf841a036e085e56581dd7b6aa4605",
+  "main_diff": "--- \n+++ \n@@ -1,6 +1,6 @@\n # Reconstruction working set: measured report and follow-up handoffs\n \n-**Complete investigator report, pending final independent scientific review and integration.** Ninety eligible fresh-process observations cover the declared initial corpus, spatial growth, selected full-mode comparisons and separately instrumented controls. All declared groups have three repetitions. One older tracked workflow attempt failed and is excluded. The original large target remains unmeasured and allocation-unadmitted. No product implementation is commissioned here.\n+**Measured report with independently assessed substantive claims.** Final integrated-candidate verification and post-gate acceptance are recorded separately in the task/PR evidence. Ninety eligible fresh-process observations cover the declared initial corpus, spatial growth, selected full-mode comparisons and separately instrumented controls. All declared groups have three repetitions. One older tracked workflow attempt failed and is excluded. The original large target remains unmeasured and allocation-unadmitted. No product implementation is commissioned here.\n \n The measured candidate is `ea9117d3efe2d8de273402d643e732140138e496` (EA), tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`, over accepted #115 anchor `ace06c861b974b6251a092567c253ae4eb0f56c8`. The actual material35 map is basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. A later documentation/publication candidate has a different identity; these trials must retain EA in their original records. [Input references](evidence/report-input-references.json) distinguish metric sources, source calculations, operational history and pending delivery facts.\n \n",
+  "schema": "ROOT-116-status-and-source-navigation-delta-v1",
+  "scientific_changes": false,
+  "source_index": {
+    "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/representation-and-provenance.md",
+    "sha256": "662ec35e242427ba0c0c78cd27d78fb475e9ef83b54deceaf1b351c0b8f22e21"
+  }
+}

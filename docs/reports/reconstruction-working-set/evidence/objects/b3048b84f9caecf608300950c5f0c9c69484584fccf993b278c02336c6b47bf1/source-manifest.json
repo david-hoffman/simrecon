@@ -1,0 +1,1899 @@
+{
+  "schema": "ROOT-WS116-first-largest256-profile-source-manifest-v1",
+  "status": "SOURCE_ONLY_UNEXECUTED_NO_AUTHORITY",
+  "immutable_source_inputs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+      "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.md",
+      "sha256": "3f35daea18b061aca3f1fd5f3be6fbb0a3ad5b18a0342292b31eb23ff26fe801"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/config-row1-UNAUTHORIZED.json",
+      "sha256": "86ec665824647a02cf7ec9bfd1cfdda808f48d22a0a9aa1dc233ebb16ec32425"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/stage-admission-DRAFT.json",
+      "sha256": "81da1ac73ff3c4232f348ca109ea23ebbd13ecfd585927f10251d16c4bad03e7"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/authority-DRAFT.json",
+      "sha256": "112b15c36c280b26624c7c670b16c4acf35fe7751ca584f94d1d8c55ce7bb794"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/scheduler-ACK-DRAFT.json",
+      "sha256": "d6b50d1e4a56787ba14ef5814f154175a77379a57033ce2195230dde9c2a3d0e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/currentstage-ledger-DRAFT.json",
+      "sha256": "8cbd6880700933bc225d63ec9bf3d9d5941a718d0181f166be3608aaacbabfc4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/README.md",
+      "sha256": "6221582f91107555861762fa9d1b878ab4ac5cda6ab56cec4da16d3165dcc54b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/input-references.json",
+      "sha256": "ecd1101baf198236de5482ac97b28729afd883b4ccf2e546a78e6cbc96b7d495"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/source-handoff.json",
+      "sha256": "a588c11e9ad0e2f02df1d81bc8232c582ce615ab75949a85322d853c94f9f03e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-window-closed.json",
+      "sha256": "f1594c99975c64bea180f870c0ae89723ed41af35d23aa55a0fc32e72e927563"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/config-central64-profiles-AUTHORIZED.json",
+      "sha256": "8a61220a64265b669438e7e54b7491977e9044746a6fc75f86a29caffaec1364"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "35ba754076f480c68cda1f3191a250478f2a1b7b03a3911f94aeb4fd51d2403a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "d3d9367d87a8184c6fe5e99091fc9ba49d8c5828aedcdcfc261df1ce0cc23f54"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+      "sha256": "8d7cde9f6e9ce0c7f1dbae6b7dde5701e969ae3c3bebbcff76084ff103b25886"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-actual-central6-analysis-output-review.json",
+      "sha256": "94c0d285da5a49135d9ed084fc5dcfc1a1a5d191e1fbdf707919fd29adcdf9d2"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-postclosure-source-check.json",
+      "sha256": "477d3d2741ecaa65d889349cb39fb55909512f3b092883098b2c48a581ca9afd"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-controller88772-tool-terminal.json",
+      "sha256": "c64bbb67995080744fa0271fbf0cd09918bdaf5cc5f5cf8e7a3c83f9987bdfc7"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/root-close-central64-profiles-stage.py",
+      "sha256": "4067842a2c57443c3c220d346404ac099d405b09336ab9e4f62d8b2b03c40cf2"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-execution-release.json",
+      "sha256": "1aca80134eb685d8965b65e59737f92c859d56270b2afa2de100afe5db83d850"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-controller-88772-ended.json",
+      "sha256": "a447586e7d09fbcc7a7986e8d0862ed9e208686ad68b0703a179fc182208e0fe"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/source-manifest.json",
+      "sha256": "8e261a0c1e6ff8ac47ff0cc9923fba838e7731692013fe9022a871c58617fdce"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/root-prepare-first-central64-profile.py",
+      "sha256": "e4a2dfeb63dfbd6b2c5c8a5e67ff148c3c0cfdb227db8e7185dd491683a57acd"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+      "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+    }
+  ],
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "table": {
+    "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+    "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+  },
+  "worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+    "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+  },
+  "recorded_context_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7"
+  },
+  "known_prior_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    }
+  ],
+  "matched_unprofiled": {
+    "ws116-gp-l256-summary-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+        "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+        "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+        "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-full-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+        "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+        "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+        "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    },
+    "ws116-gp-l256-full-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+        "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    }
+  },
+  "declared_growth_conditions": [
+    {
+      "id": "growth256-summary-searched",
+      "shape": [
+        1,
+        3,
+        8,
+        256,
+        256
+      ],
+      "mode": "summary",
+      "search": true
+    },
+    {
+      "id": "growth256-full-searched",
+      "shape": [
+        1,
+        3,
+        8,
+        256,
+        256
+      ],
+      "mode": "full",
+      "search": true
+    }
+  ],
+  "profile_proposals": {
+    "growth256-summary-searched": {
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "predicted_child_peak_bytes": 3221225472,
+      "native_allocator_allowance_bytes": 1610612736,
+      "process_stop_bytes": 6442450944,
+      "reserve_bytes": 3221225472,
+      "host_min_available_bytes": 9663676416,
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "deadline_seconds": 7200,
+      "startup_timeout_seconds": 5,
+      "startup_pipe_bytes": 1024,
+      "terminate_grace_seconds": 0.2,
+      "kill_reap_seconds": 2,
+      "max_child_record_bytes": 4194304,
+      "sample_interval_seconds": 0.01,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "correspondence_maximum_age_seconds": 7320,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "disk_proposal_bytes": 5915017216,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it"
+    },
+    "growth256-full-searched": {
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "predicted_child_peak_bytes": 4294967296,
+      "native_allocator_allowance_bytes": 2147483648,
+      "process_stop_bytes": 8589934592,
+      "reserve_bytes": 4294967296,
+      "host_min_available_bytes": 12884901888,
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "deadline_seconds": 7200,
+      "startup_timeout_seconds": 5,
+      "startup_pipe_bytes": 1024,
+      "terminate_grace_seconds": 0.2,
+      "kill_reap_seconds": 2,
+      "max_child_record_bytes": 4194304,
+      "sample_interval_seconds": 0.01,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "correspondence_maximum_age_seconds": 7320,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "disk_proposal_bytes": 5915017216,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it"
+    }
+  },
+  "runtime_bindings": {
+    "material35": {
+      "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+      "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459"
+    },
+    "core28": {
+      "2d-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            2,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            1,
+            24,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            2,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            2,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            1
+          ]
+        }
+      },
+      "between-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            24,
+            24
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "central64-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "central64-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "central64-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "central64-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "direction1-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            1,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            1,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            1,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "off1-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            32,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "off2-full": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            32,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "off2-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            32,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "spatial32-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            64,
+            64
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            64
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            64
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "time2-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "time4-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "time4-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "within-full": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            24,
+            24
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "within-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            24,
+            24
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      }
+    },
+    "tool6": {
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+      "/usr/local/bin/docker": "6c71cfe71faff949a602946a4df4799b563232e79d0b8b6fd343d0ef081c9621",
+      "/usr/local/bin/git": "8a2ae22e7898e163330a96319b541f92ed6f90fc87576414f72c5a89aa1dc352",
+      "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13": "fed567fcbdacc14612dddd5f29a3203fbe5c93f50b926f15e7a926cf668822a5",
+      "/workspace/work/campaign/capture-resource-domain.py": "47215ee63496e2043e0f5668c1d2d433351ca6067550f11f469f257ccccda68f",
+      "/workspace/work/campaign/evidence/116/initial-batch-binder/ubuntu_metadata.py": "157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0"
+    },
+    "method7": {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json",
+      "sha256": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19"
+    },
+    "environment": {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/environment-binding.json",
+      "sha256": "a7d472eedddd68e230ce79d3b8cb8249d59f51afea76b0c8071d3b4f750ec6f0"
+    }
+  },
+  "known_prerequisite_pins": {
+    "central_profile_stage_closure": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+    },
+    "old_central_window_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-window-closed.json",
+      "sha256": "f1594c99975c64bea180f870c0ae89723ed41af35d23aa55a0fc32e72e927563"
+    },
+    "primary_analysis_config": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/config-central64-profiles-AUTHORIZED.json",
+      "sha256": "8a61220a64265b669438e7e54b7491977e9044746a6fc75f86a29caffaec1364"
+    },
+    "primary_analysis_result": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "35ba754076f480c68cda1f3191a250478f2a1b7b03a3911f94aeb4fd51d2403a"
+    },
+    "primary_summary": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "d3d9367d87a8184c6fe5e99091fc9ba49d8c5828aedcdcfc261df1ce0cc23f54"
+    },
+    "independent_sixteen_triplets": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+      "sha256": "8d7cde9f6e9ce0c7f1dbae6b7dde5701e969ae3c3bebbcff76084ff103b25886"
+    },
+    "coordinator_output_review": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-actual-central6-analysis-output-review.json",
+      "sha256": "94c0d285da5a49135d9ed084fc5dcfc1a1a5d191e1fbdf707919fd29adcdf9d2"
+    },
+    "ROOT_post_source_audit": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-postclosure-source-check.json",
+      "sha256": "477d3d2741ecaa65d889349cb39fb55909512f3b092883098b2c48a581ca9afd"
+    },
+    "central_controller_tool_terminal": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-controller88772-tool-terminal.json",
+      "sha256": "c64bbb67995080744fa0271fbf0cd09918bdaf5cc5f5cf8e7a3c83f9987bdfc7"
+    }
+  },
+  "central_closure_source": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/root-close-central64-profiles-stage.py",
+    "sha256": "4067842a2c57443c3c220d346404ac099d405b09336ab9e4f62d8b2b03c40cf2"
+  },
+  "canonical_primary_program": {
+    "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py",
+    "sha256": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97"
+  },
+  "future_ROOT_central_descriptive_acceptance": null,
+  "future_NEW_ROOT_largest_profile_stage_decision": null,
+  "allow_only": [
+    "ws116-gp-l256-summary-searched-r1-p"
+  ],
+  "prospective_selected_largest_size": 256,
+  "future_output_directory": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness",
+  "future_batch_directory": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1",
+  "proposed_preparation_window_seconds": 14400,
+  "actual_window_times": null,
+  "declared_future_output_files": [
+    "ROOT-preparation-authorization.input.json",
+    "ROOT-scheduler-suspension.input.json",
+    "ROOT-prerequisites.input.json",
+    "metadata-request.json",
+    "metadata-command.json",
+    "metadata.json",
+    "context-command.json",
+    "case-preflight.json",
+    "stage-admission.json",
+    "scheduler-ACK.json",
+    "ROOT-authority.json",
+    "current-stage-ledger.json",
+    "config-row1-PREPARED.json",
+    "preparation-status.json"
+  ],
+  "known_vs_future_scope": "Closed central6 pins known; future ROOT descriptive acceptance/new profile decision, fresh schedule/current owner/source/context/clock/release inputs not present. Static56a supplies physical schema only; no stale current/event fact or global absence claim.",
+  "source_diagnostic": "An authoring string-edit guard rejected an unmatched label before file writes; subsequent manual text inspection corrected an extra closing parenthesis and old message labels before final source creation. No syntax/import/runtime QA executed. Exact failed tool text remains history.",
+  "preservation": "Prep36 tenfiles and all prior source/errors/attempts/unknown charges unchanged."
+}

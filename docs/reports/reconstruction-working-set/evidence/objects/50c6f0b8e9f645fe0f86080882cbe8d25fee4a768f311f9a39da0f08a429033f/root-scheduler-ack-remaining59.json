@@ -1,0 +1,22 @@
+{
+  "campaign_work_suspended": true,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "Native/scalar/style/import/test/AST/runtimeholdcontinues; source/doc-only coordinator resumed, A6sourcefinished/noactivechild",
+    "114": "Scopedcontrolattempt2 completePID46240andFDabsent/root+coor;fullstudySAFEHOLD",
+    "116": "Row1 terminal0, observer47290/workload47310 exactstat/start/FDabsent; firstfailedpairalsofreshchecked. Root+coorreadeligibilityaccepteddata1only/finalscientificreviewpending. Allother116runtimeheld, ROOTonlythissequentialbinder.",
+    "117": "ProvisionalCcompleteSAFEHOLD no resourceowner",
+    "118": "ProvisionalCcompleteSAFEHOLD no resourceowner",
+    "119": "Intakecommittedclean48339c8WAITING/noexecution",
+    "120": "Intakecommittedcleanc962ccfWAITING/noexecution",
+    "root": "Onlyoperationalmetadataandsourceinspection,noothergate/test/install/benchmarkactive"
+  },
+  "limits": "Knowncampaignschedulingonly;no scan orallphysicalhostabsenceclaim",
+  "observed_at_unix_ns": 1794728349760046223,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "schema": "ROOT-campaign-suspension-ACK-v1",
+  "window": {
+    "ends_unix_ns": 1794771549760046223,
+    "starts_unix_ns": 1794728349760046223
+  }
+}

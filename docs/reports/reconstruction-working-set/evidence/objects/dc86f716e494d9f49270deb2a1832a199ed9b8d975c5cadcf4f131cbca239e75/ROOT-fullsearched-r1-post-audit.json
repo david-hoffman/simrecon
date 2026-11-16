@@ -1,0 +1,291 @@
+{
+  "actual_exit0_no_proxy": true,
+  "all_prior_attempts_unknowncosts_preserved": true,
+  "boundary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+    "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "child": {
+    "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/stdout.json",
+    "sha256": "a4578861b73cab4385b6b644e541294125802da70d0a6f878c2dfdbecba72811"
+  },
+  "controller_session": 17352,
+  "controller_terminal": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-controller17352-tool-terminal.json",
+    "sha256": "5e26f026a4fe5b5a8e45af2d69748f0c2935c08037ffff3d835f4ae7e1fecac5"
+  },
+  "exact2_birth_FD_sets_closed": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52072,
+      "start_ticks": 8199172
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52092,
+      "start_ticks": 8199186
+    }
+  ],
+  "final_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata.json",
+    "sha256": "21aba33f88c2635cef988519b92551255bb6cd15e615deabb0794c0458c4a6fe"
+  },
+  "full_status": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-post-r1-full-git-status.txt",
+    "sha256": "73f86632348766a0df667c3ea8afc6fc7956bed2cfb52e314ffd6af25e4683f1"
+  },
+  "invalid_RSS_rows": 0,
+  "matching_control": {
+    "boundary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+    },
+    "config": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+      "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+    }
+  },
+  "missing_RSS_rows": 1,
+  "no_nextrow_release": true,
+  "observed_at_unix_ns": 1794777173044637737,
+  "observer_snapshot_separate": {
+    "cumulative_high_water_bytes": 16556032,
+    "monotonic_ns": 83540516460524,
+    "ru_inblock": 72,
+    "ru_majflt": 0,
+    "ru_maxrss_native": 16168,
+    "ru_maxrss_native_units": "Linux KiB",
+    "ru_minflt": 4640,
+    "ru_nswap": 0,
+    "ru_oublock": 83232,
+    "ru_stime_seconds": 19.36652,
+    "ru_utime_seconds": 53.164481,
+    "scope": "parent after child/cleanup, excludes receipt serialization"
+  },
+  "originalproof_age_at_postcapture_finish_seconds": 1551.947185456,
+  "raw11_all_stream_hash_checked": {
+    "grant.input": {
+      "logical_bytes": 12588,
+      "sha256": "06c0805bef527f357013a124a5dbb3bc21f7794794999e9e5e022558858a5697"
+    },
+    "owned-child.json": {
+      "logical_bytes": 2564,
+      "sha256": "93f945307f4dc3cac5d06c8f4f7053a49c029b28cc9a8c024b0a42d72b10c9c5"
+    },
+    "preflight.json": {
+      "logical_bytes": 2861,
+      "sha256": "97939e1ac6ad0dd928444f0bc641c1972aef7e30e3adfb5991815f2c0aad83f7"
+    },
+    "receipt.json": {
+      "logical_bytes": 29945,
+      "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+    },
+    "samples.jsonl": {
+      "logical_bytes": 42448908,
+      "sha256": "0b30909ba22e0aecb513af0108acf5753e09455aa1b31d167c7e455ea729fa73"
+    },
+    "session-ready.json": {
+      "logical_bytes": 247,
+      "sha256": "b9d36933502cad609318ddd8ea550adeb36c3e4e1724edd3058cf3517f6333f3"
+    },
+    "spawn-intent.json": {
+      "logical_bytes": 3006,
+      "sha256": "5a098f9730f10d5cf6a11166cb3c6b6b1b5252214d5c01eaaa7e9eaaa4bbf126"
+    },
+    "spec.json": {
+      "logical_bytes": 4899,
+      "sha256": "0ab93ff865c61543bba5fe0be2b2366210afbeab8ac67efa6f12b4bdb6fbe4ba"
+    },
+    "startup-readiness.bin": {
+      "logical_bytes": 231,
+      "sha256": "9328e0691ae5cc5537a1003e4b234d3956297f7341de7bb50d18ba4fd67ceaa7"
+    },
+    "stderr.log": {
+      "logical_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.json": {
+      "logical_bytes": 38636,
+      "sha256": "a4578861b73cab4385b6b644e541294125802da70d0a6f878c2dfdbecba72811"
+    }
+  },
+  "receipt": {
+    "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/receipt.json",
+    "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+  },
+  "recorded_resource_proofs": [
+    {
+      "facts": {
+        "inner": {
+          "current_bytes": 2883579904,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        },
+        "outer": {
+          "current_bytes": 2869473280,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        }
+      },
+      "finish_ns": 1794775501787076029,
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794775501555368045.json",
+        "sha256": "be877848f50039252b35e05452b6865d39d05a0ba01382ab84ccdc8669814c7e"
+      },
+      "start_ns": 1794775501555368045
+    },
+    {
+      "facts": {
+        "inner": {
+          "current_bytes": 2706956288,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        },
+        "outer": {
+          "current_bytes": 2692210688,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        }
+      },
+      "finish_ns": 1794777053502553501,
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794777053262892008.json",
+        "sha256": "27f63e48f8ba8b8a6e3f207089113403a572e0c9c18a7e284fc9de60f690f6f8"
+      },
+      "start_ns": 1794777053262892008
+    }
+  ],
+  "same_rep_summary_input_common_branches_match": true,
+  "sample_count": 145374,
+  "sample_max_RSS_bytes": 683139072,
+  "sampling_confirmation_key_present": true,
+  "sampling_gap_meaning": "Causeunknown, notRSS0 orproofexit; sampledmax is notterminalHWM",
+  "schema": "ROOT-WS116-first-fullsearched256-post-audit-v1",
+  "scientific_acceptance": false,
+  "source35_actualhashes_match": true,
+  "status": "CLOSED_ELIGIBLE_PENDING_COORDINATOR_FILE_REVIEW",
+  "status_scope": "76expecteduntrackedrawdirectories/836files; tracked/source unchanged, notpublicationclean",
+  "support17_files": {
+    "eligible-boundary.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+    },
+    "grant.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/grant.json",
+      "sha256": "06c0805bef527f357013a124a5dbb3bc21f7794794999e9e5e022558858a5697"
+    },
+    "intent.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/intent.json",
+      "sha256": "bd7111ef256832f1138a550d96578ed95a8f8d3a66ca1b74e25da3f3be6a1df1"
+    },
+    "observer-exit.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/observer-exit.json",
+      "sha256": "36600d293dfcc3dd78636cb7ebca9dcd68062cfb5d0f18068b77ada2331f2e03"
+    },
+    "observer.stderr.log": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/observer.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "observer.stdout.log": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/observer.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "post-capture-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-capture-command.json",
+      "sha256": "4acca606c4516506076ff50239f730391cf0ecaf66db0a58064cde0688e11a30"
+    },
+    "post-metadata-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata-command.json",
+      "sha256": "34a444550138a6f9bf47d0a4f921e2700158f8ca62fc430a1e623cb839fbf554"
+    },
+    "post-metadata-intent.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata-intent.json",
+      "sha256": "465b9089960e2266eaa1f8d750a85de46af79db27115a0f974f417c26ff24ab2"
+    },
+    "post-metadata-request.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata-request.json",
+      "sha256": "e24e8b9957fad57a4168de593a3ada522061690944fc1daf31826d9178199900"
+    },
+    "post-metadata.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata.json",
+      "sha256": "21aba33f88c2635cef988519b92551255bb6cd15e615deabb0794c0458c4a6fe"
+    },
+    "pre-capture-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-capture-command.json",
+      "sha256": "4f1e9a509accdaaaf1324ec2c9aa0202e70904b023c4b36cdb47210fd7bc0b35"
+    },
+    "pre-metadata-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata-command.json",
+      "sha256": "18aee649bd5f7fa0dc8e0152a8f429c6836d96f7a977823a0ba12721c404682f"
+    },
+    "pre-metadata-intent.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata-intent.json",
+      "sha256": "593f5fa4f9a9b454eccc333de97be55a1c1e7c19dfab06247631252def88e559"
+    },
+    "pre-metadata-request.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata-request.json",
+      "sha256": "d6c197d09ea1a60bbad949e117e8b5dff8b0b9f93cff58731ef64d228ab3345e"
+    },
+    "pre-metadata.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata.json",
+      "sha256": "81c1fc9c92278a6c25951d9c9a76909b48714309f0dc1f3fa1cda2eab3f452ad"
+    },
+    "raw-files.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/raw-files.json",
+      "sha256": "b6d0347a41896177a7540282ce393919dee7aa7dc4a3980506b5f70cbb1df0ec"
+    }
+  },
+  "terminal_direct_child_high_water_bytes": 683495424,
+  "terminal_native_KiB": 667476,
+  "visible_gap_ns": 1396273,
+  "workflow_call_seconds": 1545.913683616
+}

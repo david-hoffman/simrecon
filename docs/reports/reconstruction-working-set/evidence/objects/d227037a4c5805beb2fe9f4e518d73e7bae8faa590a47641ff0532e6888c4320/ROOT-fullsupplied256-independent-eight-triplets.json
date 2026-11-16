@@ -1,0 +1,274 @@
+{
+  "authority": "ROOT",
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+    "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+  },
+  "costs": "UNKNOWN",
+  "missing_rss_confirmation_scope": "ABSENT kept absent/null, never numeric0; present gap raw record retained",
+  "native_scope": "Linux exact directchild terminalwait4 HWM through finalexit; inherited/preexec/execretention unknown, not aggregate/decomposition",
+  "observed_at_unix_ns": 1794774226532954111,
+  "rows": [
+    {
+      "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/stdout.json",
+        "sha256": "b86cc1eb9e969c25f8601a51badc37bbfad78e166e7b83f9bf008afff9b927df"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 582418432,
+        "call_seconds": 1405.431346238,
+        "post_observation_cumulative_self_bytes": 582418432,
+        "pre_call_cumulative_self_bytes": 140316672,
+        "spawn_to_terminal_collection_seconds": 1407.58704629,
+        "target_start_to_last_snapshot_seconds": 1407.349156351,
+        "terminal_kernel_bytes": 582418432,
+        "terminal_native_KiB": 568768
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/receipt.json",
+        "sha256": "de4f1e41576b99f2bd2ad2708581f0cfe2e28b35702c5b5fefed51d2b8f13e2a"
+      },
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "sample_count": 132306
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/stdout.json",
+        "sha256": "a7abe15be4a681bf7e81f079093d95c73d857ddc41aa19894c8ffce806848517"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 583708672,
+        "call_seconds": 1415.843002078,
+        "post_observation_cumulative_self_bytes": 583708672,
+        "pre_call_cumulative_self_bytes": 140402688,
+        "spawn_to_terminal_collection_seconds": 1417.96733011,
+        "target_start_to_last_snapshot_seconds": 1417.692222037,
+        "terminal_kernel_bytes": 583708672,
+        "terminal_native_KiB": 570028
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/receipt.json",
+        "sha256": "6cebe9c135046d88ee664ff4bdc929af956a39ab2ced5f8e5ba6b4247708b82d"
+      },
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "sample_count": 135113
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/stdout.json",
+        "sha256": "48375702d12981da7c62bd812eeca5b97c3f1f085cbd4a9002a1c861cacaad02"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 574902272,
+        "call_seconds": 1413.251765625,
+        "post_observation_cumulative_self_bytes": 574902272,
+        "pre_call_cumulative_self_bytes": 140267520,
+        "spawn_to_terminal_collection_seconds": 1415.825088203,
+        "target_start_to_last_snapshot_seconds": 1415.455972083,
+        "terminal_kernel_bytes": 574902272,
+        "terminal_native_KiB": 561428
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/receipt.json",
+        "sha256": "da0f23ea7f77b3f8510fbaea585f843295d9182f24204ad1a0897172c82246f4"
+      },
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17744375808,
+          "monotonic_ns": 80416166930166
+        },
+        "confirmation_decision_monotonic": 80416.166851991,
+        "deadline_monotonic_ns": 80416216190450,
+        "first_helper_entry_monotonic": 80416.166393706,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17744375808,
+          "monotonic_ns": 80416166190450,
+          "pid": 52008,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17744375808,
+          "monotonic_ns": 80416166190450,
+          "pid": 52008,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 80416.166393706,
+            "independent_stop": null,
+            "monotonic": 80416.166851991,
+            "sample_monotonic_ns": 80416166190450,
+            "terminal_collected_monotonic_ns": 80416166646448,
+            "terminal_observed": true
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 80416.166947975,
+            "independent_stop": null,
+            "monotonic": 80416.166953638,
+            "sample_monotonic_ns": 80416166190450,
+            "terminal_collected_monotonic_ns": 80416166646448,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 80416166190450,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 80416166646448
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "sample_count": 133766
+    }
+  ],
+  "schema": "ROOT-WS116-fullsupplied256-independent-eight-triplets-v1",
+  "scientific_acceptance": false,
+  "scope": "Independent fixed3row raw scalar extraction; no canonical940/statistics import or like-unlike pooling",
+  "self_scope": "Cumulative samechild snapshots, not peaks for isolated workflow",
+  "triplets": {
+    "call_end_cumulative_self_bytes": {
+      "max": 583708672,
+      "median": 582418432,
+      "min": 574902272,
+      "repetition_values": [
+        582418432,
+        583708672,
+        574902272
+      ],
+      "sorted_three": [
+        574902272,
+        582418432,
+        583708672
+      ]
+    },
+    "call_seconds": {
+      "max": 1415.843002078,
+      "median": 1413.251765625,
+      "min": 1405.431346238,
+      "repetition_values": [
+        1405.431346238,
+        1415.843002078,
+        1413.251765625
+      ],
+      "sorted_three": [
+        1405.431346238,
+        1413.251765625,
+        1415.843002078
+      ]
+    },
+    "post_observation_cumulative_self_bytes": {
+      "max": 583708672,
+      "median": 582418432,
+      "min": 574902272,
+      "repetition_values": [
+        582418432,
+        583708672,
+        574902272
+      ],
+      "sorted_three": [
+        574902272,
+        582418432,
+        583708672
+      ]
+    },
+    "pre_call_cumulative_self_bytes": {
+      "max": 140402688,
+      "median": 140316672,
+      "min": 140267520,
+      "repetition_values": [
+        140316672,
+        140402688,
+        140267520
+      ],
+      "sorted_three": [
+        140267520,
+        140316672,
+        140402688
+      ]
+    },
+    "spawn_to_terminal_collection_seconds": {
+      "max": 1417.96733011,
+      "median": 1415.825088203,
+      "min": 1407.58704629,
+      "repetition_values": [
+        1407.58704629,
+        1417.96733011,
+        1415.825088203
+      ],
+      "sorted_three": [
+        1407.58704629,
+        1415.825088203,
+        1417.96733011
+      ]
+    },
+    "target_start_to_last_snapshot_seconds": {
+      "max": 1417.692222037,
+      "median": 1415.455972083,
+      "min": 1407.349156351,
+      "repetition_values": [
+        1407.349156351,
+        1417.692222037,
+        1415.455972083
+      ],
+      "sorted_three": [
+        1407.349156351,
+        1415.455972083,
+        1417.692222037
+      ]
+    },
+    "terminal_kernel_bytes": {
+      "max": 583708672,
+      "median": 582418432,
+      "min": 574902272,
+      "repetition_values": [
+        582418432,
+        583708672,
+        574902272
+      ],
+      "sorted_three": [
+        574902272,
+        582418432,
+        583708672
+      ]
+    },
+    "terminal_native_KiB": {
+      "max": 570028,
+      "median": 568768,
+      "min": 561428,
+      "repetition_values": [
+        568768,
+        570028,
+        561428
+      ],
+      "sorted_three": [
+        561428,
+        568768,
+        570028
+      ]
+    }
+  }
+}

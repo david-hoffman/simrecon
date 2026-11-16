@@ -1,0 +1,51 @@
+{
+  "campaign_work_suspended": true,
+  "input_observed_at_unix_ns": 1794781640106547343,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "All priorC7/privateinit controllers/proxies/pipes/namespaces closed; dedicatedinitSTOPPED/Pid0.575trackedclean and external sourceonly corrections frozen; freshreview3 sourceonly, allruntime/QA/native/EEHOLD.",
+    "114": "Control2 exactPID/FD ownership closed, resources quarantined; coordinator/source author held, no activechild.",
+    "116": "Whole fullsearched3 controller74202 actualterminal0/no proxy;6storedbirthFDsetsclosed7f73/post510f/windowended2ea0. Canonical940 onecall0/cmd bacd and actual7output audits acceptedf091. Investigator34 sourceheld. No priorcentral profile attempt or owner.",
+    "117": "Provisionalchecks closed; resourceadapter neverexecuted, sourceplanonly/safeHOLD pendingactual116.",
+    "118": "Provisionalchecks closed; resourceadapter neverexecuted, sourceplanonly/safeHOLD pendingactual117.",
+    "119": "Intake/source-only, no implementation/runtime or activeownednumericalprocess.",
+    "120": "Intake/source-only, no implementation/runtime or activeownednumericalprocess.",
+    "root": "All known campaign scientificcontrollers ended/proxiesclosed, no activeworkload. Prior memorywindow explicitlyended. New centralfirst preparation-only2h reservation; unrelatedQA/imports/native/build/install/benchmarks remain held, source/file/hash/read-onlyGit allowed; outsideactors unknown_not_scanned."
+  },
+  "observed_at_unix_ns": 1794781640916089907,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "preparation_suspension_input": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "53ba6160788eefa83882deab63473cae225cb8a2e7ff59a8d26c3fa3d1003d35"
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "scope": "ROOT standing suspension consumed now; outside actors unknown; ACK not grant authority",
+  "stage_id": "central64-profiles",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794788840916089907,
+    "starts_unix_ns": 1794781640916089907
+  }
+}

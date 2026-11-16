@@ -1,0 +1,32 @@
+{
+  "disk_paths": [
+    "/workspace/work/issue-116",
+    "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1"
+  ],
+  "owned_processes": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52283,
+      "start_ticks": 8835053
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52303,
+      "start_ticks": 8835070
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "R1eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched-r1-eligibility.json",
+    "sha256": "15e98dbd45d7d550a0fd28423d515620544aa329d17e28db507004798a7486d6"
+  },
+  "ROOTAUTHnotACK": true,
+  "ROOT_packet_review": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-actual-prepared-packet-review.json",
+    "sha256": "4c0f3dbd0a3264edf1541e1ba53d2267ca139f7fdea2216c2f4b4ab81274e0b5"
+  },
+  "actual_preparation_command": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-actual-preparation-command.json",
+    "sha256": "9f4ad100006d4d5f6c5406332afdeb219c6b095738a1f82f19766d0905012ad9"
+  },
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-full-searched-r2-u",
+    "ws116-gp-l256-full-searched-r3-u"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "binder": {
+    "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+    "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+    "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+  },
+  "independent_packet_audit": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/coordinator-actual-remaining2-packet-audit.json",
+    "sha256": "0591d4272966c4a5dedc750993de0676b0166510db74ac58b6e864af70bbbb50"
+  },
+  "known_other_runtime_suspended": true,
+  "no_auto_retry_R1rerun_profile_or_otherstage": true,
+  "old_R1window_ended": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched-r1-window-closed.json",
+    "sha256": "52e014b53f167d7bfc2756c11a07cbbf3627dd20f4609623aa39b49eafe10fc6"
+  },
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1/config-remaining2-PREPARED.json",
+    "sha256": "c3705d9479f43ab4bab677576ccfb9c8db33738bb8cf7ddae7589b78cdc75fc5"
+  },
+  "prior_eligible": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+    }
+  ],
+  "released_at_unix_ns": 1794777566102252839,
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-full-stage-admission.json",
+    "sha256": "d1b474bb6c09a3bca9f8086c1dd24796f3166a6f15377d8e9eeba98adf46268c"
+  },
+  "schema": "ROOT-WS116-fullsearched256-remaining2-exact-execution-release-v1",
+  "scope": "ONE fixed sequentialR2\u2192R3 continuation. Existing8190 freshperrow/source/fullprefix/metadata/resource/originalproof/end checks unchanged, fullcapsunchanged. ROOTowns actualcontroller/proxy/pipe/owner disposition.",
+  "stage_id": "largest-full-searched",
+  "window": {
+    "ends_unix_ns": 1794788191938506432,
+    "starts_unix_ns": 1794777391938506432
+  }
+}

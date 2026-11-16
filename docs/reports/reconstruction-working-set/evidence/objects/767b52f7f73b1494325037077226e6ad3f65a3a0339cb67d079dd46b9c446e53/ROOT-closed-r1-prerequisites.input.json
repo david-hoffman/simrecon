@@ -1,0 +1,135 @@
+{
+  "ROOT_controller_terminal_evidence": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-controller63755-tool-terminal.json",
+    "sha256": "c7d3765ffaa7edbaae36966b6ec9c2a4ce399e5f41e458b19055849ae9ebf840"
+  },
+  "ROOT_controller_terminal_evidence_expected": {
+    "chunk_id": "e092f1",
+    "exit_code": 0,
+    "original_token_count": 408,
+    "output": "{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 50.02047133000451, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 55.024068297003396, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 60.02802742400672, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 65.03100791000179, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 70.03520299401134, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 75.04618210000626, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 80.04644742800156, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 85.04684287900454, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 90.04923328600125, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 95.0541971700004, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n{\"attempt_id\": \"ws116-gp-c64-summary-searched-r1-p\", \"elapsed_seconds\": 100.05814976200054, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 177714}\n",
+    "wall_time_seconds": 1.8478e-05
+  },
+  "ROOT_eligibility_evidence": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-eligibility.json",
+    "sha256": "58cc70bae28800777587b584708ded4d7f5fa14af06041a23e31020e331801bc"
+  },
+  "ROOT_eligibility_evidence_expected": {
+    "ROOT_post_audit": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-post-audit.json",
+      "sha256": "0eaaff99b1d1aa27fd65360c3284c8f37b25ef49e3677dafec23f7ffcefcbd38"
+    },
+    "actual_controller_exit": 0,
+    "authority": "ROOT",
+    "boundary": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "aad1f16b2f5bfb46f8b4b6d9edfba5fee2132f570750e47de370f6ea22d4e9c2"
+    },
+    "candidate": {
+      "head": "ea9117d3efe2d8de273402d643e732140138e496",
+      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+    },
+    "config": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7"
+    },
+    "controller_session": 63755,
+    "coordinator_closed_file_review": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/coordinator-closed-first-central-profile-review.json",
+      "sha256": "2b6b1a3a494aa3060e41f920db6f28771ea3d305df682a04fbf03eaec63a11ae"
+    },
+    "costs": "UNKNOWN",
+    "eligible_for_same_stage_continuation": true,
+    "exact_owned_processes": [
+      {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 52283,
+        "start_ticks": 8835053
+      },
+      {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 52303,
+        "start_ticks": 8835070
+      }
+    ],
+    "final_metadata": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/post-metadata.json",
+      "sha256": "cfd7f8e2a31e2ff1447c6aff4a18ac1cdad90078dc72faefdcbcf3efe58f25e9"
+    },
+    "no_pending_proxy": true,
+    "observed_at_unix_ns": 1794782610829803859,
+    "profile_events_scalar_only": 10,
+    "remaining5_or_largest_execution_released": false,
+    "same_mode_control_public_common_input_branch_match": true,
+    "schema": "ROOT-WS116-central-profile-r1-eligibility-v1",
+    "scope": "One firstprofile eligible only; no repeatstats/isolatedstageallocation/causaloverhead/ranking/finalscientificacceptance. Existing6recipes remain fixed; future continuation needs separate freshROOTpreparation/context/release.",
+    "selected_largest_size": null,
+    "stage_id": "central64-profiles"
+  },
+  "ROOT_window_closure_evidence": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-window-closed.json",
+    "sha256": "73a95551735a2250906c6d01103a5bb73e822dbf44915f3268106bbd27d9bd12"
+  },
+  "ROOT_window_closure_evidence_expected": {
+    "ROOT_post_audit": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-post-audit.json",
+      "sha256": "0eaaff99b1d1aa27fd65360c3284c8f37b25ef49e3677dafec23f7ffcefcbd38"
+    },
+    "authority": "ROOT",
+    "closed_first_row_window": true,
+    "controller63755_actual_terminal_exit0_no_proxy": true,
+    "costs": "UNKNOWN",
+    "eligibility": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-eligibility.json",
+      "sha256": "58cc70bae28800777587b584708ded4d7f5fa14af06041a23e31020e331801bc"
+    },
+    "ended_at_unix_ns": 1794782610831364402,
+    "exact2_birth_FD_sets_closed": true,
+    "no_active_stage_controller": true,
+    "original_window": {
+      "ends_unix_ns": 1794788840916089907,
+      "starts_unix_ns": 1794781640916089907
+    },
+    "schema": "ROOT-WS116-first-central-profile-window-ended-v1",
+    "scope": "Explicit earlyend afteractualfirstprofile terminal/ownership/source/fingerprint audits. No automatic continuation or other runtime release.",
+    "selected_largest_size": null,
+    "stage_id": "central64-profiles"
+  },
+  "actual_terminal_observed": true,
+  "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+  "authority": "ROOT",
+  "authorized_row1_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7"
+  },
+  "controller_exit_code": 0,
+  "controller_session": 63755,
+  "final_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/post-metadata.json",
+    "sha256": "cfd7f8e2a31e2ff1447c6aff4a18ac1cdad90078dc72faefdcbcf3efe58f25e9"
+  },
+  "no_pending_proxy": true,
+  "old_window_closed": true,
+  "row1_boundary": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/eligible-boundary.json",
+    "sha256": "aad1f16b2f5bfb46f8b4b6d9edfba5fee2132f570750e47de370f6ea22d4e9c2"
+  },
+  "row1_eligible": true,
+  "schema": "ROOT-WS116-central-profile-r1-continuation-prerequisites-v1",
+  "stage_id": "central64-profiles"
+}

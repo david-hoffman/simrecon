@@ -1,0 +1,203 @@
+{
+  "schema": "WS116-fullsupplied256-actual-canonical940-output-coordinator-review-v1",
+  "status": "DESCRIPTIVE_DATA_OUTPUT_ACCEPTED_WITHIN_EXACT_CLOSED_STAGE_SCOPE",
+  "blocking_findings": [],
+  "final_scientific_report_acceptance": false,
+  "next_stage_or_workload_authorized": false,
+  "actual_command": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt2-command.json",
+    "sha256": "e64f86aab31329da738561c2f29c7871f7a916839b0a896515ba208ede9fea1e"
+  },
+  "actual_authorized_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+    "sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa"
+  },
+  "disabled_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-UNAUTHORIZED.json",
+    "sha256": "622871a3f0d6c1ea4ac86b8b21d2fd01cdeb35670843f66067849bcab7563f2a"
+  },
+  "config_scope": "Only two approval flags changed at ROOT release; exact3full rows/3same-rep summarycontrols, no partial selection.",
+  "primary_summary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/summary.json",
+    "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2"
+  },
+  "output7_sha256": {
+    "per-process.json": "b6bb23f41cbdaa9b5eee9ecd4ae088c1718441ae3c71c0364dac7d72d1995f5b",
+    "unprofiled-controls.json": "50fdb9c143e8ac9cbaba16a1cf5c0ad06efba8d50510ed364a2eaacdb86608fc",
+    "excluded-records.json": "e842d7286fb67fc6b6d5a383bcd807adbb2df9b17e91652e32367dc31b71def1",
+    "summary.json": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2",
+    "file-audit.json": "22b5babfad1e396d2d9e3a410cc956fa7d6102415eaecb5b30c5cb571585b612",
+    "three-repeat-summary.csv": "9b6cb0628bb0b565a4e0b385970f8e48aed4195240e2e123d4f4501c9378b7ed",
+    "output-identities.json": "2908d48ac1d630fe6431708c52e6bd50754bd2eb8910e62a8a42dec7e4f3cb87"
+  },
+  "independent_scalar_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-independent-eight-triplets.json",
+    "sha256": "5d96a35dcdb706c15f762054b3eafefb512fb89c9df46c5f4b749406c93a0327"
+  },
+  "all8metric_triplets_exact_match": true,
+  "metric_triplets": {
+    "terminal_native_KiB": {
+      "min": 561428,
+      "median": 568768,
+      "max": 570028
+    },
+    "terminal_kernel_bytes": {
+      "min": 574902272,
+      "median": 582418432,
+      "max": 583708672
+    },
+    "call_seconds": {
+      "min": 1405.431346238,
+      "median": 1413.251765625,
+      "max": 1415.843002078
+    },
+    "spawn_to_terminal_collection_seconds": {
+      "min": 1407.58704629,
+      "median": 1415.825088203,
+      "max": 1417.96733011
+    },
+    "target_start_to_last_snapshot_seconds": {
+      "min": 1407.349156351,
+      "median": 1415.455972083,
+      "max": 1417.692222037
+    },
+    "pre_call_cumulative_self_bytes": {
+      "min": 140267520,
+      "median": 140316672,
+      "max": 140402688
+    },
+    "call_end_cumulative_self_bytes": {
+      "min": 574902272,
+      "median": 582418432,
+      "max": 583708672
+    },
+    "post_observation_cumulative_self_bytes": {
+      "min": 574902272,
+      "median": 582418432,
+      "max": 583708672
+    }
+  },
+  "counts": {
+    "stage_rows": 3,
+    "separate_controls": 3,
+    "groups": 1,
+    "matched_controls": 3,
+    "excluded_nonpool": 25,
+    "historical": 2,
+    "file_audit_entries": 1220,
+    "unique_audited_paths": 414
+  },
+  "actual_stdlib_initialization_record": {
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+    "label": "ROOT_REAL_STDLIB_FILE_ANALYSIS_INITIALIZATION",
+    "median_code_filename": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "median_firstlineno": 621,
+    "median_stub_used": false,
+    "normal_full_initialization": true,
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "random_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py",
+    "random_sha256": "39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0",
+    "statistics_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "statistics_sha256": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18"
+  },
+  "normal_full_statistics_random_not_stub": true,
+  "post_source15pins_directly_rehashed": true,
+  "stage_confirmations": [
+    {
+      "id": "ws116-gp-l256-full-supplied-r1-u",
+      "key_present_in_raw": false,
+      "visible_gap_ns": null,
+      "canonical_value": null
+    },
+    {
+      "id": "ws116-gp-l256-full-supplied-r2-u",
+      "key_present_in_raw": false,
+      "visible_gap_ns": null,
+      "canonical_value": null
+    },
+    {
+      "id": "ws116-gp-l256-full-supplied-r3-u",
+      "key_present_in_raw": true,
+      "visible_gap_ns": 455998,
+      "canonical_value": {
+        "bound_seconds": 0.05,
+        "origin_monotonic_ns": 80416166190450,
+        "deadline_monotonic_ns": 80416216190450,
+        "first_helper_entry_monotonic": 80416.166393706,
+        "first_sample": {
+          "monotonic_ns": 80416166190450,
+          "pid": 52008,
+          "VmRSS_bytes": null,
+          "process_status_readable": true,
+          "field_errors": {},
+          "host_available_bytes": 17744375808,
+          "child_cgroup": "0::/",
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          }
+        },
+        "observations": [
+          {
+            "monotonic": 80416.166851991,
+            "helper_entry_monotonic": 80416.166393706,
+            "sample_monotonic_ns": 80416166190450,
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "terminal_observed": true,
+            "terminal_collected_monotonic_ns": 80416166646448,
+            "independent_stop": null
+          },
+          {
+            "monotonic": 80416.166953638,
+            "helper_entry_monotonic": 80416.166947975,
+            "sample_monotonic_ns": 80416166190450,
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "terminal_observed": true,
+            "terminal_collected_monotonic_ns": 80416166646448,
+            "independent_stop": null
+          }
+        ],
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "last_sample": {
+          "monotonic_ns": 80416166190450,
+          "pid": 52008,
+          "VmRSS_bytes": null,
+          "process_status_readable": true,
+          "field_errors": {},
+          "host_available_bytes": 17744375808,
+          "child_cgroup": "0::/",
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          }
+        },
+        "terminal_collected_monotonic_ns": 80416166646448,
+        "confirmation_decision_monotonic": 80416.166851991,
+        "cached_terminal_guard_refresh": {
+          "monotonic_ns": 80416166930166,
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17744375808,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          }
+        }
+      }
+    }
+  ],
+  "preservation": {
+    "attempt1_failure_outputs_still_exact_hashes": true,
+    "attempt1_diagnostic_classified_nonpooled": true,
+    "raw_scientific_rows_not_repeated": true,
+    "all_previous_configs_attempts_charges_preserved": true
+  },
+  "scope_limits": [
+    "File/output/hash/scalar/CSV review only; canonical940 not rerun/imported, no workload/native/product execution/test/probe.",
+    "Thirty raw small hashes/proofs/source35 and6birthFD closure audited earlier in3da429 review; large sample content remains090/ROOT stream-attested, not reread here.",
+    "Terminal direct-child native high-water, three cumulative self snapshots, call/collection/lastsnapshot scopes remain distinct; inherited/preexec/exec unknown, no subtraction/tree aggregate/isolated benefit.",
+    "Three same-rep controls match software/workload/common outputs, not identical physical/cache contexts or isolated full-mode cost.",
+    "No searched/profile/generalfeasibility/16GiB/final scientific ranking acceptance; final report/review/fullgate unfinished."
+  ],
+  "qualified_worktree_edited": false,
+  "all_unknown_usage_costs_retained": true
+}

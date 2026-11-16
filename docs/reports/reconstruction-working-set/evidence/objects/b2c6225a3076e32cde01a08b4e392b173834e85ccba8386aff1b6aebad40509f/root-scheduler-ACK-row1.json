@@ -1,0 +1,30 @@
+{
+  "campaign_work_suspended": true,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "C3 AST/Ruff/format direct targets and whole namespaces/controllers/proxies ended. All future tool/native/test/type/build work suspended; source-only C4 correction and plans allowed.",
+    "116": "192six science rows and12owners closed; a2 finite synthetic attempt ended. No science/analysis/guards active; EA unchanged.",
+    "other_campaign": "114/117/118 closed SAFE HOLD;119/120 intake-only; no authorized runtime.",
+    "root": "Only current source/file/operational metadata preparation; no unrelated test/import/install/benchmark."
+  },
+  "limits": "Known campaign schedule only; external actors unknown, not scanned. This packet assembly does not start a workload.",
+  "observed_at_unix_ns": 1794751082064772621,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "stage_id": "growth256-summary",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794758282064772621,
+    "starts_unix_ns": 1794751082064772621
+  }
+}

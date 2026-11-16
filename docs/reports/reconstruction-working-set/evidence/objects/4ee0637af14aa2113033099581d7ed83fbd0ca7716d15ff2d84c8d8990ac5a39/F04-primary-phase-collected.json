@@ -1,0 +1,27 @@
+{
+  "schema": "WS116-SCI1-F04-primary-phase-collected-v1",
+  "role": "same independent scientific_review_1",
+  "assessment": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment.md",
+    "sha256": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562"
+  },
+  "immutable_substantive_snapshot": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-completed-substance.md",
+    "sha256": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562"
+  },
+  "source_primary": {
+    "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+    "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9"
+  },
+  "independent_disposition": "F04 externalclaimresolved; normalreturn differsfromexception/allocator/RSS; noopenprosemismatch in suppliedcorrectedtargets",
+  "scientific_opinion_oracle": "No siblingverdictorhandoff read. Existingnamed workflow summary/resultprimaries verifiedpresent in originalinputs/materialidentity.",
+  "coordinator_read_scope": "Exactdelta versuspreservede0ec pluswholeappendedF04/status sectionread; earlierwholee0ecreadalreadycollected.",
+  "final": "HELD actualintegration/portableclosure/candidate/materialtransition/full116gate/freshpostgate",
+  "process_target_runtime": "none/revieweronlyprose",
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  },
+  "charges": "sameoriginallaunchallphases/exposurestop/correctionsretained"
+}

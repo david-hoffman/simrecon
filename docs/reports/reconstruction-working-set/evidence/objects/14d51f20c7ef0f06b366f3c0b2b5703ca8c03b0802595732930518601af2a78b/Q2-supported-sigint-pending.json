@@ -1,0 +1,74 @@
+{
+  "approved": false,
+  "scope": "WS116-Q2-lifecycle-v1",
+  "case": "Q2-supported-sigint",
+  "attempt_id": "q2-supported-sigint-a1",
+  "candidate_head": "86c81b8e68be1e49b8ea2d432cf8659ad81f2538",
+  "python_resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "campaign_ownership_resolved": true,
+  "launch_nonce": "q2-supported-sigint-a1",
+  "source_sha256": {
+    "docs/reports/reconstruction-working-set/method_qualification.py": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4",
+    "docs/reports/reconstruction-working-set/qualification/inventory.json": "6104a6bbbc41bc6fd7a03668252e960df4aa006ca6ed45cbc5da7e2ff463bc58",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "bounds": {
+    "sample_seconds": 0.01,
+    "term_grace_seconds": 0.2,
+    "kill_reap_seconds": 2.0,
+    "soft_deadline_seconds": 20.0,
+    "life_deadline_seconds": 5.0,
+    "startup_timeout_seconds": 5.0,
+    "startup_pipe_bytes": 1024,
+    "max_record_bytes": 1048576,
+    "target_ready_bytes": 2048,
+    "target_self_exit_seconds": 12.0,
+    "deadline_after_target_ready_seconds": 1.0,
+    "process_stop_bytes": 268435456,
+    "host_min_available_bytes": 536870912,
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  },
+  "process_stop_bytes": 268435456,
+  "host_min_available_bytes": 536870912,
+  "ancestor_stop_bytes": {
+    "/sys/fs/cgroup": 4294967296
+  },
+  "prerequisites": {},
+  "retained_method5_Q1": {
+    "receipt_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/receipt.json",
+    "receipt_sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce",
+    "lifecycle_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/normal-lifecycle.json",
+    "lifecycle_sha256": "b6997727dea0d12fe5d497d335f0f2fb483aa44273e997a5380223f197fe729a"
+  },
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "Pending fresh root release only. Same frozen four-case Q2 driver and tiny stdlib fixture. Target must report SIG_DFL (0); after sole owner/bootstrap/target readiness, one supported self-SIGINT enters expected KeyboardInterrupt cleanup, direct KILL and exact-PID wait4 reap9. No observer death/orphan route. Same finite bounds, allowances and reserves; admission freshly validates resource identity/current headroom/ownership. External ancestors unknown; no workflow/scientific/RSS-benefit claim; failure blocks next case without retry.",
+    "correspondence_evidence": {
+      "path": null,
+      "sha256": null,
+      "observed_at_unix_ns": null,
+      "maximum_age_seconds": 300
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  }
+}

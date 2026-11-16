@@ -1,0 +1,9 @@
+{
+  "action": "Preserve existing authorized config, validate it differs from PREPARED only in authorized flag, construct separate exactROOTrelease with corrected frozen source digest. No preparation/capture/binder/science retry.",
+  "actual_exit": 1,
+  "actual_frozen_digest": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+  "cause": "ROOT typed a62-character binder digest missing1f after f1c. The frozen64-character config/source digest agrees; no source/config defect. Authorized config was exclusively written before assertion; no release/invocation emitted.",
+  "mistyped_literal": "8190db99ef7fca49659e2979172a111f1c325eccef27c991caea06c1a2c4e9",
+  "schema": "ROOT-WS116-release-construction-diagnostic-v1",
+  "status": "PRELAUNCH_ROOT_HASH_LITERAL_ASSERTION_FAILED_NO_BINDER_OR_SCIENCE"
+}

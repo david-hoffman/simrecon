@@ -1,0 +1,59 @@
+{
+  "protocol": "WS116-routing-wording-source-handoff-v1",
+  "status": "SOURCE_READY_HOLD",
+  "change": "Only the rank3 Dependencies paragraph routes refinement working-overlap release to117, preparation/harmonic scratch to118/rank2, assembly/rank1 to120 and q/all-T/original-target lower bound to119. No acceptance claim or new authority.",
+  "original_packet_preserved": {
+    "path": "/workspace/work/campaign/evidence/116/final-report-source/",
+    "all_ten_original_file_hashes_unchanged": true,
+    "source_handoff_sha256": "946362c30f16ef6209f1eb43ec25c71e1dbc605029db03001d457a71442f0318"
+  },
+  "artifact_inventory": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/compact-overlap-working-lifetime.md",
+      "sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/routing-wording.patch",
+      "sha256": "956302cd049d66f74014c71a063b95f6d589676ade0f639cb382249ebc366579"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/input-references.json",
+      "sha256": "44bf8be07497fc3a499fdcc17d9f61fe268e0f4280ea25d6720fde6a413d06da"
+    }
+  ],
+  "self": {
+    "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/source-handoff.json",
+    "sha256": null,
+    "meaning": "Exact self digest supplied externally after write."
+  },
+  "scope_preservation": {
+    "numerical_values_and_rank": true,
+    "scientific_invariants": true,
+    "measurements_and_formulas": true,
+    "prior_failures_and_charges": true,
+    "EA_Current_and_all_old_packets_unchanged": true
+  },
+  "checks": "Read named source text and SHA identities; exact unified diff contains one Dependencies paragraph replacement only. diff exit1 is expected changed-file status.",
+  "execution": {
+    "runtime": false,
+    "imports": false,
+    "AST_lint_tests": false,
+    "statistics_calculator": false,
+    "program_authoring": false,
+    "live_inputs": false,
+    "delegation": false,
+    "integration": false
+  },
+  "accounting": {
+    "source_preparations": 45,
+    "author_executions": 9,
+    "total_author_role_events": 54,
+    "original_launches": 1,
+    "serving_attribution": null,
+    "tokens": null,
+    "cost": null,
+    "unknown_meaning": "UNKNOWN, not zero"
+  },
+  "authoring_diagnostics": "None beyond expected diff exit1 indicating the declared change.",
+  "disposition": "HOLD. ROOT owns later exact integration and mechanical final-layout link changes; scientific review/gate and acceptance remain separately applicable."
+}

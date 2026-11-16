@@ -1,0 +1,33 @@
+{
+  "release_template": {
+    "schema": "ROOT-WS116-close-fullsearched256-release-v1",
+    "authorized": false,
+    "stage_id": "largest-full-searched",
+    "helper_sha256": "1990200d3d5f4b7e16e643d34709eaf4b53d5bb2e93dc57c6d2f03e5184f4e92",
+    "source_manifest": {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-manifest.json",
+      "sha256": "73141da53c4ddd3996181a76d5bbb0540be6128065b25d1c20c443bad9d9867d"
+    },
+    "controller_attestation": {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/ROOT-controller-74202-ended.json",
+      "sha256": null
+    },
+    "output": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json"
+  },
+  "controller_attestation_template": {
+    "schema": "ROOT-WS116-controller-terminal-attestation-v1",
+    "authority": "ROOT",
+    "controller_session": 74202,
+    "actual_terminal_observed": null,
+    "exit_code": null,
+    "no_pending_proxy": null,
+    "basis": "actual_tool_terminal_receipt",
+    "tool_receipt": {
+      "path": null,
+      "sha256": null
+    },
+    "tool_receipt_expected": null
+  },
+  "runtime_authorized": false,
+  "future_R2R3_final6birthFD_toolterminal_outcomes": "UNKNOWN; no active74202 data read"
+}

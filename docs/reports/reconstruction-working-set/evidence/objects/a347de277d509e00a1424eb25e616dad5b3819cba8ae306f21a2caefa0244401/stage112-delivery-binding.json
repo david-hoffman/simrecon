@@ -1,0 +1,116 @@
+{
+  "accepted_delivery_fact": {
+    "basis": "Literal final-evidence.json readiness field plus exact referenced report digest; no old scientific conclusions supplied as oracle.",
+    "candidate": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "exact_readiness_artifact_identity_only": {
+      "path": "/workspace/work/campaign/evidence/112/final-readiness-review.md",
+      "sha256": "30fb4fc77bcc013f455ffb761a4d753f136299217d1c998d896ddf8cad2db6f4"
+    },
+    "record_field": "/final_readiness",
+    "status": "accepted"
+  },
+  "applicability": {
+    "WS116_declared_115_parent": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "parent": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+    "remaining_limit": "This supplies exact112 delivery binding. It is not an independent git/ancestry check or final116 gate receipt. Existing115 binding is declared in material-identity; final dependency applicability remains separately assessable.",
+    "source_head": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "source_tree": "836abd6603e28ea69c611429443c0684ba2f8441"
+  },
+  "candidate": {
+    "base": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+    "branch": "docs/112-single-precision-contract",
+    "head": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "tree": "836abd6603e28ea69c611429443c0684ba2f8441",
+    "worktree": "/workspace/work/issue-112"
+  },
+  "original_coordinator_record": {
+    "path": "/workspace/work/campaign/evidence/112/final-evidence.json",
+    "sha256": "f0861e067fd6860d56b036f30483766523d936c86d93d8fd070ae59a4a574775"
+  },
+  "publication_actor_record": {
+    "base": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+    "base_branch": "main",
+    "branch": "docs/112-single-precision-contract",
+    "ci": {
+      "all_configured_steps": "success",
+      "artifact": {
+        "archive_imported": false,
+        "expired": false,
+        "id": 14136644855,
+        "reported_digest": "sha256:f31ff7f2305217ffc9da48d75c792fda247be0651189803e72328058904240d9",
+        "size_bytes": 1227274
+      },
+      "base": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+      "conclusion": "success",
+      "head": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+      "inspection": "run/job status and steps, actual logs, Git data tree/parents, artifact metadata; local coverage/M25 not relabelled as CI",
+      "job_id": 132625637988,
+      "parents": [
+        "64a752b4642709c539df2079cc3c906acf4cc7b8",
+        "d9a0ba924817772fdb5550c7d055bf31bcf70388"
+      ],
+      "run_id": 43653094741,
+      "status": "completed",
+      "test_merge": "6d13708ae763df1097ca1ff7bdcbeb9eee520f2b",
+      "test_seconds": 433.75,
+      "tests_passed": 3390,
+      "tree": "836abd6603e28ea69c611429443c0684ba2f8441",
+      "warnings": 47
+    },
+    "head": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "number": 121,
+    "status": "PR open",
+    "url": "https://github.com/david-hoffman/simrecon/pull/121"
+  },
+  "raw_verification_receipt": {
+    "path": "/workspace/work/campaign/evidence/112/verify-attempt1/verification/receipt.json",
+    "sha256": "358f5a3d15674210dfcf207ab39fc7950d80ed2b90cd29e9ea2e6d9a131aad59"
+  },
+  "reviewer_permission": "Read this exact binding and raw verification receipt for delivery identities. Do not read /scientific_review in original record or old reviewer analysis as scientific truth; public math/source assessment stays independent.",
+  "schema": "WS116-review1-narrow112-stage-delivery-binding-v1",
+  "scope": "Prerequisite accepted-stage delivery/verification actor facts only. Not a scientific oracle or independent reacceptance of #112 study; old scientific_review narrative deliberately omitted. No remote refresh performed.",
+  "verification_identity_checks": {
+    "before_after_identical": true,
+    "context": {
+      "contract": "SP112",
+      "integration_base": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+      "reviewed_tests": null
+    },
+    "dirty": false,
+    "finished_at": "2026-11-14T23:11:20.367370+00:00",
+    "phase_names": [
+      "sync",
+      "coverage-clean",
+      "lint",
+      "format",
+      "types",
+      "tests",
+      "coverage-combine",
+      "coverage-json",
+      "coverage-html",
+      "coverage-report",
+      "wheel",
+      "wheel-import",
+      "audit"
+    ],
+    "phase_returncodes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "problems": [],
+    "result": "passed",
+    "started_at": "2026-11-14T22:52:59.531305+00:00",
+    "untracked": []
+  }
+}

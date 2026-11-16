@@ -1,0 +1,350 @@
+{
+  "schema": "WS116-fullsearched256-independent-closed-stage-file-review-v1",
+  "status": "CLOSED_EXACT_THREE_ROWS_ELIGIBLE_FINAL_SCIENTIFIC_REVIEW_PENDING",
+  "findings": [],
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+    "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+  },
+  "window_closed": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-window-closed.json",
+    "sha256": "2ea00fee65a8511ff31d000b4e747eff6dcd8def4cd3245180dd2642dc5aaf69"
+  },
+  "ROOT_post_source_status_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-postclosure-source-check.json",
+    "sha256": "510fb8b577c0c366f4742fcf78a923098b3922930d849e52774495dfe5fa9797"
+  },
+  "controller": {
+    "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/ROOT-controller-74202-ended.json",
+    "sha256": "f4715626cf8396ad5c5d0a6f586e30daa89f64c5df932811d112e6840a16ade9"
+  },
+  "independent_scalar_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-independent-eight-triplets.json",
+    "sha256": "03890c75eaf74b4b27bfc64fd3abf70bc3ea178d4cf2157638b9b4f8be52788d"
+  },
+  "raw_small_files": [
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+      "direct_small_files": {
+        "grant.input": {
+          "allocated_bytes": 16384,
+          "logical_bytes": 12588,
+          "sha256": "06c0805bef527f357013a124a5dbb3bc21f7794794999e9e5e022558858a5697"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2564,
+          "sha256": "93f945307f4dc3cac5d06c8f4f7053a49c029b28cc9a8c024b0a42d72b10c9c5"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "97939e1ac6ad0dd928444f0bc641c1972aef7e30e3adfb5991815f2c0aad83f7"
+        },
+        "receipt.json": {
+          "allocated_bytes": 32768,
+          "logical_bytes": 29945,
+          "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 247,
+          "sha256": "b9d36933502cad609318ddd8ea550adeb36c3e4e1724edd3058cf3517f6333f3"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3006,
+          "sha256": "5a098f9730f10d5cf6a11166cb3c6b6b1b5252214d5c01eaaa7e9eaaa4bbf126"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4899,
+          "sha256": "0ab93ff865c61543bba5fe0be2b2366210afbeab8ac67efa6f12b4bdb6fbe4ba"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 231,
+          "sha256": "9328e0691ae5cc5537a1003e4b234d3956297f7341de7bb50d18ba4fd67ceaa7"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 40960,
+          "logical_bytes": 38636,
+          "sha256": "a4578861b73cab4385b6b644e541294125802da70d0a6f878c2dfdbecba72811"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-u",
+      "direct_small_files": {
+        "grant.input": {
+          "allocated_bytes": 16384,
+          "logical_bytes": 14196,
+          "sha256": "412dacd8cb1abf7b6a919e59ab000b6fa8bf75b0cedb59616ce125a583626ab3"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2564,
+          "sha256": "6f180705a6e0f0e1bd9c282b7ca6726bd5912a129ffc72b4c07ac17eba451ae8"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "a17376d364492d451790eb1810ed24d1297ffab3a8d03d847542d6d20d7377b1"
+        },
+        "receipt.json": {
+          "allocated_bytes": 28672,
+          "logical_bytes": 27839,
+          "sha256": "59e4e5e5aea7c20edfdb84edffbf7301297603b7f9b419287470c5a27fe8092d"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 247,
+          "sha256": "8d635637512f8ad08e5fc4fe93c6284fa946bb6667eb2e6ba77d7ef901b2afdc"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3006,
+          "sha256": "5edf9e78826b2b22b9e3d2d481279bc6c9f1467c84ead7a3d5981987ea0c82c3"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4899,
+          "sha256": "3104458f51efb17c0aaf8b0fefdf9232daaae7b8542d4615269cd0172a564edf"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 231,
+          "sha256": "e47a0a47555d627c209d83f376cbbf06faad087a753187f6cec546a0618c885f"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 40960,
+          "logical_bytes": 38616,
+          "sha256": "0ffa5d456019362eda0e44632a1d71799b1a953489a45159ffcbbb27dd2dc184"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-u",
+      "direct_small_files": {
+        "grant.input": {
+          "allocated_bytes": 16384,
+          "logical_bytes": 15742,
+          "sha256": "7f4755c344d453ec27443f5de5535738701d8973f166956c5d91801b68d901d5"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2564,
+          "sha256": "9547367c84d0b08dd3141e84a03b39bb2138344003953467f0e84eb929f73c14"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "a95c6eb5efbb637c1acc4dc01074b1936301542df36fe16d01358af093800965"
+        },
+        "receipt.json": {
+          "allocated_bytes": 28672,
+          "logical_bytes": 27839,
+          "sha256": "036e71637afb47dca849b894e28a9e41550e80a678e5e1e744eab61b2bfc119a"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 247,
+          "sha256": "003b51a2e4042ea7c433aa12d49a98ffde40dff1d36671ad5418dddaa318ea5a"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3006,
+          "sha256": "f49d65dfbb68c4a3a41c0fa77a3fa016d3a6405611b2021759a36366efea55c7"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4899,
+          "sha256": "1e1918960417606ddd11646c9d6b561e85581afef696df79bc675c04b4e4bfcd"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 231,
+          "sha256": "635ef108d1af58deee075c70f7f562cc5a5bc38efc64040056d118e0ecf8c4a2"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 40960,
+          "logical_bytes": 38603,
+          "sha256": "03e3e9385ad4b1cd2782b1beff5c280b52d3b78646a0cdc8eb460ff01c85a976"
+        }
+      }
+    }
+  ],
+  "sample_content_scope": [
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/samples.jsonl",
+      "bytes": 42448908,
+      "sha256": "0b30909ba22e0aecb513af0108acf5753e09455aa1b31d167c7e455ea729fa73",
+      "content_scope": "ROOT frozen5fe0 closure invocation streamed all33raw hashes, ROOT postcheck attests; coordinator stat/logicalextent only, no content rehash."
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-u",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/samples.jsonl",
+      "bytes": 41095861,
+      "sha256": "036f4848989d37abeff23ce8c706d5e0236fd37e436112e9f556620087ab68b9",
+      "content_scope": "ROOT frozen5fe0 closure invocation streamed all33raw hashes, ROOT postcheck attests; coordinator stat/logicalextent only, no content rehash."
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-u",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/samples.jsonl",
+      "bytes": 41999912,
+      "sha256": "9a81ec93c4e5a939196a829e59305d804de11bcc1b9382d952ccd4e337134492",
+      "content_scope": "ROOT frozen5fe0 closure invocation streamed all33raw hashes, ROOT postcheck attests; coordinator stat/logicalextent only, no content rehash."
+    }
+  ],
+  "recorded_proofs": [
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794775501555368045.json",
+        "sha256": "be877848f50039252b35e05452b6865d39d05a0ba01382ab84ccdc8669814c7e"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794777053262892008.json",
+        "sha256": "27f63e48f8ba8b8a6e3f207089113403a572e0c9c18a7e284fc9de60f690f6f8"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-u",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794777583939375056.json",
+        "sha256": "13697074cff7cb7170ccb8ff6479bb8963553998331739dcc629ecb94dd19b0c"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-u",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794779178450027379.json",
+        "sha256": "d0f14ddfaaa0019932597b9987d9b9bcec8b81a28daae25a0db1f914863e041e"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-u",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794779179248728152.json",
+        "sha256": "982f68dabf01b2b148f646be120c699cc3c32fbfc4b940a9906e94a2c86661c6"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-u",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794780705744093092.json",
+        "sha256": "9f1e5237af391d49d60d029c5fe1cb088dc7124ef500e22fc96cb419d907aebf"
+      }
+    }
+  ],
+  "all6_exact_recorded_birth_FDs": [
+    {
+      "pid": 52072,
+      "start_ticks": 8199172,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52092,
+      "start_ticks": 8199186,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52144,
+      "start_ticks": 8407411,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52164,
+      "start_ticks": 8407428,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52204,
+      "start_ticks": 8566935,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52225,
+      "start_ticks": 8566947,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    }
+  ],
+  "last_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/post-metadata.json",
+    "sha256": "988815fb9ddef457d4f75dcd4ab88a2f749af1307e0ff12142f3a8a988f9becd"
+  },
+  "source35_directly_rehashed": true,
+  "HEAD_tree_FULLstatus": "ROOT explicit actual postcheck attested HEAD/tree/tracked empty/fullstatus expected858files78dirs; coordinator source35 and pinned status bytehashes checked, no git/native call or currentprocess scan.",
+  "comparison": "Fullsearched vs same-rep summarysearched input/common/branches equal; fullpublic graph not required equal compact. All3withinfull fingerprint identical; expectedcore shape/dtype directchild records checked.",
+  "limits": "No final scientific acceptance/profile/ranking/isolatedcost/memorybudget/16GiBfeasibility or nextstage. No large samplecontent reread. Native terminal/self/call/collection/lastsnapshot scopes separate; unknownexec/gapcauses/physicalcache/outeractors retained.",
+  "next_science_authorized": false,
+  "qualified_worktree_edited": false,
+  "all_prior_attempts_unknown_charges_preserved": true
+}

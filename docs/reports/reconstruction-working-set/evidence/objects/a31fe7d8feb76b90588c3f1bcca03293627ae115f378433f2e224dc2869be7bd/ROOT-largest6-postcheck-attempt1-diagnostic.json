@@ -1,0 +1,15 @@
+{
+  "diagnosis": "Postcheck attempt1 failed at raw-root entry equality after earlier source/Git/990-status checks; no closure/window success claimed",
+  "extra_root_entries": [
+    "docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1"
+  ],
+  "missing_root_entries": [],
+  "observed_at_unix_ns": 1794797451144092321,
+  "old_status_actual_sha256": "5d481bb8f09c4d83bf7a52e664cdd650c049272f831689687b007261fabe0d03",
+  "postcheck_exists": false,
+  "root_entry_count": 91,
+  "status_dirs": 90,
+  "status_file_exists": true,
+  "status_lines": 990,
+  "window_exists": false
+}

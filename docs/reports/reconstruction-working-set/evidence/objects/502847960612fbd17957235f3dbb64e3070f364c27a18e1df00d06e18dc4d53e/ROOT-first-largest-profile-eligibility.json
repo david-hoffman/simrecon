@@ -1,0 +1,55 @@
+{
+  "actual_controller_exit": 0,
+  "all2_stored_birth_FD_sets_closed": true,
+  "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+  "authority": "ROOT",
+  "boundary": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+    "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69"
+  },
+  "controller_session": 29012,
+  "eligible_for_same_stage_continuation": true,
+  "exact_owned_processes": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52672,
+      "start_ticks": 9317771
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52692,
+      "start_ticks": 9317785
+    }
+  ],
+  "final_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-metadata.json",
+    "sha256": "f84847a72576a1f03cd30ef7b6ecb6050ffdca24cf5d6aa4177b4e92efc76f7f"
+  },
+  "final_scientific_acceptance": false,
+  "no_pending_proxy": true,
+  "post_source_audit": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-first-largest-profile-post-audit.json",
+    "sha256": "405c9e3cbb9370c8a96141542116b858fb5a32c9ddc65e8e1b7a043adc6fcce2"
+  },
+  "receipt": {
+    "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+    "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+  },
+  "schema": "ROOT-WS116-largest256-profile-r1-eligibility-v1",
+  "selected_largest_size": 256,
+  "stage_id": "largest-profiles"
+}

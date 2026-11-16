@@ -1,0 +1,162 @@
+{
+  "issue": 112,
+  "status": "published_independently_accepted_local_and_ci_passed",
+  "candidate": {
+    "head": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "tree": "836abd6603e28ea69c611429443c0684ba2f8441",
+    "base": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+    "branch": "docs/112-single-precision-contract",
+    "worktree": "/workspace/work/issue-112"
+  },
+  "verification": {
+    "attempt": 1,
+    "result": "passed",
+    "all_phase_returncodes": 0,
+    "phase_count": 13,
+    "tests_passed": 3390,
+    "warnings": 47,
+    "test_seconds": 1018.01,
+    "gate_seconds": 1100.836065,
+    "start_utc": "2026-11-14T22:52:59.531305+00:00",
+    "end_utc": "2026-11-14T23:11:20.367370+00:00",
+    "receipt": "verify-attempt1/verification/receipt.json",
+    "receipt_sha256": "358f5a3d15674210dfcf207ab39fc7950d80ed2b90cd29e9ea2e6d9a131aad59",
+    "log": "make-verify-attempt1.log",
+    "clean_before_after": true,
+    "unchanged_head_tree_manifest": true,
+    "problems": [],
+    "command": "docker exec --user 1000:1000 -w /workspace/work/issue-112 -e PATH=/workspace/.simrecon-tools/uv-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin -e SIMRECON_PROTOCOLS_EVIDENCE=/workspace/work/campaign/protocol-112 simrecon-campaign-ubuntu make verify UV=/workspace/.simrecon-tools/uv-env/bin/uv PYTHON=/workspace/work/issue-112/.venv/bin/python VERIFY_ARGS='--contract SP112 --base 64a752b4642709c539df2079cc3c906acf4cc7b8'"
+  },
+  "scientific_review": {
+    "candidate": "c94d58faf2fbcd0ceb70147f26c5aa8205841594",
+    "verdict": "accepted with explicitly bounded scientific limitations",
+    "sha256": "82b2e27356c2a20ff3676412ce88241f6f5e1b7231dd826476285d03fbca3ddc",
+    "actual_numerical_baseline": "b344e41a8b52de76d7cbbf8450319893904c3b8f",
+    "later_main_delta": "setup only; numerical material inputs unchanged; independently assessed"
+  },
+  "coverage": {
+    "owned_files": 38,
+    "global": {
+      "statements": [
+        5161,
+        5328
+      ],
+      "branches": [
+        1951,
+        2080
+      ]
+    },
+    "simrecon": {
+      "statements": [
+        4206,
+        4364
+      ],
+      "branches": [
+        1593,
+        1714
+      ]
+    },
+    "simrecon_devtools": {
+      "statements": [
+        39,
+        39
+      ],
+      "branches": [
+        8,
+        8
+      ]
+    },
+    "scripts": {
+      "statements": [
+        916,
+        925
+      ],
+      "branches": [
+        350,
+        358
+      ]
+    },
+    "json_sha256": "fa6b22f0659cde661bb006e8f85487a4e02c5fe401c0aa51a13c89e4d49efaa3",
+    "percentages": "advisory",
+    "separate_language_statement_metric": "unsupported"
+  },
+  "m25": {
+    "run_id": "2997fa6d-ba1d-4c29-ae9c-ad08a94e6116",
+    "baseline": 127992,
+    "peak": 127992,
+    "native_units": "KiB",
+    "increment_bytes": 0,
+    "limit_bytes": 33554432,
+    "sha256": "0787e41536ddcf726046e5b5970bc452a7e55bf331ec2dea074448270dda87b6",
+    "scope": "MRC conversion, not reconstruction peak"
+  },
+  "wheels": {
+    "version": "0.1.0",
+    "product_sha256": "d808751c5f11b04d1d13badc082d1c4c578afe7e26dc1fb4520e077a60c888ca",
+    "devtools_sha256": "177054cef0020008805abe3de9d8bbcd97b78eb26a449ca66a04b2aa4c3c21bd",
+    "installed_checks": "passed"
+  },
+  "final_readiness": {
+    "status": "accepted",
+    "candidate": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "report": "final-readiness-review.md",
+    "sha256": "30fb4fc77bcc013f455ffb761a4d753f136299217d1c998d896ddf8cad2db6f4",
+    "limits": "scientific scope and coordinator-attested environment fields explicitly retained"
+  },
+  "publication": {
+    "status": "PR open",
+    "number": 121,
+    "url": "https://github.com/david-hoffman/simrecon/pull/121",
+    "branch": "docs/112-single-precision-contract",
+    "head": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "base_branch": "main",
+    "base": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+    "ci": {
+      "run_id": 43653094741,
+      "job_id": 132625637988,
+      "status": "completed",
+      "conclusion": "success",
+      "head": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+      "base": "64a752b4642709c539df2079cc3c906acf4cc7b8",
+      "test_merge": "6d13708ae763df1097ca1ff7bdcbeb9eee520f2b",
+      "tree": "836abd6603e28ea69c611429443c0684ba2f8441",
+      "parents": [
+        "64a752b4642709c539df2079cc3c906acf4cc7b8",
+        "d9a0ba924817772fdb5550c7d055bf31bcf70388"
+      ],
+      "all_configured_steps": "success",
+      "tests_passed": 3390,
+      "warnings": 47,
+      "test_seconds": 433.75,
+      "artifact": {
+        "id": 14136644855,
+        "size_bytes": 1227274,
+        "expired": false,
+        "reported_digest": "sha256:f31ff7f2305217ffc9da48d75c792fda247be0651189803e72328058904240d9",
+        "archive_imported": false
+      },
+      "inspection": "run/job status and steps, actual logs, Git data tree/parents, artifact metadata; local coverage/M25 not relabelled as CI"
+    }
+  },
+  "housekeeping": {
+    "copied_pr_draft": "pr-draft.md",
+    "copy_comparison": "cmp passed",
+    "removed": [
+      "/workspace/work/issue-112/work/precision-112/pr-draft.md",
+      "/workspace/work/issue-112/work/precision-112",
+      "/workspace/work/issue-112/work"
+    ],
+    "kept": [
+      "current worktree and shared tools/cache while campaign active",
+      "complete verification snapshot and tracked raw study evidence"
+    ],
+    "errors": []
+  },
+  "accounting": {
+    "human_numeric_limits": "not set",
+    "actual_serving_model": "unknown",
+    "complete_tokens_cost_elapsed": "unknown",
+    "prior_attempts": "preserved in issue ledgers and campaign index; no reset"
+  },
+  "measurement_scope": "Reported prototype whole-process high-water sampled after kernel/observer computation before final JSON serialization/shutdown; no terminal-peak relabelling."
+}

@@ -1,0 +1,160 @@
+{
+  "actual_case_attempts": 5,
+  "case_count": 5,
+  "case_failures": 0,
+  "controller_sha256": "cc6efe9afec035e57fa27369e5047e9cebfbf6f07ce8d976eb77dd93537bf9bf",
+  "limits": "Finite test-tool/process capability only, no product/scientific/AS/native-backend acceptance or universal output bound. Linux primary source invariant does not authenticate running binary. Same rootfs, new namespace each case; observed inode reuse retained. Environment has four declared proxy value differences; installed tool route, traffic not monitored. All metadata/source-preparation failures preserved, including env hash serialization mismatch without changed material.",
+  "no_active_controller_or_owned_namespace": true,
+  "observed_at_ns": 1794741456255664181,
+  "payload_sha256": "19bf2c10d06bf0308cb7ff864c715d685cdad0fdb7ec8840a0ffd74a85caac47",
+  "rows": [
+    {
+      "actual_exec_status": 0,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 12
+      },
+      "case": "exit0",
+      "controller_exit_status": 0,
+      "init_identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "cmdline": "/sbin/docker-init -- sleep infinity ",
+        "container_pid": 1,
+        "engine_started_at": "2026-11-15T10:34:07.514024328Z",
+        "host_pid": 123579,
+        "start_ticks": 4533751
+      },
+      "namespace": "pid:[4026532552]",
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-exit0-a1-controller-receipt.json",
+      "receipt_sha256": "bb9b598e2842e35e0abadfc5e3f17015cb1bb0de04d3d242e33be99274d16b91",
+      "whole_namespace_closed": true
+    },
+    {
+      "actual_exec_status": 7,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 12
+      },
+      "case": "exit7",
+      "controller_exit_status": 0,
+      "init_identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "cmdline": "/sbin/docker-init -- sleep infinity ",
+        "container_pid": 1,
+        "engine_started_at": "2026-11-15T11:15:13.947289131Z",
+        "host_pid": 124951,
+        "start_ticks": 4780390
+      },
+      "namespace": "pid:[4026532556]",
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-exit7-a1-controller-receipt.json",
+      "receipt_sha256": "d3e42ea4aa1420d978a242946cc010a1d660a6da42f7af14bb312fcd837ef1b9",
+      "whole_namespace_closed": true
+    },
+    {
+      "actual_exec_status": 0,
+      "adoption_terminal_observation": {
+        "absent_before_namespace_close": true,
+        "observation_argv": [
+          "/usr/local/bin/docker",
+          "exec",
+          "--user",
+          "1000:1000",
+          "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061",
+          "/workspace/work/issue-113/.venv/bin/python",
+          "-B",
+          "-c",
+          "from pathlib import Path;import json; p=Path(\"/proc\")/'30'; print(json.dumps({\"absent\":not p.exists()}))"
+        ],
+        "observation_stdout": "{\"absent\": true}\n",
+        "observed_at_ns": 1794741375905383310,
+        "pid": 30,
+        "start_ticks": 4786029
+      },
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 91
+      },
+      "case": "adoption",
+      "controller_exit_status": 0,
+      "init_identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "cmdline": "/sbin/docker-init -- sleep infinity ",
+        "container_pid": 1,
+        "engine_started_at": "2026-11-15T11:15:57.276732839Z",
+        "host_pid": 125248,
+        "start_ticks": 4784726
+      },
+      "namespace": "pid:[4026532559]",
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-adoption-a1-controller-receipt.json",
+      "receipt_sha256": "0ae6dc22d2faf2725c2538e72c6e92f99c4dfd1a635101cf43027a7c3eede1b3",
+      "whole_namespace_closed": true
+    },
+    {
+      "actual_exec_status": 0,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 251
+      },
+      "case": "typing-valid",
+      "controller_exit_status": 0,
+      "init_identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "cmdline": "/sbin/docker-init -- sleep infinity ",
+        "container_pid": 1,
+        "engine_started_at": "2026-11-15T11:16:23.236768451Z",
+        "host_pid": 125560,
+        "start_ticks": 4787322
+      },
+      "namespace": "pid:[4026532559]",
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-typing-valid-a1-controller-receipt.json",
+      "receipt_sha256": "5a6043076abade944bb6434a013e0072c1791b572d2243263bfffd0b6b5cc548",
+      "typing_summary": {
+        "errorCount": 0,
+        "filesAnalyzed": 1,
+        "informationCount": 0,
+        "timeInSec": 0.614,
+        "warningCount": 0
+      },
+      "whole_namespace_closed": true
+    },
+    {
+      "actual_exec_status": 1,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 908
+      },
+      "case": "typing-invalid",
+      "controller_exit_status": 0,
+      "init_identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "cmdline": "/sbin/docker-init -- sleep infinity ",
+        "container_pid": 1,
+        "engine_started_at": "2026-11-15T11:16:55.809156004Z",
+        "host_pid": 125867,
+        "start_ticks": 4790577
+      },
+      "namespace": "pid:[4026532562]",
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-typing-invalid-a1-controller-receipt.json",
+      "receipt_sha256": "05b6e6b6b75c38d93f195505cbe73bc89221247763b308238af014f55569c064",
+      "typing_summary": {
+        "errorCount": 1,
+        "filesAnalyzed": 1,
+        "informationCount": 0,
+        "timeInSec": 0.574,
+        "warningCount": 0
+      },
+      "whole_namespace_closed": true
+    }
+  ],
+  "status": "FIVE_FIXED_INIT_CONTROLS_QUALIFIED"
+}

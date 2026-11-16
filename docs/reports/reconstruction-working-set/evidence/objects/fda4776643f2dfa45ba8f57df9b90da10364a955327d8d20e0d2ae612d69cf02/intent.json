@@ -1,0 +1,16 @@
+{
+  "observer": {
+    "pid": 45014,
+    "observed_monotonic_ns": 16086707145381,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 1608661,
+    "ppid": 0,
+    "pgid": 45014,
+    "session_id": 45014,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "nonce": "WS116-selected-route-a1",
+  "route": "plain-posix-spawn/same-pid-setsid/execve",
+  "bootstrap_sha256": "3353b2cedc9d17eace4ce5ebc5651799e2bc432e493107a64b924ae2cdf6be37",
+  "target_sha256": "85e5394feb08a8eef86a783e88c1c86bbeddc901da0ab8ee10d0943ac27f9010"
+}

@@ -1,0 +1,20 @@
+{
+  "actual_terminal_observed": true,
+  "authority": "ROOT",
+  "basis": "actual_tool_terminal_receipt",
+  "controller_session": 94974,
+  "exit_code": 0,
+  "no_pending_proxy": true,
+  "schema": "ROOT-WS116-controller-terminal-attestation-v1",
+  "tool_receipt": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-controller-94974-tool-terminal.json",
+    "sha256": "9d360f306356e843cb8f8aa470f00b527d24389b9fc935e6a0879057d1827ac6"
+  },
+  "tool_receipt_expected": {
+    "chunk_id": "50ddd5",
+    "exit_code": 0,
+    "original_token_count": 450,
+    "output": "{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1765.627802656003, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1770.6281698289968, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1775.6283699969936, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1780.6286173980043, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1785.6288947290013, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1790.6295293080038, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1795.6306063319935, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1800.6312175969942, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1805.6314356960065, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1810.6316487650038, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1815.6318662400008, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n{\"attempt_id\": \"ws116-gp-g256-summary-searched-r3-u\", \"elapsed_seconds\": 1820.6322685259947, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 146361}\n",
+    "wall_time_seconds": 44.706863437
+  }
+}

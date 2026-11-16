@@ -1,0 +1,8 @@
+{
+  "actual": "HEAD/tree/35source/tracked diff unchanged; all825 fullstatus lines are75expected raw evidence directories retained, including exact old73 plus2new boundaryinventories",
+  "all_prior_failures_unknown_costs_preserved": true,
+  "correction": "Preserve fullstatus and compare exact expected rawpath set; finalpublication still requires assembled clean candidate",
+  "no_closure_helper_retry": true,
+  "outcome": "assertion before any output/target call because ROOT incorrectly expected FULLstatus empty",
+  "scope": "ROOT postclosure auxiliary source-check construction attempt1"
+}

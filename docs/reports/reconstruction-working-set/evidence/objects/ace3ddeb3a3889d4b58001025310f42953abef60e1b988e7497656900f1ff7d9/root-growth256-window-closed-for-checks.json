@@ -1,0 +1,19 @@
+{
+  "active_observer_or_proxy": false,
+  "all_known_current_stage_owners_closed": true,
+  "closed_at_unix_ns": 1794764099209289151,
+  "no_global_host_or_external_actor_absence_claim": true,
+  "no_next_science_authorized": true,
+  "post_audit": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+    "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d"
+  },
+  "reason": "All6 finite rows/soleterminalreceipts/66rawhashes/storedprepostproofs and12exactbirthFDsets audited; rootpostEA35/HEAD/tree/fullstatus unchanged. Allow separatelyreleasedfileanalysis and113checks next.",
+  "root_explicitly_ends_original_reservation": true,
+  "schema": "ROOT-WS116-growth256-reservation-ended-for-checks-v1",
+  "stage_closed": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+    "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+  },
+  "window_closed_early": true
+}

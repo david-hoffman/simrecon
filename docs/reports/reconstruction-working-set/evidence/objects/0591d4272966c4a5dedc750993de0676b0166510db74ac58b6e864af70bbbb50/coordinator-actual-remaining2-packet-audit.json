@@ -1,0 +1,141 @@
+{
+  "schema": "WS116-fullsearched256-remaining2-actual-packet-coordinator-audit-v1",
+  "status": "RECORDED_PACKET_NO_BLOCKER_READY_FOR_ROOT_SEPARATE_EXACT_R2R3_RELEASE",
+  "blocking_findings": [],
+  "runtime_authorized_by_this_audit": false,
+  "actual_command": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-actual-preparation-command.json",
+    "sha256": "9f4ad100006d4d5f6c5406332afdeb219c6b095738a1f82f19766d0905012ad9"
+  },
+  "program13outputs_sha256": {
+    "ROOT-preparation-authorization.input.json": "aa4c6d22e7ed7cdd13f8a888664f11c6a5f7e0b2f361ba21d5b6062037479b55",
+    "ROOT-scheduler-suspension.input.json": "74e6d330ef0910d4ee99441bb7f4fa0315bb2e33ff49bc5ef5c4bc4411997420",
+    "ROOT-closed-r1-prerequisites.input.json": "07fab05b09ee036237f23066b38423b4572350219b9dddf1fd63985fbb45f66f",
+    "metadata-request.json": "cf2054f1595da08394d0578df0a9ce92e890429e3af9e484cd5b3f49fff5c082",
+    "metadata-command.json": "39dbc79543d81cef49a55da8ebfc7aecf9dc34aa0837be1e89479dde3036cfc7",
+    "metadata.json": "65100e4abdc0df45f5e898285c94018e754ac41b13aa6d4b53e9440199105f03",
+    "context-command.json": "496fd2ffdbe859749179c2639d664c2b6251a2699d4579370ba7d8aa07493b16",
+    "new-context-preflight.json": "f2bb22614684727c357652c954c3c7c6637f6a82abba8f907392f46e203dba2d",
+    "scheduler-ACK.json": "fed229477c9298aab8c878925969e55fea88a94fadc57f180d92d94df0b73071",
+    "ROOT-authority.json": "13ab83caaececf6c2e2b4130dd4608ab2c1a7e4e3b0e0707d9e6e0ba758097da",
+    "current-stage-ledger.json": "845f1f0aa7d12178ba256ceee3d5753e7a589de43c93e53eed0adca5b389c86d",
+    "config-remaining2-PREPARED.json": "c3705d9479f43ab4bab677576ccfb9c8db33738bb8cf7ddae7589b78cdc75fc5",
+    "preparation-status.json": "f85dc12ae2f5dd581ffebaf481d27dca9e6a49bc190fbba66be6bf287600be6b"
+  },
+  "checks": {
+    "input3snapshots_exact": true,
+    "source35_tool6_directly_rehashed": true,
+    "config44_reconstructed_exact": true,
+    "core28_material35_tool6_prior4_controls3_unchanged": true,
+    "same_stage_admission": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-full-stage-admission.json",
+      "sha256": "d1b474bb6c09a3bca9f8086c1dd24796f3166a6f15377d8e9eeba98adf46268c"
+    },
+    "prefix": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+        "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+      }
+    ],
+    "only_R2R3_allowed": true,
+    "R1_not_rerun": true,
+    "config_authorized": false,
+    "ROOTauthority_notACK": true,
+    "new3hwindow_seconds": 10800,
+    "exact_recorded_R1_birthFD_ledger": [
+      {
+        "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+        "identity": {
+          "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+          "fds": [
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "pid": 52072,
+          "start_ticks": 8199172
+        },
+        "receipt": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/receipt.json",
+          "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+        }
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+        "identity": {
+          "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+          "fds": [
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "pid": 52092,
+          "start_ticks": 8199186
+        },
+        "receipt": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/receipt.json",
+          "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+        }
+      }
+    ],
+    "future_batch_and_R2R3_raw_absent_at_file_review": true
+  },
+  "ROOT_R1_prerequisites": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-closed-r1-prerequisites.json",
+    "sha256": "07fab05b09ee036237f23066b38423b4572350219b9dddf1fd63985fbb45f66f"
+  },
+  "recorded_context_proof": {
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794777391582536574.json",
+    "sha256": "fb3aa45ced1b19d36af377d8c5cea91ed50c688cdddeb66f818e18567b9cff0e"
+  },
+  "recorded_resource_facts": {
+    "outer": {
+      "current_bytes": 2685992960,
+      "maximum_bytes": 17179869184,
+      "events": {
+        "low": "0",
+        "high": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      },
+      "swap_bytes": 0,
+      "host_available_bytes": 17797427200
+    },
+    "inner": {
+      "current_bytes": 2700283904,
+      "maximum_bytes": 17179869184,
+      "events": {
+        "low": "0",
+        "high": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      },
+      "swap_bytes": 0,
+      "host_available_bytes": 17775136768
+    }
+  },
+  "age_ns_at_prepared_window_start": {
+    "outer": 355531489,
+    "inner": 192330795,
+    "metadata": 413162140,
+    "auth": 790761370,
+    "suspension": 790997870,
+    "proof_start": 355969858
+  },
+  "limits": [
+    "Closed FILE/hash/schema/scalar review only, no current PID/FD/resource refresh, target import/AST/test/probe/native/workflow or canonicalanalysis.",
+    "ROOT explicit eligibility/controller/window/scheduler objects hash/expected-bound; exact2birthFD absence is recorded fresh metadata, not unrelated actor or old-stage scan.",
+    "Preparation context historical; unchanged8190 fresh per-row source/metadata/capture/readiness/ownership/proofhorizon/end guards remain mandatory.",
+    "No scientific aggregate/nextstage/profile/feasibility/16GiB/benefit or finalscientific acceptance inferred."
+  ],
+  "qualified_worktree_edited": false,
+  "all_prior_attempts_unknown_costs_preserved": true
+}

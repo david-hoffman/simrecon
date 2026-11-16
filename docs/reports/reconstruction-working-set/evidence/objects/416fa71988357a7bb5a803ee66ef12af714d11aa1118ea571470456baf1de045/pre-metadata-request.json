@@ -1,0 +1,32 @@
+{
+  "disk_paths": [
+    "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1",
+    "/workspace/work/issue-116"
+  ],
+  "owned_processes": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52672,
+      "start_ticks": 9317771
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52692,
+      "start_ticks": 9317785
+    }
+  ]
+}

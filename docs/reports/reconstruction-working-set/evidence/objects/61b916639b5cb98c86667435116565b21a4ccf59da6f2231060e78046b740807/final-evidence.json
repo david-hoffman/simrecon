@@ -1,0 +1,198 @@
+{
+  "issue": 115,
+  "status": "published_independently_accepted_local_and_ci_passed",
+  "candidate": {
+    "commit": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "tree": "2247d3909f43bc4764beb5c748caa917aaa1d707",
+    "dirty": false,
+    "untracked": []
+  },
+  "parent": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+  "parent_pr": 121,
+  "branch": "feat/115-wide-allocation-domain",
+  "context": {
+    "contract": "WAD115",
+    "reviewed_tests": "290a4e6a834a3de56f7f49b40939e20be159c7cd",
+    "integration_base": "d9a0ba924817772fdb5550c7d055bf31bcf70388"
+  },
+  "verification": {
+    "attempt": 1,
+    "result": "passed",
+    "problems": [],
+    "phases": [
+      {
+        "name": "sync",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-clean",
+        "returncode": 0
+      },
+      {
+        "name": "lint",
+        "returncode": 0
+      },
+      {
+        "name": "format",
+        "returncode": 0
+      },
+      {
+        "name": "types",
+        "returncode": 0
+      },
+      {
+        "name": "tests",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-combine",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-json",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-html",
+        "returncode": 0
+      },
+      {
+        "name": "coverage-report",
+        "returncode": 0
+      },
+      {
+        "name": "wheel",
+        "returncode": 0
+      },
+      {
+        "name": "wheel-import",
+        "returncode": 0
+      },
+      {
+        "name": "audit",
+        "returncode": 0
+      }
+    ],
+    "started_at": "2026-11-14T23:53:01.962901+00:00",
+    "finished_at": "2026-11-15T00:10:07.699696+00:00",
+    "elapsed_seconds": 1025.736795,
+    "tests_passed": 3444,
+    "warnings": 47,
+    "test_seconds": 937.98,
+    "receipt": "verify-attempt1/verification/receipt.json",
+    "receipt_sha256": "d4a90f12e9a338e34133a9cd728cee1772f12905ed7a9154089e80630f81fa31",
+    "manifest_unchanged": true,
+    "environment_provenance": "gate-launch-record.md; receipt inputs selective, not exhaustive authenticated graph"
+  },
+  "coverage": {
+    "global": {
+      "statements": {
+        "covered": 5157,
+        "total": 5322
+      },
+      "branches": {
+        "covered": 1949,
+        "total": 2074
+      }
+    },
+    "packages": {
+      "simrecon": {
+        "statements": {
+          "covered": 4202,
+          "total": 4358
+        },
+        "branches": {
+          "covered": 1591,
+          "total": 1708
+        }
+      },
+      "simrecon_devtools": {
+        "statements": {
+          "covered": 39,
+          "total": 39
+        },
+        "branches": {
+          "covered": 8,
+          "total": 8
+        }
+      },
+      "scripts": {
+        "statements": {
+          "covered": 916,
+          "total": 925
+        },
+        "branches": {
+          "covered": 350,
+          "total": 358
+        }
+      }
+    },
+    "files": 38,
+    "json_sha256": "a3ed78ec86d50cc54bd7cf3a93b6f0cfde9e68fd2e825ee23fbc359122bfc672",
+    "percentages": "advisory"
+  },
+  "product": {
+    "path": "dist/simrecon-0.1.0-py3-none-any.whl",
+    "size_bytes": 126857,
+    "sha256": "2c3b1f1123d232bde0cd17144b636288a2d5839bcb35dd8476fb394ea3e19de1",
+    "version": "0.1.0"
+  },
+  "devtools": {
+    "version": "0.1.0",
+    "sha256": "177054cef0020008805abe3de9d8bbcd97b78eb26a449ca66a04b2aa4c3c21bd",
+    "installed_checks": "passed"
+  },
+  "measurements": {
+    "schema": "org.simrecon.measurements",
+    "version": 1,
+    "run_id": "1706262f-8b1b-410e-964e-00a4adfd782f",
+    "measurements": {
+      "M25": {
+        "baseline": 126312,
+        "peak": 126312,
+        "increment_bytes": 0,
+        "limit_bytes": 33554432,
+        "units": "KiB"
+      }
+    },
+    "path": "artifacts/verification/measurements.json",
+    "sha256": "e79f97e2c30b863ba9fe1c85f500bc0808a019b83357dedc18955a6e7edca162"
+  },
+  "review": {
+    "B2_checkpoint": "290a4e6a834a3de56f7f49b40939e20be159c7cd",
+    "test_manifest_files": 100,
+    "test_manifest_sha256": "3e4d18a1f9a96ae537eeac12bc126012b1d93c3d4613ed76b72da9b740302528",
+    "B2_sha256": "67e9ffbe0efa451b458432ddbf8565c7dc305561a33d4d174fb67bca4c599a7f",
+    "C_report_sha256": "f1a16d344f3eb8a390bd351b89631656b12f2e7fbc19b4425eb436ba0aac90c1",
+    "D": {
+      "verdict": "accepted",
+      "report": "d-review-1.md",
+      "sha256": "e576cd08ec727ea5b565373df0fefddf64d5bc758ef383f5996c3e035cf89fe8"
+    }
+  },
+  "publication": {
+    "status": "PR open",
+    "head": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "parent": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "parent_branch": "docs/112-single-precision-contract",
+    "expected_remote_head_before_push": "absent",
+    "lease": "expected absent",
+    "ci": "passed",
+    "number": 122,
+    "url": "https://github.com/david-hoffman/simrecon/pull/122",
+    "base_branch": "docs/112-single-precision-contract",
+    "ci_evidence": "ci-evidence.json",
+    "ci_run_id": 43658204041,
+    "ci_job_id": 132641409802,
+    "ci_test_merge": "a7b09f53c2addba51dc3c0ecaaa5ff698e7e0933",
+    "ci_tree_matches_candidate": true
+  },
+  "limits": {
+    "target_allocation": "not attempted",
+    "RAM_fit_or_backend_success": "not established",
+    "historical_C_execution": "not qualified",
+    "human_numeric_limits": "not set",
+    "unknown_metering": "actual serving attribution/complete tokens/cost/elapsed unknown"
+  },
+  "prior_attempts": "Preserved in issue role/test/correction ledgers and original local refs; no relabelling/reset."
+}

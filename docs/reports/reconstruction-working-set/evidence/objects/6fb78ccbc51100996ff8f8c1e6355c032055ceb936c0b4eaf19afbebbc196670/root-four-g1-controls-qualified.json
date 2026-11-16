@@ -1,0 +1,1005 @@
+{
+  "actual_case_attempts": 4,
+  "all_owned_controllers_namespaces_proxies_closed": true,
+  "metering": "unknown",
+  "observed_at_ns": 1794743701330492167,
+  "product_acceptance": false,
+  "rows": [
+    {
+      "AST_node_bindings": [
+        {
+          "ast_sha256": "d44475c4cb9c2065cefc0a889a5e241a7a50815e1c409138edac58bb0cc4cb03",
+          "first": 918,
+          "last": 918
+        },
+        {
+          "ast_sha256": "ac3a74d6dd975a8e8fe4b7f85fce794793a9355595b850e3926964913948d386",
+          "first": 919,
+          "last": 919
+        },
+        {
+          "ast_sha256": "ef6a21835dcda94f400e0bc9d13fb9522d13f8fe2b42fb67be2ee49142905db6",
+          "first": 920,
+          "last": 920
+        },
+        {
+          "ast_sha256": "59051b17634cdcb5a576ceb58fdc0a4e5652ed3b60d66667e92ddefd931abeca",
+          "first": 921,
+          "last": 921
+        },
+        {
+          "ast_sha256": "b605b093a96367044fcfb76167027bd48f26df6ee57114d619f72048d687ab06",
+          "first": 923,
+          "last": 923
+        },
+        {
+          "ast_sha256": "4005c75531ca6feccc291cefacf104891a5b330cbbc2be493f56c8f7663748e4",
+          "first": 925,
+          "last": 926
+        },
+        {
+          "ast_sha256": "f3292fdfba331e1bf8083694071f126250a908d9260ff280bc383ee3cb72bbe7",
+          "first": 927,
+          "last": 927
+        },
+        {
+          "ast_sha256": "44878fafa7e74c3fcadfdef43781258dc24064cd30e9e3aef22c1ea1d9d23018",
+          "first": 929,
+          "last": 929
+        },
+        {
+          "ast_sha256": "2c1c26ec58ec95cbadb2ff2ee1489a30c87dea297f3e0f115f8c5bd1fa736da8",
+          "first": 930,
+          "last": 930
+        },
+        {
+          "ast_sha256": "7dc55862d1c8a79f32f1a1635e092bbc6161d8555b14ff10678c8296ca7e5838",
+          "first": 932,
+          "last": 942
+        },
+        {
+          "ast_sha256": "39263dac7230896015b8dda5c8db73f71d33ca11e3b810ea130b4961a3838845",
+          "first": 944,
+          "last": 944
+        },
+        {
+          "ast_sha256": "6fcf6d05e08893d1e8f428a44d49b0d87ea245c9666bd1e71cc044f89d22d056",
+          "first": 945,
+          "last": 945
+        },
+        {
+          "ast_sha256": "9299e01c49407761cc204a82d8ca5e58cb823bc397efe7875d99791e9ac22045",
+          "first": 946,
+          "last": 946
+        },
+        {
+          "ast_sha256": "1604adf44848772570b51fb95d25f5c93ddfe1b571689cff693dd211d297471d",
+          "first": 947,
+          "last": 947
+        },
+        {
+          "ast_sha256": "76fd6ea16303419bfb05c0b088691b21fe69d01661644065c64b05741122f1d0",
+          "first": 948,
+          "last": 948
+        },
+        {
+          "ast_sha256": "7f6ec9ccbac081f9e964a5145c7bce70a9b88f2d56091384d166234133aff7c5",
+          "first": 949,
+          "last": 949
+        },
+        {
+          "ast_sha256": "80c3edacfbe46e7a55118c2774c701f0b737b1b53e3a26ab47b084c444919699",
+          "first": 950,
+          "last": 950
+        },
+        {
+          "ast_sha256": "8b2302ee7335e188a628b21c788d2ef304de602da2521112ec40625365950574",
+          "first": 951,
+          "last": 952
+        },
+        {
+          "ast_sha256": "c0b07cc9c7d6a32c0bd2d2afa1a2d99ef79e7662a03576e71b141f4db9cccbe5",
+          "first": 953,
+          "last": 954
+        },
+        {
+          "ast_sha256": "95a35bed55a12fcea793e9fb5ad937a7ee338e93ac493a42adbd625ea1a9471a",
+          "first": 955,
+          "last": 955
+        },
+        {
+          "ast_sha256": "8a1f1f07c5aad3e2b6bfdc5897a9e6c1f2bc3a79fc32641b592b9f4cb041b2be",
+          "first": 956,
+          "last": 959
+        },
+        {
+          "ast_sha256": "e322f340feb665a5e3e3a7c765d1277c4c7a4a1407141ae53a72f0747821df88",
+          "first": 960,
+          "last": 960
+        },
+        {
+          "ast_sha256": "e7447334607c39c22c2d9281090f82adaf528fb8f5ae507c729772ccf2ff6f9f",
+          "first": 961,
+          "last": 962
+        },
+        {
+          "ast_sha256": "1065f0d42e5f2628a8d2ebc01da6ed07b6330d7407cbdb8ce45c136555249850",
+          "first": 963,
+          "last": 963
+        },
+        {
+          "ast_sha256": "52e6228c7fde73043c7ce64f25f817518fa3c20d21d9b5d4e5d385eda66c193f",
+          "first": 964,
+          "last": 967
+        },
+        {
+          "ast_sha256": "ab7e3d34badcb9228d41e38c9cd4203998aae6623e42f6ca693973ea763221e7",
+          "first": 968,
+          "last": 969
+        },
+        {
+          "ast_sha256": "464e087aebe11d861f20b66619465a7835155a034c91fbbd7bef1c55bb6b08f2",
+          "first": 971,
+          "last": 971
+        },
+        {
+          "ast_sha256": "d29e1f74054766679f3547acee429f9a562d57dd9e3a791b3802e871fd9ca2bb",
+          "first": 1065,
+          "last": 1065
+        },
+        {
+          "ast_sha256": "dbf907b4ff4c43811f0f9ac2fc0b57523dd3ea780df057972d4e63f4dc9bdeee",
+          "first": 1066,
+          "last": 1066
+        },
+        {
+          "ast_sha256": "fffa889207d49e85e34d58277666b6bc340e54f83e1772fcb65dc6e6cea42641",
+          "first": 1067,
+          "last": 1067
+        },
+        {
+          "ast_sha256": "0f8902b39eb50c3365e369c0387c558f3fac01df30da9870368b0ccca0aa349d",
+          "first": 1068,
+          "last": 1068
+        },
+        {
+          "ast_sha256": "cf594450baec6f11b2b5093d9493f31c28e81a4d8335ac2ab76e0b5311f34788",
+          "first": 1069,
+          "last": 1069
+        },
+        {
+          "ast_sha256": "b6975183bb5403e345edfbaa26e57eeae3032165333b10a2301f0d1b3d1e2e6a",
+          "first": 1070,
+          "last": 1070
+        },
+        {
+          "ast_sha256": "6b30be3fb044c4750d39767fbbaf870bc609a033f6d4d58d1dab115f62cec0f7",
+          "first": 1075,
+          "last": 1075
+        },
+        {
+          "ast_sha256": "69c6c06f0b8388422c1bd2226eb9f3b0ddda3e8904dac51a949600e6c639aae1",
+          "first": 1076,
+          "last": 1076
+        },
+        {
+          "ast_sha256": "2e0da603d79f3e1b766e0246a1071212e0b109f95bc8496a59768d971b46c374",
+          "first": 1077,
+          "last": 1077
+        },
+        {
+          "ast_sha256": "d0055dd059c9e238fa364003e7f932236736db60ed26007bfcf74aeb74057517",
+          "first": 1078,
+          "last": 1078
+        },
+        {
+          "ast_sha256": "c9130a589e3d7dff30bea1a42cbe2702cb23f263d9e50fdd04267a2339ff9996",
+          "first": 1079,
+          "last": 1079
+        },
+        {
+          "ast_sha256": "b7e22bb36845736728f1e5f8114a4083062958debd8e1d8c851c1382625a502c",
+          "first": 1080,
+          "last": 1080
+        },
+        {
+          "ast_sha256": "ba28112a4604ac3f0b452372b08532a78c660f7798e8ac12ba4cb098bf3b825d",
+          "first": 1081,
+          "last": 1081
+        },
+        {
+          "ast_sha256": "72b0692e4595fd944d981a634c34e3c15f3ff1f280fd5da49438edf9efdb6879",
+          "first": 1082,
+          "last": 1082
+        },
+        {
+          "ast_sha256": "3e55aa7d2ecd0cf8c614da6dcd4c2850e2587667239e2f3654063fd1d185f335",
+          "first": 1083,
+          "last": 1083
+        },
+        {
+          "ast_sha256": "fa7d04024794c47beaa9c37ebb276c5121f2b355542e761d48b66099702f1381",
+          "first": 1084,
+          "last": 1084
+        },
+        {
+          "ast_sha256": "bef6629f08b6bf08df2499f14f1fb083940f6be1254240699a87a0cfd101aaae",
+          "first": 1085,
+          "last": 1085
+        },
+        {
+          "ast_sha256": "58f1e750765c71fc92f17c0ca2e126a2141bc68a470e5ca9640afa8a7e7ae9cb",
+          "first": 1086,
+          "last": 1086
+        },
+        {
+          "ast_sha256": "e92623299cbb381fd17d02879a455017efe4103acf917cf273f33f4cab69444f",
+          "first": 1087,
+          "last": 1092
+        },
+        {
+          "ast_sha256": "aee053ed9dd9cd8f7ff0c6f95d50243852b39cd2d12a09b829f29fb3d1ccc122",
+          "first": 1094,
+          "last": 1111
+        },
+        {
+          "ast_sha256": "3eea7c46e36e1de84dab57247b8f223d5628b1824f795214d0d60c018f1e1722",
+          "first": 1113,
+          "last": 1130
+        }
+      ],
+      "actual_exec_status": 0,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 6101
+      },
+      "case": "guard-normal",
+      "controller_exit_status": 0,
+      "details": {
+        "baseline_vm_bytes": 252592128,
+        "cap_bytes": 319700992,
+        "guard_vm_bytes": 252592128,
+        "minimum_reserve_bytes": 33554432,
+        "page_bytes": 4096,
+        "tiny_backing_bytes": 144,
+        "view_shapes": [
+          [
+            1,
+            1073741824,
+            3,
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            1073741824,
+            2
+          ],
+          [
+            1073741824,
+            2
+          ],
+          [
+            1073741824,
+            1
+          ]
+        ],
+        "view_strides": [
+          [
+            0,
+            0,
+            32,
+            16,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "final_limits": [
+        319700992,
+        319700992
+      ],
+      "fixture_sha256": "a693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b",
+      "initial_limits": [
+        -1,
+        -1
+      ],
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-g1-guard-normal-a1-controller-receipt.json",
+      "receipt_sha256": "346c5f4c71044cc08cdfd5592830311d155b124cb2e7182ba0aba68aff7e6aa4",
+      "root_closure": {
+        "actual_old_host_pid_absent": true,
+        "actual_pid1_terminal_and_reaped": true,
+        "cgroup_scope": "shared",
+        "commands": [
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "stop",
+              "--time",
+              "10",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Flag --time has been deprecated, use --timeout instead\n69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061\n"
+          },
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "wait",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "143\n"
+          }
+        ],
+        "container_id": "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061",
+        "engine_finished_at": "2026-11-15T11:52:56.359366159Z",
+        "engine_running": false,
+        "engine_state": "exited",
+        "engine_wait_status": 143,
+        "init_identity": {
+          "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+          "cmdline": "/sbin/docker-init -- sleep infinity ",
+          "container_pid": 1,
+          "engine_started_at": "2026-11-15T11:52:24.428537838Z",
+          "host_pid": 128184,
+          "start_ticks": 5003440
+        },
+        "no_other_workload": true,
+        "observed_at_ns": 1794743576561651034,
+        "pid_namespace_inode": "pid:[4026532556]"
+      },
+      "whole_namespace_closed": true
+    },
+    {
+      "AST_node_bindings": [
+        {
+          "ast_sha256": "d44475c4cb9c2065cefc0a889a5e241a7a50815e1c409138edac58bb0cc4cb03",
+          "first": 918,
+          "last": 918
+        },
+        {
+          "ast_sha256": "ac3a74d6dd975a8e8fe4b7f85fce794793a9355595b850e3926964913948d386",
+          "first": 919,
+          "last": 919
+        },
+        {
+          "ast_sha256": "ef6a21835dcda94f400e0bc9d13fb9522d13f8fe2b42fb67be2ee49142905db6",
+          "first": 920,
+          "last": 920
+        },
+        {
+          "ast_sha256": "59051b17634cdcb5a576ceb58fdc0a4e5652ed3b60d66667e92ddefd931abeca",
+          "first": 921,
+          "last": 921
+        },
+        {
+          "ast_sha256": "b605b093a96367044fcfb76167027bd48f26df6ee57114d619f72048d687ab06",
+          "first": 923,
+          "last": 923
+        },
+        {
+          "ast_sha256": "4005c75531ca6feccc291cefacf104891a5b330cbbc2be493f56c8f7663748e4",
+          "first": 925,
+          "last": 926
+        },
+        {
+          "ast_sha256": "f3292fdfba331e1bf8083694071f126250a908d9260ff280bc383ee3cb72bbe7",
+          "first": 927,
+          "last": 927
+        },
+        {
+          "ast_sha256": "44878fafa7e74c3fcadfdef43781258dc24064cd30e9e3aef22c1ea1d9d23018",
+          "first": 929,
+          "last": 929
+        },
+        {
+          "ast_sha256": "2c1c26ec58ec95cbadb2ff2ee1489a30c87dea297f3e0f115f8c5bd1fa736da8",
+          "first": 930,
+          "last": 930
+        },
+        {
+          "ast_sha256": "7dc55862d1c8a79f32f1a1635e092bbc6161d8555b14ff10678c8296ca7e5838",
+          "first": 932,
+          "last": 942
+        },
+        {
+          "ast_sha256": "39263dac7230896015b8dda5c8db73f71d33ca11e3b810ea130b4961a3838845",
+          "first": 944,
+          "last": 944
+        },
+        {
+          "ast_sha256": "6fcf6d05e08893d1e8f428a44d49b0d87ea245c9666bd1e71cc044f89d22d056",
+          "first": 945,
+          "last": 945
+        },
+        {
+          "ast_sha256": "9299e01c49407761cc204a82d8ca5e58cb823bc397efe7875d99791e9ac22045",
+          "first": 946,
+          "last": 946
+        },
+        {
+          "ast_sha256": "1604adf44848772570b51fb95d25f5c93ddfe1b571689cff693dd211d297471d",
+          "first": 947,
+          "last": 947
+        },
+        {
+          "ast_sha256": "76fd6ea16303419bfb05c0b088691b21fe69d01661644065c64b05741122f1d0",
+          "first": 948,
+          "last": 948
+        },
+        {
+          "ast_sha256": "7f6ec9ccbac081f9e964a5145c7bce70a9b88f2d56091384d166234133aff7c5",
+          "first": 949,
+          "last": 949
+        },
+        {
+          "ast_sha256": "80c3edacfbe46e7a55118c2774c701f0b737b1b53e3a26ab47b084c444919699",
+          "first": 950,
+          "last": 950
+        },
+        {
+          "ast_sha256": "8b2302ee7335e188a628b21c788d2ef304de602da2521112ec40625365950574",
+          "first": 951,
+          "last": 952
+        },
+        {
+          "ast_sha256": "c0b07cc9c7d6a32c0bd2d2afa1a2d99ef79e7662a03576e71b141f4db9cccbe5",
+          "first": 953,
+          "last": 954
+        },
+        {
+          "ast_sha256": "95a35bed55a12fcea793e9fb5ad937a7ee338e93ac493a42adbd625ea1a9471a",
+          "first": 955,
+          "last": 955
+        },
+        {
+          "ast_sha256": "8a1f1f07c5aad3e2b6bfdc5897a9e6c1f2bc3a79fc32641b592b9f4cb041b2be",
+          "first": 956,
+          "last": 959
+        },
+        {
+          "ast_sha256": "e322f340feb665a5e3e3a7c765d1277c4c7a4a1407141ae53a72f0747821df88",
+          "first": 960,
+          "last": 960
+        },
+        {
+          "ast_sha256": "e7447334607c39c22c2d9281090f82adaf528fb8f5ae507c729772ccf2ff6f9f",
+          "first": 961,
+          "last": 962
+        },
+        {
+          "ast_sha256": "1065f0d42e5f2628a8d2ebc01da6ed07b6330d7407cbdb8ce45c136555249850",
+          "first": 963,
+          "last": 963
+        },
+        {
+          "ast_sha256": "52e6228c7fde73043c7ce64f25f817518fa3c20d21d9b5d4e5d385eda66c193f",
+          "first": 964,
+          "last": 967
+        },
+        {
+          "ast_sha256": "ab7e3d34badcb9228d41e38c9cd4203998aae6623e42f6ca693973ea763221e7",
+          "first": 968,
+          "last": 969
+        }
+      ],
+      "actual_exec_status": 0,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 3504
+      },
+      "case": "guard-unusable",
+      "controller_exit_status": 0,
+      "details": {
+        "control": "REAL_CHILD_ONLY_PREEXISTING_SOFT_LIMIT_16MiB_HEADROOM",
+        "failure": {
+          "message": "bounded declaration experiment: unusable existing address-space limit/baseline",
+          "type": "RuntimeError"
+        },
+        "guard_installer_calls": 0
+      },
+      "final_limits": [
+        269365248,
+        -1
+      ],
+      "fixture_sha256": "a693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b",
+      "initial_limits": [
+        -1,
+        -1
+      ],
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-g1-guard-unusable-a1-controller-receipt.json",
+      "receipt_sha256": "58091991ac8a19001f4b77933002ab88f44454251ba82831e9e2f96733ebc2da",
+      "root_closure": {
+        "actual_old_host_pid_absent": true,
+        "actual_pid1_terminal_and_reaped": true,
+        "cgroup_scope": "shared",
+        "commands": [
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "stop",
+              "--time",
+              "10",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Flag --time has been deprecated, use --timeout instead\n69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061\n"
+          },
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "wait",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "143\n"
+          }
+        ],
+        "container_id": "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061",
+        "engine_finished_at": "2026-11-15T11:53:44.894168987Z",
+        "engine_running": false,
+        "engine_state": "exited",
+        "engine_wait_status": 143,
+        "init_identity": {
+          "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+          "cmdline": "/sbin/docker-init -- sleep infinity ",
+          "container_pid": 1,
+          "engine_started_at": "2026-11-15T11:53:12.914419318Z",
+          "host_pid": 128480,
+          "start_ticks": 5008288
+        },
+        "no_other_workload": true,
+        "observed_at_ns": 1794743625087879237,
+        "pid_namespace_inode": "pid:[4026532559]"
+      },
+      "whole_namespace_closed": true
+    },
+    {
+      "AST_node_bindings": [
+        {
+          "ast_sha256": "d44475c4cb9c2065cefc0a889a5e241a7a50815e1c409138edac58bb0cc4cb03",
+          "first": 918,
+          "last": 918
+        },
+        {
+          "ast_sha256": "ac3a74d6dd975a8e8fe4b7f85fce794793a9355595b850e3926964913948d386",
+          "first": 919,
+          "last": 919
+        },
+        {
+          "ast_sha256": "ef6a21835dcda94f400e0bc9d13fb9522d13f8fe2b42fb67be2ee49142905db6",
+          "first": 920,
+          "last": 920
+        },
+        {
+          "ast_sha256": "59051b17634cdcb5a576ceb58fdc0a4e5652ed3b60d66667e92ddefd931abeca",
+          "first": 921,
+          "last": 921
+        },
+        {
+          "ast_sha256": "b605b093a96367044fcfb76167027bd48f26df6ee57114d619f72048d687ab06",
+          "first": 923,
+          "last": 923
+        },
+        {
+          "ast_sha256": "4005c75531ca6feccc291cefacf104891a5b330cbbc2be493f56c8f7663748e4",
+          "first": 925,
+          "last": 926
+        },
+        {
+          "ast_sha256": "f3292fdfba331e1bf8083694071f126250a908d9260ff280bc383ee3cb72bbe7",
+          "first": 927,
+          "last": 927
+        },
+        {
+          "ast_sha256": "44878fafa7e74c3fcadfdef43781258dc24064cd30e9e3aef22c1ea1d9d23018",
+          "first": 929,
+          "last": 929
+        },
+        {
+          "ast_sha256": "2c1c26ec58ec95cbadb2ff2ee1489a30c87dea297f3e0f115f8c5bd1fa736da8",
+          "first": 930,
+          "last": 930
+        },
+        {
+          "ast_sha256": "7dc55862d1c8a79f32f1a1635e092bbc6161d8555b14ff10678c8296ca7e5838",
+          "first": 932,
+          "last": 942
+        },
+        {
+          "ast_sha256": "39263dac7230896015b8dda5c8db73f71d33ca11e3b810ea130b4961a3838845",
+          "first": 944,
+          "last": 944
+        },
+        {
+          "ast_sha256": "6fcf6d05e08893d1e8f428a44d49b0d87ea245c9666bd1e71cc044f89d22d056",
+          "first": 945,
+          "last": 945
+        },
+        {
+          "ast_sha256": "9299e01c49407761cc204a82d8ca5e58cb823bc397efe7875d99791e9ac22045",
+          "first": 946,
+          "last": 946
+        },
+        {
+          "ast_sha256": "1604adf44848772570b51fb95d25f5c93ddfe1b571689cff693dd211d297471d",
+          "first": 947,
+          "last": 947
+        },
+        {
+          "ast_sha256": "76fd6ea16303419bfb05c0b088691b21fe69d01661644065c64b05741122f1d0",
+          "first": 948,
+          "last": 948
+        },
+        {
+          "ast_sha256": "7f6ec9ccbac081f9e964a5145c7bce70a9b88f2d56091384d166234133aff7c5",
+          "first": 949,
+          "last": 949
+        },
+        {
+          "ast_sha256": "80c3edacfbe46e7a55118c2774c701f0b737b1b53e3a26ab47b084c444919699",
+          "first": 950,
+          "last": 950
+        },
+        {
+          "ast_sha256": "8b2302ee7335e188a628b21c788d2ef304de602da2521112ec40625365950574",
+          "first": 951,
+          "last": 952
+        },
+        {
+          "ast_sha256": "c0b07cc9c7d6a32c0bd2d2afa1a2d99ef79e7662a03576e71b141f4db9cccbe5",
+          "first": 953,
+          "last": 954
+        },
+        {
+          "ast_sha256": "95a35bed55a12fcea793e9fb5ad937a7ee338e93ac493a42adbd625ea1a9471a",
+          "first": 955,
+          "last": 955
+        },
+        {
+          "ast_sha256": "8a1f1f07c5aad3e2b6bfdc5897a9e6c1f2bc3a79fc32641b592b9f4cb041b2be",
+          "first": 956,
+          "last": 959
+        },
+        {
+          "ast_sha256": "e322f340feb665a5e3e3a7c765d1277c4c7a4a1407141ae53a72f0747821df88",
+          "first": 960,
+          "last": 960
+        },
+        {
+          "ast_sha256": "e7447334607c39c22c2d9281090f82adaf528fb8f5ae507c729772ccf2ff6f9f",
+          "first": 961,
+          "last": 962
+        },
+        {
+          "ast_sha256": "1065f0d42e5f2628a8d2ebc01da6ed07b6330d7407cbdb8ce45c136555249850",
+          "first": 963,
+          "last": 963
+        },
+        {
+          "ast_sha256": "52e6228c7fde73043c7ce64f25f817518fa3c20d21d9b5d4e5d385eda66c193f",
+          "first": 964,
+          "last": 967
+        },
+        {
+          "ast_sha256": "ab7e3d34badcb9228d41e38c9cd4203998aae6623e42f6ca693973ea763221e7",
+          "first": 968,
+          "last": 969
+        }
+      ],
+      "actual_exec_status": 0,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 3459
+      },
+      "case": "guard-install-denied",
+      "controller_exit_status": 0,
+      "details": {
+        "control": "INJECTED_PUBLIC_RESOURCE_SETLIMIT_ERROR_NOT_PLATFORM_FAILURE",
+        "failure": {
+          "message": "[Errno 1] G1 controlled child-local installer denial",
+          "type": "PermissionError"
+        }
+      },
+      "final_limits": [
+        -1,
+        -1
+      ],
+      "fixture_sha256": "a693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b",
+      "initial_limits": [
+        -1,
+        -1
+      ],
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-g1-guard-install-denied-a1-controller-receipt.json",
+      "receipt_sha256": "01914417295ade04062f751d08925f2612f4f32738f7ef2234ea11612c91edac",
+      "root_closure": {
+        "actual_old_host_pid_absent": true,
+        "actual_pid1_terminal_and_reaped": true,
+        "cgroup_scope": "shared",
+        "commands": [
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "stop",
+              "--time",
+              "10",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Flag --time has been deprecated, use --timeout instead\n69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061\n"
+          },
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "wait",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "143\n"
+          }
+        ],
+        "container_id": "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061",
+        "engine_finished_at": "2026-11-15T11:54:13.456064024Z",
+        "engine_running": false,
+        "engine_state": "exited",
+        "engine_wait_status": 143,
+        "init_identity": {
+          "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+          "cmdline": "/sbin/docker-init -- sleep infinity ",
+          "container_pid": 1,
+          "engine_started_at": "2026-11-15T11:53:45.338623586Z",
+          "host_pid": 128770,
+          "start_ticks": 5011526
+        },
+        "no_other_workload": true,
+        "observed_at_ns": 1794743653626792202,
+        "pid_namespace_inode": "pid:[4026532560]"
+      },
+      "whole_namespace_closed": true
+    },
+    {
+      "AST_node_bindings": [
+        {
+          "ast_sha256": "d44475c4cb9c2065cefc0a889a5e241a7a50815e1c409138edac58bb0cc4cb03",
+          "first": 918,
+          "last": 918
+        },
+        {
+          "ast_sha256": "ac3a74d6dd975a8e8fe4b7f85fce794793a9355595b850e3926964913948d386",
+          "first": 919,
+          "last": 919
+        },
+        {
+          "ast_sha256": "ef6a21835dcda94f400e0bc9d13fb9522d13f8fe2b42fb67be2ee49142905db6",
+          "first": 920,
+          "last": 920
+        },
+        {
+          "ast_sha256": "59051b17634cdcb5a576ceb58fdc0a4e5652ed3b60d66667e92ddefd931abeca",
+          "first": 921,
+          "last": 921
+        },
+        {
+          "ast_sha256": "b605b093a96367044fcfb76167027bd48f26df6ee57114d619f72048d687ab06",
+          "first": 923,
+          "last": 923
+        },
+        {
+          "ast_sha256": "4005c75531ca6feccc291cefacf104891a5b330cbbc2be493f56c8f7663748e4",
+          "first": 925,
+          "last": 926
+        },
+        {
+          "ast_sha256": "f3292fdfba331e1bf8083694071f126250a908d9260ff280bc383ee3cb72bbe7",
+          "first": 927,
+          "last": 927
+        },
+        {
+          "ast_sha256": "44878fafa7e74c3fcadfdef43781258dc24064cd30e9e3aef22c1ea1d9d23018",
+          "first": 929,
+          "last": 929
+        },
+        {
+          "ast_sha256": "2c1c26ec58ec95cbadb2ff2ee1489a30c87dea297f3e0f115f8c5bd1fa736da8",
+          "first": 930,
+          "last": 930
+        },
+        {
+          "ast_sha256": "7dc55862d1c8a79f32f1a1635e092bbc6161d8555b14ff10678c8296ca7e5838",
+          "first": 932,
+          "last": 942
+        },
+        {
+          "ast_sha256": "39263dac7230896015b8dda5c8db73f71d33ca11e3b810ea130b4961a3838845",
+          "first": 944,
+          "last": 944
+        },
+        {
+          "ast_sha256": "6fcf6d05e08893d1e8f428a44d49b0d87ea245c9666bd1e71cc044f89d22d056",
+          "first": 945,
+          "last": 945
+        },
+        {
+          "ast_sha256": "9299e01c49407761cc204a82d8ca5e58cb823bc397efe7875d99791e9ac22045",
+          "first": 946,
+          "last": 946
+        },
+        {
+          "ast_sha256": "1604adf44848772570b51fb95d25f5c93ddfe1b571689cff693dd211d297471d",
+          "first": 947,
+          "last": 947
+        },
+        {
+          "ast_sha256": "76fd6ea16303419bfb05c0b088691b21fe69d01661644065c64b05741122f1d0",
+          "first": 948,
+          "last": 948
+        },
+        {
+          "ast_sha256": "7f6ec9ccbac081f9e964a5145c7bce70a9b88f2d56091384d166234133aff7c5",
+          "first": 949,
+          "last": 949
+        },
+        {
+          "ast_sha256": "80c3edacfbe46e7a55118c2774c701f0b737b1b53e3a26ab47b084c444919699",
+          "first": 950,
+          "last": 950
+        },
+        {
+          "ast_sha256": "8b2302ee7335e188a628b21c788d2ef304de602da2521112ec40625365950574",
+          "first": 951,
+          "last": 952
+        },
+        {
+          "ast_sha256": "c0b07cc9c7d6a32c0bd2d2afa1a2d99ef79e7662a03576e71b141f4db9cccbe5",
+          "first": 953,
+          "last": 954
+        },
+        {
+          "ast_sha256": "95a35bed55a12fcea793e9fb5ad937a7ee338e93ac493a42adbd625ea1a9471a",
+          "first": 955,
+          "last": 955
+        },
+        {
+          "ast_sha256": "8a1f1f07c5aad3e2b6bfdc5897a9e6c1f2bc3a79fc32641b592b9f4cb041b2be",
+          "first": 956,
+          "last": 959
+        },
+        {
+          "ast_sha256": "e322f340feb665a5e3e3a7c765d1277c4c7a4a1407141ae53a72f0747821df88",
+          "first": 960,
+          "last": 960
+        },
+        {
+          "ast_sha256": "e7447334607c39c22c2d9281090f82adaf528fb8f5ae507c729772ccf2ff6f9f",
+          "first": 961,
+          "last": 962
+        },
+        {
+          "ast_sha256": "1065f0d42e5f2628a8d2ebc01da6ed07b6330d7407cbdb8ce45c136555249850",
+          "first": 963,
+          "last": 963
+        },
+        {
+          "ast_sha256": "52e6228c7fde73043c7ce64f25f817518fa3c20d21d9b5d4e5d385eda66c193f",
+          "first": 964,
+          "last": 967
+        },
+        {
+          "ast_sha256": "ab7e3d34badcb9228d41e38c9cd4203998aae6623e42f6ca693973ea763221e7",
+          "first": 968,
+          "last": 969
+        }
+      ],
+      "actual_exec_status": 0,
+      "byte_counts": {
+        "stderr": 0,
+        "stdout": 3463
+      },
+      "case": "guard-readback",
+      "controller_exit_status": 0,
+      "details": {
+        "control": "INJECTED_READBACK_MISMATCH_REAL_CHILD_CAP_RETAINED",
+        "failure": {
+          "message": "bounded declaration experiment: RLIMIT_AS installation failed",
+          "type": "RuntimeError"
+        }
+      },
+      "final_limits": [
+        319696896,
+        319696896
+      ],
+      "fixture_sha256": "a693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b",
+      "initial_limits": [
+        -1,
+        -1
+      ],
+      "pipes_closed": true,
+      "proxy_reaped": true,
+      "receipt": "/workspace/work/campaign/evidence/113/init-case-g1-guard-readback-a1-controller-receipt.json",
+      "receipt_sha256": "9151fcb83e8d6e4159c517df920cd89f374fbccbf19847bdf1de64c26f410e73",
+      "root_closure": {
+        "actual_old_host_pid_absent": true,
+        "actual_pid1_terminal_and_reaped": true,
+        "cgroup_scope": "shared",
+        "commands": [
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "stop",
+              "--time",
+              "10",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Flag --time has been deprecated, use --timeout instead\n69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061\n"
+          },
+          {
+            "argv": [
+              "/usr/local/bin/docker",
+              "wait",
+              "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "143\n"
+          }
+        ],
+        "container_id": "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061",
+        "engine_finished_at": "2026-11-15T11:55:00.925877601Z",
+        "engine_running": false,
+        "engine_state": "exited",
+        "engine_wait_status": 143,
+        "init_identity": {
+          "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+          "cmdline": "/sbin/docker-init -- sleep infinity ",
+          "container_pid": 1,
+          "engine_started_at": "2026-11-15T11:54:13.881546085Z",
+          "host_pid": 129056,
+          "start_ticks": 5014381
+        },
+        "no_other_workload": true,
+        "observed_at_ns": 1794743701089953783,
+        "pid_namespace_inode": "pid:[4026532563]"
+      },
+      "whole_namespace_closed": true
+    }
+  ],
+  "schema": "ROOT-SP113-G1-actual-qualified-prerequisites-v1",
+  "scope": "RealnormalASprefixand144Btiny-backedhugeviewmetadata; realchildunusablesoftlimitstrictrefusal; injectedEPERMandreadbackfailureexplicitlyfaultcontrolsnotplatformdefects. Exactwholefixtureimportsaccepted115sourcefree+NumPy/SciPy; no newproductAPI or reconstruction/giantallocation/logicalviewscan. Sameactualinit/privatePIDnsroute+wholeclosure, samepreparedrootfsnotreset. Material/environmentchangedafterCrequirefreshapplicability andactualproductobservations.",
+  "source_hashes": {
+    "g1-guard-payload-1.py": "fcd082dc83b73cc3c3a02fb9a399afbf14479939eef3714adcafe35189da7871",
+    "g1-init-controller-1.py": "c2c74e0e1dbe4f47cd332bafdd41d87208451a7bf2eb9195e88bbc161e629b77",
+    "g1-qualification-method-1.md": "b2826b9386f45cc4eafc07f6e48261466cb20ddbdd06a72cae7fa63b1b2ec7bf"
+  },
+  "status": "FOUR_FIXED_NONPRODUCT_GUARD_METADATA_CONTROLS_QUALIFIED",
+  "test_checkpoint_acceptance": false,
+  "unexpected_case_failures": 0
+}

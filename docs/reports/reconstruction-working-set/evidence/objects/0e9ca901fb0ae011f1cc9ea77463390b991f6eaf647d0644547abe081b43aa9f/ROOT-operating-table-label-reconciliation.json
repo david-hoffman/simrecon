@@ -1,0 +1,117 @@
+{
+  "actual_source_read_only_no_runtime": true,
+  "actual_values_bytes_seconds": {
+    "central64-full-searched": {
+      "deadline_seconds": 480,
+      "host_min_available_bytes": 2684354560,
+      "native_allocator_allowance_bytes": 402653184,
+      "predicted_child_peak_bytes": 805306368,
+      "process_stop_bytes": 1610612736,
+      "proposed_each_visible_ancestor_stop_bytes": 8589934592,
+      "reserve_bytes": 1073741824
+    },
+    "central64-full-supplied": {
+      "deadline_seconds": 480,
+      "host_min_available_bytes": 2684354560,
+      "native_allocator_allowance_bytes": 402653184,
+      "predicted_child_peak_bytes": 805306368,
+      "process_stop_bytes": 1610612736,
+      "proposed_each_visible_ancestor_stop_bytes": 8589934592,
+      "reserve_bytes": 1073741824
+    },
+    "central64-summary-searched": {
+      "deadline_seconds": 480,
+      "host_min_available_bytes": 2147483648,
+      "native_allocator_allowance_bytes": 268435456,
+      "predicted_child_peak_bytes": 536870912,
+      "process_stop_bytes": 1073741824,
+      "proposed_each_visible_ancestor_stop_bytes": 8589934592,
+      "reserve_bytes": 1073741824
+    },
+    "central64-summary-supplied": {
+      "deadline_seconds": 480,
+      "host_min_available_bytes": 2147483648,
+      "native_allocator_allowance_bytes": 268435456,
+      "predicted_child_peak_bytes": 536870912,
+      "process_stop_bytes": 1073741824,
+      "proposed_each_visible_ancestor_stop_bytes": 8589934592,
+      "reserve_bytes": 1073741824
+    },
+    "growth192-full-searched": {
+      "deadline_seconds": 1800,
+      "host_min_available_bytes": 9663676416,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472
+    },
+    "growth192-full-supplied": {
+      "deadline_seconds": 1800,
+      "host_min_available_bytes": 9663676416,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472
+    },
+    "growth192-summary-searched": {
+      "deadline_seconds": 1800,
+      "host_min_available_bytes": 6442450944,
+      "native_allocator_allowance_bytes": 1073741824,
+      "predicted_child_peak_bytes": 2147483648,
+      "process_stop_bytes": 4294967296,
+      "proposed_each_visible_ancestor_stop_bytes": 12884901888,
+      "reserve_bytes": 2147483648
+    },
+    "growth192-summary-supplied": {
+      "deadline_seconds": 1800,
+      "host_min_available_bytes": 6442450944,
+      "native_allocator_allowance_bytes": 1073741824,
+      "predicted_child_peak_bytes": 2147483648,
+      "process_stop_bytes": 4294967296,
+      "proposed_each_visible_ancestor_stop_bytes": 12884901888,
+      "reserve_bytes": 2147483648
+    },
+    "growth256-full-searched": {
+      "deadline_seconds": 3600,
+      "host_min_available_bytes": 12884901888,
+      "native_allocator_allowance_bytes": 2147483648,
+      "predicted_child_peak_bytes": 4294967296,
+      "process_stop_bytes": 8589934592,
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "reserve_bytes": 4294967296
+    },
+    "growth256-full-supplied": {
+      "deadline_seconds": 3600,
+      "host_min_available_bytes": 12884901888,
+      "native_allocator_allowance_bytes": 2147483648,
+      "predicted_child_peak_bytes": 4294967296,
+      "process_stop_bytes": 8589934592,
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "reserve_bytes": 4294967296
+    },
+    "growth256-summary-searched": {
+      "deadline_seconds": 3600,
+      "host_min_available_bytes": 9663676416,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472
+    },
+    "growth256-summary-supplied": {
+      "deadline_seconds": 3600,
+      "host_min_available_bytes": 9663676416,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472
+    }
+  },
+  "correction": "Prior compacted ROOT shorthand swapped ancestor-stop and hostminimum labels for some64/128/192families. Authoritative0058table/binder/configs and executedguards always retained actualfieldnames/values. No source/cap/execution/evidence change. Full256 actual ancestor15GiB/host12GiB was statedcorrectly.",
+  "observed_at_unix_ns": 1794776305378470274,
+  "schema": "ROOT-WS116-operating-table-label-reconciliation-v1",
+  "source_table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+}

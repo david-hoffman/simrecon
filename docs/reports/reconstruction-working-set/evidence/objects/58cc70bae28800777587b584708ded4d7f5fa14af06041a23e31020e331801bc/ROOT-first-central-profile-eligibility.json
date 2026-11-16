@@ -1,0 +1,67 @@
+{
+  "ROOT_post_audit": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-post-audit.json",
+    "sha256": "0eaaff99b1d1aa27fd65360c3284c8f37b25ef49e3677dafec23f7ffcefcbd38"
+  },
+  "actual_controller_exit": 0,
+  "authority": "ROOT",
+  "boundary": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/eligible-boundary.json",
+    "sha256": "aad1f16b2f5bfb46f8b4b6d9edfba5fee2132f570750e47de370f6ea22d4e9c2"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7"
+  },
+  "controller_session": 63755,
+  "coordinator_closed_file_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/coordinator-closed-first-central-profile-review.json",
+    "sha256": "2b6b1a3a494aa3060e41f920db6f28771ea3d305df682a04fbf03eaec63a11ae"
+  },
+  "costs": "UNKNOWN",
+  "eligible_for_same_stage_continuation": true,
+  "exact_owned_processes": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52283,
+      "start_ticks": 8835053
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52303,
+      "start_ticks": 8835070
+    }
+  ],
+  "final_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/post-metadata.json",
+    "sha256": "cfd7f8e2a31e2ff1447c6aff4a18ac1cdad90078dc72faefdcbcf3efe58f25e9"
+  },
+  "no_pending_proxy": true,
+  "observed_at_unix_ns": 1794782610829803859,
+  "profile_events_scalar_only": 10,
+  "remaining5_or_largest_execution_released": false,
+  "same_mode_control_public_common_input_branch_match": true,
+  "schema": "ROOT-WS116-central-profile-r1-eligibility-v1",
+  "scope": "One firstprofile eligible only; no repeatstats/isolatedstageallocation/causaloverhead/ranking/finalscientificacceptance. Existing6recipes remain fixed; future continuation needs separate freshROOTpreparation/context/release.",
+  "selected_largest_size": null,
+  "stage_id": "central64-profiles"
+}

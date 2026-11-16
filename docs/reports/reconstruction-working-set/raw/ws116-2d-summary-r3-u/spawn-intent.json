@@ -1,0 +1,78 @@
+{
+  "attempt_id": "ws116-2d-summary-r3-u",
+  "observer_identity": {
+    "pid": 49866,
+    "observed_monotonic_ns": 44278333953441,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 4427822,
+    "ppid": 0,
+    "pgid": 49866,
+    "session_id": 49866,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "target_argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/workload_child.py",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r3-u/spec.json",
+    "/workspace/work/issue-116"
+  ],
+  "bootstrap_argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nstage = \"arguments\"\ntry:\n    target = json.loads(sys.argv[3])\n    stage = \"setsid\"\n    os.setsid()\n    stage = \"readiness\"\n    message = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n        \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n        \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\n    if len(message) > 512 or os.write(fd, message) != len(message):\n        raise RuntimeError(\"invalid/incomplete bounded readiness write\")\n    os.close(fd)\n    fd = -1\n    stage = \"exec\"\n    os.execve(target[0], target, os.environ.copy())\nexcept BaseException as error:\n    if fd >= 0:\n        os.close(fd)\n    detail = {\"stage\":stage, \"type\":type(error).__name__, \"message\":str(error)[:160]}\n    os.write(2, (\"WS116_BOOTSTRAP_ERROR \" + json.dumps(detail) + \"\\n\").encode())\n    raise SystemExit(125 if stage == \"exec\" else 124)\n",
+    "68",
+    "ws116-2d-summary-r3-u",
+    "[\"/workspace/work/issue-116/.venv/bin/python\", \"/workspace/work/issue-116/docs/reports/reconstruction-working-set/workload_child.py\", \"/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r3-u/spec.json\", \"/workspace/work/issue-116\"]"
+  ],
+  "file_actions": [
+    [
+      0,
+      0,
+      "/dev/null",
+      0,
+      0
+    ],
+    [
+      2,
+      66,
+      1
+    ],
+    [
+      2,
+      67,
+      2
+    ],
+    [
+      2,
+      65,
+      68
+    ],
+    [
+      1,
+      64
+    ],
+    [
+      1,
+      65
+    ],
+    [
+      1,
+      66
+    ],
+    [
+      1,
+      67
+    ]
+  ],
+  "fd_plan": {
+    "read": 64,
+    "write_source": 65,
+    "ready_destination": 68,
+    "stdout_source": 66,
+    "stderr_source": 67
+  },
+  "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+  "spec_sha256": "e4147c796fcee79703645be78b69bd8d93fa13ef2d9923c6178f49d72ae9e359",
+  "grant_sha256": "9544bd6aa21866e718a5186211eee0b599479f597832e29dd1c81321ecb6562b",
+  "scope": "intent only, not proof whether spawn occurred; coordinator resolves any marker gap"
+}

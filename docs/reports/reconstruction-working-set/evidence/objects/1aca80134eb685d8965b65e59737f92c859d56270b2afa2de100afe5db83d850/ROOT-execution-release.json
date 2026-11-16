@@ -1,0 +1,15 @@
+{
+  "authorized": true,
+  "controller_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-controller-88772-ended.json",
+    "sha256": "a447586e7d09fbcc7a7986e8d0862ed9e208686ad68b0703a179fc182208e0fe"
+  },
+  "helper_sha256": "4067842a2c57443c3c220d346404ac099d405b09336ab9e4f62d8b2b03c40cf2",
+  "output": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+  "schema": "ROOT-WS116-close-central64-profiles-release-v1",
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/source-manifest.json",
+    "sha256": "8e261a0c1e6ff8ac47ff0cc9923fba838e7731692013fe9022a871c58617fdce"
+  },
+  "stage_id": "central64-profiles"
+}

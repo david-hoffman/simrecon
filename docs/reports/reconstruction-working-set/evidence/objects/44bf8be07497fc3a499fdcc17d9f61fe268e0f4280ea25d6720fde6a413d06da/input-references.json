@@ -1,0 +1,85 @@
+{
+  "protocol": "WS116-routing-wording-inputs-v1",
+  "scope": "Routing-only Dependencies paragraph correction; numerical values/rank/invariants/measurement and implementation authority unchanged.",
+  "original_packet": {
+    "path": "/workspace/work/campaign/evidence/116/final-report-source/",
+    "source_handoff": {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/source-handoff.json",
+      "sha256": "946362c30f16ef6209f1eb43ec25c71e1dbc605029db03001d457a71442f0318"
+    },
+    "artifacts": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+        "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/analysis/attempt-ledger.json",
+        "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/phase-expression-lifetime.md",
+        "sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/native-harmonic-scratch.md",
+        "sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/compact-overlap-working-lifetime.md",
+        "sha256": "fc86d15c180a947a5d9e330236d256afde827ddf8982f6da05ec3cc694dc4955"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/time-aggregation.md",
+        "sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/full-diagnostic-retention-ownership.md",
+        "sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+        "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/integration-notes.md",
+        "sha256": "16d34b43ab70341e1b009f57a52c4e7d1b7fd4a9eb1b9967ee3d73ab62807c76"
+      }
+    ],
+    "preservation": "All ten source44 file SHA256 identities reread unchanged; no original packet write."
+  },
+  "routing_sources": [
+    {
+      "path": "/workspace/work/campaign/issue-117.md",
+      "sha256": "daec31bf3b1b1d346beab9045ed8528840fbbaf3fc378242211fe49ca6bf8359",
+      "scope": "Release completed refinement buffers/closures before later-order fits; rank3 mechanism, not a claim issue accepted or completed."
+    },
+    {
+      "path": "/workspace/work/campaign/issue-118.md",
+      "sha256": "514cec241e8bb284a13718a93f10513af023482ddeead9502e5321f4d90a10b6",
+      "scope": "Preparation and native harmonic scratch; rank2 connection."
+    },
+    {
+      "path": "/workspace/work/campaign/issue-119.md",
+      "sha256": "434b688a3b1b09528b3bc53bf55f31c7327654a3fb192ce07e78e5dfeebd9370",
+      "scope": "Prepared-band storage/ownership design; all-T q liveness and original-target lower-bound relevance."
+    },
+    {
+      "path": "/workspace/work/campaign/issue-120.md",
+      "sha256": "d3b70bb7c96efb7b733b7133134fc45779013ad5ee23c384d49781743f59d756",
+      "scope": "Fourier assembly design; rank1 connection."
+    }
+  ],
+  "read_scope": "Only source44 handoff/rank3 text and authoritative117–120 issue text plus inert SHA identity reads; no actual science or live inputs.",
+  "scientific_claim_change": false,
+  "new_implementation_authority": false,
+  "source45_accounting": {
+    "preparations": 45,
+    "executions": 9,
+    "total": 54,
+    "original_launches": 1,
+    "cost": null,
+    "tokens": null,
+    "serving_attribution": null,
+    "unknown_meaning": "UNKNOWN, not zero; all prior attempts/errors/charges preserved"
+  }
+}

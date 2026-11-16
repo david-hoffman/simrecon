@@ -1,0 +1,6 @@
+{
+  "status": "COORDINATOR_FILE_AUDIT_ASSERTION_FAILED",
+  "cause": "Coordinator copied integer14 check for declared_future_output_files; actualmanifest correctlylists14exactfilenames. Assertion failed before finalinspection write after firstpin/map checks.",
+  "correction": "Check len(list)==14 and names; no source/helper/runtime/data repair or target call. Similar earlier coordinator assumption preserved; allunknowncosts retained.",
+  "target_executions": 0
+}

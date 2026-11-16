@@ -1,0 +1,100 @@
+{
+  "actual_preparer_or_science_executed": false,
+  "actual_source_files": {
+    "README.md": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/README.md",
+      "sha256": "8629693fc43e286ea801f5a83893845daa32ce478e181074b80c8d6e9176b3ae"
+    },
+    "ROOT-preparation-inputs-DISABLED.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "253d4bbdecc0ddfa24ae0f185d6ff36ed36d7634b409a3f552e2ee9bd53e3db7"
+    },
+    "root-prepare-first-largest256-profile.py": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/root-prepare-first-largest256-profile.py",
+      "sha256": "c012107b04bf5e805a86c7c76a9afd870c72bdd565f85f7550c1545b0b119541"
+    },
+    "source-handoff.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-handoff.json",
+      "sha256": "76666ab4c54dcfb1c9a417542244962e1e2516ba9e31685a0dddf49c2ca1a23a"
+    },
+    "source-manifest.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-manifest.json",
+      "sha256": "b3048b84f9caecf608300950c5f0c9c69484584fccf993b278c02336c6b47bf1"
+    }
+  },
+  "authority": "ROOT",
+  "costs": "UNKNOWN",
+  "future_semantic_inputs_require_actual_ROOT_JSON_bodies": true,
+  "limits": "Source inspection only. Whole helper first205 display truncation recovered112\u2013138. Repeated manifest maps compared to actual config; full giant output is not claimed read. Source author prior string-edit rejection and manual syntax-text correction retained; no AST/runtime validation. Outside actors/ancestors unknown.",
+  "line_count_correction": {
+    "previous_record": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-whole-source-reading-before-linecount-correction.json",
+    "previous_sha256": "a96abae3cf6df5368a44ebe8136c575028b10973147d0c1c6d1d82c6c08f967c",
+    "reason": "406 is the prior central closure source hash prefix, not this helper line count. Entire current357 source was read via1\u2013205,206\u2013300,301\u2013440; truncated112\u2013138 recovered. No helper/source change or execution."
+  },
+  "manifest_actual_immutable_refs": 26,
+  "mode_caps_retained": {
+    "growth256-full-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 12884901888,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 2147483648,
+      "predicted_child_peak_bytes": 4294967296,
+      "process_stop_bytes": 8589934592,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "reserve_bytes": 4294967296,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    },
+    "growth256-summary-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 9663676416,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    }
+  },
+  "observed_at_unix_ns": 1794786287722994281,
+  "only_first_attempt": [
+    "ws116-gp-l256-summary-searched-r1-p"
+  ],
+  "runtime_maps_exact_source_config": [
+    "material35",
+    "core28",
+    "tool6",
+    "method7",
+    "environment"
+  ],
+  "schema": "ROOT-WS116-largest256-first-preparer-source-reading-v1",
+  "source_accepted_for_guarded_preparation": true,
+  "whole_documents": [
+    "README.md",
+    "source-handoff.json",
+    "ROOT-preparation-inputs-DISABLED.json"
+  ],
+  "whole_helper_lines": 357
+}

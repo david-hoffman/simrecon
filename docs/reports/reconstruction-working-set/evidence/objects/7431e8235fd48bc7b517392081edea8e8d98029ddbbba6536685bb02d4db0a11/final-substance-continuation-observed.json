@@ -1,0 +1,28 @@
+{
+  "schema": "WS116-SCI1-final-substance-continuation-observed-v1",
+  "role": "/root/issue_116/scientific_review_1",
+  "new_role_launch": false,
+  "original_fork": "none requestedSolhigh retained",
+  "addendum": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-addendum.md",
+    "sha256": "4ff9c98627ae37d4decde378319a580a9da4eda937bd6d56fe4ceede303fbf5e"
+  },
+  "inputs": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-inputs-v2.json",
+    "sha256": "0b833e44be74c4872e08be5728393c4bfad4cd13b218db0a60217c4cf36924e5",
+    "files": 408
+  },
+  "before_report_snapshot": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-before-final-inputs.md",
+    "sha256": "abbe7a1ef7403013ceee5a705f601e81b67d052e5712e76fa04a7681da57f149"
+  },
+  "state": "ACTIVE independent W01-W08 substantive review; finalintegration/portableclosure/gate pending",
+  "preserved_exposure": "operational-only list_agents earlier, stopped/routed/same-role continuation; no reset or erasedcharge",
+  "no_scientific_opinion_oracle": "authorhandoff/coor/ROOT/sibling verdict bodies forbidden",
+  "runtime": "sourcefileonly, no imports/scripts/AST/calculator/tests/Docker/Git/capture/PID/samplebulk",
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  }
+}

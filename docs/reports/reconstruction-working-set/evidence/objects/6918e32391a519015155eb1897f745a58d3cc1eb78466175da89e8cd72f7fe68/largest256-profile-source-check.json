@@ -1,0 +1,660 @@
+{
+  "protocol": "WS116-largest256-profile-source-case-v1",
+  "status": "SOURCE_READY_UNEXECUTED_NEW_STAGE_NOT_ADMITTED",
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material35": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459"
+  },
+  "stage": {
+    "id": "largest-profiles",
+    "source_recipe_size": 256,
+    "runtime_selected_largest_size": null,
+    "selection_status": "0f795 supplies completed-tested-summary size provenance only; NEW ROOT largest-profile stage decision UNKNOWN.",
+    "exact_six_rows": [
+      {
+        "serial_index": 1,
+        "stage_id": "largest-profiles",
+        "condition_id": "growth256-summary-searched",
+        "repetition": 1,
+        "profile": true,
+        "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+        "launch_nonce": "ws116-gp-l256-summary-searched-r1-p"
+      },
+      {
+        "serial_index": 2,
+        "stage_id": "largest-profiles",
+        "condition_id": "growth256-summary-searched",
+        "repetition": 2,
+        "profile": true,
+        "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+        "launch_nonce": "ws116-gp-l256-summary-searched-r2-p"
+      },
+      {
+        "serial_index": 3,
+        "stage_id": "largest-profiles",
+        "condition_id": "growth256-summary-searched",
+        "repetition": 3,
+        "profile": true,
+        "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+        "launch_nonce": "ws116-gp-l256-summary-searched-r3-p"
+      },
+      {
+        "serial_index": 4,
+        "stage_id": "largest-profiles",
+        "condition_id": "growth256-full-searched",
+        "repetition": 1,
+        "profile": true,
+        "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+        "launch_nonce": "ws116-gp-l256-full-searched-r1-p"
+      },
+      {
+        "serial_index": 5,
+        "stage_id": "largest-profiles",
+        "condition_id": "growth256-full-searched",
+        "repetition": 2,
+        "profile": true,
+        "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+        "launch_nonce": "ws116-gp-l256-full-searched-r2-p"
+      },
+      {
+        "serial_index": 6,
+        "stage_id": "largest-profiles",
+        "condition_id": "growth256-full-searched",
+        "repetition": 3,
+        "profile": true,
+        "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+        "launch_nonce": "ws116-gp-l256-full-searched-r3-p"
+      }
+    ],
+    "allow_only_future_first": [
+      "ws116-gp-l256-summary-searched-r1-p"
+    ],
+    "continuation_authorized": false,
+    "prior_eligible": [],
+    "prospective_batch": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1"
+  },
+  "exact_fixture": {
+    "shape_TDZYX": [
+      1,
+      3,
+      8,
+      256,
+      256
+    ],
+    "native_3D": true,
+    "P": 5,
+    "O": 3,
+    "lateral_factor": 2,
+    "axial_factor": 1,
+    "search_carriers": true,
+    "use_time0_carriers": true,
+    "expected_branches": [
+      [
+        "searched",
+        "searched",
+        "searched"
+      ]
+    ],
+    "profile": true,
+    "repetition": 1,
+    "first_mode": "summary",
+    "off_drift_layout": false,
+    "precision": "Caller float32; real bulk/images float64; q/overlap/filter complex128, unchanged algorithms/fixture/tolerances/workers."
+  },
+  "profile_hook": {
+    "source": "observer.stage_observer patch of simrecon.workflow.reconstruct.workflow_stage only",
+    "setup": "Normal child import simrecon already imports workflow.reconstruct; hook still does importlib lookup, saves original, installs wrapped generator before pre_call snapshot; finally restores original before post-call observation.",
+    "record_fields": [
+      "stage",
+      "time_index",
+      "edge",
+      "monotonic_ns",
+      "ru_maxrss_native_KiB"
+    ],
+    "record_formation": "record enter before with original(stage,kwargs); record exit in finally after original exits. Timestamp expression is evaluated before resource.getrusage and dict append. ru_maxrss is cumulative target self Linux KiB, not current RSS or isolated stage allocation.",
+    "planned_native_successful_stage_mask": [
+      {
+        "stage": "declaration",
+        "time_index": null
+      },
+      {
+        "stage": "preparation",
+        "time_index": null
+      },
+      {
+        "stage": "estimation",
+        "time_index": null
+      },
+      {
+        "stage": "reconstruction",
+        "time_index": 0
+      },
+      {
+        "stage": "result",
+        "time_index": null
+      }
+    ],
+    "edges_each": [
+      "enter",
+      "exit"
+    ],
+    "mask_authority": "UNCHANGED qualified runner requires exact paired flat mask (optional layout only if present), legal stages/native values/time indices, timestamps within call in nondecreasing order and cumulative HWM ordering between pre_call/call_end. No new marker validator or measured stage values authored.",
+    "coverage_limit": "Patches workflow.reconstruct imported name only; not independently imported transfer/other contexts. Native fixture has no layout; transfer resolution and other code outside these contexts remains in whole call but has no separate hook event.",
+    "event_retention": "events list retains scalar dictionaries until child JSON/teardown; kwargs actual source carries only time_index scalar and stage string. Hook does not inspect caller frames or store ndarrays.",
+    "frame_limits": "Extra active contextmanager/generator frames, closure cells, kwargs and record temporaries exist. Original workflow_stage failure translation (both modes) explicitly reads traceback frames/f_locals t/d and cause; exceptions/tracebacks can retain numerical locals during unwinding. Therefore not frame-free or allocation-free; no measured overhead claim.",
+    "failure_export": "Exit finally runs during ordinary unwinding, but workload_child assigns stages=events only after successful call. A raised workflow call bypasses that assignment; main emits workflow_exception and exit1, not a fabricated complete event stream. Abrupt termination gives no completion promise.",
+    "log_io": "No stage file or per-event flush: list is serialized once in final child stdout JSON. Parent samples.jsonl write+flush at declared sample interval occurs for both profiles/unprofiled; profile JSON can add serialization/pipe/disk/collection costs and OS-cache effects."
+  },
+  "observations_also_in_unprofiled": {
+    "self_snapshots": {
+      "pre_call": "after input hashes/retention and hook setup, before call timestamp",
+      "call_end": "after call/end timestamp while observer active, before result observations",
+      "post_observation": "after context/hash/retention/finite/identity, before JSON/teardown"
+    },
+    "snapshot_fields": "Native Linux KiB/cumulative byte conversion, monotonic timestamp, fault/swap/block I/O/CPU counters; cumulative self snapshots, not isolated allocation.",
+    "call_time": "Includes instrumented workflow record/time/getrusage/append overhead; excludes hook setup before pre_call and later output hashes/traversal/JSON. Stage intervals/gaps are code-scope timings with observer cost, not pure math or additive allocation.",
+    "terminal": "Sole wait4 kernel-reported direct-child usage through final exit, distinct from target snapshots, parent observer self and RSS samples. Inherited/pre-exec/exec-transition retention UNKNOWN; no subtraction/aggregate/decomposition/benefit.",
+    "array_and_frame_traversals": "Both modes intentionally keep case/result through observation. public_value_sha256 recursively visits public values, uses temporary array/memoryview/nditer references, active-ID cycle set and bounded conversion; retained_payload recursively visits dataclass fields/caches/__dict__/slots and base arrays, tracks IDs/byte integers and emits shapes/dtypes/path metadata without storing array objects in returned rows. Traversal stacks/locals hold visited objects temporarily; caller/result already root them. No trace/frame collector is added, but traversal/metadata allocations/time can raise HWM.",
+    "bounded_scratch": "Identity/finite chunks are bounded separately (identity chunk_bytes1048576; public hash65536elements) and can coexist with tobytes/conversion/finite booleans. Not total process scratch or allocator bounds."
+  },
+  "C1_returned_metadata_clarification": "retained_payload uses object IDs internally for cycle/base tracking; returned metadata contains counts/byte estimates/shapes/dtypes/paths and no object IDs or array objects. Traversal locals/frames transiently reference already-retained arrays; no isolated cost claim.",
+  "mode_liveness": {
+    "common": "Workflow private raw snapshot deleted after preparation; caller stays through observations. Prepared all-T q persists through entire reconstruction loop. Per-time bands are views, not extra q. Product source numeric algorithms and fixture unchanged.",
+    "summary": "Compact capture borrows private read-only q for estimator/stable filtering; retains9overlap descriptors but not9full Fourier/spatial/mask records; full coarse correlation copies omitted, small vectors become scalar tuples. Actual coarse/refinement math temporaries still exist; refinement working spatial and later-order working overlap can overlap. Known per-time object dropped after metadata projection while image/coordinates retained. bands=None only after whole loop, then concatenate independent final image and clear images.",
+    "full": "Estimator snapshots q privately; full parameters retain9overlap Fourier/spatial/mask records and coarse correlation/power/vector and dynamic evaluation traces. Full filter stable copy/destination/helper q copies coexist; Python plus scratch old/new may overlap. original deleted before assembly; padded+inverse coexist then padded deleted; phase local may persist after inverse deleted per order. Full result retains bands/overlaps/known filtered q/stage image plus separate final image/coordinate copies. Hook does not deliberately capture those arrays but cannot isolate their costs.",
+    "search": "T1 all3directions searched; coarse(0,2), refinement(0,2), later-order(0,1) perD. Frozen refinement reused across trials, evaluation count/complete scalar-container extent UNKNOWN, no global optimum/runtime guarantee."
+  },
+  "unit_explicit_inventory": {
+    "caller_raw": {
+      "shape": [
+        1,
+        3,
+        5,
+        8,
+        256,
+        256
+      ],
+      "elements": 7864320,
+      "dtype": "float32",
+      "bytes": 31457280
+    },
+    "caller_transfer": {
+      "shape": [
+        3,
+        64,
+        16
+      ],
+      "elements": 3072,
+      "dtype": "complex128",
+      "bytes": 49152
+    },
+    "workflow_raw_snapshot": {
+      "elements": 7864320,
+      "dtype": "float32",
+      "bytes": 31457280
+    },
+    "workflow_transfer_snapshot": {
+      "elements": 3072,
+      "dtype": "complex128",
+      "bytes": 49152
+    },
+    "prepared_q_and_each_full_q_snapshot_or_filter_buffer": {
+      "shape": [
+        1,
+        3,
+        5,
+        8,
+        256,
+        129
+      ],
+      "elements": 3962880,
+      "dtype": "complex128",
+      "bytes": 63406080
+    },
+    "native_one_side_volume": {
+      "shape": [
+        8,
+        256,
+        256
+      ],
+      "elements": 524288,
+      "complex128_bytes": 8388608
+    },
+    "one_overlap_fourier_or_spatial": {
+      "shape": [
+        2,
+        8,
+        256,
+        256
+      ],
+      "elements": 1048576,
+      "dtype": "complex128",
+      "bytes_each": 16777216
+    },
+    "one_overlap_mask": {
+      "shape": [
+        2,
+        8,
+        256,
+        256
+      ],
+      "elements": 1048576,
+      "dtype": "bool",
+      "bytes": 1048576
+    },
+    "supplied_six_overlap_reference": {
+      "records": 6,
+      "backings": 18,
+      "payload_bytes": 207618048,
+      "NOT_one_allocation": true,
+      "NOT_searched_total": true
+    },
+    "searched_nine_overlap_table_literal": {
+      "records": 9,
+      "backings": 27,
+      "payload_bytes": 311427072,
+      "NOT_one_allocation": true,
+      "count_basis": "D3*(coarse + refinement + one later-order), full record retains Fourier/spatial/mask"
+    },
+    "stage_image_and_final_image_each": {
+      "shape": [
+        1,
+        8,
+        512,
+        512
+      ],
+      "elements": 2097152,
+      "dtype": "float64",
+      "bytes_each": 16777216
+    },
+    "one_padded_or_inverse_complex_output_volume": {
+      "elements": 2097152,
+      "dtype": "complex128",
+      "bytes_each": 33554432
+    }
+  },
+  "representation": {
+    "largest_listed_elements": 7864320,
+    "signed32_positive_limit": 2147483647,
+    "native_64bit_intp_limit": "9223372036854775807",
+    "largest_named_single_backing_bytes": 63406080,
+    "searched_table_native_intp_field": 311427072,
+    "table_field_scope": "311427072 is9-record overlap aggregate, not one ndarray;207618048 is supplied-six aggregate. Dynamic trace/container/native/workspace extent not a closed upper bound.",
+    "runtime_checks": "Positive dimensions, actual dtype/itemsize/strides/native extents and signed counts/indices still checked by product; fitting representation does not prove RAM fit."
+  },
+  "stencil_domain": {
+    "radial_native_support_cyc_um_max": 0.5,
+    "table_dkr_cyc_um": 0.125,
+    "u_max": 4,
+    "native_Z": 8,
+    "actual_clipped_axial_abs_max": 3,
+    "native_and_table_dkz_cyc_um": 0.125,
+    "K": 16,
+    "radii": 64,
+    "flat_elements_per_order": 1024,
+    "maximum_enclosing_vertex_index": 95,
+    "scope": "Support-before-sampling masks apply to searched shifted candidates too; both primary/shifted support and thresholds precede actual OTF access, with one negative axial wrap. Conservative source enclosure, not a numerical/query trace; candidate/energy/fit failures remain possible."
+  },
+  "searched_retained_diagnostics": [
+    {
+      "kind": "coarse",
+      "per_direction_owned_copies": [
+        {
+          "name": "correlation_complex",
+          "shape": [
+            "Y",
+            "X"
+          ],
+          "dtype": "complex128"
+        },
+        {
+          "name": "correlation_power",
+          "shape": [
+            "Y",
+            "X"
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "x_neighbors",
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "y_neighbors",
+          "shape": [
+            3
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "peak_before_alias_xy",
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "peak_after_alias_xy",
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        },
+        {
+          "name": "carrier_cyc_um",
+          "shape": [
+            2
+          ],
+          "dtype": "float64"
+        }
+      ],
+      "payload_symbolic": "D*(16*Y*X + 8*Y*X + (3+3+2+2+2)*8) bytes for these named captures only; no arithmetic program used",
+      "lifetime": "record_event copies ndarray details via _owned for full capture; copies remain in parameters.trace through full result/output observation"
+    },
+    {
+      "kind": "evaluation",
+      "per_evaluation_owned_copy": "carrier_cyc_um float64[2]",
+      "other_fields": "orders/index/remake/stage, polar coordinates, SX/SY/cross/forward/reverse/combined/correlation/objective scalar/tuple diagnostics",
+      "count": "UNKNOWN for searched walks, final and later-order evaluation count depends on successful branch; no full overlap rebuild per trial",
+      "lifetime": "Each event retains its own carrier copy; bracket/parabola records retain scalar values; adjustment records retained. Python/container/scalar overhead UNKNOWN"
+    },
+    {
+      "kind": "overlap",
+      "per_record_owned_carrier": "float64[2] distinct from Fourier/spatial/mask payload count",
+      "lifetime": "All9 complete full records remain in estimator.overlaps then parameters.overlaps; del other does not remove the retained full record"
+    }
+  ],
+  "searched_temporary_lives": [
+    {
+      "stage": "coarse",
+      "source": "estimate_coarse_carrier",
+      "facts": "Build coarse overlap at declared initial. Z-summed spatial-product gives complexYX product; original product/correlation/power and neighbor/alias vectors remain local through record_event while independent correlation/vector copies are captured. Multiplication/conjugation/abs-square reductions and FFT backend workspaces add unknown transient/native costs. Original local coarse arrays die on return; retained event copies persist."
+    },
+    {
+      "stage": "refinement objective",
+      "source": "search_carrier_and_modulation / fit_overlap_modulation",
+      "facts": "One new refinement overlap at coarse carrier is reused for all angle/magnitude/final trials. Each fit has x/y vectors, floatYX phase, lower spatial view, ramped complexZYX higher, exponential/multiply/conjugate/abs-square reduction temporaries. Local phase/higher live through event capture until fit returns; trace stores carrier/scalars, not those whole temporary volumes."
+    },
+    {
+      "stage": "later order",
+      "source": "search_carrier_and_modulation",
+      "facts": "Successful3D O3 adds one later-order(0,1) overlap per direction at fitted carrier; full overlap retains data despite del other. Refinement build remains referenced in the search function through this later build and all full records remain retained."
+    },
+    {
+      "stage": "preparation/filter/assembly/result",
+      "facts": "Caller remains through observations; private raw snapshot is deleted after preparation. Prepared all-T q and preparation trace remain in full result. Estimator makes one private full q snapshot, released when estimation returns. Time slices alias prepared buffers. Full filtering retains stable q copy, destination and helper-return q at assignment; plus native harmonic scratch can overlap old/new locals. Stable original explicitly deleted before assembly. Padded and inverse coexist during FFT, padded explicitly deleted before phase, inverse explicitly deleted per order; phase local may persist across orders/directions. Full known image/filteredq retained, separate final concatenation even T1, independent coordinate copies. No arithmetic last-use assumption frees Python locals."
+    }
+  ],
+  "searched_table_partial_logical_subsets_literal_bytes": {
+    "preparation": 153826832,
+    "estimation": 470810320,
+    "filtering": 606011088,
+    "assembly_inverse": 554696400,
+    "assembly_side_product": 577765072,
+    "result_concatenation": 504364752
+  },
+  "partial_inventory_scope": "Copied existing table partial named logical co-live subsets, not process peaks, totals, strict bounds or fit promises; do not sum. Search correlation trace captures and dynamic evaluation carrier/scalar/container bytes and native/FFT/allocator/finite-check temporaries are not closed by these table subsets.",
+  "profile_operating_proposals_literal": {
+    "growth256-summary-searched": {
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "predicted_child_peak_bytes": 3221225472,
+      "native_allocator_allowance_bytes": 1610612736,
+      "process_stop_bytes": 6442450944,
+      "reserve_bytes": 3221225472,
+      "host_min_available_bytes": 9663676416,
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "deadline_seconds": 7200,
+      "startup_timeout_seconds": 5,
+      "startup_pipe_bytes": 1024,
+      "terminate_grace_seconds": 0.2,
+      "kill_reap_seconds": 2,
+      "max_child_record_bytes": 4194304,
+      "sample_interval_seconds": 0.01,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "correspondence_maximum_age_seconds": 7320,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "disk_proposal_bytes": 5915017216,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it"
+    },
+    "growth256-full-searched": {
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "predicted_child_peak_bytes": 4294967296,
+      "native_allocator_allowance_bytes": 2147483648,
+      "process_stop_bytes": 8589934592,
+      "reserve_bytes": 4294967296,
+      "host_min_available_bytes": 12884901888,
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "deadline_seconds": 7200,
+      "startup_timeout_seconds": 5,
+      "startup_pipe_bytes": 1024,
+      "terminate_grace_seconds": 0.2,
+      "kill_reap_seconds": 2,
+      "max_child_record_bytes": 4194304,
+      "sample_interval_seconds": 0.01,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "correspondence_maximum_age_seconds": 7320,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "disk_proposal_bytes": 5915017216,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it"
+    }
+  },
+  "profile_transformation": {
+    "authority": "frozen8190 stage_recipe; unchanged exact source expression",
+    "deadline": "base deadline_seconds *= 2",
+    "horizon": "deadline_seconds + 120",
+    "disk": "max(67108864,deadline_seconds*100*8192+16777216)",
+    "literal_deadline_seconds": 7200,
+    "literal_horizon_seconds": 7320,
+    "literal_disk_bytes": 5915017216,
+    "memory": "unchanged256 mode caps; central caps not inherited",
+    "actual_window": null,
+    "window_scope": "Future ROOT actual reservation must satisfy frozen per-row remaining deadline+120 and fresh proof horizons. No inherited2h/3h or chosen current clock, no runtime prediction."
+  },
+  "comparison": {
+    "matched_unprofiled": {
+      "ws116-gp-l256-summary-searched-r1-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+          "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "ws116-gp-l256-summary-searched-r2-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+          "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "ws116-gp-l256-summary-searched-r3-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+          "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "ws116-gp-l256-full-searched-r1-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+          "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+          "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+        }
+      },
+      "ws116-gp-l256-full-searched-r2-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+          "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      },
+      "ws116-gp-l256-full-searched-r3-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+          "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      }
+    },
+    "required_same_mode_fields": [
+      "input_sha256",
+      "common_output_sha256",
+      "public_result_sha256",
+      "branches"
+    ],
+    "cross_mode": "Keep distinct public full/summary result hashes; only input/common/branches can be cross-mode matches. Never pool profiled/unprofiled or require different retained graphs equal.",
+    "physical_scope": "Software/workload/control matching only; initial60event0 vs later50340/cache contexts uncontrolled. No physical/cache identity or isolated causal observer overhead."
+  },
+  "closed_descriptive_provenance": {
+    "summary_whole_closure": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    "summary_primary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+    },
+    "fullsearched_whole_closure": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    },
+    "fullsearched_primary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/summary.json",
+      "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205"
+    },
+    "fullsearched_output_review": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-actual-fullsearched3-analysis-output-review.json",
+      "sha256": "ed9c20b85185f4b0c2f07ad60f4971112ba749ecfd7d158761c69b0cd10909d5"
+    },
+    "fullsearched_ROOT_descriptive_acceptance": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-fullsearched256-analysis-acceptance.json",
+      "sha256": "f0911ebe23c8da0a706cad0f5ccd2845e2de36fdf96f4274ed553d64a4416564"
+    },
+    "ROOT_summary_size_fact": {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+      "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+    },
+    "scope": "Closed references only, no metric literals/stats/ratios imported or calculated here; not new profile-stage authority."
+  },
+  "future_prerequisites": {
+    "central_six_whole_stage_closure": null,
+    "central_controller_terminal_and_no_proxy": null,
+    "central_exact_owners_final_metadata_and_window_closed": null,
+    "central_canonical940_primary": null,
+    "central_independent_profile_description": null,
+    "ROOT_central_profile_descriptive_acceptance": null,
+    "NEW_ROOT_largest_profile_stage_decision": null,
+    "fresh_source_and_tracked_status": null,
+    "ROOT_schedule_and_window": null,
+    "current_stage_owner_facts": null,
+    "metadata_and_mapped_resource_context": null,
+    "actual_event_swap_host_disk_facts": null,
+    "profile_results": null
+  },
+  "source_references": {
+    "profile": {
+      "hook": "observer.py:440-495;workload_child.py:58-130,main",
+      "validator": "run_attempt.py:572-622,771-823",
+      "baseline_error_frames": "src/simrecon/workflow/result.py:82-146",
+      "import_graph": "src/simrecon/__init__.py:36",
+      "traversal": "tests/reconstruction_memory_benchmark.py:32-114,131-194;observer.py:496-565",
+      "workflow": "src/simrecon/workflow/reconstruct.py:278-440,529-565",
+      "math": "parameter_estimation.py:347-400,463-885,1149-1273;known_parameters.py:700-762,834-895,1110-1228",
+      "fixture": "tests/reconstruction_summary_fixture.py:158-214",
+      "stage_recipe": "8190 stage_batch_binder.py:70-113,440-474"
+    },
+    "math": {
+      "fixture": "tests/reconstruction_summary_fixture.py:158-214",
+      "workflow": "src/simrecon/workflow/reconstruct.py:114-140,190-278,278-440,536-565",
+      "search_capture": "src/simrecon/reconstruction/parameter_estimation.py:61-122,190-202,347-400",
+      "overlap": "parameter_estimation.py:463-573",
+      "coarse": "parameter_estimation.py:685-757",
+      "refinement": "parameter_estimation.py:759-885",
+      "estimator_lifetime": "parameter_estimation.py:1071-1273",
+      "filter_and_assembly": "src/simrecon/reconstruction/known_parameters.py:700-762,834-895,1110-1125,1170-1228",
+      "views": "src/simrecon/workflow/adapters.py:174-213",
+      "preparation": "src/simrecon/acquisition/modes.py:355-382,711-734,1094-1140; acquisition/layout.py:152-176,202-237",
+      "child": "docs/reports/reconstruction-working-set/workload_child.py:24-120",
+      "observer": "docs/reports/reconstruction-working-set/observer.py:18-25,440-485"
+    },
+    "stage_recipe": "frozen8190:70-113;matched_anchor:440-474"
+  },
+  "actual_profile_metrics": null,
+  "helper_authored": false,
+  "execution_authorized": false,
+  "profile_cost_or_native_workspace_bound_known": false,
+  "limits": "No resource admission,7200 runtime/RSS fit,16GiB/general feasibility, budget, decomposition, full graph equivalence, measured contributor ranking, causal benefit or scientific acceptance.",
+  "source_diagnostics": [
+    "Closed summary closure full-text display was truncated; attempted JSON.parse of the warning-prefixed display failed. Bounded jq extraction of literal control references replaced it. No target program/scientific data ran or changed; no value inferred."
+  ],
+  "accounting": {
+    "author_preparations": 36,
+    "author_executions": 9,
+    "author_total": 45,
+    "original_launches": 1,
+    "costs": "UNKNOWN",
+    "tokens": "UNKNOWN",
+    "model_attribution": "UNKNOWN",
+    "all_prior_errors_attempts_bytes_charges_preserved": true
+  }
+}

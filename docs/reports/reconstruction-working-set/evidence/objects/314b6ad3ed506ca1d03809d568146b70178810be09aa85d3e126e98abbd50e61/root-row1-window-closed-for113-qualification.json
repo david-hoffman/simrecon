@@ -1,0 +1,22 @@
+{
+  "active_observer_or_proxy": false,
+  "all_known_current_stage_owners_closed": true,
+  "closed_at_unix_ns": 1794742996530782889,
+  "eligible_row1": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-data-eligibility.json",
+    "sha256": "e8111b800de6b7727e4839631edcca3dc9f50fc647d2107358abcf8f42f92c1f"
+  },
+  "next_window": "Mustrenew actualschedulerACK/source/material/resourceevents/swap/metadataandperrowfreshproof before192r2; originalstageadmissione771unchangedforprefixcompatibility.",
+  "original_authority": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-authority-row1-v3.json",
+    "sha256": "fa7901e80784cfaa4c8e32151edf295c750b407fde88f2580292316ea7c44674"
+  },
+  "original_window": {
+    "ends_unix_ns": 1794756118236113563,
+    "starts_unix_ns": 1794741718236113563
+  },
+  "reason": "Freshblind113B4identifiedindependentAS/viewsetupprereq; ROOTwillqualifyitduringclosed-rowpause, thennewexplicitremaining5window/authority/freshcontext. No overlappingnumericalwork oroldwindowrelabel.",
+  "remaining5_not_authorized": true,
+  "schema": "ROOT-WS116-row1-exclusive-reservation-ended-v1",
+  "window_closed_early": true
+}

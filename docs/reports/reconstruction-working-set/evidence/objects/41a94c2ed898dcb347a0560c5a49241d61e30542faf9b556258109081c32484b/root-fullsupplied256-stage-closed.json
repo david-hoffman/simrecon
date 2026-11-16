@@ -1,0 +1,758 @@
+{
+  "ROOT_execution_release": {
+    "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-execution-release.json",
+    "sha256": "21c6db1c1b2d0cb0dcc311933db9627bd3206e2f28ca8744418d061bcf7d686f"
+  },
+  "actual_event_baseline_max": 50340,
+  "all6_currentstage_exact_identities_and_expected_FD_paths_absent": true,
+  "all_in_trial_event_counters_unchanged": true,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "closed": true,
+  "closed_at_unix_ns": 1794773971854444813,
+  "context_scope": "Recorded per-row proofs/metadata only; external ancestors unknown_unobservable, outside actors unknown_not_scanned; no present-day PID/FD/resource scan.",
+  "controller_terminal_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-controller-60678-ended.json",
+    "sha256": "55383cd5a680e6632157519524148ea15a0da00a615a93929966847ed9313e4e"
+  },
+  "earlier_row1_window_closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-full-r1-window-closed.json",
+    "sha256": "e399055b66e8932c7262bf74deccecc9700d4de7e20b2d49e3b46ea97f66203b"
+  },
+  "eligible_boundaries": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/eligible-boundary.json",
+      "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/eligible-boundary.json",
+      "sha256": "b099f53181920e0787b7c93374d8632bf1b306b36d9814eb52609bb325364ccc"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/eligible-boundary.json",
+      "sha256": "fbad233b4d532f7073da86222e85ffc87338be4a933268e60dd10c6aa968b696"
+    }
+  ],
+  "exact_owned_identities": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51854,
+      "start_ticks": 7559831
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51875,
+      "start_ticks": 7559843
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51927,
+      "start_ticks": 7757789
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51947,
+      "start_ticks": 7757800
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51987,
+      "start_ticks": 7900017
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52008,
+      "start_ticks": 7900034
+    }
+  ],
+  "final_controller_exit_code": 0,
+  "final_controller_session": 60678,
+  "first_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "36d74d13cf6ef10b3997b9a633815839772d2f31fa3cf2fa900d20bb7313aaeb"
+  },
+  "historical_identity_facts_retained": true,
+  "last_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-full-supplied-remaining2-AUTHORIZED.json",
+    "sha256": "e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda"
+  },
+  "last_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/post-metadata.json",
+    "sha256": "69490f53601103e6af60d07d81b5e5105d43879ef25a816bfc41fb6fc958824c"
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "measurement_scope": "Kernel-reported direct-child high-water through final exit; inherited/pre-exec/exec-transition retention unknown. No subtraction, aggregate, decomposition, ranking or benefit.",
+  "metering": "unknown",
+  "next": "No automatic searched-full/profile stage or release; ROOT owns future admission.",
+  "no_scientific_report_acceptance": true,
+  "oom_fields_and_swap_zero": true,
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    }
+  ],
+  "raw_files_all_hash_verified": true,
+  "repeat_fingerprints_match_within_condition": true,
+  "retained_row1_eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-full-r1-eligibility.json",
+    "sha256": "a744a463e2ea1e12a5dd1fe6e52b1da2fb9b957bad20fbbe9b97dc2c8214eefc"
+  },
+  "rows": [
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-row1-AUTHORIZED.json",
+        "sha256": "36d74d13cf6ef10b3997b9a633815839772d2f31fa3cf2fa900d20bb7313aaeb"
+      },
+      "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/eligible-boundary.json",
+        "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6"
+      },
+      "branches": [
+        [
+          "known",
+          "known",
+          "known"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/stdout.json",
+        "sha256": "b86cc1eb9e969c25f8601a51badc37bbfad78e166e7b83f9bf008afff9b927df"
+      },
+      "condition_id": "growth256-full-supplied",
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "9c00579a90a2670f42321dd1492354d34a18cd0be3d08ba5237dfacea5a5a1cc",
+        "input_sha256": "b61101eb3eccf214e0bba46f642888cad7be24b7b45b0165c6f2cf2b3870db05",
+        "public_result_sha256": "81b8ccd2cd5264009a9cc8f5bfe8a2295ade409b5df3e8c246e33be72bec3878"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata.json",
+        "sha256": "cf3ca0fc9eba2f497e4eb524de9379adcd7121ef477c1aadfe5cff4d1a5feb90"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794770519531630409.json",
+        "sha256": "04c63c309a30b6da75429f886bd9db1ddd4fc033e016f47e00d1be5939ea4d3b"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2612674560,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2598244352,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794769108361463167,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794769108137923857.json",
+            "sha256": "7a670eadbab3db37e0f454d332996796d0a1c1788b4e703964bd79fcfe9afa99"
+          },
+          "started_ns": 1794769108137923857
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2635636736,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2621661184,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794770519675733063,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794770519531630409.json",
+            "sha256": "04c63c309a30b6da75429f886bd9db1ddd4fc033e016f47e00d1be5939ea4d3b"
+          },
+          "started_ns": 1794770519531630409
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/receipt.json",
+        "sha256": "de4f1e41576b99f2bd2ad2708581f0cfe2e28b35702c5b5fefed51d2b8f13e2a"
+      },
+      "repetition": 1,
+      "terminal_direct_child_high_water_bytes": 582418432,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 582418432,
+        "pid": 51875,
+        "reaped_monotonic_ns": 77006017531838,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 224040,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 155,
+          "ru_maxrss": 568768,
+          "ru_minflt": 53578,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 7910,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 574,
+          "ru_oublock": 72,
+          "ru_stime": 1.847225,
+          "ru_utime": 1404.368729
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": null,
+      "workflow_call_seconds": 1405.431346238
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-full-supplied-remaining2-AUTHORIZED.json",
+        "sha256": "e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda"
+      },
+      "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/eligible-boundary.json",
+        "sha256": "b099f53181920e0787b7c93374d8632bf1b306b36d9814eb52609bb325364ccc"
+      },
+      "branches": [
+        [
+          "known",
+          "known",
+          "known"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/stdout.json",
+        "sha256": "a7abe15be4a681bf7e81f079093d95c73d857ddc41aa19894c8ffce806848517"
+      },
+      "condition_id": "growth256-full-supplied",
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "9c00579a90a2670f42321dd1492354d34a18cd0be3d08ba5237dfacea5a5a1cc",
+        "input_sha256": "b61101eb3eccf214e0bba46f642888cad7be24b7b45b0165c6f2cf2b3870db05",
+        "public_result_sha256": "81b8ccd2cd5264009a9cc8f5bfe8a2295ade409b5df3e8c246e33be72bec3878"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/post-metadata.json",
+        "sha256": "b1b3b3549461fffb5e21b9431fd626fc6d590a438b848671459a87e50272d334"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794772509136190850.json",
+        "sha256": "34ddbac68f38d062e1b4f79042c71022a7a2643d988b8a834d4b5bd9e47cbcb1"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2656133120,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2641788928,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794771087951996117,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794771087764653279.json",
+            "sha256": "5171344fd592e25353ee2ec09cc7ab5fda7abfb60da922fac865e2a17f74f172"
+          },
+          "started_ns": 1794771087764653279
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2628456448,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2613944320,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794772509312699912,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794772509136190850.json",
+            "sha256": "34ddbac68f38d062e1b4f79042c71022a7a2643d988b8a834d4b5bd9e47cbcb1"
+          },
+          "started_ns": 1794772509136190850
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/receipt.json",
+        "sha256": "6cebe9c135046d88ee664ff4bdc929af956a39ab2ced5f8e5ba6b4247708b82d"
+      },
+      "repetition": 2,
+      "terminal_direct_child_high_water_bytes": 583708672,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 583708672,
+        "pid": 51947,
+        "reaped_monotonic_ns": 78995971521890,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 121040,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 149,
+          "ru_maxrss": 570028,
+          "ru_minflt": 54022,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 5434,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 427,
+          "ru_oublock": 72,
+          "ru_stime": 1.589312,
+          "ru_utime": 1414.994284
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": null,
+      "workflow_call_seconds": 1415.843002078
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-full-supplied-remaining2-AUTHORIZED.json",
+        "sha256": "e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda"
+      },
+      "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/eligible-boundary.json",
+        "sha256": "fbad233b4d532f7073da86222e85ffc87338be4a933268e60dd10c6aa968b696"
+      },
+      "branches": [
+        [
+          "known",
+          "known",
+          "known"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/stdout.json",
+        "sha256": "48375702d12981da7c62bd812eeca5b97c3f1f085cbd4a9002a1c861cacaad02"
+      },
+      "condition_id": "growth256-full-supplied",
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "9c00579a90a2670f42321dd1492354d34a18cd0be3d08ba5237dfacea5a5a1cc",
+        "input_sha256": "b61101eb3eccf214e0bba46f642888cad7be24b7b45b0165c6f2cf2b3870db05",
+        "public_result_sha256": "81b8ccd2cd5264009a9cc8f5bfe8a2295ade409b5df3e8c246e33be72bec3878"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/post-metadata.json",
+        "sha256": "69490f53601103e6af60d07d81b5e5105d43879ef25a816bfc41fb6fc958824c"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794773931223736969.json",
+        "sha256": "46741cdc6bfa12b01f82ee1b6cde0d47cc50e26fe9585e376d76451d027a36d3"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2669465600,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2655891456,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794772510183058480,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794772509995676438.json",
+            "sha256": "142deaa6230da52d2561438469d4b47480b7882f38fafcfbfaf440c84ff24bb5"
+          },
+          "started_ns": 1794772509995676438
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2541801472,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2527645696,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794773931380114149,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794773931223736969.json",
+            "sha256": "46741cdc6bfa12b01f82ee1b6cde0d47cc50e26fe9585e376d76451d027a36d3"
+          },
+          "started_ns": 1794773931223736969
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/receipt.json",
+        "sha256": "da0f23ea7f77b3f8510fbaea585f843295d9182f24204ad1a0897172c82246f4"
+      },
+      "repetition": 3,
+      "terminal_direct_child_high_water_bytes": 574902272,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 574902272,
+        "pid": 52008,
+        "reaped_monotonic_ns": 80416166646448,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 140048,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 194,
+          "ru_maxrss": 561428,
+          "ru_minflt": 54071,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 7593,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 403,
+          "ru_oublock": 72,
+          "ru_stime": 2.152019,
+          "ru_utime": 1412.254346
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17744375808,
+          "monotonic_ns": 80416166930166
+        },
+        "confirmation_decision_monotonic": 80416.166851991,
+        "deadline_monotonic_ns": 80416216190450,
+        "first_helper_entry_monotonic": 80416.166393706,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17744375808,
+          "monotonic_ns": 80416166190450,
+          "pid": 52008,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2481471488"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17744375808,
+          "monotonic_ns": 80416166190450,
+          "pid": 52008,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 80416.166393706,
+            "independent_stop": null,
+            "monotonic": 80416.166851991,
+            "sample_monotonic_ns": 80416166190450,
+            "terminal_collected_monotonic_ns": 80416166646448,
+            "terminal_observed": true
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 80416.166947975,
+            "independent_stop": null,
+            "monotonic": 80416.166953638,
+            "sample_monotonic_ns": 80416166190450,
+            "terminal_collected_monotonic_ns": 80416166646448,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 80416166190450,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 80416166646448
+      },
+      "workflow_call_seconds": 1413.251765625
+    }
+  ],
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-full-stage-admission.json",
+    "sha256": "c66480fe821ac6734c2e3ef2adf560e28a67679dacf2e26acfbf40eab29ee78f"
+  },
+  "scope": "WS116_ROOT_closed_prior_stage",
+  "source_unchanged": true,
+  "stage_id": "largest-full-supplied",
+  "terminal_receipts": [
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/receipt.json",
+      "sha256": "de4f1e41576b99f2bd2ad2708581f0cfe2e28b35702c5b5fefed51d2b8f13e2a"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/receipt.json",
+      "sha256": "6cebe9c135046d88ee664ff4bdc929af956a39ab2ced5f8e5ba6b4247708b82d"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/receipt.json",
+      "sha256": "da0f23ea7f77b3f8510fbaea585f843295d9182f24204ad1a0897172c82246f4"
+    }
+  ],
+  "three_repeat_groups_complete": 1,
+  "unresolved_owners": []
+}

@@ -1,0 +1,487 @@
+{
+  "schema": "WS116-eleven-historical-authoring-pin-resolution-v1",
+  "scope": "Read-only Git object/hash plus named planning file lookups; no source/script/import/test/science execution, copying, target mutation or changed prior worksheets.",
+  "input_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-historical-ledger-eleven-questions.json",
+    "sha256": "5c4cfe1ae1756e09826d973527688034172b11a233c22289cbfff63c17368463"
+  },
+  "summary": {
+    "questions": 11,
+    "exact_git_blob_resolutions": 7,
+    "exact_named_planning_file_resolutions": 2,
+    "historical_only_unresolved": 2,
+    "current_qualification_source_gaps": 0
+  },
+  "rows": [
+    {
+      "id": "H01",
+      "sha256": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202",
+      "original_spelling": "docs/contracts/reconstruction-working-set-v1.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/0/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "path": "docs/contracts/reconstruction-working-set-v1.md",
+        "git_blob_oid": "d3fb2f40b99e1bfd1a7437d795b02aa9091be526",
+        "sha256": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true
+      },
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "d3fb2f40b99e1bfd1a7437d795b02aa9091be526"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented."
+    },
+    {
+      "id": "H02",
+      "sha256": "ee65ecf7b4d6a0c6a56639fe2fc5c86c4e2f0056082fe5e26cb90875b00364cf",
+      "original_spelling": "docs/tasks/reconstruction-working-set.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/0/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "HISTORICAL_ONLY_NOT_FOUND_IN_EXAMINED_OWN_ANCESTRY_AND_NAMED_SNAPSHOTS",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": null,
+      "limit": "No match at six exact report ancestors of measured EA, two explicit pre-parent own-report commits rooted in public-main b344, or closed479 named source-alias index. Not proof unavailable elsewhere/unreachable; no fsck/all-ref/private-branch/broader filesystem search or reconstruction."
+    },
+    {
+      "id": "H03",
+      "sha256": "0d56d07158a58a4840dec2d2aca6cfc523d93053101670321495d1d375f35351",
+      "original_spelling": "docs/packets/reconstruction-working-set-review.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/0/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "HISTORICAL_ONLY_NOT_FOUND_IN_EXAMINED_OWN_ANCESTRY_AND_NAMED_SNAPSHOTS",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": null,
+      "limit": "No match at six exact report ancestors of measured EA, two explicit pre-parent own-report commits rooted in public-main b344, or closed479 named source-alias index. Not proof unavailable elsewhere/unreachable; no fsck/all-ref/private-branch/broader filesystem search or reconstruction."
+    },
+    {
+      "id": "H04",
+      "sha256": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143",
+      "original_spelling": "README.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "path": "docs/reports/reconstruction-working-set/README.md",
+        "git_blob_oid": "f420718503dbad82314074dabeefbd5b4f8b043c",
+        "sha256": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true
+      },
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "f420718503dbad82314074dabeefbd5b4f8b043c"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented."
+    },
+    {
+      "id": "H05",
+      "sha256": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402",
+      "original_spelling": "analysis/liveness-draft.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "path": "docs/reports/reconstruction-working-set/analysis/liveness-draft.md",
+        "git_blob_oid": "7b9325aa30d99b24608a6f1ada472ec98db3e503",
+        "sha256": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true
+      },
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "7b9325aa30d99b24608a6f1ada472ec98db3e503"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented."
+    },
+    {
+      "id": "H06",
+      "sha256": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9",
+      "original_spelling": "manifest.json",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "path": "docs/reports/reconstruction-working-set/manifest.json",
+        "git_blob_oid": "1fcc42854832d96d9452516fcb77b4eb66cedca4",
+        "sha256": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true
+      },
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "1fcc42854832d96d9452516fcb77b4eb66cedca4"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented."
+    },
+    {
+      "id": "H07",
+      "sha256": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a",
+      "original_spelling": "run_attempt.py",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "path": "docs/reports/reconstruction-working-set/run_attempt.py",
+        "git_blob_oid": "562fcaf2b12a4a2da89c173a15086599e7ef167c",
+        "sha256": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true
+      },
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "562fcaf2b12a4a2da89c173a15086599e7ef167c"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented."
+    },
+    {
+      "id": "H08",
+      "sha256": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5",
+      "original_spelling": "workload_child.py",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "path": "docs/reports/reconstruction-working-set/workload_child.py",
+        "git_blob_oid": "5d77302faa18678767253ea3d03e6099394e20bb",
+        "sha256": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true
+      },
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "5d77302faa18678767253ea3d03e6099394e20bb"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented."
+    },
+    {
+      "id": "H09",
+      "sha256": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555",
+      "original_spelling": "observer.py",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "path": "docs/reports/reconstruction-working-set/observer.py",
+        "git_blob_oid": "a8604f92ab1330eb44d91a5a354de624fdbec1fa",
+        "sha256": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true
+      },
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "a8604f92ab1330eb44d91a5a354de624fdbec1fa"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented."
+    },
+    {
+      "id": "H10",
+      "sha256": "9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431",
+      "original_spelling": "planning-inputs.sha256",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "source_admission_planner/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_NAMED_PLANNING_FILE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": "/workspace/work/campaign/evidence/116/corpus-admission-plan/planning-inputs.sha256",
+      "matching_git_object": null,
+      "limit": "Direct sha256sum of named planning snapshot matches full expected digest; no commit provenance asserted or unknown original absolute base invented."
+    },
+    {
+      "id": "H11",
+      "sha256": "5cd9f81b66eeb96cbe740ef166bead432841253e4232c83223b836786a516ca4",
+      "original_spelling": "planner-handoff.json",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "source_admission_planner/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "disposition": "RESOLVED_EXACT_NAMED_PLANNING_FILE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": "/workspace/work/campaign/evidence/116/corpus-admission-plan/planner-handoff.json",
+      "matching_git_object": null,
+      "limit": "Direct sha256sum of named planning snapshot matches full expected digest; no commit provenance asserted or unknown original absolute base invented."
+    }
+  ],
+  "read_only_evidence": {
+    "measured_EA": "ea9117d3efe2d8de273402d643e732140138e496",
+    "scoped_path_history_commits": [
+      "d3685352219a6103a22b2c94eabfe291a8186179",
+      "33df4e4e72787db9ab7d81b54ef26cfb328bf345",
+      "fad8ac2ded6357fbb579e9693c6d0189f251c446",
+      "86c81b8e68be1e49b8ea2d432cf8659ad81f2538",
+      "3965eb0a699856cce8e009f1ede4f3b43bf37c93",
+      "ea9117d3efe2d8de273402d643e732140138e496"
+    ],
+    "paths_per_measured_ancestor": 9,
+    "actual_git_hash_lookup_results": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+          "chunk_id": "97c4b1",
+          "wall_time_seconds": 0.101766975,
+          "exit_code": 0,
+          "original_token_count": 364,
+          "output": "docs/contracts/reconstruction-working-set-v1.md d3fb2f40b99e1bfd1a7437d795b02aa9091be526 be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202  -\ndocs/tasks/reconstruction-working-set.md 40ccbd07c0e473f591cfa3a4f416aa2e871d906e 1b4ecac442463d1853973d807cb3133572bd92051e41271c1662d618e04c3561  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\ndocs/reports/reconstruction-working-set/README.md f420718503dbad82314074dabeefbd5b4f8b043c fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143  -\ndocs/reports/reconstruction-working-set/analysis/liveness-draft.md 7b9325aa30d99b24608a6f1ada472ec98db3e503 b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402  -\ndocs/reports/reconstruction-working-set/manifest.json 1fcc42854832d96d9452516fcb77b4eb66cedca4 43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9  -\ndocs/reports/reconstruction-working-set/run_attempt.py 562fcaf2b12a4a2da89c173a15086599e7ef167c ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a  -\ndocs/reports/reconstruction-working-set/workload_child.py 5d77302faa18678767253ea3d03e6099394e20bb 6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5  -\ndocs/reports/reconstruction-working-set/observer.py a8604f92ab1330eb44d91a5a354de624fdbec1fa 5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555  -\n"
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "33df4e4e72787db9ab7d81b54ef26cfb328bf345",
+          "chunk_id": "99920a",
+          "wall_time_seconds": 0.082706648,
+          "exit_code": 0,
+          "original_token_count": 364,
+          "output": "docs/contracts/reconstruction-working-set-v1.md d3fb2f40b99e1bfd1a7437d795b02aa9091be526 be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202  -\ndocs/tasks/reconstruction-working-set.md 68184222b5145b039913c4aedccc50d534b05e55 18491ba26b0bd73bde94b79744902174189f9fb0dfcc19059411e4ebfffc075c  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\ndocs/reports/reconstruction-working-set/README.md abc0d0c77f23b56f74e72c587f235d2f6aebb302 96c4aa2e02432b5f7fa80eb3f01b2c8929fe047b5451428f21ff70434d126cf0  -\ndocs/reports/reconstruction-working-set/analysis/liveness-draft.md 7b9325aa30d99b24608a6f1ada472ec98db3e503 b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402  -\ndocs/reports/reconstruction-working-set/manifest.json 7aa96105b72b86e0abd4cb80bc3c3c32f066d0a0 963730e99afcfa97d31d5db26b7cbe58d558ceae832c8e1caddbb2943cfb22a0  -\ndocs/reports/reconstruction-working-set/run_attempt.py ce031d053c6b4e7927f493cae11fff75686f65da e1cab132f19503d9751da917dc10e00d2957124bd06eda7f07b7f30fa3c0836c  -\ndocs/reports/reconstruction-working-set/workload_child.py 2d6ccea4edf42f80aa0dd9d012745b6898afc8c9 ec74264709a8106fd593bbf7a1f2b08915bce15eebda23d4975431239f059c1f  -\ndocs/reports/reconstruction-working-set/observer.py 0a029e8863e0c7aedca5c26f6c0715bdfc8a2ea7 285a1ed5b3acd7681ff2eb266a89a8251303c6589ada506109eef355892fc85d  -\n"
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "fad8ac2ded6357fbb579e9693c6d0189f251c446",
+          "chunk_id": "647e19",
+          "wall_time_seconds": 0.096124556,
+          "exit_code": 0,
+          "original_token_count": 364,
+          "output": "docs/contracts/reconstruction-working-set-v1.md e783dda7fe2f16fb18d498df8533f4b50c63fcb1 a811347cee5194b8023dde656079e25a86fb8412d5bbae8aeedd4b6c42370566  -\ndocs/tasks/reconstruction-working-set.md d79074d0ee1f1000cf4104bb8ea8f004e3122829 d5fa4413a5609deeeb0c659f7946a51850b250131f810bc48c8249069c8ab1ea  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\ndocs/reports/reconstruction-working-set/README.md 7cc8da3c6ccc3bb4249461c43cd8f3663212a1f5 ff8c59447a1e93f47a5fe658f3adba66544afc3a4c0947f93949545901318702  -\ndocs/reports/reconstruction-working-set/analysis/liveness-draft.md 5a39bba8fa30b416a5f62cddf2549e9ca5cca79b 8fef6fcfd756b48f22e08cccead97387fdd41fc2ed4e10b86d54deb62eb09f07  -\ndocs/reports/reconstruction-working-set/manifest.json 7a6c228e0ce68e752d6d6d1a9e5790a2b47083ec fb7a138757dd9896e3bfa349d3b06b6e5efdab03006f19350b2534ff910aeb91  -\ndocs/reports/reconstruction-working-set/run_attempt.py 36f1eadc0b3b0c08ad23f026a77500e5b29dbd2f 238fc597801a6871493db189e1c7eb5acb5af1115d30fc79e1c6a2dfc9ef3cde  -\ndocs/reports/reconstruction-working-set/workload_child.py fe0176a20108cc0dbb8f8794c4b3eca86d48038b d062c6290dc7ed5bb757ccc8ac0dccaf8dd1e54d0274eb9947ea1dfa2efa0c21  -\ndocs/reports/reconstruction-working-set/observer.py dd8841cbc0a1eebde5fb5b20a973c31859a3876a 94fec42631c642b2bd5121bfe5e696032895bcda5120c07a92d68f6d82e66ed2  -\n"
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "86c81b8e68be1e49b8ea2d432cf8659ad81f2538",
+          "chunk_id": "914842",
+          "wall_time_seconds": 0.074959818,
+          "exit_code": 0,
+          "original_token_count": 364,
+          "output": "docs/contracts/reconstruction-working-set-v1.md 05804fbab35bcab93bd362f386185d664681df29 4b049da71379199cae229f259baa8942936cdd1a352c505b52d2f8d2fda3bc4e  -\ndocs/tasks/reconstruction-working-set.md 1f26496d95bc614bb3f2fadca4ff3bcbafdd5f2c 50d8e6f70f1700f0d08dbbb7c429d6b71557c6fc92571a5adffaaeacfa3d5578  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\ndocs/reports/reconstruction-working-set/README.md 75b4159ba753e420a0b2abbb93fe6b6eedf9bebb 04599a0682be1a16a68c58346705a2e8170208257d3aa20d127f969f9b65624a  -\ndocs/reports/reconstruction-working-set/analysis/liveness-draft.md 5a39bba8fa30b416a5f62cddf2549e9ca5cca79b 8fef6fcfd756b48f22e08cccead97387fdd41fc2ed4e10b86d54deb62eb09f07  -\ndocs/reports/reconstruction-working-set/manifest.json 7c7eb0efd75c6e1313bd15f57d74bda1227a61b6 bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234  -\ndocs/reports/reconstruction-working-set/run_attempt.py 05f62cbfe5303953b67afc01b44d13b4f4ad19e6 1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61  -\ndocs/reports/reconstruction-working-set/workload_child.py 1b729067f15c68768c97520430c01ce8dcd58460 5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459  -\ndocs/reports/reconstruction-working-set/observer.py 61636b1cce8c6e571981293ed6336669481ed07d 384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e  -\n"
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "3965eb0a699856cce8e009f1ede4f3b43bf37c93",
+          "chunk_id": "a36274",
+          "wall_time_seconds": 0.07637289,
+          "exit_code": 0,
+          "original_token_count": 364,
+          "output": "docs/contracts/reconstruction-working-set-v1.md 05804fbab35bcab93bd362f386185d664681df29 4b049da71379199cae229f259baa8942936cdd1a352c505b52d2f8d2fda3bc4e  -\ndocs/tasks/reconstruction-working-set.md b51a573666beb59b08a1931e5d60d2d2a856e364 5d380b1f6a77dc6824d4a62c4621cd1ba33a9a91b8c33829b83b6be267c42a1d  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\ndocs/reports/reconstruction-working-set/README.md 75b4159ba753e420a0b2abbb93fe6b6eedf9bebb 04599a0682be1a16a68c58346705a2e8170208257d3aa20d127f969f9b65624a  -\ndocs/reports/reconstruction-working-set/analysis/liveness-draft.md 5a39bba8fa30b416a5f62cddf2549e9ca5cca79b 8fef6fcfd756b48f22e08cccead97387fdd41fc2ed4e10b86d54deb62eb09f07  -\ndocs/reports/reconstruction-working-set/manifest.json 7c7eb0efd75c6e1313bd15f57d74bda1227a61b6 bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234  -\ndocs/reports/reconstruction-working-set/run_attempt.py 05f62cbfe5303953b67afc01b44d13b4f4ad19e6 1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61  -\ndocs/reports/reconstruction-working-set/workload_child.py 1b729067f15c68768c97520430c01ce8dcd58460 5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459  -\ndocs/reports/reconstruction-working-set/observer.py 61636b1cce8c6e571981293ed6336669481ed07d 384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e  -\n"
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "ea9117d3efe2d8de273402d643e732140138e496",
+          "chunk_id": "199e1c",
+          "wall_time_seconds": 0.080320101,
+          "exit_code": 0,
+          "original_token_count": 364,
+          "output": "docs/contracts/reconstruction-working-set-v1.md 05804fbab35bcab93bd362f386185d664681df29 4b049da71379199cae229f259baa8942936cdd1a352c505b52d2f8d2fda3bc4e  -\ndocs/tasks/reconstruction-working-set.md 8b839ee8ef5fc89a5beaf260b3012e9fae987228 e6b34771b94f53aa9622d9d8cab8ffe76a4b127f66269dacd7969d64c3c204bc  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\ndocs/reports/reconstruction-working-set/README.md 5f117486e7e6c9a8dba5a2d5fe537aa015d23ef8 e8e99982bf56925b72e446dccd30e5897df39b747bc8ef88b58438ebc2d7ad4a  -\ndocs/reports/reconstruction-working-set/analysis/liveness-draft.md 5a39bba8fa30b416a5f62cddf2549e9ca5cca79b 8fef6fcfd756b48f22e08cccead97387fdd41fc2ed4e10b86d54deb62eb09f07  -\ndocs/reports/reconstruction-working-set/manifest.json 7c7eb0efd75c6e1313bd15f57d74bda1227a61b6 bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234  -\ndocs/reports/reconstruction-working-set/run_attempt.py b0e394c54d180d1b95bac4e297f76fafcb45e6b3 2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e  -\ndocs/reports/reconstruction-working-set/workload_child.py 1b729067f15c68768c97520430c01ce8dcd58460 5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459  -\ndocs/reports/reconstruction-working-set/observer.py 61636b1cce8c6e571981293ed6336669481ed07d 384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e  -\n"
+        }
+      }
+    ],
+    "pre_parent_ref": "refs/campaign/evidence/116-pre-parent",
+    "actual_two_path_pre_parent_results": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "701b56d349adaf5e719510a158b51402876f9c30",
+          "chunk_id": "97a6b0",
+          "wall_time_seconds": 0.000039359,
+          "exit_code": 0,
+          "original_token_count": 78,
+          "output": "docs/tasks/reconstruction-working-set.md 40ccbd07c0e473f591cfa3a4f416aa2e871d906e 1b4ecac442463d1853973d807cb3133572bd92051e41271c1662d618e04c3561  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\n"
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "commit": "a644eb93cd3ad987d4fa694eb48bc4d6574eb099",
+          "chunk_id": "e5796a",
+          "wall_time_seconds": 0.000038888,
+          "exit_code": 0,
+          "original_token_count": 78,
+          "output": "docs/tasks/reconstruction-working-set.md 68184222b5145b039913c4aedccc50d534b05e55 18491ba26b0bd73bde94b79744902174189f9fb0dfcc19059411e4ebfffc075c  -\ndocs/packets/reconstruction-working-set-review.md 95c20bbc0b4d2c14e61594d9ff979121a2b2cf1d 8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5  -\n"
+        }
+      }
+    ],
+    "original_701_seven_source_recheck": {
+      "returncode": 0,
+      "same_blob_SHA256_as_d368": true,
+      "paths": [
+        "docs/contracts/reconstruction-working-set-v1.md",
+        "docs/reports/reconstruction-working-set/README.md",
+        "docs/reports/reconstruction-working-set/analysis/liveness-draft.md",
+        "docs/reports/reconstruction-working-set/manifest.json",
+        "docs/reports/reconstruction-working-set/run_attempt.py",
+        "docs/reports/reconstruction-working-set/workload_child.py",
+        "docs/reports/reconstruction-working-set/observer.py"
+      ]
+    },
+    "read_only_ancestry_commands": [
+      {
+        "argv": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "b344e41a8b52de76d7cbbf8450319893904c3b8f",
+          "refs/campaign/evidence/116-pre-parent"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "d3685352219a6103a22b2c94eabfe291a8186179",
+          "ea9117d3efe2d8de273402d643e732140138e496"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "ace06c861b974b6251a092567c253ae4eb0f56c8",
+          "d3685352219a6103a22b2c94eabfe291a8186179"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "named_alias_index": {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-historical-source-byte-alias-index.json",
+      "sha256": "1e0cef07794f07648194abe21c95d20625a11a76caf75b4ba5de6383856d232d",
+      "fullSHA_lookup_of_H02_H03": "no matching rows, jq exit0/empty"
+    },
+    "planning_file_sha256sum": {
+      "returncode": 0,
+      "stdout": "9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431  /workspace/work/campaign/evidence/116/corpus-admission-plan/planning-inputs.sha256\n5cd9f81b66eeb96cbe740ef166bead432841253e4232c83223b836786a516ca4  /workspace/work/campaign/evidence/116/corpus-admission-plan/planner-handoff.json\n"
+    }
+  },
+  "preservation": "Prior closure4007/map/11questionworksheet and all ledger bytes untouched. ROOT owns final literal extraction/integration. The two residual early intake draft fingerprints remain historical unavailable-within-examined-basis, not installed runtime fingerprints/current scientific prerequisites or a reason for new experiments.",
+  "publication_limit": "Own report commits are campaign objects; no claim that these draft commits themselves were published. Only recorded own report/public-main ancestry used, no private RM84 or other-issue history.",
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  },
+  "scientific_judgment": false
+}
+

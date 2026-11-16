@@ -1,0 +1,22 @@
+{
+  "active_observer_or_proxy": false,
+  "all_known_current_stage_owners_closed": true,
+  "closed_at_unix_ns": 1794753241758301570,
+  "eligible_row1": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-data-eligibility.json",
+    "sha256": "107412590bb0da1e0c7a48edb64a70bd2c718314169b676c79275a716035d88e"
+  },
+  "next_window": "Renew actual scheduler/source/material/resource/event/swap/metadata and explicit finite remaining5 authority before continuation; same stageadmission/priorclosures/prefix remain pinned.",
+  "original_authority": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-authority-row1.json",
+    "sha256": "e2508d94265ee451c7f8fe6f5eae99156f650c88fd94940ae47ba22e0757a8a4"
+  },
+  "original_window": {
+    "ends_unix_ns": 1794758282064772621,
+    "starts_unix_ns": 1794751082064772621
+  },
+  "reason": "ROOT explicitly pauses after first256 to run prepared113C4 checks/G1 renewal and116finiteguards/fileanalysis; allcurrent2owners/FDs closed. No concurrent scientific work.",
+  "remaining5_not_authorized": true,
+  "schema": "ROOT-WS116-row1-exclusive-reservation-ended-v1",
+  "window_closed_early": true
+}

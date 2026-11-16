@@ -1,0 +1,1487 @@
+{
+  "2d-summary": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        2,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        1,
+        24,
+        32
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        2,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        2,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        32
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        24
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        1
+      ]
+    }
+  },
+  "between-summary": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        24,
+        24
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        24
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        24
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        4
+      ]
+    }
+  },
+  "central64-full-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "central64-full-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "central64-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "central64-summary-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "direction1-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        1,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        1,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        1,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "frozen128-full-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        256,
+        256
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "frozen128-full-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        256,
+        256
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "frozen128-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        256,
+        256
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "frozen128-summary-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        256,
+        256
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        256
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth192-full-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        384,
+        384
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth192-full-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        384,
+        384
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth192-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        384,
+        384
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth192-summary-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        384,
+        384
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        384
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth256-full-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        512,
+        512
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth256-full-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        512,
+        512
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth256-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        512,
+        512
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "growth256-summary-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        512,
+        512
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        512
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "off1-summary": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        32,
+        32
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        32
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        32
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        4
+      ]
+    }
+  },
+  "off2-full": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        32,
+        32
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        32
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        32
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        4
+      ]
+    }
+  },
+  "off2-summary": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        32,
+        32
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        32
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        32
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        4
+      ]
+    }
+  },
+  "spatial32-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        1,
+        8,
+        64,
+        64
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        1,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        64
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        64
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "time2-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "time4-summary-searched": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        4,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        4,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        4,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        4,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "time4-summary-supplied": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        4,
+        3,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        4,
+        8,
+        128,
+        128
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        4,
+        3,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        4,
+        3,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        128
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "within-full": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        24,
+        24
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        4,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        4,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        24
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        24
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        4
+      ]
+    }
+  },
+  "within-summary": {
+    "carriers_cyc_um": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        2
+      ]
+    },
+    "image": {
+      "dtype": "<f8",
+      "shape": [
+        2,
+        4,
+        24,
+        24
+      ]
+    },
+    "modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        4,
+        2
+      ]
+    },
+    "raw_modulation": {
+      "dtype": "<c16",
+      "shape": [
+        2,
+        4,
+        2
+      ]
+    },
+    "x_um": {
+      "dtype": "<f8",
+      "shape": [
+        24
+      ]
+    },
+    "y_um": {
+      "dtype": "<f8",
+      "shape": [
+        24
+      ]
+    },
+    "z_um": {
+      "dtype": "<f8",
+      "shape": [
+        4
+      ]
+    }
+  }
+}
+

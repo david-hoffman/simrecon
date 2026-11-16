@@ -1,0 +1,23 @@
+{
+  "ROOT_raw_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-independent-sixteen-triplets.json",
+    "sha256": "454e2895826449531b33d7525ceb5f59ba4629fbd6d4da1fdc4ae0afc80f7f59"
+  },
+  "all16_triplets_exact_match": true,
+  "authority": "ROOT",
+  "coordinator_closed_file_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-closed-central6-review.json",
+    "sha256": "acd6955cc7676b116a12c6d7e2f148fc631b608095ba32c67c96591fb1d40350"
+  },
+  "coordinator_independent_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+    "sha256": "8d7cde9f6e9ce0c7f1dbae6b7dde5701e969ae3c3bebbcff76084ff103b25886"
+  },
+  "costs": "UNKNOWN",
+  "new_analysis_or_scientific_execution_authorized": false,
+  "observed_at_unix_ns": 1794784570248266150,
+  "schema": "ROOT-WS116-central6-independent-sixteen-triplet-comparison-v1",
+  "scientific_acceptance": false,
+  "scope": "Both independentraw worksheets finished beforecomparison; no statistics/canonicalimport/numericalrepeat, no perturbationratio/isolatedcost/attribution/ranking. Coor nonrepeatedreview fields projected;60small/6samples/12proof/12owner inventories remain priorfullaudit scope, not a newgiantmapvisualclaim.",
+  "two_modes_separate": true
+}

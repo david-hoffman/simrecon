@@ -1,0 +1,89 @@
+{
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "status": "FAILED",
+  "error": {
+    "type": "AssertionError",
+    "reason": "blocked effect attempt invalidates case"
+  },
+  "checks": 0,
+  "matched": false,
+  "diagnostic_only_a2_delta": true,
+  "blocked_effect_attempts": [
+    {
+      "operation": "audit:open-read-outside-allowed-roots",
+      "callers": [
+        {
+          "filename": "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/focused_stage_guards.py",
+          "function": "audit",
+          "line": 133
+        },
+        {
+          "filename": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py",
+          "function": "seed",
+          "line": 173
+        },
+        {
+          "filename": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py",
+          "function": "__init__",
+          "line": 125
+        },
+        {
+          "filename": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py",
+          "function": "<module>",
+          "line": 924
+        },
+        {
+          "filename": "<frozen importlib._bootstrap>",
+          "function": "_call_with_frames_removed",
+          "line": 488
+        },
+        {
+          "filename": "<frozen importlib._bootstrap_external>",
+          "function": "exec_module",
+          "line": 1023
+        },
+        {
+          "filename": "<frozen importlib._bootstrap>",
+          "function": "_load_unlocked",
+          "line": 935
+        },
+        {
+          "filename": "<frozen importlib._bootstrap>",
+          "function": "_find_and_load_unlocked",
+          "line": 1331
+        }
+      ],
+      "audit": {
+        "event": "open",
+        "reason": "read outside named source/release/output/stdlib roots",
+        "path": "/dev/urandom",
+        "mode": null,
+        "flags": 524288
+      }
+    }
+  ],
+  "source_pins": {
+    "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/aggregate_observations.py": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/admission-table.json": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/qualified-method7-source-basis.json": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/source-identities.json": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/schema-inputs/source-identities.json": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/config-template.json": "6b7d7b98b115cecb98cfe5e37056ce4687307ff35a7b7e8b55c6b2bcb19bb967",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/fixture-vectors.json": "580f6febd42a3c1440dd35623f0351213a956e30572391acb46a07df5a3d9e7b",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/focused_stage_guards.py": "cd1084b5cd6b229cca6be4c6d246720f8ff76dff27cd5760761b646906255b96"
+  },
+  "files_before_summary": {
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a2/SYNTHETIC-purpose.json": {
+      "sha256": "76614d7e91d846c84870b604afc25183ff0bd055b906be0f25811a6e9ec95dfe",
+      "logical_bytes": 2516
+    }
+  },
+  "actual_scientific_data": false,
+  "actual_cost": "UNKNOWN",
+  "actual_tokens": "UNKNOWN"
+}

@@ -1,0 +1,46 @@
+{
+  "protocol": "WS116-off-band-lifetime-source-handoff-v1",
+  "status": "SOURCE_READY_HOLD_FOR_FRESH_AFFECTED_SCIENTIFIC_REVIEW",
+  "finding": "F04: original README mistakenly gave q and off_q one downstream whole-loop lifetime.",
+  "correction": "Only CE06 preparation row changed: compact q through loop; compact optional off_q preparation-local until normal return/no returned off array; full optional off_q retained in AcquisitionBands/full result. No-copy finishing, independent event captures, per-z planes vs CE02 frames and possible old-local replacement retained.",
+  "artifact_inventory": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+      "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/off-band-lifetime.patch",
+      "sha256": "9ec9d8c29b9c4e7de7806b17f19ffd1241a09ba2fca92dd3f336575e3886de81"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/input-references.json",
+      "sha256": "7d37b50a41339424afda8d8d18dfdeda0597b1e9b1ecc0f29088278d6d4660cf"
+    }
+  ],
+  "self": {
+    "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/source-handoff.json",
+    "sha256": null,
+    "meaning": "Exact self hash supplied externally after write."
+  },
+  "preservation": {
+    "source44_all_ten_original_hashes_reread_unchanged": true,
+    "source45_all_four_original_hashes_reread_unchanged": true,
+    "original44_README": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378",
+    "all_previous_failures_bytes_charges": "PRESERVED"
+  },
+  "source_basis": "Primary modes.py dataclasses/creation/compact and full return; layout.py scalar-or-omitted compact events; workflow full bands publication; corrected337a source-liveness document and contract allocation-reference meaning. No reviewer/opinion body read.",
+  "limits": "Normal successful return/reference ownership claim only; not allocator/OS release, exception traceback lifetime or measured RSS. No new measured values, formulas, rankings, invariants, gates or scientific scope.",
+  "checks": "Named CLOSED/source text and SHA identities plus unified diff only. Diff exit1 means declared difference. No runtime/import/AST/lint/tests/calculator/statistics/probe/new program/delegation/EA/Current edits/integration.",
+  "authoring_diagnostics": "Initial combined display was truncated; bounded primary-source excerpts were separately read before correction. No numerical or source-program execution; no diagnostic inferred from truncated text.",
+  "accounting": {
+    "source_preparations": 46,
+    "author_executions": 9,
+    "total_author_role_events": 55,
+    "original_launches": 1,
+    "cost": null,
+    "serving_attribution": null,
+    "tokens": null,
+    "unknown_meaning": "UNKNOWN, not zero; all earlier charges preserved"
+  },
+  "disposition": "READY then HOLD. Fresh affected independent scientific reviewer must assess actual primary copy/lifetime claim; ROOT owns later integration and applicable final acceptance/gate."
+}

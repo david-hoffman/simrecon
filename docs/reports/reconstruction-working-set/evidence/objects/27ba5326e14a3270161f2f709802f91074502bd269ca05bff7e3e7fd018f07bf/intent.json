@@ -1,0 +1,47 @@
+{
+  "command": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-116",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "simrecon-campaign-ubuntu",
+    ".venv/bin/python",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+    "--grant",
+    "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/grant.json",
+    "--attempt-id",
+    "ws116-gp-l256-full-supplied-r1-u"
+  ],
+  "config_sha256": "36d74d13cf6ef10b3997b9a633815839772d2f31fa3cf2fa900d20bb7313aaeb",
+  "grant_sha256": "9fa12e19b52888292cff9492096abb1fc5c5b1c0d282236df54b64be29c5f4ab",
+  "proof": {
+    "docker_status": 0,
+    "external_ancestors": "unknown_unobservable",
+    "inner_status": 0,
+    "observed_at_unix_ns": 1794769108137923857,
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794769108137923857.json",
+    "sha256": "7a670eadbab3db37e0f454d332996796d0a1c1788b4e703964bd79fcfe9afa99"
+  },
+  "row": {
+    "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+    "condition_id": "growth256-full-supplied",
+    "launch_nonce": "ws116-gp-l256-full-supplied-r1-u",
+    "profile": false,
+    "repetition": 1,
+    "serial_index": 1,
+    "stage_id": "largest-full-supplied"
+  },
+  "scope": "one synchronous existing runner; no retry",
+  "source_sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+  "time_unix_ns": 1794769108372079605
+}

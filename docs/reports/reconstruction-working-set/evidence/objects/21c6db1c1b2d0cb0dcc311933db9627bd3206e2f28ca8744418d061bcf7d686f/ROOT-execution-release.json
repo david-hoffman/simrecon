@@ -1,0 +1,15 @@
+{
+  "authorized": true,
+  "controller_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-controller-60678-ended.json",
+    "sha256": "55383cd5a680e6632157519524148ea15a0da00a615a93929966847ed9313e4e"
+  },
+  "helper_sha256": "090ef79176ff28e14666bc40dc14d1d75b53c84fd782e1204d38b64368a1a549",
+  "output": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+  "schema": "ROOT-WS116-close-fullsupplied256-release-v1",
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/source-manifest.json",
+    "sha256": "c20c8435e3538b1a9ec532ef0f97a7c5b1e6a5685b31de2dcf73f711b6d13c00"
+  },
+  "stage_id": "largest-full-supplied"
+}

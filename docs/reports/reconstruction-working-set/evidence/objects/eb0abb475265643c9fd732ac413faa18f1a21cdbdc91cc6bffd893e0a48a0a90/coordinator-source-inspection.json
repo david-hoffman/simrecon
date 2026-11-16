@@ -1,0 +1,121 @@
+{
+  "schema": "WS116-first-searched-preparer-coordinator-source-inspection-v1",
+  "status": "SOURCE_SUITABLE_FOR_ROOT_WHOLE_REVIEW_UNEXECUTED_HOLD",
+  "blocking_findings": [],
+  "nonblocking_observations": [
+    {
+      "scope": "diagnostic_text_only",
+      "observation": "Helper equality predicate for searched summary anchors is correct, but failure-message literal fixed9da/78cc/75fd anchors still names the supplied-family anchor prefixes. Actual manifest/predicates bind59f0/2fe931/67b52 searched controls.",
+      "effect": "No incorrect comparison/source binding; diagnostic label only. No source edit made."
+    }
+  ],
+  "source_packet_sha256": {
+    "root-prepare-first-searched-row.py": "b8e69cb72f7635cdac20931cb912b4b505063511a27a9053e1b17c1ef47a1b4c",
+    "source-manifest.json": "25769fc3c4c083037945fc5d1dc00e98d5390910fde05808be8ffe2ca32b9a3e",
+    "ROOT-preparation-inputs-DISABLED.json": "c048227d9e75f37f3c7e2523e9f8808ec65c9365cc07cb012f6067efd57c1492",
+    "README.md": "cf2a458a2e33109d1e77e0c87458e957daa7385a371d59eaea25e21cb383eafc",
+    "source-handoff.json": "1983c40b91bd8f7035d312635fface7197d2b54472b249edc14a05567374238c"
+  },
+  "immutable_small_source_pins_checked": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/full-searched-r1-source-check.json",
+      "sha256": "16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/full-searched-r1-source-check.md",
+      "sha256": "0e1df8da0e91272e82306bf1502a56e315be74dc8f43672d67d765ee4ab6733d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/config-row1-UNAUTHORIZED.json",
+      "sha256": "a60aab9cb312f36daf59d1f324033746a2624a76d426aee81b272ad5dbf509d9"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/stage-admission-DRAFT.json",
+      "sha256": "b2c46af49e69a85cc65cb34da78bd8fd8750cbdd363f2ee943e33b20eb4bf244"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/authority-DRAFT.json",
+      "sha256": "957224d2b7df7df16ce770dd6c80977fc422a592cf8ca1e88daa044a2f70d30b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/scheduler-ACK-DRAFT.json",
+      "sha256": "3f5774f07ffa1d6c3802ef0a3aafa09b7531717f91b2e00fe1963af465d56697"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/currentstage-ledger-DRAFT.json",
+      "sha256": "092fc7d0a7aab458231a95be58d05a9ac8e3afda00b462c186330411349722ce"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/input-references.json",
+      "sha256": "2d7e88be78b4ffe2217e8010d0b629f301a70ccbdb773657c0d6270e603f048e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/README.md",
+      "sha256": "41f567390cee980d76ee3335fd071231aff5ec6964804d4295f07211a191c753"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/source-handoff.json",
+      "sha256": "2a262a46628c1e8dd58f342eac5b801ee76557c665979e3195f9b339394a248a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-prepare-first-full-row.py",
+      "sha256": "ab98ff2280996676224f5de9129ed722338347d041a8ace5bee23c66f498e6bb"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/root-close-fullsupplied256-stage.py",
+      "sha256": "090ef79176ff28e14666bc40dc14d1d75b53c84fd782e1204d38b64368a1a549"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-UNAUTHORIZED-DRAFT.json",
+      "sha256": "bc60b9651db35f9f341279b29770a650a6d794cc11d70eb8d771ec5ac9a353b8"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+      "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+      "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+      "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+      "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9"
+    }
+  ],
+  "reviewed_scope": [
+    "Entire362-line helper,149-line README,116-line disabled templates and75-line handoff read.1699-line manifest fully parsed; complete scalar/reference fields read via bounded projections and all repeated35/28/6 maps compared, not every repeated line visually displayed.",
+    "New explicit searched ROOT decision is hash+exact-object+semantic-attestation prerequisite.0f795 supplies selected-size256 fact only; supplied nextstage assertion is not reused.",
+    "Before new output mkdir, actual090 fullsupplied3/onegroup/source/rawverified/6birthFD closure protocol and controller60678 exacttoolterminal0/noproxy plus old-window ROOT evidence are required. Existing boundary/receipt/metadata schemas checked directly, no historical PID refresh.",
+    "Actual canonical940 sourcehash/config exact3 boundary links/known completeness+reference-audit+success flags are checked. Unknown primaryresult/independent8triplets/ROOTaccept/decision/window artifact semantics are explicitly ROOT-owned hash/expected-object and positive attestations; helper neither invents fields nor recomputes statistics.",
+    "Only fourthnull priorclosure slot filled from actualfuturefullsuppliedclosure; a4c2/0aff/79a and all3 searched summary anchors unchanged. Newstage emptyledger requires future explicitROOT no searchedlaunch/owner facts, not inferred from old closure.",
+    "Existing ab98 source35/tool6/core28/HEAD/tree/dirty/methodenv/interpreter checks and one fixed metadata plus one capture retained; exact case is fullsearched256r1/unprofiled. Full operating proposals/source representation unchanged, no supplied native extrapolation.",
+    "Fresh future twoFS/UID/namespaces/nine rlimits/disk/current+8+4<=15<16GiB/host>12GiB/eventsmax50340others0/swap0/5sproof+60smetadata/suspension gates required before prepared packet.",
+    "New readiness directory exclusive and absent; partial outputs/input snapshots/failures preserved. New2h reservation operational only.14files declared, configauthorizedfalse, r1only/prefixempty; ROOTauthority pathSHA notACK, ledger and expectedobjects chained. No binder/workflow/grant/intent/retry/recapture/advice/cap relaxation."
+  ],
+  "limits": [
+    "Source-only operational review, no live context/resource/PID/FD/current R2/R3 data access, runtime/import/AST/lint/test/probe/calculator or scientific execution.",
+    "Future source35/executable/git/current-rootfacts remain actual invocation obligations; this check verifies source/file pins and maps only.",
+    "Source syntax/runtime unvalidated; ROOT independently reads/freeze/source-authorizes preparation, then actual preparedpacket audit and separate scientific release.",
+    "Final scientific report acceptance and pending full/profile/ranking/gates remain unfinished."
+  ],
+  "display_diagnostics": [
+    "A manifest projection initially excluded a wrong repeated-map key, producing tool-truncated output; corrected exact-key nonrepeated projection and full-map comparisons recovered scope. No target executed."
+  ],
+  "runtime_authorized_by_this_report": false,
+  "qualified_worktree_edited": false,
+  "accounting": {
+    "author_preparations": 30,
+    "author_execution_continuations": 9,
+    "author_total": 39,
+    "original_launch": 1,
+    "all_prior_bytes_errors_attempts_charges_preserved": true,
+    "tokens": "UNKNOWN",
+    "costs": "UNKNOWN",
+    "model_serving_attribution": "UNKNOWN"
+  },
+  "all_prior_attempts_diagnostics_unknown_charges_preserved": true
+}

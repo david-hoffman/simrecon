@@ -1,0 +1,26 @@
+{
+  "protocol":"WS116-finite-qualification-v1",
+  "execution_status":"not_run_source_preparation_only",
+  "common_bounds":{"sample_seconds":0.01,"term_grace_seconds":0.2,"kill_reap_seconds":2.0,"soft_deadline_seconds":20.0,"life_deadline_seconds":5.0,"timeout_case_seconds":1.0,"max_record_bytes":1048576,"parser_record_bound_bytes":65536,"process_stop_bytes":268435456,"host_min_available_bytes":536870912,"predicted_child_peak_bytes":67108864,"native_allocator_allowance_bytes":67108864,"reserve_bytes":268435456,"max_array_elements":12,"max_array_payload_bytes":192,"array_chunks_bytes":[32,1048576]},
+  "cases":[
+    {"id":"Q0-context","kind":"context","requires":[]},
+    {"id":"Q1-normal","kind":"normal","requires":["Q0-context"]},
+    {"id":"Q2-term","kind":"term","requires":["Q1-normal"]},
+    {"id":"Q2-kill","kind":"kill","requires":["Q1-normal"]},
+    {"id":"Q2-timeout","kind":"timeout","requires":["Q1-normal"]},
+    {"id":"Q2-signal","kind":"signal","requires":["Q1-normal"]},
+    {"id":"Q2-monitor-exception","kind":"monitor-exception","requires":["Q1-normal"]},
+    {"id":"Q3-sigint","kind":"sigint","requires":["Q2-term","Q2-kill","Q2-timeout","Q2-monitor-exception"]},
+    {"id":"Q3-marker-recovery","kind":"marker-recovery","requires":["Q3-sigint"]},
+    {"id":"Q4-records","kind":"records","requires":["Q0-context","Q1-normal"]},
+    {"id":"Q4-rss","kind":"rss-samples","requires":["Q0-context","Q1-normal"]},
+    {"id":"Q5-hashes","kind":"hashes","requires":["Q4-records","Q4-rss"]}
+  ],
+  "held_path":"Real observer death/nonparent recovery is not in this initial safe direct-parent inventory. PID1=sleep requires guarded subreaper design if later commissioned; do not create orphans. Marker recovery here retains the original exact wait owner.",
+  "q5_dtypes":["|b1","|i1","|u1","<i2","<i4","<i8","<u2","<u4","<u8","<f2","<f4","<f8","<f16","<c8","<c16"],
+  "q5_forms":["scalar","contiguous","transposed","strided","negative-stride","big-endian","empty"],
+  "q5_max_array_observations":105,
+  "human_total_budget":"not set; these are finite internal design/safety settings, not a human total cap",
+  "no_workflows":true,
+  "no_automatic_retry_or_growth":true
+}

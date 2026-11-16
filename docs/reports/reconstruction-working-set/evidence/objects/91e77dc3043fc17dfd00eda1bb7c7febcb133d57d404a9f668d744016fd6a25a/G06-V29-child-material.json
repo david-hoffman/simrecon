@@ -1,0 +1,11 @@
+{
+  "id": "G06-V29-child-material",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "child material map changed"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "child material map changed"
+}

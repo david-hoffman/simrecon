@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nif sys.argv[1] != \"normal\":\n    raise SystemExit(2)\nprint(json.dumps({\"ready\": True, \"pid\": os.getpid(), \"ppid\": os.getppid(),\n                  \"pgid\": os.getpgrp(), \"session_id\": os.getsid(0), \"mode\": \"normal\"}), flush=True)\nraise SystemExit(0)\n",
+    "normal"
+  ],
+  "body_sha256": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+  "signals": [],
+  "scope": "tiny direct stdlib child; not a scientific memory envelope",
+  "terminal": null,
+  "elapsed_seconds": 0.0004971809994458454
+}

@@ -1,0 +1,23 @@
+{
+  "authority": "ROOT",
+  "campaign_work_suspended": true,
+  "current_stage_owned_processes": [],
+  "known_active_campaign_runtimes": [],
+  "known_work_closure": {
+    "113": "ROOT C7 ten controllers/proxies/pipes/private namespaces closed; reservationended41e3b78e; dedicatedinit stopped/Pid0. Current driver/support fixes sourceonly, all runtime held.",
+    "114": "Priorcontrol2/executed owners closed; dormant resource route quarantined, no active work. Finalparent/source plan HOLD.",
+    "116": "Supplied60678 actualterminal0, whole3/6ownerFDclosure41a94c2e, windowended98022969. Canonicalfileanalysisattempt1failed+attempt2closed0/descriptiveacceptf2fa6e4f, no numerical owners. No searched scientificlaunch yet.",
+    "117": "Provisional checks closed, resource adaptation sourceplan only, no active runtime.",
+    "118": "Provisional checks closed, adapter neverexecuted, sourceplan only, no active runtime.",
+    "119": "Intakeonly, no runtimeworkload launched.",
+    "120": "Intakeonly, no runtimeworkload launched.",
+    "root": "All known prior controllers/proxies closed and no active toolruntime; reserve new2h window for firstsearched preparation/independentactualpacketaudit then separateROOTrelease only. No unrelated imports/tests/lint/types/build/install/benchmarks. Source/file/read-onlyGit allowed, outsideactors unknown."
+  },
+  "new_stage_has_no_prior_scientific_launches": true,
+  "observed_at_unix_ns": 1794775262225284303,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "remains_suspended_through_prepared_window": true,
+  "schema": "ROOT-WS116-first-searched-suspension-input-v1",
+  "stage_id": "largest-full-searched",
+  "unresolved_owners": []
+}

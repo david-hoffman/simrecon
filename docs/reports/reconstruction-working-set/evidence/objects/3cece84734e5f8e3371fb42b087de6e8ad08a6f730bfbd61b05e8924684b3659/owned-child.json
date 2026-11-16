@@ -1,0 +1,24 @@
+{
+  "pid": 45021,
+  "identity": {
+    "pid": 45021,
+    "observed_monotonic_ns": 16086707876619,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 1608670,
+    "ppid": 45014,
+    "pgid": 45014,
+    "session_id": 45014,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "observer_pid": 45014,
+  "nonce": "WS116-selected-route-a1",
+  "argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nos.setsid()\nmessage = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n    \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n    \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\nif len(message) > 512:\n    raise RuntimeError(\"bootstrap readiness exceeds frozen bound\")\nif os.write(fd, message) != len(message):\n    raise RuntimeError(\"incomplete bootstrap readiness write\")\nos.close(fd)\nos.execve(sys.argv[3], [sys.argv[3], \"-c\", sys.argv[4], nonce], os.environ.copy())\n",
+    "68",
+    "WS116-selected-route-a1",
+    "/workspace/work/issue-116/.venv/bin/python",
+    "import json\nimport os\nimport sys\n\nprint(json.dumps({\"role\":\"target\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n    \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":sys.argv[1],\n    \"executable\":os.readlink(\"/proc/self/exe\"),\n    \"cgroup_namespace\":os.readlink(\"/proc/self/ns/cgroup\")}), flush=True)\nraise SystemExit(0)\n"
+  ]
+}

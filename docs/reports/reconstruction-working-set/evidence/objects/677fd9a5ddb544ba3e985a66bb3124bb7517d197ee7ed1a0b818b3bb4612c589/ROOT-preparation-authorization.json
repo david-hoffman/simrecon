@@ -1,0 +1,35 @@
+{
+  "ROOT_source_inspection": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-whole-source-reading.json",
+    "sha256": "722018f21f91db0d750dc258734d79f6c6e25543e8ac090b101ce1c40a02a81c"
+  },
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-summary-searched-r1-p"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "central_completion_and_largest_decision": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-central-completion-and-largest-decision.json",
+    "sha256": "8b1cd0583d88458ee36f474be95ce0f6606f2275bdb550400f56b1613bace487"
+  },
+  "coordinator_source_inspection": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/coordinator-source-inspection.json",
+    "sha256": "b312b177c983a06f38b35c0b3702ff7d6415a37104b80209c84825c1e859ad77"
+  },
+  "helper_sha256": "c012107b04bf5e805a86c7c76a9afd870c72bdd565f85f7550c1545b0b119541",
+  "observed_at_unix_ns": 1794786456273940926,
+  "prepare_first_row_authority": true,
+  "scheduler_suspension": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "d713fc7a1073f7761ee9bbfabc1297be1178262a0799f33b90299e49b19af43d"
+  },
+  "schema": "ROOT-WS116-first-largest256-profile-preparation-authorization-v1",
+  "scientific_execution_released": false,
+  "selected_largest_size": 256,
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-manifest.json",
+    "sha256": "b3048b84f9caecf608300950c5f0c9c69484584fccf993b278c02336c6b47bf1"
+  },
+  "stage_id": "largest-profiles",
+  "window_seconds": 14400
+}

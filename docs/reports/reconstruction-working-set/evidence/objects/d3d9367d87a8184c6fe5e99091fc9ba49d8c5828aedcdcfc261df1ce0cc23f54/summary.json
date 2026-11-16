@@ -1,0 +1,953 @@
+{
+  "protocol": "WS116-fixed-stage-descriptive-v1",
+  "config_sha256": "8a61220a64265b669438e7e54b7491977e9044746a6fc75f86a29caffaec1364",
+  "stage_id": "central64-profiles",
+  "selected_largest_size": null,
+  "expected_stage_rows": [
+    {
+      "serial_index": 1,
+      "stage_id": "central64-profiles",
+      "condition_id": "central64-summary-searched",
+      "repetition": 1,
+      "profile": true,
+      "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+      "launch_nonce": "ws116-gp-c64-summary-searched-r1-p"
+    },
+    {
+      "serial_index": 2,
+      "stage_id": "central64-profiles",
+      "condition_id": "central64-summary-searched",
+      "repetition": 2,
+      "profile": true,
+      "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+      "launch_nonce": "ws116-gp-c64-summary-searched-r2-p"
+    },
+    {
+      "serial_index": 3,
+      "stage_id": "central64-profiles",
+      "condition_id": "central64-summary-searched",
+      "repetition": 3,
+      "profile": true,
+      "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+      "launch_nonce": "ws116-gp-c64-summary-searched-r3-p"
+    },
+    {
+      "serial_index": 4,
+      "stage_id": "central64-profiles",
+      "condition_id": "central64-full-searched",
+      "repetition": 1,
+      "profile": true,
+      "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+      "launch_nonce": "ws116-gp-c64-full-searched-r1-p"
+    },
+    {
+      "serial_index": 5,
+      "stage_id": "central64-profiles",
+      "condition_id": "central64-full-searched",
+      "repetition": 2,
+      "profile": true,
+      "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+      "launch_nonce": "ws116-gp-c64-full-searched-r2-p"
+    },
+    {
+      "serial_index": 6,
+      "stage_id": "central64-profiles",
+      "condition_id": "central64-full-searched",
+      "repetition": 3,
+      "profile": true,
+      "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+      "launch_nonce": "ws116-gp-c64-full-searched-r3-p"
+    }
+  ],
+  "partial_selection_authorized": false,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_hashes": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459"
+  },
+  "source_manifest_sha256": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+  "schema_manifest_sha256": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+  "original_extractor_sha256": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+  "stage_binder_sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+  "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+  "basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+  "missing_stage_recipes": [],
+  "groups": [
+    {
+      "condition_id": "central64-summary-searched",
+      "eligible_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "status": "three_repeat_descriptive_only",
+      "reasons": [],
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 90932,
+          "median": 91156,
+          "max": 91328
+        },
+        "terminal_kernel_bytes": {
+          "min": 93114368,
+          "median": 93343744,
+          "max": 93519872
+        },
+        "call_seconds": {
+          "min": 86.189078312,
+          "median": 86.689723094,
+          "max": 101.231239711
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 87.074599546,
+          "median": 87.236334373,
+          "max": 102.317440558
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 86.92684542,
+          "median": 87.078767502,
+          "max": 102.095231341
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 78909440,
+          "median": 78917632,
+          "max": 78987264
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 93114368,
+          "median": 93343744,
+          "max": 93519872
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 93114368,
+          "median": 93343744,
+          "max": 93519872
+        }
+      }
+    },
+    {
+      "condition_id": "central64-full-searched",
+      "eligible_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "status": "three_repeat_descriptive_only",
+      "reasons": [],
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 112220,
+          "median": 112432,
+          "max": 112636
+        },
+        "terminal_kernel_bytes": {
+          "min": 114913280,
+          "median": 115130368,
+          "max": 115339264
+        },
+        "call_seconds": {
+          "min": 84.735663461,
+          "median": 85.212281825,
+          "max": 87.227443249
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 85.491235199,
+          "median": 85.873687237,
+          "max": 87.802820121
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 85.308712138,
+          "median": 85.73460762,
+          "max": 87.677278924
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 78716928,
+          "median": 78831616,
+          "max": 79122432
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 114651136,
+          "median": 114999296,
+          "max": 115208192
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 114782208,
+          "median": 115130368,
+          "max": 115339264
+        }
+      }
+    }
+  ],
+  "full_summary_pairs": [
+    {
+      "full": "central64-full-searched",
+      "summary": "central64-summary-searched",
+      "repetition": 1,
+      "status": "common_values_match",
+      "mismatches": [],
+      "public_result_fingerprints": "structurally different modes; not compared"
+    },
+    {
+      "full": "central64-full-searched",
+      "summary": "central64-summary-searched",
+      "repetition": 2,
+      "status": "common_values_match",
+      "mismatches": [],
+      "public_result_fingerprints": "structurally different modes; not compared"
+    },
+    {
+      "full": "central64-full-searched",
+      "summary": "central64-summary-searched",
+      "repetition": 3,
+      "status": "common_values_match",
+      "mismatches": [],
+      "public_result_fingerprints": "structurally different modes; not compared"
+    }
+  ],
+  "matched_control_pairs": [
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+      "control_attempt_id": "ws116-central64-summary-searched-r1-u",
+      "repetition": 1,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 90932,
+        "terminal_kernel_bytes": 93114368,
+        "call_seconds": 101.231239711,
+        "spawn_to_terminal_collection_seconds": 102.317440558,
+        "target_start_to_last_snapshot_seconds": 102.095231341,
+        "pre_call_cumulative_self_bytes": 78909440,
+        "call_end_cumulative_self_bytes": 93114368,
+        "post_observation_cumulative_self_bytes": 93114368
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 91060,
+        "terminal_kernel_bytes": 93245440,
+        "call_seconds": 100.715378972,
+        "spawn_to_terminal_collection_seconds": 101.355970863,
+        "target_start_to_last_snapshot_seconds": 101.213666255,
+        "pre_call_cumulative_self_bytes": 78471168,
+        "call_end_cumulative_self_bytes": 93245440,
+        "post_observation_cumulative_self_bytes": 93245440
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r1-u/eligible-boundary.json",
+          "sha256": "7a8f3424ddaa0808262ca18cf9daa24b0f749424f5a24f1afda91e35241726c1"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+          "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 88351650659866,
+          "ru_maxrss_native_KiB": 80900
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 88351650704397,
+          "ru_maxrss_native_KiB": 80900
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 88351654829723,
+          "ru_maxrss_native_KiB": 80900
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 88351686009918,
+          "ru_maxrss_native_KiB": 83352
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 88351688940997,
+          "ru_maxrss_native_KiB": 83352
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 88372728323302,
+          "ru_maxrss_native_KiB": 84340
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 88372728531978,
+          "ru_maxrss_native_KiB": 84340
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 88452859314369,
+          "ru_maxrss_native_KiB": 90932
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 88452864420424,
+          "ru_maxrss_native_KiB": 90932
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 88452867388934,
+          "ru_maxrss_native_KiB": 90932
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+      "control_attempt_id": "ws116-central64-summary-searched-r2-u",
+      "repetition": 2,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 91156,
+        "terminal_kernel_bytes": 93343744,
+        "call_seconds": 86.189078312,
+        "spawn_to_terminal_collection_seconds": 87.074599546,
+        "target_start_to_last_snapshot_seconds": 86.92684542,
+        "pre_call_cumulative_self_bytes": 78917632,
+        "call_end_cumulative_self_bytes": 93343744,
+        "post_observation_cumulative_self_bytes": 93343744
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 91144,
+        "terminal_kernel_bytes": 93331456,
+        "call_seconds": 96.853817634,
+        "spawn_to_terminal_collection_seconds": 97.630381626,
+        "target_start_to_last_snapshot_seconds": 97.393459069,
+        "pre_call_cumulative_self_bytes": 78794752,
+        "call_end_cumulative_self_bytes": 93331456,
+        "post_observation_cumulative_self_bytes": 93331456
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r2-u/eligible-boundary.json",
+          "sha256": "bb629a8ada15b45a4b65b9deb7dbef49bee032535ac2398a5983b0e9311dc339"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+          "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 89969840679962,
+          "ru_maxrss_native_KiB": 80908
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 89969840746499,
+          "ru_maxrss_native_KiB": 80908
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 89969844276624,
+          "ru_maxrss_native_KiB": 80908
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 89969891144382,
+          "ru_maxrss_native_KiB": 83328
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 89969896141864,
+          "ru_maxrss_native_KiB": 83328
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 89989061922755,
+          "ru_maxrss_native_KiB": 84228
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 89989062043637,
+          "ru_maxrss_native_KiB": 84228
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 90056016602855,
+          "ru_maxrss_native_KiB": 91156
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90056017549427,
+          "ru_maxrss_native_KiB": 91156
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90056018649620,
+          "ru_maxrss_native_KiB": 91156
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+      "control_attempt_id": "ws116-central64-summary-searched-r3-u",
+      "repetition": 3,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 91328,
+        "terminal_kernel_bytes": 93519872,
+        "call_seconds": 86.689723094,
+        "spawn_to_terminal_collection_seconds": 87.236334373,
+        "target_start_to_last_snapshot_seconds": 87.078767502,
+        "pre_call_cumulative_self_bytes": 78987264,
+        "call_end_cumulative_self_bytes": 93519872,
+        "post_observation_cumulative_self_bytes": 93519872
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 91448,
+        "terminal_kernel_bytes": 93642752,
+        "call_seconds": 100.399255491,
+        "spawn_to_terminal_collection_seconds": 101.002066928,
+        "target_start_to_last_snapshot_seconds": 100.841882827,
+        "pre_call_cumulative_self_bytes": 78594048,
+        "call_end_cumulative_self_bytes": 93642752,
+        "post_observation_cumulative_self_bytes": 93642752
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r3-u/eligible-boundary.json",
+          "sha256": "a10f875445267408470f1ac877276e109c24c6529f6d45bb4565a3729226de36"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+          "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90060796804525,
+          "ru_maxrss_native_KiB": 80976
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90060796851629,
+          "ru_maxrss_native_KiB": 80976
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90060800389295,
+          "ru_maxrss_native_KiB": 80976
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90060823626836,
+          "ru_maxrss_native_KiB": 83392
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90060827520854,
+          "ru_maxrss_native_KiB": 83392
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90080408290189,
+          "ru_maxrss_native_KiB": 84508
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 90080408412955,
+          "ru_maxrss_native_KiB": 84508
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 90147470535013,
+          "ru_maxrss_native_KiB": 91328
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90147471211463,
+          "ru_maxrss_native_KiB": 91328
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90147472421222,
+          "ru_maxrss_native_KiB": 91328
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+      "control_attempt_id": "ws116-central64-full-searched-r1-u",
+      "repetition": 1,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 112220,
+        "terminal_kernel_bytes": 114913280,
+        "call_seconds": 85.212281825,
+        "spawn_to_terminal_collection_seconds": 85.873687237,
+        "target_start_to_last_snapshot_seconds": 85.73460762,
+        "pre_call_cumulative_self_bytes": 78831616,
+        "call_end_cumulative_self_bytes": 114651136,
+        "post_observation_cumulative_self_bytes": 114782208
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 112328,
+        "terminal_kernel_bytes": 115023872,
+        "call_seconds": 91.615744388,
+        "spawn_to_terminal_collection_seconds": 92.369210942,
+        "target_start_to_last_snapshot_seconds": 92.234659226,
+        "pre_call_cumulative_self_bytes": 78491648,
+        "call_end_cumulative_self_bytes": 114761728,
+        "post_observation_cumulative_self_bytes": 115023872
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r1-u/eligible-boundary.json",
+          "sha256": "8636972ed7995367edfc09dc6ec8285a37777a757d52b4b954787dfe520f9e27"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+          "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90152082048732,
+          "ru_maxrss_native_KiB": 80824
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90152082112417,
+          "ru_maxrss_native_KiB": 80824
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90152086434713,
+          "ru_maxrss_native_KiB": 80824
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90152118566062,
+          "ru_maxrss_native_KiB": 83116
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90152122420234,
+          "ru_maxrss_native_KiB": 83116
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90171071740171,
+          "ru_maxrss_native_KiB": 103616
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 90171071806737,
+          "ru_maxrss_native_KiB": 103616
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 90237280906595,
+          "ru_maxrss_native_KiB": 111964
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90237280958362,
+          "ru_maxrss_native_KiB": 111964
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90237281473307,
+          "ru_maxrss_native_KiB": 111964
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+      "control_attempt_id": "ws116-central64-full-searched-r2-u",
+      "repetition": 2,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 112432,
+        "terminal_kernel_bytes": 115130368,
+        "call_seconds": 87.227443249,
+        "spawn_to_terminal_collection_seconds": 87.802820121,
+        "target_start_to_last_snapshot_seconds": 87.677278924,
+        "pre_call_cumulative_self_bytes": 78716928,
+        "call_end_cumulative_self_bytes": 114999296,
+        "post_observation_cumulative_self_bytes": 115130368
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 112676,
+        "terminal_kernel_bytes": 115380224,
+        "call_seconds": 84.474330277,
+        "spawn_to_terminal_collection_seconds": 85.079462462,
+        "target_start_to_last_snapshot_seconds": 84.922503567,
+        "pre_call_cumulative_self_bytes": 78737408,
+        "call_end_cumulative_self_bytes": 115249152,
+        "post_observation_cumulative_self_bytes": 115380224
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r2-u/eligible-boundary.json",
+          "sha256": "03d529e9dae615b76a7497c4efbffe3a57d14466a6a60837349c28dff5bf8e14"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+          "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90243179206052,
+          "ru_maxrss_native_KiB": 80712
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90243179272498,
+          "ru_maxrss_native_KiB": 80712
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90243183443684,
+          "ru_maxrss_native_KiB": 80712
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90243212221602,
+          "ru_maxrss_native_KiB": 83160
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90243215424236,
+          "ru_maxrss_native_KiB": 83160
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90263638585871,
+          "ru_maxrss_native_KiB": 103388
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 90263638803169,
+          "ru_maxrss_native_KiB": 103388
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 90330400240818,
+          "ru_maxrss_native_KiB": 112304
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90330400388899,
+          "ru_maxrss_native_KiB": 112304
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90330400645199,
+          "ru_maxrss_native_KiB": 112304
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+      "control_attempt_id": "ws116-central64-full-searched-r3-u",
+      "repetition": 3,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 112636,
+        "terminal_kernel_bytes": 115339264,
+        "call_seconds": 84.735663461,
+        "spawn_to_terminal_collection_seconds": 85.491235199,
+        "target_start_to_last_snapshot_seconds": 85.308712138,
+        "pre_call_cumulative_self_bytes": 79122432,
+        "call_end_cumulative_self_bytes": 115208192,
+        "post_observation_cumulative_self_bytes": 115339264
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 112456,
+        "terminal_kernel_bytes": 115154944,
+        "call_seconds": 83.741650305,
+        "spawn_to_terminal_collection_seconds": 84.542248724,
+        "target_start_to_last_snapshot_seconds": 84.398751319,
+        "pre_call_cumulative_self_bytes": 79077376,
+        "call_end_cumulative_self_bytes": 114892800,
+        "post_observation_cumulative_self_bytes": 115154944
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r3-u/eligible-boundary.json",
+          "sha256": "86708bc7fd40c15999071b09b6bb01a7bf81fd7832d2f3be392880f0295bc681"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+          "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90334944189409,
+          "ru_maxrss_native_KiB": 81108
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90334944239181,
+          "ru_maxrss_native_KiB": 81108
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90334948443698,
+          "ru_maxrss_native_KiB": 81108
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90334971446303,
+          "ru_maxrss_native_KiB": 83536
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90334974555734,
+          "ru_maxrss_native_KiB": 83536
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90354491589383,
+          "ru_maxrss_native_KiB": 104024
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 90354491699439,
+          "ru_maxrss_native_KiB": 104024
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 90419669783056,
+          "ru_maxrss_native_KiB": 112508
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 90419670151406,
+          "ru_maxrss_native_KiB": 112508
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 90419670738439,
+          "ru_maxrss_native_KiB": 112508
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    }
+  ],
+  "fixed_stage_descriptive_complete": true,
+  "final_scientific_acceptance": false,
+  "initial60_scope": "original f6 dataset unchanged; only explicit exact controls reread here, never counted as new stage repetitions",
+  "referenced_evidence_audit_valid": true,
+  "historical_rm84_inventory": [
+    {
+      "availability": "available",
+      "evidence": [
+        {
+          "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/contracts/reconstruction-memory-v1.md",
+          "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a"
+        },
+        {
+          "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/tasks/reconstruction-memory.md",
+          "sha256": "eaf33f1318799cf7f31a856e803f8fef515324e2c7a0938911361737bd5e2473"
+        },
+        {
+          "path": "/workspace/work/issue-116/tests/reconstruction_summary_fixture.py",
+          "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+        },
+        {
+          "path": "/workspace/work/issue-116/tests/reconstruction_memory_benchmark.py",
+          "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+        }
+      ],
+      "phase": "historical",
+      "reason": "Original public-main RM84 tracked contract/task/fixture/value benchmark preserved; no rerun or alternate private branch baseline",
+      "state": "excluded_never_pooled",
+      "evidence_errors": []
+    },
+    {
+      "availability": "unknown",
+      "phase": "historical",
+      "reason": "Historical RM84 task names artifacts/rm84/current-state.md; artifacts/rm84 unavailable in issue116 worktree at this inventory. Other locations not asserted absent; original run receipts/measurements unknown here.",
+      "state": "declared_historical_unknown_or_unavailable",
+      "evidence_errors": []
+    }
+  ],
+  "scope": "kernel terminal/self snapshots distinct; exec retention UNKNOWN; no subtraction, aggregate tree peak, isolated workflow allocation or measured contributor ranking",
+  "analysis_success": true,
+  "status": "descriptive_complete_audit_valid_pending_scientific_review"
+}

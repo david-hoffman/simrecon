@@ -1,0 +1,589 @@
+{
+  "protocol": "WS116-Q5-tiny-vectors-v1",
+  "scope": "Frozen literal tiny canonical bytes, shapes, encodings, layout and finite expectations; no workflow or scientific input/reference pair. f16 zero-only representation avoids inventing cross-platform nonzero extended-float padding semantics.",
+  "chunk_bytes": [
+    16,
+    31,
+    64
+  ],
+  "vectors": [
+    {
+      "id": "width-b1",
+      "name": "tiny.width-b1",
+      "dtype": "|b1",
+      "backing_hex": "0001",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "|b1",
+      "expected_canonical_hex": "0001",
+      "expected_finite": true
+    },
+    {
+      "id": "width-i1",
+      "name": "tiny.width-i1",
+      "dtype": "|i1",
+      "backing_hex": "ff01",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "|i1",
+      "expected_canonical_hex": "ff01",
+      "expected_finite": true
+    },
+    {
+      "id": "width-u1",
+      "name": "tiny.width-u1",
+      "dtype": "|u1",
+      "backing_hex": "0001",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "|u1",
+      "expected_canonical_hex": "0001",
+      "expected_finite": true
+    },
+    {
+      "id": "width-i2",
+      "name": "tiny.width-i2",
+      "dtype": "<i2",
+      "backing_hex": "ffff0100",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<i2",
+      "expected_canonical_hex": "ffff0100",
+      "expected_finite": true
+    },
+    {
+      "id": "width-i4",
+      "name": "tiny.width-i4",
+      "dtype": "<i4",
+      "backing_hex": "ffffffff01000000",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<i4",
+      "expected_canonical_hex": "ffffffff01000000",
+      "expected_finite": true
+    },
+    {
+      "id": "width-i8",
+      "name": "tiny.width-i8",
+      "dtype": "<i8",
+      "backing_hex": "ffffffffffffffff0100000000000000",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<i8",
+      "expected_canonical_hex": "ffffffffffffffff0100000000000000",
+      "expected_finite": true
+    },
+    {
+      "id": "width-u2",
+      "name": "tiny.width-u2",
+      "dtype": "<u2",
+      "backing_hex": "00000100",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<u2",
+      "expected_canonical_hex": "00000100",
+      "expected_finite": true
+    },
+    {
+      "id": "width-u4",
+      "name": "tiny.width-u4",
+      "dtype": "<u4",
+      "backing_hex": "0000000001000000",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<u4",
+      "expected_canonical_hex": "0000000001000000",
+      "expected_finite": true
+    },
+    {
+      "id": "width-u8",
+      "name": "tiny.width-u8",
+      "dtype": "<u8",
+      "backing_hex": "00000000000000000100000000000000",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<u8",
+      "expected_canonical_hex": "00000000000000000100000000000000",
+      "expected_finite": true
+    },
+    {
+      "id": "width-f2",
+      "name": "tiny.width-f2",
+      "dtype": "<f2",
+      "backing_hex": "0080003c",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<f2",
+      "expected_canonical_hex": "0080003c",
+      "expected_finite": true
+    },
+    {
+      "id": "width-f4",
+      "name": "tiny.width-f4",
+      "dtype": "<f4",
+      "backing_hex": "000000800000803f",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<f4",
+      "expected_canonical_hex": "000000800000803f",
+      "expected_finite": true
+    },
+    {
+      "id": "width-f8",
+      "name": "tiny.width-f8",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000080000000000000f03f",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000000080000000000000f03f",
+      "expected_finite": true
+    },
+    {
+      "id": "width-f16",
+      "name": "tiny.width-f16",
+      "dtype": "<f16",
+      "backing_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+      "backing_shape": [
+        2
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2
+      ],
+      "expected_dtype": "<f16",
+      "expected_canonical_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_finite": true
+    },
+    {
+      "id": "width-c8",
+      "name": "tiny.width-c8",
+      "dtype": "<c8",
+      "backing_hex": "0000803f00000040",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<c8",
+      "expected_canonical_hex": "0000803f00000040",
+      "expected_finite": true
+    },
+    {
+      "id": "width-c16",
+      "name": "tiny.width-c16",
+      "dtype": "<c16",
+      "backing_hex": "000000000000f03f0000000000000040",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<c16",
+      "expected_canonical_hex": "000000000000f03f0000000000000040",
+      "expected_finite": true
+    },
+    {
+      "id": "scalar-0d",
+      "name": "tiny.scalar-0d",
+      "dtype": "<f8",
+      "backing_hex": "000000000000f03f",
+      "backing_shape": [],
+      "mode": "direct",
+      "expected_shape": [],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "000000000000f03f",
+      "expected_finite": true
+    },
+    {
+      "id": "numpy-scalar",
+      "name": "tiny.numpy-scalar",
+      "dtype": "<f8",
+      "backing_hex": "000000000000f03f",
+      "backing_shape": [],
+      "mode": "numpy_scalar",
+      "expected_shape": [],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "000000000000f03f",
+      "expected_finite": true
+    },
+    {
+      "id": "grid-C",
+      "name": "tiny.grid-C",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "backing_shape": [
+        2,
+        3
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2,
+        3
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "expected_finite": true
+    },
+    {
+      "id": "grid-F",
+      "name": "tiny.grid-F",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "backing_shape": [
+        2,
+        3
+      ],
+      "mode": "fortran",
+      "expected_shape": [
+        2,
+        3
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "expected_finite": true,
+      "expected_c_contiguous": false,
+      "expected_f_contiguous": true
+    },
+    {
+      "id": "positive-stride",
+      "name": "tiny.positive-stride",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "backing_shape": [
+        6
+      ],
+      "mode": "positive_stride",
+      "expected_shape": [
+        3
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "000000000000000000000000000000400000000000001040",
+      "expected_finite": true,
+      "expected_stride_sign": 1
+    },
+    {
+      "id": "negative-stride",
+      "name": "tiny.negative-stride",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "backing_shape": [
+        6
+      ],
+      "mode": "negative_stride",
+      "expected_shape": [
+        6
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000001440000000000000104000000000000008400000000000000040000000000000f03f0000000000000000",
+      "expected_finite": true,
+      "expected_stride_sign": -1
+    },
+    {
+      "id": "grid-big-endian",
+      "name": "tiny.grid-big-endian",
+      "dtype": ">f8",
+      "backing_hex": "00000000000000003ff00000000000004000000000000000400800000000000040100000000000004014000000000000",
+      "backing_shape": [
+        2,
+        3
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        2,
+        3
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "expected_finite": true
+    },
+    {
+      "id": "complex-big-endian",
+      "name": "tiny.complex-big-endian",
+      "dtype": ">c16",
+      "backing_hex": "3ff00000000000004000000000000000",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<c16",
+      "expected_canonical_hex": "000000000000f03f0000000000000040",
+      "expected_finite": true
+    },
+    {
+      "id": "empty-0x3",
+      "name": "tiny.empty-0x3",
+      "dtype": "<f8",
+      "backing_hex": "",
+      "backing_shape": [
+        0,
+        3
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        0,
+        3
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "",
+      "expected_finite": true
+    },
+    {
+      "id": "empty-0x4",
+      "name": "tiny.empty-0x4",
+      "dtype": "<f8",
+      "backing_hex": "",
+      "backing_shape": [
+        0,
+        4
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        0,
+        4
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "",
+      "expected_finite": true
+    },
+    {
+      "id": "grid-row",
+      "name": "tiny.grid-row",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "backing_shape": [
+        1,
+        6
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1,
+        6
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000000000000000000000f03f0000000000000040000000000000084000000000000010400000000000001440",
+      "expected_finite": true
+    },
+    {
+      "id": "negative-zero",
+      "name": "tiny.negative-zero",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000080",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000000080",
+      "expected_finite": true
+    },
+    {
+      "id": "positive-zero",
+      "name": "tiny.positive-zero",
+      "dtype": "<f8",
+      "backing_hex": "0000000000000000",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "0000000000000000",
+      "expected_finite": true
+    },
+    {
+      "id": "nan",
+      "name": "tiny.nan",
+      "dtype": "<f8",
+      "backing_hex": "000000000000f87f",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "000000000000f87f",
+      "expected_finite": false
+    },
+    {
+      "id": "positive-infinity",
+      "name": "tiny.positive-infinity",
+      "dtype": "<f8",
+      "backing_hex": "000000000000f07f",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "000000000000f07f",
+      "expected_finite": false
+    },
+    {
+      "id": "negative-infinity",
+      "name": "tiny.negative-infinity",
+      "dtype": "<f8",
+      "backing_hex": "000000000000f0ff",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<f8",
+      "expected_canonical_hex": "000000000000f0ff",
+      "expected_finite": false
+    },
+    {
+      "id": "complex-nan",
+      "name": "tiny.complex-nan",
+      "dtype": "<c16",
+      "backing_hex": "000000000000f87f000000000000f03f",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<c16",
+      "expected_canonical_hex": "000000000000f87f000000000000f03f",
+      "expected_finite": false
+    },
+    {
+      "id": "complex-infinity",
+      "name": "tiny.complex-infinity",
+      "dtype": "<c16",
+      "backing_hex": "000000000000f03f000000000000f07f",
+      "backing_shape": [
+        1
+      ],
+      "mode": "direct",
+      "expected_shape": [
+        1
+      ],
+      "expected_dtype": "<c16",
+      "expected_canonical_hex": "000000000000f03f000000000000f07f",
+      "expected_finite": false
+    }
+  ],
+  "public_relations": [
+    {
+      "left": "grid-C",
+      "right": "grid-F",
+      "public_hash_equal": true
+    },
+    {
+      "left": "grid-C",
+      "right": "grid-big-endian",
+      "public_hash_equal": true
+    },
+    {
+      "left": "width-c16",
+      "right": "complex-big-endian",
+      "public_hash_equal": true
+    },
+    {
+      "left": "scalar-0d",
+      "right": "numpy-scalar",
+      "public_hash_equal": false
+    },
+    {
+      "left": "negative-zero",
+      "right": "positive-zero",
+      "public_hash_equal": false
+    },
+    {
+      "left": "grid-C",
+      "right": "grid-row",
+      "public_hash_equal": false
+    },
+    {
+      "left": "width-b1",
+      "right": "width-u1",
+      "public_hash_equal": false
+    },
+    {
+      "left": "empty-0x3",
+      "right": "empty-0x4",
+      "public_hash_equal": false
+    }
+  ]
+}

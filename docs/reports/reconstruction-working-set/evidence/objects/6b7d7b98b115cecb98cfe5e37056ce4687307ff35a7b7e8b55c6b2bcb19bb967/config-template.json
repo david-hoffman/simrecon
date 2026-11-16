@@ -1,0 +1,22 @@
+{
+  "protocol": "WS116-fixed-stage-report-v1",
+  "root_analysis_approved": false,
+  "data_window_closed": false,
+  "analysis_scope": "one_fixed_stage",
+  "source_manifest_sha256": null,
+  "schema_manifest_sha256": null,
+  "original_extractor_sha256": null,
+  "stage_binder_sha256": null,
+  "table_sha256": null,
+  "basis_sha256": null,
+  "stage_id": null,
+  "selected_largest_size": null,
+  "allow_partial_selection": false,
+  "stage_selection": null,
+  "control_selection": null,
+  "excluded_records": null,
+  "historical_rm84_inventory": null,
+  "allowed_evidence_roots": null,
+  "protected_output_roots": null,
+  "output_root": null
+}

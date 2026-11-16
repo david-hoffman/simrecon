@@ -1,0 +1,94 @@
+{
+  "schema": "WS116-searched3-closure-selector-source-readiness-check-v1",
+  "status": "SOURCE_READY_FUTURE_LATEBINDING_REQUIRED_HOLD",
+  "static_admission_nested_JSON_refs_exact_plan_and_roots_covered": 8,
+  "optional_descriptive_ref": "ABSENT; future optional ref must be hash-only and exact-file-root-covered if added",
+  "prior4_direct_nested_path_audit": [
+    {
+      "closure": {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+        "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+      },
+      "terminal_receipt_refs": 61,
+      "boundary_refs": 60,
+      "stored_last_metadata_root_covered": true,
+      "all_direct_canonical940_nested_paths_root_covered": true,
+      "raw_referenced_contents_not_opened": true
+    },
+    {
+      "closure": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+        "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+      },
+      "terminal_receipt_refs": 6,
+      "boundary_refs": 6,
+      "stored_last_metadata_root_covered": true,
+      "all_direct_canonical940_nested_paths_root_covered": true,
+      "raw_referenced_contents_not_opened": true
+    },
+    {
+      "closure": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+        "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+      },
+      "terminal_receipt_refs": 6,
+      "boundary_refs": 6,
+      "stored_last_metadata_root_covered": true,
+      "all_direct_canonical940_nested_paths_root_covered": true,
+      "raw_referenced_contents_not_opened": true
+    },
+    {
+      "closure": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+        "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+      },
+      "terminal_receipt_refs": 3,
+      "boundary_refs": 3,
+      "stored_last_metadata_root_covered": true,
+      "all_direct_canonical940_nested_paths_root_covered": true,
+      "raw_referenced_contents_not_opened": true
+    }
+  ],
+  "closure_scope": [
+    "ROOT terminal74202 actualtoolreceipt+attestation/authorizedrelease required before helper; currently UNKNOWN and unexecuted.",
+    "33raw streamhash/6exactstoredownerbirthFDs/3searched1group/recordedproofs5s+3720/finite source/software/core/branch fingerprints gates retained.",
+    "Source35/git checks pre-row only; ROOT must postcheck35/HEAD/tree/tracked/FULLstatus/helpermanifest. FULLstatus must equal actual expected raw inventory, never an empty-status assertion.",
+    "Whole-controller closure and explicit oldwindowend are separate; standalone helper cannot endwindow or certify later physicalcontext."
+  ],
+  "future_exact_freeze_requirements": [
+    "After ROOTwholeclosed grant: independent smallraw+proof/source/control/sixownerFD audit and eight sorted triplets without statisticsmodule; large samplecontent may rely explicit ROOTstreamattestation.",
+    "Bind all3 actual boundarySHA+42supportSHA and exact continuation7ebe pointer; retain first5f/SAMEd1b/prior4. No partial3rep pooling.",
+    "Append classified nonpooled wholeclosure/controllerterminal+release/windowend/ROOTpostsource/fullstatus/coorind8/closedfileaudit refs and observednewdiagnostics. New filenames outside roots need EXACTFILE allowpaths, not entire currentanalysis/outputdir.",
+    "Reaudit final actual selector direct+nested canonical940 readpaths: stageadmission priorJSONs, priorclosure receipts/boundaries/lastmetadata, support captureproofresource-domain and inherited exclusions. Preserve protectedoutput/newoutputabsence/15sourcepins.",
+    "Canonical940 audits stored rows/context but does not independently establish currentstage controller wholeclosure or exact original-proof-horizon final-checktime. ROOTstandaloneclosure/window/postaudit/indfileaudit provide distinct evidence. run_attempt admission is initial-only.",
+    "No future acceptance invented; separate ROOT flagsrelease after finalclosed freeze. Final scientificreport acceptance still pending."
+  ],
+  "read_scope": "Frozen source/selector/plan/d1b and four historicalclosed-stage JSON reference inventories only. No active74202/R2R3raw/batch/proof/status/PIDFD/currentcontext or partialdata read. No target/source import/AST/test/native/program invocation. Bounded text/JSON/filehash only.",
+  "findings": {
+    "blocking_static": [],
+    "pending_dynamic": "All3boundary/42supports remain null by design; future closure/terminal/window/poststatus/ind8 refs not populated or authorized."
+  },
+  "preservation": "Original selector/plan/closure5fe0 unchanged. Prior tool output truncations handled with bounded source/exactfieldchecks; no wholelargeconfigvisual claim.",
+  "authoring_failure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-source-readiness-writing-failure.json",
+    "sha256": "493a0dbe5d10ce950186d35627b824aef01ffdab31787e73b44682994c7f355d"
+  },
+  "frozen_source_refs": {
+    "closure_helper": {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/root-close-fullsearched256-stage.py",
+      "sha256": "5fe0f43bf6a84bc6f20710f003fdf8bcc5e9e905bc663c560d913a5a2faa25c6"
+    },
+    "draft": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/config-fullsearched256-UNAUTHORIZED-DRAFT.json",
+      "sha256": "c8fa9331e1a41912ecae693fa7387372c067d9546e1011a78da894ee35cf68ab"
+    },
+    "latebinding_plan": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/source-latebinding-plan.json",
+      "sha256": "53623b7d10be2d6f3a6a25e6e201cc128905e377e25d3d22f9b4fbb50aca25d7"
+    },
+    "canonical940": {
+      "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py",
+      "sha256": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97"
+    }
+  }
+}

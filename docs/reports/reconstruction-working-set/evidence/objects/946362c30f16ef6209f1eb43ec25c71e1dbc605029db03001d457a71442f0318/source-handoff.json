@@ -1,0 +1,235 @@
+{
+  "protocol": "WS116-final-report-author-handoff-v1",
+  "status": "SOURCE_READY_HOLD_FOR_SCIENTIFIC_REVIEW_AND_ROOT_INTEGRATION",
+  "role": "same nonblind investigator; no delegation",
+  "packet": {
+    "path": "/workspace/work/campaign/evidence/116/sourceprep44-packet.md",
+    "sha256": "55fa4a29cf1ad130e00faaeeeb7d1d7aebe946a8b8a375e670821bab1a098bba"
+  },
+  "artifact_inventory": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+      "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/analysis/attempt-ledger.json",
+      "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/phase-expression-lifetime.md",
+      "sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/native-harmonic-scratch.md",
+      "sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/compact-overlap-working-lifetime.md",
+      "sha256": "fc86d15c180a947a5d9e330236d256afde827ddf8982f6da05ec3cc694dc4955"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/time-aggregation.md",
+      "sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/full-diagnostic-retention-ownership.md",
+      "sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+      "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/integration-notes.md",
+      "sha256": "16d34b43ab70341e1b009f57a52c4e7d1b7fd4a9eb1b9967ee3d73ab62807c76"
+    }
+  ],
+  "self": {
+    "path": "/workspace/work/campaign/evidence/116/final-report-source/source-handoff.json",
+    "sha256": null,
+    "scope": "Self digest supplied externally to coordinator after write; no impossible self-hash"
+  },
+  "complete_packet_files": [
+    "README.md",
+    "analysis/attempt-ledger.json",
+    "handoffs/phase-expression-lifetime.md",
+    "handoffs/native-harmonic-scratch.md",
+    "handoffs/compact-overlap-working-lifetime.md",
+    "handoffs/time-aggregation.md",
+    "handoffs/full-diagnostic-retention-ownership.md",
+    "input-references.json",
+    "integration-notes.md",
+    "source-handoff.json"
+  ],
+  "metric_source": {
+    "final_primary": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6"
+    },
+    "scope": "All30 peak/call triplets copied as existing strings from seven canonical CSVs; all eight metrics remain in primary outputs. No new statistics, ratios, conversions, plots or raw sample scan."
+  },
+  "observed_claims": [
+    "90 eligible fresh-process science observations in30 exact triples,78 unprofiled plus12 profiles; one older failed tracked workflow excluded, controls referenced rather than counted again.",
+    "Largest completed tested lateral size256 for declared native T1 D3 Z8 summary/full supplied/searched, plus searched profiles in each mode. No size>256 admitted or originaltarget execution.",
+    "Actual per-mode same-repetition profile controls match input/common/public/branches. Cross-mode comparisons use input/common/branches, not full graph equivalence.",
+    "Representative largest R1 cumulative profile endpoints associate later high-water with reconstruction; no isolated stage allocation or measured mechanism saving.",
+    "Full256 call times lower than summary in recorded cohort are preserved rather than suppressed."
+  ],
+  "source_derived_claims": [
+    "Corrected337a CE06 per-plane preparation; _finish_owned returns same private backing while owned event captures copy independently.",
+    "All-T prepared q retained for full time loop; compact bands dropped before concat; distinct per-time intermediates and output backings.",
+    "Full searched nine overlaps/27backings vs supplied six/18; explicit scratch/FFT/phase/output live intervals and source literal bytes, not measured peaks.",
+    "Accepted115 representation does not admit original target; source float32-caller+snapshot+c128-q32,227,983,360B lower subset before other costs, target unmeasured."
+  ],
+  "ranked_recommendations": [
+    {
+      "rank": 1,
+      "path": "handoffs/phase-expression-lifetime.md",
+      "confidence": "medium; source/association only, benefit unmeasured"
+    },
+    {
+      "rank": 2,
+      "path": "handoffs/native-harmonic-scratch.md",
+      "confidence": "medium lifetime; low terminal-peak benefit confidence"
+    },
+    {
+      "rank": 3,
+      "path": "handoffs/compact-overlap-working-lifetime.md",
+      "confidence": "low peak benefit; estimation may not set peak"
+    },
+    {
+      "rank": 4,
+      "path": "handoffs/time-aggregation.md",
+      "confidence": "low; T4 peak unlocalized and preallocation can lengthen lifetime"
+    },
+    {
+      "rank": 5,
+      "path": "handoffs/full-diagnostic-retention-ownership.md",
+      "confidence": "deferred; public independence/diagnostic semantics must remain"
+    }
+  ],
+  "obligations": {
+    "W01": {
+      "artifacts": [
+        "README.md#reproduction-and-evidence-interpretation",
+        "input-references.json",
+        "analysis/attempt-ledger.json"
+      ],
+      "scope": "Original candidate35/source/config/command/environment/boundary/raw references retained; exact ROOT portable map and docs-only candidate transition pending."
+    },
+    "W02": {
+      "artifacts": [
+        "README.md#source-derived-live-intervals-and-backing-payloads",
+        "handoffs/",
+        "integration-notes.md"
+      ],
+      "external_exact_liveness": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c",
+      "scope": "Backing/source intervals distinguished from measured/native unknowns. Integrate exact corrected337a after review."
+    },
+    "W03": {
+      "artifacts": [
+        "README.md#literal-three-repeat-results",
+        "analysis/attempt-ledger.json"
+      ],
+      "scope": "All declared primary comparisons/triples literal. No pooling, summary/full public graph equivalence or causal timing inference."
+    },
+    "W04": {
+      "artifacts": [
+        "README.md#workloads-and-scientific-comparisons",
+        "input-references.json",
+        "analysis/attempt-ledger.json"
+      ],
+      "scope": "Frozen native2D/off1/off2/between/within cases and selectedfull witnesses finite/branch/value records; no full scientific recovery or exhaustive Cartesian claim."
+    },
+    "W05": {
+      "artifacts": [
+        "README.md#stage-association-and-observer-meaning",
+        "README.md#failures-historical-evidence-and-limits"
+      ],
+      "scope": "Central/largest profile-control triples retained with explicit scalar hook coverage, cumulative/native/sample/self/observer separation and physical perturbation limits."
+    },
+    "W06": {
+      "artifacts": [
+        "README.md#growth-stopping-envelope-and-context",
+        "analysis/attempt-ledger.json"
+      ],
+      "scope": "Actual192/256/full/profile closure refs;256 only largest completed tested, nextdimension declaration absent/unadmitted; originaltarget unadmitted."
+    },
+    "W07": {
+      "artifacts": [
+        "README.md#source-derived-live-intervals-and-backing-payloads",
+        "input-references.json"
+      ],
+      "scope": "Actual detectorf32/mathf64/c128 policy, roots/aliases/bytes separate; lowerprecision only prediction, no executed path or numerical tolerance change."
+    },
+    "W08": {
+      "artifacts": [
+        "README.md#findings-and-next-work",
+        "handoffs/"
+      ],
+      "scope": "Five complete individual scoped ranked handoffs with evidence strength, bounded logical opportunity/unknown benefit, invariants/risks/interactions and proposed public/resource acceptance. No repair commissioned;117/118 refresh before119/120."
+    },
+    "W09": {
+      "artifacts": [
+        "integration-notes.md#required-final-review-and-gate"
+      ],
+      "scope": "PENDING applicable final independent scientific assessment, ROOT integration/full candidate gate and fresh post-gate acceptance. No existing review or delivery actor used as a scientific oracle."
+    }
+  },
+  "required_limits": [
+    "Kernel wait4 direct-child high-water through exit differs from target cumulative self snapshots, sampledRSS, stage cumulative high-water and parent observer usage.",
+    "Inherited/pre-exec/exec high-water retention unresolved; samePID not all-bootstrap-peak guarantee.",
+    "MissingRSS causes unknown; ABSENT/null/0 distinct; no true child finish timestamp; collection/lastsnapshot/call times different.",
+    "No baseline subtraction, process-tree aggregate, isolated observer cost, native FFT attribution, process budget, recovery or general16GiB/originaltarget success promise.",
+    "Source payload is not resident allocation share or demonstrated optimization saving; ranking is bounded judgment with uncertainty.",
+    "Original RM84 public source available; old numerical run receipts unknown/unavailable HERE; no alternative private baseline."
+  ],
+  "integration": {
+    "target": "docs/reports/reconstruction-working-set/",
+    "ea_material35_unchanged": true,
+    "author_changed_target_or_current": false,
+    "corrected_liveness_pending_copy": "analysis/liveness-draft.md <- exact337a",
+    "portable_map": {
+      "status": "PENDING ROOT exact filename/full digest/final integration",
+      "known_prefixes_only": [
+        "28565c32",
+        "76ed"
+      ]
+    },
+    "sample_transport": {
+      "manifest_sha256": "85cc0b68e42089d2d8d22e031fa1720676a49fa30ed09bcb571ffd57f4937f91",
+      "scope": "Root records91 lossless verifications; author44 no Sample bulk reread",
+      "destination": "evidence/samples-gzip/<id>/samples.jsonl.gz",
+      "original_raw_inventory": "exact11 original restored files"
+    }
+  },
+  "validation": {
+    "source44_numerical_or_workflow_execution": false,
+    "statistic_recomputation": false,
+    "interpreter_import_AST_lint_test_native_probe": false,
+    "target_or_EA_or_Current_edit": false,
+    "delegation": false,
+    "commits_push_publication": false,
+    "checks_performed": "Inert CLOSED text/JSON projections, source text inspection and SHA256 file identity reads only; generated narrative reviewed as text. No new checker/test/canonical program invoked.",
+    "final_scientific_acceptance": false,
+    "final_Ubuntu_gate": "PENDING",
+    "post_gate_acceptance": "PENDING"
+  },
+  "accounting": {
+    "source_preparations": 44,
+    "author_executions": 9,
+    "total_author_role_events": 53,
+    "original_launches": 1,
+    "requested_model_effort": "same original Sol/high",
+    "actual_serving_attribution": null,
+    "tokens": null,
+    "cost": null,
+    "unrecorded_elapsed": null,
+    "prior_attempts_bytes_failures_charges": "PRESERVED; actual stage/operational/other-actor accounting separate"
+  },
+  "authoring_diagnostics": [
+    "Source44 own file-transport diagnostics: oversized combined display truncated; whole initial60 per-process projection was oversized and guarded against use; overbroad JSON projection returned warning-prefixed truncated text and JSON.parse refused; initialdraft/input-references.json did not exist; two guessed basis/environment filenames did not exist then exact named paths were found. No target code ran or data changed. Corrections used bounded closed text projections. Missing guessed filenames are author transport errors, not missing required primary evidence."
+  ],
+  "owned_processes": "No process launched or retained by source44. Existing ROOT closures are historical input evidence, not new author process observations.",
+  "disposition": "HOLD. Coordinator/ROOT independently inspect this exact packet, route applicable scientific review/integration/gate. No additional execution or integration by investigator."
+}

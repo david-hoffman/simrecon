@@ -1,0 +1,11 @@
+--- final-report-source/handoffs/compact-overlap-working-lifetime.md
++++ report-routing-wording-correction/compact-overlap-working-lifetime.md
+@@ -18,7 +18,7 @@
+ 
+ ## Dependencies and ranking
+ 
+-Rank3 is conditional: clear compact ownership opportunities exist, but the observed summary high-water is later. First establish exact last consumer on the eventual accepted base and measure estimation interval plus whole-process peak. It interacts with future search changes/#118 and full-retention semantics; a changed search branch/evaluation sequence needs renewed scientific review, not reuse of these observations.
++Rank3 is conditional: clear compact ownership opportunities exist, but the observed summary high-water is later. First establish exact last consumer on the eventual accepted base and measure estimation interval plus whole-process peak. This completed-refinement/working-overlap release maps to #117; #118 covers preparation and harmonic scratch (rank2). Rank1 informs #120 assembly; prepared-q/all-T liveness and the original-target lower bound inform #119 storage. These are routing references, not claims of accepted changes or implementation authority. It also interacts with full-retention semantics; a changed search branch/evaluation sequence needs renewed scientific review, not reuse of these observations.
+ 
+ ## Acceptance and reuse boundary
+ 

@@ -1,0 +1,234 @@
+{
+  "discovery_command": {
+    "argv": [
+      "rg",
+      "--files",
+      "/workspace/work/campaign/evidence/113",
+      "-g",
+      "root-*-activation-a1.json"
+    ],
+    "returncode": 0,
+    "scope": "Filename-only fixed root activation pattern; only matching requested nine hashes supplied"
+  },
+  "files": [
+    {
+      "kind": "historical operational or synthetic source bytes; no new science",
+      "logical_bytes": 11231,
+      "path": "/workspace/work/campaign/evidence/113/typing-init-controller-2.py",
+      "sha256": "cc6efe9afec035e57fa27369e5047e9cebfbf6f07ce8d976eb77dd93537bf9bf"
+    },
+    {
+      "kind": "historical operational or synthetic source bytes; no new science",
+      "logical_bytes": 3766,
+      "path": "/workspace/work/campaign/evidence/113/typing-init-cases-2.py",
+      "sha256": "19bf2c10d06bf0308cb7ff864c715d685cdad0fdb7ec8840a0ffd74a85caac47"
+    },
+    {
+      "kind": "historical operational or synthetic source bytes; no new science",
+      "logical_bytes": 48702,
+      "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/source-a1-before-diagnostic-a2/focused_stage_guards.py",
+      "sha256": "d32dd60cec31c55e9734cd0a560d22bd03f0ea646ab8562f5010775dffa212d0"
+    },
+    {
+      "kind": "historical operational or synthetic source bytes; no new science",
+      "logical_bytes": 50971,
+      "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/source-a2-before-median-init-a3/focused_stage_guards.py",
+      "sha256": "cd1084b5cd6b229cca6be4c6d246720f8ff76dff27cd5760761b646906255b96"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1413,
+      "path": "/workspace/work/campaign/evidence/113/root-init-exit0-activation-a1.json",
+      "sha256": "9285d037716015481c2c96e748964b3711feeec4d6dc7b40cdd3b09311b71fa3"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1413,
+      "path": "/workspace/work/campaign/evidence/113/root-init-exit7-activation-a1.json",
+      "sha256": "3e76f011b5c3cdca76237f1336fa6efc1d94c81acd88aa8aa59ad8eadc0ac6c9"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1422,
+      "path": "/workspace/work/campaign/evidence/113/root-init-adoption-activation-a1.json",
+      "sha256": "30b4b6334386fa7de0a5e403f30797559bacfb46d69610ad32f6dcae60527796"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1434,
+      "path": "/workspace/work/campaign/evidence/113/root-init-typing-valid-activation-a1.json",
+      "sha256": "95b925b0b930db03d442f9fc9745734f746ca36754e592b5c208127327d9c843"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1440,
+      "path": "/workspace/work/campaign/evidence/113/root-init-typing-invalid-activation-a1.json",
+      "sha256": "b176409a9dc3d7f24a0471e9fea79c76b3c693f83fafa534ba538e37df5a458c"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1437,
+      "path": "/workspace/work/campaign/evidence/113/root-g1-guard-normal-activation-a1.json",
+      "sha256": "0ffc6f79a653dfcd00114135649ff0794d1ae3b69bfbf256ec13f008102e84d3"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1443,
+      "path": "/workspace/work/campaign/evidence/113/root-g1-guard-unusable-activation-a1.json",
+      "sha256": "5ec62e69fcb60730f9228e6cc2cb552d180028e678af83ff108d7ca42566ce94"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1461,
+      "path": "/workspace/work/campaign/evidence/113/root-g1-guard-install-denied-activation-a1.json",
+      "sha256": "b3b25738ce22af50fdbc7007457f36ed8dcb5b285d9078f2f944b9d21ce2e62c"
+    },
+    {
+      "kind": "historical exact controller activation",
+      "logical_bytes": 1443,
+      "path": "/workspace/work/campaign/evidence/113/root-g1-guard-readback-activation-a1.json",
+      "sha256": "332f247623574e52cb7c5fccfbc77bf70da6aac4e25422b95fb4aab07bf0582d"
+    }
+  ],
+  "nine_receipt_activation_bindings": [
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-init-exit0-activation-a1.json",
+        "sha256": "9285d037716015481c2c96e748964b3711feeec4d6dc7b40cdd3b09311b71fa3"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-init-exit0-activation-a1.json"
+      ],
+      "case": "exit0",
+      "qualification": "/workspace/work/campaign/evidence/113/root-five-init-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-exit0-a1-controller-receipt.json",
+        "sha256": "bb9b598e2842e35e0abadfc5e3f17015cb1bb0de04d3d242e33be99274d16b91"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-init-exit7-activation-a1.json",
+        "sha256": "3e76f011b5c3cdca76237f1336fa6efc1d94c81acd88aa8aa59ad8eadc0ac6c9"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-init-exit7-activation-a1.json"
+      ],
+      "case": "exit7",
+      "qualification": "/workspace/work/campaign/evidence/113/root-five-init-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-exit7-a1-controller-receipt.json",
+        "sha256": "d3e42ea4aa1420d978a242946cc010a1d660a6da42f7af14bb312fcd837ef1b9"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-init-adoption-activation-a1.json",
+        "sha256": "30b4b6334386fa7de0a5e403f30797559bacfb46d69610ad32f6dcae60527796"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-init-adoption-activation-a1.json"
+      ],
+      "case": "adoption",
+      "qualification": "/workspace/work/campaign/evidence/113/root-five-init-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-adoption-a1-controller-receipt.json",
+        "sha256": "0ae6dc22d2faf2725c2538e72c6e92f99c4dfd1a635101cf43027a7c3eede1b3"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-init-typing-valid-activation-a1.json",
+        "sha256": "95b925b0b930db03d442f9fc9745734f746ca36754e592b5c208127327d9c843"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-init-typing-valid-activation-a1.json"
+      ],
+      "case": "typing-valid",
+      "qualification": "/workspace/work/campaign/evidence/113/root-five-init-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-typing-valid-a1-controller-receipt.json",
+        "sha256": "5a6043076abade944bb6434a013e0072c1791b572d2243263bfffd0b6b5cc548"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-init-typing-invalid-activation-a1.json",
+        "sha256": "b176409a9dc3d7f24a0471e9fea79c76b3c693f83fafa534ba538e37df5a458c"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-init-typing-invalid-activation-a1.json"
+      ],
+      "case": "typing-invalid",
+      "qualification": "/workspace/work/campaign/evidence/113/root-five-init-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-typing-invalid-a1-controller-receipt.json",
+        "sha256": "05b6e6b6b75c38d93f195505cbe73bc89221247763b308238af014f55569c064"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-g1-guard-normal-activation-a1.json",
+        "sha256": "0ffc6f79a653dfcd00114135649ff0794d1ae3b69bfbf256ec13f008102e84d3"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-g1-guard-normal-activation-a1.json"
+      ],
+      "case": "guard-normal",
+      "qualification": "/workspace/work/campaign/evidence/113/root-four-g1-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-g1-guard-normal-a1-controller-receipt.json",
+        "sha256": "346c5f4c71044cc08cdfd5592830311d155b124cb2e7182ba0aba68aff7e6aa4"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-g1-guard-unusable-activation-a1.json",
+        "sha256": "5ec62e69fcb60730f9228e6cc2cb552d180028e678af83ff108d7ca42566ce94"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-g1-guard-unusable-activation-a1.json"
+      ],
+      "case": "guard-unusable",
+      "qualification": "/workspace/work/campaign/evidence/113/root-four-g1-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-g1-guard-unusable-a1-controller-receipt.json",
+        "sha256": "58091991ac8a19001f4b77933002ab88f44454251ba82831e9e2f96733ebc2da"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-g1-guard-install-denied-activation-a1.json",
+        "sha256": "b3b25738ce22af50fdbc7007457f36ed8dcb5b285d9078f2f944b9d21ce2e62c"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-g1-guard-install-denied-activation-a1.json"
+      ],
+      "case": "guard-install-denied",
+      "qualification": "/workspace/work/campaign/evidence/113/root-four-g1-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-g1-guard-install-denied-a1-controller-receipt.json",
+        "sha256": "01914417295ade04062f751d08925f2612f4f32738f7ef2234ea11612c91edac"
+      }
+    },
+    {
+      "activation": {
+        "path": "/workspace/work/campaign/evidence/113/root-g1-guard-readback-activation-a1.json",
+        "sha256": "332f247623574e52cb7c5fccfbc77bf70da6aac4e25422b95fb4aab07bf0582d"
+      },
+      "actual_matching_aliases": [
+        "/workspace/work/campaign/evidence/113/root-g1-guard-readback-activation-a1.json"
+      ],
+      "case": "guard-readback",
+      "qualification": "/workspace/work/campaign/evidence/113/root-four-g1-controls-qualified.json",
+      "receipt": {
+        "path": "/workspace/work/campaign/evidence/113/init-case-g1-guard-readback-a1-controller-receipt.json",
+        "sha256": "9151fcb83e8d6e4159c517df920cd89f374fbccbf19847bdf1de64c26f410e73"
+      }
+    }
+  ],
+  "no_runtime_or_source_edits": true,
+  "observed_at_unix_ns": 1794802529143900157,
+  "schema": "ROOT-WS116-curator-closed-operational-aliases-v1",
+  "scope": "Exact missing source/activation aliases discovered by ROOT within owned evidence and byte-hash verified; historical operational/synthetic support only, no new qualifier/science/acceptance"
+}

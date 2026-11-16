@@ -1,0 +1,31 @@
+{
+  "scope": "closed initial60 file-only aggregation, no new experiment",
+  "pid": 50996,
+  "returncode": 0,
+  "error": null,
+  "source_pins_before": {
+    "/workspace/work/campaign/evidence/116/report-source-preparation/aggregate_observations.py": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+    "/workspace/work/campaign/evidence/116/initial60-analysis/config-initial60-attempt1.json": "63968a0662d5ead4a9f8c7b4a634cfe6fb75210757ee30e56d00fb1661f6ac22"
+  },
+  "source_pins_after": {
+    "/workspace/work/campaign/evidence/116/report-source-preparation/aggregate_observations.py": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+    "/workspace/work/campaign/evidence/116/initial60-analysis/config-initial60-attempt1.json": "63968a0662d5ead4a9f8c7b4a634cfe6fb75210757ee30e56d00fb1661f6ac22"
+  },
+  "blocked_effect_attempts": [],
+  "output_sha256": {
+    "per-process.json": "ac1391d4c471089c2c70eccc6aa857713650fc5a5bdddfb5e6ff7178c91d7b25",
+    "excluded-records.json": "29914213c4038e5dce71d2758e5331424f49d629b856e450e33a9cb0e6d4e4e8",
+    "summary.json": "04fff3ea2045ceb3c5d4a0acb6b4109d37b200d6e1b68c6ab57f7fe28c9fbe4b",
+    "file-audit.json": "dfc65d7fff161553fb6755a95c27edf61caaf3aa8d2d0f4fbc9b249530c65ae2",
+    "three-repeat-summary.csv": "e156882e7ae2cd3194f2e500168c83fca517fd4d5d8f4ddee796fe92b80d2b2b",
+    "output-identities.json": "298057cf4e35237927cf23f1e548c9e08077b9ffdad8ea282decd7de5cba4567"
+  },
+  "start_unix_ns": 1794738531774653987,
+  "finish_unix_ns": 1794738533879065930,
+  "elapsed_analysis_seconds": 2.104412619,
+  "intent_sha256": "e98cd956cb98b8043f26aeab6682411e5253628ebf087a9c7f62cc1066f15fd2",
+  "no_child_processes_created": true,
+  "actual_cost": "UNKNOWN",
+  "actual_tokens": "UNKNOWN",
+  "final_scientific_acceptance": false
+}

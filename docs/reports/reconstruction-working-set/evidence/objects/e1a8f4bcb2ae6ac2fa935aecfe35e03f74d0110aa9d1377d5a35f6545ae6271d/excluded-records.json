@@ -1,0 +1,24 @@
+[
+  {
+    "phase": "failed",
+    "reason": "SYNTHETIC_guard_never_scientific_observation",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-evidence/main-tiny.json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": [
+      {
+        "reference": {
+          "path": "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-evidence/main-tiny.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "error_type": "ValueError",
+        "reason": "artifact SHA256 differs"
+      }
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "closed_owned_processes": [
+    {
+      "attempt_id": "ws116-gp-g256-summary-supplied-r1-u",
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 51452,
+        "start_ticks": 5785410
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/receipt.json",
+        "sha256": "af5c866673b34d53e5ab2a6e432649f2612445f1d1358b902468bfd9788f41b4"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-g256-summary-supplied-r1-u",
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 51471,
+        "start_ticks": 5785431
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/receipt.json",
+        "sha256": "af5c866673b34d53e5ab2a6e432649f2612445f1d1358b902468bfd9788f41b4"
+      }
+    }
+  ],
+  "fresh_exact_owner_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-remaining5-preflight-metadata.json",
+    "sha256": "eed6798b6c1e15251b482120116697c321c907e37d81f6b1e6bd5a1961816823"
+  },
+  "meaning": "Recorded row1 receipt identities, independently verified absent with all expectedFDs in newactualmetadata. Existing binder freshly rechecks exact currentstage owners, no globalabsence claim.",
+  "root_authority_sha256": "525d0ac9f3488fb8c1ae1e04790138b852bd6d51fe3cd65101ec5dc69d01c5b5",
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "growth256-summary",
+  "stored_closure_source": {
+    "coordinator_review": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-row1-closed-file-review.json",
+      "sha256": "9c09923e7c167f97840534dee163f8baa617bd0b6d4d8dea27423dedb4eb960c"
+    },
+    "early_window_closed": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-window-closed-for-checks.json",
+      "sha256": "f367dfdbb9f81bddaa18dbbc926e49da8fb0c7c172ccae96a03b843b926e3c28"
+    },
+    "eligibility": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-data-eligibility.json",
+      "sha256": "107412590bb0da1e0c7a48edb64a70bd2c718314169b676c79275a716035d88e"
+    },
+    "post_metadata": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata.json",
+      "sha256": "51bf1a1703ebef6748b81bf5137afa09c4619c41a3a918f9d2cf32bd84348e2e"
+    }
+  },
+  "unresolved": []
+}

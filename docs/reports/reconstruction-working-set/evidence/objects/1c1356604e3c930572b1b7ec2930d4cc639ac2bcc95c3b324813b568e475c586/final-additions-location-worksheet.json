@@ -1,0 +1,410 @@
+{
+  "schema": "WS116-final-additions-literal-location-worksheet-v1",
+  "scope": "Fixedsourcepath/SHA/destinationlistonly, nocopy/scanner/program/numericalwork. All report destinations relativeto docs/reports/reconstruction-working-set/.",
+  "entries": [
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+      "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378",
+      "intended_report_relative_destination": "evidence/objects/337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378/README.md",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/analysis/attempt-ledger.json",
+      "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7",
+      "intended_report_relative_destination": "evidence/objects/6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7/attempt-ledger.json",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+      "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c",
+      "intended_report_relative_destination": "evidence/objects/98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c/input-references.json",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/integration-notes.md",
+      "sha256": "16d34b43ab70341e1b009f57a52c4e7d1b7fd4a9eb1b9967ee3d73ab62807c76",
+      "intended_report_relative_destination": "evidence/objects/16d34b43ab70341e1b009f57a52c4e7d1b7fd4a9eb1b9967ee3d73ab62807c76/integration-notes.md",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/phase-expression-lifetime.md",
+      "sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496",
+      "intended_report_relative_destination": "evidence/objects/a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496/phase-expression-lifetime.md",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/native-harmonic-scratch.md",
+      "sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605",
+      "intended_report_relative_destination": "evidence/objects/4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605/native-harmonic-scratch.md",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/compact-overlap-working-lifetime.md",
+      "sha256": "fc86d15c180a947a5d9e330236d256afde827ddf8982f6da05ec3cc694dc4955",
+      "intended_report_relative_destination": "evidence/objects/fc86d15c180a947a5d9e330236d256afde827ddf8982f6da05ec3cc694dc4955/compact-overlap-working-lifetime.md",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/time-aggregation.md",
+      "sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d",
+      "intended_report_relative_destination": "evidence/objects/34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d/time-aggregation.md",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/full-diagnostic-retention-ownership.md",
+      "sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41",
+      "intended_report_relative_destination": "evidence/objects/1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41/full-diagnostic-retention-ownership.md",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/source-handoff.json",
+      "sha256": "946362c30f16ef6209f1eb43ec25c71e1dbc605029db03001d457a71442f0318",
+      "intended_report_relative_destination": "evidence/objects/946362c30f16ef6209f1eb43ec25c71e1dbc605029db03001d457a71442f0318/source-handoff.json",
+      "scope": "source44 original; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/compact-overlap-working-lifetime.md",
+      "sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d",
+      "intended_report_relative_destination": "evidence/objects/49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d/compact-overlap-working-lifetime.md",
+      "scope": "routing45correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/routing-wording.patch",
+      "sha256": "956302cd049d66f74014c71a063b95f6d589676ade0f639cb382249ebc366579",
+      "intended_report_relative_destination": "evidence/objects/956302cd049d66f74014c71a063b95f6d589676ade0f639cb382249ebc366579/routing-wording.patch",
+      "scope": "routing45correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/input-references.json",
+      "sha256": "44bf8be07497fc3a499fdcc17d9f61fe268e0f4280ea25d6720fde6a413d06da",
+      "intended_report_relative_destination": "evidence/objects/44bf8be07497fc3a499fdcc17d9f61fe268e0f4280ea25d6720fde6a413d06da/input-references.json",
+      "scope": "routing45correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/source-handoff.json",
+      "sha256": "840a1b5859ae516212f82c3dc3be42db3bf36d905e9625f7d624d5469feb207c",
+      "intended_report_relative_destination": "evidence/objects/840a1b5859ae516212f82c3dc3be42db3bf36d905e9625f7d624d5469feb207c/source-handoff.json",
+      "scope": "routing45correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+      "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9",
+      "intended_report_relative_destination": "evidence/objects/e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9/README-corrected.md",
+      "scope": "F04source46correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/off-band-lifetime.patch",
+      "sha256": "9ec9d8c29b9c4e7de7806b17f19ffd1241a09ba2fca92dd3f336575e3886de81",
+      "intended_report_relative_destination": "evidence/objects/9ec9d8c29b9c4e7de7806b17f19ffd1241a09ba2fca92dd3f336575e3886de81/off-band-lifetime.patch",
+      "scope": "F04source46correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/input-references.json",
+      "sha256": "7d37b50a41339424afda8d8d18dfdeda0597b1e9b1ecc0f29088278d6d4660cf",
+      "intended_report_relative_destination": "evidence/objects/7d37b50a41339424afda8d8d18dfdeda0597b1e9b1ecc0f29088278d6d4660cf/input-references.json",
+      "scope": "F04source46correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/source-handoff.json",
+      "sha256": "1b57d54fc804c7fb61e69f66f1e4150497af92e7a44747ddb39dc3c8f4d53dff",
+      "intended_report_relative_destination": "evidence/objects/1b57d54fc804c7fb61e69f66f1e4150497af92e7a44747ddb39dc3c8f4d53dff/source-handoff.json",
+      "scope": "F04source46correction; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+      "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9",
+      "intended_report_relative_destination": "README.md",
+      "scope": "active report source beforeROOTmechanicalfinal-layoutrewrites"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/compact-overlap-working-lifetime.md",
+      "sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d",
+      "intended_report_relative_destination": "handoffs/compact-overlap-working-lifetime.md",
+      "scope": "active correctedrank3routing"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/phase-expression-lifetime.md",
+      "sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496",
+      "intended_report_relative_destination": "handoffs/phase-expression-lifetime.md",
+      "scope": "activeunchangedindividualhandoff"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/native-harmonic-scratch.md",
+      "sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605",
+      "intended_report_relative_destination": "handoffs/native-harmonic-scratch.md",
+      "scope": "activeunchangedindividualhandoff"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/time-aggregation.md",
+      "sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d",
+      "intended_report_relative_destination": "handoffs/time-aggregation.md",
+      "scope": "activeunchangedindividualhandoff"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/full-diagnostic-retention-ownership.md",
+      "sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41",
+      "intended_report_relative_destination": "handoffs/full-diagnostic-retention-ownership.md",
+      "scope": "activeunchangedindividualhandoff"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/analysis/attempt-ledger.json",
+      "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7",
+      "intended_report_relative_destination": "analysis/attempt-ledger.json",
+      "scope": "active factualattemptindex; originalstatusesimmutable"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+      "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c",
+      "intended_report_relative_destination": "evidence/report-input-references.json",
+      "scope": "active source44identitycatalog; notfinalROOTlocationmap"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/liveness-draft-corrected.md",
+      "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c",
+      "intended_report_relative_destination": "analysis/liveness-draft.md",
+      "scope": "activeF01correctedliveness337a"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-completed-substance.md",
+      "sha256": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562",
+      "intended_report_relative_destination": "evidence/objects/83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562/foundation-assessment-completed-substance.md",
+      "scope": "sameSCI1currentcompletedsubstance; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-completed-substance.md",
+      "sha256": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562",
+      "intended_report_relative_destination": "independent-scientific-review.md",
+      "scope": "current substantiveassessmentfinalgateHELD, laterintegrationapplicabilityadditionbeforeexactgate"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/review.md",
+      "sha256": "01624fd51a59a7b926f66220992861bed08b466fd94325788363ba1fd062a461",
+      "intended_report_relative_destination": "evidence/objects/01624fd51a59a7b926f66220992861bed08b466fd94325788363ba1fd062a461/review.md",
+      "scope": "freshF04affectedreview; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/review.md",
+      "sha256": "01624fd51a59a7b926f66220992861bed08b466fd94325788363ba1fd062a461",
+      "intended_report_relative_destination": "evidence/reviews/F04-correction.md",
+      "scope": "F04externalwordingonlyACCEPT, nooverallreadiness"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-before-F04-input.md",
+      "sha256": "e0ec8b12adb9fd0e20d398ab4562035de4f630bdd7734ffe21c3cdfe93648b6c",
+      "intended_report_relative_destination": "evidence/objects/e0ec8b12adb9fd0e20d398ab4562035de4f630bdd7734ffe21c3cdfe93648b6c/foundation-assessment-before-F04-input.md",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/F04-primary-phase-collected.json",
+      "sha256": "4ee0637af14aa2113033099581d7ed83fbd0ca7716d15ff2d84c8d8990ac5a39",
+      "intended_report_relative_destination": "evidence/objects/4ee0637af14aa2113033099581d7ed83fbd0ca7716d15ff2d84c8d8990ac5a39/F04-primary-phase-collected.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/substantive-phase-collected.json",
+      "sha256": "efc120c3ef4f48aa4446e0486eaec969cf57b2e07b9da8e02bf886d7b3208aed",
+      "intended_report_relative_destination": "evidence/objects/efc120c3ef4f48aa4446e0486eaec969cf57b2e07b9da8e02bf886d7b3208aed/substantive-phase-collected.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-addendum.md",
+      "sha256": "4ff9c98627ae37d4decde378319a580a9da4eda937bd6d56fe4ceede303fbf5e",
+      "intended_report_relative_destination": "evidence/objects/4ff9c98627ae37d4decde378319a580a9da4eda937bd6d56fe4ceede303fbf5e/final-substance-addendum.md",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-inputs-v2.json",
+      "sha256": "0b833e44be74c4872e08be5728393c4bfad4cd13b218db0a60217c4cf36924e5",
+      "intended_report_relative_destination": "evidence/objects/0b833e44be74c4872e08be5728393c4bfad4cd13b218db0a60217c4cf36924e5/final-substance-inputs-v2.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-routing-issues.json",
+      "sha256": "c34f879fcb27db8c16485267ae3c6717991dfba52621716eb319de4b4a8009a3",
+      "intended_report_relative_destination": "evidence/objects/c34f879fcb27db8c16485267ae3c6717991dfba52621716eb319de4b4a8009a3/final-substance-routing-issues.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-continuation-observed.json",
+      "sha256": "7431e8235fd48bc7b517392081edea8e8d98029ddbbba6536685bb02d4db0a11",
+      "intended_report_relative_destination": "evidence/objects/7431e8235fd48bc7b517392081edea8e8d98029ddbbba6536685bb02d4db0a11/final-substance-continuation-observed.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/F04-corrected-primary-addendum.md",
+      "sha256": "4c46b94c85559306d45402bdb0041a124f0a4d58d7487d1dc8da8554c6ba6c6b",
+      "intended_report_relative_destination": "evidence/objects/4c46b94c85559306d45402bdb0041a124f0a4d58d7487d1dc8da8554c6ba6c6b/F04-corrected-primary-addendum.md",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/packet.md",
+      "sha256": "331f0bd12f8fe58d176a4737443bfd3442ff2a64806b1b2ae414328d27d0f9c6",
+      "intended_report_relative_destination": "evidence/objects/331f0bd12f8fe58d176a4737443bfd3442ff2a64806b1b2ae414328d27d0f9c6/packet.md",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/inputs.json",
+      "sha256": "f02b96096fcc790ddbf5c771cca4b9e6b30ce3f2f47ead78c970cf9eecd4ccc5",
+      "intended_report_relative_destination": "evidence/objects/f02b96096fcc790ddbf5c771cca4b9e6b30ce3f2f47ead78c970cf9eecd4ccc5/inputs.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/coordinator-collected.json",
+      "sha256": "f119ac184162a06044f5bb33d1fbc0a5679b1e2c99d58ab5a81aff88d2cb7091",
+      "intended_report_relative_destination": "evidence/objects/f119ac184162a06044f5bb33d1fbc0a5679b1e2c99d58ab5a81aff88d2cb7091/coordinator-collected.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/coordinator-source-check.json",
+      "sha256": "fc5667ac8db9f0b5fc409d7669c4818c5993fc9a7be2a22c91c0b3b530bd2758",
+      "intended_report_relative_destination": "evidence/objects/fc5667ac8db9f0b5fc409d7669c4818c5993fc9a7be2a22c91c0b3b530bd2758/coordinator-source-check.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/portable-reference-closure/closure-list.json",
+      "sha256": "ae84ab7dfe606862f612d71b3cc3a90c70a09cdf6755145f3c194c9932ffdab9",
+      "intended_report_relative_destination": "evidence/objects/ae84ab7dfe606862f612d71b3cc3a90c70a09cdf6755145f3c194c9932ffdab9/closure-list.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/portable-reference-closure/curation-notes.md",
+      "sha256": "df11aaca1b25f6d07e8d87a634cc0967cc266b595caa430a1634573bc8da7457",
+      "intended_report_relative_destination": "evidence/objects/df11aaca1b25f6d07e8d87a634cc0967cc266b595caa430a1634573bc8da7457/curation-notes.md",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/portable-reference-closure/source-handoff.json",
+      "sha256": "12390c3c628898f1db78fb2807de4034a0e475ff3c9f8527284bf3e1b170db8b",
+      "intended_report_relative_destination": "evidence/objects/12390c3c628898f1db78fb2807de4034a0e475ff3c9f8527284bf3e1b170db8b/source-handoff.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-current-mapping-inspection.json",
+      "sha256": "e7a37a74dfc4f8aaa783fc2e633631993a4f816bdfe6eec5fa7d60c4ad29b399",
+      "intended_report_relative_destination": "evidence/objects/e7a37a74dfc4f8aaa783fc2e633631993a4f816bdfe6eec5fa7d60c4ad29b399/coordinator-current-mapping-inspection.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-historical-ledger-eleven-questions.json",
+      "sha256": "5c4cfe1ae1756e09826d973527688034172b11a233c22289cbfff63c17368463",
+      "intended_report_relative_destination": "evidence/objects/5c4cfe1ae1756e09826d973527688034172b11a233c22289cbfff63c17368463/coordinator-historical-ledger-eleven-questions.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/portable-reference-closure/launch-observed.json",
+      "sha256": "7c056b905a0e7834345a0950d9df6b9e3a43c0fc940886aecb5663f868ecb27c",
+      "intended_report_relative_destination": "evidence/objects/7c056b905a0e7834345a0950d9df6b9e3a43c0fc940886aecb5663f868ecb27c/launch-observed.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-preserved-closure-before-source-resolution.json",
+      "sha256": "1193f6cd9d4669cf8b4d36b1d81d5b8cfeb3a28230fd58af06d8a89bd88c0324",
+      "intended_report_relative_destination": "evidence/objects/1193f6cd9d4669cf8b4d36b1d81d5b8cfeb3a28230fd58af06d8a89bd88c0324/coordinator-preserved-closure-before-source-resolution.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-review-input-preparation/stage115-delivery-binding.json",
+      "sha256": "06824f60ddaa37826278db38e622e1ac301ecab6bfb389dacc79baa6d698b23c",
+      "intended_report_relative_destination": "evidence/objects/06824f60ddaa37826278db38e622e1ac301ecab6bfb389dacc79baa6d698b23c/stage115-delivery-binding.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-review-input-preparation/final-external-report-integration-readiness.json",
+      "sha256": "eb669b7a19f1e3d228516351a93dc94b82e993c01c3c4659b386fb0f14960677",
+      "intended_report_relative_destination": "evidence/objects/eb669b7a19f1e3d228516351a93dc94b82e993c01c3c4659b386fb0f14960677/final-external-report-integration-readiness.json",
+      "scope": "coordinator/reviewprimaryscopeanddiagnostichistory; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/final-report-source-coordinator-inspection.json",
+      "sha256": "b4262686021adfad7a7a3656848771094de6085c62fa29c046716c3c9c2b9bdf",
+      "intended_report_relative_destination": "evidence/objects/b4262686021adfad7a7a3656848771094de6085c62fa29c046716c3c9c2b9bdf/final-report-source-coordinator-inspection.json",
+      "scope": "coorwholeprose/literal30table/90IDcheck; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/figure-input-provenance.json",
+      "sha256": "988da339d897faa6c2f746a98f192c74f09325d569262c8c6296e13793e1c7f9",
+      "intended_report_relative_destination": "figures/figure-input-provenance.json",
+      "scope": "finalpresentationasset; exact12canonicalprocesspoints notnewscience"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/figure-input-provenance.json",
+      "sha256": "988da339d897faa6c2f746a98f192c74f09325d569262c8c6296e13793e1c7f9",
+      "intended_report_relative_destination": "evidence/objects/988da339d897faa6c2f746a98f192c74f09325d569262c8c6296e13793e1c7f9/figure-input-provenance.json",
+      "scope": "finalpresentationasset; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-control-points.csv",
+      "sha256": "9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90",
+      "intended_report_relative_destination": "figures/largest256-profile-control-points.csv",
+      "scope": "finalpresentationasset; exact12canonicalprocesspoints notnewscience"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-control-points.csv",
+      "sha256": "9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90",
+      "intended_report_relative_destination": "evidence/objects/9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90/largest256-profile-control-points.csv",
+      "scope": "finalpresentationasset; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.png",
+      "sha256": "3b32da647ebe1982cf2f37cab51d384a6c47fe98d342ba892b66c0865a54221e",
+      "intended_report_relative_destination": "figures/largest256-profile-controls.png",
+      "scope": "finalpresentationasset; exact12canonicalprocesspoints notnewscience"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.png",
+      "sha256": "3b32da647ebe1982cf2f37cab51d384a6c47fe98d342ba892b66c0865a54221e",
+      "intended_report_relative_destination": "evidence/objects/3b32da647ebe1982cf2f37cab51d384a6c47fe98d342ba892b66c0865a54221e/largest256-profile-controls.png",
+      "scope": "finalpresentationasset; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.svg",
+      "sha256": "fa875573f8c7995e4944fb865cf86c05e92a46c6bd89655eb6dcba84b1e2002f",
+      "intended_report_relative_destination": "figures/largest256-profile-controls.svg",
+      "scope": "finalpresentationasset; exact12canonicalprocesspoints notnewscience"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.svg",
+      "sha256": "fa875573f8c7995e4944fb865cf86c05e92a46c6bd89655eb6dcba84b1e2002f",
+      "intended_report_relative_destination": "evidence/objects/fa875573f8c7995e4944fb865cf86c05e92a46c6bd89655eb6dcba84b1e2002f/largest256-profile-controls.svg",
+      "scope": "finalpresentationasset; exactoriginalbytes/archivealias"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/plot_largest256_profile_controls.py",
+      "sha256": "e59e7b18a39fd4b76dbe18c8accc75c3d7378ad7fc5e901962d492c129c16e4b",
+      "intended_report_relative_destination": "figures/plot_largest256_profile_controls.py",
+      "scope": "finalpresentationasset; exact12canonicalprocesspoints notnewscience"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/116/publication-staging/figures/plot_largest256_profile_controls.py",
+      "sha256": "e59e7b18a39fd4b76dbe18c8accc75c3d7378ad7fc5e901962d492c129c16e4b",
+      "intended_report_relative_destination": "evidence/objects/e59e7b18a39fd4b76dbe18c8accc75c3d7378ad7fc5e901962d492c129c16e4b/plot_largest256_profile_controls.py",
+      "scope": "finalpresentationasset; exactoriginalbytes/archivealias"
+    }
+  ],
+  "counts": {
+    "source44_original_files": 10,
+    "routing45_original_files": 4,
+    "F04source46_original_files": 4,
+    "figure_final_files": 5,
+    "destination_rows": 63,
+    "unique_source_identities": 48
+  },
+  "mechanical_layout_work_ROOT_owned": "ActiveREADME/handoff Markdownlinks need exactfinal-layoutrewrites; these intendeddestinations do not claimrewritesalreadydone. PreservearchivaloriginalSHA bytes; recordactualfinalactiveSHA/diff and sameSCIintegrationapplicability. Existingcanonical48activeanalysisdestinations remain integration-notes mapping.",
+  "latest_SCI": {
+    "source_path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-completed-substance.md",
+    "sha256": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562",
+    "actual_lines": 295,
+    "state": "W01\u2013W08substantivelyassessed/F01F04resolved/exactfinalintegrationportableclosuregategatepostgateHELD"
+  },
+  "historical11": {
+    "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-historical-ledger-eleven-questions.json",
+    "sha256": "5c4cfe1ae1756e09826d973527688034172b11a233c22289cbfff63c17368463"
+  },
+  "portable_mapping": "4007currentclosedidentities/18095references/sourcegaps0; historical11andfutureactualfinalpublicationreceiptsareseparate",
+  "no_copy_or_target_edit": true,
+  "metering": {
+    "tokens": null,
+    "cost": null,
+    "actual_serving": null
+  }
+}

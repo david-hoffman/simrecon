@@ -1,0 +1,97 @@
+{
+  "ROOT_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-independent-sixteen-triplets.json",
+    "sha256": "13102c9c13c732621402cc06b0f22b099d6c7463cb3e8df4a9ca6eb8ef70cd58"
+  },
+  "coordinator_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+    "sha256": "ced9d2a06069772f1ea4a3dd64a02a4ad98ea8699bac14dff99c2bd03bf29b75"
+  },
+  "costs": "UNKNOWN",
+  "observed_at_unix_ns": 1794797893466418716,
+  "schema": "ROOT-WS116-largest6-independent-triplets-comparison-v1",
+  "scope": "Independent closed raw extraction crosscheck only; not final scientific acceptance or primary canonical output",
+  "six_raw_row_metrics_refs_events_and_gap_key_presence_match": true,
+  "sixteen_triplets_match": [
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "terminal_native_KiB"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "terminal_kernel_bytes"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "call_seconds"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "spawn_to_terminal_collection_seconds"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "target_start_to_last_snapshot_seconds"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "pre_call_cumulative_self_bytes"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "call_end_cumulative_self_bytes"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-summary-searched",
+      "metric": "post_observation_cumulative_self_bytes"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "terminal_native_KiB"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "terminal_kernel_bytes"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "call_seconds"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "spawn_to_terminal_collection_seconds"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "target_start_to_last_snapshot_seconds"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "pre_call_cumulative_self_bytes"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "call_end_cumulative_self_bytes"
+    },
+    {
+      "all3_independent_values_and_ordered_statistics_equal": true,
+      "condition_id": "growth256-full-searched",
+      "metric": "post_observation_cumulative_self_bytes"
+    }
+  ]
+}

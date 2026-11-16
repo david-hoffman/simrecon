@@ -1,0 +1,53 @@
+{
+  "protocol": "WS116-coordinator-growth256-prepared-v2-correction-file-audit-v1",
+  "status": "CORRECTED_SOURCE_PACKET_SUITABLE_EXPLICIT_ROOT_RELEASE_REQUIRED",
+  "config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-PREPARED-v2.json",
+    "sha256": "deb83bb49ddaba877b84c6cf73bacb00419d89173f644a5fac3e4ac074470cc8"
+  },
+  "preserved_prelaunch_failure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-first-binder-prelaunch-failure.json",
+    "sha256": "fd3073c0b0458d7637d942b2c2361cb92729e6053e6b6742c8ee5897478657a5"
+  },
+  "previous_audit_preserved": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-prepared-row1-file-audit.json",
+    "sha256": "ff0d8262a4a86e1eeabf3905507c23abd7a67dd430c413b781cf6f9f44a4225e"
+  },
+  "acknowledged_coordinator_error": "Prior audit checked exclusive_window against scheduler_ACK, missing exact8190 run494\u2013497 root_authority requirement. Prior no-blocker verdict is superseded for that field, not relabelled as successfulvalidation.",
+  "changed_top_level_keys": [
+    "conditional_rationale",
+    "external_batch_directory",
+    "grant_fixed",
+    "metadata_expected"
+  ],
+  "exact_exclusive_window_checked_against_source": {
+    "released": true,
+    "evidence": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-authority-row1.json",
+    "evidence_sha256": "e2508d94265ee451c7f8fe6f5eae99156f650c88fd94940ae47ba22e0757a8a4",
+    "scope": "WS116 exact frozen growth/profile stage release"
+  },
+  "unchanged": "stage/nonce/6recipes/onlyfirstallowed/candidate/material35/core28/tool6/limits/proposals/window/authority/admission/ACK/ledger/prior192refs andclosures. Onlyrationale,newexternalprogressdir+matchingFSkey andcorrectgrant authorityref change.",
+  "verified_small_refs": {
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-authority-row1.json": "e2508d94265ee451c7f8fe6f5eae99156f650c88fd94940ae47ba22e0757a8a4",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-scheduler-ACK-row1.json": "b2c6225a3076e32cde01a08b4e392b173834e85ccba8386aff1b6aebad40509f",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-current-stage-ledger-row1.json": "257b7b24bb0c418be1bdb07c69431cc49ed09010604fc940411781062e9592f2",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/environment-binding.json": "a7d472eedddd68e230ce79d3b8cb8249d59f51afea76b0c8071d3b4f750ec6f0",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/ubuntu_metadata.py": "157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0"
+  },
+  "static_preconditions_reviewed": [
+    "main exactconfigkeys/disabledgate/binder/table/recipe/core/firstonly/noanchor/priorprefix/setupexternaldir",
+    "run rawcollision/outmkdir/window+deadline/source/matchedanchor(none)/exactfixedkeys+growth/policy+rootauthorityref/numericaldependency, then scheduler before metadata",
+    "metadata exactcurrentstageledger/rootauthorityhash/identitycapacity/bothFSkeys; context currentbaseline remainsfreshperrow",
+    "scheduler exactstoredACK/window/suspension/owner/priorclosure andprospectivefreshness; liveclock/window leftROOTtoexecute",
+    "failedposition sourceorder precedes scheduler/metadata/capture/grant/intent/Popen; earlierordinarygit/sourcechecks notscientificcalls"
+  ],
+  "actual_file_disposition": "faileda1exactrowdirectoryEMPTY; scientificrawpathABSENT; newa2externaldirABSENT; no observer/workload commissioned. File reads only, no proc scans/signals/runtime.",
+  "findings": [],
+  "remaining_release_conditions": "ROOTnewexplicitrelease; enabledconfig hash; actualwindow>deadline+120, perrowmetadata+lastcapture<=5s andfreshheadroom/events/swap/source/cleanupchecks; no automaticretry.",
+  "execution_performed": false,
+  "qualified_worktree_mutated": false,
+  "actual_cost": "UNKNOWN",
+  "actual_tokens": "UNKNOWN"
+}

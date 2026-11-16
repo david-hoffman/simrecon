@@ -1,0 +1,107 @@
+--- /workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/root-close-fullsupplied256-stage.py
++++ /workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/root-close-fullsearched256-stage.py
+@@ -1,4 +1,4 @@
+-"""UNEXECUTED fixed CLOSED fullsupplied256 three-row file audit; only ROOT may release this helper.
++"""UNEXECUTED fixed CLOSED fullsearched256 three-row file audit; only ROOT may release this helper.
+ 
+ No capture, workload, process/FD scan, signal, wait, retry, or statistical summary.
+ The only subprocesses, after explicit release, are three fixed read-only git calls.
+@@ -10,15 +10,15 @@
+ import sys
+ import time
+ 
+-B = Path('/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness')
++B = Path('/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness')
+ W = Path('/workspace/work/issue-116')
+-S = Path('/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source')
+-OUTPUT = B / 'root-fullsupplied256-stage-closed.json'
++S = Path('/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source')
++OUTPUT = B / 'root-fullsearched256-stage-closed.json'
+ RELEASE = S / 'ROOT-execution-release.json'
+-ATTESTATION = S / 'ROOT-controller-60678-ended.json'
++ATTESTATION = S / 'ROOT-controller-74202-ended.json'
+ CONFIGS = [
+-    (B / 'config-row1-AUTHORIZED.json', '36d74d13cf6ef10b3997b9a633815839772d2f31fa3cf2fa900d20bb7313aaeb'),
+-    (B / 'config-full-supplied-remaining2-AUTHORIZED.json', 'e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda'),
++    (B / 'config-row1-AUTHORIZED.json', '5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3'),
++    (B / 'config-full-searched-remaining2-AUTHORIZED.json', '7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2'),
+ ]
+ IDS = [f'ws116-gp-l256-full-supplied-r{rep}-u' for rep in (1, 2, 3)]
+ 
+@@ -142,8 +142,8 @@
+     require(boundary['status'] == 'ELIGIBLE_PENDING_ROOT_SCIENTIFIC_REVIEW', 'boundary status')
+     require(boundary['config_sha256'] == sha(config_path), 'boundary config identity')
+     require(boundary['source_sha256'] == config['binder_sha256'], 'boundary source')
+-    expected_row = {'serial_index': index + 1, 'stage_id': 'largest-full-supplied',
+-                    'condition_id': 'growth256-full-supplied',
++    expected_row = {'serial_index': index + 1, 'stage_id': 'largest-full-searched',
++                    'condition_id': 'growth256-full-searched',
+                     'repetition': index % 3 + 1, 'profile': False, 'attempt_id': aid, 'launch_nonce': aid}
+     require(boundary['row'] == expected_row and boundary['raw_path'] == str(raw), 'exact boundary row/raw path')
+     require(boundary['table_sha256'] == '0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d', 'boundary table')
+@@ -187,8 +187,8 @@
+     require(grant['launch_nonce'] == grant['attempt_id'] == aid and grant['profile'] is False, 'grant attempt')
+     require(child['protocol'] == config['child_protocol'] and child['status'] == 'finite_observation_pending_qualification', 'child protocol/status')
+     require(child['finite_common_fields'] is True and child['material_identity_matches'] is True, 'finite/material child')
+-    search = False
+-    condition = 'growth256-full-supplied'
++    search = True
++    condition = 'growth256-full-searched'
+     branches = [['searched' if search else 'known'] * 3]
+     require(child['branches'] == branches and child['stages'] == [], 'actual branch/profile')
+     require(boundary['fingerprints'] == {key: child[key] for key in ('input_sha256', 'common_output_sha256', 'public_result_sha256', 'branches')}, 'actual child/boundary fingerprints')
+@@ -236,14 +236,14 @@
+     require(len(sys.argv) == 3 and Path(sys.argv[1]) == RELEASE, 'exact ROOT release path and hash argv required')
+     require(sha(RELEASE) == sys.argv[2], 'ROOT release hash')
+     release = load(RELEASE)
+-    require(release['schema'] == 'ROOT-WS116-close-fullsupplied256-release-v1' and release['authorized'] is True, 'ROOT explicit authorization')
+-    require(release['stage_id'] == 'largest-full-supplied' and release['output'] == str(OUTPUT), 'release fixed stage/output')
++    require(release['schema'] == 'ROOT-WS116-close-fullsearched256-release-v1' and release['authorized'] is True, 'ROOT explicit authorization')
++    require(release['stage_id'] == 'largest-full-searched' and release['output'] == str(OUTPUT), 'release fixed stage/output')
+     require(not OUTPUT.exists() and not OUTPUT.is_symlink(), 'closure output already exists')
+     require(release['helper_sha256'] == sha(__file__), 'released helper source')
+     require(release['controller_attestation']['path'] == str(ATTESTATION), 'exact attestation path')
+     attestation = checked(release['controller_attestation'])
+     require(attestation['schema'] == 'ROOT-WS116-controller-terminal-attestation-v1', 'attestation schema')
+-    require(attestation['controller_session'] == 60678 and attestation['actual_terminal_observed'] is True, 'actual60678 terminal evidence')
++    require(attestation['controller_session'] == 74202 and attestation['actual_terminal_observed'] is True, 'actual74202 terminal evidence')
+     require(attestation['exit_code'] == 0 and attestation['no_pending_proxy'] is True, 'controller/proxy still unresolved')
+     require(attestation['authority'] == 'ROOT' and attestation['basis'] == 'actual_tool_terminal_receipt', 'ROOT terminal provenance')
+     tool_receipt = checked(attestation['tool_receipt'])
+@@ -261,10 +261,10 @@
+     require(first['external_batch_directory'] == str(B / 'batch-row1-ea9117d-a1') and rest['external_batch_directory'] == str(B / 'batch-remaining2-ea9117d-a1'), 'fixed batch directories')
+     require(first['prior_eligible'] == [] and first['continuation_authorized'] is False and rest['continuation_authorized'] is True, 'prefix continuation')
+     require(rest['prior_eligible'] == manifest['retained_row1_boundary'], 'recorded row1 prefix')
+-    require(first['stage_admission'] == manifest['stage_admission'] and first['prior_stage_closures'] == manifest['prior_stage_closures'], 'fixedc664/a4c2/0aff/79a')
++    require(first['stage_admission'] == manifest['stage_admission'] and first['prior_stage_closures'] == manifest['prior_stage_closures'], 'fixedd1b/a4c2/0aff/79a/41a')
+     old_row1 = checked(manifest['retained_row1_eligibility'])
+-    require(old_row1['schema'] == 'ROOT-WS116-full-supplied-r1-eligibility-v1' and old_row1['eligible_for_same_stage_continuation'] is True and old_row1['actual_controller_exit'] == 0 and old_row1['no_pending_proxy'] is True, 'recordeda744 row1 eligibility')
+-    require(sha(CONFIGS[0][0]) == CONFIGS[0][1] and old_row1['boundary'] == rest['prior_eligible'][0], 'recordeda744 prefix/config')
++    require(old_row1['schema'] == 'ROOT-WS116-full-searched-r1-eligibility-v1' and old_row1['eligible_for_same_stage_continuation'] is True and old_row1['actual_controller_exit'] == 0 and old_row1['no_pending_proxy'] is True, 'recorded15e98 row1 eligibility')
++    require(sha(CONFIGS[0][0]) == CONFIGS[0][1] and old_row1['boundary'] == rest['prior_eligible'][0], 'recorded15e98 prefix/config')
+     early_window = checked(manifest['retained_row1_window_closure'])
+     require(early_window['closed_first_row_window'] is True and early_window['eligibility'] == manifest['retained_row1_eligibility'] and early_window['no_active_stage_controller'] is True, 'recorded first window closure')
+     for key in ('candidate', 'material_hashes', 'stage_admission', 'prior_stage_closures', 'binder_sha256', 'expected_core', 'accepted_method7', 'environment', 'tool_hashes'):
+@@ -290,11 +290,11 @@
+     require(len(owners) == 6, 'all6 identities')
+     absent_items(post, owners, True)
+     require(rows[0]['boundary'] == rest['prior_eligible'][0], 'actual retained first boundary')
+-    require(rows[0]['post_metadata'] == old_row1['final_metadata'], 'recordeda744 first-row metadata linkage')
++    require(rows[0]['post_metadata'] == old_row1['final_metadata'], 'recorded15e98 first-row metadata linkage')
+     for group in (rows,):
+         require(all(item['fingerprints'] == group[0]['fingerprints'] for item in group), 'within-condition repeat fingerprints')
+     closure = {
+-        'scope': 'WS116_ROOT_closed_prior_stage', 'stage_id': 'largest-full-supplied',
++        'scope': 'WS116_ROOT_closed_prior_stage', 'stage_id': 'largest-full-searched',
+         'closed': True, 'historical_identity_facts_retained': True, 'unresolved_owners': [],
+         'all6_currentstage_exact_identities_and_expected_FD_paths_absent': True,
+         'exact_owned_identities': owners, 'candidate': first['candidate'], 'material_hashes': first['material_hashes'],
+@@ -309,7 +309,7 @@
+         'last_post_metadata': rows[-1]['post_metadata'], 'rows': rows,
+         'terminal_receipts': [item['receipt'] for item in rows],
+         'eligible_boundaries': [item['boundary'] for item in rows],
+-        'final_controller_session': 60678, 'final_controller_exit_code': 0,
++        'final_controller_session': 74202, 'final_controller_exit_code': 0,
+         'controller_terminal_attestation': release['controller_attestation'], 'ROOT_execution_release': ref(RELEASE),
+         'no_scientific_report_acceptance': True, 'metering': 'unknown',
+         'measurement_scope': 'Kernel-reported direct-child high-water through final exit; inherited/pre-exec/exec-transition retention unknown. No subtraction, aggregate, decomposition, ranking or benefit.',

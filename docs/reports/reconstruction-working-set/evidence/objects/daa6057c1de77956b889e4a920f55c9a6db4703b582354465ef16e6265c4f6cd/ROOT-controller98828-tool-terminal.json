@@ -1,0 +1,7 @@
+{
+  "chunk_id": "1d79e3",
+  "wall_time_seconds": 31.650422665,
+  "exit_code": 0,
+  "original_token_count": 331,
+  "output": "{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1680.646854680992, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1685.6476390399912, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1690.6496269420022, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1695.6504572299891, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1700.6513011979987, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1705.6519461449934, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1710.6522096260014, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1715.6530650420027, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-p\", \"elapsed_seconds\": 1720.656673591002, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 196523}\n"
+}

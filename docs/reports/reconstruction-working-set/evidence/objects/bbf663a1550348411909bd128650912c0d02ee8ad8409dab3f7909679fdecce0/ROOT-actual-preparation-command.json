@@ -1,0 +1,31 @@
+{
+  "ROOT_source_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-source-assessment.json",
+    "sha256": "eaded07d64c23c6deec7a9b5cbd637c73aa14075b5dd5a6d7fbea87de5ec5fcb"
+  },
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/root-prepare-remaining5-central-profiles.py",
+    "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-preparation-authorization.json",
+    "eb0eb7d13d6d4f90c3eff3f286f93a955e6e5eea06d4b5a43a1db3a6dec26a0c"
+  ],
+  "authorization": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-preparation-authorization.json",
+    "sha256": "eb0eb7d13d6d4f90c3eff3f286f93a955e6e5eea06d4b5a43a1db3a6dec26a0c"
+  },
+  "coordinator_source_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/coordinator-source-inspection.json",
+    "sha256": "ef8cdab8f1e4df2c6cf36a5975277a540cce46fe2047a3f0862c073601fa2271"
+  },
+  "costs": "UNKNOWN",
+  "elapsed_seconds": 0.8163884380046511,
+  "execution_attempt": 1,
+  "returncode": 0,
+  "scope": "ONEROOT preparation-only remaining5centralprofile invocation, no science/binder/grant executed. Futureconfigfalse/independentactualpacket+separateexactrelease required.",
+  "source_helper_after": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/root-prepare-remaining5-central-profiles.py",
+    "sha256": "818eac071408569fcb43bd81a63437c4e3526cbca099686eb1775c230e4330da"
+  },
+  "stderr": "",
+  "stdout": "{\"ACK\": {\"path\": \"/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/scheduler-ACK.json\", \"sha256\": \"53eae31c9e38dbbe08bf7817a05d66cf0d6a4656b004fa0076a06a3decf29c02\"}, \"authority\": {\"path\": \"/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/ROOT-authority.json\", \"sha256\": \"73b5193736eed235b455e78276c6ce1bc6b52410f4d1c4b114e3464019fb25c9\"}, \"execution_released\": false, \"ledger\": {\"path\": \"/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/current-stage-ledger.json\", \"sha256\": \"6ac60e622f1bc1223cf0acb24db210b21855cdd4bb5cd300f41008c19780853b\"}, \"new_preflight\": {\"path\": \"/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/new-context-preflight.json\", \"sha256\": \"dd4947bf69afd8a3f8d3d8bb81d0a30d6a7914702d0737b874c50c392ede8ac3\"}, \"prepared_config\": {\"path\": \"/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/config-remaining5-PREPARED.json\", \"sha256\": \"86bd24bbdfe6dc343db37a169781074e83f1ac7d70a6e56b8cacc44fc71ce173\"}, \"same_stage_admission\": {\"path\": \"/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json\", \"sha256\": \"94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece\"}, \"status\": \"PREPARED_CONTINUATION_CONFIG_DISABLED\", \"window\": {\"ends_unix_ns\": 1794794071931319232, \"starts_unix_ns\": 1794783271931319232}}\n"
+}

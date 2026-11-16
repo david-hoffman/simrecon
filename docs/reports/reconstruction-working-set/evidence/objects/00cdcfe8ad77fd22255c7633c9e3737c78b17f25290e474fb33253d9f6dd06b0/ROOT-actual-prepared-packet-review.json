@@ -1,0 +1,189 @@
+{
+  "ROOT_authority_notACK_chain_correct": true,
+  "actual_exact2_owner_request_fresh_absence_and_ledger2_match": true,
+  "actual_preparation_command": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-actual-preparation-command.json",
+    "sha256": "bbf663a1550348411909bd128650912c0d02ee8ad8409dab3f7909679fdecce0"
+  },
+  "allowed_attempt_ids": [
+    "ws116-gp-c64-summary-searched-r2-p",
+    "ws116-gp-c64-summary-searched-r3-p",
+    "ws116-gp-c64-full-searched-r1-p",
+    "ws116-gp-c64-full-searched-r2-p",
+    "ws116-gp-c64-full-searched-r3-p"
+  ],
+  "authority": "ROOT",
+  "both_mode_operating_proposals": {
+    "central64-full-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 1080,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 960,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 803209216,
+      "host_min_available_bytes": 2684354560,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 402653184,
+      "predicted_child_peak_bytes": 805306368,
+      "process_stop_bytes": 1610612736,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 8589934592,
+      "reserve_bytes": 1073741824,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    },
+    "central64-summary-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 1080,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 960,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 803209216,
+      "host_min_available_bytes": 2147483648,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 268435456,
+      "predicted_child_peak_bytes": 536870912,
+      "process_stop_bytes": 1073741824,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 8589934592,
+      "reserve_bytes": 1073741824,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    }
+  },
+  "changed_keys_vs_authorized_first": [
+    "allowed_attempt_ids",
+    "authority_expected",
+    "authorized",
+    "conditional_rationale",
+    "continuation_authorized",
+    "external_batch_directory",
+    "grant_fixed",
+    "metadata_expected",
+    "owned_ledger",
+    "prior_eligible",
+    "root_authority",
+    "scheduler_ack",
+    "scheduler_ack_expected",
+    "window"
+  ],
+  "config_authorized": false,
+  "costs": "UNKNOWN",
+  "declared_growth_conditions": [],
+  "observed_at_unix_ns": 1794783348954854074,
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/config-remaining5-PREPARED.json",
+    "sha256": "86bd24bbdfe6dc343db37a169781074e83f1ac7d70a6e56b8cacc44fc71ce173"
+  },
+  "prior_eligible": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "aad1f16b2f5bfb46f8b4b6d9edfba5fee2132f570750e47de370f6ea22d4e9c2"
+    }
+  ],
+  "program_outputs13": {
+    "ROOT-authority.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/ROOT-authority.json",
+      "sha256": "73b5193736eed235b455e78276c6ce1bc6b52410f4d1c4b114e3464019fb25c9"
+    },
+    "ROOT-closed-r1-prerequisites.input.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/ROOT-closed-r1-prerequisites.input.json",
+      "sha256": "767b52f7f73b1494325037077226e6ad3f65a3a0339cb67d079dd46b9c446e53"
+    },
+    "ROOT-preparation-authorization.input.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/ROOT-preparation-authorization.input.json",
+      "sha256": "eb0eb7d13d6d4f90c3eff3f286f93a955e6e5eea06d4b5a43a1db3a6dec26a0c"
+    },
+    "ROOT-scheduler-suspension.input.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/ROOT-scheduler-suspension.input.json",
+      "sha256": "ddd84321de88c2f5286dfcb91ab68ec91a78bbe6d6c73517ac25356ed8a3b57f"
+    },
+    "config-remaining5-PREPARED.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/config-remaining5-PREPARED.json",
+      "sha256": "86bd24bbdfe6dc343db37a169781074e83f1ac7d70a6e56b8cacc44fc71ce173"
+    },
+    "context-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/context-command.json",
+      "sha256": "9c4a6764507c2279535f1a7cc82a27c7a22958a1c6f7a605dab42ae8436e7f1a"
+    },
+    "current-stage-ledger.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/current-stage-ledger.json",
+      "sha256": "6ac60e622f1bc1223cf0acb24db210b21855cdd4bb5cd300f41008c19780853b"
+    },
+    "metadata-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/metadata-command.json",
+      "sha256": "c84ba116223722e582eaf184323a87d2ca389e3efc9645458bcacdbfe28820a6"
+    },
+    "metadata-request.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/metadata-request.json",
+      "sha256": "def9d6356254b648a6d440d1845f47935ab2d71fcc8b73b9665e53597461e9ee"
+    },
+    "metadata.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/metadata.json",
+      "sha256": "649396438fb0a4221244c935dbb8a03b03175db95c65c6b59b6c015be7e9b848"
+    },
+    "new-context-preflight.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/new-context-preflight.json",
+      "sha256": "dd4947bf69afd8a3f8d3d8bb81d0a30d6a7914702d0737b874c50c392ede8ac3"
+    },
+    "preparation-status.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/preparation-status.json",
+      "sha256": "06c87218912eb032f1fd554e0d14719454308c71b8526625e9d00b602dafbc9b"
+    },
+    "scheduler-ACK.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/scheduler-ACK.json",
+      "sha256": "53eae31c9e38dbbe08bf7817a05d66cf0d6a4656b004fa0076a06a3decf29c02"
+    }
+  },
+  "resource_facts": {
+    "inner": {
+      "current_bytes": 2441478144,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17784483840,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    },
+    "outer": {
+      "current_bytes": 2427691008,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17792712704,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    }
+  },
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json",
+    "sha256": "94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece"
+  },
+  "schema": "ROOT-WS116-remaining5-central-profile-actual-packet-review-v1",
+  "science_execution_released": false,
+  "selected_largest_size": null,
+  "source_material35_core28_tool6_method_environment_6controls_and5priorclosures_unchanged": true,
+  "status": "PREPARED_DISABLED_PENDING_COOR_PACKET_AND_SEPARATE_RELEASE",
+  "window": {
+    "ends_unix_ns": 1794794071931319232,
+    "starts_unix_ns": 1794783271931319232
+  }
+}

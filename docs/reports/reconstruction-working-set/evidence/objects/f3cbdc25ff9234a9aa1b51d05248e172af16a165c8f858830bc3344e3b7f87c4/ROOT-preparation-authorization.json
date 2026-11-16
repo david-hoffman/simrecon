@@ -1,0 +1,23 @@
+{
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-full-supplied-r1-u"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "helper_sha256": "ab98ff2280996676224f5de9129ed722338347d041a8ace5bee23c66f498e6bb",
+  "observed_at_unix_ns": 1794768841037000037,
+  "prepare_first_row_authority": true,
+  "scheduler_suspension": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-scheduler-suspension-input.json",
+    "sha256": "e91615b39206633457b424469205435d59fee0efb715b49a8b60f673d72f892d"
+  },
+  "schema": "ROOT-WS116-first-full-preparation-authorization-v1",
+  "scientific_execution_released": false,
+  "selected_largest_size": 256,
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/preparer-source-manifest.json",
+    "sha256": "aa62502fdb6bae7d03664fc7794631b04db9de5a901ae8b00a80690dd4d2b13a"
+  },
+  "stage_id": "largest-full-supplied",
+  "window_seconds": 7200
+}

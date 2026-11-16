@@ -1,0 +1,11 @@
+{
+  "id": "G11-V36-metadata-linkage",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "recorded metadata linkage differs"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "recorded metadata linkage differs"
+}

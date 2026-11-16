@@ -1,0 +1,20 @@
+{
+  "candidate": "ea9117d3efe2d8de273402d643e732140138e496",
+  "input_sha256": {
+    "docs/contracts/reconstruction-working-set-v1.md": "4b049da71379199cae229f259baa8942936cdd1a352c505b52d2f8d2fda3bc4e",
+    "docs/contracts/reconstruction-memory-v1.md": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+    "docs/tasks/reconstruction-memory.md": "eaf33f1318799cf7f31a856e803f8fef515324e2c7a0938911361737bd5e2473",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/README.md": "e8e99982bf56925b72e446dccd30e5897df39b747bc8ef88b58438ebc2d7ad4a",
+    "docs/reports/reconstruction-working-set/analysis/liveness-draft.md": "8fef6fcfd756b48f22e08cccead97387fdd41fc2ed4e10b86d54deb62eb09f07",
+    "docs/reports/reconstruction-working-set/analysis/integrated-parent-reconciliation.md": "147ea0caf9a03a71dfd50e45de6f6be12f6b62e77c6b695b2374a819e479af8c",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "qualified-method7-source-basis.json": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+    "admission-table.json": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+    "admission-plan.md": "b7148be4355f32dd4bda70c0824201fe67d89baa27d13f1ccaf3b9b29eb37430",
+    "method-review7.md": "861075fecd05087575fc90e7607ff79db9027c1aac1d979623dbd693e1eb1b5e"
+  },
+  "scope": "frozen source/doc inputs only; no active data/sample files"
+}

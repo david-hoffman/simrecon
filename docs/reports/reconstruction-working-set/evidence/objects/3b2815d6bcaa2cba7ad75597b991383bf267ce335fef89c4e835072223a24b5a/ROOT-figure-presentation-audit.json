@@ -1,0 +1,45 @@
+{
+  "actual_final_render_tool": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-render2-terminal-tool.json",
+    "sha256": "3334187a0bca19f7203c3b2f53b974b7a303c7db5fe752015dab8fa399d7bba6"
+  },
+  "all12_CSV_rows_match_canonical_integer_bytes_and_call_seconds": true,
+  "axes": "Common zero-based memory0\u2013750MiB and call0\u20132000seconds; repetition identifiers, separate fresh processes, small horizontal jitter only",
+  "claim_limits": "Physical/cache contexts uncontrolled; no isolated observer cost, allocation decomposition, causal mode-speed benefit or workstation fit claim",
+  "costs": "UNKNOWN",
+  "files": {
+    "figure-input-provenance.json": {
+      "logical_bytes": 1321,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/figure-input-provenance.json",
+      "sha256": "988da339d897faa6c2f746a98f192c74f09325d569262c8c6296e13793e1c7f9"
+    },
+    "largest256-profile-control-points.csv": {
+      "logical_bytes": 1042,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-control-points.csv",
+      "sha256": "9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90"
+    },
+    "largest256-profile-controls.png": {
+      "logical_bytes": 113290,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.png",
+      "sha256": "3b32da647ebe1982cf2f37cab51d384a6c47fe98d342ba892b66c0865a54221e"
+    },
+    "largest256-profile-controls.svg": {
+      "logical_bytes": 70213,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.svg",
+      "sha256": "fa875573f8c7995e4944fb865cf86c05e92a46c6bd89655eb6dcba84b1e2002f"
+    },
+    "plot_largest256_profile_controls.py": {
+      "logical_bytes": 3021,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/plot_largest256_profile_controls.py",
+      "sha256": "e59e7b18a39fd4b76dbe18c8accc75c3d7378ad7fc5e901962d492c129c16e4b"
+    }
+  },
+  "not_yet_integrated_or_scientifically_accepted": true,
+  "observed_at_unix_ns": 1794800950604975974,
+  "preserved_first_render": "presentation-history/render1: shared y limit fixed too early clipped full-mode memory, corrected after image inspection; unchanged data, initial cache warning preserved",
+  "renderer": "Matplotlib3.10.8, noninteractive Agg; final workspace-only cache directories",
+  "schema": "ROOT-WS116-final-figure-presentation-audit-v1",
+  "scope": "Presentation only; exact twelve accepted canonical process observations, two metrics, no new statistic/reconstruction/benchmark",
+  "unit_conversion": "MiB = bytes / 1048576; original integers retained in CSV",
+  "visual_inspection": "Final PNG viewed: both modes and both metrics show every group/repetition; labels/legend/footer readable, no clipped full-mode data"
+}

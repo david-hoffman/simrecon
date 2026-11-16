@@ -1,0 +1,23 @@
+{
+  "authority": "ROOT",
+  "closed_first_row_window": true,
+  "controller_terminal": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-controller-17352-ended.json",
+    "sha256": "b299961bed85dde03b479c78780f8c954d4ebc9e99b56d80670156e3526fc5f7"
+  },
+  "eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched-r1-eligibility.json",
+    "sha256": "15e98dbd45d7d550a0fd28423d515620544aa329d17e28db507004798a7486d6"
+  },
+  "ended_at_unix_ns": 1794777360111688198,
+  "future_execution_released": false,
+  "no_active_stage_controller": true,
+  "old_window": {
+    "ends_unix_ns": 1794782463068855127,
+    "starts_unix_ns": 1794775263068855127
+  },
+  "schema": "ROOT-WS116-full-searched-r1-window-closed-v1",
+  "scope": "Explicit early end after actual R1controller/proxy/pipes/2birthFD closure and independentraw review; no automaticcontinuation",
+  "stage_id": "largest-full-searched",
+  "unresolved_owners": []
+}

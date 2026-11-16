@@ -1,0 +1,9 @@
+{
+  "closed_owned_processes": [],
+  "note": "Empty new full-stage ledger is scoped to ROOT future suspension authority and no prior/new stage launch; historical prior-stage owners remain immutable, never rescanned.",
+  "root_authority_sha256": "7347cc7da9ca466d43495f12cc771f813f0dda42a1d3c5f85ace31084c5d9257",
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "largest-full-searched",
+  "status": "NEW_STAGE_ROOT_PREPARED_NO_SCIENTIFIC_LAUNCH",
+  "unresolved": []
+}

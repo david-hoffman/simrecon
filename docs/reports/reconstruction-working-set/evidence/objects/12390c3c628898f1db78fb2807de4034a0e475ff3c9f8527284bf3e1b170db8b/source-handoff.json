@@ -1,0 +1,504 @@
+{
+  "schema": "WS116-bounded-evidence-curator-handoff-v1",
+  "status": "HOLD_CURRENT_CLOSED_MAPPING_READY_WITH_HISTORICAL_IDENTITY_QUESTIONS_AND_FINAL_ADDITIONS_PENDING",
+  "role": "fresh nonblind bounded EVIDENCE-CURATOR",
+  "role_launches": 1,
+  "delegation": false,
+  "scope": "Literal closed identity/alias/location curation only; no scientific, mathematical, visual, eligibility, gate or publication acceptance verdict.",
+  "inputs": {
+    "packet": {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/packet.md",
+      "sha256": "4782bb58001e5f1d2d15acc46172670851d6d34f01a139b8a5353fefde98c574",
+      "direct_hash_checked": true
+    },
+    "inputs_manifest": {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/inputs.json",
+      "sha256": "f47fec841dc7e47b63ffd1b1ee2aa9a45ded83229cbe7a16b3a30e18c63e421b",
+      "direct_hash_checked": true
+    },
+    "exact28seeds": [
+      {
+        "logical_bytes": 4583,
+        "path": "/workspace/work/campaign/evidence/116/publication-plan/closed-evidence-publication.md",
+        "sha256": "4e451af76d7a084db49993cb7cb1ca00dd885792f6592bcd0552394bb6a33713"
+      },
+      {
+        "logical_bytes": 506357,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-closed-raw-publication-map.json",
+        "sha256": "28565c32b2023637de7b4bc6879d54a82ec9e929d0f0bbce14b2114434f356f3"
+      },
+      {
+        "logical_bytes": 66800,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-sample-publication-layout.json",
+        "sha256": "76ed4c67116e4c7f36e44e768c9ef5fa5b46026175acb34eda41106f699ccb95"
+      },
+      {
+        "logical_bytes": 145315,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-sample-transport-manifest.json",
+        "sha256": "85cc0b68e42089d2d8d22e031fa1720676a49fa30ed09bcb571ffd57f4937f91"
+      },
+      {
+        "logical_bytes": 1363870,
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-recursive-reference-preaudit-attempt1.json",
+        "sha256": "9780d5ac35052da1349e074599519a83be6552ce44932ea78db621d956a87e4e"
+      },
+      {
+        "logical_bytes": 854695,
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-canonical-readset-audit.json",
+        "sha256": "de0b7f471765af28f54327b9ea92d597e2d57ffb6f52c0ffbfc19a6912b4978d"
+      },
+      {
+        "logical_bytes": 65274,
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      {
+        "logical_bytes": 6100,
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-attempt1-command.json",
+        "sha256": "3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b"
+      },
+      {
+        "logical_bytes": 215981,
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/config-largest256-profiles-AUTHORIZED.json",
+        "sha256": "1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5"
+      },
+      {
+        "logical_bytes": 1992,
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-largest6-profile-analysis-acceptance.json",
+        "sha256": "7ce302baa55b653cd1bcf13681cb525f367a7a68e2935ec01edcefe599811988"
+      },
+      {
+        "logical_bytes": 14669,
+        "path": "/workspace/work/campaign/evidence/116/finalization-plan/finalization-checklist.md",
+        "sha256": "cad33dce299a9bb6c582638a2079ffaacd53ccba2086d8c886c1a90493c50c4b"
+      },
+      {
+        "logical_bytes": 1676,
+        "path": "/workspace/work/campaign/evidence/116/finalization-plan/sample-layout-decision.md",
+        "sha256": "eeaac7ede04dc0ce78b932e03739010aebdc21624557450c9a126f8517f3aab3"
+      },
+      {
+        "logical_bytes": 2898,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-figure-presentation-audit.json",
+        "sha256": "3b2815d6bcaa2cba7ad75597b991383bf267ce335fef89c4e835072223a24b5a"
+      },
+      {
+        "logical_bytes": 12435,
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/source-handoff.json",
+        "sha256": "946362c30f16ef6209f1eb43ec25c71e1dbc605029db03001d457a71442f0318"
+      },
+      {
+        "logical_bytes": 169968,
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+        "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c"
+      },
+      {
+        "logical_bytes": 55221,
+        "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-before-final-inputs.md",
+        "sha256": "abbe7a1ef7403013ceee5a705f601e81b67d052e5712e76fa04a7681da57f149"
+      },
+      {
+        "logical_bytes": 9823,
+        "path": "/workspace/work/campaign/evidence/116/scientific-review-F01-correction/review.md",
+        "sha256": "b7ef15c14466a549d501f5f7f30f597da1358bd50105137af94a82ea2f7307a8"
+      },
+      {
+        "logical_bytes": 2912,
+        "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/input-references.json",
+        "sha256": "98a8effca19b204dc3580c7ba55753ffad11f606c9455de10abd021552844be4"
+      },
+      {
+        "logical_bytes": 116502,
+        "path": "/workspace/work/campaign/evidence/116/qualified-method7-source-basis.json",
+        "sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c"
+      },
+      {
+        "logical_bytes": 3914,
+        "path": "/workspace/work/campaign/evidence/116/final-review-input-preparation/stage115-delivery-binding.json",
+        "sha256": "06824f60ddaa37826278db38e622e1ac301ecab6bfb389dacc79baa6d698b23c"
+      },
+      {
+        "logical_bytes": 4510,
+        "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/stage112-delivery-binding.json",
+        "sha256": "a347de277d509e00a1424eb25e616dad5b3819cba8ae306f21a2caefa0244401"
+      },
+      {
+        "logical_bytes": 461,
+        "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/output-identities.json",
+        "sha256": "298057cf4e35237927cf23f1e548c9e08077b9ffdad8ea282decd7de5cba4567"
+      },
+      {
+        "logical_bytes": 559,
+        "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/output-identities.json",
+        "sha256": "a29ecafbad16c3cb7b591e7377b25fc4b27e31aacd61ded2cbffd5d460e560f6"
+      },
+      {
+        "logical_bytes": 559,
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/output-identities.json",
+        "sha256": "3919410cd4f8efdc0f099ebb8b8f018eb6297763d91a5ad61aa919c3d3784b63"
+      },
+      {
+        "logical_bytes": 559,
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/output-identities.json",
+        "sha256": "2908d48ac1d630fe6431708c52e6bd50754bd2eb8910e62a8a42dec7e4f3cb87"
+      },
+      {
+        "logical_bytes": 559,
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/output-identities.json",
+        "sha256": "8e481780e0dd584199f638c0b16c23443047e74cb3446b8ba7e7c40a7a0d7a6a"
+      },
+      {
+        "logical_bytes": 559,
+        "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/output-identities.json",
+        "sha256": "0c8a0e2c1622f1fe94a6172e1dd6ff3f067d9a00417b7a2033ef49dbc840fe09"
+      },
+      {
+        "logical_bytes": 559,
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/output-identities.json",
+        "sha256": "5ce51ed283236c4ecbdf6ca743d5e77a65145b119459ec007cc04c76215cb8cb"
+      }
+    ],
+    "supplemental_closed_inputs": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-first-render-closed-files.json",
+        "sha256": "ff728c442c14f0bf8122937c9f5e5e0c509f1b0b10f2734bb4455bf67985817f"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-curator-additional-aliases.json",
+        "sha256": "889ef9e642a5f31e554090668a4f48f1c8722237d25ba7d955ae4de497314a3a"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-curator-Q01-source-aliases.json",
+        "sha256": "bb6273981358f13f00600e815b2a6619c6ba595441a3ba6ced31d323a852afc4"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-historical-source-byte-alias-index.json",
+        "sha256": "1e0cef07794f07648194abe21c95d20625a11a76caf75b4ba5de6383856d232d",
+        "lookup_scope": "Only51aliases matching already genuinely referenced identity hashes selected; remaining428not expanded/vendored."
+      }
+    ],
+    "prior_closure_worksheet": {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-preserved-closure-before-source-resolution.json",
+      "sha256": "1193f6cd9d4669cf8b4d36b1d81d5b8cfeb3a28230fd58af06d8a89bd88c0324"
+    }
+  },
+  "outputs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/closure-list.json",
+      "sha256": "ae84ab7dfe606862f612d71b3cc3a90c70a09cdf6755145f3c194c9932ffdab9",
+      "disposition": "Complete concrete literal current mapping;11 earlier authoring identity questions and pending future additions explicit"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/curation-notes.md",
+      "sha256": "df11aaca1b25f6d07e8d87a634cc0967cc266b595caa430a1634573bc8da7457",
+      "disposition": "Exact methods, read/completeness limits, alias versions, historical questions, exposures/errors/accounting"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/source-handoff.json",
+      "sha256": null,
+      "disposition": "Self digest supplied externally after write; no impossible self hash"
+    }
+  ],
+  "mapping_counts": {
+    "distinct_original_path_sha256": 4007,
+    "reference_occurrences_retained": 18095,
+    "direct_non_sample_named_paths_hashed": 3791,
+    "raw_originals": 1001,
+    "corpus_sample_transports": 91,
+    "finite_source_version_gaps": 0,
+    "environment_path_fingerprints": 6,
+    "historical_authoring_identity_questions": 11
+  },
+  "scientific_raw": {
+    "originals": 1001,
+    "corpus_transports": 91,
+    "stream_verifier": "ROOT85cc decompression SHA+size original-byte attestation; no sample bulk read/hash by curator",
+    "older_qualification_samples": "Separate original qualified-method7 report/hash manifests, labelled manifest-attested; no claim they belong to ROOT91"
+  },
+  "source_disposition": {
+    "scientific35": "Artifacts at exact root/expected hashes",
+    "analysis15": "Thirteen artifact sources/inputs plus two stdlib environment fingerprints",
+    "historical_qualifier12gaps": "All resolved by51selected literal1e0cef index aliases and directly checked SHA; original1193worksheet and original12gap history retained",
+    "historical113": "Only two old finite process/tool-capability records,9operational receipts/9activations and narrowly bound source/provenance; no113product/newM1study",
+    "historical_authoring_questions": [
+      {
+        "original_spelling": "docs/contracts/reconstruction-working-set-v1.md",
+        "sha256": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/0/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "docs/tasks/reconstruction-working-set.md",
+        "sha256": "ee65ecf7b4d6a0c6a56639fe2fc5c86c4e2f0056082fe5e26cb90875b00364cf",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/0/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "docs/packets/reconstruction-working-set-review.md",
+        "sha256": "0d56d07158a58a4840dec2d2aca6cfc523d93053101670321495d1d375f35351",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/0/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "README.md",
+        "sha256": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/1/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "analysis/liveness-draft.md",
+        "sha256": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/1/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "manifest.json",
+        "sha256": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/1/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "run_attempt.py",
+        "sha256": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/1/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "workload_child.py",
+        "sha256": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/1/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "observer.py",
+        "sha256": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "roles/1/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "planning-inputs.sha256",
+        "sha256": "9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "source_admission_planner/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      },
+      {
+        "original_spelling": "planner-handoff.json",
+        "sha256": "5cd9f81b66eeb96cbe740ef166bead432841253e4232c83223b836786a516ca4",
+        "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "field": "source_admission_planner/output_sha256",
+        "original_absolute_path": null,
+        "actual_preserved_aliases": [],
+        "proposed_bundle_path": null,
+        "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+        "actual_preserved_file": null,
+        "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+        "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+      }
+    ],
+    "environment": "Four main binary identities/path aliases plus stdlib/runtime/dependency/gzip fingerprints are restoration requirements; no binary/library tree supplied"
+  },
+  "figures": {
+    "final5": {
+      "figure-input-provenance.json": {
+        "logical_bytes": 1321,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/figure-input-provenance.json",
+        "sha256": "988da339d897faa6c2f746a98f192c74f09325d569262c8c6296e13793e1c7f9"
+      },
+      "largest256-profile-control-points.csv": {
+        "logical_bytes": 1042,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-control-points.csv",
+        "sha256": "9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90"
+      },
+      "largest256-profile-controls.png": {
+        "logical_bytes": 113290,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.png",
+        "sha256": "3b32da647ebe1982cf2f37cab51d384a6c47fe98d342ba892b66c0865a54221e"
+      },
+      "largest256-profile-controls.svg": {
+        "logical_bytes": 70213,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.svg",
+        "sha256": "fa875573f8c7995e4944fb865cf86c05e92a46c6bd89655eb6dcba84b1e2002f"
+      },
+      "plot_largest256_profile_controls.py": {
+        "logical_bytes": 3021,
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/plot_largest256_profile_controls.py",
+        "sha256": "e59e7b18a39fd4b76dbe18c8accc75c3d7378ad7fc5e901962d492c129c16e4b"
+      }
+    },
+    "render_history": {
+      "final_render_tool": {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-render2-terminal-tool.json",
+        "sha256": "3334187a0bca19f7203c3b2f53b974b7a303c7db5fe752015dab8fa399d7bba6"
+      },
+      "first_render_manifest": {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-first-render-closed-files.json",
+        "sha256": "ff728c442c14f0bf8122937c9f5e5e0c509f1b0b10f2734bb4455bf67985817f"
+      },
+      "history": "Original first clipping/cache-warning presentation retained; corrected final render uses unchanged canonical data; no curator visual/scientific opinion."
+    },
+    "curator_visual_or_science_judgment": false
+  },
+  "pending_future_additions": [
+    {
+      "kind": "Final source44 report README/five handoffs/attempt ledger/input-references/integration-notes/source-handoff",
+      "status": "INITIAL_SEEDED_VERSIONS_PRESERVED; exact final amended identities require explicitly supplied closed manifest",
+      "discovery": "No unlisted source-directory discovery"
+    },
+    {
+      "kind": "Corrected routing45 four files",
+      "status": "PENDING_EXACT_NAMED_CLOSED_INPUT_IDENTITIES_FROM_ROOT_OR_COORDINATOR"
+    },
+    {
+      "kind": "Same SCI1 final substantive assessment",
+      "status": "PENDING_EXACT_FINAL_ARTIFACT_IDENTITY; foundation/F01 bytes preserved as role evidence only"
+    },
+    {
+      "kind": "ROOT final integrated location map and representation index",
+      "status": "PENDING_ACTUAL_FINAL_PUBLICATION_ARTIFACT_IDENTITIES"
+    },
+    {
+      "kind": "Measured-to-publication material comparison",
+      "status": "PENDING_EXACT_FINAL_COMPARISON_ARTIFACT_IDENTITY"
+    },
+    {
+      "kind": "Final integrated116 full gate and fresh postgate receipts/independent assessment",
+      "status": "PENDING_FUTURE_RUN_AND_EXACT_ARTIFACT_IDENTITIES"
+    }
+  ],
+  "read_operations": [
+    "bounded inert cat/sed/rg/wc",
+    "identity-only sha256sum on3791exact non-sample named paths plus own output/packet/input identities",
+    "existing jq JSON projection and tool-orchestration inert JSON parsing/structuring",
+    "one disclosed guessed existence-only test; no content read or reliance"
+  ],
+  "scope_deviations_and_diagnostics": [
+    {
+      "kind": "existence-only guessed lookup",
+      "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/source-handoff.json",
+      "result": "present",
+      "content_read": false,
+      "followed": false,
+      "used_as_evidence": false
+    },
+    {
+      "kind": "supplied historical exposure text",
+      "artifact": "foundation-assessment-before-final-inputs.md",
+      "fact": "Seed artifact includes historical author's operational list_agents transcript; no live inventory/conversation called; no opinion used as science oracle"
+    },
+    {
+      "kind": "historical identity metadata",
+      "artifact": "original launches.json",
+      "fact": "Old output-hash fields projected as identity pins only; no role conversation or scientific opinion followed"
+    },
+    {
+      "kind": "output transport truncation",
+      "fact": "Large preaudit reread completely in bounded exact sed chunks; initial whole-object JSON projection replaced by narrower nontruncated batches; partial data not used as final closure"
+    },
+    {
+      "kind": "intentional invalid JSON fixtures",
+      "fact": "Parser-vector bytes remain preserved by hashes; JSON projection diagnostics led to133literal non-vector real-record projection with0errors; no false missing artifact or validity judgment"
+    },
+    {
+      "kind": "data patch rejection",
+      "fact": "Combined delete/add same target rejected before mutation; only owned output rewritten sequentially after coordinator preserved1193"
+    }
+  ],
+  "own_writes_only": [
+    "/workspace/work/campaign/evidence/116/portable-reference-closure/closure-list.json",
+    "/workspace/work/campaign/evidence/116/portable-reference-closure/curation-notes.md",
+    "/workspace/work/campaign/evidence/116/portable-reference-closure/source-handoff.json"
+  ],
+  "scratch_files": [],
+  "persistent_processes_created": [],
+  "process_disposition": "All own transient inert commands completed; no process/resource inventory, cross-role cleanup or closure claim.",
+  "target_or_original_evidence_edits": false,
+  "copy_compression_publication_performed": false,
+  "new_executable_or_source_program_created": false,
+  "isolation": {
+    "fresh_no_history_requested": true,
+    "nonblind": true,
+    "engineered_role_readonly_or_memory_disable": "Unavailable per packet; prompt restrictions/shared filesystem only",
+    "actual_model_and_effort": "UNKNOWN; requested gpt-6.1-sol/high per packet, no verified serving attribution"
+  },
+  "accounting": {
+    "curator_launches": 1,
+    "actual_tokens": "UNKNOWN",
+    "cached_tokens": "UNKNOWN",
+    "cost": "UNKNOWN",
+    "metered_duration": "UNKNOWN",
+    "previous_attempts_failures_stops_role_costs": "Preserved cumulatively, not inspected/reset/asserted zero",
+    "numeric_human_cap": "Not supplied"
+  },
+  "ROOT_next": "Review concrete map, resolve/record eleven early authoring-ledger path/public-commit identity questions within existing history scope, then supply exact named final report/routing45/SCI1/ROOTmap/index/materialcomparison/gate/postgate additions. ROOT owns copying/compression/target integration/publication. No new measurement/requalification/approval inferred."
+}
+

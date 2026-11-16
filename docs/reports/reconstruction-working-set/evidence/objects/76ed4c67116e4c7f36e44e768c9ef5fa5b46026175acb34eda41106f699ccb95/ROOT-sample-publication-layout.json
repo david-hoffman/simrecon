@@ -1,0 +1,929 @@
+{
+  "already_tracked_historical_failed_original_remains_tracked": true,
+  "authority": "ROOT",
+  "eligible_originals_not_to_be_broad_staged": 90,
+  "integrated": false,
+  "items": [
+    {
+      "bundle_relative_path": "evidence/samples-gzip/corpus-spatial32-summary-searched-r1-a1/samples.jsonl.gz",
+      "gzip_logical_bytes": 18367,
+      "gzip_sha256": "6fc7f398904475f26aced2e837599ad8f63af421850437567925b08ffc8b8c1c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/corpus-spatial32-summary-searched-r1-a1/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": true,
+      "original_logical_bytes": 571293,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/samples.jsonl",
+      "original_sha256": "a311aefb6d0b0ac252ec5c0cf170364b7256b0900c3bfadd87acb5f99ea417d5"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-2d-summary-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 2153,
+      "gzip_sha256": "f4c501fac3d82eecc93c451243fe429cf1b5f53c186d147b20271db76bb4ca04",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-2d-summary-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 28888,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r1-u/samples.jsonl",
+      "original_sha256": "25fb54529efcdf474d1c9a3b75ee4a26518154da43b1fa5314e94d307cb09826"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-2d-summary-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1948,
+      "gzip_sha256": "34036d789a64880b903c55de339fb9891cffe97035939de9eed9b531f9e0b9dd",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-2d-summary-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 26865,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r2-u/samples.jsonl",
+      "original_sha256": "0219cedd1413cf3072a7ecac16b6ef6dded7e671e8b313fc5ecd00b45bfe27bb"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-2d-summary-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 2017,
+      "gzip_sha256": "3dac9d853532f3c7c5b25e1afc4d6d57c9cd5fc94b98ecbb9c0418a64f9893f2",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-2d-summary-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 27730,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r3-u/samples.jsonl",
+      "original_sha256": "83696df8001eba6f15ef5ba6074f3ea1ee718fce57e1524ffe23a76b9ce15770"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-between-summary-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 4066,
+      "gzip_sha256": "d451554cbaffbc6babf30e0113b0d0ed2a17b226b920b1c9a579a2878151c163",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-between-summary-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 93040,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-between-summary-r1-u/samples.jsonl",
+      "original_sha256": "f290ad5bc59927bef543a1841e0945f6a4857cc050fd2a698ed06ee9595637c1"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-between-summary-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 4333,
+      "gzip_sha256": "6d452c0cb6635957f603ce1872ed8a679464ed4ac6bf291d551262c8e028e34d",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-between-summary-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 98824,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-between-summary-r2-u/samples.jsonl",
+      "original_sha256": "cefa22a8d26c8473bee39bbfb2282cf7b8afb514970b0e6eed7bfd9890d0fbe6"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-between-summary-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 3783,
+      "gzip_sha256": "66260002e6aae85b41ac7a907bc30f6237faf51b83e5dd50bab9a449c61ff1c5",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-between-summary-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 87264,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-between-summary-r3-u/samples.jsonl",
+      "original_sha256": "891ebc45d6b17ad5e7c598bbbafbce94005d8d70e5b1ad7043180378c9ec495a"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-full-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 76059,
+      "gzip_sha256": "8bb1009085f51382c932ac7059858bce99671aadda5e9e0b7bacaedc2912bb40",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-full-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2557260,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-searched-r1-u/samples.jsonl",
+      "original_sha256": "535939c3cda38a8fe45b872cb83c738096b4d36000515fc806aeef47264c7e36"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-full-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 68810,
+      "gzip_sha256": "6a38f1b5c9b92265a8c02a41575a7269220a9c1a55d365e24503819fe7c535f8",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-full-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2350312,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-searched-r2-u/samples.jsonl",
+      "original_sha256": "b31f2d5ced1f80577b34f69513c6ea60c90854783e4cc09687faf461932aad96"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-full-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 69207,
+      "gzip_sha256": "dae802ae2aac9a4baa23b1ea4f1befe33ae6290b157147d42f75cf368281f480",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-full-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2336385,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-searched-r3-u/samples.jsonl",
+      "original_sha256": "b96dc0250792a317acbe0867ca947aa0a263a79b0c0359449392a841c015899b"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-full-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 62012,
+      "gzip_sha256": "bbba1ca7d321a00bbe106b01375bfe35418bbe10bfc1a60da2478f006a6dc292",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-full-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2107736,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-supplied-r1-u/samples.jsonl",
+      "original_sha256": "63cec79a15fd240cd5ae52c6303b2a84847d918e84d3b26a97351f9e8b9263fa"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-full-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 70416,
+      "gzip_sha256": "fa1df5dc22680d5c660c9a66295a4658b0f343858269e6f89f6c885b5dc13a4a",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-full-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2418828,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-supplied-r2-u/samples.jsonl",
+      "original_sha256": "8477a134387911dfc856f5fb017de1b60ea588306281a8a89e9833297b65a539"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-full-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 72732,
+      "gzip_sha256": "fcc06fc7ba3ec6d65487f1ba9c0333eba4c40c29b4ef682b678cc1f197461c52",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-full-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2424590,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-supplied-r3-u/samples.jsonl",
+      "original_sha256": "5cb7d74ad26af425534f156f0ebffbf39a4c1eb29f650ffffeaef86afd0a7daf"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 82563,
+      "gzip_sha256": "cc6c848328eaee45bc0193cb94d1df6ba6e9cc1118ba545d9c581d042ffa4b78",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2792882,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "d88597da39ab7166a539ce11b31aada15fe4c5678c8bee779fb5e76618d72f76"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 79844,
+      "gzip_sha256": "2af5f880d8a72ffea1d50655d1420aa427f7f58cddfa58e8a204e8fdd61fe6c5",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2677523,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "6977dbc26a9abddc514f7259b902d2bd0e45a12e6fdbd238a65314c0de132d43"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 80196,
+      "gzip_sha256": "36f7d34f1aecc903f49f23019a197cebe0e55ea91ba51bdb95dc176b3469f85c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2736479,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "77c94f90bd2306a3f6b3a51a3882469da6cf7913565df24ac236da71ed1cd5a5"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-summary-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 65342,
+      "gzip_sha256": "3b3a3f411d67368d536fd7f98fdce051870e323624afe22bd0e40d6456866f65",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-summary-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2247254,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-supplied-r1-u/samples.jsonl",
+      "original_sha256": "1cd9aaa2938c4da663be5f27eb142254955f4e3ba13a396b2c852e5d767adc18"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-summary-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 69984,
+      "gzip_sha256": "c21f550addd397785e242ee7524b42088f33282210ee7b733dfb3c9f0c1e4b0f",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-summary-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2400663,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-supplied-r2-u/samples.jsonl",
+      "original_sha256": "fd55bf38a95a7aa48f53d08d0695093b61b0ea1777a03779652e1c40091cda53"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-central64-summary-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 64166,
+      "gzip_sha256": "f5b4aad8d65c9061822e0d0631c7ec9e01d1b121547c81b5c9347cc5e7b7d7a9",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-central64-summary-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2249566,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-supplied-r3-u/samples.jsonl",
+      "original_sha256": "84a23aee2148fde32cb188e4fe291c9b11cd53e490a3775c95e10c4a7ba85a70"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-direction1-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 19307,
+      "gzip_sha256": "191825bdbeb790dafee6d06e653167995c55a938f78dcd6b27b29f312669e2af",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-direction1-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 599085,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-direction1-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "f0ccfed74f46658fbaa2c872f5a0dc3b715fb9dba45ccaba4a5802775977f635"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-direction1-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 14494,
+      "gzip_sha256": "38e02cd97d5d349150ba961847f0c8c7948ff81ed4ee770bb8b7ed1602f2e4da",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-direction1-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 426504,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-direction1-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "d69d555467d2e61e77318c39edf6153bc08fddfd629d3bd2cadf83ed711c56b7"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-direction1-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 13043,
+      "gzip_sha256": "2a69f30820827b691bb38d8203029dbb89f3eeeb47bc0d0165beb5e13800608d",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-direction1-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 410946,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-direction1-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "1659051ff65433e009e0bebac4eb01e35656cd621e5153ddac34a862e413e5c1"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-full-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 296282,
+      "gzip_sha256": "d275e1f093a9b77b0ef657ef59483d765e7844821415b4cbe6be49d2d3ed63a3",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-full-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 10156292,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-searched-r1-u/samples.jsonl",
+      "original_sha256": "da36ca65c81d373ead26bd0c866fa124d4c17a189987620d6e2dd1dc5623e958"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-full-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 313771,
+      "gzip_sha256": "d574c95bcbfa8cd3729ded4b988496580d6457676e6cf9fd68a46400c0493c8f",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-full-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 10818314,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-searched-r2-u/samples.jsonl",
+      "original_sha256": "f1f80d023617e283fe4175a8c3b0542c827b5a88e3291bbf38e5e19a2cef1fc6"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-full-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 280007,
+      "gzip_sha256": "30b6a2e56b4d8ac18344a4f665cc566e46f26f4a774e8e8ef939689353b1722d",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-full-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9667987,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-searched-r3-u/samples.jsonl",
+      "original_sha256": "773eecae60a174dcc1e71cd7c460ec7a520ab3c3bb0bed58fa6099ee773a1329"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-full-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 277826,
+      "gzip_sha256": "552895691fa87dba66430af22da83a69fb983be45da6f58be9af72958d71b351",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-full-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9548151,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-supplied-r1-u/samples.jsonl",
+      "original_sha256": "c9afa42534fc76c03052fb710a1c051caad9e1bfdb8254dcb882ee845579052e"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-full-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 279936,
+      "gzip_sha256": "ddab7f7d796f0ed32864cdec65eb656d509383abfbe06e2acfb6d1ccad7b6e2b",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-full-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9681051,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-supplied-r2-u/samples.jsonl",
+      "original_sha256": "a877cdf3cddde4e4bbb1b510e2aaa5634a4a4be74bd8d3d68e90ab53f23de96c"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-full-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 259149,
+      "gzip_sha256": "7318fa4e8996b0a2869ca8627527fc34fb332ed45d95a9e72f6a0cf77088d2db",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-full-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 8965762,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-supplied-r3-u/samples.jsonl",
+      "original_sha256": "8d0d2359fb631565c839e0cfae1f390a4b439580c73c2b631a42a2d81f2f607f"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 289729,
+      "gzip_sha256": "c4f1105adc4a6cffb07c7ccb5a72ed088274f0eb3ab9975326463ac7bd82dd17",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9995115,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "0036806358f54df97ca0d9bc668c58974d25548ceb4e3ec30e09d044f13c6089"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 293331,
+      "gzip_sha256": "525f0c84724f2bc8aa5c5084034fc4ca33a7a96408dac004d5f052ee7f6dd76c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 10121066,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "20923da84c4e70ea0e996470eee387a4d391ed96ab77c2a1163ba1e5265a272b"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 310946,
+      "gzip_sha256": "d1d540276e0795ebf60a41175424fa0d65fd5524ac05e3443e2abb5104cb721a",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 10771193,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "87cf7872fc4a6cd14ab2471be41ae239c80a7e627f6488e3b538530125299245"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-summary-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 244223,
+      "gzip_sha256": "9958f6489daff9d915af1860f6491489f6dc6d05db69442a92c017f212f33114",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-summary-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 8576210,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-supplied-r1-u/samples.jsonl",
+      "original_sha256": "00555581c712b28afb39c9be7411d0becbf6155c032f1afc35937bfd13ca6a41"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-summary-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 262117,
+      "gzip_sha256": "44ae1ca9e9910717445cab1c4bb520d2534f316b7720c56545e5c0b707b4590a",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-summary-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9251322,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-supplied-r2-u/samples.jsonl",
+      "original_sha256": "8d7750df55dc3fa07db0336fd7b47fe636113009af3a5d3f9b00417f5bca3693"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-frozen128-summary-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 264457,
+      "gzip_sha256": "d8ffecf7213cf325fe259b25fb1b3e0c8b3735551f54131039a481aedc445ad9",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-frozen128-summary-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9352290,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-supplied-r3-u/samples.jsonl",
+      "original_sha256": "a8760d2f5491d1f4cc8e7737fdd8c2c969f92875184d2ad36e0cd9ede2657ef3"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-c64-full-searched-r1-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 71415,
+      "gzip_sha256": "3af858cf9fc2c3cc966e8b0248b52a9a34f3a5de279dabea4d71e08c9aafe62c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-c64-full-searched-r1-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2371337,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r1-p/samples.jsonl",
+      "original_sha256": "7c6d61a4e2f514f7aa15f458a5a1610b4185352bcc473a52ca45abe6838b612e"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-c64-full-searched-r2-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 73559,
+      "gzip_sha256": "a01146f991fc0f4315c19b8def221c57960730a2ea7909a8e046ae15c5f9a883",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-c64-full-searched-r2-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2456051,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r2-p/samples.jsonl",
+      "original_sha256": "1cb2a4d368797bb874741ad388b931455a35de24c313a657103263565eb6b466"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-c64-full-searched-r3-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 70646,
+      "gzip_sha256": "3fc65e03c7d4b9b317a3d7b6f5d4deeecb31778ece8a21f7a38a368f7620337d",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-c64-full-searched-r3-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2362170,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r3-p/samples.jsonl",
+      "original_sha256": "377782fbfc8921d6f2a835d9da30a9274a18ae4e60e27670b17f5a244aaa65c9"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-c64-summary-searched-r1-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 82830,
+      "gzip_sha256": "909766ecf247896ad15b7489567e60b1edba34a80cda34e47012207dc97a0ad2",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-c64-summary-searched-r1-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2773786,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r1-p/samples.jsonl",
+      "original_sha256": "836dc5f69e009bc9aac0698bd5176ea86f6ae80b863b8a658e9de14bf6043b22"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-c64-summary-searched-r2-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 70771,
+      "gzip_sha256": "e6eb80b909f803e33f50018935d2f5d8f67865044ebef694de1c25fe6efadb17",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-c64-summary-searched-r2-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2393936,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r2-p/samples.jsonl",
+      "original_sha256": "41d57a8b269f5397c09e7d10c253ff172f66f370784bad4be4ac6b79fae709c5"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-c64-summary-searched-r3-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 69427,
+      "gzip_sha256": "1fad66939a5f05689225d24335ea93d3ad2cfa1809fcb7b146659ed3148e1b6c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-c64-summary-searched-r3-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 2353000,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r3-p/samples.jsonl",
+      "original_sha256": "ff0a4912686fc0e8fa966f620faf85b5b8ccc530be6f6b48a912c9a9b0ebd237"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g192-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 685785,
+      "gzip_sha256": "3837b738674159e92e86632c3bcc51f5adc91c27aaddd427ea6514844ffcca14",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g192-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 23974169,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "6016e4b4a3338e5ef55e453d95c074db7a90e4cb1bed0d49b531670e6f7481b8"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g192-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 681381,
+      "gzip_sha256": "2f07cd36cfccdecb1d57a4c63f5a1806b013f7fc0e452e917d4f151d6f9770cd",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g192-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 23815035,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "d6251483d36f687d386581a96557d818ae6a2c2a57a035b9603ee577b9214c94"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g192-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 654740,
+      "gzip_sha256": "c49e2b6008ebc437234467e7d0c69aa4a733506983db253335951576077d1c3c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g192-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 22903359,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "d5ccf31f3c127705b6d7270e4e1965b9573abf5ebd2100fc33f420ab7a1ef64b"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g192-summary-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 740079,
+      "gzip_sha256": "942fe7992ac6a5a994828e62d85698e2494e6f0f304b82ab9edd9a94f026f375",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g192-summary-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 26137240,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/samples.jsonl",
+      "original_sha256": "e49071a1cfca810f8464c5169e4e00be6246c0b10e3bbfc2272e3658fa627e60"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g192-summary-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 693787,
+      "gzip_sha256": "f1869046ec514108f78500df5da92c912ae40ba60e05c2bd3c0b916d003621b7",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g192-summary-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 24557563,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/samples.jsonl",
+      "original_sha256": "d7931d6478f29b911357e5347a6c277df847632f9452e479f2ca002aac75ef30"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g192-summary-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 701738,
+      "gzip_sha256": "c8be40a8239be6d6b2ddeebed79be361305bd64b3832a064b970f4fe55f93ab2",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g192-summary-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 24874710,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/samples.jsonl",
+      "original_sha256": "b7f5f97bc9938393423847cc4c7671da2c0330901e87872ea47a4970b91a774e"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g256-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1399906,
+      "gzip_sha256": "8a3b44b733df53ec4124750a911d4531a2cd2c11c310d9103a7cd77453f9c77d",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g256-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 49167294,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "04923f3a3e34863ed6b9fc73e7e3f9d24cc97510f98c5be6693631eeca7a4f72"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g256-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1346013,
+      "gzip_sha256": "2c3cf24ad26e274c5340315cd32f93ec6fe35b9f82aa0b46b57e451196bef064",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g256-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 47308484,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "603ae8e395ea9d818567ea4685db3c93f4c5b443143fbc06db291de2543be639"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g256-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1412472,
+      "gzip_sha256": "ce8f3bd73bc8702def4387c2b9dda5db4887bbe659dcdfb2882adc0effd8d82f",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g256-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 49814956,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "77c0ebccfeee14a55e10c40a96e8d8c8b2c6b3a1ec83bc3a8404a33db304efc3"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g256-summary-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1301012,
+      "gzip_sha256": "c0c56cd17316d82a1aa67cfc27dc57b215eee2474655c5dc0a6fe5146c5428d6",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g256-summary-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 45902870,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/samples.jsonl",
+      "original_sha256": "7fb20f6c0f41edbfee42c06afb3f60c4a0359a5fced38c79dad8682557f165fb"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g256-summary-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1215768,
+      "gzip_sha256": "bae5ae410c9037589cc77a2a4b81979685a1ce2a3a0be1771cbba7be11a0ad0c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g256-summary-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 43465426,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r2-u/samples.jsonl",
+      "original_sha256": "0e7651950dffd593d21dfacbb5e3e8bcc9d1effb3cc56f994dfc48354e619715"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-g256-summary-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1231938,
+      "gzip_sha256": "6909ab9db10c3e5918c2107a7963b8bfe488b071e4db6bd6f260988207308e8b",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-g256-summary-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 43687118,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r3-u/samples.jsonl",
+      "original_sha256": "128b3e20a07f9a110f9a449ea603f86d62459de9cddf2f4c9b80df499d119cc6"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-searched-r1-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 1113663,
+      "gzip_sha256": "72fba96ce2c3c452262245d29d64dd8dc54b3cc5df75060a9a9faa7e6ddadee0",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-searched-r1-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 39597411,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/samples.jsonl",
+      "original_sha256": "2af2242f7991a6d3522e0f0d0bfb71ca722de5b0ade2e1c106292fe5c30202b4"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1208918,
+      "gzip_sha256": "fd809131f65c1210283d4a19c675b7e79eb5da67c13dcb84febcb592307f53e5",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 42448908,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/samples.jsonl",
+      "original_sha256": "0b30909ba22e0aecb513af0108acf5753e09455aa1b31d167c7e455ea729fa73"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-searched-r2-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 1309645,
+      "gzip_sha256": "9eee1ced075e7e4f8292432527d193ff5fe5dba3c509fc38cf4bdb3119a4399c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-searched-r2-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 46630418,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/samples.jsonl",
+      "original_sha256": "4a698f89cfae1496fd5f77ae4ba922dc3cb999ed927b0d4a0cb7df0dd3447cec"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1172661,
+      "gzip_sha256": "a5f24b173cb20221ac2d9eec137664148cd8cd789920f47480802f1e5ef69ecb",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 41095861,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/samples.jsonl",
+      "original_sha256": "036f4848989d37abeff23ce8c706d5e0236fd37e436112e9f556620087ab68b9"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-searched-r3-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 1334993,
+      "gzip_sha256": "904fdf71556988e6112ef030a2ec73245e9996ab0e9f7695d9bb7b4c262057f7",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-searched-r3-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 47379052,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/samples.jsonl",
+      "original_sha256": "8936b941fdf665be1d5d581d1c2e0742601917848eb52917dec62da864c01ff9"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1219372,
+      "gzip_sha256": "12641d41d5684f91b51c9b0c743312368303b979f9325e483c558e499b436921",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 41999912,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/samples.jsonl",
+      "original_sha256": "9a81ec93c4e5a939196a829e59305d804de11bcc1b9382d952ccd4e337134492"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1095865,
+      "gzip_sha256": "75ca4b7cfafd7a2347d9f7fe3efdaccab18d29f216328f2e05eab44cbbb04499",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 38633153,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/samples.jsonl",
+      "original_sha256": "2f8f09e7e8510932a679eeabf96de700398db1584d626249d0823743607a405f"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1119277,
+      "gzip_sha256": "123d52123350415ff5a0691bb63630b1551525ab6832c442023dd3af039055ac",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 39452811,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/samples.jsonl",
+      "original_sha256": "fe8683dc1c7d6dc73c33f9642f418ec2434a4b3729d52588c035406c0072c369"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-full-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 1112552,
+      "gzip_sha256": "4130e6fdeac228afb35878859366e2eb84ad7629f8e31addbbb06a268726dc25",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-full-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 39059417,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/samples.jsonl",
+      "original_sha256": "bcf98c3e2ede8c2751fe450545229a43df66f80a7c4e30d32ea4a33eab27045c"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-summary-searched-r1-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 1073173,
+      "gzip_sha256": "264de0b60f2c568c00f23d7e2ad3e643cf8aea41c0d8a0e009edbe01f13fb9a7",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-summary-searched-r1-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 36930786,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/samples.jsonl",
+      "original_sha256": "8639e8776225a4df701fc2d9c91d50be6cd70793dbe45aef2f4ce17cbcb895db"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-summary-searched-r2-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 1198838,
+      "gzip_sha256": "32a7351a40acc719536b44734388dcfa6f2942b222473edc0c009195568904f6",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-summary-searched-r2-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 40418116,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/samples.jsonl",
+      "original_sha256": "babefabf668d8e9066faded0c3a7b52a655b1b85f1198b28cc54b80522d01a12"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-gp-l256-summary-searched-r3-p/samples.jsonl.gz",
+      "gzip_logical_bytes": 1215112,
+      "gzip_sha256": "f7ae11965d7f5af21514e80802a5bbd436d98c8fca6bfbe92d6ccbb01af69242",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-gp-l256-summary-searched-r3-p/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 41522252,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/samples.jsonl",
+      "original_sha256": "e30185acab1ef04609698a3a76f40230d636360dc69cb928cfd2c932255aaca9"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off1-summary-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 4664,
+      "gzip_sha256": "958968caf04a5b3cb03fd7d256e9d563ed6dd3cc26de462e5a7e371c9884f9b2",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off1-summary-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 117322,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off1-summary-r1-u/samples.jsonl",
+      "original_sha256": "eb1de387655666605dd66ec958d6541992c618d3c9fabb6889a7eeb93ca23c42"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off1-summary-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 4765,
+      "gzip_sha256": "0aad5d2adc20235b280e6b7c5901cf6e728649e9f90642f91f06b8b291396a8f",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off1-summary-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 118189,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off1-summary-r2-u/samples.jsonl",
+      "original_sha256": "3c942755b2939d9b1930962b67c3a76e3edf10a3dfdda109bfc02ce91ac2e858"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off1-summary-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5461,
+      "gzip_sha256": "f83a3593b75fd56592ec5b48c0370ed82087743e42f260e180aea12b26340bd1",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off1-summary-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 141887,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off1-summary-r3-u/samples.jsonl",
+      "original_sha256": "41a33e1db718a7f66a04ba1965183d30154428c2866e7e2cf024a116d67161ff"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off2-full-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 7054,
+      "gzip_sha256": "54b59ade5e7b3990bf8d8e4e0562b9b8bbcdca1974f8c76880ddcf1b459e8171",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off2-full-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 190146,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-full-r1-u/samples.jsonl",
+      "original_sha256": "7acc62eb59278c8de7406bcaff0cf2ec14b9c3febce9732b4e0d798122b72bc0"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off2-full-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 4622,
+      "gzip_sha256": "4dfd2beb93d32a668ace55d390d273eb61f98b72d5db8a4940c87bf7cc314313",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off2-full-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 120212,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-full-r2-u/samples.jsonl",
+      "original_sha256": "cf0f162ffb85d169a4b66e858417f8161f8412c896258422a6a755d589af4607"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off2-full-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 4866,
+      "gzip_sha256": "b654151fa16f42efaa610a7b9711715f87587456daf15092178bee479dcc0f4c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off2-full-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 122476,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-full-r3-u/samples.jsonl",
+      "original_sha256": "a27ccf110cf8b095df8bb94ba8825b2093a093aaef52a894e2d3028d5003c992"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off2-summary-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5013,
+      "gzip_sha256": "8ee795fb0ce9565850025552df750b2946bbaa35d42cc6246f407d85d46cfc0c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off2-summary-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 124788,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r1-u/samples.jsonl",
+      "original_sha256": "a6181b60ceef07668f73a96d7dea2aeef6e877bec48665aaea975bdd6fd6761d"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off2-summary-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5892,
+      "gzip_sha256": "aef5294f1153bac5b3b5770d1502272819e5bb079a700cc5b602cb270e655c07",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off2-summary-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 152243,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r2-u/samples.jsonl",
+      "original_sha256": "f34e54575f8344de05af8fb9a0185fc64ddeb58ccf16c350ad78fefd9e4e6d83"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-off2-summary-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5927,
+      "gzip_sha256": "4f635ebe7d416182991789ee400a8f9450366c22d6abb24ee7fc62ad5e202d10",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-off2-summary-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 135766,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r3-u/samples.jsonl",
+      "original_sha256": "14e81359b15ebbe96e3cdd14612cd3b7e618d8a76207d7c9f7d5815a6914c2b7"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-spatial32-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 22075,
+      "gzip_sha256": "6fff3d998d9d3925ed4c064298c96293f077c9273345db7df4bd9047e819e4c7",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-spatial32-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 699320,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-spatial32-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "c484d3e6f09ccec22b89c4f16e4b9d185a2d4d4f613690c5ee6ee5a6c01d80a4"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-spatial32-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 18580,
+      "gzip_sha256": "f7f270b39a91f81df7f239a6282e126cae1658d498c33df8e62fa02e15c56fa9",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-spatial32-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 593835,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-spatial32-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "382cf383f6d6075012ce1f566b004137b4cce9e63ebe7ef7c6de0e815763b147"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-spatial32-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 22669,
+      "gzip_sha256": "bd3d9575cdd915f7097107f4d08378abe5720b475fe29ef8250f3e970841eba9",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-spatial32-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 743242,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-spatial32-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "b8dbb0da78e520f7420a35d39a3340226bb4660cc9644fd8b43807a36e2eaf8f"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time2-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 145908,
+      "gzip_sha256": "d1a6492a9f7ea72029c04bc0d14f320b824f8c83cf7e3b21b2d3b0c2fb7da807",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time2-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 5119658,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time2-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "3656d528dae7a8a0932d1d99ed7cf9944210fdd053edb29e61793ce6159be86c"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time2-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 159656,
+      "gzip_sha256": "11682f09d8650b6c947e7ce45a8720e12c2cc15bd64bcda664bb70e9fb1a90cd",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time2-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 5644184,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time2-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "4aad154b8d16ab7ab47ba44fb5bfdf542442064d5d0304d87e8fda72acfcf86a"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time2-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 155757,
+      "gzip_sha256": "09418f0a1e5e8d8a0b1b10405f24bf51cb0806a45a422fa36d1fbab8bc4f4d5b",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time2-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 5554071,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time2-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "6803047570a6b43c3b113659a51a514c1363aa6ee0db1288c716dbe6bf91f9c6"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time4-summary-searched-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 277290,
+      "gzip_sha256": "60076ab3145130412bee3a5e874b31f9a0d56d527e1c8486e31163cf90e3fc2b",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time4-summary-searched-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9833619,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-searched-r1-u/samples.jsonl",
+      "original_sha256": "e747dcc2dc9128af9c0361499943339879f279cb9acea1d1d1e429e45a1bc9a8"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time4-summary-searched-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 294145,
+      "gzip_sha256": "d8cbcd493a7ef6b144546c1937d8ac4f05933f9424fff3f8e698d0f77999f31c",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time4-summary-searched-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 10451643,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-searched-r2-u/samples.jsonl",
+      "original_sha256": "6e294c996195bcef20580edfd388717e6c17af2e07ef2d0ddb0a460a5ee27382"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time4-summary-searched-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 297279,
+      "gzip_sha256": "e3a477ea251d52c03069465503ff9d4427b796ca9c1f1a9f292ade8a65680758",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time4-summary-searched-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 10567141,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-searched-r3-u/samples.jsonl",
+      "original_sha256": "79cf3cdf4bc115f2c7fd85b0c9f2283c71001ad6642ea4cf24defc7762b2a1c9"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time4-summary-supplied-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 276969,
+      "gzip_sha256": "f867a5f0145170ab0d7482cd751b520eeaac1a4b58de039517210fdcff3e9d4e",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time4-summary-supplied-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9840200,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-supplied-r1-u/samples.jsonl",
+      "original_sha256": "c24921d0cf65bb22814daf7c5f9095923f6bd4142f83060e322dc68d8db7ba91"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time4-summary-supplied-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 312264,
+      "gzip_sha256": "151477ff0c8810c4107a748b631f8e17e9a6ddecb71a36710a4ec9cf6cf974e2",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time4-summary-supplied-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 11130293,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-supplied-r2-u/samples.jsonl",
+      "original_sha256": "b1caa64891a19060c654af2c8617f738c57f45d650f8f2720636c1346e65b70a"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-time4-summary-supplied-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 254426,
+      "gzip_sha256": "366f20446255c0e37269256bbc92eaf12a989fd7a76fbea34319ab4b1fc4bdb6",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-time4-summary-supplied-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 9047567,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-supplied-r3-u/samples.jsonl",
+      "original_sha256": "f078862c0add3ae2677feca272be6de3d97194b4ec941ff4490c7ff5bf3cb73d"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-within-full-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5320,
+      "gzip_sha256": "d675df73c9fe2a7574c87adda152f688a413086eea8081e9741ed36320b48919",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-within-full-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 136683,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-full-r1-u/samples.jsonl",
+      "original_sha256": "33adb0aeb076b5ec4cadaa27a66e75896cbdc93c64e4a2fda8a8f040db5042d3"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-within-full-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5270,
+      "gzip_sha256": "c443502c1b84dde8eaba38bef9bba08b90bdff0668b75050b2d6395440ee33d7",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-within-full-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 136059,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-full-r2-u/samples.jsonl",
+      "original_sha256": "04e684cf1f7d8b8342d5174664e4467e88dae6629da0087250fd028cd2a6ab57"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-within-full-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5637,
+      "gzip_sha256": "d564a6db47279f10698fd8a8e834d3ede2c6069cca9eeb03aeb02c508049ae15",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-within-full-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 143908,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-full-r3-u/samples.jsonl",
+      "original_sha256": "e4f5fe875978d49111fe7691ad3e49af304389eacee94e8af0dec47d9300633d"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-within-summary-r1-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5126,
+      "gzip_sha256": "85608f6688cb2b50521ef18139c8ee0451f88fe28f54b8adadd90849ce29e16f",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-within-summary-r1-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 134086,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-summary-r1-u/samples.jsonl",
+      "original_sha256": "812941cf5b77f88d47b01597ef8fa8387cb38631b35316b0f538e5bc51468483"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-within-summary-r2-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5132,
+      "gzip_sha256": "6c52e7580e754ee1c24e3f7d547dee50b784c2bcb9a91fdd2e660aeb23793a40",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-within-summary-r2-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 131772,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-summary-r2-u/samples.jsonl",
+      "original_sha256": "f0f81f140e6ee7184559f23df3f968e5470c4fc4a122b09831f0bc0df6d6f544"
+    },
+    {
+      "bundle_relative_path": "evidence/samples-gzip/ws116-within-summary-r3-u/samples.jsonl.gz",
+      "gzip_logical_bytes": 5101,
+      "gzip_sha256": "bad09538147acaee9c489bcc6d27833b0134580e7f31606cb81292cff5591ea6",
+      "gzip_staging_path": "/workspace/work/campaign/evidence/116/publication-staging/samples/ws116-within-summary-r3-u/samples.jsonl.gz",
+      "original_already_tracked_historical_failure": false,
+      "original_logical_bytes": 128834,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-summary-r3-u/samples.jsonl",
+      "original_sha256": "be3a2502dabf2758f70d999b33bba717e2c0c46b0d9e56d001c907a4e09a04e6"
+    }
+  ],
+  "no_complete_reference_closure_or_scientific_acceptance_claim": true,
+  "observed_at_unix_ns": 1794798387494245301,
+  "original_input_manifest_unchanged": true,
+  "originals_retained_immutable": true,
+  "reason": "Keep transport files outside original raw directories so exact11-file raw inventories can be restored and audited without an extra gzip member",
+  "schema": "ROOT-WS116-sample-publication-layout-v1",
+  "supersedes_only_prospective_intended_bundle_relative_path_in_input_manifest": true,
+  "transport_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-sample-transport-manifest.json",
+    "sha256": "85cc0b68e42089d2d8d22e031fa1720676a49fa30ed09bcb571ffd57f4937f91"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "WS116-central64-profile-remaining5-source-handoff-v1",
+  "status": "SOURCE_READY_HOLD",
+  "artifacts": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/root-prepare-remaining5-central-profiles.py",
+      "sha256": "818eac071408569fcb43bd81a63437c4e3526cbca099686eb1775c230e4330da"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/source-manifest.json",
+      "sha256": "7f6171c8f7b936baaf3d654738520570c0c11ed05d435559a399480cd9bc0d40"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "6ced627d7f875a6d164f92ede9160eff0706bdc3a87e131f453a0cb05a9ecdd3"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/README.md",
+      "sha256": "d4d40327b1a73f43297e5c6aa89d2a76420e81c1ccd691e33ec69cb093540a4b"
+    }
+  ],
+  "self_hash": "External after creation; no self-referential digest.",
+  "reviewed_source_parents": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/root-prepare-remaining2-searched-rows.py",
+      "sha256": "8f164f7aca08d3917b6f434527d0d09c2d04aeaa3e0acaf2a8c058d734886d0b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/root-prepare-first-central64-profile.py",
+      "sha256": "e4a2dfeb63dfbd6b2c5c8a5e67ff148c3c0cfdb227db8e7185dd491683a57acd"
+    }
+  ],
+  "additional_read_source_context": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/source-manifest.json",
+      "sha256": "cd2e5179812f0d516b7d887647d0ea9e28334af53d64f2b2d7d941ef715dfb80"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "8b2fe4f227947e8afff53eb667a6878e8abd4dfbffbd7bf430ec4ae0dae56123"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/source-manifest.json",
+      "sha256": "8c6100a3925301ccb8637223a90b4e65eff9ed9059c88bbcc29e0b228525317f"
+    }
+  ],
+  "minimal_source_delta": [
+    "8f164 paths/schema/IDs port to central64-profiles indices2–6: summary profileR2/R3 then full profileR1/R2/R3. SelectedNone/growth[]; no largest selection or R1 rerun.",
+    "Read exact authorized56a8 config, locally clear authorized without writing R1; preserve actual94d admission and aad1 prefix, five closures and six mode-specific controls.",
+    "Bind actual63755 ROOT eligibility/window/tool terminal schemas and exact pins; derive two birth/FD identities from future reread actual receipt/markers/postmetadata, require ROOT identity equality and fresh exact-two absence.",
+    "Copy e4a2 exact profile proposal transformation/rows/control binding; future preflight requires both summary and full mode-specific ancestor/host margins,960/1080/disk803209216 unchanged.",
+    "Retain one fixed metadata call and one existing capture, two source checks,13-file output pattern, ROOTAUTHORITY path/SHA neverACK and disabled final config."
+  ],
+  "future_input_protocol": "Exact authorization/suspension/prerequisite input files absent now. Disabled templates have null future times/window/hash/expected-object/metadata/proof and false authority/science flags. ROOT later binds expected actual closed JSON without integer rounding. No current absence or resource fact inferred.",
+  "effects": "Only five new named source files in owned directory. Existing packets/EA/material35 untouched. Future output/batch not created, no scientific grant/intent/binder/product call, no native/runtime invocation.",
+  "validation": "SOURCE/FILE only. No import, AST, compile, lint, tests, probes, metadata, capture, statistics, target program or workflow executed. Syntax and runtime UNVALIDATED. Coordinator and ROOT whole-source inspection required before actual prep.",
+  "source_findings": "No new diagnosed preparation failure or source repair. A large combined read display was truncated by tool presentation; stored text was complete and narrower excerpts were used. Prior errors preserved. Original partial future assumptions remain explicitly unexecuted.",
+  "accounting": {
+    "author_preparations": 35,
+    "author_executions": 9,
+    "author_total": 44,
+    "original_launches": 1,
+    "costs": "UNKNOWN",
+    "tokens": "UNKNOWN",
+    "model_attribution": "UNKNOWN",
+    "all_prior_attempts_bytes_errors_and_charges_preserved": true
+  },
+  "next": "HOLD for coordinator and ROOT whole-source inspection. No further prep or execution authority inferred."
+}

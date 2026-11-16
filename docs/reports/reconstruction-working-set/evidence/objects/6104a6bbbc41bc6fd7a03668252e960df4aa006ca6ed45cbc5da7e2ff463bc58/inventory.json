@@ -1,0 +1,21 @@
+{
+  "protocol":"WS116-finite-qualification-small-Q2-v1",
+  "bootstrap_sha256":"81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+  "prior_evidence":"integrated method5 Q0/Q1 passed; exact prior driver/inventory/grants/receipts preserved before Q2. Q2 explicitly retains only six unchanged method/bootstrap/old fixture/lock identities from exact Q1; new driver/inventory/new fixture are not relabelled as old success.",
+  "execution_status":"not_run_source_preparation_only",
+  "common_bounds":{"sample_seconds":0.01,"term_grace_seconds":0.2,"kill_reap_seconds":2.0,"soft_deadline_seconds":20.0,"life_deadline_seconds":5.0,"startup_timeout_seconds":5.0,"startup_pipe_bytes":1024,"max_record_bytes":1048576,"target_ready_bytes":2048,"target_self_exit_seconds":12.0,"deadline_after_target_ready_seconds":1.0,"process_stop_bytes":268435456,"host_min_available_bytes":536870912,"predicted_child_peak_bytes":67108864,"native_allocator_allowance_bytes":67108864,"reserve_bytes":268435456},
+  "cases":[
+    {"id":"Q0-context","requires":[]},
+    {"id":"Q1-normal","requires":["Q0-context"]},
+    {"id":"Q2-default-term","requires":[],"retained":"exact integrated method5 Q1 only for unchanged inputs","target_mode":"default","expected_handler_native":0,"expected_reaped_signal":15},
+    {"id":"Q2-ignore-term-kill","requires":[],"retained":"exact integrated method5 Q1 only for unchanged inputs","target_mode":"ignore-term","expected_handler_native":1,"expected_reaped_signal":9},
+    {"id":"Q2-deadline","requires":[],"retained":"exact integrated method5 Q1 only for unchanged inputs","target_mode":"default","expected_handler_native":0,"expected_reaped_signal":15,"deadline_origin":"after observed target readiness"},
+    {"id":"Q2-supported-sigint","requires":[],"retained":"exact integrated method5 Q1 only for unchanged inputs","target_mode":"default","expected_handler_native":0,"expected_reaped_signal":9,"expected_observer_disposition":"one self SIGINT only after owner/bootstrap/target ready; KeyboardInterrupt then accepted cleanup"}
+  ],
+  "lifecycle_target_sha256":"d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+  "deferred":"True orphan/abrupt-loss, Q4 parser/Q5 hashes and Q6/science have no execution branch. No generic evidence-reuse engine or repeated environment-only qualification loop.",
+  "q3_held_gap":"PID1 is sleep, not a reaper. No deliberate abrupt-observer-loss/orphan topology is implemented or allowed in this slice. Root permits narrowly scoped Linux subreaper scaffolding if a later exact-owned topology is necessary; unavailable adoption/reaping must hold that case. No claim of general nonparent recovery or original observer terminal usage.",
+  "human_total_budget":"not set; these are finite internal design/safety settings, not a human total cap",
+  "no_workflows":true,
+  "no_automatic_retry_or_growth":true
+}

@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\"path\": \"/workspace/work/campaign/evidence/116/resource-domain/1794730946043892985.json\", \"sha256\": \"0a12d94bcb1b9e7b1d6f9858e0bf3d1152366c9a05c0c2edee4c9b40f07a226c\", \"observed_at_unix_ns\": 1794730946043892985, \"docker_status\": 0, \"inner_status\": 0, \"external_ancestors\": \"unknown_unobservable\"}\n"
+}

@@ -1,0 +1,211 @@
+{
+  "schema": "WS116-coordinator-largest256-profile-first-source-review-v1",
+  "status": "SOURCE_SUITABLE_DISABLED_NEW_STAGE_NOT_ADMITTED",
+  "findings": [],
+  "artifacts": {
+    "largest256-profile-source-check.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+      "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+    },
+    "largest256-profile-source-check.md": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.md",
+      "sha256": "3f35daea18b061aca3f1fd5f3be6fbb0a3ad5b18a0342292b31eb23ff26fe801"
+    },
+    "config-row1-UNAUTHORIZED.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/config-row1-UNAUTHORIZED.json",
+      "sha256": "86ec665824647a02cf7ec9bfd1cfdda808f48d22a0a9aa1dc233ebb16ec32425"
+    },
+    "stage-admission-DRAFT.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/stage-admission-DRAFT.json",
+      "sha256": "81da1ac73ff3c4232f348ca109ea23ebbd13ecfd585927f10251d16c4bad03e7"
+    },
+    "authority-DRAFT.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/authority-DRAFT.json",
+      "sha256": "112b15c36c280b26624c7c670b16c4acf35fe7751ca584f94d1d8c55ce7bb794"
+    },
+    "scheduler-ACK-DRAFT.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/scheduler-ACK-DRAFT.json",
+      "sha256": "d6b50d1e4a56787ba14ef5814f154175a77379a57033ce2195230dde9c2a3d0e"
+    },
+    "currentstage-ledger-DRAFT.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/currentstage-ledger-DRAFT.json",
+      "sha256": "8cbd6880700933bc225d63ec9bf3d9d5941a718d0181f166be3608aaacbabfc4"
+    },
+    "README.md": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/README.md",
+      "sha256": "6221582f91107555861762fa9d1b878ab4ac5cda6ab56cec4da16d3165dcc54b"
+    },
+    "input-references.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/input-references.json",
+      "sha256": "ecd1101baf198236de5482ac97b28729afd883b4ccf2e546a78e6cbc96b7d495"
+    },
+    "source-handoff.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/source-handoff.json",
+      "sha256": "a588c11e9ad0e2f02df1d81bc8232c582ce615ab75949a85322d853c94f9f03e"
+    }
+  },
+  "read_scope": "Whole660worksheetJSON(two boundedhalves),223MD/37README/83handoff/authority33/ACK35/ledger9 read. Config1837/inputrefs300/stagead351 fullyparsed/repeatedmaps/prospective256/controls/priorcaps/basiscompared immutablefamily. Stageadtexttruncation recovered exacttop/prospectivefieldcomparison, notclaimedwhole351visual.39namedinputpins/9artifactpins/12controlsmallpins match; no targetimport/QA/runtime.",
+  "parent_config_top_delta": [
+    "grant_fixed",
+    "conditional_rationale",
+    "external_batch_directory",
+    "prior_stage_closures",
+    "matched_unprofiled"
+  ],
+  "declared_growth_conditions_scope": "Originaldormantfamily grantplaceholderNULL is explicitly populated with existingprospective_256 exacttwo conditions in newdisabledconfig. RuntimeNone andflagsfalse remainunrunnable; no caseaddition/capchange/actualROOTdecision.",
+  "source_geometry_liveness": "Same256native(1,3,8,256,256)/P5O3; caller7864320elements31457280B/preparedq3962880c12863406080B explicitunits. Fullsearched9overlaps27backings311427072B aggregate notsingleallocation;606011088filter/504364752result namedpartialsubsets neither sum norRSSupperbound. Signed/native/supportstencil enclosure retained; trace/scalar/native/FFT/allocator/workspaceextent unknown.",
+  "hook_scope": "Onlyimportedworkflow_stage patched,10scalartime/nativecumulativeevents includingperturbation. Activeframes/closures/dicts and originalexceptionf_locals/traversal/scratch caveats. Returnedretentionmetadata noIDs/arrays; no isolatedallocation/causaloverhead.",
+  "prospective_stage": {
+    "ids": [
+      "ws116-gp-l256-summary-searched-r1-p",
+      "ws116-gp-l256-summary-searched-r2-p",
+      "ws116-gp-l256-summary-searched-r3-p",
+      "ws116-gp-l256-full-searched-r1-p",
+      "ws116-gp-l256-full-searched-r2-p",
+      "ws116-gp-l256-full-searched-r3-p"
+    ],
+    "first_only": [
+      "ws116-gp-l256-summary-searched-r1-p"
+    ],
+    "runtime_selected_largest_size": null,
+    "prospective_recipe_size": 256,
+    "deadline_seconds": 7200,
+    "horizon_seconds": 7320,
+    "disk_proposal_bytes": 5915017216,
+    "mode_caps": {
+      "growth256-summary-searched": {
+        "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+        "predicted_child_peak_bytes": 3221225472,
+        "native_allocator_allowance_bytes": 1610612736,
+        "process_stop_bytes": 6442450944,
+        "reserve_bytes": 3221225472,
+        "host_min_available_bytes": 9663676416,
+        "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+        "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+        "deadline_seconds": 7200,
+        "startup_timeout_seconds": 5,
+        "startup_pipe_bytes": 1024,
+        "terminate_grace_seconds": 0.2,
+        "kill_reap_seconds": 2,
+        "max_child_record_bytes": 4194304,
+        "sample_interval_seconds": 0.01,
+        "correspondence_prelaunch_age_seconds_max": 5,
+        "correspondence_maximum_age_seconds": 7320,
+        "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+        "disk_proposal_bytes": 5915017216,
+        "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it"
+      },
+      "growth256-full-searched": {
+        "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+        "predicted_child_peak_bytes": 4294967296,
+        "native_allocator_allowance_bytes": 2147483648,
+        "process_stop_bytes": 8589934592,
+        "reserve_bytes": 4294967296,
+        "host_min_available_bytes": 12884901888,
+        "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+        "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+        "deadline_seconds": 7200,
+        "startup_timeout_seconds": 5,
+        "startup_pipe_bytes": 1024,
+        "terminate_grace_seconds": 0.2,
+        "kill_reap_seconds": 2,
+        "max_child_record_bytes": 4194304,
+        "sample_interval_seconds": 0.01,
+        "correspondence_prelaunch_age_seconds_max": 5,
+        "correspondence_maximum_age_seconds": 7320,
+        "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+        "disk_proposal_bytes": 5915017216,
+        "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it"
+      }
+    },
+    "prior5_central_slot_NULL": true,
+    "six_same_mode_controls_pinned": {
+      "ws116-gp-l256-summary-searched-r1-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+          "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "ws116-gp-l256-summary-searched-r2-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+          "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "ws116-gp-l256-summary-searched-r3-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+          "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "ws116-gp-l256-full-searched-r1-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+          "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+          "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+        }
+      },
+      "ws116-gp-l256-full-searched-r2-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+          "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      },
+      "ws116-gp-l256-full-searched-r3-p": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+          "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      }
+    }
+  },
+  "activation_requirements": [
+    "Original0f795 sizefact only, notNEWlargestprofiledecision. RuntimeNone intentionallyunrunnable untilnewROOTselected256/stageadmission.",
+    "Centralwhole6/primary940/independent16/ROOTacceptance/newROOTlargestdecision/freshsource-status-context-schedule-window-owner facts UNKNOWNaswritten; no relabelledlatefacts.",
+    "Futureexplicitwindow mustfit7200+120, no central2h/caps. Summary3/native1.5/stop6/reserve3/ancestor14/host9GiB;full4/native2/stop8/reserve4/ancestor15/host12;disk5915017216 unchanged.",
+    "SameMODE/search/shape/rep all4input/common/public/branches equality requiredfuture8190; publiccrossmode distinct, physical/cacheuncontrolled, no profileprediction/ratio/isolatedcost/ranking/benefit/16GiBbudget.",
+    "10sourcefiles have nohelper/capture/preflight/grant/intent/batchcreation; no actualowner[]fabrication, dynamicNULL/flagsfalse; ROOTAUTHneverACK remainsfuture."
+  ],
+  "original_family_unchanged": true,
+  "source_diagnostics_preserved": [
+    "Closed summary closure full-text display was truncated; attempted JSON.parse of the warning-prefixed display failed. Bounded jq extraction of literal control references replaced it. No target program/scientific data ran or changed; no value inferred."
+  ],
+  "coordinator_assumption_diagnostic": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/coordinator-source-audit-deferred-growth-placeholder-diagnostic.json",
+    "sha256": "8f791c6d80aa9eae9c2e16ad43c7e2a6e6bee3aa9ca0d4ec43084f4b0379ca25"
+  },
+  "accounting": {
+    "investigator_preparations": 36,
+    "execution_continuations": 9,
+    "total": 45,
+    "original_launch": 1,
+    "costs": "UNKNOWN",
+    "all_prior_bytes_errors_charges_preserved": true
+  },
+  "no_active88772_reads_or_newcanonical_native_QA_EAexecution": true,
+  "final_scientific_acceptance": false,
+  "next": "ROOTwholecase/prospectivemaps inspection; no newlargestpreparer untilactualcentral6descriptiveaccepted+NEWROOTdecision."
+}

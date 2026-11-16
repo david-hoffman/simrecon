@@ -1,0 +1,9 @@
+{
+  "schema": "ROOT-WS116-selector-file-audit-diagnostic-v1",
+  "attempt": 1,
+  "exit_code": 1,
+  "failure": "AssertionError at direct-ref root coverage for report-source-preparation/inputs/docs/contracts/reconstruction-memory-v1.md",
+  "cause": "ROOT file-only checker omitted the four automatic read roots explicitly present in canonical940 main. Config/source/evidence unchanged; canonical program was not invoked and no review/config/intent output was written.",
+  "correction": "Add the exact four canonical automatic roots in ROOT checker, retain all explicit configroots; do not alter selector for this checker error.",
+  "costs": "UNKNOWN"
+}

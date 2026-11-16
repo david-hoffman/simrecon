@@ -1,0 +1,51 @@
+{
+  "command": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-116",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "simrecon-campaign-ubuntu",
+    ".venv/bin/python",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+    "--grant",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-searched-r2-u/grant.json",
+    "--attempt-id",
+    "ws116-frozen128-summary-searched-r2-u"
+  ],
+  "config_sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36",
+  "grant_sha256": "67b2233f1eb2a9defe74125710bfff2895053edeea26de84eac6a99be2404f68",
+  "proof": {
+    "docker_status": 0,
+    "external_ancestors": "unknown_unobservable",
+    "inner_status": 0,
+    "observed_at_unix_ns": 1794733069796313989,
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794733069796313989.json",
+    "sha256": "400096d1d03a28427dcdfcbe45211851b370fcccb2d402c68663b08f4b66a534"
+  },
+  "row": {
+    "attempt_id": "ws116-frozen128-summary-searched-r2-u",
+    "command_template": "<PINNED-PYTHON> <NEW-CLEAN-ROOT>/docs/reports/reconstruction-working-set/run_attempt.py --grant <ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-frozen128-summary-searched-r2-u.json --attempt-id ws116-frozen128-summary-searched-r2-u",
+    "condition_id": "frozen128-summary-searched",
+    "condition_plan_ref": "conditions.frozen128-summary-searched",
+    "grant_path_template": "<ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-frozen128-summary-searched-r2-u.json",
+    "launch_nonce": "ws116-frozen128-summary-searched-r2-u",
+    "profile": false,
+    "proposed_predecessor": "ws116-frozen128-summary-searched-r1-u",
+    "repetition": 2,
+    "serial_index": 26,
+    "status": "UNADMITTED"
+  },
+  "scope": "one synchronous existing runner; no retry",
+  "source_sha256": "f6b89920979c0f73a5860190a7d14735c2b63d7b27d6482c02465f3c649d1d24",
+  "time_unix_ns": 1794733069972104824
+}

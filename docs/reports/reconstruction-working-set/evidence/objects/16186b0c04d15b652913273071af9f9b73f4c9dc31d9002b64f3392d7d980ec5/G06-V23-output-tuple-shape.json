@@ -1,0 +1,11 @@
+{
+  "id": "G06-V23-output-tuple-shape",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "output identity shape/dtype/hash mismatch"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "output identity shape/dtype/hash mismatch"
+}

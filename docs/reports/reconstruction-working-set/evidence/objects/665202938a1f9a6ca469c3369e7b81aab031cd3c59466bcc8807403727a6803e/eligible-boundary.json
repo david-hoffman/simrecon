@@ -1,0 +1,151 @@
+{
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "config_sha256": "2103f69ca5152c4174cc04354756452399d096e95c1da0c947bd89a5d16c9c3b",
+  "end_validation_scope": "binder original-proof hash/horizon + fresh end domain/context/margins/events; runner receipt does not perform this check",
+  "fingerprints": {
+    "branches": [
+      [
+        "known",
+        "known",
+        "known"
+      ],
+      [
+        "known",
+        "known",
+        "known"
+      ],
+      [
+        "known",
+        "known",
+        "known"
+      ],
+      [
+        "known",
+        "known",
+        "known"
+      ]
+    ],
+    "common_output_sha256": "6eac1e8c8486bf8c7c705e0b54e6c063720ba885da68b11aa70e50bd05d20da4",
+    "input_sha256": "ebd3bcdd994614f7f04d072b68ef7b21eff1cc53df43d93c07fa2abebb0baccf",
+    "public_result_sha256": "e13694246d5e8b1b2a57ddcb2704c1d2d0502d179f210615466fc8757a3cd3a5"
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "method7": {
+    "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json",
+    "sha256": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19"
+  },
+  "raw_files": {
+    "grant.input": {
+      "allocated_bytes": 65536,
+      "logical_bytes": 63948,
+      "sha256": "9df1942c35c9fe21dc4413a1e9f3b246e0e0a9b56a4913e58fed3cb7408c5bd3"
+    },
+    "owned-child.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2568,
+      "sha256": "3f2950d7b59bb1dad139b3512cb795f62ff0d50aa52cd57aa7322acc5aac7470"
+    },
+    "preflight.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2855,
+      "sha256": "134d251f741c788ca39ee1ae00cbc8c1ed442b6b85ce56e50bc54dc215fb6e12"
+    },
+    "receipt.json": {
+      "allocated_bytes": 32768,
+      "logical_bytes": 30231,
+      "sha256": "f56074693d01a3de0d3ff3c63cc4bdad523327837a968ed0ba2e982a963625ce"
+    },
+    "samples.jsonl": {
+      "allocated_bytes": 9842688,
+      "logical_bytes": 9840200,
+      "sha256": "c24921d0cf65bb22814daf7c5f9095923f6bd4142f83060e322dc68d8db7ba91"
+    },
+    "session-ready.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 248,
+      "sha256": "4deebd00f88395aecd31bbcfb7c5b62c0d8930a164f1c95d3351fa9b2e91e73e"
+    },
+    "spawn-intent.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 3010,
+      "sha256": "fbb440e998e0d3c07aed56969e7477d59eb3ec93932f9601b282c7406887715a"
+    },
+    "spec.json": {
+      "allocated_bytes": 8192,
+      "logical_bytes": 4902,
+      "sha256": "91dce8cda78e10b724fba39ec23812b361a771da7b89906e9573abb930798250"
+    },
+    "startup-readiness.bin": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 232,
+      "sha256": "89552b6d16cbd9f33a26348058da6dc9081822758c57fe7e0d98e7db66d1aedf"
+    },
+    "stderr.log": {
+      "allocated_bytes": 0,
+      "logical_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.json": {
+      "allocated_bytes": 24576,
+      "logical_bytes": 21544,
+      "sha256": "3e305048918a2b6b83fcb54031bc666e970a18c1f05d9259b24939f22a3e0f03"
+    }
+  },
+  "raw_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-supplied-r1-u",
+  "row": {
+    "attempt_id": "ws116-time4-summary-supplied-r1-u",
+    "command_template": "<PINNED-PYTHON> <NEW-CLEAN-ROOT>/docs/reports/reconstruction-working-set/run_attempt.py --grant <ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-time4-summary-supplied-r1-u.json --attempt-id ws116-time4-summary-supplied-r1-u",
+    "condition_id": "time4-summary-supplied",
+    "condition_plan_ref": "conditions.time4-summary-supplied",
+    "grant_path_template": "<ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-time4-summary-supplied-r1-u.json",
+    "launch_nonce": "ws116-time4-summary-supplied-r1-u",
+    "profile": false,
+    "proposed_predecessor": "ws116-time2-summary-searched-r3-u",
+    "repetition": 1,
+    "serial_index": 34,
+    "status": "UNADMITTED"
+  },
+  "source_sha256": "f6b89920979c0f73a5860190a7d14735c2b63d7b27d6482c02465f3c649d1d24",
+  "status": "ELIGIBLE_PENDING_ROOT_SCIENTIFIC_REVIEW",
+  "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+}

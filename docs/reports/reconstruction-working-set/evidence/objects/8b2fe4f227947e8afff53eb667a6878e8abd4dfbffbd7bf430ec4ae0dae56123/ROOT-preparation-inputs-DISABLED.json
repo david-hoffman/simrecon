@@ -1,0 +1,100 @@
+{
+  "status": "DISABLED_SOURCE_TEMPLATES_ONLY_NO_ACTUAL_ROOT_INPUTS",
+  "future_authorization_path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-preparation-authorization.json",
+  "authorization_template": {
+    "schema": "ROOT-WS116-remaining2-searched-preparation-authorization-v1",
+    "authority": "ROOT",
+    "authorized": false,
+    "stage_id": "largest-full-searched",
+    "selected_largest_size": 256,
+    "allowed_attempt_ids": [
+      "ws116-gp-l256-full-searched-r2-u",
+      "ws116-gp-l256-full-searched-r3-u"
+    ],
+    "prepare_continuation_authority": false,
+    "scientific_execution_released": false,
+    "observed_at_unix_ns": null,
+    "window_seconds": null,
+    "helper_sha256": null,
+    "source_manifest": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/source-manifest.json",
+      "sha256": null
+    },
+    "scheduler_suspension": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-scheduler-suspension-input.json",
+      "sha256": null
+    },
+    "closed_r1_prerequisites": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-closed-r1-prerequisites.json",
+      "sha256": null
+    }
+  },
+  "future_suspension_path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-scheduler-suspension-input.json",
+  "suspension_template": {
+    "schema": "ROOT-WS116-remaining2-searched-suspension-input-v1",
+    "authority": "ROOT",
+    "stage_id": "largest-full-searched",
+    "observed_at_unix_ns": null,
+    "campaign_work_suspended": null,
+    "known_active_campaign_runtimes": null,
+    "unresolved_owners": null,
+    "remains_suspended_through_prepared_window": null,
+    "outside_campaign_actors": "unknown_not_scanned",
+    "known_work_closure": {
+      "113": null,
+      "114": null,
+      "116": null,
+      "117": null,
+      "118": null,
+      "119": null,
+      "120": null,
+      "root": null
+    }
+  },
+  "future_R1_prerequisites_path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-closed-r1-prerequisites.json",
+  "R1_prerequisites_template": {
+    "schema": "ROOT-WS116-searched-r1-continuation-prerequisites-v1",
+    "authority": "ROOT",
+    "stage_id": "largest-full-searched",
+    "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+    "controller_session": 17352,
+    "actual_terminal_observed": null,
+    "controller_exit_code": null,
+    "no_pending_proxy": null,
+    "row1_eligible": null,
+    "old_window_closed": null,
+    "authorized_row1_config": {
+      "path": null,
+      "sha256": null
+    },
+    "row1_boundary": {
+      "path": null,
+      "sha256": null
+    },
+    "final_post_metadata": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_eligibility_evidence": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_eligibility_evidence_expected": null,
+    "ROOT_window_closure_evidence": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_window_closure_evidence_expected": null,
+    "ROOT_controller_terminal_evidence": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_controller_terminal_evidence_expected": null
+  },
+  "window_proposal": {
+    "proposed_seconds": 10800,
+    "actual_seconds": null,
+    "scope": "ROOT chooses an actually sufficient finite new reservation, at most21600s as94b. Frozen8190 per-row remainingdeadline+120 guards remain unchanged; not runtime prediction."
+  },
+  "requirements": "All actual dynamic paths/hashes/bodies/flags/identities/times/outcomes remain null/disabled. ROOT retains failed/rejected input bytes and logs, binds exact source/manifest/new scheduling and actual closedR1 evidence, and explicitly authorizes preparation only; no retry, newstage or scientific authorization inferred."
+}

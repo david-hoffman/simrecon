@@ -1,0 +1,2391 @@
+{
+  "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+  "cwd": "/workspace/work/issue-116",
+  "disks": {
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2": {
+      "device": 27,
+      "fragment_size": 4096,
+      "free_bytes": 60536606720,
+      "free_inodes": 4086108,
+      "fsid": 4938322393334045645
+    },
+    "/workspace/work/issue-116": {
+      "device": 27,
+      "fragment_size": 4096,
+      "free_bytes": 60536606720,
+      "free_inodes": 4086108,
+      "fsid": 4938322393334045645
+    }
+  },
+  "environment": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "external_ancestors": "unknown_unobservable",
+  "gid": 1000,
+  "namespaces": {
+    "cgroup": "cgroup:[4026532294]",
+    "pid": "pid:[4026532293]"
+  },
+  "observed_at_unix_ns": 1794735334086396523,
+  "outside_campaign_processes": "unknown_not_scanned",
+  "owned_processes": [
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 46267,
+        "start_ticks": 2672492
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 46287,
+        "start_ticks": 2672505
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47290,
+        "start_ticks": 3462055
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47310,
+        "start_ticks": 3462068
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47376,
+        "start_ticks": 3484732
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47396,
+        "start_ticks": 3484751
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47436,
+        "start_ticks": 3487348
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47455,
+        "start_ticks": 3487358
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47495,
+        "start_ticks": 3490465
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47515,
+        "start_ticks": 3490475
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47555,
+        "start_ticks": 3498580
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47575,
+        "start_ticks": 3498592
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47615,
+        "start_ticks": 3507692
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47635,
+        "start_ticks": 3507703
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47675,
+        "start_ticks": 3516809
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47695,
+        "start_ticks": 3516821
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47735,
+        "start_ticks": 3526447
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47755,
+        "start_ticks": 3526458
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47795,
+        "start_ticks": 3535575
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47815,
+        "start_ticks": 3535588
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47855,
+        "start_ticks": 3544183
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47875,
+        "start_ticks": 3544196
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47915,
+        "start_ticks": 3552830
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47935,
+        "start_ticks": 3552846
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47974,
+        "start_ticks": 3562507
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 47994,
+        "start_ticks": 3562522
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48033,
+        "start_ticks": 3571139
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48053,
+        "start_ticks": 3571152
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48093,
+        "start_ticks": 3581772
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48113,
+        "start_ticks": 3581786
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48154,
+        "start_ticks": 3591914
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48174,
+        "start_ticks": 3591927
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48212,
+        "start_ticks": 3602561
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48232,
+        "start_ticks": 3602571
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48272,
+        "start_ticks": 3637684
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48292,
+        "start_ticks": 3637696
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48332,
+        "start_ticks": 3673341
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48352,
+        "start_ticks": 3673352
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48392,
+        "start_ticks": 3706462
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48412,
+        "start_ticks": 3706472
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48452,
+        "start_ticks": 3743612
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48472,
+        "start_ticks": 3743623
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48509,
+        "start_ticks": 3784280
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48529,
+        "start_ticks": 3784293
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48569,
+        "start_ticks": 3819934
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48589,
+        "start_ticks": 3819948
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48630,
+        "start_ticks": 3851565
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48650,
+        "start_ticks": 3851576
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48690,
+        "start_ticks": 3885211
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48710,
+        "start_ticks": 3885222
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48750,
+        "start_ticks": 3919339
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48770,
+        "start_ticks": 3919348
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48810,
+        "start_ticks": 3955990
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48831,
+        "start_ticks": 3956002
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48871,
+        "start_ticks": 3993693
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48891,
+        "start_ticks": 3993705
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48931,
+        "start_ticks": 4032853
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48950,
+        "start_ticks": 4032868
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 48990,
+        "start_ticks": 4035470
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 49009,
+        "start_ticks": 4035483
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 49049,
+        "start_ticks": 4037681
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 49069,
+        "start_ticks": 4037697
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 49109,
+        "start_ticks": 4039812
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 49129,
+        "start_ticks": 4039824
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 49264,
+        "start_ticks": 4161380
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    },
+    {
+      "expected": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 49284,
+        "start_ticks": 4161394
+      },
+      "fds": {
+        "64": {
+          "state": "absent"
+        },
+        "65": {
+          "state": "absent"
+        },
+        "66": {
+          "state": "absent"
+        },
+        "67": {
+          "state": "absent"
+        },
+        "68": {
+          "state": "absent"
+        }
+      },
+      "identity_state": "absent",
+      "stat": {
+        "state": "absent"
+      }
+    }
+  ],
+  "pid": 49300,
+  "ppid": 0,
+  "protocol": "WS116-fixed-ubuntu-metadata-v1",
+  "request_sha256": "e15891c78097d4d2065478a2ddbdf9ad0f18c4684934adfa6088e301d6f11056",
+  "rlimits": {
+    "RLIMIT_AS": [
+      -1,
+      -1
+    ],
+    "RLIMIT_CORE": [
+      0,
+      -1
+    ],
+    "RLIMIT_CPU": [
+      -1,
+      -1
+    ],
+    "RLIMIT_DATA": [
+      -1,
+      -1
+    ],
+    "RLIMIT_FSIZE": [
+      -1,
+      -1
+    ],
+    "RLIMIT_MEMLOCK": [
+      8388608,
+      8388608
+    ],
+    "RLIMIT_NOFILE": [
+      1024,
+      16384
+    ],
+    "RLIMIT_NPROC": [
+      71955,
+      71955
+    ],
+    "RLIMIT_STACK": [
+      8388608,
+      -1
+    ]
+  },
+  "source_sha256": "157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0",
+  "uid": 1000
+}

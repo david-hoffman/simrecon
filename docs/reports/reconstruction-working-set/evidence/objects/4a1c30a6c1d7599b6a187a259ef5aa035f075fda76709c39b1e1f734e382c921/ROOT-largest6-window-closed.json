@@ -1,0 +1,35 @@
+{
+  "actual_terminal_tool": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-controller98828-tool-terminal.json",
+    "sha256": "daa6057c1de77956b889e4a920f55c9a6db4703b582354465ef16e6265c4f6cd"
+  },
+  "all12_stored_and_fresh_birth_FD_facts_closed": true,
+  "authority": "ROOT",
+  "closed_largest_profile_window": true,
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/root-largest256-profiles-stage-closed.json",
+    "sha256": "2bc344e6727ad9b9022faca2336669f812b4c0025ed9230480756dec97dd651f"
+  },
+  "controller98828_actual_terminal_exit0_no_proxy": true,
+  "costs": "UNKNOWN",
+  "ended_at_unix_ns": 1794797504098135246,
+  "grant_exclusive_window": {
+    "evidence": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/remaining5-preparation-a1/ROOT-authority.json",
+    "evidence_sha256": "6aadb98bd72d2c0ad0fc6e4bc04c9b3be6dce05a00611e7e1bf14f4dbd54ef96",
+    "released": true,
+    "scope": "WS116 exact frozen growth/profile stage release"
+  },
+  "no_active_stage_controller": true,
+  "original_remaining_window": {
+    "ends_unix_ns": 1794810696111588375,
+    "starts_unix_ns": 1794789096111588375
+  },
+  "post_source_audit": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-postclosure-source-check.json",
+    "sha256": "a62f3537fb9b9047e9b1cb64df313ee14d971183fea51d281f655498426bd30e"
+  },
+  "schema": "ROOT-WS116-largest6-window-ended-v1",
+  "scope": "Explicit end after whole6/66raw/exact12/freshmetadata/2groups and mandatory ROOT post35/tool6/HEADtree/tracked/FULL990newfiles90eligible+1historicaltracked-dir/helpermanifest audit; no automatic next runtime release",
+  "selected_largest_size": 256,
+  "stage_id": "largest-profiles"
+}

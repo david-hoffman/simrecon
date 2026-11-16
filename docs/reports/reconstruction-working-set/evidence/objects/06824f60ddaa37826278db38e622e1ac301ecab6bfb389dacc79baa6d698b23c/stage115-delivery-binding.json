@@ -1,0 +1,91 @@
+{
+  "accepted112_parent": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+  "ancestry_primary": {
+    "path": "/workspace/work/campaign/evidence/116/ROOT-accepted-prefix-ancestry-file-proof.json",
+    "sha256": "825554d48a1ed767f7fe3ffe4f0f63ebdc16d4d6566d5a735a9e4fe8176e1757"
+  },
+  "applicability": "This binds accepted115 after112 at recorded historical source candidate to exact raw gate and actor acceptance; recorded prefix ancestry links measuredEA. Final report/data/material transition, final116 exact gate and fresh independent acceptance remain separate. No private branch or runtime reproduction used.",
+  "candidate": {
+    "commit": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "dirty": false,
+    "tree": "2247d3909f43bc4764beb5c748caa917aaa1d707",
+    "untracked": []
+  },
+  "checked_receipt_facts": {
+    "all_phase_returncodes_zero": true,
+    "before_after_identical": true,
+    "before_commit": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "before_tree": "2247d3909f43bc4764beb5c748caa917aaa1d707",
+    "context": {
+      "contract": "WAD115",
+      "integration_base": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+      "reviewed_tests": "290a4e6a834a3de56f7f49b40939e20be159c7cd"
+    },
+    "dirty": false,
+    "finished_at": "2026-11-15T00:10:07.699696+00:00",
+    "phase_names": [
+      "sync",
+      "coverage-clean",
+      "lint",
+      "format",
+      "types",
+      "tests",
+      "coverage-combine",
+      "coverage-json",
+      "coverage-html",
+      "coverage-report",
+      "wheel",
+      "wheel-import",
+      "audit"
+    ],
+    "problems": [],
+    "result": "passed",
+    "started_at": "2026-11-14T23:53:01.962901+00:00",
+    "untracked": []
+  },
+  "coordinator_record": {
+    "path": "/workspace/work/campaign/evidence/115/final-evidence.json",
+    "sha256": "61b916639b5cb98c86667435116565b21a4ccf59da6f2231060e78046b740807"
+  },
+  "metering": "unknown",
+  "publication_actor_record": {
+    "base_branch": "docs/112-single-precision-contract",
+    "ci": "passed",
+    "ci_evidence": "ci-evidence.json",
+    "ci_job_id": 132641409802,
+    "ci_run_id": 43658204041,
+    "ci_test_merge": "a7b09f53c2addba51dc3c0ecaaa5ff698e7e0933",
+    "ci_tree_matches_candidate": true,
+    "expected_remote_head_before_push": "absent",
+    "head": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "lease": "expected absent",
+    "number": 122,
+    "parent": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "parent_branch": "docs/112-single-precision-contract",
+    "status": "PR open",
+    "url": "https://github.com/david-hoffman/simrecon/pull/122"
+  },
+  "raw_gate_receipt": {
+    "path": "/workspace/work/campaign/evidence/115/verify-attempt1/verification/receipt.json",
+    "sha256": "d4a90f12e9a338e34133a9cd728cee1772f12905ed7a9154089e80630f81fa31"
+  },
+  "recorded_limits": {
+    "RAM_fit_or_backend_success": "not established",
+    "historical_C_execution": "not qualified",
+    "human_numeric_limits": "not set",
+    "target_allocation": "not attempted",
+    "unknown_metering": "actual serving attribution/complete tokens/cost/elapsed unknown"
+  },
+  "reviewer_permission_for_future_named_addendum": "This exact JSON plus raw gate receipt may establish delivery identities; do not use old scientific review opinions as source/math/measurement truth. No reviewer restart commissioned now.",
+  "schema": "WS116-review-narrow115-delivery-binding-v1",
+  "scope": "Accepted prerequisite stage delivery/gate actor facts only, not #115 scientific reasoning or a #116 scientific/gate oracle. No old B/C/D narrative read or supplied as scientific truth.",
+  "stage_acceptance_actor_fact": {
+    "body_not_read_as_oracle": true,
+    "exact_report_identity_only": {
+      "path": "/workspace/work/campaign/evidence/115/d-review-1.md",
+      "sha256": "e576cd08ec727ea5b565373df0fefddf64d5bc758ef383f5996c3e035cf89fe8"
+    },
+    "record_field": "/review/D/verdict",
+    "value": "accepted"
+  }
+}

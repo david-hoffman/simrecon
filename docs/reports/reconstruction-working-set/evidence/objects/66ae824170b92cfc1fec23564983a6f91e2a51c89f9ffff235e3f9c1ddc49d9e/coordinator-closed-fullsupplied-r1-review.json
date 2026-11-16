@@ -1,0 +1,280 @@
+{
+  "schema": "WS116-full256-supplied-r1-closed-file-coordinator-review-v1",
+  "status": "ELIGIBLE_SINGLE_ROW_RECORDED_CLOSURE_NO_BLOCKER_FINAL_SCIENTIFIC_REVIEW_PENDING",
+  "findings": [],
+  "scientific_acceptance": false,
+  "next_science_authorized": false,
+  "boundary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/eligible-boundary.json",
+    "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6"
+  },
+  "raw_small_file_hashes_directly_verified": {
+    "grant.input": {
+      "allocated_bytes": 12288,
+      "logical_bytes": 12210,
+      "sha256": "9fa12e19b52888292cff9492096abb1fc5c5b1c0d282236df54b64be29c5f4ab"
+    },
+    "owned-child.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2564,
+      "sha256": "81473e9f9f7bee21c7ab2f83cb7918e34262520f959771fb7b3f134ef6c2f694"
+    },
+    "preflight.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2861,
+      "sha256": "519ad9e6f15e08a02bbd4e37be50645f71d4123f616c124785ab479a297c95f6"
+    },
+    "receipt.json": {
+      "allocated_bytes": 28672,
+      "logical_bytes": 27680,
+      "sha256": "de4f1e41576b99f2bd2ad2708581f0cfe2e28b35702c5b5fefed51d2b8f13e2a"
+    },
+    "session-ready.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 247,
+      "sha256": "699f7a64f5a46faf1f4b7154c9b7c693f1c3bb00646e4cae62beade361ab3cf2"
+    },
+    "spawn-intent.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 3006,
+      "sha256": "360caba57be2de8b3dad21b67c6ad0705714f6cdea92ac8bfe0bf5df7fb79c44"
+    },
+    "spec.json": {
+      "allocated_bytes": 8192,
+      "logical_bytes": 4900,
+      "sha256": "c17e9bbbbf11c8cdd343b316dcd8eba722e0e55729892e4f3c27da5875bb5459"
+    },
+    "startup-readiness.bin": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 231,
+      "sha256": "3eef8b1bc71abc89d321fa333749504f367c7d367340e8655070243bca75a4e4"
+    },
+    "stderr.log": {
+      "allocated_bytes": 0,
+      "logical_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.json": {
+      "allocated_bytes": 36864,
+      "logical_bytes": 33240,
+      "sha256": "b86cc1eb9e969c25f8601a51badc37bbfad78e166e7b83f9bf008afff9b927df"
+    }
+  },
+  "sample_stream": {
+    "coordinator_rehashed": false,
+    "logical_size_checked": 38633153,
+    "recorded_sha256": "2f8f09e7e8510932a679eeabf96de700398db1584d626249d0823743607a405f",
+    "ROOT_actual_stream_audit": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-full-r1-post-audit.json",
+      "sha256": "0bc93bf8a00be26ff45a7f57b7963cf76e122f55a1436ce27d421c9b48df29c8"
+    },
+    "scope": "ROOT independently streamhashed all11raw/sample stream and source/closure; coordinator checked this attestation file hash and10smallraw directly, not duplicate sample content."
+  },
+  "recorded_owner_identities": [
+    {
+      "pid": 51854,
+      "start_ticks": 7559831,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 51875,
+      "start_ticks": 7559843,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    }
+  ],
+  "recorded_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata.json",
+    "sha256": "cf3ca0fc9eba2f497e4eb524de9379adcd7121ef477c1aadfe5cff4d1a5feb90",
+    "all2_exact_birth_identities_and5_FDs_each_absent": true
+  },
+  "controller_toolterminal": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-controller1511-tool-terminal.json",
+    "sha256": "180858db3e2a7f6999ebcfb9c6d55ecd7e53839d7ab64e0d105b235175e584a9",
+    "exit_code": 0
+  },
+  "queue_boundary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/queue-boundary.json",
+    "sha256": "43dbd011844c597b205cda5aa4870942b332825b4fd8d335a7bf598c13f0c820"
+  },
+  "same_rep_summary_control": {
+    "boundary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86"
+    },
+    "config": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+      "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3"
+    }
+  },
+  "comparison": "input/common-output/known branches match; full public graph differs by intended mode; software/workload structural match, physical/cache identity not claimed.",
+  "scalar_observations": {
+    "native_terminal_KiB": 568768,
+    "terminal_direct_child_high_water_bytes": 582418432,
+    "call_seconds": 1405.431346238,
+    "collection_spawn_start_to_reap_seconds": 1407.58704629,
+    "cumulative_self_snapshots": {
+      "pre_call": {
+        "scope": "after input hashes/retention, before call timestamp",
+        "monotonic_ns": 75599740805968,
+        "ru_maxrss_native": 137028,
+        "ru_maxrss_native_units": "Linux KiB",
+        "cumulative_high_water_bytes": 140316672,
+        "ru_minflt": 23773,
+        "ru_majflt": 71,
+        "ru_nswap": 0,
+        "ru_inblock": 167056,
+        "ru_oublock": 0,
+        "ru_utime_seconds": 0.8272029999999999,
+        "ru_stime_seconds": 0.284757
+      },
+      "call_end": {
+        "scope": "after call/end timestamp, before result observations",
+        "monotonic_ns": 77005172269034,
+        "ru_maxrss_native": 568768,
+        "ru_maxrss_native_units": "Linux KiB",
+        "cumulative_high_water_bytes": 582418432,
+        "ru_minflt": 53381,
+        "ru_majflt": 87,
+        "ru_nswap": 0,
+        "ru_inblock": 179072,
+        "ru_oublock": 0,
+        "ru_utime_seconds": 1403.595516,
+        "ru_stime_seconds": 1.813783
+      },
+      "post_observation": {
+        "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown",
+        "monotonic_ns": 77005842127634,
+        "ru_maxrss_native": 568768,
+        "ru_maxrss_native_units": "Linux KiB",
+        "cumulative_high_water_bytes": 582418432,
+        "ru_minflt": 53397,
+        "ru_majflt": 88,
+        "ru_nswap": 0,
+        "ru_inblock": 179432,
+        "ru_oublock": 0,
+        "ru_utime_seconds": 1404.254232,
+        "ru_stime_seconds": 1.8179159999999999
+      }
+    },
+    "observer_self_snapshot": {
+      "scope": "parent after child/cleanup, excludes receipt serialization",
+      "monotonic_ns": 77006067498096,
+      "ru_maxrss_native": 16248,
+      "ru_maxrss_native_units": "Linux KiB",
+      "cumulative_high_water_bytes": 16637952,
+      "ru_minflt": 4815,
+      "ru_majflt": 0,
+      "ru_nswap": 0,
+      "ru_inblock": 432,
+      "ru_oublock": 75752,
+      "ru_utime_seconds": 46.871571,
+      "ru_stime_seconds": 17.068781
+    },
+    "sample_count": 132306,
+    "rss_terminal_confirmation_key_present": false,
+    "rss_terminal_confirmation": null
+  },
+  "resource_proofs": {
+    "pre": {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794769108137923857.json",
+      "sha256": "7a670eadbab3db37e0f454d332996796d0a1c1788b4e703964bd79fcfe9afa99"
+    },
+    "post": {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794770519531630409.json",
+      "sha256": "04c63c309a30b6da75429f886bd9db1ddd4fc033e016f47e00d1be5939ea4d3b"
+    }
+  },
+  "recorded_proof_facts": {
+    "pre": {
+      "outer": {
+        "current_bytes": 2598244352,
+        "events": {
+          "low": "0",
+          "high": "0",
+          "max": "50340",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0"
+        },
+        "swap_bytes": 0,
+        "maximum_bytes": 17179869184,
+        "host_available_bytes": 17773101056
+      },
+      "inner": {
+        "current_bytes": 2612674560,
+        "events": {
+          "low": "0",
+          "high": "0",
+          "max": "50340",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0"
+        },
+        "swap_bytes": 0,
+        "maximum_bytes": 17179869184,
+        "host_available_bytes": 17754517504
+      }
+    },
+    "post": {
+      "outer": {
+        "current_bytes": 2621661184,
+        "events": {
+          "low": "0",
+          "high": "0",
+          "max": "50340",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0"
+        },
+        "swap_bytes": 0,
+        "maximum_bytes": 17179869184,
+        "host_available_bytes": 17798557696
+      },
+      "inner": {
+        "current_bytes": 2635636736,
+        "events": {
+          "low": "0",
+          "high": "0",
+          "max": "50340",
+          "oom": "0",
+          "oom_kill": "0",
+          "oom_group_kill": "0"
+        },
+        "swap_bytes": 0,
+        "maximum_bytes": 17179869184,
+        "host_available_bytes": 17781927936
+      }
+    }
+  },
+  "proof_age_at_invocation_seconds": 0.234714842,
+  "original_proof_age_at_end_capture_finish_seconds": 1411.537809206,
+  "source35_directly_rehashed": true,
+  "audit_diagnostic": {
+    "file_only_attempt1": "KeyError ended_at_unix_ns in audit script after prior small-file/source/control/proof/owner checks passed; no report or target change",
+    "diagnosis": "Frozen capture schema key is finished_at_unix_ns; corrected literal file reader, not capture/binder defect",
+    "target_executed": false
+  },
+  "limits": [
+    "One full repetition, no triple aggregate/ranking or full-mode general feasibility conclusion.",
+    "Terminal wait4 is kernel-reported direct-child high-water; inherited/preexec/exec transition unknown, no subtraction/process-tree aggregate/isolated-workflow claim.",
+    "Self snapshots cumulative, post-observation before JSON/teardown; not terminal peaks.",
+    "No live PID/FD/resource scan, target import/execution or large sample reread by coordinator. Metadata/proofs are historical recorded facts.",
+    "Fresh continuation ROOT old-window closure/admission and separate release remain required; c664 prefix unchanged."
+  ],
+  "qualified_worktree_edited": false,
+  "all_prior_attempts_and_unknown_charges_preserved": true
+}

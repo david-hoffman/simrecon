@@ -1,0 +1,11 @@
+{
+  "id": "G03-V39-prefix",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "actual stage release/prefix differs"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "actual stage release/prefix differs"
+}

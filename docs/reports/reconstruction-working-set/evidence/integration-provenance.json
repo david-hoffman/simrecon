@@ -1,0 +1,35 @@
+{
+  "at_unix_ns": 1794804279707701805,
+  "entries": [
+    {
+      "bundle_path": "evidence/objects/4e1dcfd2bff2eecaa9b3754530c7a2658404d44ccddb11f73bdd1aea9d6fbb4d/ROOT-active-Markdown-layout-delta.json",
+      "original": {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-active-Markdown-layout-delta.json",
+        "sha256": "4e1dcfd2bff2eecaa9b3754530c7a2658404d44ccddb11f73bdd1aea9d6fbb4d"
+      }
+    },
+    {
+      "bundle_path": "evidence/objects/01df7b553fc6571af4a00441b2416db22d746a6b73b173756766120e4677cb62/ROOT-active-status-navigation-delta.json",
+      "original": {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-active-status-navigation-delta.json",
+        "sha256": "01df7b553fc6571af4a00441b2416db22d746a6b73b173756766120e4677cb62"
+      }
+    },
+    {
+      "bundle_path": "evidence/objects/0604a06dc7c3ab2f28ffeaf44536a4419e4e5138b8aae949461bc01d261255e5/ROOT-explicit-local-sample-inputs.json",
+      "original": {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-explicit-local-sample-inputs.json",
+        "sha256": "0604a06dc7c3ab2f28ffeaf44536a4419e4e5138b8aae949461bc01d261255e5"
+      }
+    },
+    {
+      "bundle_path": "evidence/objects/c606601c892fa8817f88285ccb2e3891494fee5e42ba089d6ed1a7ff38e1ffd4/ROOT-final-active-link-and-input-check.json",
+      "original": {
+        "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-final-active-link-and-input-check.json",
+        "sha256": "c606601c892fa8817f88285ccb2e3891494fee5e42ba089d6ed1a7ff38e1ffd4"
+      }
+    }
+  ],
+  "schema": "WS116-integration-provenance-supplement-v1",
+  "scope": "Exact integration/link/external-input records, no new scientific observations"
+}

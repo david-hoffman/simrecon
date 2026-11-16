@@ -1,0 +1,327 @@
+{
+  "all17_boundary_supports_hashed": {
+    "eligible-boundary.json": {
+      "logical_bytes": 8472,
+      "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6"
+    },
+    "grant.json": {
+      "logical_bytes": 12210,
+      "sha256": "9fa12e19b52888292cff9492096abb1fc5c5b1c0d282236df54b64be29c5f4ab"
+    },
+    "intent.json": {
+      "logical_bytes": 1628,
+      "sha256": "27ba5326e14a3270161f2f709802f91074502bd269ca05bff7e3e7fd018f07bf"
+    },
+    "observer-exit.json": {
+      "logical_bytes": 186,
+      "sha256": "41b9c4177b71c9db902459585173227a87ae2cb3a12a8936d4a3ca1a07677303"
+    },
+    "observer.stderr.log": {
+      "logical_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "observer.stdout.log": {
+      "logical_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "post-capture-command.json": {
+      "logical_bytes": 371,
+      "sha256": "3e216e8c825750c64ac817dea33c365e2c252602fc46531ed2344329ea07b4bf"
+    },
+    "post-metadata-command.json": {
+      "logical_bytes": 2417,
+      "sha256": "b908a9102be610aa4bc98a7989d436d82719167260b870bd17b872250e003728"
+    },
+    "post-metadata-intent.json": {
+      "logical_bytes": 1016,
+      "sha256": "3f4f64914aa2f43d9c6d869f02fa2f4cc61fea52db363d1c8da00d655a1f1200"
+    },
+    "post-metadata-request.json": {
+      "logical_bytes": 596,
+      "sha256": "453e4bd807467a2af7b617a61f5c5281ef08cbd216f80304cc320ecbf27d42d4"
+    },
+    "post-metadata.json": {
+      "logical_bytes": 3092,
+      "sha256": "cf3ca0fc9eba2f497e4eb524de9379adcd7121ef477c1aadfe5cff4d1a5feb90"
+    },
+    "pre-capture-command.json": {
+      "logical_bytes": 371,
+      "sha256": "53edd7f1631cb97c45aed6442f11b5dfdf41b0f0d93367d2e37b7938f29d328f"
+    },
+    "pre-metadata-command.json": {
+      "logical_bytes": 1641,
+      "sha256": "5603feba0605b89d849a1e371a4ac11987a575b4ac4107482d70e152d48ea29b"
+    },
+    "pre-metadata-intent.json": {
+      "logical_bytes": 1015,
+      "sha256": "54cae0d8a2438b053e5608c816d4ad7a21872ca24a1438c862e7ad4273d53d26"
+    },
+    "pre-metadata-request.json": {
+      "logical_bytes": 190,
+      "sha256": "297017a28aacbdd700bdb35467cd2d5da483400f1a769bb2c05a228254c6e61d"
+    },
+    "pre-metadata.json": {
+      "logical_bytes": 1824,
+      "sha256": "93ba87cdb9dce5d283d30836d14f0d434ae9547d910592db0874fa0e4cbcdf79"
+    },
+    "raw-files.json": {
+      "logical_bytes": 1811,
+      "sha256": "a1cd95f829922423adbb8bd4539f98737c44d8f9b23381a3a0056abc5e4ebc46"
+    }
+  },
+  "all_prior_attempts_failures_unknown_charges_preserved": true,
+  "boundary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/eligible-boundary.json",
+    "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6"
+  },
+  "candidate_actual": {
+    "full_status": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-post-r1-full-git-status.txt",
+      "sha256": "363c1eee4660d9229fbdf19bcc27274ba53d191c6cff7971fa2d63a3a8ec7705"
+    },
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_empty": true,
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "untracked_expected_raw_evidence_retained": true
+  },
+  "controller_session": 1511,
+  "controller_terminal": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-controller1511-tool-terminal.json",
+    "sha256": "180858db3e2a7f6999ebcfb9c6d55ecd7e53839d7ab64e0d105b235175e584a9"
+  },
+  "exact_current_stage_birth_FD_sets_absent_in_final_metadata": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51854,
+      "start_ticks": 7559831
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51875,
+      "start_ticks": 7559843
+    }
+  ],
+  "final_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata.json",
+    "sha256": "cf3ca0fc9eba2f497e4eb524de9379adcd7121ef477c1aadfe5cff4d1a5feb90"
+  },
+  "limits": "One full/supplied/unprofiled256 R1 observation only; no triplet/median/fullsearched/profile/scientific acceptance or16GiB/general feasibility claim. Terminal wait4 directchildscope inherited/preexec/execretention unknown, no subtraction/aggregate. No currenthistoricalPIDscan; actualpostmetadataexact2birthFDclosure. ROOTfileanalysis no product/scientific imports/childtrials.",
+  "matched_input_common_and_branch_fingerprints": true,
+  "material35_rehashed": true,
+  "observed_at_unix_ns": 1794770676458638346,
+  "proofs_pre_post": {
+    "post": {
+      "pointer": {
+        "docker_status": 0,
+        "external_ancestors": "unknown_unobservable",
+        "inner_status": 0,
+        "observed_at_unix_ns": 1794770519531630409,
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794770519531630409.json",
+        "sha256": "04c63c309a30b6da75429f886bd9db1ddd4fc033e016f47e00d1be5939ea4d3b"
+      },
+      "recorded_facts": {
+        "inner": {
+          "current_bytes": 2635636736,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        },
+        "outer": {
+          "current_bytes": 2621661184,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        }
+      }
+    },
+    "pre": {
+      "pointer": {
+        "docker_status": 0,
+        "external_ancestors": "unknown_unobservable",
+        "inner_status": 0,
+        "observed_at_unix_ns": 1794769108137923857,
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794769108137923857.json",
+        "sha256": "7a670eadbab3db37e0f454d332996796d0a1c1788b4e703964bd79fcfe9afa99"
+      },
+      "recorded_facts": {
+        "inner": {
+          "current_bytes": 2612674560,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        },
+        "outer": {
+          "current_bytes": 2598244352,
+          "events": {
+            "high": "0",
+            "low": "0",
+            "max": "50340",
+            "oom": "0",
+            "oom_group_kill": "0",
+            "oom_kill": "0"
+          },
+          "swap_bytes": 0
+        }
+      }
+    }
+  },
+  "raw_files_stream_hash_verified": {
+    "grant.input": {
+      "allocated_bytes": 12288,
+      "logical_bytes": 12210,
+      "sha256": "9fa12e19b52888292cff9492096abb1fc5c5b1c0d282236df54b64be29c5f4ab"
+    },
+    "owned-child.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2564,
+      "sha256": "81473e9f9f7bee21c7ab2f83cb7918e34262520f959771fb7b3f134ef6c2f694"
+    },
+    "preflight.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2861,
+      "sha256": "519ad9e6f15e08a02bbd4e37be50645f71d4123f616c124785ab479a297c95f6"
+    },
+    "receipt.json": {
+      "allocated_bytes": 28672,
+      "logical_bytes": 27680,
+      "sha256": "de4f1e41576b99f2bd2ad2708581f0cfe2e28b35702c5b5fefed51d2b8f13e2a"
+    },
+    "samples.jsonl": {
+      "allocated_bytes": 38633472,
+      "logical_bytes": 38633153,
+      "sha256": "2f8f09e7e8510932a679eeabf96de700398db1584d626249d0823743607a405f"
+    },
+    "session-ready.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 247,
+      "sha256": "699f7a64f5a46faf1f4b7154c9b7c693f1c3bb00646e4cae62beade361ab3cf2"
+    },
+    "spawn-intent.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 3006,
+      "sha256": "360caba57be2de8b3dad21b67c6ad0705714f6cdea92ac8bfe0bf5df7fb79c44"
+    },
+    "spec.json": {
+      "allocated_bytes": 8192,
+      "logical_bytes": 4900,
+      "sha256": "c17e9bbbbf11c8cdd343b316dcd8eba722e0e55729892e4f3c27da5875bb5459"
+    },
+    "startup-readiness.bin": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 231,
+      "sha256": "3eef8b1bc71abc89d321fa333749504f367c7d367340e8655070243bca75a4e4"
+    },
+    "stderr.log": {
+      "allocated_bytes": 0,
+      "logical_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.json": {
+      "allocated_bytes": 36864,
+      "logical_bytes": 33240,
+      "sha256": "b86cc1eb9e969c25f8601a51badc37bbfad78e166e7b83f9bf008afff9b927df"
+    }
+  },
+  "same_rep_summary_anchor": {
+    "boundary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86"
+    },
+    "config": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+      "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3"
+    }
+  },
+  "scalars": {
+    "elapsed_call_seconds": 1405.431346238,
+    "kernel_direct_child_high_water_bytes": 582418432,
+    "native_KiB": 568768,
+    "rss_terminal_confirmation_key_present": false,
+    "rss_terminal_confirmation_value": null,
+    "samples": {
+      "count": 132306,
+      "first_monotonic_ns": 75598431124919,
+      "last_monotonic_ns": 77006006788043,
+      "maximum_observed_RSS_bytes": 581971968,
+      "missing_or_invalid_RSS": 0
+    },
+    "snapshots": {
+      "call_end": {
+        "cumulative_high_water_bytes": 582418432,
+        "monotonic_ns": 77005172269034,
+        "ru_inblock": 179072,
+        "ru_majflt": 87,
+        "ru_maxrss_native": 568768,
+        "ru_maxrss_native_units": "Linux KiB",
+        "ru_minflt": 53381,
+        "ru_nswap": 0,
+        "ru_oublock": 0,
+        "ru_stime_seconds": 1.813783,
+        "ru_utime_seconds": 1403.595516,
+        "scope": "after call/end timestamp, before result observations"
+      },
+      "post_observation": {
+        "cumulative_high_water_bytes": 582418432,
+        "monotonic_ns": 77005842127634,
+        "ru_inblock": 179432,
+        "ru_majflt": 88,
+        "ru_maxrss_native": 568768,
+        "ru_maxrss_native_units": "Linux KiB",
+        "ru_minflt": 53397,
+        "ru_nswap": 0,
+        "ru_oublock": 0,
+        "ru_stime_seconds": 1.8179159999999999,
+        "ru_utime_seconds": 1404.254232,
+        "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown"
+      },
+      "pre_call": {
+        "cumulative_high_water_bytes": 140316672,
+        "monotonic_ns": 75599740805968,
+        "ru_inblock": 167056,
+        "ru_majflt": 71,
+        "ru_maxrss_native": 137028,
+        "ru_maxrss_native_units": "Linux KiB",
+        "ru_minflt": 23773,
+        "ru_nswap": 0,
+        "ru_oublock": 0,
+        "ru_stime_seconds": 0.284757,
+        "ru_utime_seconds": 0.8272029999999999,
+        "scope": "after input hashes/retention, before call timestamp"
+      }
+    }
+  },
+  "schema": "ROOT-WS116-first-full256-r1-post-audit-v1",
+  "status": "RAW_ROW_OWNER_SOURCE_PAIR_AUDIT_PASS_SCIENTIFIC_REVIEW_PENDING"
+}

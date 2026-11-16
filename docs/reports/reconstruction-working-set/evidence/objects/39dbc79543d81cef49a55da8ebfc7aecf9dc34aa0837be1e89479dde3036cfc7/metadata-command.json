@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-116",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "simrecon-campaign-ubuntu",
+    ".venv/bin/python",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/ubuntu_metadata.py",
+    "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1/metadata-request.json"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\"boot_id\": \"917ac2a5-d964-495b-98ae-77fb119cb0fd\", \"cwd\": \"/workspace/work/issue-116\", \"disks\": {\"/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1\": {\"device\": 27, \"fragment_size\": 4096, \"free_bytes\": 44847890432, \"free_inodes\": 3993333, \"fsid\": 4938322393334045645}, \"/workspace/work/issue-116\": {\"device\": 27, \"fragment_size\": 4096, \"free_bytes\": 44847890432, \"free_inodes\": 3993333, \"fsid\": 4938322393334045645}}, \"environment\": {\"MKL_NUM_THREADS\": \"1\", \"NUMEXPR_NUM_THREADS\": \"1\", \"OMP_NUM_THREADS\": \"1\", \"OPENBLAS_NUM_THREADS\": \"1\"}, \"executable\": \"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13\", \"external_ancestors\": \"unknown_unobservable\", \"gid\": 1000, \"namespaces\": {\"cgroup\": \"cgroup:[4026532294]\", \"pid\": \"pid:[4026532293]\"}, \"observed_at_unix_ns\": 1794777391525344292, \"outside_campaign_processes\": \"unknown_not_scanned\", \"owned_processes\": [{\"expected\": {\"boot_id\": \"917ac2a5-d964-495b-98ae-77fb119cb0fd\", \"fds\": [64, 65, 66, 67, 68], \"pid\": 52072, \"start_ticks\": 8199172}, \"fds\": {\"64\": {\"state\": \"absent\"}, \"65\": {\"state\": \"absent\"}, \"66\": {\"state\": \"absent\"}, \"67\": {\"state\": \"absent\"}, \"68\": {\"state\": \"absent\"}}, \"identity_state\": \"absent\", \"stat\": {\"state\": \"absent\"}}, {\"expected\": {\"boot_id\": \"917ac2a5-d964-495b-98ae-77fb119cb0fd\", \"fds\": [64, 65, 66, 67, 68], \"pid\": 52092, \"start_ticks\": 8199186}, \"fds\": {\"64\": {\"state\": \"absent\"}, \"65\": {\"state\": \"absent\"}, \"66\": {\"state\": \"absent\"}, \"67\": {\"state\": \"absent\"}, \"68\": {\"state\": \"absent\"}}, \"identity_state\": \"absent\", \"stat\": {\"state\": \"absent\"}}], \"pid\": 52120, \"ppid\": 0, \"protocol\": \"WS116-fixed-ubuntu-metadata-v1\", \"request_sha256\": \"cf2054f1595da08394d0578df0a9ce92e890429e3af9e484cd5b3f49fff5c082\", \"rlimits\": {\"RLIMIT_AS\": [-1, -1], \"RLIMIT_CORE\": [0, -1], \"RLIMIT_CPU\": [-1, -1], \"RLIMIT_DATA\": [-1, -1], \"RLIMIT_FSIZE\": [-1, -1], \"RLIMIT_MEMLOCK\": [8388608, 8388608], \"RLIMIT_NOFILE\": [1024, 16384], \"RLIMIT_NPROC\": [71955, 71955], \"RLIMIT_STACK\": [8388608, -1]}, \"source_sha256\": \"157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0\", \"uid\": 1000}\n"
+}

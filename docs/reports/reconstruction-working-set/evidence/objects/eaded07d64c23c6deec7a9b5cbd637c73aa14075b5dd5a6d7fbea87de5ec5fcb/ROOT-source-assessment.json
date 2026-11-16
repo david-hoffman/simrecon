@@ -1,0 +1,29 @@
+{
+  "actual_future_context": "UNKNOWN",
+  "assessment": [
+    "Exactly5contiguous recipeindices2-6 summarypR2/R3 thenfullpR1-3; centralNone/growth[]/6same-modecontrols/5priorclosures/94dSAMEadmission retained.",
+    "Exactactualfirst56a/aad1/58cc/73a/c7d controller63755tool0 andmarker-derived2birthFDs/finalmetadata required; oldabsence not substituted for freshfixedmetadata2ownercheck.",
+    "Onefixedmetadata/onecapture, sourcechecks twice, bothmode margin checks, correct960/1080/disk803209216 and ownsummary/fullcaps, ROOTAUTHnotACK,13outputs/configfalse/separateactualpacket+exactsciencerelease.",
+    "Proposed3h operationalwindow ROOTactualselection, retainedfinitebound<=6h notruntimeprediction. No newframework/program/CLI/recipe/method or scientificclaim."
+  ],
+  "authority": "ROOT",
+  "blocking_ROOT_findings": [],
+  "costs": "UNKNOWN",
+  "handoff": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/source-handoff.json",
+    "sha256": "13fc27790f624f7c6c779d7ce230706f1ea2dffb31415a0f632aa62c3d7735fc"
+  },
+  "helper": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/root-prepare-remaining5-central-profiles.py",
+    "sha256": "818eac071408569fcb43bd81a63437c4e3526cbca099686eb1775c230e4330da"
+  },
+  "manifest": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/source-manifest.json",
+    "sha256": "7f6171c8f7b936baaf3d654738520570c0c11ed05d435559a399480cd9bc0d40"
+  },
+  "observed_at_unix_ns": 1794783141100358683,
+  "reading_scope": "Whole358line helper/108README/104disabledtemplates/69handoff read. Manifest1852 fully parsed, nonrepeatedvalues projected and repeatedruntime/material/control/closures/proposals maps compared to actual56a/94d/worksheet;26staticpins and12smallcontrolpins checked, not whole1852visual claim.",
+  "runtime_or_preparation_authorized": false,
+  "schema": "ROOT-WS116-remaining5-central-profile-source-assessment-v1",
+  "status": "SOURCE_SUITABLE_UNEXECUTED_HOLD_PENDING_COOR_INSPECTION"
+}

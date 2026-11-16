@@ -1,0 +1,594 @@
+{
+  "at_unix_ns": 1794803945263745030,
+  "changes": [
+    {
+      "after_sha256": "e3d17f3a0e63e430f58a97634ac30d8d42cf841a036e085e56581dd7b6aa4605",
+      "before_sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9",
+      "diff": "--- reviewed-source/README.md\n+++ README.md\n@@ -2,7 +2,7 @@\n \n **Complete investigator report, pending final independent scientific review and integration.** Ninety eligible fresh-process observations cover the declared initial corpus, spatial growth, selected full-mode comparisons and separately instrumented controls. All declared groups have three repetitions. One older tracked workflow attempt failed and is excluded. The original large target remains unmeasured and allocation-unadmitted. No product implementation is commissioned here.\n \n-The measured candidate is `ea9117d3efe2d8de273402d643e732140138e496` (EA), tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`, over accepted #115 anchor `ace06c861b974b6251a092567c253ae4eb0f56c8`. The actual material35 map is basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. A later documentation/publication candidate has a different identity; these trials must retain EA in their original records. [Input references](input-references.json) distinguish metric sources, source calculations, operational history and pending delivery facts.\n+The measured candidate is `ea9117d3efe2d8de273402d643e732140138e496` (EA), tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`, over accepted #115 anchor `ace06c861b974b6251a092567c253ae4eb0f56c8`. The actual material35 map is basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. A later documentation/publication candidate has a different identity; these trials must retain EA in their original records. [Input references](evidence/report-input-references.json) distinguish metric sources, source calculations, operational history and pending delivery facts.\n \n ## Findings and next work\n \n@@ -36,7 +36,7 @@\n \n ### Initial60: unprofiled, 20 conditions\n \n-[canonical CSV](../initial60-analysis/output-attempt1/three-repeat-summary.csv) and [per-process records](../initial60-analysis/output-attempt1/per-process.json).\n+[canonical CSV](analysis/initial60/three-repeat-summary.csv) and [per-process records](analysis/initial60/per-process.json).\n \n | Exact condition | Terminal native KiB, min / median / max | Workflow call seconds, min / median / max |\n | --- | ---: | ---: |\n@@ -74,7 +74,7 @@\n | growth256-full-supplied | 561428 / 568768 / 570028 | 1405.431346238 / 1413.251765625 / 1415.843002078 |\n | growth256-full-searched | 665384 / 666316 / 667476 | 1521.354077427 / 1545.913683616 / 1586.09627256 |\n \n-Sources: [canonical CSV](../growth192-file-analysis/output-attempt1/three-repeat-summary.csv); [canonical CSV](../growth256-file-analysis/output-attempt1/three-repeat-summary.csv); [canonical CSV](../growth256-full-supplied-file-analysis/output-attempt2/three-repeat-summary.csv); [canonical CSV](../growth256-full-searched-file-analysis/output-attempt1/three-repeat-summary.csv). These full call times are lower than the corresponding summary timings in this recorded256 cohort. Different runs and uncontrolled physical/cache state prevent an isolated implementation-cost conclusion.\n+Sources: [canonical CSV](analysis/growth192/three-repeat-summary.csv); [canonical CSV](analysis/growth256/three-repeat-summary.csv); [canonical CSV](analysis/full-supplied256/three-repeat-summary.csv); [canonical CSV](analysis/full-searched256/three-repeat-summary.csv). These full call times are lower than the corresponding summary timings in this recorded256 cohort. Different runs and uncontrolled physical/cache state prevent an isolated implementation-cost conclusion.\n \n ### Separate central64 and largest256 profiles\n \n@@ -87,7 +87,7 @@\n | growth256-summary-searched | 326288 / 327132 / 329700 | 1335.172755667 / 1470.766478159 / 1550.452105608 |\n | growth256-full-searched | 677652 / 678956 / 679808 | 1424.11516996 / 1720.852829409 / 1790.373879817 |\n \n-Sources: [canonical CSV](../central64-profiles-file-analysis/output-attempt1/three-repeat-summary.csv); [canonical CSV](../largest256-profiles-file-analysis/output-attempt1/three-repeat-summary.csv). Profile times vary in both directions relative to controls, including a lower largest summary triple. We report paired observations, not isolated overhead or a perturbation ratio. Initial60 event context0 differs from later50340; physical/cache state is uncontrolled.\n+Sources: [canonical CSV](analysis/central64-profiles/three-repeat-summary.csv); [canonical CSV](analysis/largest256-profiles/three-repeat-summary.csv). Profile times vary in both directions relative to controls, including a lower largest summary triple. We report paired observations, not isolated overhead or a perturbation ratio. Initial60 event context0 differs from later50340; physical/cache state is uncontrolled.\n \n ## Stage association and observer meaning\n \n@@ -103,13 +103,13 @@\n | reconstruction time0 exit | 326288 | 678956 |\n | result exit | 326288 | 678956 |\n \n-Exact IDs: `ws116-gp-l256-summary-searched-r1-p` and `ws116-gp-l256-full-searched-r1-p`. All repetitions' events remain in [largest summary](../largest256-profiles-file-analysis/output-attempt1/summary.json) and [central summary](../central64-profiles-file-analysis/output-attempt1/summary.json). These observations associate later high-water with reconstruction and full retention with estimation/reconstruction. They do not locate an FFT workspace, discriminate two adjacent expressions, or show that result aggregation allocates nothing when high-water is unchanged.\n+Exact IDs: `ws116-gp-l256-summary-searched-r1-p` and `ws116-gp-l256-full-searched-r1-p`. All repetitions' events remain in [largest summary](analysis/largest256-profiles/summary.json) and [central summary](analysis/central64-profiles/summary.json). These observations associate later high-water with reconstruction and full retention with estimation/reconstruction. They do not locate an FFT workspace, discriminate two adjacent expressions, or show that result aggregation allocates nothing when high-water is unchanged.\n \n The hook stores scalar dictionaries, not arrays or caller frames. It still adds generator/contextmanager frames, closures, kwargs, query/allocation and final JSON costs. Original failure translation inspects traceback frames/f_locals in both modes; exceptions may keep numerical locals alive during unwinding. Successful retained-payload traversal uses IDs internally to avoid cycles/count roots once, but **returned metadata contains counts/byte estimates/shapes/dtypes/paths, no object IDs or arrays**. Traversal itself temporarily references already-retained arrays. Profile cost and native/allocator/OS perturbation are unisolated. A workflow exception does not produce a fabricated complete successful stage stream.\n \n ## Source-derived live intervals and backing payloads\n \n-These are source calculations, separate from RSS and native workspace. The [corrected liveness document](../report-liveness-wording-correction/liveness-draft-corrected.md), hash337a, and frozen source worksheets give exact functions/revisions. `V=Z*Y*X`, `H=Z*Y*(X//2+1)`, `Q=2*O-1`, `Vo=Zo*Yo*Xo`; `Bq=16*T*D*Q*H`, per-time image `I=8*Vo`. Views do not add new root backings.\n+These are source calculations, separate from RSS and native workspace. The [corrected liveness document](analysis/liveness-draft.md), hash337a, and frozen source worksheets give exact functions/revisions. `V=Z*Y*X`, `H=Z*Y*(X//2+1)`, `Q=2*O-1`, `Vo=Zo*Yo*Xo`; `Bq=16*T*D*Q*H`, per-time image `I=8*Vo`. Views do not add new root backings.\n \n | Family / creation \u2192 release or publication | Backing-aware fact and co-live dependence |\n | --- | --- |\n@@ -145,7 +145,7 @@\n \n Historical measurement commands/argv and hashes reside in original command/intents and receipts. Fresh measurement reproduction requires NEW actual ROOT resource correspondence, exact source binding, ownership, per-case grant and exclusive window; old proofs/grants are evidence, not reusable authority. Do not run a manifest as an automatic growth loop. The supported route is plain posix_spawn, same-PID setsid/bounded readiness/exec and one exact-PID wait4 owner, with explicit startup/FD/termination states and no numerical grandchildren.\n \n-Descriptive reproduction is file-only using frozen a075 for initial60 and canonical940 for fixed stages, each actual authorized config and command. For example, the final actual command record [ROOT-attempt1-command.json](../largest256-profiles-file-analysis/ROOT-attempt1-command.json) pins940 and config1d0848a7, launches Docker originalUbuntu .venv with `-I -B`, initializes REAL full stdlib statistics/random, then dispatches940 with `--config .../config-largest256-profiles-AUTHORIZED.json --config-sha256 1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5`. It exited0. Analysis Python is the same3.13.12 resolved pinned interpreter as workloads; analysis invocation and wall time are not workflow-call time. Its stderr is the expected structured initialization metadata, **not empty and not a failure**. Median first line621 / statistics hash80b677e7 / random39f53b25 are distinct from the synthetic median-only guard lane.\n+Descriptive reproduction is file-only using frozen a075 for initial60 and canonical940 for fixed stages, each actual authorized config and command. For example, the final actual command record [ROOT-attempt1-command.json](evidence/objects/3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b/ROOT-attempt1-command.json) pins940 and config1d0848a7, launches Docker originalUbuntu .venv with `-I -B`, initializes REAL full stdlib statistics/random, then dispatches940 with `--config .../config-largest256-profiles-AUTHORIZED.json --config-sha256 1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5`. It exited0. Analysis Python is the same3.13.12 resolved pinned interpreter as workloads; analysis invocation and wall time are not workflow-call time. Its stderr is the expected structured initialization metadata, **not empty and not a failure**. Median first line621 / statistics hash80b677e7 / random39f53b25 are distinct from the synthetic median-only guard lane.\n \n Every fixed-stage output set has seven files: summary, per-process, CSV, excluded-records, file-audit, output-identities and unprofiled-controls. Its output-identities maps **six other files**; it cannot contain its own digest. This report separately pins the map and summary in input-references. Initial60 retains its original six-file set. Complete referenced-evidence validity and descriptive completeness are separate properties; declared historical unavailable records remain unknown rather than fabricated pointers.\n \n@@ -167,3 +167,9 @@\n \n Author accounting for this completed source packet is44 preparations /9 executions /53 role events, original launch1; historical stage trials and other actors' checks are separate. Tokens, costs, serving model attribution and unrecorded elapsed times remain UNKNOWN. All prior bytes, diagnostics and charges are retained. No new runtime, statistical calculation or target edit was performed in this assembly.\n \n+\n+![Largest tested profile and control observations](figures/largest256-profile-controls.png)\n+\n+Twelve separate process observations at the largest tested 256 geometry, shown in MiB and workflow-call seconds. Profiled and unprofiled groups retain their original repetitions. Cache and physical-memory conditions were uncontrolled; these contrasts do not isolate profiling cost. [Exact plotted observations and provenance](figures/figure-input-provenance.json).\n+\n+The [portable evidence map and restoration notes](evidence/README.md) preserve original path and SHA256 identities, compressed sample transports, historical failures and explicit unavailable historical draft pins. [Representation/source index](analysis/representation-and-provenance.md).\n",
+      "path": "README.md"
+    },
+    {
+      "after_sha256": "da2de3e08d14bc29e6c7b5b148b7f59a2ed9a33058423f1404dd4f6e17893220",
+      "before_sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496",
+      "diff": "--- reviewed-source/phase-expression-lifetime.md\n+++ handoffs/phase-expression-lifetime.md\n@@ -1,6 +1,6 @@\n # Bound phase and assembly expression lifetimes\n \n-Rank 1 / medium. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n+Rank 1 / medium. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../evidence/report-input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n \n ## Evidence and proposed mechanism\n \n",
+      "path": "handoffs/phase-expression-lifetime.md"
+    },
+    {
+      "after_sha256": "78e425a3dd42be346676058ff57f1456b1bea8674d1cf79a60434f0f865e7b3e",
+      "before_sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605",
+      "diff": "--- reviewed-source/native-harmonic-scratch.md\n+++ handoffs/native-harmonic-scratch.md\n@@ -1,6 +1,6 @@\n # Release or safely reuse native harmonic scratch\n \n-Rank 2 / medium lifetime confidence, low measured-benefit confidence. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n+Rank 2 / medium lifetime confidence, low measured-benefit confidence. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../evidence/report-input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n \n ## Evidence and proposed mechanism\n \n",
+      "path": "handoffs/native-harmonic-scratch.md"
+    },
+    {
+      "after_sha256": "7c69be6da139d93c980a5958df33e67f683f3102e7caacc35873dbc106d64d1c",
+      "before_sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d",
+      "diff": "--- reviewed-source/compact-overlap-working-lifetime.md\n+++ handoffs/compact-overlap-working-lifetime.md\n@@ -1,6 +1,6 @@\n # Shorten compact estimator working overlap lifetime\n \n-Rank 3 / low peak-benefit confidence. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n+Rank 3 / low peak-benefit confidence. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../evidence/report-input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n \n ## Evidence and proposed mechanism\n \n",
+      "path": "handoffs/compact-overlap-working-lifetime.md"
+    },
+    {
+      "after_sha256": "69f1dc5065d8025adae38d6d2aa590704ef7bf2bdfe86b73a893cabec4330258",
+      "before_sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d",
+      "diff": "--- reviewed-source/time-aggregation.md\n+++ handoffs/time-aggregation.md\n@@ -1,6 +1,6 @@\n # Reduce duplicate time-output storage without changing publication\n \n-Rank 4 / low peak-localization confidence. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n+Rank 4 / low peak-localization confidence. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../evidence/report-input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n \n ## Evidence and proposed mechanism\n \n",
+      "path": "handoffs/time-aggregation.md"
+    },
+    {
+      "after_sha256": "d12f629306ef56d7080c5f22606f3639f92a7c5aea1553d84109ada84dca907f",
+      "before_sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41",
+      "diff": "--- reviewed-source/full-diagnostic-retention-ownership.md\n+++ handoffs/full-diagnostic-retention-ownership.md\n@@ -1,6 +1,6 @@\n # Review full diagnostic retention while preserving independent ownership\n \n-Rank 5 / deferred for public-contract reasons. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n+Rank 5 / deferred for public-contract reasons. Report-only handoff; no product repair commissioned. Measured revision EA `ea9117d3efe2d8de273402d643e732140138e496`, tree `e8fe2b1b01d9e7abf476a71a2241309255bb0587`; source material35 basis `bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c`. Exact evidence identities are indexed in [input-references](../evidence/report-input-references.json) and [attempt ledger](../analysis/attempt-ledger.json). Confidence in a source lifetime does not establish confidence in resident-memory benefit.\n \n ## Evidence and bounded disposition\n \n",
+      "path": "handoffs/full-diagnostic-retention-ownership.md"
+    }
+  ],
+  "historical_resolutions": [
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_extraction_argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "cat-file",
+        "blob",
+        "d3fb2f40b99e1bfd1a7437d795b02aa9091be526"
+      ],
+      "actual_extraction_returncode": 0,
+      "actual_extraction_stderr": "",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/0/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202/reconstruction-working-set-v1.md",
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "id": "H01",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented.",
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "git_blob_oid": "d3fb2f40b99e1bfd1a7437d795b02aa9091be526",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "path": "docs/contracts/reconstruction-working-set-v1.md",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true,
+        "sha256": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202"
+      },
+      "original_absolute_basis": null,
+      "original_spelling": "docs/contracts/reconstruction-working-set-v1.md",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "d3fb2f40b99e1bfd1a7437d795b02aa9091be526"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/0/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": null,
+      "disposition": "HISTORICAL_ONLY_NOT_FOUND_IN_EXAMINED_OWN_ANCESTRY_AND_NAMED_SNAPSHOTS",
+      "id": "H02",
+      "limit": "No match at six exact report ancestors of measured EA, two explicit pre-parent own-report commits rooted in public-main b344, or closed479 named source-alias index. Not proof unavailable elsewhere/unreachable; no fsck/all-ref/private-branch/broader filesystem search or reconstruction.",
+      "matching_git_object": null,
+      "original_absolute_basis": null,
+      "original_spelling": "docs/tasks/reconstruction-working-set.md",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "ee65ecf7b4d6a0c6a56639fe2fc5c86c4e2f0056082fe5e26cb90875b00364cf"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/0/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": null,
+      "disposition": "HISTORICAL_ONLY_NOT_FOUND_IN_EXAMINED_OWN_ANCESTRY_AND_NAMED_SNAPSHOTS",
+      "id": "H03",
+      "limit": "No match at six exact report ancestors of measured EA, two explicit pre-parent own-report commits rooted in public-main b344, or closed479 named source-alias index. Not proof unavailable elsewhere/unreachable; no fsck/all-ref/private-branch/broader filesystem search or reconstruction.",
+      "matching_git_object": null,
+      "original_absolute_basis": null,
+      "original_spelling": "docs/packets/reconstruction-working-set-review.md",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "0d56d07158a58a4840dec2d2aca6cfc523d93053101670321495d1d375f35351"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_extraction_argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "cat-file",
+        "blob",
+        "f420718503dbad82314074dabeefbd5b4f8b043c"
+      ],
+      "actual_extraction_returncode": 0,
+      "actual_extraction_stderr": "",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/1/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143/README.md",
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "id": "H04",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented.",
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "git_blob_oid": "f420718503dbad82314074dabeefbd5b4f8b043c",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "path": "docs/reports/reconstruction-working-set/README.md",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true,
+        "sha256": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143"
+      },
+      "original_absolute_basis": null,
+      "original_spelling": "README.md",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "f420718503dbad82314074dabeefbd5b4f8b043c"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_extraction_argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "cat-file",
+        "blob",
+        "7b9325aa30d99b24608a6f1ada472ec98db3e503"
+      ],
+      "actual_extraction_returncode": 0,
+      "actual_extraction_stderr": "",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/1/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402/liveness-draft.md",
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "id": "H05",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented.",
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "git_blob_oid": "7b9325aa30d99b24608a6f1ada472ec98db3e503",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "path": "docs/reports/reconstruction-working-set/analysis/liveness-draft.md",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true,
+        "sha256": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402"
+      },
+      "original_absolute_basis": null,
+      "original_spelling": "analysis/liveness-draft.md",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "7b9325aa30d99b24608a6f1ada472ec98db3e503"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_extraction_argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "cat-file",
+        "blob",
+        "1fcc42854832d96d9452516fcb77b4eb66cedca4"
+      ],
+      "actual_extraction_returncode": 0,
+      "actual_extraction_stderr": "",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/1/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9/manifest.json",
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "id": "H06",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented.",
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "git_blob_oid": "1fcc42854832d96d9452516fcb77b4eb66cedca4",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "path": "docs/reports/reconstruction-working-set/manifest.json",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true,
+        "sha256": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9"
+      },
+      "original_absolute_basis": null,
+      "original_spelling": "manifest.json",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "1fcc42854832d96d9452516fcb77b4eb66cedca4"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_extraction_argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "cat-file",
+        "blob",
+        "562fcaf2b12a4a2da89c173a15086599e7ef167c"
+      ],
+      "actual_extraction_returncode": 0,
+      "actual_extraction_stderr": "",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/1/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a/run_attempt.py",
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "id": "H07",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented.",
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "git_blob_oid": "562fcaf2b12a4a2da89c173a15086599e7ef167c",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "path": "docs/reports/reconstruction-working-set/run_attempt.py",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true,
+        "sha256": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a"
+      },
+      "original_absolute_basis": null,
+      "original_spelling": "run_attempt.py",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "562fcaf2b12a4a2da89c173a15086599e7ef167c"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_extraction_argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "cat-file",
+        "blob",
+        "5d77302faa18678767253ea3d03e6099394e20bb"
+      ],
+      "actual_extraction_returncode": 0,
+      "actual_extraction_stderr": "",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/1/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5/workload_child.py",
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "id": "H08",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented.",
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "git_blob_oid": "5d77302faa18678767253ea3d03e6099394e20bb",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "path": "docs/reports/reconstruction-working-set/workload_child.py",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true,
+        "sha256": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5"
+      },
+      "original_absolute_basis": null,
+      "original_spelling": "workload_child.py",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "5d77302faa18678767253ea3d03e6099394e20bb"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_extraction_argv": [
+        "/usr/local/bin/git",
+        "-C",
+        "/workspace/work/issue-116",
+        "cat-file",
+        "blob",
+        "a8604f92ab1330eb44d91a5a354de624fdbec1fa"
+      ],
+      "actual_extraction_returncode": 0,
+      "actual_extraction_stderr": "",
+      "actual_preserved_file": null,
+      "binding_primary": {
+        "field": "roles/1/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555/observer.py",
+      "disposition": "RESOLVED_EXACT_CAMPAIGN_OWNED_GIT_BLOB",
+      "id": "H09",
+      "limit": "Git object bytes directly streamed to sha256sum; no file extracted/copied. ROOT can restore this exact blob. Original relative spelling retained; no original absolute root invented.",
+      "matching_git_object": {
+        "commit": "d3685352219a6103a22b2c94eabfe291a8186179",
+        "git_blob_oid": "a8604f92ab1330eb44d91a5a354de624fdbec1fa",
+        "original_campaign_commit": "701b56d349adaf5e719510a158b51402876f9c30",
+        "path": "docs/reports/reconstruction-working-set/observer.py",
+        "same_blob_and_sha256_rechecked_at_original_campaign_commit": true,
+        "sha256": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555"
+      },
+      "original_absolute_basis": null,
+      "original_spelling": "observer.py",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "restoration_argv": [
+        "git",
+        "cat-file",
+        "blob",
+        "a8604f92ab1330eb44d91a5a354de624fdbec1fa"
+      ],
+      "restoration_workdir": "/workspace/work/issue-116",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": "/workspace/work/campaign/evidence/116/corpus-admission-plan/planning-inputs.sha256",
+      "binding_primary": {
+        "field": "source_admission_planner/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431/planning-inputs.sha256",
+      "disposition": "RESOLVED_EXACT_NAMED_PLANNING_FILE",
+      "id": "H10",
+      "limit": "Direct sha256sum of named planning snapshot matches full expected digest; no commit provenance asserted or unknown original absolute base invented.",
+      "matching_git_object": null,
+      "original_absolute_basis": null,
+      "original_spelling": "planning-inputs.sha256",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431"
+    },
+    {
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry.",
+      "actual_preserved_file": "/workspace/work/campaign/evidence/116/corpus-admission-plan/planner-handoff.json",
+      "binding_primary": {
+        "field": "source_admission_planner/output_sha256",
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a"
+      },
+      "bundle_relative_path": "evidence/objects/5cd9f81b66eeb96cbe740ef166bead432841253e4232c83223b836786a516ca4/planner-handoff.json",
+      "disposition": "RESOLVED_EXACT_NAMED_PLANNING_FILE",
+      "id": "H11",
+      "limit": "Direct sha256sum of named planning snapshot matches full expected digest; no commit provenance asserted or unknown original absolute base invented.",
+      "matching_git_object": null,
+      "original_absolute_basis": null,
+      "original_spelling": "planner-handoff.json",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "sha256": "5cd9f81b66eeb96cbe740ef166bead432841253e4232c83223b836786a516ca4"
+    }
+  ],
+  "links": [
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "evidence/report-input-references.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/phase-expression-lifetime.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/native-harmonic-scratch.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/compact-overlap-working-lifetime.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/time-aggregation.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/full-diagnostic-retention-ownership.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/initial60/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/initial60/per-process.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/growth192/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/growth256/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/full-supplied256/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/full-searched256/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/central64-profiles/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/largest256-profiles/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/largest256-profiles/summary.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/central64-profiles/summary.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/liveness-draft.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/attempt-ledger.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "evidence/objects/3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b/ROOT-attempt1-command.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/attempt-ledger.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "figures/largest256-profile-controls.png"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "figures/figure-input-provenance.json"
+    },
+    {
+      "document": "README.md",
+      "exists": false,
+      "target": "evidence/README.md"
+    },
+    {
+      "document": "README.md",
+      "exists": false,
+      "target": "analysis/representation-and-provenance.md"
+    },
+    {
+      "document": "handoffs/compact-overlap-working-lifetime.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/compact-overlap-working-lifetime.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/full-diagnostic-retention-ownership.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/full-diagnostic-retention-ownership.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/native-harmonic-scratch.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/native-harmonic-scratch.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/phase-expression-lifetime.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/phase-expression-lifetime.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/time-aggregation.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/time-aggregation.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    }
+  ],
+  "schema": "ROOT-116-active-presentation-layout-delta-v1",
+  "scope": "Mechanical path mapping and identified figure/caption/navigation only; scientific tables/formula/ranks/limits retained"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "G02-refuse-full128",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "selected largest full size required"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "selected largest full size required"
+}

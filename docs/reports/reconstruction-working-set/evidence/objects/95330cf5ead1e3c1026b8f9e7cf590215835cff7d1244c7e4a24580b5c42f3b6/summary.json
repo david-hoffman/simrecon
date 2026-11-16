@@ -1,0 +1,953 @@
+{
+  "protocol": "WS116-fixed-stage-descriptive-v1",
+  "config_sha256": "1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5",
+  "stage_id": "largest-profiles",
+  "selected_largest_size": 256,
+  "expected_stage_rows": [
+    {
+      "serial_index": 1,
+      "stage_id": "largest-profiles",
+      "condition_id": "growth256-summary-searched",
+      "repetition": 1,
+      "profile": true,
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "launch_nonce": "ws116-gp-l256-summary-searched-r1-p"
+    },
+    {
+      "serial_index": 2,
+      "stage_id": "largest-profiles",
+      "condition_id": "growth256-summary-searched",
+      "repetition": 2,
+      "profile": true,
+      "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+      "launch_nonce": "ws116-gp-l256-summary-searched-r2-p"
+    },
+    {
+      "serial_index": 3,
+      "stage_id": "largest-profiles",
+      "condition_id": "growth256-summary-searched",
+      "repetition": 3,
+      "profile": true,
+      "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+      "launch_nonce": "ws116-gp-l256-summary-searched-r3-p"
+    },
+    {
+      "serial_index": 4,
+      "stage_id": "largest-profiles",
+      "condition_id": "growth256-full-searched",
+      "repetition": 1,
+      "profile": true,
+      "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+      "launch_nonce": "ws116-gp-l256-full-searched-r1-p"
+    },
+    {
+      "serial_index": 5,
+      "stage_id": "largest-profiles",
+      "condition_id": "growth256-full-searched",
+      "repetition": 2,
+      "profile": true,
+      "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+      "launch_nonce": "ws116-gp-l256-full-searched-r2-p"
+    },
+    {
+      "serial_index": 6,
+      "stage_id": "largest-profiles",
+      "condition_id": "growth256-full-searched",
+      "repetition": 3,
+      "profile": true,
+      "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+      "launch_nonce": "ws116-gp-l256-full-searched-r3-p"
+    }
+  ],
+  "partial_selection_authorized": false,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_hashes": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459"
+  },
+  "source_manifest_sha256": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+  "schema_manifest_sha256": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+  "original_extractor_sha256": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+  "stage_binder_sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+  "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+  "basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+  "missing_stage_recipes": [],
+  "groups": [
+    {
+      "condition_id": "growth256-summary-searched",
+      "eligible_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "status": "three_repeat_descriptive_only",
+      "reasons": [],
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 326288,
+          "median": 327132,
+          "max": 329700
+        },
+        "terminal_kernel_bytes": {
+          "min": 334118912,
+          "median": 334983168,
+          "max": 337612800
+        },
+        "call_seconds": {
+          "min": 1335.172755667,
+          "median": 1470.766478159,
+          "max": 1550.452105608
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 1336.840142247,
+          "median": 1472.539334728,
+          "max": 1551.757263874
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 1336.570353148,
+          "median": 1472.181035445,
+          "max": 1551.534646302
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 139669504,
+          "median": 140210176,
+          "max": 140357632
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 334118912,
+          "median": 334983168,
+          "max": 337612800
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 334118912,
+          "median": 334983168,
+          "max": 337612800
+        }
+      }
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "eligible_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "status": "three_repeat_descriptive_only",
+      "reasons": [],
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 677652,
+          "median": 678956,
+          "max": 679808
+        },
+        "terminal_kernel_bytes": {
+          "min": 693915648,
+          "median": 695250944,
+          "max": 696123392
+        },
+        "call_seconds": {
+          "min": 1424.11516996,
+          "median": 1720.852829409,
+          "max": 1790.373879817
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 1426.685453173,
+          "median": 1723.259577329,
+          "max": 1793.207664254
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 1426.475958986,
+          "median": 1723.029345988,
+          "max": 1792.85846156
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 140095488,
+          "median": 140124160,
+          "max": 140537856
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 693915648,
+          "median": 695250944,
+          "max": 696123392
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 693915648,
+          "median": 695250944,
+          "max": 696123392
+        }
+      }
+    }
+  ],
+  "full_summary_pairs": [
+    {
+      "full": "growth256-full-searched",
+      "summary": "growth256-summary-searched",
+      "repetition": 1,
+      "status": "common_values_match",
+      "mismatches": [],
+      "public_result_fingerprints": "structurally different modes; not compared"
+    },
+    {
+      "full": "growth256-full-searched",
+      "summary": "growth256-summary-searched",
+      "repetition": 2,
+      "status": "common_values_match",
+      "mismatches": [],
+      "public_result_fingerprints": "structurally different modes; not compared"
+    },
+    {
+      "full": "growth256-full-searched",
+      "summary": "growth256-summary-searched",
+      "repetition": 3,
+      "status": "common_values_match",
+      "mismatches": [],
+      "public_result_fingerprints": "structurally different modes; not compared"
+    }
+  ],
+  "matched_control_pairs": [
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "control_attempt_id": "ws116-gp-g256-summary-searched-r1-u",
+      "repetition": 1,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 326288,
+        "terminal_kernel_bytes": 334118912,
+        "call_seconds": 1335.172755667,
+        "spawn_to_terminal_collection_seconds": 1336.840142247,
+        "target_start_to_last_snapshot_seconds": 1336.570353148,
+        "pre_call_cumulative_self_bytes": 140357632,
+        "call_end_cumulative_self_bytes": 334118912,
+        "post_observation_cumulative_self_bytes": 334118912
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 314888,
+        "terminal_kernel_bytes": 322445312,
+        "call_seconds": 1818.263636516,
+        "spawn_to_terminal_collection_seconds": 1819.913914605,
+        "target_start_to_last_snapshot_seconds": 1819.573789464,
+        "pre_call_cumulative_self_bytes": 140337152,
+        "call_end_cumulative_self_bytes": 322445312,
+        "post_observation_cumulative_self_bytes": 322445312
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+          "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 93179302430977,
+          "ru_maxrss_native_KiB": 186236
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 93179302495549,
+          "ru_maxrss_native_KiB": 186236
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 93179363994205,
+          "ru_maxrss_native_KiB": 186236
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 93179860876971,
+          "ru_maxrss_native_KiB": 231908
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 93179935501424,
+          "ru_maxrss_native_KiB": 231908
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 93485898196668,
+          "ru_maxrss_native_KiB": 232312
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 93485898402579,
+          "ru_maxrss_native_KiB": 232312
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 94514419702790,
+          "ru_maxrss_native_KiB": 326288
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 94514425143645,
+          "ru_maxrss_native_KiB": 326288
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 94514429088699,
+          "ru_maxrss_native_KiB": 326288
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+      "control_attempt_id": "ws116-gp-g256-summary-searched-r2-u",
+      "repetition": 2,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 327132,
+        "terminal_kernel_bytes": 334983168,
+        "call_seconds": 1470.766478159,
+        "spawn_to_terminal_collection_seconds": 1472.539334728,
+        "target_start_to_last_snapshot_seconds": 1472.181035445,
+        "pre_call_cumulative_self_bytes": 140210176,
+        "call_end_cumulative_self_bytes": 334983168,
+        "post_observation_cumulative_self_bytes": 334983168
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 319052,
+        "terminal_kernel_bytes": 326709248,
+        "call_seconds": 1721.99578851,
+        "spawn_to_terminal_collection_seconds": 1723.662194604,
+        "target_start_to_last_snapshot_seconds": 1723.285568333,
+        "pre_call_cumulative_self_bytes": 139902976,
+        "call_end_cumulative_self_bytes": 326709248,
+        "post_observation_cumulative_self_bytes": 326709248
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+          "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 95805725235542,
+          "ru_maxrss_native_KiB": 186092
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 95805725300353,
+          "ru_maxrss_native_KiB": 186092
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 95805781094759,
+          "ru_maxrss_native_KiB": 186092
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 95806230904725,
+          "ru_maxrss_native_KiB": 231892
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 95806282825954,
+          "ru_maxrss_native_KiB": 231892
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 96134868134650,
+          "ru_maxrss_native_KiB": 232224
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 96134868494052,
+          "ru_maxrss_native_KiB": 232224
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 97276202694365,
+          "ru_maxrss_native_KiB": 327132
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 97276206425614,
+          "ru_maxrss_native_KiB": 327132
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 97276210054632,
+          "ru_maxrss_native_KiB": 327132
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+      "control_attempt_id": "ws116-gp-g256-summary-searched-r3-u",
+      "repetition": 3,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 329700,
+        "terminal_kernel_bytes": 337612800,
+        "call_seconds": 1550.452105608,
+        "spawn_to_terminal_collection_seconds": 1551.757263874,
+        "target_start_to_last_snapshot_seconds": 1551.534646302,
+        "pre_call_cumulative_self_bytes": 139669504,
+        "call_end_cumulative_self_bytes": 337612800,
+        "post_observation_cumulative_self_bytes": 337612800
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 319220,
+        "terminal_kernel_bytes": 326881280,
+        "call_seconds": 1820.79672742,
+        "spawn_to_terminal_collection_seconds": 1822.878081069,
+        "target_start_to_last_snapshot_seconds": 1822.557542854,
+        "pre_call_cumulative_self_bytes": 139984896,
+        "call_end_cumulative_self_bytes": 326881280,
+        "post_observation_cumulative_self_bytes": 326881280
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+          "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 97282668299035,
+          "ru_maxrss_native_KiB": 185564
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 97282668362736,
+          "ru_maxrss_native_KiB": 185564
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 97282720269797,
+          "ru_maxrss_native_KiB": 185564
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 97283178066481,
+          "ru_maxrss_native_KiB": 231296
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 97283226209354,
+          "ru_maxrss_native_KiB": 231296
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 97616577055215,
+          "ru_maxrss_native_KiB": 231772
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 97616577581814,
+          "ru_maxrss_native_KiB": 231772
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 98832842007787,
+          "ru_maxrss_native_KiB": 329700
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 98832846106169,
+          "ru_maxrss_native_KiB": 329700
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 98832849512390,
+          "ru_maxrss_native_KiB": 329700
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+      "control_attempt_id": "ws116-gp-l256-full-searched-r1-u",
+      "repetition": 1,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 678956,
+        "terminal_kernel_bytes": 695250944,
+        "call_seconds": 1424.11516996,
+        "spawn_to_terminal_collection_seconds": 1426.685453173,
+        "target_start_to_last_snapshot_seconds": 1426.475958986,
+        "pre_call_cumulative_self_bytes": 140095488,
+        "call_end_cumulative_self_bytes": 695250944,
+        "post_observation_cumulative_self_bytes": 695250944
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 667476,
+        "terminal_kernel_bytes": 683495424,
+        "call_seconds": 1545.913683616,
+        "spawn_to_terminal_collection_seconds": 1548.597994046,
+        "target_start_to_last_snapshot_seconds": 1548.365498426,
+        "pre_call_cumulative_self_bytes": 139579392,
+        "call_end_cumulative_self_bytes": 683495424,
+        "post_observation_cumulative_self_bytes": 683495424
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+          "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+          "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 98840458262954,
+          "ru_maxrss_native_KiB": 186132
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 98840458330970,
+          "ru_maxrss_native_KiB": 186132
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 98840521223203,
+          "ru_maxrss_native_KiB": 186132
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 98841117567595,
+          "ru_maxrss_native_KiB": 231776
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 98841171820261,
+          "ru_maxrss_native_KiB": 231776
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 99168348581952,
+          "ru_maxrss_native_KiB": 558684
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 99168348800210,
+          "ru_maxrss_native_KiB": 558684
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 100264256294657,
+          "ru_maxrss_native_KiB": 678956
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 100264256801047,
+          "ru_maxrss_native_KiB": 678956
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 100264259261924,
+          "ru_maxrss_native_KiB": 678956
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+      "control_attempt_id": "ws116-gp-l256-full-searched-r2-u",
+      "repetition": 2,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 679808,
+        "terminal_kernel_bytes": 696123392,
+        "call_seconds": 1790.373879817,
+        "spawn_to_terminal_collection_seconds": 1793.207664254,
+        "target_start_to_last_snapshot_seconds": 1792.85846156,
+        "pre_call_cumulative_self_bytes": 140537856,
+        "call_end_cumulative_self_bytes": 696123392,
+        "post_observation_cumulative_self_bytes": 696123392
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 666316,
+        "terminal_kernel_bytes": 682307584,
+        "call_seconds": 1586.09627256,
+        "spawn_to_terminal_collection_seconds": 1588.611239312,
+        "target_start_to_last_snapshot_seconds": 1588.313366194,
+        "pre_call_cumulative_self_bytes": 139849728,
+        "call_end_cumulative_self_bytes": 682307584,
+        "post_observation_cumulative_self_bytes": 682307584
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+          "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 100272807883333,
+          "ru_maxrss_native_KiB": 186412
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 100272808143267,
+          "ru_maxrss_native_KiB": 186412
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 100272869257190,
+          "ru_maxrss_native_KiB": 186412
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 100273198761234,
+          "ru_maxrss_native_KiB": 231984
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 100273257204578,
+          "ru_maxrss_native_KiB": 231984
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 100624459325472,
+          "ru_maxrss_native_KiB": 558628
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 100624459469507,
+          "ru_maxrss_native_KiB": 558628
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 102063135031442,
+          "ru_maxrss_native_KiB": 679808
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 102063135493126,
+          "ru_maxrss_native_KiB": 679808
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 102063141496353,
+          "ru_maxrss_native_KiB": 679808
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+      "control_attempt_id": "ws116-gp-l256-full-searched-r3-u",
+      "repetition": 3,
+      "kind": "profile_same_mode",
+      "status": "matched",
+      "profile": true,
+      "observed_metrics": {
+        "terminal_native_KiB": 677652,
+        "terminal_kernel_bytes": 693915648,
+        "call_seconds": 1720.852829409,
+        "spawn_to_terminal_collection_seconds": 1723.259577329,
+        "target_start_to_last_snapshot_seconds": 1723.029345988,
+        "pre_call_cumulative_self_bytes": 140124160,
+        "call_end_cumulative_self_bytes": 693915648,
+        "post_observation_cumulative_self_bytes": 693915648
+      },
+      "unprofiled_control_metrics": {
+        "terminal_native_KiB": 665384,
+        "terminal_kernel_bytes": 681353216,
+        "call_seconds": 1521.354077427,
+        "spawn_to_terminal_collection_seconds": 1523.774081709,
+        "target_start_to_last_snapshot_seconds": 1523.485349166,
+        "pre_call_cumulative_self_bytes": 139919360,
+        "call_end_cumulative_self_bytes": 681353216,
+        "post_observation_cumulative_self_bytes": 681353216
+      },
+      "control_refs": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+          "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      },
+      "profile_events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 102069794724906,
+          "ru_maxrss_native_KiB": 186164
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 102069794826398,
+          "ru_maxrss_native_KiB": 186164
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 102069853662625,
+          "ru_maxrss_native_KiB": 186164
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 102070240926630,
+          "ru_maxrss_native_KiB": 231720
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 102070289954137,
+          "ru_maxrss_native_KiB": 231720
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 102471899988050,
+          "ru_maxrss_native_KiB": 558028
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 102471900301204,
+          "ru_maxrss_native_KiB": 558028
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 103790182336047,
+          "ru_maxrss_native_KiB": 677652
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 103790182822875,
+          "ru_maxrss_native_KiB": 677652
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 103790185405256,
+          "ru_maxrss_native_KiB": 677652
+        }
+      ],
+      "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit"
+    }
+  ],
+  "fixed_stage_descriptive_complete": true,
+  "final_scientific_acceptance": false,
+  "initial60_scope": "original f6 dataset unchanged; only explicit exact controls reread here, never counted as new stage repetitions",
+  "referenced_evidence_audit_valid": true,
+  "historical_rm84_inventory": [
+    {
+      "availability": "available",
+      "evidence": [
+        {
+          "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/contracts/reconstruction-memory-v1.md",
+          "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a"
+        },
+        {
+          "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/tasks/reconstruction-memory.md",
+          "sha256": "eaf33f1318799cf7f31a856e803f8fef515324e2c7a0938911361737bd5e2473"
+        },
+        {
+          "path": "/workspace/work/issue-116/tests/reconstruction_summary_fixture.py",
+          "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+        },
+        {
+          "path": "/workspace/work/issue-116/tests/reconstruction_memory_benchmark.py",
+          "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+        }
+      ],
+      "phase": "historical",
+      "reason": "Original public-main RM84 tracked contract/task/fixture/value benchmark preserved; no rerun or alternate private branch baseline",
+      "state": "excluded_never_pooled",
+      "evidence_errors": []
+    },
+    {
+      "availability": "unknown",
+      "phase": "historical",
+      "reason": "Historical RM84 task names artifacts/rm84/current-state.md; artifacts/rm84 unavailable in issue116 worktree at this inventory. Other locations not asserted absent; original run receipts/measurements unknown here.",
+      "state": "declared_historical_unknown_or_unavailable",
+      "evidence_errors": []
+    }
+  ],
+  "scope": "kernel terminal/self snapshots distinct; exec retention UNKNOWN; no subtraction, aggregate tree peak, isolated workflow allocation or measured contributor ranking",
+  "analysis_success": true,
+  "status": "descriptive_complete_audit_valid_pending_scientific_review"
+}

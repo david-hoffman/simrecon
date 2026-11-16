@@ -1,0 +1,29 @@
+{
+  "actual_terminal_tool": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-controller88772-tool-terminal.json",
+    "sha256": "c64bbb67995080744fa0271fbf0cd09918bdaf5cc5f5cf8e7a3c83f9987bdfc7"
+  },
+  "all12_stored_birth_FD_facts_closed": true,
+  "authority": "ROOT",
+  "closed_central_profile_window": true,
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+    "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+  },
+  "controller88772_actual_terminal_exit0_no_proxy": true,
+  "costs": "UNKNOWN",
+  "ended_at_unix_ns": 1794784330087834120,
+  "no_active_stage_controller": true,
+  "original_window": {
+    "ends_unix_ns": 1794794071931319232,
+    "starts_unix_ns": 1794783271931319232
+  },
+  "post_source_audit": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-postclosure-source-check.json",
+    "sha256": "477d3d2741ecaa65d889349cb39fb55909512f3b092883098b2c48a581ca9afd"
+  },
+  "schema": "ROOT-WS116-central6-window-ended-v1",
+  "scope": "Explicit earlyendafterwhole6/66raw/12owner/2groups audit. No automaticlargestprofile/other runtime release.",
+  "selected_largest_size": null,
+  "stage_id": "central64-profiles"
+}

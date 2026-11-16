@@ -1,0 +1,1903 @@
+{
+  "accepted_112_then_115": true,
+  "ancestor_stop_bytes": {
+    "/sys/fs/cgroup": 12884901888
+  },
+  "attempt_id": "ws116-frozen128-summary-supplied-r3-u",
+  "campaign_ownership_resolved": true,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "condition_id": "frozen128-summary-supplied",
+  "deadline_seconds": 960,
+  "declared_growth_conditions": [],
+  "exclusive_window": {
+    "evidence": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-release-remaining59.json",
+    "evidence_sha256": "2612ee843c4ae94e2bcf9e04034fcbc03f652cf4f84c28a6944be5fba159a1ac",
+    "released": true,
+    "scope": "WS116 exact frozen initial-row release"
+  },
+  "headroom_evidence": {
+    "operating_proposal": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 1080,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 960,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 803209216,
+      "host_min_available_bytes": 4294967296,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 536870912,
+      "predicted_child_peak_bytes": 1073741824,
+      "process_stop_bytes": 2147483648,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 12884901888,
+      "reserve_bytes": 2147483648,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    },
+    "physical": {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "cwd": "/workspace/work/issue-116",
+      "disks": {
+        "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1": {
+          "device": 27,
+          "fragment_size": 4096,
+          "free_bytes": 60594245632,
+          "free_inodes": 4086508,
+          "fsid": 4938322393334045645
+        },
+        "/workspace/work/issue-116": {
+          "device": 27,
+          "fragment_size": 4096,
+          "free_bytes": 60594245632,
+          "free_inodes": 4086508,
+          "fsid": 4938322393334045645
+        }
+      },
+      "environment": {
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+      "external_ancestors": "unknown_unobservable",
+      "gid": 1000,
+      "namespaces": {
+        "cgroup": "cgroup:[4026532294]",
+        "pid": "pid:[4026532293]"
+      },
+      "observed_at_unix_ns": 1794732361833713189,
+      "outside_campaign_processes": "unknown_not_scanned",
+      "owned_processes": [
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 46267,
+            "start_ticks": 2672492
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 46287,
+            "start_ticks": 2672505
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47290,
+            "start_ticks": 3462055
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47310,
+            "start_ticks": 3462068
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47376,
+            "start_ticks": 3484732
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47396,
+            "start_ticks": 3484751
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47436,
+            "start_ticks": 3487348
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47455,
+            "start_ticks": 3487358
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47495,
+            "start_ticks": 3490465
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47515,
+            "start_ticks": 3490475
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47555,
+            "start_ticks": 3498580
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47575,
+            "start_ticks": 3498592
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47615,
+            "start_ticks": 3507692
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47635,
+            "start_ticks": 3507703
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47675,
+            "start_ticks": 3516809
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47695,
+            "start_ticks": 3516821
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47735,
+            "start_ticks": 3526447
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47755,
+            "start_ticks": 3526458
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47795,
+            "start_ticks": 3535575
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47815,
+            "start_ticks": 3535588
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47855,
+            "start_ticks": 3544183
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47875,
+            "start_ticks": 3544196
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47915,
+            "start_ticks": 3552830
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47935,
+            "start_ticks": 3552846
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47974,
+            "start_ticks": 3562507
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 47994,
+            "start_ticks": 3562522
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48033,
+            "start_ticks": 3571139
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48053,
+            "start_ticks": 3571152
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48093,
+            "start_ticks": 3581772
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48113,
+            "start_ticks": 3581786
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48154,
+            "start_ticks": 3591914
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48174,
+            "start_ticks": 3591927
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48212,
+            "start_ticks": 3602561
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48232,
+            "start_ticks": 3602571
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48272,
+            "start_ticks": 3637684
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48292,
+            "start_ticks": 3637696
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48332,
+            "start_ticks": 3673341
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48352,
+            "start_ticks": 3673352
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48392,
+            "start_ticks": 3706462
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48412,
+            "start_ticks": 3706472
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48452,
+            "start_ticks": 3743612
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48472,
+            "start_ticks": 3743623
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48509,
+            "start_ticks": 3784280
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48529,
+            "start_ticks": 3784293
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48569,
+            "start_ticks": 3819934
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48589,
+            "start_ticks": 3819948
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48630,
+            "start_ticks": 3851565
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        },
+        {
+          "expected": {
+            "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+            "fds": [
+              64,
+              65,
+              66,
+              67,
+              68
+            ],
+            "pid": 48650,
+            "start_ticks": 3851576
+          },
+          "fds": {
+            "64": {
+              "state": "absent"
+            },
+            "65": {
+              "state": "absent"
+            },
+            "66": {
+              "state": "absent"
+            },
+            "67": {
+              "state": "absent"
+            },
+            "68": {
+              "state": "absent"
+            }
+          },
+          "identity_state": "absent",
+          "stat": {
+            "state": "absent"
+          }
+        }
+      ],
+      "pid": 48678,
+      "ppid": 0,
+      "protocol": "WS116-fixed-ubuntu-metadata-v1",
+      "request_sha256": "7a592403bec075439df998536e4d5a051bba8c4bb415c690f9b4ef82e72715c3",
+      "rlimits": {
+        "RLIMIT_AS": [
+          -1,
+          -1
+        ],
+        "RLIMIT_CORE": [
+          0,
+          -1
+        ],
+        "RLIMIT_CPU": [
+          -1,
+          -1
+        ],
+        "RLIMIT_DATA": [
+          -1,
+          -1
+        ],
+        "RLIMIT_FSIZE": [
+          -1,
+          -1
+        ],
+        "RLIMIT_MEMLOCK": [
+          8388608,
+          8388608
+        ],
+        "RLIMIT_NOFILE": [
+          1024,
+          16384
+        ],
+        "RLIMIT_NPROC": [
+          71955,
+          71955
+        ],
+        "RLIMIT_STACK": [
+          8388608,
+          -1
+        ]
+      },
+      "source_sha256": "157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0",
+      "uid": 1000
+    },
+    "proof": {
+      "docker_status": 0,
+      "external_ancestors": "unknown_unobservable",
+      "inner_status": 0,
+      "observed_at_unix_ns": 1794732362015636295,
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794732362015636295.json",
+      "sha256": "2727aa17474b487c0eee50eb1274afb45f3b8155f17f750adfe05df9fb9f07bd"
+    },
+    "status": "ROOT frozen conditional design"
+  },
+  "host_min_available_bytes": 4294967296,
+  "kill_reap_seconds": 2,
+  "launch_nonce": "ws116-frozen128-summary-supplied-r3-u",
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "max_child_record_bytes": 4194304,
+  "no_automatic_retry_or_growth": true,
+  "numerical_release": true,
+  "process_stop_bytes": 2147483648,
+  "profile": false,
+  "python_resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "repetition": 3,
+  "representation_preflight": {
+    "accepted": true,
+    "evidence": {
+      "condition_id": "frozen128-summary-supplied",
+      "root_authority": {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-release-remaining59.json",
+        "sha256": "2612ee843c4ae94e2bcf9e04034fcbc03f652cf4f84c28a6944be5fba159a1ac"
+      },
+      "source_runtime_checks_preserved": true,
+      "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+    }
+  },
+  "resource_domain": {
+    "conditional_rationale": "ROOT explicitly releases exact remaining59 initialrows after separately inspected finite/clean row1 (ROOT+coor actualeligibility), no rerun. Knowncampaignnumeric/test/import/install/benchmarkwork stayssuspended, onlysource/docs preparationelsewhere. Freshperrowactualnamespace/rlimits/disk/mapping/currentlimits/headroom/events/swap required. Externalancestorsunknown_unobservable/outsideactorsunknown_not_scanned. Table20conditions operatingprediction+nativeallowance/processstop/reserve/hostmin/ancestorstop/deadline areconservativeunmeasuredsettings, notRAM/strictpeak/16GiBpromise/humanbudget. Prospectiveoriginalproofhorizon=eachdeadline+120, <=5stoinvocation, endeligibilitychecks originalproofhash/horizon+freshdomaincontext. ANYfailureHOLD,noautoretry/skip/growth/profile/capchange/outerkill.",
+    "correspondence_evidence": {
+      "maximum_age_seconds": 1080,
+      "observed_at_unix_ns": 1794732362015636295,
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794732362015636295.json",
+      "sha256": "2727aa17474b487c0eee50eb1274afb45f3b8155f17f750adfe05df9fb9f07bd"
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount": "/sys/fs/cgroup",
+      "mount_root": "/",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "external_ancestors": "unknown_unobservable",
+    "native_allocator_allowance_bytes": 536870912,
+    "predicted_child_peak_bytes": 1073741824,
+    "reserve_bytes": 2147483648,
+    "scope": "WS116-exposed-domain-conditional-v1"
+  },
+  "root_release_at_unix_ns": 1794732362177740861,
+  "sample_interval_seconds": 0.01,
+  "startup_pipe_bytes": 1024,
+  "startup_timeout_seconds": 5,
+  "terminate_grace_seconds": 0.2
+}

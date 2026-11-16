@@ -1,0 +1,73 @@
+{
+  "ROOT_independent8": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-independent-eight-triplets.json",
+    "sha256": "2c1aaf316e04316e431260fad992ccc87cab0d1c5acf2311de14929819f42674"
+  },
+  "actual_command": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-attempt1-command.json",
+    "sha256": "bacd1777c9d274ec8a02d9f9f57516d238ca036c3f8ab0840dd5b8afc0f2f066"
+  },
+  "all7_output_pins": {
+    "excluded-records.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "46cb4a507be4172d0e985d29dcaaff9387e5ba7622432ff6a6866f619deb4de5"
+    },
+    "file-audit.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "712b470e22b021d8f3aba17dfac35edb68292a06ee2d6080a2e197892146a707"
+    },
+    "output-identities.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "8e481780e0dd584199f638c0b16c23443047e74cb3446b8ba7e7c40a7a0d7a6a"
+    },
+    "per-process.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/per-process.json",
+      "sha256": "53fe6575474716be4f84f815002c898bd3efdd11fba2b4b931c22948b4e28a7e"
+    },
+    "summary.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/summary.json",
+      "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205"
+    },
+    "three-repeat-summary.csv": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "bf4956bac8f9e5f70158c11a5e91e0e84e25c0df94bdab8da3bf2f9fb8961bf1"
+    },
+    "unprofiled-controls.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "71045334d7ff276ba7316436c39393aa1d58b532ad299c0ef8efb94e2bf3f728"
+    }
+  },
+  "all8_group_triplets_and3_perrowmetrics_exact_match": true,
+  "authority": "ROOT",
+  "controls": 3,
+  "costs": "UNKNOWN",
+  "file_audit_entries": 1292,
+  "final_scientific_acceptance": false,
+  "groups": 1,
+  "historical_entries": 2,
+  "identity_map_own_hash_pinned_separately": true,
+  "next_stage_authorized": false,
+  "no_evidence_errors": true,
+  "nonpooled_excluded_records": 27,
+  "normal_full_realstdlib_initialization": {
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+    "label": "ROOT_REAL_STDLIB_FILE_ANALYSIS_INITIALIZATION",
+    "median_code_filename": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "median_firstlineno": 621,
+    "median_stub_used": false,
+    "normal_full_initialization": true,
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "random_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py",
+    "random_sha256": "39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0",
+    "statistics_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "statistics_sha256": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18"
+  },
+  "observed_at_unix_ns": 1794781388210943660,
+  "raw_confirmation_ABSENT_vs_null_scope": "Canonical null retained for absent raw keys onR2/R3; ROOTraw worksheet preserves actual keypresence, no numericzero or continuoussampling claim.",
+  "rows": 3,
+  "schema": "ROOT-WS116-fullsearched256-actual-output-check-v1",
+  "six_identity_map_digests_match_actual": true,
+  "source15_afterpins_match_again": true,
+  "three_same_rep_summary_searched_controls_and_pairs_match": true,
+  "unique_file_audit_paths": 452
+}

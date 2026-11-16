@@ -1,0 +1,89 @@
+{
+  "schema": "WS116-central64-profile-first-source-handoff-v1",
+  "status": "SOURCE_READY_DISABLED_HOLD",
+  "author": "/root/issue_116/investigator",
+  "files_sha256": {
+    "central64-profile-source-check.json": "88bdc12c8c1bd2b2be59b148a34980437ef8eb0b6a72f0483b89c6384fcf8d81",
+    "central64-profile-source-check.md": "54644108d6d5ee73fbc98c80092239c3ad749958fb211154845ea56ff049e693",
+    "config-row1-UNAUTHORIZED.json": "d70073b9841ed376a28d06b4991ec92c2a0f04c8d5e760b6e9cb13e9a3872615",
+    "stage-admission-DRAFT.json": "843437cfa83680261dd946176aa76a87e01bc62b07498fd50a990d289ac0e827",
+    "authority-DRAFT.json": "295cbd256e25a209c94aae8eb3ccd5524770faf43d1deaa026b0661b44b6ca2d",
+    "scheduler-ACK-DRAFT.json": "94238adfbc43d9837b8d0a9f2625ffc5f4dfb30a31217c68909dade0a2ac714a",
+    "currentstage-ledger-DRAFT.json": "88e72a493bb80aac1be97f9fb3a624ed306dcdd9e8c274c18cb071dc72d73d54",
+    "input-references.json": "c1d902adff3ec238968f5f3848346fbc2a3ac392d986c53b6ea6724500cddc72",
+    "README.md": "c755bdf0d13084299bc1ca23b3b688ab6f2adaafb323269189fe55fd2440e9fa"
+  },
+  "self_identity": "This tenth file is hashed separately; no self-reference.",
+  "concrete_profile_meaning": [
+    "Hook patches only workflow.reconstruct imported workflow_stage; scalar stage/time_index/edge/monotonic/HWM records on enter and exit, original restored finally. Unchanged qualified runner owns complete native mask/time/cumulative ordering.",
+    "Scalar-only event payload is not zero retention/cost: active generator/context/closure/kwargs/list/dict allocations remain, original failure translation inspects traceback frames, traversal/hash memoryviews/iterators temporarily hold already-retained arrays.",
+    "Three cumulative self snapshots/hash/retention/context observations and parent sample flushes also occur unprofiled. Profile stage list is serialized once at child end; terminal kernel, target snapshots, parent self and sampled RSS scopes remain distinct.",
+    "Same-mode/same-rep profiles require input/common/branches AND public result hashes matching their own closed controls. Summary/full public graphs stay separate; no pooling or isolated causal cost/stage-allocation claim.",
+    "Full retains9overlap records and coarse/trial captures; compact retains descriptors/tuples and drops compact bands only after the entire reconstruction loop. Python locals/native/backends/trace/container costs are unclosed."
+  ],
+  "exact_stage_and_caps": {
+    "stage_id": "central64-profiles",
+    "selected_largest_size_MUST_NULL": null,
+    "recipe_order": "summary searched profile r1-3, then full searched profile r1-3",
+    "allow_only": "ws116-gp-c64-summary-searched-r1-p",
+    "shape_TDZYX": [1, 3, 8, 64, 64],
+    "profile": true,
+    "summary_host_min_bytes": 2147483648,
+    "full_host_min_bytes": 2684354560,
+    "both_ancestor_stop_bytes": 8589934592,
+    "profile_deadline_seconds_literal": 960,
+    "profile_horizon_seconds_literal": 1080,
+    "profile_disk_bytes_literal": 803209216,
+    "exact_profile_formula": "deadline only doubles; horizon=deadline+120; disk=max(67108864,deadline*100*8192+16777216); all other caps/fixture/tolerances unchanged",
+    "ROOT_label_record_SHA_matched": "0e9ca901fb0ae011f1cc9ea77463390b991f6eaf647d0644547abe081b43aa9f",
+    "label_correction_scope": "Old ROOT prose shorthand only; actual0058/8190/config/guards always correct; no executed failure or cap change"
+  },
+  "source_proof_and_controls": {
+    "original660afe45_family_immutable_and_SHA_matched": true,
+    "hook_child_runner_result_traversal_binder_source_SHA_matched": true,
+    "literal_integer_byte_stencil_and_profile_plan_fields_copied_no_calculation_program": true,
+    "all6_closed_initial60_control_boundary_and_config_pins_matched": true,
+    "control_raw_sample_proof_followed": false,
+    "material35_core28_tool6_method7_environment_roots_worker_fixture_unchanged": true,
+    "no_RSS_RAM_native_profilecost_or_supplied_measurement_extrapolation": true
+  },
+  "future_unknowns_NULL": {
+    "actual_searchedfull_triple_whole_stage_closure": null,
+    "actual_primary940_and_independent8triplets_JSON": null,
+    "ROOT_acceptance_and_NEW_central_profile_stage_decision": null,
+    "fresh_source_case_schedule_owner_context_window_authority": null,
+    "new_stage_owner_ledger_or_fresh_absence_fact": null,
+    "actual_profile_output_hashes_events_metrics_and_perturbation": null
+  },
+  "packet_disabled_state": {
+    "config_top_level_keys": 44,
+    "authorized": false,
+    "numerical_release": false,
+    "prefix_declaration": [],
+    "runtime_maps_metadata_events_swap_window_sourceauthority_owner_fields": null,
+    "prior_closures": "initial/192/256summary/fullsupplied41a bound, additional searchedfull closureNULL",
+    "future_batch": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1",
+    "future_batch_created_or_actual_absence_checked": false,
+    "ROOTAUTHORITY_not_ACK_rule_preserved": true,
+    "helper_program_preflight_grant_intent_or_native_profile_authored": false
+  },
+  "authoring_boundary": {
+    "only_named10_new_files_written": true,
+    "EA_and_all_prior_packets_attempts_bytes_changed": false,
+    "active17352_currentR1_batch_raw_progress_receipt_boundary_status_proof_PIDFD_RSS_outcome_livecontext_read": false,
+    "runtime_import_AST_lint_tests_native_probe_calculator_metadata_capture_workflow_sourceQA_executed": false,
+    "syntax_or_runtime_validated": false,
+    "diagnostic_preserved": "Initial guessed workflow/stages.py path absent; actual reconstruct import identified workflow/result.py and source was read. No code execution or active evidence search."
+  },
+  "accounting": {
+    "author_preparations": 32,
+    "author_execution_continuations": 9,
+    "author_total": 41,
+    "original_launch": 1,
+    "all_prior_bytes_attempts_errors_unknown_charges_preserved": true,
+    "tokens": "UNKNOWN",
+    "costs": "UNKNOWN",
+    "model_serving_attribution": "UNKNOWN"
+  },
+  "next": "HOLD after packet for coordinator/ROOT source inspection; no helper or further preparation/runtime authorized. Scientific review/final acceptance pending."
+}

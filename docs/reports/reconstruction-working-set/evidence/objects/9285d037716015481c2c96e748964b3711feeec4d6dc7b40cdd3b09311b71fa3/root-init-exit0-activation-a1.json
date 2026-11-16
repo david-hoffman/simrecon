@@ -1,0 +1,32 @@
+{
+  "case_directories": {
+    "exit0": "/workspace/work/campaign/evidence/113/init-case-exit0-a1"
+  },
+  "controller_sha256": "cc6efe9afec035e57fa27369e5047e9cebfbf6f07ce8d976eb77dd93537bf9bf",
+  "docker_executable": "/usr/local/bin/docker",
+  "docker_sha256": "6c71cfe71faff949a602946a4df4799b563232e79d0b8b6fd343d0ef081c9621",
+  "outer_python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "outer_python_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+  "payload_sha256": "19bf2c10d06bf0308cb7ff864c715d685cdad0fdb7ec8840a0ffd74a85caac47",
+  "released_cases": [
+    "exit0"
+  ],
+  "root_released": true,
+  "runtime": {
+    "container_id": "69e4d3657ca70142632b800d93e6aaa8cf5073d0a5691039d74bde440b3d1061",
+    "init_identity": {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "cmdline": "/sbin/docker-init -- sleep infinity ",
+      "container_pid": 1,
+      "engine_started_at": "2026-11-15T10:34:07.514024328Z",
+      "host_pid": 123579,
+      "start_ticks": 4533751
+    },
+    "init_verified": true,
+    "linux_primary_sha256": "2aab5ab4109224883b733f476418acac4d42a0c5b4d7b843757df845a334e7c3",
+    "material_sha256": "94442aad472c91beb6e25a3e16ab9adc714856ca354aac19f37ba338346f073a",
+    "no_other_workload": true,
+    "pid_namespace_inode": "pid:[4026532552]",
+    "private_pid_namespace_verified": true
+  }
+}

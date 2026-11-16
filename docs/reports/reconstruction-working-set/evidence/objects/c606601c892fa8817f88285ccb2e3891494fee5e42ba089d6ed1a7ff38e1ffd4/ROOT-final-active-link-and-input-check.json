@@ -1,0 +1,247 @@
+{
+  "active_links": [
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "evidence/report-input-references.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/phase-expression-lifetime.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/native-harmonic-scratch.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/compact-overlap-working-lifetime.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/time-aggregation.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "handoffs/full-diagnostic-retention-ownership.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/initial60/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/initial60/per-process.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/growth192/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/growth256/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/full-supplied256/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/full-searched256/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/central64-profiles/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/largest256-profiles/three-repeat-summary.csv"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/largest256-profiles/summary.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/central64-profiles/summary.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/liveness-draft.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/attempt-ledger.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "evidence/objects/3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b/ROOT-attempt1-command.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/attempt-ledger.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "figures/largest256-profile-controls.png"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "figures/figure-input-provenance.json"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "evidence/README.md"
+    },
+    {
+      "document": "README.md",
+      "exists": true,
+      "target": "analysis/representation-and-provenance.md"
+    },
+    {
+      "document": "handoffs/compact-overlap-working-lifetime.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/compact-overlap-working-lifetime.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/full-diagnostic-retention-ownership.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/full-diagnostic-retention-ownership.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/native-harmonic-scratch.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/native-harmonic-scratch.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/phase-expression-lifetime.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/phase-expression-lifetime.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "handoffs/time-aggregation.md",
+      "exists": true,
+      "target": "../evidence/report-input-references.json"
+    },
+    {
+      "document": "handoffs/time-aggregation.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "../README.md"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "liveness-draft.md"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "integrated-parent-reconciliation.md"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "../evidence/objects/08fca73a3011e57cba2b7d3c3a9605e1692e035e6f22084c5a0218874cfcd8f6/full-supplied-r1-source-check.json"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "../evidence/objects/16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76/full-searched-r1-source-check.json"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "../evidence/objects/88bdc12c8c1bd2b2be59b148a34980437ef8eb0b6a72f0483b89c6384fcf8d81/central64-profile-source-check.json"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "../evidence/objects/6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68/largest256-profile-source-check.json"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "../evidence/location-map.json"
+    },
+    {
+      "document": "analysis/representation-and-provenance.md",
+      "exists": true,
+      "target": "../evidence/material-transition.json"
+    },
+    {
+      "document": "evidence/README.md",
+      "exists": true,
+      "target": "location-map.json"
+    },
+    {
+      "document": "evidence/README.md",
+      "exists": true,
+      "target": "../analysis/attempt-ledger.json"
+    },
+    {
+      "document": "evidence/README.md",
+      "exists": true,
+      "target": "sample-restoration.tsv"
+    },
+    {
+      "document": "evidence/README.md",
+      "exists": true,
+      "target": "material-transition.json"
+    }
+  ],
+  "all_links_resolve": true,
+  "at_unix_ns": 1794804228344208103,
+  "exact_external_inputs": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-explicit-local-sample-inputs.json",
+    "sha256": "0604a06dc7c3ab2f28ffeaf44536a4419e4e5138b8aae949461bc01d261255e5"
+  },
+  "original_raw_sets": "Preserved original11 names; gzip transports outside raw dirs",
+  "schema": "ROOT-116-active-link-and-input-check-v1"
+}

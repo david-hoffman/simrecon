@@ -1,0 +1,274 @@
+{
+  "authority": "ROOT",
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+    "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+  },
+  "costs": "UNKNOWN",
+  "missing_rss_confirmation_scope": "ABSENT keptabsent/null, nevernumeric0; presentgap fullrawrecord retained, causeunknown",
+  "native_scope": "Linux exactdirectchild terminalwait4 HWM throughfinalexit; inherited/preexec/execretention unknown, notaggregate/decomposition",
+  "observed_at_unix_ns": 1794780828963432618,
+  "rows": [
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/stdout.json",
+        "sha256": "a4578861b73cab4385b6b644e541294125802da70d0a6f878c2dfdbecba72811"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 683495424,
+        "call_seconds": 1545.913683616,
+        "post_observation_cumulative_self_bytes": 683495424,
+        "pre_call_cumulative_self_bytes": 139579392,
+        "spawn_to_terminal_collection_seconds": 1548.597994046,
+        "target_start_to_last_snapshot_seconds": 1548.365498426,
+        "terminal_kernel_bytes": 683495424,
+        "terminal_native_KiB": 667476
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/receipt.json",
+        "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+      },
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540460781083
+        },
+        "confirmation_decision_monotonic": 83540.460614075,
+        "deadline_monotonic_ns": 83540509049157,
+        "first_helper_entry_monotonic": 83540.459548276,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540459049157,
+          "pid": 52092,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540459049157,
+          "pid": 52092,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 83540.459548276,
+            "independent_stop": null,
+            "monotonic": 83540.460614075,
+            "sample_monotonic_ns": 83540459049157,
+            "terminal_collected_monotonic_ns": 83540460445430,
+            "terminal_observed": true
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 83540.46080254,
+            "independent_stop": null,
+            "monotonic": 83540.460810305,
+            "sample_monotonic_ns": 83540459049157,
+            "terminal_collected_monotonic_ns": 83540460445430,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 83540459049157,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 83540460445430
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "sample_count": 145374
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/stdout.json",
+        "sha256": "0ffa5d456019362eda0e44632a1d71799b1a953489a45159ffcbbb27dd2dc184"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 682307584,
+        "call_seconds": 1586.09627256,
+        "post_observation_cumulative_self_bytes": 682307584,
+        "pre_call_cumulative_self_bytes": 139849728,
+        "spawn_to_terminal_collection_seconds": 1588.611239312,
+        "target_start_to_last_snapshot_seconds": 1588.313366194,
+        "terminal_kernel_bytes": 682307584,
+        "terminal_native_KiB": 666316
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/receipt.json",
+        "sha256": "59e4e5e5aea7c20edfdb84edffbf7301297603b7f9b419287470c5a27fe8092d"
+      },
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "sample_count": 140740
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/stdout.json",
+        "sha256": "03e3e9385ad4b1cd2782b1beff5c280b52d3b78646a0cdc8eb460ff01c85a976"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 681353216,
+        "call_seconds": 1521.354077427,
+        "post_observation_cumulative_self_bytes": 681353216,
+        "pre_call_cumulative_self_bytes": 139919360,
+        "spawn_to_terminal_collection_seconds": 1523.774081709,
+        "target_start_to_last_snapshot_seconds": 1523.485349166,
+        "terminal_kernel_bytes": 681353216,
+        "terminal_native_KiB": 665384
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/receipt.json",
+        "sha256": "036e71637afb47dca849b894e28a9e41550e80a678e5e1e744eab61b2bfc119a"
+      },
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "sample_count": 143836
+    }
+  ],
+  "schema": "ROOT-WS116-fullsearched256-independent-eight-triplets-v1",
+  "scientific_acceptance": false,
+  "scope": "Independent fixed3row raw scalar extraction afterwholeclosure/windowend; no canonical940/statistics import or like-unlike pooling",
+  "self_scope": "Cumulative samechild snapshots, notisolatedworkflow peaks",
+  "triplets": {
+    "call_end_cumulative_self_bytes": {
+      "max": 683495424,
+      "median": 682307584,
+      "min": 681353216,
+      "repetition_values": [
+        683495424,
+        682307584,
+        681353216
+      ],
+      "sorted_three": [
+        681353216,
+        682307584,
+        683495424
+      ]
+    },
+    "call_seconds": {
+      "max": 1586.09627256,
+      "median": 1545.913683616,
+      "min": 1521.354077427,
+      "repetition_values": [
+        1545.913683616,
+        1586.09627256,
+        1521.354077427
+      ],
+      "sorted_three": [
+        1521.354077427,
+        1545.913683616,
+        1586.09627256
+      ]
+    },
+    "post_observation_cumulative_self_bytes": {
+      "max": 683495424,
+      "median": 682307584,
+      "min": 681353216,
+      "repetition_values": [
+        683495424,
+        682307584,
+        681353216
+      ],
+      "sorted_three": [
+        681353216,
+        682307584,
+        683495424
+      ]
+    },
+    "pre_call_cumulative_self_bytes": {
+      "max": 139919360,
+      "median": 139849728,
+      "min": 139579392,
+      "repetition_values": [
+        139579392,
+        139849728,
+        139919360
+      ],
+      "sorted_three": [
+        139579392,
+        139849728,
+        139919360
+      ]
+    },
+    "spawn_to_terminal_collection_seconds": {
+      "max": 1588.611239312,
+      "median": 1548.597994046,
+      "min": 1523.774081709,
+      "repetition_values": [
+        1548.597994046,
+        1588.611239312,
+        1523.774081709
+      ],
+      "sorted_three": [
+        1523.774081709,
+        1548.597994046,
+        1588.611239312
+      ]
+    },
+    "target_start_to_last_snapshot_seconds": {
+      "max": 1588.313366194,
+      "median": 1548.365498426,
+      "min": 1523.485349166,
+      "repetition_values": [
+        1548.365498426,
+        1588.313366194,
+        1523.485349166
+      ],
+      "sorted_three": [
+        1523.485349166,
+        1548.365498426,
+        1588.313366194
+      ]
+    },
+    "terminal_kernel_bytes": {
+      "max": 683495424,
+      "median": 682307584,
+      "min": 681353216,
+      "repetition_values": [
+        683495424,
+        682307584,
+        681353216
+      ],
+      "sorted_three": [
+        681353216,
+        682307584,
+        683495424
+      ]
+    },
+    "terminal_native_KiB": {
+      "max": 667476,
+      "median": 666316,
+      "min": 665384,
+      "repetition_values": [
+        667476,
+        666316,
+        665384
+      ],
+      "sorted_three": [
+        665384,
+        666316,
+        667476
+      ]
+    }
+  }
+}

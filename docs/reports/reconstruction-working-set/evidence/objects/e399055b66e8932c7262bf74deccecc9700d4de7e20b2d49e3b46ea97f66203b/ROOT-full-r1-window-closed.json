@@ -1,0 +1,32 @@
+{
+  "actual_controller_exit": 0,
+  "all_prior_reservation_grants_ended_by_ROOT": true,
+  "authority": "ROOT",
+  "closed_at_unix_ns": 1794770815420188864,
+  "closed_first_row_window": true,
+  "completed_allowed_ids": [
+    "ws116-gp-l256-full-supplied-r1-u"
+  ],
+  "controller_session": 1511,
+  "eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-full-r1-eligibility.json",
+    "sha256": "a744a463e2ea1e12a5dd1fe6e52b1da2fb9b957bad20fbbe9b97dc2c8214eefc"
+  },
+  "exact_current_stage_owner_closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata.json",
+    "sha256": "cf3ca0fc9eba2f497e4eb524de9379adcd7121ef477c1aadfe5cff4d1a5feb90"
+  },
+  "no_active_stage_controller": true,
+  "original_window": {
+    "ends_unix_ns": 1794776041889654999,
+    "starts_unix_ns": 1794768841889654999
+  },
+  "schema": "ROOT-WS116-first-full-r1-window-closed-v1",
+  "scope": "ROOT earlyends firstR1 reservation after exactcontroller0/eligibleboundary/ownerclosure. No whole-stage closed_prior_stage fabricated; R1 stays same-stageprefix. Furtherrows need separate fresh admission andROOTrelease. Unrelatedruntime remains held pendingROOTnext scheduling; source/fileworkpermitted.",
+  "stage_id": "largest-full-supplied",
+  "stage_is_not_complete": true,
+  "toolterminal": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-controller1511-tool-terminal.json",
+    "sha256": "180858db3e2a7f6999ebcfb9c6d55ecd7e53839d7ab64e0d105b235175e584a9"
+  }
+}

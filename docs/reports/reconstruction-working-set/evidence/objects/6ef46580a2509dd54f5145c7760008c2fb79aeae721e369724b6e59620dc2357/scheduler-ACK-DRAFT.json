@@ -1,0 +1,23 @@
+{
+  "schema": "WS116-current-stage-scheduler-ACK-DRAFT",
+  "authorized": false,
+  "stage_id": "largest-full-searched",
+  "window": null,
+  "observed_at_unix_ns": null,
+  "campaign_work_suspended": null,
+  "known_active_numerical_processes": null,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "unresolved_owners": null,
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    null
+  ],
+  "scope": "No fresh scheduler/absence claim; replace with explicit ROOT ACK during actual activation. This ACK is NOT grant authority."
+}

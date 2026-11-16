@@ -1,0 +1,108 @@
+{
+  "protocol": "WS116-off-band-lifetime-correction-inputs-v1",
+  "scope": "F04 prose-only correction of one README source-liveness row; no changes to metrics, formulas, rank, invariant, gate or scientific scope.",
+  "inputs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+      "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378",
+      "role": "Immutable original; only source-derived CE06 q/off_q row corrected in NEW copy."
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/modes.py",
+      "sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "role": "Primary dataclasses49–113, creation782, compact/full return1045–1117: compact excludes off_quadratures projection and returns q/noise plus compact evidence; full returns _finish_owned(off_q) in AcquisitionBands."
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/layout.py",
+      "sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "role": "Primary event200–244: compact ndarray details converted/omitted, full owned captures independent; _finish_owned and owned meaning preserved."
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/reconstruct.py",
+      "sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "role": "Primary full publication542–565 retains bands in WorkflowReconstruction; no off_q backing escapes through compact summary."
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/liveness-draft-corrected.md",
+      "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c",
+      "role": "Existing preparation-local off_q and compact q/noise statement; preserved unchanged."
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/contracts/reconstruction-working-set-v1.md",
+      "sha256": "4b049da71379199cae229f259baa8942936cdd1a352c505b52d2f8d2fda3bc4e",
+      "role": "Section5 allocation/reference live intervals distinct from observed RSS and error/allocator/native unknowns."
+    }
+  ],
+  "source_interpretation": {
+    "compact": "On normal successful return off_q is not a field of _CompactBands, is excluded from its projection, and local values/off_q references end. This is array-reference lifetime, not a promise of allocator/OS release or error traceback cleanup. q remains the computational backing through reconstruction.",
+    "full": "When off exposures exist, AcquisitionBands.off_quadratures keeps the same private off_q backing and full WorkflowReconstruction retains AcquisitionBands.",
+    "preserved": "Off_q still exists during preparation; per-z planes/possible replacement overlap, no finishing copy, independent full event captures remain unchanged."
+  },
+  "original_source44_packet_preservation": {
+    "path": "/workspace/work/campaign/evidence/116/final-report-source/",
+    "all_ten_hashes_reread_unchanged": true,
+    "source_handoff_sha256": "946362c30f16ef6209f1eb43ec25c71e1dbc605029db03001d457a71442f0318",
+    "original_nine_inventory": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+        "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/analysis/attempt-ledger.json",
+        "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/phase-expression-lifetime.md",
+        "sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/native-harmonic-scratch.md",
+        "sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/compact-overlap-working-lifetime.md",
+        "sha256": "fc86d15c180a947a5d9e330236d256afde827ddf8982f6da05ec3cc694dc4955"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/time-aggregation.md",
+        "sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/full-diagnostic-retention-ownership.md",
+        "sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+        "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/final-report-source/integration-notes.md",
+        "sha256": "16d34b43ab70341e1b009f57a52c4e7d1b7fd4a9eb1b9967ee3d73ab62807c76"
+      }
+    ]
+  },
+  "original_source45_preservation": {
+    "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/",
+    "files": [
+      {
+        "name": "compact-overlap-working-lifetime.md",
+        "sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d"
+      },
+      {
+        "name": "routing-wording.patch",
+        "sha256": "956302cd049d66f74014c71a063b95f6d589676ade0f639cb382249ebc366579"
+      },
+      {
+        "name": "input-references.json",
+        "sha256": "44bf8be07497fc3a499fdcc17d9f61fe268e0f4280ea25d6720fde6a413d06da"
+      },
+      {
+        "name": "source-handoff.json",
+        "sha256": "840a1b5859ae516212f82c3dc3be42db3bf36d905e9625f7d624d5469feb207c"
+      }
+    ],
+    "all_four_hashes_reread_unchanged": true
+  },
+  "reviewer_or_opinion_body_read": false,
+  "numerical_or_runtime_execution": false
+}

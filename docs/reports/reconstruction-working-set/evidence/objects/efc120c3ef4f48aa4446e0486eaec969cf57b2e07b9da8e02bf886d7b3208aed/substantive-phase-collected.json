@@ -1,0 +1,40 @@
+{
+  "schema": "WS116-SCI1-substantive-phase-collected-v1",
+  "artifact": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment.md",
+    "sha256": "e0ec8b12adb9fd0e20d398ab4562035de4f630bdd7734ffe21c3cdfe93648b6c"
+  },
+  "preserved": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-before-F04-input.md",
+    "sha256": "e0ec8b12adb9fd0e20d398ab4562035de4f630bdd7734ffe21c3cdfe93648b6c"
+  },
+  "coordinator_read_scope": "Whole281line assessment via bounded spans; first combined excerpts truncated, missing overlaps recovered. No acceptance by coor substitutes for reviewer judgment.",
+  "verdict": "SUBSTANTIVE_W01_W08_ASSESSED_FINAL_HELD",
+  "finding": {
+    "id": "F04",
+    "severity": "low",
+    "claim": "/workspace/work/campaign/evidence/116/final-report-source/README.md:117",
+    "actual_primary": "/workspace/work/issue-116/src/simrecon/acquisition/modes.py:1045-1117",
+    "coordinator_diagnosis": "Valid narrow prose confluence: compact return excludes off_quadratures from projections and returns q/noise; full publishes off_q. No measured no-off largest values/formula/rank/source changes.",
+    "route": "sameauthor source46 external row-only correction then fresh affected scientific reviewer; original44 preserved"
+  },
+  "previous_findings": {
+    "F01": "externally resolved; integration pending",
+    "F02": "prerequisite112/115 delivery binding addressed in actor/rawreceipt scope",
+    "F03": "operational-only exposure/stop/continuation preserved, no reset"
+  },
+  "scientific_scope": "rankings/units/backingliveness/finitecorpus/profiles-controls/figure supported within representative primary checks; no exhaustiveall90orbulkSamples proof",
+  "remaining": [
+    "F04 exactcorrection/freshaffectedreview",
+    "actualintegratedreport/handoffs/figure/material35 transition/candidateHEADtree/status",
+    "portable raw/support/sample restoration closure",
+    "fullUbuntu13phase#116gate",
+    "fresh applicablepostgate acceptance"
+  ],
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  },
+  "runtime": "no coor target/import/statistics/workload/native execution; sourcefileonly"
+}

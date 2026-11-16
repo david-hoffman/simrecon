@@ -1,0 +1,40 @@
+{
+  "schema": "ROOT-WS116-central64-profile-preparer-source-assessment-v1",
+  "authority": "ROOT",
+  "status": "SOURCE_SUITABLE_UNEXECUTED_HOLD",
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/source-manifest.json",
+    "sha256": "8c6100a3925301ccb8637223a90b4e65eff9ed9059c88bbcc29e0b228525317f"
+  },
+  "helper_sha256": "e4a2dfeb63dfbd6b2c5c8a5e67ff148c3c0cfdb227db8e7185dd491683a57acd",
+  "source_handoff_sha256": "6193497c936be750e3664688036e303422824baae2df5518912aa3e8b336ae11",
+  "coordinator_inspection_sha256": "26e407fedb9af1524c8355cf86824ced8e25c28672a85667d3a5b11de8f4db0a",
+  "reading_scope": "Whole346-line helper recovered in three bounded source reads after one lost/truncated earlier call; whole143-line README,122-line disabled templates,72-line handoff and coordinator inspection read. Manifest parsed fully, nonrepeated fields read through projection, runtime maps compared to immutable prep32, not a whole1761-line visual claim.",
+  "file_checks": {
+    "four_author_pins_matched": true,
+    "fifteen_immutable_pins_matched": true,
+    "material35_core28_tool6_method7_environment_maps_equal": true,
+    "six_control_boundary_and_config_pins_matched": true,
+    "known_four_closures_and_null_fifth_equal": true
+  },
+  "scope_assessment": [
+    "Central selection remains null and growth conditions empty; prior searched analysis selected256 is confined to prerequisite provenance.",
+    "Six exact mode-specific controls/profile recipes remain fixed, only summary searched profile R1 is preparable; runtime8190 preserves all same-mode fingerprints.",
+    "Future actual whole searched triple/six stored birth-FD identities/controller74202 terminal0/no proxy/oldwindow closure and primary940/independent8/ROOT descriptive acceptance/NEW central decision required.",
+    "One fixed metadata and capture, source checks twice,14 outputs, configfalse and ROOTAUTHORITY grant chain; separate actual packet audit and exact scientific release required.",
+    "960-second deadline/1080-second horizon/803209216B disk proposal and central mode memory/context margins remain as frozen; no physical bound or profile overhead claim."
+  ],
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Diagnostic-only labels at135-140 still say supplied; actual predicates bind searched. Preserve reviewed bytes."
+  ],
+  "runtime_status": "No execution/import/AST/lint/tests/native/metadata/capture or active batch/raw/live-context reads; syntax/runtime unvalidated. All actual future prerequisites unknown; no preparation or scientific authority granted.",
+  "accounting": {
+    "preparations": 33,
+    "execution_continuations": 9,
+    "total": 42,
+    "original_launch": 1,
+    "costs": "UNKNOWN",
+    "all_prior_bytes_failures_and_unknowns_retained": true
+  }
+}

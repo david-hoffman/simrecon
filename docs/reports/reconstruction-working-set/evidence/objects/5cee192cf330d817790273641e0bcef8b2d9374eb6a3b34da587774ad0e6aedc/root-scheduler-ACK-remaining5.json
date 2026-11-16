@@ -1,0 +1,46 @@
+{
+  "campaign_work_suspended": true,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "ROOTactual4G1controls6fb78ccb alltarget/controller0/noholds/namespacePID1terminalandabsent/proxyreaped/pipesclosed; coorexplicitACKnoruntime/process/session/FD. FreshB5FILE/TEXT/HASHONLY; noC/runtimespendingrelease.",
+    "114": "Previouslyclosedscopedcontrols/fullstudySAFEHOLD",
+    "116": "Initial60all122closeda4c2;192r1fb73814e twoexactcurrentstageownerIDs/FDsclosed/e8111b80+coore8f8b33e. Priorwindowclosed314b6ad3; new4hwindowonlyremaining5. EA35unchanged.",
+    "117": "ProvisionalCclosed/SAFEHOLD",
+    "118": "ProvisionalCclosed/SAFEHOLD",
+    "119": "Intakeonly/WAITING",
+    "120": "Intakeonly/WAITING",
+    "root": "All9init/G1casecontrollersreaped/dedicatedCIDstopped; noothergate/import/test/install/benchmark. Newfreshresourcecaptureended; onlythis5rowbinder forthcoming."
+  },
+  "limits": "Knowncampaignscheduleonly; no globalscan/hostactorabsence/unobservableancestorclaim",
+  "observed_at_unix_ns": 1794743788371159499,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    }
+  ],
+  "root113_G1_controls_closed": {
+    "path": "/workspace/work/campaign/evidence/113/root-four-g1-controls-qualified.json",
+    "sha256": "6fb78ccbc51100996ff8f8c1e6355c032055ceb936c0b4eaf19afbebbc196670"
+  },
+  "root113_controls_closure": {
+    "path": "/workspace/work/campaign/evidence/113/root-five-init-controls-qualified.json",
+    "sha256": "b29bb12192bdc96c740bb6b237ec3634d3c4b848f008d23aefbf2cbc77e05d18"
+  },
+  "root_closed_previous_window": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-window-closed-for113-qualification.json",
+    "sha256": "314b6ad3ed506ca1d03809d568146b70178810be09aa85d3e126e98abbd50e61"
+  },
+  "root_row1_closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-data-eligibility.json",
+    "sha256": "e8111b800de6b7727e4839631edcca3dc9f50fc647d2107358abcf8f42f92c1f"
+  },
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "stage_id": "growth192-summary",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794758188371159499,
+    "starts_unix_ns": 1794743788371159499
+  }
+}

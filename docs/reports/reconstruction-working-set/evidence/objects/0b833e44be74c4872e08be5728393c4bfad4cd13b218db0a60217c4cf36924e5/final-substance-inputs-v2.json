@@ -1,0 +1,2055 @@
+{
+  "schema": "WS116-SCI1-final-substance-input-addendum-v1",
+  "measured_head": "ea9117d3efe2d8de273402d643e732140138e496",
+  "measured_tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+  "publication_candidate": "PENDING ROOT integration/reference closure/full gate",
+  "files": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+      "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/analysis/attempt-ledger.json",
+      "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+      "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/integration-notes.md",
+      "sha256": "16d34b43ab70341e1b009f57a52c4e7d1b7fd4a9eb1b9967ee3d73ab62807c76",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/phase-expression-lifetime.md",
+      "sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/native-harmonic-scratch.md",
+      "sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/compact-overlap-working-lifetime.md",
+      "sha256": "fc86d15c180a947a5d9e330236d256afde827ddf8982f6da05ec3cc694dc4955",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/time-aggregation.md",
+      "sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/full-diagnostic-retention-ownership.md",
+      "sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41",
+      "scope": "final claim target; references are identity catalog, not permission for review opinions"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/summary.json",
+      "sha256": "04fff3ea2045ceb3c5d4a0acb6b4109d37b200d6e1b68c6ab57f7fe28c9fbe4b",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/per-process.json",
+      "sha256": "ac1391d4c471089c2c70eccc6aa857713650fc5a5bdddfb5e6ff7178c91d7b25",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "e156882e7ae2cd3194f2e500168c83fca517fd4d5d8f4ddee796fe92b80d2b2b",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/excluded-records.json",
+      "sha256": "29914213c4038e5dce71d2758e5331424f49d629b856e450e33a9cb0e6d4e4e8",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/file-audit.json",
+      "sha256": "dfc65d7fff161553fb6755a95c27edf61caaf3aa8d2d0f4fbc9b249530c65ae2",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/output-identities.json",
+      "sha256": "298057cf4e35237927cf23f1e548c9e08077b9ffdad8ea282decd7de5cba4567",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/config-initial60-attempt1.json",
+      "sha256": "63968a0662d5ead4a9f8c7b4a634cfe6fb75210757ee30e56d00fb1661f6ac22",
+      "scope": "closed canonical selector"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/summary.json",
+      "sha256": "f7afbc0635dbe1689e7b66104e985678e117c6ad58457631266f10edbfef941a",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/per-process.json",
+      "sha256": "d3524a39b298de1d7c4dd6ca3aa837154f4c75d1bdf828da6ad2c30fd1d0eae3",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "df6be6161500589ebb539bd1638ca02a637b9c224a11feb9723847cfa47ce660",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "722096004245809bb1736f55f50ad7e99af37ca35d6d82fc60ef94d813dad240",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "8a0853e6db7e7eb0db7cee1ab7941336693b13fc87e1668008b809eec504801c",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "a29ecafbad16c3cb7b591e7377b25fc4b27e31aacd61ded2cbffd5d460e560f6",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/config-growth192-AUTHORIZED.json",
+      "sha256": "525f1f88e451eebbc45d96b96f63be644eb90c2d2fdd91c8e9e274b7907e95ec",
+      "scope": "closed canonical selector"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/per-process.json",
+      "sha256": "771c6d816c509b3c327003cd443211718cd0c835c64b91d5445780a36af28e2f",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "e1f5beaaf293460d719f9ec7fb52f563d7b6ead1e0513d76e4e012bcb530f7ef",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "0a5389fc844acf940212026ef00b764ff49193de717f5ea945e4185dfca46db7",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "0fd3e2714ff917b7efd16e0ad4288944492f1a27337d7f375a5991be735d0c50",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "3919410cd4f8efdc0f099ebb8b8f018eb6297763d91a5ad61aa919c3d3784b63",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/config-growth256-AUTHORIZED.json",
+      "sha256": "8340d44f7e4ab84de764816b648593f9d2d1bb868c860f57dca79a042fcbdea4",
+      "scope": "closed canonical selector"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/summary.json",
+      "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/per-process.json",
+      "sha256": "b6bb23f41cbdaa9b5eee9ecd4ae088c1718441ae3c71c0364dac7d72d1995f5b",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/three-repeat-summary.csv",
+      "sha256": "9b6cb0628bb0b565a4e0b385970f8e48aed4195240e2e123d4f4501c9378b7ed",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/excluded-records.json",
+      "sha256": "e842d7286fb67fc6b6d5a383bcd807adbb2df9b17e91652e32367dc31b71def1",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/file-audit.json",
+      "sha256": "22b5babfad1e396d2d9e3a410cc956fa7d6102415eaecb5b30c5cb571585b612",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/output-identities.json",
+      "sha256": "2908d48ac1d630fe6431708c52e6bd50754bd2eb8910e62a8a42dec7e4f3cb87",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/unprofiled-controls.json",
+      "sha256": "50fdb9c143e8ac9cbaba16a1cf5c0ad06efba8d50510ed364a2eaacdb86608fc",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+      "sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa",
+      "scope": "closed canonical selector"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/summary.json",
+      "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/per-process.json",
+      "sha256": "53fe6575474716be4f84f815002c898bd3efdd11fba2b4b931c22948b4e28a7e",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "bf4956bac8f9e5f70158c11a5e91e0e84e25c0df94bdab8da3bf2f9fb8961bf1",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "46cb4a507be4172d0e985d29dcaaff9387e5ba7622432ff6a6866f619deb4de5",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "712b470e22b021d8f3aba17dfac35edb68292a06ee2d6080a2e197892146a707",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "8e481780e0dd584199f638c0b16c23443047e74cb3446b8ba7e7c40a7a0d7a6a",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "71045334d7ff276ba7316436c39393aa1d58b532ad299c0ef8efb94e2bf3f728",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/config-fullsearched256-AUTHORIZED.json",
+      "sha256": "185d788b9e74a798b061bee398e89ac9e12486f785b9b5bfaa42198d9060c24b",
+      "scope": "closed canonical selector"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "d3d9367d87a8184c6fe5e99091fc9ba49d8c5828aedcdcfc261df1ce0cc23f54",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/per-process.json",
+      "sha256": "12c9d528708451064948d66fe017fea3fceba8b4e865bc4d8cd2a666ec4afd34",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "bd9f20046ac519085d0eebee53f1d36b6ad2d7d02f280ef4e5c05b14452d53bd",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "055a5279fc277ca357d171989fae215300bc03fe2291a9fdb19845b2f3089471",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "4f11cc396bc132c4a5137fcd24656bcfb5ee9263f4eea0aeaff991d55715b01c",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "0c8a0e2c1622f1fe94a6172e1dd6ff3f067d9a00417b7a2033ef49dbc840fe09",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "08bee7bf0446fbfe117ea99b03de41a28fba19d6e0caaa5f667c210b657eb0dc",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/config-central64-profiles-AUTHORIZED.json",
+      "sha256": "8a61220a64265b669438e7e54b7491977e9044746a6fc75f86a29caffaec1364",
+      "scope": "closed canonical selector"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/per-process.json",
+      "sha256": "55fb5ef5194894a9538ebcab67560b0ad278cd2d257475cb6cb14c290b697bd7",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "90a7cb97e8e82575df977f353f1bada48a3c9fad4b583b28536c38b447cf68ed",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "c7df0a388130b22d1a4ca5f546ae0526a0abdaeaf24d915eaff40d422d8858ce",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "5cd6d3ad1436195b73358bbe6d38fbaca3894d933ae4f286bf9960ea037f9f20",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "5ce51ed283236c4ecbdf6ca743d5e77a65145b119459ec007cc04c76215cb8cb",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "c591ddddb7678b9d456926711d447f4afe114b7516b4c19342b64eac2d97289d",
+      "scope": "closed primary canonical output; large inventories may be inspected boundedly, not bulk samples"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/config-largest256-profiles-AUTHORIZED.json",
+      "sha256": "1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5",
+      "scope": "closed canonical selector"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b",
+      "scope": "actual canonical execution/real stdlib metadata primary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/grant.json",
+      "sha256": "4c983aff1199cc37980eb75a42c90e4ff54310319d2e2b54b799597841f072d6",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/intent.json",
+      "sha256": "ce96c20b3e5c80ce52f7cae3daf1fcc8ad25150c27d077764ac86ac0f62be7e3",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/observer-exit.json",
+      "sha256": "7825b265d384cd072286ded31b8ae5df447abcf41cae9de1ef85ec5966c5fde3",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-capture-command.json",
+      "sha256": "a23f466027c7a6320649d289acdfda52ac6201350ff5e3f97e269bf81b1951d3",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-metadata-command.json",
+      "sha256": "bc10978326e3bb53f3a50cae4bef2a8958f61abbd65968f7f427589e54cf2ee4",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-metadata-intent.json",
+      "sha256": "81f12a2ccb3f11c1219b63ab633726a05af06566d176ef88ec1d929e0359d575",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-metadata-request.json",
+      "sha256": "0dc9f763c27f5a75c83c87a27a46599705510d0ee2574dfcc947bb8c380e90e7",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-metadata.json",
+      "sha256": "f84847a72576a1f03cd30ef7b6ecb6050ffdca24cf5d6aa4177b4e92efc76f7f",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/pre-capture-command.json",
+      "sha256": "d7c3f225fd8f430e77a5e654a604f24d5b4ae1ac0e6769657a00e6edfc7b7e6d",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/pre-metadata-command.json",
+      "sha256": "20ef470a28b40ef29096c22866a16c707e61da3dbcd53eb6cb72f08d5c54bf84",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/pre-metadata-intent.json",
+      "sha256": "e93425f50c80712ecad185425267435c957ad8c190fc0135ac1e0caf814b9b69",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/pre-metadata-request.json",
+      "sha256": "ba7b4a26671ea102b0a82de5935679094780eb9967487410fdb840bd19e23be5",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/pre-metadata.json",
+      "sha256": "1c64cc33aa46e8ef68a832492ceb8fb58c14a30fb8b96b6bf42d63b8867913be",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/raw-files.json",
+      "sha256": "77156f58583d4852bb3b558c9444ccbd26a47e63d639ff9ce2759bf22a3f1ec6",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json",
+      "sha256": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/stage-admission.json",
+      "sha256": "850061a7dee83a3e07fca7a32e6638fe3d010f286192c8517b289844b77f6e80",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+      "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/eligible-boundary.json",
+      "sha256": "8af497730ea65cea3e97736a90c886a900c9c2036100ad154871c07036b9cea6",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/grant.json",
+      "sha256": "6ba55b729dfe83e04fb603f027a19ccfbf132fcbd30e4645481f38e8469d8f23",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/intent.json",
+      "sha256": "15e45f6275ab8cd390ee135da5cd30fc8861e7cb72063b6f957226583c0ef90a",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/observer-exit.json",
+      "sha256": "f654000a21dcc6ce7cbdca6d7e4a8cc4b3a9822e873101698040875814ce8b77",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/post-capture-command.json",
+      "sha256": "d06c5c07badf823338757efc63c1dcbbd6a42ec5745e95c775826a4e3f4afb18",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/post-metadata-command.json",
+      "sha256": "eb802cd4fb8818a372f0d1e8fa2840b014b1e07046848320c2d597a93b932a24",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/post-metadata-intent.json",
+      "sha256": "fa8fb4f9b7f3732a0ccab13aa7e1e298dfe7da40967a1934f7e012c48de94497",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/post-metadata-request.json",
+      "sha256": "ed99750fa1d9c59cc853b41099e34cc4a2e9d1d3901fcf0ba238eb8d49e37232",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/post-metadata.json",
+      "sha256": "9e63da064e32dd99a38324b591a9f7adb0b8f53c4ff746738fe66ad9ab1a1ffd",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/pre-capture-command.json",
+      "sha256": "902d172189bcfff72b011982704715fe04585f45c62cf5a07aae2819da712a8a",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/pre-metadata-command.json",
+      "sha256": "0ba205007463830c7042899fd16dbb92be94d009c683602ad7a5d0a0469f8b1e",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/pre-metadata-intent.json",
+      "sha256": "4791d956c9867a1b8750d6eabdf8fbdd6bbe495a1509337cba5c2a7fb76799ca",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/pre-metadata-request.json",
+      "sha256": "416fa71988357a7bb5a803ee66ef12af714d11aa1118ea571470456baf1de045",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/pre-metadata.json",
+      "sha256": "3f4bb381e2a66404585ed2d4e3e29f1c83d4b1533b95bfe48cc751d05e908366",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/raw-files.json",
+      "sha256": "47081fe43da5643c683b3310feb485cd87bf2e5510fffd73b20f71c277f56206",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/eligible-boundary.json",
+      "sha256": "fde37deb658088bb97f89f033f703c09425d648f00f92dbd58fdc6f2a32e4f43",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/grant.json",
+      "sha256": "81d42ca0c2d35e882f47335c2e6952527e2e80f4734ac217f3867e2b0920234b",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/intent.json",
+      "sha256": "c1f737326db23756ed2dd933399548e7fdb73d2b5c1bb4427100eb09e623ce74",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/observer-exit.json",
+      "sha256": "a06396d64d88a1a0eee97e1a18b2991bbfba374e23658893509f122cd6dad349",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/post-capture-command.json",
+      "sha256": "3e8da89eb37ad29a8a9dbbf3a4f06546b6edcc75754d50833d006d9dbaa7d2a9",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/post-metadata-command.json",
+      "sha256": "28efe72c8abcf5c7ee65de339b4b78d089ec3a2dd07806a64af88d78a9c26d24",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/post-metadata-intent.json",
+      "sha256": "3c259b9a75a91173fd5ca9fe61de14c864661a269687be4e906b217266aa40cf",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/post-metadata-request.json",
+      "sha256": "caf1e3c6befafdd4389a798faea055de8a1572f34c45138376aa7ffcb3d53298",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/post-metadata.json",
+      "sha256": "da4625d43c3351442d9984e976233ecf3cde60e975943b495a5e20151c283447",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/pre-capture-command.json",
+      "sha256": "8d2d66d28dd9c45965dea0410eb44ee85970f07bf1c58769f84df956fff23bf3",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/pre-metadata-command.json",
+      "sha256": "50cd279faa43581a0752e4a8055e7a3a816957e13f2fbafa60a6455673fe750b",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/pre-metadata-intent.json",
+      "sha256": "6c0ce124c97306fc748cbccd707ed49f35b112460fac2fa70df8accd33c084af",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/pre-metadata-request.json",
+      "sha256": "ed99750fa1d9c59cc853b41099e34cc4a2e9d1d3901fcf0ba238eb8d49e37232",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/pre-metadata.json",
+      "sha256": "54d4a551906d5cff3356265a5ac4b6b421825ed3484d058c8bc210f218f7ddca",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/raw-files.json",
+      "sha256": "0bfe0e85a9653b4ffc01aff118268c07f932b56d622f8aad338d4bc0d09ef9ca",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/eligible-boundary.json",
+      "sha256": "24a0d4040ae882576d4cfc84afd256b9577590a71122af6423334b0695e86f4f",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/grant.json",
+      "sha256": "1d91a608ff68ebbbd7fc1e385b297acc408e4db8baec54f038de3420976e2b4e",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/intent.json",
+      "sha256": "df7956431936888c13b2cdb15bd081aaaa22ae36e0328df97c538564225504ed",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/observer-exit.json",
+      "sha256": "9d4d02a9267393354944dab3fe6665a5ab1025e3e4e1c101d8cec7618e6a9005",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/post-capture-command.json",
+      "sha256": "5a036f152b08e8724686e39f019adea5ccdf4f234cd5270c1b7f0ec13540ab32",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/post-metadata-command.json",
+      "sha256": "42bffe223db675abfcb0a48d7ae66ccfb3aa80da500f3cbd27dc009edcdf4e8e",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/post-metadata-intent.json",
+      "sha256": "e3a4da8ec4f771d0a4109127aa5567dbf44d6cba2ec35d3e2e38c8ff60abb660",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/post-metadata-request.json",
+      "sha256": "c5654c8cc5f6f68545324b8ccf0c43b1ff3914b5b4d097912fea9f7fa399ba37",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/post-metadata.json",
+      "sha256": "1472b0739c27d659aedf3f8fc77a366c8c43654ec46ba2f4b92fb8326087a7df",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/pre-capture-command.json",
+      "sha256": "933e8371ab97892c4538d4b2f177c34188bb2e227a030e36c3dc6c78394136d5",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/pre-metadata-command.json",
+      "sha256": "0319da2439e60a8cf5e566bad567dc8417c6823ab6de5bb8f4ce8ee669d6dd20",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/pre-metadata-intent.json",
+      "sha256": "4031ba7fd120dbc9f4f96d83cc5a807ed0aa657264ff4c8bb8fcbcc9505fe1f2",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/pre-metadata-request.json",
+      "sha256": "caf1e3c6befafdd4389a798faea055de8a1572f34c45138376aa7ffcb3d53298",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/pre-metadata.json",
+      "sha256": "6d960125a4908823c56e28c7bee26cce38d5413f9063a32cbc2fb9d56e635c29",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/raw-files.json",
+      "sha256": "e4505b08059f2d4a3388e494aa58497c1647312cca274013ee2a66be2b036017",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/eligible-boundary.json",
+      "sha256": "d61dd7e95711a89291045e6ed90e4e1d2e21f7c8af923abf269a61a0f2bce9e2",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/grant.json",
+      "sha256": "7dc362403dc377fe654d6fa2c6ad42adab3c4dd057ea2e2cfde595193e6598ec",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/intent.json",
+      "sha256": "094b817f211ed859f430bb77f81bff160ea9a166e6b09afc67f2a50628c28c85",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/observer-exit.json",
+      "sha256": "73990821cd765b68aa5f03ef737bcb1860624112e70b9e80524253b8ca397f0d",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/post-capture-command.json",
+      "sha256": "151a612a1bd6c728deb834962d991b6007ccc3b51f2c432c88013aaa70e5ed79",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/post-metadata-command.json",
+      "sha256": "9a2b19efe6acc372dbc103e707d888d76550142ce5f403690b44de6f4f4a595b",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/post-metadata-intent.json",
+      "sha256": "03f7274b4efe7bf282c2a8932f884252ac00f2b4e644d442e11e82c5cfc43640",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/post-metadata-request.json",
+      "sha256": "887b419193bcb574525095abd9206a6d868761455cbf98ea2830ef3b8acfc018",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/post-metadata.json",
+      "sha256": "4d570b11a9d9c78e881ba15eae664cca264b759a86048c6128bcdba3291d07f5",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/pre-capture-command.json",
+      "sha256": "06eb020399b74f8a4a6f2bf14191edd0c25706ad207f920af9cb8c14581d8a40",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/pre-metadata-command.json",
+      "sha256": "27ac0598f656a3a4816932c3a63ff0a6c2a899f7ec3feed4e3ea2f38d88d3ed6",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/pre-metadata-intent.json",
+      "sha256": "b747305f22e4ae7d0717c81b9a4e407690fbd5b7eae5014a5700a6a707421580",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/pre-metadata-request.json",
+      "sha256": "c5654c8cc5f6f68545324b8ccf0c43b1ff3914b5b4d097912fea9f7fa399ba37",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/pre-metadata.json",
+      "sha256": "f31b925b955f6ebd81644f99a369a1774833f38a44631e73071ff2c5a782df85",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/raw-files.json",
+      "sha256": "330d652b0c2bd47acd13d228b9bd6fc98270e4e1737b785ac01c9cd5ef477238",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/eligible-boundary.json",
+      "sha256": "488b465a386150326f7fca5b96505ba55d4638258cb91c916c2ffbe775629393",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/grant.json",
+      "sha256": "37e8a23cad6d6b087bab8b6e33dc64a93251bf77cf770001b154c40ad24c9c5b",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/intent.json",
+      "sha256": "59b94f5b70d6e48b08ef9922bdd6bebc01e27959057e3692bc5312c2851ac6a6",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/observer-exit.json",
+      "sha256": "0d862ecdf12707438f52a69dc017bba59b729d7082b8a065c66030977e73a8b4",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/post-capture-command.json",
+      "sha256": "8c0a202fb65165cc7c22e401da95cb397595e6c7ca714d0562b42e3943c22924",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/post-metadata-command.json",
+      "sha256": "347f0a5cfdddd4e27f6da1415c6d46f11fbb70be8987ec8c77decd9dc1dc62fb",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/post-metadata-intent.json",
+      "sha256": "c7d68f545ee25ac0d396e143ef90d9e4110fd8a4576c28f5c21b0d3d29c9796d",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/post-metadata-request.json",
+      "sha256": "9837f67f5def9c7f23399410adaabce8fad7c16e0fd9fb243a048ca5442fb814",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/post-metadata.json",
+      "sha256": "e0888e98032f7953f8e369915bed6751c64c069394833c26899e46197a96a8e4",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/pre-capture-command.json",
+      "sha256": "a219385efe34e8d0c26f0ffb767efc47df2e950c33fe8b7b38e7bbfd9bc0360e",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/pre-metadata-command.json",
+      "sha256": "b778ee588515934bed446e38a323586927eef4690547aaac843ca87493a8bdf0",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/pre-metadata-intent.json",
+      "sha256": "9d39b8f208f4b2887aa163c72b9fbd874a4428dff21edb701c414bb703952712",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/pre-metadata-request.json",
+      "sha256": "887b419193bcb574525095abd9206a6d868761455cbf98ea2830ef3b8acfc018",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/pre-metadata.json",
+      "sha256": "befdeecf8e4ddacc36057dc7b269576cca848f13e63d8f5aac79658f96b7a77c",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/raw-files.json",
+      "sha256": "02a11fafc68e8102d8197a38a4334fcc5cec93e5eb3e7714ea6b3ba5e0a3b10d",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+      "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/grant.json",
+      "sha256": "5d6470c6f19e5e97363bc50042b60efe6ab98b556a571c60784e050c677dc35f",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/intent.json",
+      "sha256": "e14b3ba5ffa6358610188164a4a3b013a38bb97c6da04ef34effd56f4dc7041d",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/observer-exit.json",
+      "sha256": "64a51ce3755e01727983104dcfcaadf48f4a420ca9e5335d9fa079b9e86e0b43",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/post-capture-command.json",
+      "sha256": "5a2eb28bc25d3e37cde42582686e7e08df3cb70f480a9939ed9d14c9bfd55fd4",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/post-metadata-command.json",
+      "sha256": "a681aedb687c2312f230285b1b8cbbda8c8e4542ff4f5656c6b3aee60489b267",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/post-metadata-intent.json",
+      "sha256": "79f668009b887b453f8f26c6230579bff04fef95fafe323ac092c29f1e06ac92",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/post-metadata-request.json",
+      "sha256": "0355a8cbe1c50d191ac26f1ce0ac531bb2e96452e125bf8f5f976ad7c91147a1",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/post-metadata.json",
+      "sha256": "53c2736d74df1cf7e5a41c50d314a71783ef02b3c68f27f15aa411cf4a8c127a",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/pre-capture-command.json",
+      "sha256": "1d71c37008117e9c4fac12875204c53cfbf8379bed01a0476dff36aef9de8151",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/pre-metadata-command.json",
+      "sha256": "35b430a5fc24262269b02e00c4dbd3a1902ba3095021b13b27304381c7d53134",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/pre-metadata-intent.json",
+      "sha256": "18c0472bdcef9f1008d80786ce792b43a1d53c9546819f8728887b822cb34447",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/pre-metadata-request.json",
+      "sha256": "5f92138bb18ce4497da737c88ac4b96404954abe0f884e8a9e1a202ca62846ad",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/pre-metadata.json",
+      "sha256": "edb4ab939b3058ddc5e3db6b865e5e12098710ae9b035e22f790af5c055eebc4",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/raw-files.json",
+      "sha256": "962ac1a96f1f3bf47d714a1b4ffba7f61c039aafd33b0016a38fc68d465f8c71",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json",
+      "sha256": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/grant.json",
+      "sha256": "d5f6f63db09d61b12f21cef012f3c53403fb427a728fab495d3ddcfe603a4d41",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/intent.json",
+      "sha256": "62125b7b5ad73675b0f573b30d5c6ae014862dd06e9202161a5a3663d2efe049",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/observer-exit.json",
+      "sha256": "91ee709ca78871211d463152b93ca3ab0cf9abd458afa43af1fb61f7f116b1fd",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/post-capture-command.json",
+      "sha256": "7c9cc8816031824f287f4807c32991c7feab53da4fe0370acace461a5991dad1",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/post-metadata-command.json",
+      "sha256": "69397dc8459ad332636830285a09b59a84685f1b4f44d6d803ff66790cfab170",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/post-metadata-intent.json",
+      "sha256": "2b69d04ad0aabc0378b7529ec4b1f6b73f08bd7d0fa45e044472cd3f251a7b7a",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/post-metadata-request.json",
+      "sha256": "031a64bf581776ddbc342d3fe8573740d708bdb36bddd7eaa5d28f2658028096",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/post-metadata.json",
+      "sha256": "a63144b851d6f55a982581168b53a7bc68a1793e6d47929075fb821a64ecf23a",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/pre-capture-command.json",
+      "sha256": "b6fcfd934d531ba7e79349d67816c3579be896b234277159bfd56ac9fa95c8ad",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/pre-metadata-command.json",
+      "sha256": "f42aa46c414240de7ecc78236fc45fefafd02ffe495f6bfb3dc87bb61a7b6c09",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/pre-metadata-intent.json",
+      "sha256": "3cd737da1ec3118e600c2a32cdc5c2094bb01d9e914462f2e29e729d7d356e75",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/pre-metadata-request.json",
+      "sha256": "0355a8cbe1c50d191ac26f1ce0ac531bb2e96452e125bf8f5f976ad7c91147a1",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/pre-metadata.json",
+      "sha256": "6402c9a21c4a17ab85d592f1d8376fafca7408bf0d251616fc65c72e8a560080",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/raw-files.json",
+      "sha256": "1f31590de5a15f4e5e64919f52648cfd542fd4e9e0e91e31bfc4bd5a3c0dd718",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/grant.json",
+      "sha256": "5924026f2bad7d829e5ee9bae49eda34e17e2350b23823e3f8ee3daab5565a33",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/intent.json",
+      "sha256": "ebccf983fd8bb2de357a7031a4fb8fbcee3cd51e03efd5a796a2f78aaaf4a10f",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/observer-exit.json",
+      "sha256": "abcb5282536890c6fb327ac8cd1a0df985e2a9cab0857432af30ff0b35f71f61",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/post-capture-command.json",
+      "sha256": "4d22ecccfbc62f07252b734d216209b99047284985ff0efa1287dbe51e51ed6a",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/post-metadata-command.json",
+      "sha256": "1be38f3de5d8c886c2334dc78ad198f032a4d7e43d1d99ca5867b63626a5cda2",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/post-metadata-intent.json",
+      "sha256": "e4cb8849c82dd507fbb5f2766e8ecd453d77256b46faaec413d16bc6e91e708e",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/post-metadata-request.json",
+      "sha256": "a44acbb3d841fc4d7009f7e1fab86380908367ccd1bfa579af2d22d11369cd45",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/post-metadata.json",
+      "sha256": "2cc429a2b2c92b2687bfba7e9c775bfd0bfe136be9c65e2d4471bf714758da27",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/pre-capture-command.json",
+      "sha256": "25e6a58a47591572ea25302f3766781b0e2b1be1fd6aeff6fdda11d0287e1724",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/pre-metadata-command.json",
+      "sha256": "70d5887fe1441a0e7e9067c1eb6f0b4068951164a810be247288b6b1959734fd",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/pre-metadata-intent.json",
+      "sha256": "95aaf06db1d223252deeed2c1491ad6fff3da86039fee9f477423ecc1e0d2d4b",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/pre-metadata-request.json",
+      "sha256": "031a64bf581776ddbc342d3fe8573740d708bdb36bddd7eaa5d28f2658028096",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/pre-metadata.json",
+      "sha256": "85294ccd1dc4f4e059ae0223e80e74e42b10b8a65db2f34c18d9108e90d6fcef",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/raw-files.json",
+      "sha256": "3b8b219b0c7f891716a6ab30cd111031863433d68ead25c1db46f586c29a9331",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/grant.json",
+      "sha256": "06c0805bef527f357013a124a5dbb3bc21f7794794999e9e5e022558858a5697",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/intent.json",
+      "sha256": "bd7111ef256832f1138a550d96578ed95a8f8d3a66ca1b74e25da3f3be6a1df1",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/observer-exit.json",
+      "sha256": "36600d293dfcc3dd78636cb7ebca9dcd68062cfb5d0f18068b77ada2331f2e03",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-capture-command.json",
+      "sha256": "4acca606c4516506076ff50239f730391cf0ecaf66db0a58064cde0688e11a30",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata-command.json",
+      "sha256": "34a444550138a6f9bf47d0a4f921e2700158f8ca62fc430a1e623cb839fbf554",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata-intent.json",
+      "sha256": "465b9089960e2266eaa1f8d750a85de46af79db27115a0f974f417c26ff24ab2",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata-request.json",
+      "sha256": "e24e8b9957fad57a4168de593a3ada522061690944fc1daf31826d9178199900",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata.json",
+      "sha256": "21aba33f88c2635cef988519b92551255bb6cd15e615deabb0794c0458c4a6fe",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-capture-command.json",
+      "sha256": "4f1e9a509accdaaaf1324ec2c9aa0202e70904b023c4b36cdb47210fd7bc0b35",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata-command.json",
+      "sha256": "18aee649bd5f7fa0dc8e0152a8f429c6836d96f7a977823a0ba12721c404682f",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata-intent.json",
+      "sha256": "593f5fa4f9a9b454eccc333de97be55a1c1e7c19dfab06247631252def88e559",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata-request.json",
+      "sha256": "d6c197d09ea1a60bbad949e117e8b5dff8b0b9f93cff58731ef64d228ab3345e",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/pre-metadata.json",
+      "sha256": "81c1fc9c92278a6c25951d9c9a76909b48714309f0dc1f3fa1cda2eab3f452ad",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/raw-files.json",
+      "sha256": "b6d0347a41896177a7540282ce393919dee7aa7dc4a3980506b5f70cbb1df0ec",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-full-stage-admission.json",
+      "sha256": "d1b474bb6c09a3bca9f8086c1dd24796f3166a6f15377d8e9eeba98adf46268c",
+      "scope": "named boundary primary reference; sample stream not bulk-read/rehashed by this input preparation"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+      "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+      "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/grant.json",
+      "sha256": "412dacd8cb1abf7b6a919e59ab000b6fa8bf75b0cedb59616ce125a583626ab3",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/intent.json",
+      "sha256": "355e862b796014bcd54891ca43227720ecc7b6be18ac99866af94bc48979703d",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/observer-exit.json",
+      "sha256": "693022529c68989836016305c551dcc0728259bbfb256868d2813d6fd702c81b",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/post-capture-command.json",
+      "sha256": "0c4cd7cbbbbbcceee6b3b4ba870eaf40712af7c2fb54beb1715f9fdc57003462",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/post-metadata-command.json",
+      "sha256": "0e42a8ab2f57ed8f8f6f7c50144b3413ca0b7efcbc1502597267d3fa6810aa7b",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/post-metadata-intent.json",
+      "sha256": "2de849682567e455b48d7fc349654976261561804ad43c9ce3882d2477f33c12",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/post-metadata-request.json",
+      "sha256": "9b2e420d3f2c1cf209249baa58bb963e21621934923b148a26869600cf4cbf6c",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/post-metadata.json",
+      "sha256": "afa68fce2885c873fafbbf053259e7af208abc3c1882f11945c02ac287be96cf",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/pre-capture-command.json",
+      "sha256": "2e3ced336ef706ab53656e9ed43438ce11d76746d5a37f8eaee5de536187da58",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/pre-metadata-command.json",
+      "sha256": "1b8d738ee702d5c38161e3931990840ff56a4971c2da7a322ab559f8045194ea",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/pre-metadata-intent.json",
+      "sha256": "cea729ec9db4bcca4105581da9f0dfe2868faa4624323dd6b229b2e4ae018579",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/pre-metadata-request.json",
+      "sha256": "90418e28e59e1321b5d8c653ed2b98db738c54f4563f52c3a4dab48c25cd6606",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/pre-metadata.json",
+      "sha256": "703d5274faa6b66d82063bd320b65e0e402703ca377ec7383434e9b13b945247",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/raw-files.json",
+      "sha256": "d99546b77cddbb5b9f4a10ca32d28a80fc936dde09edf1f6600843d381fe7b3d",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+      "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/grant.json",
+      "sha256": "7f4755c344d453ec27443f5de5535738701d8973f166956c5d91801b68d901d5",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/intent.json",
+      "sha256": "75c263b05fe0eabde799709d8b25a484b185c059bd1f4c4c2a038407c9e4f8e9",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/observer-exit.json",
+      "sha256": "4d21d949aa2fc3b4649a0b518ed4cef05c863a76247ec0616a1eb3c2ff807706",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/post-capture-command.json",
+      "sha256": "1827bbd7184665adaf11699e7fd7001d90cc47cb4958f4332873d25298f62b99",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/post-metadata-command.json",
+      "sha256": "d20ed5d928853c401cdd109b5b1cf301b44c65317c146553f2f8aec871bca800",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/post-metadata-intent.json",
+      "sha256": "b0ad3eedfb1c96ae540c197295d0a5d11386e526909fc70ae928522cf85ad365",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/post-metadata-request.json",
+      "sha256": "fb24b1b50650d745caa0a0ef7af28b7815943269fc4da42c0bdd06654fc95224",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/post-metadata.json",
+      "sha256": "988815fb9ddef457d4f75dcd4ab88a2f749af1307e0ff12142f3a8a988f9becd",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/pre-capture-command.json",
+      "sha256": "40a621c1aa827fdafd7ef8a882cf90a545b29ae4ba436946837d0cced78069ab",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/pre-metadata-command.json",
+      "sha256": "b289656ee9bd640fc3e614ef5d2eb9173b1e0291409e0089f9c02dbd87516f76",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/pre-metadata-intent.json",
+      "sha256": "5a8fd1c0785e458c46301156bdab75a4c13e0b6f838e73af4cdd5792ebcfd48f",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/pre-metadata-request.json",
+      "sha256": "9b2e420d3f2c1cf209249baa58bb963e21621934923b148a26869600cf4cbf6c",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/pre-metadata.json",
+      "sha256": "b20a9c022b37a10023f6b9209b3c69abc9d7a1b845006fb32ab97103012f75cd",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/raw-files.json",
+      "sha256": "3817d1e5d3cc2b75f18cf6d5fd1329f77348d5e12a7e6d0fe41e4f6da6d94fac",
+      "scope": "named closed largest profile or same-mode control primary support"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/root-largest256-profiles-stage-closed.json",
+      "sha256": "2bc344e6727ad9b9022faca2336669f812b4c0025ed9230480756dec97dd651f",
+      "scope": "ROOT factual closure/identity/stream attestation, not scientific verdict"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-controller98828-tool-terminal.json",
+      "sha256": "daa6057c1de77956b889e4a920f55c9a6db4703b582354465ef16e6265c4f6cd",
+      "scope": "ROOT factual closure/identity/stream attestation, not scientific verdict"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-postclosure-source-check.json",
+      "sha256": "a62f3537fb9b9047e9b1cb64df313ee14d971183fea51d281f655498426bd30e",
+      "scope": "ROOT factual closure/identity/stream attestation, not scientific verdict"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-window-closed.json",
+      "sha256": "4a1c30a6c1d7599b6a187a259ef5aa035f075fda76709c39b1e1f734e382c921",
+      "scope": "ROOT factual closure/identity/stream attestation, not scientific verdict"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-review-input-preparation/stage115-delivery-binding.json",
+      "sha256": "06824f60ddaa37826278db38e622e1ac301ecab6bfb389dacc79baa6d698b23c",
+      "scope": "accepted prerequisite delivery actor binding; no reviewer opinion body permission"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/115/verify-attempt1/verification/receipt.json",
+      "sha256": "d4a90f12e9a338e34133a9cd728cee1772f12905ed7a9154089e80630f81fa31",
+      "scope": "raw parent115 verification receipt; distinct from study scientific proof"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/liveness-draft-corrected.md",
+      "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c",
+      "scope": "F01 corrected primary prose/diff"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/figure-input-provenance.json",
+      "sha256": "988da339d897faa6c2f746a98f192c74f09325d569262c8c6296e13793e1c7f9",
+      "scope": "final presentation asset claim target: exact points, PNG/SVG/reproducer/provenance; no execution"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-control-points.csv",
+      "sha256": "9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90",
+      "scope": "final presentation asset claim target: exact points, PNG/SVG/reproducer/provenance; no execution"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.png",
+      "sha256": "3b32da647ebe1982cf2f37cab51d384a6c47fe98d342ba892b66c0865a54221e",
+      "scope": "final presentation asset claim target: exact points, PNG/SVG/reproducer/provenance; no execution"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/largest256-profile-controls.svg",
+      "sha256": "fa875573f8c7995e4944fb865cf86c05e92a46c6bd89655eb6dcba84b1e2002f",
+      "scope": "final presentation asset claim target: exact points, PNG/SVG/reproducer/provenance; no execution"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/plot_largest256_profile_controls.py",
+      "sha256": "e59e7b18a39fd4b76dbe18c8accc75c3d7378ad7fc5e901962d492c129c16e4b",
+      "scope": "final presentation asset claim target: exact points, PNG/SVG/reproducer/provenance; no execution"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-figure-presentation-audit.json",
+      "sha256": "3b2815d6bcaa2cba7ad75597b991383bf267ce335fef89c4e835072223a24b5a",
+      "scope": "factual presentation source/point identities, not scientific verdict"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-render2-terminal-tool.json",
+      "sha256": "3334187a0bca19f7203c3b2f53b974b7a303c7db5fe752015dab8fa399d7bba6",
+      "scope": "actual final rendering terminal facts only"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/grant.input",
+      "sha256": "4c983aff1199cc37980eb75a42c90e4ff54310319d2e2b54b799597841f072d6",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/owned-child.json",
+      "sha256": "4fbd04ea3646eab2a5bd15d61fa7fb2dc8e94fbcc6d82893413a21b917407c6e",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/preflight.json",
+      "sha256": "317d5550a661ab0ae6acda810d406036a74acd0c95059420ea3b0eebf45b0c71",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+      "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/session-ready.json",
+      "sha256": "683a58fb989359127aaaaddaf7850187bf2bbca25e2e72cd3d30894b8fd2b8c6",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/spawn-intent.json",
+      "sha256": "e0b1814ee1fe9c439c9019b204086dcdce201cad6427102b1e736491ffe732c9",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/spec.json",
+      "sha256": "7b1317a531bbe4cade12ad73eed6a8176f7fe9933715fd9f4f84dc10e8a950a8",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/startup-readiness.bin",
+      "sha256": "2be4bb35de85f015a7af8ff1da5ddf1ebd16fcc7b1cfcbd9db87ed96e225b46b",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/stdout.json",
+      "sha256": "3298fa910b600306c06e2e9b1d69f523b523cca7a5c0311260e4509ba661c53c",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794786687579137991.json",
+      "sha256": "c315f715033361ac5ccb42c1c57fd8da1cda936491792380fa722dcf3145f07a",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/grant.input",
+      "sha256": "6ba55b729dfe83e04fb603f027a19ccfbf132fcbd30e4645481f38e8469d8f23",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/owned-child.json",
+      "sha256": "48e41c91a8ca3237d8413899afc44a93fab9d93b011072619e5abc6cb2a29cb7",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/preflight.json",
+      "sha256": "a264e1bc5b2f886dbe9536c8d02bb91b0635baeec486d86583858805a2740e59",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/receipt.json",
+      "sha256": "f4a71cb23926836c59e5c02a73ab43990c6c4bf791826286a30a36bd0724e0be",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/session-ready.json",
+      "sha256": "06ccded687357ef82c25ac7791c3ee3c21ad119b6a9a2a92065cdf06a9b2a379",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/spawn-intent.json",
+      "sha256": "760e70226e1693eb797b65f07f62efeb2f2fb7a841c05a2d68bb5c0074d5691a",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/spec.json",
+      "sha256": "40c27ccb346cfcfc5cf8df93bccd3fd2eb10bfd81a6c83250704cd550ac060c4",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/startup-readiness.bin",
+      "sha256": "456b052a1bf57449a2c092d3b08eeebac7df68c39c59b126e4b77fee2004d6d4",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/stdout.json",
+      "sha256": "2e219d7c86384e7619863bb7f0568e35588a3bd91d7b3555571da932de779a57",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794789313276715942.json",
+      "sha256": "5753b187b425647464b7fdbf004ff94b44f83df14e816890e2774e85f129e729",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/grant.input",
+      "sha256": "81d42ca0c2d35e882f47335c2e6952527e2e80f4734ac217f3867e2b0920234b",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/owned-child.json",
+      "sha256": "dde9a2db5af8c45abedf786c1364d7b799b99db4435e701948c5866ef065f449",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/preflight.json",
+      "sha256": "0dc7cfb7abae05070d0959ffe4207253922c08c789a0d148047a2fdf070b94d5",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/receipt.json",
+      "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/session-ready.json",
+      "sha256": "0aec349e04de85dee7f09268b5e1c568e98af3e52adabc9cff28d106fd4402fb",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/spawn-intent.json",
+      "sha256": "9dad3d2a86df8c153217c30fcd8760ff447434c01c8c0d303a80ef8ea83f69a5",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/spec.json",
+      "sha256": "46eb9c0989ae0a1fa6d671b654bfec6214e51d1332c15aca21132aca6c5f9eb2",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/startup-readiness.bin",
+      "sha256": "b60a219dcee00021609b0636593a0c67a49b040426643e6e3b23de655a162bf9",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/stdout.json",
+      "sha256": "de9879aab7b4e9e51827c33e593d5f607c6d5d7faea273686f51b54d33fafae8",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794790791101689860.json",
+      "sha256": "e330fe2b0060f184bccca6c04f497d096aa6c44b0877a4a2c6f9e1a3542851cc",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/grant.input",
+      "sha256": "1d91a608ff68ebbbd7fc1e385b297acc408e4db8baec54f038de3420976e2b4e",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/owned-child.json",
+      "sha256": "63f7a819a6e058f9b49f9951516433fce05cd2cfa57d80ee511f68f634f8f576",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/preflight.json",
+      "sha256": "1a4311c34696ea3e2f51b512b32cf843ca74d7dcfebded5dfe9267b942b4f0c4",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/receipt.json",
+      "sha256": "607aceefeefc3b7d631cd8dcfc49efb88312154e829fa8d4838a7ca04c72718d",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/session-ready.json",
+      "sha256": "2d86f2e89b767bcb56b238adcb5fd001eac6df6b6091abd74865ec79fc138f42",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/spawn-intent.json",
+      "sha256": "247123df67a00df77c39ec269ab7c9640a05b3593c6853b16dff0a4296efbc10",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/spec.json",
+      "sha256": "fd764c3e152a133acc4c59a05ac1985b5ead3e160be66be2e242a1a00ff86172",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/startup-readiness.bin",
+      "sha256": "b4593e394cd8c198bd32470b6b52a71b0c9a5622c94f1398c88419d68748cc53",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/stdout.json",
+      "sha256": "d49bac4ace421e23025707f9e4515988b3c48ee6559f9560b462e757a5e83f56",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794792348623857039.json",
+      "sha256": "8bf29ad5d891bab973ba8af796e3a3017a01d609a021607bad3aecf0b35b69c9",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/grant.input",
+      "sha256": "7dc362403dc377fe654d6fa2c6ad42adab3c4dd057ea2e2cfde595193e6598ec",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/owned-child.json",
+      "sha256": "bd920b56925c25aa8bcced2392ce34eb96717381beaa6494f231f9b86e5d611b",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/preflight.json",
+      "sha256": "29b241592fad17f4b3cbad01b01c0b6a819ba1c82b6353616ad740a20f05ce4f",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/receipt.json",
+      "sha256": "1b28474f90b04345f5cd188651bf06cbbd4b2a67d224c373fbf6fd643061bc41",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/session-ready.json",
+      "sha256": "a0b3f73e68f1f6a902061d3b115492d34b08b70e439ad875144ae193ddba0304",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/spawn-intent.json",
+      "sha256": "c02831c8728c6b82abceb6a2f6cc7949686a8641d059a1fe95143769029ecb08",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/spec.json",
+      "sha256": "52ebc32e7862c056409018b779ed037fabea1a3325485fc8c1572bd58833dce8",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/startup-readiness.bin",
+      "sha256": "27f26db6833b70cbff0af7ed74cda28c866789b8f5c5d49e2d8872a494f2d8ba",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/stdout.json",
+      "sha256": "4e6046b6913012535757b19a886139824b46f81d2f3a814ab3c3b07d72b49cc8",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794793781167794096.json",
+      "sha256": "74660bc743c20566a2efe83676311bf93260dcb7f23da43d0e6b4a2e2b6b57fc",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/grant.input",
+      "sha256": "37e8a23cad6d6b087bab8b6e33dc64a93251bf77cf770001b154c40ad24c9c5b",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/owned-child.json",
+      "sha256": "89d882800b59a4b167d380eecf544f24b733dcc5bf62df5078a0c7a8e6e7b794",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/preflight.json",
+      "sha256": "12e28ab83cda97a89bb1c458b8dd959aee8d4b3fc131cefc9db1840200e06704",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/receipt.json",
+      "sha256": "15b5ad034916a2717dc42ff3002b11c62a6a827d3022d9a27f8e2c1767a8cbcb",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/session-ready.json",
+      "sha256": "b37410ce99ed28c5916f32b1d2502ad981000568ad43939b1b3d5a6acf0d66de",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/spawn-intent.json",
+      "sha256": "2fc72f32ac0981e7943aae9815a7155fd12233649263a821ca0cac6f3dc6011e",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/spec.json",
+      "sha256": "8fd14dac0edc5706629d2f21ebc393f2da754eeab1d094b722c4e493d2ab076a",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/startup-readiness.bin",
+      "sha256": "3c6ef41698c30583f318c283cd2cb28755771bc1916f2c6279c5977db30d8d4a",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/stdout.json",
+      "sha256": "b186527b04353deb90135df03a3fa7db175631ed70c9c777541e574ca661de0a",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794795577427143145.json",
+      "sha256": "c6d5f3b29e7f6b360d485362ef01ab638572705864cac7051a86758d5525bd6c",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/grant.input",
+      "sha256": "5d6470c6f19e5e97363bc50042b60efe6ab98b556a571c60784e050c677dc35f",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/owned-child.json",
+      "sha256": "05702833e282928a34797b0d71ff6d7c83485ddada653893a48dfeafcc1244ed",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/preflight.json",
+      "sha256": "125bfd9c344f71d68480b2b7275e0d4c370ac9de23d1a36fa770d5113800b563",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/receipt.json",
+      "sha256": "570683e48e3824958cddd4d3db299398fb4fa2556e44693601ddb378f277cbdd",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/session-ready.json",
+      "sha256": "80540af85237852167a89c49f7387c1ce37474fadd6ccd27f5624f756229f124",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/spawn-intent.json",
+      "sha256": "5ed81335156b44ab239ba69dac63453b7ddb8754ef957ef1f89a144b518970aa",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/spec.json",
+      "sha256": "356dad3737f803088de48b919dfbac5149fe87497c0c6ad00b42e658afaa63d9",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/startup-readiness.bin",
+      "sha256": "fe162ef5390e04942e113d67b99b104ffc8c34f235e8f5e0418e0898c0f11d4b",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/stdout.json",
+      "sha256": "e15bd09af24a78d49925642aef83ffdb5c3268e69b5cc075294beb7cb60f3552",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794758563138857081.json",
+      "sha256": "04b57865a737c5096f2c86337a51601c43fdd199c263699b821362ae7ad35851",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/grant.input",
+      "sha256": "d5f6f63db09d61b12f21cef012f3c53403fb427a728fab495d3ddcfe603a4d41",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/owned-child.json",
+      "sha256": "ad4e07c21d77d652376a68cdcaf3b548ac88fbc59928f5df7b39b37ffe8204b1",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/preflight.json",
+      "sha256": "e5c7c8df41dec23ac1d466b282f7b4682333a64b135bd829aa2b8a0a2b07eed2",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/receipt.json",
+      "sha256": "bbd86feb56fd4f19396207b90ac60b597392f6901c62e3c5a6807d536652a5e5",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/session-ready.json",
+      "sha256": "f3916933af8c8419162ef82566523793bb7b96e9e6ac538c6639e010d480c1f9",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/spawn-intent.json",
+      "sha256": "3d95b59f22a5e07926be53049262c154f77bb1eceafed0920261565ebb4c98cc",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/spec.json",
+      "sha256": "acad9c187081ffdd0e0781124748fa3fd1a29040888e22aff1874281680fca4f",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/startup-readiness.bin",
+      "sha256": "35caf1596d31e2f7b8730582c24c25e841731d7f4c83568a5fb9468e0c0d7d62",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/stdout.json",
+      "sha256": "8df933d78d42ba4a0930d9c0345823470dcb46ab4f95c157a35373e864020672",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794760385297293140.json",
+      "sha256": "f170874ad334ff7df0e5fb2c742161b98128292ee0a7fbab37dba4e6ee98239a",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/grant.input",
+      "sha256": "5924026f2bad7d829e5ee9bae49eda34e17e2350b23823e3f8ee3daab5565a33",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/owned-child.json",
+      "sha256": "8bf0ba160ec2bbc7c843749630da48eee34fcf905886c7822b1b647e74985114",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/preflight.json",
+      "sha256": "2a816c44c730aa1e5aee9549014d1df4e4762db6efbc5d15c89e76972eb3e074",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/receipt.json",
+      "sha256": "00a79d177f18e24cabdec9280a9832e9df1a254913d70c0b7fc2aac76dc1840d",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/session-ready.json",
+      "sha256": "8c8fea96d11708664b9f738ea295fde905e61398daf8872e6dbe918efea5d5d6",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/spawn-intent.json",
+      "sha256": "8215e16df568e6b59829441c6268beb81612c92f1c345bffd6ed180495addf35",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/spec.json",
+      "sha256": "391811a256a73c8bdcf6d4ba6b4e471337b989d001d0dc38a77bd09cce6595c3",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/startup-readiness.bin",
+      "sha256": "cca56a951c1cbf88ddb2bbb03dd2c99b20a5b5a753529e1fbea57715f6d04f79",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/stdout.json",
+      "sha256": "5a090236f82b7f763793bb02b4c1aae8c5f4e3252045fd7c0a984b276ee6f1b9",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794762112763758422.json",
+      "sha256": "7abdd6c5e7ede66630728ec9e3aa11999d7f51a7e86a3d5ec3fbbabbe5dfce6e",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/grant.input",
+      "sha256": "06c0805bef527f357013a124a5dbb3bc21f7794794999e9e5e022558858a5697",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/owned-child.json",
+      "sha256": "93f945307f4dc3cac5d06c8f4f7053a49c029b28cc9a8c024b0a42d72b10c9c5",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/preflight.json",
+      "sha256": "97939e1ac6ad0dd928444f0bc641c1972aef7e30e3adfb5991815f2c0aad83f7",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/receipt.json",
+      "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/session-ready.json",
+      "sha256": "b9d36933502cad609318ddd8ea550adeb36c3e4e1724edd3058cf3517f6333f3",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/spawn-intent.json",
+      "sha256": "5a098f9730f10d5cf6a11166cb3c6b6b1b5252214d5c01eaaa7e9eaaa4bbf126",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/spec.json",
+      "sha256": "0ab93ff865c61543bba5fe0be2b2366210afbeab8ac67efa6f12b4bdb6fbe4ba",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/startup-readiness.bin",
+      "sha256": "9328e0691ae5cc5537a1003e4b234d3956297f7341de7bb50d18ba4fd67ceaa7",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/stdout.json",
+      "sha256": "a4578861b73cab4385b6b644e541294125802da70d0a6f878c2dfdbecba72811",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794775501555368045.json",
+      "sha256": "be877848f50039252b35e05452b6865d39d05a0ba01382ab84ccdc8669814c7e",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/grant.input",
+      "sha256": "412dacd8cb1abf7b6a919e59ab000b6fa8bf75b0cedb59616ce125a583626ab3",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/owned-child.json",
+      "sha256": "6f180705a6e0f0e1bd9c282b7ca6726bd5912a129ffc72b4c07ac17eba451ae8",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/preflight.json",
+      "sha256": "a17376d364492d451790eb1810ed24d1297ffab3a8d03d847542d6d20d7377b1",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/receipt.json",
+      "sha256": "59e4e5e5aea7c20edfdb84edffbf7301297603b7f9b419287470c5a27fe8092d",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/session-ready.json",
+      "sha256": "8d635637512f8ad08e5fc4fe93c6284fa946bb6667eb2e6ba77d7ef901b2afdc",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/spawn-intent.json",
+      "sha256": "5edf9e78826b2b22b9e3d2d481279bc6c9f1467c84ead7a3d5981987ea0c82c3",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/spec.json",
+      "sha256": "3104458f51efb17c0aaf8b0fefdf9232daaae7b8542d4615269cd0172a564edf",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/startup-readiness.bin",
+      "sha256": "e47a0a47555d627c209d83f376cbbf06faad087a753187f6cec546a0618c885f",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/stdout.json",
+      "sha256": "0ffa5d456019362eda0e44632a1d71799b1a953489a45159ffcbbb27dd2dc184",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794777583939375056.json",
+      "sha256": "13697074cff7cb7170ccb8ff6479bb8963553998331739dcc629ecb94dd19b0c",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/grant.input",
+      "sha256": "7f4755c344d453ec27443f5de5535738701d8973f166956c5d91801b68d901d5",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/owned-child.json",
+      "sha256": "9547367c84d0b08dd3141e84a03b39bb2138344003953467f0e84eb929f73c14",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/preflight.json",
+      "sha256": "a95c6eb5efbb637c1acc4dc01074b1936301542df36fe16d01358af093800965",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/receipt.json",
+      "sha256": "036e71637afb47dca849b894e28a9e41550e80a678e5e1e744eab61b2bfc119a",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/session-ready.json",
+      "sha256": "003b51a2e4042ea7c433aa12d49a98ffde40dff1d36671ad5418dddaa318ea5a",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/spawn-intent.json",
+      "sha256": "f49d65dfbb68c4a3a41c0fa77a3fa016d3a6405611b2021759a36366efea55c7",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/spec.json",
+      "sha256": "1e1918960417606ddd11646c9d6b561e85581afef696df79bc675c04b4e4bfcd",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/startup-readiness.bin",
+      "sha256": "635ef108d1af58deee075c70f7f562cc5a5bc38efc64040056d118e0ecf8c4a2",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/stdout.json",
+      "sha256": "03e3e9385ad4b1cd2782b1beff5c280b52d3b78646a0cdc8eb460ff01c85a976",
+      "scope": "closed raw small file for largest profile or same-mode control"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794779179248728152.json",
+      "sha256": "982f68dabf01b2b148f646be120c699cc3c32fbfc4b940a9906e94a2c86661c6",
+      "scope": "per-case recorded resource proof"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/compact-overlap-working-lifetime.md",
+      "sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d",
+      "scope": "routing-only corrected claim target/diff, old draft retained"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/routing-wording.patch",
+      "sha256": "956302cd049d66f74014c71a063b95f6d589676ade0f639cb382249ebc366579",
+      "scope": "routing-only corrected claim target/diff, old draft retained"
+    }
+  ],
+  "source44_routing_correction": "corrected primary handoff 49534b45 and literal patch; routing only, no ranks/numbers changed; final integrated target pending",
+  "final_verdict": "HELD until final integrated evidence/candidate/gate applicability",
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  }
+}

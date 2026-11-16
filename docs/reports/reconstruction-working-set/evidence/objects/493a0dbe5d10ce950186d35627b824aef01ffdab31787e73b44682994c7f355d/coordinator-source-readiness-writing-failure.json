@@ -1,0 +1,7 @@
+{
+  "status": "SOURCE_RECORD_AUTHORING_FAILED_BEFORE_EXECUTION",
+  "cause": "SyntaxError invalid decimal literal in coordinator inline record writer: unescaped apostrophe in closedconfig possessive prose. Python parsed no statements; no target call, active data read or output created by failed invocation.",
+  "target_source_or_analysis_failure": false,
+  "correction": "Repair authoring prose only; preserve failed tool command/output, rerun file-only source-reference assessment once.",
+  "all_charges": "UNKNOWN"
+}

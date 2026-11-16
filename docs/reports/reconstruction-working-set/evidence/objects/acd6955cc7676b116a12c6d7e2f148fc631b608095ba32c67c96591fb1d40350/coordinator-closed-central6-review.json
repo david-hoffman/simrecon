@@ -1,0 +1,682 @@
+{
+  "schema": "WS116-coordinator-central64-six-profile-closed-stage-file-review-v1",
+  "status": "CLOSED_EXACT6PROFILE_ROWS_ELIGIBLE_FINAL_SCIENCE_PENDING",
+  "findings": [],
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+    "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+  },
+  "window_closed": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-window-closed.json",
+    "sha256": "f1594c99975c64bea180f870c0ae89723ed41af35d23aa55a0fc32e72e927563"
+  },
+  "ROOT_postsource_status_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-postclosure-source-check.json",
+    "sha256": "477d3d2741ecaa65d889349cb39fb55909512f3b092883098b2c48a581ca9afd"
+  },
+  "controller": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-controller-88772-ended.json",
+    "sha256": "a447586e7d09fbcc7a7986e8d0862ed9e208686ad68b0703a179fc182208e0fe"
+  },
+  "independent_scalar_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+    "sha256": "8d7cde9f6e9ce0c7f1dbae6b7dde5701e969ae3c3bebbcff76084ff103b25886"
+  },
+  "raw60_small_direct_hashes": [
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+      "raw10_direct_hashes": {
+        "grant.input": {
+          "allocated_bytes": 12288,
+          "logical_bytes": 11129,
+          "sha256": "b4125ec37aecd00fcd70e3fe4a2220e6a41348366301d65977444851184c43fa"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2572,
+          "sha256": "17e9cce2402f333e7cde8dab6292c825da07e1ab9d7eaa3513d1345b345bf3dc"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "b5264ae5a5f20ccd6fd75dc3c96d0bd33f085dcd12e70cdae15029b158e91341"
+        },
+        "receipt.json": {
+          "allocated_bytes": 32768,
+          "logical_bytes": 29980,
+          "sha256": "c3e70b283c41a822f8e56e4db2bc87f54ff774473bef8168033845b5a6dd5b52"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 249,
+          "sha256": "96ffa1734d8ebe64a88cb02f6385324a072825bb99738d2655be02f4d5a4ff2e"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3014,
+          "sha256": "acbaac9f5051ee29dec971bbc2cec254c74634c06e784092e62d67a746c67dbf"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4906,
+          "sha256": "d05c38872c4e432c95730fa9b02abc6dbdda3a1d95fca6397252ad4fa0231458"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 233,
+          "sha256": "ea82e5abc7d1d43f369d6c06836f62cb5318cc3607cf350cacd3ce41338ec8f8"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 24576,
+          "logical_bytes": 22722,
+          "sha256": "d69800a1d48c294e8c6f9f231999b5eb563096970eb350cee484ff0c1486e9ac"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+      "raw10_direct_hashes": {
+        "grant.input": {
+          "allocated_bytes": 16384,
+          "logical_bytes": 12861,
+          "sha256": "6cccffbe43441140b371e0fdc47769c2b9013c67fad6b3bb5c1bd26f2b34d99b"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2572,
+          "sha256": "d2c0c8288b4ad0465d381267bd369cd2c7db3f6a2834cb5c4bd94f418c2e005e"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "d1982ffffd723bf18bc4fdfa60260d211b26b18000ca624cf5c53c6a32f6335f"
+        },
+        "receipt.json": {
+          "allocated_bytes": 28672,
+          "logical_bytes": 27937,
+          "sha256": "a7bfc6c95e355aab9fac3f31873aceb8722d4d20d932a0c393f991da5895bd66"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 249,
+          "sha256": "d01d0688df9035d0da68a42d83c0fe26b01d6a9c4570f6f41a89257f4ba7c1fc"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3014,
+          "sha256": "63690045237ee21a0dc6a75db4c7c39fe739dfbdb62f9c0874e718b1e2bc74cd"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4906,
+          "sha256": "9552b8c62092f7fbef056bc10d5f1147e93f82eadbdf272f6abdc8c131b1ad87"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 233,
+          "sha256": "104c8c482387ee21a7e755fa988d134b115ab5866907b83651e3fc1b0d3c9548"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 24576,
+          "logical_bytes": 22711,
+          "sha256": "33385befc995ac4d61694f94d4cd55e5a80a4aafe7812c566891642ba438b4af"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+      "raw10_direct_hashes": {
+        "grant.input": {
+          "allocated_bytes": 16384,
+          "logical_bytes": 14407,
+          "sha256": "f1a8f1dea957937cef68f02b603281381b7d2a5cd6800fa1d8352964e2e47fd7"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2572,
+          "sha256": "408e3f629f3792ae24ac603e4b5f3d9b3bff753dbb046daa94543acbcddfcfff"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "ad10e375b0c024377e1014908234a544524c2d1b12dd1771db28213f1177dfc8"
+        },
+        "receipt.json": {
+          "allocated_bytes": 32768,
+          "logical_bytes": 30043,
+          "sha256": "7e128a6311d957603b0a13c688b0a4d6cd6dcdd85e18c42337c4573836bd02b0"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 249,
+          "sha256": "2dd4161a2d444cd0a47af479bb46edc94aa1f960131ebcc7baa6576201a8778d"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3014,
+          "sha256": "5d997ce81417d88c796152b5a8969c337563e1b00129fb11d07f6d4b219e485b"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4906,
+          "sha256": "8e27423b38f39f186aee2e60e0ab0b0256c7d90133f12a28e71bc099e900d2a6"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 233,
+          "sha256": "20451dc06de6fb3f5e5ced5b6ed2c2a5d7945d7ac3a674b3ffb95d45f0df2273"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 24576,
+          "logical_bytes": 22724,
+          "sha256": "5616aba57dc2c0f3a41101748ff17f5cb69990e2c8b1935e99ced969fb4f7362"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+      "raw10_direct_hashes": {
+        "grant.input": {
+          "allocated_bytes": 16384,
+          "logical_bytes": 15941,
+          "sha256": "563e3283a79fd3769ed9507f3dc0cd27e9f7fb75901b150bb6418592a6b03694"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2560,
+          "sha256": "fba0eb03e2eed2c1c112cc365a977fed1c98fcc579d01fd0b1893681a20e3bb2"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "90d2c59803b7ffdbd2963412b767b6fa92ccbbce181c6b822b43fda41b3ecbac"
+        },
+        "receipt.json": {
+          "allocated_bytes": 28672,
+          "logical_bytes": 27941,
+          "sha256": "ad3d24019fe6591b45129cc382a612b2f0af5ad89dbe4fcc5d45aa671d473743"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 246,
+          "sha256": "3584138fed1bb512db84c7d620835eef99b405d365a769868d5626ddd289dcbc"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3002,
+          "sha256": "987811fbfc38dcd07bd22c9359b7b8926182e887ac98a6be294ea80974e817b4"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4894,
+          "sha256": "b952fa7e94ec6ceeeda767c028d6b997cc44a2a5d5811651bb6ca093f27f1a44"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 230,
+          "sha256": "f033f5d149eb9823bbc1d76098af04322539c90ffcc43ace1d40991876b7f54d"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 40960,
+          "logical_bytes": 40371,
+          "sha256": "7117216f396dc0676c9b67829c098f02ddd0bf8418df34447401e3f77e9fe71e"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+      "raw10_direct_hashes": {
+        "grant.input": {
+          "allocated_bytes": 20480,
+          "logical_bytes": 17487,
+          "sha256": "bbecd284db98fd12d3233cbd589bca59d310f5bd295b9d732bf1b0a76d4288ec"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2560,
+          "sha256": "b6144b1378ff9bf64b7e202eabe54bff46d278b9767d47e339c14e8248c00a26"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "2dba07129a8d3faf8fbe49bb41503ed41ad083eb70265ee65734ac9fdd87d90f"
+        },
+        "receipt.json": {
+          "allocated_bytes": 32768,
+          "logical_bytes": 30061,
+          "sha256": "88d5a09f07d383cf21b5e293865e5ee53518d391aa643972dd6e66c653629922"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 246,
+          "sha256": "3811360979ff7bf63c4b7decb7cf288310cfc07a6f78eece82cec4a3a496778b"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3002,
+          "sha256": "3a7f2a11fe41054dc1f75d37f5144c318399cd5fa07e391d8e74a8fb1de4468f"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4894,
+          "sha256": "d3f5ce163ebda6a62ddf913e33bb92a2fcc2b59b65b2355a3468e4645edd81d0"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 230,
+          "sha256": "cacda5c6d262ae0b2ffb26c216d9495e474033478d998f2d0878613e0bc7ed12"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 40960,
+          "logical_bytes": 40368,
+          "sha256": "172a63743de2f0c1b1be3fcc4df7f98a9a9e8b97e2ab9358ee002907f5cd779c"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+      "raw10_direct_hashes": {
+        "grant.input": {
+          "allocated_bytes": 20480,
+          "logical_bytes": 19033,
+          "sha256": "a2254554d76b6943790885aa52040a41ee9f242a1414a0d548e4762738e2a4bd"
+        },
+        "owned-child.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2560,
+          "sha256": "f6ec3ae8659f007b802f126ff2cc119203a9a16f520797d7ce8d3e7fc4d87804"
+        },
+        "preflight.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 2861,
+          "sha256": "0a3b1add095dd253b49d9479c10fd26c1fc52ec23eeb48b9006a1da7cd2e93bc"
+        },
+        "receipt.json": {
+          "allocated_bytes": 32768,
+          "logical_bytes": 30073,
+          "sha256": "a317da360646082f2f224bf05592dea30abd48c58f81777f8933a7191588999d"
+        },
+        "session-ready.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 246,
+          "sha256": "d8e1332d8b178c4c34db702a9743861f46e0d63f4e45ed0c8d7e4e19bdb17060"
+        },
+        "spawn-intent.json": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 3002,
+          "sha256": "a6d0f131688d79d0906cb3461c9ee04b0ffa60574e05c511be8ac4ea6475ce9b"
+        },
+        "spec.json": {
+          "allocated_bytes": 8192,
+          "logical_bytes": 4894,
+          "sha256": "dc18e8f41316d75a3a99325bc0d76cb8a0b3196e360e45062cc2e766ec5edeba"
+        },
+        "startup-readiness.bin": {
+          "allocated_bytes": 4096,
+          "logical_bytes": 230,
+          "sha256": "d1f78d16d533fe0cf533a0281c6dcf2a302d8fa4451cddfc70c84c75ec783150"
+        },
+        "stderr.log": {
+          "allocated_bytes": 0,
+          "logical_bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.json": {
+          "allocated_bytes": 40960,
+          "logical_bytes": 40383,
+          "sha256": "41e28e2465d59337c5aafbaee4ac7b643a70c23f20fe2e2859221c42b4e24990"
+        }
+      }
+    }
+  ],
+  "samples6_content_scope": [
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r1-p/samples.jsonl",
+      "logical_bytes": 2773786,
+      "sha256": "836dc5f69e009bc9aac0698bd5176ea86f6ae80b863b8a658e9de14bf6043b22",
+      "scope": "ROOT406 future-to-now actualclosure streamed all66raw; ROOTpostattests. Coordinator logicalextent only, no samplecontent rehash/parse."
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r2-p/samples.jsonl",
+      "logical_bytes": 2393936,
+      "sha256": "41d57a8b269f5397c09e7d10c253ff172f66f370784bad4be4ac6b79fae709c5",
+      "scope": "ROOT406 future-to-now actualclosure streamed all66raw; ROOTpostattests. Coordinator logicalextent only, no samplecontent rehash/parse."
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r3-p/samples.jsonl",
+      "logical_bytes": 2353000,
+      "sha256": "ff0a4912686fc0e8fa966f620faf85b5b8ccc530be6f6b48a912c9a9b0ebd237",
+      "scope": "ROOT406 future-to-now actualclosure streamed all66raw; ROOTpostattests. Coordinator logicalextent only, no samplecontent rehash/parse."
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r1-p/samples.jsonl",
+      "logical_bytes": 2371337,
+      "sha256": "7c6d61a4e2f514f7aa15f458a5a1610b4185352bcc473a52ca45abe6838b612e",
+      "scope": "ROOT406 future-to-now actualclosure streamed all66raw; ROOTpostattests. Coordinator logicalextent only, no samplecontent rehash/parse."
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r2-p/samples.jsonl",
+      "logical_bytes": 2456051,
+      "sha256": "1cb2a4d368797bb874741ad388b931455a35de24c313a657103263565eb6b466",
+      "scope": "ROOT406 future-to-now actualclosure streamed all66raw; ROOTpostattests. Coordinator logicalextent only, no samplecontent rehash/parse."
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r3-p/samples.jsonl",
+      "logical_bytes": 2362170,
+      "sha256": "377782fbfc8921d6f2a835d9da30a9274a18ae4e60e27670b17f5a244aaa65c9",
+      "scope": "ROOT406 future-to-now actualclosure streamed all66raw; ROOTpostattests. Coordinator logicalextent only, no samplecontent rehash/parse."
+    }
+  ],
+  "proofs12": [
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794781860364125592.json",
+        "sha256": "03cc568759d3b8a37f4e8577617319d2c03b50f6842388e7df2865b8b5315ebf"
+      },
+      "start_ns": 1794781860364125592,
+      "finish_ns": 1794781860578837702
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794781966330376701.json",
+        "sha256": "d1b4f2761de6e108dc409138d93edd686f0b2ec701f37eb53aecb76b1c0fc7d8"
+      },
+      "start_ns": 1794781966330376701,
+      "finish_ns": 1794781966671738961
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783478796964246.json",
+        "sha256": "b65a2a5723feb3a4fc029c9997e3fe1504f0bdedea2c308124a21631e7b02624"
+      },
+      "start_ns": 1794783478796964246,
+      "finish_ns": 1794783478964231669
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783569350478132.json",
+        "sha256": "8f71356c8a1348c051c6525dc82d938ab0a1783dd6e4c9b7dae3d091588123f2"
+      },
+      "start_ns": 1794783569350478132,
+      "finish_ns": 1794783569506081314
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783569994511100.json",
+        "sha256": "be544c6103ac39aa93ec06cffbab6894aa495a4bd06b9e3f969a6ebd203dea67"
+      },
+      "start_ns": 1794783569994511100,
+      "finish_ns": 1794783570188323716
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783660699617707.json",
+        "sha256": "5726a92b1fd5944e7ca644d7fb590a5b74837bac370724ff911465970a71824e"
+      },
+      "start_ns": 1794783660699617707,
+      "finish_ns": 1794783660841727896
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783661294217721.json",
+        "sha256": "86f6f00893125079758b8b1fb5d95b8e5aaea95898e4e3ba220a64f6cefc1941"
+      },
+      "start_ns": 1794783661294217721,
+      "finish_ns": 1794783661453947487
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783751856618490.json",
+        "sha256": "593d6139c127c6c7a2cd386572bbe283be2f0dbf3ae6fc7fe77ed365fb042a19"
+      },
+      "start_ns": 1794783751856618490,
+      "finish_ns": 1794783752040420881
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783752513555038.json",
+        "sha256": "fcd51fad36154222355b51d6d4768ca1a93d71019a481634502977e0d5e067bf"
+      },
+      "start_ns": 1794783752513555038,
+      "finish_ns": 1794783752666042233
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783843354317443.json",
+        "sha256": "2cc8c297a66a55ae9cc67fc40a95d3d7eac655419d0fcfec345bc1bbb0cba77c"
+      },
+      "start_ns": 1794783843354317443,
+      "finish_ns": 1794783843514894101
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+      "phase": "pre",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783844051918772.json",
+        "sha256": "65cb3dcdb90b3c75e0e7ba0698b752662f7e0f54eb0494bfec45b5df93b0ef7d"
+      },
+      "start_ns": 1794783844051918772,
+      "finish_ns": 1794783844300227885
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+      "phase": "post",
+      "proof": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794783934761122851.json",
+        "sha256": "ef2bed4cae4fe3e068a4bc2ed5d01099f1dab7b716d5dd626b77f432ae21185f"
+      },
+      "start_ns": 1794783934761122851,
+      "finish_ns": 1794783934945006563
+    }
+  ],
+  "exact12_recorded_birthFDs_absent": [
+    {
+      "pid": 52283,
+      "start_ticks": 8835053,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52303,
+      "start_ticks": 8835070,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52355,
+      "start_ticks": 8996890,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52375,
+      "start_ticks": 8996904,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52414,
+      "start_ticks": 9006024,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52434,
+      "start_ticks": 9006036,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52474,
+      "start_ticks": 9015140,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52494,
+      "start_ticks": 9015153,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52533,
+      "start_ticks": 9024261,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52553,
+      "start_ticks": 9024271,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52593,
+      "start_ticks": 9033426,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 52613,
+      "start_ticks": 9033437,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    }
+  ],
+  "last_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-c64-full-searched-r3-p/post-metadata.json",
+    "sha256": "0f619d04dd8b2514716e4a5293c7ab066f10e6f825cd02a9804f1c350a935aa5"
+  },
+  "source35_direct_rehash": true,
+  "HEAD_tree_FULLstatus": "ROOTpostcheck exactHEADtree/trackedempty/FULL924files84dirs pinned, coor source35+statusfile hashes checked; no git/native/PIDscan.",
+  "comparison": "All6profile/same-mode same-rep unprofiled input/common/public/branches exactly equal; withinmode profiles3publicrepeat identities equal, two groups keptseparate. Oldinitial60event0 vs later50340physical/cache contexts uncontrolled.",
+  "profile_events_scope": "60literal scalar events; exact10sequence each, monotonic/cumulative/timebounds checked. No measuredcontributorallocation, stagepeakdecomposition, causaloverhead, ratio, benefit or budget claim.",
+  "limits": "Directterminal scope/unknownexec and gaps preserved; sourcepartiallivenessnotRSSbound; no largeSamplescontent reread; no finalreportscience/Ubuntu gate/PR/nextstage acceptance.",
+  "EA_edited": false,
+  "newscience_or_QA_by_coordinator": false,
+  "next_execution_authorized": false,
+  "all_attempts_costs": "UNKNOWN preserved"
+}

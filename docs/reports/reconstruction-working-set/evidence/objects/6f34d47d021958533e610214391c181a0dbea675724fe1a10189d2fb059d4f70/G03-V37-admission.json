@@ -1,0 +1,11 @@
+{
+  "id": "G03-V37-admission",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "actual stage admission differs: stage_rows"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "actual stage admission differs: stage_rows"
+}

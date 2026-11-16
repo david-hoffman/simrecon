@@ -1,0 +1,32 @@
+{
+  "ACK": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/scheduler-ACK.json",
+    "sha256": "53eae31c9e38dbbe08bf7817a05d66cf0d6a4656b004fa0076a06a3decf29c02"
+  },
+  "authority": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/ROOT-authority.json",
+    "sha256": "73b5193736eed235b455e78276c6ce1bc6b52410f4d1c4b114e3464019fb25c9"
+  },
+  "execution_released": false,
+  "ledger": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/current-stage-ledger.json",
+    "sha256": "6ac60e622f1bc1223cf0acb24db210b21855cdd4bb5cd300f41008c19780853b"
+  },
+  "new_preflight": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/new-context-preflight.json",
+    "sha256": "dd4947bf69afd8a3f8d3d8bb81d0a30d6a7914702d0737b874c50c392ede8ac3"
+  },
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/remaining5-preparation-a1/config-remaining5-PREPARED.json",
+    "sha256": "86bd24bbdfe6dc343db37a169781074e83f1ac7d70a6e56b8cacc44fc71ce173"
+  },
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json",
+    "sha256": "94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece"
+  },
+  "status": "PREPARED_CONTINUATION_CONFIG_DISABLED",
+  "window": {
+    "ends_unix_ns": 1794794071931319232,
+    "starts_unix_ns": 1794783271931319232
+  }
+}

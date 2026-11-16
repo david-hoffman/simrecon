@@ -1,0 +1,11 @@
+{
+  "id": "G06-V31-child-ref",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "child fingerprint mismatch"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "child fingerprint mismatch"
+}

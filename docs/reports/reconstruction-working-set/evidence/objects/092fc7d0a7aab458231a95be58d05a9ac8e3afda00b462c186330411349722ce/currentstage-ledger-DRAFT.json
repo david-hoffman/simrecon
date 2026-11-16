@@ -1,0 +1,9 @@
+{
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "largest-full-searched",
+  "root_authority_sha256": null,
+  "unresolved": null,
+  "closed_owned_processes": null,
+  "status": "DRAFT_UNKNOWN_NOT_OBSERVED",
+  "note": "New searched-full stage SOURCE template: unresolved/closed_owned_processes/root_authority remain NULL, no fresh absence claim. Actual supplied-full whole-stage closure/owners/controller/window UNKNOWN; prior-stage PID paths must not be refreshed."
+}

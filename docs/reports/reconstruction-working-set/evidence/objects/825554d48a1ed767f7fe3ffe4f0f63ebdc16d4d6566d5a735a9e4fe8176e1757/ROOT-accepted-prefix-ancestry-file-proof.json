@@ -1,0 +1,91 @@
+{
+  "authority": "ROOT",
+  "commands": [
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "rev-parse",
+        "d9a0ba924817772fdb5550c7d055bf31bcf70388^{tree}"
+      ],
+      "cwd": "/workspace/simrecon",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "836abd6603e28ea69c611429443c0684ba2f8441\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "rev-parse",
+        "ace06c861b974b6251a092567c253ae4eb0f56c8^{tree}"
+      ],
+      "cwd": "/workspace/simrecon",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "2247d3909f43bc4764beb5c748caa917aaa1d707\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "rev-parse",
+        "ea9117d3efe2d8de273402d643e732140138e496^{tree}"
+      ],
+      "cwd": "/workspace/simrecon",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "e8fe2b1b01d9e7abf476a71a2241309255bb0587\n"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "merge-base",
+        "--is-ancestor",
+        "64a752b4642709c539df2079cc3c906acf4cc7b8",
+        "d9a0ba924817772fdb5550c7d055bf31bcf70388"
+      ],
+      "cwd": "/workspace/simrecon",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "merge-base",
+        "--is-ancestor",
+        "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+        "ace06c861b974b6251a092567c253ae4eb0f56c8"
+      ],
+      "cwd": "/workspace/simrecon",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/local/bin/git",
+        "merge-base",
+        "--is-ancestor",
+        "ace06c861b974b6251a092567c253ae4eb0f56c8",
+        "ea9117d3efe2d8de273402d643e732140138e496"
+      ],
+      "cwd": "/workspace/simrecon",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "current_remote_ref_primary": {
+    "path": "/workspace/work/campaign/remote-refresh-largest5-active-refs.json",
+    "sha256": "a497afc5a8a76a8bdbe3b7b5d238b0fd5d6a93f12e9fc030ed69d6add3a1cb51"
+  },
+  "observed_at_unix_ns": 1794793003805264307,
+  "read_only_no_fetch_push_worktree_edit": true,
+  "schema": "ROOT-WS116-frozen-public-prefix-ancestry-proof-v1",
+  "scope": "Actuallocalimmutablecommit/tree/ancestry observations plusseparaterecordedremoteheads; ancestrydoesnotcertifyscientificcorrectnessoracceptedcandidategate. Accepted112/115stageactor/gatereceiptsseparate. No privatebranchbody/history used.",
+  "verified_graph": {
+    "112": "d9a0ba924817772fdb5550c7d055bf31bcf70388",
+    "115": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "measured116": "ea9117d3efe2d8de273402d643e732140138e496",
+    "public_main": "64a752b4642709c539df2079cc3c906acf4cc7b8"
+  }
+}
