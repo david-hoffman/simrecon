@@ -1,0 +1,16 @@
+{
+  "time_utc": "2026-11-16T16:26:08.757812+00:00",
+  "scope": "ROOT accepted actual118 parent61 including observedCI; release119ownedlocalrestack/reportintegration/fullgate/freshreadiness. Publicationonlyafter119ownallrequiredgates.",
+  "parent": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+  "tree": "28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a",
+  "parent_PR": 125,
+  "CI_proof": "/workspace/work/campaign/evidence/118/ROOT-CI125-passed-exact-association-1.json",
+  "CI_proof_SHA256": "c509a6855b87d147bef10281832f9225802605f3cb5e5d41b22fcf14abaa3a43",
+  "localSCI_gate_D": "Accepted7566/bb293/25ac applieddbd65, final118record nowcomplete",
+  "119_SCI_application": "/workspace/work/campaign/evidence/119/ROOT-scientific-acceptance-application-1.json",
+  "119_SCI_application_SHA256": "8a7cb33a081d8fa1c01a5c580d3bd8c89216d6affc529170dc7ae432c40a714b",
+  "permitted_ROOT_edits": "Rebaseoneowned119intakecommit fromACEonto61, addexactfrozen4reports/SCI/finiteportableclosure, updateonlysoleCurrentandnewreport-ledger/wrapper; keepnormativePB119contract80afb+intakepacketbodies unchanged unlessconcretefactualneed. No source/runtime/test/dependency/precision/APIedit.",
+  "R9_disposition": "IndependentSCIacceptsconditionalcontracthandoff; currentnecessitynotestablished, so nofollowupissuewrite orimplementationneeded tocomplete119designscope.",
+  "priorCIpendinggrants": "Historicalimmutablecontext, notrewritten. Thisrecord suppliesactuallaterpass.",
+  "no_merge_release_manualclose": true
+}

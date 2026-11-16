@@ -1,0 +1,38 @@
+{
+  "time_utc": "2026-11-16T16:21:34.928256+00:00",
+  "disposition": "APPLIED_ACCEPT_DESIGN_WITH_BOUNDED_SCIENTIFIC_LIMITATIONS",
+  "ROOT_whole_reads": {
+    "report_lines": 95,
+    "distinct_final_lines": 19,
+    "four_proposals": "Whole read recovered exact relevant ranges after oversized outputs, no unreadtextclaimed"
+  },
+  "accepted_parent118": "61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03",
+  "parent_tree": "28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a",
+  "SCI_files": {
+    "report.md": {
+      "path": "/workspace/work/issue-119-preparation/actual118-scientific-review-1/report.md",
+      "sha256": "9cead2dd2da4c880e8310a29f81e99d1c584fabdb77679e90c89ebdc6f8e8c65"
+    },
+    "final.md": {
+      "path": "/workspace/work/issue-119-preparation/actual118-scientific-review-1/final.md",
+      "sha256": "9e90ce5ab1c827099462c8e9434bd373fd5d4161b8bc7ad5f23b1c1de560360a"
+    },
+    "read-inventory.md": {
+      "path": "/workspace/work/issue-119-preparation/actual118-scientific-review-1/read-inventory.md",
+      "sha256": "c7c8eaac97ef3c0b7ddf482fe3c175c49e7129a6d0ce2e110f3d8db3c1242d3e"
+    },
+    "input-before-after.sha256": {
+      "path": "/workspace/work/issue-119-preparation/actual118-scientific-review-1/input-before-after.sha256",
+      "sha256": "786214763a7b706836b07d90443e0f2353096ebec569fdf2656082355e8b8044"
+    }
+  },
+  "closed49_inputs_rechecked": true,
+  "before_after_49_identical": true,
+  "accepted_slice": "Compact-only independent time/direction q owners/shared-table descriptors/global aggregate validation/streamed whole C-order LE identity/last native-reader slot release; all-direction copy before any filtering, one global filtered finite barrier, separate assembly; public/full/direct/caller/state semantics preserved.",
+  "criteria": "R1\u2013R9/S01\u201316/allfiveissue done criteria accepted atdesignlevel, no unavoidable mathematical blocker",
+  "R9": "Conditional bounded prepared-storage CONTRACT handoff accepted under explicit earlier-residency objective; actual necessity/fit unresolved. No necessarycurrentdiskcontract selected, so no followupissuefile or implementation commissioned. Finite ROOT dedup retained.",
+  "limits": "Analytic later-q payload opportunity only; no implementedownerclosure/RSS/latency/16GiB/currentlarge/256 claim ornewexperiment. All scientificprecisiondefaults remainfloat64/complex128.",
+  "metadata_disclosure": "NonblindSCI1 wcglobtwo excludedfilenames/countsonly, no bodies/history/peerverdict; sameeventliteral49classification retained, no retroactivepermission orrestoredblindnessclaim.",
+  "remaining": "Actualstackintegration on61, exactclean fullUbuntu gate, freshindependentreadiness, ROOTpublication and actualCI. Parent125CIpending atSCIgrant, notclaimedpassed.",
+  "runtime_or_tracked_changes": false
+}

@@ -1,0 +1,12 @@
+{
+  "time_utc": "2026-11-16T16:13:32.822880+00:00",
+  "role": "119nonblindSCI1",
+  "disclosed_scope": "wcglob exposed only two excludedfilenames andlinecounts; body/history/opinion exposure not reported",
+  "classification": "Procedural metadata-only overread, preserve charge+inventory andcontinue same nonblindSCI1 literal49; no retroactivebodypermission/no restoredblindnessclaim",
+  "excluded_names": [
+    "ROOT-BINDING-READY.md",
+    "scientific-review-packet.md"
+  ],
+  "actual_counts": "Reviewer inventory, not independently restated byROOT",
+  "runtime_or_target_changes": false
+}

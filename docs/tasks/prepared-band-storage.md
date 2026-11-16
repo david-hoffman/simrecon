@@ -79,53 +79,14 @@ freeze. Scenarios map to design evidence and review, not fabricated product test
 
 ## Current state
 
-- Status: **WAITING — initial intake prepared; scientific work not started**.
-  One-task report/design route above; default exact full-local publication gate.
-- Request/constraints: original campaign request and authoritative issue read;
-  campaign root's applied final-order record requires actual accepted #116 and
-  reviewed affected post-#117/#118 refresh before #119 reliance. No repeated human
-  approval is needed for authorized routine transitions.
-- Worktree: `/workspace/work/issue-119`; provisional public baseline
-  `ace06c861b974b6251a092567c253ae4eb0f56c8` (#115), tree
-  `2247d3909f43bc4764beb5c748caa917aaa1d707`. Actual final parent is accepted
-  #118, **not yet frozen here**. No private RM84 ancestry used.
-- Contract/scenarios: R1–R9 / S01–S16; example count unknown. No runtime test or
-  fixture checkpoint; none frozen and none required for this design intake.
-- Roles: fresh issue coordinator session `/root/issue_119`; scientific author,
-  independent scientific reviewer and final readiness reviewer **not launched**.
-  No scientific verdict, selected representation, lifetime map, measured result or
-  implementation readiness is asserted by intake. Role packets are held launch
-  instructions requiring exact dependency/candidate/artifact binding.
-- Exact candidate/check evidence: final hash/tree/clean status are returned outside
-  tracked bytes to root; root records final gate/review evidence in the campaign
-  evidence index. Intake Git/document checks cannot substitute for `make verify`.
-  **Ubuntu full gate not run; CI not run; scientific/resource acceptance missing.**
-- Classified blockers: dependency (#116 unaccepted at assignment), affected
-  measurement/review refresh missing, actual #118 parent acceptance/freeze missing.
-  No missing user material decision identified. These block dependent source/
-  lifetime investigation, evidence conclusions, experimental source and design
-  acceptance; they do not block recording this intake.
-- Current resource hold: no numerical/native/import/lint/type/test/install/
-  benchmark/resource/process work; root is preparing exclusive #116 work. No
-  subprocess experiments or shared-environment/cache mutation were performed.
-- Accounting: one fresh issue coordinator launch; zero scientific-author/reviewer
-  or final-review launches so far; zero runtime/test edits or experimental runs.
-  No prior #119 attempts were supplied; cumulative prior campaign spending is
-  retained by root and **unknown here**, not zero. This session's requested model/
-  effort and actual serving model/metering are unknown; role defaults above are
-  a future selection. Responses/input/cached/output tokens, verified money,
-  elapsed/owner-wait/check durations unknown. No human numeric limit is set.
-  No task review/repair/diagnosis rounds completed. No blind role/exposure exists.
-- Next: root resumes this task only after freezing accepted #118 and accepted #116
-  plus independently reviewed affected refresh. Coordinator reconciles actual
-  source/contracts/workloads/environment, fills exact launch digest/identities,
-  then launches fresh nonblind design author; fresh scientific review follows.
-  Changed prerequisites renew affected evidence. Reserve slots by yielding now.
-- Housekeeping: no scratch fixtures, experiments or owned running processes created.
-  Keep assigned active worktree and all tracked intake/durable records; delete
-  nothing now. At completion root/coordinator removes only confirmed disposable
-  task scratch with existing commands after process/worktree checks, retaining
-  durable evidence, required inputs/shared environments and uncertain paths.
+- **DESIGN AND BOUNDED HANDOFF SCIENTIFICALLY ACCEPTED; final119 gates pending.** ROOT integrated the one owned intake commit onto actual accepted118 `61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03`, tree `28d8214791af0fb2c75c0d7fb6ae1dfd867dac1a`, [PR125](https://github.com/david-hoffman/simrecon/pull/125). Its exact Ubuntu13 gate passed3500/47 and fresh D1 accepted; CI43903983166/job133427761353 passed3500/47/585.45s on matching integration49ea6a5d/tree28d8. Earlier grant-time pending labels remain historical. Original119 intake48339c8 is preserved externally/by ROOT reference; normative PB11980afb and intake packet bodies stay unchanged.
+- Four frozen reports under [prepared-band-storage-design](../reports/prepared-band-storage-design/README.md) retain exact hashes: design7f07b194, lifetime042a8313, source manifest3159ea6d and handoff650bc78a. They bind measured75fc and actual61 used21 source/contracts byte equality. Accepted118 wholeSCI7566 supplies the finite78 refresh; actual119 SCI1 report9cead2dd/final9e90ce5a independently accepts R1–R9/S01–S16/allfive issue done criteria at DESIGN level. ROOT application8a7cb33a records acceptance; no119 runtime implementation or test checkpoint is manufactured.
+- Selected future slice: compact-only independently owned time/direction q roots and shared owning table, complete logical/global validation and one canonical C-order little-endian digest, then successful source-slot release after each native-direction reader/borrow. Preserve all preparation before estimation, fresh modulation under time0 carrier reuse, camera/anchor/drift state, all-direction parameters, whole-time destination/setup/ALL-copy-before-any-filter, one global filtered finite check and separate assembly. Full/direct/default records and caller independence remain. Future implementation requires separate intake, blind A/B/restricted C/fresh D and actual ownership/equivalence/resource proof.
+- Opportunity is later retained q payload `(T*D-k)*b`, `b=16*Q*Z*Y*(X//2+1)`; earlier caller/raw snapshots/all-q preparation/estimation and initial whole-time source+destination overlap remain. Hypothetical22.5146484375GiB is logical payload, not RSS/observed capacity. No general memory/speed benefit, currentlarge256 attribution/ranking/scaling/margin/headroom/16GiB or113single qualification is transferred. Currentlarge holds remain; no new256 is needed for the accepted structural design.
+- R9: one conditional external-prepared-storage CONTRACT handoff specifies ownership/permissions/capacity/cleanup/cancellation/I/O/errors/identity/mappings/FFT residency. Independent SCI accepts its necessity criterion under a later explicit earlier-residency objective. Current disk necessity/fit is not established, so no follow-up filing/implementation is required or commissioned now. Three-query ROOT dedup remains finite evidence, not global completeness. #120 assembly stays separately scoped.
+- Portable96-key map preserves original paths AND logical hashes,44 published ancestor Git streams,6 inherited118 same-byte records and46 finite exact local/history/SCI transports; no raw118 corpus or whole-program duplication. ROOT stage hash/length checks passed. Historical absolute paths/old Current bodies are provenance versions, not drop-in live checksum targets. Final staged/committed Git byte proof follows outside candidate bytes. No source/test/fixture/helper/dependency/gate/policy or public API changed.
+- Final exact clean119 candidate/full Ubuntu13 `make verify`, native current global/package/file/subprocess coverage JSON+HTML/DB, wheels/isolated imports/audit/same-runM25, fresh independent readiness, ROOT lease-controlled PR and actual CI remain pending. Inherited118 B4 descriptor identifies unchanged test baseline, not a new119 A/B review. Prepare final pointer `/workspace/work/campaign/evidence/119/final-evidence.json` before verification; all eventual hashes/results stay external, without postgate tracked edits.
+- Cumulative roles/partials/read corrections and unknown costs remain in [ROOT role ledger](../reports/prepared-band-storage-design/ROOT-role-ledger.md) and immutable histories. Fresh nonblind SCI1 metadata-only wc names/counts overread of2excluded files is disclosed; no bodies/history/verdict opened, no retroactive permission or restored blindness claim. Same-event literal49 continuation recorded. Human numeric quotas not set; serving/tokens/cache/money/unrecorded elapsed unknown; shared filesystem/prompt scopes are not engineered isolation. No merge/release/manual closure/follow-up implementation. No scratch/script/fixture/persistent workload created by119 authors/reviewer; active worktrees/environments/frozen fixtures/durable evidence kept. Next ROOT: clean candidate→fullgate→fresh readiness→publication/CI.
 
 ## PR presentation
 
