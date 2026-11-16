@@ -17,7 +17,10 @@
   `/workspace/work/issue-118`. Coordinator observed this initial clean commit/tree
   with Git before the local incomplete static-document checkpoints recorded in
   the launch ledger. This supplies no numerical or gate qualification.
-  Parent117 will be frozen later; this intake is not readiness against that parent.
+  That initial baseline is historical. ROOT now freezes accepted immediate parent117
+  `2cb73d7a8352d88a16477e5e802852b4948c62cd`, tree
+  `ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc`, for actual-parent renewal.
+  Final118 readiness remains pending its own fresh B/C/resource/gate/D evidence.
 - Scientific boundaries/units/inputs/records/errors and expectations: CE02/04/06,
   CE07 and RM84 as named in PH118. No numeric tolerance, memory ceiling,
   reduction percentage, speed ratio or budget selected. 16 GiB means feasibility.
@@ -85,70 +88,16 @@
 
 ## Current state
 
-- **SAFE HOLD — final-order metadata applied; PhaseP C1 complete; no active child/process.**
-  Actual runtime baseline PUBLIC64a752b4642709c539df2079cc3c906acf4cc7b8;
-  clean C launch87feeb5a93f4e2bcba73b3229329eb7ee115bf6e/tree
-  4650b31e10466101ab4e11a06247e6e218045ff9. Final local provisional head/tree is
-  recorded outside its own tracked bytes. Durable
-  [implementation handoff](../reports/issue-118/provisional-implementation-handoff.md),
-  [C1 last-use/check report](../reports/issue-118/c1-phasep.md).
-- Scope: exactly6 added source lines (four del statements/two comments), only
-  modes.py and known_parameters.py. Completed section frames end after FFT reads,
-  per-z spectra after separation/Nyquist/off writes, plus after recombination.
-  No arithmetic/capture/finite/failure/state/loop/backend/precision change or
-  buffer reuse. Coordinator independently checked scope/last uses/capture owners.
-  Sources SHA256: modes85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178;
-  known46de99f88782c8b96215d9699fcdd1fe9f1ed5edfabf2426416fc2ae1e0bd0fd.
-- All8 ordinary checks passed: Ruff/format/Pyright and five source-free pytest
-  groups28/139/69/49/28=313items. Two intentional frozen-observer selected-zero-
-  divisor warnings preserved; no suppression/repair. Exact commands, baseline,
-  environment and all10 logs retained; no coordinator rerun or performance claim.
-  One static project-path read correction recorded; no qualification failure,
-  C source repair, timeout or suspension.
-- B2 accepted provisional affected test/static design checkpointbadf155…/tree
-  6b1bd83d…; [durable accepted pointer](../reports/issue-118/accepted-checkpoint.md),
-  reportaf6a774f…, frozen manifest90d5a02f…. Coordinator rechecked every member,
-  all unchanged. Behavior22bd0543…, adapterece8f0c6…, protocol2ce88a33…,
-  PH118d217c186… remain frozen; C changed no tests/fixtures/gates/dependencies.
-  B1 nonacceptance, original failures/bytes, all24+14 A3 logs and repairs retained.
-- PhaseP was explicitly authorized/applied BEFORE C by exact accepted local
-  addendumb172e019… and applicationccbed1e1…, joint review0ad4312f… owned117 once.
-  Scientific meaning/oracles/ownership/gates unchanged. New final-order successor
-  applied after root7cb791b1…/jointACCEPT0f7baea6…; historical final-order/profile
-  wording is superseded only as specified there. Final stack112/115/116/117/118/
-  119/120/113/114. Actual accepted117 remains final parent; actual inherited115
-  wide/double/shared-helper material must be qualified;113 single ABSENT, no
-  inherited113 qualification claimed. No116/117 acceptance inferred. No integration,
-  rebase, push or PR by this coordinator; root owns publication/scheduling.
-- **PhaseI BLOCKED:** root freezes ACTUAL ACCEPTED117 with115-wide/double/helpers/
-  real material environment, integrates provisional source and records conflicts,
-  reassesses contracts/interfaces/source/tests/fixtures/oracles/budgets/observers/
-  profiles/helpers/versions/locks/tools/environment, renews affected author/check
-  evidence and obtains FRESH affected B BEFORE further integrated C repairs,
-  resource qualification/execution, final measurements/fullgate/D/publication.
-  Unchanged evidence needs explicit material rationale; old checks retain64a labels.
-- **Resource/full-gate/D BLOCKED:** adapter never imported/help/CLI/dry-run/measured.
-  Actual accepted parent/candidate, qualified launch/lifecycle route and root
-  exclusive grant required. Known setsid-spawn failure, terminal-self/sample/group
-  RSS distinction and unobserved JSON-emission tail remain. No observed peak/
-  timing benefit,16GiB guarantee or threshold. Final clean integrated Ubuntu13-
-  phase make verify/native coverage/two workers/both wheels/import/audit/M25,
-  matched repeated resources/fingerprints and fresh external D all pending.
-- Accounting: intake1; A launches3 (two pre-author procedural overreads stopped,
-  no actual product-source/history/coverage/lessons exposure reported); A3+four
-  continuations; B rounds2 (B1notaccepted/B2accepted affected scope); C1complete,
-  D0. Two distinct joint scheduling applicability events cross-referenced, each
-  charged117 once (prior PhaseP and new final order); no new118 role/review. All failed
-  checks/style/test-scope/path corrections and six coordinator metadata patch
-  mismatches preserved in [role ledger](../reports/issue-118/role-launches.md).
-  Requested roles Sol/high; served/tokens/cache/money/total elapsed/owner-wait/
-  check costs unknown, human numeric caps not set.
-- Root resumes this coordinator after prerequisites. Existing C1 session may be
-  reused later for its own scope only AFTER proper renewal; no new role now.
-  Final receipt/D/publication pointer `/workspace/work/campaign/evidence/118`;
-  final D after clean actual-parent gate writes externally. No scientific fixture,
-  active worktree, evidence or shared environment removed; completion cleanup
-  pending, known dependencies retained.
+- **ACTUAL-PARENT TEST HOLD — fresh affected B pending; no provisional product delta active.** ROOT preserved provisional head80557cf1a96a0d006a4df27515e3cdabb8444283 at `refs/campaign/118-provisional-C1-before-parent2cb73d7`, replayed the ten campaign commits onto accepted117 and explicitly restored the two provisional C files to that accepted parent's bytes. All product source currently equals parent117. Exact checkpoint/tree and frozen public input hashes are recorded externally before fresh B; no integrated C or numerical/resource grant exists.
+- Actual accepted parent117 is `2cb73d7a8352d88a16477e5e802852b4948c62cd`, tree `ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc`, [PR124](https://github.com/david-hoffman/simrecon/pull/124). Full local Ubuntu13 gate passed3472/47; fresh D report `a563b65010fc6e63c929bb64f732821fbc846410edb5d0b273e061c7d8f4079a` accepted the exact candidate. GitHub CI43853442041 is IN_PROGRESS, not reported passed. ROOT observes it. Accepted order remains112→115→116→117→118→119→120→113→114;113 single is absent.
+- Public [actual-parent addendum](../packets/issue-118-actual-parent-public-material.md) makes accepted115 allocation-byte precedence explicit: signed/native aggregate/count/index and actual stencil checks remain; representation supplies no RAM/backend success guarantee. Existing accepted-parent boundary tests remain intact. The former large byte-cap examples must not be executed as ordinary successful allocations. Fresh B independently assesses the actual public/test/helper closure and any conditional expectation limits; no new oracle, tolerance or forced red is supplied.
+- Historical PhaseP C1 remains evidence on PUBLIC64, not this parent's readiness: exactly6 added lines (four completed-local deletions/two comments) in modes.py and known_parameters.py. All8 ordinary checks passed, including313 tests in28/139/69/49/28 groups and two intentional selected-zero-divisor warnings. Source/check commands, all10 logs, B2 checkpointbadf155/tree6b1bd83 and original handoffs remain unchanged in [C1 report](../reports/issue-118/c1-phasep.md) and [accepted checkpoint](../reports/issue-118/accepted-checkpoint.md). The exact product-only patch is preserved externally with SHA256 `3fc72e91bd2b2f14b7ff3bffe3abb71773b6ab3e433fba71d17df1b7f45dbbe0`, to be restored only by valid restricted C after fresh B acceptance. No old receipt is renamed.
+- Actual-parent source/test hold is a ROOT integration transition, not a new C implementation or test repair. Relative to accepted117 only the two owned118 test/adapter files differ under tests; all inherited115 public tests and every product source are the parent's current versions. Tests/fixtures/gates/dependencies remain outside C's ownership. Fresh blind B receives only public contracts/interfaces, exact tests/helpers and this approved parent/domain addendum, excluding source/history/Current/coverage/opinions.
+- Resource apparatus remains UNQUALIFIED/HELD. The direct adapter has never been granted measurement. The external minimal direct-method SOURCE draft preserves the accepted116 observer and core lifecycle/RSS logic; final actual117/118 bindings, source-free diagnostic/import closure, metadata-child interruption disposition, fresh method suitability and finite qualification are pending. No trial/grant or capability is inferred from source hashes. The actual candidate's seven direct conditions and affected shared workflow references require ROOT's source-specific protocol/admission, matching and independent applicability review. Existing117 candidate observations may serve only their actual unchanged-material parent controls, without renamed or duplicate processes.
+- The original11760-observation proposal was narrowed by responsible review/applicationd1f9d2b; its new256 groups are unmeasured. This does not preaccept118 scope or a largest-workload claim. One fresh post118 scientific review must explicitly assess changed source/material/direct/shared matched observations and each119/120 design premise before reliance; current large profile/peak/rank/scaling/margin/16GiB premises remain held pending necessary admitted evidence. Original116EA observations remain historical.
+- Full118 resource/scientific acceptance, exact clean actual-parent Ubuntu13-phase make verify, native coverage/current JSON/HTML/global/package/file/subprocess scope, same-run M25, both wheels/import/audit, fresh D and ROOT publication/observed CI remain pending. No peak reduction, speedup, allocation success or16GiB guarantee is claimed. Final identities/results stay outside candidate bytes at `/workspace/work/campaign/evidence/118/final-evidence.json`; prepare this pointer before final verification.
+- Accounting stays cumulative: intake1; A launches3/two pre-author procedural stops, A3 plusfour continuations; B rounds2 (B1notaccepted/B2accepted); historical C1 complete8checks/313tests; D0. Prior scheduling applicability events remain charged117once, no reset. Source direct-method author1 plusone inherited-path static correction and current/publicpacket preparation add their own charges. All original failures/bytes,24+14 A logs and six coordinator metadata patch mismatches remain in [role ledger](../reports/issue-118/role-launches.md). Source-only preparation is not runtime/check/SCI acceptance. Actual model/effort/tokens/cache/money/elapsed UNKNOWN; requested Sol/high, human numeric caps not set.
+- No active child/process or unresolved workload was created by this transition. Current worktree, environments, frozen fixtures, historical reports and durable evidence remain required and retained. Next: ROOT freezes exact public test checkpoint; fresh source-only blind B acceptance and explicit evidence applicability; restricted C continuation restores only the preserved two-file delta and renewed ordinary checks under ROOT grant; then actual method/resources/post118SCI/fullgate/freshD. No restack/push/merge/release/manual closure by workers; ROOT owns those authorized integration/publication transitions.
 
 ## PR presentation (root)
 
