@@ -1,0 +1,92 @@
+{
+  "scope": "P4 exact scheduled first workflow main/exec/PID/map/native-unit/closed ownership correspondence only, no scientific/resource conclusion",
+  "result": {
+    "ordinal": 6,
+    "role": "candidate",
+    "attempt_id": "ph118-W-g3-candidate-r3-a1",
+    "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g3-candidate-r3-a1",
+    "receipt_sha256": "609897b4b9d055e2cc8f664021fe692696768c6e4cd9c6c151b6b774f3eeec8c",
+    "child_sha256": "864e58c99af9e4ab383dabb7d0617cb5033ff76504200fa98951bcd52888eddf",
+    "grant_sha256": "55295ce49f339eaacc2021f33eb5e833b1ba9f9f3f84506e60825ea7981bb41c",
+    "terminal0_closed": true,
+    "counted_as_original_scheduled_member": true
+  },
+  "numpy_backend": {
+    "Compilers": {
+      "c": {
+        "name": "gcc",
+        "linker": "ld.bfd",
+        "version": "14.2.1",
+        "commands": "cc"
+      },
+      "cython": {
+        "name": "cython",
+        "linker": "cython",
+        "version": "3.3.0",
+        "commands": "cython"
+      },
+      "c++": {
+        "name": "gcc",
+        "linker": "ld.bfd",
+        "version": "14.2.1",
+        "commands": "c++"
+      }
+    },
+    "Machine Information": {
+      "host": {
+        "cpu": "x86_64",
+        "family": "x86_64",
+        "endian": "little",
+        "system": "linux"
+      },
+      "build": {
+        "cpu": "x86_64",
+        "family": "x86_64",
+        "endian": "little",
+        "system": "linux"
+      }
+    },
+    "Build Dependencies": {
+      "blas": {
+        "name": "scipy-openblas",
+        "found": true,
+        "version": "0.3.34.106.0",
+        "detection method": "pkgconfig",
+        "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+        "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+        "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+        "pc file directory": "/project/.openblas"
+      },
+      "lapack": {
+        "name": "scipy-openblas",
+        "found": true,
+        "version": "0.3.34.106.0",
+        "detection method": "pkgconfig",
+        "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+        "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+        "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+        "pc file directory": "/project/.openblas"
+      }
+    },
+    "Python Information": {
+      "path": "/tmp/build-env-h653xs07/bin/python",
+      "version": "3.13"
+    },
+    "SIMD Extensions": {
+      "baseline": [
+        "X86_V2"
+      ],
+      "found": [
+        "X86_V3",
+        "X86_V4",
+        "AVX512_ICL"
+      ],
+      "not found": [
+        "AVX512_SPR"
+      ]
+    }
+  },
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "scipy_fft_default_workers": 1
+}

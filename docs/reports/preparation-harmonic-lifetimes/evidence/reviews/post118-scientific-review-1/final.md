@@ -1,0 +1,36 @@
+# WHOLE post118 SCI1 — ACCEPT
+
+ACCEPT the exact scientific lifetime change75fce7e1ea424127f1b875aaa395d8b3ea29ecaa over accepted117 parent2cb73d7a8352d88a16477e5e802852b4948c62cd and the exact complete78 descriptive report scope: scalar sourceb28a05c9a42c97f6b42d2d605b1fb4e26d510f16e992c3c6cfee67b09e48f9b2, scalar outputmap444bc0812ef86bff0b2cbd046d8884a91478247a6962e2212703e5cdb20df02b, manuscript09d6944991e1c33eb62e8a7d67a204f353ce8e957020ead7bcb04113c463d6cd and16dispositionsd190f6bcf8386ead70cb34c6035e57d96a8234c0b63738d1128014e5168f4574. No unresolved concrete scientific/derivation/report finding in the inspected closure. Whole verdict issued after ROOT closed78 and exact final extension18e32bd0, not at a partial stage.
+
+The six inserted source lines delete completed private locals only. on/off expire after their transforms; spectra after separation/Nyquist/off consumers; plus after reflected recombination has copied values. Arithmetic and stage/check/failure order are unchanged. The independent finite-sum/RC1/helper assumptions, signed-zero/reflection/oddY/Y1 paths, ownership copies and alias/last-use reasoning were assessed before operational opinion context. Mandatory full diagnostics, camera/caller state and monolithic all-T prepared backing remain. Fingerprint agreement is corroboration of this finite preservation argument, not an independent accuracy oracle, literal full-array-byte comparison or universal numerical theorem.
+
+All78 original scheduled children completed with terminal0 and matched materials, selected role/provenance/environment/FD/wait/outer ownership fields. All42direct and36workflow records retain every repeat, including adverse timings. Twelve profile references point to actual same-role/mode/case/repetition fresh controls;18 full-summary aliases compare common values/branches only. They add zero runs. Parent tracked-clean/full-two-untracked-copy status and candidate clean identity are correctly distinguished; active13 hashes bind the two operationally activated manifests, not a science-code change. Expected14 startup/help/abort/provenance controls are not failed scientific trials. Unsupported abrupt/hidden-ancestor cases remain conditional UNKNOWN/HOLD, not universal cleanup guarantees.
+
+Native KiB×1024, call-only time, cumulative self high-water, terminal exact-child wait4, discrete sampled RSS and retained backing payload have distinct boundaries. Workflow union is NOT_EMITTED. Null gaps are preserved, including63's three consecutive nulls and34/46's double gaps; no zero/exit-race/continuous-coverage inference. Recorded observer finished timestamp precedes final hashes/postflight/receipt serialization; actual receipt serialization completion is UNMEASURED. Profile stage events are cumulative associations, not isolated workspace allocations; known process peaks include retained setup outside target timing. No baseline/paired subtraction, ratios, causal allocator/reclaimed-byte or effective-native-worker claim is justified.
+
+The complete scalar derivation is file-only and supports the displayed26 per-role triples. Inspected native/time triples agree with raw observations; manual ordering supports the reported extrema/medians, sampled summary triples and13 literal range relations. Scalar54 selected metrics/payload/sample/terminal/source fields are unchanged in final78 by canonical identity hash3903ee2e…. Static source/hashes support full-stream sampling derivation; I did not independently recalculate every sample maximum, self statistic or timestamp subtraction. The manuscript retains separated finite acquisition/full-mode native ranges, overlapping known/drift/tiny/summary ranges, a higher CE02 context range, and overlapping call-time ranges. Known128 candidate calls are slower in each recorded pair. Therefore general peak reduction, latency improvement and isolated FFT/allocator benefit remain unestablished.
+
+My independent affected116/downstream dispositions are:
+
+| Premise | Final SCI disposition |
+| --- | --- |
+|1 EA central searched tables | Refresh current g1/g2 only; retain originalEA identity and other unmeasured current cases. |
+|2 EA central stage association | Refresh g5/g6 cumulative associations with own fresh controls; no allocation ranking. |
+|3 EA largest256/ranking | HistoricalEA only; current256 NOT_ADMITTED/UNMEASURED and current margin/scaling/ranking held. |
+|4 Native harmonic scratch | Accept shorter plus-local liveness; isolated process/native saving unestablished. |
+|5 CE06 section scratch | Supersede surviving-local wording with actual on/off/spectra last uses; direct finite preservation, CE02 separate. |
+|6 Compact estimator overlap | Retain inherited117 scope in both subjects; no new118-specific117 benefit. |
+|7 Full diagnostics | Retain complete independent public ownership; no payload removal/reduction. |
+|8 All-T q/time aggregation | Retain monolithic backing and hold T-growth release; centralT1D3 is not solved by time-only fragmentation. |
+|9 Phase/padded/inverse expressions | Remain unresolved; plus deletion is not phase/backend redesign. |
+|10 Payload/native metrics | Refresh actual emitted quantities only; no workflow union sum or physical-reclaim equivalence. |
+|11 Huge target/115 wide | Unmeasured/allocation-unadmitted; signed/native/stencil constraints persist; no16GiB guarantee. |
+|12 119 prepared-band feasibility | Relevant source premise survives; PB11980afb R1–R9 actual design/ownership/parameter/failure obligations remain outstanding. |
+|13 119 block/file benefit/identity | Hold implementation and necessary currentlarge premises; independent block release/streamed identity/disk contract unproved here. |
+|14 120 destructive/backend equivalence | Hold bounded prototype/backend/negative controls and signed-grid/Nyquist/norm/true2D/finite/failure proof. |
+|15 120 current peak/fit/benefit | Hold necessary currentlarge attribution/ranking before downstream reliance; no new matrix commissioned. |
+|16 113 single precision | Absent; no qualification transferred from float64/complex128 science or float32 detector storage. |
+
+One report-description finding S54-DESC1 was independently found, routed and resolved without numerical/source rerun. Original README/maps, scalar54 preparation/two attempts, scalar78 schema-failure95556/guarded repairb28a/two attempts, assembly and all review partials/read errors remain preserved and charged. Same independent SCI event1, no delegation, peer opinion bodies, runtime/calculation tool execution, tests/probes/new observations or source changes. Requested Sol/high/forknone; actual serving/tokens/cache/cost/elapsed and separately engineered optional-control status remain unknown.
+
+Detailed reasoning, exact input identities and honest read/recalculation boundaries are in report.md/read-inventory.md and before/after input maps. This accepted finite refresh can support exact downstream intake once ROOT freezes the accepted lineage/materials; it does not accept119/120 designs/implementations or discharge d1/36/19/currentlarge/16GiB holds. Exact final Ubuntu full verification, fresh readinessD, portable raw restoration/source applicability and publication remain separate ROOT gates.

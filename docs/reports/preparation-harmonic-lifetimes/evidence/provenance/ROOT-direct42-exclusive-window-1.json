@@ -1,0 +1,21 @@
+{
+  "time_utc": "2026-11-16T13:16:14.180961+00:00",
+  "scope": "ROOT EXCLUSIVE originalordinals13\u201354 DIRECT42 only; sequential freshmember exactlyfrozenP/C,C/P,P/C, firstparentrealP4casequalifiesbeforecandidate",
+  "no_competing_controlled_numerics_tests_installs_benchmarks": true,
+  "other_roles": "all SOURCE/report only ordone;113privateinit/targetsclosed",
+  "actual_headroom": "fresh per-case context/visiblecgroups/currentmax/host/disk/outputownership required; oldsuccess/caps notgrant",
+  "settings": "ALLdirect1200s child/1320s ownedouter; samepercase512MiB stop/reserve small or1GiB128, proposed256+128MiB/512+256MiB prediction/native allowance, host1/2GiB; everyvisibleancestor stop actualmaxminus1GiB;8GiBdiskfree; startup5s/TERM1s/KILLreap5s/10ms/JSON32MiB. Operating decisions only, no guarantee/humanbudget.",
+  "unsupported": "hiddenexternalancestors/actors/abruptGit/outerloss/spawnbeforemarker/earlypre-hook startup remainconditionalHOLD. Outerexpiry preservesowner/partialstreams no automatickill/no next.",
+  "actual12workflow": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-next-ten-tiny-workflow-actual-1/ROOT-result-index.json",
+    "sha256": "998200edc4aef9e4cb14773dc420e5ff44a2fab3214824d05c1cf08f53341407"
+  },
+  "direct_method_activation": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-direct-method-operational-activation-1.json",
+    "sha256": "25cdc668e6a8c4a984295551fe1e34260f1d41439853215e37b78a6bdac3afa0"
+  },
+  "expectations": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-direct-expectations-before-first-direct-1.json",
+    "sha256": "ad479dc33c8fd2f9d0c1a583ec7b28120c4c1620751a417f92df1343db91ae10"
+  }
+}

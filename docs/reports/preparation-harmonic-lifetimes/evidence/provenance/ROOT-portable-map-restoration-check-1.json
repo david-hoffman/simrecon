@@ -1,0 +1,15 @@
+{
+  "time_utc": "2026-11-16T15:15:42.091282+00:00",
+  "map_sha256": "1687024ae4b062e08054bb495e22c22dc256d298ba13d9a9c3c85ff281d7667e",
+  "rows_checked": 1559,
+  "unique_targets": 1559,
+  "gzip_rows": 93,
+  "logical_bytes": 144819014,
+  "all_logical_transport_checks_passed": true,
+  "ROOT_check_history": [
+    "Initial draftchecker assumed gzip instead of actualgzip-lossless; correctedread/checkdispatch, no inputs changed.",
+    "Draft1811 had null length metadata in duplicate rows; source/target hashes matched. Coordinator preserved draft and dedup/backfilled actualmetadata.",
+    "ROOT schema-display expected rows in versioned-map; actual entries, no mutation or execution."
+  ],
+  "scope": "Independent strict logical+transport byte/length restoration check, not gate or new science."
+}

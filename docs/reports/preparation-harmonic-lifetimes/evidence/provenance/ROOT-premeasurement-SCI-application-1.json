@@ -1,0 +1,32 @@
+{
+  "time_utc": "2026-11-16T13:01:53.175964+00:00",
+  "decision": "ROOT accepts the exact finite78 scientific scope and retainedkeeper applicability with all report limits; no unknownresult/native/peak/currentlarge/downstream implementation acceptance",
+  "report": {
+    "path": "/workspace/work/campaign/evidence/118/premeasurement-scientific-scope-review-1/report.md",
+    "sha256": "8745f141663565de54f412ff1aa573c7bb848efe8b43b57765d18da32e09d9a3"
+  },
+  "final": {
+    "path": "/workspace/work/campaign/evidence/118/premeasurement-scientific-scope-review-1/final.md",
+    "sha256": "62bdd957849e402ad307da090126e634f03fa79d822ab0595b20af4d880dda4d"
+  },
+  "schedule": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json",
+    "sha256": "a8a478ad3cb38c8a1520472de93f54f604d7887ccc3a246e9e3e4c8c59be85bb"
+  },
+  "source_checkpoint": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-actual-C-source-checkpoint-1.json",
+    "sha256": "b2efacf99c9cb264ee1806640ffe2236085a8a9b67d1454f29b3322dbf785988"
+  },
+  "method_source": {
+    "path": "/workspace/work/campaign/evidence/118/method-source-review-1/report.md",
+    "sha256": "aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13"
+  },
+  "qualification": "P2 retainedmap and actualP3startup14; P4 limited scheduled real members remain to observe",
+  "later_gates": [
+    "post78 fresh SCI with affected116+119120 disposition",
+    "exact clean final Ubuntu13 make verify",
+    "fresh D",
+    "verified-only lease-controlled publication and observed CI"
+  ],
+  "all_prior_charges": "preserved, same premeasurement SCI event1; helperpermission/packetwrong119 correction no product/test/source repair"
+}

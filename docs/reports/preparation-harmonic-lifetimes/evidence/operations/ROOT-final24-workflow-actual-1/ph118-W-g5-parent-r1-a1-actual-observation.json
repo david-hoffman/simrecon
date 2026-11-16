@@ -1,0 +1,98 @@
+{
+  "scope": "P4 exact scheduled first workflow main/exec/PID/map/native-unit/closed ownership correspondence only, no scientific/resource conclusion",
+  "result": {
+    "ordinal": 67,
+    "role": "parent",
+    "attempt_id": "ph118-W-g5-parent-r1-a1",
+    "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g5-parent-r1-a1",
+    "receipt_sha256": "3cdb06e01d7372bef6aaa91d87a7369a601aeab523c7b68aa011437f2ee32b4d",
+    "child_sha256": "717a4a9901fb9787b553b83c35bddfe638cb005f01e444a28460e40e099ee9a9",
+    "grant_sha256": "03f44ddf7f304bdea3642850de326e4bdfcf9b4f6e951a5231a4884f7e4b7433",
+    "terminal0_closed": true,
+    "counted_as_original_scheduled_member": true,
+    "profile": true,
+    "unprofiled_control_same_subject_mode_repetition": {
+      "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g1-parent-r1-a1",
+      "receipt_sha256": "f29307f1fc4c34a86dbbef076792cf080620007f8b89ca509e4b70d6f61177eb",
+      "child_sha256": "503633f2d46fa9b1c8d39854ad873b4cb8ac03a23295ee33ca966d391c166fbb"
+    }
+  },
+  "numpy_backend": {
+    "Compilers": {
+      "c": {
+        "name": "gcc",
+        "linker": "ld.bfd",
+        "version": "14.2.1",
+        "commands": "cc"
+      },
+      "cython": {
+        "name": "cython",
+        "linker": "cython",
+        "version": "3.3.0",
+        "commands": "cython"
+      },
+      "c++": {
+        "name": "gcc",
+        "linker": "ld.bfd",
+        "version": "14.2.1",
+        "commands": "c++"
+      }
+    },
+    "Machine Information": {
+      "host": {
+        "cpu": "x86_64",
+        "family": "x86_64",
+        "endian": "little",
+        "system": "linux"
+      },
+      "build": {
+        "cpu": "x86_64",
+        "family": "x86_64",
+        "endian": "little",
+        "system": "linux"
+      }
+    },
+    "Build Dependencies": {
+      "blas": {
+        "name": "scipy-openblas",
+        "found": true,
+        "version": "0.3.34.106.0",
+        "detection method": "pkgconfig",
+        "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+        "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+        "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+        "pc file directory": "/project/.openblas"
+      },
+      "lapack": {
+        "name": "scipy-openblas",
+        "found": true,
+        "version": "0.3.34.106.0",
+        "detection method": "pkgconfig",
+        "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+        "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+        "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+        "pc file directory": "/project/.openblas"
+      }
+    },
+    "Python Information": {
+      "path": "/tmp/build-env-h653xs07/bin/python",
+      "version": "3.13"
+    },
+    "SIMD Extensions": {
+      "baseline": [
+        "X86_V2"
+      ],
+      "found": [
+        "X86_V3",
+        "X86_V4",
+        "AVX512_ICL"
+      ],
+      "not found": [
+        "AVX512_SPR"
+      ]
+    }
+  },
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "scipy_fft_default_workers": 1
+}

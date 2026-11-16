@@ -1,0 +1,38 @@
+{
+  "time_utc": "2026-11-16T13:16:14.180961+00:00",
+  "scope": "P1 direct method operational3fields only, no code/predicate/science edit, eachactualmember grant+P4parentcasequalification stillrequired",
+  "before_manifest": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-before-direct-method-activation-1/manifest.json",
+    "sha256": "cf2ba26b8fc441802c3e61397d822880f8dc0561aed686d161bcaf24392c17e6"
+  },
+  "active_manifest": {
+    "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/manifest.json",
+    "sha256": "f9b04fadb67af16a1cd9dcd851b11173e80e4c1f2b0ad55dbc0482e4cb4b2616"
+  },
+  "allowed_changes": {
+    "approved": [
+      false,
+      true
+    ],
+    "numerical_release": [
+      false,
+      true
+    ],
+    "execution_status": [
+      "HOLD_SOURCE_BOUND_PENDING_INDEPENDENT_METHOD_REVIEW_AND_ROOT_CASE_RELEASE",
+      "released_exact_case"
+    ]
+  },
+  "method_source_review": {
+    "path": "/workspace/work/campaign/evidence/118/method-source-review-1/report.md",
+    "sha256": "aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13"
+  },
+  "scientific_scope": {
+    "path": "/workspace/work/campaign/evidence/118/premeasurement-scientific-scope-review-1/report.md",
+    "sha256": "8745f141663565de54f412ff1aa573c7bb848efe8b43b57765d18da32e09d9a3"
+  },
+  "pre_direct_frozen_actual_expectations": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-direct-expectations-before-first-direct-1.json",
+    "sha256": "ad479dc33c8fd2f9d0c1a583ec7b28120c4c1620751a417f92df1343db91ae10"
+  }
+}

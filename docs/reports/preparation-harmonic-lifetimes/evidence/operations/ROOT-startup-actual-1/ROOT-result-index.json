@@ -1,0 +1,144 @@
+{
+  "scope": "P3 existing fixed startup interfaces only, no numerical workload/target API calls or resource comparison",
+  "all14_expected_outcomes": true,
+  "records": [
+    {
+      "role": "parent",
+      "name": "direct-observer-help",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-direct-observer-help.json",
+      "sha256": "86e915e62245e6b4391cef2af5a3a65a98be2a1498401487a70421fc57c452d8",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "parent",
+      "name": "direct-observer-abort",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-direct-observer-abort.json",
+      "sha256": "8a740c598ef0c65373957cf6a99a2f572fcd6878d056304569af2e20218aec3c",
+      "returncode": 1,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "parent",
+      "name": "workflow-observer-help",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-workflow-observer-help.json",
+      "sha256": "547e67383b7d45267858c313a629390fe78445c06bb85f167d82321b440ee52b",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "parent",
+      "name": "workflow-observer-abort",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-workflow-observer-abort.json",
+      "sha256": "55ac58d0a14e6be35b8d0f7b3fd61bc8efa62369b72b6a8e3c2159c17106fe92",
+      "returncode": 1,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "parent",
+      "name": "target-help",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-target-help.json",
+      "sha256": "1daa44949d8a6074553830306889c44ff96795713ef903e388ff4a2fd54523ad",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "parent",
+      "name": "target-abort",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-target-abort.json",
+      "sha256": "49fef26bb563a6879f2796024aae50da1cfc78ea41c5e4030a16b202b8cfaee2",
+      "returncode": 2,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "parent",
+      "name": "provenance-metadata",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-provenance-metadata.json",
+      "sha256": "8dab88f0758f7dca0cd81b2993a8970bb508ecd2b7862efb64d5421c6773ffbb",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "candidate",
+      "name": "direct-observer-help",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-direct-observer-help.json",
+      "sha256": "d8a244356cb2c725bb9a349bb564d024a13b1eb270641c0afbc52bf406ee175c",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "candidate",
+      "name": "direct-observer-abort",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-direct-observer-abort.json",
+      "sha256": "e9b95f0ec7038c7890a03f48be04377f4bcf6f6b455f496497ec0002019e7589",
+      "returncode": 1,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "candidate",
+      "name": "workflow-observer-help",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-workflow-observer-help.json",
+      "sha256": "d8b2c47b7e7985afc0e0ab7bd8908134938708505a6bb2d62451abdbdd6c88cc",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "candidate",
+      "name": "workflow-observer-abort",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-workflow-observer-abort.json",
+      "sha256": "06f1277df4ad1bf70ac91819de846cb47976c84c4c6d213ec96e7a9a4cafc9e2",
+      "returncode": 1,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "candidate",
+      "name": "target-help",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-target-help.json",
+      "sha256": "1541c4fa10faee7fb9f4729f123ace0571a9dd716e9e1676e758e21c6138fbbb",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "candidate",
+      "name": "target-abort",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-target-abort.json",
+      "sha256": "5bbf963dbf9a5f80e29eebfec6ad010b5e670a82d801bc900c74e631332a8d77",
+      "returncode": 2,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    },
+    {
+      "role": "candidate",
+      "name": "provenance-metadata",
+      "record": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-provenance-metadata.json",
+      "sha256": "868dfd5a888db135f77a0ee5d4731894e41996b2caef43a24e41c1d84f29b85e",
+      "returncode": 0,
+      "expected_status_observed": true,
+      "outer_reaped": true
+    }
+  ],
+  "owned_outer_processes": "all reaped",
+  "observer_workload_children": 0,
+  "public_scientific_calls": 0,
+  "method_manifests": "unchanged false/HOLD",
+  "full_main_correspondence": "pending scheduled real members",
+  "backend_environment": "pending already-planned actual role workflow members",
+  "unsupported_windows": [
+    "early startup before hook",
+    "abrupt Git/outer loss",
+    "spawn before returned PID"
+  ],
+  "control_source_sha256": "73e2e448db63da36d1fc0d0a3ececfe18e2362726cf923f4fd67faf91aee76da"
+}

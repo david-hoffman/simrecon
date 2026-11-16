@@ -1,0 +1,52 @@
+{
+  "role": "parent",
+  "name": "direct-observer-help",
+  "kind": "help",
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-117",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/usr/bin/env",
+    "PYTHONPATH=/workspace/work/issue-117/scripts/source_free_sitecustomize",
+    "PYTEST_PLUGINS=pytest_plugin",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "NUMEXPR_NUM_THREADS=1",
+    "/workspace/work/issue-117/.venv/bin/python",
+    "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/run_direct_attempt.py",
+    "--help"
+  ],
+  "expected_returncode": 0,
+  "started_utc": "2026-11-16T12:33:24.616504+00:00",
+  "scope": "P3 nonnumerical startup metadata/CLI only; no observer workload spawn or public scientific call",
+  "guard": {
+    "argv": [
+      "/usr/local/bin/docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+      "/bin/cat",
+      "/sys/fs/cgroup/memory.current",
+      "/sys/fs/cgroup/memory.max",
+      "/proc/meminfo"
+    ],
+    "memory_current": 3675267072,
+    "memory_max": 17179869184,
+    "host_MemAvailable_bytes": 17764012032,
+    "all_visible_ancestors_resource_admission": "not claimed; numerical member admission remains separate"
+  },
+  "owned_outer_pid": 283689,
+  "owner_pid": 283659,
+  "returncode": 0,
+  "stdout": "usage: run_direct_attempt.py [-h] --grant GRANT --attempt-id ATTEMPT_ID\n                             --subject-root SUBJECT_ROOT\n\nPH118 external fixed-direct SOURCE binding of accepted116 method7. UNAPPROVED\n/ UNRELEASED / NEVER EXECUTED. No retries, growth or workflow dispatch.\nOriginal method7 launch/wait/guard/RSS logic is unchanged in this external\ncopy. A future root-authored exact-case grant is evidence, not access control.\n\noptions:\n  -h, --help            show this help message and exit\n  --grant GRANT\n  --attempt-id ATTEMPT_ID\n  --subject-root SUBJECT_ROOT\n",
+  "stderr": "",
+  "elapsed_seconds": 0.3784982610086445,
+  "outer_reaped": true
+}

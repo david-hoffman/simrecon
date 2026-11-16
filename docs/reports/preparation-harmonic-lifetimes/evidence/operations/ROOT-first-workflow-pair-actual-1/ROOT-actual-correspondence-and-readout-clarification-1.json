@@ -1,0 +1,75 @@
+{
+  "time_utc": "2026-11-16T13:06:12.046056+00:00",
+  "decision": "ROOT accepts bounded actual P4 workflow main/exec/PID/map/backend/native-unit/normalclosed ownership correspondence in each role for these exact scheduled original slots; no scientific/peak conclusion",
+  "original_index": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-first-workflow-pair-actual-1/ROOT-result-index.json",
+    "sha256": "d68643e5915f6031a2323c84d123eaaa9b338ce8a660515a80862df1f3649cd9"
+  },
+  "literal_complete_output_byte_comparison_performed": false,
+  "streamed_canonical_input_common_and_same_mode_public_value_fingerprints_equal": true,
+  "readout_clarification": "Original one-off index field all_inputs_common_and_same_mode_public_bytes_equal names fingerprint comparisons imprecisely. Only approved streaming canonical value/array hashes were compared; no full output array bytes were archived or literally compared. Original source/index remain immutable, no receipt or observation is relabeled/repeated. This does not alter the approved fingerprint protocol or numerical acceptance.",
+  "rows": [
+    {
+      "role": "parent",
+      "ordinal": 1,
+      "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g3-parent-r1-a1",
+      "receipt_sha256": "2644c164bee1dcf2aa8a02dfd75bbd1eec94bc6c9655a06ab89a9946d5811655",
+      "child_sha256": "6fd726d439071ff9e8ec8fa9f9aacf6a007e4deaa195c7b83550f78e3ce8ae9d",
+      "observer_pid": 95828,
+      "target_pid": 95866,
+      "terminal_returncode": 0,
+      "terminal_native_KiB": 74452,
+      "elapsed_call_seconds": 0.626026846,
+      "branches": [
+        [
+          "searched",
+          "searched"
+        ],
+        [
+          "time0-reused",
+          "time0-reused"
+        ]
+      ],
+      "input_sha256": "bfbbae0ff77dd73a5588176cf5457e5c75bcd03d0884db6aa8aa57d8ed71ac2d",
+      "common_output_sha256": "aa06906cb6ef9aaab4bc732cccefa525cc98ee346d9cb383d65c4f952cae9adc",
+      "same_mode_public_result_sha256": "1f5ef255aa365512924ef9a258a38dea88d701a2fcaa1cf5e67e8e4c113b8fec",
+      "product_module": "src/simrecon/__init__.py",
+      "startup_FDs_closed": true,
+      "source_identity_matches": true,
+      "normal_complete_no_cleanup_gap": true
+    },
+    {
+      "role": "candidate",
+      "ordinal": 2,
+      "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g3-candidate-r1-a1",
+      "receipt_sha256": "3343028d9eb012528637ed10e078f284a2af5c1c522f532bd3346f386adda0d8",
+      "child_sha256": "6cbac219196f7d86e41d1172850147bfa7fe3ed4e7546d273cd128611c33fe77",
+      "observer_pid": 95936,
+      "target_pid": 95974,
+      "terminal_returncode": 0,
+      "terminal_native_KiB": 74892,
+      "elapsed_call_seconds": 0.608840808,
+      "branches": [
+        [
+          "searched",
+          "searched"
+        ],
+        [
+          "time0-reused",
+          "time0-reused"
+        ]
+      ],
+      "input_sha256": "bfbbae0ff77dd73a5588176cf5457e5c75bcd03d0884db6aa8aa57d8ed71ac2d",
+      "common_output_sha256": "aa06906cb6ef9aaab4bc732cccefa525cc98ee346d9cb383d65c4f952cae9adc",
+      "same_mode_public_result_sha256": "1f5ef255aa365512924ef9a258a38dea88d701a2fcaa1cf5e67e8e4c113b8fec",
+      "product_module": "src/simrecon/__init__.py",
+      "startup_FDs_closed": true,
+      "source_identity_matches": true,
+      "normal_complete_no_cleanup_gap": true
+    }
+  ],
+  "remaining_slots": 76,
+  "backend_context": "actual matched NumPy backend CONFIG and numpy2.5.3/scipy1.18.1/defaultFFTworkers1 collected from these first required workflow members; freeze direct expected_environment before direct launch",
+  "current_direct_fullroute": "still unqualified/manifestHOLD; first parent percase P4 stillrequired",
+  "next": "ROOT may independently admit exact next10 originaltinyworkflowmembers after fresh percase resources, no auto numerical release from this file"
+}

@@ -1,0 +1,574 @@
+{
+  "time_utc": "2026-11-16T12:36:07.253325+00:00",
+  "scope": "ROOT P2 incremental primary qualification mapping, not new executions or whole-file/current-route relabel",
+  "source_correspondence_evidence": {
+    "path": "/workspace/work/campaign/evidence/118/method-source-review-1/report.md",
+    "sha256": "aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13",
+    "scope": "Independent complete actual source/original correspondence; retained common function semantics only, source bodies and field binding changes separately assessed"
+  },
+  "rows": [
+    {
+      "id": "q1-method5-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/receipt.json",
+      "sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/method_qualification.py": "b82e5f08381b9d022e3567eba91e01f89308efd4912015dee8b0d543b25043f8",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "3f7a8140409bae5c660de925ee4e41fc826cca745963d6fe670e23d596f345bf",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+      },
+      "interpreter": null,
+      "primary_result": {
+        "lifecycle_file": "normal-lifecycle.json",
+        "scope": "normal direct-child capability only; signal/recovery paths unqualified",
+        "actual_result_keys": [
+          "argv",
+          "body_sha256",
+          "signals",
+          "scope",
+          "bootstrap_sha256",
+          "bootstrap_argv",
+          "file_actions",
+          "fd_plan",
+          "workload_pid",
+          "session_ready",
+          "handshake",
+          "startup_parent_fds_closed",
+          "terminal",
+          "elapsed_seconds"
+        ],
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/normal-lifecycle.json",
+          "sha256": "b6997727dea0d12fe5d497d335f0f2fb483aa44273e997a5380223f197fe729a",
+          "bytes": 4309
+        },
+        "terminal": {
+          "pid": 45549,
+          "returncode": 0,
+          "exited": true,
+          "signaled": false,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_maxrss_multiplier_to_bytes": 1024
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "FixedSessionLaunch same-PID setsid/exec readiness/FD/session and normal exact wait4 terminal collection"
+      ],
+      "excluded": [
+        "signal/recovery paths",
+        "current118 target CLI/root/material/diagnostic route",
+        "current resource headroom"
+      ]
+    },
+    {
+      "id": "q2-default-term-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-default-term-a1/receipt.json",
+      "sha256": "04adceb4b0362c55902889d01738beb582850655604dfe478ef8a2c27edba68f",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "6104a6bbbc41bc6fd7a03668252e960df4aa006ca6ed45cbc5da7e2ff463bc58",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+      },
+      "interpreter": {
+        "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+        "executable": "/workspace/work/issue-116/.venv/bin/python",
+        "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "primary_result": {
+        "lifecycle_file": "small-lifecycle.json",
+        "expected_control_outcome": "Q2-default-term",
+        "scope": "scoped handling pass, not child exit0 or scientific memory proof",
+        "actual_result_keys": [
+          "case",
+          "mode",
+          "target_argv",
+          "fixture_sha256",
+          "signals",
+          "expected_terminal_signal",
+          "scope",
+          "bootstrap_sha256",
+          "bootstrap_argv",
+          "file_actions",
+          "fd_plan",
+          "workload_pid",
+          "bootstrap_ready",
+          "target_ready",
+          "target_ready_monotonic_ns",
+          "control_preconditions_observed",
+          "term_requested_monotonic_ns",
+          "startup_parent_fds_closed",
+          "startup_eof_observed",
+          "error",
+          "terminal",
+          "wait_ownership_lost",
+          "elapsed_seconds"
+        ],
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-default-term-a1/small-lifecycle.json",
+          "sha256": "3db07d01c27eebb4b7ff5698f1b13be00da4e973f11544d4069fa7175050d0ed",
+          "bytes": 5999
+        },
+        "terminal": {
+          "pid": 45759,
+          "returncode": -15,
+          "exited": false,
+          "signaled": true,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_maxrss_multiplier_to_bytes": 1024
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "owned exact direct-PID TERM/collection and actual terminal15"
+      ],
+      "excluded": [
+        "abrupt parent death",
+        "descendant reaping",
+        "current workload outcomes"
+      ]
+    },
+    {
+      "id": "q2-ignore-term-kill-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-ignore-term-kill-a1/receipt.json",
+      "sha256": "14945d428577e75365b5c3202d31c265577520a5ee8e8018c84d60b868a1bc8d",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "6104a6bbbc41bc6fd7a03668252e960df4aa006ca6ed45cbc5da7e2ff463bc58",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+      },
+      "interpreter": {
+        "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+        "executable": "/workspace/work/issue-116/.venv/bin/python",
+        "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "primary_result": {
+        "lifecycle_file": "small-lifecycle.json",
+        "expected_control_outcome": "Q2-ignore-term-kill",
+        "scope": "scoped handling pass, not child exit0 or scientific memory proof",
+        "actual_result_keys": [
+          "case",
+          "mode",
+          "target_argv",
+          "fixture_sha256",
+          "signals",
+          "expected_terminal_signal",
+          "scope",
+          "bootstrap_sha256",
+          "bootstrap_argv",
+          "file_actions",
+          "fd_plan",
+          "workload_pid",
+          "bootstrap_ready",
+          "target_ready",
+          "target_ready_monotonic_ns",
+          "control_preconditions_observed",
+          "term_requested_monotonic_ns",
+          "no_terminal_after_TERM_grace_monotonic_ns",
+          "startup_parent_fds_closed",
+          "startup_eof_observed",
+          "error",
+          "terminal",
+          "wait_ownership_lost",
+          "elapsed_seconds"
+        ],
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-ignore-term-kill-a1/small-lifecycle.json",
+          "sha256": "770881e6f83e0e8bdd03f12154724dcdb76d21898690ecb85a70bba2bb8a2396",
+          "bytes": 6205
+        },
+        "terminal": {
+          "pid": 45779,
+          "returncode": -9,
+          "exited": false,
+          "signaled": true,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_maxrss_multiplier_to_bytes": 1024
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "bounded direct-PID TERM then KILL/reap escalation and terminal9"
+      ],
+      "excluded": [
+        "universal cancellation recovery",
+        "spawn-before-record gap",
+        "current timings"
+      ]
+    },
+    {
+      "id": "q2-deadline-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-deadline-a1/receipt.json",
+      "sha256": "ab9589156df4668b0109317776a52a314b131a35ed541be86bb9ccd5cede0733",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "6104a6bbbc41bc6fd7a03668252e960df4aa006ca6ed45cbc5da7e2ff463bc58",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+      },
+      "interpreter": {
+        "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+        "executable": "/workspace/work/issue-116/.venv/bin/python",
+        "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "primary_result": {
+        "lifecycle_file": "small-lifecycle.json",
+        "expected_control_outcome": "Q2-deadline",
+        "scope": "scoped handling pass, not child exit0 or scientific memory proof",
+        "actual_result_keys": [
+          "case",
+          "mode",
+          "target_argv",
+          "fixture_sha256",
+          "signals",
+          "expected_terminal_signal",
+          "scope",
+          "bootstrap_sha256",
+          "bootstrap_argv",
+          "file_actions",
+          "fd_plan",
+          "workload_pid",
+          "bootstrap_ready",
+          "target_ready",
+          "target_ready_monotonic_ns",
+          "control_preconditions_observed",
+          "target_deadline_monotonic_ns",
+          "deadline_decision_monotonic_ns",
+          "stop_reason",
+          "term_requested_monotonic_ns",
+          "startup_parent_fds_closed",
+          "startup_eof_observed",
+          "error",
+          "terminal",
+          "wait_ownership_lost",
+          "elapsed_seconds"
+        ],
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-deadline-a1/small-lifecycle.json",
+          "sha256": "5d44e75d98d30cde5eeb5fef59829e7d440c734e6146ceb673d175149d06140c",
+          "bytes": 6122
+        },
+        "terminal": {
+          "pid": 45799,
+          "returncode": -15,
+          "exited": false,
+          "signaled": true,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_maxrss_multiplier_to_bytes": 1024
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "finite deadline stop direct-PID TERM/reap and terminal15"
+      ],
+      "excluded": [
+        "current deadline adequacy",
+        "current memory stops"
+      ]
+    },
+    {
+      "id": "q2-supported-sigint-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-supported-sigint-a1/receipt.json",
+      "sha256": "6d8d320f5649c1440f53811623a820e28363a8b0d400894fb1bfac1135d9b946",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "6104a6bbbc41bc6fd7a03668252e960df4aa006ca6ed45cbc5da7e2ff463bc58",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+      },
+      "interpreter": {
+        "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+        "executable": "/workspace/work/issue-116/.venv/bin/python",
+        "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "primary_result": {
+        "lifecycle_file": "small-lifecycle.json",
+        "expected_control_outcome": "Q2-supported-sigint",
+        "scope": "scoped handling pass, not child exit0 or scientific memory proof",
+        "actual_result_keys": [
+          "case",
+          "mode",
+          "target_argv",
+          "fixture_sha256",
+          "signals",
+          "expected_terminal_signal",
+          "scope",
+          "bootstrap_sha256",
+          "bootstrap_argv",
+          "file_actions",
+          "fd_plan",
+          "workload_pid",
+          "bootstrap_ready",
+          "target_ready",
+          "target_ready_monotonic_ns",
+          "control_preconditions_observed",
+          "supported_sigint_requested_monotonic_ns",
+          "cancellation_disposition",
+          "startup_parent_fds_closed",
+          "startup_eof_observed",
+          "error",
+          "terminal",
+          "wait_ownership_lost",
+          "elapsed_seconds"
+        ],
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q2-supported-sigint-a1/small-lifecycle.json",
+          "sha256": "91d9219f68482219ed385fb2b57b397c407067cfaae86279e181736d593d8c63",
+          "bytes": 6111
+        },
+        "terminal": {
+          "pid": 45813,
+          "returncode": -9,
+          "exited": false,
+          "signaled": true,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_maxrss_multiplier_to_bytes": 1024
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "supported one-shot driver KeyboardInterrupt/direct-PID cleanup; actual child terminal9"
+      ],
+      "excluded": [
+        "child exit0",
+        "repeated interruption",
+        "observer/administrative Git abrupt-death recovery"
+      ]
+    },
+    {
+      "id": "q4-parser-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q4-parser-a1/receipt.json",
+      "sha256": "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "d079e099605efb8a98e85ee1143eabf82c968342ef4d8c379654f723688f76d7",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "d8cb07b0d896e89420834d05bc8a10ee69fb7be137aaffa5be1cc963b1a845ed",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed"
+      },
+      "interpreter": {
+        "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+        "executable": "/workspace/work/issue-116/.venv/bin/python",
+        "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "primary_result": {
+        "results_file": "parser-results.jsonl",
+        "vectors_completed": 151,
+        "fixture_output_bytes": 378698,
+        "spawned_children": 0,
+        "scope": "finite synthetic parser expectations only; protocol refusal may be expected; no science, native wait-status classifier or full main status ladder executed",
+        "actual_result_lines": 151,
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q4-parser-a1/parser-results.jsonl",
+          "sha256": "b4075111d60219184356bc235e7f81d0a6ccbb8c4ac1b4d9e5ffe243d0a4228a",
+          "bytes": 45401
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "unchanged workflow structural parser finite151 synthetic vectors"
+      ],
+      "excluded": [
+        "new direct parser",
+        "whole main status ladder",
+        "adversarial generic parser",
+        "current root/material/schema correspondence"
+      ]
+    },
+    {
+      "id": "q5-tinyhash-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q5-tinyhash-a1/receipt.json",
+      "sha256": "164ecf085b44b51bbc26a01fba523ab7e1ca388e2d8074e94fdf19297e7bcb3d",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "fa0ad84441e272a918a3306b461cf3b8f1947fdfe9a453627bed861d6e99cc34",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "e9b1e1261cbc0392ed0240eabe0c07df9b9e6db6eefcb2f8ba760b120a4e644c",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json": "38f32d39f93e15ecdcbb8528914e9190c3af626390b661e2962d0e4b9ee58750",
+        "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+        "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+      },
+      "interpreter": {
+        "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+        "executable": "/workspace/work/issue-116/.venv/bin/python",
+        "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "primary_result": {
+        "results_file": "tiny-hash-results.jsonl",
+        "vectors_completed": 33,
+        "public_relations_completed": 8,
+        "chunks": [
+          16,
+          31,
+          64
+        ],
+        "numpy": "2.5.3",
+        "workload_children": 0,
+        "administrative_subprocess": "existing admission git rev-parse only, no numerical child",
+        "scope": "tiny canonical/value/finite semantics only; reference copies disclosed, no workflow/reference pair, peak benefit or exec-transition retention proof",
+        "actual_result_lines": 33,
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/q5-tinyhash-a1/tiny-hash-results.jsonl",
+          "sha256": "fc97688ceaff95431bfd8facfc1dcca6ca03e1dd14fb86529ab03891d8b8983b",
+          "bytes": 40343
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "canonical value/array finite/tiny hash33 vectors and8 public relations; chunk16/31/64"
+      ],
+      "excluded": [
+        "new scientific oracle",
+        "current products or peak",
+        "whole-context provenance"
+      ]
+    },
+    {
+      "id": "method6-rss-controls-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/method6-rss-controls-a1/receipt.json",
+      "sha256": "5d7f96701e749126d0dbc5df2eb380f36c210a4147aceb183ac268c53dc5870d",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "d88a72600774dd57c819bf5eeeed4d87126e4e3095ca731ddcc0baf94eb6bf22",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "835c38d3dfbac5095c08b8e30b7e3d1820b090cd6d2ff21e3eee4c2ebbd3af1f",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "d530ff54b8f0695c32854a8fbc40ac868f91fc92c3a827feb2299a85b50f0f25",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json": "38f32d39f93e15ecdcbb8528914e9190c3af626390b661e2962d0e4b9ee58750",
+        "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+        "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json": "56226bf97df96cfd2321c4ea96832733f229769150d9d1aaa8e23841bef52ba5"
+      },
+      "interpreter": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+      "primary_result": {
+        "results_file": "method6-results.jsonl",
+        "vectors_completed": 45,
+        "confirmation_seconds": 0.05,
+        "workload_children": 0,
+        "scope": "deterministic fake owner/clock/sample + actual decision/status/parser only; no live exit-race reproduction, kernel wait4/TERM proof or scientific result",
+        "actual_result_lines": 45,
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/method6-rss-controls-a1/method6-results.jsonl",
+          "sha256": "c58ecc47cc5bcef9f19a7ca8dbf62be44313a6b2446c050ecec7f37e353dabed",
+          "bytes": 135977
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "45 deterministic fake owner/clock/sample + actual monitor/parser/status decisions at50ms"
+      ],
+      "excluded": [
+        "live exit-race reproduction",
+        "wait4/TERM proof",
+        "current physical resource admission"
+      ]
+    },
+    {
+      "id": "method7-rss-readiness-controls-a1",
+      "receipt": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/method7-rss-readiness-controls-a1/receipt.json",
+      "sha256": "ee45f1976ae813535506e25beb2c42c49d07ce5f85a951132093b748891e8f52",
+      "status": "case_pass_scoped_only",
+      "source_sha256": {
+        "docs/reports/reconstruction-working-set/method_qualification.py": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21",
+        "docs/reports/reconstruction-working-set/qualification/inventory.json": "a9991bb1468e9ea45164e6a263068cf3ac7c4a0af3267bddd5b860ed81e2106e",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+        "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+        "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+        "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+        "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+        "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json": "38f32d39f93e15ecdcbb8528914e9190c3af626390b661e2962d0e4b9ee58750",
+        "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+        "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+        "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json": "b588cb166337507737dd2b6ed147eb4f43ec865201409604616199af32a435c0"
+      },
+      "interpreter": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+      "primary_result": {
+        "results_file": "method6-results.jsonl",
+        "vectors_completed": 68,
+        "confirmation_seconds": 0.05,
+        "workload_children": 0,
+        "scope": "deterministic fake owner/clock/sample + actual decision/status/parser only; no live exit-race reproduction, kernel wait4/TERM proof or scientific result",
+        "actual_result_lines": 68,
+        "actual_result_file": {
+          "path": "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/attempts/method7-rss-readiness-controls-a1/method6-results.jsonl",
+          "sha256": "84221811bd60964a51523f83847e7090b25a96230c400fe74aa8b902409fb33a",
+          "bytes": 222761
+        }
+      },
+      "actual_file_inventory_verified": [],
+      "retained": [
+        "68 deterministic fake owner/clock/sample/readiness + actual current monitor/parser/status decisions at50ms"
+      ],
+      "excluded": [
+        "current real child target/root/startup correspondence",
+        "physical peak/headroom",
+        "science",
+        "universal cleanup"
+      ]
+    }
+  ],
+  "current_source": "SRC2 pins7ca2dce0, direct observer384b unchanged; workflow observer material_hashes changed only; child5249/value9291/fixture2713 unchanged; current runners retain qualified common functions, with source binding/CLI/proof/root changes separately qualified on planned members",
+  "current_route_health": "P3 14 expected normal/abort/startup-only outcomes actualROOT-startup-actual-1; zero public scientific calls",
+  "not_transferred": [
+    "historical per-case memory/host/ancestor/deadline/disk grants",
+    "whole118 method or direct parser acceptance",
+    "actual118 API/native/scientific results",
+    "early pre-hook startup",
+    "spawn-before-record",
+    "abrupt administrative Git/outer loss",
+    "hidden external ancestors/actors"
+  ],
+  "mapping_limits": "Function-specific source correspondence plus named finite primary outcomes. Old selected inputs are finite controls, not all future values. No new Q1/Q2/Q4/Q5/method6/7 execution, no68 rerun, no new math or measurement."
+}

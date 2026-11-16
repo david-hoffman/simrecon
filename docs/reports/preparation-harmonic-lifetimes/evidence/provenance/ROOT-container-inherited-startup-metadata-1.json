@@ -1,0 +1,88 @@
+{
+  "scope": "Docker Config inherited startup environment metadata only; no process imports, runtime method qualification, resource admission or closed startup dependency proof",
+  "time_utc": "2026-11-16T11:46:44.583929+00:00",
+  "container_id": "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+  "image": "sha256:7da97f743f397971f35dd21cd2d19a7da070a150e0cfa3eda559e71891ec7533",
+  "running": true,
+  "init_pid": 1497,
+  "selected_env": {
+    "PYTHONPATH": {
+      "present": false,
+      "value": null
+    },
+    "PYTEST_PLUGINS": {
+      "present": false,
+      "value": null
+    },
+    "PYTEST_ADDOPTS": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONOPTIMIZE": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONNOUSERSITE": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONSAFEPATH": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONSTARTUP": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONUSERBASE": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONHOME": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONMALLOC": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONHASHSEED": {
+      "present": false,
+      "value": null
+    },
+    "MALLOC_ARENA_MAX": {
+      "present": false,
+      "value": null
+    },
+    "OMP_NUM_THREADS": {
+      "present": false,
+      "value": null
+    },
+    "OPENBLAS_NUM_THREADS": {
+      "present": false,
+      "value": null
+    },
+    "MKL_NUM_THREADS": {
+      "present": false,
+      "value": null
+    },
+    "NUMEXPR_NUM_THREADS": {
+      "present": false,
+      "value": null
+    },
+    "BLIS_NUM_THREADS": {
+      "present": false,
+      "value": null
+    },
+    "PYTHONDONTWRITEBYTECODE": {
+      "present": false,
+      "value": null
+    },
+    "SIMRECON_JAVA": {
+      "present": true,
+      "value": "/workspace/.simrecon-tools/jdk-21.0.7+6/bin/java"
+    }
+  },
+  "normalized_all_env_sha256": "d56392c4d971b81798e2b1490bf577ea109d6888798fbde38bd76ab0584d338f",
+  "bare_entry_count": 2
+}

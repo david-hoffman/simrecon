@@ -1,0 +1,119 @@
+{
+  "time_utc": "2026-11-16T13:01:53.175964+00:00",
+  "scope": "P1 operational manifest activation ONLY; no source/predicate/science edits; workflow per-member grants still required, direct remains HOLD",
+  "old_manifest": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-before-workflow-method-activation-1/manifest.json",
+    "sha256": "7d155b9d8839467f7df006109cb3cdb67efce931a1a40d46ad5d0ca75478ecff"
+  },
+  "active_manifest": {
+    "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/manifest.json",
+    "sha256": "d75562f06cdf887e3dbb285d3b007094cf74825394fee2d345605a6320f98ebf"
+  },
+  "changed_semantic_fields": {
+    "approved": [
+      false,
+      true
+    ],
+    "numerical_release": [
+      false,
+      true
+    ],
+    "execution_status": [
+      "HOLD_SOURCE_BOUND_PENDING_INDEPENDENT_METHOD_REVIEW_AND_ROOT_CASE_RELEASE",
+      "released_exact_case"
+    ]
+  },
+  "source_materials_before_after": [
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/observer.py",
+      "reviewed_sha256": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "active_sha256": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/run_direct_attempt.py",
+      "reviewed_sha256": "79b01eac07b65476b6f18d938b780d186e7ca3e5e765b998092a118ebe478a67",
+      "active_sha256": "79b01eac07b65476b6f18d938b780d186e7ca3e5e765b998092a118ebe478a67",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/direct_binding.py",
+      "reviewed_sha256": "7822b13257761fb535867b197eacd836e15607ff0a64754d0b2adc62bc4a1c87",
+      "active_sha256": "7822b13257761fb535867b197eacd836e15607ff0a64754d0b2adc62bc4a1c87",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/manifest.json",
+      "reviewed_sha256": "cf2ba26b8fc441802c3e61397d822880f8dc0561aed686d161bcaf24392c17e6",
+      "active_sha256": "cf2ba26b8fc441802c3e61397d822880f8dc0561aed686d161bcaf24392c17e6",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/observer.py",
+      "reviewed_sha256": "cea33103784e935865395ece83bfe39764ee2c03a0bbcd03b892644eb50e77d6",
+      "active_sha256": "cea33103784e935865395ece83bfe39764ee2c03a0bbcd03b892644eb50e77d6",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/run_attempt.py",
+      "reviewed_sha256": "ab6a623de596d5094dc51d36ab9f022c33b9b1aba1650dda94098d750a0baa3d",
+      "active_sha256": "ab6a623de596d5094dc51d36ab9f022c33b9b1aba1650dda94098d750a0baa3d",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/workload_child.py",
+      "reviewed_sha256": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "active_sha256": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/method_qualification.py",
+      "reviewed_sha256": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21",
+      "active_sha256": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/manifest.json",
+      "reviewed_sha256": "7d155b9d8839467f7df006109cb3cdb67efce931a1a40d46ad5d0ca75478ecff",
+      "active_sha256": "d75562f06cdf887e3dbb285d3b007094cf74825394fee2d345605a6320f98ebf",
+      "changed": true
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/shared/preparation_harmonic_memory_benchmark.py",
+      "reviewed_sha256": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+      "active_sha256": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/shared/reconstruction_memory_benchmark.py",
+      "reviewed_sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "active_sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/shared/reconstruction_summary_fixture.py",
+      "reviewed_sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "active_sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "changed": false
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/qualifier/method_qualification.py",
+      "reviewed_sha256": "2f3f4e1f1ce3003e83748b17d457332dc5243ccaad5eb62000a7b82c4bf9cac3",
+      "active_sha256": "2f3f4e1f1ce3003e83748b17d457332dc5243ccaad5eb62000a7b82c4bf9cac3",
+      "changed": false
+    }
+  ],
+  "accepted_source_report": {
+    "path": "/workspace/work/campaign/evidence/118/method-source-review-1/report.md",
+    "sha256": "aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13"
+  },
+  "accepted_scientific_scope": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-premeasurement-SCI-application-1.json",
+    "sha256": "0e7b482329220372e8441517b738cda1777338548a5c68c063f4087e43ee6350"
+  },
+  "direct_manifest": {
+    "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/manifest.json",
+    "sha256": "cf2ba26b8fc441802c3e61397d822880f8dc0561aed686d161bcaf24392c17e6",
+    "approved": false
+  }
+}

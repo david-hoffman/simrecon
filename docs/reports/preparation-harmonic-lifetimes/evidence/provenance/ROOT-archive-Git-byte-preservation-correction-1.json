@@ -1,0 +1,7 @@
+{
+  "time_utc": "2026-11-16T15:21:09.865985+00:00",
+  "classification": "Documentation archive transport/index normalization, no product/science/check-policy change",
+  "detected": "First gitadd warned CRLF CSV would normalize; cached diffcheck flagged literal spaces in archived qualifier-comparison.diff context. Working original bytes unchanged, no commit or gate attempted.",
+  "correction": "Report-local .gitattributes -text for frozen artifact bytes and -diff for archived diff/CSV records; re-add exact originals. No trimming/reformatting or numerical rerun.",
+  "verification": "All mapped logical+transport bytes must match actual Git staged blob prior to commit and final clean checkout."
+}

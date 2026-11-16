@@ -1,0 +1,13 @@
+/workspace/work/issue-117/scripts/source_free_check.py: OK
+/workspace/work/issue-117/scripts/source_free_sitecustomize/sitecustomize.py: OK
+/workspace/work/issue-117/scripts/source_free_sitecustomize/pytest_plugin.py: OK
+/workspace/work/issue-117/pyproject.toml: OK
+/workspace/work/issue-118/scripts/source_free_check.py: OK
+/workspace/work/issue-118/scripts/source_free_sitecustomize/sitecustomize.py: OK
+/workspace/work/issue-118/scripts/source_free_sitecustomize/pytest_plugin.py: OK
+/workspace/work/issue-118/pyproject.toml: OK
+/workspace/work/issue-117/.venv/lib/python3.13/site-packages/_virtualenv.py: OK
+/workspace/work/issue-118/.venv/lib/python3.13/site-packages/_virtualenv.py: OK
+/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification/inventory.json: OK
+/workspace/work/campaign/evidence/118/ROOT-container-inherited-startup-metadata-1.json: OK
+/workspace/work/campaign/evidence/118/ROOT-inherited-coverage-startup-metadata-1.json: OK

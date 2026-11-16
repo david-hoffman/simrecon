@@ -1,0 +1,7 @@
+/workspace/work/issue-118/tests/c_acquisition_fixture.py
+/workspace/work/issue-118/tests/c_known_fixture.py
+/workspace/work/issue-118/tests/c_preparation_fixture.py
+/workspace/work/issue-118/tests/c_workflow_oracle.py
+/workspace/work/issue-118/tests/test_c_acquisition_transfer.py
+/workspace/work/issue-119/contracts/prepared-band-storage-design-v1.md
+/workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json

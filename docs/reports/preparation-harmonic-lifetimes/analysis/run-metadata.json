@@ -1,0 +1,26 @@
+{
+  "scope": "CLOSED78_FILE_SCALARS_PENDING_WHOLE_SCI_NOT_RESULT_ACCEPTANCE",
+  "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+  "executable": "/workspace/work/issue-118/.venv/bin/python",
+  "isolated": 1,
+  "no_site": 1,
+  "dont_write_bytecode": true,
+  "statistics_path": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+  "statistics_sha256": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18",
+  "script_sha256": "b28a05c9a42c97f6b42d2d605b1fb4e26d510f16e992c3c6cfee67b09e48f9b2",
+  "raw_manifest_sha256": "182101befe997693ffd093bc7ac00a9a8d3f060ab634c22cd8c6e75503bb4aa0",
+  "roster_sha256": "161fd0657d22e7a04cd100ccf5517bdc79c832396cc04052fc7e4dfc90e06ab8",
+  "record_count": 78,
+  "complete_condition_mode_profile_role_groups": 26,
+  "forbidden_imports_present": false,
+  "input_stability": "all raw identities match before and after",
+  "no_workflow_union": true,
+  "no_scientific_calls_or_new_observation": true,
+  "immutable_completion_indexes": {
+    "/workspace/work/campaign/evidence/118/ROOT-final24-workflow-actual-1/ROOT-result-index.json": "6df2e7d867844d7a4120c932031268ed68605be839b4ae5f23fcc7eafce4eb98",
+    "/workspace/work/campaign/evidence/118/ROOT-direct42-actual-1/ROOT-result-index.json": "cebf8afe72982fa7373c1e36056fd3f29e90638eaed95e6c98510c24761e5e89",
+    "/workspace/work/campaign/evidence/118/ROOT-first-workflow-pair-actual-1/ROOT-result-index.json": "d68643e5915f6031a2323c84d123eaaa9b338ce8a660515a80862df1f3649cd9",
+    "/workspace/work/campaign/evidence/118/ROOT-next-ten-tiny-workflow-actual-1/ROOT-result-index.json": "998200edc4aef9e4cb14773dc420e5ff44a2fab3214824d05c1cf08f53341407"
+  },
+  "ownership": "file-only analysis process; creates no subprocess or numerical workload"
+}

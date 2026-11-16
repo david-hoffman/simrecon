@@ -1,0 +1,226 @@
+{
+  "scope": "CLOSED78_FILE_SCALARS_PENDING_WHOLE_SCI_NOT_RESULT_ACCEPTANCE",
+  "checks": [
+    {
+      "route": "direct",
+      "condition": "acquisition-128",
+      "mode": "direct-full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-D-acquisition-128-parent-r1-a1",
+        "ph118-D-acquisition-128-candidate-r1-a1",
+        "ph118-D-acquisition-128-candidate-r2-a1",
+        "ph118-D-acquisition-128-parent-r2-a1",
+        "ph118-D-acquisition-128-parent-r3-a1",
+        "ph118-D-acquisition-128-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": true,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "direct",
+      "condition": "acquisition-64",
+      "mode": "direct-full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-D-acquisition-64-parent-r1-a1",
+        "ph118-D-acquisition-64-candidate-r1-a1",
+        "ph118-D-acquisition-64-candidate-r2-a1",
+        "ph118-D-acquisition-64-parent-r2-a1",
+        "ph118-D-acquisition-64-parent-r3-a1",
+        "ph118-D-acquisition-64-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": true,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "direct",
+      "condition": "acquisition-drift",
+      "mode": "direct-full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-D-acquisition-drift-parent-r1-a1",
+        "ph118-D-acquisition-drift-candidate-r1-a1",
+        "ph118-D-acquisition-drift-candidate-r2-a1",
+        "ph118-D-acquisition-drift-parent-r2-a1",
+        "ph118-D-acquisition-drift-parent-r3-a1",
+        "ph118-D-acquisition-drift-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": true,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "direct",
+      "condition": "acquisition-off",
+      "mode": "direct-full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-D-acquisition-off-parent-r1-a1",
+        "ph118-D-acquisition-off-candidate-r1-a1",
+        "ph118-D-acquisition-off-candidate-r2-a1",
+        "ph118-D-acquisition-off-parent-r2-a1",
+        "ph118-D-acquisition-off-parent-r3-a1",
+        "ph118-D-acquisition-off-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": true,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "direct",
+      "condition": "known-128",
+      "mode": "direct-full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-D-known-128-parent-r1-a1",
+        "ph118-D-known-128-candidate-r1-a1",
+        "ph118-D-known-128-candidate-r2-a1",
+        "ph118-D-known-128-parent-r2-a1",
+        "ph118-D-known-128-parent-r3-a1",
+        "ph118-D-known-128-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": true,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "direct",
+      "condition": "known-64",
+      "mode": "direct-full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-D-known-64-parent-r1-a1",
+        "ph118-D-known-64-candidate-r1-a1",
+        "ph118-D-known-64-candidate-r2-a1",
+        "ph118-D-known-64-parent-r2-a1",
+        "ph118-D-known-64-parent-r3-a1",
+        "ph118-D-known-64-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": true,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "direct",
+      "condition": "preparation-context-64",
+      "mode": "direct-full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-D-preparation-context-64-parent-r1-a1",
+        "ph118-D-preparation-context-64-candidate-r1-a1",
+        "ph118-D-preparation-context-64-candidate-r2-a1",
+        "ph118-D-preparation-context-64-parent-r2-a1",
+        "ph118-D-preparation-context-64-parent-r3-a1",
+        "ph118-D-preparation-context-64-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": true,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "workflow",
+      "condition": "2d-search",
+      "mode": "full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-W-g4-parent-r1-a1",
+        "ph118-W-g4-candidate-r1-a1",
+        "ph118-W-g4-candidate-r2-a1",
+        "ph118-W-g4-parent-r2-a1",
+        "ph118-W-g4-parent-r3-a1",
+        "ph118-W-g4-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": null,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "workflow",
+      "condition": "2d-search",
+      "mode": "summary",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-W-g3-parent-r1-a1",
+        "ph118-W-g3-candidate-r1-a1",
+        "ph118-W-g3-candidate-r2-a1",
+        "ph118-W-g3-parent-r2-a1",
+        "ph118-W-g3-parent-r3-a1",
+        "ph118-W-g3-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": null,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "workflow",
+      "condition": "central64",
+      "mode": "full",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-W-g2-parent-r1-a1",
+        "ph118-W-g2-candidate-r1-a1",
+        "ph118-W-g2-candidate-r2-a1",
+        "ph118-W-g2-parent-r2-a1",
+        "ph118-W-g2-parent-r3-a1",
+        "ph118-W-g2-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": null,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "workflow",
+      "condition": "central64",
+      "mode": "full",
+      "profile": true,
+      "attempt_ids": [
+        "ph118-W-g6-parent-r1-a1",
+        "ph118-W-g6-candidate-r1-a1",
+        "ph118-W-g6-candidate-r2-a1",
+        "ph118-W-g6-parent-r2-a1",
+        "ph118-W-g6-parent-r3-a1",
+        "ph118-W-g6-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": null,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "workflow",
+      "condition": "central64",
+      "mode": "summary",
+      "profile": false,
+      "attempt_ids": [
+        "ph118-W-g1-parent-r1-a1",
+        "ph118-W-g1-candidate-r1-a1",
+        "ph118-W-g1-candidate-r2-a1",
+        "ph118-W-g1-parent-r2-a1",
+        "ph118-W-g1-parent-r3-a1",
+        "ph118-W-g1-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": null,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    },
+    {
+      "route": "workflow",
+      "condition": "central64",
+      "mode": "summary",
+      "profile": true,
+      "attempt_ids": [
+        "ph118-W-g5-parent-r1-a1",
+        "ph118-W-g5-candidate-r1-a1",
+        "ph118-W-g5-candidate-r2-a1",
+        "ph118-W-g5-parent-r2-a1",
+        "ph118-W-g5-parent-r3-a1",
+        "ph118-W-g5-candidate-r3-a1"
+      ],
+      "all_six_scientific_fingerprint_projections_equal": true,
+      "direct_caller_inputs_unchanged": null,
+      "scope": "hash/projection correspondence only, not literal whole-array byte comparison or independent accuracy oracle"
+    }
+  ]
+}

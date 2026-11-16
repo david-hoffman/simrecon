@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 28 items
+
+tests/test_preparation_harmonic_lifetimes.py ........................... [ 96%]
+.                                                                        [100%]
+
+==================================== PASSES ====================================
+____ test_direct_entry_external_failure_semantics[allocation-prepare_bands] ____
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: prepare_bands/allocation: intercepted; calls=1
+_ test_direct_entry_external_failure_semantics[allocation-prepare_acquisition_bands] _
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: prepare_acquisition_bands/allocation: intercepted; calls=1
+__ test_direct_entry_external_failure_semantics[allocation-reconstruct_known] __
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: reconstruct_known/allocation: intercepted; calls=1
+___ test_direct_entry_external_failure_semantics[interruption-prepare_bands] ___
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: prepare_bands/interruption: intercepted; calls=1
+_ test_direct_entry_external_failure_semantics[interruption-prepare_acquisition_bands] _
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: prepare_acquisition_bands/interruption: intercepted; calls=1
+_ test_direct_entry_external_failure_semantics[interruption-reconstruct_known] _
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: reconstruct_known/interruption: intercepted; calls=1
+__ test_direct_entry_external_failure_semantics[factorization-prepare_bands] ___
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: prepare_bands/factorization: intercepted; calls=1
+_ test_direct_entry_external_failure_semantics[backend-prepare_acquisition_bands] _
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: prepare_acquisition_bands/backend: intercepted; calls=1
+___ test_direct_entry_external_failure_semantics[backend-reconstruct_known] ____
+----------------------------- Captured stdout call -----------------------------
+PH118 public dependency control: reconstruct_known/backend: intercepted; calls=1
+============================= 28 passed in 14.22s ==============================
+
+status=0 elapsed_seconds=15

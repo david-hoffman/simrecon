@@ -1,0 +1,7 @@
+/workspace/work/campaign/evidence/118/resource-analysis-closed54-1/README-PARTIAL.md
+/workspace/work/campaign/evidence/118/resource-analysis-closed54-1/outputs.sha256
+/workspace/work/campaign/evidence/118/resource-analysis-closed54-1/description-correction-1.md
+/workspace/work/campaign/evidence/118/resource-analysis-closed54-1/description-correction-numeric-source-before.sha256
+/workspace/work/campaign/evidence/118/resource-analysis-closed54-1/description-correction-numeric-source-after.sha256
+/workspace/work/campaign/evidence/118/resource-analysis-closed54-1/description-v1-before-finish-boundary-correction/README-PARTIAL.md
+/workspace/work/campaign/evidence/118/resource-analysis-closed54-1/description-v1-before-finish-boundary-correction/outputs.sha256

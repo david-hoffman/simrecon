@@ -1,0 +1,493 @@
+--- /workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/method_qualification.py	2026-11-16 03:27:23.981631111 -0800
++++ /workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/qualifier/method_qualification.py	2026-11-16 03:46:16.782330751 -0800
+@@ -17,8 +17,65 @@
+ from pathlib import Path
+ 
+ HERE = Path(__file__).resolve().parent
+-ROOT = HERE.parents[2]
+-QUAL = HERE / "qualification"
++ROOTS = {
++    "parent": Path("/workspace/work/issue-117"),
++    "candidate": Path("/workspace/work/issue-118"),
++}
++ROOT = None  # Bound only by the required fixed revision selector in main.
++METHOD = Path("/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow")
++CONTROL_INPUTS = Path(
++    "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification"
++)
++HISTORICAL_RECEIPTS = Path(
++    "/workspace/work/issue-117/docs/reports/reconstruction-working-set/qualification"
++)
++HISTORICAL_Q2_PAYLOADS = Path(
++    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification"
++)
++OUTPUTS = {
++    "parent": HERE / "qualification-parent",
++    "candidate": HERE / "qualification-candidate",
++}
++PRODUCT_KEYS = (
++    "uv.lock",
++    "tests/reconstruction_summary_fixture.py",
++    "tests/reconstruction_memory_benchmark.py",
++)
++CONTROL_FILES = (
++    "inventory.json",
++    "fixtures/stdlib-child.txt",
++    "fixtures/lifecycle-target-v1.txt",
++    "fixtures/parser-vectors-v1.json",
++    "fixtures/tiny-hash-vectors-v1.json",
++    "fixtures/method6-rss-controls-v1.json",
++)
++OWN_SOURCE_KEY = "external_qualifier:" + str(HERE / "method_qualification.py")
++PRESERVED_QUALIFIER_KEY = "external_method:" + str(METHOD / "method_qualification.py")
++SOURCE_KEYS = {
++    "docs/reports/reconstruction-working-set/" + name:
++    "external_method:" + str(METHOD / name)
++    for name in ("observer.py", "run_attempt.py", "workload_child.py", "manifest.json")
++}
++SOURCE_KEYS["docs/reports/reconstruction-working-set/method_qualification.py"] = OWN_SOURCE_KEY
++SOURCE_KEYS.update(
++    {
++        "docs/reports/reconstruction-working-set/qualification/" + name:
++        "readonly_control:" + str(CONTROL_INPUTS / name)
++        for name in CONTROL_FILES
++    }
++)
++FIXED_SOURCES = {
++    "external_method:" + str(METHOD / name): METHOD / name
++    for name in (
++        "observer.py", "run_attempt.py", "workload_child.py", "manifest.json",
++        "method_qualification.py",
++    )
++}
++FIXED_SOURCES[OWN_SOURCE_KEY] = HERE / "method_qualification.py"
++FIXED_SOURCES.update(
++    {"readonly_control:" + str(CONTROL_INPUTS / name): CONTROL_INPUTS / name
++     for name in CONTROL_FILES}
++)
+ PASS = "case_pass_scoped_only"
+ Q2_CASES = ("Q2-default-term", "Q2-ignore-term-kill", "Q2-deadline", "Q2-supported-sigint")
+ Q4_CASE = "Q4-parser"
+@@ -115,11 +172,17 @@
+                 "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json",
+             }
+         )
++    required = {SOURCE_KEYS.get(name, name) for name in required}
++    required.add(PRESERVED_QUALIFIER_KEY)
+     require(required <= set(grant["source_sha256"]), "mandatory frozen material identity missing")
++    require(
++        set(grant["source_sha256"]) <= set(FIXED_SOURCES) | set(PRODUCT_KEYS),
++        "source identity outside fixed qualifier binding",
++    )
+     actual = {}
+     for name in grant["source_sha256"]:
+-        path = (ROOT / name).resolve()
+-        require(path.is_relative_to(ROOT), "source identity outside named worktree")
++        path = ROOT / name if name in PRODUCT_KEYS else FIXED_SOURCES[name]
++        require(path.resolve() == path, "source identity outside canonical fixed path")
+         actual[name] = obs.digest(path)
+     require(actual == grant["source_sha256"], "source/fixture identity changed")
+     return actual
+@@ -145,7 +208,7 @@
+         grant["case"] == args.case and grant["attempt_id"] == args.attempt_id,
+         "grant/case/attempt mismatch",
+     )
+-    require(method.git("rev-parse", "HEAD") == grant["candidate_head"], "candidate HEAD changed")
++    require(method.git(ROOT, "rev-parse", "HEAD") == grant["candidate_head"], "candidate HEAD changed")
+     require(str(Path(sys.executable).resolve()) == grant["python_resolved"], "unpinned interpreter")
+     require(
+         all(os.environ.get(name) == "1" for name in obs.THREADS),
+@@ -169,7 +232,7 @@
+     if args.case in (*Q2_CASES, Q4_CASE, Q5_CASE):
+         require(
+             identities[
+-                "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt"
++                SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt"]
+             ]
+             == inventory["lifecycle_target_sha256"],
+             "Q2 target fixture digest differs from inventory",
+@@ -179,7 +242,7 @@
+         require(grant["phase_bounds"] == inventory[phase + "_bounds"], "phase bounds differ")
+         require(
+             identities[
+-                "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json"
++                SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json"]
+             ]
+             == inventory["q4_fixture_sha256"],
+             "Q4 scalar fixture differs",
+@@ -187,7 +250,7 @@
+     if args.case == Q5_CASE:
+         require(
+             identities[
+-                "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json"
++                SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json"]
+             ]
+             == inventory["q5_fixture_sha256"],
+             "Q5 tiny fixture differs",
+@@ -249,8 +312,8 @@
+ def retained_q1(grant, current, obs):
+     """Retain one exact passed Q1 only for six explicitly unchanged inputs."""
+     evidence = grant["retained_method5_Q1"]
+-    receipt_path = QUAL / "attempts/q1-method5-a1/receipt.json"
+-    life_path = QUAL / "attempts/q1-method5-a1/normal-lifecycle.json"
++    receipt_path = HISTORICAL_RECEIPTS / "attempts/q1-method5-a1/receipt.json"
++    life_path = HISTORICAL_RECEIPTS / "attempts/q1-method5-a1/normal-lifecycle.json"
+     require(
+         Path(evidence["receipt_path"]).resolve() == receipt_path.resolve()
+         and evidence["receipt_sha256"]
+@@ -274,7 +337,8 @@
+         "retained Q1 outcome not successful",
+     )
+     require(
+-        all(prior["source_sha256"][key] == current[key] for key in RETAINED_METHOD_KEYS),
++        all(prior["source_sha256"][key] == current[SOURCE_KEYS.get(key, key)]
++            for key in RETAINED_METHOD_KEYS),
+         "accepted method/old fixture/lock changed: retain no Q1 applicability",
+     )
+     require(
+@@ -294,21 +358,24 @@
+         ),
+         "receipt_sha256": evidence["receipt_sha256"],
+         "lifecycle_sha256": evidence["lifecycle_sha256"],
+-        "unchanged_source_sha256": {key: current[key] for key in RETAINED_METHOD_KEYS},
++        "unchanged_source_sha256": {
++            SOURCE_KEYS.get(key, key): current[SOURCE_KEYS.get(key, key)]
++            for key in RETAINED_METHOD_KEYS
++        },
+         "prior_driver_sha256": prior["source_sha256"][
+             "docs/reports/reconstruction-working-set/method_qualification.py"
+         ],
+         "new_driver_sha256": current[
+-            "docs/reports/reconstruction-working-set/method_qualification.py"
++            SOURCE_KEYS["docs/reports/reconstruction-working-set/method_qualification.py"]
+         ],
+         "prior_inventory_sha256": prior["source_sha256"][
+             "docs/reports/reconstruction-working-set/qualification/inventory.json"
+         ],
+         "new_inventory_sha256": current[
+-            "docs/reports/reconstruction-working-set/qualification/inventory.json"
++            SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/inventory.json"]
+         ],
+         "new_fixture_sha256": current[
+-            "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt"
++            SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt"]
+         ],
+     }
+ 
+@@ -321,18 +388,19 @@
+         "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt",
+     )
+     for attempt, receipt_sha, lifecycle_sha, expected_signal in Q2_EVIDENCE:
+-        directory = QUAL / "attempts" / attempt
++        directory = HISTORICAL_RECEIPTS / "attempts" / attempt
++        lifecycle_path = HISTORICAL_Q2_PAYLOADS / "attempts" / attempt / "small-lifecycle.json"
+         require(
+             obs.digest(directory / "receipt.json") == receipt_sha
+-            and obs.digest(directory / "small-lifecycle.json") == lifecycle_sha,
++            and obs.digest(lifecycle_path) == lifecycle_sha,
+             "exact retained Q2 evidence changed",
+         )
+         prior = json.loads((directory / "receipt.json").read_text())
+-        life = json.loads((directory / "small-lifecycle.json").read_text())
++        life = json.loads(lifecycle_path.read_text())
+         require(
+             prior["status"] == PASS
+             and prior["attempt_id"] == attempt
+-            and all(prior["source_sha256"][key] == current[key] for key in keys),
++            and all(prior["source_sha256"][key] == current[SOURCE_KEYS.get(key, key)] for key in keys),
+             "retained Q2 outcome/input mapping differs",
+         )
+         require(
+@@ -357,12 +425,14 @@
+         "scope": "four exact Q2 results for unchanged method/bootstrap/fixtures/lock only; "
+         "no relabelled new-driver pass",
+         "evidence": rows,
+-        "unchanged_source_sha256": {key: current[key] for key in keys},
++        "unchanged_source_sha256": {
++            SOURCE_KEYS.get(key, key): current[SOURCE_KEYS.get(key, key)] for key in keys
++        },
+         "current_driver_sha256": current[
+-            "docs/reports/reconstruction-working-set/method_qualification.py"
++            SOURCE_KEYS["docs/reports/reconstruction-working-set/method_qualification.py"]
+         ],
+         "current_inventory_sha256": current[
+-            "docs/reports/reconstruction-working-set/qualification/inventory.json"
++            SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/inventory.json"]
+         ],
+     }
+ 
+@@ -388,7 +458,7 @@
+ 
+ def parser_case(out, grant, bounds, obs, method):
+     """Observe accepted Q4 interfaces on the exact finite scalar fixture inventory."""
+-    fixture = QUAL / "fixtures/parser-vectors-v1.json"
++    fixture = CONTROL_INPUTS / "fixtures/parser-vectors-v1.json"
+     require(fixture.stat().st_size <= bounds["fixture_bytes"], "Q4 fixture exceeds bound")
+     data = json.loads(fixture.read_text())
+     vectors = data["vectors"]
+@@ -514,7 +584,7 @@
+ 
+ def retained_q4(current, obs):
+     """Keep the one exact Q4 result only for unchanged method and scalar fixtures."""
+-    directory = QUAL / "attempts/q4-parser-a1"
++    directory = HISTORICAL_RECEIPTS / "attempts/q4-parser-a1"
+     receipt_sha = "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa"
+     rows_sha = "b4075111d60219184356bc235e7f81d0a6ccbb8c4ac1b4d9e5ffe243d0a4228a"
+     require(
+@@ -533,7 +603,7 @@
+         and prior["case"] == Q4_CASE
+         and prior["attempt_id"] == "q4-parser-a1"
+         and prior["result"]["vectors_completed"] == 151
+-        and all(prior["source_sha256"][key] == current[key] for key in keys),
++        and all(prior["source_sha256"][key] == current[SOURCE_KEYS.get(key, key)] for key in keys),
+         "retained Q4 outcome/unchanged-input mapping differs",
+     )
+     return {
+@@ -541,12 +611,14 @@
+         "rows_sha256": rows_sha,
+         "scope": "exact Q4 parser result only for unchanged methods/fixtures/lock; "
+         "new driver/inventory/Q5/helper inputs are independently bound, not prior passes",
+-        "unchanged_source_sha256": {key: current[key] for key in keys},
++        "unchanged_source_sha256": {
++            SOURCE_KEYS.get(key, key): current[SOURCE_KEYS.get(key, key)] for key in keys
++        },
+         "prior_driver_sha256": prior["source_sha256"][
+             "docs/reports/reconstruction-working-set/method_qualification.py"
+         ],
+         "current_driver_sha256": current[
+-            "docs/reports/reconstruction-working-set/method_qualification.py"
++            SOURCE_KEYS["docs/reports/reconstruction-working-set/method_qualification.py"]
+         ],
+     }
+ 
+@@ -680,7 +752,7 @@
+         and Path(benchmark.__file__).resolve() == ROOT / "tests/reconstruction_memory_benchmark.py",
+         "Q5 NumPy/frozen-helper resolution differs",
+     )
+-    path = QUAL / "fixtures/tiny-hash-vectors-v1.json"
++    path = CONTROL_INPUTS / "fixtures/tiny-hash-vectors-v1.json"
+     require(path.stat().st_size <= bounds["fixture_bytes"], "Q5 fixture exceeds bound")
+     data = json.loads(path.read_text())
+     require(
+@@ -747,7 +819,7 @@
+     old_path = Path(grant["legacy_runner_source"]["path"])
+     require(
+         old_path
+-        == Path("/workspace/work/campaign/evidence/116/source-before-method6/run_attempt.py")
++        == Path("/workspace/work/campaign/evidence/116/source-method5-review5/docs/reports/reconstruction-working-set/run_attempt.py")
+         and grant["legacy_runner_source"]["sha256"]
+         == "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61"
+         and obs.digest(old_path) == grant["legacy_runner_source"]["sha256"],
+@@ -755,7 +827,7 @@
+     )
+     functions = ("WaitOwner", "cleanup", "child_outcome", "validate_complete_record")
+     texts = []
+-    for path in (old_path, HERE / "run_attempt.py"):
++    for path in (old_path, METHOD / "run_attempt.py"):
+         require(path.stat().st_size <= 131072, "method6 retained source parse bound")
+         source = path.read_text()
+         nodes = ast.parse(source).body
+@@ -778,7 +850,8 @@
+     ]
+     unchanged_keys = tuple(
+         key
+-        for key in current
++        for key in (*SOURCE_KEYS, *PRODUCT_KEYS)
++        if SOURCE_KEYS.get(key, key) in current
+         if key
+         not in {
+             "docs/reports/reconstruction-working-set/run_attempt.py",
+@@ -789,7 +862,7 @@
+     )
+     rows = []
+     for attempt, receipt_sha in evidence:
+-        path = QUAL / "attempts" / attempt / "receipt.json"
++        path = HISTORICAL_RECEIPTS / "attempts" / attempt / "receipt.json"
+         require(obs.digest(path) == receipt_sha, "historical qualified receipt changed")
+         prior = json.loads(path.read_text())
+         require(
+@@ -798,7 +871,7 @@
+         )
+         keys = [key for key in unchanged_keys if key in prior["source_sha256"]]
+         require(
+-            all(prior["source_sha256"][key] == current[key] for key in keys),
++            all(prior["source_sha256"][key] == current[SOURCE_KEYS.get(key, key)] for key in keys),
+             "historical unchanged input subset differs",
+         )
+         rows.append(
+@@ -806,7 +879,9 @@
+                 "attempt_id": attempt,
+                 "receipt_sha256": receipt_sha,
+                 "full_source_receipt_reuse": False,
+-                "unchanged_input_sha256": {key: current[key] for key in keys},
++                "unchanged_input_sha256": {
++                    SOURCE_KEYS.get(key, key): current[SOURCE_KEYS.get(key, key)] for key in keys
++                },
+             }
+         )
+     return {
+@@ -859,7 +934,7 @@
+ 
+ def method6_controls(out, grant, bounds, obs, method):
+     """Exercise the actual new decision and final-status helpers with finite synthetic inputs."""
+-    path = QUAL / "fixtures/method6-rss-controls-v1.json"
++    path = CONTROL_INPUTS / "fixtures/method6-rss-controls-v1.json"
+     require(path.stat().st_size <= bounds["fixture_bytes"], "method6 fixture bound")
+     data = json.loads(path.read_text())
+     require(
+@@ -867,7 +942,7 @@
+         and len({row["id"] for row in data["vectors"]}) == bounds["vector_count"],
+         "method6 exact vector inventory differs",
+     )
+-    parser_path = QUAL / "fixtures/parser-vectors-v1.json"
++    parser_path = CONTROL_INPUTS / "fixtures/parser-vectors-v1.json"
+     require(
+         parser_path.stat().st_size <= bounds["parser_fixture_bytes"], "old parser fixture bound"
+     )
+@@ -1110,7 +1185,7 @@
+     if hasattr(subprocess, "_fork_exec"):
+         subprocess._fork_exec = deny
+ 
+-    out = QUAL / "attempts" / args.attempt_id
++    out = OUTPUTS[args.revision] / args.attempt_id
+     out.mkdir(parents=True, exist_ok=False)
+     receipt = {
+         "protocol": "WS116-method6-pure-controls-v1",
+@@ -1159,33 +1234,35 @@
+                 return hashlib.file_digest(stream, "sha256").hexdigest()
+ 
+         require(
+-            len(grant["source_sha256"]) == 14
++            len(grant["source_sha256"]) == 15
+             and {
+-                "docs/reports/reconstruction-working-set/observer.py",
+-                "docs/reports/reconstruction-working-set/run_attempt.py",
+-                "docs/reports/reconstruction-working-set/method_qualification.py",
+-                "docs/reports/reconstruction-working-set/qualification/inventory.json",
++                SOURCE_KEYS["docs/reports/reconstruction-working-set/observer.py"],
++                SOURCE_KEYS["docs/reports/reconstruction-working-set/run_attempt.py"],
++                OWN_SOURCE_KEY,
++                PRESERVED_QUALIFIER_KEY,
++                SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/inventory.json"],
+             }
+-            <= set(grant["source_sha256"]),
+-            "pure fourteen-input map incomplete",
++            <= set(grant["source_sha256"])
++            and set(grant["source_sha256"]) <= set(FIXED_SOURCES) | set(PRODUCT_KEYS),
++            "pure fifteen-input fixed map incomplete",
+         )
+         for name, digest in grant["source_sha256"].items():
+-            path = (ROOT / name).resolve()
++            path = ROOT / name if name in PRODUCT_KEYS else FIXED_SOURCES[name]
+             require(
+-                path.is_relative_to(ROOT) and file_digest(path) == digest,
++                path.resolve() == path and file_digest(path) == digest,
+                 "pure source input identity differs: " + name,
+             )
+         require(
+             "observer" not in sys.modules and "run_attempt" not in sys.modules,
+             "report module unexpectedly preloaded",
+         )
+-        sys.path.insert(0, str(HERE))
++        sys.path.insert(0, str(METHOD))
+         import observer as obs
+         import run_attempt as method
+ 
+         require(
+-            Path(obs.__file__).resolve() == HERE / "observer.py"
+-            and Path(method.__file__).resolve() == HERE / "run_attempt.py",
++            Path(obs.__file__).resolve() == METHOD / "observer.py"
++            and Path(method.__file__).resolve() == METHOD / "run_attempt.py",
+             "pure report imports resolve outside frozen files",
+         )
+         # Fail immediately if a future edit reaches a generic live-observation
+@@ -1198,7 +1275,7 @@
+         method.git = deny
+         obs.rusage_snapshot = deny
+         identities = source_identities(grant, obs)
+-        inventory_path = QUAL / "inventory.json"
++        inventory_path = CONTROL_INPUTS / "inventory.json"
+         require(inventory_path.stat().st_size <= 32768, "pure inventory exceeds32KiB")
+         inventory = json.loads(inventory_path.read_text())
+         bounds = inventory["method6_bounds"]
+@@ -1206,7 +1283,7 @@
+             grant["phase_bounds"] == bounds
+             and bounds["confirmation_seconds"] == method.RSS_TERMINAL_CONFIRM_SECONDS
+             and identities[
+-                "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json"
++                SOURCE_KEYS["docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json"]
+             ]
+             == inventory["method6_fixture_sha256"],
+             "pure finite bound/fixture mismatch",
+@@ -1288,7 +1365,7 @@
+         sys.platform == "linux" and hasattr(os, "posix_spawn") and hasattr(os, "wait4"),
+         "Linux spawn/wait4 route unavailable",
+     )
+-    fixture = QUAL / "fixtures/stdlib-child.txt"
++    fixture = CONTROL_INPUTS / "fixtures/stdlib-child.txt"
+     argv = [sys.executable, "-c", fixture.read_text(), "normal"]
+     record = {
+         "argv": argv,
+@@ -1449,7 +1526,7 @@
+     """Run one of four declared target-ready lifecycle cases; never kill the observer."""
+     mode = "ignore-term" if case_name == "Q2-ignore-term-kill" else "default"
+     expected_signal = 9 if case_name in ("Q2-ignore-term-kill", "Q2-supported-sigint") else 15
+-    fixture = QUAL / "fixtures/lifecycle-target-v1.txt"
++    fixture = CONTROL_INPUTS / "fixtures/lifecycle-target-v1.txt"
+     argv = [
+         sys.executable,
+         "-c",
+@@ -1739,6 +1816,7 @@
+ 
+ def main():
+     """Run exactly one released readiness case; preserve every failed attempt."""
++    global ROOT
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument(
+         "--case",
+@@ -1747,7 +1825,17 @@
+     )
+     parser.add_argument("--grant", type=Path, required=True)
+     parser.add_argument("--attempt-id", required=True)
++    parser.add_argument("--revision", choices=("parent", "candidate"), required=True)
+     args = parser.parse_args()
++    ROOT = ROOTS[args.revision]
++    require(
++        HERE == Path("/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/qualifier")
++        and Path(__file__).resolve() == HERE / "method_qualification.py"
++        and ROOT.resolve() == ROOT
++        and METHOD.resolve() == METHOD
++        and CONTROL_INPUTS.resolve() == CONTROL_INPUTS,
++        "qualifier source/root/import/control paths differ from fixed canonical binding",
++    )
+     require(
+         args.attempt_id
+         and all(
+@@ -1758,7 +1846,7 @@
+     )
+     if args.case == M6_CASE:
+         return pure_method6(args)
+-    out = QUAL / "attempts" / args.attempt_id
++    out = OUTPUTS[args.revision] / args.attempt_id
+     out.mkdir(parents=True, exist_ok=False)
+     receipt = {
+         "protocol": "WS116-qualification-phase-small-v2",
+@@ -1779,11 +1867,16 @@
+     try:
+         (out / "grant.input").write_bytes(args.grant.read_bytes())
+         grant = json.loads((out / "grant.input").read_text())
+-        inventory = json.loads((QUAL / "inventory.json").read_text())
+-        sys.path.insert(0, str(HERE))
++        inventory = json.loads((CONTROL_INPUTS / "inventory.json").read_text())
++        sys.path.insert(0, str(METHOD))
+         import observer as obs
+         import run_attempt as method
+ 
++        require(
++            Path(obs.__file__).resolve() == METHOD / "observer.py"
++            and Path(method.__file__).resolve() == METHOD / "run_attempt.py",
++            "report imports resolve outside fixed active measurement files",
++        )
+         no_product()
+         receipt["grant_sha256"] = obs.digest(out / "grant.input")
+         identities = admission(args, grant, inventory, obs, method, out)

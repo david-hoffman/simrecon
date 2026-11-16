@@ -1,0 +1,24 @@
+{
+  "time_utc": "2026-11-16T13:53:33.923645+00:00",
+  "scope": "ROOTEXCLUSIVE exactlyoriginalordinals55\u201378 central64 searchedfull/summary unprofiled+profiled; no furtherdirectcase/growth/retry",
+  "prior54closed": {
+    "direct42": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-direct42-actual-1/ROOT-result-index.json",
+      "sha256": "cebf8afe72982fa7373c1e36056fd3f29e90638eaed95e6c98510c24761e5e89"
+    },
+    "firstWF2": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-first-workflow-pair-actual-1/ROOT-result-index.json",
+      "sha256": "d68643e5915f6031a2323c84d123eaaa9b338ce8a660515a80862df1f3649cd9"
+    },
+    "nextWF10": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-next-ten-tiny-workflow-actual-1/ROOT-result-index.json",
+      "sha256": "998200edc4aef9e4cb14773dc420e5ff44a2fab3214824d05c1cf08f53341407"
+    }
+  },
+  "P4actualworkflowroles": "bothroles alreadyqualifiedmain/PID/FD/map/native/context onoriginaltinyrequiredmembers; profilemask/runtimecorrespondenceobservedonrequiredprofilemembers, eachcomparedsameactualsubjectmode/repetitiong1g2 withoutduplicatecontrols",
+  "resource": "Per-memberfreshcurrentallvisiblecgroups/host/disk/outputownership/representation. Same512MiBstop/256MiBprovisionalprediction+128MiBnativeallowance/512MiBreserve/host1GiB/ancestoractualmaxminus1GiB/disk2GiB/startup5s/child240s/ownedouter300s/TERM1/KILLreap5/10ms/JSON32MiB. Operating decisionsnotguarantees/humancaps.",
+  "no_competing_controlled_numerics_tests_install_benchmark": true,
+  "otherroles": "strictfile/sourceonly;113init/targetsclosed",
+  "outer": "Popencommunicate,no automatickill; expiryOWNERalive/partialstreams/UNKNOWN_HOLD/no nextuntilresolved",
+  "hiddenancestors_actors": "unknown/conditional"
+}

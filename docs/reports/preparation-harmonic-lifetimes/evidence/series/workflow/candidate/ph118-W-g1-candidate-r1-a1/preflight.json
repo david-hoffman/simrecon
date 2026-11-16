@@ -1,0 +1,63 @@
+{
+  "system": "Linux",
+  "kernel": "6.18.57",
+  "machine": "x86_64",
+  "host_id_sha256": "45e7e2ee03331e7e0fb4ce44fe07c21d6c90885f5dc786874f8e86fd70c2ee33",
+  "pid": 102437,
+  "meminfo": "MemTotal:       18440100 kB\nMemFree:        14212012 kB\nMemAvailable:   17335764 kB\nBuffers:           88504 kB\nCached:          2731400 kB\nSwapCached:            0 kB\nActive:           572532 kB\nInactive:        2365620 kB\nActive(anon):        512 kB\nInactive(anon):   147920 kB\nActive(file):     572020 kB\nInactive(file):  2217700 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:              3384 kB\nWriteback:             0 kB\nAnonPages:        147888 kB\nMapped:           132896 kB\nShmem:               300 kB\nKReclaimable:     731100 kB\nSlab:             825356 kB\nSReclaimable:     731100 kB\nSUnreclaim:        94256 kB\nKernelStack:        3424 kB\nPageTables:         5096 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:     925292 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5684 kB\nVmallocChunk:          0 kB\nPercpu:             1440 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:    544768 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      323584 kB\nDirectMap2M:    14872576 kB\nDirectMap1G:    29360128 kB",
+  "cgroup": {
+    "membership": "/",
+    "mount_root": "/",
+    "mount": "/sys/fs/cgroup",
+    "namespace": "cgroup:[4026532294]",
+    "visible_ancestors": [
+      {
+        "path": "/sys/fs/cgroup",
+        "memory.max": "17179869184",
+        "memory.current": "3737485312",
+        "memory.peak": "17179873280",
+        "memory.events": "low 0\nhigh 0\nmax 50340\noom 0\noom_kill 0\noom_group_kill 0",
+        "memory.swap.max": "max",
+        "memory.swap.current": "0"
+      }
+    ],
+    "hidden_ancestors": "unknown: ancestors outside the exposed domain are unobserved; no absence or unlimited claim"
+  },
+  "rlimits": {
+    "RLIMIT_AS": [
+      -1,
+      -1
+    ],
+    "RLIMIT_DATA": [
+      -1,
+      -1
+    ],
+    "RLIMIT_RSS": [
+      -1,
+      -1
+    ],
+    "RLIMIT_CPU": [
+      -1,
+      -1
+    ],
+    "RLIMIT_FSIZE": [
+      -1,
+      -1
+    ],
+    "RLIMIT_NOFILE": [
+      1024,
+      16384
+    ]
+  },
+  "disk_available_bytes": 43499958272,
+  "threads": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "allocator": {
+    "PYTHONMALLOC": null,
+    "MALLOC_ARENA_MAX": null
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "scope": "CLOSED78_FILE_SCALARS_PENDING_WHOLE_SCI_NOT_RESULT_ACCEPTANCE",
+  "references": [
+    {
+      "summary_attempt": "ph118-W-g3-parent-r1-a1",
+      "full_attempt": "ph118-W-g4-parent-r1-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g3-candidate-r1-a1",
+      "full_attempt": "ph118-W-g4-candidate-r1-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g3-candidate-r2-a1",
+      "full_attempt": "ph118-W-g4-candidate-r2-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g3-parent-r2-a1",
+      "full_attempt": "ph118-W-g4-parent-r2-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g3-parent-r3-a1",
+      "full_attempt": "ph118-W-g4-parent-r3-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g3-candidate-r3-a1",
+      "full_attempt": "ph118-W-g4-candidate-r3-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g1-parent-r1-a1",
+      "full_attempt": "ph118-W-g2-parent-r1-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g1-candidate-r1-a1",
+      "full_attempt": "ph118-W-g2-candidate-r1-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g1-candidate-r2-a1",
+      "full_attempt": "ph118-W-g2-candidate-r2-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g1-parent-r2-a1",
+      "full_attempt": "ph118-W-g2-parent-r2-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g1-parent-r3-a1",
+      "full_attempt": "ph118-W-g2-parent-r3-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g1-candidate-r3-a1",
+      "full_attempt": "ph118-W-g2-candidate-r3-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g5-parent-r1-a1",
+      "full_attempt": "ph118-W-g6-parent-r1-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g5-candidate-r1-a1",
+      "full_attempt": "ph118-W-g6-candidate-r1-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g5-candidate-r2-a1",
+      "full_attempt": "ph118-W-g6-candidate-r2-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g5-parent-r2-a1",
+      "full_attempt": "ph118-W-g6-parent-r2-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g5-parent-r3-a1",
+      "full_attempt": "ph118-W-g6-parent-r3-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    },
+    {
+      "summary_attempt": "ph118-W-g5-candidate-r3-a1",
+      "full_attempt": "ph118-W-g6-candidate-r3-a1",
+      "same_role_case_profile_repetition": true,
+      "adds_observations": 0,
+      "common_hash_equal": true,
+      "input_hash_equal": true,
+      "branches_equal": true,
+      "scope": "common values/branches only; distinct full and summary diagnostic graphs are not equated"
+    }
+  ]
+}

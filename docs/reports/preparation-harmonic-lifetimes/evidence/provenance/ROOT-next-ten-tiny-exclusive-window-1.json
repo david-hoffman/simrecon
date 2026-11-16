@@ -1,0 +1,16 @@
+{
+  "time_utc": "2026-11-16T13:08:20.879539+00:00",
+  "scope": "ROOT EXCLUSIVE originalordinals3\u201312 only, no direct/currentlarge/retry",
+  "first_pair_actual_correspondence": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-first-workflow-pair-actual-1/ROOT-actual-correspondence-and-readout-clarification-1.json",
+    "sha256": "6d1aab15bafdff59c829645d80bb7b23e264bb9b24fd269d0903c77b87fb30ef"
+  },
+  "schedule": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json",
+    "sha256": "a8a478ad3cb38c8a1520472de93f54f604d7887ccc3a246e9e3e4c8c59be85bb"
+  },
+  "same_frozen_resource_settings": "512MiB stop/256+128MiB allowance/512MiB reserve/host1GiB/ancestor maxminus1GiB/disk2GiB/240child300outer; eachfreshactualcontext mandatory; no guarantee/humanbudget",
+  "no_competing_controlled_numerical_work": true,
+  "unknown_external_actors_ancestors": "conditional",
+  "outer_ownership": "Popencommunicate, preserveowner/no automatickill, expiry UNKNOWN_HOLD/no next"
+}

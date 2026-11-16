@@ -1,0 +1,52 @@
+{
+  "role": "parent",
+  "name": "workflow-observer-help",
+  "kind": "help",
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-117",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/usr/bin/env",
+    "PYTHONPATH=/workspace/work/issue-117/scripts/source_free_sitecustomize",
+    "PYTEST_PLUGINS=pytest_plugin",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "NUMEXPR_NUM_THREADS=1",
+    "/workspace/work/issue-117/.venv/bin/python",
+    "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/run_attempt.py",
+    "--help"
+  ],
+  "expected_returncode": 0,
+  "started_utc": "2026-11-16T12:33:25.823876+00:00",
+  "scope": "P3 nonnumerical startup metadata/CLI only; no observer workload spawn or public scientific call",
+  "guard": {
+    "argv": [
+      "/usr/local/bin/docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+      "/bin/cat",
+      "/sys/fs/cgroup/memory.current",
+      "/sys/fs/cgroup/memory.max",
+      "/proc/meminfo"
+    ],
+    "memory_current": 3677409280,
+    "memory_max": 17179869184,
+    "host_MemAvailable_bytes": 17716740096,
+    "all_visible_ancestors_resource_admission": "not claimed; numerical member admission remains separate"
+  },
+  "owned_outer_pid": 283798,
+  "owner_pid": 283659,
+  "returncode": 0,
+  "stdout": "usage: run_attempt.py [-h] --grant GRANT --attempt-id ATTEMPT_ID\n                      --revision {parent,candidate}\n\nExternal single-attempt WS116 admission/monitor. No retries or growth loop.\nAnalysis-only method; runtime qualification remains pending. Requires a\ncoordinator-authored JSON admission file. A grant is evidence, not access\ncontrol.\n\noptions:\n  -h, --help            show this help message and exit\n  --grant GRANT\n  --attempt-id ATTEMPT_ID\n  --revision {parent,candidate}\n",
+  "stderr": "",
+  "elapsed_seconds": 0.2704162549925968,
+  "outer_reaped": true
+}

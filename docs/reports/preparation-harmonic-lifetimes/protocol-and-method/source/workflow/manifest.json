@@ -1,0 +1,268 @@
+{
+  "protocol": "PH118-fixed-workflow-SOURCE2-ACTUAL-C-v1",
+  "approved": true,
+  "numerical_release": true,
+  "execution_status": "released_exact_case",
+  "subjects": {
+    "parent": {
+      "root": "/workspace/work/issue-117",
+      "python": "/workspace/work/issue-117/.venv/bin/python",
+      "module_root": "/workspace/work/issue-117/src/simrecon",
+      "identity": {
+        "head": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+        "tree": "ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "dirty": false,
+      "FULL_clean": false,
+      "placement_record_sha256": "6d47c0822a7654a460ce92a9fef4180cc3993cf02e035a8d764dc24e3320c6ff",
+      "material_inventory": "../../BOUND-PARENT-MATERIALS.sha256",
+      "material_inventory_sha256": "27efd5163cc7a0bbe25cd8503af3d1de6db708a3882bcff3770baa70d9eacd5f"
+    },
+    "candidate": {
+      "root": "/workspace/work/issue-118",
+      "python": "/workspace/work/issue-118/.venv/bin/python",
+      "module_root": "/workspace/work/issue-118/src/simrecon",
+      "identity": {
+        "head": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+        "tree": "275e0d94ff94dc1283f5da80815d6bb383c68c86",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "dirty": false,
+      "FULL_clean": true,
+      "C_source_checkpoint_sha256": "b2efacf99c9cb264ee1806640ffe2236085a8a9b67d1454f29b3322dbf785988",
+      "material_inventory": "../../BOUND-CANDIDATE-MATERIALS.sha256",
+      "material_inventory_sha256": "81d8e18b1f8005252f2deda93a9ba7a1642f133cad72b508257e68c245e22668"
+    }
+  },
+  "external_method_root": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow",
+  "output_roots": {
+    "parent": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent",
+    "candidate": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate"
+  },
+  "launch": {
+    "route": "plain-posix-spawn/same-pid-setsid/execve",
+    "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+    "startup_timeout_seconds": 5,
+    "startup_pipe_bytes": 1024,
+    "ready_message_bytes": 512
+  },
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "sample_interval_seconds": 0.01,
+  "subject_material_paths": {
+    "/workspace/work/issue-117": [
+      ".python-version",
+      "docs/packets/issue-118-direct-resource-protocol.md",
+      "pyproject.toml",
+      "scripts/source_free_check.py",
+      "scripts/source_free_sitecustomize/pytest_plugin.py",
+      "scripts/source_free_sitecustomize/sitecustomize.py",
+      "src/simrecon/__init__.py",
+      "src/simrecon/acquisition/__init__.py",
+      "src/simrecon/acquisition/declarations.py",
+      "src/simrecon/acquisition/drift.py",
+      "src/simrecon/acquisition/layout.py",
+      "src/simrecon/acquisition/modes.py",
+      "src/simrecon/acquisition/preparation.py",
+      "src/simrecon/cli.py",
+      "src/simrecon/io/__init__.py",
+      "src/simrecon/io/imagej.py",
+      "src/simrecon/io/imagej_metadata.py",
+      "src/simrecon/io/metadata.py",
+      "src/simrecon/io/mrc_writer.py",
+      "src/simrecon/io/pixels.py",
+      "src/simrecon/io/priism.py",
+      "src/simrecon/models.py",
+      "src/simrecon/optical_transfer.py",
+      "src/simrecon/reconstruction/__init__.py",
+      "src/simrecon/reconstruction/known_parameters.py",
+      "src/simrecon/reconstruction/parameter_estimation.py",
+      "src/simrecon/workflow/__init__.py",
+      "src/simrecon/workflow/adapters.py",
+      "src/simrecon/workflow/config.py",
+      "src/simrecon/workflow/identity.py",
+      "src/simrecon/workflow/reconstruct.py",
+      "src/simrecon/workflow/result.py",
+      "src/simrecon/workflow/summary.py",
+      "src/simrecon/workflow/transfer.py",
+      "tests/preparation_harmonic_memory_benchmark.py",
+      "tests/reconstruction_memory_benchmark.py",
+      "tests/reconstruction_summary_fixture.py",
+      "uv.lock"
+    ],
+    "/workspace/work/issue-118": [
+      ".python-version",
+      "docs/packets/issue-118-direct-resource-protocol.md",
+      "pyproject.toml",
+      "scripts/source_free_check.py",
+      "scripts/source_free_sitecustomize/pytest_plugin.py",
+      "scripts/source_free_sitecustomize/sitecustomize.py",
+      "src/simrecon/__init__.py",
+      "src/simrecon/acquisition/__init__.py",
+      "src/simrecon/acquisition/declarations.py",
+      "src/simrecon/acquisition/drift.py",
+      "src/simrecon/acquisition/layout.py",
+      "src/simrecon/acquisition/modes.py",
+      "src/simrecon/acquisition/preparation.py",
+      "src/simrecon/cli.py",
+      "src/simrecon/io/__init__.py",
+      "src/simrecon/io/imagej.py",
+      "src/simrecon/io/imagej_metadata.py",
+      "src/simrecon/io/metadata.py",
+      "src/simrecon/io/mrc_writer.py",
+      "src/simrecon/io/pixels.py",
+      "src/simrecon/io/priism.py",
+      "src/simrecon/models.py",
+      "src/simrecon/optical_transfer.py",
+      "src/simrecon/reconstruction/__init__.py",
+      "src/simrecon/reconstruction/known_parameters.py",
+      "src/simrecon/reconstruction/parameter_estimation.py",
+      "src/simrecon/workflow/__init__.py",
+      "src/simrecon/workflow/adapters.py",
+      "src/simrecon/workflow/config.py",
+      "src/simrecon/workflow/identity.py",
+      "src/simrecon/workflow/reconstruct.py",
+      "src/simrecon/workflow/result.py",
+      "src/simrecon/workflow/summary.py",
+      "src/simrecon/workflow/transfer.py",
+      "tests/preparation_harmonic_memory_benchmark.py",
+      "tests/reconstruction_memory_benchmark.py",
+      "tests/reconstruction_summary_fixture.py",
+      "uv.lock"
+    ]
+  },
+  "frozen_scientific_inputs": {
+    "workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+  },
+  "initial_conditions": [
+    {
+      "id": "central64-summary-searched",
+      "shape": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "mode": "summary",
+      "search": true
+    },
+    {
+      "id": "central64-full-searched",
+      "shape": [
+        1,
+        3,
+        8,
+        64,
+        64
+      ],
+      "mode": "full",
+      "search": true
+    },
+    {
+      "id": "rb117-2d-search-summary",
+      "case": "2d-search",
+      "shape": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "mode": "summary",
+      "search": true
+    },
+    {
+      "id": "rb117-2d-search-full",
+      "case": "2d-search",
+      "shape": [
+        2,
+        2,
+        1,
+        12,
+        16
+      ],
+      "mode": "full",
+      "search": true
+    }
+  ],
+  "condition_profile_groups": [
+    {
+      "order": 1,
+      "condition_id": "central64-summary-searched",
+      "profile": false,
+      "individual_release": "PENDING"
+    },
+    {
+      "order": 2,
+      "condition_id": "central64-full-searched",
+      "profile": false,
+      "individual_release": "PENDING"
+    },
+    {
+      "order": 3,
+      "condition_id": "rb117-2d-search-summary",
+      "profile": false,
+      "individual_release": "PENDING"
+    },
+    {
+      "order": 4,
+      "condition_id": "rb117-2d-search-full",
+      "profile": false,
+      "individual_release": "PENDING"
+    },
+    {
+      "order": 5,
+      "condition_id": "central64-summary-searched",
+      "profile": true,
+      "unprofiled_control_group": 1,
+      "individual_release": "PENDING"
+    },
+    {
+      "order": 6,
+      "condition_id": "central64-full-searched",
+      "profile": true,
+      "unprofiled_control_group": 2,
+      "individual_release": "PENDING"
+    }
+  ],
+  "paired_revision_order": {
+    "1": [
+      "parent",
+      "candidate"
+    ],
+    "2": [
+      "candidate",
+      "parent"
+    ],
+    "3": [
+      "parent",
+      "candidate"
+    ]
+  },
+  "scope_counts_design_only": {
+    "groups": 6,
+    "fresh_parent": 18,
+    "fresh_candidate": 18,
+    "fresh_total": 36,
+    "old117_context_only": 18
+  },
+  "fresh_pair_index": "../../workflow-members-PENDING.tsv",
+  "historical_reference_index": "../../historical117-context-PENDING.tsv",
+  "profile_controls": "group5/6 references SAME FRESH subject/repetition group1/2, no duplicate unprofiled series",
+  "chronology_scope_sufficiency": "fresh actual pair ordering P/C,C/P,P/C, frozen before observations; old18 CONTEXT ONLY. Fresh independent method/SCI exact scope/sufficiency/applicability still required; ROOT design is no acceptance.",
+  "operational_proposal_only": {
+    "child_deadline_seconds": 240,
+    "owned_observer_recovery_envelope_seconds": 300,
+    "authority": "reference/proposal from actual117, never current grant; exact current headroom/correspondence/ownership/release PENDING"
+  },
+  "startup_binding": "../../ACTUAL-SOURCE-BINDING.json",
+  "largest256": "NOT_ADMITTED_UNMEASURED_NO_DISPATCH",
+  "scope": "SAME6groups only; no new case/profile/scale/matrix/growth. Source binding complete, approval/runtime grants absent. Optional existing qualifier ../qualifier/method_qualification.py is path-only rebound65b4; dormant56c1 control source retained here."
+}

@@ -88,16 +88,36 @@
 
 ## Current state
 
-- **ACTUAL-PARENT C ORDINARY RENEWAL COMPLETE — resource evidence pending.** The accepted immediate parent is117 `2cb73d7a8352d88a16477e5e802852b4948c62cd`, tree `ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc`, [PR124](https://github.com/david-hoffman/simrecon/pull/124). Its exact local Ubuntu13 gate and fresh D passed; GitHub CI43853442041/job133251590055 also passed on the matching tree. Accepted order remains112→115→116→117→118→119→120→113→114;113 single is absent. ROOT's exact source candidate/tree/material pin follows this commit externally; no result is embedded in its own candidate hash.
-- ROOT preserved provisional80557cf at `refs/campaign/118-provisional-C1-before-parent2cb73d7`, rebased onto the actual accepted parent and held the six product insertions out for fresh B. Complete B4 STATIC ACCEPT report109aac94/final88659a65 binds clean test checkpoint2043b56/treeed43f2f and all51 base plus2 authorized extension members (manifest902a75f8/c80a6b9f). The extension closes the used acquisition-transfer helper. Every S01–S26 obligation has an independent public witness/valid-positive/error disposition; this is no runtime or backend theorem. B3 remains a stopped partial review after unlisted contract filename/count exposure, without source bodies; all four B events and earlier charges remain preserved. The single S26 report wording correction preserves the original report and changes no test/oracle/meaning/verdict.
-- Valid restricted C1 continuation restored exactly six insertions in modes.py (+4) and known_parameters.py (+2): four completed-local deletions and two comments. Source hashes are85b3655e and00a816ff respectively. Real frames end after their lateral transforms; section spectra end after required separation/Nyquist copies and optional persistent-output combination; harmonic scratch ends after recombination. No arithmetic, transform, allocation frequency, dtype, public captures, private output ownership, camera/drift/phase recurrence, native stencil, failure ordering, interface or inherited117 source changed. Held exception frames and full debug records retain their actual owners; no allocator-return or immediate RSS promise follows.
-- Current Ubuntu C renewal passed all five sequential ordinary commands: Ruff check, format check, Pyright; owned module28 tests/14.22s; one combined17-module affected retained run1844 tests/18 warnings/388.13s. Total1872 across18 modules, without duplicated groups. All9 owned dependency controls intercepted once. Invalid-input observer warnings and four unattributed native DLASCL parameter4 notices are retained, without new native qualification or suppression. Every51+2 frozen member, unowned tracked path, empty index and whitespace check passed before/after. No failed check, repair, test/helper/adapter/protocol/gate/dependency edit, install, worker, rerun or C commit occurred. Full report0fbedbe2/finalb2158349 and all10 logs remain external under `/workspace/work/campaign/evidence/118/c-actual-parent-renewal-1/`; ordinary window is CLOSED with no C-owned child/process.
-- Historical public64a C1 receipts313 and original A/B/C reports retain their own inputs. Actual115-wide allocation-byte precedence is inherited: signed count/index/native aggregate/stride and reached stencil checks remain, CE05 unchanged, no representation-to-RAM inference. No obsolete huge allocation case was run. Owned behavior test22bd0543 and direct adapterece8f0c6 remain unchanged from B4.
-- Resource apparatus remains UNQUALIFIED/HELD. SOURCE2 preserves the existing116/117 lifecycle/RSS core and immutable scientific adapters; exact post-C root/material/startup bindings, fresh independent method suitability and affected finite qualification remain prerequisites. ROOT's two exact untracked method copies at parentW117 (adapterece8/protocol2ce88) preserve parent HEAD/tree/tracked source; its FULL worktree is explicitly not clean during that placement. Exact placement/status/hashes and eventual cleanup responsibility are externally recorded; no old parent observation is relabeled.
-- ROOT stages a predeclared78 fresh observations: DIRECT42 (seven original conditions×three matched pairs) plus WORKFLOW36 (six original groups×three fresh matched parent/candidate pairs), with declared P/C,C/P,P/C order. The18 historical117 rows are reference/qualification context only. There is no runtime release, new scale/profile/case,256 trial or automatic matrix growth. Source preparation, hashes and environment metadata are not qualification or resource evidence. Per-case headroom, exact ownership, startup/diagnostic/material correspondence and exclusive numerical windows remain ROOT-owned.
-- The reviewed117 largest amendment leaves new256 groups UNMEASURED/NOT_ADMITTED. Fresh post118 SCI must assess actual changed sources/materials, direct/shared observations and each119/120 design premise before downstream reliance. Current large peak/profile/rank/scaling/margin/16GiB claims remain held pending necessary admitted evidence; historical116EA observations remain historical. No observed peak reduction, speedup or RAM guarantee is claimed here.
-- Final full Ubuntu24.04 exact-clean-candidate make verify/all13 phases, native current global/package/file/subprocess coverage+JSON/HTML, both wheels/isolated imports/audit/same-run M25, fresh independent D, ROOT lease-controlled publication and observed CI remain pending. Final identities/results will be external at `/workspace/work/campaign/evidence/118/final-evidence.json`; no prior receipt supplies those passes.
-- Accounting remains cumulative: original intake/A/B/C history, four fresh B events, one continued C1 actual-parent ordinary renewal and all separate source-author events/corrections are preserved in the role ledger and external packets. D0 for118; no human numeric quotas, actual metering/tokens/cache/money/serving/elapsed unknown unless exposed. Shared filesystem/prompt restrictions prove no enforced isolation. Required worktrees, environments, frozen fixtures and durable evidence remain retained. Next ROOT source pin→bound exact method/source review→finite qualification/admitted matched observations→post118 SCI→report integration/fullgate/freshD/publication. No worker restack/push/merge/release/manual issue closure.
+- **FINITE SCIENCE/RESOURCE REPORT ACCEPTED; final delivery gates pending ROOT.**
+  Measured scientific candidate75fce7e/tree275e0d94 over accepted1172cb73d7/treead275aa5.
+  Exact actual-parent B4static checkpoint2043/ed43 and reviewed53 members remain;
+  actual-parent restricted C renewal passed1872 ordinary tests plus Ruff/format/Pyright.
+  Six source insertions are four completed-local deletions and two comments only.
+- ROOT closed all78 scheduled scientific members (42DIRECT+36WORKFLOW), distinct target
+  PIDs/terminal0/material/ownership correspondence, no scientific failure/retry. Scalar
+  collation has26 complete three-repeat role groups and raw/gap/context/provenance.
+  Whole SCI report9014f99d/final4cf8a965 accepts exact finite science, manuscript09d69449,
+  scalar map444bc081 and16 dispositionsd190f6bc. ROOT application75660480 records later
+  acceptance without rewriting historical pending/partial reports.
+- Retain mixed timings, separate nativeKiB×1024/self/sampled/payload/time scopes, null
+  gaps and profile perturbation. No universal improvement, isolated native saving,
+  physical reclamation,16GiB fit or current-large ranking is established. Current256
+  NOT_ADMITTED/UNMEASURED; largest/d1/36/19 gaps and necessary119/120 current-large
+  premises remain held. PB119 R1–R9 design-only obligations and FA120 controls remain;
+  no implementation or113 single-precision activation is authorized.
+- Exact missing review outputs/staged histories, runtime proofs, raw transports and
+  source-path+logical-SHA portable map are integrated as portable repository evidence. ROOT verified all1561 portable mappings/93 gzip transports by original logical and transport hashes/lengths. Exact two untracked parent method inputs were removed after archive/review closure; parent117 HEAD/tree stayed unchanged and is now FULL clean. Scientific records retain their historical tracked-clean/FULL-false distinction. Final source equivalence is pinned externally before the exact gate. Existing absolute paths and old grants are historical evidence, not a
+  drop-in reproduction/admission promise. Protected53+source38 remain unchanged.
+- The reviewed-public-checkpoint descriptor63010fc is preparation context,
+  not a completed gate claim. Final clean candidate identity, single full Ubuntu13
+  make verify/native integrity/wheels/imports/audit/same-runM25, fresh readinessD,
+  lease-controlled push/stackedPR and observedCI remain ROOT-owned pending evidence.
+  External final pointer `/workspace/work/campaign/evidence/118/final-evidence.json`
+  supplies exact eventual results; no older pass is relabelled.
+- Cumulative role/attempt/correction ledger remains; D0 until actual ROOT launch.
+  Serving/meters/tokens/cache/money/unrecorded elapsed unknown, no human numeric quotas.
+  No merge/release/manual closure/follow-up implementation. Next: ROOT clean
+  commit→exact fullgate→freshD→verified publication/CI, with no numerical rerun assumed.
 
 ## PR presentation (root)
 

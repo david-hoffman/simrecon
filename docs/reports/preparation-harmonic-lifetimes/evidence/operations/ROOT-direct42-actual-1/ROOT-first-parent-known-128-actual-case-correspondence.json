@@ -1,0 +1,34 @@
+{
+  "scope": "P4 limited actual full DIRECT interface correspondence on first required parent case; no result science/peak acceptance, no duplicated trial",
+  "result": {
+    "ordinal": 43,
+    "role": "parent",
+    "condition_id": "known-128",
+    "repetition": 1,
+    "attempt_id": "ph118-D-known-128-parent-r1-a1",
+    "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-128-parent-r1-a1",
+    "target_pid": 100879,
+    "observer_pid": 100841,
+    "receipt_sha256": "d998313877646f416e8f276d38dea844ba052b6bc37c9513ca5a3e0d1a5b03ac",
+    "child_sha256": "c6624891ea796b380c743b66106414e4f7fa852804e3b32e59c02c872116ec7a",
+    "grant_sha256": "cdb856f1a9808cce86cb435dbd23e1a09e8f09dda687efe0cd77fd31af6cce72",
+    "terminal0_closed": true,
+    "elapsed_target_seconds": 281.56469913799083,
+    "terminal_native_KiB": 159316,
+    "public_fingerprints": {
+      "protocol": "RM84-public-values-v1",
+      "inputs": "0ae61317402cf1edaac4ff31316d0b510b2a9572f947ca7230fcd1e21d9ae470",
+      "inputs_after": "0ae61317402cf1edaac4ff31316d0b510b2a9572f947ca7230fcd1e21d9ae470",
+      "result": "d79d7f1907ffa170d376c43f4ec9410b6dbc00e91b51da2312a6bdbf9f00a70d"
+    },
+    "counted_as_original_scheduled_member": true
+  },
+  "provenance_matches_complete_frozen_expectation": true,
+  "backend_matches_pre_direct_frozen_actual_workflow_context": true,
+  "same_owned_target_argv_exclusive_stdout_preexec_readiness_and_terminal": true,
+  "native_KiB_conversion_and_cumulative_snapshots_structural_checks": true,
+  "normal_metadata_Git_returned": "same unchanged successful provenance helper path, normal subprocess.run waits; abruptloss remainsHOLD",
+  "direct_record_has_no_self_PID_nonce_timestamps": "external trusted argv/FD/terminal/provenance linkage only; no invented selfattestation",
+  "ownership": "terminal0/singleexactwait4/startupFDclosed/no lostwait/no cleanupgap/outerreaped",
+  "actual_scientific_result": "pending later independent SCI"
+}

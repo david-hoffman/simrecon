@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-117",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/usr/bin/env",
+    "PYTHONPATH=/workspace/work/issue-117/scripts/source_free_sitecustomize",
+    "PYTEST_PLUGINS=pytest_plugin",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "NUMEXPR_NUM_THREADS=1",
+    "/workspace/work/issue-117/.venv/bin/python",
+    "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/run_direct_attempt.py",
+    "--subject-root",
+    "/workspace/work/issue-117",
+    "--attempt-id",
+    "ph118-D-known-128-parent-r1-a1",
+    "--grant",
+    "/workspace/work/campaign/evidence/118/ROOT-direct42-actual-1/ph118-D-known-128-parent-r1-a1-grant.json"
+  ],
+  "owner_pid": 286989,
+  "owned_outer_pid": 292157,
+  "outer_envelope_seconds": 1320,
+  "automatic_kill": false,
+  "started_monotonic": 141955.823808616
+}

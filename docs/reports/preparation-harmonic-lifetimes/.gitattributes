@@ -1,0 +1,5 @@
+# Frozen evidence must retain its exact original bytes on checkout.
+* -text
+# These are archived records, including literal diff context and CRLF CSV data.
+*.diff -diff
+*.csv -diff

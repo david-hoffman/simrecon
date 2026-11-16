@@ -1,0 +1,276 @@
+{
+  "time_utc": "2026-11-16T11:54:55.860332+00:00",
+  "scope": "Actual118 C source checkpoint; ordinary checks passed, not resource/fullgate/D/publication acceptance",
+  "head": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+  "tree": "275e0d94ff94dc1283f5da80815d6bb383c68c86",
+  "FULL_status": "",
+  "actual_accepted_parent": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "pre_C_B4_checkpoint": "2043b56cf73c2234a665243a6f7748603d85dbe1",
+  "source_relative_to_parent_numstat": "4\t0\tsrc/simrecon/acquisition/modes.py\n2\t0\tsrc/simrecon/reconstruction/known_parameters.py",
+  "B4_rechecked_53": [
+    {
+      "path": "/workspace/work/issue-118/AGENTS.md",
+      "sha256": "56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd"
+    },
+    {
+      "path": "/workspace/work/issue-118/.agents/skills/review-work/SKILL.md",
+      "sha256": "e069e1be50587974d46ffca2a8c38b865e7133881aa39aaf0bf45934c6ae0160"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/packets/issue-118-actual-parent-public-material.md",
+      "sha256": "f6695f97054ca13452a1cd058edb2abd5798151f65274c067a94aa3fe8210643"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/c_estimation_fixture.py",
+      "sha256": "3c2078a1ebd9c2b6fed61eeddc51364c086c116e33b8443d12f7c17b775ce66c"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/preparation-harmonic-lifetimes-v1.md",
+      "sha256": "d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-common-v1.md",
+      "sha256": "8dd2bc422edb68de1aeb1f642e80381f55b3517257cd96d9aed68d49791e319b"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-preprocessing-v1.md",
+      "sha256": "8e2a3afe2778d515b14f2e8ede5001042aa8a606b7ded23300f50f178f08ae91"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-optical-transfer-v1.md",
+      "sha256": "3214afc2766e7bb19bdb3eaf81356dac1ef17630995bb98282fa3d46f0237529"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-known-parameters-v1.md",
+      "sha256": "3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-carrier-modulation-v1.md",
+      "sha256": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-acquisition-modes-v1.md",
+      "sha256": "5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-acquisition-modes-ledger-v1.md",
+      "sha256": "93bed67eb0b67ecd1b385b5b3b45571c85bc6671c1dc21e4bdfda9df0054e2f3"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/c-equivalence-workflow-v1.md",
+      "sha256": "00b80613c1ff417b4d5bdd782cf25e1aed32a9c62ccf44d68cce77c643b9adef"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/reconstruction-memory-v1.md",
+      "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/wide-allocation-domain-v1.md",
+      "sha256": "d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/packets/wide-allocation-domain-interfaces.md",
+      "sha256": "0939e8956573eb5b7832f2bf80ddee8866c8c6a5a9db6eb1d48e9acfd1cbd180"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/contracts/refinement-buffer-lifetime-v1.md",
+      "sha256": "b2f1cfc0bc74d2e9d75fbcbf0ac06d72b8d93fb6121b58db041a72e9d57e710c"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/usage/c-preparation.md",
+      "sha256": "35265fe178e64ae4b37bae7ffc8a27991c426eb590b8cffb60936316b9befc4f"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/usage/c-acquisition-modes.md",
+      "sha256": "abd7c424524e690a645932d8c30f20824894ba213a8189e82e6f7fde4117fff7"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/usage/c-known-reconstruction.md",
+      "sha256": "9b731fc21fe2d835cab07a95bda266d5c9fb3cc5c25194b66e73ac9c3c2038d2"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/usage/reconstruction-summary.md",
+      "sha256": "ef8c441b436234af14cda25244d75d860c445da3c35ccbaae2027bb77457e32d"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_preparation_harmonic_lifetimes.py",
+      "sha256": "22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/preparation_harmonic_memory_benchmark.py",
+      "sha256": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59"
+    },
+    {
+      "path": "/workspace/work/issue-118/docs/packets/issue-118-direct-resource-protocol.md",
+      "sha256": "2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/c_known_fixture.py",
+      "sha256": "5e80aafb44b59ae9d45592181b72d62ce03dd7f49f146313294a16c73a2d89a6"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/c_preparation_fixture.py",
+      "sha256": "eeff7dd5ce4cbd7a32a346eabd0521afdfd930ba582b1e20ac441da4c4d8e80c"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/c_acquisition_fixture.py",
+      "sha256": "a64a93dae93864d5b76a2fb54b794a876b76f76527e7018966a681870ee82bf9"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/c_workflow_oracle.py",
+      "sha256": "96c8a74df6bf0906ed878414516caefa6cde165afd768050608bb02308b66c49"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/c_workflow_support.py",
+      "sha256": "10265f0a62703ee30f136e00559cbbc8fbda470cf01213c7487bb39ff7705902"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/reconstruction_summary_fixture.py",
+      "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/reconstruction_memory_benchmark.py",
+      "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_acquisition_boundary.py",
+      "sha256": "590d03ac6370b73294af1783f8e55eed1ffd932a1e50d2b80c7b8a56053b56b0"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_known_boundary.py",
+      "sha256": "1125ff758f2cade00fd007c6dbdb54b31eef4e93cf4f109a97292526e4efd6b9"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_workflow_validation.py",
+      "sha256": "0ae4005badef392502e310df1cd8bd8b7f47aa06cd9550d1a8b1194969e50052"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_reconstruction_summary.py",
+      "sha256": "aa9d4d23fd3a5efa421d682366bde8c97a971e823dad696f411d81dbd67a00c8"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/wide_allocation_fixture.py",
+      "sha256": "09c7ac15b02226f986b17f12a244056654b1166b5accbd2c4407a5f7cb3e94c8"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_wide_allocation_domain.py",
+      "sha256": "016c47bcbdff42b41c90b01a1c2f07af459c09574b0f127b1655e8c327d84360"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/refinement_buffer_lifetime_fixture.py",
+      "sha256": "a3f043bf089537b0815045bb6dc1b481efd00adca297a3290487ca3e211f3737"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_refinement_buffer_lifetime.py",
+      "sha256": "81249c03ca5a4b420ebda8dc01071a1dcfd70147f1d3f34a0d938a8d3e3c8512"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_preparation.py",
+      "sha256": "c8e38bc4a540d3b47b6b4cc608416e940661a8190e85ecaa35f17755c2e1c837"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_acquisition_preparation.py",
+      "sha256": "34d789998c30224ecdd7e87ed99835047a7fa584544d6e6c3d487dbcd84dc4ca"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_acquisition_drift.py",
+      "sha256": "05f7791e6efed020bf5219c82ff8a3fa83237e5c12434064cd9efc6374eee85d"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_acquisition_fitted_drift.py",
+      "sha256": "c78bed84c93f311d03ac17757c858f0d8f2042e3f23686fa8799ee2f79c1d789"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_acquisition_filter.py",
+      "sha256": "00d02656715cae2afe6ad2dbfa599d633bc476213d096c785f2f655c8134790c"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_known_filter.py",
+      "sha256": "336b38920c658ce8449f175b5a4ebbd6e8b7b06794c5fbe7f5ce1e2266c64787"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_known_assembly.py",
+      "sha256": "dbe21e7535088b773d0bf0bb5d92319843868bf3b35ef6b304b3081d6d753a55"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_workflow_failures.py",
+      "sha256": "2c45e55bbb5f47bdb57854502f4aeb95de46dcfa873120d8b2a6c2157362a0ae"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_workflow_numerical.py",
+      "sha256": "09fdebf1132e83f277ff726c6868204252a3d626cf3a09e676983dce41106465"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_workflow_records.py",
+      "sha256": "677a2a97a3558bbb17ce6eaeb13dfb3f4725458985583a88995a77f5a5bacec0"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/b4-actual-parent-review/packet.md",
+      "sha256": "8eed43c0bed54bfe29ce8d857434c0cd8f91f2c674135f0203b2cb3f25e92841"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/b-integrated-public-context-skeleton.md",
+      "sha256": "e505fb043f96ef562469f02e992fcb5f0fdeb4289e1bed1377c17b97b4f5dc9f"
+    },
+    {
+      "path": "/workspace/work/issue-118/tests/test_c_acquisition_transfer.py",
+      "sha256": "c81c9fbf3cabfc9a4f83e13f6462f64f966582b2bd17220fd96679ab7fcdb202"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/118/b4-actual-parent-review/public-input-extension-1.md",
+      "sha256": "180d5d574681e9b3c8ec92df18eeb2b72a259af1cb0df2fcca760def61d6990c"
+    }
+  ],
+  "C_report_sha256": "0fbedbe266274770127809ecdef38b4a14c707b371120f61fcb62ed7b2a12ee0",
+  "C_final_sha256": "b2158349c91ccd635ed5cf454f1cf383ec18fca6837f8315c689ffb0adf1bc68",
+  "ordinary_examples_passed": 1872,
+  "ordinary_window_closed": true,
+  "source_materials": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c",
+    "src/simrecon/reconstruction/parameter_estimation.py": "527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "pyproject.toml": "96a30134cc00103853913cfccaf673373b97760549467035082e71532c245abb",
+    ".python-version": "40411dc2c2726b4c7024d38318dd8df45c528b49491efb45939dd4a829847d94",
+    "tests/preparation_harmonic_memory_benchmark.py": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "scripts/source_free_check.py": "cdf5894e916c9445a1627da9e654d853b8f772fba9f376cee80680fed9701564",
+    "scripts/source_free_sitecustomize/sitecustomize.py": "5c2992da3a882201fb15e5e8cc2a9cdbbbab6f2d6ea7a3db8a4eda4d5d73fc6f",
+    "scripts/source_free_sitecustomize/pytest_plugin.py": "d0c962f75b396169fb30288990dc6e12443b6b7f3f877c977101c3b402a3e3bf",
+    "docs/packets/issue-118-direct-resource-protocol.md": "2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc"
+  },
+  "future_observations": {
+    "direct_fresh_matched": 42,
+    "workflow_fresh_matched": 36,
+    "old18": "historical_context_only",
+    "approved": false
+  },
+  "largest_current_claims": "HOLD_UNMEASURED",
+  "final_gate_D_publication": "PENDING"
+}

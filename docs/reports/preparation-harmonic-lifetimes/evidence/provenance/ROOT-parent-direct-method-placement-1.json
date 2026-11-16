@@ -1,0 +1,42 @@
+{
+  "time_utc": "2026-11-16T11:48:32.081291+00:00",
+  "purpose": "Exact unchanged118 direct apparatus placement at actualaccepted117 product baseline; no runtime/qualification/admission",
+  "parent_head": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "parent_tree": "ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc",
+  "FULL_status_before": "",
+  "FULL_status_after": "?? docs/packets/issue-118-direct-resource-protocol.md\n?? tests/preparation_harmonic_memory_benchmark.py",
+  "tracked_status_after": "",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parent_FULL_clean_during_placement": false,
+  "parent_tracked_source_clean": true,
+  "candidate_frozen_inputs_modified": false,
+  "rows": [
+    {
+      "path": "tests/preparation_harmonic_memory_benchmark.py",
+      "source": "/workspace/work/issue-118/tests/preparation_harmonic_memory_benchmark.py",
+      "destination": "/workspace/work/issue-117/tests/preparation_harmonic_memory_benchmark.py",
+      "bytes": 17150,
+      "sha256": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+      "exclusive_created": true,
+      "tracked": false,
+      "cleanup": "ROOT remove exact copy only after current118 resource window closes and all durable evidence is preserved"
+    },
+    {
+      "path": "docs/packets/issue-118-direct-resource-protocol.md",
+      "source": "/workspace/work/issue-118/docs/packets/issue-118-direct-resource-protocol.md",
+      "destination": "/workspace/work/issue-117/docs/packets/issue-118-direct-resource-protocol.md",
+      "bytes": 12755,
+      "sha256": "2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc",
+      "exclusive_created": true,
+      "tracked": false,
+      "cleanup": "ROOT remove exact copy only after current118 resource window closes and all durable evidence is preserved"
+    }
+  ],
+  "scope_limits": [
+    "No parent product/test/branch commit or scientific bytes altered",
+    "No old receipt relabeled",
+    "Adapter dirty=false is its actual tracked-status definition, never FULL clean",
+    "Fresh independent method source review must assess this exact augmentation before runtime",
+    "ROOT retains exactfixture cleanup responsibility"
+  ]
+}

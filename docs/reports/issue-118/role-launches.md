@@ -656,3 +656,41 @@ will be evaluated after A3; it is distinct from scientific test acceptance.
   duplicate cost, distinct from previous PhaseP joint event also charged117 once.
   All earlier launches/failures/corrections retained; no new118 role; C1complete,
   D0. Unavailable served/token/cache/money/elapsed/wait/check metrics unknown.
+
+
+# PH118 cumulative publication handoff — ROOT integrated
+
+ROOT integrates this cumulative evidence/accounting handoff; it is not a second Current. The original ledger snapshot and earlier entries remain preserved. No restack/continuation resets charges.
+
+| Role/work | Cumulative disposition and retained boundary |
+| --- | --- |
+| Intake | One original intake author; authorized contract/scenarios/task/packets retained. |
+| Blind A | Three fresh launches. A1/A2 stopped for packet/whole-file procedural-pointer overreads, not product-source exposure; charges preserved. A3 completed frozen28 tests with its four recorded continuations, failed genericFFT-wrapper expectation classified test defect and corrected to public finite/factorization semantics; exact checks/failures/repairs remain. |
+| Blind B | Four fresh events: B1 NOTACCEPT (resource inventory and T2debug proof gaps); B2 ACCEPT provisionalpublic64a scope; B3 STOPpartial after unlisted filenames/counts only, no restored blindness; B4 ACCEPT complete actual-parentSTATIC51+2 scope109aac94/final88659a65. Do not combine partial/provisional acceptance into a final runtime review count. |
+| Restricted C | One C1 session, provisional64a313-check receipt and valid actual-parent continuation1872 ordinary passes, Ruff/format/Pyright. Exactly six product insertions/two files; no owned test/adapter/protocol/gate edit. Four unattributed DLASCL notices preserved without new native claim. |
+| Apparatus source authors | Two separate fresh nonblind authors: SRC1 b80 and SRC2, same-author source continuations/chronology/budget/actual-binding corrections. Original7f→8dff→1ffa snapshots and failed source edits preserved, no code execution in source lane. No new observer/framework/science matrix. |
+| Method SOURCE reviewer | One fresh independent event, reportaba8/final33b8, suitable with P1–P6; no source repair or numerical grant. Finite retained117/116 qualification scoped by function/input/environment; no68-control rerun. Accidental completed-agent status metadata exposure disclosed, no opinion body used. |
+| Premeasurement SCI | One fresh independent event; initial primary-helper permission hold preserved, same-event exact five-helper continuation closes it. Report8745/final62bd narrowly sufficient; wrong119optical file inapplicable. No new test/science/matrix or early result acceptance. |
+| ROOT qualification/observations | Fourteen EXPECTED startup/help/abort/provenance outcomes, zero scientific calls/workloadspawns in P3; they are not failed trials. Original78 later scientific observations allclosed, zero scientific retry/failure. Limited first real members qualify their own planned slots;12profile+18common references add0runs. Six operational activation field transitions across2manifests, no code/science edit. |
+| Whole post118 SCI | One fresh Sol/high/forknone event, same independent session staged43→54→scalar54→66→whole78. Original reports/markers/inventories/beforeafter maps preserved at every boundary. Final ACCEPT9014/final4cf8, ROOT applied7566. Independent source judgment before operational opinions; no peer opinion body, runtime, delegation or new observations. |
+| Scalar/report preparation | Scalar54 two successful stdlib file runs (before/after true terminal-collection field); original preexecution condition-key correction preserved. One independent description defect S54-DESC1 fixed with oldREADME/maps retained, numeric/source unchanged. Scalar78 attempt1 KeyError missingcentralcase preserved9555; guarded actualschema repairb28a, attempt2success. One successful assemblerb149. None is a scientific retry. All static lookup/patch/cwd/projection/truncation errors retained in receipts/read inventories, not manufactured product failures. |
+| Shared scheduling reviews | Joint provisional-baseline and final-publication-order reviews are owned117 once each.118 cross-references them; no duplicated campaign charge or project-policy waiver. |
+| ReadinessD/publication | Not performed by this coordinator; ROOT owns exact integrated fullgate, freshD, push/PR/CI. D0 at this proposal until actualROOT launch. |
+
+Actual served model/effort/metering/tokens/cache/money and unrecorded total/wait elapsed
+remain unknown. Requested fresh lanes use Sol/high/forknone where recorded; no separately
+exposed memory-disable/read-only/delegation controls. Shared filesystem/prompt restrictions
+are not engineered isolation. No human numeric quotas, role-count stop or approval
+interview is invented. All required worktrees/fixtures/raw originals/histories retained.
+
+Finite publication packaging adds exact review/history copies and consolidated five
+ROOT staging maps, keyed by original source path AND logicalSHA. Gzip transport has
+its own SHA/size and must reconstruct the original logical bytes. No source/test/gate
+or original reviewed manuscript was rewritten, no new review loop. A preliminary jq
+schema display assumed .files was an array; actual archive uses numeric .files and
+.rows. Corrected projection only, no artifact/science failure. Final wrapper carries
+laterROOT SCI application rather than relabelling historical pending reports.
+
+ROOT publication restoration: normalized final map8b99099f/versioned5b655681 has1561 unique version/target mappings, all logical+transport hashes and lengths independently checked,93 lossless gzip files (78 runtime samples plus15 review text/index archives). Draft1811 null-length duplicate metadata, corrected1559 map and final exact-two parent aliases are preserved; no source/scientific change. ROOT initial gzip-label check and versioned-map display schema errors were read/check-only; strict final checks passed. Parent exact-two untracked inputs were removed via existing rm after archive/review closure;117 HEAD/tree unchanged and FULL clean now, historical observation FULL false retained. Required worktrees/environments/frozen fixtures/durable originals kept. No new test/review/measurement gate solely for cleanup.
+
+ROOT detected Git text=auto would normalize two CRLF CSV artifacts and whitespace-check literal historical diff context during first staging. No original bytes changed or candidate committed. Report-local archive attributes preserve exact bytes (-text), with archived diff/CSV records opaque to Git diff (-diff). Re-added exact artifacts and required staged-object byte/hash checks; source/test/gate attributes and all scientific evidence unchanged. This is transport metadata correction, not numerical repair/retry or coverage-policy change.
