@@ -871,9 +871,7 @@ def _prepare_acquisition_bands(
                             share_time=equalize_time,
                         )
                     on_fft = np.fft.rfft2(on, axes=(-2, -1))
-                    del on
                     off_fft = None if off is None else np.fft.rfft2(off, axes=(-2, -1))
-                    del off
                     finite(on_fft, "on lateral transform")
                     if off_fft is not None:
                         finite(off_fft, "off lateral transform")
@@ -998,8 +996,6 @@ def _prepare_acquisition_bands(
                                 d=d,
                                 z=z,
                             )
-                    # Separation copied this section, including raw Nyquist slots.
-                    del on_fft, off_fft
                 if not two_d:
                     quadratures[t, d] = np.fft.fft(quadratures[t, d], axis=1)
                 if drift_between and d > 0:
