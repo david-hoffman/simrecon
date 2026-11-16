@@ -1,0 +1,60 @@
+{
+  "protocol": "RB117-fixed-external-method7-source-only-v1",
+  "method_revision": "fixed external root/material/manifest/output binding of inherited method7; no runtime or suitability acceptance",
+  "launch": {"route":"plain-posix-spawn/same-pid-setsid/execve", "bootstrap_source":"observer.py::SESSION_BOOTSTRAP", "bootstrap_sha256":"81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e", "startup_timeout_seconds":5.0, "startup_pipe_bytes":1024, "ready_message_bytes":512, "signals":"exact owned direct PID only; no numerical descendants", "native_scope":"kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim"},
+  "execution_status": "not_run_no_grant_or_admission_created",
+  "revision_mapping": {
+    "parent": {"root":"/workspace/work/issue-116", "source":"158776ade28079276304d49a6b973eccbf4109c9", "tree":"23530ae22e7e1a64f8171dbbedfea81d1b00174c", "setup_status":"ROOT_confirmed_clean_fixed_accepted_parent_root_and_source_resource_qualification_and_per_run_setup_admission_pending"},
+    "candidate": {"root":"/workspace/work/issue-117", "source":"e6945817850cfdaa3ebbfe21e7a23784964208d6", "tree":"cd637c9b568e2cbe35119193804b36105ec54500", "setup_status":"ROOT_confirmed_clean_fixed_root_and_source_resource_qualification_and_admission_pending"}
+  },
+  "external_method_root": "/workspace/work/campaign/evidence/117/resource-method-source",
+  "output_roots": {"parent":"/workspace/work/campaign/evidence/117/resource-method-source/raw-parent", "candidate":"/workspace/work/campaign/evidence/117/resource-method-source/raw-candidate"},
+  "repetitions": [1, 2, 3],
+  "paired_revision_order": {"1":["parent","candidate"], "2":["candidate","parent"], "3":["parent","candidate"]},
+  "scope_counts": {"condition_profile_groups":10, "core_calls":24, "central_profile_calls":12, "largest_unprofiled_calls":12, "largest_profile_calls":12, "total_proposed_calls":60},
+  "initial_attempt_count": 24,
+  "all_declared_attempts_status": "proposed only; exact individual root release required; no automatic execution, retry or growth; raw receipts never mutate this frozen manifest",
+  "actual_input_output_hashes": "pending execution; never inferred from source",
+  "qualification": "pending fresh independent source review and root-routed finite qualification/applicability decisions",
+  "primary_shape_order": ["T", "D", "Z", "Y", "X"],
+  "primary_constants": {"P":5, "O":3, "Q":5, "lateral_zoom":2, "axial_zoom":1, "use_time0_carriers":true},
+  "generator": {"file":"tests/reconstruction_summary_fixture.py", "function":"workload or scenario", "revision":"actual declared-root bytes bound by material_hashes; no fixture edits", "formulas":"unchanged fixture workload/declared_transfer/scenario; native conditions omit case; exact true2D uses case=2d-search"},
+  "initial_conditions": [
+    {"id":"central64-summary-searched", "shape":[1,3,8,64,64], "mode":"summary", "search":true},
+    {"id":"central64-full-searched", "shape":[1,3,8,64,64], "mode":"full", "search":true},
+    {"id":"rb117-2d-search-summary", "case":"2d-search", "shape":[2,2,1,12,16], "mode":"summary", "search":true},
+    {"id":"rb117-2d-search-full", "case":"2d-search", "shape":[2,2,1,12,16], "mode":"full", "search":true}
+  ],
+  "condition_profile_groups": [
+    {"order":1, "group":"core", "condition_id":"central64-summary-searched", "profile":false, "individual_release":"PENDING"},
+    {"order":2, "group":"core", "condition_id":"central64-full-searched", "profile":false, "individual_release":"PENDING"},
+    {"order":3, "group":"core", "condition_id":"rb117-2d-search-summary", "profile":false, "individual_release":"PENDING"},
+    {"order":4, "group":"core", "condition_id":"rb117-2d-search-full", "profile":false, "individual_release":"PENDING"},
+    {"order":5, "group":"central_profile", "condition_id":"central64-summary-searched", "profile":true, "individual_release":"PENDING", "unprofiled_control_group":1},
+    {"order":6, "group":"central_profile", "condition_id":"central64-full-searched", "profile":true, "individual_release":"PENDING", "unprofiled_control_group":2},
+    {"order":7, "group":"largest_control", "condition_id":"growth256-summary-searched", "profile":false, "individual_release":"PENDING_NEW_256_ADMISSION"},
+    {"order":8, "group":"largest_control", "condition_id":"growth256-full-searched", "profile":false, "individual_release":"PENDING_NEW_256_ADMISSION"},
+    {"order":9, "group":"largest_profile", "condition_id":"growth256-summary-searched", "profile":true, "individual_release":"PENDING_NEW_256_ADMISSION", "unprofiled_control_group":7},
+    {"order":10, "group":"largest_profile", "condition_id":"growth256-full-searched", "profile":true, "individual_release":"PENDING_NEW_256_ADMISSION", "unprofiled_control_group":8}
+  ],
+  "profile_controls": {"status":"not_run", "conditions":["central64-summary-searched","central64-full-searched"], "repetitions":[1,2,3], "largest_safe_searched":"growth256 full/summary only after new separate admission for each revision/mode/profile; unmeasured/incomplete otherwise", "reuse_controls":"central profiles reuse groups1/2; largest profiles reuse groups7/8; no duplicate unprofiled series", "sample_interval_seconds":0.01},
+  "growth": {
+    "status":"not_run_not_admitted_pending_new_256_admission_on_both_revisions",
+    "lateral_sizes":[256],
+    "shape_template":[1,3,8,"N","N"],
+    "conditions":[
+      {"id":"growth256-summary-searched", "shape":[1,3,8,256,256], "mode":"summary", "search":true},
+      {"id":"growth256-full-searched", "shape":[1,3,8,256,256], "mode":"full", "search":true}
+    ],
+    "order":["summary searched","full searched"],
+    "full_at_largest":"separate admission per exact searched condition and profile flag",
+    "required":"existing growth_separate_admission and smaller_measured_evidence for every largest group; old116 admission and caps do not transfer",
+    "no_automatic_growth":true
+  },
+  "tooling": {"runner":"run_attempt.py", "child":"workload_child.py", "observer":"observer.py", "task_manifest":"manifest.json", "preserved_control_source":"method_qualification.py", "qualification_driver_status":"byte-identical inherited control source only; original HERE/ROOT/QUAL and inventory assumptions require separate root routing before any use"},
+  "thread_controls": {"OMP_NUM_THREADS":"1", "OPENBLAS_NUM_THREADS":"1", "MKL_NUM_THREADS":"1", "NUMEXPR_NUM_THREADS":"1"},
+  "material_inputs": ["actual declared-root commit/tree/tracked diff/version and product import origin", "all actual src/simrecon Python source bytes", "actual uv.lock", "actual tests/reconstruction_summary_fixture.py", "actual tests/reconstruction_memory_benchmark.py", "same active fixed external observer/runner/child/task-manifest/preserved-control-source bytes under explicit absolute external_method keys", "unchanged bootstrap bytes/digest/target argv/nonce/startup bounds/FD/session metadata", "generator/constants/optics/transfer/mode/search/reuse/shapes/dtypes/input hashes", "interpreter/NumPy/SciPy/backend/FFT/allocator/thread settings", "host/cgroup ancestors/rlimits/swap/headroom", "per-attempt grant/preflight/monitor settings", "timing/hash/traversal scope"],
+  "source_proposals": {"conditions":"/workspace/work/campaign/evidence/117/resource-conditions-parent1587-PROPOSED.tsv", "conditions_sha256":"e9ae81c06a862414cfb830f7ae4e339ddba631aa01b6e06d1d6092d485bcad73", "protocol":"/workspace/work/campaign/evidence/117/resource-protocol-parent1587-PROPOSED.md", "protocol_sha256":"742106e826c1387c3819306b7c1c447ec74743991e5dcba88286df998fe17980"},
+  "human_numeric_cap": null,
+  "measurements_usage_cost": "unknown; source-only authoring runs no numerical or qualification attempts"
+}

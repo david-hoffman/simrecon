@@ -1,0 +1,43 @@
+{
+  "time_utc": "2026-11-16T12:30:41.297534+00:00",
+  "source_report_sha256": "aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13",
+  "decision": "ROOT APPLIES source suitability with exact P1\u2013P6; no code repair; all numerical comparisons HOLD until premeasurement SCI scope+current qualification/admission",
+  "candidate": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+  "parent": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "schedule": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json",
+    "sha256": "a8a478ad3cb38c8a1520472de93f54f604d7887ccc3a246e9e3e4c8c59be85bb",
+    "workflow": 36,
+    "direct": 42,
+    "total": 78,
+    "old18": "historical context only"
+  },
+  "bounded_NONNUMERICAL_startup_release": {
+    "authorized_now": true,
+    "roles": [
+      "parent",
+      "candidate"
+    ],
+    "public_scientific_calls": 0,
+    "target_spawns_by_observer": 0,
+    "interfaces": [
+      "existing fixed direct/workflow observer --help normal CLI",
+      "same observer CLI invalid safe-attempt-id existing abort before output directory/spawn; required source-free ValueError category/message/location and no source lines",
+      "unchanged actual direct adapter --help normal CLI",
+      "same adapter complete CLI with deliberately wrong expected-python existing first provenance refusal; expected JSON failure/ValueError/exit2 before preparation or reconstruction",
+      "unchanged adapter _provenance helper for fully fixed subject identity plus normal startup hook/debug/path/origin context; sys.path[0] explicitly models its fixed script directory, confirmed later against actual main; no execute/_case/public scientific call/backend measurement"
+    ],
+    "expected_limit": "These qualify actual normal/abort startup and binding metadata only; bootstrap normal/exec and direct full-record correspondence require limited already-planned real members. Retained bootstrap/guard/parser qualification scopes still need exact primary mapping. No new generic driver/oracle/child fixture or scientific observation.",
+    "environment": "Exact Docker inherited sourcefree prefix only +pytest_plugin +four threadvars=1 +dontwrite before every interpreter. Preserve actual remaining inherited absences/settings; product resolves own editable pth. No -I/-S/-E.",
+    "outer": "Popen.communicate60s; no automatic kill. On expiry preserve parent/wrapper ownership and partial streams, UNKNOWN/HOLD/no next invocation while parent stays alive awaiting owned child, diagnose exact processes.",
+    "source_activation": "Both method manifests remain false/HOLD; --help/invalid-id refusal/metadata helper never require numerical release; no apparatus code mutation."
+  },
+  "later_science": "Fresh premeasurement SCI scope active d9c8; post-observation independent SCI, full exact Ubuntu gate/D/publication remain separate",
+  "retained_controls": "P2 function-specific primary evidence mapping before any numerical limited release; no whole-route relabel or new68 rerun",
+  "unknown_windows": [
+    "abrupt metadata Git survival",
+    "interruption in spawn before returned/recorded PID",
+    "Python startup before diagnostic hooks",
+    "hidden external ancestors/actors"
+  ]
+}

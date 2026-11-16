@@ -1,0 +1,11 @@
+unformatted: File would be reformatted
+   --> tests/test_preparation_harmonic_lifetimes.py:638:58
+    |
+637 |             assert isinstance(caught, public(error_name)), (
+    -                 f"{name} {fault}: expected {error_name}; "
+    -                 f"observed {type(caught).__name__}: {caught}"
+638 +                 f"{name} {fault}: expected {error_name}; observed {type(caught).__name__}: {caught}"
+639 |             )
+    |
+
+1 file would be reformatted

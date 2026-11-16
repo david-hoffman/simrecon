@@ -1,0 +1,24 @@
+{
+  "scope": "Actual Docker inherited coverage startup variables, metadata-only, no import/qualification",
+  "time_utc": "2026-11-16T11:52:43.415373+00:00",
+  "container_id": "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+  "selected_env": {
+    "COVERAGE_PROCESS_START": {
+      "present": false,
+      "value": null
+    },
+    "COVERAGE_PROCESS_CONFIG": {
+      "present": false,
+      "value": null
+    },
+    "COVERAGE_FILE": {
+      "present": false,
+      "value": null
+    },
+    "COVERAGE_RCFILE": {
+      "present": false,
+      "value": null
+    }
+  },
+  "normalized_all_env_sha256": "d56392c4d971b81798e2b1490bf577ea109d6888798fbde38bd76ab0584d338f"
+}

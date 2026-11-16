@@ -1,0 +1,52 @@
+{
+  "role": "parent",
+  "name": "target-help",
+  "kind": "help",
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-117",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/usr/bin/env",
+    "PYTHONPATH=/workspace/work/issue-117/scripts/source_free_sitecustomize",
+    "PYTEST_PLUGINS=pytest_plugin",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "NUMEXPR_NUM_THREADS=1",
+    "/workspace/work/issue-117/.venv/bin/python",
+    "/workspace/work/issue-117/tests/preparation_harmonic_memory_benchmark.py",
+    "--help"
+  ],
+  "expected_returncode": 0,
+  "started_utc": "2026-11-16T12:33:26.759374+00:00",
+  "scope": "P3 nonnumerical startup metadata/CLI only; no observer workload spawn or public scientific call",
+  "guard": {
+    "argv": [
+      "/usr/local/bin/docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+      "/bin/cat",
+      "/sys/fs/cgroup/memory.current",
+      "/sys/fs/cgroup/memory.max",
+      "/proc/meminfo"
+    ],
+    "memory_current": 3698425856,
+    "memory_max": 17179869184,
+    "host_MemAvailable_bytes": 17715658752,
+    "all_visible_ancestors_resource_admission": "not claimed; numerical member admission remains separate"
+  },
+  "owned_outer_pid": 283909,
+  "owner_pid": 283659,
+  "returncode": 0,
+  "stdout": "usage: preparation_harmonic_memory_benchmark.py [-h]\n                                                --case {acquisition-64,acquisition-128,acquisition-off,acquisition-drift,known-64,known-128,preparation-context-64}\n                                                --role {parent,candidate}\n                                                --repetition {1,2,3}\n                                                --worktree WORKTREE\n                                                --expected-python EXPECTED_PYTHON\n                                                --expected-module-root EXPECTED_MODULE_ROOT\n                                                --revision REVISION\n                                                --tree TREE --dirty DIRTY\n                                                --adapter-sha256 ADAPTER_SHA256\n                                                --shared-observer-sha256 SHARED_OBSERVER_SHA256\n                                                --lock-sha256 LOCK_SHA256\n\nPH118 fixed DIRECT-stage observer; do not import/execute before resource\ngrant. One fresh process, one public target call. No numerical child or disk\narray. Scientific generators/protocol are frozen before candidate\nmeasurements.\n\noptions:\n  -h, --help            show this help message and exit\n  --case {acquisition-64,acquisition-128,acquisition-off,acquisition-drift,known-64,known-128,preparation-context-64}\n  --role {parent,candidate}\n  --repetition {1,2,3}\n  --worktree WORKTREE\n  --expected-python EXPECTED_PYTHON\n  --expected-module-root EXPECTED_MODULE_ROOT\n  --revision REVISION\n  --tree TREE\n  --dirty DIRTY\n  --adapter-sha256 ADAPTER_SHA256\n  --shared-observer-sha256 SHARED_OBSERVER_SHA256\n  --lock-sha256 LOCK_SHA256\n",
+  "stderr": "",
+  "elapsed_seconds": 0.41008529599639587,
+  "outer_reaped": true
+}

@@ -1,0 +1,33 @@
+{
+  "attempt_id": "ph118-W-g1-candidate-r2-a1",
+  "observer_pid": 102545,
+  "workload_pid": 102583,
+  "child_identity": {
+    "pid": 102583,
+    "observed_monotonic_ns": 143914174315385,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 14391417,
+    "ppid": 102545,
+    "pgid": 102545,
+    "session_id": 102545,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "session_status": "unverified until bounded readiness",
+  "target_argv": [
+    "/workspace/work/issue-118/.venv/bin/python",
+    "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/workload_child.py",
+    "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r2-a1/spec.json",
+    "/workspace/work/issue-118"
+  ],
+  "bootstrap_argv": [
+    "/workspace/work/issue-118/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nstage = \"arguments\"\ntry:\n    target = json.loads(sys.argv[3])\n    stage = \"setsid\"\n    os.setsid()\n    stage = \"readiness\"\n    message = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n        \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n        \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\n    if len(message) > 512 or os.write(fd, message) != len(message):\n        raise RuntimeError(\"invalid/incomplete bounded readiness write\")\n    os.close(fd)\n    fd = -1\n    stage = \"exec\"\n    os.execve(target[0], target, os.environ.copy())\nexcept BaseException as error:\n    if fd >= 0:\n        os.close(fd)\n    detail = {\"stage\":stage, \"type\":type(error).__name__, \"message\":str(error)[:160]}\n    os.write(2, (\"WS116_BOOTSTRAP_ERROR \" + json.dumps(detail) + \"\\n\").encode())\n    raise SystemExit(125 if stage == \"exec\" else 124)\n",
+    "68",
+    "ph118-W-g1-candidate-r2-a1",
+    "[\"/workspace/work/issue-118/.venv/bin/python\", \"/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/workload_child.py\", \"/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g1-candidate-r2-a1/spec.json\", \"/workspace/work/issue-118\"]"
+  ],
+  "spec_sha256": "d639844a0be096f0db6f5a228cd2f864f4cc3162dd366ff672a2caa2e55996bc",
+  "grant_sha256": "f53f8f93fcdde7f65d3f70e92e10e7a9ac2be3932d660a6ed57c3ba23cf45035",
+  "scope": "owned child marker, not terminal receipt; missing identity fields require coordinator discovery"
+}

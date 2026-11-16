@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-11-16T15:22:16.852669+00:00",
+  "scope": "ROOT actualGit staged blobs checked, not just worktree; no new numerical execution",
+  "map_sha256": "8b99099f0a4b1e4396c4f9af5413e5c3f86fe8e9e65b37a43c47ce5de65f1e68",
+  "staged_blobs_checked": 1561,
+  "all_transport_SHA256_and_lengths_exact": true,
+  "public53_source38_unchanged": true,
+  "archive_attributes": "Local -text preserves CRLF; archived diff/CSV -diff only. All source/test/gate attributes unchanged.",
+  "index_correction": "First actual stagedblob check caught previously normalized CSV index still cached despite worktree attributes. gitadd --renormalize on exactlytwoCSVfiles refreshed index using -text; original worktree/record bytes unchanged. Rechecked all1561 actualGitblobs PASS.",
+  "earlier_correction": "ROOT-archive-Git-byte-preservation-correction-1.json"
+}

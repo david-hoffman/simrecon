@@ -1,0 +1,25 @@
+{
+  "protocol": "PH118-direct-method-SOURCE-v1",
+  "approved": false,
+  "execution_status": "PENDING_UNAPPROVED_UNRELEASED",
+  "accepted116_tooling_only": {"head": "158776ade28079276304d49a6b973eccbf4109c9", "tree": "23530ae22e7e1a64f8171dbbedfea81d1b00174c"},
+  "actual_accepted117": null,
+  "restacked118": null,
+  "launch": {"route": "plain-posix-spawn/same-pid-setsid/execve", "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e", "startup_timeout_seconds": null, "startup_pipe_bytes": 1024, "ready_message_bytes": 512},
+  "repetitions": [1, 2, 3],
+  "sample_interval_seconds": 0.01,
+  "adapter_hashes": {"adapter": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59", "shared_observer": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f", "lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"},
+  "subject_material_paths": [],
+  "subject_material_paths_status": "UNBOUND: actual final explicit product/direct/protocol/diagnostic/config/environment closure required; no wildcard or historical116 product hash substitution",
+  "initial_conditions": [
+    {"id": "acquisition-64", "entry": "prepare_acquisition_bands", "raw_shape_TDPZYX": [1,3,5,8,64,64], "record": "AcquisitionBands"},
+    {"id": "acquisition-128", "entry": "prepare_acquisition_bands", "raw_shape_TDPZYX": [1,3,5,8,128,128], "record": "AcquisitionBands"},
+    {"id": "acquisition-off", "entry": "prepare_acquisition_bands", "raw_shape_TDPZYX": [2,2,5,2,10,10], "record": "AcquisitionBands"},
+    {"id": "acquisition-drift", "entry": "prepare_acquisition_bands", "raw_shape_TDPZYX": [2,3,5,2,10,12], "record": "AcquisitionBands"},
+    {"id": "known-64", "entry": "reconstruct_known", "raw_shape_TDPZYX": [2,2,5,8,64,64], "record": "KnownReconstruction"},
+    {"id": "known-128", "entry": "reconstruct_known", "raw_shape_TDPZYX": [2,2,5,8,128,128], "record": "KnownReconstruction"},
+    {"id": "preparation-context-64", "entry": "prepare_bands", "raw_shape_TDPZYX": [1,3,5,8,64,64], "record": "PreparedBands"}
+  ],
+  "scope": "seven direct conditions only; no workflow/profile/growth; repetitions are design, no automatic jobs",
+  "known_limits": "unchanged direct adapter has no self PID/nonce/spec or snapshot timestamps; stdout ownership is external correspondence, not self-authentication; metadata Git abort cleanup UNRESOLVED; no present diagnostic/lifecycle/science qualification"
+}

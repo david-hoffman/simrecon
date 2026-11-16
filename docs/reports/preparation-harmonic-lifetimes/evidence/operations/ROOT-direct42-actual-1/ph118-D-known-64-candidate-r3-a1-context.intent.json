@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-118",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/usr/bin/env",
+    "PYTHONPATH=/workspace/work/issue-118/scripts/source_free_sitecustomize",
+    "PYTEST_PLUGINS=pytest_plugin",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "NUMEXPR_NUM_THREADS=1",
+    "/workspace/work/issue-118/.venv/bin/python",
+    "-c",
+    "from pathlib import Path\nimport sys,json,os,time,subprocess,hashlib\nroot=Path(sys.argv[1]);method=Path(sys.argv[2])\nassert __debug__ and sys.flags.optimize==0\nfor name,expected in [('observer.py',sys.argv[3]),('direct_binding.py',sys.argv[4])]:assert hashlib.sha256((method/name).read_bytes()).hexdigest()==expected\nsys.path.insert(0,str(method));import observer,direct_binding\nassert Path(observer.__file__).resolve()==method/'observer.py' and Path(direct_binding.__file__).resolve()==method/'direct_binding.py'\nparent=method/'raw';parent=parent if parent.exists() else method\nassert parent.resolve()==parent and parent.stat().st_uid==os.getuid() and os.access(parent,os.W_OK)\nprint(json.dumps({'observed_at_unix_ns':time.time_ns(),'context':observer.context(root),'material_hashes':direct_binding.material_hashes(root),'candidate':{'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),'tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],cwd=root,text=True).strip(),'tracked_diff_sha256':hashlib.sha256(subprocess.check_output(['git','diff','--binary','HEAD'],cwd=root)).hexdigest()},'FULL_status':subprocess.check_output(['git','status','--porcelain=v1','--untracked-files=all'],cwd=root,text=True).strip(),'python_resolved':str(Path(sys.executable).resolve()),'debug':__debug__,'optimize':sys.flags.optimize,'uid':os.getuid(),'output_parent_canonical_writable_owned':True,'scope':'Actual ROOT per-direct-member metadata only, zero public scientific calls'}))\n",
+    "/workspace/work/issue-118",
+    "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct",
+    "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "7822b13257761fb535867b197eacd836e15607ff0a64754d0b2adc62bc4a1c87"
+  ],
+  "owner_pid": 286989,
+  "owned_outer_pid": 291928,
+  "outer_envelope_seconds": 60,
+  "automatic_kill": false,
+  "started_monotonic": 141875.737253169
+}

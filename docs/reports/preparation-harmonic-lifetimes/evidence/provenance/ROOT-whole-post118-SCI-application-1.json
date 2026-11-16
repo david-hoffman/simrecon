@@ -1,0 +1,59 @@
+{
+  "time_utc": "2026-11-16T15:02:49.260182+00:00",
+  "disposition": "APPLIED_ACCEPT_EXACT_FINITE_SCOPE",
+  "source_head": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+  "source_tree": "275e0d94ff94dc1283f5da80815d6bb383c68c86",
+  "accepted_parent": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "whole_SCI": {
+    "report.md": {
+      "path": "/workspace/work/campaign/evidence/118/post118-scientific-review-1/report.md",
+      "sha256": "9014f99d24c65a8062b604be52a554cae70aa87c388f6b1909104f8e75b35d86"
+    },
+    "final.md": {
+      "path": "/workspace/work/campaign/evidence/118/post118-scientific-review-1/final.md",
+      "sha256": "4cf8a965801410e63fdd6b006668f79872ffad219436b8a69dfb4f421ae45ca9"
+    },
+    "read-inventory.md": {
+      "path": "/workspace/work/campaign/evidence/118/post118-scientific-review-1/read-inventory.md",
+      "sha256": "d469985ca16e6ee47b9e9baa57b30d57a6d24c831fc5530aedfb329d33530036"
+    },
+    "STAGE-PRIMARY-ONLY.md": {
+      "path": "/workspace/work/campaign/evidence/118/post118-scientific-review-1/STAGE-PRIMARY-ONLY.md",
+      "sha256": "c560e0fb0a8dfedf8b5ada58e9857e1f2cacb34651163806bf64d528f596e60a"
+    }
+  },
+  "ROOT_read_scope": "Report174lines and distinct final36lines whole-read; earlier oversized concatenated output was not counted; exact later ranges recovered.",
+  "hash_maps_rechecked": {
+    "input-after.sha256": 1538,
+    "final78-root.sha256": 273,
+    "final78-derived.sha256": 38,
+    "final78-active13.sha256": 13,
+    "final78-hash-only.sha256": 0,
+    "role38.sha256": 76,
+    "closed43.sha256": 473,
+    "extension44-54.sha256": 121,
+    "extension55-66.sha256": 132,
+    "extension67-78.sha256": 132
+  },
+  "input_before_after_sha256": "08bb0b0652e192cbe1a987eca98bf953b990eab6b6af3dcf778be662be18f02f",
+  "protected_B4_members_rechecked": 53,
+  "source_materials_rechecked": 38,
+  "CLOSED78": "78 original slots terminal0, no scientific rerun; finite descriptive resource conclusions only.",
+  "accepted_report_sha256": "09d6944991e1c33eb62e8a7d67a204f353ce8e957020ead7bcb04113c463d6cd",
+  "accepted_dispositions_sha256": "d190f6bcf8386ead70cb34c6035e57d96a8234c0b63738d1128014e5168f4574",
+  "limits": [
+    "No general peak or speed improvement claim",
+    "Current256/large attribution/ranking/scaling/margin/16GiB and necessary downstream premises held",
+    "No119/120 design acceptance or113 qualification transferred"
+  ],
+  "remaining": [
+    "Portable evidence integration and source/version equivalence",
+    "Exact clean candidate full Ubuntu make verify all13",
+    "Fresh independent readinessD",
+    "ROOT lease-controlled publication and actual CI observation"
+  ],
+  "new_numerical_execution": false,
+  "tracked_edits": false,
+  "ROOT_read_check_correction": "Initial hash command resolved source_materials relative to /workspace instead of explicit issue118 root and stopped FileNotFoundError before application write; corrected root-only read/check, no input change or numerical rerun.",
+  "metering": "unknown"
+}

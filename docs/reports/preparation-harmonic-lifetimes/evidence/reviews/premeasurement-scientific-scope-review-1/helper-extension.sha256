@@ -1,0 +1,6 @@
+a64a93dae93864d5b76a2fb54b794a876b76f76527e7018966a681870ee82bf9  /workspace/work/issue-118/tests/c_acquisition_fixture.py
+5e80aafb44b59ae9d45592181b72d62ce03dd7f49f146313294a16c73a2d89a6  /workspace/work/issue-118/tests/c_known_fixture.py
+eeff7dd5ce4cbd7a32a346eabd0521afdfd930ba582b1e20ac441da4c4d8e80c  /workspace/work/issue-118/tests/c_preparation_fixture.py
+96c8a74df6bf0906ed878414516caefa6cde165afd768050608bb02308b66c49  /workspace/work/issue-118/tests/c_workflow_oracle.py
+c81c9fbf3cabfc9a4f83e13f6462f64f966582b2bd17220fd96679ab7fcdb202  /workspace/work/issue-118/tests/test_c_acquisition_transfer.py
+a8a478ad3cb38c8a1520472de93f54f604d7887ccc3a246e9e3e4c8c59be85bb  /workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json

@@ -1,0 +1,17 @@
+{
+  "time_utc": "2026-11-16T15:18:29.543127+00:00",
+  "scope": "ROOT housekeeping using existingrm only, exacttwo disposable118methodcopies at117, no helper/product/test/runtime change",
+  "removed": [
+    "/workspace/work/issue-117/tests/preparation_harmonic_memory_benchmark.py",
+    "/workspace/work/issue-117/docs/packets/issue-118-direct-resource-protocol.md"
+  ],
+  "predelete_hash_and_archive_check": "ROOT-portable-map-restoration-check-2.json",
+  "parent_head": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "parent_tree": "ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc",
+  "FULL_status_after": "",
+  "parent_FULL_clean_now": true,
+  "historical_parent_FULL_clean_during_measurements": false,
+  "retained": "All source copies atW118, durable original/raw/review histories and portable1561map. Allactiveworktrees/environments/frozenfixtures and uncertain dependencies kept.",
+  "errors": [],
+  "gate_rerun_required_for_cleanup_only": false
+}

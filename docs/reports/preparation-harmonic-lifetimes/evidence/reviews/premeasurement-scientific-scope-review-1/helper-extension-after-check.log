@@ -1,0 +1,6 @@
+/workspace/work/issue-118/tests/c_acquisition_fixture.py: OK
+/workspace/work/issue-118/tests/c_known_fixture.py: OK
+/workspace/work/issue-118/tests/c_preparation_fixture.py: OK
+/workspace/work/issue-118/tests/c_workflow_oracle.py: OK
+/workspace/work/issue-118/tests/test_c_acquisition_transfer.py: OK
+/workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json: OK

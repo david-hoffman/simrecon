@@ -1,0 +1,160 @@
+{
+  "protocol": "PH118-workflow-grant-v1",
+  "approved": true,
+  "numerical_release": true,
+  "accepted_112_then_115": true,
+  "subject": {
+    "role": "candidate",
+    "worktree": "/workspace/work/issue-118",
+    "python": "/workspace/work/issue-118/.venv/bin/python",
+    "diagnostic_environment": {
+      "inherited_pythonpath": null,
+      "inherited_pytest_plugins": null,
+      "PYTHONPATH": "/workspace/work/issue-118/scripts/source_free_sitecustomize",
+      "PYTEST_PLUGINS": "pytest_plugin"
+    }
+  },
+  "proofs": {
+    "actual_accepted117": {
+      "path": "/workspace/work/campaign/evidence/117/final-evidence.json",
+      "sha256": "b216290735868922cd9564ae2e106e1577cd2fe6789276e09772fc5124d93ddf"
+    },
+    "integrated118": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-actual-C-source-checkpoint-1.json",
+      "sha256": "b2efacf99c9cb264ee1806640ffe2236085a8a9b67d1454f29b3322dbf785988"
+    },
+    "affected_review": {
+      "path": "/workspace/work/campaign/evidence/118/method-source-review-1/report.md",
+      "sha256": "aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13"
+    },
+    "method_qualification": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-first-workflow-pair-actual-1/ROOT-actual-correspondence-and-readout-clarification-1.json",
+      "sha256": "6d1aab15bafdff59c829645d80bb7b23e264bb9b24fd269d0903c77b87fb30ef"
+    },
+    "diagnostic_route_qualification": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/ROOT-result-index.json",
+      "sha256": "7b4513a12ff0bb7e3c7a00e73eca65539c0cd763f70c4b84a119b214a337df2c"
+    },
+    "metadata_git_abort_ownership": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-source-review-application-and-startup-qualification-1.json",
+      "sha256": "22e3fa79829483006847d224fd1e4450b5b1a47de8c24b6c1072e2da620e6f75"
+    },
+    "fresh_workflow_pair_design": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json",
+      "sha256": "a8a478ad3cb38c8a1520472de93f54f604d7887ccc3a246e9e3e4c8c59be85bb"
+    },
+    "chronology_scope_sufficiency": {
+      "path": "/workspace/work/campaign/evidence/118/premeasurement-scientific-scope-review-1/report.md",
+      "sha256": "8745f141663565de54f412ff1aa573c7bb848efe8b43b57765d18da32e09d9a3"
+    },
+    "exclusive_window": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-next-ten-tiny-exclusive-window-1.json",
+      "sha256": "ae0bd7fa6b0746391c88359d518c1e4963aec167f7a47531d80eb5e42e962c4a"
+    },
+    "environment_binding": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/ROOT-result-index.json",
+      "sha256": "7b4513a12ff0bb7e3c7a00e73eca65539c0cd763f70c4b84a119b214a337df2c"
+    }
+  },
+  "representation_preflight": {
+    "accepted": true,
+    "evidence": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-tiny-both-modes-representation-1.json",
+      "sha256": "939861cdec1481de95c16b1cede7545c16f932fc70e5064c7a4f4e540acce3a6"
+    }
+  },
+  "headroom_evidence": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-next-ten-tiny-workflow-actual-1/ph118-W-g3-candidate-r2-a1-context.json",
+    "sha256": "449bb25256762842713e321e265337d6d3899fa17f2fdfa77f0b1544b3d75844"
+  },
+  "deadline_seconds": 240,
+  "process_stop_bytes": 536870912,
+  "host_min_available_bytes": 1073741824,
+  "terminate_grace_seconds": 1.0,
+  "kill_reap_seconds": 5.0,
+  "max_child_record_bytes": 33554432,
+  "sample_interval_seconds": 0.01,
+  "python_resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "candidate": {
+    "head": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+    "tree": "275e0d94ff94dc1283f5da80815d6bb383c68c86",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_hashes": {
+    ".python-version": "40411dc2c2726b4c7024d38318dd8df45c528b49491efb45939dd4a829847d94",
+    "docs/packets/issue-118-direct-resource-protocol.md": "2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc",
+    "pyproject.toml": "96a30134cc00103853913cfccaf673373b97760549467035082e71532c245abb",
+    "scripts/source_free_check.py": "cdf5894e916c9445a1627da9e654d853b8f772fba9f376cee80680fed9701564",
+    "scripts/source_free_sitecustomize/pytest_plugin.py": "d0c962f75b396169fb30288990dc6e12443b6b7f3f877c977101c3b402a3e3bf",
+    "scripts/source_free_sitecustomize/sitecustomize.py": "5c2992da3a882201fb15e5e8cc2a9cdbbbab6f2d6ea7a3db8a4eda4d5d73fc6f",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "00a816ffaf74871f28a275b3a86b21a5a6f7009a0920aca345248210487a683c",
+    "src/simrecon/reconstruction/parameter_estimation.py": "527bb3459e295a5cec0a776a464d82723e32b0b6f64e3d47f3eb514529e19b38",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/preparation_harmonic_memory_benchmark.py": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "external_method:/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/manifest.json": "d75562f06cdf887e3dbb285d3b007094cf74825394fee2d345605a6320f98ebf",
+    "external_method:/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/observer.py": "cea33103784e935865395ece83bfe39764ee2c03a0bbcd03b892644eb50e77d6",
+    "external_method:/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/run_attempt.py": "ab6a623de596d5094dc51d36ab9f022c33b9b1aba1650dda94098d750a0baa3d",
+    "external_method:/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "external_method:/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/method_qualification.py": "56c1dafe3c6bdab3b9e9e6fdefc1dc01d419b09e6f6f09bc8b302073474f2a21"
+  },
+  "startup_timeout_seconds": 5.0,
+  "startup_pipe_bytes": 1024,
+  "launch_nonce": "ph118-W-g3-candidate-r2-a1",
+  "condition_id": "rb117-2d-search-summary",
+  "repetition": 2,
+  "profile": false,
+  "ancestor_stop_bytes": {
+    "/sys/fs/cgroup": 16106127360
+  },
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "ROOT exact next original tiny2d-search full/summary member. Retained finite core, independent source/scientific scope acceptance, P3startup and actual first scheduled pair P4 role correspondence precede this call. This is not final scientific qualification. Frozen T2/D2/Z1/Y12/X16/P5/O3/L2/A1 caller/output are tiny; proposed256MiB child plus128MiB native/allocator allowance fit512MiB process stop, with512MiB reserve, host1GiB minimum, actual visible ancestor stops1GiB below max and2GiB free disk. Allowances are conservative operating decisions, not RSS predictions established by data or guarantees. No competing controlled test/install/benchmark; hidden ancestors/actors and early startup/abrupt-loss windows remain conditional/HOLD. No retry/growth.",
+    "correspondence_evidence": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-next-ten-tiny-workflow-actual-1/ph118-W-g3-candidate-r2-a1-context.json",
+      "sha256": "449bb25256762842713e321e265337d6d3899fa17f2fdfa77f0b1544b3d75844",
+      "observed_at_unix_ns": 1794834501272818975,
+      "maximum_age_seconds": 300
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "predicted_child_peak_bytes": 268435456,
+    "native_allocator_allowance_bytes": 134217728,
+    "reserve_bytes": 536870912
+  }
+}

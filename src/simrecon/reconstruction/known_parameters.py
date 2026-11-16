@@ -759,6 +759,8 @@ def _filter_native_quadratures_into(
                                 n = plus[-z % zsize, -y % ysize, -x % xsize].conjugate()
                                 filtered[t, d, 2 * m - 1, z % zsize, y % ysize, x] = (p + n) / 2
                                 filtered[t, d, 2 * m, z % zsize, y % ysize, x] = (p - n) / (2j)
+                # Recombination copied every required partner out of this scratch.
+                del plus
     _finite(filtered, "filtered quadrature result")
 
 

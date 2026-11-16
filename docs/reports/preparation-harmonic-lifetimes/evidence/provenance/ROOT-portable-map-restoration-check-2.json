@@ -1,0 +1,13 @@
+{
+  "time_utc": "2026-11-16T15:18:14.571705+00:00",
+  "scope": "ROOT strict final portable restore + exact parent cleanup prerequisites; no new numerical execution",
+  "map_sha256": "8b99099f0a4b1e4396c4f9af5413e5c3f86fe8e9e65b37a43c47ce5de65f1e68",
+  "all_logical_transport_hash_length_checks_pass": true,
+  "rows": 1561,
+  "gzip": 93,
+  "logical_bytes": 144848919,
+  "parent_two_inputs_archived_and_hash_matched": true,
+  "parent_tracked_head_tree_unchanged": true,
+  "cleanup_not_yet_executed": true,
+  "earlier_checks": "ROOT-portable-map-restoration-check-1.json preserved1559rowstage; exacttwoaliases added onlyaftercleanupguard found originalparentpath aliases absent, no bytes/product/science changed."
+}

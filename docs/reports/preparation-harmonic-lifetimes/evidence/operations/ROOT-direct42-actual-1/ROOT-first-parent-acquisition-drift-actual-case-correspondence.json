@@ -1,0 +1,34 @@
+{
+  "scope": "P4 limited actual full DIRECT interface correspondence on first required parent case; no result science/peak acceptance, no duplicated trial",
+  "result": {
+    "ordinal": 31,
+    "role": "parent",
+    "condition_id": "acquisition-drift",
+    "repetition": 1,
+    "attempt_id": "ph118-D-acquisition-drift-parent-r1-a1",
+    "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-acquisition-drift-parent-r1-a1",
+    "target_pid": 99392,
+    "observer_pid": 99354,
+    "receipt_sha256": "1d4e5878f50b50039c1fdb039e3e0ebbd08fd985277c3d3e09d42f7d2aac26ee",
+    "child_sha256": "2e6379f5352cee935dc8fddd5a610c0cf831f70496da7e35ca4350baedc8995c",
+    "grant_sha256": "4ad9ca94d86b56d70ad7c6015f40cb9d4deb5a6b83e5a61db131ab4401af9a37",
+    "terminal0_closed": true,
+    "elapsed_target_seconds": 0.01076399500016123,
+    "terminal_native_KiB": 74612,
+    "public_fingerprints": {
+      "protocol": "RM84-public-values-v1",
+      "inputs": "db9c152eeb07254e4856f1b32d627961880e35500224f8f788424c810610ae57",
+      "inputs_after": "db9c152eeb07254e4856f1b32d627961880e35500224f8f788424c810610ae57",
+      "result": "4742073c6d989aa917b467a188c6f0d628ac725293c7a7eef8336d4a85135e0b"
+    },
+    "counted_as_original_scheduled_member": true
+  },
+  "provenance_matches_complete_frozen_expectation": true,
+  "backend_matches_pre_direct_frozen_actual_workflow_context": true,
+  "same_owned_target_argv_exclusive_stdout_preexec_readiness_and_terminal": true,
+  "native_KiB_conversion_and_cumulative_snapshots_structural_checks": true,
+  "normal_metadata_Git_returned": "same unchanged successful provenance helper path, normal subprocess.run waits; abruptloss remainsHOLD",
+  "direct_record_has_no_self_PID_nonce_timestamps": "external trusted argv/FD/terminal/provenance linkage only; no invented selfattestation",
+  "ownership": "terminal0/singleexactwait4/startupFDclosed/no lostwait/no cleanupgap/outerreaped",
+  "actual_scientific_result": "pending later independent SCI"
+}

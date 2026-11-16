@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 49 items
+
+tests/test_c_acquisition_filter.py ..................................... [ 75%]
+............                                                             [100%]
+
+==================================== PASSES ====================================
+============================= 49 passed in 41.15s ==============================

@@ -1,0 +1,23 @@
+{
+  "time_utc": "2026-11-16T13:01:53.175964+00:00",
+  "scope": "ROOT EXCLUSIVE only exactglobalordinals1\u20132, P4 initial scheduled workflow qualification; no further workflow/direct grant",
+  "candidate": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+  "parent": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+  "declared_sequence": [
+    "ph118-W-g3-parent-r1-a1",
+    "ph118-W-g3-candidate-r1-a1"
+  ],
+  "other_controlled_numerical_tests_installs_benchmarks": "none active/allowed; all113 privateinit/targets closed, study roles SOURCE-only/done",
+  "hidden_actors_ancestors": "unknown, conditional actual exposed-domain safeguards",
+  "source_qualification": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-retained-method-qualification-map-1.json",
+    "sha256": "abfe152f9a603f79cd1fab32da8f6d532609b727e06f58bc44bb7ad018bae697"
+  },
+  "actual_startup": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/ROOT-result-index.json",
+    "sha256": "7b4513a12ff0bb7e3c7a00e73eca65539c0cd763f70c4b84a119b214a337df2c"
+  },
+  "P4_status": "actual main/exec/PID/map/backend/retention/terminal correspondence is being observed on required original slots; no circular completequalification claim",
+  "outer_ownership": "Popen communicate envelope; no kill on timeout; preserve owner+markers/partialstreams, UNKNOWN/HOLD/no next while diagnosis",
+  "resource_settings": "Same512MiB stop/256MiB provisionalprediction+128MiB native allowance/512MiB reserve/host1GiB/ancestor actualmax-1GiB/free disk2GiB/startup5s/child240s/outer300s/TERM1s/KILLreap5s/10ms samples; each needs fresh actualcontext/admission. Decisions are not proven peaks/human caps/guarantees."
+}

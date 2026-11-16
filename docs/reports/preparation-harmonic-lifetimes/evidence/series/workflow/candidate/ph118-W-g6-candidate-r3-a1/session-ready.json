@@ -1,0 +1,9 @@
+{
+  "role": "bootstrap",
+  "pid": 104863,
+  "ppid": 104825,
+  "pgid": 104863,
+  "session_id": 104863,
+  "nonce": "ph118-W-g6-candidate-r3-a1",
+  "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+}

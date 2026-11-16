@@ -1,0 +1,15 @@
+# PH118 premeasurement scientific scope review1 — final handoff
+
+**Finite78 design: narrowly sufficient. Closed-input completion: NOT SUFFICIENT pending the exact primary scientific expectation-helper read extension. No accepted pre-scope release or runtime grant is issued.**
+
+Independent primary source review confirms the actual75fc/2cb six-insertion change releases private on/off frames, per-section spectra and native plus scratch after copied values are complete. Arithmetic/check order and complete independent public debug owners remain intact in the inspected closure. Allocation counts and returned payload are not reduced by these deletions; process-peak benefit is unobserved.
+
+The frozen42 DIRECT +36 WORKFLOW design can support descriptive workload-specific S26 results and a row-specific affected116 refresh. It cannot renew currentlarge ranking/margin/scaling/fit claims, establish16GiB capacity or approve119/120 storage/backend implementation. Current256/largest/d1/36/19-gap holds remain. Whole post118 SCI after78 must still judge actual science/metrics/variation/failures and dispose affected116/downstream premises.
+
+Keep ROOT order g3,g4 → seven direct cases in roster order → g1,g2,g5,g6, each P/C,C/P,P/C. First required tiny rows in both roles get limited qualification release only; actual route/backend/environment correspondence gates dependent releases and precedes frozen direct environment expectations. Old18 remain historical context only. Profile references use the same fresh subject/repetition g1/g2 members and add no runs.
+
+ROOT's minimal missing-primary correction is exact-path/hash read permission for issue118 tests/c_acquisition_fixture.py, c_known_fixture.py, c_preparation_fixture.py and c_workflow_oracle.py plus their actual used expectation imports. Their required functions and receipt hashes are recorded in report.md. The lifetime test imports these helpers, but neither original closed manifest permits their bodies. No helper defect, new oracle, test, resource case or additional author binding cycle is alleged/requested. The reviewer's independent initial assessment was recorded before any opinions; none were opened.
+
+The supplied119 optical-generation contract is unrelated to prepared-band storage. It is inapplicable; the authoritative119 issue body already suffices for the held premises reported here. No stronger119 contract disposition is granted.
+
+Artifacts: detailed report.md, distinct final.md, initial-assessment.md, read-inventory.md, input-before.sha256/input-after.sha256 and hash-check receipt. Original before/after digest manifests match at SHA256369236da820f4d010da27681adf539dc8d772a9437fece1b18cbdf0f6fd00dbb. Requested Sol/high/fork-none; actual serving/meters/tokens/cache/cost/elapsed unknown. Shared-filesystem restrictions are prompt-based. One premeasurement SCI scope event1 is charged, with all earlier and future roles separate. No runtime/numerical/import/AST/lint/test/probe/install/process scan or control occurred; no delegation or product edit occurred.

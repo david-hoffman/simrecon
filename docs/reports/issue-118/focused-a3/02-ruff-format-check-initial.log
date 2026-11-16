@@ -1,0 +1,348 @@
+unformatted: File would be reformatted
+   --> tests/test_preparation_harmonic_lifetimes.py:83:11
+    |
+82  |     return (
+    -         20 + (3 * t + 5 * d + 7 * p + h + i * j + j * j) % 17
+83  +         20
+84  +         + (3 * t + 5 * d + 7 * p + h + i * j + j * j) % 17
+85  |         + (p + 1) * np.where(j % 2 == 0, 1, -1)
+--------------------------------------------------------------------------------
+90  | @pytest.mark.parametrize("extended", [False, True])
+    - def test_completed_sections_preserve_full_z_and_earlier_preparation(
+    -     z: int, extended: bool
+    - ) -> None:
+91  + def test_completed_sections_preserve_full_z_and_earlier_preparation(z: int, extended: bool) -> None:
+92  |     """S01/S02/S19/S21: later section/call storage cannot replace old output."""
+--------------------------------------------------------------------------------
+97  |     settings: dict[str, Any] = dict(
+    -         dxy_um=0.5, dz_um=0.3, norders=3, background=0,
+    -         lateral_zoom=2, axial_zoom=2, edge_pixels=0, equalize=False,
+98  +         dxy_um=0.5,
+99  +         dz_um=0.3,
+100 +         norders=3,
+101 +         background=0,
+102 +         lateral_zoom=2,
+103 +         axial_zoom=2,
+104 +         edge_pixels=0,
+105 +         equalize=False,
+106 |     )
+--------------------------------------------------------------------------------
+176 |         for caller in (
+    -             bands.quadratures, bands.noise_variance_factors,
+    -             carriers, modulation, transfer.samples,
+177 +             bands.quadratures,
+178 +             bands.noise_variance_factors,
+179 +             carriers,
+180 +             modulation,
+181 +             transfer.samples,
+182 |         ):
+--------------------------------------------------------------------------------
+188 |     raw = _raw(3)
+    -     phases = np.array([[0, np.pi / 2, np.pi, 3 * np.pi / 2, np.pi / 4],
+    -                        [np.pi / 4, 3 * np.pi / 2, np.pi, np.pi / 2, 0]])
+189 +     phases = np.array(
+190 +         [
+191 +             [0, np.pi / 2, np.pi, 3 * np.pi / 2, np.pi / 4],
+192 +             [np.pi / 4, 3 * np.pi / 2, np.pi, np.pi / 2, 0],
+193 +         ]
+194 +     )
+195 |     settings = dict(
+    -         acquisition_mode="3d", dxy_um=0.5, dz_um=0.3, norders=3,
+    -         background=0, lateral_zoom=1, axial_zoom=1, edge_pixels=0,
+    -         equalize=False, phases_rad=phases,
+196 +         acquisition_mode="3d",
+197 +         dxy_um=0.5,
+198 +         dz_um=0.3,
+199 +         norders=3,
+200 +         background=0,
+201 +         lateral_zoom=1,
+202 +         axial_zoom=1,
+203 +         edge_pixels=0,
+204 +         equalize=False,
+205 +         phases_rad=phases,
+206 |     )
+--------------------------------------------------------------------------------
+212 |         assert array.flags.owndata and not array.flags.writeable
+    -         assert not any(np.shares_memory(array, other) for other in arrays[index + 1:])
+213 +         assert not any(np.shares_memory(array, other) for other in arrays[index + 1 :])
+214 |         assert not np.shares_memory(array, first.quadratures)
+--------------------------------------------------------------------------------
+228 |     settings = dict(
+    -         acquisition_mode="2d", dxy_um=1.0, dz_um=0.0, norders=2,
+    -         background=0, lateral_zoom=1.5, axial_zoom=3,
+    -         edge_pixels=0, equalize=False,
+229 +         acquisition_mode="2d",
+230 +         dxy_um=1.0,
+231 +         dz_um=0.0,
+232 +         norders=2,
+233 +         background=0,
+234 +         lateral_zoom=1.5,
+235 +         axial_zoom=3,
+236 +         edge_pixels=0,
+237 +         equalize=False,
+238 |     )
+--------------------------------------------------------------------------------
+244 |     transfer = public("declare_otf")(
+    -         np.ones((2, 8, 1), dtype=np.complex64), layout="radial",
+    -         dkr_cyc_um=0.25, dkz_cyc_um=0.7,
+245 +         np.ones((2, 8, 1), dtype=np.complex64),
+246 +         layout="radial",
+247 +         dkr_cyc_um=0.25,
+248 +         dkz_cyc_um=0.7,
+249 |     )
+250 |     before = _snapshot(bands)
+251 |     result = known(
+    -         bands, transfer, carriers_cyc_um=np.zeros((2, 2)), modulation=np.zeros((2, 1)),
+    -         wavelength_nm=500, numerical_aperture=1, immersion_index=1,
+    -         wiener=0.2, wiener_increment=0.2, filter_overlaps=False,
+    -         output_taper="power", power_taper_exponent=0.0,
+252 +         bands,
+253 +         transfer,
+254 +         carriers_cyc_um=np.zeros((2, 2)),
+255 +         modulation=np.zeros((2, 1)),
+256 +         wavelength_nm=500,
+257 +         numerical_aperture=1,
+258 +         immersion_index=1,
+259 +         wiener=0.2,
+260 +         wiener_increment=0.2,
+261 +         filter_overlaps=False,
+262 +         output_taper="power",
+263 +         power_taper_exponent=0.0,
+264 |     )
+--------------------------------------------------------------------------------
+275 |     assert_allclose(result.x_um, (np.arange(15) - 7) / 1.5, rtol=2e-12, atol=2e-12)
+    -     assert_allclose(dict(result.resolved_settings)["effective_wiener"], [0.3, 0.4],
+    -                     rtol=2e-12, atol=2e-12)
+276 +     assert_allclose(
+277 +         dict(result.resolved_settings)["effective_wiener"], [0.3, 0.4], rtol=2e-12, atol=2e-12
+278 +     )
+279 |     assert _snapshot(bands) == before
+--------------------------------------------------------------------------------
+294 |         phase = 2 * np.pi * p / 5
+    -         raw = (obj * (1 + (0.31 + t / 64) * np.cos(spatial + phase)
+    -                       + (0.13 + t / 128) * np.cos(2 * spatial + 2 * phase + 0.3))
+    -                + d / 4 + t / 8).astype(np.float32)
+295 +         raw = (
+296 +             obj
+297 +             * (
+298 +                 1
+299 +                 + (0.31 + t / 64) * np.cos(spatial + phase)
+300 +                 + (0.13 + t / 128) * np.cos(2 * spatial + 2 * phase + 0.3)
+301 +             )
+302 +             + d / 4
+303 +             + t / 8
+304 +         ).astype(np.float32)
+305 |         m, r, a = np.indices((3, 64, 16))
+--------------------------------------------------------------------------------
+318 |         specimen=raw,
+    -         acquisition=dict(acquisition_mode="3d", dxy_um=1.0, dz_um=1.0,
+    -                          norders=orders, background=0.0, lateral_zoom=lateral,
+    -                          axial_zoom=1, phase_policy="uniform", edge_pixels=0, equalize=False),
+319 +         acquisition=dict(
+320 +             acquisition_mode="3d",
+321 +             dxy_um=1.0,
+322 +             dz_um=1.0,
+323 +             norders=orders,
+324 +             background=0.0,
+325 +             lateral_zoom=lateral,
+326 +             axial_zoom=1,
+327 +             phase_policy="uniform",
+328 +             edge_pixels=0,
+329 +             equalize=False,
+330 +         ),
+331 |         optics=optics,
+    -         carrier=dict(linespacing_um=spacing, phase_start_angle_rad=0.0, search_carriers=False,
+    -                      use_time0_carriers=True, fit_all_phases=True),
+    -         filtering=dict(wiener=1.0 if not multifrequency else 0.5,
+    -                        suppress_singularities=False, output_taper="none"),
+332 +         carrier=dict(
+333 +             linespacing_um=spacing,
+334 +             phase_start_angle_rad=0.0,
+335 +             search_carriers=False,
+336 +             use_time0_carriers=True,
+337 +             fit_all_phases=True,
+338 +         ),
+339 +         filtering=dict(
+340 +             wiener=1.0 if not multifrequency else 0.5,
+341 +             suppress_singularities=False,
+342 +             output_taper="none",
+343 +         ),
+344 |         specimen_identity=dict(id="ph118-raw-v1", intensity_unit="camera counts"),
+345 |         transfer=public("declare_otf")(
+    -             samples, layout="radial", dkr_cyc_um=step_r, dkz_cyc_um=step_z,
+346 +             samples,
+347 +             layout="radial",
+348 +             dkr_cyc_um=step_r,
+349 +             dkz_cyc_um=step_z,
+350 |         ),
+351 |         transfer_identity=dict(
+    -             id="ph118-table-v1", intensity_unit="dimensionless-transfer", optics=optics.copy(),
+352 +             id="ph118-table-v1",
+353 +             intensity_unit="dimensionless-transfer",
+354 +             optics=optics.copy(),
+355 |         ),
+--------------------------------------------------------------------------------
+360 | def test_workflow_summary_exact_values_and_full_history_survive_later_calls(
+    -     multifrequency: bool
+361 +     multifrequency: bool,
+362 | ) -> None:
+--------------------------------------------------------------------------------
+372 |         x = np.arange(4) - 2
+    -         image = (
+    -             12 / (2 + 2.5 * abs(factor) ** 2)
+    -             + 6 * np.real(np.conj(factor) * np.exp(1j * np.pi * x / 4))
+    -             / (2 + 3 * abs(factor) ** 2)
+    -         )
+373 +         image = 12 / (2 + 2.5 * abs(factor) ** 2) + 6 * np.real(
+374 +             np.conj(factor) * np.exp(1j * np.pi * x / 4)
+375 +         ) / (2 + 3 * abs(factor) ** 2)
+376 |         assert_allclose(full.parameters.modulation, factor, rtol=2e-10, atol=2e-10)
+377 |         # Reuse the retained finite-assembly observer's bounds. Its absolute
+378 |         # coefficient budget here is <=6+3*abs(factor)<8, since both h>=2.
+    -         assert_allclose(full.image, np.broadcast_to(image, (1, 2, 2, 4)),
+    -                         rtol=3e-10, atol=3e-10 * 8)
+379 +         assert_allclose(
+380 +             full.image, np.broadcast_to(image, (1, 2, 2, 4)), rtol=3e-10, atol=3e-10 * 8
+381 +         )
+382 |     before = _snapshot(full)
+383 |     summary = public("reconstruct_summary")(**case)
+384 |     assert _snapshot(case) == caller_before
+    -     for name in ("image", "x_um", "y_um", "z_um", "initial_carriers_cyc_um",
+    -                  "phase_linkage_carriers_cyc_um", "effective_wiener", "input_identities",
+    -                  "trace", "source_revision", "reference_sha256", "limitations"):
+385 +     for name in (
+386 +         "image",
+387 +         "x_um",
+388 +         "y_um",
+389 +         "z_um",
+390 +         "initial_carriers_cyc_um",
+391 +         "phase_linkage_carriers_cyc_um",
+392 +         "effective_wiener",
+393 +         "input_identities",
+394 +         "trace",
+395 +         "source_revision",
+396 +         "reference_sha256",
+397 +         "limitations",
+398 +     ):
+399 |         assert _snapshot(getattr(summary, name)) == _snapshot(getattr(full, name))
+--------------------------------------------------------------------------------
+403 |     assert summary.omitted_diagnostics == (
+    -         "stage-images", "quadratures", "overlap-arrays", "correlation-arrays",
+    -         "camera-maps", "transfer-samples", "calibration-arrays", "layout-pixels", "precise-query-events",
+404 +         "stage-images",
+405 +         "quadratures",
+406 +         "overlap-arrays",
+407 +         "correlation-arrays",
+408 +         "camera-maps",
+409 +         "transfer-samples",
+410 +         "calibration-arrays",
+411 +         "layout-pixels",
+412 +         "precise-query-events",
+413 |     )
+--------------------------------------------------------------------------------
+421 |         assert array.flags.owndata and not array.flags.writeable
+    -         assert not any(np.shares_memory(array, other) for other in arrays[index + 1:])
+422 +         assert not any(np.shares_memory(array, other) for other in arrays[index + 1 :])
+423 |     assert not np.shares_memory(full.image, full.reconstructions[0].image)
+--------------------------------------------------------------------------------
+438 |     raw = _raw(2, y=2)
+    -     settings = dict(acquisition_mode="3d", dxy_um=0.5, dz_um=0.3, norders=3,
+    -                     background=0, lateral_zoom=1, axial_zoom=1, edge_pixels=0,
+    -                     equalize=False, phase_steps_rad=np.array([0.8, 0.9]))
+439 +     settings = dict(
+440 +         acquisition_mode="3d",
+441 +         dxy_um=0.5,
+442 +         dz_um=0.3,
+443 +         norders=3,
+444 +         background=0,
+445 +         lateral_zoom=1,
+446 +         axial_zoom=1,
+447 +         edge_pixels=0,
+448 +         equalize=False,
+449 +         phase_steps_rad=np.array([0.8, 0.9]),
+450 +     )
+451 |     invalid = np.full((2, 5), np.nan)
+--------------------------------------------------------------------------------
+459 |     for direction, step in enumerate((0.8, 0.9)):
+    -         assert_allclose(actual.phase_angles_rad[:, direction],
+    -                         np.broadcast_to(np.arange(5) * step, (2, 2, 5)), rtol=0, atol=0)
+460 +         assert_allclose(
+461 +             actual.phase_angles_rad[:, direction],
+462 +             np.broadcast_to(np.arange(5) * step, (2, 2, 5)),
+463 +             rtol=0,
+464 +             atol=0,
+465 +         )
+466 |     with pytest.raises(public("AcquisitionModeError"), match="(?i)rank|singular|matrix|design"):
+    -         public("prepare_acquisition_bands")(raw, phases_rad=np.zeros((2, 5)),
+    -                                             **(settings | {"phase_steps_rad": None}))
+467 +         public("prepare_acquisition_bands")(
+468 +             raw, phases_rad=np.zeros((2, 5)), **(settings | {"phase_steps_rad": None})
+469 +         )
+470 |
+--------------------------------------------------------------------------------
+474 |     transfer = public("declare_otf")(
+    -         np.zeros((2, 1, 1), dtype=np.complex64), layout="radial",
+    -         dkr_cyc_um=1, dkz_cyc_um=1,
+475 +         np.zeros((2, 1, 1), dtype=np.complex64),
+476 +         layout="radial",
+477 +         dkr_cyc_um=1,
+478 +         dkz_cyc_um=1,
+479 |     )
+480 |     visited = blank(shape=(1, 1, 3, 6, 2, 4))
+481 |     before = _snapshot(visited)
+    -     with pytest.raises(public("ReconstructionError"), match="(?i)stencil|vertex|sample|index|bound|transfer"):
+482 +     with pytest.raises(
+483 +         public("ReconstructionError"), match="(?i)stencil|vertex|sample|index|bound|transfer"
+484 +     ):
+485 |         known(visited, transfer, modulation=np.zeros((1, 1)))
+--------------------------------------------------------------------------------
+546 | @pytest.mark.parametrize("fault", ["allocation", "interruption", "backend"])
+    - def test_direct_entry_external_failure_semantics(
+    -     name: str, fault: str, monkeypatch: Any
+    - ) -> None:
+547 + def test_direct_entry_external_failure_semantics(name: str, fault: str, monkeypatch: Any) -> None:
+548 |     """S25: preserve direct-API distinctions without requiring a backend binding.
+--------------------------------------------------------------------------------
+584 |     backend_context = (
+    -         scipy.fft.set_backend(FailingBackend(), only=True)
+    -         if fault == "backend"
+    -         else nullcontext()
+585 +         scipy.fft.set_backend(FailingBackend(), only=True) if fault == "backend" else nullcontext()
+586 |     )
+--------------------------------------------------------------------------------
+590 |                 for method in (
+    -                     "fft", "ifft", "fftn", "ifftn", "fft2", "ifft2",
+    -                     "rfft", "irfft", "rfftn", "irfftn", "rfft2", "irfft2",
+591 +                     "fft",
+592 +                     "ifft",
+593 +                     "fftn",
+594 +                     "ifftn",
+595 +                     "fft2",
+596 +                     "ifft2",
+597 +                     "rfft",
+598 +                     "irfft",
+599 +                     "rfftn",
+600 +                     "irfftn",
+601 +                     "rfft2",
+602 +                     "irfft2",
+603 |                 ):
+604 |                     patch.setattr(module, method, fail)
+605 |         else:
+606 |             for method in (
+    -                 "array", "empty", "zeros", "ones", "full", "empty_like",
+    -                 "zeros_like", "ones_like", "copy", "stack", "concatenate",
+607 +                 "array",
+608 +                 "empty",
+609 +                 "zeros",
+610 +                 "ones",
+611 +                 "full",
+612 +                 "empty_like",
+613 +                 "zeros_like",
+614 +                 "ones_like",
+615 +                 "copy",
+616 +                 "stack",
+617 +                 "concatenate",
+618 |             ):
+    |
+
+1 file would be reformatted

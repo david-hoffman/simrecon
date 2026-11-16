@@ -1,0 +1,277 @@
+{
+  "time_utc": "2026-11-16T13:16:14.180961+00:00",
+  "scope": "Fully frozen BEFORE ANY DIRECT scientific observation: actual own-role workflow backend/environment plus actual P3 existing provenance helper with modeled fixed scriptdir. Complete unchanged adapter main must match exactexpected dict on first parent/candidate, not fitted afterward.",
+  "roles": {
+    "parent": {
+      "provenance": {
+        "worktree": "/workspace/work/issue-117",
+        "interpreter": "/workspace/work/issue-117/.venv/bin/python",
+        "prefix": "/workspace/work/issue-117/.venv",
+        "package_origin": "/workspace/work/issue-117/src/simrecon/__init__.py",
+        "package_resolution_origin": "/workspace/work/issue-117/src/simrecon/__init__.py",
+        "import_search_path": [
+          "/workspace/work/issue-117/tests",
+          "/workspace/work/issue-117/scripts/source_free_sitecustomize",
+          "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python313.zip",
+          "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13",
+          "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/lib-dynload",
+          "/workspace/work/issue-117/.venv/lib/python3.13/site-packages",
+          "/workspace/work/issue-117/src",
+          "/workspace/work/issue-117/devtools/src"
+        ],
+        "distribution_version": "0.1.0",
+        "public_version": null,
+        "direct_url": {
+          "url": "file:///workspace/work/issue-117",
+          "dir_info": {
+            "editable": true
+          }
+        },
+        "revision": "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+        "tree": "ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc",
+        "dirty": false,
+        "tracked_status": "",
+        "product_tracked_clean": true,
+        "hashes": {
+          "adapter": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+          "shared_observer": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+          "lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+        }
+      },
+      "environment": {
+        "versions": {
+          "numpy": "2.5.3",
+          "scipy": "1.18.1"
+        },
+        "backend": {
+          "Compilers": {
+            "c": {
+              "name": "gcc",
+              "linker": "ld.bfd",
+              "version": "14.2.1",
+              "commands": "cc"
+            },
+            "cython": {
+              "name": "cython",
+              "linker": "cython",
+              "version": "3.3.0",
+              "commands": "cython"
+            },
+            "c++": {
+              "name": "gcc",
+              "linker": "ld.bfd",
+              "version": "14.2.1",
+              "commands": "c++"
+            }
+          },
+          "Machine Information": {
+            "host": {
+              "cpu": "x86_64",
+              "family": "x86_64",
+              "endian": "little",
+              "system": "linux"
+            },
+            "build": {
+              "cpu": "x86_64",
+              "family": "x86_64",
+              "endian": "little",
+              "system": "linux"
+            }
+          },
+          "Build Dependencies": {
+            "blas": {
+              "name": "scipy-openblas",
+              "found": true,
+              "version": "0.3.34.106.0",
+              "detection method": "pkgconfig",
+              "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+              "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+              "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+              "pc file directory": "/project/.openblas"
+            },
+            "lapack": {
+              "name": "scipy-openblas",
+              "found": true,
+              "version": "0.3.34.106.0",
+              "detection method": "pkgconfig",
+              "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+              "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+              "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+              "pc file directory": "/project/.openblas"
+            }
+          },
+          "Python Information": {
+            "path": "/tmp/build-env-h653xs07/bin/python",
+            "version": "3.13"
+          },
+          "SIMD Extensions": {
+            "baseline": [
+              "X86_V2"
+            ],
+            "found": [
+              "X86_V3",
+              "X86_V4",
+              "AVX512_ICL"
+            ],
+            "not found": [
+              "AVX512_SPR"
+            ]
+          }
+        },
+        "scipy_fft_default_workers": 1
+      },
+      "workflow_primary": {
+        "child": {
+          "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g3-parent-r1-a1/stdout.json",
+          "sha256": "6fd726d439071ff9e8ec8fa9f9aacf6a007e4deaa195c7b83550f78e3ce8ae9d"
+        },
+        "receipt": {
+          "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-parent/ph118-W-g3-parent-r1-a1/receipt.json",
+          "sha256": "2644c164bee1dcf2aa8a02dfd75bbd1eec94bc6c9655a06ab89a9946d5811655"
+        }
+      },
+      "provenance_primary": {
+        "path": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/parent-provenance-metadata.json",
+        "sha256": "8dab88f0758f7dca0cd81b2993a8970bb508ecd2b7862efb64d5421c6773ffbb"
+      }
+    },
+    "candidate": {
+      "provenance": {
+        "worktree": "/workspace/work/issue-118",
+        "interpreter": "/workspace/work/issue-118/.venv/bin/python",
+        "prefix": "/workspace/work/issue-118/.venv",
+        "package_origin": "/workspace/work/issue-118/src/simrecon/__init__.py",
+        "package_resolution_origin": "/workspace/work/issue-118/src/simrecon/__init__.py",
+        "import_search_path": [
+          "/workspace/work/issue-118/tests",
+          "/workspace/work/issue-118/scripts/source_free_sitecustomize",
+          "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python313.zip",
+          "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13",
+          "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/lib-dynload",
+          "/workspace/work/issue-118/.venv/lib/python3.13/site-packages",
+          "/workspace/work/issue-118/src",
+          "/workspace/work/issue-118/devtools/src"
+        ],
+        "distribution_version": "0.1.0",
+        "public_version": null,
+        "direct_url": {
+          "url": "file:///workspace/work/issue-118",
+          "dir_info": {
+            "editable": true
+          }
+        },
+        "revision": "75fce7e1ea424127f1b875aaa395d8b3ea29ecaa",
+        "tree": "275e0d94ff94dc1283f5da80815d6bb383c68c86",
+        "dirty": false,
+        "tracked_status": "",
+        "product_tracked_clean": true,
+        "hashes": {
+          "adapter": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+          "shared_observer": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+          "lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+        }
+      },
+      "environment": {
+        "versions": {
+          "numpy": "2.5.3",
+          "scipy": "1.18.1"
+        },
+        "backend": {
+          "Compilers": {
+            "c": {
+              "name": "gcc",
+              "linker": "ld.bfd",
+              "version": "14.2.1",
+              "commands": "cc"
+            },
+            "cython": {
+              "name": "cython",
+              "linker": "cython",
+              "version": "3.3.0",
+              "commands": "cython"
+            },
+            "c++": {
+              "name": "gcc",
+              "linker": "ld.bfd",
+              "version": "14.2.1",
+              "commands": "c++"
+            }
+          },
+          "Machine Information": {
+            "host": {
+              "cpu": "x86_64",
+              "family": "x86_64",
+              "endian": "little",
+              "system": "linux"
+            },
+            "build": {
+              "cpu": "x86_64",
+              "family": "x86_64",
+              "endian": "little",
+              "system": "linux"
+            }
+          },
+          "Build Dependencies": {
+            "blas": {
+              "name": "scipy-openblas",
+              "found": true,
+              "version": "0.3.34.106.0",
+              "detection method": "pkgconfig",
+              "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+              "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+              "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+              "pc file directory": "/project/.openblas"
+            },
+            "lapack": {
+              "name": "scipy-openblas",
+              "found": true,
+              "version": "0.3.34.106.0",
+              "detection method": "pkgconfig",
+              "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+              "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+              "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+              "pc file directory": "/project/.openblas"
+            }
+          },
+          "Python Information": {
+            "path": "/tmp/build-env-h653xs07/bin/python",
+            "version": "3.13"
+          },
+          "SIMD Extensions": {
+            "baseline": [
+              "X86_V2"
+            ],
+            "found": [
+              "X86_V3",
+              "X86_V4",
+              "AVX512_ICL"
+            ],
+            "not found": [
+              "AVX512_SPR"
+            ]
+          }
+        },
+        "scipy_fft_default_workers": 1
+      },
+      "workflow_primary": {
+        "child": {
+          "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g3-candidate-r1-a1/stdout.json",
+          "sha256": "6cbac219196f7d86e41d1172850147bfa7fe3ed4e7546d273cd128611c33fe77"
+        },
+        "receipt": {
+          "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/raw-candidate/ph118-W-g3-candidate-r1-a1/receipt.json",
+          "sha256": "3343028d9eb012528637ed10e078f284a2af5c1c522f532bd3346f386adda0d8"
+        }
+      },
+      "provenance_primary": {
+        "path": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/candidate-provenance-metadata.json",
+        "sha256": "868dfd5a888db135f77a0ee5d4731894e41996b2caef43a24e41c1d84f29b85e"
+      }
+    }
+  },
+  "source_binding": {
+    "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/ACTUAL-SOURCE-BINDING.json",
+    "sha256": "a267a87d51d69f09618306059c83b232628761ddc797e801dffa30128898f151"
+  },
+  "no_new_Q0_or_scientific_observation": true
+}

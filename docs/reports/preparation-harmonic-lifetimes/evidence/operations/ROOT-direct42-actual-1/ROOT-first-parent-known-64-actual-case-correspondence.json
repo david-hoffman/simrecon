@@ -1,0 +1,34 @@
+{
+  "scope": "P4 limited actual full DIRECT interface correspondence on first required parent case; no result science/peak acceptance, no duplicated trial",
+  "result": {
+    "ordinal": 37,
+    "role": "parent",
+    "condition_id": "known-64",
+    "repetition": 1,
+    "attempt_id": "ph118-D-known-64-parent-r1-a1",
+    "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-known-64-parent-r1-a1",
+    "target_pid": 100135,
+    "observer_pid": 100097,
+    "receipt_sha256": "ec36ab0bc097f8f8ea285fd3e36811fad1ce201274f25342efb4f64c166c4c55",
+    "child_sha256": "f2cbbfd58b89d56ced09ed8613ddfd036eb534da30e6b0d6bad87dbd146bab36",
+    "grant_sha256": "b9bf5971527b058cca572c3f5586d2dd5b7c44c550055d74a6f70808a1e418d7",
+    "terminal0_closed": true,
+    "elapsed_target_seconds": 84.45234576499206,
+    "terminal_native_KiB": 95736,
+    "public_fingerprints": {
+      "protocol": "RM84-public-values-v1",
+      "inputs": "78f6173c15e0556700bfd20072afebd02979fd612bcfb1d008ad5cc252bda829",
+      "inputs_after": "78f6173c15e0556700bfd20072afebd02979fd612bcfb1d008ad5cc252bda829",
+      "result": "95071e7722895e0e8ff7be4c3d1a0c77e9a76655076c14a39cf594ca00f5a4a2"
+    },
+    "counted_as_original_scheduled_member": true
+  },
+  "provenance_matches_complete_frozen_expectation": true,
+  "backend_matches_pre_direct_frozen_actual_workflow_context": true,
+  "same_owned_target_argv_exclusive_stdout_preexec_readiness_and_terminal": true,
+  "native_KiB_conversion_and_cumulative_snapshots_structural_checks": true,
+  "normal_metadata_Git_returned": "same unchanged successful provenance helper path, normal subprocess.run waits; abruptloss remainsHOLD",
+  "direct_record_has_no_self_PID_nonce_timestamps": "external trusted argv/FD/terminal/provenance linkage only; no invented selfattestation",
+  "ownership": "terminal0/singleexactwait4/startupFDclosed/no lostwait/no cleanupgap/outerreaped",
+  "actual_scientific_result": "pending later independent SCI"
+}

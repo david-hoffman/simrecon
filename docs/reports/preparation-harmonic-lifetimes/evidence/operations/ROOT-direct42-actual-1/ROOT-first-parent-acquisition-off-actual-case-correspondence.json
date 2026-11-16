@@ -1,0 +1,34 @@
+{
+  "scope": "P4 limited actual full DIRECT interface correspondence on first required parent case; no result science/peak acceptance, no duplicated trial",
+  "result": {
+    "ordinal": 25,
+    "role": "parent",
+    "condition_id": "acquisition-off",
+    "repetition": 1,
+    "attempt_id": "ph118-D-acquisition-off-parent-r1-a1",
+    "output": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/direct/raw/ph118-D-acquisition-off-parent-r1-a1",
+    "target_pid": 98647,
+    "observer_pid": 98609,
+    "receipt_sha256": "d9163e3ef4d95be4de0267354f16202f81efad07398d893a8fbd4792634b49d2",
+    "child_sha256": "ff0e10158477b797886bbdd4e4320ce27b8b74e7ebd07f9e2f15788000f06ab5",
+    "grant_sha256": "4ed23d0190a226441d95e5b23db4bbff5b7af585b6d8ed5f4915ad98764eb9a8",
+    "terminal0_closed": true,
+    "elapsed_target_seconds": 0.010831774998223409,
+    "terminal_native_KiB": 74216,
+    "public_fingerprints": {
+      "protocol": "RM84-public-values-v1",
+      "inputs": "879f0785f6dc3adc5d6c1c80c971a6023d7d4be921950d2d5dd4bd7e79811c89",
+      "inputs_after": "879f0785f6dc3adc5d6c1c80c971a6023d7d4be921950d2d5dd4bd7e79811c89",
+      "result": "af97543f74fff5853a436d9e946bdddb8c46c4ae35ffe38e4d41cb3534598515"
+    },
+    "counted_as_original_scheduled_member": true
+  },
+  "provenance_matches_complete_frozen_expectation": true,
+  "backend_matches_pre_direct_frozen_actual_workflow_context": true,
+  "same_owned_target_argv_exclusive_stdout_preexec_readiness_and_terminal": true,
+  "native_KiB_conversion_and_cumulative_snapshots_structural_checks": true,
+  "normal_metadata_Git_returned": "same unchanged successful provenance helper path, normal subprocess.run waits; abruptloss remainsHOLD",
+  "direct_record_has_no_self_PID_nonce_timestamps": "external trusted argv/FD/terminal/provenance linkage only; no invented selfattestation",
+  "ownership": "terminal0/singleexactwait4/startupFDclosed/no lostwait/no cleanupgap/outerreaped",
+  "actual_scientific_result": "pending later independent SCI"
+}

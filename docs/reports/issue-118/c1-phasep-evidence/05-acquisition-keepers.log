@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 139 items
+
+tests/test_c_acquisition_preparation.py ................................ [ 23%]
+........................................................                 [ 63%]
+tests/test_c_acquisition_drift.py .....................................  [ 89%]
+tests/test_c_acquisition_fitted_drift.py ..............                  [100%]
+
+=============================== warnings summary ===============================
+tests/test_c_acquisition_preparation.py::test_selected_zero_divisor_rejects_and_disabled_or_n1_remains_valid[on]
+tests/test_c_acquisition_preparation.py::test_selected_zero_divisor_rejects_and_disabled_or_n1_remains_valid[off]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2563: RuntimeWarning: invalid value encountered in divide
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+======================= 139 passed, 2 warnings in 35.36s =======================

@@ -1,0 +1,35 @@
+{
+  "time_utc": "2026-11-16T13:53:33.923645+00:00",
+  "scope": "SamefrozenRM84central64searchedscientificfixture2713/value9291/child5249, actual115-wide double CE05unchanged, original4centralgroups only",
+  "shape_TDPZYX": [
+    1,
+    3,
+    5,
+    8,
+    64,
+    64
+  ],
+  "orders": 3,
+  "lateral_zoom": 2,
+  "axial_zoom": 1,
+  "raw_f4_elements": 491520,
+  "raw_f4_bytes": 1966080,
+  "prepared_c128_bytes": 4055040,
+  "image_f64_shape": [
+    1,
+    8,
+    128,
+    128
+  ],
+  "image_f64_bytes": 1048576,
+  "retention": "Full/publicdebugowners intentionallyretained; summarycompactprivatebuffers/identities; profilingcanextendboundarytime/liveness. Whole-sourcefullframe+q+overlap+filter+pad+inverse+image+native/allocator/import/hash/JSON allowances underfreshactualguard, notsumallpartialallocationsfromdisjointstages.",
+  "domain": "Small32k-nativevoxel volumes/signedcounts/actualintpbytes/stencil stable, unchangedfrozenparameters; actualparent completionrequired,no sourcepayload\u2192RSS/16GiB/precision/physicalaccuracyguarantee",
+  "accepted_science_scope": {
+    "path": "/workspace/work/campaign/evidence/118/premeasurement-scientific-scope-review-1/report.md",
+    "sha256": "8745f141663565de54f412ff1aa573c7bb848efe8b43b57765d18da32e09d9a3"
+  },
+  "workflow_manifest": {
+    "path": "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow/manifest.json",
+    "sha256": "d75562f06cdf887e3dbb285d3b007094cf74825394fee2d345605a6320f98ebf"
+  }
+}

@@ -1,0 +1,12 @@
+unformatted: File would be reformatted
+   --> tests/test_preparation_harmonic_lifetimes.py:536:24
+    |
+535 |         settings["phases_rad"] = np.tile([0, np.pi / 2, np.pi, np.pi], (2, 1))
+    -         rows = np.tile(
+    -             [[[2, 0, 1, 1], [1, 0, -0.5, -0.5], [-1, 2, -0.5, -0.5]]], (2, 1, 1)
+    -         )
+536 +         rows = np.tile([[[2, 0, 1, 1], [1, 0, -0.5, -0.5], [-1, 2, -0.5, -0.5]]], (2, 1, 1))
+537 |         expected = preparation_expected(raw, rows, **settings)["quadratures"]
+    |
+
+1 file would be reformatted

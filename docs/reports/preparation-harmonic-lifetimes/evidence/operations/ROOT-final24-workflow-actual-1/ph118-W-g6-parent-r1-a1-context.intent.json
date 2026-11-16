@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-117",
+    "11bb9a3651cd9de282de77fd1ede1a807bcff83aa4e6d6322aac8a1d5da1cd7b",
+    "/usr/bin/env",
+    "PYTHONPATH=/workspace/work/issue-117/scripts/source_free_sitecustomize",
+    "PYTEST_PLUGINS=pytest_plugin",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "NUMEXPR_NUM_THREADS=1",
+    "/workspace/work/issue-117/.venv/bin/python",
+    "-c",
+    "from pathlib import Path\nimport sys,json,os,time,subprocess,hashlib\nroot=Path(sys.argv[1]);method=Path(sys.argv[2]);expected=sys.argv[3]\nassert __debug__ and sys.flags.optimize==0\nassert Path(sys.executable).resolve().as_posix()=='/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13'\nassert hashlib.sha256((method/'observer.py').read_bytes()).hexdigest()==expected\nsys.path.insert(0,str(method));import observer\nassert Path(observer.__file__).resolve()==method/'observer.py'\nparent=method/('raw-'+sys.argv[4]);parent=parent if parent.exists() else method\nassert parent.resolve()==parent and parent.stat().st_uid==os.getuid() and os.access(parent,os.W_OK)\nprint(json.dumps({'observed_at_unix_ns':time.time_ns(),'context':observer.context(root),'material_hashes':observer.material_hashes(root),'candidate':{'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),'tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],cwd=root,text=True).strip(),'tracked_diff_sha256':hashlib.sha256(subprocess.check_output(['git','diff','--binary','HEAD'],cwd=root)).hexdigest()},'FULL_status':subprocess.check_output(['git','status','--porcelain=v1','--untracked-files=all'],cwd=root,text=True).strip(),'python_resolved':str(Path(sys.executable).resolve()),'debug':__debug__,'optimize':sys.flags.optimize,'uid':os.getuid(),'output_parent_canonical_writable_owned':True,'scope':'Actual per-case ROOT context/material metadata only; zero workflow calls'}))\n",
+    "/workspace/work/issue-117",
+    "/workspace/work/campaign/evidence/118/resource-method-final-source-preparation/source/workflow",
+    "cea33103784e935865395ece83bfe39764ee2c03a0bbcd03b892644eb50e77d6",
+    "parent"
+  ],
+  "owned_outer_pid": 302487,
+  "owner_pid": 296007,
+  "outer_envelope_seconds": 60,
+  "started_monotonic": 145637.355458361,
+  "automatic_kill": false
+}

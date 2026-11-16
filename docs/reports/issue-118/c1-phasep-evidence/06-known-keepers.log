@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 69 items
+
+tests/test_c_known_filter.py ........................................... [ 62%]
+......                                                                   [ 71%]
+tests/test_c_known_assembly.py ....................                      [100%]
+
+==================================== PASSES ====================================
+============================== 69 passed in 6.82s ==============================

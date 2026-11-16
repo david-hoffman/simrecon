@@ -1,0 +1,186 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/work/issue-118
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, xdist-3.8.0
+collected 1844 items
+
+tests/test_c_preparation.py ............................................ [  2%]
+........................................................................ [  6%]
+........................................................................ [ 10%]
+............................................                             [ 12%]
+tests/test_c_acquisition_preparation.py ................................ [ 14%]
+........................................................                 [ 17%]
+tests/test_c_acquisition_drift.py .....................................  [ 19%]
+tests/test_c_acquisition_fitted_drift.py ..............                  [ 20%]
+tests/test_c_acquisition_filter.py ..................................... [ 22%]
+............                                                             [ 22%]
+tests/test_c_known_filter.py ........................................... [ 25%]
+......                                                                   [ 25%]
+tests/test_c_known_assembly.py ....................                      [ 26%]
+tests/test_c_acquisition_boundary.py ................................... [ 28%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 40%]
+..............................................................           [ 43%]
+tests/test_c_known_boundary.py ......................................... [ 45%]
+........................................................................ [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+......                                                                   [ 57%]
+tests/test_c_workflow_validation.py .................................... [ 59%]
+........................................................................ [ 63%]
+........................................................................ [ 67%]
+........................................................................ [ 71%]
+.................................                                        [ 73%]
+tests/test_c_workflow_failures.py .....                                  [ 73%]
+tests/test_c_workflow_numerical.py ..................................... [ 75%]
+...........................................                              [ 77%]
+tests/test_c_workflow_records.py ....................................... [ 79%]
+...............................................                          [ 82%]
+tests/test_reconstruction_summary.py ................................... [ 84%]
+........................................................................ [ 88%]
+........................................................................ [ 92%]
+........................                                                 [ 93%]
+tests/test_wide_allocation_domain.py ................................... [ 95%]
+...................                                                      [ 96%]
+tests/test_refinement_buffer_lifetime.py ............................    [ 97%]
+tests/test_c_acquisition_transfer.py ................................... [ 99%]
+...                                                                      [100%]
+
+=============================== warnings summary ===============================
+tests/test_c_acquisition_preparation.py::test_selected_zero_divisor_rejects_and_disabled_or_n1_remains_valid[on]
+tests/test_c_acquisition_preparation.py::test_selected_zero_divisor_rejects_and_disabled_or_n1_remains_valid[off]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2563: RuntimeWarning: invalid value encountered in divide
+
+tests/test_c_acquisition_boundary.py::test_invalid_declarations_are_not_inferred_or_truncated[axial_zoom-0]
+tests/test_c_acquisition_boundary.py::test_invalid_used_records_both_consumers[dxy_um-0.0]
+tests/test_c_acquisition_boundary.py::test_invalid_used_records_both_consumers[noise_variance_factors-bad5]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2563: RuntimeWarning: divide by zero encountered in divide
+
+tests/test_c_acquisition_boundary.py::test_raw_shape_type_finite_and_float32_exact_domain[infinity]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2671: RuntimeWarning: invalid value encountered in subtract
+
+tests/test_c_acquisition_boundary.py::test_raw_shape_type_finite_and_float32_exact_domain[infinity]
+tests/test_c_acquisition_boundary.py::test_new_known_options_invalid_or_nonpositive_schedule[wiener_increment-inf]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2602: RuntimeWarning: invalid value encountered in multiply
+
+tests/test_c_acquisition_boundary.py::test_raw_shape_type_finite_and_float32_exact_domain[infinity]
+tests/test_c_acquisition_boundary.py::test_new_known_options_invalid_or_nonpositive_schedule[wiener_increment-inf]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2602: RuntimeWarning: invalid value encountered in scalar multiply
+
+tests/test_c_acquisition_boundary.py::test_raw_shape_type_finite_and_float32_exact_domain[infinity]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2597: RuntimeWarning: invalid value encountered in multiply
+
+tests/test_c_acquisition_boundary.py::test_raw_shape_type_finite_and_float32_exact_domain[infinity]
+  /workspace/work/issue-118/.venv/lib/python3.13/site-packages/numpy/_core/numeric.py:1218: RuntimeWarning: invalid value encountered in dot
+
+tests/test_c_acquisition_boundary.py::test_all_supplied_arrays_validate_even_if_numerically_unused[complex-background]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:281: ComplexWarning: Casting complex values to real discards the imaginary part
+
+tests/test_c_acquisition_boundary.py::test_all_supplied_arrays_validate_even_if_numerically_unused[complex-flatfield_slope]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:283: ComplexWarning: Casting complex values to real discards the imaginary part
+
+tests/test_c_acquisition_boundary.py::test_all_supplied_arrays_validate_even_if_numerically_unused[complex-exposure_background]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:312: ComplexWarning: Casting complex values to real discards the imaginary part
+
+tests/test_c_acquisition_boundary.py::test_all_supplied_arrays_validate_even_if_numerically_unused[complex-off_exposures]
+tests/test_c_acquisition_boundary.py::test_all_supplied_arrays_validate_even_if_numerically_unused[complex-phase_steps_rad]
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2508: ComplexWarning: Casting complex values to real discards the imaginary part
+
+tests/test_c_acquisition_boundary.py::test_power_negative_at_zero_base_rejects_and_exponent_zero_constant
+  /workspace/work/issue-118/tests/c_acquisition_fixture.py:2563: RuntimeWarning: divide by zero encountered in power
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+__ test_native_three_direction_search_exact_compact_full_records[True-radial] __
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 024ed3fde00740d1f13ecdfdffbae338aec82e4097be5d76c9cc0d2c7864753a
+___ test_native_three_direction_search_exact_compact_full_records[True-full] ___
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT e315bd8d3621801eeed049141bd0329878bed4a21aa3492012747d2b77b73c13
+_ test_native_three_direction_search_exact_compact_full_records[False-radial] __
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT c0acf25e02d1468622fa6f258285be008713c11cb3dc2e0ba14e4f5e03f09119
+__ test_native_three_direction_search_exact_compact_full_records[False-full] ___
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 9baaf963a10faf31e009a68686d64ce6bb8c051d7e8220619f42aad2bf1df1dc
+_ test_searched_later_orders_frozen_final_fit_products_and_no_later_case[radial-3d-5] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT c551a5c816571c1550a1bd67e9dde9dabea1f835bbf2ace09fc35b067e15d76b
+_ test_searched_later_orders_frozen_final_fit_products_and_no_later_case[radial-2d-4] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 67e1f12e4deb9a07c9f739e9d4eb53f00e843679d268c425698b4b14559724e2
+_ test_searched_later_orders_frozen_final_fit_products_and_no_later_case[radial-2d-2] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 622f03276b797d45a03bd2042b681f539f88cc4ebd8d26fcdcdbe54192797449
+_ test_searched_later_orders_frozen_final_fit_products_and_no_later_case[full-3d-5] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT ab096acd4c999073ee5421a6083f1f2bc96782705d70d9f0a489c23b7c74f413
+_ test_searched_later_orders_frozen_final_fit_products_and_no_later_case[full-2d-4] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT a4debc6fd074d5bd944d8698220e3c39ce70d7c2bdc4566a8a3a871005bc667c
+_ test_searched_later_orders_frozen_final_fit_products_and_no_later_case[full-2d-2] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 54bded02862872ea688d0358426c45fee4e1adf315b4bdde3599ccc6ecd1241f
+_ test_true_two_dimensional_time_policy_refits_or_restarts_without_adjacent_reuse[True] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT e4c8f458f465eb1dada52ae92c37ecaeb2271ffb06337ba2c2bb0e7d05ef7683
+_ test_true_two_dimensional_time_policy_refits_or_restarts_without_adjacent_reuse[False] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT a9c7cf579b4ff3166847c55184b36f363518be29a79d37abf4259de3ce4a9469
+_ test_known_repeated_builds_keep_distinct_descriptors_and_caller_storage[2d] __
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 0e128dfa4146c208910cf4ee2d492dc4b34ca19b7cf8159b388ad17cab19a32e
+_ test_known_repeated_builds_keep_distinct_descriptors_and_caller_storage[3d] __
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 7e26b9ed3f6870527f92129127dcb618d6e6238c1f9ae9cc194ed568e1e05c32
+_ test_omit_kz0_empty_overlap_preserves_estimation_error_stage_and_cause[True-2d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 4181b8f5f1b84cc0e40e06a9dc0af516481977eadb6840830ee6a9c6f5ad01c1
+_ test_omit_kz0_empty_overlap_preserves_estimation_error_stage_and_cause[True-3d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT f46b9b7cdff1a37f3a6cf8a98b2f66f6f2401998db39a99a2f55b8f2b27c821a
+_ test_omit_kz0_empty_overlap_preserves_estimation_error_stage_and_cause[False-2d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 257c708ce88c8693ed4aa250b15c7f210d99207b8c0a949e358f9d25b2d80cbd
+_ test_omit_kz0_empty_overlap_preserves_estimation_error_stage_and_cause[False-3d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 93686934dda72919d8665e161f53dda80f3c4c3df5c7441b0dd0fc1979be6069
+___ test_late_known_time_failure_preserves_context_whole_call_and_inputs[2d] ___
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 1feec70a5bd54cc4b9e01b0ba9e1c110de0aab6b00982296483dab71006d0156
+___ test_late_known_time_failure_preserves_context_whole_call_and_inputs[3d] ___
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT ea0c8dc14fa645715f0817078247f9c7c60ace8b01ef098654b1beb469ab7e45
+_ test_direct_search_accepts_readonly_strided_used_bands_and_remains_full[2d] __
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 97e1571756e2cffdb4c1260941e18ecda1f69065019e4f1adec3bc0ac7c1f4a0
+_ test_direct_search_accepts_readonly_strided_used_bands_and_remains_full[3d] __
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT cd7ec55329f9c79c26d787efb4c78f059e5ba611c56c5666863d7f10daf3fac6
+_ test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_stencil[raw-finite-2d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT db8ec468cc628b8efb62482b638597bfb1fb9893b7bb082525bebd4aeba93e37
+_ test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_stencil[raw-finite-3d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 35cfa0c7081e69b180beeb2bd9152ae5dabaff3b50fa423c8c3bfc39dddc190f
+_ test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_stencil[flag-2d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 91ab59f71861a6fb5a7cfffb736c0ef9b038d7ceee245268404795413ce50c00
+_ test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_stencil[flag-3d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT 621802da0be13d94c11539bab449960fc2855ed701cd41e68de9539607cb4922
+_ test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_stencil[stencil-2d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT c7614da6e9309c8dd962eb5788fca66e1b38c0d41e5e6f3e4a990bc6a6ade055
+_ test_compact_preserves_single_invalid_declarations_and_actual_zero_weight_stencil[stencil-3d] _
+----------------------------- Captured stdout call -----------------------------
+RB117_INPUT e6627785e09843afc20db006367e12b05882b406fd7e3dc1e4c245c9f6d262c3
+================ 1844 passed, 18 warnings in 388.13s (0:06:28) =================
+ ** On entry to DLASCL parameter number  4 had an illegal value
+ ** On entry to DLASCL parameter number  4 had an illegal value
+ ** On entry to DLASCL parameter number  4 had an illegal value
+ ** On entry to DLASCL parameter number  4 had an illegal value
+
+status=0 elapsed_seconds=389

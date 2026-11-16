@@ -1,0 +1,19 @@
+87feeb5a93f4e2bcba73b3229329eb7ee115bf6e
+4650b31e10466101ab4e11a06247e6e218045ff9
+ M docs/reports/issue-118/role-launches.md
+ M docs/tasks/preparation-harmonic-lifetimes.md
+ M src/simrecon/acquisition/modes.py
+ M src/simrecon/reconstruction/known_parameters.py
+?? docs/reports/issue-118/c1-phasep-evidence/
+?? docs/reports/issue-118/c1-phasep.md
+4	0	src/simrecon/acquisition/modes.py
+2	0	src/simrecon/reconstruction/known_parameters.py
+85b3655ed25ed3664b954271e31a9a491ff6326c792e816e3b232d9135f24178  src/simrecon/acquisition/modes.py
+46de99f88782c8b96215d9699fcdd1fe9f1ed5edfabf2426416fc2ae1e0bd0fd  src/simrecon/reconstruction/known_parameters.py
+222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b  uv.lock
+115b1635fb58668fc939260eea350a1755e32d00b43caee86630aefde10c2221  docs/packets/issue-118-c-phasep1.md
+90d5a02fcb5a83c1b6dae4ff047c37a452c36b9ab6f760915635d910f3eebb5f  docs/packets/issue-118-b2-inputs.sha256
+b172e019edb8235d31380553068b706ad883516dfb6c49cc07de0be41241e653  docs/packets/issue-118-provisional-execution-baseline-addendum.md
+ccbed1e1becca6c15e275bccb5c3184145ef2a0bad98a74cfc60cf9925124abc  docs/packets/issue-118-provisional-execution-baseline-application.md
+af6a774faa8caa9e402a43995a8b876158669fe032b0845b3baae375ffb97c66  docs/reports/issue-118/b2.md
+0082e4ad7bfcaf11bc0dd0c074b818ae1a6372b36ef90346b5b32e770885fbcf  docs/reports/issue-118/accepted-checkpoint.md

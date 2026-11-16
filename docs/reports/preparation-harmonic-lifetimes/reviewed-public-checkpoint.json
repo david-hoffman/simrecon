@@ -1,0 +1,331 @@
+{
+  "scope": "Exact accepted B4 public/test checkpoint identity for final verification context; current53sourcehashes checked, not a finalgate/wholeSCI/D or universalbackend acceptance",
+  "checked_utc": "2026-11-16T14:03:04.521315+00:00",
+  "test_checkpoint_head": "2043b56cf73c2234a665243a6f7748603d85dbe1",
+  "test_checkpoint_tree": "ed43f2fb7ed03a15141ecc4a7a757e8f7c205593",
+  "B4_report_sha256": "109aac94ace7afe6af263b00da779451bdf20a4634d1ba5f8aef948df98cf216",
+  "B4_final_sha256": "88659a651a49887d7c567afe2e6ddd2e06ea58d90f3ada3e4dc41047e0cc9e78",
+  "base51_manifest_sha256": "902a75f888569bf7fbeb1985fedb84662891e42294b7d59cebe4bed2f9b0a812",
+  "extension2_manifest_sha256": "c80a6b9f34db5164dd3a167c9acbc6dbea9c2681d49bbed1f7367082abdf700a",
+  "rows": [
+    {
+      "source_path": "/workspace/work/issue-118/AGENTS.md",
+      "repository_path": "AGENTS.md",
+      "sha256": "56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/.agents/skills/review-work/SKILL.md",
+      "repository_path": ".agents/skills/review-work/SKILL.md",
+      "sha256": "e069e1be50587974d46ffca2a8c38b865e7133881aa39aaf0bf45934c6ae0160",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/packets/issue-118-actual-parent-public-material.md",
+      "repository_path": "docs/packets/issue-118-actual-parent-public-material.md",
+      "sha256": "f6695f97054ca13452a1cd058edb2abd5798151f65274c067a94aa3fe8210643",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/c_estimation_fixture.py",
+      "repository_path": "tests/c_estimation_fixture.py",
+      "sha256": "3c2078a1ebd9c2b6fed61eeddc51364c086c116e33b8443d12f7c17b775ce66c",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/preparation-harmonic-lifetimes-v1.md",
+      "repository_path": "docs/contracts/preparation-harmonic-lifetimes-v1.md",
+      "sha256": "d217c186ae2e736fb6fbfe29a432b84d5e34e6490679a422835253742bbcf3e5",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-common-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-common-v1.md",
+      "sha256": "8dd2bc422edb68de1aeb1f642e80381f55b3517257cd96d9aed68d49791e319b",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-preprocessing-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-preprocessing-v1.md",
+      "sha256": "8e2a3afe2778d515b14f2e8ede5001042aa8a606b7ded23300f50f178f08ae91",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-optical-transfer-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-optical-transfer-v1.md",
+      "sha256": "3214afc2766e7bb19bdb3eaf81356dac1ef17630995bb98282fa3d46f0237529",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-known-parameters-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-known-parameters-v1.md",
+      "sha256": "3f39a42e6a0b05cfbfd9b18671f5819374856128e377966685d9ad489125e71c",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-carrier-modulation-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-carrier-modulation-v1.md",
+      "sha256": "15a467853fb4db0dda4553f94dcd1a06f0dfed431d7c67863489dc4a11ecd02c",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-acquisition-modes-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-acquisition-modes-v1.md",
+      "sha256": "5c2279a11e46d380438b14ef813bb383fe9b8de95d8df2d6211f07c93426e74e",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-acquisition-modes-ledger-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-acquisition-modes-ledger-v1.md",
+      "sha256": "93bed67eb0b67ecd1b385b5b3b45571c85bc6671c1dc21e4bdfda9df0054e2f3",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/c-equivalence-workflow-v1.md",
+      "repository_path": "docs/contracts/c-equivalence-workflow-v1.md",
+      "sha256": "00b80613c1ff417b4d5bdd782cf25e1aed32a9c62ccf44d68cce77c643b9adef",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/reconstruction-memory-v1.md",
+      "repository_path": "docs/contracts/reconstruction-memory-v1.md",
+      "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/wide-allocation-domain-v1.md",
+      "repository_path": "docs/contracts/wide-allocation-domain-v1.md",
+      "sha256": "d42cf0838e73fcaba1aa78c025c96582d246ea6bfef4323ab742323dfd169acb",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/packets/wide-allocation-domain-interfaces.md",
+      "repository_path": "docs/packets/wide-allocation-domain-interfaces.md",
+      "sha256": "0939e8956573eb5b7832f2bf80ddee8866c8c6a5a9db6eb1d48e9acfd1cbd180",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/contracts/refinement-buffer-lifetime-v1.md",
+      "repository_path": "docs/contracts/refinement-buffer-lifetime-v1.md",
+      "sha256": "b2f1cfc0bc74d2e9d75fbcbf0ac06d72b8d93fb6121b58db041a72e9d57e710c",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/usage/c-preparation.md",
+      "repository_path": "docs/usage/c-preparation.md",
+      "sha256": "35265fe178e64ae4b37bae7ffc8a27991c426eb590b8cffb60936316b9befc4f",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/usage/c-acquisition-modes.md",
+      "repository_path": "docs/usage/c-acquisition-modes.md",
+      "sha256": "abd7c424524e690a645932d8c30f20824894ba213a8189e82e6f7fde4117fff7",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/usage/c-known-reconstruction.md",
+      "repository_path": "docs/usage/c-known-reconstruction.md",
+      "sha256": "9b731fc21fe2d835cab07a95bda266d5c9fb3cc5c25194b66e73ac9c3c2038d2",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/usage/reconstruction-summary.md",
+      "repository_path": "docs/usage/reconstruction-summary.md",
+      "sha256": "ef8c441b436234af14cda25244d75d860c445da3c35ccbaae2027bb77457e32d",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_preparation_harmonic_lifetimes.py",
+      "repository_path": "tests/test_preparation_harmonic_lifetimes.py",
+      "sha256": "22bd0543da0c268b718e3ab1969411344996eddc1da9cd33b2ee60a27fc7ac08",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/preparation_harmonic_memory_benchmark.py",
+      "repository_path": "tests/preparation_harmonic_memory_benchmark.py",
+      "sha256": "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/docs/packets/issue-118-direct-resource-protocol.md",
+      "repository_path": "docs/packets/issue-118-direct-resource-protocol.md",
+      "sha256": "2ce88a336d3fc45bd42f82f29ac9f15c5b2bb5a9c5061ee55d8457be49a135dc",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/c_known_fixture.py",
+      "repository_path": "tests/c_known_fixture.py",
+      "sha256": "5e80aafb44b59ae9d45592181b72d62ce03dd7f49f146313294a16c73a2d89a6",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/c_preparation_fixture.py",
+      "repository_path": "tests/c_preparation_fixture.py",
+      "sha256": "eeff7dd5ce4cbd7a32a346eabd0521afdfd930ba582b1e20ac441da4c4d8e80c",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/c_acquisition_fixture.py",
+      "repository_path": "tests/c_acquisition_fixture.py",
+      "sha256": "a64a93dae93864d5b76a2fb54b794a876b76f76527e7018966a681870ee82bf9",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/c_workflow_oracle.py",
+      "repository_path": "tests/c_workflow_oracle.py",
+      "sha256": "96c8a74df6bf0906ed878414516caefa6cde165afd768050608bb02308b66c49",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/c_workflow_support.py",
+      "repository_path": "tests/c_workflow_support.py",
+      "sha256": "10265f0a62703ee30f136e00559cbbc8fbda470cf01213c7487bb39ff7705902",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/reconstruction_summary_fixture.py",
+      "repository_path": "tests/reconstruction_summary_fixture.py",
+      "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/reconstruction_memory_benchmark.py",
+      "repository_path": "tests/reconstruction_memory_benchmark.py",
+      "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_acquisition_boundary.py",
+      "repository_path": "tests/test_c_acquisition_boundary.py",
+      "sha256": "590d03ac6370b73294af1783f8e55eed1ffd932a1e50d2b80c7b8a56053b56b0",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_known_boundary.py",
+      "repository_path": "tests/test_c_known_boundary.py",
+      "sha256": "1125ff758f2cade00fd007c6dbdb54b31eef4e93cf4f109a97292526e4efd6b9",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_workflow_validation.py",
+      "repository_path": "tests/test_c_workflow_validation.py",
+      "sha256": "0ae4005badef392502e310df1cd8bd8b7f47aa06cd9550d1a8b1194969e50052",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_reconstruction_summary.py",
+      "repository_path": "tests/test_reconstruction_summary.py",
+      "sha256": "aa9d4d23fd3a5efa421d682366bde8c97a971e823dad696f411d81dbd67a00c8",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/wide_allocation_fixture.py",
+      "repository_path": "tests/wide_allocation_fixture.py",
+      "sha256": "09c7ac15b02226f986b17f12a244056654b1166b5accbd2c4407a5f7cb3e94c8",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_wide_allocation_domain.py",
+      "repository_path": "tests/test_wide_allocation_domain.py",
+      "sha256": "016c47bcbdff42b41c90b01a1c2f07af459c09574b0f127b1655e8c327d84360",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/refinement_buffer_lifetime_fixture.py",
+      "repository_path": "tests/refinement_buffer_lifetime_fixture.py",
+      "sha256": "a3f043bf089537b0815045bb6dc1b481efd00adca297a3290487ca3e211f3737",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_refinement_buffer_lifetime.py",
+      "repository_path": "tests/test_refinement_buffer_lifetime.py",
+      "sha256": "81249c03ca5a4b420ebda8dc01071a1dcfd70147f1d3f34a0d938a8d3e3c8512",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_preparation.py",
+      "repository_path": "tests/test_c_preparation.py",
+      "sha256": "c8e38bc4a540d3b47b6b4cc608416e940661a8190e85ecaa35f17755c2e1c837",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_acquisition_preparation.py",
+      "repository_path": "tests/test_c_acquisition_preparation.py",
+      "sha256": "34d789998c30224ecdd7e87ed99835047a7fa584544d6e6c3d487dbcd84dc4ca",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_acquisition_drift.py",
+      "repository_path": "tests/test_c_acquisition_drift.py",
+      "sha256": "05f7791e6efed020bf5219c82ff8a3fa83237e5c12434064cd9efc6374eee85d",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_acquisition_fitted_drift.py",
+      "repository_path": "tests/test_c_acquisition_fitted_drift.py",
+      "sha256": "c78bed84c93f311d03ac17757c858f0d8f2042e3f23686fa8799ee2f79c1d789",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_acquisition_filter.py",
+      "repository_path": "tests/test_c_acquisition_filter.py",
+      "sha256": "00d02656715cae2afe6ad2dbfa599d633bc476213d096c785f2f655c8134790c",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_known_filter.py",
+      "repository_path": "tests/test_c_known_filter.py",
+      "sha256": "336b38920c658ce8449f175b5a4ebbd6e8b7b06794c5fbe7f5ce1e2266c64787",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_known_assembly.py",
+      "repository_path": "tests/test_c_known_assembly.py",
+      "sha256": "dbe21e7535088b773d0bf0bb5d92319843868bf3b35ef6b304b3081d6d753a55",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_workflow_failures.py",
+      "repository_path": "tests/test_c_workflow_failures.py",
+      "sha256": "2c45e55bbb5f47bdb57854502f4aeb95de46dcfa873120d8b2a6c2157362a0ae",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_workflow_numerical.py",
+      "repository_path": "tests/test_c_workflow_numerical.py",
+      "sha256": "09fdebf1132e83f277ff726c6868204252a3d626cf3a09e676983dce41106465",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_workflow_records.py",
+      "repository_path": "tests/test_c_workflow_records.py",
+      "sha256": "677a2a97a3558bbb17ce6eaeb13dfb3f4725458985583a88995a77f5a5bacec0",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/b4-actual-parent-review/packet.md",
+      "repository_path": null,
+      "sha256": "8eed43c0bed54bfe29ce8d857434c0cd8f91f2c674135f0203b2cb3f25e92841",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/b-integrated-public-context-skeleton.md",
+      "repository_path": null,
+      "sha256": "e505fb043f96ef562469f02e992fcb5f0fdeb4289e1bed1377c17b97b4f5dc9f",
+      "checkpoint_group": "input-manifest.sha256"
+    },
+    {
+      "source_path": "/workspace/work/issue-118/tests/test_c_acquisition_transfer.py",
+      "repository_path": "tests/test_c_acquisition_transfer.py",
+      "sha256": "c81c9fbf3cabfc9a4f83e13f6462f64f966582b2bd17220fd96679ab7fcdb202",
+      "checkpoint_group": "input-extension-1.sha256"
+    },
+    {
+      "source_path": "/workspace/work/campaign/evidence/118/b4-actual-parent-review/public-input-extension-1.md",
+      "repository_path": null,
+      "sha256": "180d5d574681e9b3c8ec92df18eeb2b72a259af1cb0df2fcca760def61d6990c",
+      "checkpoint_group": "input-extension-1.sha256"
+    }
+  ],
+  "use": "Future exact final canonical make verify VERIFY_ARGS --reviewed-tests docs/reports/preparation-harmonic-lifetimes/reviewed-public-checkpoint.json; recheckactualfinalgatebeforeaftermapping. Finalcandidateidentity/results stayexternal."
+}

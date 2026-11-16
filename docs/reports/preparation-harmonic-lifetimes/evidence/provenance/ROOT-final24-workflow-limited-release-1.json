@@ -1,0 +1,70 @@
+{
+  "time_utc": "2026-11-16T13:53:33.923645+00:00",
+  "scope": "Originalfinal24centralworkflow/profile members only, no additionalmatrix/retry; P4same-subjectunprofiledcontrolsneededbeforeeachprofile; scientificacceptancepending",
+  "workflow_observer_sha256": "cea33103784e935865395ece83bfe39764ee2c03a0bbcd03b892644eb50e77d6",
+  "proofs": {
+    "actual_accepted117": {
+      "path": "/workspace/work/campaign/evidence/117/final-evidence.json",
+      "sha256": "b216290735868922cd9564ae2e106e1577cd2fe6789276e09772fc5124d93ddf"
+    },
+    "integrated118": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-actual-C-source-checkpoint-1.json",
+      "sha256": "b2efacf99c9cb264ee1806640ffe2236085a8a9b67d1454f29b3322dbf785988"
+    },
+    "affected_review": {
+      "path": "/workspace/work/campaign/evidence/118/method-source-review-1/report.md",
+      "sha256": "aba8c832f825ced0fa5f87e951918d151a788330ecb0d0eab739f346a63afd13"
+    },
+    "method_qualification": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-first-workflow-pair-actual-1/ROOT-actual-correspondence-and-readout-clarification-1.json",
+      "sha256": "6d1aab15bafdff59c829645d80bb7b23e264bb9b24fd269d0903c77b87fb30ef"
+    },
+    "diagnostic_route_qualification": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/ROOT-result-index.json",
+      "sha256": "7b4513a12ff0bb7e3c7a00e73eca65539c0cd763f70c4b84a119b214a337df2c"
+    },
+    "metadata_git_abort_ownership": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-source-review-application-and-startup-qualification-1.json",
+      "sha256": "22e3fa79829483006847d224fd1e4450b5b1a47de8c24b6c1072e2da620e6f75"
+    },
+    "fresh_workflow_pair_design": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-global78-schedule-before-observation-1.json",
+      "sha256": "a8a478ad3cb38c8a1520472de93f54f604d7887ccc3a246e9e3e4c8c59be85bb"
+    },
+    "chronology_scope_sufficiency": {
+      "path": "/workspace/work/campaign/evidence/118/premeasurement-scientific-scope-review-1/report.md",
+      "sha256": "8745f141663565de54f412ff1aa573c7bb848efe8b43b57765d18da32e09d9a3"
+    },
+    "exclusive_window": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-final24-workflow-exclusive-window-1.json",
+      "sha256": "f95b3f10409c26cf2dc8d72b06def9a5b9efc70e24efefa7bb1a394705cc4418"
+    },
+    "environment_binding": {
+      "path": "/workspace/work/campaign/evidence/118/ROOT-startup-actual-1/ROOT-result-index.json",
+      "sha256": "7b4513a12ff0bb7e3c7a00e73eca65539c0cd763f70c4b84a119b214a337df2c"
+    }
+  },
+  "representation_evidence": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-central64-both-modes-profile-representation-1.json",
+    "sha256": "c1229dd121beee867feee91a3e7d0eb4e8f81597b2b4b93b43a06c4b870dc363"
+  },
+  "operational_activation": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-workflow-method-operational-activation-1.json",
+    "sha256": "ff78720d712443c35674ac1509d4fe3fe649a03621981981936a9610bfe8b61e"
+  },
+  "scientific_scope_application": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-premeasurement-SCI-application-1.json",
+    "sha256": "0e7b482329220372e8441517b738cda1777338548a5c68c063f4087e43ee6350"
+  },
+  "oneoff_source": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-final24-workflow-1.py",
+    "sha256": "9ff5d6bd918363d32e554503bd1752b4a4362d28bb48f0eef7c422df9ec464f2"
+  },
+  "direct_numerical_release": false,
+  "approved_for_exact_final24_scheduled_members": true,
+  "prior54_actual_closed": {
+    "path": "/workspace/work/campaign/evidence/118/ROOT-direct42-actual-1/ROOT-result-index.json",
+    "sha256": "cebf8afe72982fa7373c1e36056fd3f29e90638eaed95e6c98510c24761e5e89"
+  },
+  "after_final24": "CLOSEwindow; ROOTall78primarycollection/scalaranalysis/finalmanuscript thenfreshwholeSCI, no newnumericalmember"
+}

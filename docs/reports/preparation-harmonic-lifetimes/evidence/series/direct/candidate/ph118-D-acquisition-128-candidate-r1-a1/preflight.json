@@ -1,0 +1,63 @@
+{
+  "system": "Linux",
+  "kernel": "6.18.57",
+  "machine": "x86_64",
+  "host_id_sha256": "45e7e2ee03331e7e0fb4ce44fe07c21d6c90885f5dc786874f8e86fd70c2ee33",
+  "pid": 97990,
+  "meminfo": "MemTotal:       18440100 kB\nMemFree:        14164136 kB\nMemAvailable:   17249840 kB\nBuffers:           87940 kB\nCached:          2695440 kB\nSwapCached:            0 kB\nActive:           558660 kB\nInactive:        2343424 kB\nActive(anon):        364 kB\nInactive(anon):   148448 kB\nActive(file):     558296 kB\nInactive(file):  2194976 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:              1568 kB\nWriteback:             0 kB\nAnonPages:        148496 kB\nMapped:           132776 kB\nShmem:               224 kB\nKReclaimable:     729500 kB\nSlab:             824672 kB\nSReclaimable:     729500 kB\nSUnreclaim:        95172 kB\nKernelStack:        3408 kB\nPageTables:         5096 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:     909708 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5604 kB\nVmallocChunk:          0 kB\nPercpu:             1440 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:    544768 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      323584 kB\nDirectMap2M:    14872576 kB\nDirectMap1G:    29360128 kB",
+  "cgroup": {
+    "membership": "/",
+    "mount_root": "/",
+    "mount": "/sys/fs/cgroup",
+    "namespace": "cgroup:[4026532294]",
+    "visible_ancestors": [
+      {
+        "path": "/sys/fs/cgroup",
+        "memory.max": "17179869184",
+        "memory.current": "3698180096",
+        "memory.peak": "17179873280",
+        "memory.events": "low 0\nhigh 0\nmax 50340\noom 0\noom_kill 0\noom_group_kill 0",
+        "memory.swap.max": "max",
+        "memory.swap.current": "0"
+      }
+    ],
+    "hidden_ancestors": "unknown: ancestors outside the exposed domain are unobserved; no absence or unlimited claim"
+  },
+  "rlimits": {
+    "RLIMIT_AS": [
+      -1,
+      -1
+    ],
+    "RLIMIT_DATA": [
+      -1,
+      -1
+    ],
+    "RLIMIT_RSS": [
+      -1,
+      -1
+    ],
+    "RLIMIT_CPU": [
+      -1,
+      -1
+    ],
+    "RLIMIT_FSIZE": [
+      -1,
+      -1
+    ],
+    "RLIMIT_NOFILE": [
+      1024,
+      16384
+    ]
+  },
+  "disk_available_bytes": 43568414720,
+  "threads": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "allocator": {
+    "PYTHONMALLOC": null,
+    "MALLOC_ARENA_MAX": null
+  }
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/work/campaign/evidence/118/resource-analysis-closed78-1/collate_closed78.py", line 159, in <module>
+    condition = spec["case"]
+                ~~~~^^^^^^^^
+KeyError: 'case'

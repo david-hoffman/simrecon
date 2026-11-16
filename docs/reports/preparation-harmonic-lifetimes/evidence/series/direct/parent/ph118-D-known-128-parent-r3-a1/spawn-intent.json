@@ -1,0 +1,100 @@
+{
+  "attempt_id": "ph118-D-known-128-parent-r3-a1",
+  "observer_identity": {
+    "pid": 101336,
+    "observed_monotonic_ns": 143095964752391,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 14309564,
+    "ppid": 0,
+    "pgid": 101336,
+    "session_id": 101336,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "target_argv": [
+    "/workspace/work/issue-117/.venv/bin/python",
+    "/workspace/work/issue-117/tests/preparation_harmonic_memory_benchmark.py",
+    "--case",
+    "known-128",
+    "--role",
+    "parent",
+    "--repetition",
+    "3",
+    "--worktree",
+    "/workspace/work/issue-117",
+    "--expected-python",
+    "/workspace/work/issue-117/.venv/bin/python",
+    "--expected-module-root",
+    "/workspace/work/issue-117/src/simrecon",
+    "--revision",
+    "2cb73d7a8352d88a16477e5e802852b4948c62cd",
+    "--tree",
+    "ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc",
+    "--dirty",
+    "false",
+    "--adapter-sha256",
+    "ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59",
+    "--shared-observer-sha256",
+    "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "--lock-sha256",
+    "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  ],
+  "bootstrap_argv": [
+    "/workspace/work/issue-117/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nstage = \"arguments\"\ntry:\n    target = json.loads(sys.argv[3])\n    stage = \"setsid\"\n    os.setsid()\n    stage = \"readiness\"\n    message = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n        \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n        \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\n    if len(message) > 512 or os.write(fd, message) != len(message):\n        raise RuntimeError(\"invalid/incomplete bounded readiness write\")\n    os.close(fd)\n    fd = -1\n    stage = \"exec\"\n    os.execve(target[0], target, os.environ.copy())\nexcept BaseException as error:\n    if fd >= 0:\n        os.close(fd)\n    detail = {\"stage\":stage, \"type\":type(error).__name__, \"message\":str(error)[:160]}\n    os.write(2, (\"WS116_BOOTSTRAP_ERROR \" + json.dumps(detail) + \"\\n\").encode())\n    raise SystemExit(125 if stage == \"exec\" else 124)\n",
+    "68",
+    "ph118-D-known-128-parent-r3-a1",
+    "[\"/workspace/work/issue-117/.venv/bin/python\", \"/workspace/work/issue-117/tests/preparation_harmonic_memory_benchmark.py\", \"--case\", \"known-128\", \"--role\", \"parent\", \"--repetition\", \"3\", \"--worktree\", \"/workspace/work/issue-117\", \"--expected-python\", \"/workspace/work/issue-117/.venv/bin/python\", \"--expected-module-root\", \"/workspace/work/issue-117/src/simrecon\", \"--revision\", \"2cb73d7a8352d88a16477e5e802852b4948c62cd\", \"--tree\", \"ad275aa5bbfb2e0b69db81e8803764ddf4b00fbc\", \"--dirty\", \"false\", \"--adapter-sha256\", \"ece8f0c660be2dc1713d6eae1c1e73843912ad4621fe0fb147c099c64a0eea59\", \"--shared-observer-sha256\", \"929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f\", \"--lock-sha256\", \"222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b\"]"
+  ],
+  "file_actions": [
+    [
+      0,
+      0,
+      "/dev/null",
+      0,
+      0
+    ],
+    [
+      2,
+      66,
+      1
+    ],
+    [
+      2,
+      67,
+      2
+    ],
+    [
+      2,
+      65,
+      68
+    ],
+    [
+      1,
+      64
+    ],
+    [
+      1,
+      65
+    ],
+    [
+      1,
+      66
+    ],
+    [
+      1,
+      67
+    ]
+  ],
+  "fd_plan": {
+    "read": 64,
+    "write_source": 65,
+    "ready_destination": 68,
+    "stdout_source": 66,
+    "stderr_source": 67
+  },
+  "bootstrap_sha256": "81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+  "spec_sha256": "69a70959a46574ab1d95a2f294d0a5046e0fa9523a41c83d2131545a10afb6a2",
+  "grant_sha256": "0344d80802b58bd4b10c9dc740f85eb18b6871755794ff65c23b2ddb74c3392a",
+  "scope": "intent only, not proof whether spawn occurred; coordinator resolves any marker gap"
+}

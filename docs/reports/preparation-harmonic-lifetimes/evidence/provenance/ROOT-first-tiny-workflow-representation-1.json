@@ -1,0 +1,40 @@
+{
+  "time_utc": "2026-11-16T13:01:53.175964+00:00",
+  "scope": "Frozen original2d-search fixture, actual115-wide/double/CE05 unchanged applicability, no new geometry or allocationtrial",
+  "fixture": {
+    "path": "/workspace/work/issue-118/tests/reconstruction_summary_fixture.py",
+    "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+  },
+  "condition": "rb117-2d-search-summary",
+  "shape_TDPZYX": [
+    2,
+    2,
+    5,
+    1,
+    12,
+    16
+  ],
+  "orders": 3,
+  "lateral_zoom": 2,
+  "axial_zoom": 1,
+  "raw_f4_count": 3840,
+  "raw_f4_bytes": 15360,
+  "prepared_c128_shape": [
+    2,
+    2,
+    5,
+    1,
+    12,
+    9
+  ],
+  "prepared_c128_bytes": 34560,
+  "image_f64_shape": [
+    2,
+    1,
+    24,
+    32
+  ],
+  "image_f64_bytes": 12288,
+  "native_signed_stencil": "all tiny extents/counts fit retained signed/native addressing; actual frozen transfer/scientific/stencil path already exercised accepted117, unchanged inputs/helpers, C only six deletions/comments; successful currentlimitedreal member still required",
+  "limits": "Source payloads are not processRSS or nativeworkspace, RAMfit or physicalaccuracy. Complete caller/result/debug/FFT/allocator/import/hash/JSON/observer/disk/OS allowances separately admitted."
+}

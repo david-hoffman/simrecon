@@ -1,0 +1,106 @@
+{
+  "scope": "File-only ownvenv startup .pth/config/editable-origin inventory; no imports, syntax execution, admission or independent complete-closure verdict",
+  "time_utc": "2026-11-16T11:52:31.559256+00:00",
+  "subjects": {
+    "117": {
+      "root": "/workspace/work/issue-117",
+      "members": [
+        {
+          "path": "/workspace/work/issue-117/.venv/pyvenv.cfg",
+          "sha256": "8c2d64a16c1c00f511f810a208a920a0f16d882d2bfbf5df904f52086a2579fa",
+          "bytes": 194,
+          "content": "home = /workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin\nimplementation = CPython\nuv = 0.12.19\nversion_info = 3.13.12\ninclude-system-site-packages = false\nprompt = simrecon\n"
+        },
+        {
+          "path": "/workspace/work/issue-117/.venv/lib/python3.13/site-packages/_editable_impl_simrecon.pth",
+          "sha256": "d73b45bab073a092ad02b136820acf026645ab6975e449bd2a4678ebe20cc3e0",
+          "bytes": 29,
+          "content": "/workspace/work/issue-117/src"
+        },
+        {
+          "path": "/workspace/work/issue-117/.venv/lib/python3.13/site-packages/_editable_impl_simrecon_devtools.pth",
+          "sha256": "b071a10b57fec878f98ec1e290cd13fb2662bbae6fd8ffbe18f0a10efcab818b",
+          "bytes": 38,
+          "content": "/workspace/work/issue-117/devtools/src"
+        },
+        {
+          "path": "/workspace/work/issue-117/.venv/lib/python3.13/site-packages/_virtualenv.pth",
+          "sha256": "69ac3d8f27e679c81b94ab30b3b56e9cd138219b1ba94a1fa3606d5a76a1433d",
+          "bytes": 18,
+          "content": "import _virtualenv"
+        },
+        {
+          "path": "/workspace/work/issue-117/.venv/lib/python3.13/site-packages/a1_coverage.pth",
+          "sha256": "ef2ed06d19867ec669c09a804060666a9cd5e383af0a9d11aa2de79b77d448e8",
+          "bytes": 205,
+          "content": "import sys; exec('import os\\n\\nif os.getenv(\"COVERAGE_PROCESS_START\") or os.getenv(\"COVERAGE_PROCESS_CONFIG\"):\\n try:\\n  import coverage\\n except:\\n  pass\\n else:\\n  coverage.process_startup(slug=\"pth\")')\n"
+        },
+        {
+          "path": "/workspace/work/issue-117/.venv/lib/python3.13/site-packages/_virtualenv.py",
+          "sha256": "cfb3db86aaa53bb62b5ff764970bec2d71c9228590a0ebec57f6ec926cc0bf1a",
+          "bytes": 5246
+        },
+        {
+          "path": "/workspace/work/issue-117/.venv/lib/python3.13/site-packages/simrecon-0.1.0.dist-info/direct_url.json",
+          "sha256": "23fd59b3eaad04056288c10f3861c3b6e60bdc6380e141e46cd4af5488404a0e",
+          "bytes": 71,
+          "content": "{\"url\":\"file:///workspace/work/issue-117\",\"dir_info\":{\"editable\":true}}"
+        }
+      ],
+      "absence": {
+        "sitecustomize.py": true,
+        "usercustomize.py": true
+      }
+    },
+    "118": {
+      "root": "/workspace/work/issue-118",
+      "members": [
+        {
+          "path": "/workspace/work/issue-118/.venv/pyvenv.cfg",
+          "sha256": "8c2d64a16c1c00f511f810a208a920a0f16d882d2bfbf5df904f52086a2579fa",
+          "bytes": 194,
+          "content": "home = /workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin\nimplementation = CPython\nuv = 0.12.19\nversion_info = 3.13.12\ninclude-system-site-packages = false\nprompt = simrecon\n"
+        },
+        {
+          "path": "/workspace/work/issue-118/.venv/lib/python3.13/site-packages/_editable_impl_simrecon.pth",
+          "sha256": "32777b182e2e634f9a6cbf2c1703bcbc8903471c1abb5e656a9f0e54b7903ed6",
+          "bytes": 29,
+          "content": "/workspace/work/issue-118/src"
+        },
+        {
+          "path": "/workspace/work/issue-118/.venv/lib/python3.13/site-packages/_editable_impl_simrecon_devtools.pth",
+          "sha256": "6db35687ba13d935e28639c9be520e6a6ced918b10d45bba4ea2e2bd15c99e38",
+          "bytes": 38,
+          "content": "/workspace/work/issue-118/devtools/src"
+        },
+        {
+          "path": "/workspace/work/issue-118/.venv/lib/python3.13/site-packages/_virtualenv.pth",
+          "sha256": "69ac3d8f27e679c81b94ab30b3b56e9cd138219b1ba94a1fa3606d5a76a1433d",
+          "bytes": 18,
+          "content": "import _virtualenv"
+        },
+        {
+          "path": "/workspace/work/issue-118/.venv/lib/python3.13/site-packages/a1_coverage.pth",
+          "sha256": "ef2ed06d19867ec669c09a804060666a9cd5e383af0a9d11aa2de79b77d448e8",
+          "bytes": 205,
+          "content": "import sys; exec('import os\\n\\nif os.getenv(\"COVERAGE_PROCESS_START\") or os.getenv(\"COVERAGE_PROCESS_CONFIG\"):\\n try:\\n  import coverage\\n except:\\n  pass\\n else:\\n  coverage.process_startup(slug=\"pth\")')\n"
+        },
+        {
+          "path": "/workspace/work/issue-118/.venv/lib/python3.13/site-packages/_virtualenv.py",
+          "sha256": "cfb3db86aaa53bb62b5ff764970bec2d71c9228590a0ebec57f6ec926cc0bf1a",
+          "bytes": 5246
+        },
+        {
+          "path": "/workspace/work/issue-118/.venv/lib/python3.13/site-packages/simrecon-0.1.0.dist-info/direct_url.json",
+          "sha256": "a03fa809b6519975b972ccaeeaacd731b2e3105bbf19ba96705b0d4033d53812",
+          "bytes": 71,
+          "content": "{\"url\":\"file:///workspace/work/issue-118\",\"dir_info\":{\"editable\":true}}"
+        }
+      ],
+      "absence": {
+        "sitecustomize.py": true,
+        "usercustomize.py": true
+      }
+    }
+  }
+}
